@@ -1,0 +1,44 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Net" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Xml.Linq" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<#@ include file="..\Vk.ttinclude" #>
+<#
+	var vkXml = GetVkXml();
+#>
+using System;
+using System.Runtime.InteropServices;
+
+namespace SharpVk.Interop
+{
+	public static class NativeMethods
+	{
+		public const string VulkanDll = "vulcan-1.dll";
+
+<#
+	foreach(var command in vkXml.Element("registry").Element("commands").Elements("command"))
+	{
+		var prototype = command.Element("proto");
+		string commandType = MapTypeName(prototype.Element("type").Value);
+		string commandName = prototype.Element("name").Value;
+
+		if(commandType.StartsWith("PFN"))
+		{
+			commandType = "IntPtr";
+		}
+#>
+		[DllImport(VulkanDll)]
+		public static extern <#= commandType #> <#= commandName #>();
+
+<#
+	}
+#>
+	}
+}

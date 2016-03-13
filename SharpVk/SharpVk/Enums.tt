@@ -1,0 +1,60 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Net" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Xml.Linq" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<#@ include file=".\Vk.ttinclude" #>
+<#
+	var vkXml = GetVkXml();
+#>
+using System;
+using System.Runtime.InteropServices;
+
+namespace SharpVk
+{
+<#
+	foreach(var enumeration in vkXml.Element("registry").Elements("enums"))
+	{
+		if(enumeration.Attribute("type") != null)
+        {
+			string enumName = MapTypeName(enumeration.Attribute("name").Value);
+			string prefix = "";
+
+			if(enumeration.Attribute("expand") != null)
+            {
+				prefix = enumeration.Attribute("expand").Value + "_";
+            }
+#>
+	public enum <#=enumName#>
+	{
+<#
+			foreach(var enumerationValue in enumeration.Elements("enum"))
+			{
+				string valueName = enumerationValue.Attribute("name").Value;
+
+				if(valueName.StartsWith(prefix))
+                {
+					valueName = valueName.Substring(prefix.Length);
+                }
+
+				var nameParts = valueName.Split('_');
+
+				valueName = string.Join("", nameParts.Select(x => char.ToUpper(x[0]) + x.Substring(1).ToLower()));
+#>
+		_<#=valueName#>,
+<#
+			}
+#>
+	}
+
+<#
+        }
+	}
+#>
+}

@@ -1,0 +1,108 @@
+﻿<#@ IntelliSenseLanguage processor="tangibleT4Editor" language="C#" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Xml.Linq" #>
+<#+
+
+Dictionary<string, string> primitiveTypes = new Dictionary<string, string>()
+{
+    {"void", "void"},
+	{"char", "char"},
+	{"float", "float"},
+	{"uint8_t", "byte"},
+	{"uint32_t", "uint"},
+	{"uint64_t", "ulong"},
+	{"int32_t", "int"},
+	{"size", "UIntPtr"},
+};
+
+enum Category
+{
+	None,
+	vk_platform,
+	@struct
+}
+
+class TypeDef
+{
+	public Category Category;
+	public string Name;
+}
+ 
+XDocument GetVkXml()
+{
+	string tempFile = Path.Combine(Host.ResolvePath("."), "obj\\VkTemplates\\vk.xml");
+
+    if (!File.Exists(tempFile) || File.GetLastWriteTimeUtc(tempFile) + TimeSpan.FromDays(1) < DateTime.UtcNow)
+    {
+		try
+        {
+			Directory.CreateDirectory(Path.GetDirectoryName(tempFile));
+
+			var vkXmlRequest = WebRequest.Create("https://raw.githubusercontent.com/KhronosGroup/Vulkan-Docs/1.0/src/spec/vk.xml");
+
+			using(var vkXmlResponse = vkXmlRequest.GetResponse())
+			using(var fileStream = File.OpenWrite(tempFile))
+			{
+				vkXmlResponse.GetResponseStream().CopyTo(fileStream);
+			}
+        }
+		catch
+        {
+        }
+    }
+	
+    return XDocument.Load(tempFile);
+}
+
+List<TypeDef> GetAllTypes()
+{
+	var vkXml = GetVkXml();
+
+	Category typeCategory = Category.None;
+
+	var result = new List<TypeDef>();
+
+	foreach(var vkType in vkXml.Element("registry").Element("types").Elements("type").Where(x => x.Attribute("category") != null && Enum.TryParse<Category>(x.Attribute("category").Value, out typeCategory)))
+    {
+		string typeName = vkType.Attribute("name").Value;
+
+		if(typeName.StartsWith("vk", true, null))
+		{
+			typeName = typeName.Substring(2);
+		}
+
+		result.Add(new TypeDef
+        {
+			Category = typeCategory,
+			Name = typeName
+        });
+    }
+
+	return result;
+}
+
+List<TypeDef> GetStructs()
+{
+	return GetAllTypes().Where(x => x.Category == Category.@struct).ToList();
+}
+
+string MapTypeName(string vkTypeName)
+{
+	if(primitiveTypes.ContainsKey(vkTypeName))
+    {
+		return primitiveTypes[vkTypeName];
+    }
+
+	string typeName = vkTypeName;
+
+	if(typeName.StartsWith("vk", true, null))
+    {
+		typeName = typeName.Substring(2);
+    }
+
+	return typeName;
+}
+#>

@@ -1,0 +1,78 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Net" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Xml.Linq" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<#@ include file="..\Vk.ttinclude" #>
+<#
+	var vkXml = GetVkXml();
+
+	var structs = GetStructs();
+#>
+using System;
+using System.Runtime.InteropServices;
+
+namespace SharpVk.Interop
+{
+	public struct Bool32
+	{
+		private uint value;
+
+		public Bool32(bool value)
+		{
+			this.value = value ? 1u : 0;
+		}
+
+		public static implicit operator Bool32(bool value)
+		{
+			return new Bool32(value);
+		}
+
+		public static implicit operator bool(Bool32 value)
+		{
+			return value.value != 0;
+		}
+	}
+
+	public struct DeviceSize
+	{
+		private ulong value;
+
+		public static implicit operator DeviceSize(ulong iValue)
+		{
+			return new DeviceSize { value = iValue };
+		}
+
+		public static implicit operator ulong(DeviceSize size)
+		{
+			return size.value;
+		}
+	}
+
+<#
+	foreach(var structType in structs)
+	{
+		string structName = structType.Name;
+#>
+	public unsafe struct <#=structName#>
+	{
+		public static <#=structName#>* Create()
+		{
+			return (<#=structName#>*)HeapUtil.AllocateAndClear<<#=structName#>>();
+		}
+
+<#
+
+#>
+	}
+
+<#
+	}
+#>
+}
