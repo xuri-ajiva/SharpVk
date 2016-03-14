@@ -1,7 +1,5 @@
 ﻿
-using System;
-
-namespace SharpVk.Interop
+namespace SharpVk
 {
 	public struct ClearColorValue
 	{
@@ -13,7 +11,7 @@ namespace SharpVk.Interop
 	public struct ClearValue
 	{
 		public ClearColorValue Color;
-		public ClearDepthStencilValue DepthStencil;
+		public Interop.ClearDepthStencilValue DepthStencil;
 	}
 
 }

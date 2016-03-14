@@ -10,9 +10,6 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
 <#@ include file="..\Vk.ttinclude" #>
-<#
-	var vkXml = GetVkXml();
-#>
 using System;
 using System.Runtime.InteropServices;
 
@@ -25,7 +22,7 @@ namespace SharpVk.Interop
 <#
 	var keywords = new[]{"object", "event"};
 
-	foreach(var command in vkXml.Element("registry").Element("commands").Elements("command"))
+	foreach(var command in GetCommands())
 	{
 		var prototype = command.Element("proto");
 		var commandType = GetTypeDef(prototype.Element("type").Value);

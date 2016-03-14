@@ -22,13 +22,28 @@ namespace SharpVk
 	{
 		if(enumeration.Attribute("type") != null)
         {
-			string enumName = MapTypeName(enumeration.Attribute("name").Value);
+			string vkTypeName = enumeration.Attribute("name").Value;
+			string enumName = MapTypeName(vkTypeName);
 			string prefix = "";
 
 			if(enumeration.Attribute("expand") != null)
             {
 				prefix = enumeration.Attribute("expand").Value + "_";
             }
+
+			string digitPrefix = enumName;
+
+			if(digitPrefix.EndsWith("Type") || digitPrefix.EndsWith("Flag"))
+			{
+				digitPrefix = digitPrefix.Substring(0, digitPrefix.Length - 4);
+			}
+
+			if(enumeration.Attribute("type").Value == "bitmask")
+			{
+				#>
+	[Flags]
+<#
+			}
 #>
 	public enum <#=enumName#>
 	{
@@ -46,9 +61,24 @@ namespace SharpVk
 
 				fieldName = string.Join("", nameParts.Select(x => char.ToUpper(x[0]) + x.Substring(1).ToLower()));
 
+				if(enumeration.Attribute("type").Value == "bitmask" && vkTypeName.EndsWith("FlagBits"))
+				{
+					fieldName = fieldName.Substring(vkTypeName.Length - 8);
+
+					if(fieldName.EndsWith("Bit"))
+					{
+						fieldName = fieldName.Substring(0, fieldName.Length - 3);
+					}
+				}
+
+				if(fieldName.StartsWith("Vk"))
+				{
+					fieldName = fieldName.Substring(2);
+				}
+
 				if(char.IsDigit(fieldName[0]))
                 {
-					fieldName = "_" + fieldName;
+					fieldName = digitPrefix + fieldName;
                 }
 
 				string fieldValue = "0";

@@ -39,7 +39,7 @@ namespace SharpVk.Interop
 		public static extern void vkGetPhysicalDeviceFormatProperties(PhysicalDevice physicalDevice, Format format, FormatProperties* formatProperties);
 
 		[DllImport(VulkanDll)]
-		public static extern Result vkGetPhysicalDeviceImageFormatProperties(PhysicalDevice physicalDevice, Format format, ImageType type, ImageTiling tiling, uint usage, uint flags, ImageFormatProperties* imageFormatProperties);
+		public static extern Result vkGetPhysicalDeviceImageFormatProperties(PhysicalDevice physicalDevice, Format format, ImageType type, ImageTiling tiling, ImageUsageFlags usage, ImageCreateFlags flags, ImageFormatProperties* imageFormatProperties);
 
 		[DllImport(VulkanDll)]
 		public static extern Result vkCreateDevice(PhysicalDevice physicalDevice, DeviceCreateInfo* createInfo, AllocationCallbacks* allocator, Device* device);
@@ -108,7 +108,7 @@ namespace SharpVk.Interop
 		public static extern void vkGetImageSparseMemoryRequirements(Device device, Image image, uint* sparseMemoryRequirementCount, SparseImageMemoryRequirements* sparseMemoryRequirements);
 
 		[DllImport(VulkanDll)]
-		public static extern void vkGetPhysicalDeviceSparseImageFormatProperties(PhysicalDevice physicalDevice, Format format, ImageType type, SampleCountFlagBits samples, uint usage, ImageTiling tiling, uint* propertyCount, SparseImageFormatProperties* properties);
+		public static extern void vkGetPhysicalDeviceSparseImageFormatProperties(PhysicalDevice physicalDevice, Format format, ImageType type, SampleCountFlags samples, ImageUsageFlags usage, ImageTiling tiling, uint* propertyCount, SparseImageFormatProperties* properties);
 
 		[DllImport(VulkanDll)]
 		public static extern Result vkQueueBindSparse(Queue queue, uint bindInfoCount, BindSparseInfo* bindInfo, Fence fence);
@@ -156,7 +156,7 @@ namespace SharpVk.Interop
 		public static extern void vkDestroyQueryPool(Device device, QueryPool queryPool, AllocationCallbacks* allocator);
 
 		[DllImport(VulkanDll)]
-		public static extern Result vkGetQueryPoolResults(Device device, QueryPool queryPool, uint firstQuery, uint queryCount, UIntPtr dataSize, void* data, DeviceSize stride, uint flags);
+		public static extern Result vkGetQueryPoolResults(Device device, QueryPool queryPool, uint firstQuery, uint queryCount, UIntPtr dataSize, void* data, DeviceSize stride, QueryResultFlags flags);
 
 		[DllImport(VulkanDll)]
 		public static extern Result vkCreateBuffer(Device device, BufferCreateInfo* createInfo, AllocationCallbacks* allocator, Buffer* buffer);
@@ -270,7 +270,7 @@ namespace SharpVk.Interop
 		public static extern void vkDestroyCommandPool(Device device, CommandPool commandPool, AllocationCallbacks* allocator);
 
 		[DllImport(VulkanDll)]
-		public static extern Result vkResetCommandPool(Device device, CommandPool commandPool, uint flags);
+		public static extern Result vkResetCommandPool(Device device, CommandPool commandPool, CommandPoolResetFlags flags);
 
 		[DllImport(VulkanDll)]
 		public static extern Result vkAllocateCommandBuffers(Device device, CommandBufferAllocateInfo* allocateInfo, CommandBuffer* commandBuffers);
@@ -285,7 +285,7 @@ namespace SharpVk.Interop
 		public static extern Result vkEndCommandBuffer(CommandBuffer commandBuffer);
 
 		[DllImport(VulkanDll)]
-		public static extern Result vkResetCommandBuffer(CommandBuffer commandBuffer, uint flags);
+		public static extern Result vkResetCommandBuffer(CommandBuffer commandBuffer, CommandBufferResetFlags flags);
 
 		[DllImport(VulkanDll)]
 		public static extern void vkCmdBindPipeline(CommandBuffer commandBuffer, PipelineBindPoint pipelineBindPoint, Pipeline pipeline);
@@ -309,13 +309,13 @@ namespace SharpVk.Interop
 		public static extern void vkCmdSetDepthBounds(CommandBuffer commandBuffer, float minDepthBounds, float maxDepthBounds);
 
 		[DllImport(VulkanDll)]
-		public static extern void vkCmdSetStencilCompareMask(CommandBuffer commandBuffer, uint faceMask, uint compareMask);
+		public static extern void vkCmdSetStencilCompareMask(CommandBuffer commandBuffer, StencilFaceFlags faceMask, uint compareMask);
 
 		[DllImport(VulkanDll)]
-		public static extern void vkCmdSetStencilWriteMask(CommandBuffer commandBuffer, uint faceMask, uint writeMask);
+		public static extern void vkCmdSetStencilWriteMask(CommandBuffer commandBuffer, StencilFaceFlags faceMask, uint writeMask);
 
 		[DllImport(VulkanDll)]
-		public static extern void vkCmdSetStencilReference(CommandBuffer commandBuffer, uint faceMask, uint reference);
+		public static extern void vkCmdSetStencilReference(CommandBuffer commandBuffer, StencilFaceFlags faceMask, uint reference);
 
 		[DllImport(VulkanDll)]
 		public static extern void vkCmdBindDescriptorSets(CommandBuffer commandBuffer, PipelineBindPoint pipelineBindPoint, PipelineLayout layout, uint firstSet, uint descriptorSetCount, DescriptorSet* descriptorSets, uint dynamicOffsetCount, uint* dynamicOffsets);
@@ -378,19 +378,19 @@ namespace SharpVk.Interop
 		public static extern void vkCmdResolveImage(CommandBuffer commandBuffer, Image srcImage, ImageLayout srcImageLayout, Image dstImage, ImageLayout dstImageLayout, uint regionCount, ImageResolve* regions);
 
 		[DllImport(VulkanDll)]
-		public static extern void vkCmdSetEvent(CommandBuffer commandBuffer, Event @event, uint stageMask);
+		public static extern void vkCmdSetEvent(CommandBuffer commandBuffer, Event @event, PipelineStageFlags stageMask);
 
 		[DllImport(VulkanDll)]
-		public static extern void vkCmdResetEvent(CommandBuffer commandBuffer, Event @event, uint stageMask);
+		public static extern void vkCmdResetEvent(CommandBuffer commandBuffer, Event @event, PipelineStageFlags stageMask);
 
 		[DllImport(VulkanDll)]
-		public static extern void vkCmdWaitEvents(CommandBuffer commandBuffer, uint eventCount, Event* events, uint srcStageMask, uint dstStageMask, uint memoryBarrierCount, MemoryBarrier* memoryBarriers, uint bufferMemoryBarrierCount, BufferMemoryBarrier* bufferMemoryBarriers, uint imageMemoryBarrierCount, ImageMemoryBarrier* imageMemoryBarriers);
+		public static extern void vkCmdWaitEvents(CommandBuffer commandBuffer, uint eventCount, Event* events, PipelineStageFlags srcStageMask, PipelineStageFlags dstStageMask, uint memoryBarrierCount, MemoryBarrier* memoryBarriers, uint bufferMemoryBarrierCount, BufferMemoryBarrier* bufferMemoryBarriers, uint imageMemoryBarrierCount, ImageMemoryBarrier* imageMemoryBarriers);
 
 		[DllImport(VulkanDll)]
-		public static extern void vkCmdPipelineBarrier(CommandBuffer commandBuffer, uint srcStageMask, uint dstStageMask, uint dependencyFlags, uint memoryBarrierCount, MemoryBarrier* memoryBarriers, uint bufferMemoryBarrierCount, BufferMemoryBarrier* bufferMemoryBarriers, uint imageMemoryBarrierCount, ImageMemoryBarrier* imageMemoryBarriers);
+		public static extern void vkCmdPipelineBarrier(CommandBuffer commandBuffer, PipelineStageFlags srcStageMask, PipelineStageFlags dstStageMask, DependencyFlags dependencyFlags, uint memoryBarrierCount, MemoryBarrier* memoryBarriers, uint bufferMemoryBarrierCount, BufferMemoryBarrier* bufferMemoryBarriers, uint imageMemoryBarrierCount, ImageMemoryBarrier* imageMemoryBarriers);
 
 		[DllImport(VulkanDll)]
-		public static extern void vkCmdBeginQuery(CommandBuffer commandBuffer, QueryPool queryPool, uint query, uint flags);
+		public static extern void vkCmdBeginQuery(CommandBuffer commandBuffer, QueryPool queryPool, uint query, QueryControlFlags flags);
 
 		[DllImport(VulkanDll)]
 		public static extern void vkCmdEndQuery(CommandBuffer commandBuffer, QueryPool queryPool, uint query);
@@ -399,13 +399,13 @@ namespace SharpVk.Interop
 		public static extern void vkCmdResetQueryPool(CommandBuffer commandBuffer, QueryPool queryPool, uint firstQuery, uint queryCount);
 
 		[DllImport(VulkanDll)]
-		public static extern void vkCmdWriteTimestamp(CommandBuffer commandBuffer, PipelineStageFlagBits pipelineStage, QueryPool queryPool, uint query);
+		public static extern void vkCmdWriteTimestamp(CommandBuffer commandBuffer, PipelineStageFlags pipelineStage, QueryPool queryPool, uint query);
 
 		[DllImport(VulkanDll)]
-		public static extern void vkCmdCopyQueryPoolResults(CommandBuffer commandBuffer, QueryPool queryPool, uint firstQuery, uint queryCount, Buffer dstBuffer, DeviceSize dstOffset, DeviceSize stride, uint flags);
+		public static extern void vkCmdCopyQueryPoolResults(CommandBuffer commandBuffer, QueryPool queryPool, uint firstQuery, uint queryCount, Buffer dstBuffer, DeviceSize dstOffset, DeviceSize stride, QueryResultFlags flags);
 
 		[DllImport(VulkanDll)]
-		public static extern void vkCmdPushConstants(CommandBuffer commandBuffer, PipelineLayout layout, uint stageFlags, uint offset, uint size, void* values);
+		public static extern void vkCmdPushConstants(CommandBuffer commandBuffer, PipelineLayout layout, ShaderStageFlags stageFlags, uint offset, uint size, void* values);
 
 		[DllImport(VulkanDll)]
 		public static extern void vkCmdBeginRenderPass(CommandBuffer commandBuffer, RenderPassBeginInfo* renderPassBegin, SubpassContents contents);
@@ -418,102 +418,6 @@ namespace SharpVk.Interop
 
 		[DllImport(VulkanDll)]
 		public static extern void vkCmdExecuteCommands(CommandBuffer commandBuffer, uint commandBufferCount, CommandBuffer* commandBuffers);
-
-		[DllImport(VulkanDll)]
-		public static extern Result vkCreateAndroidSurfaceKHR(Instance instance, AllocationCallbacks* allocator, SurfaceKHR* surface);
-
-		[DllImport(VulkanDll)]
-		public static extern Result vkGetPhysicalDeviceDisplayPropertiesKHR(PhysicalDevice physicalDevice, uint* propertyCount, DisplayPropertiesKHR* properties);
-
-		[DllImport(VulkanDll)]
-		public static extern Result vkGetPhysicalDeviceDisplayPlanePropertiesKHR(PhysicalDevice physicalDevice, uint* propertyCount, DisplayPlanePropertiesKHR* properties);
-
-		[DllImport(VulkanDll)]
-		public static extern Result vkGetDisplayPlaneSupportedDisplaysKHR(PhysicalDevice physicalDevice, uint planeIndex, uint* displayCount, DisplayKHR* displays);
-
-		[DllImport(VulkanDll)]
-		public static extern Result vkGetDisplayModePropertiesKHR(PhysicalDevice physicalDevice, DisplayKHR display, uint* propertyCount, DisplayModePropertiesKHR* properties);
-
-		[DllImport(VulkanDll)]
-		public static extern Result vkCreateDisplayModeKHR(PhysicalDevice physicalDevice, DisplayKHR display, DisplayModeCreateInfoKHR* createInfo, AllocationCallbacks* allocator, DisplayModeKHR* mode);
-
-		[DllImport(VulkanDll)]
-		public static extern Result vkGetDisplayPlaneCapabilitiesKHR(PhysicalDevice physicalDevice, DisplayModeKHR mode, uint planeIndex, DisplayPlaneCapabilitiesKHR* capabilities);
-
-		[DllImport(VulkanDll)]
-		public static extern Result vkCreateDisplayPlaneSurfaceKHR(Instance instance, AllocationCallbacks* allocator, SurfaceKHR* surface);
-
-		[DllImport(VulkanDll)]
-		public static extern Result vkCreateSharedSwapchainsKHR(Device device, uint swapchainCount, SwapchainCreateInfoKHR* createInfos, AllocationCallbacks* allocator, SwapchainKHR* swapchains);
-
-		[DllImport(VulkanDll)]
-		public static extern Result vkCreateMirSurfaceKHR(Instance instance, AllocationCallbacks* allocator, SurfaceKHR* surface);
-
-		[DllImport(VulkanDll)]
-		public static extern Bool32 vkGetPhysicalDeviceMirPresentationSupportKHR(PhysicalDevice physicalDevice, uint queueFamilyIndex);
-
-		[DllImport(VulkanDll)]
-		public static extern void vkDestroySurfaceKHR(Instance instance, SurfaceKHR surface, AllocationCallbacks* allocator);
-
-		[DllImport(VulkanDll)]
-		public static extern Result vkGetPhysicalDeviceSurfaceSupportKHR(PhysicalDevice physicalDevice, uint queueFamilyIndex, SurfaceKHR surface, Bool32* supported);
-
-		[DllImport(VulkanDll)]
-		public static extern Result vkGetPhysicalDeviceSurfaceCapabilitiesKHR(PhysicalDevice physicalDevice, SurfaceKHR surface, SurfaceCapabilitiesKHR* surfaceCapabilities);
-
-		[DllImport(VulkanDll)]
-		public static extern Result vkGetPhysicalDeviceSurfaceFormatsKHR(PhysicalDevice physicalDevice, SurfaceKHR surface, uint* surfaceFormatCount, SurfaceFormatKHR* surfaceFormats);
-
-		[DllImport(VulkanDll)]
-		public static extern Result vkGetPhysicalDeviceSurfacePresentModesKHR(PhysicalDevice physicalDevice, SurfaceKHR surface, uint* presentModeCount, PresentModeKHR* presentModes);
-
-		[DllImport(VulkanDll)]
-		public static extern Result vkCreateSwapchainKHR(Device device, SwapchainCreateInfoKHR* createInfo, AllocationCallbacks* allocator, SwapchainKHR* swapchain);
-
-		[DllImport(VulkanDll)]
-		public static extern void vkDestroySwapchainKHR(Device device, SwapchainKHR swapchain, AllocationCallbacks* allocator);
-
-		[DllImport(VulkanDll)]
-		public static extern Result vkGetSwapchainImagesKHR(Device device, SwapchainKHR swapchain, uint* swapchainImageCount, Image* swapchainImages);
-
-		[DllImport(VulkanDll)]
-		public static extern Result vkAcquireNextImageKHR(Device device, SwapchainKHR swapchain, ulong timeout, Semaphore semaphore, Fence fence, uint* imageIndex);
-
-		[DllImport(VulkanDll)]
-		public static extern Result vkQueuePresentKHR(Queue queue, PresentInfoKHR* presentInfo);
-
-		[DllImport(VulkanDll)]
-		public static extern Result vkCreateWaylandSurfaceKHR(Instance instance, AllocationCallbacks* allocator, SurfaceKHR* surface);
-
-		[DllImport(VulkanDll)]
-		public static extern Bool32 vkGetPhysicalDeviceWaylandPresentationSupportKHR(PhysicalDevice physicalDevice, uint queueFamilyIndex);
-
-		[DllImport(VulkanDll)]
-		public static extern Result vkCreateWin32SurfaceKHR(Instance instance, AllocationCallbacks* allocator, SurfaceKHR* surface);
-
-		[DllImport(VulkanDll)]
-		public static extern Bool32 vkGetPhysicalDeviceWin32PresentationSupportKHR(PhysicalDevice physicalDevice, uint queueFamilyIndex);
-
-		[DllImport(VulkanDll)]
-		public static extern Result vkCreateXlibSurfaceKHR(Instance instance, AllocationCallbacks* allocator, SurfaceKHR* surface);
-
-		[DllImport(VulkanDll)]
-		public static extern Bool32 vkGetPhysicalDeviceXlibPresentationSupportKHR(PhysicalDevice physicalDevice, uint queueFamilyIndex);
-
-		[DllImport(VulkanDll)]
-		public static extern Result vkCreateXcbSurfaceKHR(Instance instance, AllocationCallbacks* allocator, SurfaceKHR* surface);
-
-		[DllImport(VulkanDll)]
-		public static extern Bool32 vkGetPhysicalDeviceXcbPresentationSupportKHR(PhysicalDevice physicalDevice, uint queueFamilyIndex);
-
-		[DllImport(VulkanDll)]
-		public static extern Result vkCreateDebugReportCallbackEXT(Instance instance, DebugReportCallbackCreateInfoEXT* createInfo, AllocationCallbacks* allocator, DebugReportCallbackEXT* callback);
-
-		[DllImport(VulkanDll)]
-		public static extern void vkDestroyDebugReportCallbackEXT(Instance instance, DebugReportCallbackEXT callback, AllocationCallbacks* allocator);
-
-		[DllImport(VulkanDll)]
-		public static extern void vkDebugReportMessageEXT(Instance instance, uint flags, DebugReportObjectTypeEXT objectType, ulong @object, UIntPtr location, int messageCode, char* layerPrefix, char* message);
 
 	}
 }

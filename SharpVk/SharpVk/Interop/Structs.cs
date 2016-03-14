@@ -355,7 +355,7 @@ namespace SharpVk.Interop
 			return (QueueFamilyProperties*)HeapUtil.AllocateAndClear<QueueFamilyProperties>();
 		}
 
-		public uint QueueFlags;
+		public QueueFlags QueueFlags;
 
 		public uint QueueCount;
 
@@ -417,11 +417,11 @@ namespace SharpVk.Interop
 			return (SparseImageFormatProperties*)HeapUtil.AllocateAndClear<SparseImageFormatProperties>();
 		}
 
-		public uint AspectMask;
+		public ImageAspectFlags AspectMask;
 
 		public Extent3D ImageGranularity;
 
-		public uint Flags;
+		public SparseImageFormatFlags Flags;
 	}
 
 	public unsafe struct SparseImageMemoryRequirements
@@ -449,7 +449,7 @@ namespace SharpVk.Interop
 			return (MemoryType*)HeapUtil.AllocateAndClear<MemoryType>();
 		}
 
-		public uint PropertyFlags;
+		public MemoryPropertyFlags PropertyFlags;
 
 		public uint HeapIndex;
 	}
@@ -463,7 +463,7 @@ namespace SharpVk.Interop
 
 		public DeviceSize Size;
 
-		public uint Flags;
+		public MemoryHeapFlags Flags;
 	}
 
 	public unsafe struct MappedMemoryRange
@@ -491,11 +491,11 @@ namespace SharpVk.Interop
 			return (FormatProperties*)HeapUtil.AllocateAndClear<FormatProperties>();
 		}
 
-		public uint LinearTilingFeatures;
+		public FormatFeatureFlags LinearTilingFeatures;
 
-		public uint OptimalTilingFeatures;
+		public FormatFeatureFlags OptimalTilingFeatures;
 
-		public uint BufferFeatures;
+		public FormatFeatureFlags BufferFeatures;
 	}
 
 	public unsafe struct ImageFormatProperties
@@ -511,7 +511,7 @@ namespace SharpVk.Interop
 
 		public uint MaxArrayLayers;
 
-		public uint SampleCounts;
+		public SampleCountFlags SampleCounts;
 
 		public DeviceSize MaxResourceSize;
 	}
@@ -609,11 +609,11 @@ namespace SharpVk.Interop
 
 		public void* Next;
 
-		public uint Flags;
+		public BufferCreateFlags Flags;
 
 		public DeviceSize Size;
 
-		public uint Usage;
+		public BufferUsageFlags Usage;
 
 		public SharingMode SharingMode;
 
@@ -651,7 +651,7 @@ namespace SharpVk.Interop
 			return (ImageSubresource*)HeapUtil.AllocateAndClear<ImageSubresource>();
 		}
 
-		public uint AspectMask;
+		public ImageAspectFlags AspectMask;
 
 		public uint MipLevel;
 
@@ -665,7 +665,7 @@ namespace SharpVk.Interop
 			return (ImageSubresourceLayers*)HeapUtil.AllocateAndClear<ImageSubresourceLayers>();
 		}
 
-		public uint AspectMask;
+		public ImageAspectFlags AspectMask;
 
 		public uint MipLevel;
 
@@ -681,7 +681,7 @@ namespace SharpVk.Interop
 			return (ImageSubresourceRange*)HeapUtil.AllocateAndClear<ImageSubresourceRange>();
 		}
 
-		public uint AspectMask;
+		public ImageAspectFlags AspectMask;
 
 		public uint BaseMipLevel;
 
@@ -703,9 +703,9 @@ namespace SharpVk.Interop
 
 		public void* Next;
 
-		public uint SrcAccessMask;
+		public AccessFlags SrcAccessMask;
 
-		public uint DstAccessMask;
+		public AccessFlags DstAccessMask;
 	}
 
 	public unsafe struct BufferMemoryBarrier
@@ -719,9 +719,9 @@ namespace SharpVk.Interop
 
 		public void* Next;
 
-		public uint SrcAccessMask;
+		public AccessFlags SrcAccessMask;
 
-		public uint DstAccessMask;
+		public AccessFlags DstAccessMask;
 
 		public uint SrcQueueFamilyIndex;
 
@@ -745,9 +745,9 @@ namespace SharpVk.Interop
 
 		public void* Next;
 
-		public uint SrcAccessMask;
+		public AccessFlags SrcAccessMask;
 
-		public uint DstAccessMask;
+		public AccessFlags DstAccessMask;
 
 		public ImageLayout OldLayout;
 
@@ -773,7 +773,7 @@ namespace SharpVk.Interop
 
 		public void* Next;
 
-		public uint Flags;
+		public ImageCreateFlags Flags;
 
 		public ImageType ImageType;
 
@@ -785,11 +785,11 @@ namespace SharpVk.Interop
 
 		public uint ArrayLayers;
 
-		public SampleCountFlagBits Samples;
+		public SampleCountFlags Samples;
 
 		public ImageTiling Tiling;
 
-		public uint Usage;
+		public ImageUsageFlags Usage;
 
 		public SharingMode SharingMode;
 
@@ -871,7 +871,7 @@ namespace SharpVk.Interop
 
 		public DeviceSize MemoryOffset;
 
-		public uint Flags;
+		public SparseMemoryBindFlags Flags;
 	}
 
 	public unsafe struct SparseImageMemoryBind
@@ -891,7 +891,7 @@ namespace SharpVk.Interop
 
 		public DeviceSize MemoryOffset;
 
-		public uint Flags;
+		public SparseMemoryBindFlags Flags;
 	}
 
 	public unsafe struct SparseBufferMemoryBindInfo
@@ -1075,7 +1075,7 @@ namespace SharpVk.Interop
 
 		public uint DescriptorCount;
 
-		public uint StageFlags;
+		public ShaderStageFlags StageFlags;
 
 		public Sampler* ImmutableSamplers;
 	}
@@ -1121,7 +1121,7 @@ namespace SharpVk.Interop
 
 		public void* Next;
 
-		public uint Flags;
+		public DescriptorPoolCreateFlags Flags;
 
 		public uint MaxSets;
 
@@ -1191,7 +1191,7 @@ namespace SharpVk.Interop
 
 		public uint Flags;
 
-		public ShaderStageFlagBits Stage;
+		public ShaderStageFlags Stage;
 
 		public ShaderModule Module;
 
@@ -1211,7 +1211,7 @@ namespace SharpVk.Interop
 
 		public void* Next;
 
-		public uint Flags;
+		public PipelineCreateFlags Flags;
 
 		public PipelineShaderStageCreateInfo Stage;
 
@@ -1349,7 +1349,7 @@ namespace SharpVk.Interop
 
 		public PolygonMode PolygonMode;
 
-		public uint CullMode;
+		public CullModeFlags CullMode;
 
 		public FrontFace FrontFace;
 
@@ -1377,7 +1377,7 @@ namespace SharpVk.Interop
 
 		public uint Flags;
 
-		public SampleCountFlagBits RasterizationSamples;
+		public SampleCountFlags RasterizationSamples;
 
 		public Bool32 SampleShadingEnable;
 
@@ -1411,7 +1411,7 @@ namespace SharpVk.Interop
 
 		public BlendOp AlphaBlendOp;
 
-		public uint ColorWriteMask;
+		public ColorComponentFlags ColorWriteMask;
 	}
 
 	public unsafe struct PipelineColorBlendStateCreateInfo
@@ -1521,7 +1521,7 @@ namespace SharpVk.Interop
 
 		public void* Next;
 
-		public uint Flags;
+		public PipelineCreateFlags Flags;
 
 		public uint StageCount;
 
@@ -1581,7 +1581,7 @@ namespace SharpVk.Interop
 			return (PushConstantRange*)HeapUtil.AllocateAndClear<PushConstantRange>();
 		}
 
-		public uint StageFlags;
+		public ShaderStageFlags StageFlags;
 
 		public uint Offset;
 
@@ -1665,7 +1665,7 @@ namespace SharpVk.Interop
 
 		public void* Next;
 
-		public uint Flags;
+		public CommandPoolCreateFlags Flags;
 
 		public uint QueueFamilyIndex;
 	}
@@ -1707,9 +1707,9 @@ namespace SharpVk.Interop
 
 		public Bool32 OcclusionQueryEnable;
 
-		public uint QueryFlags;
+		public QueryControlFlags QueryFlags;
 
-		public uint PipelineStatistics;
+		public QueryPipelineStatisticFlags PipelineStatistics;
 	}
 
 	public unsafe struct CommandBufferBeginInfo
@@ -1723,7 +1723,7 @@ namespace SharpVk.Interop
 
 		public void* Next;
 
-		public uint Flags;
+		public CommandBufferUsageFlags Flags;
 
 		public CommandBufferInheritanceInfo* InheritanceInfo;
 	}
@@ -1769,7 +1769,7 @@ namespace SharpVk.Interop
 			return (ClearAttachment*)HeapUtil.AllocateAndClear<ClearAttachment>();
 		}
 
-		public uint AspectMask;
+		public ImageAspectFlags AspectMask;
 
 		public uint ColorAttachment;
 
@@ -1783,11 +1783,11 @@ namespace SharpVk.Interop
 			return (AttachmentDescription*)HeapUtil.AllocateAndClear<AttachmentDescription>();
 		}
 
-		public uint Flags;
+		public AttachmentDescriptionFlags Flags;
 
 		public Format Format;
 
-		public SampleCountFlagBits Samples;
+		public SampleCountFlags Samples;
 
 		public AttachmentLoadOp LoadOp;
 
@@ -1853,15 +1853,15 @@ namespace SharpVk.Interop
 
 		public uint DstSubpass;
 
-		public uint SrcStageMask;
+		public PipelineStageFlags SrcStageMask;
 
-		public uint DstStageMask;
+		public PipelineStageFlags DstStageMask;
 
-		public uint SrcAccessMask;
+		public AccessFlags SrcAccessMask;
 
-		public uint DstAccessMask;
+		public AccessFlags DstAccessMask;
 
-		public uint DependencyFlags;
+		public DependencyFlags DependencyFlags;
 	}
 
 	public unsafe struct RenderPassCreateInfo
@@ -1915,7 +1915,7 @@ namespace SharpVk.Interop
 
 		public void* Next;
 
-		public uint Flags;
+		public FenceCreateFlags Flags;
 	}
 
 	public unsafe struct PhysicalDeviceFeatures
@@ -2221,25 +2221,25 @@ namespace SharpVk.Interop
 
 		public uint MaxFramebufferLayers;
 
-		public uint FramebufferColorSampleCounts;
+		public SampleCountFlags FramebufferColorSampleCounts;
 
-		public uint FramebufferDepthSampleCounts;
+		public SampleCountFlags FramebufferDepthSampleCounts;
 
-		public uint FramebufferStencilSampleCounts;
+		public SampleCountFlags FramebufferStencilSampleCounts;
 
-		public uint FramebufferNoAttachmentsSampleCounts;
+		public SampleCountFlags FramebufferNoAttachmentsSampleCounts;
 
 		public uint MaxColorAttachments;
 
-		public uint SampledImageColorSampleCounts;
+		public SampleCountFlags SampledImageColorSampleCounts;
 
-		public uint SampledImageIntegerSampleCounts;
+		public SampleCountFlags SampledImageIntegerSampleCounts;
 
-		public uint SampledImageDepthSampleCounts;
+		public SampleCountFlags SampledImageDepthSampleCounts;
 
-		public uint SampledImageStencilSampleCounts;
+		public SampleCountFlags SampledImageStencilSampleCounts;
 
-		public uint StorageImageSampleCounts;
+		public SampleCountFlags StorageImageSampleCounts;
 
 		public uint MaxSampleMaskWords;
 
@@ -2305,7 +2305,7 @@ namespace SharpVk.Interop
 
 		public uint QueryCount;
 
-		public uint PipelineStatistics;
+		public QueryPipelineStatisticFlags PipelineStatistics;
 	}
 
 	public unsafe struct FramebufferCreateInfo
@@ -2397,7 +2397,7 @@ namespace SharpVk.Interop
 
 		public Semaphore* WaitSemaphores;
 
-		public uint* WaitDstStageMask;
+		public PipelineStageFlags* WaitDstStageMask;
 
 		public uint CommandBufferCount;
 
@@ -2423,7 +2423,7 @@ namespace SharpVk.Interop
 
 		public Extent2D PhysicalResolution;
 
-		public uint SupportedTransforms;
+		public SurfaceTransformFlagsKHR SupportedTransforms;
 
 		public Bool32 PlaneReorderPossible;
 
@@ -2489,7 +2489,7 @@ namespace SharpVk.Interop
 			return (DisplayPlaneCapabilitiesKHR*)HeapUtil.AllocateAndClear<DisplayPlaneCapabilitiesKHR>();
 		}
 
-		public uint SupportedAlpha;
+		public DisplayPlaneAlphaFlagsKHR SupportedAlpha;
 
 		public Offset2D MinSrcPosition;
 
@@ -2545,13 +2545,13 @@ namespace SharpVk.Interop
 
 		public uint MaxImageArrayLayers;
 
-		public uint SupportedTransforms;
+		public SurfaceTransformFlagsKHR SupportedTransforms;
 
-		public SurfaceTransformFlagBitsKHR CurrentTransform;
+		public SurfaceTransformFlagsKHR CurrentTransform;
 
-		public uint SupportedCompositeAlpha;
+		public CompositeAlphaFlagsKHR SupportedCompositeAlpha;
 
-		public uint SupportedUsageFlags;
+		public ImageUsageFlags SupportedUsageFlags;
 	}
 
 	public unsafe struct SurfaceFormatKHR
@@ -2591,7 +2591,7 @@ namespace SharpVk.Interop
 
 		public uint ImageArrayLayers;
 
-		public uint ImageUsage;
+		public ImageUsageFlags ImageUsage;
 
 		public SharingMode ImageSharingMode;
 
@@ -2599,9 +2599,9 @@ namespace SharpVk.Interop
 
 		public uint* QueueFamilyIndices;
 
-		public SurfaceTransformFlagBitsKHR PreTransform;
+		public SurfaceTransformFlagsKHR PreTransform;
 
-		public CompositeAlphaFlagBitsKHR CompositeAlpha;
+		public CompositeAlphaFlagsKHR CompositeAlpha;
 
 		public PresentModeKHR PresentMode;
 
@@ -2645,7 +2645,7 @@ namespace SharpVk.Interop
 
 		public void* Next;
 
-		public uint Flags;
+		public DebugReportFlagsEXT Flags;
 
 		public IntPtr PfnCallback;
 

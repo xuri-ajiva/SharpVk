@@ -8,9 +8,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
 <#@ include file=".\Vk.ttinclude" #>
-using System;
-
-namespace SharpVk.Interop
+namespace SharpVk
 {
 <#
 	foreach(var union in GetUnions())
@@ -33,6 +31,11 @@ namespace SharpVk.Interop
 
 			var memberType = GetTypeDef(typeMember.Element("type").Value);
 			string memberTypeName = memberType.Name;
+
+			if(memberType.Category == Category.basetype || memberType.Category == Category.handle || memberType.Category == Category.@struct)
+            {
+				memberTypeName = "Interop." + memberTypeName;
+            }
 #>
 		public <#=memberTypeName#> <#=memberName#>;
 <#

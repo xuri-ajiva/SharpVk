@@ -1,4 +1,4 @@
-﻿<#@ template  debug="true" hostSpecific="true" #>
+﻿<#@ template debug="true" hostSpecific="true" #>
 <#@ output extension=".cs" #>
 <#@ Assembly Name="System.Core" #>
 <#@ Assembly Name="System.Windows.Forms" #>
@@ -8,6 +8,38 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Collections" #>
 <#@ import namespace="System.Collections.Generic" #> 
-//public class Instance
-//{
-//}
+<#@ include file=".\Vk.ttinclude" #>
+public class Instance
+{
+<#
+	var vkXml = GetVkXml();
+
+	var instanceType = GetTypeDef("VkInstance");
+
+	var commands = GetCommands();
+
+	var createCommand = commands.First(x => x.Element("proto").Element("name").Value == "vkCreate" + instanceType.Name);
+
+#>
+	/*<#=createCommand#>*/
+
+<#
+
+	foreach(var command in GetCommands())
+	{
+		var prototype = command.Element("proto");
+		var commandType = GetTypeDef(prototype.Element("type").Value);
+		string commandName = prototype.Element("name").Value;
+
+		var firstParam = command.Elements("param").First();
+		var paramType = GetTypeDef(firstParam.Element("type").Value);
+
+		if(paramType == instanceType)
+		{
+#>
+	//<#=commandName#> <#=paramType.Name#>
+<#
+		}
+	}
+#>
+}

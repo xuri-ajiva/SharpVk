@@ -1,0 +1,208 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Net" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Xml.Linq" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<#@ include file=".\Vk.ttinclude" #>
+using System;
+
+namespace SharpVk
+{
+<#
+	var structs = GetStructs();
+
+	foreach(var structType in structs)
+	{
+		string structName = structType.Name;
+#>
+
+	public unsafe struct <#=structName#>
+	{
+		private readonly Interop.<#=structName#>* instance;
+
+		internal <#=structName#>(Interop.<#=structName#>* instance)
+		{
+			this.instance = instance == null ? Interop.<#=structName#>.Create() : instance;
+		}
+
+		public static <#=structName#> Create()
+		{
+			var result = new <#=structName#>(null);
+
+<#
+		if(structType.Xml.Elements("member").Any(x => x.Element("name").Value == "sType"))
+		{
+#>
+			result.instance->SType = StructureType.<#=structName#>;
+
+<#
+		}
+#>
+			return result;
+		}
+<#
+		var members = new List<MemberInfo>();
+
+		var lenMembers = new List<string>();
+
+		var memberNameMap = new Dictionary<string, string>();
+
+		foreach(var typeMember in structType.Xml.Elements("member"))
+        {
+			string memberName = typeMember.Element("name").Value;
+		
+			int pointerCount = 0;
+			
+			while(memberName[0] == 'p' && (memberName[1] == 'p' || char.IsUpper(memberName[1])))
+			{
+				pointerCount++;
+		
+				memberName = memberName.Substring(1);
+            }
+		
+			memberName = char.ToUpper(memberName[0]) + memberName.Substring(1);
+		
+			int count = 0;
+		
+			int arraySuffixIndex = memberName.IndexOf('[');
+			if(arraySuffixIndex >= 0)
+            {
+				count = int.Parse(new string(memberName.Skip(arraySuffixIndex + 1).TakeWhile(x => char.IsDigit(x)).ToArray()));
+		
+				memberName = memberName.Substring(0, arraySuffixIndex);
+            }
+		
+			string memberLen = null;
+
+			if(typeMember.Attribute("len") != null)
+			{
+				memberLen = typeMember.Attribute("len").Value;
+
+				memberLen = memberLen.Split(',').First();
+
+				lenMembers.Add(memberLen);
+			}
+
+			var memberType = GetTypeDef(typeMember.Element("type").Value);
+		
+			if(count == 0)
+            {
+				members.Add(new MemberInfo
+				{
+					Type = memberType,
+					Name = memberName,
+					PointerCount = pointerCount
+				});
+
+				memberNameMap.Add(memberName, typeMember.Element("name").Value);
+            }
+			else
+            {
+				for(int fieldIndex = 0;fieldIndex < count;fieldIndex++)
+                {
+					members.Add(new MemberInfo
+					{
+						Type = memberType,
+						Name = memberName + fieldIndex,
+						PointerCount = pointerCount
+					});
+
+					memberNameMap.Add(memberName + fieldIndex, typeMember.Element("name").Value);
+                }
+            }
+        }
+
+		foreach(var member in members)
+        {
+			if(member.Type.Category == Category.@struct
+				|| member.Type.Category == Category.handle
+				|| member.Name == "SType"
+				|| lenMembers.Contains(memberNameMap[member.Name]))
+			{
+				continue;
+			}
+
+			string memberTypeName = member.Type.Name;
+						
+			if(member.Type.Category == Category.funcpointer)
+            {
+				memberTypeName = "IntPtr";
+            }
+			else if(member.Type.Category == Category.basetype)
+            {
+				memberTypeName = MapBaseTypeName(memberTypeName);
+            }
+			else if(memberTypeName == "char" && member.PointerCount > 0)
+			{
+				memberTypeName = "string";
+				member.PointerCount--;
+			}
+			
+			if(member.PointerCount > 0)
+            {
+				continue;
+            }
+
+			int valueIndex = 0;
+#>
+
+		public <#=memberTypeName#> <#=member.Name#>
+		{
+			get
+			{
+				var value0 = this.instance-><#=member.Name#>;
+
+<#
+			if(memberTypeName == "string")
+			{
+#>
+				var value<#=valueIndex + 1#> = Interop.HeapUtil.MarshalPointerToString(value<#=valueIndex#>);
+
+<#
+				valueIndex++;
+			}
+#>
+				return value<#=valueIndex#>;
+			}
+<#
+			valueIndex = 0;
+#>
+			set
+			{
+				var value0 = value;
+
+<#
+			if(memberTypeName == "string")
+			{
+#>
+				var value<#=valueIndex + 1#> = Interop.HeapUtil.MarshalStringToPointer(value<#=valueIndex#>);
+
+<#
+				valueIndex++;
+			}
+#>
+				this.instance-><#=member.Name#> = value<#=valueIndex#>;
+			}
+		}
+<#
+        }
+#>
+	}
+<#
+	}
+#>
+}
+<#+
+class MemberInfo
+{
+	public TypeDef Type;
+	public string Name;
+	public int PointerCount;
+}
+#>

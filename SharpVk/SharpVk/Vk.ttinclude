@@ -1,5 +1,4 @@
-﻿<#@ IntelliSenseLanguage processor="tangibleT4Editor" language="C#" #>
-<#@ assembly name="System.Xml" #>
+﻿<#@ assembly name="System.Xml" #>
 <#@ assembly name="System.Xml.Linq" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.IO" #>
@@ -16,8 +15,17 @@ Dictionary<string, string> primitiveTypes = new Dictionary<string, string>()
 	{"uint32_t", "uint"},
 	{"uint64_t", "ulong"},
 	{"int32_t", "int"},
-	{"size_t", "UIntPtr"},
+	{"size_t", "UIntPtr"}
 };
+
+Dictionary<string, string> baseTypes = new Dictionary<string, string>()
+{
+    {"Bool32", "bool"},
+	{"DeviceSize", "ulong"},
+	{"SampleMask", "uint"}
+};
+
+string[] extensionSuffixes = new[]{"KHR", "EXT"};
 
 enum Category
 {
@@ -70,7 +78,7 @@ static Dictionary<string, TypeDef> typeDefCache = null;
 
 Dictionary<string, TypeDef> GetAllTypes()
 {
-	if(typeDefCache ==null)
+	if(typeDefCache == null)
     {
 		var vkXml = GetVkXml();
 
@@ -80,6 +88,8 @@ Dictionary<string, TypeDef> GetAllTypes()
 
 		foreach(var vkType in vkXml.Element("registry").Element("types").Elements("type"))
 		{
+			var additionalTypeNames = new List<string>();
+
 			if(vkType.Attribute("category") == null || !Enum.TryParse<Category>(vkType.Attribute("category").Value, out typeCategory))
             {
 				if(vkType.Attribute("requires") != null && vkType.Attribute("requires").Value == "vk_platform")
@@ -116,25 +126,46 @@ Dictionary<string, TypeDef> GetAllTypes()
 			{
 				typeName = primitiveTypes[vkTypeName];
 			}
-			else if(typeCategory == Category.bitmask && vkType.Element("requires") == null)
+			else if(typeCategory == Category.bitmask)
             {
-				typeName = "uint";
+				if(vkType.Attribute("requires") == null)
+				{
+					typeName = "uint";
+				}
+				else
+				{
+					additionalTypeNames.Add(vkType.Attribute("requires").Value);
+				}
             }
 			else if(typeCategory == Category.funcpointer)
             {
 				typeName = "IntPtr";
             }
-			else if(typeName.StartsWith("vk", true, null))
+			
+			if(typeName.StartsWith("vk", true, null))
 			{
 				typeName = typeName.Substring(2);
 			}
 
-			result.Add(vkTypeName, new TypeDef
-				{
-					Category = typeCategory,
-					Name = typeName,
-					Xml = vkType
-				});
+			if(!result.ContainsKey(vkTypeName))
+			{
+				result.Add(vkTypeName, new TypeDef
+					{
+						Category = typeCategory,
+						Name = typeName,
+						Xml = vkType
+					});
+			}
+
+			foreach(var additionalTypeName in additionalTypeNames)
+			{
+				result.Add(additionalTypeName, new TypeDef
+					{
+						Category = typeCategory,
+						Name = typeName,
+						Xml = vkType
+					});
+			}
 		}
 
 		typeDefCache = result;
@@ -157,7 +188,7 @@ TypeDef GetTypeDef(string vkTypeName)
 
 IEnumerable<TypeDef> GetStructs()
 {
-	return GetAllTypes().Select(x => x.Value).Where(x => x.Category == Category.@struct);
+	return GetAllTypes().Select(x => x.Value).Where(x => x.Category == Category.@struct && !extensionSuffixes.Any(y => x.Name.EndsWith(y)));
 }
 
 IEnumerable<TypeDef> GetHandles()
@@ -170,8 +201,18 @@ IEnumerable<TypeDef> GetUnions()
 	return GetAllTypes().Select(x => x.Value).Where(x => x.Category == Category.union);
 }
 
+IEnumerable<XElement> GetCommands()
+{
+	return GetVkXml().Element("registry").Element("commands").Elements("command").Where(x => !extensionSuffixes.Any(y => x.Element("proto").Value.EndsWith(y)));
+}
+
 string MapTypeName(string vkTypeName)
 {
 	return GetTypeDef(vkTypeName).Name;
+}
+
+string MapBaseTypeName(string baseTypeName)
+{
+	return baseTypes[baseTypeName];
 }
 #>

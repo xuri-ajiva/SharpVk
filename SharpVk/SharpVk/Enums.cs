@@ -31,9 +31,9 @@ namespace SharpVk
 
 	public enum ImageType
 	{
-		_1d = 0,
-		_2d = 1,
-		_3d = 2,
+		Image1d = 0,
+		Image2d = 1,
+		Image3d = 2,
 	}
 
 	public enum ImageTiling
@@ -44,12 +44,12 @@ namespace SharpVk
 
 	public enum ImageViewType
 	{
-		_1d = 0,
-		_2d = 1,
-		_3d = 2,
+		ImageView1d = 0,
+		ImageView2d = 1,
+		ImageView3d = 2,
 		Cube = 3,
-		_1dArray = 4,
-		_2dArray = 5,
+		ImageView1dArray = 4,
+		ImageView2dArray = 5,
 		CubeArray = 6,
 	}
 
@@ -179,12 +179,13 @@ namespace SharpVk
 		Point = 2,
 	}
 
-	public enum CullModeFlagBits
+	[Flags]
+	public enum CullModeFlags
 	{
-		VkCullModeNone = 0,
-		VkCullModeFrontBit = 1 << 0,
-		VkCullModeBackBit = 1 << 1,
-		VkCullModeFrontAndBack = 0x00000003,
+		None = 0,
+		Front = 1 << 0,
+		Back = 1 << 1,
+		FrontAndBack = 0x00000003,
 	}
 
 	public enum FrontFace
@@ -536,23 +537,23 @@ namespace SharpVk
 
 	public enum Result
 	{
-		VkSuccess = 0,
-		VkNotReady = 1,
-		VkTimeout = 2,
-		VkEventSet = 3,
-		VkEventReset = 4,
-		VkIncomplete = 5,
-		VkErrorOutOfHostMemory = -1,
-		VkErrorOutOfDeviceMemory = -2,
-		VkErrorInitializationFailed = -3,
-		VkErrorDeviceLost = -4,
-		VkErrorMemoryMapFailed = -5,
-		VkErrorLayerNotPresent = -6,
-		VkErrorExtensionNotPresent = -7,
-		VkErrorFeatureNotPresent = -8,
-		VkErrorIncompatibleDriver = -9,
-		VkErrorTooManyObjects = -10,
-		VkErrorFormatNotSupported = -11,
+		Success = 0,
+		NotReady = 1,
+		Timeout = 2,
+		EventSet = 3,
+		EventReset = 4,
+		Incomplete = 5,
+		ErrorOutOfHostMemory = -1,
+		ErrorOutOfDeviceMemory = -2,
+		ErrorInitializationFailed = -3,
+		ErrorDeviceLost = -4,
+		ErrorMemoryMapFailed = -5,
+		ErrorLayerNotPresent = -6,
+		ErrorExtensionNotPresent = -7,
+		ErrorFeatureNotPresent = -8,
+		ErrorIncompatibleDriver = -9,
+		ErrorTooManyObjects = -10,
+		ErrorFormatNotSupported = -11,
 	}
 
 	public enum DynamicState
@@ -568,262 +569,291 @@ namespace SharpVk
 		StencilReference = 8,
 	}
 
-	public enum QueueFlagBits
+	[Flags]
+	public enum QueueFlags
 	{
-		VkQueueGraphicsBit = 1 << 0,
-		VkQueueComputeBit = 1 << 1,
-		VkQueueTransferBit = 1 << 2,
-		VkQueueSparseBindingBit = 1 << 3,
+		Graphics = 1 << 0,
+		Compute = 1 << 1,
+		Transfer = 1 << 2,
+		SparseBinding = 1 << 3,
 	}
 
-	public enum MemoryPropertyFlagBits
+	[Flags]
+	public enum MemoryPropertyFlags
 	{
-		VkMemoryPropertyDeviceLocalBit = 1 << 0,
-		VkMemoryPropertyHostVisibleBit = 1 << 1,
-		VkMemoryPropertyHostCoherentBit = 1 << 2,
-		VkMemoryPropertyHostCachedBit = 1 << 3,
-		VkMemoryPropertyLazilyAllocatedBit = 1 << 4,
+		DeviceLocal = 1 << 0,
+		HostVisible = 1 << 1,
+		HostCoherent = 1 << 2,
+		HostCached = 1 << 3,
+		LazilyAllocated = 1 << 4,
 	}
 
-	public enum MemoryHeapFlagBits
+	[Flags]
+	public enum MemoryHeapFlags
 	{
-		VkMemoryHeapDeviceLocalBit = 1 << 0,
+		DeviceLocal = 1 << 0,
 	}
 
-	public enum AccessFlagBits
+	[Flags]
+	public enum AccessFlags
 	{
-		VkAccessIndirectCommandReadBit = 1 << 0,
-		VkAccessIndexReadBit = 1 << 1,
-		VkAccessVertexAttributeReadBit = 1 << 2,
-		VkAccessUniformReadBit = 1 << 3,
-		VkAccessInputAttachmentReadBit = 1 << 4,
-		VkAccessShaderReadBit = 1 << 5,
-		VkAccessShaderWriteBit = 1 << 6,
-		VkAccessColorAttachmentReadBit = 1 << 7,
-		VkAccessColorAttachmentWriteBit = 1 << 8,
-		VkAccessDepthStencilAttachmentReadBit = 1 << 9,
-		VkAccessDepthStencilAttachmentWriteBit = 1 << 10,
-		VkAccessTransferReadBit = 1 << 11,
-		VkAccessTransferWriteBit = 1 << 12,
-		VkAccessHostReadBit = 1 << 13,
-		VkAccessHostWriteBit = 1 << 14,
-		VkAccessMemoryReadBit = 1 << 15,
-		VkAccessMemoryWriteBit = 1 << 16,
+		IndirectCommandRead = 1 << 0,
+		IndexRead = 1 << 1,
+		VertexAttributeRead = 1 << 2,
+		UniformRead = 1 << 3,
+		InputAttachmentRead = 1 << 4,
+		ShaderRead = 1 << 5,
+		ShaderWrite = 1 << 6,
+		ColorAttachmentRead = 1 << 7,
+		ColorAttachmentWrite = 1 << 8,
+		DepthStencilAttachmentRead = 1 << 9,
+		DepthStencilAttachmentWrite = 1 << 10,
+		TransferRead = 1 << 11,
+		TransferWrite = 1 << 12,
+		HostRead = 1 << 13,
+		HostWrite = 1 << 14,
+		MemoryRead = 1 << 15,
+		MemoryWrite = 1 << 16,
 	}
 
-	public enum BufferUsageFlagBits
+	[Flags]
+	public enum BufferUsageFlags
 	{
-		VkBufferUsageTransferSrcBit = 1 << 0,
-		VkBufferUsageTransferDstBit = 1 << 1,
-		VkBufferUsageUniformTexelBufferBit = 1 << 2,
-		VkBufferUsageStorageTexelBufferBit = 1 << 3,
-		VkBufferUsageUniformBufferBit = 1 << 4,
-		VkBufferUsageStorageBufferBit = 1 << 5,
-		VkBufferUsageIndexBufferBit = 1 << 6,
-		VkBufferUsageVertexBufferBit = 1 << 7,
-		VkBufferUsageIndirectBufferBit = 1 << 8,
+		TransferSrc = 1 << 0,
+		TransferDst = 1 << 1,
+		UniformTexelBuffer = 1 << 2,
+		StorageTexelBuffer = 1 << 3,
+		UniformBuffer = 1 << 4,
+		StorageBuffer = 1 << 5,
+		IndexBuffer = 1 << 6,
+		VertexBuffer = 1 << 7,
+		IndirectBuffer = 1 << 8,
 	}
 
-	public enum BufferCreateFlagBits
+	[Flags]
+	public enum BufferCreateFlags
 	{
-		VkBufferCreateSparseBindingBit = 1 << 0,
-		VkBufferCreateSparseResidencyBit = 1 << 1,
-		VkBufferCreateSparseAliasedBit = 1 << 2,
+		SparseBinding = 1 << 0,
+		SparseResidency = 1 << 1,
+		SparseAliased = 1 << 2,
 	}
 
-	public enum ShaderStageFlagBits
+	[Flags]
+	public enum ShaderStageFlags
 	{
-		VkShaderStageVertexBit = 1 << 0,
-		VkShaderStageTessellationControlBit = 1 << 1,
-		VkShaderStageTessellationEvaluationBit = 1 << 2,
-		VkShaderStageGeometryBit = 1 << 3,
-		VkShaderStageFragmentBit = 1 << 4,
-		VkShaderStageComputeBit = 1 << 5,
-		VkShaderStageAllGraphics = 0x0000001F,
-		VkShaderStageAll = 0x7FFFFFFF,
+		Vertex = 1 << 0,
+		TessellationControl = 1 << 1,
+		TessellationEvaluation = 1 << 2,
+		Geometry = 1 << 3,
+		Fragment = 1 << 4,
+		Compute = 1 << 5,
+		AllGraphics = 0x0000001F,
+		All = 0x7FFFFFFF,
 	}
 
-	public enum ImageUsageFlagBits
+	[Flags]
+	public enum ImageUsageFlags
 	{
-		VkImageUsageTransferSrcBit = 1 << 0,
-		VkImageUsageTransferDstBit = 1 << 1,
-		VkImageUsageSampledBit = 1 << 2,
-		VkImageUsageStorageBit = 1 << 3,
-		VkImageUsageColorAttachmentBit = 1 << 4,
-		VkImageUsageDepthStencilAttachmentBit = 1 << 5,
-		VkImageUsageTransientAttachmentBit = 1 << 6,
-		VkImageUsageInputAttachmentBit = 1 << 7,
+		TransferSrc = 1 << 0,
+		TransferDst = 1 << 1,
+		Sampled = 1 << 2,
+		Storage = 1 << 3,
+		ColorAttachment = 1 << 4,
+		DepthStencilAttachment = 1 << 5,
+		TransientAttachment = 1 << 6,
+		InputAttachment = 1 << 7,
 	}
 
-	public enum ImageCreateFlagBits
+	[Flags]
+	public enum ImageCreateFlags
 	{
-		VkImageCreateSparseBindingBit = 1 << 0,
-		VkImageCreateSparseResidencyBit = 1 << 1,
-		VkImageCreateSparseAliasedBit = 1 << 2,
-		VkImageCreateMutableFormatBit = 1 << 3,
-		VkImageCreateCubeCompatibleBit = 1 << 4,
+		SparseBinding = 1 << 0,
+		SparseResidency = 1 << 1,
+		SparseAliased = 1 << 2,
+		MutableFormat = 1 << 3,
+		CubeCompatible = 1 << 4,
 	}
 
-	public enum PipelineCreateFlagBits
+	[Flags]
+	public enum PipelineCreateFlags
 	{
-		VkPipelineCreateDisableOptimizationBit = 1 << 0,
-		VkPipelineCreateAllowDerivativesBit = 1 << 1,
-		VkPipelineCreateDerivativeBit = 1 << 2,
+		DisableOptimization = 1 << 0,
+		AllowDerivatives = 1 << 1,
+		Derivative = 1 << 2,
 	}
 
-	public enum ColorComponentFlagBits
+	[Flags]
+	public enum ColorComponentFlags
 	{
-		VkColorComponentRBit = 1 << 0,
-		VkColorComponentGBit = 1 << 1,
-		VkColorComponentBBit = 1 << 2,
-		VkColorComponentABit = 1 << 3,
+		R = 1 << 0,
+		G = 1 << 1,
+		B = 1 << 2,
+		A = 1 << 3,
 	}
 
-	public enum FenceCreateFlagBits
+	[Flags]
+	public enum FenceCreateFlags
 	{
-		VkFenceCreateSignaledBit = 1 << 0,
+		Signaled = 1 << 0,
 	}
 
-	public enum FormatFeatureFlagBits
+	[Flags]
+	public enum FormatFeatureFlags
 	{
-		VkFormatFeatureSampledImageBit = 1 << 0,
-		VkFormatFeatureStorageImageBit = 1 << 1,
-		VkFormatFeatureStorageImageAtomicBit = 1 << 2,
-		VkFormatFeatureUniformTexelBufferBit = 1 << 3,
-		VkFormatFeatureStorageTexelBufferBit = 1 << 4,
-		VkFormatFeatureStorageTexelBufferAtomicBit = 1 << 5,
-		VkFormatFeatureVertexBufferBit = 1 << 6,
-		VkFormatFeatureColorAttachmentBit = 1 << 7,
-		VkFormatFeatureColorAttachmentBlendBit = 1 << 8,
-		VkFormatFeatureDepthStencilAttachmentBit = 1 << 9,
-		VkFormatFeatureBlitSrcBit = 1 << 10,
-		VkFormatFeatureBlitDstBit = 1 << 11,
-		VkFormatFeatureSampledImageFilterLinearBit = 1 << 12,
+		SampledImage = 1 << 0,
+		StorageImage = 1 << 1,
+		StorageImageAtomic = 1 << 2,
+		UniformTexelBuffer = 1 << 3,
+		StorageTexelBuffer = 1 << 4,
+		StorageTexelBufferAtomic = 1 << 5,
+		VertexBuffer = 1 << 6,
+		ColorAttachment = 1 << 7,
+		ColorAttachmentBlend = 1 << 8,
+		DepthStencilAttachment = 1 << 9,
+		BlitSrc = 1 << 10,
+		BlitDst = 1 << 11,
+		SampledImageFilterLinear = 1 << 12,
 	}
 
-	public enum QueryControlFlagBits
+	[Flags]
+	public enum QueryControlFlags
 	{
-		VkQueryControlPreciseBit = 1 << 0,
+		Precise = 1 << 0,
 	}
 
-	public enum QueryResultFlagBits
+	[Flags]
+	public enum QueryResultFlags
 	{
-		VkQueryResult64Bit = 1 << 0,
-		VkQueryResultWaitBit = 1 << 1,
-		VkQueryResultWithAvailabilityBit = 1 << 2,
-		VkQueryResultPartialBit = 1 << 3,
+		QueryResultFlags64 = 1 << 0,
+		Wait = 1 << 1,
+		WithAvailability = 1 << 2,
+		Partial = 1 << 3,
 	}
 
-	public enum CommandBufferUsageFlagBits
+	[Flags]
+	public enum CommandBufferUsageFlags
 	{
-		VkCommandBufferUsageOneTimeSubmitBit = 1 << 0,
-		VkCommandBufferUsageRenderPassContinueBit = 1 << 1,
-		VkCommandBufferUsageSimultaneousUseBit = 1 << 2,
+		OneTimeSubmit = 1 << 0,
+		RenderPassContinue = 1 << 1,
+		SimultaneousUse = 1 << 2,
 	}
 
-	public enum QueryPipelineStatisticFlagBits
+	[Flags]
+	public enum QueryPipelineStatisticFlags
 	{
-		VkQueryPipelineStatisticInputAssemblyVerticesBit = 1 << 0,
-		VkQueryPipelineStatisticInputAssemblyPrimitivesBit = 1 << 1,
-		VkQueryPipelineStatisticVertexShaderInvocationsBit = 1 << 2,
-		VkQueryPipelineStatisticGeometryShaderInvocationsBit = 1 << 3,
-		VkQueryPipelineStatisticGeometryShaderPrimitivesBit = 1 << 4,
-		VkQueryPipelineStatisticClippingInvocationsBit = 1 << 5,
-		VkQueryPipelineStatisticClippingPrimitivesBit = 1 << 6,
-		VkQueryPipelineStatisticFragmentShaderInvocationsBit = 1 << 7,
-		VkQueryPipelineStatisticTessellationControlShaderPatchesBit = 1 << 8,
-		VkQueryPipelineStatisticTessellationEvaluationShaderInvocationsBit = 1 << 9,
-		VkQueryPipelineStatisticComputeShaderInvocationsBit = 1 << 10,
+		InputAssemblyVertices = 1 << 0,
+		InputAssemblyPrimitives = 1 << 1,
+		VertexShaderInvocations = 1 << 2,
+		GeometryShaderInvocations = 1 << 3,
+		GeometryShaderPrimitives = 1 << 4,
+		ClippingInvocations = 1 << 5,
+		ClippingPrimitives = 1 << 6,
+		FragmentShaderInvocations = 1 << 7,
+		TessellationControlShaderPatches = 1 << 8,
+		TessellationEvaluationShaderInvocations = 1 << 9,
+		ComputeShaderInvocations = 1 << 10,
 	}
 
-	public enum ImageAspectFlagBits
+	[Flags]
+	public enum ImageAspectFlags
 	{
-		VkImageAspectColorBit = 1 << 0,
-		VkImageAspectDepthBit = 1 << 1,
-		VkImageAspectStencilBit = 1 << 2,
-		VkImageAspectMetadataBit = 1 << 3,
+		Color = 1 << 0,
+		Depth = 1 << 1,
+		Stencil = 1 << 2,
+		Metadata = 1 << 3,
 	}
 
-	public enum SparseImageFormatFlagBits
+	[Flags]
+	public enum SparseImageFormatFlags
 	{
-		VkSparseImageFormatSingleMiptailBit = 1 << 0,
-		VkSparseImageFormatAlignedMipSizeBit = 1 << 1,
-		VkSparseImageFormatNonstandardBlockSizeBit = 1 << 2,
+		SingleMiptail = 1 << 0,
+		AlignedMipSize = 1 << 1,
+		NonstandardBlockSize = 1 << 2,
 	}
 
-	public enum SparseMemoryBindFlagBits
+	[Flags]
+	public enum SparseMemoryBindFlags
 	{
-		VkSparseMemoryBindMetadataBit = 1 << 0,
+		Metadata = 1 << 0,
 	}
 
-	public enum PipelineStageFlagBits
+	[Flags]
+	public enum PipelineStageFlags
 	{
-		VkPipelineStageTopOfPipeBit = 1 << 0,
-		VkPipelineStageDrawIndirectBit = 1 << 1,
-		VkPipelineStageVertexInputBit = 1 << 2,
-		VkPipelineStageVertexShaderBit = 1 << 3,
-		VkPipelineStageTessellationControlShaderBit = 1 << 4,
-		VkPipelineStageTessellationEvaluationShaderBit = 1 << 5,
-		VkPipelineStageGeometryShaderBit = 1 << 6,
-		VkPipelineStageFragmentShaderBit = 1 << 7,
-		VkPipelineStageEarlyFragmentTestsBit = 1 << 8,
-		VkPipelineStageLateFragmentTestsBit = 1 << 9,
-		VkPipelineStageColorAttachmentOutputBit = 1 << 10,
-		VkPipelineStageComputeShaderBit = 1 << 11,
-		VkPipelineStageTransferBit = 1 << 12,
-		VkPipelineStageBottomOfPipeBit = 1 << 13,
-		VkPipelineStageHostBit = 1 << 14,
-		VkPipelineStageAllGraphicsBit = 1 << 15,
-		VkPipelineStageAllCommandsBit = 1 << 16,
+		TopOfPipe = 1 << 0,
+		DrawIndirect = 1 << 1,
+		VertexInput = 1 << 2,
+		VertexShader = 1 << 3,
+		TessellationControlShader = 1 << 4,
+		TessellationEvaluationShader = 1 << 5,
+		GeometryShader = 1 << 6,
+		FragmentShader = 1 << 7,
+		EarlyFragmentTests = 1 << 8,
+		LateFragmentTests = 1 << 9,
+		ColorAttachmentOutput = 1 << 10,
+		ComputeShader = 1 << 11,
+		Transfer = 1 << 12,
+		BottomOfPipe = 1 << 13,
+		Host = 1 << 14,
+		AllGraphics = 1 << 15,
+		AllCommands = 1 << 16,
 	}
 
-	public enum CommandPoolCreateFlagBits
+	[Flags]
+	public enum CommandPoolCreateFlags
 	{
-		VkCommandPoolCreateTransientBit = 1 << 0,
-		VkCommandPoolCreateResetCommandBufferBit = 1 << 1,
+		Transient = 1 << 0,
+		ResetCommandBuffer = 1 << 1,
 	}
 
-	public enum CommandPoolResetFlagBits
+	[Flags]
+	public enum CommandPoolResetFlags
 	{
-		VkCommandPoolResetReleaseResourcesBit = 1 << 0,
+		ReleaseResources = 1 << 0,
 	}
 
-	public enum CommandBufferResetFlagBits
+	[Flags]
+	public enum CommandBufferResetFlags
 	{
-		VkCommandBufferResetReleaseResourcesBit = 1 << 0,
+		ReleaseResources = 1 << 0,
 	}
 
-	public enum SampleCountFlagBits
+	[Flags]
+	public enum SampleCountFlags
 	{
-		VkSampleCount1Bit = 1 << 0,
-		VkSampleCount2Bit = 1 << 1,
-		VkSampleCount4Bit = 1 << 2,
-		VkSampleCount8Bit = 1 << 3,
-		VkSampleCount16Bit = 1 << 4,
-		VkSampleCount32Bit = 1 << 5,
-		VkSampleCount64Bit = 1 << 6,
+		SampleCountFlags1 = 1 << 0,
+		SampleCountFlags2 = 1 << 1,
+		SampleCountFlags4 = 1 << 2,
+		SampleCountFlags8 = 1 << 3,
+		SampleCountFlags16 = 1 << 4,
+		SampleCountFlags32 = 1 << 5,
+		SampleCountFlags64 = 1 << 6,
 	}
 
-	public enum AttachmentDescriptionFlagBits
+	[Flags]
+	public enum AttachmentDescriptionFlags
 	{
-		VkAttachmentDescriptionMayAliasBit = 1 << 0,
+		MayAlias = 1 << 0,
 	}
 
-	public enum StencilFaceFlagBits
+	[Flags]
+	public enum StencilFaceFlags
 	{
-		VkStencilFaceFrontBit = 1 << 0,
-		VkStencilFaceBackBit = 1 << 1,
-		VkStencilFrontAndBack = 0x00000003,
+		Front = 1 << 0,
+		Back = 1 << 1,
+		tAndBack = 0x00000003,
 	}
 
-	public enum DescriptorPoolCreateFlagBits
+	[Flags]
+	public enum DescriptorPoolCreateFlags
 	{
-		VkDescriptorPoolCreateFreeDescriptorSetBit = 1 << 0,
+		FreeDescriptorSet = 1 << 0,
 	}
 
-	public enum DependencyFlagBits
+	[Flags]
+	public enum DependencyFlags
 	{
-		VkDependencyByRegionBit = 1 << 0,
+		ByRegion = 1 << 0,
 	}
 
 	public enum PresentModeKHR
@@ -839,81 +869,85 @@ namespace SharpVk
 		SrgbNonlinearKhr = 0,
 	}
 
-	public enum DisplayPlaneAlphaFlagBitsKHR
+	[Flags]
+	public enum DisplayPlaneAlphaFlagsKHR
 	{
-		VkDisplayPlaneAlphaOpaqueBitKhr = 1 << 0,
-		VkDisplayPlaneAlphaGlobalBitKhr = 1 << 1,
-		VkDisplayPlaneAlphaPerPixelBitKhr = 1 << 2,
-		VkDisplayPlaneAlphaPerPixelPremultipliedBitKhr = 1 << 3,
+		DisplayPlaneAlphaOpaqueBitKhr = 1 << 0,
+		DisplayPlaneAlphaGlobalBitKhr = 1 << 1,
+		DisplayPlaneAlphaPerPixelBitKhr = 1 << 2,
+		DisplayPlaneAlphaPerPixelPremultipliedBitKhr = 1 << 3,
 	}
 
-	public enum CompositeAlphaFlagBitsKHR
+	[Flags]
+	public enum CompositeAlphaFlagsKHR
 	{
-		VkCompositeAlphaOpaqueBitKhr = 1 << 0,
-		VkCompositeAlphaPreMultipliedBitKhr = 1 << 1,
-		VkCompositeAlphaPostMultipliedBitKhr = 1 << 2,
-		VkCompositeAlphaInheritBitKhr = 1 << 3,
+		CompositeAlphaOpaqueBitKhr = 1 << 0,
+		CompositeAlphaPreMultipliedBitKhr = 1 << 1,
+		CompositeAlphaPostMultipliedBitKhr = 1 << 2,
+		CompositeAlphaInheritBitKhr = 1 << 3,
 	}
 
-	public enum SurfaceTransformFlagBitsKHR
+	[Flags]
+	public enum SurfaceTransformFlagsKHR
 	{
-		VkSurfaceTransformIdentityBitKhr = 1 << 0,
-		VkSurfaceTransformRotate90BitKhr = 1 << 1,
-		VkSurfaceTransformRotate180BitKhr = 1 << 2,
-		VkSurfaceTransformRotate270BitKhr = 1 << 3,
-		VkSurfaceTransformHorizontalMirrorBitKhr = 1 << 4,
-		VkSurfaceTransformHorizontalMirrorRotate90BitKhr = 1 << 5,
-		VkSurfaceTransformHorizontalMirrorRotate180BitKhr = 1 << 6,
-		VkSurfaceTransformHorizontalMirrorRotate270BitKhr = 1 << 7,
-		VkSurfaceTransformInheritBitKhr = 1 << 8,
+		SurfaceTransformIdentityBitKhr = 1 << 0,
+		SurfaceTransformRotate90BitKhr = 1 << 1,
+		SurfaceTransformRotate180BitKhr = 1 << 2,
+		SurfaceTransformRotate270BitKhr = 1 << 3,
+		SurfaceTransformHorizontalMirrorBitKhr = 1 << 4,
+		SurfaceTransformHorizontalMirrorRotate90BitKhr = 1 << 5,
+		SurfaceTransformHorizontalMirrorRotate180BitKhr = 1 << 6,
+		SurfaceTransformHorizontalMirrorRotate270BitKhr = 1 << 7,
+		SurfaceTransformInheritBitKhr = 1 << 8,
 	}
 
-	public enum DebugReportFlagBitsEXT
+	[Flags]
+	public enum DebugReportFlagsEXT
 	{
-		VkDebugReportInformationBitExt = 1 << 0,
-		VkDebugReportWarningBitExt = 1 << 1,
-		VkDebugReportPerformanceWarningBitExt = 1 << 2,
-		VkDebugReportErrorBitExt = 1 << 3,
-		VkDebugReportDebugBitExt = 1 << 4,
+		DebugReportInformationBitExt = 1 << 0,
+		DebugReportWarningBitExt = 1 << 1,
+		DebugReportPerformanceWarningBitExt = 1 << 2,
+		DebugReportErrorBitExt = 1 << 3,
+		DebugReportDebugBitExt = 1 << 4,
 	}
 
 	public enum DebugReportObjectTypeEXT
 	{
-		VkDebugReportObjectTypeUnknownExt = 0,
-		VkDebugReportObjectTypeInstanceExt = 1,
-		VkDebugReportObjectTypePhysicalDeviceExt = 2,
-		VkDebugReportObjectTypeDeviceExt = 3,
-		VkDebugReportObjectTypeQueueExt = 4,
-		VkDebugReportObjectTypeSemaphoreExt = 5,
-		VkDebugReportObjectTypeCommandBufferExt = 6,
-		VkDebugReportObjectTypeFenceExt = 7,
-		VkDebugReportObjectTypeDeviceMemoryExt = 8,
-		VkDebugReportObjectTypeBufferExt = 9,
-		VkDebugReportObjectTypeImageExt = 10,
-		VkDebugReportObjectTypeEventExt = 11,
-		VkDebugReportObjectTypeQueryPoolExt = 12,
-		VkDebugReportObjectTypeBufferViewExt = 13,
-		VkDebugReportObjectTypeImageViewExt = 14,
-		VkDebugReportObjectTypeShaderModuleExt = 15,
-		VkDebugReportObjectTypePipelineCacheExt = 16,
-		VkDebugReportObjectTypePipelineLayoutExt = 17,
-		VkDebugReportObjectTypeRenderPassExt = 18,
-		VkDebugReportObjectTypePipelineExt = 19,
-		VkDebugReportObjectTypeDescriptorSetLayoutExt = 20,
-		VkDebugReportObjectTypeSamplerExt = 21,
-		VkDebugReportObjectTypeDescriptorPoolExt = 22,
-		VkDebugReportObjectTypeDescriptorSetExt = 23,
-		VkDebugReportObjectTypeFramebufferExt = 24,
-		VkDebugReportObjectTypeCommandPoolExt = 25,
-		VkDebugReportObjectTypeSurfaceKhrExt = 26,
-		VkDebugReportObjectTypeSwapchainKhrExt = 27,
-		VkDebugReportObjectTypeDebugReportExt = 28,
+		DebugReportObjectTypeUnknownExt = 0,
+		DebugReportObjectTypeInstanceExt = 1,
+		DebugReportObjectTypePhysicalDeviceExt = 2,
+		DebugReportObjectTypeDeviceExt = 3,
+		DebugReportObjectTypeQueueExt = 4,
+		DebugReportObjectTypeSemaphoreExt = 5,
+		DebugReportObjectTypeCommandBufferExt = 6,
+		DebugReportObjectTypeFenceExt = 7,
+		DebugReportObjectTypeDeviceMemoryExt = 8,
+		DebugReportObjectTypeBufferExt = 9,
+		DebugReportObjectTypeImageExt = 10,
+		DebugReportObjectTypeEventExt = 11,
+		DebugReportObjectTypeQueryPoolExt = 12,
+		DebugReportObjectTypeBufferViewExt = 13,
+		DebugReportObjectTypeImageViewExt = 14,
+		DebugReportObjectTypeShaderModuleExt = 15,
+		DebugReportObjectTypePipelineCacheExt = 16,
+		DebugReportObjectTypePipelineLayoutExt = 17,
+		DebugReportObjectTypeRenderPassExt = 18,
+		DebugReportObjectTypePipelineExt = 19,
+		DebugReportObjectTypeDescriptorSetLayoutExt = 20,
+		DebugReportObjectTypeSamplerExt = 21,
+		DebugReportObjectTypeDescriptorPoolExt = 22,
+		DebugReportObjectTypeDescriptorSetExt = 23,
+		DebugReportObjectTypeFramebufferExt = 24,
+		DebugReportObjectTypeCommandPoolExt = 25,
+		DebugReportObjectTypeSurfaceKhrExt = 26,
+		DebugReportObjectTypeSwapchainKhrExt = 27,
+		DebugReportObjectTypeDebugReportExt = 28,
 	}
 
 	public enum DebugReportErrorEXT
 	{
-		VkDebugReportErrorNoneExt = 0,
-		VkDebugReportErrorCallbackRefExt = 1,
+		DebugReportErrorNoneExt = 0,
+		DebugReportErrorCallbackRefExt = 1,
 	}
 
 }
