@@ -42,6 +42,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Unions.cs">
+      <DependentUpon>Unions.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Interop\Handles.cs">
+      <DependentUpon>Handles.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Instance.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -66,6 +76,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Unions.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Unions.cs</LastGenOutput>
+    </Content>
+    <Content Include="Interop\Handles.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Handles.cs</LastGenOutput>
+    </Content>
     <Content Include="Instance.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Instance.cs</LastGenOutput>

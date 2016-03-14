@@ -3,6 +3,7 @@
 <#@ assembly name="System.Xml.Linq" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.IO" #>
+<#@ import namespace="System.Net" #>
 <#@ import namespace="System.Xml.Linq" #>
 <#+
 
@@ -15,20 +16,28 @@ Dictionary<string, string> primitiveTypes = new Dictionary<string, string>()
 	{"uint32_t", "uint"},
 	{"uint64_t", "ulong"},
 	{"int32_t", "int"},
-	{"size", "UIntPtr"},
+	{"size_t", "UIntPtr"},
 };
 
 enum Category
 {
 	None,
 	vk_platform,
-	@struct
+	other_platform,
+	@struct,
+	@enum,
+	funcpointer,
+	bitmask,
+	basetype,
+	handle,
+	union
 }
 
 class TypeDef
 {
 	public Category Category;
 	public string Name;
+	public XElement Xml;
 }
  
 XDocument GetVkXml()
@@ -57,52 +66,112 @@ XDocument GetVkXml()
     return XDocument.Load(tempFile);
 }
 
-List<TypeDef> GetAllTypes()
+static Dictionary<string, TypeDef> typeDefCache = null;
+
+Dictionary<string, TypeDef> GetAllTypes()
 {
-	var vkXml = GetVkXml();
-
-	Category typeCategory = Category.None;
-
-	var result = new List<TypeDef>();
-
-	foreach(var vkType in vkXml.Element("registry").Element("types").Elements("type").Where(x => x.Attribute("category") != null && Enum.TryParse<Category>(x.Attribute("category").Value, out typeCategory)))
+	if(typeDefCache ==null)
     {
-		string typeName = vkType.Attribute("name").Value;
+		var vkXml = GetVkXml();
 
-		if(typeName.StartsWith("vk", true, null))
+		Category typeCategory = Category.None;
+
+		var result = new Dictionary<string, TypeDef>();
+
+		foreach(var vkType in vkXml.Element("registry").Element("types").Elements("type"))
 		{
-			typeName = typeName.Substring(2);
+			if(vkType.Attribute("category") == null || !Enum.TryParse<Category>(vkType.Attribute("category").Value, out typeCategory))
+            {
+				if(vkType.Attribute("requires") != null && vkType.Attribute("requires").Value == "vk_platform")
+                {
+					typeCategory = Category.vk_platform;
+                }
+				else
+                {
+					typeCategory = Category.other_platform;
+                }
+            }
+
+			string vkTypeName = null;
+
+			if(vkType.Attribute("name") !=null)
+			{
+				vkTypeName = vkType.Attribute("name").Value;
+			}
+			else
+			{
+				vkTypeName = vkType.Element("name").Value;
+			}
+
+			if(vkTypeName.Contains("SurfaceCreateInfo"))
+            {
+				// Skip these for now...
+
+				continue;
+            }
+
+			string typeName = vkTypeName;
+
+			if(primitiveTypes.ContainsKey(typeName))
+			{
+				typeName = primitiveTypes[vkTypeName];
+			}
+			else if(typeCategory == Category.bitmask && vkType.Element("requires") == null)
+            {
+				typeName = "uint";
+            }
+			else if(typeCategory == Category.funcpointer)
+            {
+				typeName = "IntPtr";
+            }
+			else if(typeName.StartsWith("vk", true, null))
+			{
+				typeName = typeName.Substring(2);
+			}
+
+			result.Add(vkTypeName, new TypeDef
+				{
+					Category = typeCategory,
+					Name = typeName,
+					Xml = vkType
+				});
 		}
 
-		result.Add(new TypeDef
-        {
-			Category = typeCategory,
-			Name = typeName
-        });
+		typeDefCache = result;
     }
 
-	return result;
+	return typeDefCache;
 }
 
-List<TypeDef> GetStructs()
+TypeDef GetTypeDef(string vkTypeName)
 {
-	return GetAllTypes().Where(x => x.Category == Category.@struct).ToList();
+	var types = GetAllTypes();
+
+	if(!types.ContainsKey(vkTypeName))
+    {
+		throw new Exception(string.Format("Unrecognised VK Type {0}", vkTypeName));
+    }
+
+	return types[vkTypeName];
+}
+
+IEnumerable<TypeDef> GetStructs()
+{
+	return GetAllTypes().Select(x => x.Value).Where(x => x.Category == Category.@struct);
+}
+
+IEnumerable<TypeDef> GetHandles()
+{
+	return GetAllTypes().Select(x => x.Value).Where(x => x.Category == Category.handle);
+}
+
+IEnumerable<TypeDef> GetUnions()
+{
+	return GetAllTypes().Select(x => x.Value).Where(x => x.Category == Category.union);
 }
 
 string MapTypeName(string vkTypeName)
 {
-	if(primitiveTypes.ContainsKey(vkTypeName))
-    {
-		return primitiveTypes[vkTypeName];
-    }
-
-	string typeName = vkTypeName;
-
-	if(typeName.StartsWith("vk", true, null))
-    {
-		typeName = typeName.Substring(2);
-    }
-
-	return typeName;
+	return GetTypeDef(vkTypeName).Name;
 }
 #>

@@ -8,6 +8,6 @@
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Collections" #>
 <#@ import namespace="System.Collections.Generic" #> 
-public class Instance
-{
-}
+//public class Instance
+//{
+//}

@@ -18,24 +18,91 @@ using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
-	public static class NativeMethods
+	public static unsafe class NativeMethods
 	{
-		public const string VulkanDll = "vulcan-1.dll";
+		public const string VulkanDll = "vulkan-1.dll";
 
 <#
+	var keywords = new[]{"object", "event"};
+
 	foreach(var command in vkXml.Element("registry").Element("commands").Elements("command"))
 	{
 		var prototype = command.Element("proto");
-		string commandType = MapTypeName(prototype.Element("type").Value);
+		var commandType = GetTypeDef(prototype.Element("type").Value);
 		string commandName = prototype.Element("name").Value;
 
-		if(commandType.StartsWith("PFN"))
-		{
-			commandType = "IntPtr";
-		}
 #>
 		[DllImport(VulkanDll)]
-		public static extern <#= commandType #> <#= commandName #>();
+		public static extern <#= commandType.Name #> <#= commandName #>(<#
+
+		bool isFirst = true;
+
+		foreach(var parameter in command.Elements("param"))
+        {
+			string paramName = parameter.Element("name").Value;
+
+			int pointerCount = 0;
+			
+			while(paramName[0] == 'p' && (paramName[1] == 'p' || char.IsUpper(paramName[1])))
+			{
+				pointerCount++;
+
+				paramName = paramName.Substring(1);
+            }
+
+			bool isOutput = !parameter.Value.StartsWith("const") && pointerCount > 0;
+
+			if(pointerCount > 0)
+            {
+				paramName = paramName = char.ToLower(paramName[0]) + paramName.Substring(1);
+            }
+
+			string vkTypeName = parameter.Element("type").Value;
+
+			if(vkTypeName.Contains("SurfaceCreateInfo"))
+            {
+				// This method requires an unimplemented type, so skip it
+
+				continue;
+            }
+
+			var paramType = GetTypeDef(vkTypeName);
+			
+			if(paramType.Category == Category.other_platform)
+            {
+				// This method requires an unimplemented type, so skip it
+
+				continue;
+            }
+
+			string paramTypeName = paramType.Name;
+
+			if(paramType.Category == Category.funcpointer)
+            {
+				paramTypeName = "IntPtr";
+            }
+			else if(pointerCount > 0)
+            {
+				paramTypeName += new string('*', pointerCount);
+            }
+
+			if(keywords.Contains(paramName))
+            {
+				paramName = "@" + paramName;
+            }
+
+			if(isFirst)
+            {
+				isFirst = false;
+            }
+			else
+            {
+				#>, <#
+            }
+			
+			#><#=paramTypeName#> <#=paramName#><#
+        }
+#>);
 
 <#
 	}

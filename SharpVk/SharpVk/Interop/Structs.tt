@@ -11,8 +11,6 @@
 <#@ output extension=".cs" #>
 <#@ include file="..\Vk.ttinclude" #>
 <#
-	var vkXml = GetVkXml();
-
 	var structs = GetStructs();
 #>
 using System;
@@ -55,23 +53,94 @@ namespace SharpVk.Interop
 		}
 	}
 
+	public struct SampleMask
+	{
+		private uint value;
+
+		public static implicit operator SampleMask(uint iValue)
+		{
+			return new SampleMask { value = iValue };
+		}
+
+		public static implicit operator uint(SampleMask size)
+		{
+			return size.value;
+		}
+	}
 <#
 	foreach(var structType in structs)
 	{
 		string structName = structType.Name;
 #>
+
 	public unsafe struct <#=structName#>
 	{
 		public static <#=structName#>* Create()
 		{
 			return (<#=structName#>*)HeapUtil.AllocateAndClear<<#=structName#>>();
 		}
-
 <#
+		var members = new List<string>();
 
+		foreach(var typeMember in structType.Xml.Elements("member"))
+        {
+			string memberName = typeMember.Element("name").Value;
+
+			int pointerCount = 0;
+			
+			while(memberName[0] == 'p' && (memberName[1] == 'p' || char.IsUpper(memberName[1])))
+			{
+				pointerCount++;
+
+				memberName = memberName.Substring(1);
+            }
+
+			memberName = char.ToUpper(memberName[0]) + memberName.Substring(1);
+
+			int count = 0;
+
+			int arraySuffixIndex = memberName.IndexOf('[');
+			if(arraySuffixIndex >= 0)
+            {
+				count = int.Parse(new string(memberName.Skip(arraySuffixIndex + 1).TakeWhile(x => char.IsDigit(x)).ToArray()));
+
+				memberName = memberName.Substring(0, arraySuffixIndex);
+            }
+
+			var memberType = GetTypeDef(typeMember.Element("type").Value);
+			string memberTypeName = memberType.Name;
+
+			if(memberType.Category == Category.funcpointer)
+            {
+				memberTypeName = "IntPtr";
+            }
+			else if(pointerCount > 0)
+            {
+				memberTypeName += new string('*', pointerCount);
+            }
+
+			if(count == 0)
+            {
+				members.Add(string.Format("{0} {1}", memberTypeName, memberName));
+            }
+			else
+            {
+				for(int fieldIndex = 0;fieldIndex < count;fieldIndex++)
+                {
+					members.Add(string.Format("{0} {1}{2}", memberTypeName, memberName, fieldIndex));
+                }
+            }
+        }
+
+		foreach(var member in members)
+        {
+#>
+
+		public <#=member#>;
+<#
+        }
 #>
 	}
-
 <#
 	}
 #>

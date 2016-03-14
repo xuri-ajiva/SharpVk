@@ -14,7 +14,6 @@
 	var vkXml = GetVkXml();
 #>
 using System;
-using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
@@ -34,20 +33,36 @@ namespace SharpVk
 	public enum <#=enumName#>
 	{
 <#
-			foreach(var enumerationValue in enumeration.Elements("enum"))
+			foreach(var enumerationField in enumeration.Elements("enum"))
 			{
-				string valueName = enumerationValue.Attribute("name").Value;
+				string fieldName = enumerationField.Attribute("name").Value;
 
-				if(valueName.StartsWith(prefix))
+				if(fieldName.StartsWith(prefix))
                 {
-					valueName = valueName.Substring(prefix.Length);
+					fieldName = fieldName.Substring(prefix.Length);
                 }
 
-				var nameParts = valueName.Split('_');
+				var nameParts = fieldName.Split('_');
 
-				valueName = string.Join("", nameParts.Select(x => char.ToUpper(x[0]) + x.Substring(1).ToLower()));
+				fieldName = string.Join("", nameParts.Select(x => char.ToUpper(x[0]) + x.Substring(1).ToLower()));
+
+				if(char.IsDigit(fieldName[0]))
+                {
+					fieldName = "_" + fieldName;
+                }
+
+				string fieldValue = "0";
+
+				if(enumerationField.Attribute("value") != null)
+                {
+					fieldValue = enumerationField.Attribute("value").Value;
+                }
+				else
+                {
+					fieldValue = "1 << " + enumerationField.Attribute("bitpos").Value;
+                }
 #>
-		_<#=valueName#>,
+		<#=fieldName#> = <#=fieldValue#>,
 <#
 			}
 #>

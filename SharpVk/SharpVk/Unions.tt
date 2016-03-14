@@ -1,0 +1,46 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Xml.Linq" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<#@ include file=".\Vk.ttinclude" #>
+using System;
+
+namespace SharpVk.Interop
+{
+<#
+	foreach(var union in GetUnions())
+	{
+#>
+	public struct <#=union.Name#>
+	{
+<#
+		foreach(var typeMember in union.Xml.Elements("member"))
+        {
+			string memberName = typeMember.Element("name").Value;
+
+			memberName = char.ToUpper(memberName[0]) + memberName.Substring(1);
+
+			int arraySuffixIndex = memberName.IndexOf('[');
+			if(arraySuffixIndex >=0)
+            {
+				memberName = memberName.Substring(0, arraySuffixIndex);
+            }
+
+			var memberType = GetTypeDef(typeMember.Element("type").Value);
+			string memberTypeName = memberType.Name;
+#>
+		public <#=memberTypeName#> <#=memberName#>;
+<#
+        }
+#>
+	}
+
+<#
+	}
+#>
+}
