@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ResultUtil.cs" />
     <Compile Include="Structs.cs">
       <DependentUpon>Structs.tt</DependentUpon>
       <AutoGen>True</AutoGen>
