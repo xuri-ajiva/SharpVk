@@ -25,6 +25,11 @@ namespace SharpVk.Interop
             return pointer.ToPointer();
         }
 
+        internal static void Free(void* pointer)
+        {
+            Marshal.FreeHGlobal(new IntPtr(pointer));
+        }
+
         internal static char* MarshalStringToPointer(string value)
         {
             return (char*)Marshal.StringToHGlobalAnsi(value).ToPointer();

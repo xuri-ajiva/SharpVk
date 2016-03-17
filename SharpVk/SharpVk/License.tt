@@ -1,4 +1,10 @@
-﻿//The MIT License (MIT)
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+//The MIT License (MIT)
 //
 //Copyright (c) 2016 Andrew Armstrong/FacticiusVir
 //
@@ -19,47 +25,3 @@
 //LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
-
-using System.Runtime.InteropServices;
-
-namespace SharpVk
-{
-	[StructLayout(LayoutKind.Explicit)]
-	public struct ClearColorValue
-	{
-		[FieldOffset(0)]
-		public float Float320;
-		[FieldOffset(0)]
-		public float Float321;
-		[FieldOffset(0)]
-		public float Float322;
-		[FieldOffset(0)]
-		public float Float323;
-		[FieldOffset(0)]
-		public int Int320;
-		[FieldOffset(0)]
-		public int Int321;
-		[FieldOffset(0)]
-		public int Int322;
-		[FieldOffset(0)]
-		public int Int323;
-		[FieldOffset(0)]
-		public uint Uint320;
-		[FieldOffset(0)]
-		public uint Uint321;
-		[FieldOffset(0)]
-		public uint Uint322;
-		[FieldOffset(0)]
-		public uint Uint323;
-	}
-
-	[StructLayout(LayoutKind.Explicit)]
-	public struct ClearValue
-	{
-		[FieldOffset(0)]
-		public ClearColorValue Color;
-		[FieldOffset(0)]
-		public ClearDepthStencilValue DepthStencil;
-	}
-
-}

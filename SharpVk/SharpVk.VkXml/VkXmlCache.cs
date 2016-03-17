@@ -6,6 +6,7 @@ using System.Xml.Linq;
 namespace SharpVk.VkXml
 {
     public class VkXmlCache
+        : IVkXmlCache
     {
         private readonly string tempFilePath;
 

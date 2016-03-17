@@ -1,4 +1,25 @@
-﻿
+﻿//The MIT License (MIT)
+//
+//Copyright (c) 2016 Andrew Armstrong/FacticiusVir
+//
+//Permission is hereby granted, free of charge, to any person obtaining a copy
+//of this software and associated documentation files (the "Software"), to deal
+//in the Software without restriction, including without limitation the rights
+//to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//copies of the Software, and to permit persons to whom the Software is
+//furnished to do so, subject to the following conditions:
+//
+//The above copyright notice and this permission notice shall be included in all
+//copies or substantial portions of the Software.
+//
+//THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//SOFTWARE.
+
 using System;
 using System.Runtime.InteropServices;
 
@@ -2406,249 +2427,5 @@ namespace SharpVk.Interop
 		public uint SignalSemaphoreCount;
 
 		public Semaphore* SignalSemaphores;
-	}
-
-	public unsafe struct DisplayPropertiesKHR
-	{
-		public static DisplayPropertiesKHR* Create()
-		{
-			return (DisplayPropertiesKHR*)HeapUtil.AllocateAndClear<DisplayPropertiesKHR>();
-		}
-
-		public DisplayKHR Display;
-
-		public char DisplayName;
-
-		public Extent2D PhysicalDimensions;
-
-		public Extent2D PhysicalResolution;
-
-		public SurfaceTransformFlagsKHR SupportedTransforms;
-
-		public Bool32 PlaneReorderPossible;
-
-		public Bool32 PersistentContent;
-	}
-
-	public unsafe struct DisplayPlanePropertiesKHR
-	{
-		public static DisplayPlanePropertiesKHR* Create()
-		{
-			return (DisplayPlanePropertiesKHR*)HeapUtil.AllocateAndClear<DisplayPlanePropertiesKHR>();
-		}
-
-		public DisplayKHR CurrentDisplay;
-
-		public uint CurrentStackIndex;
-	}
-
-	public unsafe struct DisplayModeParametersKHR
-	{
-		public static DisplayModeParametersKHR* Create()
-		{
-			return (DisplayModeParametersKHR*)HeapUtil.AllocateAndClear<DisplayModeParametersKHR>();
-		}
-
-		public Extent2D VisibleRegion;
-
-		public uint RefreshRate;
-	}
-
-	public unsafe struct DisplayModePropertiesKHR
-	{
-		public static DisplayModePropertiesKHR* Create()
-		{
-			return (DisplayModePropertiesKHR*)HeapUtil.AllocateAndClear<DisplayModePropertiesKHR>();
-		}
-
-		public DisplayModeKHR DisplayMode;
-
-		public DisplayModeParametersKHR Parameters;
-	}
-
-	public unsafe struct DisplayModeCreateInfoKHR
-	{
-		public static DisplayModeCreateInfoKHR* Create()
-		{
-			return (DisplayModeCreateInfoKHR*)HeapUtil.AllocateAndClear<DisplayModeCreateInfoKHR>();
-		}
-
-		public StructureType SType;
-
-		public void* Next;
-
-		public uint Flags;
-
-		public DisplayModeParametersKHR Parameters;
-	}
-
-	public unsafe struct DisplayPlaneCapabilitiesKHR
-	{
-		public static DisplayPlaneCapabilitiesKHR* Create()
-		{
-			return (DisplayPlaneCapabilitiesKHR*)HeapUtil.AllocateAndClear<DisplayPlaneCapabilitiesKHR>();
-		}
-
-		public DisplayPlaneAlphaFlagsKHR SupportedAlpha;
-
-		public Offset2D MinSrcPosition;
-
-		public Offset2D MaxSrcPosition;
-
-		public Extent2D MinSrcExtent;
-
-		public Extent2D MaxSrcExtent;
-
-		public Offset2D MinDstPosition;
-
-		public Offset2D MaxDstPosition;
-
-		public Extent2D MinDstExtent;
-
-		public Extent2D MaxDstExtent;
-	}
-
-	public unsafe struct DisplayPresentInfoKHR
-	{
-		public static DisplayPresentInfoKHR* Create()
-		{
-			return (DisplayPresentInfoKHR*)HeapUtil.AllocateAndClear<DisplayPresentInfoKHR>();
-		}
-
-		public StructureType SType;
-
-		public void* Next;
-
-		public Rect2D SrcRect;
-
-		public Rect2D DstRect;
-
-		public Bool32 Persistent;
-	}
-
-	public unsafe struct SurfaceCapabilitiesKHR
-	{
-		public static SurfaceCapabilitiesKHR* Create()
-		{
-			return (SurfaceCapabilitiesKHR*)HeapUtil.AllocateAndClear<SurfaceCapabilitiesKHR>();
-		}
-
-		public uint MinImageCount;
-
-		public uint MaxImageCount;
-
-		public Extent2D CurrentExtent;
-
-		public Extent2D MinImageExtent;
-
-		public Extent2D MaxImageExtent;
-
-		public uint MaxImageArrayLayers;
-
-		public SurfaceTransformFlagsKHR SupportedTransforms;
-
-		public SurfaceTransformFlagsKHR CurrentTransform;
-
-		public CompositeAlphaFlagsKHR SupportedCompositeAlpha;
-
-		public ImageUsageFlags SupportedUsageFlags;
-	}
-
-	public unsafe struct SurfaceFormatKHR
-	{
-		public static SurfaceFormatKHR* Create()
-		{
-			return (SurfaceFormatKHR*)HeapUtil.AllocateAndClear<SurfaceFormatKHR>();
-		}
-
-		public Format Format;
-
-		public ColorSpaceKHR ColorSpace;
-	}
-
-	public unsafe struct SwapchainCreateInfoKHR
-	{
-		public static SwapchainCreateInfoKHR* Create()
-		{
-			return (SwapchainCreateInfoKHR*)HeapUtil.AllocateAndClear<SwapchainCreateInfoKHR>();
-		}
-
-		public StructureType SType;
-
-		public void* Next;
-
-		public uint Flags;
-
-		public SurfaceKHR Surface;
-
-		public uint MinImageCount;
-
-		public Format ImageFormat;
-
-		public ColorSpaceKHR ImageColorSpace;
-
-		public Extent2D ImageExtent;
-
-		public uint ImageArrayLayers;
-
-		public ImageUsageFlags ImageUsage;
-
-		public SharingMode ImageSharingMode;
-
-		public uint QueueFamilyIndexCount;
-
-		public uint* QueueFamilyIndices;
-
-		public SurfaceTransformFlagsKHR PreTransform;
-
-		public CompositeAlphaFlagsKHR CompositeAlpha;
-
-		public PresentModeKHR PresentMode;
-
-		public Bool32 Clipped;
-
-		public SwapchainKHR OldSwapchain;
-	}
-
-	public unsafe struct PresentInfoKHR
-	{
-		public static PresentInfoKHR* Create()
-		{
-			return (PresentInfoKHR*)HeapUtil.AllocateAndClear<PresentInfoKHR>();
-		}
-
-		public StructureType SType;
-
-		public void* Next;
-
-		public uint WaitSemaphoreCount;
-
-		public Semaphore* WaitSemaphores;
-
-		public uint SwapchainCount;
-
-		public SwapchainKHR* Swapchains;
-
-		public uint* ImageIndices;
-
-		public Result* Results;
-	}
-
-	public unsafe struct DebugReportCallbackCreateInfoEXT
-	{
-		public static DebugReportCallbackCreateInfoEXT* Create()
-		{
-			return (DebugReportCallbackCreateInfoEXT*)HeapUtil.AllocateAndClear<DebugReportCallbackCreateInfoEXT>();
-		}
-
-		public StructureType SType;
-
-		public void* Next;
-
-		public DebugReportFlagsEXT Flags;
-
-		public IntPtr PfnCallback;
-
-		public void* UserData;
 	}
 }

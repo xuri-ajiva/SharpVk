@@ -7,37 +7,25 @@
 <#@ import namespace="System.Xml.Linq" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
+<#@ include file=".\License.tt" #>
 <#@ include file=".\Vk.ttinclude" #>
+using System.Runtime.InteropServices;
+
 namespace SharpVk
 {
 <#
 	foreach(var union in GetUnions())
 	{
 #>
+	[StructLayout(LayoutKind.Explicit)]
 	public struct <#=union.Name#>
 	{
 <#
-		foreach(var typeMember in union.Xml.Elements("member"))
+		foreach(var member in union.Members)
         {
-			string memberName = typeMember.Element("name").Value;
-
-			memberName = char.ToUpper(memberName[0]) + memberName.Substring(1);
-
-			int arraySuffixIndex = memberName.IndexOf('[');
-			if(arraySuffixIndex >=0)
-            {
-				memberName = memberName.Substring(0, arraySuffixIndex);
-            }
-
-			var memberType = GetTypeDef(typeMember.Element("type").Value);
-			string memberTypeName = memberType.Name;
-
-			if(memberType.Category == Category.basetype || memberType.Category == Category.handle || memberType.Category == Category.@struct)
-            {
-				memberTypeName = "Interop." + memberTypeName;
-            }
 #>
-		public <#=memberTypeName#> <#=memberName#>;
+		[FieldOffset(0)]
+		public <#=member.Type.Name#> <#=member.Name#>;
 <#
         }
 #>

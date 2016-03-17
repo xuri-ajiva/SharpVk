@@ -44,6 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Category.cs" />
+    <Compile Include="IVkXmlCache.cs" />
+    <Compile Include="TypeDef.cs" />
+    <Compile Include="TypeDefCache.cs" />
     <Compile Include="VkXmlCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

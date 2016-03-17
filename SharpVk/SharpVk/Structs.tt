@@ -9,6 +9,7 @@
 <#@ import namespace="System.Xml.Linq" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
+<#@ include file=".\License.tt" #>
 <#@ include file=".\Vk.ttinclude" #>
 using System;
 
@@ -22,7 +23,8 @@ namespace SharpVk
 		string structName = structType.Name;
 #>
 
-	public unsafe struct <#=structName#>
+	public unsafe class <#=structName#>
+		: IDisposable
 	{
 		private readonly Interop.<#=structName#>* instance;
 
@@ -190,9 +192,14 @@ namespace SharpVk
 				this.instance-><#=member.Name#> = value<#=valueIndex#>;
 			}
 		}
+
 <#
         }
 #>
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 <#
 	}

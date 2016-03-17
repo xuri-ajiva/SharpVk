@@ -1,10 +1,32 @@
-﻿
+﻿//The MIT License (MIT)
+//
+//Copyright (c) 2016 Andrew Armstrong/FacticiusVir
+//
+//Permission is hereby granted, free of charge, to any person obtaining a copy
+//of this software and associated documentation files (the "Software"), to deal
+//in the Software without restriction, including without limitation the rights
+//to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+//copies of the Software, and to permit persons to whom the Software is
+//furnished to do so, subject to the following conditions:
+//
+//The above copyright notice and this permission notice shall be included in all
+//copies or substantial portions of the Software.
+//
+//THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+//IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+//FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+//AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+//LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+//OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+//SOFTWARE.
+
 using System;
 
 namespace SharpVk
 {
 
-	public unsafe struct Offset2D
+	public unsafe class Offset2D
+		: IDisposable
 	{
 		private readonly Interop.Offset2D* instance;
 
@@ -36,6 +58,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public int Y
 		{
 			get
@@ -51,9 +74,15 @@ namespace SharpVk
 				this.instance->Y = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct Offset3D
+	public unsafe class Offset3D
+		: IDisposable
 	{
 		private readonly Interop.Offset3D* instance;
 
@@ -85,6 +114,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public int Y
 		{
 			get
@@ -101,6 +131,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public int Z
 		{
 			get
@@ -116,9 +147,15 @@ namespace SharpVk
 				this.instance->Z = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct Extent2D
+	public unsafe class Extent2D
+		: IDisposable
 	{
 		private readonly Interop.Extent2D* instance;
 
@@ -150,6 +187,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint Height
 		{
 			get
@@ -165,9 +203,15 @@ namespace SharpVk
 				this.instance->Height = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct Extent3D
+	public unsafe class Extent3D
+		: IDisposable
 	{
 		private readonly Interop.Extent3D* instance;
 
@@ -199,6 +243,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint Height
 		{
 			get
@@ -215,6 +260,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint Depth
 		{
 			get
@@ -230,9 +276,15 @@ namespace SharpVk
 				this.instance->Depth = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct Viewport
+	public unsafe class Viewport
+		: IDisposable
 	{
 		private readonly Interop.Viewport* instance;
 
@@ -264,6 +316,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public float Y
 		{
 			get
@@ -279,6 +332,7 @@ namespace SharpVk
 				this.instance->Y = value0;
 			}
 		}
+
 
 		public float Width
 		{
@@ -296,6 +350,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public float Height
 		{
 			get
@@ -311,6 +366,7 @@ namespace SharpVk
 				this.instance->Height = value0;
 			}
 		}
+
 
 		public float MinDepth
 		{
@@ -328,6 +384,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public float MaxDepth
 		{
 			get
@@ -343,9 +400,15 @@ namespace SharpVk
 				this.instance->MaxDepth = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct Rect2D
+	public unsafe class Rect2D
+		: IDisposable
 	{
 		private readonly Interop.Rect2D* instance;
 
@@ -360,9 +423,14 @@ namespace SharpVk
 
 			return result;
 		}
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct Rect3D
+	public unsafe class Rect3D
+		: IDisposable
 	{
 		private readonly Interop.Rect3D* instance;
 
@@ -377,9 +445,14 @@ namespace SharpVk
 
 			return result;
 		}
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct ClearRect
+	public unsafe class ClearRect
+		: IDisposable
 	{
 		private readonly Interop.ClearRect* instance;
 
@@ -411,6 +484,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint LayerCount
 		{
 			get
@@ -426,9 +500,15 @@ namespace SharpVk
 				this.instance->LayerCount = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct ComponentMapping
+	public unsafe class ComponentMapping
+		: IDisposable
 	{
 		private readonly Interop.ComponentMapping* instance;
 
@@ -460,6 +540,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ComponentSwizzle G
 		{
 			get
@@ -475,6 +556,7 @@ namespace SharpVk
 				this.instance->G = value0;
 			}
 		}
+
 
 		public ComponentSwizzle B
 		{
@@ -492,6 +574,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ComponentSwizzle A
 		{
 			get
@@ -507,9 +590,15 @@ namespace SharpVk
 				this.instance->A = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct PhysicalDeviceProperties
+	public unsafe class PhysicalDeviceProperties
+		: IDisposable
 	{
 		private readonly Interop.PhysicalDeviceProperties* instance;
 
@@ -541,6 +630,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint DriverVersion
 		{
 			get
@@ -556,6 +646,7 @@ namespace SharpVk
 				this.instance->DriverVersion = value0;
 			}
 		}
+
 
 		public uint VendorID
 		{
@@ -573,6 +664,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint DeviceID
 		{
 			get
@@ -588,6 +680,7 @@ namespace SharpVk
 				this.instance->DeviceID = value0;
 			}
 		}
+
 
 		public PhysicalDeviceType DeviceType
 		{
@@ -605,6 +698,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public char DeviceName
 		{
 			get
@@ -621,6 +715,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public byte PipelineCacheUUID
 		{
 			get
@@ -636,9 +731,15 @@ namespace SharpVk
 				this.instance->PipelineCacheUUID = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct ExtensionProperties
+	public unsafe class ExtensionProperties
+		: IDisposable
 	{
 		private readonly Interop.ExtensionProperties* instance;
 
@@ -670,6 +771,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint SpecVersion
 		{
 			get
@@ -685,9 +787,15 @@ namespace SharpVk
 				this.instance->SpecVersion = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct LayerProperties
+	public unsafe class LayerProperties
+		: IDisposable
 	{
 		private readonly Interop.LayerProperties* instance;
 
@@ -719,6 +827,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint SpecVersion
 		{
 			get
@@ -734,6 +843,7 @@ namespace SharpVk
 				this.instance->SpecVersion = value0;
 			}
 		}
+
 
 		public uint ImplementationVersion
 		{
@@ -751,6 +861,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public char Description
 		{
 			get
@@ -766,9 +877,15 @@ namespace SharpVk
 				this.instance->Description = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct ApplicationInfo
+	public unsafe class ApplicationInfo
+		: IDisposable
 	{
 		private readonly Interop.ApplicationInfo* instance;
 
@@ -806,6 +923,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint ApplicationVersion
 		{
 			get
@@ -821,6 +939,7 @@ namespace SharpVk
 				this.instance->ApplicationVersion = value0;
 			}
 		}
+
 
 		public string EngineName
 		{
@@ -842,6 +961,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint EngineVersion
 		{
 			get
@@ -858,6 +978,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint ApiVersion
 		{
 			get
@@ -873,9 +994,15 @@ namespace SharpVk
 				this.instance->ApiVersion = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct AllocationCallbacks
+	public unsafe class AllocationCallbacks
+		: IDisposable
 	{
 		private readonly Interop.AllocationCallbacks* instance;
 
@@ -907,6 +1034,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public IntPtr PfnReallocation
 		{
 			get
@@ -922,6 +1050,7 @@ namespace SharpVk
 				this.instance->PfnReallocation = value0;
 			}
 		}
+
 
 		public IntPtr PfnFree
 		{
@@ -939,6 +1068,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public IntPtr PfnInternalAllocation
 		{
 			get
@@ -955,6 +1085,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public IntPtr PfnInternalFree
 		{
 			get
@@ -970,9 +1101,15 @@ namespace SharpVk
 				this.instance->PfnInternalFree = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct DeviceQueueCreateInfo
+	public unsafe class DeviceQueueCreateInfo
+		: IDisposable
 	{
 		private readonly Interop.DeviceQueueCreateInfo* instance;
 
@@ -1006,6 +1143,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint QueueFamilyIndex
 		{
 			get
@@ -1021,9 +1159,15 @@ namespace SharpVk
 				this.instance->QueueFamilyIndex = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct DeviceCreateInfo
+	public unsafe class DeviceCreateInfo
+		: IDisposable
 	{
 		private readonly Interop.DeviceCreateInfo* instance;
 
@@ -1056,9 +1200,15 @@ namespace SharpVk
 				this.instance->Flags = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct InstanceCreateInfo
+	public unsafe class InstanceCreateInfo
+		: IDisposable
 	{
 		private readonly Interop.InstanceCreateInfo* instance;
 
@@ -1091,9 +1241,15 @@ namespace SharpVk
 				this.instance->Flags = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct QueueFamilyProperties
+	public unsafe class QueueFamilyProperties
+		: IDisposable
 	{
 		private readonly Interop.QueueFamilyProperties* instance;
 
@@ -1125,6 +1281,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint QueueCount
 		{
 			get
@@ -1141,6 +1298,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint TimestampValidBits
 		{
 			get
@@ -1156,9 +1314,15 @@ namespace SharpVk
 				this.instance->TimestampValidBits = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct PhysicalDeviceMemoryProperties
+	public unsafe class PhysicalDeviceMemoryProperties
+		: IDisposable
 	{
 		private readonly Interop.PhysicalDeviceMemoryProperties* instance;
 
@@ -1190,6 +1354,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MemoryHeapCount
 		{
 			get
@@ -1205,9 +1370,15 @@ namespace SharpVk
 				this.instance->MemoryHeapCount = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct MemoryAllocateInfo
+	public unsafe class MemoryAllocateInfo
+		: IDisposable
 	{
 		private readonly Interop.MemoryAllocateInfo* instance;
 
@@ -1241,6 +1412,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MemoryTypeIndex
 		{
 			get
@@ -1256,9 +1428,15 @@ namespace SharpVk
 				this.instance->MemoryTypeIndex = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct MemoryRequirements
+	public unsafe class MemoryRequirements
+		: IDisposable
 	{
 		private readonly Interop.MemoryRequirements* instance;
 
@@ -1290,6 +1468,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ulong Alignment
 		{
 			get
@@ -1306,6 +1485,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MemoryTypeBits
 		{
 			get
@@ -1321,9 +1501,15 @@ namespace SharpVk
 				this.instance->MemoryTypeBits = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct SparseImageFormatProperties
+	public unsafe class SparseImageFormatProperties
+		: IDisposable
 	{
 		private readonly Interop.SparseImageFormatProperties* instance;
 
@@ -1355,6 +1541,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public SparseImageFormatFlags Flags
 		{
 			get
@@ -1370,9 +1557,15 @@ namespace SharpVk
 				this.instance->Flags = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct SparseImageMemoryRequirements
+	public unsafe class SparseImageMemoryRequirements
+		: IDisposable
 	{
 		private readonly Interop.SparseImageMemoryRequirements* instance;
 
@@ -1404,6 +1597,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ulong ImageMipTailSize
 		{
 			get
@@ -1419,6 +1613,7 @@ namespace SharpVk
 				this.instance->ImageMipTailSize = value0;
 			}
 		}
+
 
 		public ulong ImageMipTailOffset
 		{
@@ -1436,6 +1631,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ulong ImageMipTailStride
 		{
 			get
@@ -1451,9 +1647,15 @@ namespace SharpVk
 				this.instance->ImageMipTailStride = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct MemoryType
+	public unsafe class MemoryType
+		: IDisposable
 	{
 		private readonly Interop.MemoryType* instance;
 
@@ -1485,6 +1687,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint HeapIndex
 		{
 			get
@@ -1500,9 +1703,15 @@ namespace SharpVk
 				this.instance->HeapIndex = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct MemoryHeap
+	public unsafe class MemoryHeap
+		: IDisposable
 	{
 		private readonly Interop.MemoryHeap* instance;
 
@@ -1534,6 +1743,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public MemoryHeapFlags Flags
 		{
 			get
@@ -1549,9 +1759,15 @@ namespace SharpVk
 				this.instance->Flags = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct MappedMemoryRange
+	public unsafe class MappedMemoryRange
+		: IDisposable
 	{
 		private readonly Interop.MappedMemoryRange* instance;
 
@@ -1585,6 +1801,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ulong Size
 		{
 			get
@@ -1600,9 +1817,15 @@ namespace SharpVk
 				this.instance->Size = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct FormatProperties
+	public unsafe class FormatProperties
+		: IDisposable
 	{
 		private readonly Interop.FormatProperties* instance;
 
@@ -1634,6 +1857,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public FormatFeatureFlags OptimalTilingFeatures
 		{
 			get
@@ -1650,6 +1874,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public FormatFeatureFlags BufferFeatures
 		{
 			get
@@ -1665,9 +1890,15 @@ namespace SharpVk
 				this.instance->BufferFeatures = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct ImageFormatProperties
+	public unsafe class ImageFormatProperties
+		: IDisposable
 	{
 		private readonly Interop.ImageFormatProperties* instance;
 
@@ -1699,6 +1930,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxArrayLayers
 		{
 			get
@@ -1714,6 +1946,7 @@ namespace SharpVk
 				this.instance->MaxArrayLayers = value0;
 			}
 		}
+
 
 		public SampleCountFlags SampleCounts
 		{
@@ -1731,6 +1964,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ulong MaxResourceSize
 		{
 			get
@@ -1746,9 +1980,15 @@ namespace SharpVk
 				this.instance->MaxResourceSize = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct DescriptorBufferInfo
+	public unsafe class DescriptorBufferInfo
+		: IDisposable
 	{
 		private readonly Interop.DescriptorBufferInfo* instance;
 
@@ -1780,6 +2020,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ulong Range
 		{
 			get
@@ -1795,9 +2036,15 @@ namespace SharpVk
 				this.instance->Range = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct DescriptorImageInfo
+	public unsafe class DescriptorImageInfo
+		: IDisposable
 	{
 		private readonly Interop.DescriptorImageInfo* instance;
 
@@ -1828,9 +2075,15 @@ namespace SharpVk
 				this.instance->ImageLayout = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct WriteDescriptorSet
+	public unsafe class WriteDescriptorSet
+		: IDisposable
 	{
 		private readonly Interop.WriteDescriptorSet* instance;
 
@@ -1864,6 +2117,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint DstArrayElement
 		{
 			get
@@ -1880,6 +2134,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public DescriptorType DescriptorType
 		{
 			get
@@ -1895,9 +2150,15 @@ namespace SharpVk
 				this.instance->DescriptorType = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct CopyDescriptorSet
+	public unsafe class CopyDescriptorSet
+		: IDisposable
 	{
 		private readonly Interop.CopyDescriptorSet* instance;
 
@@ -1931,6 +2192,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint SrcArrayElement
 		{
 			get
@@ -1946,6 +2208,7 @@ namespace SharpVk
 				this.instance->SrcArrayElement = value0;
 			}
 		}
+
 
 		public uint DstBinding
 		{
@@ -1963,6 +2226,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint DstArrayElement
 		{
 			get
@@ -1979,6 +2243,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint DescriptorCount
 		{
 			get
@@ -1994,9 +2259,15 @@ namespace SharpVk
 				this.instance->DescriptorCount = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct BufferCreateInfo
+	public unsafe class BufferCreateInfo
+		: IDisposable
 	{
 		private readonly Interop.BufferCreateInfo* instance;
 
@@ -2030,6 +2301,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ulong Size
 		{
 			get
@@ -2045,6 +2317,7 @@ namespace SharpVk
 				this.instance->Size = value0;
 			}
 		}
+
 
 		public BufferUsageFlags Usage
 		{
@@ -2062,6 +2335,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public SharingMode SharingMode
 		{
 			get
@@ -2077,9 +2351,15 @@ namespace SharpVk
 				this.instance->SharingMode = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct BufferViewCreateInfo
+	public unsafe class BufferViewCreateInfo
+		: IDisposable
 	{
 		private readonly Interop.BufferViewCreateInfo* instance;
 
@@ -2113,6 +2393,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public Format Format
 		{
 			get
@@ -2128,6 +2409,7 @@ namespace SharpVk
 				this.instance->Format = value0;
 			}
 		}
+
 
 		public ulong Offset
 		{
@@ -2145,6 +2427,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ulong Range
 		{
 			get
@@ -2160,9 +2443,15 @@ namespace SharpVk
 				this.instance->Range = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct ImageSubresource
+	public unsafe class ImageSubresource
+		: IDisposable
 	{
 		private readonly Interop.ImageSubresource* instance;
 
@@ -2194,6 +2483,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MipLevel
 		{
 			get
@@ -2210,6 +2500,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint ArrayLayer
 		{
 			get
@@ -2225,9 +2516,15 @@ namespace SharpVk
 				this.instance->ArrayLayer = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct ImageSubresourceLayers
+	public unsafe class ImageSubresourceLayers
+		: IDisposable
 	{
 		private readonly Interop.ImageSubresourceLayers* instance;
 
@@ -2259,6 +2556,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MipLevel
 		{
 			get
@@ -2274,6 +2572,7 @@ namespace SharpVk
 				this.instance->MipLevel = value0;
 			}
 		}
+
 
 		public uint BaseArrayLayer
 		{
@@ -2291,6 +2590,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint LayerCount
 		{
 			get
@@ -2306,9 +2606,15 @@ namespace SharpVk
 				this.instance->LayerCount = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct ImageSubresourceRange
+	public unsafe class ImageSubresourceRange
+		: IDisposable
 	{
 		private readonly Interop.ImageSubresourceRange* instance;
 
@@ -2340,6 +2646,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint BaseMipLevel
 		{
 			get
@@ -2355,6 +2662,7 @@ namespace SharpVk
 				this.instance->BaseMipLevel = value0;
 			}
 		}
+
 
 		public uint LevelCount
 		{
@@ -2372,6 +2680,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint BaseArrayLayer
 		{
 			get
@@ -2388,6 +2697,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint LayerCount
 		{
 			get
@@ -2403,9 +2713,15 @@ namespace SharpVk
 				this.instance->LayerCount = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct MemoryBarrier
+	public unsafe class MemoryBarrier
+		: IDisposable
 	{
 		private readonly Interop.MemoryBarrier* instance;
 
@@ -2439,6 +2755,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public AccessFlags DstAccessMask
 		{
 			get
@@ -2454,9 +2771,15 @@ namespace SharpVk
 				this.instance->DstAccessMask = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct BufferMemoryBarrier
+	public unsafe class BufferMemoryBarrier
+		: IDisposable
 	{
 		private readonly Interop.BufferMemoryBarrier* instance;
 
@@ -2490,6 +2813,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public AccessFlags DstAccessMask
 		{
 			get
@@ -2505,6 +2829,7 @@ namespace SharpVk
 				this.instance->DstAccessMask = value0;
 			}
 		}
+
 
 		public uint SrcQueueFamilyIndex
 		{
@@ -2522,6 +2847,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint DstQueueFamilyIndex
 		{
 			get
@@ -2537,6 +2863,7 @@ namespace SharpVk
 				this.instance->DstQueueFamilyIndex = value0;
 			}
 		}
+
 
 		public ulong Offset
 		{
@@ -2554,6 +2881,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ulong Size
 		{
 			get
@@ -2569,9 +2897,15 @@ namespace SharpVk
 				this.instance->Size = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct ImageMemoryBarrier
+	public unsafe class ImageMemoryBarrier
+		: IDisposable
 	{
 		private readonly Interop.ImageMemoryBarrier* instance;
 
@@ -2605,6 +2939,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public AccessFlags DstAccessMask
 		{
 			get
@@ -2620,6 +2955,7 @@ namespace SharpVk
 				this.instance->DstAccessMask = value0;
 			}
 		}
+
 
 		public ImageLayout OldLayout
 		{
@@ -2637,6 +2973,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ImageLayout NewLayout
 		{
 			get
@@ -2652,6 +2989,7 @@ namespace SharpVk
 				this.instance->NewLayout = value0;
 			}
 		}
+
 
 		public uint SrcQueueFamilyIndex
 		{
@@ -2669,6 +3007,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint DstQueueFamilyIndex
 		{
 			get
@@ -2684,9 +3023,15 @@ namespace SharpVk
 				this.instance->DstQueueFamilyIndex = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct ImageCreateInfo
+	public unsafe class ImageCreateInfo
+		: IDisposable
 	{
 		private readonly Interop.ImageCreateInfo* instance;
 
@@ -2720,6 +3065,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ImageType ImageType
 		{
 			get
@@ -2735,6 +3081,7 @@ namespace SharpVk
 				this.instance->ImageType = value0;
 			}
 		}
+
 
 		public Format Format
 		{
@@ -2752,6 +3099,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MipLevels
 		{
 			get
@@ -2767,6 +3115,7 @@ namespace SharpVk
 				this.instance->MipLevels = value0;
 			}
 		}
+
 
 		public uint ArrayLayers
 		{
@@ -2784,6 +3133,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public SampleCountFlags Samples
 		{
 			get
@@ -2799,6 +3149,7 @@ namespace SharpVk
 				this.instance->Samples = value0;
 			}
 		}
+
 
 		public ImageTiling Tiling
 		{
@@ -2816,6 +3167,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ImageUsageFlags Usage
 		{
 			get
@@ -2831,6 +3183,7 @@ namespace SharpVk
 				this.instance->Usage = value0;
 			}
 		}
+
 
 		public SharingMode SharingMode
 		{
@@ -2848,6 +3201,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ImageLayout InitialLayout
 		{
 			get
@@ -2863,9 +3217,15 @@ namespace SharpVk
 				this.instance->InitialLayout = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct SubresourceLayout
+	public unsafe class SubresourceLayout
+		: IDisposable
 	{
 		private readonly Interop.SubresourceLayout* instance;
 
@@ -2897,6 +3257,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ulong Size
 		{
 			get
@@ -2912,6 +3273,7 @@ namespace SharpVk
 				this.instance->Size = value0;
 			}
 		}
+
 
 		public ulong RowPitch
 		{
@@ -2929,6 +3291,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ulong ArrayPitch
 		{
 			get
@@ -2945,6 +3308,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ulong DepthPitch
 		{
 			get
@@ -2960,9 +3324,15 @@ namespace SharpVk
 				this.instance->DepthPitch = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct ImageViewCreateInfo
+	public unsafe class ImageViewCreateInfo
+		: IDisposable
 	{
 		private readonly Interop.ImageViewCreateInfo* instance;
 
@@ -2996,6 +3366,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ImageViewType ViewType
 		{
 			get
@@ -3012,6 +3383,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public Format Format
 		{
 			get
@@ -3027,9 +3399,15 @@ namespace SharpVk
 				this.instance->Format = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct BufferCopy
+	public unsafe class BufferCopy
+		: IDisposable
 	{
 		private readonly Interop.BufferCopy* instance;
 
@@ -3061,6 +3439,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ulong DstOffset
 		{
 			get
@@ -3077,6 +3456,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ulong Size
 		{
 			get
@@ -3092,9 +3472,15 @@ namespace SharpVk
 				this.instance->Size = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct SparseMemoryBind
+	public unsafe class SparseMemoryBind
+		: IDisposable
 	{
 		private readonly Interop.SparseMemoryBind* instance;
 
@@ -3126,6 +3512,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ulong Size
 		{
 			get
@@ -3141,6 +3528,7 @@ namespace SharpVk
 				this.instance->Size = value0;
 			}
 		}
+
 
 		public ulong MemoryOffset
 		{
@@ -3158,6 +3546,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public SparseMemoryBindFlags Flags
 		{
 			get
@@ -3173,9 +3562,15 @@ namespace SharpVk
 				this.instance->Flags = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct SparseImageMemoryBind
+	public unsafe class SparseImageMemoryBind
+		: IDisposable
 	{
 		private readonly Interop.SparseImageMemoryBind* instance;
 
@@ -3207,6 +3602,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public SparseMemoryBindFlags Flags
 		{
 			get
@@ -3222,9 +3618,15 @@ namespace SharpVk
 				this.instance->Flags = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct SparseBufferMemoryBindInfo
+	public unsafe class SparseBufferMemoryBindInfo
+		: IDisposable
 	{
 		private readonly Interop.SparseBufferMemoryBindInfo* instance;
 
@@ -3239,9 +3641,14 @@ namespace SharpVk
 
 			return result;
 		}
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct SparseImageOpaqueMemoryBindInfo
+	public unsafe class SparseImageOpaqueMemoryBindInfo
+		: IDisposable
 	{
 		private readonly Interop.SparseImageOpaqueMemoryBindInfo* instance;
 
@@ -3256,9 +3663,14 @@ namespace SharpVk
 
 			return result;
 		}
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct SparseImageMemoryBindInfo
+	public unsafe class SparseImageMemoryBindInfo
+		: IDisposable
 	{
 		private readonly Interop.SparseImageMemoryBindInfo* instance;
 
@@ -3273,9 +3685,14 @@ namespace SharpVk
 
 			return result;
 		}
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct BindSparseInfo
+	public unsafe class BindSparseInfo
+		: IDisposable
 	{
 		private readonly Interop.BindSparseInfo* instance;
 
@@ -3292,9 +3709,14 @@ namespace SharpVk
 
 			return result;
 		}
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct ImageCopy
+	public unsafe class ImageCopy
+		: IDisposable
 	{
 		private readonly Interop.ImageCopy* instance;
 
@@ -3309,9 +3731,14 @@ namespace SharpVk
 
 			return result;
 		}
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct ImageBlit
+	public unsafe class ImageBlit
+		: IDisposable
 	{
 		private readonly Interop.ImageBlit* instance;
 
@@ -3326,9 +3753,14 @@ namespace SharpVk
 
 			return result;
 		}
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct BufferImageCopy
+	public unsafe class BufferImageCopy
+		: IDisposable
 	{
 		private readonly Interop.BufferImageCopy* instance;
 
@@ -3360,6 +3792,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint BufferRowLength
 		{
 			get
@@ -3376,6 +3809,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint BufferImageHeight
 		{
 			get
@@ -3391,9 +3825,15 @@ namespace SharpVk
 				this.instance->BufferImageHeight = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct ImageResolve
+	public unsafe class ImageResolve
+		: IDisposable
 	{
 		private readonly Interop.ImageResolve* instance;
 
@@ -3408,9 +3848,14 @@ namespace SharpVk
 
 			return result;
 		}
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct ShaderModuleCreateInfo
+	public unsafe class ShaderModuleCreateInfo
+		: IDisposable
 	{
 		private readonly Interop.ShaderModuleCreateInfo* instance;
 
@@ -3444,6 +3889,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public UIntPtr CodeSize
 		{
 			get
@@ -3459,9 +3905,15 @@ namespace SharpVk
 				this.instance->CodeSize = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct DescriptorSetLayoutBinding
+	public unsafe class DescriptorSetLayoutBinding
+		: IDisposable
 	{
 		private readonly Interop.DescriptorSetLayoutBinding* instance;
 
@@ -3493,6 +3945,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public DescriptorType DescriptorType
 		{
 			get
@@ -3509,6 +3962,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ShaderStageFlags StageFlags
 		{
 			get
@@ -3524,9 +3978,15 @@ namespace SharpVk
 				this.instance->StageFlags = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct DescriptorSetLayoutCreateInfo
+	public unsafe class DescriptorSetLayoutCreateInfo
+		: IDisposable
 	{
 		private readonly Interop.DescriptorSetLayoutCreateInfo* instance;
 
@@ -3559,9 +4019,15 @@ namespace SharpVk
 				this.instance->Flags = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct DescriptorPoolSize
+	public unsafe class DescriptorPoolSize
+		: IDisposable
 	{
 		private readonly Interop.DescriptorPoolSize* instance;
 
@@ -3593,6 +4059,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint DescriptorCount
 		{
 			get
@@ -3608,9 +4075,15 @@ namespace SharpVk
 				this.instance->DescriptorCount = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct DescriptorPoolCreateInfo
+	public unsafe class DescriptorPoolCreateInfo
+		: IDisposable
 	{
 		private readonly Interop.DescriptorPoolCreateInfo* instance;
 
@@ -3644,6 +4117,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxSets
 		{
 			get
@@ -3659,9 +4133,15 @@ namespace SharpVk
 				this.instance->MaxSets = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct DescriptorSetAllocateInfo
+	public unsafe class DescriptorSetAllocateInfo
+		: IDisposable
 	{
 		private readonly Interop.DescriptorSetAllocateInfo* instance;
 
@@ -3678,9 +4158,14 @@ namespace SharpVk
 
 			return result;
 		}
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct SpecializationMapEntry
+	public unsafe class SpecializationMapEntry
+		: IDisposable
 	{
 		private readonly Interop.SpecializationMapEntry* instance;
 
@@ -3712,6 +4197,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint Offset
 		{
 			get
@@ -3728,6 +4214,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public UIntPtr Size
 		{
 			get
@@ -3743,9 +4230,15 @@ namespace SharpVk
 				this.instance->Size = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct SpecializationInfo
+	public unsafe class SpecializationInfo
+		: IDisposable
 	{
 		private readonly Interop.SpecializationInfo* instance;
 
@@ -3760,9 +4253,14 @@ namespace SharpVk
 
 			return result;
 		}
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct PipelineShaderStageCreateInfo
+	public unsafe class PipelineShaderStageCreateInfo
+		: IDisposable
 	{
 		private readonly Interop.PipelineShaderStageCreateInfo* instance;
 
@@ -3796,6 +4294,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ShaderStageFlags Stage
 		{
 			get
@@ -3811,6 +4310,7 @@ namespace SharpVk
 				this.instance->Stage = value0;
 			}
 		}
+
 
 		public string Name
 		{
@@ -3831,9 +4331,15 @@ namespace SharpVk
 				this.instance->Name = value1;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct ComputePipelineCreateInfo
+	public unsafe class ComputePipelineCreateInfo
+		: IDisposable
 	{
 		private readonly Interop.ComputePipelineCreateInfo* instance;
 
@@ -3867,6 +4373,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public int BasePipelineIndex
 		{
 			get
@@ -3882,9 +4389,15 @@ namespace SharpVk
 				this.instance->BasePipelineIndex = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct VertexInputBindingDescription
+	public unsafe class VertexInputBindingDescription
+		: IDisposable
 	{
 		private readonly Interop.VertexInputBindingDescription* instance;
 
@@ -3916,6 +4429,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint Stride
 		{
 			get
@@ -3932,6 +4446,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public VertexInputRate InputRate
 		{
 			get
@@ -3947,9 +4462,15 @@ namespace SharpVk
 				this.instance->InputRate = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct VertexInputAttributeDescription
+	public unsafe class VertexInputAttributeDescription
+		: IDisposable
 	{
 		private readonly Interop.VertexInputAttributeDescription* instance;
 
@@ -3981,6 +4502,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint Binding
 		{
 			get
@@ -3996,6 +4518,7 @@ namespace SharpVk
 				this.instance->Binding = value0;
 			}
 		}
+
 
 		public Format Format
 		{
@@ -4013,6 +4536,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint Offset
 		{
 			get
@@ -4028,9 +4552,15 @@ namespace SharpVk
 				this.instance->Offset = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct PipelineVertexInputStateCreateInfo
+	public unsafe class PipelineVertexInputStateCreateInfo
+		: IDisposable
 	{
 		private readonly Interop.PipelineVertexInputStateCreateInfo* instance;
 
@@ -4063,9 +4593,15 @@ namespace SharpVk
 				this.instance->Flags = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct PipelineInputAssemblyStateCreateInfo
+	public unsafe class PipelineInputAssemblyStateCreateInfo
+		: IDisposable
 	{
 		private readonly Interop.PipelineInputAssemblyStateCreateInfo* instance;
 
@@ -4099,6 +4635,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public PrimitiveTopology Topology
 		{
 			get
@@ -4115,6 +4652,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool PrimitiveRestartEnable
 		{
 			get
@@ -4130,9 +4668,15 @@ namespace SharpVk
 				this.instance->PrimitiveRestartEnable = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct PipelineTessellationStateCreateInfo
+	public unsafe class PipelineTessellationStateCreateInfo
+		: IDisposable
 	{
 		private readonly Interop.PipelineTessellationStateCreateInfo* instance;
 
@@ -4166,6 +4710,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint PatchControlPoints
 		{
 			get
@@ -4181,9 +4726,15 @@ namespace SharpVk
 				this.instance->PatchControlPoints = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct PipelineViewportStateCreateInfo
+	public unsafe class PipelineViewportStateCreateInfo
+		: IDisposable
 	{
 		private readonly Interop.PipelineViewportStateCreateInfo* instance;
 
@@ -4216,9 +4767,15 @@ namespace SharpVk
 				this.instance->Flags = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct PipelineRasterizationStateCreateInfo
+	public unsafe class PipelineRasterizationStateCreateInfo
+		: IDisposable
 	{
 		private readonly Interop.PipelineRasterizationStateCreateInfo* instance;
 
@@ -4252,6 +4809,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool DepthClampEnable
 		{
 			get
@@ -4267,6 +4825,7 @@ namespace SharpVk
 				this.instance->DepthClampEnable = value0;
 			}
 		}
+
 
 		public bool RasterizerDiscardEnable
 		{
@@ -4284,6 +4843,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public PolygonMode PolygonMode
 		{
 			get
@@ -4299,6 +4859,7 @@ namespace SharpVk
 				this.instance->PolygonMode = value0;
 			}
 		}
+
 
 		public CullModeFlags CullMode
 		{
@@ -4316,6 +4877,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public FrontFace FrontFace
 		{
 			get
@@ -4331,6 +4893,7 @@ namespace SharpVk
 				this.instance->FrontFace = value0;
 			}
 		}
+
 
 		public bool DepthBiasEnable
 		{
@@ -4348,6 +4911,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public float DepthBiasConstantFactor
 		{
 			get
@@ -4363,6 +4927,7 @@ namespace SharpVk
 				this.instance->DepthBiasConstantFactor = value0;
 			}
 		}
+
 
 		public float DepthBiasClamp
 		{
@@ -4380,6 +4945,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public float DepthBiasSlopeFactor
 		{
 			get
@@ -4396,6 +4962,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public float LineWidth
 		{
 			get
@@ -4411,9 +4978,15 @@ namespace SharpVk
 				this.instance->LineWidth = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct PipelineMultisampleStateCreateInfo
+	public unsafe class PipelineMultisampleStateCreateInfo
+		: IDisposable
 	{
 		private readonly Interop.PipelineMultisampleStateCreateInfo* instance;
 
@@ -4447,6 +5020,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public SampleCountFlags RasterizationSamples
 		{
 			get
@@ -4462,6 +5036,7 @@ namespace SharpVk
 				this.instance->RasterizationSamples = value0;
 			}
 		}
+
 
 		public bool SampleShadingEnable
 		{
@@ -4479,6 +5054,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public float MinSampleShading
 		{
 			get
@@ -4494,6 +5070,7 @@ namespace SharpVk
 				this.instance->MinSampleShading = value0;
 			}
 		}
+
 
 		public bool AlphaToCoverageEnable
 		{
@@ -4511,6 +5088,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool AlphaToOneEnable
 		{
 			get
@@ -4526,9 +5104,15 @@ namespace SharpVk
 				this.instance->AlphaToOneEnable = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct PipelineColorBlendAttachmentState
+	public unsafe class PipelineColorBlendAttachmentState
+		: IDisposable
 	{
 		private readonly Interop.PipelineColorBlendAttachmentState* instance;
 
@@ -4560,6 +5144,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public BlendFactor SrcColorBlendFactor
 		{
 			get
@@ -4575,6 +5160,7 @@ namespace SharpVk
 				this.instance->SrcColorBlendFactor = value0;
 			}
 		}
+
 
 		public BlendFactor DstColorBlendFactor
 		{
@@ -4592,6 +5178,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public BlendOp ColorBlendOp
 		{
 			get
@@ -4607,6 +5194,7 @@ namespace SharpVk
 				this.instance->ColorBlendOp = value0;
 			}
 		}
+
 
 		public BlendFactor SrcAlphaBlendFactor
 		{
@@ -4624,6 +5212,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public BlendFactor DstAlphaBlendFactor
 		{
 			get
@@ -4639,6 +5228,7 @@ namespace SharpVk
 				this.instance->DstAlphaBlendFactor = value0;
 			}
 		}
+
 
 		public BlendOp AlphaBlendOp
 		{
@@ -4656,6 +5246,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ColorComponentFlags ColorWriteMask
 		{
 			get
@@ -4671,9 +5262,15 @@ namespace SharpVk
 				this.instance->ColorWriteMask = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct PipelineColorBlendStateCreateInfo
+	public unsafe class PipelineColorBlendStateCreateInfo
+		: IDisposable
 	{
 		private readonly Interop.PipelineColorBlendStateCreateInfo* instance;
 
@@ -4707,6 +5304,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool LogicOpEnable
 		{
 			get
@@ -4722,6 +5320,7 @@ namespace SharpVk
 				this.instance->LogicOpEnable = value0;
 			}
 		}
+
 
 		public LogicOp LogicOp
 		{
@@ -4739,6 +5338,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public float BlendConstants
 		{
 			get
@@ -4754,9 +5354,15 @@ namespace SharpVk
 				this.instance->BlendConstants = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct PipelineDynamicStateCreateInfo
+	public unsafe class PipelineDynamicStateCreateInfo
+		: IDisposable
 	{
 		private readonly Interop.PipelineDynamicStateCreateInfo* instance;
 
@@ -4789,9 +5395,15 @@ namespace SharpVk
 				this.instance->Flags = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct StencilOpState
+	public unsafe class StencilOpState
+		: IDisposable
 	{
 		private readonly Interop.StencilOpState* instance;
 
@@ -4823,6 +5435,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public StencilOp PassOp
 		{
 			get
@@ -4838,6 +5451,7 @@ namespace SharpVk
 				this.instance->PassOp = value0;
 			}
 		}
+
 
 		public StencilOp DepthFailOp
 		{
@@ -4855,6 +5469,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public CompareOp CompareOp
 		{
 			get
@@ -4870,6 +5485,7 @@ namespace SharpVk
 				this.instance->CompareOp = value0;
 			}
 		}
+
 
 		public uint CompareMask
 		{
@@ -4887,6 +5503,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint WriteMask
 		{
 			get
@@ -4903,6 +5520,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint Reference
 		{
 			get
@@ -4918,9 +5536,15 @@ namespace SharpVk
 				this.instance->Reference = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct PipelineDepthStencilStateCreateInfo
+	public unsafe class PipelineDepthStencilStateCreateInfo
+		: IDisposable
 	{
 		private readonly Interop.PipelineDepthStencilStateCreateInfo* instance;
 
@@ -4954,6 +5578,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool DepthTestEnable
 		{
 			get
@@ -4969,6 +5594,7 @@ namespace SharpVk
 				this.instance->DepthTestEnable = value0;
 			}
 		}
+
 
 		public bool DepthWriteEnable
 		{
@@ -4986,6 +5612,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public CompareOp DepthCompareOp
 		{
 			get
@@ -5001,6 +5628,7 @@ namespace SharpVk
 				this.instance->DepthCompareOp = value0;
 			}
 		}
+
 
 		public bool DepthBoundsTestEnable
 		{
@@ -5018,6 +5646,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool StencilTestEnable
 		{
 			get
@@ -5033,6 +5662,7 @@ namespace SharpVk
 				this.instance->StencilTestEnable = value0;
 			}
 		}
+
 
 		public float MinDepthBounds
 		{
@@ -5050,6 +5680,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public float MaxDepthBounds
 		{
 			get
@@ -5065,9 +5696,15 @@ namespace SharpVk
 				this.instance->MaxDepthBounds = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct GraphicsPipelineCreateInfo
+	public unsafe class GraphicsPipelineCreateInfo
+		: IDisposable
 	{
 		private readonly Interop.GraphicsPipelineCreateInfo* instance;
 
@@ -5101,6 +5738,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint Subpass
 		{
 			get
@@ -5117,6 +5755,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public int BasePipelineIndex
 		{
 			get
@@ -5132,9 +5771,15 @@ namespace SharpVk
 				this.instance->BasePipelineIndex = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct PipelineCacheCreateInfo
+	public unsafe class PipelineCacheCreateInfo
+		: IDisposable
 	{
 		private readonly Interop.PipelineCacheCreateInfo* instance;
 
@@ -5167,9 +5812,15 @@ namespace SharpVk
 				this.instance->Flags = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct PushConstantRange
+	public unsafe class PushConstantRange
+		: IDisposable
 	{
 		private readonly Interop.PushConstantRange* instance;
 
@@ -5201,6 +5852,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint Offset
 		{
 			get
@@ -5217,6 +5869,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint Size
 		{
 			get
@@ -5232,9 +5885,15 @@ namespace SharpVk
 				this.instance->Size = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct PipelineLayoutCreateInfo
+	public unsafe class PipelineLayoutCreateInfo
+		: IDisposable
 	{
 		private readonly Interop.PipelineLayoutCreateInfo* instance;
 
@@ -5267,9 +5926,15 @@ namespace SharpVk
 				this.instance->Flags = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct SamplerCreateInfo
+	public unsafe class SamplerCreateInfo
+		: IDisposable
 	{
 		private readonly Interop.SamplerCreateInfo* instance;
 
@@ -5303,6 +5968,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public Filter MagFilter
 		{
 			get
@@ -5318,6 +5984,7 @@ namespace SharpVk
 				this.instance->MagFilter = value0;
 			}
 		}
+
 
 		public Filter MinFilter
 		{
@@ -5335,6 +6002,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public SamplerMipmapMode MipmapMode
 		{
 			get
@@ -5350,6 +6018,7 @@ namespace SharpVk
 				this.instance->MipmapMode = value0;
 			}
 		}
+
 
 		public SamplerAddressMode AddressModeU
 		{
@@ -5367,6 +6036,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public SamplerAddressMode AddressModeV
 		{
 			get
@@ -5382,6 +6052,7 @@ namespace SharpVk
 				this.instance->AddressModeV = value0;
 			}
 		}
+
 
 		public SamplerAddressMode AddressModeW
 		{
@@ -5399,6 +6070,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public float MipLodBias
 		{
 			get
@@ -5414,6 +6086,7 @@ namespace SharpVk
 				this.instance->MipLodBias = value0;
 			}
 		}
+
 
 		public bool AnisotropyEnable
 		{
@@ -5431,6 +6104,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public float MaxAnisotropy
 		{
 			get
@@ -5446,6 +6120,7 @@ namespace SharpVk
 				this.instance->MaxAnisotropy = value0;
 			}
 		}
+
 
 		public bool CompareEnable
 		{
@@ -5463,6 +6138,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public CompareOp CompareOp
 		{
 			get
@@ -5478,6 +6154,7 @@ namespace SharpVk
 				this.instance->CompareOp = value0;
 			}
 		}
+
 
 		public float MinLod
 		{
@@ -5495,6 +6172,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public float MaxLod
 		{
 			get
@@ -5510,6 +6188,7 @@ namespace SharpVk
 				this.instance->MaxLod = value0;
 			}
 		}
+
 
 		public BorderColor BorderColor
 		{
@@ -5527,6 +6206,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool UnnormalizedCoordinates
 		{
 			get
@@ -5542,9 +6222,15 @@ namespace SharpVk
 				this.instance->UnnormalizedCoordinates = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct CommandPoolCreateInfo
+	public unsafe class CommandPoolCreateInfo
+		: IDisposable
 	{
 		private readonly Interop.CommandPoolCreateInfo* instance;
 
@@ -5578,6 +6264,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint QueueFamilyIndex
 		{
 			get
@@ -5593,9 +6280,15 @@ namespace SharpVk
 				this.instance->QueueFamilyIndex = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct CommandBufferAllocateInfo
+	public unsafe class CommandBufferAllocateInfo
+		: IDisposable
 	{
 		private readonly Interop.CommandBufferAllocateInfo* instance;
 
@@ -5629,6 +6322,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint CommandBufferCount
 		{
 			get
@@ -5644,9 +6338,15 @@ namespace SharpVk
 				this.instance->CommandBufferCount = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct CommandBufferInheritanceInfo
+	public unsafe class CommandBufferInheritanceInfo
+		: IDisposable
 	{
 		private readonly Interop.CommandBufferInheritanceInfo* instance;
 
@@ -5680,6 +6380,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool OcclusionQueryEnable
 		{
 			get
@@ -5695,6 +6396,7 @@ namespace SharpVk
 				this.instance->OcclusionQueryEnable = value0;
 			}
 		}
+
 
 		public QueryControlFlags QueryFlags
 		{
@@ -5712,6 +6414,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public QueryPipelineStatisticFlags PipelineStatistics
 		{
 			get
@@ -5727,9 +6430,15 @@ namespace SharpVk
 				this.instance->PipelineStatistics = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct CommandBufferBeginInfo
+	public unsafe class CommandBufferBeginInfo
+		: IDisposable
 	{
 		private readonly Interop.CommandBufferBeginInfo* instance;
 
@@ -5762,9 +6471,15 @@ namespace SharpVk
 				this.instance->Flags = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct RenderPassBeginInfo
+	public unsafe class RenderPassBeginInfo
+		: IDisposable
 	{
 		private readonly Interop.RenderPassBeginInfo* instance;
 
@@ -5781,9 +6496,14 @@ namespace SharpVk
 
 			return result;
 		}
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct ClearDepthStencilValue
+	public unsafe class ClearDepthStencilValue
+		: IDisposable
 	{
 		private readonly Interop.ClearDepthStencilValue* instance;
 
@@ -5815,6 +6535,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint Stencil
 		{
 			get
@@ -5830,9 +6551,15 @@ namespace SharpVk
 				this.instance->Stencil = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct ClearAttachment
+	public unsafe class ClearAttachment
+		: IDisposable
 	{
 		private readonly Interop.ClearAttachment* instance;
 
@@ -5864,6 +6591,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint ColorAttachment
 		{
 			get
@@ -5880,6 +6608,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ClearValue ClearValue
 		{
 			get
@@ -5895,9 +6624,15 @@ namespace SharpVk
 				this.instance->ClearValue = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct AttachmentDescription
+	public unsafe class AttachmentDescription
+		: IDisposable
 	{
 		private readonly Interop.AttachmentDescription* instance;
 
@@ -5929,6 +6664,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public Format Format
 		{
 			get
@@ -5944,6 +6680,7 @@ namespace SharpVk
 				this.instance->Format = value0;
 			}
 		}
+
 
 		public SampleCountFlags Samples
 		{
@@ -5961,6 +6698,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public AttachmentLoadOp LoadOp
 		{
 			get
@@ -5976,6 +6714,7 @@ namespace SharpVk
 				this.instance->LoadOp = value0;
 			}
 		}
+
 
 		public AttachmentStoreOp StoreOp
 		{
@@ -5993,6 +6732,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public AttachmentLoadOp StencilLoadOp
 		{
 			get
@@ -6008,6 +6748,7 @@ namespace SharpVk
 				this.instance->StencilLoadOp = value0;
 			}
 		}
+
 
 		public AttachmentStoreOp StencilStoreOp
 		{
@@ -6025,6 +6766,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ImageLayout InitialLayout
 		{
 			get
@@ -6041,6 +6783,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ImageLayout FinalLayout
 		{
 			get
@@ -6056,9 +6799,15 @@ namespace SharpVk
 				this.instance->FinalLayout = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct AttachmentReference
+	public unsafe class AttachmentReference
+		: IDisposable
 	{
 		private readonly Interop.AttachmentReference* instance;
 
@@ -6090,6 +6839,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ImageLayout Layout
 		{
 			get
@@ -6105,9 +6855,15 @@ namespace SharpVk
 				this.instance->Layout = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct SubpassDescription
+	public unsafe class SubpassDescription
+		: IDisposable
 	{
 		private readonly Interop.SubpassDescription* instance;
 
@@ -6139,6 +6895,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public PipelineBindPoint PipelineBindPoint
 		{
 			get
@@ -6154,9 +6911,15 @@ namespace SharpVk
 				this.instance->PipelineBindPoint = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct SubpassDependency
+	public unsafe class SubpassDependency
+		: IDisposable
 	{
 		private readonly Interop.SubpassDependency* instance;
 
@@ -6188,6 +6951,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint DstSubpass
 		{
 			get
@@ -6203,6 +6967,7 @@ namespace SharpVk
 				this.instance->DstSubpass = value0;
 			}
 		}
+
 
 		public PipelineStageFlags SrcStageMask
 		{
@@ -6220,6 +6985,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public PipelineStageFlags DstStageMask
 		{
 			get
@@ -6235,6 +7001,7 @@ namespace SharpVk
 				this.instance->DstStageMask = value0;
 			}
 		}
+
 
 		public AccessFlags SrcAccessMask
 		{
@@ -6252,6 +7019,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public AccessFlags DstAccessMask
 		{
 			get
@@ -6268,6 +7036,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public DependencyFlags DependencyFlags
 		{
 			get
@@ -6283,9 +7052,15 @@ namespace SharpVk
 				this.instance->DependencyFlags = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct RenderPassCreateInfo
+	public unsafe class RenderPassCreateInfo
+		: IDisposable
 	{
 		private readonly Interop.RenderPassCreateInfo* instance;
 
@@ -6318,9 +7093,15 @@ namespace SharpVk
 				this.instance->Flags = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct EventCreateInfo
+	public unsafe class EventCreateInfo
+		: IDisposable
 	{
 		private readonly Interop.EventCreateInfo* instance;
 
@@ -6353,9 +7134,15 @@ namespace SharpVk
 				this.instance->Flags = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct FenceCreateInfo
+	public unsafe class FenceCreateInfo
+		: IDisposable
 	{
 		private readonly Interop.FenceCreateInfo* instance;
 
@@ -6388,9 +7175,15 @@ namespace SharpVk
 				this.instance->Flags = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct PhysicalDeviceFeatures
+	public unsafe class PhysicalDeviceFeatures
+		: IDisposable
 	{
 		private readonly Interop.PhysicalDeviceFeatures* instance;
 
@@ -6422,6 +7215,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool FullDrawIndexUint32
 		{
 			get
@@ -6437,6 +7231,7 @@ namespace SharpVk
 				this.instance->FullDrawIndexUint32 = value0;
 			}
 		}
+
 
 		public bool ImageCubeArray
 		{
@@ -6454,6 +7249,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool IndependentBlend
 		{
 			get
@@ -6469,6 +7265,7 @@ namespace SharpVk
 				this.instance->IndependentBlend = value0;
 			}
 		}
+
 
 		public bool GeometryShader
 		{
@@ -6486,6 +7283,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool TessellationShader
 		{
 			get
@@ -6501,6 +7299,7 @@ namespace SharpVk
 				this.instance->TessellationShader = value0;
 			}
 		}
+
 
 		public bool SampleRateShading
 		{
@@ -6518,6 +7317,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool DualSrcBlend
 		{
 			get
@@ -6533,6 +7333,7 @@ namespace SharpVk
 				this.instance->DualSrcBlend = value0;
 			}
 		}
+
 
 		public bool LogicOp
 		{
@@ -6550,6 +7351,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool MultiDrawIndirect
 		{
 			get
@@ -6565,6 +7367,7 @@ namespace SharpVk
 				this.instance->MultiDrawIndirect = value0;
 			}
 		}
+
 
 		public bool DrawIndirectFirstInstance
 		{
@@ -6582,6 +7385,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool DepthClamp
 		{
 			get
@@ -6597,6 +7401,7 @@ namespace SharpVk
 				this.instance->DepthClamp = value0;
 			}
 		}
+
 
 		public bool DepthBiasClamp
 		{
@@ -6614,6 +7419,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool FillModeNonSolid
 		{
 			get
@@ -6629,6 +7435,7 @@ namespace SharpVk
 				this.instance->FillModeNonSolid = value0;
 			}
 		}
+
 
 		public bool DepthBounds
 		{
@@ -6646,6 +7453,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool WideLines
 		{
 			get
@@ -6661,6 +7469,7 @@ namespace SharpVk
 				this.instance->WideLines = value0;
 			}
 		}
+
 
 		public bool LargePoints
 		{
@@ -6678,6 +7487,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool AlphaToOne
 		{
 			get
@@ -6693,6 +7503,7 @@ namespace SharpVk
 				this.instance->AlphaToOne = value0;
 			}
 		}
+
 
 		public bool MultiViewport
 		{
@@ -6710,6 +7521,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool SamplerAnisotropy
 		{
 			get
@@ -6725,6 +7537,7 @@ namespace SharpVk
 				this.instance->SamplerAnisotropy = value0;
 			}
 		}
+
 
 		public bool TextureCompressionETC2
 		{
@@ -6742,6 +7555,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool TextureCompressionASTC_LDR
 		{
 			get
@@ -6757,6 +7571,7 @@ namespace SharpVk
 				this.instance->TextureCompressionASTC_LDR = value0;
 			}
 		}
+
 
 		public bool TextureCompressionBC
 		{
@@ -6774,6 +7589,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool OcclusionQueryPrecise
 		{
 			get
@@ -6789,6 +7605,7 @@ namespace SharpVk
 				this.instance->OcclusionQueryPrecise = value0;
 			}
 		}
+
 
 		public bool PipelineStatisticsQuery
 		{
@@ -6806,6 +7623,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool VertexPipelineStoresAndAtomics
 		{
 			get
@@ -6821,6 +7639,7 @@ namespace SharpVk
 				this.instance->VertexPipelineStoresAndAtomics = value0;
 			}
 		}
+
 
 		public bool FragmentStoresAndAtomics
 		{
@@ -6838,6 +7657,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool ShaderTessellationAndGeometryPointSize
 		{
 			get
@@ -6853,6 +7673,7 @@ namespace SharpVk
 				this.instance->ShaderTessellationAndGeometryPointSize = value0;
 			}
 		}
+
 
 		public bool ShaderImageGatherExtended
 		{
@@ -6870,6 +7691,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool ShaderStorageImageExtendedFormats
 		{
 			get
@@ -6885,6 +7707,7 @@ namespace SharpVk
 				this.instance->ShaderStorageImageExtendedFormats = value0;
 			}
 		}
+
 
 		public bool ShaderStorageImageMultisample
 		{
@@ -6902,6 +7725,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool ShaderStorageImageReadWithoutFormat
 		{
 			get
@@ -6917,6 +7741,7 @@ namespace SharpVk
 				this.instance->ShaderStorageImageReadWithoutFormat = value0;
 			}
 		}
+
 
 		public bool ShaderStorageImageWriteWithoutFormat
 		{
@@ -6934,6 +7759,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool ShaderUniformBufferArrayDynamicIndexing
 		{
 			get
@@ -6949,6 +7775,7 @@ namespace SharpVk
 				this.instance->ShaderUniformBufferArrayDynamicIndexing = value0;
 			}
 		}
+
 
 		public bool ShaderSampledImageArrayDynamicIndexing
 		{
@@ -6966,6 +7793,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool ShaderStorageBufferArrayDynamicIndexing
 		{
 			get
@@ -6981,6 +7809,7 @@ namespace SharpVk
 				this.instance->ShaderStorageBufferArrayDynamicIndexing = value0;
 			}
 		}
+
 
 		public bool ShaderStorageImageArrayDynamicIndexing
 		{
@@ -6998,6 +7827,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool ShaderClipDistance
 		{
 			get
@@ -7013,6 +7843,7 @@ namespace SharpVk
 				this.instance->ShaderClipDistance = value0;
 			}
 		}
+
 
 		public bool ShaderCullDistance
 		{
@@ -7030,6 +7861,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool ShaderFloat64
 		{
 			get
@@ -7045,6 +7877,7 @@ namespace SharpVk
 				this.instance->ShaderFloat64 = value0;
 			}
 		}
+
 
 		public bool ShaderInt64
 		{
@@ -7062,6 +7895,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool ShaderInt16
 		{
 			get
@@ -7077,6 +7911,7 @@ namespace SharpVk
 				this.instance->ShaderInt16 = value0;
 			}
 		}
+
 
 		public bool ShaderResourceResidency
 		{
@@ -7094,6 +7929,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool ShaderResourceMinLod
 		{
 			get
@@ -7109,6 +7945,7 @@ namespace SharpVk
 				this.instance->ShaderResourceMinLod = value0;
 			}
 		}
+
 
 		public bool SparseBinding
 		{
@@ -7126,6 +7963,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool SparseResidencyBuffer
 		{
 			get
@@ -7141,6 +7979,7 @@ namespace SharpVk
 				this.instance->SparseResidencyBuffer = value0;
 			}
 		}
+
 
 		public bool SparseResidencyImage2D
 		{
@@ -7158,6 +7997,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool SparseResidencyImage3D
 		{
 			get
@@ -7173,6 +8013,7 @@ namespace SharpVk
 				this.instance->SparseResidencyImage3D = value0;
 			}
 		}
+
 
 		public bool SparseResidency2Samples
 		{
@@ -7190,6 +8031,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool SparseResidency4Samples
 		{
 			get
@@ -7205,6 +8047,7 @@ namespace SharpVk
 				this.instance->SparseResidency4Samples = value0;
 			}
 		}
+
 
 		public bool SparseResidency8Samples
 		{
@@ -7222,6 +8065,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool SparseResidency16Samples
 		{
 			get
@@ -7237,6 +8081,7 @@ namespace SharpVk
 				this.instance->SparseResidency16Samples = value0;
 			}
 		}
+
 
 		public bool SparseResidencyAliased
 		{
@@ -7254,6 +8099,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool VariableMultisampleRate
 		{
 			get
@@ -7270,6 +8116,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool InheritedQueries
 		{
 			get
@@ -7285,9 +8132,15 @@ namespace SharpVk
 				this.instance->InheritedQueries = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct PhysicalDeviceSparseProperties
+	public unsafe class PhysicalDeviceSparseProperties
+		: IDisposable
 	{
 		private readonly Interop.PhysicalDeviceSparseProperties* instance;
 
@@ -7319,6 +8172,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool ResidencyStandard2DMultisampleBlockShape
 		{
 			get
@@ -7334,6 +8188,7 @@ namespace SharpVk
 				this.instance->ResidencyStandard2DMultisampleBlockShape = value0;
 			}
 		}
+
 
 		public bool ResidencyStandard3DBlockShape
 		{
@@ -7351,6 +8206,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool ResidencyAlignedMipSize
 		{
 			get
@@ -7367,6 +8223,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool ResidencyNonResidentStrict
 		{
 			get
@@ -7382,9 +8239,15 @@ namespace SharpVk
 				this.instance->ResidencyNonResidentStrict = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct PhysicalDeviceLimits
+	public unsafe class PhysicalDeviceLimits
+		: IDisposable
 	{
 		private readonly Interop.PhysicalDeviceLimits* instance;
 
@@ -7416,6 +8279,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxImageDimension2D
 		{
 			get
@@ -7431,6 +8295,7 @@ namespace SharpVk
 				this.instance->MaxImageDimension2D = value0;
 			}
 		}
+
 
 		public uint MaxImageDimension3D
 		{
@@ -7448,6 +8313,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxImageDimensionCube
 		{
 			get
@@ -7463,6 +8329,7 @@ namespace SharpVk
 				this.instance->MaxImageDimensionCube = value0;
 			}
 		}
+
 
 		public uint MaxImageArrayLayers
 		{
@@ -7480,6 +8347,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxTexelBufferElements
 		{
 			get
@@ -7495,6 +8363,7 @@ namespace SharpVk
 				this.instance->MaxTexelBufferElements = value0;
 			}
 		}
+
 
 		public uint MaxUniformBufferRange
 		{
@@ -7512,6 +8381,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxStorageBufferRange
 		{
 			get
@@ -7527,6 +8397,7 @@ namespace SharpVk
 				this.instance->MaxStorageBufferRange = value0;
 			}
 		}
+
 
 		public uint MaxPushConstantsSize
 		{
@@ -7544,6 +8415,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxMemoryAllocationCount
 		{
 			get
@@ -7559,6 +8431,7 @@ namespace SharpVk
 				this.instance->MaxMemoryAllocationCount = value0;
 			}
 		}
+
 
 		public uint MaxSamplerAllocationCount
 		{
@@ -7576,6 +8449,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ulong BufferImageGranularity
 		{
 			get
@@ -7591,6 +8465,7 @@ namespace SharpVk
 				this.instance->BufferImageGranularity = value0;
 			}
 		}
+
 
 		public ulong SparseAddressSpaceSize
 		{
@@ -7608,6 +8483,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxBoundDescriptorSets
 		{
 			get
@@ -7623,6 +8499,7 @@ namespace SharpVk
 				this.instance->MaxBoundDescriptorSets = value0;
 			}
 		}
+
 
 		public uint MaxPerStageDescriptorSamplers
 		{
@@ -7640,6 +8517,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxPerStageDescriptorUniformBuffers
 		{
 			get
@@ -7655,6 +8533,7 @@ namespace SharpVk
 				this.instance->MaxPerStageDescriptorUniformBuffers = value0;
 			}
 		}
+
 
 		public uint MaxPerStageDescriptorStorageBuffers
 		{
@@ -7672,6 +8551,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxPerStageDescriptorSampledImages
 		{
 			get
@@ -7687,6 +8567,7 @@ namespace SharpVk
 				this.instance->MaxPerStageDescriptorSampledImages = value0;
 			}
 		}
+
 
 		public uint MaxPerStageDescriptorStorageImages
 		{
@@ -7704,6 +8585,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxPerStageDescriptorInputAttachments
 		{
 			get
@@ -7719,6 +8601,7 @@ namespace SharpVk
 				this.instance->MaxPerStageDescriptorInputAttachments = value0;
 			}
 		}
+
 
 		public uint MaxPerStageResources
 		{
@@ -7736,6 +8619,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxDescriptorSetSamplers
 		{
 			get
@@ -7751,6 +8635,7 @@ namespace SharpVk
 				this.instance->MaxDescriptorSetSamplers = value0;
 			}
 		}
+
 
 		public uint MaxDescriptorSetUniformBuffers
 		{
@@ -7768,6 +8653,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxDescriptorSetUniformBuffersDynamic
 		{
 			get
@@ -7783,6 +8669,7 @@ namespace SharpVk
 				this.instance->MaxDescriptorSetUniformBuffersDynamic = value0;
 			}
 		}
+
 
 		public uint MaxDescriptorSetStorageBuffers
 		{
@@ -7800,6 +8687,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxDescriptorSetStorageBuffersDynamic
 		{
 			get
@@ -7815,6 +8703,7 @@ namespace SharpVk
 				this.instance->MaxDescriptorSetStorageBuffersDynamic = value0;
 			}
 		}
+
 
 		public uint MaxDescriptorSetSampledImages
 		{
@@ -7832,6 +8721,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxDescriptorSetStorageImages
 		{
 			get
@@ -7847,6 +8737,7 @@ namespace SharpVk
 				this.instance->MaxDescriptorSetStorageImages = value0;
 			}
 		}
+
 
 		public uint MaxDescriptorSetInputAttachments
 		{
@@ -7864,6 +8755,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxVertexInputAttributes
 		{
 			get
@@ -7879,6 +8771,7 @@ namespace SharpVk
 				this.instance->MaxVertexInputAttributes = value0;
 			}
 		}
+
 
 		public uint MaxVertexInputBindings
 		{
@@ -7896,6 +8789,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxVertexInputAttributeOffset
 		{
 			get
@@ -7911,6 +8805,7 @@ namespace SharpVk
 				this.instance->MaxVertexInputAttributeOffset = value0;
 			}
 		}
+
 
 		public uint MaxVertexInputBindingStride
 		{
@@ -7928,6 +8823,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxVertexOutputComponents
 		{
 			get
@@ -7943,6 +8839,7 @@ namespace SharpVk
 				this.instance->MaxVertexOutputComponents = value0;
 			}
 		}
+
 
 		public uint MaxTessellationGenerationLevel
 		{
@@ -7960,6 +8857,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxTessellationPatchSize
 		{
 			get
@@ -7975,6 +8873,7 @@ namespace SharpVk
 				this.instance->MaxTessellationPatchSize = value0;
 			}
 		}
+
 
 		public uint MaxTessellationControlPerVertexInputComponents
 		{
@@ -7992,6 +8891,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxTessellationControlPerVertexOutputComponents
 		{
 			get
@@ -8007,6 +8907,7 @@ namespace SharpVk
 				this.instance->MaxTessellationControlPerVertexOutputComponents = value0;
 			}
 		}
+
 
 		public uint MaxTessellationControlPerPatchOutputComponents
 		{
@@ -8024,6 +8925,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxTessellationControlTotalOutputComponents
 		{
 			get
@@ -8039,6 +8941,7 @@ namespace SharpVk
 				this.instance->MaxTessellationControlTotalOutputComponents = value0;
 			}
 		}
+
 
 		public uint MaxTessellationEvaluationInputComponents
 		{
@@ -8056,6 +8959,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxTessellationEvaluationOutputComponents
 		{
 			get
@@ -8071,6 +8975,7 @@ namespace SharpVk
 				this.instance->MaxTessellationEvaluationOutputComponents = value0;
 			}
 		}
+
 
 		public uint MaxGeometryShaderInvocations
 		{
@@ -8088,6 +8993,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxGeometryInputComponents
 		{
 			get
@@ -8103,6 +9009,7 @@ namespace SharpVk
 				this.instance->MaxGeometryInputComponents = value0;
 			}
 		}
+
 
 		public uint MaxGeometryOutputComponents
 		{
@@ -8120,6 +9027,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxGeometryOutputVertices
 		{
 			get
@@ -8135,6 +9043,7 @@ namespace SharpVk
 				this.instance->MaxGeometryOutputVertices = value0;
 			}
 		}
+
 
 		public uint MaxGeometryTotalOutputComponents
 		{
@@ -8152,6 +9061,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxFragmentInputComponents
 		{
 			get
@@ -8167,6 +9077,7 @@ namespace SharpVk
 				this.instance->MaxFragmentInputComponents = value0;
 			}
 		}
+
 
 		public uint MaxFragmentOutputAttachments
 		{
@@ -8184,6 +9095,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxFragmentDualSrcAttachments
 		{
 			get
@@ -8199,6 +9111,7 @@ namespace SharpVk
 				this.instance->MaxFragmentDualSrcAttachments = value0;
 			}
 		}
+
 
 		public uint MaxFragmentCombinedOutputResources
 		{
@@ -8216,6 +9129,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxComputeSharedMemorySize
 		{
 			get
@@ -8231,6 +9145,7 @@ namespace SharpVk
 				this.instance->MaxComputeSharedMemorySize = value0;
 			}
 		}
+
 
 		public uint MaxComputeWorkGroupCount
 		{
@@ -8248,6 +9163,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxComputeWorkGroupInvocations
 		{
 			get
@@ -8263,6 +9179,7 @@ namespace SharpVk
 				this.instance->MaxComputeWorkGroupInvocations = value0;
 			}
 		}
+
 
 		public uint MaxComputeWorkGroupSize
 		{
@@ -8280,6 +9197,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint SubPixelPrecisionBits
 		{
 			get
@@ -8295,6 +9213,7 @@ namespace SharpVk
 				this.instance->SubPixelPrecisionBits = value0;
 			}
 		}
+
 
 		public uint SubTexelPrecisionBits
 		{
@@ -8312,6 +9231,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MipmapPrecisionBits
 		{
 			get
@@ -8327,6 +9247,7 @@ namespace SharpVk
 				this.instance->MipmapPrecisionBits = value0;
 			}
 		}
+
 
 		public uint MaxDrawIndexedIndexValue
 		{
@@ -8344,6 +9265,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxDrawIndirectCount
 		{
 			get
@@ -8359,6 +9281,7 @@ namespace SharpVk
 				this.instance->MaxDrawIndirectCount = value0;
 			}
 		}
+
 
 		public float MaxSamplerLodBias
 		{
@@ -8376,6 +9299,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public float MaxSamplerAnisotropy
 		{
 			get
@@ -8391,6 +9315,7 @@ namespace SharpVk
 				this.instance->MaxSamplerAnisotropy = value0;
 			}
 		}
+
 
 		public uint MaxViewports
 		{
@@ -8408,6 +9333,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxViewportDimensions
 		{
 			get
@@ -8423,6 +9349,7 @@ namespace SharpVk
 				this.instance->MaxViewportDimensions = value0;
 			}
 		}
+
 
 		public float ViewportBoundsRange
 		{
@@ -8440,6 +9367,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint ViewportSubPixelBits
 		{
 			get
@@ -8455,6 +9383,7 @@ namespace SharpVk
 				this.instance->ViewportSubPixelBits = value0;
 			}
 		}
+
 
 		public UIntPtr MinMemoryMapAlignment
 		{
@@ -8472,6 +9401,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ulong MinTexelBufferOffsetAlignment
 		{
 			get
@@ -8487,6 +9417,7 @@ namespace SharpVk
 				this.instance->MinTexelBufferOffsetAlignment = value0;
 			}
 		}
+
 
 		public ulong MinUniformBufferOffsetAlignment
 		{
@@ -8504,6 +9435,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ulong MinStorageBufferOffsetAlignment
 		{
 			get
@@ -8519,6 +9451,7 @@ namespace SharpVk
 				this.instance->MinStorageBufferOffsetAlignment = value0;
 			}
 		}
+
 
 		public int MinTexelOffset
 		{
@@ -8536,6 +9469,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxTexelOffset
 		{
 			get
@@ -8551,6 +9485,7 @@ namespace SharpVk
 				this.instance->MaxTexelOffset = value0;
 			}
 		}
+
 
 		public int MinTexelGatherOffset
 		{
@@ -8568,6 +9503,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxTexelGatherOffset
 		{
 			get
@@ -8583,6 +9519,7 @@ namespace SharpVk
 				this.instance->MaxTexelGatherOffset = value0;
 			}
 		}
+
 
 		public float MinInterpolationOffset
 		{
@@ -8600,6 +9537,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public float MaxInterpolationOffset
 		{
 			get
@@ -8615,6 +9553,7 @@ namespace SharpVk
 				this.instance->MaxInterpolationOffset = value0;
 			}
 		}
+
 
 		public uint SubPixelInterpolationOffsetBits
 		{
@@ -8632,6 +9571,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxFramebufferWidth
 		{
 			get
@@ -8647,6 +9587,7 @@ namespace SharpVk
 				this.instance->MaxFramebufferWidth = value0;
 			}
 		}
+
 
 		public uint MaxFramebufferHeight
 		{
@@ -8664,6 +9605,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxFramebufferLayers
 		{
 			get
@@ -8679,6 +9621,7 @@ namespace SharpVk
 				this.instance->MaxFramebufferLayers = value0;
 			}
 		}
+
 
 		public SampleCountFlags FramebufferColorSampleCounts
 		{
@@ -8696,6 +9639,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public SampleCountFlags FramebufferDepthSampleCounts
 		{
 			get
@@ -8711,6 +9655,7 @@ namespace SharpVk
 				this.instance->FramebufferDepthSampleCounts = value0;
 			}
 		}
+
 
 		public SampleCountFlags FramebufferStencilSampleCounts
 		{
@@ -8728,6 +9673,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public SampleCountFlags FramebufferNoAttachmentsSampleCounts
 		{
 			get
@@ -8743,6 +9689,7 @@ namespace SharpVk
 				this.instance->FramebufferNoAttachmentsSampleCounts = value0;
 			}
 		}
+
 
 		public uint MaxColorAttachments
 		{
@@ -8760,6 +9707,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public SampleCountFlags SampledImageColorSampleCounts
 		{
 			get
@@ -8775,6 +9723,7 @@ namespace SharpVk
 				this.instance->SampledImageColorSampleCounts = value0;
 			}
 		}
+
 
 		public SampleCountFlags SampledImageIntegerSampleCounts
 		{
@@ -8792,6 +9741,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public SampleCountFlags SampledImageDepthSampleCounts
 		{
 			get
@@ -8807,6 +9757,7 @@ namespace SharpVk
 				this.instance->SampledImageDepthSampleCounts = value0;
 			}
 		}
+
 
 		public SampleCountFlags SampledImageStencilSampleCounts
 		{
@@ -8824,6 +9775,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public SampleCountFlags StorageImageSampleCounts
 		{
 			get
@@ -8839,6 +9791,7 @@ namespace SharpVk
 				this.instance->StorageImageSampleCounts = value0;
 			}
 		}
+
 
 		public uint MaxSampleMaskWords
 		{
@@ -8856,6 +9809,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool TimestampComputeAndGraphics
 		{
 			get
@@ -8871,6 +9825,7 @@ namespace SharpVk
 				this.instance->TimestampComputeAndGraphics = value0;
 			}
 		}
+
 
 		public float TimestampPeriod
 		{
@@ -8888,6 +9843,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxClipDistances
 		{
 			get
@@ -8903,6 +9859,7 @@ namespace SharpVk
 				this.instance->MaxClipDistances = value0;
 			}
 		}
+
 
 		public uint MaxCullDistances
 		{
@@ -8920,6 +9877,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint MaxCombinedClipAndCullDistances
 		{
 			get
@@ -8935,6 +9893,7 @@ namespace SharpVk
 				this.instance->MaxCombinedClipAndCullDistances = value0;
 			}
 		}
+
 
 		public uint DiscreteQueuePriorities
 		{
@@ -8952,6 +9911,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public float PointSizeRange
 		{
 			get
@@ -8967,6 +9927,7 @@ namespace SharpVk
 				this.instance->PointSizeRange = value0;
 			}
 		}
+
 
 		public float LineWidthRange
 		{
@@ -8984,6 +9945,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public float PointSizeGranularity
 		{
 			get
@@ -8999,6 +9961,7 @@ namespace SharpVk
 				this.instance->PointSizeGranularity = value0;
 			}
 		}
+
 
 		public float LineWidthGranularity
 		{
@@ -9016,6 +9979,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public bool StrictLines
 		{
 			get
@@ -9031,6 +9995,7 @@ namespace SharpVk
 				this.instance->StrictLines = value0;
 			}
 		}
+
 
 		public bool StandardSampleLocations
 		{
@@ -9048,6 +10013,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ulong OptimalBufferCopyOffsetAlignment
 		{
 			get
@@ -9063,6 +10029,7 @@ namespace SharpVk
 				this.instance->OptimalBufferCopyOffsetAlignment = value0;
 			}
 		}
+
 
 		public ulong OptimalBufferCopyRowPitchAlignment
 		{
@@ -9080,6 +10047,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public ulong NonCoherentAtomSize
 		{
 			get
@@ -9095,9 +10063,15 @@ namespace SharpVk
 				this.instance->NonCoherentAtomSize = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct SemaphoreCreateInfo
+	public unsafe class SemaphoreCreateInfo
+		: IDisposable
 	{
 		private readonly Interop.SemaphoreCreateInfo* instance;
 
@@ -9130,9 +10104,15 @@ namespace SharpVk
 				this.instance->Flags = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct QueryPoolCreateInfo
+	public unsafe class QueryPoolCreateInfo
+		: IDisposable
 	{
 		private readonly Interop.QueryPoolCreateInfo* instance;
 
@@ -9166,6 +10146,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public QueryType QueryType
 		{
 			get
@@ -9181,6 +10162,7 @@ namespace SharpVk
 				this.instance->QueryType = value0;
 			}
 		}
+
 
 		public uint QueryCount
 		{
@@ -9198,6 +10180,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public QueryPipelineStatisticFlags PipelineStatistics
 		{
 			get
@@ -9213,9 +10196,15 @@ namespace SharpVk
 				this.instance->PipelineStatistics = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct FramebufferCreateInfo
+	public unsafe class FramebufferCreateInfo
+		: IDisposable
 	{
 		private readonly Interop.FramebufferCreateInfo* instance;
 
@@ -9249,6 +10238,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint Width
 		{
 			get
@@ -9264,6 +10254,7 @@ namespace SharpVk
 				this.instance->Width = value0;
 			}
 		}
+
 
 		public uint Height
 		{
@@ -9281,6 +10272,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint Layers
 		{
 			get
@@ -9296,9 +10288,15 @@ namespace SharpVk
 				this.instance->Layers = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct DrawIndirectCommand
+	public unsafe class DrawIndirectCommand
+		: IDisposable
 	{
 		private readonly Interop.DrawIndirectCommand* instance;
 
@@ -9330,6 +10328,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint InstanceCount
 		{
 			get
@@ -9345,6 +10344,7 @@ namespace SharpVk
 				this.instance->InstanceCount = value0;
 			}
 		}
+
 
 		public uint FirstVertex
 		{
@@ -9362,6 +10362,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint FirstInstance
 		{
 			get
@@ -9377,9 +10378,15 @@ namespace SharpVk
 				this.instance->FirstInstance = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct DrawIndexedIndirectCommand
+	public unsafe class DrawIndexedIndirectCommand
+		: IDisposable
 	{
 		private readonly Interop.DrawIndexedIndirectCommand* instance;
 
@@ -9411,6 +10418,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint InstanceCount
 		{
 			get
@@ -9426,6 +10434,7 @@ namespace SharpVk
 				this.instance->InstanceCount = value0;
 			}
 		}
+
 
 		public uint FirstIndex
 		{
@@ -9443,6 +10452,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public int VertexOffset
 		{
 			get
@@ -9459,6 +10469,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint FirstInstance
 		{
 			get
@@ -9474,9 +10485,15 @@ namespace SharpVk
 				this.instance->FirstInstance = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct DispatchIndirectCommand
+	public unsafe class DispatchIndirectCommand
+		: IDisposable
 	{
 		private readonly Interop.DispatchIndirectCommand* instance;
 
@@ -9508,6 +10525,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint Y
 		{
 			get
@@ -9524,6 +10542,7 @@ namespace SharpVk
 			}
 		}
 
+
 		public uint Z
 		{
 			get
@@ -9539,9 +10558,15 @@ namespace SharpVk
 				this.instance->Z = value0;
 			}
 		}
+
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
+		}
 	}
 
-	public unsafe struct SubmitInfo
+	public unsafe class SubmitInfo
+		: IDisposable
 	{
 		private readonly Interop.SubmitInfo* instance;
 
@@ -9557,6 +10582,10 @@ namespace SharpVk
 			result.instance->SType = StructureType.SubmitInfo;
 
 			return result;
+		}
+		public void Dispose()
+		{
+			Interop.HeapUtil.Free(this.instance);
 		}
 	}
 }

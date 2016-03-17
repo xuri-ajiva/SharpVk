@@ -9,6 +9,7 @@
 <#@ import namespace="System.Xml.Linq" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
+<#@ include file=".\License.tt" #>
 <#@ include file=".\Vk.ttinclude" #>
 <#
 	var vkXml = GetVkXml();
