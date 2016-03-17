@@ -891,7 +891,7 @@ namespace SharpVk
 	}
 
 	[Flags]
-	public enum DisplayPlaneAlphaFlagsKHR
+	public enum DisplayPlaneAlphaFlagBitsKHR
 	{
 		DisplayPlaneAlphaOpaqueBitKhr = 1 << 0,
 		DisplayPlaneAlphaGlobalBitKhr = 1 << 1,
@@ -900,7 +900,7 @@ namespace SharpVk
 	}
 
 	[Flags]
-	public enum CompositeAlphaFlagsKHR
+	public enum CompositeAlphaFlagBitsKHR
 	{
 		CompositeAlphaOpaqueBitKhr = 1 << 0,
 		CompositeAlphaPreMultipliedBitKhr = 1 << 1,
@@ -909,7 +909,7 @@ namespace SharpVk
 	}
 
 	[Flags]
-	public enum SurfaceTransformFlagsKHR
+	public enum SurfaceTransformFlagBitsKHR
 	{
 		SurfaceTransformIdentityBitKhr = 1 << 0,
 		SurfaceTransformRotate90BitKhr = 1 << 1,
@@ -923,7 +923,7 @@ namespace SharpVk
 	}
 
 	[Flags]
-	public enum DebugReportFlagsEXT
+	public enum DebugReportFlagBitsEXT
 	{
 		DebugReportInformationBitExt = 1 << 0,
 		DebugReportWarningBitExt = 1 << 1,

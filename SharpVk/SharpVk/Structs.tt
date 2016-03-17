@@ -26,7 +26,7 @@ namespace SharpVk
 	public unsafe class <#=structName#>
 		: IDisposable
 	{
-		private readonly Interop.<#=structName#>* instance;
+		internal Interop.<#=structName#>* instance;
 
 		internal <#=structName#>(Interop.<#=structName#>* instance)
 		{
@@ -55,75 +55,48 @@ namespace SharpVk
 
 		var memberNameMap = new Dictionary<string, string>();
 
-		foreach(var typeMember in structType.Xml.Elements("member"))
+		foreach(var member in structType.Members)
         {
-			string memberName = typeMember.Element("name").Value;
-		
-			int pointerCount = 0;
-			
-			while(memberName[0] == 'p' && (memberName[1] == 'p' || char.IsUpper(memberName[1])))
+			string memberName = member.Name;
+
+			if(member.Len != null)
 			{
-				pointerCount++;
-		
-				memberName = memberName.Substring(1);
-            }
-		
-			memberName = char.ToUpper(memberName[0]) + memberName.Substring(1);
-		
-			int count = 0;
-		
-			int arraySuffixIndex = memberName.IndexOf('[');
-			if(arraySuffixIndex >= 0)
-            {
-				count = int.Parse(new string(memberName.Skip(arraySuffixIndex + 1).TakeWhile(x => char.IsDigit(x)).ToArray()));
-		
-				memberName = memberName.Substring(0, arraySuffixIndex);
-            }
-		
-			string memberLen = null;
-
-			if(typeMember.Attribute("len") != null)
-			{
-				memberLen = typeMember.Attribute("len").Value;
-
-				memberLen = memberLen.Split(',').First();
-
-				lenMembers.Add(memberLen);
+				lenMembers.Add(member.Len);
 			}
 
-			var memberType = GetTypeDef(typeMember.Element("type").Value);
+			var memberType = member.Type;
 		
-			if(count == 0)
+			if(member.Size == 0 || member.Type.IsPrimitive)
             {
 				members.Add(new MemberInfo
 				{
 					Type = memberType,
 					Name = memberName,
-					PointerCount = pointerCount
+					PointerCount = member.PointerCount,
+					Size = member.Size
 				});
 
-				memberNameMap.Add(memberName, typeMember.Element("name").Value);
+				memberNameMap.Add(memberName, member.VkName);
             }
 			else
             {
-				for(int fieldIndex = 0;fieldIndex < count;fieldIndex++)
+				for(int fieldIndex = 0;fieldIndex < member.Size;fieldIndex++)
                 {
 					members.Add(new MemberInfo
 					{
 						Type = memberType,
-						Name = memberName + fieldIndex,
-						PointerCount = pointerCount
+						Name = memberName + "_" + fieldIndex,
+						PointerCount = member.PointerCount
 					});
 
-					memberNameMap.Add(memberName + fieldIndex, typeMember.Element("name").Value);
+					memberNameMap.Add(memberName + "_" + fieldIndex, member.VkName);
                 }
             }
         }
 
 		foreach(var member in members)
         {
-			if(member.Type.Category == Category.@struct
-				|| member.Type.Category == Category.handle
+			if(member.Type.Category == Category.handle
 				|| member.Name == "SType"
 				|| lenMembers.Contains(memberNameMap[member.Name]))
 			{
@@ -131,6 +104,7 @@ namespace SharpVk
 			}
 
 			string memberTypeName = member.Type.Name;
+			bool isFixedArray = false;
 						
 			if(member.Type.Category == Category.funcpointer)
             {
@@ -140,6 +114,14 @@ namespace SharpVk
             {
 				memberTypeName = MapBaseTypeName(memberTypeName);
             }
+			else if(memberTypeName == "char" && member.Size > 0)
+			{
+				memberTypeName = "string";
+			}
+			else if(member.Type.IsPrimitive && member.Size > 0)
+			{
+				isFixedArray = true;
+			}
 			else if(memberTypeName == "char" && member.PointerCount > 0)
 			{
 				memberTypeName = "string";
@@ -151,54 +133,71 @@ namespace SharpVk
 				continue;
             }
 
-			int valueIndex = 0;
+			string valueString = "this.instance->" + member.Name;
 #>
 
-		public <#=memberTypeName#> <#=member.Name#>
+		public <#=memberTypeName#><#=isFixedArray?"[]":""#> <#=member.Name#>
 		{
 			get
 			{
-				var value0 = this.instance-><#=member.Name#>;
-
 <#
 			if(memberTypeName == "string")
 			{
-#>
-				var value<#=valueIndex + 1#> = Interop.HeapUtil.MarshalPointerToString(value<#=valueIndex#>);
-
-<#
-				valueIndex++;
+				valueString = string.Format("Interop.HeapUtil.MarshalPointerToString({0})", valueString);
+			}
+			else if(member.Type.Category == Category.@struct)
+			{
+				valueString = string.Format("new {1}(&({0}))", valueString, memberTypeName);
+			}
+			else if(isFixedArray)
+			{
+				valueString = string.Format("Interop.HeapUtil.MarshalPointerToArray({0}, {1})", valueString, member.Size);
 			}
 #>
-				return value<#=valueIndex#>;
+				return <#=valueString#>;
 			}
 <#
-			valueIndex = 0;
+			if(!structType.IsReturnedOnly)
+			{
 #>
 			set
 			{
-				var value0 = value;
-
 <#
-			if(memberTypeName == "string")
-			{
+				if(isFixedArray)
+				{
 #>
-				var value<#=valueIndex + 1#> = Interop.HeapUtil.MarshalStringToPointer(value<#=valueIndex#>);
-
+				Interop.HeapUtil.MarshalArrayToPointer(value, <#=member.Size#>, this.instance-><#=member.Name#>);
 <#
-				valueIndex++;
+				}
+				else
+				{
+					valueString = "value";
+					if(memberTypeName == "string")
+					{
+						valueString = string.Format("Interop.HeapUtil.MarshalStringToPointer({0})", valueString);
+					}
+					else if(member.Type.Category == Category.@struct)
+					{
+						valueString = string.Format("*({0}.instance)", valueString);
+					}
+#>
+				this.instance-><#=member.Name#> = <#=valueString#>;
+<#
+				}
+#>
+			}
+<#
 			}
 #>
-				this.instance-><#=member.Name#> = value<#=valueIndex#>;
-			}
 		}
-
 <#
         }
 #>
+
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 <#
@@ -211,5 +210,6 @@ class MemberInfo
 	public TypeDef Type;
 	public string Name;
 	public int PointerCount;
+	public int Size;
 }
 #>

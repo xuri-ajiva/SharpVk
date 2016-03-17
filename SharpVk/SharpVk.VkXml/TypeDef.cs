@@ -10,12 +10,17 @@ namespace SharpVk.VkXml
         public XElement Xml;
         public string Requires;
         public List<MemberInfo> Members = new List<MemberInfo>();
+        public bool IsPrimitive;
+        public bool IsReturnedOnly;
 
         public class MemberInfo
         {
             public TypeDef Type;
+            public string VkName;
             public string Name;
+            public string Len;
             public int PointerCount;
+            public int Size;
         }
     }
 }

@@ -11,11 +11,7 @@
 <#@ output extension=".cs" #>
 <#@ include file="..\License.tt" #>
 <#@ include file="..\Vk.ttinclude" #>
-<#
-	var structs = GetStructs();
-#>
 using System;
-using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
@@ -43,9 +39,9 @@ namespace SharpVk.Interop
 	{
 		private ulong value;
 
-		public static implicit operator DeviceSize(ulong iValue)
+		public static implicit operator DeviceSize(ulong value)
 		{
-			return new DeviceSize { value = iValue };
+			return new DeviceSize { value = value };
 		}
 
 		public static implicit operator ulong(DeviceSize size)
@@ -58,9 +54,9 @@ namespace SharpVk.Interop
 	{
 		private uint value;
 
-		public static implicit operator SampleMask(uint iValue)
+		public static implicit operator SampleMask(uint value)
 		{
-			return new SampleMask { value = iValue };
+			return new SampleMask { value = value };
 		}
 
 		public static implicit operator uint(SampleMask size)
@@ -69,7 +65,7 @@ namespace SharpVk.Interop
 		}
 	}
 <#
-	foreach(var structType in structs)
+	foreach(var structType in GetStructs())
 	{
 		string structName = structType.Name;
 #>
@@ -83,53 +79,36 @@ namespace SharpVk.Interop
 <#
 		var members = new List<string>();
 
-		foreach(var typeMember in structType.Xml.Elements("member"))
+		foreach(var member in structType.Members)
         {
-			string memberName = typeMember.Element("name").Value;
+			string memberTypeName = member.Type.Name;
 
-			int pointerCount = 0;
-			
-			while(memberName[0] == 'p' && (memberName[1] == 'p' || char.IsUpper(memberName[1])))
-			{
-				pointerCount++;
-
-				memberName = memberName.Substring(1);
-            }
-
-			memberName = char.ToUpper(memberName[0]) + memberName.Substring(1);
-
-			int count = 0;
-
-			int arraySuffixIndex = memberName.IndexOf('[');
-			if(arraySuffixIndex >= 0)
-            {
-				count = int.Parse(new string(memberName.Skip(arraySuffixIndex + 1).TakeWhile(x => char.IsDigit(x)).ToArray()));
-
-				memberName = memberName.Substring(0, arraySuffixIndex);
-            }
-
-			var memberType = GetTypeDef(typeMember.Element("type").Value);
-			string memberTypeName = memberType.Name;
-
-			if(memberType.Category == Category.funcpointer)
+			if(member.Type.Category == Category.funcpointer)
             {
 				memberTypeName = "IntPtr";
             }
-			else if(pointerCount > 0)
+			else if(member.PointerCount > 0)
             {
-				memberTypeName += new string('*', pointerCount);
+				memberTypeName += new string('*', member.PointerCount);
             }
 
-			if(count == 0)
+			if(member.Size == 0)
             {
-				members.Add(string.Format("{0} {1}", memberTypeName, memberName));
+				members.Add(string.Format("{0} {1}", memberTypeName, member.Name));
             }
 			else
             {
-				for(int fieldIndex = 0;fieldIndex < count;fieldIndex++)
-                {
-					members.Add(string.Format("{0} {1}{2}", memberTypeName, memberName, fieldIndex));
-                }
+				if(member.Type.IsPrimitive)
+				{
+					members.Add(string.Format("fixed {0} {1}[{2}]", memberTypeName, member.Name, member.Size));
+				}
+				else
+				{
+					for(int fieldIndex = 0;fieldIndex < member.Size;fieldIndex++)
+					{
+						members.Add(string.Format("{0} {1}_{2}", memberTypeName, member.Name, fieldIndex));
+					}
+				}
             }
         }
 

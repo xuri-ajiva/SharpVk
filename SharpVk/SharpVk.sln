@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test Harness", "Test Harness\Test Harness.csproj", "{F3FC01CD-9765-4FC4-8D00-83C6D37BEF86}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpVk", "SharpVk\SharpVk.csproj", "{A0ABAB94-7022-4E2D-A13C-E7BAD69DD9D3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{BBA0786E-CB48-43A7-AF46-6DD9E3482FD2} = {BBA0786E-CB48-43A7-AF46-6DD9E3482FD2}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpVk.VkXml", "SharpVk.VkXml\SharpVk.VkXml.csproj", "{BBA0786E-CB48-43A7-AF46-6DD9E3482FD2}"
 EndProject

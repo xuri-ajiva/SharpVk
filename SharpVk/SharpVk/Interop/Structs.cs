@@ -21,7 +21,6 @@
 //SOFTWARE.
 
 using System;
-using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
@@ -49,9 +48,9 @@ namespace SharpVk.Interop
 	{
 		private ulong value;
 
-		public static implicit operator DeviceSize(ulong iValue)
+		public static implicit operator DeviceSize(ulong value)
 		{
-			return new DeviceSize { value = iValue };
+			return new DeviceSize { value = value };
 		}
 
 		public static implicit operator ulong(DeviceSize size)
@@ -64,9 +63,9 @@ namespace SharpVk.Interop
 	{
 		private uint value;
 
-		public static implicit operator SampleMask(uint iValue)
+		public static implicit operator SampleMask(uint value)
 		{
-			return new SampleMask { value = iValue };
+			return new SampleMask { value = value };
 		}
 
 		public static implicit operator uint(SampleMask size)
@@ -218,9 +217,9 @@ namespace SharpVk.Interop
 
 		public PhysicalDeviceType DeviceType;
 
-		public char DeviceName;
+		public fixed char DeviceName[32];
 
-		public byte PipelineCacheUUID;
+		public fixed byte PipelineCacheUUID[32];
 
 		public PhysicalDeviceLimits Limits;
 
@@ -234,7 +233,7 @@ namespace SharpVk.Interop
 			return (ExtensionProperties*)HeapUtil.AllocateAndClear<ExtensionProperties>();
 		}
 
-		public char ExtensionName;
+		public fixed char ExtensionName[32];
 
 		public uint SpecVersion;
 	}
@@ -246,13 +245,13 @@ namespace SharpVk.Interop
 			return (LayerProperties*)HeapUtil.AllocateAndClear<LayerProperties>();
 		}
 
-		public char LayerName;
+		public fixed char LayerName[32];
 
 		public uint SpecVersion;
 
 		public uint ImplementationVersion;
 
-		public char Description;
+		public fixed char Description[32];
 	}
 
 	public unsafe struct ApplicationInfo
@@ -394,11 +393,135 @@ namespace SharpVk.Interop
 
 		public uint MemoryTypeCount;
 
-		public MemoryType MemoryTypes;
+		public MemoryType MemoryTypes_0;
+
+		public MemoryType MemoryTypes_1;
+
+		public MemoryType MemoryTypes_2;
+
+		public MemoryType MemoryTypes_3;
+
+		public MemoryType MemoryTypes_4;
+
+		public MemoryType MemoryTypes_5;
+
+		public MemoryType MemoryTypes_6;
+
+		public MemoryType MemoryTypes_7;
+
+		public MemoryType MemoryTypes_8;
+
+		public MemoryType MemoryTypes_9;
+
+		public MemoryType MemoryTypes_10;
+
+		public MemoryType MemoryTypes_11;
+
+		public MemoryType MemoryTypes_12;
+
+		public MemoryType MemoryTypes_13;
+
+		public MemoryType MemoryTypes_14;
+
+		public MemoryType MemoryTypes_15;
+
+		public MemoryType MemoryTypes_16;
+
+		public MemoryType MemoryTypes_17;
+
+		public MemoryType MemoryTypes_18;
+
+		public MemoryType MemoryTypes_19;
+
+		public MemoryType MemoryTypes_20;
+
+		public MemoryType MemoryTypes_21;
+
+		public MemoryType MemoryTypes_22;
+
+		public MemoryType MemoryTypes_23;
+
+		public MemoryType MemoryTypes_24;
+
+		public MemoryType MemoryTypes_25;
+
+		public MemoryType MemoryTypes_26;
+
+		public MemoryType MemoryTypes_27;
+
+		public MemoryType MemoryTypes_28;
+
+		public MemoryType MemoryTypes_29;
+
+		public MemoryType MemoryTypes_30;
+
+		public MemoryType MemoryTypes_31;
 
 		public uint MemoryHeapCount;
 
-		public MemoryHeap MemoryHeaps;
+		public MemoryHeap MemoryHeaps_0;
+
+		public MemoryHeap MemoryHeaps_1;
+
+		public MemoryHeap MemoryHeaps_2;
+
+		public MemoryHeap MemoryHeaps_3;
+
+		public MemoryHeap MemoryHeaps_4;
+
+		public MemoryHeap MemoryHeaps_5;
+
+		public MemoryHeap MemoryHeaps_6;
+
+		public MemoryHeap MemoryHeaps_7;
+
+		public MemoryHeap MemoryHeaps_8;
+
+		public MemoryHeap MemoryHeaps_9;
+
+		public MemoryHeap MemoryHeaps_10;
+
+		public MemoryHeap MemoryHeaps_11;
+
+		public MemoryHeap MemoryHeaps_12;
+
+		public MemoryHeap MemoryHeaps_13;
+
+		public MemoryHeap MemoryHeaps_14;
+
+		public MemoryHeap MemoryHeaps_15;
+
+		public MemoryHeap MemoryHeaps_16;
+
+		public MemoryHeap MemoryHeaps_17;
+
+		public MemoryHeap MemoryHeaps_18;
+
+		public MemoryHeap MemoryHeaps_19;
+
+		public MemoryHeap MemoryHeaps_20;
+
+		public MemoryHeap MemoryHeaps_21;
+
+		public MemoryHeap MemoryHeaps_22;
+
+		public MemoryHeap MemoryHeaps_23;
+
+		public MemoryHeap MemoryHeaps_24;
+
+		public MemoryHeap MemoryHeaps_25;
+
+		public MemoryHeap MemoryHeaps_26;
+
+		public MemoryHeap MemoryHeaps_27;
+
+		public MemoryHeap MemoryHeaps_28;
+
+		public MemoryHeap MemoryHeaps_29;
+
+		public MemoryHeap MemoryHeaps_30;
+
+		public MemoryHeap MemoryHeaps_31;
 	}
 
 	public unsafe struct MemoryAllocateInfo
@@ -1016,15 +1139,15 @@ namespace SharpVk.Interop
 
 		public ImageSubresourceLayers SrcSubresource;
 
-		public Offset3D SrcOffsets0;
+		public Offset3D SrcOffsets_0;
 
-		public Offset3D SrcOffsets1;
+		public Offset3D SrcOffsets_1;
 
 		public ImageSubresourceLayers DstSubresource;
 
-		public Offset3D DstOffsets0;
+		public Offset3D DstOffsets_0;
 
-		public Offset3D DstOffsets1;
+		public Offset3D DstOffsets_1;
 	}
 
 	public unsafe struct BufferImageCopy
@@ -1456,7 +1579,7 @@ namespace SharpVk.Interop
 
 		public PipelineColorBlendAttachmentState* Attachments;
 
-		public float BlendConstants;
+		public fixed float BlendConstants[4];
 	}
 
 	public unsafe struct PipelineDynamicStateCreateInfo
@@ -2186,11 +2309,11 @@ namespace SharpVk.Interop
 
 		public uint MaxComputeSharedMemorySize;
 
-		public uint MaxComputeWorkGroupCount;
+		public fixed uint MaxComputeWorkGroupCount[3];
 
 		public uint MaxComputeWorkGroupInvocations;
 
-		public uint MaxComputeWorkGroupSize;
+		public fixed uint MaxComputeWorkGroupSize[3];
 
 		public uint SubPixelPrecisionBits;
 
@@ -2208,9 +2331,9 @@ namespace SharpVk.Interop
 
 		public uint MaxViewports;
 
-		public uint MaxViewportDimensions;
+		public fixed uint MaxViewportDimensions[2];
 
-		public float ViewportBoundsRange;
+		public fixed float ViewportBoundsRange[2];
 
 		public uint ViewportSubPixelBits;
 
@@ -2276,9 +2399,9 @@ namespace SharpVk.Interop
 
 		public uint DiscreteQueuePriorities;
 
-		public float PointSizeRange;
+		public fixed float PointSizeRange[2];
 
-		public float LineWidthRange;
+		public fixed float LineWidthRange[2];
 
 		public float PointSizeGranularity;
 

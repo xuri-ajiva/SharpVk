@@ -28,7 +28,7 @@ namespace SharpVk
 	public unsafe class Offset2D
 		: IDisposable
 	{
-		private readonly Interop.Offset2D* instance;
+		internal Interop.Offset2D* instance;
 
 		internal Offset2D(Interop.Offset2D* instance)
 		{
@@ -46,45 +46,37 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->X;
-
-				return value0;
+				return this.instance->X;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->X = value0;
+				this.instance->X = value;
 			}
 		}
-
 
 		public int Y
 		{
 			get
 			{
-				var value0 = this.instance->Y;
-
-				return value0;
+				return this.instance->Y;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Y = value0;
+				this.instance->Y = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class Offset3D
 		: IDisposable
 	{
-		private readonly Interop.Offset3D* instance;
+		internal Interop.Offset3D* instance;
 
 		internal Offset3D(Interop.Offset3D* instance)
 		{
@@ -102,62 +94,49 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->X;
-
-				return value0;
+				return this.instance->X;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->X = value0;
+				this.instance->X = value;
 			}
 		}
-
 
 		public int Y
 		{
 			get
 			{
-				var value0 = this.instance->Y;
-
-				return value0;
+				return this.instance->Y;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Y = value0;
+				this.instance->Y = value;
 			}
 		}
-
 
 		public int Z
 		{
 			get
 			{
-				var value0 = this.instance->Z;
-
-				return value0;
+				return this.instance->Z;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Z = value0;
+				this.instance->Z = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class Extent2D
 		: IDisposable
 	{
-		private readonly Interop.Extent2D* instance;
+		internal Interop.Extent2D* instance;
 
 		internal Extent2D(Interop.Extent2D* instance)
 		{
@@ -175,45 +154,37 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Width;
-
-				return value0;
+				return this.instance->Width;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Width = value0;
+				this.instance->Width = value;
 			}
 		}
-
 
 		public uint Height
 		{
 			get
 			{
-				var value0 = this.instance->Height;
-
-				return value0;
+				return this.instance->Height;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Height = value0;
+				this.instance->Height = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class Extent3D
 		: IDisposable
 	{
-		private readonly Interop.Extent3D* instance;
+		internal Interop.Extent3D* instance;
 
 		internal Extent3D(Interop.Extent3D* instance)
 		{
@@ -231,62 +202,49 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Width;
-
-				return value0;
+				return this.instance->Width;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Width = value0;
+				this.instance->Width = value;
 			}
 		}
-
 
 		public uint Height
 		{
 			get
 			{
-				var value0 = this.instance->Height;
-
-				return value0;
+				return this.instance->Height;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Height = value0;
+				this.instance->Height = value;
 			}
 		}
-
 
 		public uint Depth
 		{
 			get
 			{
-				var value0 = this.instance->Depth;
-
-				return value0;
+				return this.instance->Depth;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Depth = value0;
+				this.instance->Depth = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class Viewport
 		: IDisposable
 	{
-		private readonly Interop.Viewport* instance;
+		internal Interop.Viewport* instance;
 
 		internal Viewport(Interop.Viewport* instance)
 		{
@@ -304,113 +262,85 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->X;
-
-				return value0;
+				return this.instance->X;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->X = value0;
+				this.instance->X = value;
 			}
 		}
-
 
 		public float Y
 		{
 			get
 			{
-				var value0 = this.instance->Y;
-
-				return value0;
+				return this.instance->Y;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Y = value0;
+				this.instance->Y = value;
 			}
 		}
-
 
 		public float Width
 		{
 			get
 			{
-				var value0 = this.instance->Width;
-
-				return value0;
+				return this.instance->Width;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Width = value0;
+				this.instance->Width = value;
 			}
 		}
-
 
 		public float Height
 		{
 			get
 			{
-				var value0 = this.instance->Height;
-
-				return value0;
+				return this.instance->Height;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Height = value0;
+				this.instance->Height = value;
 			}
 		}
-
 
 		public float MinDepth
 		{
 			get
 			{
-				var value0 = this.instance->MinDepth;
-
-				return value0;
+				return this.instance->MinDepth;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->MinDepth = value0;
+				this.instance->MinDepth = value;
 			}
 		}
-
 
 		public float MaxDepth
 		{
 			get
 			{
-				var value0 = this.instance->MaxDepth;
-
-				return value0;
+				return this.instance->MaxDepth;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->MaxDepth = value0;
+				this.instance->MaxDepth = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class Rect2D
 		: IDisposable
 	{
-		private readonly Interop.Rect2D* instance;
+		internal Interop.Rect2D* instance;
 
 		internal Rect2D(Interop.Rect2D* instance)
 		{
@@ -423,16 +353,42 @@ namespace SharpVk
 
 			return result;
 		}
+
+		public Offset2D Offset
+		{
+			get
+			{
+				return new Offset2D(&(this.instance->Offset));
+			}
+			set
+			{
+				this.instance->Offset = *(value.instance);
+			}
+		}
+
+		public Extent2D Extent
+		{
+			get
+			{
+				return new Extent2D(&(this.instance->Extent));
+			}
+			set
+			{
+				this.instance->Extent = *(value.instance);
+			}
+		}
+
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class Rect3D
 		: IDisposable
 	{
-		private readonly Interop.Rect3D* instance;
+		internal Interop.Rect3D* instance;
 
 		internal Rect3D(Interop.Rect3D* instance)
 		{
@@ -445,16 +401,42 @@ namespace SharpVk
 
 			return result;
 		}
+
+		public Offset3D Offset
+		{
+			get
+			{
+				return new Offset3D(&(this.instance->Offset));
+			}
+			set
+			{
+				this.instance->Offset = *(value.instance);
+			}
+		}
+
+		public Extent3D Extent
+		{
+			get
+			{
+				return new Extent3D(&(this.instance->Extent));
+			}
+			set
+			{
+				this.instance->Extent = *(value.instance);
+			}
+		}
+
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class ClearRect
 		: IDisposable
 	{
-		private readonly Interop.ClearRect* instance;
+		internal Interop.ClearRect* instance;
 
 		internal ClearRect(Interop.ClearRect* instance)
 		{
@@ -468,49 +450,53 @@ namespace SharpVk
 			return result;
 		}
 
+		public Rect2D Rect
+		{
+			get
+			{
+				return new Rect2D(&(this.instance->Rect));
+			}
+			set
+			{
+				this.instance->Rect = *(value.instance);
+			}
+		}
+
 		public uint BaseArrayLayer
 		{
 			get
 			{
-				var value0 = this.instance->BaseArrayLayer;
-
-				return value0;
+				return this.instance->BaseArrayLayer;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->BaseArrayLayer = value0;
+				this.instance->BaseArrayLayer = value;
 			}
 		}
-
 
 		public uint LayerCount
 		{
 			get
 			{
-				var value0 = this.instance->LayerCount;
-
-				return value0;
+				return this.instance->LayerCount;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->LayerCount = value0;
+				this.instance->LayerCount = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class ComponentMapping
 		: IDisposable
 	{
-		private readonly Interop.ComponentMapping* instance;
+		internal Interop.ComponentMapping* instance;
 
 		internal ComponentMapping(Interop.ComponentMapping* instance)
 		{
@@ -528,79 +514,61 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->R;
-
-				return value0;
+				return this.instance->R;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->R = value0;
+				this.instance->R = value;
 			}
 		}
-
 
 		public ComponentSwizzle G
 		{
 			get
 			{
-				var value0 = this.instance->G;
-
-				return value0;
+				return this.instance->G;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->G = value0;
+				this.instance->G = value;
 			}
 		}
-
 
 		public ComponentSwizzle B
 		{
 			get
 			{
-				var value0 = this.instance->B;
-
-				return value0;
+				return this.instance->B;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->B = value0;
+				this.instance->B = value;
 			}
 		}
-
 
 		public ComponentSwizzle A
 		{
 			get
 			{
-				var value0 = this.instance->A;
-
-				return value0;
+				return this.instance->A;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->A = value0;
+				this.instance->A = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class PhysicalDeviceProperties
 		: IDisposable
 	{
-		private readonly Interop.PhysicalDeviceProperties* instance;
+		internal Interop.PhysicalDeviceProperties* instance;
 
 		internal PhysicalDeviceProperties(Interop.PhysicalDeviceProperties* instance)
 		{
@@ -618,130 +586,85 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->ApiVersion;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->ApiVersion = value0;
+				return this.instance->ApiVersion;
 			}
 		}
-
 
 		public uint DriverVersion
 		{
 			get
 			{
-				var value0 = this.instance->DriverVersion;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->DriverVersion = value0;
+				return this.instance->DriverVersion;
 			}
 		}
-
 
 		public uint VendorID
 		{
 			get
 			{
-				var value0 = this.instance->VendorID;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->VendorID = value0;
+				return this.instance->VendorID;
 			}
 		}
-
 
 		public uint DeviceID
 		{
 			get
 			{
-				var value0 = this.instance->DeviceID;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->DeviceID = value0;
+				return this.instance->DeviceID;
 			}
 		}
-
 
 		public PhysicalDeviceType DeviceType
 		{
 			get
 			{
-				var value0 = this.instance->DeviceType;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->DeviceType = value0;
+				return this.instance->DeviceType;
 			}
 		}
 
-
-		public char DeviceName
+		public string DeviceName
 		{
 			get
 			{
-				var value0 = this.instance->DeviceName;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->DeviceName = value0;
+				return Interop.HeapUtil.MarshalPointerToString(this.instance->DeviceName);
 			}
 		}
 
-
-		public byte PipelineCacheUUID
+		public byte[] PipelineCacheUUID
 		{
 			get
 			{
-				var value0 = this.instance->PipelineCacheUUID;
-
-				return value0;
+				return Interop.HeapUtil.MarshalPointerToArray(this.instance->PipelineCacheUUID, 32);
 			}
-			set
-			{
-				var value0 = value;
+		}
 
-				this.instance->PipelineCacheUUID = value0;
+		public PhysicalDeviceLimits Limits
+		{
+			get
+			{
+				return new PhysicalDeviceLimits(&(this.instance->Limits));
+			}
+		}
+
+		public PhysicalDeviceSparseProperties SparseProperties
+		{
+			get
+			{
+				return new PhysicalDeviceSparseProperties(&(this.instance->SparseProperties));
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class ExtensionProperties
 		: IDisposable
 	{
-		private readonly Interop.ExtensionProperties* instance;
+		internal Interop.ExtensionProperties* instance;
 
 		internal ExtensionProperties(Interop.ExtensionProperties* instance)
 		{
@@ -755,49 +678,33 @@ namespace SharpVk
 			return result;
 		}
 
-		public char ExtensionName
+		public string ExtensionName
 		{
 			get
 			{
-				var value0 = this.instance->ExtensionName;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->ExtensionName = value0;
+				return Interop.HeapUtil.MarshalPointerToString(this.instance->ExtensionName);
 			}
 		}
-
 
 		public uint SpecVersion
 		{
 			get
 			{
-				var value0 = this.instance->SpecVersion;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->SpecVersion = value0;
+				return this.instance->SpecVersion;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class LayerProperties
 		: IDisposable
 	{
-		private readonly Interop.LayerProperties* instance;
+		internal Interop.LayerProperties* instance;
 
 		internal LayerProperties(Interop.LayerProperties* instance)
 		{
@@ -811,83 +718,49 @@ namespace SharpVk
 			return result;
 		}
 
-		public char LayerName
+		public string LayerName
 		{
 			get
 			{
-				var value0 = this.instance->LayerName;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->LayerName = value0;
+				return Interop.HeapUtil.MarshalPointerToString(this.instance->LayerName);
 			}
 		}
-
 
 		public uint SpecVersion
 		{
 			get
 			{
-				var value0 = this.instance->SpecVersion;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->SpecVersion = value0;
+				return this.instance->SpecVersion;
 			}
 		}
-
 
 		public uint ImplementationVersion
 		{
 			get
 			{
-				var value0 = this.instance->ImplementationVersion;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->ImplementationVersion = value0;
+				return this.instance->ImplementationVersion;
 			}
 		}
 
-
-		public char Description
+		public string Description
 		{
 			get
 			{
-				var value0 = this.instance->Description;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->Description = value0;
+				return Interop.HeapUtil.MarshalPointerToString(this.instance->Description);
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class ApplicationInfo
 		: IDisposable
 	{
-		private readonly Interop.ApplicationInfo* instance;
+		internal Interop.ApplicationInfo* instance;
 
 		internal ApplicationInfo(Interop.ApplicationInfo* instance)
 		{
@@ -907,104 +780,73 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->ApplicationName;
-
-				var value1 = Interop.HeapUtil.MarshalPointerToString(value0);
-
-				return value1;
+				return Interop.HeapUtil.MarshalPointerToString(this.instance->ApplicationName);
 			}
 			set
 			{
-				var value0 = value;
-
-				var value1 = Interop.HeapUtil.MarshalStringToPointer(value0);
-
-				this.instance->ApplicationName = value1;
+				this.instance->ApplicationName = Interop.HeapUtil.MarshalStringToPointer(value);
 			}
 		}
-
 
 		public uint ApplicationVersion
 		{
 			get
 			{
-				var value0 = this.instance->ApplicationVersion;
-
-				return value0;
+				return this.instance->ApplicationVersion;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->ApplicationVersion = value0;
+				this.instance->ApplicationVersion = value;
 			}
 		}
-
 
 		public string EngineName
 		{
 			get
 			{
-				var value0 = this.instance->EngineName;
-
-				var value1 = Interop.HeapUtil.MarshalPointerToString(value0);
-
-				return value1;
+				return Interop.HeapUtil.MarshalPointerToString(this.instance->EngineName);
 			}
 			set
 			{
-				var value0 = value;
-
-				var value1 = Interop.HeapUtil.MarshalStringToPointer(value0);
-
-				this.instance->EngineName = value1;
+				this.instance->EngineName = Interop.HeapUtil.MarshalStringToPointer(value);
 			}
 		}
-
 
 		public uint EngineVersion
 		{
 			get
 			{
-				var value0 = this.instance->EngineVersion;
-
-				return value0;
+				return this.instance->EngineVersion;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->EngineVersion = value0;
+				this.instance->EngineVersion = value;
 			}
 		}
-
 
 		public uint ApiVersion
 		{
 			get
 			{
-				var value0 = this.instance->ApiVersion;
-
-				return value0;
+				return this.instance->ApiVersion;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->ApiVersion = value0;
+				this.instance->ApiVersion = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class AllocationCallbacks
 		: IDisposable
 	{
-		private readonly Interop.AllocationCallbacks* instance;
+		internal Interop.AllocationCallbacks* instance;
 
 		internal AllocationCallbacks(Interop.AllocationCallbacks* instance)
 		{
@@ -1022,96 +864,73 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->PfnAllocation;
-
-				return value0;
+				return this.instance->PfnAllocation;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->PfnAllocation = value0;
+				this.instance->PfnAllocation = value;
 			}
 		}
-
 
 		public IntPtr PfnReallocation
 		{
 			get
 			{
-				var value0 = this.instance->PfnReallocation;
-
-				return value0;
+				return this.instance->PfnReallocation;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->PfnReallocation = value0;
+				this.instance->PfnReallocation = value;
 			}
 		}
-
 
 		public IntPtr PfnFree
 		{
 			get
 			{
-				var value0 = this.instance->PfnFree;
-
-				return value0;
+				return this.instance->PfnFree;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->PfnFree = value0;
+				this.instance->PfnFree = value;
 			}
 		}
-
 
 		public IntPtr PfnInternalAllocation
 		{
 			get
 			{
-				var value0 = this.instance->PfnInternalAllocation;
-
-				return value0;
+				return this.instance->PfnInternalAllocation;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->PfnInternalAllocation = value0;
+				this.instance->PfnInternalAllocation = value;
 			}
 		}
-
 
 		public IntPtr PfnInternalFree
 		{
 			get
 			{
-				var value0 = this.instance->PfnInternalFree;
-
-				return value0;
+				return this.instance->PfnInternalFree;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->PfnInternalFree = value0;
+				this.instance->PfnInternalFree = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class DeviceQueueCreateInfo
 		: IDisposable
 	{
-		private readonly Interop.DeviceQueueCreateInfo* instance;
+		internal Interop.DeviceQueueCreateInfo* instance;
 
 		internal DeviceQueueCreateInfo(Interop.DeviceQueueCreateInfo* instance)
 		{
@@ -1131,45 +950,37 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
-
 
 		public uint QueueFamilyIndex
 		{
 			get
 			{
-				var value0 = this.instance->QueueFamilyIndex;
-
-				return value0;
+				return this.instance->QueueFamilyIndex;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->QueueFamilyIndex = value0;
+				this.instance->QueueFamilyIndex = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class DeviceCreateInfo
 		: IDisposable
 	{
-		private readonly Interop.DeviceCreateInfo* instance;
+		internal Interop.DeviceCreateInfo* instance;
 
 		internal DeviceCreateInfo(Interop.DeviceCreateInfo* instance)
 		{
@@ -1189,28 +1000,25 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class InstanceCreateInfo
 		: IDisposable
 	{
-		private readonly Interop.InstanceCreateInfo* instance;
+		internal Interop.InstanceCreateInfo* instance;
 
 		internal InstanceCreateInfo(Interop.InstanceCreateInfo* instance)
 		{
@@ -1230,28 +1038,25 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class QueueFamilyProperties
 		: IDisposable
 	{
-		private readonly Interop.QueueFamilyProperties* instance;
+		internal Interop.QueueFamilyProperties* instance;
 
 		internal QueueFamilyProperties(Interop.QueueFamilyProperties* instance)
 		{
@@ -1269,62 +1074,45 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->QueueFlags;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->QueueFlags = value0;
+				return this.instance->QueueFlags;
 			}
 		}
-
 
 		public uint QueueCount
 		{
 			get
 			{
-				var value0 = this.instance->QueueCount;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->QueueCount = value0;
+				return this.instance->QueueCount;
 			}
 		}
-
 
 		public uint TimestampValidBits
 		{
 			get
 			{
-				var value0 = this.instance->TimestampValidBits;
-
-				return value0;
+				return this.instance->TimestampValidBits;
 			}
-			set
-			{
-				var value0 = value;
+		}
 
-				this.instance->TimestampValidBits = value0;
+		public Extent3D MinImageTransferGranularity
+		{
+			get
+			{
+				return new Extent3D(&(this.instance->MinImageTransferGranularity));
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class PhysicalDeviceMemoryProperties
 		: IDisposable
 	{
-		private readonly Interop.PhysicalDeviceMemoryProperties* instance;
+		internal Interop.PhysicalDeviceMemoryProperties* instance;
 
 		internal PhysicalDeviceMemoryProperties(Interop.PhysicalDeviceMemoryProperties* instance)
 		{
@@ -1342,45 +1130,541 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->MemoryTypeCount;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MemoryTypeCount = value0;
+				return this.instance->MemoryTypeCount;
 			}
 		}
 
+		public MemoryType MemoryTypes_0
+		{
+			get
+			{
+				return new MemoryType(&(this.instance->MemoryTypes_0));
+			}
+		}
+
+		public MemoryType MemoryTypes_1
+		{
+			get
+			{
+				return new MemoryType(&(this.instance->MemoryTypes_1));
+			}
+		}
+
+		public MemoryType MemoryTypes_2
+		{
+			get
+			{
+				return new MemoryType(&(this.instance->MemoryTypes_2));
+			}
+		}
+
+		public MemoryType MemoryTypes_3
+		{
+			get
+			{
+				return new MemoryType(&(this.instance->MemoryTypes_3));
+			}
+		}
+
+		public MemoryType MemoryTypes_4
+		{
+			get
+			{
+				return new MemoryType(&(this.instance->MemoryTypes_4));
+			}
+		}
+
+		public MemoryType MemoryTypes_5
+		{
+			get
+			{
+				return new MemoryType(&(this.instance->MemoryTypes_5));
+			}
+		}
+
+		public MemoryType MemoryTypes_6
+		{
+			get
+			{
+				return new MemoryType(&(this.instance->MemoryTypes_6));
+			}
+		}
+
+		public MemoryType MemoryTypes_7
+		{
+			get
+			{
+				return new MemoryType(&(this.instance->MemoryTypes_7));
+			}
+		}
+
+		public MemoryType MemoryTypes_8
+		{
+			get
+			{
+				return new MemoryType(&(this.instance->MemoryTypes_8));
+			}
+		}
+
+		public MemoryType MemoryTypes_9
+		{
+			get
+			{
+				return new MemoryType(&(this.instance->MemoryTypes_9));
+			}
+		}
+
+		public MemoryType MemoryTypes_10
+		{
+			get
+			{
+				return new MemoryType(&(this.instance->MemoryTypes_10));
+			}
+		}
+
+		public MemoryType MemoryTypes_11
+		{
+			get
+			{
+				return new MemoryType(&(this.instance->MemoryTypes_11));
+			}
+		}
+
+		public MemoryType MemoryTypes_12
+		{
+			get
+			{
+				return new MemoryType(&(this.instance->MemoryTypes_12));
+			}
+		}
+
+		public MemoryType MemoryTypes_13
+		{
+			get
+			{
+				return new MemoryType(&(this.instance->MemoryTypes_13));
+			}
+		}
+
+		public MemoryType MemoryTypes_14
+		{
+			get
+			{
+				return new MemoryType(&(this.instance->MemoryTypes_14));
+			}
+		}
+
+		public MemoryType MemoryTypes_15
+		{
+			get
+			{
+				return new MemoryType(&(this.instance->MemoryTypes_15));
+			}
+		}
+
+		public MemoryType MemoryTypes_16
+		{
+			get
+			{
+				return new MemoryType(&(this.instance->MemoryTypes_16));
+			}
+		}
+
+		public MemoryType MemoryTypes_17
+		{
+			get
+			{
+				return new MemoryType(&(this.instance->MemoryTypes_17));
+			}
+		}
+
+		public MemoryType MemoryTypes_18
+		{
+			get
+			{
+				return new MemoryType(&(this.instance->MemoryTypes_18));
+			}
+		}
+
+		public MemoryType MemoryTypes_19
+		{
+			get
+			{
+				return new MemoryType(&(this.instance->MemoryTypes_19));
+			}
+		}
+
+		public MemoryType MemoryTypes_20
+		{
+			get
+			{
+				return new MemoryType(&(this.instance->MemoryTypes_20));
+			}
+		}
+
+		public MemoryType MemoryTypes_21
+		{
+			get
+			{
+				return new MemoryType(&(this.instance->MemoryTypes_21));
+			}
+		}
+
+		public MemoryType MemoryTypes_22
+		{
+			get
+			{
+				return new MemoryType(&(this.instance->MemoryTypes_22));
+			}
+		}
+
+		public MemoryType MemoryTypes_23
+		{
+			get
+			{
+				return new MemoryType(&(this.instance->MemoryTypes_23));
+			}
+		}
+
+		public MemoryType MemoryTypes_24
+		{
+			get
+			{
+				return new MemoryType(&(this.instance->MemoryTypes_24));
+			}
+		}
+
+		public MemoryType MemoryTypes_25
+		{
+			get
+			{
+				return new MemoryType(&(this.instance->MemoryTypes_25));
+			}
+		}
+
+		public MemoryType MemoryTypes_26
+		{
+			get
+			{
+				return new MemoryType(&(this.instance->MemoryTypes_26));
+			}
+		}
+
+		public MemoryType MemoryTypes_27
+		{
+			get
+			{
+				return new MemoryType(&(this.instance->MemoryTypes_27));
+			}
+		}
+
+		public MemoryType MemoryTypes_28
+		{
+			get
+			{
+				return new MemoryType(&(this.instance->MemoryTypes_28));
+			}
+		}
+
+		public MemoryType MemoryTypes_29
+		{
+			get
+			{
+				return new MemoryType(&(this.instance->MemoryTypes_29));
+			}
+		}
+
+		public MemoryType MemoryTypes_30
+		{
+			get
+			{
+				return new MemoryType(&(this.instance->MemoryTypes_30));
+			}
+		}
+
+		public MemoryType MemoryTypes_31
+		{
+			get
+			{
+				return new MemoryType(&(this.instance->MemoryTypes_31));
+			}
+		}
 
 		public uint MemoryHeapCount
 		{
 			get
 			{
-				var value0 = this.instance->MemoryHeapCount;
-
-				return value0;
+				return this.instance->MemoryHeapCount;
 			}
-			set
-			{
-				var value0 = value;
+		}
 
-				this.instance->MemoryHeapCount = value0;
+		public MemoryHeap MemoryHeaps_0
+		{
+			get
+			{
+				return new MemoryHeap(&(this.instance->MemoryHeaps_0));
+			}
+		}
+
+		public MemoryHeap MemoryHeaps_1
+		{
+			get
+			{
+				return new MemoryHeap(&(this.instance->MemoryHeaps_1));
+			}
+		}
+
+		public MemoryHeap MemoryHeaps_2
+		{
+			get
+			{
+				return new MemoryHeap(&(this.instance->MemoryHeaps_2));
+			}
+		}
+
+		public MemoryHeap MemoryHeaps_3
+		{
+			get
+			{
+				return new MemoryHeap(&(this.instance->MemoryHeaps_3));
+			}
+		}
+
+		public MemoryHeap MemoryHeaps_4
+		{
+			get
+			{
+				return new MemoryHeap(&(this.instance->MemoryHeaps_4));
+			}
+		}
+
+		public MemoryHeap MemoryHeaps_5
+		{
+			get
+			{
+				return new MemoryHeap(&(this.instance->MemoryHeaps_5));
+			}
+		}
+
+		public MemoryHeap MemoryHeaps_6
+		{
+			get
+			{
+				return new MemoryHeap(&(this.instance->MemoryHeaps_6));
+			}
+		}
+
+		public MemoryHeap MemoryHeaps_7
+		{
+			get
+			{
+				return new MemoryHeap(&(this.instance->MemoryHeaps_7));
+			}
+		}
+
+		public MemoryHeap MemoryHeaps_8
+		{
+			get
+			{
+				return new MemoryHeap(&(this.instance->MemoryHeaps_8));
+			}
+		}
+
+		public MemoryHeap MemoryHeaps_9
+		{
+			get
+			{
+				return new MemoryHeap(&(this.instance->MemoryHeaps_9));
+			}
+		}
+
+		public MemoryHeap MemoryHeaps_10
+		{
+			get
+			{
+				return new MemoryHeap(&(this.instance->MemoryHeaps_10));
+			}
+		}
+
+		public MemoryHeap MemoryHeaps_11
+		{
+			get
+			{
+				return new MemoryHeap(&(this.instance->MemoryHeaps_11));
+			}
+		}
+
+		public MemoryHeap MemoryHeaps_12
+		{
+			get
+			{
+				return new MemoryHeap(&(this.instance->MemoryHeaps_12));
+			}
+		}
+
+		public MemoryHeap MemoryHeaps_13
+		{
+			get
+			{
+				return new MemoryHeap(&(this.instance->MemoryHeaps_13));
+			}
+		}
+
+		public MemoryHeap MemoryHeaps_14
+		{
+			get
+			{
+				return new MemoryHeap(&(this.instance->MemoryHeaps_14));
+			}
+		}
+
+		public MemoryHeap MemoryHeaps_15
+		{
+			get
+			{
+				return new MemoryHeap(&(this.instance->MemoryHeaps_15));
+			}
+		}
+
+		public MemoryHeap MemoryHeaps_16
+		{
+			get
+			{
+				return new MemoryHeap(&(this.instance->MemoryHeaps_16));
+			}
+		}
+
+		public MemoryHeap MemoryHeaps_17
+		{
+			get
+			{
+				return new MemoryHeap(&(this.instance->MemoryHeaps_17));
+			}
+		}
+
+		public MemoryHeap MemoryHeaps_18
+		{
+			get
+			{
+				return new MemoryHeap(&(this.instance->MemoryHeaps_18));
+			}
+		}
+
+		public MemoryHeap MemoryHeaps_19
+		{
+			get
+			{
+				return new MemoryHeap(&(this.instance->MemoryHeaps_19));
+			}
+		}
+
+		public MemoryHeap MemoryHeaps_20
+		{
+			get
+			{
+				return new MemoryHeap(&(this.instance->MemoryHeaps_20));
+			}
+		}
+
+		public MemoryHeap MemoryHeaps_21
+		{
+			get
+			{
+				return new MemoryHeap(&(this.instance->MemoryHeaps_21));
+			}
+		}
+
+		public MemoryHeap MemoryHeaps_22
+		{
+			get
+			{
+				return new MemoryHeap(&(this.instance->MemoryHeaps_22));
+			}
+		}
+
+		public MemoryHeap MemoryHeaps_23
+		{
+			get
+			{
+				return new MemoryHeap(&(this.instance->MemoryHeaps_23));
+			}
+		}
+
+		public MemoryHeap MemoryHeaps_24
+		{
+			get
+			{
+				return new MemoryHeap(&(this.instance->MemoryHeaps_24));
+			}
+		}
+
+		public MemoryHeap MemoryHeaps_25
+		{
+			get
+			{
+				return new MemoryHeap(&(this.instance->MemoryHeaps_25));
+			}
+		}
+
+		public MemoryHeap MemoryHeaps_26
+		{
+			get
+			{
+				return new MemoryHeap(&(this.instance->MemoryHeaps_26));
+			}
+		}
+
+		public MemoryHeap MemoryHeaps_27
+		{
+			get
+			{
+				return new MemoryHeap(&(this.instance->MemoryHeaps_27));
+			}
+		}
+
+		public MemoryHeap MemoryHeaps_28
+		{
+			get
+			{
+				return new MemoryHeap(&(this.instance->MemoryHeaps_28));
+			}
+		}
+
+		public MemoryHeap MemoryHeaps_29
+		{
+			get
+			{
+				return new MemoryHeap(&(this.instance->MemoryHeaps_29));
+			}
+		}
+
+		public MemoryHeap MemoryHeaps_30
+		{
+			get
+			{
+				return new MemoryHeap(&(this.instance->MemoryHeaps_30));
+			}
+		}
+
+		public MemoryHeap MemoryHeaps_31
+		{
+			get
+			{
+				return new MemoryHeap(&(this.instance->MemoryHeaps_31));
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class MemoryAllocateInfo
 		: IDisposable
 	{
-		private readonly Interop.MemoryAllocateInfo* instance;
+		internal Interop.MemoryAllocateInfo* instance;
 
 		internal MemoryAllocateInfo(Interop.MemoryAllocateInfo* instance)
 		{
@@ -1400,45 +1684,37 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->AllocationSize;
-
-				return value0;
+				return this.instance->AllocationSize;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->AllocationSize = value0;
+				this.instance->AllocationSize = value;
 			}
 		}
-
 
 		public uint MemoryTypeIndex
 		{
 			get
 			{
-				var value0 = this.instance->MemoryTypeIndex;
-
-				return value0;
+				return this.instance->MemoryTypeIndex;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->MemoryTypeIndex = value0;
+				this.instance->MemoryTypeIndex = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class MemoryRequirements
 		: IDisposable
 	{
-		private readonly Interop.MemoryRequirements* instance;
+		internal Interop.MemoryRequirements* instance;
 
 		internal MemoryRequirements(Interop.MemoryRequirements* instance)
 		{
@@ -1456,62 +1732,37 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Size;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->Size = value0;
+				return this.instance->Size;
 			}
 		}
-
 
 		public ulong Alignment
 		{
 			get
 			{
-				var value0 = this.instance->Alignment;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->Alignment = value0;
+				return this.instance->Alignment;
 			}
 		}
-
 
 		public uint MemoryTypeBits
 		{
 			get
 			{
-				var value0 = this.instance->MemoryTypeBits;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MemoryTypeBits = value0;
+				return this.instance->MemoryTypeBits;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class SparseImageFormatProperties
 		: IDisposable
 	{
-		private readonly Interop.SparseImageFormatProperties* instance;
+		internal Interop.SparseImageFormatProperties* instance;
 
 		internal SparseImageFormatProperties(Interop.SparseImageFormatProperties* instance)
 		{
@@ -1529,45 +1780,37 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->AspectMask;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->AspectMask = value0;
+				return this.instance->AspectMask;
 			}
 		}
 
+		public Extent3D ImageGranularity
+		{
+			get
+			{
+				return new Extent3D(&(this.instance->ImageGranularity));
+			}
+		}
 
 		public SparseImageFormatFlags Flags
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				return this.instance->Flags;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class SparseImageMemoryRequirements
 		: IDisposable
 	{
-		private readonly Interop.SparseImageMemoryRequirements* instance;
+		internal Interop.SparseImageMemoryRequirements* instance;
 
 		internal SparseImageMemoryRequirements(Interop.SparseImageMemoryRequirements* instance)
 		{
@@ -1581,83 +1824,57 @@ namespace SharpVk
 			return result;
 		}
 
+		public SparseImageFormatProperties FormatProperties
+		{
+			get
+			{
+				return new SparseImageFormatProperties(&(this.instance->FormatProperties));
+			}
+		}
+
 		public uint ImageMipTailFirstLod
 		{
 			get
 			{
-				var value0 = this.instance->ImageMipTailFirstLod;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->ImageMipTailFirstLod = value0;
+				return this.instance->ImageMipTailFirstLod;
 			}
 		}
-
 
 		public ulong ImageMipTailSize
 		{
 			get
 			{
-				var value0 = this.instance->ImageMipTailSize;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->ImageMipTailSize = value0;
+				return this.instance->ImageMipTailSize;
 			}
 		}
-
 
 		public ulong ImageMipTailOffset
 		{
 			get
 			{
-				var value0 = this.instance->ImageMipTailOffset;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->ImageMipTailOffset = value0;
+				return this.instance->ImageMipTailOffset;
 			}
 		}
-
 
 		public ulong ImageMipTailStride
 		{
 			get
 			{
-				var value0 = this.instance->ImageMipTailStride;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->ImageMipTailStride = value0;
+				return this.instance->ImageMipTailStride;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class MemoryType
 		: IDisposable
 	{
-		private readonly Interop.MemoryType* instance;
+		internal Interop.MemoryType* instance;
 
 		internal MemoryType(Interop.MemoryType* instance)
 		{
@@ -1675,45 +1892,29 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->PropertyFlags;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->PropertyFlags = value0;
+				return this.instance->PropertyFlags;
 			}
 		}
-
 
 		public uint HeapIndex
 		{
 			get
 			{
-				var value0 = this.instance->HeapIndex;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->HeapIndex = value0;
+				return this.instance->HeapIndex;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class MemoryHeap
 		: IDisposable
 	{
-		private readonly Interop.MemoryHeap* instance;
+		internal Interop.MemoryHeap* instance;
 
 		internal MemoryHeap(Interop.MemoryHeap* instance)
 		{
@@ -1731,45 +1932,29 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Size;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->Size = value0;
+				return this.instance->Size;
 			}
 		}
-
 
 		public MemoryHeapFlags Flags
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				return this.instance->Flags;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class MappedMemoryRange
 		: IDisposable
 	{
-		private readonly Interop.MappedMemoryRange* instance;
+		internal Interop.MappedMemoryRange* instance;
 
 		internal MappedMemoryRange(Interop.MappedMemoryRange* instance)
 		{
@@ -1789,45 +1974,37 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Offset;
-
-				return value0;
+				return this.instance->Offset;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Offset = value0;
+				this.instance->Offset = value;
 			}
 		}
-
 
 		public ulong Size
 		{
 			get
 			{
-				var value0 = this.instance->Size;
-
-				return value0;
+				return this.instance->Size;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Size = value0;
+				this.instance->Size = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class FormatProperties
 		: IDisposable
 	{
-		private readonly Interop.FormatProperties* instance;
+		internal Interop.FormatProperties* instance;
 
 		internal FormatProperties(Interop.FormatProperties* instance)
 		{
@@ -1845,62 +2022,37 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->LinearTilingFeatures;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->LinearTilingFeatures = value0;
+				return this.instance->LinearTilingFeatures;
 			}
 		}
-
 
 		public FormatFeatureFlags OptimalTilingFeatures
 		{
 			get
 			{
-				var value0 = this.instance->OptimalTilingFeatures;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->OptimalTilingFeatures = value0;
+				return this.instance->OptimalTilingFeatures;
 			}
 		}
-
 
 		public FormatFeatureFlags BufferFeatures
 		{
 			get
 			{
-				var value0 = this.instance->BufferFeatures;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->BufferFeatures = value0;
+				return this.instance->BufferFeatures;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class ImageFormatProperties
 		: IDisposable
 	{
-		private readonly Interop.ImageFormatProperties* instance;
+		internal Interop.ImageFormatProperties* instance;
 
 		internal ImageFormatProperties(Interop.ImageFormatProperties* instance)
 		{
@@ -1914,83 +2066,57 @@ namespace SharpVk
 			return result;
 		}
 
+		public Extent3D MaxExtent
+		{
+			get
+			{
+				return new Extent3D(&(this.instance->MaxExtent));
+			}
+		}
+
 		public uint MaxMipLevels
 		{
 			get
 			{
-				var value0 = this.instance->MaxMipLevels;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxMipLevels = value0;
+				return this.instance->MaxMipLevels;
 			}
 		}
-
 
 		public uint MaxArrayLayers
 		{
 			get
 			{
-				var value0 = this.instance->MaxArrayLayers;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxArrayLayers = value0;
+				return this.instance->MaxArrayLayers;
 			}
 		}
-
 
 		public SampleCountFlags SampleCounts
 		{
 			get
 			{
-				var value0 = this.instance->SampleCounts;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->SampleCounts = value0;
+				return this.instance->SampleCounts;
 			}
 		}
-
 
 		public ulong MaxResourceSize
 		{
 			get
 			{
-				var value0 = this.instance->MaxResourceSize;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxResourceSize = value0;
+				return this.instance->MaxResourceSize;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class DescriptorBufferInfo
 		: IDisposable
 	{
-		private readonly Interop.DescriptorBufferInfo* instance;
+		internal Interop.DescriptorBufferInfo* instance;
 
 		internal DescriptorBufferInfo(Interop.DescriptorBufferInfo* instance)
 		{
@@ -2008,45 +2134,37 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Offset;
-
-				return value0;
+				return this.instance->Offset;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Offset = value0;
+				this.instance->Offset = value;
 			}
 		}
-
 
 		public ulong Range
 		{
 			get
 			{
-				var value0 = this.instance->Range;
-
-				return value0;
+				return this.instance->Range;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Range = value0;
+				this.instance->Range = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class DescriptorImageInfo
 		: IDisposable
 	{
-		private readonly Interop.DescriptorImageInfo* instance;
+		internal Interop.DescriptorImageInfo* instance;
 
 		internal DescriptorImageInfo(Interop.DescriptorImageInfo* instance)
 		{
@@ -2064,28 +2182,25 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->ImageLayout;
-
-				return value0;
+				return this.instance->ImageLayout;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->ImageLayout = value0;
+				this.instance->ImageLayout = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class WriteDescriptorSet
 		: IDisposable
 	{
-		private readonly Interop.WriteDescriptorSet* instance;
+		internal Interop.WriteDescriptorSet* instance;
 
 		internal WriteDescriptorSet(Interop.WriteDescriptorSet* instance)
 		{
@@ -2105,62 +2220,49 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->DstBinding;
-
-				return value0;
+				return this.instance->DstBinding;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DstBinding = value0;
+				this.instance->DstBinding = value;
 			}
 		}
-
 
 		public uint DstArrayElement
 		{
 			get
 			{
-				var value0 = this.instance->DstArrayElement;
-
-				return value0;
+				return this.instance->DstArrayElement;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DstArrayElement = value0;
+				this.instance->DstArrayElement = value;
 			}
 		}
-
 
 		public DescriptorType DescriptorType
 		{
 			get
 			{
-				var value0 = this.instance->DescriptorType;
-
-				return value0;
+				return this.instance->DescriptorType;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DescriptorType = value0;
+				this.instance->DescriptorType = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class CopyDescriptorSet
 		: IDisposable
 	{
-		private readonly Interop.CopyDescriptorSet* instance;
+		internal Interop.CopyDescriptorSet* instance;
 
 		internal CopyDescriptorSet(Interop.CopyDescriptorSet* instance)
 		{
@@ -2180,96 +2282,73 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->SrcBinding;
-
-				return value0;
+				return this.instance->SrcBinding;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->SrcBinding = value0;
+				this.instance->SrcBinding = value;
 			}
 		}
-
 
 		public uint SrcArrayElement
 		{
 			get
 			{
-				var value0 = this.instance->SrcArrayElement;
-
-				return value0;
+				return this.instance->SrcArrayElement;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->SrcArrayElement = value0;
+				this.instance->SrcArrayElement = value;
 			}
 		}
-
 
 		public uint DstBinding
 		{
 			get
 			{
-				var value0 = this.instance->DstBinding;
-
-				return value0;
+				return this.instance->DstBinding;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DstBinding = value0;
+				this.instance->DstBinding = value;
 			}
 		}
-
 
 		public uint DstArrayElement
 		{
 			get
 			{
-				var value0 = this.instance->DstArrayElement;
-
-				return value0;
+				return this.instance->DstArrayElement;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DstArrayElement = value0;
+				this.instance->DstArrayElement = value;
 			}
 		}
-
 
 		public uint DescriptorCount
 		{
 			get
 			{
-				var value0 = this.instance->DescriptorCount;
-
-				return value0;
+				return this.instance->DescriptorCount;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DescriptorCount = value0;
+				this.instance->DescriptorCount = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class BufferCreateInfo
 		: IDisposable
 	{
-		private readonly Interop.BufferCreateInfo* instance;
+		internal Interop.BufferCreateInfo* instance;
 
 		internal BufferCreateInfo(Interop.BufferCreateInfo* instance)
 		{
@@ -2289,79 +2368,61 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
-
 
 		public ulong Size
 		{
 			get
 			{
-				var value0 = this.instance->Size;
-
-				return value0;
+				return this.instance->Size;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Size = value0;
+				this.instance->Size = value;
 			}
 		}
-
 
 		public BufferUsageFlags Usage
 		{
 			get
 			{
-				var value0 = this.instance->Usage;
-
-				return value0;
+				return this.instance->Usage;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Usage = value0;
+				this.instance->Usage = value;
 			}
 		}
-
 
 		public SharingMode SharingMode
 		{
 			get
 			{
-				var value0 = this.instance->SharingMode;
-
-				return value0;
+				return this.instance->SharingMode;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->SharingMode = value0;
+				this.instance->SharingMode = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class BufferViewCreateInfo
 		: IDisposable
 	{
-		private readonly Interop.BufferViewCreateInfo* instance;
+		internal Interop.BufferViewCreateInfo* instance;
 
 		internal BufferViewCreateInfo(Interop.BufferViewCreateInfo* instance)
 		{
@@ -2381,79 +2442,61 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
-
 
 		public Format Format
 		{
 			get
 			{
-				var value0 = this.instance->Format;
-
-				return value0;
+				return this.instance->Format;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Format = value0;
+				this.instance->Format = value;
 			}
 		}
-
 
 		public ulong Offset
 		{
 			get
 			{
-				var value0 = this.instance->Offset;
-
-				return value0;
+				return this.instance->Offset;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Offset = value0;
+				this.instance->Offset = value;
 			}
 		}
-
 
 		public ulong Range
 		{
 			get
 			{
-				var value0 = this.instance->Range;
-
-				return value0;
+				return this.instance->Range;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Range = value0;
+				this.instance->Range = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class ImageSubresource
 		: IDisposable
 	{
-		private readonly Interop.ImageSubresource* instance;
+		internal Interop.ImageSubresource* instance;
 
 		internal ImageSubresource(Interop.ImageSubresource* instance)
 		{
@@ -2471,62 +2514,49 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->AspectMask;
-
-				return value0;
+				return this.instance->AspectMask;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->AspectMask = value0;
+				this.instance->AspectMask = value;
 			}
 		}
-
 
 		public uint MipLevel
 		{
 			get
 			{
-				var value0 = this.instance->MipLevel;
-
-				return value0;
+				return this.instance->MipLevel;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->MipLevel = value0;
+				this.instance->MipLevel = value;
 			}
 		}
-
 
 		public uint ArrayLayer
 		{
 			get
 			{
-				var value0 = this.instance->ArrayLayer;
-
-				return value0;
+				return this.instance->ArrayLayer;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->ArrayLayer = value0;
+				this.instance->ArrayLayer = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class ImageSubresourceLayers
 		: IDisposable
 	{
-		private readonly Interop.ImageSubresourceLayers* instance;
+		internal Interop.ImageSubresourceLayers* instance;
 
 		internal ImageSubresourceLayers(Interop.ImageSubresourceLayers* instance)
 		{
@@ -2544,79 +2574,61 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->AspectMask;
-
-				return value0;
+				return this.instance->AspectMask;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->AspectMask = value0;
+				this.instance->AspectMask = value;
 			}
 		}
-
 
 		public uint MipLevel
 		{
 			get
 			{
-				var value0 = this.instance->MipLevel;
-
-				return value0;
+				return this.instance->MipLevel;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->MipLevel = value0;
+				this.instance->MipLevel = value;
 			}
 		}
-
 
 		public uint BaseArrayLayer
 		{
 			get
 			{
-				var value0 = this.instance->BaseArrayLayer;
-
-				return value0;
+				return this.instance->BaseArrayLayer;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->BaseArrayLayer = value0;
+				this.instance->BaseArrayLayer = value;
 			}
 		}
-
 
 		public uint LayerCount
 		{
 			get
 			{
-				var value0 = this.instance->LayerCount;
-
-				return value0;
+				return this.instance->LayerCount;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->LayerCount = value0;
+				this.instance->LayerCount = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class ImageSubresourceRange
 		: IDisposable
 	{
-		private readonly Interop.ImageSubresourceRange* instance;
+		internal Interop.ImageSubresourceRange* instance;
 
 		internal ImageSubresourceRange(Interop.ImageSubresourceRange* instance)
 		{
@@ -2634,96 +2646,73 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->AspectMask;
-
-				return value0;
+				return this.instance->AspectMask;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->AspectMask = value0;
+				this.instance->AspectMask = value;
 			}
 		}
-
 
 		public uint BaseMipLevel
 		{
 			get
 			{
-				var value0 = this.instance->BaseMipLevel;
-
-				return value0;
+				return this.instance->BaseMipLevel;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->BaseMipLevel = value0;
+				this.instance->BaseMipLevel = value;
 			}
 		}
-
 
 		public uint LevelCount
 		{
 			get
 			{
-				var value0 = this.instance->LevelCount;
-
-				return value0;
+				return this.instance->LevelCount;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->LevelCount = value0;
+				this.instance->LevelCount = value;
 			}
 		}
-
 
 		public uint BaseArrayLayer
 		{
 			get
 			{
-				var value0 = this.instance->BaseArrayLayer;
-
-				return value0;
+				return this.instance->BaseArrayLayer;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->BaseArrayLayer = value0;
+				this.instance->BaseArrayLayer = value;
 			}
 		}
-
 
 		public uint LayerCount
 		{
 			get
 			{
-				var value0 = this.instance->LayerCount;
-
-				return value0;
+				return this.instance->LayerCount;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->LayerCount = value0;
+				this.instance->LayerCount = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class MemoryBarrier
 		: IDisposable
 	{
-		private readonly Interop.MemoryBarrier* instance;
+		internal Interop.MemoryBarrier* instance;
 
 		internal MemoryBarrier(Interop.MemoryBarrier* instance)
 		{
@@ -2743,45 +2732,37 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->SrcAccessMask;
-
-				return value0;
+				return this.instance->SrcAccessMask;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->SrcAccessMask = value0;
+				this.instance->SrcAccessMask = value;
 			}
 		}
-
 
 		public AccessFlags DstAccessMask
 		{
 			get
 			{
-				var value0 = this.instance->DstAccessMask;
-
-				return value0;
+				return this.instance->DstAccessMask;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DstAccessMask = value0;
+				this.instance->DstAccessMask = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class BufferMemoryBarrier
 		: IDisposable
 	{
-		private readonly Interop.BufferMemoryBarrier* instance;
+		internal Interop.BufferMemoryBarrier* instance;
 
 		internal BufferMemoryBarrier(Interop.BufferMemoryBarrier* instance)
 		{
@@ -2801,113 +2782,85 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->SrcAccessMask;
-
-				return value0;
+				return this.instance->SrcAccessMask;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->SrcAccessMask = value0;
+				this.instance->SrcAccessMask = value;
 			}
 		}
-
 
 		public AccessFlags DstAccessMask
 		{
 			get
 			{
-				var value0 = this.instance->DstAccessMask;
-
-				return value0;
+				return this.instance->DstAccessMask;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DstAccessMask = value0;
+				this.instance->DstAccessMask = value;
 			}
 		}
-
 
 		public uint SrcQueueFamilyIndex
 		{
 			get
 			{
-				var value0 = this.instance->SrcQueueFamilyIndex;
-
-				return value0;
+				return this.instance->SrcQueueFamilyIndex;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->SrcQueueFamilyIndex = value0;
+				this.instance->SrcQueueFamilyIndex = value;
 			}
 		}
-
 
 		public uint DstQueueFamilyIndex
 		{
 			get
 			{
-				var value0 = this.instance->DstQueueFamilyIndex;
-
-				return value0;
+				return this.instance->DstQueueFamilyIndex;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DstQueueFamilyIndex = value0;
+				this.instance->DstQueueFamilyIndex = value;
 			}
 		}
-
 
 		public ulong Offset
 		{
 			get
 			{
-				var value0 = this.instance->Offset;
-
-				return value0;
+				return this.instance->Offset;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Offset = value0;
+				this.instance->Offset = value;
 			}
 		}
-
 
 		public ulong Size
 		{
 			get
 			{
-				var value0 = this.instance->Size;
-
-				return value0;
+				return this.instance->Size;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Size = value0;
+				this.instance->Size = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class ImageMemoryBarrier
 		: IDisposable
 	{
-		private readonly Interop.ImageMemoryBarrier* instance;
+		internal Interop.ImageMemoryBarrier* instance;
 
 		internal ImageMemoryBarrier(Interop.ImageMemoryBarrier* instance)
 		{
@@ -2927,113 +2880,97 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->SrcAccessMask;
-
-				return value0;
+				return this.instance->SrcAccessMask;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->SrcAccessMask = value0;
+				this.instance->SrcAccessMask = value;
 			}
 		}
-
 
 		public AccessFlags DstAccessMask
 		{
 			get
 			{
-				var value0 = this.instance->DstAccessMask;
-
-				return value0;
+				return this.instance->DstAccessMask;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DstAccessMask = value0;
+				this.instance->DstAccessMask = value;
 			}
 		}
-
 
 		public ImageLayout OldLayout
 		{
 			get
 			{
-				var value0 = this.instance->OldLayout;
-
-				return value0;
+				return this.instance->OldLayout;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->OldLayout = value0;
+				this.instance->OldLayout = value;
 			}
 		}
-
 
 		public ImageLayout NewLayout
 		{
 			get
 			{
-				var value0 = this.instance->NewLayout;
-
-				return value0;
+				return this.instance->NewLayout;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->NewLayout = value0;
+				this.instance->NewLayout = value;
 			}
 		}
-
 
 		public uint SrcQueueFamilyIndex
 		{
 			get
 			{
-				var value0 = this.instance->SrcQueueFamilyIndex;
-
-				return value0;
+				return this.instance->SrcQueueFamilyIndex;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->SrcQueueFamilyIndex = value0;
+				this.instance->SrcQueueFamilyIndex = value;
 			}
 		}
-
 
 		public uint DstQueueFamilyIndex
 		{
 			get
 			{
-				var value0 = this.instance->DstQueueFamilyIndex;
-
-				return value0;
+				return this.instance->DstQueueFamilyIndex;
 			}
 			set
 			{
-				var value0 = value;
+				this.instance->DstQueueFamilyIndex = value;
+			}
+		}
 
-				this.instance->DstQueueFamilyIndex = value0;
+		public ImageSubresourceRange SubresourceRange
+		{
+			get
+			{
+				return new ImageSubresourceRange(&(this.instance->SubresourceRange));
+			}
+			set
+			{
+				this.instance->SubresourceRange = *(value.instance);
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class ImageCreateInfo
 		: IDisposable
 	{
-		private readonly Interop.ImageCreateInfo* instance;
+		internal Interop.ImageCreateInfo* instance;
 
 		internal ImageCreateInfo(Interop.ImageCreateInfo* instance)
 		{
@@ -3053,181 +2990,145 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
-
 
 		public ImageType ImageType
 		{
 			get
 			{
-				var value0 = this.instance->ImageType;
-
-				return value0;
+				return this.instance->ImageType;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->ImageType = value0;
+				this.instance->ImageType = value;
 			}
 		}
-
 
 		public Format Format
 		{
 			get
 			{
-				var value0 = this.instance->Format;
-
-				return value0;
+				return this.instance->Format;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Format = value0;
+				this.instance->Format = value;
 			}
 		}
 
+		public Extent3D Extent
+		{
+			get
+			{
+				return new Extent3D(&(this.instance->Extent));
+			}
+			set
+			{
+				this.instance->Extent = *(value.instance);
+			}
+		}
 
 		public uint MipLevels
 		{
 			get
 			{
-				var value0 = this.instance->MipLevels;
-
-				return value0;
+				return this.instance->MipLevels;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->MipLevels = value0;
+				this.instance->MipLevels = value;
 			}
 		}
-
 
 		public uint ArrayLayers
 		{
 			get
 			{
-				var value0 = this.instance->ArrayLayers;
-
-				return value0;
+				return this.instance->ArrayLayers;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->ArrayLayers = value0;
+				this.instance->ArrayLayers = value;
 			}
 		}
-
 
 		public SampleCountFlags Samples
 		{
 			get
 			{
-				var value0 = this.instance->Samples;
-
-				return value0;
+				return this.instance->Samples;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Samples = value0;
+				this.instance->Samples = value;
 			}
 		}
-
 
 		public ImageTiling Tiling
 		{
 			get
 			{
-				var value0 = this.instance->Tiling;
-
-				return value0;
+				return this.instance->Tiling;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Tiling = value0;
+				this.instance->Tiling = value;
 			}
 		}
-
 
 		public ImageUsageFlags Usage
 		{
 			get
 			{
-				var value0 = this.instance->Usage;
-
-				return value0;
+				return this.instance->Usage;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Usage = value0;
+				this.instance->Usage = value;
 			}
 		}
-
 
 		public SharingMode SharingMode
 		{
 			get
 			{
-				var value0 = this.instance->SharingMode;
-
-				return value0;
+				return this.instance->SharingMode;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->SharingMode = value0;
+				this.instance->SharingMode = value;
 			}
 		}
-
 
 		public ImageLayout InitialLayout
 		{
 			get
 			{
-				var value0 = this.instance->InitialLayout;
-
-				return value0;
+				return this.instance->InitialLayout;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->InitialLayout = value0;
+				this.instance->InitialLayout = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class SubresourceLayout
 		: IDisposable
 	{
-		private readonly Interop.SubresourceLayout* instance;
+		internal Interop.SubresourceLayout* instance;
 
 		internal SubresourceLayout(Interop.SubresourceLayout* instance)
 		{
@@ -3245,96 +3146,53 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Offset;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->Offset = value0;
+				return this.instance->Offset;
 			}
 		}
-
 
 		public ulong Size
 		{
 			get
 			{
-				var value0 = this.instance->Size;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->Size = value0;
+				return this.instance->Size;
 			}
 		}
-
 
 		public ulong RowPitch
 		{
 			get
 			{
-				var value0 = this.instance->RowPitch;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->RowPitch = value0;
+				return this.instance->RowPitch;
 			}
 		}
-
 
 		public ulong ArrayPitch
 		{
 			get
 			{
-				var value0 = this.instance->ArrayPitch;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->ArrayPitch = value0;
+				return this.instance->ArrayPitch;
 			}
 		}
-
 
 		public ulong DepthPitch
 		{
 			get
 			{
-				var value0 = this.instance->DepthPitch;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->DepthPitch = value0;
+				return this.instance->DepthPitch;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class ImageViewCreateInfo
 		: IDisposable
 	{
-		private readonly Interop.ImageViewCreateInfo* instance;
+		internal Interop.ImageViewCreateInfo* instance;
 
 		internal ImageViewCreateInfo(Interop.ImageViewCreateInfo* instance)
 		{
@@ -3354,62 +3212,73 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
-
 
 		public ImageViewType ViewType
 		{
 			get
 			{
-				var value0 = this.instance->ViewType;
-
-				return value0;
+				return this.instance->ViewType;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->ViewType = value0;
+				this.instance->ViewType = value;
 			}
 		}
-
 
 		public Format Format
 		{
 			get
 			{
-				var value0 = this.instance->Format;
-
-				return value0;
+				return this.instance->Format;
 			}
 			set
 			{
-				var value0 = value;
+				this.instance->Format = value;
+			}
+		}
 
-				this.instance->Format = value0;
+		public ComponentMapping Components
+		{
+			get
+			{
+				return new ComponentMapping(&(this.instance->Components));
+			}
+			set
+			{
+				this.instance->Components = *(value.instance);
+			}
+		}
+
+		public ImageSubresourceRange SubresourceRange
+		{
+			get
+			{
+				return new ImageSubresourceRange(&(this.instance->SubresourceRange));
+			}
+			set
+			{
+				this.instance->SubresourceRange = *(value.instance);
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class BufferCopy
 		: IDisposable
 	{
-		private readonly Interop.BufferCopy* instance;
+		internal Interop.BufferCopy* instance;
 
 		internal BufferCopy(Interop.BufferCopy* instance)
 		{
@@ -3427,62 +3296,49 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->SrcOffset;
-
-				return value0;
+				return this.instance->SrcOffset;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->SrcOffset = value0;
+				this.instance->SrcOffset = value;
 			}
 		}
-
 
 		public ulong DstOffset
 		{
 			get
 			{
-				var value0 = this.instance->DstOffset;
-
-				return value0;
+				return this.instance->DstOffset;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DstOffset = value0;
+				this.instance->DstOffset = value;
 			}
 		}
-
 
 		public ulong Size
 		{
 			get
 			{
-				var value0 = this.instance->Size;
-
-				return value0;
+				return this.instance->Size;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Size = value0;
+				this.instance->Size = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class SparseMemoryBind
 		: IDisposable
 	{
-		private readonly Interop.SparseMemoryBind* instance;
+		internal Interop.SparseMemoryBind* instance;
 
 		internal SparseMemoryBind(Interop.SparseMemoryBind* instance)
 		{
@@ -3500,79 +3356,61 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->ResourceOffset;
-
-				return value0;
+				return this.instance->ResourceOffset;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->ResourceOffset = value0;
+				this.instance->ResourceOffset = value;
 			}
 		}
-
 
 		public ulong Size
 		{
 			get
 			{
-				var value0 = this.instance->Size;
-
-				return value0;
+				return this.instance->Size;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Size = value0;
+				this.instance->Size = value;
 			}
 		}
-
 
 		public ulong MemoryOffset
 		{
 			get
 			{
-				var value0 = this.instance->MemoryOffset;
-
-				return value0;
+				return this.instance->MemoryOffset;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->MemoryOffset = value0;
+				this.instance->MemoryOffset = value;
 			}
 		}
-
 
 		public SparseMemoryBindFlags Flags
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class SparseImageMemoryBind
 		: IDisposable
 	{
-		private readonly Interop.SparseImageMemoryBind* instance;
+		internal Interop.SparseImageMemoryBind* instance;
 
 		internal SparseImageMemoryBind(Interop.SparseImageMemoryBind* instance)
 		{
@@ -3586,49 +3424,77 @@ namespace SharpVk
 			return result;
 		}
 
+		public ImageSubresource Subresource
+		{
+			get
+			{
+				return new ImageSubresource(&(this.instance->Subresource));
+			}
+			set
+			{
+				this.instance->Subresource = *(value.instance);
+			}
+		}
+
+		public Offset3D Offset
+		{
+			get
+			{
+				return new Offset3D(&(this.instance->Offset));
+			}
+			set
+			{
+				this.instance->Offset = *(value.instance);
+			}
+		}
+
+		public Extent3D Extent
+		{
+			get
+			{
+				return new Extent3D(&(this.instance->Extent));
+			}
+			set
+			{
+				this.instance->Extent = *(value.instance);
+			}
+		}
+
 		public ulong MemoryOffset
 		{
 			get
 			{
-				var value0 = this.instance->MemoryOffset;
-
-				return value0;
+				return this.instance->MemoryOffset;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->MemoryOffset = value0;
+				this.instance->MemoryOffset = value;
 			}
 		}
-
 
 		public SparseMemoryBindFlags Flags
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class SparseBufferMemoryBindInfo
 		: IDisposable
 	{
-		private readonly Interop.SparseBufferMemoryBindInfo* instance;
+		internal Interop.SparseBufferMemoryBindInfo* instance;
 
 		internal SparseBufferMemoryBindInfo(Interop.SparseBufferMemoryBindInfo* instance)
 		{
@@ -3641,16 +3507,18 @@ namespace SharpVk
 
 			return result;
 		}
+
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class SparseImageOpaqueMemoryBindInfo
 		: IDisposable
 	{
-		private readonly Interop.SparseImageOpaqueMemoryBindInfo* instance;
+		internal Interop.SparseImageOpaqueMemoryBindInfo* instance;
 
 		internal SparseImageOpaqueMemoryBindInfo(Interop.SparseImageOpaqueMemoryBindInfo* instance)
 		{
@@ -3663,16 +3531,18 @@ namespace SharpVk
 
 			return result;
 		}
+
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class SparseImageMemoryBindInfo
 		: IDisposable
 	{
-		private readonly Interop.SparseImageMemoryBindInfo* instance;
+		internal Interop.SparseImageMemoryBindInfo* instance;
 
 		internal SparseImageMemoryBindInfo(Interop.SparseImageMemoryBindInfo* instance)
 		{
@@ -3685,16 +3555,18 @@ namespace SharpVk
 
 			return result;
 		}
+
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class BindSparseInfo
 		: IDisposable
 	{
-		private readonly Interop.BindSparseInfo* instance;
+		internal Interop.BindSparseInfo* instance;
 
 		internal BindSparseInfo(Interop.BindSparseInfo* instance)
 		{
@@ -3709,16 +3581,18 @@ namespace SharpVk
 
 			return result;
 		}
+
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class ImageCopy
 		: IDisposable
 	{
-		private readonly Interop.ImageCopy* instance;
+		internal Interop.ImageCopy* instance;
 
 		internal ImageCopy(Interop.ImageCopy* instance)
 		{
@@ -3731,16 +3605,78 @@ namespace SharpVk
 
 			return result;
 		}
+
+		public ImageSubresourceLayers SrcSubresource
+		{
+			get
+			{
+				return new ImageSubresourceLayers(&(this.instance->SrcSubresource));
+			}
+			set
+			{
+				this.instance->SrcSubresource = *(value.instance);
+			}
+		}
+
+		public Offset3D SrcOffset
+		{
+			get
+			{
+				return new Offset3D(&(this.instance->SrcOffset));
+			}
+			set
+			{
+				this.instance->SrcOffset = *(value.instance);
+			}
+		}
+
+		public ImageSubresourceLayers DstSubresource
+		{
+			get
+			{
+				return new ImageSubresourceLayers(&(this.instance->DstSubresource));
+			}
+			set
+			{
+				this.instance->DstSubresource = *(value.instance);
+			}
+		}
+
+		public Offset3D DstOffset
+		{
+			get
+			{
+				return new Offset3D(&(this.instance->DstOffset));
+			}
+			set
+			{
+				this.instance->DstOffset = *(value.instance);
+			}
+		}
+
+		public Extent3D Extent
+		{
+			get
+			{
+				return new Extent3D(&(this.instance->Extent));
+			}
+			set
+			{
+				this.instance->Extent = *(value.instance);
+			}
+		}
+
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class ImageBlit
 		: IDisposable
 	{
-		private readonly Interop.ImageBlit* instance;
+		internal Interop.ImageBlit* instance;
 
 		internal ImageBlit(Interop.ImageBlit* instance)
 		{
@@ -3753,16 +3689,90 @@ namespace SharpVk
 
 			return result;
 		}
+
+		public ImageSubresourceLayers SrcSubresource
+		{
+			get
+			{
+				return new ImageSubresourceLayers(&(this.instance->SrcSubresource));
+			}
+			set
+			{
+				this.instance->SrcSubresource = *(value.instance);
+			}
+		}
+
+		public Offset3D SrcOffsets_0
+		{
+			get
+			{
+				return new Offset3D(&(this.instance->SrcOffsets_0));
+			}
+			set
+			{
+				this.instance->SrcOffsets_0 = *(value.instance);
+			}
+		}
+
+		public Offset3D SrcOffsets_1
+		{
+			get
+			{
+				return new Offset3D(&(this.instance->SrcOffsets_1));
+			}
+			set
+			{
+				this.instance->SrcOffsets_1 = *(value.instance);
+			}
+		}
+
+		public ImageSubresourceLayers DstSubresource
+		{
+			get
+			{
+				return new ImageSubresourceLayers(&(this.instance->DstSubresource));
+			}
+			set
+			{
+				this.instance->DstSubresource = *(value.instance);
+			}
+		}
+
+		public Offset3D DstOffsets_0
+		{
+			get
+			{
+				return new Offset3D(&(this.instance->DstOffsets_0));
+			}
+			set
+			{
+				this.instance->DstOffsets_0 = *(value.instance);
+			}
+		}
+
+		public Offset3D DstOffsets_1
+		{
+			get
+			{
+				return new Offset3D(&(this.instance->DstOffsets_1));
+			}
+			set
+			{
+				this.instance->DstOffsets_1 = *(value.instance);
+			}
+		}
+
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class BufferImageCopy
 		: IDisposable
 	{
-		private readonly Interop.BufferImageCopy* instance;
+		internal Interop.BufferImageCopy* instance;
 
 		internal BufferImageCopy(Interop.BufferImageCopy* instance)
 		{
@@ -3780,62 +3790,85 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->BufferOffset;
-
-				return value0;
+				return this.instance->BufferOffset;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->BufferOffset = value0;
+				this.instance->BufferOffset = value;
 			}
 		}
-
 
 		public uint BufferRowLength
 		{
 			get
 			{
-				var value0 = this.instance->BufferRowLength;
-
-				return value0;
+				return this.instance->BufferRowLength;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->BufferRowLength = value0;
+				this.instance->BufferRowLength = value;
 			}
 		}
-
 
 		public uint BufferImageHeight
 		{
 			get
 			{
-				var value0 = this.instance->BufferImageHeight;
-
-				return value0;
+				return this.instance->BufferImageHeight;
 			}
 			set
 			{
-				var value0 = value;
+				this.instance->BufferImageHeight = value;
+			}
+		}
 
-				this.instance->BufferImageHeight = value0;
+		public ImageSubresourceLayers ImageSubresource
+		{
+			get
+			{
+				return new ImageSubresourceLayers(&(this.instance->ImageSubresource));
+			}
+			set
+			{
+				this.instance->ImageSubresource = *(value.instance);
+			}
+		}
+
+		public Offset3D ImageOffset
+		{
+			get
+			{
+				return new Offset3D(&(this.instance->ImageOffset));
+			}
+			set
+			{
+				this.instance->ImageOffset = *(value.instance);
+			}
+		}
+
+		public Extent3D ImageExtent
+		{
+			get
+			{
+				return new Extent3D(&(this.instance->ImageExtent));
+			}
+			set
+			{
+				this.instance->ImageExtent = *(value.instance);
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class ImageResolve
 		: IDisposable
 	{
-		private readonly Interop.ImageResolve* instance;
+		internal Interop.ImageResolve* instance;
 
 		internal ImageResolve(Interop.ImageResolve* instance)
 		{
@@ -3848,16 +3881,78 @@ namespace SharpVk
 
 			return result;
 		}
+
+		public ImageSubresourceLayers SrcSubresource
+		{
+			get
+			{
+				return new ImageSubresourceLayers(&(this.instance->SrcSubresource));
+			}
+			set
+			{
+				this.instance->SrcSubresource = *(value.instance);
+			}
+		}
+
+		public Offset3D SrcOffset
+		{
+			get
+			{
+				return new Offset3D(&(this.instance->SrcOffset));
+			}
+			set
+			{
+				this.instance->SrcOffset = *(value.instance);
+			}
+		}
+
+		public ImageSubresourceLayers DstSubresource
+		{
+			get
+			{
+				return new ImageSubresourceLayers(&(this.instance->DstSubresource));
+			}
+			set
+			{
+				this.instance->DstSubresource = *(value.instance);
+			}
+		}
+
+		public Offset3D DstOffset
+		{
+			get
+			{
+				return new Offset3D(&(this.instance->DstOffset));
+			}
+			set
+			{
+				this.instance->DstOffset = *(value.instance);
+			}
+		}
+
+		public Extent3D Extent
+		{
+			get
+			{
+				return new Extent3D(&(this.instance->Extent));
+			}
+			set
+			{
+				this.instance->Extent = *(value.instance);
+			}
+		}
+
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class ShaderModuleCreateInfo
 		: IDisposable
 	{
-		private readonly Interop.ShaderModuleCreateInfo* instance;
+		internal Interop.ShaderModuleCreateInfo* instance;
 
 		internal ShaderModuleCreateInfo(Interop.ShaderModuleCreateInfo* instance)
 		{
@@ -3877,45 +3972,37 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
-
 
 		public UIntPtr CodeSize
 		{
 			get
 			{
-				var value0 = this.instance->CodeSize;
-
-				return value0;
+				return this.instance->CodeSize;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->CodeSize = value0;
+				this.instance->CodeSize = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class DescriptorSetLayoutBinding
 		: IDisposable
 	{
-		private readonly Interop.DescriptorSetLayoutBinding* instance;
+		internal Interop.DescriptorSetLayoutBinding* instance;
 
 		internal DescriptorSetLayoutBinding(Interop.DescriptorSetLayoutBinding* instance)
 		{
@@ -3933,62 +4020,49 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Binding;
-
-				return value0;
+				return this.instance->Binding;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Binding = value0;
+				this.instance->Binding = value;
 			}
 		}
-
 
 		public DescriptorType DescriptorType
 		{
 			get
 			{
-				var value0 = this.instance->DescriptorType;
-
-				return value0;
+				return this.instance->DescriptorType;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DescriptorType = value0;
+				this.instance->DescriptorType = value;
 			}
 		}
-
 
 		public ShaderStageFlags StageFlags
 		{
 			get
 			{
-				var value0 = this.instance->StageFlags;
-
-				return value0;
+				return this.instance->StageFlags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->StageFlags = value0;
+				this.instance->StageFlags = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class DescriptorSetLayoutCreateInfo
 		: IDisposable
 	{
-		private readonly Interop.DescriptorSetLayoutCreateInfo* instance;
+		internal Interop.DescriptorSetLayoutCreateInfo* instance;
 
 		internal DescriptorSetLayoutCreateInfo(Interop.DescriptorSetLayoutCreateInfo* instance)
 		{
@@ -4008,28 +4082,25 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class DescriptorPoolSize
 		: IDisposable
 	{
-		private readonly Interop.DescriptorPoolSize* instance;
+		internal Interop.DescriptorPoolSize* instance;
 
 		internal DescriptorPoolSize(Interop.DescriptorPoolSize* instance)
 		{
@@ -4047,45 +4118,37 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Type;
-
-				return value0;
+				return this.instance->Type;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Type = value0;
+				this.instance->Type = value;
 			}
 		}
-
 
 		public uint DescriptorCount
 		{
 			get
 			{
-				var value0 = this.instance->DescriptorCount;
-
-				return value0;
+				return this.instance->DescriptorCount;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DescriptorCount = value0;
+				this.instance->DescriptorCount = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class DescriptorPoolCreateInfo
 		: IDisposable
 	{
-		private readonly Interop.DescriptorPoolCreateInfo* instance;
+		internal Interop.DescriptorPoolCreateInfo* instance;
 
 		internal DescriptorPoolCreateInfo(Interop.DescriptorPoolCreateInfo* instance)
 		{
@@ -4105,45 +4168,37 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
-
 
 		public uint MaxSets
 		{
 			get
 			{
-				var value0 = this.instance->MaxSets;
-
-				return value0;
+				return this.instance->MaxSets;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->MaxSets = value0;
+				this.instance->MaxSets = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class DescriptorSetAllocateInfo
 		: IDisposable
 	{
-		private readonly Interop.DescriptorSetAllocateInfo* instance;
+		internal Interop.DescriptorSetAllocateInfo* instance;
 
 		internal DescriptorSetAllocateInfo(Interop.DescriptorSetAllocateInfo* instance)
 		{
@@ -4158,16 +4213,18 @@ namespace SharpVk
 
 			return result;
 		}
+
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class SpecializationMapEntry
 		: IDisposable
 	{
-		private readonly Interop.SpecializationMapEntry* instance;
+		internal Interop.SpecializationMapEntry* instance;
 
 		internal SpecializationMapEntry(Interop.SpecializationMapEntry* instance)
 		{
@@ -4185,62 +4242,49 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->ConstantID;
-
-				return value0;
+				return this.instance->ConstantID;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->ConstantID = value0;
+				this.instance->ConstantID = value;
 			}
 		}
-
 
 		public uint Offset
 		{
 			get
 			{
-				var value0 = this.instance->Offset;
-
-				return value0;
+				return this.instance->Offset;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Offset = value0;
+				this.instance->Offset = value;
 			}
 		}
-
 
 		public UIntPtr Size
 		{
 			get
 			{
-				var value0 = this.instance->Size;
-
-				return value0;
+				return this.instance->Size;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Size = value0;
+				this.instance->Size = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class SpecializationInfo
 		: IDisposable
 	{
-		private readonly Interop.SpecializationInfo* instance;
+		internal Interop.SpecializationInfo* instance;
 
 		internal SpecializationInfo(Interop.SpecializationInfo* instance)
 		{
@@ -4253,16 +4297,18 @@ namespace SharpVk
 
 			return result;
 		}
+
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class PipelineShaderStageCreateInfo
 		: IDisposable
 	{
-		private readonly Interop.PipelineShaderStageCreateInfo* instance;
+		internal Interop.PipelineShaderStageCreateInfo* instance;
 
 		internal PipelineShaderStageCreateInfo(Interop.PipelineShaderStageCreateInfo* instance)
 		{
@@ -4282,66 +4328,49 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
-
 
 		public ShaderStageFlags Stage
 		{
 			get
 			{
-				var value0 = this.instance->Stage;
-
-				return value0;
+				return this.instance->Stage;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Stage = value0;
+				this.instance->Stage = value;
 			}
 		}
-
 
 		public string Name
 		{
 			get
 			{
-				var value0 = this.instance->Name;
-
-				var value1 = Interop.HeapUtil.MarshalPointerToString(value0);
-
-				return value1;
+				return Interop.HeapUtil.MarshalPointerToString(this.instance->Name);
 			}
 			set
 			{
-				var value0 = value;
-
-				var value1 = Interop.HeapUtil.MarshalStringToPointer(value0);
-
-				this.instance->Name = value1;
+				this.instance->Name = Interop.HeapUtil.MarshalStringToPointer(value);
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class ComputePipelineCreateInfo
 		: IDisposable
 	{
-		private readonly Interop.ComputePipelineCreateInfo* instance;
+		internal Interop.ComputePipelineCreateInfo* instance;
 
 		internal ComputePipelineCreateInfo(Interop.ComputePipelineCreateInfo* instance)
 		{
@@ -4361,45 +4390,49 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
 
+		public PipelineShaderStageCreateInfo Stage
+		{
+			get
+			{
+				return new PipelineShaderStageCreateInfo(&(this.instance->Stage));
+			}
+			set
+			{
+				this.instance->Stage = *(value.instance);
+			}
+		}
 
 		public int BasePipelineIndex
 		{
 			get
 			{
-				var value0 = this.instance->BasePipelineIndex;
-
-				return value0;
+				return this.instance->BasePipelineIndex;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->BasePipelineIndex = value0;
+				this.instance->BasePipelineIndex = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class VertexInputBindingDescription
 		: IDisposable
 	{
-		private readonly Interop.VertexInputBindingDescription* instance;
+		internal Interop.VertexInputBindingDescription* instance;
 
 		internal VertexInputBindingDescription(Interop.VertexInputBindingDescription* instance)
 		{
@@ -4417,62 +4450,49 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Binding;
-
-				return value0;
+				return this.instance->Binding;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Binding = value0;
+				this.instance->Binding = value;
 			}
 		}
-
 
 		public uint Stride
 		{
 			get
 			{
-				var value0 = this.instance->Stride;
-
-				return value0;
+				return this.instance->Stride;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Stride = value0;
+				this.instance->Stride = value;
 			}
 		}
-
 
 		public VertexInputRate InputRate
 		{
 			get
 			{
-				var value0 = this.instance->InputRate;
-
-				return value0;
+				return this.instance->InputRate;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->InputRate = value0;
+				this.instance->InputRate = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class VertexInputAttributeDescription
 		: IDisposable
 	{
-		private readonly Interop.VertexInputAttributeDescription* instance;
+		internal Interop.VertexInputAttributeDescription* instance;
 
 		internal VertexInputAttributeDescription(Interop.VertexInputAttributeDescription* instance)
 		{
@@ -4490,79 +4510,61 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Location;
-
-				return value0;
+				return this.instance->Location;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Location = value0;
+				this.instance->Location = value;
 			}
 		}
-
 
 		public uint Binding
 		{
 			get
 			{
-				var value0 = this.instance->Binding;
-
-				return value0;
+				return this.instance->Binding;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Binding = value0;
+				this.instance->Binding = value;
 			}
 		}
-
 
 		public Format Format
 		{
 			get
 			{
-				var value0 = this.instance->Format;
-
-				return value0;
+				return this.instance->Format;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Format = value0;
+				this.instance->Format = value;
 			}
 		}
-
 
 		public uint Offset
 		{
 			get
 			{
-				var value0 = this.instance->Offset;
-
-				return value0;
+				return this.instance->Offset;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Offset = value0;
+				this.instance->Offset = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class PipelineVertexInputStateCreateInfo
 		: IDisposable
 	{
-		private readonly Interop.PipelineVertexInputStateCreateInfo* instance;
+		internal Interop.PipelineVertexInputStateCreateInfo* instance;
 
 		internal PipelineVertexInputStateCreateInfo(Interop.PipelineVertexInputStateCreateInfo* instance)
 		{
@@ -4582,28 +4584,25 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class PipelineInputAssemblyStateCreateInfo
 		: IDisposable
 	{
-		private readonly Interop.PipelineInputAssemblyStateCreateInfo* instance;
+		internal Interop.PipelineInputAssemblyStateCreateInfo* instance;
 
 		internal PipelineInputAssemblyStateCreateInfo(Interop.PipelineInputAssemblyStateCreateInfo* instance)
 		{
@@ -4623,62 +4622,49 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
-
 
 		public PrimitiveTopology Topology
 		{
 			get
 			{
-				var value0 = this.instance->Topology;
-
-				return value0;
+				return this.instance->Topology;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Topology = value0;
+				this.instance->Topology = value;
 			}
 		}
-
 
 		public bool PrimitiveRestartEnable
 		{
 			get
 			{
-				var value0 = this.instance->PrimitiveRestartEnable;
-
-				return value0;
+				return this.instance->PrimitiveRestartEnable;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->PrimitiveRestartEnable = value0;
+				this.instance->PrimitiveRestartEnable = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class PipelineTessellationStateCreateInfo
 		: IDisposable
 	{
-		private readonly Interop.PipelineTessellationStateCreateInfo* instance;
+		internal Interop.PipelineTessellationStateCreateInfo* instance;
 
 		internal PipelineTessellationStateCreateInfo(Interop.PipelineTessellationStateCreateInfo* instance)
 		{
@@ -4698,45 +4684,37 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
-
 
 		public uint PatchControlPoints
 		{
 			get
 			{
-				var value0 = this.instance->PatchControlPoints;
-
-				return value0;
+				return this.instance->PatchControlPoints;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->PatchControlPoints = value0;
+				this.instance->PatchControlPoints = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class PipelineViewportStateCreateInfo
 		: IDisposable
 	{
-		private readonly Interop.PipelineViewportStateCreateInfo* instance;
+		internal Interop.PipelineViewportStateCreateInfo* instance;
 
 		internal PipelineViewportStateCreateInfo(Interop.PipelineViewportStateCreateInfo* instance)
 		{
@@ -4756,28 +4734,25 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class PipelineRasterizationStateCreateInfo
 		: IDisposable
 	{
-		private readonly Interop.PipelineRasterizationStateCreateInfo* instance;
+		internal Interop.PipelineRasterizationStateCreateInfo* instance;
 
 		internal PipelineRasterizationStateCreateInfo(Interop.PipelineRasterizationStateCreateInfo* instance)
 		{
@@ -4797,198 +4772,145 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
-
 
 		public bool DepthClampEnable
 		{
 			get
 			{
-				var value0 = this.instance->DepthClampEnable;
-
-				return value0;
+				return this.instance->DepthClampEnable;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DepthClampEnable = value0;
+				this.instance->DepthClampEnable = value;
 			}
 		}
-
 
 		public bool RasterizerDiscardEnable
 		{
 			get
 			{
-				var value0 = this.instance->RasterizerDiscardEnable;
-
-				return value0;
+				return this.instance->RasterizerDiscardEnable;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->RasterizerDiscardEnable = value0;
+				this.instance->RasterizerDiscardEnable = value;
 			}
 		}
-
 
 		public PolygonMode PolygonMode
 		{
 			get
 			{
-				var value0 = this.instance->PolygonMode;
-
-				return value0;
+				return this.instance->PolygonMode;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->PolygonMode = value0;
+				this.instance->PolygonMode = value;
 			}
 		}
-
 
 		public CullModeFlags CullMode
 		{
 			get
 			{
-				var value0 = this.instance->CullMode;
-
-				return value0;
+				return this.instance->CullMode;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->CullMode = value0;
+				this.instance->CullMode = value;
 			}
 		}
-
 
 		public FrontFace FrontFace
 		{
 			get
 			{
-				var value0 = this.instance->FrontFace;
-
-				return value0;
+				return this.instance->FrontFace;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->FrontFace = value0;
+				this.instance->FrontFace = value;
 			}
 		}
-
 
 		public bool DepthBiasEnable
 		{
 			get
 			{
-				var value0 = this.instance->DepthBiasEnable;
-
-				return value0;
+				return this.instance->DepthBiasEnable;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DepthBiasEnable = value0;
+				this.instance->DepthBiasEnable = value;
 			}
 		}
-
 
 		public float DepthBiasConstantFactor
 		{
 			get
 			{
-				var value0 = this.instance->DepthBiasConstantFactor;
-
-				return value0;
+				return this.instance->DepthBiasConstantFactor;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DepthBiasConstantFactor = value0;
+				this.instance->DepthBiasConstantFactor = value;
 			}
 		}
-
 
 		public float DepthBiasClamp
 		{
 			get
 			{
-				var value0 = this.instance->DepthBiasClamp;
-
-				return value0;
+				return this.instance->DepthBiasClamp;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DepthBiasClamp = value0;
+				this.instance->DepthBiasClamp = value;
 			}
 		}
-
 
 		public float DepthBiasSlopeFactor
 		{
 			get
 			{
-				var value0 = this.instance->DepthBiasSlopeFactor;
-
-				return value0;
+				return this.instance->DepthBiasSlopeFactor;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DepthBiasSlopeFactor = value0;
+				this.instance->DepthBiasSlopeFactor = value;
 			}
 		}
-
 
 		public float LineWidth
 		{
 			get
 			{
-				var value0 = this.instance->LineWidth;
-
-				return value0;
+				return this.instance->LineWidth;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->LineWidth = value0;
+				this.instance->LineWidth = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class PipelineMultisampleStateCreateInfo
 		: IDisposable
 	{
-		private readonly Interop.PipelineMultisampleStateCreateInfo* instance;
+		internal Interop.PipelineMultisampleStateCreateInfo* instance;
 
 		internal PipelineMultisampleStateCreateInfo(Interop.PipelineMultisampleStateCreateInfo* instance)
 		{
@@ -5008,113 +4930,85 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
-
 
 		public SampleCountFlags RasterizationSamples
 		{
 			get
 			{
-				var value0 = this.instance->RasterizationSamples;
-
-				return value0;
+				return this.instance->RasterizationSamples;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->RasterizationSamples = value0;
+				this.instance->RasterizationSamples = value;
 			}
 		}
-
 
 		public bool SampleShadingEnable
 		{
 			get
 			{
-				var value0 = this.instance->SampleShadingEnable;
-
-				return value0;
+				return this.instance->SampleShadingEnable;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->SampleShadingEnable = value0;
+				this.instance->SampleShadingEnable = value;
 			}
 		}
-
 
 		public float MinSampleShading
 		{
 			get
 			{
-				var value0 = this.instance->MinSampleShading;
-
-				return value0;
+				return this.instance->MinSampleShading;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->MinSampleShading = value0;
+				this.instance->MinSampleShading = value;
 			}
 		}
-
 
 		public bool AlphaToCoverageEnable
 		{
 			get
 			{
-				var value0 = this.instance->AlphaToCoverageEnable;
-
-				return value0;
+				return this.instance->AlphaToCoverageEnable;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->AlphaToCoverageEnable = value0;
+				this.instance->AlphaToCoverageEnable = value;
 			}
 		}
-
 
 		public bool AlphaToOneEnable
 		{
 			get
 			{
-				var value0 = this.instance->AlphaToOneEnable;
-
-				return value0;
+				return this.instance->AlphaToOneEnable;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->AlphaToOneEnable = value0;
+				this.instance->AlphaToOneEnable = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class PipelineColorBlendAttachmentState
 		: IDisposable
 	{
-		private readonly Interop.PipelineColorBlendAttachmentState* instance;
+		internal Interop.PipelineColorBlendAttachmentState* instance;
 
 		internal PipelineColorBlendAttachmentState(Interop.PipelineColorBlendAttachmentState* instance)
 		{
@@ -5132,147 +5026,109 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->BlendEnable;
-
-				return value0;
+				return this.instance->BlendEnable;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->BlendEnable = value0;
+				this.instance->BlendEnable = value;
 			}
 		}
-
 
 		public BlendFactor SrcColorBlendFactor
 		{
 			get
 			{
-				var value0 = this.instance->SrcColorBlendFactor;
-
-				return value0;
+				return this.instance->SrcColorBlendFactor;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->SrcColorBlendFactor = value0;
+				this.instance->SrcColorBlendFactor = value;
 			}
 		}
-
 
 		public BlendFactor DstColorBlendFactor
 		{
 			get
 			{
-				var value0 = this.instance->DstColorBlendFactor;
-
-				return value0;
+				return this.instance->DstColorBlendFactor;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DstColorBlendFactor = value0;
+				this.instance->DstColorBlendFactor = value;
 			}
 		}
-
 
 		public BlendOp ColorBlendOp
 		{
 			get
 			{
-				var value0 = this.instance->ColorBlendOp;
-
-				return value0;
+				return this.instance->ColorBlendOp;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->ColorBlendOp = value0;
+				this.instance->ColorBlendOp = value;
 			}
 		}
-
 
 		public BlendFactor SrcAlphaBlendFactor
 		{
 			get
 			{
-				var value0 = this.instance->SrcAlphaBlendFactor;
-
-				return value0;
+				return this.instance->SrcAlphaBlendFactor;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->SrcAlphaBlendFactor = value0;
+				this.instance->SrcAlphaBlendFactor = value;
 			}
 		}
-
 
 		public BlendFactor DstAlphaBlendFactor
 		{
 			get
 			{
-				var value0 = this.instance->DstAlphaBlendFactor;
-
-				return value0;
+				return this.instance->DstAlphaBlendFactor;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DstAlphaBlendFactor = value0;
+				this.instance->DstAlphaBlendFactor = value;
 			}
 		}
-
 
 		public BlendOp AlphaBlendOp
 		{
 			get
 			{
-				var value0 = this.instance->AlphaBlendOp;
-
-				return value0;
+				return this.instance->AlphaBlendOp;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->AlphaBlendOp = value0;
+				this.instance->AlphaBlendOp = value;
 			}
 		}
-
 
 		public ColorComponentFlags ColorWriteMask
 		{
 			get
 			{
-				var value0 = this.instance->ColorWriteMask;
-
-				return value0;
+				return this.instance->ColorWriteMask;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->ColorWriteMask = value0;
+				this.instance->ColorWriteMask = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class PipelineColorBlendStateCreateInfo
 		: IDisposable
 	{
-		private readonly Interop.PipelineColorBlendStateCreateInfo* instance;
+		internal Interop.PipelineColorBlendStateCreateInfo* instance;
 
 		internal PipelineColorBlendStateCreateInfo(Interop.PipelineColorBlendStateCreateInfo* instance)
 		{
@@ -5292,79 +5148,61 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
-
 
 		public bool LogicOpEnable
 		{
 			get
 			{
-				var value0 = this.instance->LogicOpEnable;
-
-				return value0;
+				return this.instance->LogicOpEnable;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->LogicOpEnable = value0;
+				this.instance->LogicOpEnable = value;
 			}
 		}
-
 
 		public LogicOp LogicOp
 		{
 			get
 			{
-				var value0 = this.instance->LogicOp;
-
-				return value0;
+				return this.instance->LogicOp;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->LogicOp = value0;
+				this.instance->LogicOp = value;
 			}
 		}
 
-
-		public float BlendConstants
+		public float[] BlendConstants
 		{
 			get
 			{
-				var value0 = this.instance->BlendConstants;
-
-				return value0;
+				return Interop.HeapUtil.MarshalPointerToArray(this.instance->BlendConstants, 4);
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->BlendConstants = value0;
+				Interop.HeapUtil.MarshalArrayToPointer(value, 4, this.instance->BlendConstants);
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class PipelineDynamicStateCreateInfo
 		: IDisposable
 	{
-		private readonly Interop.PipelineDynamicStateCreateInfo* instance;
+		internal Interop.PipelineDynamicStateCreateInfo* instance;
 
 		internal PipelineDynamicStateCreateInfo(Interop.PipelineDynamicStateCreateInfo* instance)
 		{
@@ -5384,28 +5222,25 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class StencilOpState
 		: IDisposable
 	{
-		private readonly Interop.StencilOpState* instance;
+		internal Interop.StencilOpState* instance;
 
 		internal StencilOpState(Interop.StencilOpState* instance)
 		{
@@ -5423,130 +5258,97 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->FailOp;
-
-				return value0;
+				return this.instance->FailOp;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->FailOp = value0;
+				this.instance->FailOp = value;
 			}
 		}
-
 
 		public StencilOp PassOp
 		{
 			get
 			{
-				var value0 = this.instance->PassOp;
-
-				return value0;
+				return this.instance->PassOp;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->PassOp = value0;
+				this.instance->PassOp = value;
 			}
 		}
-
 
 		public StencilOp DepthFailOp
 		{
 			get
 			{
-				var value0 = this.instance->DepthFailOp;
-
-				return value0;
+				return this.instance->DepthFailOp;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DepthFailOp = value0;
+				this.instance->DepthFailOp = value;
 			}
 		}
-
 
 		public CompareOp CompareOp
 		{
 			get
 			{
-				var value0 = this.instance->CompareOp;
-
-				return value0;
+				return this.instance->CompareOp;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->CompareOp = value0;
+				this.instance->CompareOp = value;
 			}
 		}
-
 
 		public uint CompareMask
 		{
 			get
 			{
-				var value0 = this.instance->CompareMask;
-
-				return value0;
+				return this.instance->CompareMask;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->CompareMask = value0;
+				this.instance->CompareMask = value;
 			}
 		}
-
 
 		public uint WriteMask
 		{
 			get
 			{
-				var value0 = this.instance->WriteMask;
-
-				return value0;
+				return this.instance->WriteMask;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->WriteMask = value0;
+				this.instance->WriteMask = value;
 			}
 		}
-
 
 		public uint Reference
 		{
 			get
 			{
-				var value0 = this.instance->Reference;
-
-				return value0;
+				return this.instance->Reference;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Reference = value0;
+				this.instance->Reference = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class PipelineDepthStencilStateCreateInfo
 		: IDisposable
 	{
-		private readonly Interop.PipelineDepthStencilStateCreateInfo* instance;
+		internal Interop.PipelineDepthStencilStateCreateInfo* instance;
 
 		internal PipelineDepthStencilStateCreateInfo(Interop.PipelineDepthStencilStateCreateInfo* instance)
 		{
@@ -5566,147 +5368,133 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
-
 
 		public bool DepthTestEnable
 		{
 			get
 			{
-				var value0 = this.instance->DepthTestEnable;
-
-				return value0;
+				return this.instance->DepthTestEnable;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DepthTestEnable = value0;
+				this.instance->DepthTestEnable = value;
 			}
 		}
-
 
 		public bool DepthWriteEnable
 		{
 			get
 			{
-				var value0 = this.instance->DepthWriteEnable;
-
-				return value0;
+				return this.instance->DepthWriteEnable;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DepthWriteEnable = value0;
+				this.instance->DepthWriteEnable = value;
 			}
 		}
-
 
 		public CompareOp DepthCompareOp
 		{
 			get
 			{
-				var value0 = this.instance->DepthCompareOp;
-
-				return value0;
+				return this.instance->DepthCompareOp;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DepthCompareOp = value0;
+				this.instance->DepthCompareOp = value;
 			}
 		}
-
 
 		public bool DepthBoundsTestEnable
 		{
 			get
 			{
-				var value0 = this.instance->DepthBoundsTestEnable;
-
-				return value0;
+				return this.instance->DepthBoundsTestEnable;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DepthBoundsTestEnable = value0;
+				this.instance->DepthBoundsTestEnable = value;
 			}
 		}
-
 
 		public bool StencilTestEnable
 		{
 			get
 			{
-				var value0 = this.instance->StencilTestEnable;
-
-				return value0;
+				return this.instance->StencilTestEnable;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->StencilTestEnable = value0;
+				this.instance->StencilTestEnable = value;
 			}
 		}
 
+		public StencilOpState Front
+		{
+			get
+			{
+				return new StencilOpState(&(this.instance->Front));
+			}
+			set
+			{
+				this.instance->Front = *(value.instance);
+			}
+		}
+
+		public StencilOpState Back
+		{
+			get
+			{
+				return new StencilOpState(&(this.instance->Back));
+			}
+			set
+			{
+				this.instance->Back = *(value.instance);
+			}
+		}
 
 		public float MinDepthBounds
 		{
 			get
 			{
-				var value0 = this.instance->MinDepthBounds;
-
-				return value0;
+				return this.instance->MinDepthBounds;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->MinDepthBounds = value0;
+				this.instance->MinDepthBounds = value;
 			}
 		}
-
 
 		public float MaxDepthBounds
 		{
 			get
 			{
-				var value0 = this.instance->MaxDepthBounds;
-
-				return value0;
+				return this.instance->MaxDepthBounds;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->MaxDepthBounds = value0;
+				this.instance->MaxDepthBounds = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class GraphicsPipelineCreateInfo
 		: IDisposable
 	{
-		private readonly Interop.GraphicsPipelineCreateInfo* instance;
+		internal Interop.GraphicsPipelineCreateInfo* instance;
 
 		internal GraphicsPipelineCreateInfo(Interop.GraphicsPipelineCreateInfo* instance)
 		{
@@ -5726,62 +5514,49 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
-
 
 		public uint Subpass
 		{
 			get
 			{
-				var value0 = this.instance->Subpass;
-
-				return value0;
+				return this.instance->Subpass;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Subpass = value0;
+				this.instance->Subpass = value;
 			}
 		}
-
 
 		public int BasePipelineIndex
 		{
 			get
 			{
-				var value0 = this.instance->BasePipelineIndex;
-
-				return value0;
+				return this.instance->BasePipelineIndex;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->BasePipelineIndex = value0;
+				this.instance->BasePipelineIndex = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class PipelineCacheCreateInfo
 		: IDisposable
 	{
-		private readonly Interop.PipelineCacheCreateInfo* instance;
+		internal Interop.PipelineCacheCreateInfo* instance;
 
 		internal PipelineCacheCreateInfo(Interop.PipelineCacheCreateInfo* instance)
 		{
@@ -5801,28 +5576,25 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class PushConstantRange
 		: IDisposable
 	{
-		private readonly Interop.PushConstantRange* instance;
+		internal Interop.PushConstantRange* instance;
 
 		internal PushConstantRange(Interop.PushConstantRange* instance)
 		{
@@ -5840,62 +5612,49 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->StageFlags;
-
-				return value0;
+				return this.instance->StageFlags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->StageFlags = value0;
+				this.instance->StageFlags = value;
 			}
 		}
-
 
 		public uint Offset
 		{
 			get
 			{
-				var value0 = this.instance->Offset;
-
-				return value0;
+				return this.instance->Offset;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Offset = value0;
+				this.instance->Offset = value;
 			}
 		}
-
 
 		public uint Size
 		{
 			get
 			{
-				var value0 = this.instance->Size;
-
-				return value0;
+				return this.instance->Size;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Size = value0;
+				this.instance->Size = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class PipelineLayoutCreateInfo
 		: IDisposable
 	{
-		private readonly Interop.PipelineLayoutCreateInfo* instance;
+		internal Interop.PipelineLayoutCreateInfo* instance;
 
 		internal PipelineLayoutCreateInfo(Interop.PipelineLayoutCreateInfo* instance)
 		{
@@ -5915,28 +5674,25 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class SamplerCreateInfo
 		: IDisposable
 	{
-		private readonly Interop.SamplerCreateInfo* instance;
+		internal Interop.SamplerCreateInfo* instance;
 
 		internal SamplerCreateInfo(Interop.SamplerCreateInfo* instance)
 		{
@@ -5956,283 +5712,205 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
-
 
 		public Filter MagFilter
 		{
 			get
 			{
-				var value0 = this.instance->MagFilter;
-
-				return value0;
+				return this.instance->MagFilter;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->MagFilter = value0;
+				this.instance->MagFilter = value;
 			}
 		}
-
 
 		public Filter MinFilter
 		{
 			get
 			{
-				var value0 = this.instance->MinFilter;
-
-				return value0;
+				return this.instance->MinFilter;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->MinFilter = value0;
+				this.instance->MinFilter = value;
 			}
 		}
-
 
 		public SamplerMipmapMode MipmapMode
 		{
 			get
 			{
-				var value0 = this.instance->MipmapMode;
-
-				return value0;
+				return this.instance->MipmapMode;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->MipmapMode = value0;
+				this.instance->MipmapMode = value;
 			}
 		}
-
 
 		public SamplerAddressMode AddressModeU
 		{
 			get
 			{
-				var value0 = this.instance->AddressModeU;
-
-				return value0;
+				return this.instance->AddressModeU;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->AddressModeU = value0;
+				this.instance->AddressModeU = value;
 			}
 		}
-
 
 		public SamplerAddressMode AddressModeV
 		{
 			get
 			{
-				var value0 = this.instance->AddressModeV;
-
-				return value0;
+				return this.instance->AddressModeV;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->AddressModeV = value0;
+				this.instance->AddressModeV = value;
 			}
 		}
-
 
 		public SamplerAddressMode AddressModeW
 		{
 			get
 			{
-				var value0 = this.instance->AddressModeW;
-
-				return value0;
+				return this.instance->AddressModeW;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->AddressModeW = value0;
+				this.instance->AddressModeW = value;
 			}
 		}
-
 
 		public float MipLodBias
 		{
 			get
 			{
-				var value0 = this.instance->MipLodBias;
-
-				return value0;
+				return this.instance->MipLodBias;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->MipLodBias = value0;
+				this.instance->MipLodBias = value;
 			}
 		}
-
 
 		public bool AnisotropyEnable
 		{
 			get
 			{
-				var value0 = this.instance->AnisotropyEnable;
-
-				return value0;
+				return this.instance->AnisotropyEnable;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->AnisotropyEnable = value0;
+				this.instance->AnisotropyEnable = value;
 			}
 		}
-
 
 		public float MaxAnisotropy
 		{
 			get
 			{
-				var value0 = this.instance->MaxAnisotropy;
-
-				return value0;
+				return this.instance->MaxAnisotropy;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->MaxAnisotropy = value0;
+				this.instance->MaxAnisotropy = value;
 			}
 		}
-
 
 		public bool CompareEnable
 		{
 			get
 			{
-				var value0 = this.instance->CompareEnable;
-
-				return value0;
+				return this.instance->CompareEnable;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->CompareEnable = value0;
+				this.instance->CompareEnable = value;
 			}
 		}
-
 
 		public CompareOp CompareOp
 		{
 			get
 			{
-				var value0 = this.instance->CompareOp;
-
-				return value0;
+				return this.instance->CompareOp;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->CompareOp = value0;
+				this.instance->CompareOp = value;
 			}
 		}
-
 
 		public float MinLod
 		{
 			get
 			{
-				var value0 = this.instance->MinLod;
-
-				return value0;
+				return this.instance->MinLod;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->MinLod = value0;
+				this.instance->MinLod = value;
 			}
 		}
-
 
 		public float MaxLod
 		{
 			get
 			{
-				var value0 = this.instance->MaxLod;
-
-				return value0;
+				return this.instance->MaxLod;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->MaxLod = value0;
+				this.instance->MaxLod = value;
 			}
 		}
-
 
 		public BorderColor BorderColor
 		{
 			get
 			{
-				var value0 = this.instance->BorderColor;
-
-				return value0;
+				return this.instance->BorderColor;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->BorderColor = value0;
+				this.instance->BorderColor = value;
 			}
 		}
-
 
 		public bool UnnormalizedCoordinates
 		{
 			get
 			{
-				var value0 = this.instance->UnnormalizedCoordinates;
-
-				return value0;
+				return this.instance->UnnormalizedCoordinates;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->UnnormalizedCoordinates = value0;
+				this.instance->UnnormalizedCoordinates = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class CommandPoolCreateInfo
 		: IDisposable
 	{
-		private readonly Interop.CommandPoolCreateInfo* instance;
+		internal Interop.CommandPoolCreateInfo* instance;
 
 		internal CommandPoolCreateInfo(Interop.CommandPoolCreateInfo* instance)
 		{
@@ -6252,45 +5930,37 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
-
 
 		public uint QueueFamilyIndex
 		{
 			get
 			{
-				var value0 = this.instance->QueueFamilyIndex;
-
-				return value0;
+				return this.instance->QueueFamilyIndex;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->QueueFamilyIndex = value0;
+				this.instance->QueueFamilyIndex = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class CommandBufferAllocateInfo
 		: IDisposable
 	{
-		private readonly Interop.CommandBufferAllocateInfo* instance;
+		internal Interop.CommandBufferAllocateInfo* instance;
 
 		internal CommandBufferAllocateInfo(Interop.CommandBufferAllocateInfo* instance)
 		{
@@ -6310,45 +5980,37 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Level;
-
-				return value0;
+				return this.instance->Level;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Level = value0;
+				this.instance->Level = value;
 			}
 		}
-
 
 		public uint CommandBufferCount
 		{
 			get
 			{
-				var value0 = this.instance->CommandBufferCount;
-
-				return value0;
+				return this.instance->CommandBufferCount;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->CommandBufferCount = value0;
+				this.instance->CommandBufferCount = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class CommandBufferInheritanceInfo
 		: IDisposable
 	{
-		private readonly Interop.CommandBufferInheritanceInfo* instance;
+		internal Interop.CommandBufferInheritanceInfo* instance;
 
 		internal CommandBufferInheritanceInfo(Interop.CommandBufferInheritanceInfo* instance)
 		{
@@ -6368,79 +6030,61 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Subpass;
-
-				return value0;
+				return this.instance->Subpass;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Subpass = value0;
+				this.instance->Subpass = value;
 			}
 		}
-
 
 		public bool OcclusionQueryEnable
 		{
 			get
 			{
-				var value0 = this.instance->OcclusionQueryEnable;
-
-				return value0;
+				return this.instance->OcclusionQueryEnable;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->OcclusionQueryEnable = value0;
+				this.instance->OcclusionQueryEnable = value;
 			}
 		}
-
 
 		public QueryControlFlags QueryFlags
 		{
 			get
 			{
-				var value0 = this.instance->QueryFlags;
-
-				return value0;
+				return this.instance->QueryFlags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->QueryFlags = value0;
+				this.instance->QueryFlags = value;
 			}
 		}
-
 
 		public QueryPipelineStatisticFlags PipelineStatistics
 		{
 			get
 			{
-				var value0 = this.instance->PipelineStatistics;
-
-				return value0;
+				return this.instance->PipelineStatistics;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->PipelineStatistics = value0;
+				this.instance->PipelineStatistics = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class CommandBufferBeginInfo
 		: IDisposable
 	{
-		private readonly Interop.CommandBufferBeginInfo* instance;
+		internal Interop.CommandBufferBeginInfo* instance;
 
 		internal CommandBufferBeginInfo(Interop.CommandBufferBeginInfo* instance)
 		{
@@ -6460,28 +6104,25 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class RenderPassBeginInfo
 		: IDisposable
 	{
-		private readonly Interop.RenderPassBeginInfo* instance;
+		internal Interop.RenderPassBeginInfo* instance;
 
 		internal RenderPassBeginInfo(Interop.RenderPassBeginInfo* instance)
 		{
@@ -6496,16 +6137,30 @@ namespace SharpVk
 
 			return result;
 		}
+
+		public Rect2D RenderArea
+		{
+			get
+			{
+				return new Rect2D(&(this.instance->RenderArea));
+			}
+			set
+			{
+				this.instance->RenderArea = *(value.instance);
+			}
+		}
+
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class ClearDepthStencilValue
 		: IDisposable
 	{
-		private readonly Interop.ClearDepthStencilValue* instance;
+		internal Interop.ClearDepthStencilValue* instance;
 
 		internal ClearDepthStencilValue(Interop.ClearDepthStencilValue* instance)
 		{
@@ -6523,45 +6178,37 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Depth;
-
-				return value0;
+				return this.instance->Depth;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Depth = value0;
+				this.instance->Depth = value;
 			}
 		}
-
 
 		public uint Stencil
 		{
 			get
 			{
-				var value0 = this.instance->Stencil;
-
-				return value0;
+				return this.instance->Stencil;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Stencil = value0;
+				this.instance->Stencil = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class ClearAttachment
 		: IDisposable
 	{
-		private readonly Interop.ClearAttachment* instance;
+		internal Interop.ClearAttachment* instance;
 
 		internal ClearAttachment(Interop.ClearAttachment* instance)
 		{
@@ -6579,62 +6226,49 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->AspectMask;
-
-				return value0;
+				return this.instance->AspectMask;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->AspectMask = value0;
+				this.instance->AspectMask = value;
 			}
 		}
-
 
 		public uint ColorAttachment
 		{
 			get
 			{
-				var value0 = this.instance->ColorAttachment;
-
-				return value0;
+				return this.instance->ColorAttachment;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->ColorAttachment = value0;
+				this.instance->ColorAttachment = value;
 			}
 		}
-
 
 		public ClearValue ClearValue
 		{
 			get
 			{
-				var value0 = this.instance->ClearValue;
-
-				return value0;
+				return this.instance->ClearValue;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->ClearValue = value0;
+				this.instance->ClearValue = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class AttachmentDescription
 		: IDisposable
 	{
-		private readonly Interop.AttachmentDescription* instance;
+		internal Interop.AttachmentDescription* instance;
 
 		internal AttachmentDescription(Interop.AttachmentDescription* instance)
 		{
@@ -6652,164 +6286,121 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
-
 
 		public Format Format
 		{
 			get
 			{
-				var value0 = this.instance->Format;
-
-				return value0;
+				return this.instance->Format;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Format = value0;
+				this.instance->Format = value;
 			}
 		}
-
 
 		public SampleCountFlags Samples
 		{
 			get
 			{
-				var value0 = this.instance->Samples;
-
-				return value0;
+				return this.instance->Samples;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Samples = value0;
+				this.instance->Samples = value;
 			}
 		}
-
 
 		public AttachmentLoadOp LoadOp
 		{
 			get
 			{
-				var value0 = this.instance->LoadOp;
-
-				return value0;
+				return this.instance->LoadOp;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->LoadOp = value0;
+				this.instance->LoadOp = value;
 			}
 		}
-
 
 		public AttachmentStoreOp StoreOp
 		{
 			get
 			{
-				var value0 = this.instance->StoreOp;
-
-				return value0;
+				return this.instance->StoreOp;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->StoreOp = value0;
+				this.instance->StoreOp = value;
 			}
 		}
-
 
 		public AttachmentLoadOp StencilLoadOp
 		{
 			get
 			{
-				var value0 = this.instance->StencilLoadOp;
-
-				return value0;
+				return this.instance->StencilLoadOp;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->StencilLoadOp = value0;
+				this.instance->StencilLoadOp = value;
 			}
 		}
-
 
 		public AttachmentStoreOp StencilStoreOp
 		{
 			get
 			{
-				var value0 = this.instance->StencilStoreOp;
-
-				return value0;
+				return this.instance->StencilStoreOp;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->StencilStoreOp = value0;
+				this.instance->StencilStoreOp = value;
 			}
 		}
-
 
 		public ImageLayout InitialLayout
 		{
 			get
 			{
-				var value0 = this.instance->InitialLayout;
-
-				return value0;
+				return this.instance->InitialLayout;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->InitialLayout = value0;
+				this.instance->InitialLayout = value;
 			}
 		}
-
 
 		public ImageLayout FinalLayout
 		{
 			get
 			{
-				var value0 = this.instance->FinalLayout;
-
-				return value0;
+				return this.instance->FinalLayout;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->FinalLayout = value0;
+				this.instance->FinalLayout = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class AttachmentReference
 		: IDisposable
 	{
-		private readonly Interop.AttachmentReference* instance;
+		internal Interop.AttachmentReference* instance;
 
 		internal AttachmentReference(Interop.AttachmentReference* instance)
 		{
@@ -6827,45 +6418,37 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Attachment;
-
-				return value0;
+				return this.instance->Attachment;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Attachment = value0;
+				this.instance->Attachment = value;
 			}
 		}
-
 
 		public ImageLayout Layout
 		{
 			get
 			{
-				var value0 = this.instance->Layout;
-
-				return value0;
+				return this.instance->Layout;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Layout = value0;
+				this.instance->Layout = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class SubpassDescription
 		: IDisposable
 	{
-		private readonly Interop.SubpassDescription* instance;
+		internal Interop.SubpassDescription* instance;
 
 		internal SubpassDescription(Interop.SubpassDescription* instance)
 		{
@@ -6883,45 +6466,37 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
-
 
 		public PipelineBindPoint PipelineBindPoint
 		{
 			get
 			{
-				var value0 = this.instance->PipelineBindPoint;
-
-				return value0;
+				return this.instance->PipelineBindPoint;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->PipelineBindPoint = value0;
+				this.instance->PipelineBindPoint = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class SubpassDependency
 		: IDisposable
 	{
-		private readonly Interop.SubpassDependency* instance;
+		internal Interop.SubpassDependency* instance;
 
 		internal SubpassDependency(Interop.SubpassDependency* instance)
 		{
@@ -6939,130 +6514,97 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->SrcSubpass;
-
-				return value0;
+				return this.instance->SrcSubpass;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->SrcSubpass = value0;
+				this.instance->SrcSubpass = value;
 			}
 		}
-
 
 		public uint DstSubpass
 		{
 			get
 			{
-				var value0 = this.instance->DstSubpass;
-
-				return value0;
+				return this.instance->DstSubpass;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DstSubpass = value0;
+				this.instance->DstSubpass = value;
 			}
 		}
-
 
 		public PipelineStageFlags SrcStageMask
 		{
 			get
 			{
-				var value0 = this.instance->SrcStageMask;
-
-				return value0;
+				return this.instance->SrcStageMask;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->SrcStageMask = value0;
+				this.instance->SrcStageMask = value;
 			}
 		}
-
 
 		public PipelineStageFlags DstStageMask
 		{
 			get
 			{
-				var value0 = this.instance->DstStageMask;
-
-				return value0;
+				return this.instance->DstStageMask;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DstStageMask = value0;
+				this.instance->DstStageMask = value;
 			}
 		}
-
 
 		public AccessFlags SrcAccessMask
 		{
 			get
 			{
-				var value0 = this.instance->SrcAccessMask;
-
-				return value0;
+				return this.instance->SrcAccessMask;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->SrcAccessMask = value0;
+				this.instance->SrcAccessMask = value;
 			}
 		}
-
 
 		public AccessFlags DstAccessMask
 		{
 			get
 			{
-				var value0 = this.instance->DstAccessMask;
-
-				return value0;
+				return this.instance->DstAccessMask;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DstAccessMask = value0;
+				this.instance->DstAccessMask = value;
 			}
 		}
-
 
 		public DependencyFlags DependencyFlags
 		{
 			get
 			{
-				var value0 = this.instance->DependencyFlags;
-
-				return value0;
+				return this.instance->DependencyFlags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DependencyFlags = value0;
+				this.instance->DependencyFlags = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class RenderPassCreateInfo
 		: IDisposable
 	{
-		private readonly Interop.RenderPassCreateInfo* instance;
+		internal Interop.RenderPassCreateInfo* instance;
 
 		internal RenderPassCreateInfo(Interop.RenderPassCreateInfo* instance)
 		{
@@ -7082,28 +6624,25 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class EventCreateInfo
 		: IDisposable
 	{
-		private readonly Interop.EventCreateInfo* instance;
+		internal Interop.EventCreateInfo* instance;
 
 		internal EventCreateInfo(Interop.EventCreateInfo* instance)
 		{
@@ -7123,28 +6662,25 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class FenceCreateInfo
 		: IDisposable
 	{
-		private readonly Interop.FenceCreateInfo* instance;
+		internal Interop.FenceCreateInfo* instance;
 
 		internal FenceCreateInfo(Interop.FenceCreateInfo* instance)
 		{
@@ -7164,28 +6700,25 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class PhysicalDeviceFeatures
 		: IDisposable
 	{
-		private readonly Interop.PhysicalDeviceFeatures* instance;
+		internal Interop.PhysicalDeviceFeatures* instance;
 
 		internal PhysicalDeviceFeatures(Interop.PhysicalDeviceFeatures* instance)
 		{
@@ -7203,946 +6736,673 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->RobustBufferAccess;
-
-				return value0;
+				return this.instance->RobustBufferAccess;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->RobustBufferAccess = value0;
+				this.instance->RobustBufferAccess = value;
 			}
 		}
-
 
 		public bool FullDrawIndexUint32
 		{
 			get
 			{
-				var value0 = this.instance->FullDrawIndexUint32;
-
-				return value0;
+				return this.instance->FullDrawIndexUint32;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->FullDrawIndexUint32 = value0;
+				this.instance->FullDrawIndexUint32 = value;
 			}
 		}
-
 
 		public bool ImageCubeArray
 		{
 			get
 			{
-				var value0 = this.instance->ImageCubeArray;
-
-				return value0;
+				return this.instance->ImageCubeArray;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->ImageCubeArray = value0;
+				this.instance->ImageCubeArray = value;
 			}
 		}
-
 
 		public bool IndependentBlend
 		{
 			get
 			{
-				var value0 = this.instance->IndependentBlend;
-
-				return value0;
+				return this.instance->IndependentBlend;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->IndependentBlend = value0;
+				this.instance->IndependentBlend = value;
 			}
 		}
-
 
 		public bool GeometryShader
 		{
 			get
 			{
-				var value0 = this.instance->GeometryShader;
-
-				return value0;
+				return this.instance->GeometryShader;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->GeometryShader = value0;
+				this.instance->GeometryShader = value;
 			}
 		}
-
 
 		public bool TessellationShader
 		{
 			get
 			{
-				var value0 = this.instance->TessellationShader;
-
-				return value0;
+				return this.instance->TessellationShader;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->TessellationShader = value0;
+				this.instance->TessellationShader = value;
 			}
 		}
-
 
 		public bool SampleRateShading
 		{
 			get
 			{
-				var value0 = this.instance->SampleRateShading;
-
-				return value0;
+				return this.instance->SampleRateShading;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->SampleRateShading = value0;
+				this.instance->SampleRateShading = value;
 			}
 		}
-
 
 		public bool DualSrcBlend
 		{
 			get
 			{
-				var value0 = this.instance->DualSrcBlend;
-
-				return value0;
+				return this.instance->DualSrcBlend;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DualSrcBlend = value0;
+				this.instance->DualSrcBlend = value;
 			}
 		}
-
 
 		public bool LogicOp
 		{
 			get
 			{
-				var value0 = this.instance->LogicOp;
-
-				return value0;
+				return this.instance->LogicOp;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->LogicOp = value0;
+				this.instance->LogicOp = value;
 			}
 		}
-
 
 		public bool MultiDrawIndirect
 		{
 			get
 			{
-				var value0 = this.instance->MultiDrawIndirect;
-
-				return value0;
+				return this.instance->MultiDrawIndirect;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->MultiDrawIndirect = value0;
+				this.instance->MultiDrawIndirect = value;
 			}
 		}
-
 
 		public bool DrawIndirectFirstInstance
 		{
 			get
 			{
-				var value0 = this.instance->DrawIndirectFirstInstance;
-
-				return value0;
+				return this.instance->DrawIndirectFirstInstance;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DrawIndirectFirstInstance = value0;
+				this.instance->DrawIndirectFirstInstance = value;
 			}
 		}
-
 
 		public bool DepthClamp
 		{
 			get
 			{
-				var value0 = this.instance->DepthClamp;
-
-				return value0;
+				return this.instance->DepthClamp;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DepthClamp = value0;
+				this.instance->DepthClamp = value;
 			}
 		}
-
 
 		public bool DepthBiasClamp
 		{
 			get
 			{
-				var value0 = this.instance->DepthBiasClamp;
-
-				return value0;
+				return this.instance->DepthBiasClamp;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DepthBiasClamp = value0;
+				this.instance->DepthBiasClamp = value;
 			}
 		}
-
 
 		public bool FillModeNonSolid
 		{
 			get
 			{
-				var value0 = this.instance->FillModeNonSolid;
-
-				return value0;
+				return this.instance->FillModeNonSolid;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->FillModeNonSolid = value0;
+				this.instance->FillModeNonSolid = value;
 			}
 		}
-
 
 		public bool DepthBounds
 		{
 			get
 			{
-				var value0 = this.instance->DepthBounds;
-
-				return value0;
+				return this.instance->DepthBounds;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->DepthBounds = value0;
+				this.instance->DepthBounds = value;
 			}
 		}
-
 
 		public bool WideLines
 		{
 			get
 			{
-				var value0 = this.instance->WideLines;
-
-				return value0;
+				return this.instance->WideLines;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->WideLines = value0;
+				this.instance->WideLines = value;
 			}
 		}
-
 
 		public bool LargePoints
 		{
 			get
 			{
-				var value0 = this.instance->LargePoints;
-
-				return value0;
+				return this.instance->LargePoints;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->LargePoints = value0;
+				this.instance->LargePoints = value;
 			}
 		}
-
 
 		public bool AlphaToOne
 		{
 			get
 			{
-				var value0 = this.instance->AlphaToOne;
-
-				return value0;
+				return this.instance->AlphaToOne;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->AlphaToOne = value0;
+				this.instance->AlphaToOne = value;
 			}
 		}
-
 
 		public bool MultiViewport
 		{
 			get
 			{
-				var value0 = this.instance->MultiViewport;
-
-				return value0;
+				return this.instance->MultiViewport;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->MultiViewport = value0;
+				this.instance->MultiViewport = value;
 			}
 		}
-
 
 		public bool SamplerAnisotropy
 		{
 			get
 			{
-				var value0 = this.instance->SamplerAnisotropy;
-
-				return value0;
+				return this.instance->SamplerAnisotropy;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->SamplerAnisotropy = value0;
+				this.instance->SamplerAnisotropy = value;
 			}
 		}
-
 
 		public bool TextureCompressionETC2
 		{
 			get
 			{
-				var value0 = this.instance->TextureCompressionETC2;
-
-				return value0;
+				return this.instance->TextureCompressionETC2;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->TextureCompressionETC2 = value0;
+				this.instance->TextureCompressionETC2 = value;
 			}
 		}
-
 
 		public bool TextureCompressionASTC_LDR
 		{
 			get
 			{
-				var value0 = this.instance->TextureCompressionASTC_LDR;
-
-				return value0;
+				return this.instance->TextureCompressionASTC_LDR;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->TextureCompressionASTC_LDR = value0;
+				this.instance->TextureCompressionASTC_LDR = value;
 			}
 		}
-
 
 		public bool TextureCompressionBC
 		{
 			get
 			{
-				var value0 = this.instance->TextureCompressionBC;
-
-				return value0;
+				return this.instance->TextureCompressionBC;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->TextureCompressionBC = value0;
+				this.instance->TextureCompressionBC = value;
 			}
 		}
-
 
 		public bool OcclusionQueryPrecise
 		{
 			get
 			{
-				var value0 = this.instance->OcclusionQueryPrecise;
-
-				return value0;
+				return this.instance->OcclusionQueryPrecise;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->OcclusionQueryPrecise = value0;
+				this.instance->OcclusionQueryPrecise = value;
 			}
 		}
-
 
 		public bool PipelineStatisticsQuery
 		{
 			get
 			{
-				var value0 = this.instance->PipelineStatisticsQuery;
-
-				return value0;
+				return this.instance->PipelineStatisticsQuery;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->PipelineStatisticsQuery = value0;
+				this.instance->PipelineStatisticsQuery = value;
 			}
 		}
-
 
 		public bool VertexPipelineStoresAndAtomics
 		{
 			get
 			{
-				var value0 = this.instance->VertexPipelineStoresAndAtomics;
-
-				return value0;
+				return this.instance->VertexPipelineStoresAndAtomics;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->VertexPipelineStoresAndAtomics = value0;
+				this.instance->VertexPipelineStoresAndAtomics = value;
 			}
 		}
-
 
 		public bool FragmentStoresAndAtomics
 		{
 			get
 			{
-				var value0 = this.instance->FragmentStoresAndAtomics;
-
-				return value0;
+				return this.instance->FragmentStoresAndAtomics;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->FragmentStoresAndAtomics = value0;
+				this.instance->FragmentStoresAndAtomics = value;
 			}
 		}
-
 
 		public bool ShaderTessellationAndGeometryPointSize
 		{
 			get
 			{
-				var value0 = this.instance->ShaderTessellationAndGeometryPointSize;
-
-				return value0;
+				return this.instance->ShaderTessellationAndGeometryPointSize;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->ShaderTessellationAndGeometryPointSize = value0;
+				this.instance->ShaderTessellationAndGeometryPointSize = value;
 			}
 		}
-
 
 		public bool ShaderImageGatherExtended
 		{
 			get
 			{
-				var value0 = this.instance->ShaderImageGatherExtended;
-
-				return value0;
+				return this.instance->ShaderImageGatherExtended;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->ShaderImageGatherExtended = value0;
+				this.instance->ShaderImageGatherExtended = value;
 			}
 		}
-
 
 		public bool ShaderStorageImageExtendedFormats
 		{
 			get
 			{
-				var value0 = this.instance->ShaderStorageImageExtendedFormats;
-
-				return value0;
+				return this.instance->ShaderStorageImageExtendedFormats;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->ShaderStorageImageExtendedFormats = value0;
+				this.instance->ShaderStorageImageExtendedFormats = value;
 			}
 		}
-
 
 		public bool ShaderStorageImageMultisample
 		{
 			get
 			{
-				var value0 = this.instance->ShaderStorageImageMultisample;
-
-				return value0;
+				return this.instance->ShaderStorageImageMultisample;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->ShaderStorageImageMultisample = value0;
+				this.instance->ShaderStorageImageMultisample = value;
 			}
 		}
-
 
 		public bool ShaderStorageImageReadWithoutFormat
 		{
 			get
 			{
-				var value0 = this.instance->ShaderStorageImageReadWithoutFormat;
-
-				return value0;
+				return this.instance->ShaderStorageImageReadWithoutFormat;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->ShaderStorageImageReadWithoutFormat = value0;
+				this.instance->ShaderStorageImageReadWithoutFormat = value;
 			}
 		}
-
 
 		public bool ShaderStorageImageWriteWithoutFormat
 		{
 			get
 			{
-				var value0 = this.instance->ShaderStorageImageWriteWithoutFormat;
-
-				return value0;
+				return this.instance->ShaderStorageImageWriteWithoutFormat;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->ShaderStorageImageWriteWithoutFormat = value0;
+				this.instance->ShaderStorageImageWriteWithoutFormat = value;
 			}
 		}
-
 
 		public bool ShaderUniformBufferArrayDynamicIndexing
 		{
 			get
 			{
-				var value0 = this.instance->ShaderUniformBufferArrayDynamicIndexing;
-
-				return value0;
+				return this.instance->ShaderUniformBufferArrayDynamicIndexing;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->ShaderUniformBufferArrayDynamicIndexing = value0;
+				this.instance->ShaderUniformBufferArrayDynamicIndexing = value;
 			}
 		}
-
 
 		public bool ShaderSampledImageArrayDynamicIndexing
 		{
 			get
 			{
-				var value0 = this.instance->ShaderSampledImageArrayDynamicIndexing;
-
-				return value0;
+				return this.instance->ShaderSampledImageArrayDynamicIndexing;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->ShaderSampledImageArrayDynamicIndexing = value0;
+				this.instance->ShaderSampledImageArrayDynamicIndexing = value;
 			}
 		}
-
 
 		public bool ShaderStorageBufferArrayDynamicIndexing
 		{
 			get
 			{
-				var value0 = this.instance->ShaderStorageBufferArrayDynamicIndexing;
-
-				return value0;
+				return this.instance->ShaderStorageBufferArrayDynamicIndexing;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->ShaderStorageBufferArrayDynamicIndexing = value0;
+				this.instance->ShaderStorageBufferArrayDynamicIndexing = value;
 			}
 		}
-
 
 		public bool ShaderStorageImageArrayDynamicIndexing
 		{
 			get
 			{
-				var value0 = this.instance->ShaderStorageImageArrayDynamicIndexing;
-
-				return value0;
+				return this.instance->ShaderStorageImageArrayDynamicIndexing;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->ShaderStorageImageArrayDynamicIndexing = value0;
+				this.instance->ShaderStorageImageArrayDynamicIndexing = value;
 			}
 		}
-
 
 		public bool ShaderClipDistance
 		{
 			get
 			{
-				var value0 = this.instance->ShaderClipDistance;
-
-				return value0;
+				return this.instance->ShaderClipDistance;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->ShaderClipDistance = value0;
+				this.instance->ShaderClipDistance = value;
 			}
 		}
-
 
 		public bool ShaderCullDistance
 		{
 			get
 			{
-				var value0 = this.instance->ShaderCullDistance;
-
-				return value0;
+				return this.instance->ShaderCullDistance;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->ShaderCullDistance = value0;
+				this.instance->ShaderCullDistance = value;
 			}
 		}
-
 
 		public bool ShaderFloat64
 		{
 			get
 			{
-				var value0 = this.instance->ShaderFloat64;
-
-				return value0;
+				return this.instance->ShaderFloat64;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->ShaderFloat64 = value0;
+				this.instance->ShaderFloat64 = value;
 			}
 		}
-
 
 		public bool ShaderInt64
 		{
 			get
 			{
-				var value0 = this.instance->ShaderInt64;
-
-				return value0;
+				return this.instance->ShaderInt64;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->ShaderInt64 = value0;
+				this.instance->ShaderInt64 = value;
 			}
 		}
-
 
 		public bool ShaderInt16
 		{
 			get
 			{
-				var value0 = this.instance->ShaderInt16;
-
-				return value0;
+				return this.instance->ShaderInt16;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->ShaderInt16 = value0;
+				this.instance->ShaderInt16 = value;
 			}
 		}
-
 
 		public bool ShaderResourceResidency
 		{
 			get
 			{
-				var value0 = this.instance->ShaderResourceResidency;
-
-				return value0;
+				return this.instance->ShaderResourceResidency;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->ShaderResourceResidency = value0;
+				this.instance->ShaderResourceResidency = value;
 			}
 		}
-
 
 		public bool ShaderResourceMinLod
 		{
 			get
 			{
-				var value0 = this.instance->ShaderResourceMinLod;
-
-				return value0;
+				return this.instance->ShaderResourceMinLod;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->ShaderResourceMinLod = value0;
+				this.instance->ShaderResourceMinLod = value;
 			}
 		}
-
 
 		public bool SparseBinding
 		{
 			get
 			{
-				var value0 = this.instance->SparseBinding;
-
-				return value0;
+				return this.instance->SparseBinding;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->SparseBinding = value0;
+				this.instance->SparseBinding = value;
 			}
 		}
-
 
 		public bool SparseResidencyBuffer
 		{
 			get
 			{
-				var value0 = this.instance->SparseResidencyBuffer;
-
-				return value0;
+				return this.instance->SparseResidencyBuffer;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->SparseResidencyBuffer = value0;
+				this.instance->SparseResidencyBuffer = value;
 			}
 		}
-
 
 		public bool SparseResidencyImage2D
 		{
 			get
 			{
-				var value0 = this.instance->SparseResidencyImage2D;
-
-				return value0;
+				return this.instance->SparseResidencyImage2D;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->SparseResidencyImage2D = value0;
+				this.instance->SparseResidencyImage2D = value;
 			}
 		}
-
 
 		public bool SparseResidencyImage3D
 		{
 			get
 			{
-				var value0 = this.instance->SparseResidencyImage3D;
-
-				return value0;
+				return this.instance->SparseResidencyImage3D;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->SparseResidencyImage3D = value0;
+				this.instance->SparseResidencyImage3D = value;
 			}
 		}
-
 
 		public bool SparseResidency2Samples
 		{
 			get
 			{
-				var value0 = this.instance->SparseResidency2Samples;
-
-				return value0;
+				return this.instance->SparseResidency2Samples;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->SparseResidency2Samples = value0;
+				this.instance->SparseResidency2Samples = value;
 			}
 		}
-
 
 		public bool SparseResidency4Samples
 		{
 			get
 			{
-				var value0 = this.instance->SparseResidency4Samples;
-
-				return value0;
+				return this.instance->SparseResidency4Samples;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->SparseResidency4Samples = value0;
+				this.instance->SparseResidency4Samples = value;
 			}
 		}
-
 
 		public bool SparseResidency8Samples
 		{
 			get
 			{
-				var value0 = this.instance->SparseResidency8Samples;
-
-				return value0;
+				return this.instance->SparseResidency8Samples;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->SparseResidency8Samples = value0;
+				this.instance->SparseResidency8Samples = value;
 			}
 		}
-
 
 		public bool SparseResidency16Samples
 		{
 			get
 			{
-				var value0 = this.instance->SparseResidency16Samples;
-
-				return value0;
+				return this.instance->SparseResidency16Samples;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->SparseResidency16Samples = value0;
+				this.instance->SparseResidency16Samples = value;
 			}
 		}
-
 
 		public bool SparseResidencyAliased
 		{
 			get
 			{
-				var value0 = this.instance->SparseResidencyAliased;
-
-				return value0;
+				return this.instance->SparseResidencyAliased;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->SparseResidencyAliased = value0;
+				this.instance->SparseResidencyAliased = value;
 			}
 		}
-
 
 		public bool VariableMultisampleRate
 		{
 			get
 			{
-				var value0 = this.instance->VariableMultisampleRate;
-
-				return value0;
+				return this.instance->VariableMultisampleRate;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->VariableMultisampleRate = value0;
+				this.instance->VariableMultisampleRate = value;
 			}
 		}
-
 
 		public bool InheritedQueries
 		{
 			get
 			{
-				var value0 = this.instance->InheritedQueries;
-
-				return value0;
+				return this.instance->InheritedQueries;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->InheritedQueries = value0;
+				this.instance->InheritedQueries = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class PhysicalDeviceSparseProperties
 		: IDisposable
 	{
-		private readonly Interop.PhysicalDeviceSparseProperties* instance;
+		internal Interop.PhysicalDeviceSparseProperties* instance;
 
 		internal PhysicalDeviceSparseProperties(Interop.PhysicalDeviceSparseProperties* instance)
 		{
@@ -8160,96 +7420,53 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->ResidencyStandard2DBlockShape;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->ResidencyStandard2DBlockShape = value0;
+				return this.instance->ResidencyStandard2DBlockShape;
 			}
 		}
-
 
 		public bool ResidencyStandard2DMultisampleBlockShape
 		{
 			get
 			{
-				var value0 = this.instance->ResidencyStandard2DMultisampleBlockShape;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->ResidencyStandard2DMultisampleBlockShape = value0;
+				return this.instance->ResidencyStandard2DMultisampleBlockShape;
 			}
 		}
-
 
 		public bool ResidencyStandard3DBlockShape
 		{
 			get
 			{
-				var value0 = this.instance->ResidencyStandard3DBlockShape;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->ResidencyStandard3DBlockShape = value0;
+				return this.instance->ResidencyStandard3DBlockShape;
 			}
 		}
-
 
 		public bool ResidencyAlignedMipSize
 		{
 			get
 			{
-				var value0 = this.instance->ResidencyAlignedMipSize;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->ResidencyAlignedMipSize = value0;
+				return this.instance->ResidencyAlignedMipSize;
 			}
 		}
-
 
 		public bool ResidencyNonResidentStrict
 		{
 			get
 			{
-				var value0 = this.instance->ResidencyNonResidentStrict;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->ResidencyNonResidentStrict = value0;
+				return this.instance->ResidencyNonResidentStrict;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class PhysicalDeviceLimits
 		: IDisposable
 	{
-		private readonly Interop.PhysicalDeviceLimits* instance;
+		internal Interop.PhysicalDeviceLimits* instance;
 
 		internal PhysicalDeviceLimits(Interop.PhysicalDeviceLimits* instance)
 		{
@@ -8267,1813 +7484,861 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->MaxImageDimension1D;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxImageDimension1D = value0;
+				return this.instance->MaxImageDimension1D;
 			}
 		}
-
 
 		public uint MaxImageDimension2D
 		{
 			get
 			{
-				var value0 = this.instance->MaxImageDimension2D;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxImageDimension2D = value0;
+				return this.instance->MaxImageDimension2D;
 			}
 		}
-
 
 		public uint MaxImageDimension3D
 		{
 			get
 			{
-				var value0 = this.instance->MaxImageDimension3D;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxImageDimension3D = value0;
+				return this.instance->MaxImageDimension3D;
 			}
 		}
-
 
 		public uint MaxImageDimensionCube
 		{
 			get
 			{
-				var value0 = this.instance->MaxImageDimensionCube;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxImageDimensionCube = value0;
+				return this.instance->MaxImageDimensionCube;
 			}
 		}
-
 
 		public uint MaxImageArrayLayers
 		{
 			get
 			{
-				var value0 = this.instance->MaxImageArrayLayers;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxImageArrayLayers = value0;
+				return this.instance->MaxImageArrayLayers;
 			}
 		}
-
 
 		public uint MaxTexelBufferElements
 		{
 			get
 			{
-				var value0 = this.instance->MaxTexelBufferElements;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxTexelBufferElements = value0;
+				return this.instance->MaxTexelBufferElements;
 			}
 		}
-
 
 		public uint MaxUniformBufferRange
 		{
 			get
 			{
-				var value0 = this.instance->MaxUniformBufferRange;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxUniformBufferRange = value0;
+				return this.instance->MaxUniformBufferRange;
 			}
 		}
-
 
 		public uint MaxStorageBufferRange
 		{
 			get
 			{
-				var value0 = this.instance->MaxStorageBufferRange;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxStorageBufferRange = value0;
+				return this.instance->MaxStorageBufferRange;
 			}
 		}
-
 
 		public uint MaxPushConstantsSize
 		{
 			get
 			{
-				var value0 = this.instance->MaxPushConstantsSize;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxPushConstantsSize = value0;
+				return this.instance->MaxPushConstantsSize;
 			}
 		}
-
 
 		public uint MaxMemoryAllocationCount
 		{
 			get
 			{
-				var value0 = this.instance->MaxMemoryAllocationCount;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxMemoryAllocationCount = value0;
+				return this.instance->MaxMemoryAllocationCount;
 			}
 		}
-
 
 		public uint MaxSamplerAllocationCount
 		{
 			get
 			{
-				var value0 = this.instance->MaxSamplerAllocationCount;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxSamplerAllocationCount = value0;
+				return this.instance->MaxSamplerAllocationCount;
 			}
 		}
-
 
 		public ulong BufferImageGranularity
 		{
 			get
 			{
-				var value0 = this.instance->BufferImageGranularity;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->BufferImageGranularity = value0;
+				return this.instance->BufferImageGranularity;
 			}
 		}
-
 
 		public ulong SparseAddressSpaceSize
 		{
 			get
 			{
-				var value0 = this.instance->SparseAddressSpaceSize;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->SparseAddressSpaceSize = value0;
+				return this.instance->SparseAddressSpaceSize;
 			}
 		}
-
 
 		public uint MaxBoundDescriptorSets
 		{
 			get
 			{
-				var value0 = this.instance->MaxBoundDescriptorSets;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxBoundDescriptorSets = value0;
+				return this.instance->MaxBoundDescriptorSets;
 			}
 		}
-
 
 		public uint MaxPerStageDescriptorSamplers
 		{
 			get
 			{
-				var value0 = this.instance->MaxPerStageDescriptorSamplers;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxPerStageDescriptorSamplers = value0;
+				return this.instance->MaxPerStageDescriptorSamplers;
 			}
 		}
-
 
 		public uint MaxPerStageDescriptorUniformBuffers
 		{
 			get
 			{
-				var value0 = this.instance->MaxPerStageDescriptorUniformBuffers;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxPerStageDescriptorUniformBuffers = value0;
+				return this.instance->MaxPerStageDescriptorUniformBuffers;
 			}
 		}
-
 
 		public uint MaxPerStageDescriptorStorageBuffers
 		{
 			get
 			{
-				var value0 = this.instance->MaxPerStageDescriptorStorageBuffers;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxPerStageDescriptorStorageBuffers = value0;
+				return this.instance->MaxPerStageDescriptorStorageBuffers;
 			}
 		}
-
 
 		public uint MaxPerStageDescriptorSampledImages
 		{
 			get
 			{
-				var value0 = this.instance->MaxPerStageDescriptorSampledImages;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxPerStageDescriptorSampledImages = value0;
+				return this.instance->MaxPerStageDescriptorSampledImages;
 			}
 		}
-
 
 		public uint MaxPerStageDescriptorStorageImages
 		{
 			get
 			{
-				var value0 = this.instance->MaxPerStageDescriptorStorageImages;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxPerStageDescriptorStorageImages = value0;
+				return this.instance->MaxPerStageDescriptorStorageImages;
 			}
 		}
-
 
 		public uint MaxPerStageDescriptorInputAttachments
 		{
 			get
 			{
-				var value0 = this.instance->MaxPerStageDescriptorInputAttachments;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxPerStageDescriptorInputAttachments = value0;
+				return this.instance->MaxPerStageDescriptorInputAttachments;
 			}
 		}
-
 
 		public uint MaxPerStageResources
 		{
 			get
 			{
-				var value0 = this.instance->MaxPerStageResources;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxPerStageResources = value0;
+				return this.instance->MaxPerStageResources;
 			}
 		}
-
 
 		public uint MaxDescriptorSetSamplers
 		{
 			get
 			{
-				var value0 = this.instance->MaxDescriptorSetSamplers;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxDescriptorSetSamplers = value0;
+				return this.instance->MaxDescriptorSetSamplers;
 			}
 		}
-
 
 		public uint MaxDescriptorSetUniformBuffers
 		{
 			get
 			{
-				var value0 = this.instance->MaxDescriptorSetUniformBuffers;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxDescriptorSetUniformBuffers = value0;
+				return this.instance->MaxDescriptorSetUniformBuffers;
 			}
 		}
-
 
 		public uint MaxDescriptorSetUniformBuffersDynamic
 		{
 			get
 			{
-				var value0 = this.instance->MaxDescriptorSetUniformBuffersDynamic;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxDescriptorSetUniformBuffersDynamic = value0;
+				return this.instance->MaxDescriptorSetUniformBuffersDynamic;
 			}
 		}
-
 
 		public uint MaxDescriptorSetStorageBuffers
 		{
 			get
 			{
-				var value0 = this.instance->MaxDescriptorSetStorageBuffers;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxDescriptorSetStorageBuffers = value0;
+				return this.instance->MaxDescriptorSetStorageBuffers;
 			}
 		}
-
 
 		public uint MaxDescriptorSetStorageBuffersDynamic
 		{
 			get
 			{
-				var value0 = this.instance->MaxDescriptorSetStorageBuffersDynamic;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxDescriptorSetStorageBuffersDynamic = value0;
+				return this.instance->MaxDescriptorSetStorageBuffersDynamic;
 			}
 		}
-
 
 		public uint MaxDescriptorSetSampledImages
 		{
 			get
 			{
-				var value0 = this.instance->MaxDescriptorSetSampledImages;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxDescriptorSetSampledImages = value0;
+				return this.instance->MaxDescriptorSetSampledImages;
 			}
 		}
-
 
 		public uint MaxDescriptorSetStorageImages
 		{
 			get
 			{
-				var value0 = this.instance->MaxDescriptorSetStorageImages;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxDescriptorSetStorageImages = value0;
+				return this.instance->MaxDescriptorSetStorageImages;
 			}
 		}
-
 
 		public uint MaxDescriptorSetInputAttachments
 		{
 			get
 			{
-				var value0 = this.instance->MaxDescriptorSetInputAttachments;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxDescriptorSetInputAttachments = value0;
+				return this.instance->MaxDescriptorSetInputAttachments;
 			}
 		}
-
 
 		public uint MaxVertexInputAttributes
 		{
 			get
 			{
-				var value0 = this.instance->MaxVertexInputAttributes;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxVertexInputAttributes = value0;
+				return this.instance->MaxVertexInputAttributes;
 			}
 		}
-
 
 		public uint MaxVertexInputBindings
 		{
 			get
 			{
-				var value0 = this.instance->MaxVertexInputBindings;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxVertexInputBindings = value0;
+				return this.instance->MaxVertexInputBindings;
 			}
 		}
-
 
 		public uint MaxVertexInputAttributeOffset
 		{
 			get
 			{
-				var value0 = this.instance->MaxVertexInputAttributeOffset;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxVertexInputAttributeOffset = value0;
+				return this.instance->MaxVertexInputAttributeOffset;
 			}
 		}
-
 
 		public uint MaxVertexInputBindingStride
 		{
 			get
 			{
-				var value0 = this.instance->MaxVertexInputBindingStride;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxVertexInputBindingStride = value0;
+				return this.instance->MaxVertexInputBindingStride;
 			}
 		}
-
 
 		public uint MaxVertexOutputComponents
 		{
 			get
 			{
-				var value0 = this.instance->MaxVertexOutputComponents;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxVertexOutputComponents = value0;
+				return this.instance->MaxVertexOutputComponents;
 			}
 		}
-
 
 		public uint MaxTessellationGenerationLevel
 		{
 			get
 			{
-				var value0 = this.instance->MaxTessellationGenerationLevel;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxTessellationGenerationLevel = value0;
+				return this.instance->MaxTessellationGenerationLevel;
 			}
 		}
-
 
 		public uint MaxTessellationPatchSize
 		{
 			get
 			{
-				var value0 = this.instance->MaxTessellationPatchSize;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxTessellationPatchSize = value0;
+				return this.instance->MaxTessellationPatchSize;
 			}
 		}
-
 
 		public uint MaxTessellationControlPerVertexInputComponents
 		{
 			get
 			{
-				var value0 = this.instance->MaxTessellationControlPerVertexInputComponents;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxTessellationControlPerVertexInputComponents = value0;
+				return this.instance->MaxTessellationControlPerVertexInputComponents;
 			}
 		}
-
 
 		public uint MaxTessellationControlPerVertexOutputComponents
 		{
 			get
 			{
-				var value0 = this.instance->MaxTessellationControlPerVertexOutputComponents;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxTessellationControlPerVertexOutputComponents = value0;
+				return this.instance->MaxTessellationControlPerVertexOutputComponents;
 			}
 		}
-
 
 		public uint MaxTessellationControlPerPatchOutputComponents
 		{
 			get
 			{
-				var value0 = this.instance->MaxTessellationControlPerPatchOutputComponents;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxTessellationControlPerPatchOutputComponents = value0;
+				return this.instance->MaxTessellationControlPerPatchOutputComponents;
 			}
 		}
-
 
 		public uint MaxTessellationControlTotalOutputComponents
 		{
 			get
 			{
-				var value0 = this.instance->MaxTessellationControlTotalOutputComponents;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxTessellationControlTotalOutputComponents = value0;
+				return this.instance->MaxTessellationControlTotalOutputComponents;
 			}
 		}
-
 
 		public uint MaxTessellationEvaluationInputComponents
 		{
 			get
 			{
-				var value0 = this.instance->MaxTessellationEvaluationInputComponents;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxTessellationEvaluationInputComponents = value0;
+				return this.instance->MaxTessellationEvaluationInputComponents;
 			}
 		}
-
 
 		public uint MaxTessellationEvaluationOutputComponents
 		{
 			get
 			{
-				var value0 = this.instance->MaxTessellationEvaluationOutputComponents;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxTessellationEvaluationOutputComponents = value0;
+				return this.instance->MaxTessellationEvaluationOutputComponents;
 			}
 		}
-
 
 		public uint MaxGeometryShaderInvocations
 		{
 			get
 			{
-				var value0 = this.instance->MaxGeometryShaderInvocations;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxGeometryShaderInvocations = value0;
+				return this.instance->MaxGeometryShaderInvocations;
 			}
 		}
-
 
 		public uint MaxGeometryInputComponents
 		{
 			get
 			{
-				var value0 = this.instance->MaxGeometryInputComponents;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxGeometryInputComponents = value0;
+				return this.instance->MaxGeometryInputComponents;
 			}
 		}
-
 
 		public uint MaxGeometryOutputComponents
 		{
 			get
 			{
-				var value0 = this.instance->MaxGeometryOutputComponents;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxGeometryOutputComponents = value0;
+				return this.instance->MaxGeometryOutputComponents;
 			}
 		}
-
 
 		public uint MaxGeometryOutputVertices
 		{
 			get
 			{
-				var value0 = this.instance->MaxGeometryOutputVertices;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxGeometryOutputVertices = value0;
+				return this.instance->MaxGeometryOutputVertices;
 			}
 		}
-
 
 		public uint MaxGeometryTotalOutputComponents
 		{
 			get
 			{
-				var value0 = this.instance->MaxGeometryTotalOutputComponents;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxGeometryTotalOutputComponents = value0;
+				return this.instance->MaxGeometryTotalOutputComponents;
 			}
 		}
-
 
 		public uint MaxFragmentInputComponents
 		{
 			get
 			{
-				var value0 = this.instance->MaxFragmentInputComponents;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxFragmentInputComponents = value0;
+				return this.instance->MaxFragmentInputComponents;
 			}
 		}
-
 
 		public uint MaxFragmentOutputAttachments
 		{
 			get
 			{
-				var value0 = this.instance->MaxFragmentOutputAttachments;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxFragmentOutputAttachments = value0;
+				return this.instance->MaxFragmentOutputAttachments;
 			}
 		}
-
 
 		public uint MaxFragmentDualSrcAttachments
 		{
 			get
 			{
-				var value0 = this.instance->MaxFragmentDualSrcAttachments;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxFragmentDualSrcAttachments = value0;
+				return this.instance->MaxFragmentDualSrcAttachments;
 			}
 		}
-
 
 		public uint MaxFragmentCombinedOutputResources
 		{
 			get
 			{
-				var value0 = this.instance->MaxFragmentCombinedOutputResources;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxFragmentCombinedOutputResources = value0;
+				return this.instance->MaxFragmentCombinedOutputResources;
 			}
 		}
-
 
 		public uint MaxComputeSharedMemorySize
 		{
 			get
 			{
-				var value0 = this.instance->MaxComputeSharedMemorySize;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxComputeSharedMemorySize = value0;
+				return this.instance->MaxComputeSharedMemorySize;
 			}
 		}
 
-
-		public uint MaxComputeWorkGroupCount
+		public uint[] MaxComputeWorkGroupCount
 		{
 			get
 			{
-				var value0 = this.instance->MaxComputeWorkGroupCount;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxComputeWorkGroupCount = value0;
+				return Interop.HeapUtil.MarshalPointerToArray(this.instance->MaxComputeWorkGroupCount, 3);
 			}
 		}
-
 
 		public uint MaxComputeWorkGroupInvocations
 		{
 			get
 			{
-				var value0 = this.instance->MaxComputeWorkGroupInvocations;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxComputeWorkGroupInvocations = value0;
+				return this.instance->MaxComputeWorkGroupInvocations;
 			}
 		}
 
-
-		public uint MaxComputeWorkGroupSize
+		public uint[] MaxComputeWorkGroupSize
 		{
 			get
 			{
-				var value0 = this.instance->MaxComputeWorkGroupSize;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxComputeWorkGroupSize = value0;
+				return Interop.HeapUtil.MarshalPointerToArray(this.instance->MaxComputeWorkGroupSize, 3);
 			}
 		}
-
 
 		public uint SubPixelPrecisionBits
 		{
 			get
 			{
-				var value0 = this.instance->SubPixelPrecisionBits;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->SubPixelPrecisionBits = value0;
+				return this.instance->SubPixelPrecisionBits;
 			}
 		}
-
 
 		public uint SubTexelPrecisionBits
 		{
 			get
 			{
-				var value0 = this.instance->SubTexelPrecisionBits;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->SubTexelPrecisionBits = value0;
+				return this.instance->SubTexelPrecisionBits;
 			}
 		}
-
 
 		public uint MipmapPrecisionBits
 		{
 			get
 			{
-				var value0 = this.instance->MipmapPrecisionBits;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MipmapPrecisionBits = value0;
+				return this.instance->MipmapPrecisionBits;
 			}
 		}
-
 
 		public uint MaxDrawIndexedIndexValue
 		{
 			get
 			{
-				var value0 = this.instance->MaxDrawIndexedIndexValue;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxDrawIndexedIndexValue = value0;
+				return this.instance->MaxDrawIndexedIndexValue;
 			}
 		}
-
 
 		public uint MaxDrawIndirectCount
 		{
 			get
 			{
-				var value0 = this.instance->MaxDrawIndirectCount;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxDrawIndirectCount = value0;
+				return this.instance->MaxDrawIndirectCount;
 			}
 		}
-
 
 		public float MaxSamplerLodBias
 		{
 			get
 			{
-				var value0 = this.instance->MaxSamplerLodBias;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxSamplerLodBias = value0;
+				return this.instance->MaxSamplerLodBias;
 			}
 		}
-
 
 		public float MaxSamplerAnisotropy
 		{
 			get
 			{
-				var value0 = this.instance->MaxSamplerAnisotropy;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxSamplerAnisotropy = value0;
+				return this.instance->MaxSamplerAnisotropy;
 			}
 		}
-
 
 		public uint MaxViewports
 		{
 			get
 			{
-				var value0 = this.instance->MaxViewports;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxViewports = value0;
+				return this.instance->MaxViewports;
 			}
 		}
 
-
-		public uint MaxViewportDimensions
+		public uint[] MaxViewportDimensions
 		{
 			get
 			{
-				var value0 = this.instance->MaxViewportDimensions;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxViewportDimensions = value0;
+				return Interop.HeapUtil.MarshalPointerToArray(this.instance->MaxViewportDimensions, 2);
 			}
 		}
 
-
-		public float ViewportBoundsRange
+		public float[] ViewportBoundsRange
 		{
 			get
 			{
-				var value0 = this.instance->ViewportBoundsRange;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->ViewportBoundsRange = value0;
+				return Interop.HeapUtil.MarshalPointerToArray(this.instance->ViewportBoundsRange, 2);
 			}
 		}
-
 
 		public uint ViewportSubPixelBits
 		{
 			get
 			{
-				var value0 = this.instance->ViewportSubPixelBits;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->ViewportSubPixelBits = value0;
+				return this.instance->ViewportSubPixelBits;
 			}
 		}
-
 
 		public UIntPtr MinMemoryMapAlignment
 		{
 			get
 			{
-				var value0 = this.instance->MinMemoryMapAlignment;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MinMemoryMapAlignment = value0;
+				return this.instance->MinMemoryMapAlignment;
 			}
 		}
-
 
 		public ulong MinTexelBufferOffsetAlignment
 		{
 			get
 			{
-				var value0 = this.instance->MinTexelBufferOffsetAlignment;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MinTexelBufferOffsetAlignment = value0;
+				return this.instance->MinTexelBufferOffsetAlignment;
 			}
 		}
-
 
 		public ulong MinUniformBufferOffsetAlignment
 		{
 			get
 			{
-				var value0 = this.instance->MinUniformBufferOffsetAlignment;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MinUniformBufferOffsetAlignment = value0;
+				return this.instance->MinUniformBufferOffsetAlignment;
 			}
 		}
-
 
 		public ulong MinStorageBufferOffsetAlignment
 		{
 			get
 			{
-				var value0 = this.instance->MinStorageBufferOffsetAlignment;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MinStorageBufferOffsetAlignment = value0;
+				return this.instance->MinStorageBufferOffsetAlignment;
 			}
 		}
-
 
 		public int MinTexelOffset
 		{
 			get
 			{
-				var value0 = this.instance->MinTexelOffset;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MinTexelOffset = value0;
+				return this.instance->MinTexelOffset;
 			}
 		}
-
 
 		public uint MaxTexelOffset
 		{
 			get
 			{
-				var value0 = this.instance->MaxTexelOffset;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxTexelOffset = value0;
+				return this.instance->MaxTexelOffset;
 			}
 		}
-
 
 		public int MinTexelGatherOffset
 		{
 			get
 			{
-				var value0 = this.instance->MinTexelGatherOffset;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MinTexelGatherOffset = value0;
+				return this.instance->MinTexelGatherOffset;
 			}
 		}
-
 
 		public uint MaxTexelGatherOffset
 		{
 			get
 			{
-				var value0 = this.instance->MaxTexelGatherOffset;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxTexelGatherOffset = value0;
+				return this.instance->MaxTexelGatherOffset;
 			}
 		}
-
 
 		public float MinInterpolationOffset
 		{
 			get
 			{
-				var value0 = this.instance->MinInterpolationOffset;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MinInterpolationOffset = value0;
+				return this.instance->MinInterpolationOffset;
 			}
 		}
-
 
 		public float MaxInterpolationOffset
 		{
 			get
 			{
-				var value0 = this.instance->MaxInterpolationOffset;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxInterpolationOffset = value0;
+				return this.instance->MaxInterpolationOffset;
 			}
 		}
-
 
 		public uint SubPixelInterpolationOffsetBits
 		{
 			get
 			{
-				var value0 = this.instance->SubPixelInterpolationOffsetBits;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->SubPixelInterpolationOffsetBits = value0;
+				return this.instance->SubPixelInterpolationOffsetBits;
 			}
 		}
-
 
 		public uint MaxFramebufferWidth
 		{
 			get
 			{
-				var value0 = this.instance->MaxFramebufferWidth;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxFramebufferWidth = value0;
+				return this.instance->MaxFramebufferWidth;
 			}
 		}
-
 
 		public uint MaxFramebufferHeight
 		{
 			get
 			{
-				var value0 = this.instance->MaxFramebufferHeight;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxFramebufferHeight = value0;
+				return this.instance->MaxFramebufferHeight;
 			}
 		}
-
 
 		public uint MaxFramebufferLayers
 		{
 			get
 			{
-				var value0 = this.instance->MaxFramebufferLayers;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxFramebufferLayers = value0;
+				return this.instance->MaxFramebufferLayers;
 			}
 		}
-
 
 		public SampleCountFlags FramebufferColorSampleCounts
 		{
 			get
 			{
-				var value0 = this.instance->FramebufferColorSampleCounts;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->FramebufferColorSampleCounts = value0;
+				return this.instance->FramebufferColorSampleCounts;
 			}
 		}
-
 
 		public SampleCountFlags FramebufferDepthSampleCounts
 		{
 			get
 			{
-				var value0 = this.instance->FramebufferDepthSampleCounts;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->FramebufferDepthSampleCounts = value0;
+				return this.instance->FramebufferDepthSampleCounts;
 			}
 		}
-
 
 		public SampleCountFlags FramebufferStencilSampleCounts
 		{
 			get
 			{
-				var value0 = this.instance->FramebufferStencilSampleCounts;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->FramebufferStencilSampleCounts = value0;
+				return this.instance->FramebufferStencilSampleCounts;
 			}
 		}
-
 
 		public SampleCountFlags FramebufferNoAttachmentsSampleCounts
 		{
 			get
 			{
-				var value0 = this.instance->FramebufferNoAttachmentsSampleCounts;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->FramebufferNoAttachmentsSampleCounts = value0;
+				return this.instance->FramebufferNoAttachmentsSampleCounts;
 			}
 		}
-
 
 		public uint MaxColorAttachments
 		{
 			get
 			{
-				var value0 = this.instance->MaxColorAttachments;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxColorAttachments = value0;
+				return this.instance->MaxColorAttachments;
 			}
 		}
-
 
 		public SampleCountFlags SampledImageColorSampleCounts
 		{
 			get
 			{
-				var value0 = this.instance->SampledImageColorSampleCounts;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->SampledImageColorSampleCounts = value0;
+				return this.instance->SampledImageColorSampleCounts;
 			}
 		}
-
 
 		public SampleCountFlags SampledImageIntegerSampleCounts
 		{
 			get
 			{
-				var value0 = this.instance->SampledImageIntegerSampleCounts;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->SampledImageIntegerSampleCounts = value0;
+				return this.instance->SampledImageIntegerSampleCounts;
 			}
 		}
-
 
 		public SampleCountFlags SampledImageDepthSampleCounts
 		{
 			get
 			{
-				var value0 = this.instance->SampledImageDepthSampleCounts;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->SampledImageDepthSampleCounts = value0;
+				return this.instance->SampledImageDepthSampleCounts;
 			}
 		}
-
 
 		public SampleCountFlags SampledImageStencilSampleCounts
 		{
 			get
 			{
-				var value0 = this.instance->SampledImageStencilSampleCounts;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->SampledImageStencilSampleCounts = value0;
+				return this.instance->SampledImageStencilSampleCounts;
 			}
 		}
-
 
 		public SampleCountFlags StorageImageSampleCounts
 		{
 			get
 			{
-				var value0 = this.instance->StorageImageSampleCounts;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->StorageImageSampleCounts = value0;
+				return this.instance->StorageImageSampleCounts;
 			}
 		}
-
 
 		public uint MaxSampleMaskWords
 		{
 			get
 			{
-				var value0 = this.instance->MaxSampleMaskWords;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxSampleMaskWords = value0;
+				return this.instance->MaxSampleMaskWords;
 			}
 		}
-
 
 		public bool TimestampComputeAndGraphics
 		{
 			get
 			{
-				var value0 = this.instance->TimestampComputeAndGraphics;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->TimestampComputeAndGraphics = value0;
+				return this.instance->TimestampComputeAndGraphics;
 			}
 		}
-
 
 		public float TimestampPeriod
 		{
 			get
 			{
-				var value0 = this.instance->TimestampPeriod;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->TimestampPeriod = value0;
+				return this.instance->TimestampPeriod;
 			}
 		}
-
 
 		public uint MaxClipDistances
 		{
 			get
 			{
-				var value0 = this.instance->MaxClipDistances;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxClipDistances = value0;
+				return this.instance->MaxClipDistances;
 			}
 		}
-
 
 		public uint MaxCullDistances
 		{
 			get
 			{
-				var value0 = this.instance->MaxCullDistances;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxCullDistances = value0;
+				return this.instance->MaxCullDistances;
 			}
 		}
-
 
 		public uint MaxCombinedClipAndCullDistances
 		{
 			get
 			{
-				var value0 = this.instance->MaxCombinedClipAndCullDistances;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->MaxCombinedClipAndCullDistances = value0;
+				return this.instance->MaxCombinedClipAndCullDistances;
 			}
 		}
-
 
 		public uint DiscreteQueuePriorities
 		{
 			get
 			{
-				var value0 = this.instance->DiscreteQueuePriorities;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->DiscreteQueuePriorities = value0;
+				return this.instance->DiscreteQueuePriorities;
 			}
 		}
 
-
-		public float PointSizeRange
+		public float[] PointSizeRange
 		{
 			get
 			{
-				var value0 = this.instance->PointSizeRange;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->PointSizeRange = value0;
+				return Interop.HeapUtil.MarshalPointerToArray(this.instance->PointSizeRange, 2);
 			}
 		}
 
-
-		public float LineWidthRange
+		public float[] LineWidthRange
 		{
 			get
 			{
-				var value0 = this.instance->LineWidthRange;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->LineWidthRange = value0;
+				return Interop.HeapUtil.MarshalPointerToArray(this.instance->LineWidthRange, 2);
 			}
 		}
-
 
 		public float PointSizeGranularity
 		{
 			get
 			{
-				var value0 = this.instance->PointSizeGranularity;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->PointSizeGranularity = value0;
+				return this.instance->PointSizeGranularity;
 			}
 		}
-
 
 		public float LineWidthGranularity
 		{
 			get
 			{
-				var value0 = this.instance->LineWidthGranularity;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->LineWidthGranularity = value0;
+				return this.instance->LineWidthGranularity;
 			}
 		}
-
 
 		public bool StrictLines
 		{
 			get
 			{
-				var value0 = this.instance->StrictLines;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->StrictLines = value0;
+				return this.instance->StrictLines;
 			}
 		}
-
 
 		public bool StandardSampleLocations
 		{
 			get
 			{
-				var value0 = this.instance->StandardSampleLocations;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->StandardSampleLocations = value0;
+				return this.instance->StandardSampleLocations;
 			}
 		}
-
 
 		public ulong OptimalBufferCopyOffsetAlignment
 		{
 			get
 			{
-				var value0 = this.instance->OptimalBufferCopyOffsetAlignment;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->OptimalBufferCopyOffsetAlignment = value0;
+				return this.instance->OptimalBufferCopyOffsetAlignment;
 			}
 		}
-
 
 		public ulong OptimalBufferCopyRowPitchAlignment
 		{
 			get
 			{
-				var value0 = this.instance->OptimalBufferCopyRowPitchAlignment;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->OptimalBufferCopyRowPitchAlignment = value0;
+				return this.instance->OptimalBufferCopyRowPitchAlignment;
 			}
 		}
-
 
 		public ulong NonCoherentAtomSize
 		{
 			get
 			{
-				var value0 = this.instance->NonCoherentAtomSize;
-
-				return value0;
-			}
-			set
-			{
-				var value0 = value;
-
-				this.instance->NonCoherentAtomSize = value0;
+				return this.instance->NonCoherentAtomSize;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class SemaphoreCreateInfo
 		: IDisposable
 	{
-		private readonly Interop.SemaphoreCreateInfo* instance;
+		internal Interop.SemaphoreCreateInfo* instance;
 
 		internal SemaphoreCreateInfo(Interop.SemaphoreCreateInfo* instance)
 		{
@@ -10093,28 +8358,25 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class QueryPoolCreateInfo
 		: IDisposable
 	{
-		private readonly Interop.QueryPoolCreateInfo* instance;
+		internal Interop.QueryPoolCreateInfo* instance;
 
 		internal QueryPoolCreateInfo(Interop.QueryPoolCreateInfo* instance)
 		{
@@ -10134,79 +8396,61 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
-
 
 		public QueryType QueryType
 		{
 			get
 			{
-				var value0 = this.instance->QueryType;
-
-				return value0;
+				return this.instance->QueryType;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->QueryType = value0;
+				this.instance->QueryType = value;
 			}
 		}
-
 
 		public uint QueryCount
 		{
 			get
 			{
-				var value0 = this.instance->QueryCount;
-
-				return value0;
+				return this.instance->QueryCount;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->QueryCount = value0;
+				this.instance->QueryCount = value;
 			}
 		}
-
 
 		public QueryPipelineStatisticFlags PipelineStatistics
 		{
 			get
 			{
-				var value0 = this.instance->PipelineStatistics;
-
-				return value0;
+				return this.instance->PipelineStatistics;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->PipelineStatistics = value0;
+				this.instance->PipelineStatistics = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class FramebufferCreateInfo
 		: IDisposable
 	{
-		private readonly Interop.FramebufferCreateInfo* instance;
+		internal Interop.FramebufferCreateInfo* instance;
 
 		internal FramebufferCreateInfo(Interop.FramebufferCreateInfo* instance)
 		{
@@ -10226,79 +8470,61 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->Flags;
-
-				return value0;
+				return this.instance->Flags;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Flags = value0;
+				this.instance->Flags = value;
 			}
 		}
-
 
 		public uint Width
 		{
 			get
 			{
-				var value0 = this.instance->Width;
-
-				return value0;
+				return this.instance->Width;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Width = value0;
+				this.instance->Width = value;
 			}
 		}
-
 
 		public uint Height
 		{
 			get
 			{
-				var value0 = this.instance->Height;
-
-				return value0;
+				return this.instance->Height;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Height = value0;
+				this.instance->Height = value;
 			}
 		}
-
 
 		public uint Layers
 		{
 			get
 			{
-				var value0 = this.instance->Layers;
-
-				return value0;
+				return this.instance->Layers;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Layers = value0;
+				this.instance->Layers = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class DrawIndirectCommand
 		: IDisposable
 	{
-		private readonly Interop.DrawIndirectCommand* instance;
+		internal Interop.DrawIndirectCommand* instance;
 
 		internal DrawIndirectCommand(Interop.DrawIndirectCommand* instance)
 		{
@@ -10316,79 +8542,61 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->VertexCount;
-
-				return value0;
+				return this.instance->VertexCount;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->VertexCount = value0;
+				this.instance->VertexCount = value;
 			}
 		}
-
 
 		public uint InstanceCount
 		{
 			get
 			{
-				var value0 = this.instance->InstanceCount;
-
-				return value0;
+				return this.instance->InstanceCount;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->InstanceCount = value0;
+				this.instance->InstanceCount = value;
 			}
 		}
-
 
 		public uint FirstVertex
 		{
 			get
 			{
-				var value0 = this.instance->FirstVertex;
-
-				return value0;
+				return this.instance->FirstVertex;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->FirstVertex = value0;
+				this.instance->FirstVertex = value;
 			}
 		}
-
 
 		public uint FirstInstance
 		{
 			get
 			{
-				var value0 = this.instance->FirstInstance;
-
-				return value0;
+				return this.instance->FirstInstance;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->FirstInstance = value0;
+				this.instance->FirstInstance = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class DrawIndexedIndirectCommand
 		: IDisposable
 	{
-		private readonly Interop.DrawIndexedIndirectCommand* instance;
+		internal Interop.DrawIndexedIndirectCommand* instance;
 
 		internal DrawIndexedIndirectCommand(Interop.DrawIndexedIndirectCommand* instance)
 		{
@@ -10406,96 +8614,73 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->IndexCount;
-
-				return value0;
+				return this.instance->IndexCount;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->IndexCount = value0;
+				this.instance->IndexCount = value;
 			}
 		}
-
 
 		public uint InstanceCount
 		{
 			get
 			{
-				var value0 = this.instance->InstanceCount;
-
-				return value0;
+				return this.instance->InstanceCount;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->InstanceCount = value0;
+				this.instance->InstanceCount = value;
 			}
 		}
-
 
 		public uint FirstIndex
 		{
 			get
 			{
-				var value0 = this.instance->FirstIndex;
-
-				return value0;
+				return this.instance->FirstIndex;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->FirstIndex = value0;
+				this.instance->FirstIndex = value;
 			}
 		}
-
 
 		public int VertexOffset
 		{
 			get
 			{
-				var value0 = this.instance->VertexOffset;
-
-				return value0;
+				return this.instance->VertexOffset;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->VertexOffset = value0;
+				this.instance->VertexOffset = value;
 			}
 		}
-
 
 		public uint FirstInstance
 		{
 			get
 			{
-				var value0 = this.instance->FirstInstance;
-
-				return value0;
+				return this.instance->FirstInstance;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->FirstInstance = value0;
+				this.instance->FirstInstance = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class DispatchIndirectCommand
 		: IDisposable
 	{
-		private readonly Interop.DispatchIndirectCommand* instance;
+		internal Interop.DispatchIndirectCommand* instance;
 
 		internal DispatchIndirectCommand(Interop.DispatchIndirectCommand* instance)
 		{
@@ -10513,62 +8698,49 @@ namespace SharpVk
 		{
 			get
 			{
-				var value0 = this.instance->X;
-
-				return value0;
+				return this.instance->X;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->X = value0;
+				this.instance->X = value;
 			}
 		}
-
 
 		public uint Y
 		{
 			get
 			{
-				var value0 = this.instance->Y;
-
-				return value0;
+				return this.instance->Y;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Y = value0;
+				this.instance->Y = value;
 			}
 		}
-
 
 		public uint Z
 		{
 			get
 			{
-				var value0 = this.instance->Z;
-
-				return value0;
+				return this.instance->Z;
 			}
 			set
 			{
-				var value0 = value;
-
-				this.instance->Z = value0;
+				this.instance->Z = value;
 			}
 		}
 
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 
 	public unsafe class SubmitInfo
 		: IDisposable
 	{
-		private readonly Interop.SubmitInfo* instance;
+		internal Interop.SubmitInfo* instance;
 
 		internal SubmitInfo(Interop.SubmitInfo* instance)
 		{
@@ -10583,9 +8755,11 @@ namespace SharpVk
 
 			return result;
 		}
+
 		public void Dispose()
 		{
 			Interop.HeapUtil.Free(this.instance);
+			this.instance = null;
 		}
 	}
 }

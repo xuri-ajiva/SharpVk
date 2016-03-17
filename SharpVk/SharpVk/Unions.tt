@@ -23,10 +23,29 @@ namespace SharpVk
 <#
 		foreach(var member in union.Members)
         {
+			string memberTypeName = member.Type.Name;
+			if(member.Type.Category == Category.@struct)
+			{
+				memberTypeName = "Interop." + memberTypeName;
+			}
+
+			if(member.Size == 0)
+			{
 #>
 		[FieldOffset(0)]
-		public <#=member.Type.Name#> <#=member.Name#>;
+		public <#=memberTypeName#> <#=member.Name#>;
 <#
+			}
+			else
+			{
+				for(int index = 0; index < member.Size; index++)
+				{
+#>
+		[FieldOffset(sizeof(<#=memberTypeName#>) * <#=index#>)]
+		public <#=memberTypeName#> <#=member.Name#>_<#=index#>;
+<#
+				}
+			}
         }
 #>
 	}

@@ -45,8 +45,10 @@ namespace SharpVk.VkXml
                     var additionalTypeNames = new List<string>();
 
                     string vkRequires = vkType.Attribute("requires")?.Value;
+                    bool isPrimitive = false;
+                    bool isReturnedOnly = vkType.Attribute("returnedonly")?.Value == "true";
 
-                    if (vkType.Attribute("category") == null || !Enum.TryParse<Category>(vkType.Attribute("category").Value, out typeCategory))
+                    if (vkType.Attribute("category") == null || !Enum.TryParse(vkType.Attribute("category").Value, out typeCategory))
                     {
                         if (vkRequires == "vk_platform")
                         {
@@ -78,9 +80,10 @@ namespace SharpVk.VkXml
 
                     string typeName = vkTypeName;
 
-                    if (primitiveTypes.ContainsKey(typeName))
+                    if (primitiveTypes.ContainsKey(vkTypeName))
                     {
                         typeName = primitiveTypes[vkTypeName];
+                        isPrimitive = true;
                     }
                     else if (typeCategory == Category.bitmask)
                     {
@@ -103,26 +106,30 @@ namespace SharpVk.VkXml
                         typeName = typeName.Substring(2);
                     }
 
-                    if (!result.ContainsKey(vkTypeName))
+                    additionalTypeNames.Add(vkTypeName);
+
+                    //HACK
+                    if(typeName.EndsWith("Bits"))
                     {
-                        result.Add(vkTypeName, new TypeDef
-                        {
-                            Category = typeCategory,
-                            Name = typeName,
-                            Xml = vkType,
-                            Requires = vkRequires
-                        });
+                        typeName = typeName.Substring(0, typeName.Length - 4) + "s";
                     }
+
+                    var typeDef = new TypeDef
+                    {
+                        Category = typeCategory,
+                        Name = typeName,
+                        Xml = vkType,
+                        Requires = vkRequires,
+                        IsPrimitive = isPrimitive,
+                        IsReturnedOnly = isReturnedOnly
+                    };
 
                     foreach (var additionalTypeName in additionalTypeNames)
                     {
-                        result.Add(additionalTypeName, new TypeDef
+                        if (!result.ContainsKey(vkTypeName))
                         {
-                            Category = typeCategory,
-                            Name = typeName,
-                            Xml = vkType,
-                            Requires = vkRequires
-                        });
+                            result.Add(vkTypeName, typeDef);
+                        }
                     }
                 }
 
@@ -201,27 +208,15 @@ namespace SharpVk.VkXml
 
                             var memberType = cache[typeMember.Element("type").Value];
 
-                            if (count == 0)
+                            members.Add(new TypeDef.MemberInfo
                             {
-                                members.Add(new TypeDef.MemberInfo
-                                {
-                                    Type = memberType,
-                                    Name = memberName,
-                                    PointerCount = pointerCount
-                                });
-                            }
-                            else
-                            {
-                                for (int fieldIndex = 0; fieldIndex < count; fieldIndex++)
-                                {
-                                    members.Add(new TypeDef.MemberInfo
-                                    {
-                                        Type = memberType,
-                                        Name = memberName + fieldIndex,
-                                        PointerCount = pointerCount
-                                    });
-                                }
-                            }
+                                Type = memberType,
+                                Name = memberName,
+                                PointerCount = pointerCount,
+                                Size = count,
+                                Len = memberLen,
+                                VkName = vkMemberName
+                            });
                         }
                     }
                 }
