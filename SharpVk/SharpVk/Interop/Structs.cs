@@ -217,9 +217,9 @@ namespace SharpVk.Interop
 
 		public PhysicalDeviceType DeviceType;
 
-		public fixed char DeviceName[32];
+		public fixed char DeviceName[256];
 
-		public fixed byte PipelineCacheUUID[32];
+		public fixed byte PipelineCacheUUID[16];
 
 		public PhysicalDeviceLimits Limits;
 
@@ -233,7 +233,7 @@ namespace SharpVk.Interop
 			return (ExtensionProperties*)HeapUtil.AllocateAndClear<ExtensionProperties>();
 		}
 
-		public fixed char ExtensionName[32];
+		public fixed char ExtensionName[256];
 
 		public uint SpecVersion;
 	}
@@ -245,13 +245,13 @@ namespace SharpVk.Interop
 			return (LayerProperties*)HeapUtil.AllocateAndClear<LayerProperties>();
 		}
 
-		public fixed char LayerName[32];
+		public fixed char LayerName[256];
 
 		public uint SpecVersion;
 
 		public uint ImplementationVersion;
 
-		public fixed char Description[32];
+		public fixed char Description[256];
 	}
 
 	public unsafe struct ApplicationInfo
@@ -490,38 +490,6 @@ namespace SharpVk.Interop
 		public MemoryHeap MemoryHeaps_14;
 
 		public MemoryHeap MemoryHeaps_15;
-
-		public MemoryHeap MemoryHeaps_16;
-
-		public MemoryHeap MemoryHeaps_17;
-
-		public MemoryHeap MemoryHeaps_18;
-
-		public MemoryHeap MemoryHeaps_19;
-
-		public MemoryHeap MemoryHeaps_20;
-
-		public MemoryHeap MemoryHeaps_21;
-
-		public MemoryHeap MemoryHeaps_22;
-
-		public MemoryHeap MemoryHeaps_23;
-
-		public MemoryHeap MemoryHeaps_24;
-
-		public MemoryHeap MemoryHeaps_25;
-
-		public MemoryHeap MemoryHeaps_26;
-
-		public MemoryHeap MemoryHeaps_27;
-
-		public MemoryHeap MemoryHeaps_28;
-
-		public MemoryHeap MemoryHeaps_29;
-
-		public MemoryHeap MemoryHeaps_30;
-
-		public MemoryHeap MemoryHeaps_31;
 	}
 
 	public unsafe struct MemoryAllocateInfo

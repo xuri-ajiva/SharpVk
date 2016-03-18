@@ -634,7 +634,7 @@ namespace SharpVk
 		{
 			get
 			{
-				return Interop.HeapUtil.MarshalPointerToArray(this.instance->PipelineCacheUUID, 32);
+				return Interop.HeapUtil.MarshalPointerToArray(this.instance->PipelineCacheUUID, 16);
 			}
 		}
 
@@ -1523,134 +1523,6 @@ namespace SharpVk
 			get
 			{
 				return new MemoryHeap(&(this.instance->MemoryHeaps_15));
-			}
-		}
-
-		public MemoryHeap MemoryHeaps_16
-		{
-			get
-			{
-				return new MemoryHeap(&(this.instance->MemoryHeaps_16));
-			}
-		}
-
-		public MemoryHeap MemoryHeaps_17
-		{
-			get
-			{
-				return new MemoryHeap(&(this.instance->MemoryHeaps_17));
-			}
-		}
-
-		public MemoryHeap MemoryHeaps_18
-		{
-			get
-			{
-				return new MemoryHeap(&(this.instance->MemoryHeaps_18));
-			}
-		}
-
-		public MemoryHeap MemoryHeaps_19
-		{
-			get
-			{
-				return new MemoryHeap(&(this.instance->MemoryHeaps_19));
-			}
-		}
-
-		public MemoryHeap MemoryHeaps_20
-		{
-			get
-			{
-				return new MemoryHeap(&(this.instance->MemoryHeaps_20));
-			}
-		}
-
-		public MemoryHeap MemoryHeaps_21
-		{
-			get
-			{
-				return new MemoryHeap(&(this.instance->MemoryHeaps_21));
-			}
-		}
-
-		public MemoryHeap MemoryHeaps_22
-		{
-			get
-			{
-				return new MemoryHeap(&(this.instance->MemoryHeaps_22));
-			}
-		}
-
-		public MemoryHeap MemoryHeaps_23
-		{
-			get
-			{
-				return new MemoryHeap(&(this.instance->MemoryHeaps_23));
-			}
-		}
-
-		public MemoryHeap MemoryHeaps_24
-		{
-			get
-			{
-				return new MemoryHeap(&(this.instance->MemoryHeaps_24));
-			}
-		}
-
-		public MemoryHeap MemoryHeaps_25
-		{
-			get
-			{
-				return new MemoryHeap(&(this.instance->MemoryHeaps_25));
-			}
-		}
-
-		public MemoryHeap MemoryHeaps_26
-		{
-			get
-			{
-				return new MemoryHeap(&(this.instance->MemoryHeaps_26));
-			}
-		}
-
-		public MemoryHeap MemoryHeaps_27
-		{
-			get
-			{
-				return new MemoryHeap(&(this.instance->MemoryHeaps_27));
-			}
-		}
-
-		public MemoryHeap MemoryHeaps_28
-		{
-			get
-			{
-				return new MemoryHeap(&(this.instance->MemoryHeaps_28));
-			}
-		}
-
-		public MemoryHeap MemoryHeaps_29
-		{
-			get
-			{
-				return new MemoryHeap(&(this.instance->MemoryHeaps_29));
-			}
-		}
-
-		public MemoryHeap MemoryHeaps_30
-		{
-			get
-			{
-				return new MemoryHeap(&(this.instance->MemoryHeaps_30));
-			}
-		}
-
-		public MemoryHeap MemoryHeaps_31
-		{
-			get
-			{
-				return new MemoryHeap(&(this.instance->MemoryHeaps_31));
 			}
 		}
 

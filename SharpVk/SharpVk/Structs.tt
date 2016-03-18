@@ -61,7 +61,7 @@ namespace SharpVk
 
 			if(member.Len != null)
 			{
-				lenMembers.Add(member.Len);
+				lenMembers.Add(member.Len.First());
 			}
 
 			var memberType = member.Type;

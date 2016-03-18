@@ -18,7 +18,7 @@ namespace SharpVk.VkXml
             public TypeDef Type;
             public string VkName;
             public string Name;
-            public string Len;
+            public IEnumerable<string> Len;
             public int PointerCount;
             public int Size;
         }

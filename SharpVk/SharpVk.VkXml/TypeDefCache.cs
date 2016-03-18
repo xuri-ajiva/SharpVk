@@ -135,14 +135,27 @@ namespace SharpVk.VkXml
 
                 this.cache = result;
 
+                var constantsEnum = vkXml.Element("registry").Elements("enums").First(x => x.Attribute("name")?.Value == "API Constants");
+
+                var constants = new Dictionary<string, int>();
+
+                foreach(var constant in constantsEnum.Elements("enum"))
+                {
+                    int value;
+                    string name = constant.Attribute("name").Value;
+
+                    if (int.TryParse(constant.Attribute("value").Value, out value))
+                    {
+                        constants.Add(name, value);
+                    }
+                }
+
                 foreach (var type in this.cache.Values)
                 {
                     if (type.Category == Category.@struct || type.Category == Category.union)
                     {
                         var members = type.Members;
-
-                        var lenMembers = new List<string>();
-
+                        
                         foreach (var typeMember in type.Xml.Elements("member"))
                         {
                             var nameNodes = new XNode[] { typeMember.Element("name") }.Concat(typeMember.Element("name").NodesAfterSelf());
@@ -159,7 +172,7 @@ namespace SharpVk.VkXml
                                     var xAsElement = x as XElement;
                                     if (xAsElement?.Name == "enum")
                                     {
-                                        return "32";
+                                        return constants[xAsElement.Value].ToString();
                                     }
                                     else if (xAsElement?.Name == "name")
                                     {
@@ -195,16 +208,7 @@ namespace SharpVk.VkXml
 
                             memberName = char.ToUpper(memberName[0]) + memberName.Substring(1);
 
-                            string memberLen = null;
-
-                            if (typeMember.Attribute("len") != null)
-                            {
-                                memberLen = typeMember.Attribute("len").Value;
-
-                                memberLen = memberLen.Split(',').First();
-
-                                lenMembers.Add(memberLen);
-                            }
+                            string[] memberLen = typeMember.Attribute("len")?.Value?.Split(',');
 
                             var memberType = cache[typeMember.Element("type").Value];
 
