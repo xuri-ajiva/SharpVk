@@ -10,9 +10,15 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ include file=".\License.tt" #>
 <#@ include file=".\Vk.ttinclude" #>
-public class Instance
+
+namespace SharpVk
 {
+	public class Instance
+	{
+		private Interop.Instance handle;
 <#
+	var keywords = new[]{"object", "event"};
+
 	var vkXml = GetVkXml();
 
 	var instanceType = GetTypeDef("VkInstance");
@@ -22,8 +28,123 @@ public class Instance
 	var createCommand = commands.First(x => x.Element("proto").Element("name").Value == "vkCreate" + instanceType.Name);
 
 #>
-	/*<#=createCommand#>*/
 
+		public Instance(<#
+	bool isFirst = true;
+
+	int paramCount = createCommand.Elements("param").Count();
+
+	foreach(var parameter in createCommand.Elements("param").Take(paramCount - 1))
+    {
+		string paramName = parameter.Element("name").Value;
+
+			int pointerCount = 0;
+			
+			while(paramName[0] == 'p' && (paramName[1] == 'p' || char.IsUpper(paramName[1])))
+			{
+				pointerCount++;
+
+				paramName = paramName.Substring(1);
+            }
+
+			if(pointerCount > 0)
+            {
+				paramName = paramName = char.ToLower(paramName[0]) + paramName.Substring(1);
+            }
+
+			string vkTypeName = parameter.Element("type").Value;
+
+			var paramType = GetTypeDef(vkTypeName);
+			
+			string paramTypeName = paramType.Name;
+
+			if(paramType.Category == Category.funcpointer)
+            {
+				paramTypeName = "IntPtr";
+            }
+
+			if(keywords.Contains(paramName))
+            {
+				paramName = "@" + paramName;
+            }
+
+			if(isFirst)
+            {
+				isFirst = false;
+            }
+			else
+            {
+				#>, <#
+            }
+			
+			#><#=paramTypeName#> <#=paramName#><#
+    }
+		#>)
+		{
+			unsafe
+			{
+				fixed(Interop.Instance* handlePointer = &this.handle)
+				{
+					Result createResult = Interop.NativeMethods.<#=createCommand.Element("proto").Element("name").Value#>(<#
+	isFirst = true;
+
+	foreach(var parameter in createCommand.Elements("param").Take(paramCount - 1))
+    {
+		string paramName = parameter.Element("name").Value;
+
+			int pointerCount = 0;
+			
+			while(paramName[0] == 'p' && (paramName[1] == 'p' || char.IsUpper(paramName[1])))
+			{
+				pointerCount++;
+
+				paramName = paramName.Substring(1);
+            }
+
+			bool isOutput = !parameter.Value.StartsWith("const") && pointerCount > 0;
+
+			if(pointerCount > 0)
+            {
+				paramName = paramName = char.ToLower(paramName[0]) + paramName.Substring(1);
+            }
+
+			string vkTypeName = parameter.Element("type").Value;
+
+			var paramType = GetTypeDef(vkTypeName);
+
+			string paramTypeName = paramType.Name;
+
+			if(paramType.Category == Category.funcpointer)
+            {
+				paramTypeName = "IntPtr";
+            }
+			else if(paramType.Category == Category.@struct && !paramType.IsSimpleStruct)
+            {
+				paramName = string.Format("{0} != null ? {0}.instance : null", paramName);
+            }
+
+			if(keywords.Contains(paramName))
+            {
+				paramName = "@" + paramName;
+            }
+
+			if(isFirst)
+            {
+				isFirst = false;
+            }
+			else
+            {
+				#>, <#
+            }
+			
+			#><#=paramName#><#
+    }
+		#>, handlePointer);
+
+					ResultUtil.HandleResult(createResult);
+				}
+			}
+		}
 <#
 
 	foreach(var command in GetCommands())
@@ -43,4 +164,5 @@ public class Instance
 		}
 	}
 #>
+	}
 }
