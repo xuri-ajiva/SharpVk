@@ -33,14 +33,13 @@ namespace SharpVk
 			{
 				fixed(Interop.Instance* handlePointer = &this.handle)
 				{
-					Result createResult = Interop.Commands.vkCreateInstance(createInfo != null ? createInfo.instance : null, allocator != null ? allocator.instance : null, handlePointer);
+					var marshalledCreateInfo = (createInfo?.MarshalTo()).GetValueOrDefault();
+					var marshalledAllocator = (allocator?.MarshalTo()).GetValueOrDefault();
+					Result createResult = Interop.Commands.vkCreateInstance(createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, handlePointer);
 
 					ResultUtil.HandleResult(createResult);
 				}
 			}
 		}
-	//vkDestroyInstance Instance
-	//vkEnumeratePhysicalDevices Instance
-	//vkGetInstanceProcAddr Instance
 	}
 }

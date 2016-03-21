@@ -25,18 +25,18 @@ namespace SharpVk
 
 	var commands = GetCommands();
 
-	var createCommand = commands.First(x => x.Element("proto").Element("name").Value == "vkCreate" + instanceType.Name);
+	var createCommand = commands.First(x => x.Name == "vkCreate" + instanceType.Name);
 
 #>
 
 		public Instance(<#
 	bool isFirst = true;
 
-	int paramCount = createCommand.Elements("param").Count();
+	int paramCount = createCommand.Params.Count();
 
-	foreach(var parameter in createCommand.Elements("param").Take(paramCount - 1))
+	foreach(var parameter in createCommand.Params.Take(paramCount - 1))
     {
-		string paramName = parameter.Element("name").Value;
+		string paramName = parameter.Name;
 
 			int pointerCount = 0;
 			
@@ -52,9 +52,7 @@ namespace SharpVk
 				paramName = paramName = char.ToLower(paramName[0]) + paramName.Substring(1);
             }
 
-			string vkTypeName = parameter.Element("type").Value;
-
-			var paramType = GetTypeDef(vkTypeName);
+			var paramType = parameter.Type;
 			
 			string paramTypeName = paramType.Name;
 
@@ -85,12 +83,14 @@ namespace SharpVk
 			{
 				fixed(Interop.Instance* handlePointer = &this.handle)
 				{
-					Result createResult = Interop.NativeMethods.<#=createCommand.Element("proto").Element("name").Value#>(<#
+<#
 	isFirst = true;
 
-	foreach(var parameter in createCommand.Elements("param").Take(paramCount - 1))
+	var arguments = new List<string>();
+
+	foreach(var parameter in createCommand.Params.Take(paramCount - 1))
     {
-		string paramName = parameter.Element("name").Value;
+		string paramName = parameter.Name;
 
 			int pointerCount = 0;
 			
@@ -101,68 +101,40 @@ namespace SharpVk
 				paramName = paramName.Substring(1);
             }
 
-			bool isOutput = !parameter.Value.StartsWith("const") && pointerCount > 0;
+			//bool isOutput = !parameter.Value.StartsWith("const") && pointerCount > 0;
 
 			if(pointerCount > 0)
             {
-				paramName = paramName = char.ToLower(paramName[0]) + paramName.Substring(1);
+				paramName = char.ToLower(paramName[0]) + paramName.Substring(1);
             }
 
-			string vkTypeName = parameter.Element("type").Value;
-
-			var paramType = GetTypeDef(vkTypeName);
+			var paramType = parameter.Type;
 
 			string paramTypeName = paramType.Name;
 
-			if(paramType.Category == Category.funcpointer)
-            {
-				paramTypeName = "IntPtr";
-            }
-			else if(paramType.Category == Category.@struct && !paramType.IsSimpleStruct)
-            {
-				paramName = string.Format("{0} != null ? {0}.instance : null", paramName);
-            }
+			string marshalledParamName = "marshalled" + char.ToUpper(paramName[0]) + paramName.Substring(1);
 
-			if(keywords.Contains(paramName))
+			if(paramType.Category == Category.@struct && !paramType.IsSimpleStruct)
             {
-				paramName = "@" + paramName;
-            }
-
-			if(isFirst)
-            {
-				isFirst = false;
+				arguments.Add(string.Format("{0} == null ? null : &{1}, ", paramName, marshalledParamName));
+				paramName = "(" + paramName + "?.MarshalTo()).GetValueOrDefault()";
             }
 			else
-            {
-				#>, <#
-            }
-			
-			#><#=paramName#><#
+			{
+				arguments.Add(paramName + ", ");
+			}
+#>
+					var <#=marshalledParamName#> = <#=paramName#>;
+<#
     }
-		#>, handlePointer);
+
+	string argumentsString = string.Join("", arguments);
+		#>
+					Result createResult = Interop.Commands.<#=createCommand.Name#>(<#=argumentsString#>handlePointer);
 
 					ResultUtil.HandleResult(createResult);
 				}
 			}
 		}
-<#
-
-	foreach(var command in GetCommands())
-	{
-		var prototype = command.Element("proto");
-		var commandType = GetTypeDef(prototype.Element("type").Value);
-		string commandName = prototype.Element("name").Value;
-
-		var firstParam = command.Elements("param").First();
-		var paramType = GetTypeDef(firstParam.Element("type").Value);
-
-		if(paramType == instanceType)
-		{
-#>
-	//<#=commandName#> <#=paramType.Name#>
-<#
-		}
-	}
-#>
 	}
 }

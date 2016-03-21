@@ -366,6 +366,50 @@ namespace SharpVk.Interop
 		public uint MemoryTypeIndex;
 	}
 
+	public unsafe struct MemoryRequirements
+	{
+		public static MemoryRequirements* Create()
+		{
+			return (MemoryRequirements*)HeapUtil.AllocateAndClear<MemoryRequirements>();
+		}
+
+		public DeviceSize Size;
+
+		public DeviceSize Alignment;
+
+		public uint MemoryTypeBits;
+	}
+
+	public unsafe struct SparseImageMemoryRequirements
+	{
+		public static SparseImageMemoryRequirements* Create()
+		{
+			return (SparseImageMemoryRequirements*)HeapUtil.AllocateAndClear<SparseImageMemoryRequirements>();
+		}
+
+		public SparseImageFormatProperties FormatProperties;
+
+		public uint ImageMipTailFirstLod;
+
+		public DeviceSize ImageMipTailSize;
+
+		public DeviceSize ImageMipTailOffset;
+
+		public DeviceSize ImageMipTailStride;
+	}
+
+	public unsafe struct MemoryHeap
+	{
+		public static MemoryHeap* Create()
+		{
+			return (MemoryHeap*)HeapUtil.AllocateAndClear<MemoryHeap>();
+		}
+
+		public DeviceSize Size;
+
+		public MemoryHeapFlags Flags;
+	}
+
 	public unsafe struct MappedMemoryRange
 	{
 		public static MappedMemoryRange* Create()
@@ -382,6 +426,24 @@ namespace SharpVk.Interop
 		public DeviceSize Offset;
 
 		public DeviceSize Size;
+	}
+
+	public unsafe struct ImageFormatProperties
+	{
+		public static ImageFormatProperties* Create()
+		{
+			return (ImageFormatProperties*)HeapUtil.AllocateAndClear<ImageFormatProperties>();
+		}
+
+		public Extent3D MaxExtent;
+
+		public uint MaxMipLevels;
+
+		public uint MaxArrayLayers;
+
+		public SampleCountFlags SampleCounts;
+
+		public DeviceSize MaxResourceSize;
 	}
 
 	public unsafe struct DescriptorBufferInfo
@@ -620,6 +682,24 @@ namespace SharpVk.Interop
 		public ImageLayout InitialLayout;
 	}
 
+	public unsafe struct SubresourceLayout
+	{
+		public static SubresourceLayout* Create()
+		{
+			return (SubresourceLayout*)HeapUtil.AllocateAndClear<SubresourceLayout>();
+		}
+
+		public DeviceSize Offset;
+
+		public DeviceSize Size;
+
+		public DeviceSize RowPitch;
+
+		public DeviceSize ArrayPitch;
+
+		public DeviceSize DepthPitch;
+	}
+
 	public unsafe struct ImageViewCreateInfo
 	{
 		public static ImageViewCreateInfo* Create()
@@ -642,6 +722,20 @@ namespace SharpVk.Interop
 		public ComponentMapping Components;
 
 		public ImageSubresourceRange SubresourceRange;
+	}
+
+	public unsafe struct BufferCopy
+	{
+		public static BufferCopy* Create()
+		{
+			return (BufferCopy*)HeapUtil.AllocateAndClear<BufferCopy>();
+		}
+
+		public DeviceSize SrcOffset;
+
+		public DeviceSize DstOffset;
+
+		public DeviceSize Size;
 	}
 
 	public unsafe struct SparseMemoryBind
@@ -774,6 +868,26 @@ namespace SharpVk.Interop
 		public Offset3D DstOffsets_0;
 
 		public Offset3D DstOffsets_1;
+	}
+
+	public unsafe struct BufferImageCopy
+	{
+		public static BufferImageCopy* Create()
+		{
+			return (BufferImageCopy*)HeapUtil.AllocateAndClear<BufferImageCopy>();
+		}
+
+		public DeviceSize BufferOffset;
+
+		public uint BufferRowLength;
+
+		public uint BufferImageHeight;
+
+		public ImageSubresourceLayers ImageSubresource;
+
+		public Offset3D ImageOffset;
+
+		public Extent3D ImageExtent;
 	}
 
 	public unsafe struct ShaderModuleCreateInfo
@@ -1064,6 +1178,30 @@ namespace SharpVk.Interop
 		public Bool32 AlphaToCoverageEnable;
 
 		public Bool32 AlphaToOneEnable;
+	}
+
+	public unsafe struct PipelineColorBlendAttachmentState
+	{
+		public static PipelineColorBlendAttachmentState* Create()
+		{
+			return (PipelineColorBlendAttachmentState*)HeapUtil.AllocateAndClear<PipelineColorBlendAttachmentState>();
+		}
+
+		public Bool32 BlendEnable;
+
+		public BlendFactor SrcColorBlendFactor;
+
+		public BlendFactor DstColorBlendFactor;
+
+		public BlendOp ColorBlendOp;
+
+		public BlendFactor SrcAlphaBlendFactor;
+
+		public BlendFactor DstAlphaBlendFactor;
+
+		public BlendOp AlphaBlendOp;
+
+		public ColorComponentFlags ColorWriteMask;
 	}
 
 	public unsafe struct PipelineColorBlendStateCreateInfo
@@ -1446,6 +1584,142 @@ namespace SharpVk.Interop
 		public void* Next;
 
 		public FenceCreateFlags Flags;
+	}
+
+	public unsafe struct PhysicalDeviceFeatures
+	{
+		public static PhysicalDeviceFeatures* Create()
+		{
+			return (PhysicalDeviceFeatures*)HeapUtil.AllocateAndClear<PhysicalDeviceFeatures>();
+		}
+
+		public Bool32 RobustBufferAccess;
+
+		public Bool32 FullDrawIndexUint32;
+
+		public Bool32 ImageCubeArray;
+
+		public Bool32 IndependentBlend;
+
+		public Bool32 GeometryShader;
+
+		public Bool32 TessellationShader;
+
+		public Bool32 SampleRateShading;
+
+		public Bool32 DualSrcBlend;
+
+		public Bool32 LogicOp;
+
+		public Bool32 MultiDrawIndirect;
+
+		public Bool32 DrawIndirectFirstInstance;
+
+		public Bool32 DepthClamp;
+
+		public Bool32 DepthBiasClamp;
+
+		public Bool32 FillModeNonSolid;
+
+		public Bool32 DepthBounds;
+
+		public Bool32 WideLines;
+
+		public Bool32 LargePoints;
+
+		public Bool32 AlphaToOne;
+
+		public Bool32 MultiViewport;
+
+		public Bool32 SamplerAnisotropy;
+
+		public Bool32 TextureCompressionETC2;
+
+		public Bool32 TextureCompressionASTC_LDR;
+
+		public Bool32 TextureCompressionBC;
+
+		public Bool32 OcclusionQueryPrecise;
+
+		public Bool32 PipelineStatisticsQuery;
+
+		public Bool32 VertexPipelineStoresAndAtomics;
+
+		public Bool32 FragmentStoresAndAtomics;
+
+		public Bool32 ShaderTessellationAndGeometryPointSize;
+
+		public Bool32 ShaderImageGatherExtended;
+
+		public Bool32 ShaderStorageImageExtendedFormats;
+
+		public Bool32 ShaderStorageImageMultisample;
+
+		public Bool32 ShaderStorageImageReadWithoutFormat;
+
+		public Bool32 ShaderStorageImageWriteWithoutFormat;
+
+		public Bool32 ShaderUniformBufferArrayDynamicIndexing;
+
+		public Bool32 ShaderSampledImageArrayDynamicIndexing;
+
+		public Bool32 ShaderStorageBufferArrayDynamicIndexing;
+
+		public Bool32 ShaderStorageImageArrayDynamicIndexing;
+
+		public Bool32 ShaderClipDistance;
+
+		public Bool32 ShaderCullDistance;
+
+		public Bool32 ShaderFloat64;
+
+		public Bool32 ShaderInt64;
+
+		public Bool32 ShaderInt16;
+
+		public Bool32 ShaderResourceResidency;
+
+		public Bool32 ShaderResourceMinLod;
+
+		public Bool32 SparseBinding;
+
+		public Bool32 SparseResidencyBuffer;
+
+		public Bool32 SparseResidencyImage2D;
+
+		public Bool32 SparseResidencyImage3D;
+
+		public Bool32 SparseResidency2Samples;
+
+		public Bool32 SparseResidency4Samples;
+
+		public Bool32 SparseResidency8Samples;
+
+		public Bool32 SparseResidency16Samples;
+
+		public Bool32 SparseResidencyAliased;
+
+		public Bool32 VariableMultisampleRate;
+
+		public Bool32 InheritedQueries;
+	}
+
+	public unsafe struct PhysicalDeviceSparseProperties
+	{
+		public static PhysicalDeviceSparseProperties* Create()
+		{
+			return (PhysicalDeviceSparseProperties*)HeapUtil.AllocateAndClear<PhysicalDeviceSparseProperties>();
+		}
+
+		public Bool32 ResidencyStandard2DBlockShape;
+
+		public Bool32 ResidencyStandard2DMultisampleBlockShape;
+
+		public Bool32 ResidencyStandard3DBlockShape;
+
+		public Bool32 ResidencyAlignedMipSize;
+
+		public Bool32 ResidencyNonResidentStrict;
 	}
 
 	public unsafe struct PhysicalDeviceLimits

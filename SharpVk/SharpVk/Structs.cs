@@ -127,16 +127,6 @@ namespace SharpVk
 		public Extent3D MinImageTransferGranularity;
 	}
 
-	public struct MemoryRequirements
-	{
-
-		public ulong Size;
-
-		public ulong Alignment;
-
-		public uint MemoryTypeBits;
-	}
-
 	public struct SparseImageFormatProperties
 	{
 
@@ -147,34 +137,12 @@ namespace SharpVk
 		public SparseImageFormatFlags Flags;
 	}
 
-	public struct SparseImageMemoryRequirements
-	{
-
-		public SparseImageFormatProperties FormatProperties;
-
-		public uint ImageMipTailFirstLod;
-
-		public ulong ImageMipTailSize;
-
-		public ulong ImageMipTailOffset;
-
-		public ulong ImageMipTailStride;
-	}
-
 	public struct MemoryType
 	{
 
 		public MemoryPropertyFlags PropertyFlags;
 
 		public uint HeapIndex;
-	}
-
-	public struct MemoryHeap
-	{
-
-		public ulong Size;
-
-		public MemoryHeapFlags Flags;
 	}
 
 	public struct FormatProperties
@@ -185,20 +153,6 @@ namespace SharpVk
 		public FormatFeatureFlags OptimalTilingFeatures;
 
 		public FormatFeatureFlags BufferFeatures;
-	}
-
-	public struct ImageFormatProperties
-	{
-
-		public Extent3D MaxExtent;
-
-		public uint MaxMipLevels;
-
-		public uint MaxArrayLayers;
-
-		public SampleCountFlags SampleCounts;
-
-		public ulong MaxResourceSize;
 	}
 
 	public struct ImageSubresource
@@ -237,30 +191,6 @@ namespace SharpVk
 		public uint LayerCount;
 	}
 
-	public struct SubresourceLayout
-	{
-
-		public ulong Offset;
-
-		public ulong Size;
-
-		public ulong RowPitch;
-
-		public ulong ArrayPitch;
-
-		public ulong DepthPitch;
-	}
-
-	public struct BufferCopy
-	{
-
-		public ulong SrcOffset;
-
-		public ulong DstOffset;
-
-		public ulong Size;
-	}
-
 	public struct ImageCopy
 	{
 
@@ -273,22 +203,6 @@ namespace SharpVk
 		public Offset3D DstOffset;
 
 		public Extent3D Extent;
-	}
-
-	public struct BufferImageCopy
-	{
-
-		public ulong BufferOffset;
-
-		public uint BufferRowLength;
-
-		public uint BufferImageHeight;
-
-		public ImageSubresourceLayers ImageSubresource;
-
-		public Offset3D ImageOffset;
-
-		public Extent3D ImageExtent;
 	}
 
 	public struct ImageResolve
@@ -343,26 +257,6 @@ namespace SharpVk
 		public Format Format;
 
 		public uint Offset;
-	}
-
-	public struct PipelineColorBlendAttachmentState
-	{
-
-		public bool BlendEnable;
-
-		public BlendFactor SrcColorBlendFactor;
-
-		public BlendFactor DstColorBlendFactor;
-
-		public BlendOp ColorBlendOp;
-
-		public BlendFactor SrcAlphaBlendFactor;
-
-		public BlendFactor DstAlphaBlendFactor;
-
-		public BlendOp AlphaBlendOp;
-
-		public ColorComponentFlags ColorWriteMask;
 	}
 
 	public struct StencilOpState
@@ -457,134 +351,6 @@ namespace SharpVk
 		public AccessFlags DstAccessMask;
 
 		public DependencyFlags DependencyFlags;
-	}
-
-	public struct PhysicalDeviceFeatures
-	{
-
-		public bool RobustBufferAccess;
-
-		public bool FullDrawIndexUint32;
-
-		public bool ImageCubeArray;
-
-		public bool IndependentBlend;
-
-		public bool GeometryShader;
-
-		public bool TessellationShader;
-
-		public bool SampleRateShading;
-
-		public bool DualSrcBlend;
-
-		public bool LogicOp;
-
-		public bool MultiDrawIndirect;
-
-		public bool DrawIndirectFirstInstance;
-
-		public bool DepthClamp;
-
-		public bool DepthBiasClamp;
-
-		public bool FillModeNonSolid;
-
-		public bool DepthBounds;
-
-		public bool WideLines;
-
-		public bool LargePoints;
-
-		public bool AlphaToOne;
-
-		public bool MultiViewport;
-
-		public bool SamplerAnisotropy;
-
-		public bool TextureCompressionETC2;
-
-		public bool TextureCompressionASTC_LDR;
-
-		public bool TextureCompressionBC;
-
-		public bool OcclusionQueryPrecise;
-
-		public bool PipelineStatisticsQuery;
-
-		public bool VertexPipelineStoresAndAtomics;
-
-		public bool FragmentStoresAndAtomics;
-
-		public bool ShaderTessellationAndGeometryPointSize;
-
-		public bool ShaderImageGatherExtended;
-
-		public bool ShaderStorageImageExtendedFormats;
-
-		public bool ShaderStorageImageMultisample;
-
-		public bool ShaderStorageImageReadWithoutFormat;
-
-		public bool ShaderStorageImageWriteWithoutFormat;
-
-		public bool ShaderUniformBufferArrayDynamicIndexing;
-
-		public bool ShaderSampledImageArrayDynamicIndexing;
-
-		public bool ShaderStorageBufferArrayDynamicIndexing;
-
-		public bool ShaderStorageImageArrayDynamicIndexing;
-
-		public bool ShaderClipDistance;
-
-		public bool ShaderCullDistance;
-
-		public bool ShaderFloat64;
-
-		public bool ShaderInt64;
-
-		public bool ShaderInt16;
-
-		public bool ShaderResourceResidency;
-
-		public bool ShaderResourceMinLod;
-
-		public bool SparseBinding;
-
-		public bool SparseResidencyBuffer;
-
-		public bool SparseResidencyImage2D;
-
-		public bool SparseResidencyImage3D;
-
-		public bool SparseResidency2Samples;
-
-		public bool SparseResidency4Samples;
-
-		public bool SparseResidency8Samples;
-
-		public bool SparseResidency16Samples;
-
-		public bool SparseResidencyAliased;
-
-		public bool VariableMultisampleRate;
-
-		public bool InheritedQueries;
-	}
-
-	public struct PhysicalDeviceSparseProperties
-	{
-
-		public bool ResidencyStandard2DBlockShape;
-
-		public bool ResidencyStandard2DMultisampleBlockShape;
-
-		public bool ResidencyStandard3DBlockShape;
-
-		public bool ResidencyAlignedMipSize;
-
-		public bool ResidencyNonResidentStrict;
 	}
 
 	public struct DrawIndirectCommand

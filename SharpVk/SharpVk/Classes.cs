@@ -25,5173 +25,4125 @@ using System;
 namespace SharpVk
 {
 
-	public unsafe class PhysicalDeviceProperties
-		: IDisposable
+	public class PhysicalDeviceProperties
 	{
-		internal Interop.PhysicalDeviceProperties* instance;
-
-		internal PhysicalDeviceProperties(Interop.PhysicalDeviceProperties* instance)
-		{
-			this.instance = instance == null ? Interop.PhysicalDeviceProperties.Create() : instance;
-		}
-
-		public static PhysicalDeviceProperties Create()
-		{
-			var result = new PhysicalDeviceProperties(null);
-
-			return result;
-		}
 
 		public uint ApiVersion
 		{
-			get
-			{
-				return this.instance->ApiVersion;
-			}
+			get;
+			private set;
 		}
 
 		public uint DriverVersion
 		{
-			get
-			{
-				return this.instance->DriverVersion;
-			}
+			get;
+			private set;
 		}
 
 		public uint VendorID
 		{
-			get
-			{
-				return this.instance->VendorID;
-			}
+			get;
+			private set;
 		}
 
 		public uint DeviceID
 		{
-			get
-			{
-				return this.instance->DeviceID;
-			}
+			get;
+			private set;
 		}
 
 		public PhysicalDeviceType DeviceType
 		{
-			get
-			{
-				return this.instance->DeviceType;
-			}
+			get;
+			private set;
 		}
 
-		public string DeviceName
+		public string[] DeviceName
 		{
-			get
-			{
-				return Interop.HeapUtil.MarshalPointerToString(this.instance->DeviceName);
-			}
+			get;
+			private set;
 		}
 
 		public byte[] PipelineCacheUUID
 		{
-			get
-			{
-				return Interop.HeapUtil.MarshalPointerToArray(this.instance->PipelineCacheUUID, 16);
-			}
+			get;
+			private set;
 		}
 
 		public PhysicalDeviceLimits Limits
 		{
-			get
-			{
-				return new PhysicalDeviceLimits(&(this.instance->Limits));
-			}
+			get;
+			private set;
 		}
 
 		public PhysicalDeviceSparseProperties SparseProperties
 		{
-			get
-			{
-				return this.instance->SparseProperties;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			private set;
 		}
 	}
 
-	public unsafe class ExtensionProperties
-		: IDisposable
+	public class ExtensionProperties
 	{
-		internal Interop.ExtensionProperties* instance;
 
-		internal ExtensionProperties(Interop.ExtensionProperties* instance)
+		public string[] ExtensionName
 		{
-			this.instance = instance == null ? Interop.ExtensionProperties.Create() : instance;
-		}
-
-		public static ExtensionProperties Create()
-		{
-			var result = new ExtensionProperties(null);
-
-			return result;
-		}
-
-		public string ExtensionName
-		{
-			get
-			{
-				return Interop.HeapUtil.MarshalPointerToString(this.instance->ExtensionName);
-			}
+			get;
+			private set;
 		}
 
 		public uint SpecVersion
 		{
-			get
-			{
-				return this.instance->SpecVersion;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			private set;
 		}
 	}
 
-	public unsafe class LayerProperties
-		: IDisposable
+	public class LayerProperties
 	{
-		internal Interop.LayerProperties* instance;
 
-		internal LayerProperties(Interop.LayerProperties* instance)
+		public string[] LayerName
 		{
-			this.instance = instance == null ? Interop.LayerProperties.Create() : instance;
-		}
-
-		public static LayerProperties Create()
-		{
-			var result = new LayerProperties(null);
-
-			return result;
-		}
-
-		public string LayerName
-		{
-			get
-			{
-				return Interop.HeapUtil.MarshalPointerToString(this.instance->LayerName);
-			}
+			get;
+			private set;
 		}
 
 		public uint SpecVersion
 		{
-			get
-			{
-				return this.instance->SpecVersion;
-			}
+			get;
+			private set;
 		}
 
 		public uint ImplementationVersion
 		{
-			get
-			{
-				return this.instance->ImplementationVersion;
-			}
+			get;
+			private set;
 		}
 
-		public string Description
+		public string[] Description
 		{
-			get
-			{
-				return Interop.HeapUtil.MarshalPointerToString(this.instance->Description);
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			private set;
 		}
 	}
 
-	public unsafe class ApplicationInfo
-		: IDisposable
+	public class ApplicationInfo
 	{
-		internal Interop.ApplicationInfo* instance;
 
-		internal ApplicationInfo(Interop.ApplicationInfo* instance)
+		internal unsafe Interop.ApplicationInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.ApplicationInfo.Create() : instance;
-		}
+			var result = new Interop.ApplicationInfo();
 
-		public static ApplicationInfo Create()
-		{
-			var result = new ApplicationInfo(null);
+			result.SType = StructureType.ApplicationInfo;
 
-			result.instance->SType = StructureType.ApplicationInfo;
+			result.ApplicationName = Interop.HeapUtil.MarshalStringToPointer(this.ApplicationName);
+			result.ApplicationVersion = this.ApplicationVersion;
+			result.EngineName = Interop.HeapUtil.MarshalStringToPointer(this.EngineName);
+			result.EngineVersion = this.EngineVersion;
+			result.ApiVersion = this.ApiVersion;
 
 			return result;
 		}
 
+
 		public string ApplicationName
 		{
-			get
-			{
-				return Interop.HeapUtil.MarshalPointerToString(this.instance->ApplicationName);
-			}
-			set
-			{
-				this.instance->ApplicationName = Interop.HeapUtil.MarshalStringToPointer(value);
-			}
+			get;
+			set;
 		}
 
 		public uint ApplicationVersion
 		{
-			get
-			{
-				return this.instance->ApplicationVersion;
-			}
-			set
-			{
-				this.instance->ApplicationVersion = value;
-			}
+			get;
+			set;
 		}
 
 		public string EngineName
 		{
-			get
-			{
-				return Interop.HeapUtil.MarshalPointerToString(this.instance->EngineName);
-			}
-			set
-			{
-				this.instance->EngineName = Interop.HeapUtil.MarshalStringToPointer(value);
-			}
+			get;
+			set;
 		}
 
 		public uint EngineVersion
 		{
-			get
-			{
-				return this.instance->EngineVersion;
-			}
-			set
-			{
-				this.instance->EngineVersion = value;
-			}
+			get;
+			set;
 		}
 
 		public uint ApiVersion
 		{
-			get
-			{
-				return this.instance->ApiVersion;
-			}
-			set
-			{
-				this.instance->ApiVersion = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class AllocationCallbacks
-		: IDisposable
+	public class AllocationCallbacks
 	{
-		internal Interop.AllocationCallbacks* instance;
 
-		internal AllocationCallbacks(Interop.AllocationCallbacks* instance)
+		internal unsafe Interop.AllocationCallbacks MarshalTo()
 		{
-			this.instance = instance == null ? Interop.AllocationCallbacks.Create() : instance;
-		}
-
-		public static AllocationCallbacks Create()
-		{
-			var result = new AllocationCallbacks(null);
+			var result = new Interop.AllocationCallbacks();
+			result.PfnAllocation = this.PfnAllocation;
+			result.PfnReallocation = this.PfnReallocation;
+			result.PfnFree = this.PfnFree;
+			result.PfnInternalAllocation = this.PfnInternalAllocation;
+			result.PfnInternalFree = this.PfnInternalFree;
 
 			return result;
 		}
 
+
 		public IntPtr PfnAllocation
 		{
-			get
-			{
-				return this.instance->PfnAllocation;
-			}
-			set
-			{
-				this.instance->PfnAllocation = value;
-			}
+			get;
+			set;
 		}
 
 		public IntPtr PfnReallocation
 		{
-			get
-			{
-				return this.instance->PfnReallocation;
-			}
-			set
-			{
-				this.instance->PfnReallocation = value;
-			}
+			get;
+			set;
 		}
 
 		public IntPtr PfnFree
 		{
-			get
-			{
-				return this.instance->PfnFree;
-			}
-			set
-			{
-				this.instance->PfnFree = value;
-			}
+			get;
+			set;
 		}
 
 		public IntPtr PfnInternalAllocation
 		{
-			get
-			{
-				return this.instance->PfnInternalAllocation;
-			}
-			set
-			{
-				this.instance->PfnInternalAllocation = value;
-			}
+			get;
+			set;
 		}
 
 		public IntPtr PfnInternalFree
 		{
-			get
-			{
-				return this.instance->PfnInternalFree;
-			}
-			set
-			{
-				this.instance->PfnInternalFree = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class DeviceQueueCreateInfo
-		: IDisposable
+	public class DeviceQueueCreateInfo
 	{
-		internal Interop.DeviceQueueCreateInfo* instance;
 
-		internal DeviceQueueCreateInfo(Interop.DeviceQueueCreateInfo* instance)
+		internal unsafe Interop.DeviceQueueCreateInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.DeviceQueueCreateInfo.Create() : instance;
-		}
+			var result = new Interop.DeviceQueueCreateInfo();
 
-		public static DeviceQueueCreateInfo Create()
-		{
-			var result = new DeviceQueueCreateInfo(null);
+			result.SType = StructureType.DeviceQueueCreateInfo;
 
-			result.instance->SType = StructureType.DeviceQueueCreateInfo;
+			result.Flags = this.Flags;
+			result.QueueFamilyIndex = this.QueueFamilyIndex;
 
 			return result;
 		}
 
+
 		public uint Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
+			get;
+			set;
 		}
 
 		public uint QueueFamilyIndex
 		{
-			get
-			{
-				return this.instance->QueueFamilyIndex;
-			}
-			set
-			{
-				this.instance->QueueFamilyIndex = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class DeviceCreateInfo
-		: IDisposable
+	public class DeviceCreateInfo
 	{
-		internal Interop.DeviceCreateInfo* instance;
 
-		internal DeviceCreateInfo(Interop.DeviceCreateInfo* instance)
+		internal unsafe Interop.DeviceCreateInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.DeviceCreateInfo.Create() : instance;
-		}
+			var result = new Interop.DeviceCreateInfo();
 
-		public static DeviceCreateInfo Create()
-		{
-			var result = new DeviceCreateInfo(null);
+			result.SType = StructureType.DeviceCreateInfo;
 
-			result.instance->SType = StructureType.DeviceCreateInfo;
+			result.Flags = this.Flags;
 
 			return result;
 		}
+
 
 		public uint Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
+			get;
+			set;
 		}
 
-		public void Dispose()
+		public DeviceQueueCreateInfo QueueCreateInfos
 		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
+		}
+
+		public PhysicalDeviceFeatures EnabledFeatures
+		{
+			get;
+			set;
 		}
 	}
 
-	public unsafe class InstanceCreateInfo
-		: IDisposable
+	public class InstanceCreateInfo
 	{
-		internal Interop.InstanceCreateInfo* instance;
 
-		internal InstanceCreateInfo(Interop.InstanceCreateInfo* instance)
+		internal unsafe Interop.InstanceCreateInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.InstanceCreateInfo.Create() : instance;
-		}
+			var result = new Interop.InstanceCreateInfo();
 
-		public static InstanceCreateInfo Create()
-		{
-			var result = new InstanceCreateInfo(null);
+			result.SType = StructureType.InstanceCreateInfo;
 
-			result.instance->SType = StructureType.InstanceCreateInfo;
+			result.Flags = this.Flags;
 
 			return result;
 		}
+
 
 		public uint Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
+			get;
+			set;
 		}
 
-		public void Dispose()
+		public ApplicationInfo ApplicationInfo
 		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class PhysicalDeviceMemoryProperties
-		: IDisposable
+	public class PhysicalDeviceMemoryProperties
 	{
-		internal Interop.PhysicalDeviceMemoryProperties* instance;
-
-		internal PhysicalDeviceMemoryProperties(Interop.PhysicalDeviceMemoryProperties* instance)
-		{
-			this.instance = instance == null ? Interop.PhysicalDeviceMemoryProperties.Create() : instance;
-		}
-
-		public static PhysicalDeviceMemoryProperties Create()
-		{
-			var result = new PhysicalDeviceMemoryProperties(null);
-
-			return result;
-		}
 
 		public uint MemoryTypeCount
 		{
-			get
-			{
-				return this.instance->MemoryTypeCount;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryType MemoryTypes_0
 		{
-			get
-			{
-				return this.instance->MemoryTypes_0;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryType MemoryTypes_1
 		{
-			get
-			{
-				return this.instance->MemoryTypes_1;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryType MemoryTypes_2
 		{
-			get
-			{
-				return this.instance->MemoryTypes_2;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryType MemoryTypes_3
 		{
-			get
-			{
-				return this.instance->MemoryTypes_3;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryType MemoryTypes_4
 		{
-			get
-			{
-				return this.instance->MemoryTypes_4;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryType MemoryTypes_5
 		{
-			get
-			{
-				return this.instance->MemoryTypes_5;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryType MemoryTypes_6
 		{
-			get
-			{
-				return this.instance->MemoryTypes_6;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryType MemoryTypes_7
 		{
-			get
-			{
-				return this.instance->MemoryTypes_7;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryType MemoryTypes_8
 		{
-			get
-			{
-				return this.instance->MemoryTypes_8;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryType MemoryTypes_9
 		{
-			get
-			{
-				return this.instance->MemoryTypes_9;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryType MemoryTypes_10
 		{
-			get
-			{
-				return this.instance->MemoryTypes_10;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryType MemoryTypes_11
 		{
-			get
-			{
-				return this.instance->MemoryTypes_11;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryType MemoryTypes_12
 		{
-			get
-			{
-				return this.instance->MemoryTypes_12;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryType MemoryTypes_13
 		{
-			get
-			{
-				return this.instance->MemoryTypes_13;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryType MemoryTypes_14
 		{
-			get
-			{
-				return this.instance->MemoryTypes_14;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryType MemoryTypes_15
 		{
-			get
-			{
-				return this.instance->MemoryTypes_15;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryType MemoryTypes_16
 		{
-			get
-			{
-				return this.instance->MemoryTypes_16;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryType MemoryTypes_17
 		{
-			get
-			{
-				return this.instance->MemoryTypes_17;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryType MemoryTypes_18
 		{
-			get
-			{
-				return this.instance->MemoryTypes_18;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryType MemoryTypes_19
 		{
-			get
-			{
-				return this.instance->MemoryTypes_19;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryType MemoryTypes_20
 		{
-			get
-			{
-				return this.instance->MemoryTypes_20;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryType MemoryTypes_21
 		{
-			get
-			{
-				return this.instance->MemoryTypes_21;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryType MemoryTypes_22
 		{
-			get
-			{
-				return this.instance->MemoryTypes_22;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryType MemoryTypes_23
 		{
-			get
-			{
-				return this.instance->MemoryTypes_23;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryType MemoryTypes_24
 		{
-			get
-			{
-				return this.instance->MemoryTypes_24;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryType MemoryTypes_25
 		{
-			get
-			{
-				return this.instance->MemoryTypes_25;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryType MemoryTypes_26
 		{
-			get
-			{
-				return this.instance->MemoryTypes_26;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryType MemoryTypes_27
 		{
-			get
-			{
-				return this.instance->MemoryTypes_27;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryType MemoryTypes_28
 		{
-			get
-			{
-				return this.instance->MemoryTypes_28;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryType MemoryTypes_29
 		{
-			get
-			{
-				return this.instance->MemoryTypes_29;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryType MemoryTypes_30
 		{
-			get
-			{
-				return this.instance->MemoryTypes_30;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryType MemoryTypes_31
 		{
-			get
-			{
-				return this.instance->MemoryTypes_31;
-			}
+			get;
+			private set;
 		}
 
 		public uint MemoryHeapCount
 		{
-			get
-			{
-				return this.instance->MemoryHeapCount;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryHeap MemoryHeaps_0
 		{
-			get
-			{
-				return this.instance->MemoryHeaps_0;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryHeap MemoryHeaps_1
 		{
-			get
-			{
-				return this.instance->MemoryHeaps_1;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryHeap MemoryHeaps_2
 		{
-			get
-			{
-				return this.instance->MemoryHeaps_2;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryHeap MemoryHeaps_3
 		{
-			get
-			{
-				return this.instance->MemoryHeaps_3;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryHeap MemoryHeaps_4
 		{
-			get
-			{
-				return this.instance->MemoryHeaps_4;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryHeap MemoryHeaps_5
 		{
-			get
-			{
-				return this.instance->MemoryHeaps_5;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryHeap MemoryHeaps_6
 		{
-			get
-			{
-				return this.instance->MemoryHeaps_6;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryHeap MemoryHeaps_7
 		{
-			get
-			{
-				return this.instance->MemoryHeaps_7;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryHeap MemoryHeaps_8
 		{
-			get
-			{
-				return this.instance->MemoryHeaps_8;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryHeap MemoryHeaps_9
 		{
-			get
-			{
-				return this.instance->MemoryHeaps_9;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryHeap MemoryHeaps_10
 		{
-			get
-			{
-				return this.instance->MemoryHeaps_10;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryHeap MemoryHeaps_11
 		{
-			get
-			{
-				return this.instance->MemoryHeaps_11;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryHeap MemoryHeaps_12
 		{
-			get
-			{
-				return this.instance->MemoryHeaps_12;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryHeap MemoryHeaps_13
 		{
-			get
-			{
-				return this.instance->MemoryHeaps_13;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryHeap MemoryHeaps_14
 		{
-			get
-			{
-				return this.instance->MemoryHeaps_14;
-			}
+			get;
+			private set;
 		}
 
 		public MemoryHeap MemoryHeaps_15
 		{
-			get
-			{
-				return this.instance->MemoryHeaps_15;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			private set;
 		}
 	}
 
-	public unsafe class MemoryAllocateInfo
-		: IDisposable
+	public class MemoryAllocateInfo
 	{
-		internal Interop.MemoryAllocateInfo* instance;
 
-		internal MemoryAllocateInfo(Interop.MemoryAllocateInfo* instance)
+		internal unsafe Interop.MemoryAllocateInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.MemoryAllocateInfo.Create() : instance;
-		}
+			var result = new Interop.MemoryAllocateInfo();
 
-		public static MemoryAllocateInfo Create()
-		{
-			var result = new MemoryAllocateInfo(null);
+			result.SType = StructureType.MemoryAllocateInfo;
 
-			result.instance->SType = StructureType.MemoryAllocateInfo;
+			result.AllocationSize = this.AllocationSize;
+			result.MemoryTypeIndex = this.MemoryTypeIndex;
 
 			return result;
 		}
 
+
 		public ulong AllocationSize
 		{
-			get
-			{
-				return this.instance->AllocationSize;
-			}
-			set
-			{
-				this.instance->AllocationSize = value;
-			}
+			get;
+			set;
 		}
 
 		public uint MemoryTypeIndex
 		{
-			get
-			{
-				return this.instance->MemoryTypeIndex;
-			}
-			set
-			{
-				this.instance->MemoryTypeIndex = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class MappedMemoryRange
-		: IDisposable
+	public class MemoryRequirements
 	{
-		internal Interop.MappedMemoryRange* instance;
 
-		internal MappedMemoryRange(Interop.MappedMemoryRange* instance)
+		public ulong Size
 		{
-			this.instance = instance == null ? Interop.MappedMemoryRange.Create() : instance;
+			get;
+			private set;
 		}
 
-		public static MappedMemoryRange Create()
+		public ulong Alignment
 		{
-			var result = new MappedMemoryRange(null);
+			get;
+			private set;
+		}
 
-			result.instance->SType = StructureType.MappedMemoryRange;
+		public uint MemoryTypeBits
+		{
+			get;
+			private set;
+		}
+	}
+
+	public class SparseImageMemoryRequirements
+	{
+
+		public SparseImageFormatProperties FormatProperties
+		{
+			get;
+			private set;
+		}
+
+		public uint ImageMipTailFirstLod
+		{
+			get;
+			private set;
+		}
+
+		public ulong ImageMipTailSize
+		{
+			get;
+			private set;
+		}
+
+		public ulong ImageMipTailOffset
+		{
+			get;
+			private set;
+		}
+
+		public ulong ImageMipTailStride
+		{
+			get;
+			private set;
+		}
+	}
+
+	public class MemoryHeap
+	{
+
+		public ulong Size
+		{
+			get;
+			private set;
+		}
+
+		public MemoryHeapFlags Flags
+		{
+			get;
+			private set;
+		}
+	}
+
+	public class MappedMemoryRange
+	{
+
+		internal unsafe Interop.MappedMemoryRange MarshalTo()
+		{
+			var result = new Interop.MappedMemoryRange();
+
+			result.SType = StructureType.MappedMemoryRange;
+
+			result.Offset = this.Offset;
+			result.Size = this.Size;
 
 			return result;
 		}
 
+
 		public ulong Offset
 		{
-			get
-			{
-				return this.instance->Offset;
-			}
-			set
-			{
-				this.instance->Offset = value;
-			}
+			get;
+			set;
 		}
 
 		public ulong Size
 		{
-			get
-			{
-				return this.instance->Size;
-			}
-			set
-			{
-				this.instance->Size = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class DescriptorBufferInfo
-		: IDisposable
+	public class ImageFormatProperties
 	{
-		internal Interop.DescriptorBufferInfo* instance;
 
-		internal DescriptorBufferInfo(Interop.DescriptorBufferInfo* instance)
+		public Extent3D MaxExtent
 		{
-			this.instance = instance == null ? Interop.DescriptorBufferInfo.Create() : instance;
+			get;
+			private set;
 		}
 
-		public static DescriptorBufferInfo Create()
+		public uint MaxMipLevels
 		{
-			var result = new DescriptorBufferInfo(null);
+			get;
+			private set;
+		}
+
+		public uint MaxArrayLayers
+		{
+			get;
+			private set;
+		}
+
+		public SampleCountFlags SampleCounts
+		{
+			get;
+			private set;
+		}
+
+		public ulong MaxResourceSize
+		{
+			get;
+			private set;
+		}
+	}
+
+	public class DescriptorBufferInfo
+	{
+
+		internal unsafe Interop.DescriptorBufferInfo MarshalTo()
+		{
+			var result = new Interop.DescriptorBufferInfo();
+			result.Offset = this.Offset;
+			result.Range = this.Range;
 
 			return result;
 		}
 
+
 		public ulong Offset
 		{
-			get
-			{
-				return this.instance->Offset;
-			}
-			set
-			{
-				this.instance->Offset = value;
-			}
+			get;
+			set;
 		}
 
 		public ulong Range
 		{
-			get
-			{
-				return this.instance->Range;
-			}
-			set
-			{
-				this.instance->Range = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class DescriptorImageInfo
-		: IDisposable
+	public class DescriptorImageInfo
 	{
-		internal Interop.DescriptorImageInfo* instance;
 
-		internal DescriptorImageInfo(Interop.DescriptorImageInfo* instance)
+		internal unsafe Interop.DescriptorImageInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.DescriptorImageInfo.Create() : instance;
-		}
-
-		public static DescriptorImageInfo Create()
-		{
-			var result = new DescriptorImageInfo(null);
+			var result = new Interop.DescriptorImageInfo();
+			result.ImageLayout = this.ImageLayout;
 
 			return result;
 		}
+
 
 		public ImageLayout ImageLayout
 		{
-			get
-			{
-				return this.instance->ImageLayout;
-			}
-			set
-			{
-				this.instance->ImageLayout = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class WriteDescriptorSet
-		: IDisposable
+	public class WriteDescriptorSet
 	{
-		internal Interop.WriteDescriptorSet* instance;
 
-		internal WriteDescriptorSet(Interop.WriteDescriptorSet* instance)
+		internal unsafe Interop.WriteDescriptorSet MarshalTo()
 		{
-			this.instance = instance == null ? Interop.WriteDescriptorSet.Create() : instance;
-		}
+			var result = new Interop.WriteDescriptorSet();
 
-		public static WriteDescriptorSet Create()
-		{
-			var result = new WriteDescriptorSet(null);
+			result.SType = StructureType.WriteDescriptorSet;
 
-			result.instance->SType = StructureType.WriteDescriptorSet;
+			result.DstBinding = this.DstBinding;
+			result.DstArrayElement = this.DstArrayElement;
+			result.DescriptorType = this.DescriptorType;
 
 			return result;
 		}
 
+
 		public uint DstBinding
 		{
-			get
-			{
-				return this.instance->DstBinding;
-			}
-			set
-			{
-				this.instance->DstBinding = value;
-			}
+			get;
+			set;
 		}
 
 		public uint DstArrayElement
 		{
-			get
-			{
-				return this.instance->DstArrayElement;
-			}
-			set
-			{
-				this.instance->DstArrayElement = value;
-			}
+			get;
+			set;
 		}
 
 		public DescriptorType DescriptorType
 		{
-			get
-			{
-				return this.instance->DescriptorType;
-			}
-			set
-			{
-				this.instance->DescriptorType = value;
-			}
+			get;
+			set;
 		}
 
-		public void Dispose()
+		public DescriptorImageInfo ImageInfo
 		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
+		}
+
+		public DescriptorBufferInfo BufferInfo
+		{
+			get;
+			set;
 		}
 	}
 
-	public unsafe class CopyDescriptorSet
-		: IDisposable
+	public class CopyDescriptorSet
 	{
-		internal Interop.CopyDescriptorSet* instance;
 
-		internal CopyDescriptorSet(Interop.CopyDescriptorSet* instance)
+		internal unsafe Interop.CopyDescriptorSet MarshalTo()
 		{
-			this.instance = instance == null ? Interop.CopyDescriptorSet.Create() : instance;
-		}
+			var result = new Interop.CopyDescriptorSet();
 
-		public static CopyDescriptorSet Create()
-		{
-			var result = new CopyDescriptorSet(null);
+			result.SType = StructureType.CopyDescriptorSet;
 
-			result.instance->SType = StructureType.CopyDescriptorSet;
+			result.SrcBinding = this.SrcBinding;
+			result.SrcArrayElement = this.SrcArrayElement;
+			result.DstBinding = this.DstBinding;
+			result.DstArrayElement = this.DstArrayElement;
+			result.DescriptorCount = this.DescriptorCount;
 
 			return result;
 		}
 
+
 		public uint SrcBinding
 		{
-			get
-			{
-				return this.instance->SrcBinding;
-			}
-			set
-			{
-				this.instance->SrcBinding = value;
-			}
+			get;
+			set;
 		}
 
 		public uint SrcArrayElement
 		{
-			get
-			{
-				return this.instance->SrcArrayElement;
-			}
-			set
-			{
-				this.instance->SrcArrayElement = value;
-			}
+			get;
+			set;
 		}
 
 		public uint DstBinding
 		{
-			get
-			{
-				return this.instance->DstBinding;
-			}
-			set
-			{
-				this.instance->DstBinding = value;
-			}
+			get;
+			set;
 		}
 
 		public uint DstArrayElement
 		{
-			get
-			{
-				return this.instance->DstArrayElement;
-			}
-			set
-			{
-				this.instance->DstArrayElement = value;
-			}
+			get;
+			set;
 		}
 
 		public uint DescriptorCount
 		{
-			get
-			{
-				return this.instance->DescriptorCount;
-			}
-			set
-			{
-				this.instance->DescriptorCount = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class BufferCreateInfo
-		: IDisposable
+	public class BufferCreateInfo
 	{
-		internal Interop.BufferCreateInfo* instance;
 
-		internal BufferCreateInfo(Interop.BufferCreateInfo* instance)
+		internal unsafe Interop.BufferCreateInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.BufferCreateInfo.Create() : instance;
-		}
+			var result = new Interop.BufferCreateInfo();
 
-		public static BufferCreateInfo Create()
-		{
-			var result = new BufferCreateInfo(null);
+			result.SType = StructureType.BufferCreateInfo;
 
-			result.instance->SType = StructureType.BufferCreateInfo;
+			result.Flags = this.Flags;
+			result.Size = this.Size;
+			result.Usage = this.Usage;
+			result.SharingMode = this.SharingMode;
 
 			return result;
 		}
 
+
 		public BufferCreateFlags Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
+			get;
+			set;
 		}
 
 		public ulong Size
 		{
-			get
-			{
-				return this.instance->Size;
-			}
-			set
-			{
-				this.instance->Size = value;
-			}
+			get;
+			set;
 		}
 
 		public BufferUsageFlags Usage
 		{
-			get
-			{
-				return this.instance->Usage;
-			}
-			set
-			{
-				this.instance->Usage = value;
-			}
+			get;
+			set;
 		}
 
 		public SharingMode SharingMode
 		{
-			get
-			{
-				return this.instance->SharingMode;
-			}
-			set
-			{
-				this.instance->SharingMode = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class BufferViewCreateInfo
-		: IDisposable
+	public class BufferViewCreateInfo
 	{
-		internal Interop.BufferViewCreateInfo* instance;
 
-		internal BufferViewCreateInfo(Interop.BufferViewCreateInfo* instance)
+		internal unsafe Interop.BufferViewCreateInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.BufferViewCreateInfo.Create() : instance;
-		}
+			var result = new Interop.BufferViewCreateInfo();
 
-		public static BufferViewCreateInfo Create()
-		{
-			var result = new BufferViewCreateInfo(null);
+			result.SType = StructureType.BufferViewCreateInfo;
 
-			result.instance->SType = StructureType.BufferViewCreateInfo;
+			result.Flags = this.Flags;
+			result.Format = this.Format;
+			result.Offset = this.Offset;
+			result.Range = this.Range;
 
 			return result;
 		}
 
+
 		public uint Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
+			get;
+			set;
 		}
 
 		public Format Format
 		{
-			get
-			{
-				return this.instance->Format;
-			}
-			set
-			{
-				this.instance->Format = value;
-			}
+			get;
+			set;
 		}
 
 		public ulong Offset
 		{
-			get
-			{
-				return this.instance->Offset;
-			}
-			set
-			{
-				this.instance->Offset = value;
-			}
+			get;
+			set;
 		}
 
 		public ulong Range
 		{
-			get
-			{
-				return this.instance->Range;
-			}
-			set
-			{
-				this.instance->Range = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class MemoryBarrier
-		: IDisposable
+	public class MemoryBarrier
 	{
-		internal Interop.MemoryBarrier* instance;
 
-		internal MemoryBarrier(Interop.MemoryBarrier* instance)
+		internal unsafe Interop.MemoryBarrier MarshalTo()
 		{
-			this.instance = instance == null ? Interop.MemoryBarrier.Create() : instance;
-		}
+			var result = new Interop.MemoryBarrier();
 
-		public static MemoryBarrier Create()
-		{
-			var result = new MemoryBarrier(null);
+			result.SType = StructureType.MemoryBarrier;
 
-			result.instance->SType = StructureType.MemoryBarrier;
+			result.SrcAccessMask = this.SrcAccessMask;
+			result.DstAccessMask = this.DstAccessMask;
 
 			return result;
 		}
 
+
 		public AccessFlags SrcAccessMask
 		{
-			get
-			{
-				return this.instance->SrcAccessMask;
-			}
-			set
-			{
-				this.instance->SrcAccessMask = value;
-			}
+			get;
+			set;
 		}
 
 		public AccessFlags DstAccessMask
 		{
-			get
-			{
-				return this.instance->DstAccessMask;
-			}
-			set
-			{
-				this.instance->DstAccessMask = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class BufferMemoryBarrier
-		: IDisposable
+	public class BufferMemoryBarrier
 	{
-		internal Interop.BufferMemoryBarrier* instance;
 
-		internal BufferMemoryBarrier(Interop.BufferMemoryBarrier* instance)
+		internal unsafe Interop.BufferMemoryBarrier MarshalTo()
 		{
-			this.instance = instance == null ? Interop.BufferMemoryBarrier.Create() : instance;
-		}
+			var result = new Interop.BufferMemoryBarrier();
 
-		public static BufferMemoryBarrier Create()
-		{
-			var result = new BufferMemoryBarrier(null);
+			result.SType = StructureType.BufferMemoryBarrier;
 
-			result.instance->SType = StructureType.BufferMemoryBarrier;
+			result.SrcAccessMask = this.SrcAccessMask;
+			result.DstAccessMask = this.DstAccessMask;
+			result.SrcQueueFamilyIndex = this.SrcQueueFamilyIndex;
+			result.DstQueueFamilyIndex = this.DstQueueFamilyIndex;
+			result.Offset = this.Offset;
+			result.Size = this.Size;
 
 			return result;
 		}
 
+
 		public AccessFlags SrcAccessMask
 		{
-			get
-			{
-				return this.instance->SrcAccessMask;
-			}
-			set
-			{
-				this.instance->SrcAccessMask = value;
-			}
+			get;
+			set;
 		}
 
 		public AccessFlags DstAccessMask
 		{
-			get
-			{
-				return this.instance->DstAccessMask;
-			}
-			set
-			{
-				this.instance->DstAccessMask = value;
-			}
+			get;
+			set;
 		}
 
 		public uint SrcQueueFamilyIndex
 		{
-			get
-			{
-				return this.instance->SrcQueueFamilyIndex;
-			}
-			set
-			{
-				this.instance->SrcQueueFamilyIndex = value;
-			}
+			get;
+			set;
 		}
 
 		public uint DstQueueFamilyIndex
 		{
-			get
-			{
-				return this.instance->DstQueueFamilyIndex;
-			}
-			set
-			{
-				this.instance->DstQueueFamilyIndex = value;
-			}
+			get;
+			set;
 		}
 
 		public ulong Offset
 		{
-			get
-			{
-				return this.instance->Offset;
-			}
-			set
-			{
-				this.instance->Offset = value;
-			}
+			get;
+			set;
 		}
 
 		public ulong Size
 		{
-			get
-			{
-				return this.instance->Size;
-			}
-			set
-			{
-				this.instance->Size = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class ImageMemoryBarrier
-		: IDisposable
+	public class ImageMemoryBarrier
 	{
-		internal Interop.ImageMemoryBarrier* instance;
 
-		internal ImageMemoryBarrier(Interop.ImageMemoryBarrier* instance)
+		internal unsafe Interop.ImageMemoryBarrier MarshalTo()
 		{
-			this.instance = instance == null ? Interop.ImageMemoryBarrier.Create() : instance;
-		}
+			var result = new Interop.ImageMemoryBarrier();
 
-		public static ImageMemoryBarrier Create()
-		{
-			var result = new ImageMemoryBarrier(null);
+			result.SType = StructureType.ImageMemoryBarrier;
 
-			result.instance->SType = StructureType.ImageMemoryBarrier;
+			result.SrcAccessMask = this.SrcAccessMask;
+			result.DstAccessMask = this.DstAccessMask;
+			result.OldLayout = this.OldLayout;
+			result.NewLayout = this.NewLayout;
+			result.SrcQueueFamilyIndex = this.SrcQueueFamilyIndex;
+			result.DstQueueFamilyIndex = this.DstQueueFamilyIndex;
+			result.SubresourceRange = this.SubresourceRange;
 
 			return result;
 		}
 
+
 		public AccessFlags SrcAccessMask
 		{
-			get
-			{
-				return this.instance->SrcAccessMask;
-			}
-			set
-			{
-				this.instance->SrcAccessMask = value;
-			}
+			get;
+			set;
 		}
 
 		public AccessFlags DstAccessMask
 		{
-			get
-			{
-				return this.instance->DstAccessMask;
-			}
-			set
-			{
-				this.instance->DstAccessMask = value;
-			}
+			get;
+			set;
 		}
 
 		public ImageLayout OldLayout
 		{
-			get
-			{
-				return this.instance->OldLayout;
-			}
-			set
-			{
-				this.instance->OldLayout = value;
-			}
+			get;
+			set;
 		}
 
 		public ImageLayout NewLayout
 		{
-			get
-			{
-				return this.instance->NewLayout;
-			}
-			set
-			{
-				this.instance->NewLayout = value;
-			}
+			get;
+			set;
 		}
 
 		public uint SrcQueueFamilyIndex
 		{
-			get
-			{
-				return this.instance->SrcQueueFamilyIndex;
-			}
-			set
-			{
-				this.instance->SrcQueueFamilyIndex = value;
-			}
+			get;
+			set;
 		}
 
 		public uint DstQueueFamilyIndex
 		{
-			get
-			{
-				return this.instance->DstQueueFamilyIndex;
-			}
-			set
-			{
-				this.instance->DstQueueFamilyIndex = value;
-			}
+			get;
+			set;
 		}
 
 		public ImageSubresourceRange SubresourceRange
 		{
-			get
-			{
-				return this.instance->SubresourceRange;
-			}
-			set
-			{
-				this.instance->SubresourceRange = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class ImageCreateInfo
-		: IDisposable
+	public class ImageCreateInfo
 	{
-		internal Interop.ImageCreateInfo* instance;
 
-		internal ImageCreateInfo(Interop.ImageCreateInfo* instance)
+		internal unsafe Interop.ImageCreateInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.ImageCreateInfo.Create() : instance;
-		}
+			var result = new Interop.ImageCreateInfo();
 
-		public static ImageCreateInfo Create()
-		{
-			var result = new ImageCreateInfo(null);
+			result.SType = StructureType.ImageCreateInfo;
 
-			result.instance->SType = StructureType.ImageCreateInfo;
+			result.Flags = this.Flags;
+			result.ImageType = this.ImageType;
+			result.Format = this.Format;
+			result.Extent = this.Extent;
+			result.MipLevels = this.MipLevels;
+			result.ArrayLayers = this.ArrayLayers;
+			result.Samples = this.Samples;
+			result.Tiling = this.Tiling;
+			result.Usage = this.Usage;
+			result.SharingMode = this.SharingMode;
+			result.InitialLayout = this.InitialLayout;
 
 			return result;
 		}
 
+
 		public ImageCreateFlags Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
+			get;
+			set;
 		}
 
 		public ImageType ImageType
 		{
-			get
-			{
-				return this.instance->ImageType;
-			}
-			set
-			{
-				this.instance->ImageType = value;
-			}
+			get;
+			set;
 		}
 
 		public Format Format
 		{
-			get
-			{
-				return this.instance->Format;
-			}
-			set
-			{
-				this.instance->Format = value;
-			}
+			get;
+			set;
 		}
 
 		public Extent3D Extent
 		{
-			get
-			{
-				return this.instance->Extent;
-			}
-			set
-			{
-				this.instance->Extent = value;
-			}
+			get;
+			set;
 		}
 
 		public uint MipLevels
 		{
-			get
-			{
-				return this.instance->MipLevels;
-			}
-			set
-			{
-				this.instance->MipLevels = value;
-			}
+			get;
+			set;
 		}
 
 		public uint ArrayLayers
 		{
-			get
-			{
-				return this.instance->ArrayLayers;
-			}
-			set
-			{
-				this.instance->ArrayLayers = value;
-			}
+			get;
+			set;
 		}
 
 		public SampleCountFlags Samples
 		{
-			get
-			{
-				return this.instance->Samples;
-			}
-			set
-			{
-				this.instance->Samples = value;
-			}
+			get;
+			set;
 		}
 
 		public ImageTiling Tiling
 		{
-			get
-			{
-				return this.instance->Tiling;
-			}
-			set
-			{
-				this.instance->Tiling = value;
-			}
+			get;
+			set;
 		}
 
 		public ImageUsageFlags Usage
 		{
-			get
-			{
-				return this.instance->Usage;
-			}
-			set
-			{
-				this.instance->Usage = value;
-			}
+			get;
+			set;
 		}
 
 		public SharingMode SharingMode
 		{
-			get
-			{
-				return this.instance->SharingMode;
-			}
-			set
-			{
-				this.instance->SharingMode = value;
-			}
+			get;
+			set;
 		}
 
 		public ImageLayout InitialLayout
 		{
-			get
-			{
-				return this.instance->InitialLayout;
-			}
-			set
-			{
-				this.instance->InitialLayout = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class ImageViewCreateInfo
-		: IDisposable
+	public class SubresourceLayout
 	{
-		internal Interop.ImageViewCreateInfo* instance;
 
-		internal ImageViewCreateInfo(Interop.ImageViewCreateInfo* instance)
+		public ulong Offset
 		{
-			this.instance = instance == null ? Interop.ImageViewCreateInfo.Create() : instance;
-		}
-
-		public static ImageViewCreateInfo Create()
-		{
-			var result = new ImageViewCreateInfo(null);
-
-			result.instance->SType = StructureType.ImageViewCreateInfo;
-
-			return result;
-		}
-
-		public uint Flags
-		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
-		}
-
-		public ImageViewType ViewType
-		{
-			get
-			{
-				return this.instance->ViewType;
-			}
-			set
-			{
-				this.instance->ViewType = value;
-			}
-		}
-
-		public Format Format
-		{
-			get
-			{
-				return this.instance->Format;
-			}
-			set
-			{
-				this.instance->Format = value;
-			}
-		}
-
-		public ComponentMapping Components
-		{
-			get
-			{
-				return this.instance->Components;
-			}
-			set
-			{
-				this.instance->Components = value;
-			}
-		}
-
-		public ImageSubresourceRange SubresourceRange
-		{
-			get
-			{
-				return this.instance->SubresourceRange;
-			}
-			set
-			{
-				this.instance->SubresourceRange = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
-		}
-	}
-
-	public unsafe class SparseMemoryBind
-		: IDisposable
-	{
-		internal Interop.SparseMemoryBind* instance;
-
-		internal SparseMemoryBind(Interop.SparseMemoryBind* instance)
-		{
-			this.instance = instance == null ? Interop.SparseMemoryBind.Create() : instance;
-		}
-
-		public static SparseMemoryBind Create()
-		{
-			var result = new SparseMemoryBind(null);
-
-			return result;
-		}
-
-		public ulong ResourceOffset
-		{
-			get
-			{
-				return this.instance->ResourceOffset;
-			}
-			set
-			{
-				this.instance->ResourceOffset = value;
-			}
+			get;
+			private set;
 		}
 
 		public ulong Size
 		{
-			get
-			{
-				return this.instance->Size;
-			}
-			set
-			{
-				this.instance->Size = value;
-			}
+			get;
+			private set;
 		}
 
-		public ulong MemoryOffset
+		public ulong RowPitch
 		{
-			get
-			{
-				return this.instance->MemoryOffset;
-			}
-			set
-			{
-				this.instance->MemoryOffset = value;
-			}
+			get;
+			private set;
 		}
 
-		public SparseMemoryBindFlags Flags
+		public ulong ArrayPitch
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
+			get;
+			private set;
 		}
 
-		public void Dispose()
+		public ulong DepthPitch
 		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			private set;
 		}
 	}
 
-	public unsafe class SparseImageMemoryBind
-		: IDisposable
+	public class ImageViewCreateInfo
 	{
-		internal Interop.SparseImageMemoryBind* instance;
 
-		internal SparseImageMemoryBind(Interop.SparseImageMemoryBind* instance)
+		internal unsafe Interop.ImageViewCreateInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.SparseImageMemoryBind.Create() : instance;
-		}
+			var result = new Interop.ImageViewCreateInfo();
 
-		public static SparseImageMemoryBind Create()
-		{
-			var result = new SparseImageMemoryBind(null);
+			result.SType = StructureType.ImageViewCreateInfo;
+
+			result.Flags = this.Flags;
+			result.ViewType = this.ViewType;
+			result.Format = this.Format;
+			result.Components = this.Components;
+			result.SubresourceRange = this.SubresourceRange;
 
 			return result;
 		}
 
+
+		public uint Flags
+		{
+			get;
+			set;
+		}
+
+		public ImageViewType ViewType
+		{
+			get;
+			set;
+		}
+
+		public Format Format
+		{
+			get;
+			set;
+		}
+
+		public ComponentMapping Components
+		{
+			get;
+			set;
+		}
+
+		public ImageSubresourceRange SubresourceRange
+		{
+			get;
+			set;
+		}
+	}
+
+	public class BufferCopy
+	{
+
+		internal unsafe Interop.BufferCopy MarshalTo()
+		{
+			var result = new Interop.BufferCopy();
+			result.SrcOffset = this.SrcOffset;
+			result.DstOffset = this.DstOffset;
+			result.Size = this.Size;
+
+			return result;
+		}
+
+
+		public ulong SrcOffset
+		{
+			get;
+			set;
+		}
+
+		public ulong DstOffset
+		{
+			get;
+			set;
+		}
+
+		public ulong Size
+		{
+			get;
+			set;
+		}
+	}
+
+	public class SparseMemoryBind
+	{
+
+		internal unsafe Interop.SparseMemoryBind MarshalTo()
+		{
+			var result = new Interop.SparseMemoryBind();
+			result.ResourceOffset = this.ResourceOffset;
+			result.Size = this.Size;
+			result.MemoryOffset = this.MemoryOffset;
+			result.Flags = this.Flags;
+
+			return result;
+		}
+
+
+		public ulong ResourceOffset
+		{
+			get;
+			set;
+		}
+
+		public ulong Size
+		{
+			get;
+			set;
+		}
+
+		public ulong MemoryOffset
+		{
+			get;
+			set;
+		}
+
+		public SparseMemoryBindFlags Flags
+		{
+			get;
+			set;
+		}
+	}
+
+	public class SparseImageMemoryBind
+	{
+
+		internal unsafe Interop.SparseImageMemoryBind MarshalTo()
+		{
+			var result = new Interop.SparseImageMemoryBind();
+			result.Subresource = this.Subresource;
+			result.Offset = this.Offset;
+			result.Extent = this.Extent;
+			result.MemoryOffset = this.MemoryOffset;
+			result.Flags = this.Flags;
+
+			return result;
+		}
+
+
 		public ImageSubresource Subresource
 		{
-			get
-			{
-				return this.instance->Subresource;
-			}
-			set
-			{
-				this.instance->Subresource = value;
-			}
+			get;
+			set;
 		}
 
 		public Offset3D Offset
 		{
-			get
-			{
-				return this.instance->Offset;
-			}
-			set
-			{
-				this.instance->Offset = value;
-			}
+			get;
+			set;
 		}
 
 		public Extent3D Extent
 		{
-			get
-			{
-				return this.instance->Extent;
-			}
-			set
-			{
-				this.instance->Extent = value;
-			}
+			get;
+			set;
 		}
 
 		public ulong MemoryOffset
 		{
-			get
-			{
-				return this.instance->MemoryOffset;
-			}
-			set
-			{
-				this.instance->MemoryOffset = value;
-			}
+			get;
+			set;
 		}
 
 		public SparseMemoryBindFlags Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class SparseBufferMemoryBindInfo
-		: IDisposable
+	public class SparseBufferMemoryBindInfo
 	{
-		internal Interop.SparseBufferMemoryBindInfo* instance;
 
-		internal SparseBufferMemoryBindInfo(Interop.SparseBufferMemoryBindInfo* instance)
+		internal unsafe Interop.SparseBufferMemoryBindInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.SparseBufferMemoryBindInfo.Create() : instance;
-		}
-
-		public static SparseBufferMemoryBindInfo Create()
-		{
-			var result = new SparseBufferMemoryBindInfo(null);
+			var result = new Interop.SparseBufferMemoryBindInfo();
 
 			return result;
 		}
 
-		public void Dispose()
+
+		public SparseMemoryBind Binds
 		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class SparseImageOpaqueMemoryBindInfo
-		: IDisposable
+	public class SparseImageOpaqueMemoryBindInfo
 	{
-		internal Interop.SparseImageOpaqueMemoryBindInfo* instance;
 
-		internal SparseImageOpaqueMemoryBindInfo(Interop.SparseImageOpaqueMemoryBindInfo* instance)
+		internal unsafe Interop.SparseImageOpaqueMemoryBindInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.SparseImageOpaqueMemoryBindInfo.Create() : instance;
-		}
-
-		public static SparseImageOpaqueMemoryBindInfo Create()
-		{
-			var result = new SparseImageOpaqueMemoryBindInfo(null);
+			var result = new Interop.SparseImageOpaqueMemoryBindInfo();
 
 			return result;
 		}
 
-		public void Dispose()
+
+		public SparseMemoryBind Binds
 		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class SparseImageMemoryBindInfo
-		: IDisposable
+	public class SparseImageMemoryBindInfo
 	{
-		internal Interop.SparseImageMemoryBindInfo* instance;
 
-		internal SparseImageMemoryBindInfo(Interop.SparseImageMemoryBindInfo* instance)
+		internal unsafe Interop.SparseImageMemoryBindInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.SparseImageMemoryBindInfo.Create() : instance;
-		}
-
-		public static SparseImageMemoryBindInfo Create()
-		{
-			var result = new SparseImageMemoryBindInfo(null);
+			var result = new Interop.SparseImageMemoryBindInfo();
 
 			return result;
 		}
 
-		public void Dispose()
+
+		public SparseImageMemoryBind Binds
 		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class BindSparseInfo
-		: IDisposable
+	public class BindSparseInfo
 	{
-		internal Interop.BindSparseInfo* instance;
 
-		internal BindSparseInfo(Interop.BindSparseInfo* instance)
+		internal unsafe Interop.BindSparseInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.BindSparseInfo.Create() : instance;
-		}
+			var result = new Interop.BindSparseInfo();
 
-		public static BindSparseInfo Create()
-		{
-			var result = new BindSparseInfo(null);
+			result.SType = StructureType.BindSparseInfo;
 
-			result.instance->SType = StructureType.BindSparseInfo;
 
 			return result;
 		}
 
-		public void Dispose()
+
+		public SparseBufferMemoryBindInfo BufferBinds
 		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
+		}
+
+		public SparseImageOpaqueMemoryBindInfo ImageOpaqueBinds
+		{
+			get;
+			set;
+		}
+
+		public SparseImageMemoryBindInfo ImageBinds
+		{
+			get;
+			set;
 		}
 	}
 
-	public unsafe class ImageBlit
-		: IDisposable
+	public class ImageBlit
 	{
-		internal Interop.ImageBlit* instance;
 
-		internal ImageBlit(Interop.ImageBlit* instance)
+		internal unsafe Interop.ImageBlit MarshalTo()
 		{
-			this.instance = instance == null ? Interop.ImageBlit.Create() : instance;
-		}
-
-		public static ImageBlit Create()
-		{
-			var result = new ImageBlit(null);
+			var result = new Interop.ImageBlit();
+			result.SrcSubresource = this.SrcSubresource;
+			result.SrcOffsets_0 = this.SrcOffsets_0;
+			result.SrcOffsets_1 = this.SrcOffsets_1;
+			result.DstSubresource = this.DstSubresource;
+			result.DstOffsets_0 = this.DstOffsets_0;
+			result.DstOffsets_1 = this.DstOffsets_1;
 
 			return result;
 		}
+
 
 		public ImageSubresourceLayers SrcSubresource
 		{
-			get
-			{
-				return this.instance->SrcSubresource;
-			}
-			set
-			{
-				this.instance->SrcSubresource = value;
-			}
+			get;
+			set;
 		}
 
 		public Offset3D SrcOffsets_0
 		{
-			get
-			{
-				return this.instance->SrcOffsets_0;
-			}
-			set
-			{
-				this.instance->SrcOffsets_0 = value;
-			}
+			get;
+			set;
 		}
 
 		public Offset3D SrcOffsets_1
 		{
-			get
-			{
-				return this.instance->SrcOffsets_1;
-			}
-			set
-			{
-				this.instance->SrcOffsets_1 = value;
-			}
+			get;
+			set;
 		}
 
 		public ImageSubresourceLayers DstSubresource
 		{
-			get
-			{
-				return this.instance->DstSubresource;
-			}
-			set
-			{
-				this.instance->DstSubresource = value;
-			}
+			get;
+			set;
 		}
 
 		public Offset3D DstOffsets_0
 		{
-			get
-			{
-				return this.instance->DstOffsets_0;
-			}
-			set
-			{
-				this.instance->DstOffsets_0 = value;
-			}
+			get;
+			set;
 		}
 
 		public Offset3D DstOffsets_1
 		{
-			get
-			{
-				return this.instance->DstOffsets_1;
-			}
-			set
-			{
-				this.instance->DstOffsets_1 = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class ShaderModuleCreateInfo
-		: IDisposable
+	public class BufferImageCopy
 	{
-		internal Interop.ShaderModuleCreateInfo* instance;
 
-		internal ShaderModuleCreateInfo(Interop.ShaderModuleCreateInfo* instance)
+		internal unsafe Interop.BufferImageCopy MarshalTo()
 		{
-			this.instance = instance == null ? Interop.ShaderModuleCreateInfo.Create() : instance;
-		}
-
-		public static ShaderModuleCreateInfo Create()
-		{
-			var result = new ShaderModuleCreateInfo(null);
-
-			result.instance->SType = StructureType.ShaderModuleCreateInfo;
+			var result = new Interop.BufferImageCopy();
+			result.BufferOffset = this.BufferOffset;
+			result.BufferRowLength = this.BufferRowLength;
+			result.BufferImageHeight = this.BufferImageHeight;
+			result.ImageSubresource = this.ImageSubresource;
+			result.ImageOffset = this.ImageOffset;
+			result.ImageExtent = this.ImageExtent;
 
 			return result;
 		}
 
+
+		public ulong BufferOffset
+		{
+			get;
+			set;
+		}
+
+		public uint BufferRowLength
+		{
+			get;
+			set;
+		}
+
+		public uint BufferImageHeight
+		{
+			get;
+			set;
+		}
+
+		public ImageSubresourceLayers ImageSubresource
+		{
+			get;
+			set;
+		}
+
+		public Offset3D ImageOffset
+		{
+			get;
+			set;
+		}
+
+		public Extent3D ImageExtent
+		{
+			get;
+			set;
+		}
+	}
+
+	public class ShaderModuleCreateInfo
+	{
+
+		internal unsafe Interop.ShaderModuleCreateInfo MarshalTo()
+		{
+			var result = new Interop.ShaderModuleCreateInfo();
+
+			result.SType = StructureType.ShaderModuleCreateInfo;
+
+			result.Flags = this.Flags;
+			result.CodeSize = this.CodeSize;
+
+			return result;
+		}
+
+
 		public uint Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
+			get;
+			set;
 		}
 
 		public UIntPtr CodeSize
 		{
-			get
-			{
-				return this.instance->CodeSize;
-			}
-			set
-			{
-				this.instance->CodeSize = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class DescriptorSetLayoutBinding
-		: IDisposable
+	public class DescriptorSetLayoutBinding
 	{
-		internal Interop.DescriptorSetLayoutBinding* instance;
 
-		internal DescriptorSetLayoutBinding(Interop.DescriptorSetLayoutBinding* instance)
+		internal unsafe Interop.DescriptorSetLayoutBinding MarshalTo()
 		{
-			this.instance = instance == null ? Interop.DescriptorSetLayoutBinding.Create() : instance;
-		}
-
-		public static DescriptorSetLayoutBinding Create()
-		{
-			var result = new DescriptorSetLayoutBinding(null);
+			var result = new Interop.DescriptorSetLayoutBinding();
+			result.Binding = this.Binding;
+			result.DescriptorType = this.DescriptorType;
+			result.StageFlags = this.StageFlags;
 
 			return result;
 		}
 
+
 		public uint Binding
 		{
-			get
-			{
-				return this.instance->Binding;
-			}
-			set
-			{
-				this.instance->Binding = value;
-			}
+			get;
+			set;
 		}
 
 		public DescriptorType DescriptorType
 		{
-			get
-			{
-				return this.instance->DescriptorType;
-			}
-			set
-			{
-				this.instance->DescriptorType = value;
-			}
+			get;
+			set;
 		}
 
 		public ShaderStageFlags StageFlags
 		{
-			get
-			{
-				return this.instance->StageFlags;
-			}
-			set
-			{
-				this.instance->StageFlags = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class DescriptorSetLayoutCreateInfo
-		: IDisposable
+	public class DescriptorSetLayoutCreateInfo
 	{
-		internal Interop.DescriptorSetLayoutCreateInfo* instance;
 
-		internal DescriptorSetLayoutCreateInfo(Interop.DescriptorSetLayoutCreateInfo* instance)
+		internal unsafe Interop.DescriptorSetLayoutCreateInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.DescriptorSetLayoutCreateInfo.Create() : instance;
-		}
+			var result = new Interop.DescriptorSetLayoutCreateInfo();
 
-		public static DescriptorSetLayoutCreateInfo Create()
-		{
-			var result = new DescriptorSetLayoutCreateInfo(null);
+			result.SType = StructureType.DescriptorSetLayoutCreateInfo;
 
-			result.instance->SType = StructureType.DescriptorSetLayoutCreateInfo;
+			result.Flags = this.Flags;
 
 			return result;
 		}
+
 
 		public uint Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
+			get;
+			set;
 		}
 
-		public void Dispose()
+		public DescriptorSetLayoutBinding Bindings
 		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class DescriptorPoolCreateInfo
-		: IDisposable
+	public class DescriptorPoolCreateInfo
 	{
-		internal Interop.DescriptorPoolCreateInfo* instance;
 
-		internal DescriptorPoolCreateInfo(Interop.DescriptorPoolCreateInfo* instance)
+		internal unsafe Interop.DescriptorPoolCreateInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.DescriptorPoolCreateInfo.Create() : instance;
-		}
+			var result = new Interop.DescriptorPoolCreateInfo();
 
-		public static DescriptorPoolCreateInfo Create()
-		{
-			var result = new DescriptorPoolCreateInfo(null);
+			result.SType = StructureType.DescriptorPoolCreateInfo;
 
-			result.instance->SType = StructureType.DescriptorPoolCreateInfo;
+			result.Flags = this.Flags;
+			result.MaxSets = this.MaxSets;
 
 			return result;
 		}
 
+
 		public DescriptorPoolCreateFlags Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
+			get;
+			set;
 		}
 
 		public uint MaxSets
 		{
-			get
-			{
-				return this.instance->MaxSets;
-			}
-			set
-			{
-				this.instance->MaxSets = value;
-			}
+			get;
+			set;
 		}
 
-		public void Dispose()
+		public DescriptorPoolSize PoolSizes
 		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class DescriptorSetAllocateInfo
-		: IDisposable
+	public class DescriptorSetAllocateInfo
 	{
-		internal Interop.DescriptorSetAllocateInfo* instance;
 
-		internal DescriptorSetAllocateInfo(Interop.DescriptorSetAllocateInfo* instance)
+		internal unsafe Interop.DescriptorSetAllocateInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.DescriptorSetAllocateInfo.Create() : instance;
-		}
+			var result = new Interop.DescriptorSetAllocateInfo();
 
-		public static DescriptorSetAllocateInfo Create()
-		{
-			var result = new DescriptorSetAllocateInfo(null);
+			result.SType = StructureType.DescriptorSetAllocateInfo;
 
-			result.instance->SType = StructureType.DescriptorSetAllocateInfo;
 
 			return result;
 		}
 
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
-		}
 	}
 
-	public unsafe class SpecializationInfo
-		: IDisposable
+	public class SpecializationInfo
 	{
-		internal Interop.SpecializationInfo* instance;
 
-		internal SpecializationInfo(Interop.SpecializationInfo* instance)
+		internal unsafe Interop.SpecializationInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.SpecializationInfo.Create() : instance;
-		}
-
-		public static SpecializationInfo Create()
-		{
-			var result = new SpecializationInfo(null);
+			var result = new Interop.SpecializationInfo();
 
 			return result;
 		}
 
-		public void Dispose()
+
+		public SpecializationMapEntry MapEntries
 		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class PipelineShaderStageCreateInfo
-		: IDisposable
+	public class PipelineShaderStageCreateInfo
 	{
-		internal Interop.PipelineShaderStageCreateInfo* instance;
 
-		internal PipelineShaderStageCreateInfo(Interop.PipelineShaderStageCreateInfo* instance)
+		internal unsafe Interop.PipelineShaderStageCreateInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.PipelineShaderStageCreateInfo.Create() : instance;
-		}
+			var result = new Interop.PipelineShaderStageCreateInfo();
 
-		public static PipelineShaderStageCreateInfo Create()
-		{
-			var result = new PipelineShaderStageCreateInfo(null);
+			result.SType = StructureType.PipelineShaderStageCreateInfo;
 
-			result.instance->SType = StructureType.PipelineShaderStageCreateInfo;
+			result.Flags = this.Flags;
+			result.Stage = this.Stage;
+			result.Name = Interop.HeapUtil.MarshalStringToPointer(this.Name);
 
 			return result;
 		}
+
 
 		public uint Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
+			get;
+			set;
 		}
 
 		public ShaderStageFlags Stage
 		{
-			get
-			{
-				return this.instance->Stage;
-			}
-			set
-			{
-				this.instance->Stage = value;
-			}
+			get;
+			set;
 		}
 
 		public string Name
 		{
-			get
-			{
-				return Interop.HeapUtil.MarshalPointerToString(this.instance->Name);
-			}
-			set
-			{
-				this.instance->Name = Interop.HeapUtil.MarshalStringToPointer(value);
-			}
+			get;
+			set;
 		}
 
-		public void Dispose()
+		public SpecializationInfo SpecializationInfo
 		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class ComputePipelineCreateInfo
-		: IDisposable
+	public class ComputePipelineCreateInfo
 	{
-		internal Interop.ComputePipelineCreateInfo* instance;
 
-		internal ComputePipelineCreateInfo(Interop.ComputePipelineCreateInfo* instance)
+		internal unsafe Interop.ComputePipelineCreateInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.ComputePipelineCreateInfo.Create() : instance;
-		}
+			var result = new Interop.ComputePipelineCreateInfo();
 
-		public static ComputePipelineCreateInfo Create()
-		{
-			var result = new ComputePipelineCreateInfo(null);
+			result.SType = StructureType.ComputePipelineCreateInfo;
 
-			result.instance->SType = StructureType.ComputePipelineCreateInfo;
+			result.Flags = this.Flags;
+			result.Stage = this.Stage.MarshalTo();
+			result.BasePipelineIndex = this.BasePipelineIndex;
 
 			return result;
 		}
 
+
 		public PipelineCreateFlags Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
+			get;
+			set;
 		}
 
 		public PipelineShaderStageCreateInfo Stage
 		{
-			get
-			{
-				return new PipelineShaderStageCreateInfo(&(this.instance->Stage));
-			}
-			set
-			{
-				this.instance->Stage = *(value.instance);
-			}
+			get;
+			set;
 		}
 
 		public int BasePipelineIndex
 		{
-			get
-			{
-				return this.instance->BasePipelineIndex;
-			}
-			set
-			{
-				this.instance->BasePipelineIndex = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class PipelineVertexInputStateCreateInfo
-		: IDisposable
+	public class PipelineVertexInputStateCreateInfo
 	{
-		internal Interop.PipelineVertexInputStateCreateInfo* instance;
 
-		internal PipelineVertexInputStateCreateInfo(Interop.PipelineVertexInputStateCreateInfo* instance)
+		internal unsafe Interop.PipelineVertexInputStateCreateInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.PipelineVertexInputStateCreateInfo.Create() : instance;
-		}
+			var result = new Interop.PipelineVertexInputStateCreateInfo();
 
-		public static PipelineVertexInputStateCreateInfo Create()
-		{
-			var result = new PipelineVertexInputStateCreateInfo(null);
+			result.SType = StructureType.PipelineVertexInputStateCreateInfo;
 
-			result.instance->SType = StructureType.PipelineVertexInputStateCreateInfo;
+			result.Flags = this.Flags;
 
 			return result;
 		}
 
+
 		public uint Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
+			get;
+			set;
 		}
 
-		public void Dispose()
+		public VertexInputBindingDescription VertexBindingDescriptions
 		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
+		}
+
+		public VertexInputAttributeDescription VertexAttributeDescriptions
+		{
+			get;
+			set;
 		}
 	}
 
-	public unsafe class PipelineInputAssemblyStateCreateInfo
-		: IDisposable
+	public class PipelineInputAssemblyStateCreateInfo
 	{
-		internal Interop.PipelineInputAssemblyStateCreateInfo* instance;
 
-		internal PipelineInputAssemblyStateCreateInfo(Interop.PipelineInputAssemblyStateCreateInfo* instance)
+		internal unsafe Interop.PipelineInputAssemblyStateCreateInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.PipelineInputAssemblyStateCreateInfo.Create() : instance;
-		}
+			var result = new Interop.PipelineInputAssemblyStateCreateInfo();
 
-		public static PipelineInputAssemblyStateCreateInfo Create()
-		{
-			var result = new PipelineInputAssemblyStateCreateInfo(null);
+			result.SType = StructureType.PipelineInputAssemblyStateCreateInfo;
 
-			result.instance->SType = StructureType.PipelineInputAssemblyStateCreateInfo;
+			result.Flags = this.Flags;
+			result.Topology = this.Topology;
+			result.PrimitiveRestartEnable = this.PrimitiveRestartEnable;
 
 			return result;
 		}
 
+
 		public uint Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
+			get;
+			set;
 		}
 
 		public PrimitiveTopology Topology
 		{
-			get
-			{
-				return this.instance->Topology;
-			}
-			set
-			{
-				this.instance->Topology = value;
-			}
+			get;
+			set;
 		}
 
 		public bool PrimitiveRestartEnable
 		{
-			get
-			{
-				return this.instance->PrimitiveRestartEnable;
-			}
-			set
-			{
-				this.instance->PrimitiveRestartEnable = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class PipelineTessellationStateCreateInfo
-		: IDisposable
+	public class PipelineTessellationStateCreateInfo
 	{
-		internal Interop.PipelineTessellationStateCreateInfo* instance;
 
-		internal PipelineTessellationStateCreateInfo(Interop.PipelineTessellationStateCreateInfo* instance)
+		internal unsafe Interop.PipelineTessellationStateCreateInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.PipelineTessellationStateCreateInfo.Create() : instance;
-		}
+			var result = new Interop.PipelineTessellationStateCreateInfo();
 
-		public static PipelineTessellationStateCreateInfo Create()
-		{
-			var result = new PipelineTessellationStateCreateInfo(null);
+			result.SType = StructureType.PipelineTessellationStateCreateInfo;
 
-			result.instance->SType = StructureType.PipelineTessellationStateCreateInfo;
+			result.Flags = this.Flags;
+			result.PatchControlPoints = this.PatchControlPoints;
 
 			return result;
 		}
 
+
 		public uint Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
+			get;
+			set;
 		}
 
 		public uint PatchControlPoints
 		{
-			get
-			{
-				return this.instance->PatchControlPoints;
-			}
-			set
-			{
-				this.instance->PatchControlPoints = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class PipelineViewportStateCreateInfo
-		: IDisposable
+	public class PipelineViewportStateCreateInfo
 	{
-		internal Interop.PipelineViewportStateCreateInfo* instance;
 
-		internal PipelineViewportStateCreateInfo(Interop.PipelineViewportStateCreateInfo* instance)
+		internal unsafe Interop.PipelineViewportStateCreateInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.PipelineViewportStateCreateInfo.Create() : instance;
-		}
+			var result = new Interop.PipelineViewportStateCreateInfo();
 
-		public static PipelineViewportStateCreateInfo Create()
-		{
-			var result = new PipelineViewportStateCreateInfo(null);
+			result.SType = StructureType.PipelineViewportStateCreateInfo;
 
-			result.instance->SType = StructureType.PipelineViewportStateCreateInfo;
+			result.Flags = this.Flags;
 
 			return result;
 		}
 
+
 		public uint Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
+			get;
+			set;
 		}
 
-		public void Dispose()
+		public Viewport Viewports
 		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
+		}
+
+		public Rect2D Scissors
+		{
+			get;
+			set;
 		}
 	}
 
-	public unsafe class PipelineRasterizationStateCreateInfo
-		: IDisposable
+	public class PipelineRasterizationStateCreateInfo
 	{
-		internal Interop.PipelineRasterizationStateCreateInfo* instance;
 
-		internal PipelineRasterizationStateCreateInfo(Interop.PipelineRasterizationStateCreateInfo* instance)
+		internal unsafe Interop.PipelineRasterizationStateCreateInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.PipelineRasterizationStateCreateInfo.Create() : instance;
-		}
+			var result = new Interop.PipelineRasterizationStateCreateInfo();
 
-		public static PipelineRasterizationStateCreateInfo Create()
-		{
-			var result = new PipelineRasterizationStateCreateInfo(null);
+			result.SType = StructureType.PipelineRasterizationStateCreateInfo;
 
-			result.instance->SType = StructureType.PipelineRasterizationStateCreateInfo;
+			result.Flags = this.Flags;
+			result.DepthClampEnable = this.DepthClampEnable;
+			result.RasterizerDiscardEnable = this.RasterizerDiscardEnable;
+			result.PolygonMode = this.PolygonMode;
+			result.CullMode = this.CullMode;
+			result.FrontFace = this.FrontFace;
+			result.DepthBiasEnable = this.DepthBiasEnable;
+			result.DepthBiasConstantFactor = this.DepthBiasConstantFactor;
+			result.DepthBiasClamp = this.DepthBiasClamp;
+			result.DepthBiasSlopeFactor = this.DepthBiasSlopeFactor;
+			result.LineWidth = this.LineWidth;
 
 			return result;
 		}
 
+
 		public uint Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
+			get;
+			set;
 		}
 
 		public bool DepthClampEnable
 		{
-			get
-			{
-				return this.instance->DepthClampEnable;
-			}
-			set
-			{
-				this.instance->DepthClampEnable = value;
-			}
+			get;
+			set;
 		}
 
 		public bool RasterizerDiscardEnable
 		{
-			get
-			{
-				return this.instance->RasterizerDiscardEnable;
-			}
-			set
-			{
-				this.instance->RasterizerDiscardEnable = value;
-			}
+			get;
+			set;
 		}
 
 		public PolygonMode PolygonMode
 		{
-			get
-			{
-				return this.instance->PolygonMode;
-			}
-			set
-			{
-				this.instance->PolygonMode = value;
-			}
+			get;
+			set;
 		}
 
 		public CullModeFlags CullMode
 		{
-			get
-			{
-				return this.instance->CullMode;
-			}
-			set
-			{
-				this.instance->CullMode = value;
-			}
+			get;
+			set;
 		}
 
 		public FrontFace FrontFace
 		{
-			get
-			{
-				return this.instance->FrontFace;
-			}
-			set
-			{
-				this.instance->FrontFace = value;
-			}
+			get;
+			set;
 		}
 
 		public bool DepthBiasEnable
 		{
-			get
-			{
-				return this.instance->DepthBiasEnable;
-			}
-			set
-			{
-				this.instance->DepthBiasEnable = value;
-			}
+			get;
+			set;
 		}
 
 		public float DepthBiasConstantFactor
 		{
-			get
-			{
-				return this.instance->DepthBiasConstantFactor;
-			}
-			set
-			{
-				this.instance->DepthBiasConstantFactor = value;
-			}
+			get;
+			set;
 		}
 
 		public float DepthBiasClamp
 		{
-			get
-			{
-				return this.instance->DepthBiasClamp;
-			}
-			set
-			{
-				this.instance->DepthBiasClamp = value;
-			}
+			get;
+			set;
 		}
 
 		public float DepthBiasSlopeFactor
 		{
-			get
-			{
-				return this.instance->DepthBiasSlopeFactor;
-			}
-			set
-			{
-				this.instance->DepthBiasSlopeFactor = value;
-			}
+			get;
+			set;
 		}
 
 		public float LineWidth
 		{
-			get
-			{
-				return this.instance->LineWidth;
-			}
-			set
-			{
-				this.instance->LineWidth = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class PipelineMultisampleStateCreateInfo
-		: IDisposable
+	public class PipelineMultisampleStateCreateInfo
 	{
-		internal Interop.PipelineMultisampleStateCreateInfo* instance;
 
-		internal PipelineMultisampleStateCreateInfo(Interop.PipelineMultisampleStateCreateInfo* instance)
+		internal unsafe Interop.PipelineMultisampleStateCreateInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.PipelineMultisampleStateCreateInfo.Create() : instance;
-		}
+			var result = new Interop.PipelineMultisampleStateCreateInfo();
 
-		public static PipelineMultisampleStateCreateInfo Create()
-		{
-			var result = new PipelineMultisampleStateCreateInfo(null);
+			result.SType = StructureType.PipelineMultisampleStateCreateInfo;
 
-			result.instance->SType = StructureType.PipelineMultisampleStateCreateInfo;
+			result.Flags = this.Flags;
+			result.RasterizationSamples = this.RasterizationSamples;
+			result.SampleShadingEnable = this.SampleShadingEnable;
+			result.MinSampleShading = this.MinSampleShading;
+			result.AlphaToCoverageEnable = this.AlphaToCoverageEnable;
+			result.AlphaToOneEnable = this.AlphaToOneEnable;
 
 			return result;
 		}
 
+
 		public uint Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
+			get;
+			set;
 		}
 
 		public SampleCountFlags RasterizationSamples
 		{
-			get
-			{
-				return this.instance->RasterizationSamples;
-			}
-			set
-			{
-				this.instance->RasterizationSamples = value;
-			}
+			get;
+			set;
 		}
 
 		public bool SampleShadingEnable
 		{
-			get
-			{
-				return this.instance->SampleShadingEnable;
-			}
-			set
-			{
-				this.instance->SampleShadingEnable = value;
-			}
+			get;
+			set;
 		}
 
 		public float MinSampleShading
 		{
-			get
-			{
-				return this.instance->MinSampleShading;
-			}
-			set
-			{
-				this.instance->MinSampleShading = value;
-			}
+			get;
+			set;
 		}
 
 		public bool AlphaToCoverageEnable
 		{
-			get
-			{
-				return this.instance->AlphaToCoverageEnable;
-			}
-			set
-			{
-				this.instance->AlphaToCoverageEnable = value;
-			}
+			get;
+			set;
 		}
 
 		public bool AlphaToOneEnable
 		{
-			get
-			{
-				return this.instance->AlphaToOneEnable;
-			}
-			set
-			{
-				this.instance->AlphaToOneEnable = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class PipelineColorBlendStateCreateInfo
-		: IDisposable
+	public class PipelineColorBlendAttachmentState
 	{
-		internal Interop.PipelineColorBlendStateCreateInfo* instance;
 
-		internal PipelineColorBlendStateCreateInfo(Interop.PipelineColorBlendStateCreateInfo* instance)
+		internal unsafe Interop.PipelineColorBlendAttachmentState MarshalTo()
 		{
-			this.instance = instance == null ? Interop.PipelineColorBlendStateCreateInfo.Create() : instance;
-		}
-
-		public static PipelineColorBlendStateCreateInfo Create()
-		{
-			var result = new PipelineColorBlendStateCreateInfo(null);
-
-			result.instance->SType = StructureType.PipelineColorBlendStateCreateInfo;
+			var result = new Interop.PipelineColorBlendAttachmentState();
+			result.BlendEnable = this.BlendEnable;
+			result.SrcColorBlendFactor = this.SrcColorBlendFactor;
+			result.DstColorBlendFactor = this.DstColorBlendFactor;
+			result.ColorBlendOp = this.ColorBlendOp;
+			result.SrcAlphaBlendFactor = this.SrcAlphaBlendFactor;
+			result.DstAlphaBlendFactor = this.DstAlphaBlendFactor;
+			result.AlphaBlendOp = this.AlphaBlendOp;
+			result.ColorWriteMask = this.ColorWriteMask;
 
 			return result;
 		}
 
+
+		public bool BlendEnable
+		{
+			get;
+			set;
+		}
+
+		public BlendFactor SrcColorBlendFactor
+		{
+			get;
+			set;
+		}
+
+		public BlendFactor DstColorBlendFactor
+		{
+			get;
+			set;
+		}
+
+		public BlendOp ColorBlendOp
+		{
+			get;
+			set;
+		}
+
+		public BlendFactor SrcAlphaBlendFactor
+		{
+			get;
+			set;
+		}
+
+		public BlendFactor DstAlphaBlendFactor
+		{
+			get;
+			set;
+		}
+
+		public BlendOp AlphaBlendOp
+		{
+			get;
+			set;
+		}
+
+		public ColorComponentFlags ColorWriteMask
+		{
+			get;
+			set;
+		}
+	}
+
+	public class PipelineColorBlendStateCreateInfo
+	{
+
+		internal unsafe Interop.PipelineColorBlendStateCreateInfo MarshalTo()
+		{
+			var result = new Interop.PipelineColorBlendStateCreateInfo();
+
+			result.SType = StructureType.PipelineColorBlendStateCreateInfo;
+
+			result.Flags = this.Flags;
+			result.LogicOpEnable = this.LogicOpEnable;
+			result.LogicOp = this.LogicOp;
+			Interop.HeapUtil.MarshalArrayToPointer(this.BlendConstants, 4, result.BlendConstants);
+
+			return result;
+		}
+
+
 		public uint Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
+			get;
+			set;
 		}
 
 		public bool LogicOpEnable
 		{
-			get
-			{
-				return this.instance->LogicOpEnable;
-			}
-			set
-			{
-				this.instance->LogicOpEnable = value;
-			}
+			get;
+			set;
 		}
 
 		public LogicOp LogicOp
 		{
-			get
-			{
-				return this.instance->LogicOp;
-			}
-			set
-			{
-				this.instance->LogicOp = value;
-			}
+			get;
+			set;
+		}
+
+		public PipelineColorBlendAttachmentState Attachments
+		{
+			get;
+			set;
 		}
 
 		public float[] BlendConstants
 		{
-			get
-			{
-				return Interop.HeapUtil.MarshalPointerToArray(this.instance->BlendConstants, 4);
-			}
-			set
-			{
-				Interop.HeapUtil.MarshalArrayToPointer(value, 4, this.instance->BlendConstants);
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class PipelineDynamicStateCreateInfo
-		: IDisposable
+	public class PipelineDynamicStateCreateInfo
 	{
-		internal Interop.PipelineDynamicStateCreateInfo* instance;
 
-		internal PipelineDynamicStateCreateInfo(Interop.PipelineDynamicStateCreateInfo* instance)
+		internal unsafe Interop.PipelineDynamicStateCreateInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.PipelineDynamicStateCreateInfo.Create() : instance;
-		}
+			var result = new Interop.PipelineDynamicStateCreateInfo();
 
-		public static PipelineDynamicStateCreateInfo Create()
-		{
-			var result = new PipelineDynamicStateCreateInfo(null);
+			result.SType = StructureType.PipelineDynamicStateCreateInfo;
 
-			result.instance->SType = StructureType.PipelineDynamicStateCreateInfo;
+			result.Flags = this.Flags;
 
 			return result;
 		}
 
+
 		public uint Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class PipelineDepthStencilStateCreateInfo
-		: IDisposable
+	public class PipelineDepthStencilStateCreateInfo
 	{
-		internal Interop.PipelineDepthStencilStateCreateInfo* instance;
 
-		internal PipelineDepthStencilStateCreateInfo(Interop.PipelineDepthStencilStateCreateInfo* instance)
+		internal unsafe Interop.PipelineDepthStencilStateCreateInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.PipelineDepthStencilStateCreateInfo.Create() : instance;
-		}
+			var result = new Interop.PipelineDepthStencilStateCreateInfo();
 
-		public static PipelineDepthStencilStateCreateInfo Create()
-		{
-			var result = new PipelineDepthStencilStateCreateInfo(null);
+			result.SType = StructureType.PipelineDepthStencilStateCreateInfo;
 
-			result.instance->SType = StructureType.PipelineDepthStencilStateCreateInfo;
+			result.Flags = this.Flags;
+			result.DepthTestEnable = this.DepthTestEnable;
+			result.DepthWriteEnable = this.DepthWriteEnable;
+			result.DepthCompareOp = this.DepthCompareOp;
+			result.DepthBoundsTestEnable = this.DepthBoundsTestEnable;
+			result.StencilTestEnable = this.StencilTestEnable;
+			result.Front = this.Front;
+			result.Back = this.Back;
+			result.MinDepthBounds = this.MinDepthBounds;
+			result.MaxDepthBounds = this.MaxDepthBounds;
 
 			return result;
 		}
 
+
 		public uint Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
+			get;
+			set;
 		}
 
 		public bool DepthTestEnable
 		{
-			get
-			{
-				return this.instance->DepthTestEnable;
-			}
-			set
-			{
-				this.instance->DepthTestEnable = value;
-			}
+			get;
+			set;
 		}
 
 		public bool DepthWriteEnable
 		{
-			get
-			{
-				return this.instance->DepthWriteEnable;
-			}
-			set
-			{
-				this.instance->DepthWriteEnable = value;
-			}
+			get;
+			set;
 		}
 
 		public CompareOp DepthCompareOp
 		{
-			get
-			{
-				return this.instance->DepthCompareOp;
-			}
-			set
-			{
-				this.instance->DepthCompareOp = value;
-			}
+			get;
+			set;
 		}
 
 		public bool DepthBoundsTestEnable
 		{
-			get
-			{
-				return this.instance->DepthBoundsTestEnable;
-			}
-			set
-			{
-				this.instance->DepthBoundsTestEnable = value;
-			}
+			get;
+			set;
 		}
 
 		public bool StencilTestEnable
 		{
-			get
-			{
-				return this.instance->StencilTestEnable;
-			}
-			set
-			{
-				this.instance->StencilTestEnable = value;
-			}
+			get;
+			set;
 		}
 
 		public StencilOpState Front
 		{
-			get
-			{
-				return this.instance->Front;
-			}
-			set
-			{
-				this.instance->Front = value;
-			}
+			get;
+			set;
 		}
 
 		public StencilOpState Back
 		{
-			get
-			{
-				return this.instance->Back;
-			}
-			set
-			{
-				this.instance->Back = value;
-			}
+			get;
+			set;
 		}
 
 		public float MinDepthBounds
 		{
-			get
-			{
-				return this.instance->MinDepthBounds;
-			}
-			set
-			{
-				this.instance->MinDepthBounds = value;
-			}
+			get;
+			set;
 		}
 
 		public float MaxDepthBounds
 		{
-			get
-			{
-				return this.instance->MaxDepthBounds;
-			}
-			set
-			{
-				this.instance->MaxDepthBounds = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class GraphicsPipelineCreateInfo
-		: IDisposable
+	public class GraphicsPipelineCreateInfo
 	{
-		internal Interop.GraphicsPipelineCreateInfo* instance;
 
-		internal GraphicsPipelineCreateInfo(Interop.GraphicsPipelineCreateInfo* instance)
+		internal unsafe Interop.GraphicsPipelineCreateInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.GraphicsPipelineCreateInfo.Create() : instance;
-		}
+			var result = new Interop.GraphicsPipelineCreateInfo();
 
-		public static GraphicsPipelineCreateInfo Create()
-		{
-			var result = new GraphicsPipelineCreateInfo(null);
+			result.SType = StructureType.GraphicsPipelineCreateInfo;
 
-			result.instance->SType = StructureType.GraphicsPipelineCreateInfo;
+			result.Flags = this.Flags;
+			result.Subpass = this.Subpass;
+			result.BasePipelineIndex = this.BasePipelineIndex;
 
 			return result;
 		}
 
+
 		public PipelineCreateFlags Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
+			get;
+			set;
+		}
+
+		public PipelineShaderStageCreateInfo Stages
+		{
+			get;
+			set;
+		}
+
+		public PipelineVertexInputStateCreateInfo VertexInputState
+		{
+			get;
+			set;
+		}
+
+		public PipelineInputAssemblyStateCreateInfo InputAssemblyState
+		{
+			get;
+			set;
+		}
+
+		public PipelineTessellationStateCreateInfo TessellationState
+		{
+			get;
+			set;
+		}
+
+		public PipelineViewportStateCreateInfo ViewportState
+		{
+			get;
+			set;
+		}
+
+		public PipelineRasterizationStateCreateInfo RasterizationState
+		{
+			get;
+			set;
+		}
+
+		public PipelineMultisampleStateCreateInfo MultisampleState
+		{
+			get;
+			set;
+		}
+
+		public PipelineDepthStencilStateCreateInfo DepthStencilState
+		{
+			get;
+			set;
+		}
+
+		public PipelineColorBlendStateCreateInfo ColorBlendState
+		{
+			get;
+			set;
+		}
+
+		public PipelineDynamicStateCreateInfo DynamicState
+		{
+			get;
+			set;
 		}
 
 		public uint Subpass
 		{
-			get
-			{
-				return this.instance->Subpass;
-			}
-			set
-			{
-				this.instance->Subpass = value;
-			}
+			get;
+			set;
 		}
 
 		public int BasePipelineIndex
 		{
-			get
-			{
-				return this.instance->BasePipelineIndex;
-			}
-			set
-			{
-				this.instance->BasePipelineIndex = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class PipelineCacheCreateInfo
-		: IDisposable
+	public class PipelineCacheCreateInfo
 	{
-		internal Interop.PipelineCacheCreateInfo* instance;
 
-		internal PipelineCacheCreateInfo(Interop.PipelineCacheCreateInfo* instance)
+		internal unsafe Interop.PipelineCacheCreateInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.PipelineCacheCreateInfo.Create() : instance;
-		}
+			var result = new Interop.PipelineCacheCreateInfo();
 
-		public static PipelineCacheCreateInfo Create()
-		{
-			var result = new PipelineCacheCreateInfo(null);
+			result.SType = StructureType.PipelineCacheCreateInfo;
 
-			result.instance->SType = StructureType.PipelineCacheCreateInfo;
+			result.Flags = this.Flags;
 
 			return result;
 		}
 
+
 		public uint Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class PipelineLayoutCreateInfo
-		: IDisposable
+	public class PipelineLayoutCreateInfo
 	{
-		internal Interop.PipelineLayoutCreateInfo* instance;
 
-		internal PipelineLayoutCreateInfo(Interop.PipelineLayoutCreateInfo* instance)
+		internal unsafe Interop.PipelineLayoutCreateInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.PipelineLayoutCreateInfo.Create() : instance;
-		}
+			var result = new Interop.PipelineLayoutCreateInfo();
 
-		public static PipelineLayoutCreateInfo Create()
-		{
-			var result = new PipelineLayoutCreateInfo(null);
+			result.SType = StructureType.PipelineLayoutCreateInfo;
 
-			result.instance->SType = StructureType.PipelineLayoutCreateInfo;
+			result.Flags = this.Flags;
 
 			return result;
 		}
 
+
 		public uint Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
+			get;
+			set;
 		}
 
-		public void Dispose()
+		public PushConstantRange PushConstantRanges
 		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class SamplerCreateInfo
-		: IDisposable
+	public class SamplerCreateInfo
 	{
-		internal Interop.SamplerCreateInfo* instance;
 
-		internal SamplerCreateInfo(Interop.SamplerCreateInfo* instance)
+		internal unsafe Interop.SamplerCreateInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.SamplerCreateInfo.Create() : instance;
-		}
+			var result = new Interop.SamplerCreateInfo();
 
-		public static SamplerCreateInfo Create()
-		{
-			var result = new SamplerCreateInfo(null);
+			result.SType = StructureType.SamplerCreateInfo;
 
-			result.instance->SType = StructureType.SamplerCreateInfo;
+			result.Flags = this.Flags;
+			result.MagFilter = this.MagFilter;
+			result.MinFilter = this.MinFilter;
+			result.MipmapMode = this.MipmapMode;
+			result.AddressModeU = this.AddressModeU;
+			result.AddressModeV = this.AddressModeV;
+			result.AddressModeW = this.AddressModeW;
+			result.MipLodBias = this.MipLodBias;
+			result.AnisotropyEnable = this.AnisotropyEnable;
+			result.MaxAnisotropy = this.MaxAnisotropy;
+			result.CompareEnable = this.CompareEnable;
+			result.CompareOp = this.CompareOp;
+			result.MinLod = this.MinLod;
+			result.MaxLod = this.MaxLod;
+			result.BorderColor = this.BorderColor;
+			result.UnnormalizedCoordinates = this.UnnormalizedCoordinates;
 
 			return result;
 		}
 
+
 		public uint Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
+			get;
+			set;
 		}
 
 		public Filter MagFilter
 		{
-			get
-			{
-				return this.instance->MagFilter;
-			}
-			set
-			{
-				this.instance->MagFilter = value;
-			}
+			get;
+			set;
 		}
 
 		public Filter MinFilter
 		{
-			get
-			{
-				return this.instance->MinFilter;
-			}
-			set
-			{
-				this.instance->MinFilter = value;
-			}
+			get;
+			set;
 		}
 
 		public SamplerMipmapMode MipmapMode
 		{
-			get
-			{
-				return this.instance->MipmapMode;
-			}
-			set
-			{
-				this.instance->MipmapMode = value;
-			}
+			get;
+			set;
 		}
 
 		public SamplerAddressMode AddressModeU
 		{
-			get
-			{
-				return this.instance->AddressModeU;
-			}
-			set
-			{
-				this.instance->AddressModeU = value;
-			}
+			get;
+			set;
 		}
 
 		public SamplerAddressMode AddressModeV
 		{
-			get
-			{
-				return this.instance->AddressModeV;
-			}
-			set
-			{
-				this.instance->AddressModeV = value;
-			}
+			get;
+			set;
 		}
 
 		public SamplerAddressMode AddressModeW
 		{
-			get
-			{
-				return this.instance->AddressModeW;
-			}
-			set
-			{
-				this.instance->AddressModeW = value;
-			}
+			get;
+			set;
 		}
 
 		public float MipLodBias
 		{
-			get
-			{
-				return this.instance->MipLodBias;
-			}
-			set
-			{
-				this.instance->MipLodBias = value;
-			}
+			get;
+			set;
 		}
 
 		public bool AnisotropyEnable
 		{
-			get
-			{
-				return this.instance->AnisotropyEnable;
-			}
-			set
-			{
-				this.instance->AnisotropyEnable = value;
-			}
+			get;
+			set;
 		}
 
 		public float MaxAnisotropy
 		{
-			get
-			{
-				return this.instance->MaxAnisotropy;
-			}
-			set
-			{
-				this.instance->MaxAnisotropy = value;
-			}
+			get;
+			set;
 		}
 
 		public bool CompareEnable
 		{
-			get
-			{
-				return this.instance->CompareEnable;
-			}
-			set
-			{
-				this.instance->CompareEnable = value;
-			}
+			get;
+			set;
 		}
 
 		public CompareOp CompareOp
 		{
-			get
-			{
-				return this.instance->CompareOp;
-			}
-			set
-			{
-				this.instance->CompareOp = value;
-			}
+			get;
+			set;
 		}
 
 		public float MinLod
 		{
-			get
-			{
-				return this.instance->MinLod;
-			}
-			set
-			{
-				this.instance->MinLod = value;
-			}
+			get;
+			set;
 		}
 
 		public float MaxLod
 		{
-			get
-			{
-				return this.instance->MaxLod;
-			}
-			set
-			{
-				this.instance->MaxLod = value;
-			}
+			get;
+			set;
 		}
 
 		public BorderColor BorderColor
 		{
-			get
-			{
-				return this.instance->BorderColor;
-			}
-			set
-			{
-				this.instance->BorderColor = value;
-			}
+			get;
+			set;
 		}
 
 		public bool UnnormalizedCoordinates
 		{
-			get
-			{
-				return this.instance->UnnormalizedCoordinates;
-			}
-			set
-			{
-				this.instance->UnnormalizedCoordinates = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class CommandPoolCreateInfo
-		: IDisposable
+	public class CommandPoolCreateInfo
 	{
-		internal Interop.CommandPoolCreateInfo* instance;
 
-		internal CommandPoolCreateInfo(Interop.CommandPoolCreateInfo* instance)
+		internal unsafe Interop.CommandPoolCreateInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.CommandPoolCreateInfo.Create() : instance;
-		}
+			var result = new Interop.CommandPoolCreateInfo();
 
-		public static CommandPoolCreateInfo Create()
-		{
-			var result = new CommandPoolCreateInfo(null);
+			result.SType = StructureType.CommandPoolCreateInfo;
 
-			result.instance->SType = StructureType.CommandPoolCreateInfo;
+			result.Flags = this.Flags;
+			result.QueueFamilyIndex = this.QueueFamilyIndex;
 
 			return result;
 		}
 
+
 		public CommandPoolCreateFlags Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
+			get;
+			set;
 		}
 
 		public uint QueueFamilyIndex
 		{
-			get
-			{
-				return this.instance->QueueFamilyIndex;
-			}
-			set
-			{
-				this.instance->QueueFamilyIndex = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class CommandBufferAllocateInfo
-		: IDisposable
+	public class CommandBufferAllocateInfo
 	{
-		internal Interop.CommandBufferAllocateInfo* instance;
 
-		internal CommandBufferAllocateInfo(Interop.CommandBufferAllocateInfo* instance)
+		internal unsafe Interop.CommandBufferAllocateInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.CommandBufferAllocateInfo.Create() : instance;
-		}
+			var result = new Interop.CommandBufferAllocateInfo();
 
-		public static CommandBufferAllocateInfo Create()
-		{
-			var result = new CommandBufferAllocateInfo(null);
+			result.SType = StructureType.CommandBufferAllocateInfo;
 
-			result.instance->SType = StructureType.CommandBufferAllocateInfo;
+			result.Level = this.Level;
+			result.CommandBufferCount = this.CommandBufferCount;
 
 			return result;
 		}
 
+
 		public CommandBufferLevel Level
 		{
-			get
-			{
-				return this.instance->Level;
-			}
-			set
-			{
-				this.instance->Level = value;
-			}
+			get;
+			set;
 		}
 
 		public uint CommandBufferCount
 		{
-			get
-			{
-				return this.instance->CommandBufferCount;
-			}
-			set
-			{
-				this.instance->CommandBufferCount = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class CommandBufferInheritanceInfo
-		: IDisposable
+	public class CommandBufferInheritanceInfo
 	{
-		internal Interop.CommandBufferInheritanceInfo* instance;
 
-		internal CommandBufferInheritanceInfo(Interop.CommandBufferInheritanceInfo* instance)
+		internal unsafe Interop.CommandBufferInheritanceInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.CommandBufferInheritanceInfo.Create() : instance;
-		}
+			var result = new Interop.CommandBufferInheritanceInfo();
 
-		public static CommandBufferInheritanceInfo Create()
-		{
-			var result = new CommandBufferInheritanceInfo(null);
+			result.SType = StructureType.CommandBufferInheritanceInfo;
 
-			result.instance->SType = StructureType.CommandBufferInheritanceInfo;
+			result.Subpass = this.Subpass;
+			result.OcclusionQueryEnable = this.OcclusionQueryEnable;
+			result.QueryFlags = this.QueryFlags;
+			result.PipelineStatistics = this.PipelineStatistics;
 
 			return result;
 		}
 
+
 		public uint Subpass
 		{
-			get
-			{
-				return this.instance->Subpass;
-			}
-			set
-			{
-				this.instance->Subpass = value;
-			}
+			get;
+			set;
 		}
 
 		public bool OcclusionQueryEnable
 		{
-			get
-			{
-				return this.instance->OcclusionQueryEnable;
-			}
-			set
-			{
-				this.instance->OcclusionQueryEnable = value;
-			}
+			get;
+			set;
 		}
 
 		public QueryControlFlags QueryFlags
 		{
-			get
-			{
-				return this.instance->QueryFlags;
-			}
-			set
-			{
-				this.instance->QueryFlags = value;
-			}
+			get;
+			set;
 		}
 
 		public QueryPipelineStatisticFlags PipelineStatistics
 		{
-			get
-			{
-				return this.instance->PipelineStatistics;
-			}
-			set
-			{
-				this.instance->PipelineStatistics = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class CommandBufferBeginInfo
-		: IDisposable
+	public class CommandBufferBeginInfo
 	{
-		internal Interop.CommandBufferBeginInfo* instance;
 
-		internal CommandBufferBeginInfo(Interop.CommandBufferBeginInfo* instance)
+		internal unsafe Interop.CommandBufferBeginInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.CommandBufferBeginInfo.Create() : instance;
-		}
+			var result = new Interop.CommandBufferBeginInfo();
 
-		public static CommandBufferBeginInfo Create()
-		{
-			var result = new CommandBufferBeginInfo(null);
+			result.SType = StructureType.CommandBufferBeginInfo;
 
-			result.instance->SType = StructureType.CommandBufferBeginInfo;
+			result.Flags = this.Flags;
 
 			return result;
 		}
+
 
 		public CommandBufferUsageFlags Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
+			get;
+			set;
 		}
 
-		public void Dispose()
+		public CommandBufferInheritanceInfo InheritanceInfo
 		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class RenderPassBeginInfo
-		: IDisposable
+	public class RenderPassBeginInfo
 	{
-		internal Interop.RenderPassBeginInfo* instance;
 
-		internal RenderPassBeginInfo(Interop.RenderPassBeginInfo* instance)
+		internal unsafe Interop.RenderPassBeginInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.RenderPassBeginInfo.Create() : instance;
-		}
+			var result = new Interop.RenderPassBeginInfo();
 
-		public static RenderPassBeginInfo Create()
-		{
-			var result = new RenderPassBeginInfo(null);
+			result.SType = StructureType.RenderPassBeginInfo;
 
-			result.instance->SType = StructureType.RenderPassBeginInfo;
+			result.RenderArea = this.RenderArea;
 
 			return result;
 		}
+
 
 		public Rect2D RenderArea
 		{
-			get
-			{
-				return this.instance->RenderArea;
-			}
-			set
-			{
-				this.instance->RenderArea = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class SubpassDescription
-		: IDisposable
+	public class SubpassDescription
 	{
-		internal Interop.SubpassDescription* instance;
 
-		internal SubpassDescription(Interop.SubpassDescription* instance)
+		internal unsafe Interop.SubpassDescription MarshalTo()
 		{
-			this.instance = instance == null ? Interop.SubpassDescription.Create() : instance;
-		}
-
-		public static SubpassDescription Create()
-		{
-			var result = new SubpassDescription(null);
+			var result = new Interop.SubpassDescription();
+			result.Flags = this.Flags;
+			result.PipelineBindPoint = this.PipelineBindPoint;
 
 			return result;
 		}
 
+
 		public uint Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
+			get;
+			set;
 		}
 
 		public PipelineBindPoint PipelineBindPoint
 		{
-			get
-			{
-				return this.instance->PipelineBindPoint;
-			}
-			set
-			{
-				this.instance->PipelineBindPoint = value;
-			}
+			get;
+			set;
 		}
 
-		public void Dispose()
+		public AttachmentReference InputAttachments
 		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
+		}
+
+		public AttachmentReference ColorAttachments
+		{
+			get;
+			set;
+		}
+
+		public AttachmentReference ResolveAttachments
+		{
+			get;
+			set;
+		}
+
+		public AttachmentReference DepthStencilAttachment
+		{
+			get;
+			set;
 		}
 	}
 
-	public unsafe class RenderPassCreateInfo
-		: IDisposable
+	public class RenderPassCreateInfo
 	{
-		internal Interop.RenderPassCreateInfo* instance;
 
-		internal RenderPassCreateInfo(Interop.RenderPassCreateInfo* instance)
+		internal unsafe Interop.RenderPassCreateInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.RenderPassCreateInfo.Create() : instance;
-		}
+			var result = new Interop.RenderPassCreateInfo();
 
-		public static RenderPassCreateInfo Create()
-		{
-			var result = new RenderPassCreateInfo(null);
+			result.SType = StructureType.RenderPassCreateInfo;
 
-			result.instance->SType = StructureType.RenderPassCreateInfo;
+			result.Flags = this.Flags;
 
 			return result;
 		}
+
 
 		public uint Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
+			get;
+			set;
 		}
 
-		public void Dispose()
+		public AttachmentDescription Attachments
 		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
+		}
+
+		public SubpassDescription Subpasses
+		{
+			get;
+			set;
+		}
+
+		public SubpassDependency Dependencies
+		{
+			get;
+			set;
 		}
 	}
 
-	public unsafe class EventCreateInfo
-		: IDisposable
+	public class EventCreateInfo
 	{
-		internal Interop.EventCreateInfo* instance;
 
-		internal EventCreateInfo(Interop.EventCreateInfo* instance)
+		internal unsafe Interop.EventCreateInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.EventCreateInfo.Create() : instance;
-		}
+			var result = new Interop.EventCreateInfo();
 
-		public static EventCreateInfo Create()
-		{
-			var result = new EventCreateInfo(null);
+			result.SType = StructureType.EventCreateInfo;
 
-			result.instance->SType = StructureType.EventCreateInfo;
+			result.Flags = this.Flags;
 
 			return result;
 		}
+
 
 		public uint Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class FenceCreateInfo
-		: IDisposable
+	public class FenceCreateInfo
 	{
-		internal Interop.FenceCreateInfo* instance;
 
-		internal FenceCreateInfo(Interop.FenceCreateInfo* instance)
+		internal unsafe Interop.FenceCreateInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.FenceCreateInfo.Create() : instance;
-		}
+			var result = new Interop.FenceCreateInfo();
 
-		public static FenceCreateInfo Create()
-		{
-			var result = new FenceCreateInfo(null);
+			result.SType = StructureType.FenceCreateInfo;
 
-			result.instance->SType = StructureType.FenceCreateInfo;
+			result.Flags = this.Flags;
 
 			return result;
 		}
+
 
 		public FenceCreateFlags Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class PhysicalDeviceLimits
-		: IDisposable
+	public class PhysicalDeviceFeatures
 	{
-		internal Interop.PhysicalDeviceLimits* instance;
 
-		internal PhysicalDeviceLimits(Interop.PhysicalDeviceLimits* instance)
+		internal unsafe Interop.PhysicalDeviceFeatures MarshalTo()
 		{
-			this.instance = instance == null ? Interop.PhysicalDeviceLimits.Create() : instance;
-		}
-
-		public static PhysicalDeviceLimits Create()
-		{
-			var result = new PhysicalDeviceLimits(null);
+			var result = new Interop.PhysicalDeviceFeatures();
+			result.RobustBufferAccess = this.RobustBufferAccess;
+			result.FullDrawIndexUint32 = this.FullDrawIndexUint32;
+			result.ImageCubeArray = this.ImageCubeArray;
+			result.IndependentBlend = this.IndependentBlend;
+			result.GeometryShader = this.GeometryShader;
+			result.TessellationShader = this.TessellationShader;
+			result.SampleRateShading = this.SampleRateShading;
+			result.DualSrcBlend = this.DualSrcBlend;
+			result.LogicOp = this.LogicOp;
+			result.MultiDrawIndirect = this.MultiDrawIndirect;
+			result.DrawIndirectFirstInstance = this.DrawIndirectFirstInstance;
+			result.DepthClamp = this.DepthClamp;
+			result.DepthBiasClamp = this.DepthBiasClamp;
+			result.FillModeNonSolid = this.FillModeNonSolid;
+			result.DepthBounds = this.DepthBounds;
+			result.WideLines = this.WideLines;
+			result.LargePoints = this.LargePoints;
+			result.AlphaToOne = this.AlphaToOne;
+			result.MultiViewport = this.MultiViewport;
+			result.SamplerAnisotropy = this.SamplerAnisotropy;
+			result.TextureCompressionETC2 = this.TextureCompressionETC2;
+			result.TextureCompressionASTC_LDR = this.TextureCompressionASTC_LDR;
+			result.TextureCompressionBC = this.TextureCompressionBC;
+			result.OcclusionQueryPrecise = this.OcclusionQueryPrecise;
+			result.PipelineStatisticsQuery = this.PipelineStatisticsQuery;
+			result.VertexPipelineStoresAndAtomics = this.VertexPipelineStoresAndAtomics;
+			result.FragmentStoresAndAtomics = this.FragmentStoresAndAtomics;
+			result.ShaderTessellationAndGeometryPointSize = this.ShaderTessellationAndGeometryPointSize;
+			result.ShaderImageGatherExtended = this.ShaderImageGatherExtended;
+			result.ShaderStorageImageExtendedFormats = this.ShaderStorageImageExtendedFormats;
+			result.ShaderStorageImageMultisample = this.ShaderStorageImageMultisample;
+			result.ShaderStorageImageReadWithoutFormat = this.ShaderStorageImageReadWithoutFormat;
+			result.ShaderStorageImageWriteWithoutFormat = this.ShaderStorageImageWriteWithoutFormat;
+			result.ShaderUniformBufferArrayDynamicIndexing = this.ShaderUniformBufferArrayDynamicIndexing;
+			result.ShaderSampledImageArrayDynamicIndexing = this.ShaderSampledImageArrayDynamicIndexing;
+			result.ShaderStorageBufferArrayDynamicIndexing = this.ShaderStorageBufferArrayDynamicIndexing;
+			result.ShaderStorageImageArrayDynamicIndexing = this.ShaderStorageImageArrayDynamicIndexing;
+			result.ShaderClipDistance = this.ShaderClipDistance;
+			result.ShaderCullDistance = this.ShaderCullDistance;
+			result.ShaderFloat64 = this.ShaderFloat64;
+			result.ShaderInt64 = this.ShaderInt64;
+			result.ShaderInt16 = this.ShaderInt16;
+			result.ShaderResourceResidency = this.ShaderResourceResidency;
+			result.ShaderResourceMinLod = this.ShaderResourceMinLod;
+			result.SparseBinding = this.SparseBinding;
+			result.SparseResidencyBuffer = this.SparseResidencyBuffer;
+			result.SparseResidencyImage2D = this.SparseResidencyImage2D;
+			result.SparseResidencyImage3D = this.SparseResidencyImage3D;
+			result.SparseResidency2Samples = this.SparseResidency2Samples;
+			result.SparseResidency4Samples = this.SparseResidency4Samples;
+			result.SparseResidency8Samples = this.SparseResidency8Samples;
+			result.SparseResidency16Samples = this.SparseResidency16Samples;
+			result.SparseResidencyAliased = this.SparseResidencyAliased;
+			result.VariableMultisampleRate = this.VariableMultisampleRate;
+			result.InheritedQueries = this.InheritedQueries;
 
 			return result;
 		}
 
+
+		public bool RobustBufferAccess
+		{
+			get;
+			set;
+		}
+
+		public bool FullDrawIndexUint32
+		{
+			get;
+			set;
+		}
+
+		public bool ImageCubeArray
+		{
+			get;
+			set;
+		}
+
+		public bool IndependentBlend
+		{
+			get;
+			set;
+		}
+
+		public bool GeometryShader
+		{
+			get;
+			set;
+		}
+
+		public bool TessellationShader
+		{
+			get;
+			set;
+		}
+
+		public bool SampleRateShading
+		{
+			get;
+			set;
+		}
+
+		public bool DualSrcBlend
+		{
+			get;
+			set;
+		}
+
+		public bool LogicOp
+		{
+			get;
+			set;
+		}
+
+		public bool MultiDrawIndirect
+		{
+			get;
+			set;
+		}
+
+		public bool DrawIndirectFirstInstance
+		{
+			get;
+			set;
+		}
+
+		public bool DepthClamp
+		{
+			get;
+			set;
+		}
+
+		public bool DepthBiasClamp
+		{
+			get;
+			set;
+		}
+
+		public bool FillModeNonSolid
+		{
+			get;
+			set;
+		}
+
+		public bool DepthBounds
+		{
+			get;
+			set;
+		}
+
+		public bool WideLines
+		{
+			get;
+			set;
+		}
+
+		public bool LargePoints
+		{
+			get;
+			set;
+		}
+
+		public bool AlphaToOne
+		{
+			get;
+			set;
+		}
+
+		public bool MultiViewport
+		{
+			get;
+			set;
+		}
+
+		public bool SamplerAnisotropy
+		{
+			get;
+			set;
+		}
+
+		public bool TextureCompressionETC2
+		{
+			get;
+			set;
+		}
+
+		public bool TextureCompressionASTC_LDR
+		{
+			get;
+			set;
+		}
+
+		public bool TextureCompressionBC
+		{
+			get;
+			set;
+		}
+
+		public bool OcclusionQueryPrecise
+		{
+			get;
+			set;
+		}
+
+		public bool PipelineStatisticsQuery
+		{
+			get;
+			set;
+		}
+
+		public bool VertexPipelineStoresAndAtomics
+		{
+			get;
+			set;
+		}
+
+		public bool FragmentStoresAndAtomics
+		{
+			get;
+			set;
+		}
+
+		public bool ShaderTessellationAndGeometryPointSize
+		{
+			get;
+			set;
+		}
+
+		public bool ShaderImageGatherExtended
+		{
+			get;
+			set;
+		}
+
+		public bool ShaderStorageImageExtendedFormats
+		{
+			get;
+			set;
+		}
+
+		public bool ShaderStorageImageMultisample
+		{
+			get;
+			set;
+		}
+
+		public bool ShaderStorageImageReadWithoutFormat
+		{
+			get;
+			set;
+		}
+
+		public bool ShaderStorageImageWriteWithoutFormat
+		{
+			get;
+			set;
+		}
+
+		public bool ShaderUniformBufferArrayDynamicIndexing
+		{
+			get;
+			set;
+		}
+
+		public bool ShaderSampledImageArrayDynamicIndexing
+		{
+			get;
+			set;
+		}
+
+		public bool ShaderStorageBufferArrayDynamicIndexing
+		{
+			get;
+			set;
+		}
+
+		public bool ShaderStorageImageArrayDynamicIndexing
+		{
+			get;
+			set;
+		}
+
+		public bool ShaderClipDistance
+		{
+			get;
+			set;
+		}
+
+		public bool ShaderCullDistance
+		{
+			get;
+			set;
+		}
+
+		public bool ShaderFloat64
+		{
+			get;
+			set;
+		}
+
+		public bool ShaderInt64
+		{
+			get;
+			set;
+		}
+
+		public bool ShaderInt16
+		{
+			get;
+			set;
+		}
+
+		public bool ShaderResourceResidency
+		{
+			get;
+			set;
+		}
+
+		public bool ShaderResourceMinLod
+		{
+			get;
+			set;
+		}
+
+		public bool SparseBinding
+		{
+			get;
+			set;
+		}
+
+		public bool SparseResidencyBuffer
+		{
+			get;
+			set;
+		}
+
+		public bool SparseResidencyImage2D
+		{
+			get;
+			set;
+		}
+
+		public bool SparseResidencyImage3D
+		{
+			get;
+			set;
+		}
+
+		public bool SparseResidency2Samples
+		{
+			get;
+			set;
+		}
+
+		public bool SparseResidency4Samples
+		{
+			get;
+			set;
+		}
+
+		public bool SparseResidency8Samples
+		{
+			get;
+			set;
+		}
+
+		public bool SparseResidency16Samples
+		{
+			get;
+			set;
+		}
+
+		public bool SparseResidencyAliased
+		{
+			get;
+			set;
+		}
+
+		public bool VariableMultisampleRate
+		{
+			get;
+			set;
+		}
+
+		public bool InheritedQueries
+		{
+			get;
+			set;
+		}
+	}
+
+	public class PhysicalDeviceSparseProperties
+	{
+
+		public bool ResidencyStandard2DBlockShape
+		{
+			get;
+			private set;
+		}
+
+		public bool ResidencyStandard2DMultisampleBlockShape
+		{
+			get;
+			private set;
+		}
+
+		public bool ResidencyStandard3DBlockShape
+		{
+			get;
+			private set;
+		}
+
+		public bool ResidencyAlignedMipSize
+		{
+			get;
+			private set;
+		}
+
+		public bool ResidencyNonResidentStrict
+		{
+			get;
+			private set;
+		}
+	}
+
+	public class PhysicalDeviceLimits
+	{
+
 		public uint MaxImageDimension1D
 		{
-			get
-			{
-				return this.instance->MaxImageDimension1D;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxImageDimension2D
 		{
-			get
-			{
-				return this.instance->MaxImageDimension2D;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxImageDimension3D
 		{
-			get
-			{
-				return this.instance->MaxImageDimension3D;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxImageDimensionCube
 		{
-			get
-			{
-				return this.instance->MaxImageDimensionCube;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxImageArrayLayers
 		{
-			get
-			{
-				return this.instance->MaxImageArrayLayers;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxTexelBufferElements
 		{
-			get
-			{
-				return this.instance->MaxTexelBufferElements;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxUniformBufferRange
 		{
-			get
-			{
-				return this.instance->MaxUniformBufferRange;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxStorageBufferRange
 		{
-			get
-			{
-				return this.instance->MaxStorageBufferRange;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxPushConstantsSize
 		{
-			get
-			{
-				return this.instance->MaxPushConstantsSize;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxMemoryAllocationCount
 		{
-			get
-			{
-				return this.instance->MaxMemoryAllocationCount;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxSamplerAllocationCount
 		{
-			get
-			{
-				return this.instance->MaxSamplerAllocationCount;
-			}
+			get;
+			private set;
 		}
 
 		public ulong BufferImageGranularity
 		{
-			get
-			{
-				return this.instance->BufferImageGranularity;
-			}
+			get;
+			private set;
 		}
 
 		public ulong SparseAddressSpaceSize
 		{
-			get
-			{
-				return this.instance->SparseAddressSpaceSize;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxBoundDescriptorSets
 		{
-			get
-			{
-				return this.instance->MaxBoundDescriptorSets;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxPerStageDescriptorSamplers
 		{
-			get
-			{
-				return this.instance->MaxPerStageDescriptorSamplers;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxPerStageDescriptorUniformBuffers
 		{
-			get
-			{
-				return this.instance->MaxPerStageDescriptorUniformBuffers;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxPerStageDescriptorStorageBuffers
 		{
-			get
-			{
-				return this.instance->MaxPerStageDescriptorStorageBuffers;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxPerStageDescriptorSampledImages
 		{
-			get
-			{
-				return this.instance->MaxPerStageDescriptorSampledImages;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxPerStageDescriptorStorageImages
 		{
-			get
-			{
-				return this.instance->MaxPerStageDescriptorStorageImages;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxPerStageDescriptorInputAttachments
 		{
-			get
-			{
-				return this.instance->MaxPerStageDescriptorInputAttachments;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxPerStageResources
 		{
-			get
-			{
-				return this.instance->MaxPerStageResources;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxDescriptorSetSamplers
 		{
-			get
-			{
-				return this.instance->MaxDescriptorSetSamplers;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxDescriptorSetUniformBuffers
 		{
-			get
-			{
-				return this.instance->MaxDescriptorSetUniformBuffers;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxDescriptorSetUniformBuffersDynamic
 		{
-			get
-			{
-				return this.instance->MaxDescriptorSetUniformBuffersDynamic;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxDescriptorSetStorageBuffers
 		{
-			get
-			{
-				return this.instance->MaxDescriptorSetStorageBuffers;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxDescriptorSetStorageBuffersDynamic
 		{
-			get
-			{
-				return this.instance->MaxDescriptorSetStorageBuffersDynamic;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxDescriptorSetSampledImages
 		{
-			get
-			{
-				return this.instance->MaxDescriptorSetSampledImages;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxDescriptorSetStorageImages
 		{
-			get
-			{
-				return this.instance->MaxDescriptorSetStorageImages;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxDescriptorSetInputAttachments
 		{
-			get
-			{
-				return this.instance->MaxDescriptorSetInputAttachments;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxVertexInputAttributes
 		{
-			get
-			{
-				return this.instance->MaxVertexInputAttributes;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxVertexInputBindings
 		{
-			get
-			{
-				return this.instance->MaxVertexInputBindings;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxVertexInputAttributeOffset
 		{
-			get
-			{
-				return this.instance->MaxVertexInputAttributeOffset;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxVertexInputBindingStride
 		{
-			get
-			{
-				return this.instance->MaxVertexInputBindingStride;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxVertexOutputComponents
 		{
-			get
-			{
-				return this.instance->MaxVertexOutputComponents;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxTessellationGenerationLevel
 		{
-			get
-			{
-				return this.instance->MaxTessellationGenerationLevel;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxTessellationPatchSize
 		{
-			get
-			{
-				return this.instance->MaxTessellationPatchSize;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxTessellationControlPerVertexInputComponents
 		{
-			get
-			{
-				return this.instance->MaxTessellationControlPerVertexInputComponents;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxTessellationControlPerVertexOutputComponents
 		{
-			get
-			{
-				return this.instance->MaxTessellationControlPerVertexOutputComponents;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxTessellationControlPerPatchOutputComponents
 		{
-			get
-			{
-				return this.instance->MaxTessellationControlPerPatchOutputComponents;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxTessellationControlTotalOutputComponents
 		{
-			get
-			{
-				return this.instance->MaxTessellationControlTotalOutputComponents;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxTessellationEvaluationInputComponents
 		{
-			get
-			{
-				return this.instance->MaxTessellationEvaluationInputComponents;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxTessellationEvaluationOutputComponents
 		{
-			get
-			{
-				return this.instance->MaxTessellationEvaluationOutputComponents;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxGeometryShaderInvocations
 		{
-			get
-			{
-				return this.instance->MaxGeometryShaderInvocations;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxGeometryInputComponents
 		{
-			get
-			{
-				return this.instance->MaxGeometryInputComponents;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxGeometryOutputComponents
 		{
-			get
-			{
-				return this.instance->MaxGeometryOutputComponents;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxGeometryOutputVertices
 		{
-			get
-			{
-				return this.instance->MaxGeometryOutputVertices;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxGeometryTotalOutputComponents
 		{
-			get
-			{
-				return this.instance->MaxGeometryTotalOutputComponents;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxFragmentInputComponents
 		{
-			get
-			{
-				return this.instance->MaxFragmentInputComponents;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxFragmentOutputAttachments
 		{
-			get
-			{
-				return this.instance->MaxFragmentOutputAttachments;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxFragmentDualSrcAttachments
 		{
-			get
-			{
-				return this.instance->MaxFragmentDualSrcAttachments;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxFragmentCombinedOutputResources
 		{
-			get
-			{
-				return this.instance->MaxFragmentCombinedOutputResources;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxComputeSharedMemorySize
 		{
-			get
-			{
-				return this.instance->MaxComputeSharedMemorySize;
-			}
+			get;
+			private set;
 		}
 
 		public uint[] MaxComputeWorkGroupCount
 		{
-			get
-			{
-				return Interop.HeapUtil.MarshalPointerToArray(this.instance->MaxComputeWorkGroupCount, 3);
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxComputeWorkGroupInvocations
 		{
-			get
-			{
-				return this.instance->MaxComputeWorkGroupInvocations;
-			}
+			get;
+			private set;
 		}
 
 		public uint[] MaxComputeWorkGroupSize
 		{
-			get
-			{
-				return Interop.HeapUtil.MarshalPointerToArray(this.instance->MaxComputeWorkGroupSize, 3);
-			}
+			get;
+			private set;
 		}
 
 		public uint SubPixelPrecisionBits
 		{
-			get
-			{
-				return this.instance->SubPixelPrecisionBits;
-			}
+			get;
+			private set;
 		}
 
 		public uint SubTexelPrecisionBits
 		{
-			get
-			{
-				return this.instance->SubTexelPrecisionBits;
-			}
+			get;
+			private set;
 		}
 
 		public uint MipmapPrecisionBits
 		{
-			get
-			{
-				return this.instance->MipmapPrecisionBits;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxDrawIndexedIndexValue
 		{
-			get
-			{
-				return this.instance->MaxDrawIndexedIndexValue;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxDrawIndirectCount
 		{
-			get
-			{
-				return this.instance->MaxDrawIndirectCount;
-			}
+			get;
+			private set;
 		}
 
 		public float MaxSamplerLodBias
 		{
-			get
-			{
-				return this.instance->MaxSamplerLodBias;
-			}
+			get;
+			private set;
 		}
 
 		public float MaxSamplerAnisotropy
 		{
-			get
-			{
-				return this.instance->MaxSamplerAnisotropy;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxViewports
 		{
-			get
-			{
-				return this.instance->MaxViewports;
-			}
+			get;
+			private set;
 		}
 
 		public uint[] MaxViewportDimensions
 		{
-			get
-			{
-				return Interop.HeapUtil.MarshalPointerToArray(this.instance->MaxViewportDimensions, 2);
-			}
+			get;
+			private set;
 		}
 
 		public float[] ViewportBoundsRange
 		{
-			get
-			{
-				return Interop.HeapUtil.MarshalPointerToArray(this.instance->ViewportBoundsRange, 2);
-			}
+			get;
+			private set;
 		}
 
 		public uint ViewportSubPixelBits
 		{
-			get
-			{
-				return this.instance->ViewportSubPixelBits;
-			}
+			get;
+			private set;
 		}
 
 		public UIntPtr MinMemoryMapAlignment
 		{
-			get
-			{
-				return this.instance->MinMemoryMapAlignment;
-			}
+			get;
+			private set;
 		}
 
 		public ulong MinTexelBufferOffsetAlignment
 		{
-			get
-			{
-				return this.instance->MinTexelBufferOffsetAlignment;
-			}
+			get;
+			private set;
 		}
 
 		public ulong MinUniformBufferOffsetAlignment
 		{
-			get
-			{
-				return this.instance->MinUniformBufferOffsetAlignment;
-			}
+			get;
+			private set;
 		}
 
 		public ulong MinStorageBufferOffsetAlignment
 		{
-			get
-			{
-				return this.instance->MinStorageBufferOffsetAlignment;
-			}
+			get;
+			private set;
 		}
 
 		public int MinTexelOffset
 		{
-			get
-			{
-				return this.instance->MinTexelOffset;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxTexelOffset
 		{
-			get
-			{
-				return this.instance->MaxTexelOffset;
-			}
+			get;
+			private set;
 		}
 
 		public int MinTexelGatherOffset
 		{
-			get
-			{
-				return this.instance->MinTexelGatherOffset;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxTexelGatherOffset
 		{
-			get
-			{
-				return this.instance->MaxTexelGatherOffset;
-			}
+			get;
+			private set;
 		}
 
 		public float MinInterpolationOffset
 		{
-			get
-			{
-				return this.instance->MinInterpolationOffset;
-			}
+			get;
+			private set;
 		}
 
 		public float MaxInterpolationOffset
 		{
-			get
-			{
-				return this.instance->MaxInterpolationOffset;
-			}
+			get;
+			private set;
 		}
 
 		public uint SubPixelInterpolationOffsetBits
 		{
-			get
-			{
-				return this.instance->SubPixelInterpolationOffsetBits;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxFramebufferWidth
 		{
-			get
-			{
-				return this.instance->MaxFramebufferWidth;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxFramebufferHeight
 		{
-			get
-			{
-				return this.instance->MaxFramebufferHeight;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxFramebufferLayers
 		{
-			get
-			{
-				return this.instance->MaxFramebufferLayers;
-			}
+			get;
+			private set;
 		}
 
 		public SampleCountFlags FramebufferColorSampleCounts
 		{
-			get
-			{
-				return this.instance->FramebufferColorSampleCounts;
-			}
+			get;
+			private set;
 		}
 
 		public SampleCountFlags FramebufferDepthSampleCounts
 		{
-			get
-			{
-				return this.instance->FramebufferDepthSampleCounts;
-			}
+			get;
+			private set;
 		}
 
 		public SampleCountFlags FramebufferStencilSampleCounts
 		{
-			get
-			{
-				return this.instance->FramebufferStencilSampleCounts;
-			}
+			get;
+			private set;
 		}
 
 		public SampleCountFlags FramebufferNoAttachmentsSampleCounts
 		{
-			get
-			{
-				return this.instance->FramebufferNoAttachmentsSampleCounts;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxColorAttachments
 		{
-			get
-			{
-				return this.instance->MaxColorAttachments;
-			}
+			get;
+			private set;
 		}
 
 		public SampleCountFlags SampledImageColorSampleCounts
 		{
-			get
-			{
-				return this.instance->SampledImageColorSampleCounts;
-			}
+			get;
+			private set;
 		}
 
 		public SampleCountFlags SampledImageIntegerSampleCounts
 		{
-			get
-			{
-				return this.instance->SampledImageIntegerSampleCounts;
-			}
+			get;
+			private set;
 		}
 
 		public SampleCountFlags SampledImageDepthSampleCounts
 		{
-			get
-			{
-				return this.instance->SampledImageDepthSampleCounts;
-			}
+			get;
+			private set;
 		}
 
 		public SampleCountFlags SampledImageStencilSampleCounts
 		{
-			get
-			{
-				return this.instance->SampledImageStencilSampleCounts;
-			}
+			get;
+			private set;
 		}
 
 		public SampleCountFlags StorageImageSampleCounts
 		{
-			get
-			{
-				return this.instance->StorageImageSampleCounts;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxSampleMaskWords
 		{
-			get
-			{
-				return this.instance->MaxSampleMaskWords;
-			}
+			get;
+			private set;
 		}
 
 		public bool TimestampComputeAndGraphics
 		{
-			get
-			{
-				return this.instance->TimestampComputeAndGraphics;
-			}
+			get;
+			private set;
 		}
 
 		public float TimestampPeriod
 		{
-			get
-			{
-				return this.instance->TimestampPeriod;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxClipDistances
 		{
-			get
-			{
-				return this.instance->MaxClipDistances;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxCullDistances
 		{
-			get
-			{
-				return this.instance->MaxCullDistances;
-			}
+			get;
+			private set;
 		}
 
 		public uint MaxCombinedClipAndCullDistances
 		{
-			get
-			{
-				return this.instance->MaxCombinedClipAndCullDistances;
-			}
+			get;
+			private set;
 		}
 
 		public uint DiscreteQueuePriorities
 		{
-			get
-			{
-				return this.instance->DiscreteQueuePriorities;
-			}
+			get;
+			private set;
 		}
 
 		public float[] PointSizeRange
 		{
-			get
-			{
-				return Interop.HeapUtil.MarshalPointerToArray(this.instance->PointSizeRange, 2);
-			}
+			get;
+			private set;
 		}
 
 		public float[] LineWidthRange
 		{
-			get
-			{
-				return Interop.HeapUtil.MarshalPointerToArray(this.instance->LineWidthRange, 2);
-			}
+			get;
+			private set;
 		}
 
 		public float PointSizeGranularity
 		{
-			get
-			{
-				return this.instance->PointSizeGranularity;
-			}
+			get;
+			private set;
 		}
 
 		public float LineWidthGranularity
 		{
-			get
-			{
-				return this.instance->LineWidthGranularity;
-			}
+			get;
+			private set;
 		}
 
 		public bool StrictLines
 		{
-			get
-			{
-				return this.instance->StrictLines;
-			}
+			get;
+			private set;
 		}
 
 		public bool StandardSampleLocations
 		{
-			get
-			{
-				return this.instance->StandardSampleLocations;
-			}
+			get;
+			private set;
 		}
 
 		public ulong OptimalBufferCopyOffsetAlignment
 		{
-			get
-			{
-				return this.instance->OptimalBufferCopyOffsetAlignment;
-			}
+			get;
+			private set;
 		}
 
 		public ulong OptimalBufferCopyRowPitchAlignment
 		{
-			get
-			{
-				return this.instance->OptimalBufferCopyRowPitchAlignment;
-			}
+			get;
+			private set;
 		}
 
 		public ulong NonCoherentAtomSize
 		{
-			get
-			{
-				return this.instance->NonCoherentAtomSize;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			private set;
 		}
 	}
 
-	public unsafe class SemaphoreCreateInfo
-		: IDisposable
+	public class SemaphoreCreateInfo
 	{
-		internal Interop.SemaphoreCreateInfo* instance;
 
-		internal SemaphoreCreateInfo(Interop.SemaphoreCreateInfo* instance)
+		internal unsafe Interop.SemaphoreCreateInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.SemaphoreCreateInfo.Create() : instance;
-		}
+			var result = new Interop.SemaphoreCreateInfo();
 
-		public static SemaphoreCreateInfo Create()
-		{
-			var result = new SemaphoreCreateInfo(null);
+			result.SType = StructureType.SemaphoreCreateInfo;
 
-			result.instance->SType = StructureType.SemaphoreCreateInfo;
+			result.Flags = this.Flags;
 
 			return result;
 		}
 
+
 		public uint Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class QueryPoolCreateInfo
-		: IDisposable
+	public class QueryPoolCreateInfo
 	{
-		internal Interop.QueryPoolCreateInfo* instance;
 
-		internal QueryPoolCreateInfo(Interop.QueryPoolCreateInfo* instance)
+		internal unsafe Interop.QueryPoolCreateInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.QueryPoolCreateInfo.Create() : instance;
-		}
+			var result = new Interop.QueryPoolCreateInfo();
 
-		public static QueryPoolCreateInfo Create()
-		{
-			var result = new QueryPoolCreateInfo(null);
+			result.SType = StructureType.QueryPoolCreateInfo;
 
-			result.instance->SType = StructureType.QueryPoolCreateInfo;
+			result.Flags = this.Flags;
+			result.QueryType = this.QueryType;
+			result.QueryCount = this.QueryCount;
+			result.PipelineStatistics = this.PipelineStatistics;
 
 			return result;
 		}
 
+
 		public uint Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
+			get;
+			set;
 		}
 
 		public QueryType QueryType
 		{
-			get
-			{
-				return this.instance->QueryType;
-			}
-			set
-			{
-				this.instance->QueryType = value;
-			}
+			get;
+			set;
 		}
 
 		public uint QueryCount
 		{
-			get
-			{
-				return this.instance->QueryCount;
-			}
-			set
-			{
-				this.instance->QueryCount = value;
-			}
+			get;
+			set;
 		}
 
 		public QueryPipelineStatisticFlags PipelineStatistics
 		{
-			get
-			{
-				return this.instance->PipelineStatistics;
-			}
-			set
-			{
-				this.instance->PipelineStatistics = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class FramebufferCreateInfo
-		: IDisposable
+	public class FramebufferCreateInfo
 	{
-		internal Interop.FramebufferCreateInfo* instance;
 
-		internal FramebufferCreateInfo(Interop.FramebufferCreateInfo* instance)
+		internal unsafe Interop.FramebufferCreateInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.FramebufferCreateInfo.Create() : instance;
-		}
+			var result = new Interop.FramebufferCreateInfo();
 
-		public static FramebufferCreateInfo Create()
-		{
-			var result = new FramebufferCreateInfo(null);
+			result.SType = StructureType.FramebufferCreateInfo;
 
-			result.instance->SType = StructureType.FramebufferCreateInfo;
+			result.Flags = this.Flags;
+			result.Width = this.Width;
+			result.Height = this.Height;
+			result.Layers = this.Layers;
 
 			return result;
 		}
 
+
 		public uint Flags
 		{
-			get
-			{
-				return this.instance->Flags;
-			}
-			set
-			{
-				this.instance->Flags = value;
-			}
+			get;
+			set;
 		}
 
 		public uint Width
 		{
-			get
-			{
-				return this.instance->Width;
-			}
-			set
-			{
-				this.instance->Width = value;
-			}
+			get;
+			set;
 		}
 
 		public uint Height
 		{
-			get
-			{
-				return this.instance->Height;
-			}
-			set
-			{
-				this.instance->Height = value;
-			}
+			get;
+			set;
 		}
 
 		public uint Layers
 		{
-			get
-			{
-				return this.instance->Layers;
-			}
-			set
-			{
-				this.instance->Layers = value;
-			}
-		}
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
+			get;
+			set;
 		}
 	}
 
-	public unsafe class SubmitInfo
-		: IDisposable
+	public class SubmitInfo
 	{
-		internal Interop.SubmitInfo* instance;
 
-		internal SubmitInfo(Interop.SubmitInfo* instance)
+		internal unsafe Interop.SubmitInfo MarshalTo()
 		{
-			this.instance = instance == null ? Interop.SubmitInfo.Create() : instance;
-		}
+			var result = new Interop.SubmitInfo();
 
-		public static SubmitInfo Create()
-		{
-			var result = new SubmitInfo(null);
+			result.SType = StructureType.SubmitInfo;
 
-			result.instance->SType = StructureType.SubmitInfo;
 
 			return result;
 		}
 
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
-		}
 	}
 }

@@ -76,6 +76,11 @@ namespace SharpVk.Interop
             return newArray;
         }
 
+        internal static void MarshalArrayToPointer(byte[] value, int length, byte* pointer)
+        {
+            Marshal.Copy(value, 0, new IntPtr(pointer), length);
+        }
+
         internal static void MarshalArrayToPointer(float[] value, int length, float* pointer)
         {
             Marshal.Copy(value, 0, new IntPtr(pointer), length);

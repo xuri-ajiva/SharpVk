@@ -6,7 +6,7 @@ namespace SharpVk
     {
         static void Main(string[] args)
         {
-            var instance = new Instance(InstanceCreateInfo.Create(), null);
+            var instance = new Instance(new InstanceCreateInfo(), null);
 
             Console.WriteLine("Done");
             Console.ReadLine();

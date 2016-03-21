@@ -28,33 +28,9 @@ namespace SharpVk
 <#
 		foreach(var member in structType.Members)
         {
-			string memberTypeName = member.Type.Name;
-			bool isFixedArray = false;
-						
-			if(member.Type.Category == Category.funcpointer)
-            {
-				memberTypeName = "IntPtr";
-            }
-			else if(member.Type.Category == Category.basetype)
-            {
-				memberTypeName = MapBaseTypeName(memberTypeName);
-            }
-			else if(memberTypeName == "char" && member.Size > 0)
-			{
-				memberTypeName = "string";
-			}
-			else if(member.Type.IsPrimitive && member.Size > 0)
-			{
-				isFixedArray = true;
-			}
-			else if(memberTypeName == "char" && member.PointerCount > 0)
-			{
-				memberTypeName = "string";
-				member.PointerCount--;
-			}
 #>
 
-		public <#=memberTypeName#> <#=member.Name#>;
+		public <#=member.Type.Name#> <#=member.Name#>;
 <#
         }
 #>

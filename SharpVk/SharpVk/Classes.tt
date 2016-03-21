@@ -21,34 +21,6 @@ namespace SharpVk
 	foreach(var structType in structs.Where(x => !x.IsSimpleStruct))
 	{
 		string structName = structType.Name;
-#>
-
-	public unsafe class <#=structName#>
-		: IDisposable
-	{
-		internal Interop.<#=structName#>* instance;
-
-		internal <#=structName#>(Interop.<#=structName#>* instance)
-		{
-			this.instance = instance == null ? Interop.<#=structName#>.Create() : instance;
-		}
-
-		public static <#=structName#> Create()
-		{
-			var result = new <#=structName#>(null);
-
-<#
-		if(structType.Xml.Elements("member").Any(x => x.Element("name").Value == "sType"))
-		{
-#>
-			result.instance->SType = StructureType.<#=structName#>;
-
-<#
-		}
-#>
-			return result;
-		}
-<#
 		var members = new List<MemberInfo>();
 
 		var lenMembers = new List<string>();
@@ -93,112 +65,131 @@ namespace SharpVk
                 }
             }
         }
-
-		foreach(var member in members)
-        {
-			if(member.Type.Category == Category.handle
-				|| member.Name == "SType"
-				|| lenMembers.Contains(memberNameMap[member.Name]))
-			{
-				continue;
-			}
-
-			string memberTypeName = member.Type.Name;
-			bool isFixedArray = false;
-						
-			if(member.Type.Category == Category.funcpointer)
-            {
-				memberTypeName = "IntPtr";
-            }
-			else if(member.Type.Category == Category.basetype)
-            {
-				memberTypeName = MapBaseTypeName(memberTypeName);
-            }
-			else if(memberTypeName == "char" && member.Size > 0)
-			{
-				memberTypeName = "string";
-			}
-			else if(member.Type.IsPrimitive && member.Size > 0)
-			{
-				isFixedArray = true;
-			}
-			else if(memberTypeName == "char" && member.PointerCount > 0)
-			{
-				memberTypeName = "string";
-				member.PointerCount--;
-			}
-			
-			if(member.PointerCount > 0)
-            {
-				continue;
-            }
-
-			string valueString = "this.instance->" + member.Name;
 #>
 
-		public <#=memberTypeName#><#=isFixedArray?"[]":""#> <#=member.Name#>
+	public class <#=structName#>
+	{
+<#
+		if(!structType.IsReturnedOnly)
 		{
-			get
-			{
-<#
-			if(memberTypeName == "string")
-			{
-				valueString = string.Format("Interop.HeapUtil.MarshalPointerToString({0})", valueString);
-			}
-			else if(member.Type.Category == Category.@struct && !member.Type.IsSimpleStruct)
-			{
-				valueString = string.Format("new {1}(&({0}))", valueString, memberTypeName);
-			}
-			else if(isFixedArray)
-			{
-				valueString = string.Format("Interop.HeapUtil.MarshalPointerToArray({0}, {1})", valueString, member.Size);
-			}
 #>
-				return <#=valueString#>;
-			}
+
+		internal unsafe Interop.<#=structName#> MarshalTo()
+		{
+			var result = new Interop.<#=structName#>();
 <#
-			if(!structType.IsReturnedOnly)
+			if(structType.Xml.Elements("member").Any(x => x.Element("name").Value == "sType"))
 			{
 #>
-			set
-			{
+
+			result.SType = StructureType.<#=structName#>;
+
 <#
+			}
+
+			members = members.Where(member => member.Type.Category != Category.handle
+											&& member.Name != "SType"
+											&& !lenMembers.Contains(memberNameMap[member.Name]))
+							.ToList();
+			
+			foreach(var member in members)
+			{
+				string memberTypeName = member.Type.Name;
+				bool isFixedArray = false;
+				int pointerCount = member.PointerCount;
+						
+				if(member.Type.Category == Category.basetype)
+				{
+					memberTypeName = MapBaseTypeName(memberTypeName);
+				}
+				else if(memberTypeName == "char" && member.Size > 0)
+				{
+					memberTypeName = "string";
+				}
+				else if(member.Type.IsPrimitive && member.Size > 0)
+				{
+					isFixedArray = true;
+				}
+				else if(memberTypeName == "char" && pointerCount > 0)
+				{
+					memberTypeName = "string";
+					pointerCount--;
+				}
+			
+				if(pointerCount > 0)
+				{
+					continue;
+				}
+			
 				if(isFixedArray)
 				{
 #>
-				Interop.HeapUtil.MarshalArrayToPointer(value, <#=member.Size#>, this.instance-><#=member.Name#>);
+			Interop.HeapUtil.MarshalArrayToPointer(this.<#=member.Name#>, <#=member.Size#>, result.<#=member.Name#>);
 <#
 				}
 				else
 				{
-					valueString = "value";
+					string valueString = "this." + member.Name;
 					if(memberTypeName == "string")
 					{
 						valueString = string.Format("Interop.HeapUtil.MarshalStringToPointer({0})", valueString);
 					}
 					else if(member.Type.Category == Category.@struct && !member.Type.IsSimpleStruct)
 					{
-						valueString = string.Format("*({0}.instance)", valueString);
+						valueString = string.Format("{0}.MarshalTo()", valueString);
 					}
 #>
-				this.instance-><#=member.Name#> = <#=valueString#>;
+			result.<#=member.Name#> = <#=valueString#>;
 <#
 				}
-#>
 			}
+#>
+
+			return result;
+		}
+
 <#
+		}
+
+		foreach(var member in members)
+        {
+			string memberTypeName = member.Type.Name;
+			bool isFixedArray = false;
+			int pointerCount = member.PointerCount;
+						
+			if(member.Type.Category == Category.basetype)
+            {
+				memberTypeName = MapBaseTypeName(memberTypeName);
+            }
+			else if(memberTypeName == "char" && member.Size > 0)
+			{
+				memberTypeName = "string";
+				isFixedArray = true;
 			}
+			else if(member.Type.IsPrimitive && member.Size > 0)
+			{
+				isFixedArray = true;
+			}
+			else if(memberTypeName == "char" && pointerCount > 0)
+			{
+				memberTypeName = "string";
+				pointerCount--;
+			}
+			
+			if(member.Type.Category != Category.@struct && pointerCount > 0)
+            {
+				continue;
+            }
 #>
+
+		public <#=memberTypeName#><#=isFixedArray?"[]":""#> <#=member.Name#>
+		{
+			get;
+			<#=structType.IsReturnedOnly?"private ":""#>set;
 		}
 <#
         }
 #>
-
-		public void Dispose()
-		{
-			Interop.HeapUtil.Free(this.instance);
-			this.instance = null;
-		}
 	}
 <#
 	}
