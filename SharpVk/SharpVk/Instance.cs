@@ -33,7 +33,7 @@ namespace SharpVk
 			{
 				fixed(Interop.Instance* handlePointer = &this.handle)
 				{
-					Result createResult = Interop.NativeMethods.vkCreateInstance(createInfo != null ? createInfo.instance : null, allocator != null ? allocator.instance : null, handlePointer);
+					Result createResult = Interop.Commands.vkCreateInstance(createInfo != null ? createInfo.instance : null, allocator != null ? allocator.instance : null, handlePointer);
 
 					ResultUtil.HandleResult(createResult);
 				}

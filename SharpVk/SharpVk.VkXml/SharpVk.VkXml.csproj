@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Category.cs" />
+    <Compile Include="CommandDef.cs" />
     <Compile Include="IVkXmlCache.cs" />
     <Compile Include="TypeDef.cs" />
     <Compile Include="TypeDefCache.cs" />

@@ -25,7 +25,7 @@ using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
-	public static unsafe class NativeMethods
+	public static unsafe class Commands
 	{
 		public const string VulkanDll = "vulkan-1.dll";
 

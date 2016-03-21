@@ -1,0 +1,62 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Net" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Xml.Linq" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<#@ include file="..\License.tt" #>
+<#@ include file="..\Vk.ttinclude" #>
+using System;
+using System.Runtime.InteropServices;
+
+namespace SharpVk.Interop
+{
+	public static unsafe class Commands
+	{
+		public const string VulkanDll = "vulkan-1.dll";
+
+<#
+	var keywords = new[]{"object", "event"};
+
+	foreach(var command in GetCommands())
+	{
+#>
+		[DllImport(VulkanDll)]
+		public static extern <#= command.Type.Name #> <#= command.Name #>(<#
+
+		bool isFirst = true;
+
+		foreach(var parameter in command.Params)
+        {
+			string paramName = parameter.Name;
+
+			string paramTypeName = parameter.Type.Name;
+
+			if(parameter.PointerCount > 0)
+            {
+				paramTypeName += new string('*', parameter.PointerCount);
+            }
+			
+			if(isFirst)
+            {
+				isFirst = false;
+            }
+			else
+            {
+				#>, <#
+            }
+			
+			#><#=paramTypeName#> <#=paramName#><#
+        }
+#>);
+
+<#
+	}
+#>
+	}
+}

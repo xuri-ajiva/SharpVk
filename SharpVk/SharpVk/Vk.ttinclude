@@ -97,9 +97,19 @@ IEnumerable<TypeDef> GetUnions()
 	return typeCache.GetAllTypes().Select(x => x.Value).Where(x => x.Category == Category.union);
 }
 
-IEnumerable<XElement> GetCommands()
+IEnumerable<CommandDef> GetCommands()
 {
-	return GetVkXml().Element("registry").Element("commands").Elements("command").Where(x => !extensionSuffixes.Any(y => x.Element("proto").Value.EndsWith(y)));
+	if(xmlCache == null)
+	{
+		xmlCache = new VkXmlCache(Path.Combine(Host.ResolvePath("."), "obj\\VkTemplates"));
+    }
+
+	if(typeCache == null)
+    {
+		typeCache = new TypeDefCache(xmlCache);
+    }
+
+	return typeCache.GetAllCommands().Values;
 }
 
 string MapTypeName(string vkTypeName)

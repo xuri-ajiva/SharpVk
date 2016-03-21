@@ -11,7 +11,10 @@ namespace SharpVk.VkXml
     public class TypeDefCache
     {
         private IVkXmlCache xmlCache;
-        private Dictionary<string, TypeDef> cache;
+        private Dictionary<string, TypeDef> typeCache;
+        private Dictionary<string, CommandDef> commandCache;
+
+        string[] extensionSuffixes = new[] { "KHR", "EXT" };
 
         private static readonly Dictionary<string, string> primitiveTypes = new Dictionary<string, string>()
         {
@@ -30,9 +33,97 @@ namespace SharpVk.VkXml
             this.xmlCache = xmlCache;
         }
 
+        public Dictionary<string, CommandDef> GetAllCommands()
+        {
+            if (this.commandCache == null)
+            {
+                var keywords = new[] { "object", "event" };
+                var types = this.GetAllTypes();
+
+                this.commandCache = new Dictionary<string, CommandDef>();
+
+                foreach (var command in this.xmlCache.GetVkXml().Element("registry").Element("commands").Elements("command").Where(x => !extensionSuffixes.Any(y => x.Element("proto").Value.EndsWith(y))))
+                {
+                    bool isUnsupportedCommand = false;
+
+                    var prototype = command.Element("proto");
+                    var commandType = types[prototype.Element("type").Value];
+                    string commandName = prototype.Element("name").Value;
+
+                    var commandDef = new CommandDef
+                    {
+                        Name = commandName,
+                        Type = commandType
+                    };
+
+                    foreach (var parameter in command.Elements("param"))
+                    {
+                        string paramName = parameter.Element("name").Value;
+
+                        int pointerCount = 0;
+
+                        while (paramName[0] == 'p' && (paramName[1] == 'p' || char.IsUpper(paramName[1])))
+                        {
+                            pointerCount++;
+
+                            paramName = paramName.Substring(1);
+                        }
+
+                        bool isOutput = !parameter.Value.StartsWith("const") && pointerCount > 0;
+
+                        if (pointerCount > 0)
+                        {
+                            paramName = paramName = char.ToLower(paramName[0]) + paramName.Substring(1);
+                        }
+
+                        string vkTypeName = parameter.Element("type").Value;
+
+                        if (vkTypeName.Contains("SurfaceCreateInfo"))
+                        {
+                            // This method requires an unimplemented type, so skip it
+
+                            isUnsupportedCommand = true;
+
+                            break;
+                        }
+
+                        var paramType = types[vkTypeName];
+
+                        if (paramType.Category == Category.other_platform)
+                        {
+                            // This method requires an unimplemented type, so skip it
+
+                            isUnsupportedCommand = true;
+
+                            break;
+                        }
+                        
+                        if (keywords.Contains(paramName))
+                        {
+                            paramName = "@" + paramName;
+                        }
+
+                        commandDef.Params.Add(new CommandDef.ParamDef
+                        {
+                            Name = paramName,
+                            Type = paramType,
+                            PointerCount = pointerCount
+                        });
+                    }
+
+                    if(!isUnsupportedCommand)
+                    {
+                        this.commandCache.Add(commandName, commandDef);
+                    }
+                }
+            }
+
+            return this.commandCache;
+        }
+
         public Dictionary<string, TypeDef> GetAllTypes()
         {
-            if (cache == null)
+            if (this.typeCache == null)
             {
                 var vkXml = this.xmlCache.GetVkXml();
 
@@ -133,7 +224,7 @@ namespace SharpVk.VkXml
                     }
                 }
 
-                this.cache = result;
+                this.typeCache = result;
 
                 var constantsEnum = vkXml.Element("registry").Elements("enums").First(x => x.Attribute("name")?.Value == "API Constants");
 
@@ -150,7 +241,7 @@ namespace SharpVk.VkXml
                     }
                 }
 
-                foreach (var type in this.cache.Values)
+                foreach (var type in this.typeCache.Values)
                 {
                     if (type.Category == Category.@struct || type.Category == Category.union)
                     {
@@ -210,7 +301,7 @@ namespace SharpVk.VkXml
 
                             string[] memberLen = typeMember.Attribute("len")?.Value?.Split(',');
 
-                            var memberType = cache[typeMember.Element("type").Value];
+                            var memberType = this.typeCache[typeMember.Element("type").Value];
 
                             members.Add(new TypeDef.MemberInfo
                             {
@@ -236,7 +327,7 @@ namespace SharpVk.VkXml
                 {
                     simpleStructsFound = false;
 
-                    foreach (var type in this.cache.Values.Where(x => !x.IsSimpleStruct))
+                    foreach (var type in this.typeCache.Values.Where(x => !x.IsSimpleStruct))
                     {
                         if (type.Category == Category.@struct && !type.Members.Any(x => x.Type.Category == Category.handle || (x.Type.Category == Category.@struct && !x.Type.IsSimpleStruct) || x.PointerCount > 0 || x.Size > 0))
                         {
@@ -246,7 +337,7 @@ namespace SharpVk.VkXml
                 }
             }
 
-            return cache;
+            return this.typeCache;
         }
     }
 }
