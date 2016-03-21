@@ -24,7 +24,7 @@ namespace SharpVk
 		foreach(var member in union.Members)
         {
 			string memberTypeName = member.Type.Name;
-			if(member.Type.Category == Category.@struct)
+			if(member.Type.Category == Category.@struct && !member.Type.IsSimpleStruct)
 			{
 				memberTypeName = "Interop." + memberTypeName;
 			}

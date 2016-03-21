@@ -65,7 +65,7 @@ namespace SharpVk.Interop
 		}
 	}
 <#
-	foreach(var structType in GetStructs())
+	foreach(var structType in GetStructs().Where(x => !x.IsSimpleStruct))
 	{
 		string structName = structType.Name;
 #>

@@ -74,132 +74,6 @@ namespace SharpVk.Interop
 		}
 	}
 
-	public unsafe struct Offset2D
-	{
-		public static Offset2D* Create()
-		{
-			return (Offset2D*)HeapUtil.AllocateAndClear<Offset2D>();
-		}
-
-		public int X;
-
-		public int Y;
-	}
-
-	public unsafe struct Offset3D
-	{
-		public static Offset3D* Create()
-		{
-			return (Offset3D*)HeapUtil.AllocateAndClear<Offset3D>();
-		}
-
-		public int X;
-
-		public int Y;
-
-		public int Z;
-	}
-
-	public unsafe struct Extent2D
-	{
-		public static Extent2D* Create()
-		{
-			return (Extent2D*)HeapUtil.AllocateAndClear<Extent2D>();
-		}
-
-		public uint Width;
-
-		public uint Height;
-	}
-
-	public unsafe struct Extent3D
-	{
-		public static Extent3D* Create()
-		{
-			return (Extent3D*)HeapUtil.AllocateAndClear<Extent3D>();
-		}
-
-		public uint Width;
-
-		public uint Height;
-
-		public uint Depth;
-	}
-
-	public unsafe struct Viewport
-	{
-		public static Viewport* Create()
-		{
-			return (Viewport*)HeapUtil.AllocateAndClear<Viewport>();
-		}
-
-		public float X;
-
-		public float Y;
-
-		public float Width;
-
-		public float Height;
-
-		public float MinDepth;
-
-		public float MaxDepth;
-	}
-
-	public unsafe struct Rect2D
-	{
-		public static Rect2D* Create()
-		{
-			return (Rect2D*)HeapUtil.AllocateAndClear<Rect2D>();
-		}
-
-		public Offset2D Offset;
-
-		public Extent2D Extent;
-	}
-
-	public unsafe struct Rect3D
-	{
-		public static Rect3D* Create()
-		{
-			return (Rect3D*)HeapUtil.AllocateAndClear<Rect3D>();
-		}
-
-		public Offset3D Offset;
-
-		public Extent3D Extent;
-	}
-
-	public unsafe struct ClearRect
-	{
-		public static ClearRect* Create()
-		{
-			return (ClearRect*)HeapUtil.AllocateAndClear<ClearRect>();
-		}
-
-		public Rect2D Rect;
-
-		public uint BaseArrayLayer;
-
-		public uint LayerCount;
-	}
-
-	public unsafe struct ComponentMapping
-	{
-		public static ComponentMapping* Create()
-		{
-			return (ComponentMapping*)HeapUtil.AllocateAndClear<ComponentMapping>();
-		}
-
-		public ComponentSwizzle R;
-
-		public ComponentSwizzle G;
-
-		public ComponentSwizzle B;
-
-		public ComponentSwizzle A;
-	}
-
 	public unsafe struct PhysicalDeviceProperties
 	{
 		public static PhysicalDeviceProperties* Create()
@@ -368,22 +242,6 @@ namespace SharpVk.Interop
 		public char** EnabledExtensionNames;
 	}
 
-	public unsafe struct QueueFamilyProperties
-	{
-		public static QueueFamilyProperties* Create()
-		{
-			return (QueueFamilyProperties*)HeapUtil.AllocateAndClear<QueueFamilyProperties>();
-		}
-
-		public QueueFlags QueueFlags;
-
-		public uint QueueCount;
-
-		public uint TimestampValidBits;
-
-		public Extent3D MinImageTransferGranularity;
-	}
-
 	public unsafe struct PhysicalDeviceMemoryProperties
 	{
 		public static PhysicalDeviceMemoryProperties* Create()
@@ -508,76 +366,6 @@ namespace SharpVk.Interop
 		public uint MemoryTypeIndex;
 	}
 
-	public unsafe struct MemoryRequirements
-	{
-		public static MemoryRequirements* Create()
-		{
-			return (MemoryRequirements*)HeapUtil.AllocateAndClear<MemoryRequirements>();
-		}
-
-		public DeviceSize Size;
-
-		public DeviceSize Alignment;
-
-		public uint MemoryTypeBits;
-	}
-
-	public unsafe struct SparseImageFormatProperties
-	{
-		public static SparseImageFormatProperties* Create()
-		{
-			return (SparseImageFormatProperties*)HeapUtil.AllocateAndClear<SparseImageFormatProperties>();
-		}
-
-		public ImageAspectFlags AspectMask;
-
-		public Extent3D ImageGranularity;
-
-		public SparseImageFormatFlags Flags;
-	}
-
-	public unsafe struct SparseImageMemoryRequirements
-	{
-		public static SparseImageMemoryRequirements* Create()
-		{
-			return (SparseImageMemoryRequirements*)HeapUtil.AllocateAndClear<SparseImageMemoryRequirements>();
-		}
-
-		public SparseImageFormatProperties FormatProperties;
-
-		public uint ImageMipTailFirstLod;
-
-		public DeviceSize ImageMipTailSize;
-
-		public DeviceSize ImageMipTailOffset;
-
-		public DeviceSize ImageMipTailStride;
-	}
-
-	public unsafe struct MemoryType
-	{
-		public static MemoryType* Create()
-		{
-			return (MemoryType*)HeapUtil.AllocateAndClear<MemoryType>();
-		}
-
-		public MemoryPropertyFlags PropertyFlags;
-
-		public uint HeapIndex;
-	}
-
-	public unsafe struct MemoryHeap
-	{
-		public static MemoryHeap* Create()
-		{
-			return (MemoryHeap*)HeapUtil.AllocateAndClear<MemoryHeap>();
-		}
-
-		public DeviceSize Size;
-
-		public MemoryHeapFlags Flags;
-	}
-
 	public unsafe struct MappedMemoryRange
 	{
 		public static MappedMemoryRange* Create()
@@ -594,38 +382,6 @@ namespace SharpVk.Interop
 		public DeviceSize Offset;
 
 		public DeviceSize Size;
-	}
-
-	public unsafe struct FormatProperties
-	{
-		public static FormatProperties* Create()
-		{
-			return (FormatProperties*)HeapUtil.AllocateAndClear<FormatProperties>();
-		}
-
-		public FormatFeatureFlags LinearTilingFeatures;
-
-		public FormatFeatureFlags OptimalTilingFeatures;
-
-		public FormatFeatureFlags BufferFeatures;
-	}
-
-	public unsafe struct ImageFormatProperties
-	{
-		public static ImageFormatProperties* Create()
-		{
-			return (ImageFormatProperties*)HeapUtil.AllocateAndClear<ImageFormatProperties>();
-		}
-
-		public Extent3D MaxExtent;
-
-		public uint MaxMipLevels;
-
-		public uint MaxArrayLayers;
-
-		public SampleCountFlags SampleCounts;
-
-		public DeviceSize MaxResourceSize;
 	}
 
 	public unsafe struct DescriptorBufferInfo
@@ -756,54 +512,6 @@ namespace SharpVk.Interop
 		public DeviceSize Range;
 	}
 
-	public unsafe struct ImageSubresource
-	{
-		public static ImageSubresource* Create()
-		{
-			return (ImageSubresource*)HeapUtil.AllocateAndClear<ImageSubresource>();
-		}
-
-		public ImageAspectFlags AspectMask;
-
-		public uint MipLevel;
-
-		public uint ArrayLayer;
-	}
-
-	public unsafe struct ImageSubresourceLayers
-	{
-		public static ImageSubresourceLayers* Create()
-		{
-			return (ImageSubresourceLayers*)HeapUtil.AllocateAndClear<ImageSubresourceLayers>();
-		}
-
-		public ImageAspectFlags AspectMask;
-
-		public uint MipLevel;
-
-		public uint BaseArrayLayer;
-
-		public uint LayerCount;
-	}
-
-	public unsafe struct ImageSubresourceRange
-	{
-		public static ImageSubresourceRange* Create()
-		{
-			return (ImageSubresourceRange*)HeapUtil.AllocateAndClear<ImageSubresourceRange>();
-		}
-
-		public ImageAspectFlags AspectMask;
-
-		public uint BaseMipLevel;
-
-		public uint LevelCount;
-
-		public uint BaseArrayLayer;
-
-		public uint LayerCount;
-	}
-
 	public unsafe struct MemoryBarrier
 	{
 		public static MemoryBarrier* Create()
@@ -912,24 +620,6 @@ namespace SharpVk.Interop
 		public ImageLayout InitialLayout;
 	}
 
-	public unsafe struct SubresourceLayout
-	{
-		public static SubresourceLayout* Create()
-		{
-			return (SubresourceLayout*)HeapUtil.AllocateAndClear<SubresourceLayout>();
-		}
-
-		public DeviceSize Offset;
-
-		public DeviceSize Size;
-
-		public DeviceSize RowPitch;
-
-		public DeviceSize ArrayPitch;
-
-		public DeviceSize DepthPitch;
-	}
-
 	public unsafe struct ImageViewCreateInfo
 	{
 		public static ImageViewCreateInfo* Create()
@@ -952,20 +642,6 @@ namespace SharpVk.Interop
 		public ComponentMapping Components;
 
 		public ImageSubresourceRange SubresourceRange;
-	}
-
-	public unsafe struct BufferCopy
-	{
-		public static BufferCopy* Create()
-		{
-			return (BufferCopy*)HeapUtil.AllocateAndClear<BufferCopy>();
-		}
-
-		public DeviceSize SrcOffset;
-
-		public DeviceSize DstOffset;
-
-		public DeviceSize Size;
 	}
 
 	public unsafe struct SparseMemoryBind
@@ -1080,24 +756,6 @@ namespace SharpVk.Interop
 		public Semaphore* SignalSemaphores;
 	}
 
-	public unsafe struct ImageCopy
-	{
-		public static ImageCopy* Create()
-		{
-			return (ImageCopy*)HeapUtil.AllocateAndClear<ImageCopy>();
-		}
-
-		public ImageSubresourceLayers SrcSubresource;
-
-		public Offset3D SrcOffset;
-
-		public ImageSubresourceLayers DstSubresource;
-
-		public Offset3D DstOffset;
-
-		public Extent3D Extent;
-	}
-
 	public unsafe struct ImageBlit
 	{
 		public static ImageBlit* Create()
@@ -1116,44 +774,6 @@ namespace SharpVk.Interop
 		public Offset3D DstOffsets_0;
 
 		public Offset3D DstOffsets_1;
-	}
-
-	public unsafe struct BufferImageCopy
-	{
-		public static BufferImageCopy* Create()
-		{
-			return (BufferImageCopy*)HeapUtil.AllocateAndClear<BufferImageCopy>();
-		}
-
-		public DeviceSize BufferOffset;
-
-		public uint BufferRowLength;
-
-		public uint BufferImageHeight;
-
-		public ImageSubresourceLayers ImageSubresource;
-
-		public Offset3D ImageOffset;
-
-		public Extent3D ImageExtent;
-	}
-
-	public unsafe struct ImageResolve
-	{
-		public static ImageResolve* Create()
-		{
-			return (ImageResolve*)HeapUtil.AllocateAndClear<ImageResolve>();
-		}
-
-		public ImageSubresourceLayers SrcSubresource;
-
-		public Offset3D SrcOffset;
-
-		public ImageSubresourceLayers DstSubresource;
-
-		public Offset3D DstOffset;
-
-		public Extent3D Extent;
 	}
 
 	public unsafe struct ShaderModuleCreateInfo
@@ -1210,18 +830,6 @@ namespace SharpVk.Interop
 		public DescriptorSetLayoutBinding* Bindings;
 	}
 
-	public unsafe struct DescriptorPoolSize
-	{
-		public static DescriptorPoolSize* Create()
-		{
-			return (DescriptorPoolSize*)HeapUtil.AllocateAndClear<DescriptorPoolSize>();
-		}
-
-		public DescriptorType Type;
-
-		public uint DescriptorCount;
-	}
-
 	public unsafe struct DescriptorPoolCreateInfo
 	{
 		public static DescriptorPoolCreateInfo* Create()
@@ -1258,20 +866,6 @@ namespace SharpVk.Interop
 		public uint DescriptorSetCount;
 
 		public DescriptorSetLayout* SetLayouts;
-	}
-
-	public unsafe struct SpecializationMapEntry
-	{
-		public static SpecializationMapEntry* Create()
-		{
-			return (SpecializationMapEntry*)HeapUtil.AllocateAndClear<SpecializationMapEntry>();
-		}
-
-		public uint ConstantID;
-
-		public uint Offset;
-
-		public UIntPtr Size;
 	}
 
 	public unsafe struct SpecializationInfo
@@ -1332,36 +926,6 @@ namespace SharpVk.Interop
 		public Pipeline BasePipelineHandle;
 
 		public int BasePipelineIndex;
-	}
-
-	public unsafe struct VertexInputBindingDescription
-	{
-		public static VertexInputBindingDescription* Create()
-		{
-			return (VertexInputBindingDescription*)HeapUtil.AllocateAndClear<VertexInputBindingDescription>();
-		}
-
-		public uint Binding;
-
-		public uint Stride;
-
-		public VertexInputRate InputRate;
-	}
-
-	public unsafe struct VertexInputAttributeDescription
-	{
-		public static VertexInputAttributeDescription* Create()
-		{
-			return (VertexInputAttributeDescription*)HeapUtil.AllocateAndClear<VertexInputAttributeDescription>();
-		}
-
-		public uint Location;
-
-		public uint Binding;
-
-		public Format Format;
-
-		public uint Offset;
 	}
 
 	public unsafe struct PipelineVertexInputStateCreateInfo
@@ -1502,30 +1066,6 @@ namespace SharpVk.Interop
 		public Bool32 AlphaToOneEnable;
 	}
 
-	public unsafe struct PipelineColorBlendAttachmentState
-	{
-		public static PipelineColorBlendAttachmentState* Create()
-		{
-			return (PipelineColorBlendAttachmentState*)HeapUtil.AllocateAndClear<PipelineColorBlendAttachmentState>();
-		}
-
-		public Bool32 BlendEnable;
-
-		public BlendFactor SrcColorBlendFactor;
-
-		public BlendFactor DstColorBlendFactor;
-
-		public BlendOp ColorBlendOp;
-
-		public BlendFactor SrcAlphaBlendFactor;
-
-		public BlendFactor DstAlphaBlendFactor;
-
-		public BlendOp AlphaBlendOp;
-
-		public ColorComponentFlags ColorWriteMask;
-	}
-
 	public unsafe struct PipelineColorBlendStateCreateInfo
 	{
 		public static PipelineColorBlendStateCreateInfo* Create()
@@ -1566,28 +1106,6 @@ namespace SharpVk.Interop
 		public uint DynamicStateCount;
 
 		public DynamicState* DynamicStates;
-	}
-
-	public unsafe struct StencilOpState
-	{
-		public static StencilOpState* Create()
-		{
-			return (StencilOpState*)HeapUtil.AllocateAndClear<StencilOpState>();
-		}
-
-		public StencilOp FailOp;
-
-		public StencilOp PassOp;
-
-		public StencilOp DepthFailOp;
-
-		public CompareOp CompareOp;
-
-		public uint CompareMask;
-
-		public uint WriteMask;
-
-		public uint Reference;
 	}
 
 	public unsafe struct PipelineDepthStencilStateCreateInfo
@@ -1684,20 +1202,6 @@ namespace SharpVk.Interop
 		public UIntPtr InitialDataSize;
 
 		public void* InitialData;
-	}
-
-	public unsafe struct PushConstantRange
-	{
-		public static PushConstantRange* Create()
-		{
-			return (PushConstantRange*)HeapUtil.AllocateAndClear<PushConstantRange>();
-		}
-
-		public ShaderStageFlags StageFlags;
-
-		public uint Offset;
-
-		public uint Size;
 	}
 
 	public unsafe struct PipelineLayoutCreateInfo
@@ -1862,70 +1366,6 @@ namespace SharpVk.Interop
 		public ClearValue* ClearValues;
 	}
 
-	public unsafe struct ClearDepthStencilValue
-	{
-		public static ClearDepthStencilValue* Create()
-		{
-			return (ClearDepthStencilValue*)HeapUtil.AllocateAndClear<ClearDepthStencilValue>();
-		}
-
-		public float Depth;
-
-		public uint Stencil;
-	}
-
-	public unsafe struct ClearAttachment
-	{
-		public static ClearAttachment* Create()
-		{
-			return (ClearAttachment*)HeapUtil.AllocateAndClear<ClearAttachment>();
-		}
-
-		public ImageAspectFlags AspectMask;
-
-		public uint ColorAttachment;
-
-		public ClearValue ClearValue;
-	}
-
-	public unsafe struct AttachmentDescription
-	{
-		public static AttachmentDescription* Create()
-		{
-			return (AttachmentDescription*)HeapUtil.AllocateAndClear<AttachmentDescription>();
-		}
-
-		public AttachmentDescriptionFlags Flags;
-
-		public Format Format;
-
-		public SampleCountFlags Samples;
-
-		public AttachmentLoadOp LoadOp;
-
-		public AttachmentStoreOp StoreOp;
-
-		public AttachmentLoadOp StencilLoadOp;
-
-		public AttachmentStoreOp StencilStoreOp;
-
-		public ImageLayout InitialLayout;
-
-		public ImageLayout FinalLayout;
-	}
-
-	public unsafe struct AttachmentReference
-	{
-		public static AttachmentReference* Create()
-		{
-			return (AttachmentReference*)HeapUtil.AllocateAndClear<AttachmentReference>();
-		}
-
-		public uint Attachment;
-
-		public ImageLayout Layout;
-	}
-
 	public unsafe struct SubpassDescription
 	{
 		public static SubpassDescription* Create()
@@ -1952,28 +1392,6 @@ namespace SharpVk.Interop
 		public uint PreserveAttachmentCount;
 
 		public uint* PreserveAttachments;
-	}
-
-	public unsafe struct SubpassDependency
-	{
-		public static SubpassDependency* Create()
-		{
-			return (SubpassDependency*)HeapUtil.AllocateAndClear<SubpassDependency>();
-		}
-
-		public uint SrcSubpass;
-
-		public uint DstSubpass;
-
-		public PipelineStageFlags SrcStageMask;
-
-		public PipelineStageFlags DstStageMask;
-
-		public AccessFlags SrcAccessMask;
-
-		public AccessFlags DstAccessMask;
-
-		public DependencyFlags DependencyFlags;
 	}
 
 	public unsafe struct RenderPassCreateInfo
@@ -2028,142 +1446,6 @@ namespace SharpVk.Interop
 		public void* Next;
 
 		public FenceCreateFlags Flags;
-	}
-
-	public unsafe struct PhysicalDeviceFeatures
-	{
-		public static PhysicalDeviceFeatures* Create()
-		{
-			return (PhysicalDeviceFeatures*)HeapUtil.AllocateAndClear<PhysicalDeviceFeatures>();
-		}
-
-		public Bool32 RobustBufferAccess;
-
-		public Bool32 FullDrawIndexUint32;
-
-		public Bool32 ImageCubeArray;
-
-		public Bool32 IndependentBlend;
-
-		public Bool32 GeometryShader;
-
-		public Bool32 TessellationShader;
-
-		public Bool32 SampleRateShading;
-
-		public Bool32 DualSrcBlend;
-
-		public Bool32 LogicOp;
-
-		public Bool32 MultiDrawIndirect;
-
-		public Bool32 DrawIndirectFirstInstance;
-
-		public Bool32 DepthClamp;
-
-		public Bool32 DepthBiasClamp;
-
-		public Bool32 FillModeNonSolid;
-
-		public Bool32 DepthBounds;
-
-		public Bool32 WideLines;
-
-		public Bool32 LargePoints;
-
-		public Bool32 AlphaToOne;
-
-		public Bool32 MultiViewport;
-
-		public Bool32 SamplerAnisotropy;
-
-		public Bool32 TextureCompressionETC2;
-
-		public Bool32 TextureCompressionASTC_LDR;
-
-		public Bool32 TextureCompressionBC;
-
-		public Bool32 OcclusionQueryPrecise;
-
-		public Bool32 PipelineStatisticsQuery;
-
-		public Bool32 VertexPipelineStoresAndAtomics;
-
-		public Bool32 FragmentStoresAndAtomics;
-
-		public Bool32 ShaderTessellationAndGeometryPointSize;
-
-		public Bool32 ShaderImageGatherExtended;
-
-		public Bool32 ShaderStorageImageExtendedFormats;
-
-		public Bool32 ShaderStorageImageMultisample;
-
-		public Bool32 ShaderStorageImageReadWithoutFormat;
-
-		public Bool32 ShaderStorageImageWriteWithoutFormat;
-
-		public Bool32 ShaderUniformBufferArrayDynamicIndexing;
-
-		public Bool32 ShaderSampledImageArrayDynamicIndexing;
-
-		public Bool32 ShaderStorageBufferArrayDynamicIndexing;
-
-		public Bool32 ShaderStorageImageArrayDynamicIndexing;
-
-		public Bool32 ShaderClipDistance;
-
-		public Bool32 ShaderCullDistance;
-
-		public Bool32 ShaderFloat64;
-
-		public Bool32 ShaderInt64;
-
-		public Bool32 ShaderInt16;
-
-		public Bool32 ShaderResourceResidency;
-
-		public Bool32 ShaderResourceMinLod;
-
-		public Bool32 SparseBinding;
-
-		public Bool32 SparseResidencyBuffer;
-
-		public Bool32 SparseResidencyImage2D;
-
-		public Bool32 SparseResidencyImage3D;
-
-		public Bool32 SparseResidency2Samples;
-
-		public Bool32 SparseResidency4Samples;
-
-		public Bool32 SparseResidency8Samples;
-
-		public Bool32 SparseResidency16Samples;
-
-		public Bool32 SparseResidencyAliased;
-
-		public Bool32 VariableMultisampleRate;
-
-		public Bool32 InheritedQueries;
-	}
-
-	public unsafe struct PhysicalDeviceSparseProperties
-	{
-		public static PhysicalDeviceSparseProperties* Create()
-		{
-			return (PhysicalDeviceSparseProperties*)HeapUtil.AllocateAndClear<PhysicalDeviceSparseProperties>();
-		}
-
-		public Bool32 ResidencyStandard2DBlockShape;
-
-		public Bool32 ResidencyStandard2DMultisampleBlockShape;
-
-		public Bool32 ResidencyStandard3DBlockShape;
-
-		public Bool32 ResidencyAlignedMipSize;
-
-		public Bool32 ResidencyNonResidentStrict;
 	}
 
 	public unsafe struct PhysicalDeviceLimits
@@ -2444,54 +1726,6 @@ namespace SharpVk.Interop
 		public uint Height;
 
 		public uint Layers;
-	}
-
-	public unsafe struct DrawIndirectCommand
-	{
-		public static DrawIndirectCommand* Create()
-		{
-			return (DrawIndirectCommand*)HeapUtil.AllocateAndClear<DrawIndirectCommand>();
-		}
-
-		public uint VertexCount;
-
-		public uint InstanceCount;
-
-		public uint FirstVertex;
-
-		public uint FirstInstance;
-	}
-
-	public unsafe struct DrawIndexedIndirectCommand
-	{
-		public static DrawIndexedIndirectCommand* Create()
-		{
-			return (DrawIndexedIndirectCommand*)HeapUtil.AllocateAndClear<DrawIndexedIndirectCommand>();
-		}
-
-		public uint IndexCount;
-
-		public uint InstanceCount;
-
-		public uint FirstIndex;
-
-		public int VertexOffset;
-
-		public uint FirstInstance;
-	}
-
-	public unsafe struct DispatchIndirectCommand
-	{
-		public static DispatchIndirectCommand* Create()
-		{
-			return (DispatchIndirectCommand*)HeapUtil.AllocateAndClear<DispatchIndirectCommand>();
-		}
-
-		public uint X;
-
-		public uint Y;
-
-		public uint Z;
 	}
 
 	public unsafe struct SubmitInfo

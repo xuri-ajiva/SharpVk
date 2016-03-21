@@ -42,9 +42,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ResultUtil.cs" />
     <Compile Include="Structs.cs">
       <DependentUpon>Structs.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ResultUtil.cs" />
+    <Compile Include="Classes.cs">
+      <DependentUpon>Classes.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -82,10 +87,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="License.tt" />
     <Content Include="Structs.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Structs.cs</LastGenOutput>
+    </Content>
+    <Content Include="License.tt" />
+    <Content Include="Classes.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Classes.cs</LastGenOutput>
     </Content>
     <Content Include="Unions.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

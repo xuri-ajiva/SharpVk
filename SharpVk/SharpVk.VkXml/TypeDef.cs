@@ -12,6 +12,7 @@ namespace SharpVk.VkXml
         public List<MemberInfo> Members = new List<MemberInfo>();
         public bool IsPrimitive;
         public bool IsReturnedOnly;
+        public bool IsSimpleStruct;
 
         public class MemberInfo
         {

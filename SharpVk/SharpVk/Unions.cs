@@ -59,7 +59,7 @@ namespace SharpVk
 		[FieldOffset(0)]
 		public ClearColorValue Color;
 		[FieldOffset(0)]
-		public Interop.ClearDepthStencilValue DepthStencil;
+		public ClearDepthStencilValue DepthStencil;
 	}
 
 }

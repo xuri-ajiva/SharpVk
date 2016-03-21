@@ -109,7 +109,7 @@ namespace SharpVk.VkXml
                     additionalTypeNames.Add(vkTypeName);
 
                     //HACK
-                    if(typeName.EndsWith("Bits"))
+                    if (typeName.EndsWith("Bits"))
                     {
                         typeName = typeName.Substring(0, typeName.Length - 4) + "s";
                     }
@@ -139,7 +139,7 @@ namespace SharpVk.VkXml
 
                 var constants = new Dictionary<string, int>();
 
-                foreach(var constant in constantsEnum.Elements("enum"))
+                foreach (var constant in constantsEnum.Elements("enum"))
                 {
                     int value;
                     string name = constant.Attribute("name").Value;
@@ -155,7 +155,7 @@ namespace SharpVk.VkXml
                     if (type.Category == Category.@struct || type.Category == Category.union)
                     {
                         var members = type.Members;
-                        
+
                         foreach (var typeMember in type.Xml.Elements("member"))
                         {
                             var nameNodes = new XNode[] { typeMember.Element("name") }.Concat(typeMember.Element("name").NodesAfterSelf());
@@ -221,6 +221,26 @@ namespace SharpVk.VkXml
                                 Len = memberLen,
                                 VkName = vkMemberName
                             });
+                        }
+
+                        if (type.Category == Category.@struct && !members.Any(x => x.Type.Category == Category.handle || x.Type.Category == Category.@struct || x.PointerCount > 0 || x.Size > 0))
+                        {
+                            type.IsSimpleStruct = true;
+                        }
+                    }
+                }
+
+                bool simpleStructsFound = true;
+
+                while (simpleStructsFound)
+                {
+                    simpleStructsFound = false;
+
+                    foreach (var type in this.cache.Values.Where(x => !x.IsSimpleStruct))
+                    {
+                        if (type.Category == Category.@struct && !type.Members.Any(x => x.Type.Category == Category.handle || (x.Type.Category == Category.@struct && !x.Type.IsSimpleStruct) || x.PointerCount > 0 || x.Size > 0))
+                        {
+                            type.IsSimpleStruct = true;
                         }
                     }
                 }
