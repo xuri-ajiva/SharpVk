@@ -12,6 +12,7 @@
 <#@ include file=".\License.tt" #>
 <#@ include file=".\Vk.ttinclude" #>
 using System;
+using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
@@ -30,40 +31,34 @@ namespace SharpVk
 		foreach(var member in structType.Members)
         {
 			string memberName = member.Name;
+			string memberLen = null;
 
-			if(member.Len != null)
+			if(member.Len != null && member.Len.First() != "null-terminated")
 			{
-				lenMembers.Add(member.Len.First());
+				memberLen = member.Len.First();
+				if(memberLen.IndexOf(' ') > 0)
+				{
+					lenMembers.Add(memberLen.Substring(0, memberLen.IndexOf(' ')));
+				}
+				else
+				{
+					lenMembers.Add(memberLen);
+				}
 			}
 
-			var memberType = member.Type;
-		
-			if(member.Size == 0 || member.Type.IsPrimitive)
-            {
+			if(member.Type.Name != "void")
+			{
 				members.Add(new MemberInfo
 				{
-					Type = memberType,
+					Type = member.Type,
 					Name = memberName,
 					PointerCount = member.PointerCount,
-					Size = member.Size
+					Size = member.Size,
+					Len = memberLen
 				});
+			}
 
-				memberNameMap.Add(memberName, member.VkName);
-            }
-			else
-            {
-				for(int fieldIndex = 0;fieldIndex < member.Size;fieldIndex++)
-                {
-					members.Add(new MemberInfo
-					{
-						Type = memberType,
-						Name = memberName + "_" + fieldIndex,
-						PointerCount = member.PointerCount
-					});
-
-					memberNameMap.Add(memberName + "_" + fieldIndex, member.VkName);
-                }
-            }
+			memberNameMap.Add(memberName, member.VkName);
         }
 #>
 
@@ -102,6 +97,11 @@ namespace SharpVk
 				{
 					memberTypeName = MapBaseTypeName(memberTypeName);
 				}
+				else if(memberTypeName == "char" && pointerCount > 0)
+				{
+					memberTypeName = "string";
+					pointerCount--;
+				}
 				else if(memberTypeName == "char" && member.Size > 0)
 				{
 					memberTypeName = "string";
@@ -110,9 +110,9 @@ namespace SharpVk
 				{
 					isFixedArray = true;
 				}
-				else if(memberTypeName == "char" && pointerCount > 0)
+				
+				if(member.Type.IsPrimitive && member.Len != null)
 				{
-					memberTypeName = "string";
 					pointerCount--;
 				}
 			
@@ -127,6 +127,29 @@ namespace SharpVk
 			Interop.HeapUtil.MarshalArrayToPointer(this.<#=member.Name#>, <#=member.Size#>, result.<#=member.Name#>);
 <#
 				}
+				else if(member.Len != null)
+				{
+					string pointers = new string('*', member.PointerCount);
+                    string lenName = char.ToUpper(member.Len[0]) + member.Len.Substring(1);
+
+					string factor = "";
+					string castName = "uint";
+
+					if(lenName.EndsWith(" / 4"))
+					{
+						factor = " * 4";
+						lenName = lenName.Substring(0, lenName.Length - 4);
+						castName = "UIntPtr";
+					}
+#>
+			if(this.<#=member.Name#> != null)
+			{
+				result.<#=member.Name#> = (<#=member.Type.Name#><#=pointers#>)Marshal.AllocHGlobal(Marshal.SizeOf<<#=memberTypeName#>>() * this.<#=member.Name#>.Length).ToPointer();
+				Interop.HeapUtil.MarshalArrayToPointer(this.<#=member.Name#>, this.<#=member.Name#>.Length, result.<#=member.Name#>);
+				result.<#=lenName#> = (<#=castName#>)(this.<#=member.Name#>.Length<#=factor#>);
+			}
+<#
+				}
 				else
 				{
 					string valueString = "this." + member.Name;
@@ -134,7 +157,7 @@ namespace SharpVk
 					{
 						valueString = string.Format("Interop.HeapUtil.MarshalStringToPointer({0})", valueString);
 					}
-					else if(member.Type.Category == Category.@struct && !member.Type.IsSimpleStruct)
+					else if(member.Type.Category == Category.@struct && !member.Type.IsSimpleStruct && member.Len == null)
 					{
 						valueString = string.Format("{0}.MarshalTo()", valueString);
 					}
@@ -164,7 +187,6 @@ namespace SharpVk
 			else if(memberTypeName == "char" && member.Size > 0)
 			{
 				memberTypeName = "string";
-				isFixedArray = true;
 			}
 			else if(member.Type.IsPrimitive && member.Size > 0)
 			{
@@ -174,6 +196,12 @@ namespace SharpVk
 			{
 				memberTypeName = "string";
 				pointerCount--;
+			}
+			
+			if(member.Len != null)
+			{
+				pointerCount--;
+				memberTypeName += "[]";
 			}
 			
 			if(member.Type.Category != Category.@struct && pointerCount > 0)
@@ -202,5 +230,6 @@ class MemberInfo
 	public string Name;
 	public int PointerCount;
 	public int Size;
+	public string Len;
 }
 #>

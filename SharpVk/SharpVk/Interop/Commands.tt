@@ -26,7 +26,7 @@ namespace SharpVk.Interop
 	foreach(var command in GetCommands())
 	{
 #>
-		[DllImport(VulkanDll)]
+		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
 		public static extern <#= command.Type.Name #> <#= command.Name #>(<#
 
 		bool isFirst = true;

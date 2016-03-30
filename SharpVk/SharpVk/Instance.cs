@@ -31,14 +31,14 @@ namespace SharpVk
 		{
 			unsafe
 			{
-				fixed(Interop.Instance* handlePointer = &this.handle)
-				{
-					var marshalledCreateInfo = (createInfo?.MarshalTo()).GetValueOrDefault();
-					var marshalledAllocator = (allocator?.MarshalTo()).GetValueOrDefault();
-					Result createResult = Interop.Commands.vkCreateInstance(createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, handlePointer);
+				Interop.Instance newHandle;
+				var marshalledCreateInfo = (createInfo?.MarshalTo()).GetValueOrDefault();
+				var marshalledAllocator = (allocator?.MarshalTo()).GetValueOrDefault();
+				Result createResult = Interop.Commands.vkCreateInstance(createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &newHandle);
 
-					ResultUtil.HandleResult(createResult);
-				}
+				ResultUtil.HandleResult(createResult);
+
+				this.handle = newHandle;
 			}
 		}
 	}

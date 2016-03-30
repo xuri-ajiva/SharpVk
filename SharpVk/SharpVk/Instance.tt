@@ -21,11 +21,11 @@ namespace SharpVk
 
 	var vkXml = GetVkXml();
 
-	var instanceType = GetTypeDef("VkInstance");
+	var handleType = GetTypeDef("VkInstance");
 
 	var commands = GetCommands();
 
-	var createCommand = commands.First(x => x.Name == "vkCreate" + instanceType.Name);
+	var createCommand = commands.First(x => x.Name == "vkCreate" + handleType.Name);
 
 #>
 
@@ -56,11 +56,6 @@ namespace SharpVk
 			
 			string paramTypeName = paramType.Name;
 
-			if(paramType.Category == Category.funcpointer)
-            {
-				paramTypeName = "IntPtr";
-            }
-
 			if(keywords.Contains(paramName))
             {
 				paramName = "@" + paramName;
@@ -81,8 +76,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
-				fixed(Interop.Instance* handlePointer = &this.handle)
-				{
+				Interop.<#=handleType.Name#> newHandle;
 <#
 	isFirst = true;
 
@@ -124,16 +118,17 @@ namespace SharpVk
 				arguments.Add(paramName + ", ");
 			}
 #>
-					var <#=marshalledParamName#> = <#=paramName#>;
+				var <#=marshalledParamName#> = <#=paramName#>;
 <#
     }
 
 	string argumentsString = string.Join("", arguments);
 		#>
-					Result createResult = Interop.Commands.<#=createCommand.Name#>(<#=argumentsString#>handlePointer);
+				Result createResult = Interop.Commands.<#=createCommand.Name#>(<#=argumentsString#>&newHandle);
 
-					ResultUtil.HandleResult(createResult);
-				}
+				ResultUtil.HandleResult(createResult);
+
+				this.handle = newHandle;
 			}
 		}
 	}

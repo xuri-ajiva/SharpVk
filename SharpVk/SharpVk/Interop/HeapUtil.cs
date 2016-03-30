@@ -94,5 +94,14 @@ namespace SharpVk.Interop
                 *(pointer + length) = value[index];
             }
         }
+
+        internal static void MarshalArrayToPointer(string[] value, int length, char** pointer)
+        {
+            //Marshal.Copy doesn't support uints for some reason...
+            for (int index = 0; index < length; index++)
+            {
+                *(pointer + length) = MarshalStringToPointer(value[index]);
+            }
+        }
     }
 }

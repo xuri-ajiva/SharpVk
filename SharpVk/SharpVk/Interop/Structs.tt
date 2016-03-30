@@ -72,10 +72,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct <#=structName#>
 	{
-		public static <#=structName#>* Create()
-		{
-			return (<#=structName#>*)HeapUtil.AllocateAndClear<<#=structName#>>();
-		}
 <#
 		var members = new List<string>();
 
@@ -106,7 +102,7 @@ namespace SharpVk.Interop
 				{
 					for(int fieldIndex = 0;fieldIndex < member.Size;fieldIndex++)
 					{
-						members.Add(string.Format("{0} {1}_{2}", memberTypeName, member.Name, fieldIndex));
+						members.Add(string.Format("{0} {1}{2}", memberTypeName, member.Name, fieldIndex == 0 ? "" : "_" + fieldIndex));
 					}
 				}
             }

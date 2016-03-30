@@ -21,6 +21,7 @@
 //SOFTWARE.
 
 using System;
+using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
@@ -58,7 +59,7 @@ namespace SharpVk
 			private set;
 		}
 
-		public string[] DeviceName
+		public string DeviceName
 		{
 			get;
 			private set;
@@ -86,7 +87,7 @@ namespace SharpVk
 	public class ExtensionProperties
 	{
 
-		public string[] ExtensionName
+		public string ExtensionName
 		{
 			get;
 			private set;
@@ -102,7 +103,7 @@ namespace SharpVk
 	public class LayerProperties
 	{
 
-		public string[] LayerName
+		public string LayerName
 		{
 			get;
 			private set;
@@ -120,7 +121,7 @@ namespace SharpVk
 			private set;
 		}
 
-		public string[] Description
+		public string Description
 		{
 			get;
 			private set;
@@ -235,6 +236,12 @@ namespace SharpVk
 
 			result.Flags = this.Flags;
 			result.QueueFamilyIndex = this.QueueFamilyIndex;
+			if(this.QueuePriorities != null)
+			{
+				result.QueuePriorities = (float*)Marshal.AllocHGlobal(Marshal.SizeOf<float>() * this.QueuePriorities.Length).ToPointer();
+				Interop.HeapUtil.MarshalArrayToPointer(this.QueuePriorities, this.QueuePriorities.Length, result.QueuePriorities);
+				result.QueueCount = (uint)(this.QueuePriorities.Length);
+			}
 
 			return result;
 		}
@@ -251,6 +258,12 @@ namespace SharpVk
 			get;
 			set;
 		}
+
+		public float[] QueuePriorities
+		{
+			get;
+			set;
+		}
 	}
 
 	public class DeviceCreateInfo
@@ -263,6 +276,18 @@ namespace SharpVk
 			result.SType = StructureType.DeviceCreateInfo;
 
 			result.Flags = this.Flags;
+			if(this.EnabledLayerNames != null)
+			{
+				result.EnabledLayerNames = (char**)Marshal.AllocHGlobal(Marshal.SizeOf<string>() * this.EnabledLayerNames.Length).ToPointer();
+				Interop.HeapUtil.MarshalArrayToPointer(this.EnabledLayerNames, this.EnabledLayerNames.Length, result.EnabledLayerNames);
+				result.EnabledLayerCount = (uint)(this.EnabledLayerNames.Length);
+			}
+			if(this.EnabledExtensionNames != null)
+			{
+				result.EnabledExtensionNames = (char**)Marshal.AllocHGlobal(Marshal.SizeOf<string>() * this.EnabledExtensionNames.Length).ToPointer();
+				Interop.HeapUtil.MarshalArrayToPointer(this.EnabledExtensionNames, this.EnabledExtensionNames.Length, result.EnabledExtensionNames);
+				result.EnabledExtensionCount = (uint)(this.EnabledExtensionNames.Length);
+			}
 
 			return result;
 		}
@@ -274,7 +299,19 @@ namespace SharpVk
 			set;
 		}
 
-		public DeviceQueueCreateInfo QueueCreateInfos
+		public DeviceQueueCreateInfo[] QueueCreateInfos
+		{
+			get;
+			set;
+		}
+
+		public string[] EnabledLayerNames
+		{
+			get;
+			set;
+		}
+
+		public string[] EnabledExtensionNames
 		{
 			get;
 			set;
@@ -297,6 +334,18 @@ namespace SharpVk
 			result.SType = StructureType.InstanceCreateInfo;
 
 			result.Flags = this.Flags;
+			if(this.EnabledLayerNames != null)
+			{
+				result.EnabledLayerNames = (char**)Marshal.AllocHGlobal(Marshal.SizeOf<string>() * this.EnabledLayerNames.Length).ToPointer();
+				Interop.HeapUtil.MarshalArrayToPointer(this.EnabledLayerNames, this.EnabledLayerNames.Length, result.EnabledLayerNames);
+				result.EnabledLayerCount = (uint)(this.EnabledLayerNames.Length);
+			}
+			if(this.EnabledExtensionNames != null)
+			{
+				result.EnabledExtensionNames = (char**)Marshal.AllocHGlobal(Marshal.SizeOf<string>() * this.EnabledExtensionNames.Length).ToPointer();
+				Interop.HeapUtil.MarshalArrayToPointer(this.EnabledExtensionNames, this.EnabledExtensionNames.Length, result.EnabledExtensionNames);
+				result.EnabledExtensionCount = (uint)(this.EnabledExtensionNames.Length);
+			}
 
 			return result;
 		}
@@ -313,6 +362,18 @@ namespace SharpVk
 			get;
 			set;
 		}
+
+		public string[] EnabledLayerNames
+		{
+			get;
+			set;
+		}
+
+		public string[] EnabledExtensionNames
+		{
+			get;
+			set;
+		}
 	}
 
 	public class PhysicalDeviceMemoryProperties
@@ -324,193 +385,7 @@ namespace SharpVk
 			private set;
 		}
 
-		public MemoryType MemoryTypes_0
-		{
-			get;
-			private set;
-		}
-
-		public MemoryType MemoryTypes_1
-		{
-			get;
-			private set;
-		}
-
-		public MemoryType MemoryTypes_2
-		{
-			get;
-			private set;
-		}
-
-		public MemoryType MemoryTypes_3
-		{
-			get;
-			private set;
-		}
-
-		public MemoryType MemoryTypes_4
-		{
-			get;
-			private set;
-		}
-
-		public MemoryType MemoryTypes_5
-		{
-			get;
-			private set;
-		}
-
-		public MemoryType MemoryTypes_6
-		{
-			get;
-			private set;
-		}
-
-		public MemoryType MemoryTypes_7
-		{
-			get;
-			private set;
-		}
-
-		public MemoryType MemoryTypes_8
-		{
-			get;
-			private set;
-		}
-
-		public MemoryType MemoryTypes_9
-		{
-			get;
-			private set;
-		}
-
-		public MemoryType MemoryTypes_10
-		{
-			get;
-			private set;
-		}
-
-		public MemoryType MemoryTypes_11
-		{
-			get;
-			private set;
-		}
-
-		public MemoryType MemoryTypes_12
-		{
-			get;
-			private set;
-		}
-
-		public MemoryType MemoryTypes_13
-		{
-			get;
-			private set;
-		}
-
-		public MemoryType MemoryTypes_14
-		{
-			get;
-			private set;
-		}
-
-		public MemoryType MemoryTypes_15
-		{
-			get;
-			private set;
-		}
-
-		public MemoryType MemoryTypes_16
-		{
-			get;
-			private set;
-		}
-
-		public MemoryType MemoryTypes_17
-		{
-			get;
-			private set;
-		}
-
-		public MemoryType MemoryTypes_18
-		{
-			get;
-			private set;
-		}
-
-		public MemoryType MemoryTypes_19
-		{
-			get;
-			private set;
-		}
-
-		public MemoryType MemoryTypes_20
-		{
-			get;
-			private set;
-		}
-
-		public MemoryType MemoryTypes_21
-		{
-			get;
-			private set;
-		}
-
-		public MemoryType MemoryTypes_22
-		{
-			get;
-			private set;
-		}
-
-		public MemoryType MemoryTypes_23
-		{
-			get;
-			private set;
-		}
-
-		public MemoryType MemoryTypes_24
-		{
-			get;
-			private set;
-		}
-
-		public MemoryType MemoryTypes_25
-		{
-			get;
-			private set;
-		}
-
-		public MemoryType MemoryTypes_26
-		{
-			get;
-			private set;
-		}
-
-		public MemoryType MemoryTypes_27
-		{
-			get;
-			private set;
-		}
-
-		public MemoryType MemoryTypes_28
-		{
-			get;
-			private set;
-		}
-
-		public MemoryType MemoryTypes_29
-		{
-			get;
-			private set;
-		}
-
-		public MemoryType MemoryTypes_30
-		{
-			get;
-			private set;
-		}
-
-		public MemoryType MemoryTypes_31
+		public MemoryType MemoryTypes
 		{
 			get;
 			private set;
@@ -522,97 +397,7 @@ namespace SharpVk
 			private set;
 		}
 
-		public MemoryHeap MemoryHeaps_0
-		{
-			get;
-			private set;
-		}
-
-		public MemoryHeap MemoryHeaps_1
-		{
-			get;
-			private set;
-		}
-
-		public MemoryHeap MemoryHeaps_2
-		{
-			get;
-			private set;
-		}
-
-		public MemoryHeap MemoryHeaps_3
-		{
-			get;
-			private set;
-		}
-
-		public MemoryHeap MemoryHeaps_4
-		{
-			get;
-			private set;
-		}
-
-		public MemoryHeap MemoryHeaps_5
-		{
-			get;
-			private set;
-		}
-
-		public MemoryHeap MemoryHeaps_6
-		{
-			get;
-			private set;
-		}
-
-		public MemoryHeap MemoryHeaps_7
-		{
-			get;
-			private set;
-		}
-
-		public MemoryHeap MemoryHeaps_8
-		{
-			get;
-			private set;
-		}
-
-		public MemoryHeap MemoryHeaps_9
-		{
-			get;
-			private set;
-		}
-
-		public MemoryHeap MemoryHeaps_10
-		{
-			get;
-			private set;
-		}
-
-		public MemoryHeap MemoryHeaps_11
-		{
-			get;
-			private set;
-		}
-
-		public MemoryHeap MemoryHeaps_12
-		{
-			get;
-			private set;
-		}
-
-		public MemoryHeap MemoryHeaps_13
-		{
-			get;
-			private set;
-		}
-
-		public MemoryHeap MemoryHeaps_14
-		{
-			get;
-			private set;
-		}
-
-		public MemoryHeap MemoryHeaps_15
+		public MemoryHeap MemoryHeaps
 		{
 			get;
 			private set;
@@ -863,13 +648,13 @@ namespace SharpVk
 			set;
 		}
 
-		public DescriptorImageInfo ImageInfo
+		public DescriptorImageInfo[] ImageInfo
 		{
 			get;
 			set;
 		}
 
-		public DescriptorBufferInfo BufferInfo
+		public DescriptorBufferInfo[] BufferInfo
 		{
 			get;
 			set;
@@ -939,6 +724,12 @@ namespace SharpVk
 			result.Size = this.Size;
 			result.Usage = this.Usage;
 			result.SharingMode = this.SharingMode;
+			if(this.QueueFamilyIndices != null)
+			{
+				result.QueueFamilyIndices = (uint*)Marshal.AllocHGlobal(Marshal.SizeOf<uint>() * this.QueueFamilyIndices.Length).ToPointer();
+				Interop.HeapUtil.MarshalArrayToPointer(this.QueueFamilyIndices, this.QueueFamilyIndices.Length, result.QueueFamilyIndices);
+				result.QueueFamilyIndexCount = (uint)(this.QueueFamilyIndices.Length);
+			}
 
 			return result;
 		}
@@ -963,6 +754,12 @@ namespace SharpVk
 		}
 
 		public SharingMode SharingMode
+		{
+			get;
+			set;
+		}
+
+		public uint[] QueueFamilyIndices
 		{
 			get;
 			set;
@@ -1181,6 +978,12 @@ namespace SharpVk
 			result.Tiling = this.Tiling;
 			result.Usage = this.Usage;
 			result.SharingMode = this.SharingMode;
+			if(this.QueueFamilyIndices != null)
+			{
+				result.QueueFamilyIndices = (uint*)Marshal.AllocHGlobal(Marshal.SizeOf<uint>() * this.QueueFamilyIndices.Length).ToPointer();
+				Interop.HeapUtil.MarshalArrayToPointer(this.QueueFamilyIndices, this.QueueFamilyIndices.Length, result.QueueFamilyIndices);
+				result.QueueFamilyIndexCount = (uint)(this.QueueFamilyIndices.Length);
+			}
 			result.InitialLayout = this.InitialLayout;
 
 			return result;
@@ -1242,6 +1045,12 @@ namespace SharpVk
 		}
 
 		public SharingMode SharingMode
+		{
+			get;
+			set;
+		}
+
+		public uint[] QueueFamilyIndices
 		{
 			get;
 			set;
@@ -1469,7 +1278,7 @@ namespace SharpVk
 		}
 
 
-		public SparseMemoryBind Binds
+		public SparseMemoryBind[] Binds
 		{
 			get;
 			set;
@@ -1487,7 +1296,7 @@ namespace SharpVk
 		}
 
 
-		public SparseMemoryBind Binds
+		public SparseMemoryBind[] Binds
 		{
 			get;
 			set;
@@ -1505,7 +1314,7 @@ namespace SharpVk
 		}
 
 
-		public SparseImageMemoryBind Binds
+		public SparseImageMemoryBind[] Binds
 		{
 			get;
 			set;
@@ -1526,19 +1335,19 @@ namespace SharpVk
 		}
 
 
-		public SparseBufferMemoryBindInfo BufferBinds
+		public SparseBufferMemoryBindInfo[] BufferBinds
 		{
 			get;
 			set;
 		}
 
-		public SparseImageOpaqueMemoryBindInfo ImageOpaqueBinds
+		public SparseImageOpaqueMemoryBindInfo[] ImageOpaqueBinds
 		{
 			get;
 			set;
 		}
 
-		public SparseImageMemoryBindInfo ImageBinds
+		public SparseImageMemoryBindInfo[] ImageBinds
 		{
 			get;
 			set;
@@ -1552,11 +1361,9 @@ namespace SharpVk
 		{
 			var result = new Interop.ImageBlit();
 			result.SrcSubresource = this.SrcSubresource;
-			result.SrcOffsets_0 = this.SrcOffsets_0;
-			result.SrcOffsets_1 = this.SrcOffsets_1;
+			result.SrcOffsets = this.SrcOffsets;
 			result.DstSubresource = this.DstSubresource;
-			result.DstOffsets_0 = this.DstOffsets_0;
-			result.DstOffsets_1 = this.DstOffsets_1;
+			result.DstOffsets = this.DstOffsets;
 
 			return result;
 		}
@@ -1568,13 +1375,7 @@ namespace SharpVk
 			set;
 		}
 
-		public Offset3D SrcOffsets_0
-		{
-			get;
-			set;
-		}
-
-		public Offset3D SrcOffsets_1
+		public Offset3D SrcOffsets
 		{
 			get;
 			set;
@@ -1586,13 +1387,7 @@ namespace SharpVk
 			set;
 		}
 
-		public Offset3D DstOffsets_0
-		{
-			get;
-			set;
-		}
-
-		public Offset3D DstOffsets_1
+		public Offset3D DstOffsets
 		{
 			get;
 			set;
@@ -1663,7 +1458,12 @@ namespace SharpVk
 			result.SType = StructureType.ShaderModuleCreateInfo;
 
 			result.Flags = this.Flags;
-			result.CodeSize = this.CodeSize;
+			if(this.Code != null)
+			{
+				result.Code = (uint*)Marshal.AllocHGlobal(Marshal.SizeOf<uint>() * this.Code.Length).ToPointer();
+				Interop.HeapUtil.MarshalArrayToPointer(this.Code, this.Code.Length, result.Code);
+				result.CodeSize = (UIntPtr)(this.Code.Length * 4);
+			}
 
 			return result;
 		}
@@ -1675,7 +1475,7 @@ namespace SharpVk
 			set;
 		}
 
-		public UIntPtr CodeSize
+		public uint[] Code
 		{
 			get;
 			set;
@@ -1736,7 +1536,7 @@ namespace SharpVk
 			set;
 		}
 
-		public DescriptorSetLayoutBinding Bindings
+		public DescriptorSetLayoutBinding[] Bindings
 		{
 			get;
 			set;
@@ -1771,7 +1571,7 @@ namespace SharpVk
 			set;
 		}
 
-		public DescriptorPoolSize PoolSizes
+		public DescriptorPoolSize[] PoolSizes
 		{
 			get;
 			set;
@@ -1804,7 +1604,7 @@ namespace SharpVk
 		}
 
 
-		public SpecializationMapEntry MapEntries
+		public SpecializationMapEntry[] MapEntries
 		{
 			get;
 			set;
@@ -1910,13 +1710,13 @@ namespace SharpVk
 			set;
 		}
 
-		public VertexInputBindingDescription VertexBindingDescriptions
+		public VertexInputBindingDescription[] VertexBindingDescriptions
 		{
 			get;
 			set;
 		}
 
-		public VertexInputAttributeDescription VertexAttributeDescriptions
+		public VertexInputAttributeDescription[] VertexAttributeDescriptions
 		{
 			get;
 			set;
@@ -2009,13 +1809,13 @@ namespace SharpVk
 			set;
 		}
 
-		public Viewport Viewports
+		public Viewport[] Viewports
 		{
 			get;
 			set;
 		}
 
-		public Rect2D Scissors
+		public Rect2D[] Scissors
 		{
 			get;
 			set;
@@ -2158,6 +1958,12 @@ namespace SharpVk
 			set;
 		}
 
+		public uint[] SampleMask
+		{
+			get;
+			set;
+		}
+
 		public bool AlphaToCoverageEnable
 		{
 			get;
@@ -2275,7 +2081,7 @@ namespace SharpVk
 			set;
 		}
 
-		public PipelineColorBlendAttachmentState Attachments
+		public PipelineColorBlendAttachmentState[] Attachments
 		{
 			get;
 			set;
@@ -2304,6 +2110,12 @@ namespace SharpVk
 
 
 		public uint Flags
+		{
+			get;
+			set;
+		}
+
+		public DynamicState[] DynamicStates
 		{
 			get;
 			set;
@@ -2418,7 +2230,7 @@ namespace SharpVk
 			set;
 		}
 
-		public PipelineShaderStageCreateInfo Stages
+		public PipelineShaderStageCreateInfo[] Stages
 		{
 			get;
 			set;
@@ -2534,7 +2346,7 @@ namespace SharpVk
 			set;
 		}
 
-		public PushConstantRange PushConstantRanges
+		public PushConstantRange[] PushConstantRanges
 		{
 			get;
 			set;
@@ -2817,6 +2629,12 @@ namespace SharpVk
 			get;
 			set;
 		}
+
+		public ClearValue[] ClearValues
+		{
+			get;
+			set;
+		}
 	}
 
 	public class SubpassDescription
@@ -2827,6 +2645,12 @@ namespace SharpVk
 			var result = new Interop.SubpassDescription();
 			result.Flags = this.Flags;
 			result.PipelineBindPoint = this.PipelineBindPoint;
+			if(this.PreserveAttachments != null)
+			{
+				result.PreserveAttachments = (uint*)Marshal.AllocHGlobal(Marshal.SizeOf<uint>() * this.PreserveAttachments.Length).ToPointer();
+				Interop.HeapUtil.MarshalArrayToPointer(this.PreserveAttachments, this.PreserveAttachments.Length, result.PreserveAttachments);
+				result.PreserveAttachmentCount = (uint)(this.PreserveAttachments.Length);
+			}
 
 			return result;
 		}
@@ -2844,25 +2668,31 @@ namespace SharpVk
 			set;
 		}
 
-		public AttachmentReference InputAttachments
+		public AttachmentReference[] InputAttachments
 		{
 			get;
 			set;
 		}
 
-		public AttachmentReference ColorAttachments
+		public AttachmentReference[] ColorAttachments
 		{
 			get;
 			set;
 		}
 
-		public AttachmentReference ResolveAttachments
+		public AttachmentReference[] ResolveAttachments
 		{
 			get;
 			set;
 		}
 
 		public AttachmentReference DepthStencilAttachment
+		{
+			get;
+			set;
+		}
+
+		public uint[] PreserveAttachments
 		{
 			get;
 			set;
@@ -2890,19 +2720,19 @@ namespace SharpVk
 			set;
 		}
 
-		public AttachmentDescription Attachments
+		public AttachmentDescription[] Attachments
 		{
 			get;
 			set;
 		}
 
-		public SubpassDescription Subpasses
+		public SubpassDescription[] Subpasses
 		{
 			get;
 			set;
 		}
 
-		public SubpassDependency Dependencies
+		public SubpassDependency[] Dependencies
 		{
 			get;
 			set;
@@ -4145,5 +3975,11 @@ namespace SharpVk
 			return result;
 		}
 
+
+		public PipelineStageFlags[] WaitDstStageMask
+		{
+			get;
+			set;
+		}
 	}
 }

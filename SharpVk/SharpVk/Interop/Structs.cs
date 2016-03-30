@@ -76,10 +76,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct PhysicalDeviceProperties
 	{
-		public static PhysicalDeviceProperties* Create()
-		{
-			return (PhysicalDeviceProperties*)HeapUtil.AllocateAndClear<PhysicalDeviceProperties>();
-		}
 
 		public uint ApiVersion;
 
@@ -102,10 +98,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct ExtensionProperties
 	{
-		public static ExtensionProperties* Create()
-		{
-			return (ExtensionProperties*)HeapUtil.AllocateAndClear<ExtensionProperties>();
-		}
 
 		public fixed char ExtensionName[256];
 
@@ -114,10 +106,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct LayerProperties
 	{
-		public static LayerProperties* Create()
-		{
-			return (LayerProperties*)HeapUtil.AllocateAndClear<LayerProperties>();
-		}
 
 		public fixed char LayerName[256];
 
@@ -130,10 +118,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct ApplicationInfo
 	{
-		public static ApplicationInfo* Create()
-		{
-			return (ApplicationInfo*)HeapUtil.AllocateAndClear<ApplicationInfo>();
-		}
 
 		public StructureType SType;
 
@@ -152,10 +136,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct AllocationCallbacks
 	{
-		public static AllocationCallbacks* Create()
-		{
-			return (AllocationCallbacks*)HeapUtil.AllocateAndClear<AllocationCallbacks>();
-		}
 
 		public void* UserData;
 
@@ -172,10 +152,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct DeviceQueueCreateInfo
 	{
-		public static DeviceQueueCreateInfo* Create()
-		{
-			return (DeviceQueueCreateInfo*)HeapUtil.AllocateAndClear<DeviceQueueCreateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -192,10 +168,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct DeviceCreateInfo
 	{
-		public static DeviceCreateInfo* Create()
-		{
-			return (DeviceCreateInfo*)HeapUtil.AllocateAndClear<DeviceCreateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -220,10 +192,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct InstanceCreateInfo
 	{
-		public static InstanceCreateInfo* Create()
-		{
-			return (InstanceCreateInfo*)HeapUtil.AllocateAndClear<InstanceCreateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -244,14 +212,10 @@ namespace SharpVk.Interop
 
 	public unsafe struct PhysicalDeviceMemoryProperties
 	{
-		public static PhysicalDeviceMemoryProperties* Create()
-		{
-			return (PhysicalDeviceMemoryProperties*)HeapUtil.AllocateAndClear<PhysicalDeviceMemoryProperties>();
-		}
 
 		public uint MemoryTypeCount;
 
-		public MemoryType MemoryTypes_0;
+		public MemoryType MemoryTypes;
 
 		public MemoryType MemoryTypes_1;
 
@@ -317,7 +281,7 @@ namespace SharpVk.Interop
 
 		public uint MemoryHeapCount;
 
-		public MemoryHeap MemoryHeaps_0;
+		public MemoryHeap MemoryHeaps;
 
 		public MemoryHeap MemoryHeaps_1;
 
@@ -352,10 +316,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct MemoryAllocateInfo
 	{
-		public static MemoryAllocateInfo* Create()
-		{
-			return (MemoryAllocateInfo*)HeapUtil.AllocateAndClear<MemoryAllocateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -368,10 +328,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct MemoryRequirements
 	{
-		public static MemoryRequirements* Create()
-		{
-			return (MemoryRequirements*)HeapUtil.AllocateAndClear<MemoryRequirements>();
-		}
 
 		public DeviceSize Size;
 
@@ -382,10 +338,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct SparseImageMemoryRequirements
 	{
-		public static SparseImageMemoryRequirements* Create()
-		{
-			return (SparseImageMemoryRequirements*)HeapUtil.AllocateAndClear<SparseImageMemoryRequirements>();
-		}
 
 		public SparseImageFormatProperties FormatProperties;
 
@@ -400,10 +352,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct MemoryHeap
 	{
-		public static MemoryHeap* Create()
-		{
-			return (MemoryHeap*)HeapUtil.AllocateAndClear<MemoryHeap>();
-		}
 
 		public DeviceSize Size;
 
@@ -412,10 +360,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct MappedMemoryRange
 	{
-		public static MappedMemoryRange* Create()
-		{
-			return (MappedMemoryRange*)HeapUtil.AllocateAndClear<MappedMemoryRange>();
-		}
 
 		public StructureType SType;
 
@@ -430,10 +374,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct ImageFormatProperties
 	{
-		public static ImageFormatProperties* Create()
-		{
-			return (ImageFormatProperties*)HeapUtil.AllocateAndClear<ImageFormatProperties>();
-		}
 
 		public Extent3D MaxExtent;
 
@@ -448,10 +388,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct DescriptorBufferInfo
 	{
-		public static DescriptorBufferInfo* Create()
-		{
-			return (DescriptorBufferInfo*)HeapUtil.AllocateAndClear<DescriptorBufferInfo>();
-		}
 
 		public Buffer Buffer;
 
@@ -462,10 +398,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct DescriptorImageInfo
 	{
-		public static DescriptorImageInfo* Create()
-		{
-			return (DescriptorImageInfo*)HeapUtil.AllocateAndClear<DescriptorImageInfo>();
-		}
 
 		public Sampler Sampler;
 
@@ -476,10 +408,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct WriteDescriptorSet
 	{
-		public static WriteDescriptorSet* Create()
-		{
-			return (WriteDescriptorSet*)HeapUtil.AllocateAndClear<WriteDescriptorSet>();
-		}
 
 		public StructureType SType;
 
@@ -504,10 +432,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct CopyDescriptorSet
 	{
-		public static CopyDescriptorSet* Create()
-		{
-			return (CopyDescriptorSet*)HeapUtil.AllocateAndClear<CopyDescriptorSet>();
-		}
 
 		public StructureType SType;
 
@@ -530,10 +454,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct BufferCreateInfo
 	{
-		public static BufferCreateInfo* Create()
-		{
-			return (BufferCreateInfo*)HeapUtil.AllocateAndClear<BufferCreateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -554,10 +474,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct BufferViewCreateInfo
 	{
-		public static BufferViewCreateInfo* Create()
-		{
-			return (BufferViewCreateInfo*)HeapUtil.AllocateAndClear<BufferViewCreateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -576,10 +492,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct MemoryBarrier
 	{
-		public static MemoryBarrier* Create()
-		{
-			return (MemoryBarrier*)HeapUtil.AllocateAndClear<MemoryBarrier>();
-		}
 
 		public StructureType SType;
 
@@ -592,10 +504,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct BufferMemoryBarrier
 	{
-		public static BufferMemoryBarrier* Create()
-		{
-			return (BufferMemoryBarrier*)HeapUtil.AllocateAndClear<BufferMemoryBarrier>();
-		}
 
 		public StructureType SType;
 
@@ -618,10 +526,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct ImageMemoryBarrier
 	{
-		public static ImageMemoryBarrier* Create()
-		{
-			return (ImageMemoryBarrier*)HeapUtil.AllocateAndClear<ImageMemoryBarrier>();
-		}
 
 		public StructureType SType;
 
@@ -646,10 +550,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct ImageCreateInfo
 	{
-		public static ImageCreateInfo* Create()
-		{
-			return (ImageCreateInfo*)HeapUtil.AllocateAndClear<ImageCreateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -684,10 +584,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct SubresourceLayout
 	{
-		public static SubresourceLayout* Create()
-		{
-			return (SubresourceLayout*)HeapUtil.AllocateAndClear<SubresourceLayout>();
-		}
 
 		public DeviceSize Offset;
 
@@ -702,10 +598,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct ImageViewCreateInfo
 	{
-		public static ImageViewCreateInfo* Create()
-		{
-			return (ImageViewCreateInfo*)HeapUtil.AllocateAndClear<ImageViewCreateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -726,10 +618,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct BufferCopy
 	{
-		public static BufferCopy* Create()
-		{
-			return (BufferCopy*)HeapUtil.AllocateAndClear<BufferCopy>();
-		}
 
 		public DeviceSize SrcOffset;
 
@@ -740,10 +628,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct SparseMemoryBind
 	{
-		public static SparseMemoryBind* Create()
-		{
-			return (SparseMemoryBind*)HeapUtil.AllocateAndClear<SparseMemoryBind>();
-		}
 
 		public DeviceSize ResourceOffset;
 
@@ -758,10 +642,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct SparseImageMemoryBind
 	{
-		public static SparseImageMemoryBind* Create()
-		{
-			return (SparseImageMemoryBind*)HeapUtil.AllocateAndClear<SparseImageMemoryBind>();
-		}
 
 		public ImageSubresource Subresource;
 
@@ -778,10 +658,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct SparseBufferMemoryBindInfo
 	{
-		public static SparseBufferMemoryBindInfo* Create()
-		{
-			return (SparseBufferMemoryBindInfo*)HeapUtil.AllocateAndClear<SparseBufferMemoryBindInfo>();
-		}
 
 		public Buffer Buffer;
 
@@ -792,10 +668,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct SparseImageOpaqueMemoryBindInfo
 	{
-		public static SparseImageOpaqueMemoryBindInfo* Create()
-		{
-			return (SparseImageOpaqueMemoryBindInfo*)HeapUtil.AllocateAndClear<SparseImageOpaqueMemoryBindInfo>();
-		}
 
 		public Image Image;
 
@@ -806,10 +678,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct SparseImageMemoryBindInfo
 	{
-		public static SparseImageMemoryBindInfo* Create()
-		{
-			return (SparseImageMemoryBindInfo*)HeapUtil.AllocateAndClear<SparseImageMemoryBindInfo>();
-		}
 
 		public Image Image;
 
@@ -820,10 +688,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct BindSparseInfo
 	{
-		public static BindSparseInfo* Create()
-		{
-			return (BindSparseInfo*)HeapUtil.AllocateAndClear<BindSparseInfo>();
-		}
 
 		public StructureType SType;
 
@@ -852,30 +716,22 @@ namespace SharpVk.Interop
 
 	public unsafe struct ImageBlit
 	{
-		public static ImageBlit* Create()
-		{
-			return (ImageBlit*)HeapUtil.AllocateAndClear<ImageBlit>();
-		}
 
 		public ImageSubresourceLayers SrcSubresource;
 
-		public Offset3D SrcOffsets_0;
+		public Offset3D SrcOffsets;
 
 		public Offset3D SrcOffsets_1;
 
 		public ImageSubresourceLayers DstSubresource;
 
-		public Offset3D DstOffsets_0;
+		public Offset3D DstOffsets;
 
 		public Offset3D DstOffsets_1;
 	}
 
 	public unsafe struct BufferImageCopy
 	{
-		public static BufferImageCopy* Create()
-		{
-			return (BufferImageCopy*)HeapUtil.AllocateAndClear<BufferImageCopy>();
-		}
 
 		public DeviceSize BufferOffset;
 
@@ -892,10 +748,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct ShaderModuleCreateInfo
 	{
-		public static ShaderModuleCreateInfo* Create()
-		{
-			return (ShaderModuleCreateInfo*)HeapUtil.AllocateAndClear<ShaderModuleCreateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -910,10 +762,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct DescriptorSetLayoutBinding
 	{
-		public static DescriptorSetLayoutBinding* Create()
-		{
-			return (DescriptorSetLayoutBinding*)HeapUtil.AllocateAndClear<DescriptorSetLayoutBinding>();
-		}
 
 		public uint Binding;
 
@@ -928,10 +776,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct DescriptorSetLayoutCreateInfo
 	{
-		public static DescriptorSetLayoutCreateInfo* Create()
-		{
-			return (DescriptorSetLayoutCreateInfo*)HeapUtil.AllocateAndClear<DescriptorSetLayoutCreateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -946,10 +790,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct DescriptorPoolCreateInfo
 	{
-		public static DescriptorPoolCreateInfo* Create()
-		{
-			return (DescriptorPoolCreateInfo*)HeapUtil.AllocateAndClear<DescriptorPoolCreateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -966,10 +806,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct DescriptorSetAllocateInfo
 	{
-		public static DescriptorSetAllocateInfo* Create()
-		{
-			return (DescriptorSetAllocateInfo*)HeapUtil.AllocateAndClear<DescriptorSetAllocateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -984,10 +820,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct SpecializationInfo
 	{
-		public static SpecializationInfo* Create()
-		{
-			return (SpecializationInfo*)HeapUtil.AllocateAndClear<SpecializationInfo>();
-		}
 
 		public uint MapEntryCount;
 
@@ -1000,10 +832,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct PipelineShaderStageCreateInfo
 	{
-		public static PipelineShaderStageCreateInfo* Create()
-		{
-			return (PipelineShaderStageCreateInfo*)HeapUtil.AllocateAndClear<PipelineShaderStageCreateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -1022,10 +850,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct ComputePipelineCreateInfo
 	{
-		public static ComputePipelineCreateInfo* Create()
-		{
-			return (ComputePipelineCreateInfo*)HeapUtil.AllocateAndClear<ComputePipelineCreateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -1044,10 +868,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct PipelineVertexInputStateCreateInfo
 	{
-		public static PipelineVertexInputStateCreateInfo* Create()
-		{
-			return (PipelineVertexInputStateCreateInfo*)HeapUtil.AllocateAndClear<PipelineVertexInputStateCreateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -1066,10 +886,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct PipelineInputAssemblyStateCreateInfo
 	{
-		public static PipelineInputAssemblyStateCreateInfo* Create()
-		{
-			return (PipelineInputAssemblyStateCreateInfo*)HeapUtil.AllocateAndClear<PipelineInputAssemblyStateCreateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -1084,10 +900,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct PipelineTessellationStateCreateInfo
 	{
-		public static PipelineTessellationStateCreateInfo* Create()
-		{
-			return (PipelineTessellationStateCreateInfo*)HeapUtil.AllocateAndClear<PipelineTessellationStateCreateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -1100,10 +912,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct PipelineViewportStateCreateInfo
 	{
-		public static PipelineViewportStateCreateInfo* Create()
-		{
-			return (PipelineViewportStateCreateInfo*)HeapUtil.AllocateAndClear<PipelineViewportStateCreateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -1122,10 +930,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct PipelineRasterizationStateCreateInfo
 	{
-		public static PipelineRasterizationStateCreateInfo* Create()
-		{
-			return (PipelineRasterizationStateCreateInfo*)HeapUtil.AllocateAndClear<PipelineRasterizationStateCreateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -1156,10 +960,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct PipelineMultisampleStateCreateInfo
 	{
-		public static PipelineMultisampleStateCreateInfo* Create()
-		{
-			return (PipelineMultisampleStateCreateInfo*)HeapUtil.AllocateAndClear<PipelineMultisampleStateCreateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -1182,10 +982,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct PipelineColorBlendAttachmentState
 	{
-		public static PipelineColorBlendAttachmentState* Create()
-		{
-			return (PipelineColorBlendAttachmentState*)HeapUtil.AllocateAndClear<PipelineColorBlendAttachmentState>();
-		}
 
 		public Bool32 BlendEnable;
 
@@ -1206,10 +1002,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct PipelineColorBlendStateCreateInfo
 	{
-		public static PipelineColorBlendStateCreateInfo* Create()
-		{
-			return (PipelineColorBlendStateCreateInfo*)HeapUtil.AllocateAndClear<PipelineColorBlendStateCreateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -1230,10 +1022,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct PipelineDynamicStateCreateInfo
 	{
-		public static PipelineDynamicStateCreateInfo* Create()
-		{
-			return (PipelineDynamicStateCreateInfo*)HeapUtil.AllocateAndClear<PipelineDynamicStateCreateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -1248,10 +1036,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct PipelineDepthStencilStateCreateInfo
 	{
-		public static PipelineDepthStencilStateCreateInfo* Create()
-		{
-			return (PipelineDepthStencilStateCreateInfo*)HeapUtil.AllocateAndClear<PipelineDepthStencilStateCreateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -1280,10 +1064,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct GraphicsPipelineCreateInfo
 	{
-		public static GraphicsPipelineCreateInfo* Create()
-		{
-			return (GraphicsPipelineCreateInfo*)HeapUtil.AllocateAndClear<GraphicsPipelineCreateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -1326,10 +1106,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct PipelineCacheCreateInfo
 	{
-		public static PipelineCacheCreateInfo* Create()
-		{
-			return (PipelineCacheCreateInfo*)HeapUtil.AllocateAndClear<PipelineCacheCreateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -1344,10 +1120,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct PipelineLayoutCreateInfo
 	{
-		public static PipelineLayoutCreateInfo* Create()
-		{
-			return (PipelineLayoutCreateInfo*)HeapUtil.AllocateAndClear<PipelineLayoutCreateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -1366,10 +1138,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct SamplerCreateInfo
 	{
-		public static SamplerCreateInfo* Create()
-		{
-			return (SamplerCreateInfo*)HeapUtil.AllocateAndClear<SamplerCreateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -1410,10 +1178,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct CommandPoolCreateInfo
 	{
-		public static CommandPoolCreateInfo* Create()
-		{
-			return (CommandPoolCreateInfo*)HeapUtil.AllocateAndClear<CommandPoolCreateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -1426,10 +1190,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct CommandBufferAllocateInfo
 	{
-		public static CommandBufferAllocateInfo* Create()
-		{
-			return (CommandBufferAllocateInfo*)HeapUtil.AllocateAndClear<CommandBufferAllocateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -1444,10 +1204,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct CommandBufferInheritanceInfo
 	{
-		public static CommandBufferInheritanceInfo* Create()
-		{
-			return (CommandBufferInheritanceInfo*)HeapUtil.AllocateAndClear<CommandBufferInheritanceInfo>();
-		}
 
 		public StructureType SType;
 
@@ -1468,10 +1224,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct CommandBufferBeginInfo
 	{
-		public static CommandBufferBeginInfo* Create()
-		{
-			return (CommandBufferBeginInfo*)HeapUtil.AllocateAndClear<CommandBufferBeginInfo>();
-		}
 
 		public StructureType SType;
 
@@ -1484,10 +1236,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct RenderPassBeginInfo
 	{
-		public static RenderPassBeginInfo* Create()
-		{
-			return (RenderPassBeginInfo*)HeapUtil.AllocateAndClear<RenderPassBeginInfo>();
-		}
 
 		public StructureType SType;
 
@@ -1506,10 +1254,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct SubpassDescription
 	{
-		public static SubpassDescription* Create()
-		{
-			return (SubpassDescription*)HeapUtil.AllocateAndClear<SubpassDescription>();
-		}
 
 		public uint Flags;
 
@@ -1534,10 +1278,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct RenderPassCreateInfo
 	{
-		public static RenderPassCreateInfo* Create()
-		{
-			return (RenderPassCreateInfo*)HeapUtil.AllocateAndClear<RenderPassCreateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -1560,10 +1300,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct EventCreateInfo
 	{
-		public static EventCreateInfo* Create()
-		{
-			return (EventCreateInfo*)HeapUtil.AllocateAndClear<EventCreateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -1574,10 +1310,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct FenceCreateInfo
 	{
-		public static FenceCreateInfo* Create()
-		{
-			return (FenceCreateInfo*)HeapUtil.AllocateAndClear<FenceCreateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -1588,10 +1320,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct PhysicalDeviceFeatures
 	{
-		public static PhysicalDeviceFeatures* Create()
-		{
-			return (PhysicalDeviceFeatures*)HeapUtil.AllocateAndClear<PhysicalDeviceFeatures>();
-		}
 
 		public Bool32 RobustBufferAccess;
 
@@ -1706,10 +1434,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct PhysicalDeviceSparseProperties
 	{
-		public static PhysicalDeviceSparseProperties* Create()
-		{
-			return (PhysicalDeviceSparseProperties*)HeapUtil.AllocateAndClear<PhysicalDeviceSparseProperties>();
-		}
 
 		public Bool32 ResidencyStandard2DBlockShape;
 
@@ -1724,10 +1448,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct PhysicalDeviceLimits
 	{
-		public static PhysicalDeviceLimits* Create()
-		{
-			return (PhysicalDeviceLimits*)HeapUtil.AllocateAndClear<PhysicalDeviceLimits>();
-		}
 
 		public uint MaxImageDimension1D;
 
@@ -1944,10 +1664,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct SemaphoreCreateInfo
 	{
-		public static SemaphoreCreateInfo* Create()
-		{
-			return (SemaphoreCreateInfo*)HeapUtil.AllocateAndClear<SemaphoreCreateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -1958,10 +1674,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct QueryPoolCreateInfo
 	{
-		public static QueryPoolCreateInfo* Create()
-		{
-			return (QueryPoolCreateInfo*)HeapUtil.AllocateAndClear<QueryPoolCreateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -1978,10 +1690,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct FramebufferCreateInfo
 	{
-		public static FramebufferCreateInfo* Create()
-		{
-			return (FramebufferCreateInfo*)HeapUtil.AllocateAndClear<FramebufferCreateInfo>();
-		}
 
 		public StructureType SType;
 
@@ -2004,10 +1712,6 @@ namespace SharpVk.Interop
 
 	public unsafe struct SubmitInfo
 	{
-		public static SubmitInfo* Create()
-		{
-			return (SubmitInfo*)HeapUtil.AllocateAndClear<SubmitInfo>();
-		}
 
 		public StructureType SType;
 

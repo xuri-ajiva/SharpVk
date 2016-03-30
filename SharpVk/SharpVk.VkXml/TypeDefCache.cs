@@ -97,7 +97,7 @@ namespace SharpVk.VkXml
 
                             break;
                         }
-                        
+
                         if (keywords.Contains(paramName))
                         {
                             paramName = "@" + paramName;
@@ -111,7 +111,7 @@ namespace SharpVk.VkXml
                         });
                     }
 
-                    if(!isUnsupportedCommand)
+                    if (!isUnsupportedCommand)
                     {
                         this.commandCache.Add(commandName, commandDef);
                     }
@@ -126,6 +126,13 @@ namespace SharpVk.VkXml
             if (this.typeCache == null)
             {
                 var vkXml = this.xmlCache.GetVkXml();
+
+                var stringType = new TypeDef
+                {
+                    Category = Category.basetype,
+                    IsPrimitive = true,
+                    Name = "string"
+                };
 
                 Category typeCategory = Category.None;
 
@@ -299,7 +306,19 @@ namespace SharpVk.VkXml
 
                             memberName = char.ToUpper(memberName[0]) + memberName.Substring(1);
 
-                            string[] memberLen = typeMember.Attribute("len")?.Value?.Split(',');
+                            string[] memberLen = typeMember.Attribute("len")?.Value?.Split(',').Select(x => x.Trim()).ToArray();
+
+                            if (memberLen != null)
+                            {
+                                for (int index = 0; index < memberLen.Length; index++)
+                                {
+                                    if (memberLen[index].StartsWith("latexmath:"))
+                                    {
+                                        memberLen[index] = memberLen[index].Substring(12, memberLen[index].Length - 14);
+                                        memberLen[index] = memberLen[index].Replace("\\over", "/");
+                                    }
+                                }
+                            }
 
                             var memberType = this.typeCache[typeMember.Element("type").Value];
 
