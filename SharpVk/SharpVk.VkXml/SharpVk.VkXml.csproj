@@ -44,9 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TypeCategory.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="CommandDef.cs" />
     <Compile Include="IVkXmlCache.cs" />
+    <Compile Include="SpecParser.cs" />
     <Compile Include="TypeDef.cs" />
     <Compile Include="TypeDefCache.cs" />
     <Compile Include="VkXmlCache.cs" />

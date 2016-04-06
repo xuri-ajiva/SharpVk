@@ -13,23 +13,27 @@
 
 namespace SharpVk
 {
-	public class Instance
+<#
+var vkXml = GetVkXml();
+
+foreach(var handle in GetHandles())
+{
+#>
+	public class <#=handle.Name#>
 	{
-		private Interop.Instance handle;
+		private Interop.<#=handle.Name#> handle;
 <#
 	var keywords = new[]{"object", "event"};
 
-	var vkXml = GetVkXml();
-
-	var handleType = GetTypeDef("VkInstance");
-
 	var commands = GetCommands();
 
-	var createCommand = commands.First(x => x.Name == "vkCreate" + handleType.Name);
+	var createCommand = commands.FirstOrDefault(x => x.Name == "vkCreate" + handle.Name && x.Params.First().Type.Category != Category.handle);
 
+	if(createCommand != null)
+	{
 #>
 
-		public Instance(<#
+		public <#=handle.Name#>(<#
 	bool isFirst = true;
 
 	int paramCount = createCommand.Params.Count();
@@ -76,7 +80,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
-				Interop.<#=handleType.Name#> newHandle;
+				Interop.<#=handle.Name#> newHandle;
 <#
 	isFirst = true;
 
@@ -131,5 +135,12 @@ namespace SharpVk
 				this.handle = newHandle;
 			}
 		}
+<#
 	}
+#>
+	}
+
+<#
+}
+#>
 }

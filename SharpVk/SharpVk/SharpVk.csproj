@@ -63,10 +63,10 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Instance.cs">
+    <Compile Include="Handles.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>Instance.tt</DependentUpon>
+      <DependentUpon>Handles.tt</DependentUpon>
     </Compile>
     <Compile Include="Interop\HeapUtil.cs" />
     <Compile Include="Interop\Structs.cs">
@@ -104,9 +104,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Handles.cs</LastGenOutput>
     </Content>
-    <Content Include="Instance.tt">
+    <Content Include="Handles.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Instance.cs</LastGenOutput>
+      <LastGenOutput>Handles.cs</LastGenOutput>
     </Content>
     <Content Include="Interop\Structs.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

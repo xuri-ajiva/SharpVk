@@ -9,10 +9,11 @@ namespace SharpVk.VkXml
         public string Name;
         public XElement Xml;
         public string Requires;
-        public List<MemberInfo> Members = new List<MemberInfo>();
+        public readonly List<MemberInfo> Members = new List<MemberInfo>();
         public bool IsPrimitive;
         public bool IsReturnedOnly;
         public bool IsSimpleStruct;
+        public readonly List<TypeDef> Parents = new List<TypeDef>();
 
         public class MemberInfo
         {
