@@ -137,6 +137,16 @@ foreach(var handle in GetHandles())
 		}
 <#
 	}
+	else
+	{
+#>
+
+		internal <#=handle.Name#>(Interop.<#=handle.Name#> handle)
+		{
+			this.handle = handle;
+		}
+<#
+	}
 #>
 	}
 

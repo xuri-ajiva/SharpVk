@@ -46,146 +46,291 @@ namespace SharpVk
 	public class PhysicalDevice
 	{
 		private Interop.PhysicalDevice handle;
+
+		internal PhysicalDevice(Interop.PhysicalDevice handle)
+		{
+			this.handle = handle;
+		}
 	}
 
 	public class Device
 	{
 		private Interop.Device handle;
+
+		internal Device(Interop.Device handle)
+		{
+			this.handle = handle;
+		}
 	}
 
 	public class Queue
 	{
 		private Interop.Queue handle;
+
+		internal Queue(Interop.Queue handle)
+		{
+			this.handle = handle;
+		}
 	}
 
 	public class CommandBuffer
 	{
 		private Interop.CommandBuffer handle;
+
+		internal CommandBuffer(Interop.CommandBuffer handle)
+		{
+			this.handle = handle;
+		}
 	}
 
 	public class DeviceMemory
 	{
 		private Interop.DeviceMemory handle;
+
+		internal DeviceMemory(Interop.DeviceMemory handle)
+		{
+			this.handle = handle;
+		}
 	}
 
 	public class CommandPool
 	{
 		private Interop.CommandPool handle;
+
+		internal CommandPool(Interop.CommandPool handle)
+		{
+			this.handle = handle;
+		}
 	}
 
 	public class Buffer
 	{
 		private Interop.Buffer handle;
+
+		internal Buffer(Interop.Buffer handle)
+		{
+			this.handle = handle;
+		}
 	}
 
 	public class BufferView
 	{
 		private Interop.BufferView handle;
+
+		internal BufferView(Interop.BufferView handle)
+		{
+			this.handle = handle;
+		}
 	}
 
 	public class Image
 	{
 		private Interop.Image handle;
+
+		internal Image(Interop.Image handle)
+		{
+			this.handle = handle;
+		}
 	}
 
 	public class ImageView
 	{
 		private Interop.ImageView handle;
+
+		internal ImageView(Interop.ImageView handle)
+		{
+			this.handle = handle;
+		}
 	}
 
 	public class ShaderModule
 	{
 		private Interop.ShaderModule handle;
+
+		internal ShaderModule(Interop.ShaderModule handle)
+		{
+			this.handle = handle;
+		}
 	}
 
 	public class Pipeline
 	{
 		private Interop.Pipeline handle;
+
+		internal Pipeline(Interop.Pipeline handle)
+		{
+			this.handle = handle;
+		}
 	}
 
 	public class PipelineLayout
 	{
 		private Interop.PipelineLayout handle;
+
+		internal PipelineLayout(Interop.PipelineLayout handle)
+		{
+			this.handle = handle;
+		}
 	}
 
 	public class Sampler
 	{
 		private Interop.Sampler handle;
+
+		internal Sampler(Interop.Sampler handle)
+		{
+			this.handle = handle;
+		}
 	}
 
 	public class DescriptorSet
 	{
 		private Interop.DescriptorSet handle;
+
+		internal DescriptorSet(Interop.DescriptorSet handle)
+		{
+			this.handle = handle;
+		}
 	}
 
 	public class DescriptorSetLayout
 	{
 		private Interop.DescriptorSetLayout handle;
+
+		internal DescriptorSetLayout(Interop.DescriptorSetLayout handle)
+		{
+			this.handle = handle;
+		}
 	}
 
 	public class DescriptorPool
 	{
 		private Interop.DescriptorPool handle;
+
+		internal DescriptorPool(Interop.DescriptorPool handle)
+		{
+			this.handle = handle;
+		}
 	}
 
 	public class Fence
 	{
 		private Interop.Fence handle;
+
+		internal Fence(Interop.Fence handle)
+		{
+			this.handle = handle;
+		}
 	}
 
 	public class Semaphore
 	{
 		private Interop.Semaphore handle;
+
+		internal Semaphore(Interop.Semaphore handle)
+		{
+			this.handle = handle;
+		}
 	}
 
 	public class Event
 	{
 		private Interop.Event handle;
+
+		internal Event(Interop.Event handle)
+		{
+			this.handle = handle;
+		}
 	}
 
 	public class QueryPool
 	{
 		private Interop.QueryPool handle;
+
+		internal QueryPool(Interop.QueryPool handle)
+		{
+			this.handle = handle;
+		}
 	}
 
 	public class Framebuffer
 	{
 		private Interop.Framebuffer handle;
+
+		internal Framebuffer(Interop.Framebuffer handle)
+		{
+			this.handle = handle;
+		}
 	}
 
 	public class RenderPass
 	{
 		private Interop.RenderPass handle;
+
+		internal RenderPass(Interop.RenderPass handle)
+		{
+			this.handle = handle;
+		}
 	}
 
 	public class PipelineCache
 	{
 		private Interop.PipelineCache handle;
+
+		internal PipelineCache(Interop.PipelineCache handle)
+		{
+			this.handle = handle;
+		}
 	}
 
 	public class DisplayKHR
 	{
 		private Interop.DisplayKHR handle;
+
+		internal DisplayKHR(Interop.DisplayKHR handle)
+		{
+			this.handle = handle;
+		}
 	}
 
 	public class DisplayModeKHR
 	{
 		private Interop.DisplayModeKHR handle;
+
+		internal DisplayModeKHR(Interop.DisplayModeKHR handle)
+		{
+			this.handle = handle;
+		}
 	}
 
 	public class SurfaceKHR
 	{
 		private Interop.SurfaceKHR handle;
+
+		internal SurfaceKHR(Interop.SurfaceKHR handle)
+		{
+			this.handle = handle;
+		}
 	}
 
 	public class SwapchainKHR
 	{
 		private Interop.SwapchainKHR handle;
+
+		internal SwapchainKHR(Interop.SwapchainKHR handle)
+		{
+			this.handle = handle;
+		}
 	}
 
 	public class DebugReportCallbackEXT
 	{
 		private Interop.DebugReportCallbackEXT handle;
+
+		internal DebugReportCallbackEXT(Interop.DebugReportCallbackEXT handle)
+		{
+			this.handle = handle;
+		}
 	}
 
 }
