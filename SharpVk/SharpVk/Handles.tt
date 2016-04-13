@@ -18,17 +18,26 @@ var vkXml = GetVkXml();
 
 foreach(var handle in GetHandles())
 {
-#>
-	public class <#=handle.Name#>
-	{
-		private Interop.<#=handle.Name#> handle;
-<#
 	var keywords = new[]{"object", "event"};
 
 	var commands = GetCommands();
 
 	var createCommand = commands.FirstOrDefault(x => x.Name == "vkCreate" + handle.Name && x.Params.First().Type.Category != Category.handle);
 
+	var destroyCommand = commands.FirstOrDefault(x => x.Name == "vkDestroy" + handle.Name && x.Params.First().Type == handle);
+#>
+	public class <#=handle.Name#>
+<#
+	if(destroyCommand != null)
+	{
+#>
+		: System.IDisposable
+<#
+	}
+#>
+	{
+		private Interop.<#=handle.Name#> handle;
+<#
 	if(createCommand != null)
 	{
 #>
@@ -144,6 +153,22 @@ foreach(var handle in GetHandles())
 		internal <#=handle.Name#>(Interop.<#=handle.Name#> handle)
 		{
 			this.handle = handle;
+		}
+<#
+	}
+	
+	if(destroyCommand != null)
+	{
+#>
+
+		public void Dispose()
+		{
+			unsafe
+			{
+				Interop.<#=handle.Name#> handle = this.handle;
+
+				Interop.Commands.<#=destroyCommand.Name#>(handle, null);
+			}
 		}
 <#
 	}

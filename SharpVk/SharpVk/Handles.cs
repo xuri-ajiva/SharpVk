@@ -24,6 +24,7 @@
 namespace SharpVk
 {
 	public class Instance
+		: System.IDisposable
 	{
 		private Interop.Instance handle;
 
@@ -41,6 +42,16 @@ namespace SharpVk
 				this.handle = newHandle;
 			}
 		}
+
+		public void Dispose()
+		{
+			unsafe
+			{
+				Interop.Instance handle = this.handle;
+
+				Interop.Commands.vkDestroyInstance(handle, null);
+			}
+		}
 	}
 
 	public class PhysicalDevice
@@ -54,12 +65,23 @@ namespace SharpVk
 	}
 
 	public class Device
+		: System.IDisposable
 	{
 		private Interop.Device handle;
 
 		internal Device(Interop.Device handle)
 		{
 			this.handle = handle;
+		}
+
+		public void Dispose()
+		{
+			unsafe
+			{
+				Interop.Device handle = this.handle;
+
+				Interop.Commands.vkDestroyDevice(handle, null);
+			}
 		}
 	}
 
