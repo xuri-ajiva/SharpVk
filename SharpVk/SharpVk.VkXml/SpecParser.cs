@@ -16,7 +16,30 @@ namespace SharpVk.VkXml
             this.xmlCache = xmlCache;
         }
 
-        public void Run()
+        private string GetTextValue(XNode node)
+        {
+            var nodeAsText = node as XText;
+
+            if (nodeAsText != null)
+            {
+                return nodeAsText.Value;
+            }
+            else
+            {
+                var nodeAsElement = node as XElement;
+
+                if (nodeAsElement != null)
+                {
+                    return nodeAsElement.Value;
+                }
+                else
+                {
+                    throw new NotSupportedException();
+                }
+            }
+        }
+
+        public ParsedSpec Run()
         {
             var vkXml = this.xmlCache.GetVkXml();
 
@@ -62,6 +85,9 @@ namespace SharpVk.VkXml
                                         : false;
                     ParsedFixedLength fixedLength = new ParsedFixedLength();
 
+                    var typeNodes = nameElement.NodesBeforeSelf();
+                    PointerType pointerType = GetPointerType(typeNodes);
+
                     if (nameElement.NodesAfterSelf().Any())
                     {
                         string enumName = vkMember.Element("enum")?.Value;
@@ -76,8 +102,6 @@ namespace SharpVk.VkXml
                             fixedLength.Value = fixedLengthParser.Parse(nameElement.NextNode.ToString());
                             fixedLength.Type = FixedLengthType.IntegerLiteral;
                         }
-
-                        Console.WriteLine(fixedLength.Value);
                     }
 
                     newType.Members.Add(new ParsedMember
@@ -85,7 +109,8 @@ namespace SharpVk.VkXml
                         VkName = memberName,
                         Type = memberType,
                         IsOptional = isOptional,
-                        FixedLength = fixedLength
+                        FixedLength = fixedLength,
+                        PointerType = pointerType
                     });
                 }
 
@@ -115,30 +140,13 @@ namespace SharpVk.VkXml
 
                 foreach (var vkParam in vkCommand.Elements("param"))
                 {
-                    string paramName = vkParam.Element("name").Value;
+                    var nameElement = vkParam.Element("name");
+
+                    string paramName = nameElement.Value;
                     string paramType = vkParam.Element("type").Value;
 
-                    var typeNodes = vkParam.Nodes().TakeWhile(x => x.NodeType != XmlNodeType.Element || ((XElement)x).Name != "name");
-                    string typeString = typeNodes.Select(x =>
-                    {
-                        if (x.NodeType == XmlNodeType.Element)
-                        {
-                            var element = (XElement)x;
-
-                            if (element.Name == "type")
-                            {
-                                return "@";
-                            }
-                            else
-                            {
-                                return ((XElement)x).Value;
-                            }
-                        }
-                        else
-                        {
-                            return x.ToString();
-                        }
-                    }).Aggregate((y, z) => y + z).Trim();
+                    var typeNodes = nameElement.NodesBeforeSelf();
+                    PointerType pointerType = GetPointerType(typeNodes);
 
                     string paramExtension;
 
@@ -148,7 +156,7 @@ namespace SharpVk.VkXml
                     {
                         VkName = paramName,
                         Type = paramType,
-                        TypeString = typeString,
+                        PointerType = pointerType,
                         NameParts = paramNameParts,
                         Extension = paramExtension
                     });
@@ -177,11 +185,13 @@ namespace SharpVk.VkXml
                 }
             }
 
+            var result = new ParsedSpec();
+
             foreach (var commandName in requiredCommand.Distinct())
             {
                 var command = commandXml[commandName];
 
-                Console.WriteLine(string.Join(" ", command.NameParts));
+                result.Commands.Add(commandName, command);
 
                 foreach (var param in command.Params)
                 {
@@ -214,42 +224,83 @@ namespace SharpVk.VkXml
             {
                 var type = typeXml[typeName];
 
-                if (type.NameParts != null)
+                result.Types.Add(typeName, type);
+            }
+
+            return result;
+        }
+
+        private static PointerType GetPointerType(IEnumerable<XNode> typeNodes)
+        {
+            string typeString = typeNodes.Select(x =>
+            {
+                if (x.NodeType == XmlNodeType.Element)
                 {
-                    Console.WriteLine(string.Join(" ", type.NameParts));
+                    var element = (XElement)x;
+
+                    if (element.Name == "type")
+                    {
+                        return "@";
+                    }
+                    else
+                    {
+                        return ((XElement)x).Value;
+                    }
                 }
                 else
                 {
-                    Console.WriteLine(type.VkName);
+                    return x.ToString();
                 }
+            }).Aggregate((y, z) => y + z).Trim();
+
+            switch (typeString)
+            {
+                case "@":
+                    return PointerType.Value;
+                case "const @":
+                    return PointerType.ConstValue;
+                case "@*":
+                    return PointerType.Pointer;
+                case "@**":
+                    return PointerType.DoublePointer;
+                case "const @*":
+                    return PointerType.ConstPointer;
+                case "const @* const*":
+                    return PointerType.DoubleConstPointer;
+                case "struct @*":
+                    return PointerType.StructPointer;
+                default:
+                    throw new NotSupportedException(string.Format("Unknown pointer type string '{0}'.", typeString));
             }
         }
 
-        private static Parser<string> namePart = from head in Parse.Upper
-                                                 from tail in Parse.Lower.AtLeastOnce()
-                                                 select new string(new[] { head }.Concat(tail).ToArray()).ToLower();
+        private static readonly Parser<string> namePart = from head in Parse.Upper
+                                                          from tail in Parse.Lower.AtLeastOnce()
+                                                          select new string(new[] { head }.Concat(tail).ToArray()).ToLower();
 
-        private static Parser<string> keywordPart = Parse.String("2D")
-                                                        .Or(Parse.String("3D"))
-                                                        .Or(Parse.String("32"))
-                                                        .Or(Parse.String("64"))
+        private static readonly Parser<string> numberPart = Parse.Digit
+                                                        .Many()
                                                         .Text();
 
-        private static Parser<NameParts> namePartsParser = from prefix in Parse.IgnoreCase("vk")
-                                                           from parts in keywordPart.Or(namePart).Many()
-                                                           from extension in Parse.Upper.Many().Text().End()
-                                                           select new NameParts
-                                                           {
-                                                               Parts = parts.ToArray(),
-                                                               Extension = string.IsNullOrEmpty(extension)
-                                                                            ? null
-                                                                            : extension.ToLower()
-                                                           };
+        private static readonly Parser<string> keywordPart = Parse.String("2D")
+                                                        .Or(Parse.String("3D"))
+                                                        .Text();
 
-        private static Parser<string> fixedLengthParser = from open in Parse.Char('[')
-                                                          from digits in Parse.Digit.AtLeastOnce().Text()
-                                                          from close in Parse.Char(']')
-                                                          select digits;
+        private static readonly Parser<NameParts> namePartsParser = from prefix in Parse.IgnoreCase("vk")
+                                                                    from parts in keywordPart.Or(numberPart).Or(namePart).Many()
+                                                                    from extension in Parse.Upper.Many().Text().End()
+                                                                    select new NameParts
+                                                                    {
+                                                                        Parts = parts.ToArray(),
+                                                                        Extension = string.IsNullOrEmpty(extension)
+                                                                                     ? null
+                                                                                     : extension.ToLower()
+                                                                    };
+
+        private static readonly Parser<string> fixedLengthParser = from open in Parse.Char('[')
+                                                                   from digits in Parse.Digit.AtLeastOnce().Text()
+                                                                   from close in Parse.Char(']')
+                                                                   select digits;
 
         private struct NameParts
         {
@@ -316,6 +367,7 @@ namespace SharpVk.VkXml
 
         public enum FixedLengthType
         {
+            None,
             IntegerLiteral,
             EnumReference
         }
@@ -325,6 +377,7 @@ namespace SharpVk.VkXml
         {
             public bool IsOptional;
             public ParsedFixedLength FixedLength;
+            public PointerType PointerType;
         }
 
         public class ParsedCommand
@@ -336,7 +389,7 @@ namespace SharpVk.VkXml
         public class ParsedParam
             : ParsedElement
         {
-            public string TypeString;
+            public PointerType PointerType;
         }
     }
 }

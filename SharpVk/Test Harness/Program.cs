@@ -18,7 +18,11 @@ namespace SharpVk
 
             var parser = new SpecParser(new VkXmlCache("./vkXml.xml"));
 
-            parser.Run();
+            var spec = parser.Run();
+
+            var generator = new TypeGenerator();
+
+            generator.Generate(spec);
 
             Console.WriteLine("Done");
             Console.ReadLine();

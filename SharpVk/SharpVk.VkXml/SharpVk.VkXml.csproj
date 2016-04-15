@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PointerType.cs" />
     <Compile Include="TypeCategory.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="CommandDef.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="SpecParser.cs" />
     <Compile Include="TypeDef.cs" />
     <Compile Include="TypeDefCache.cs" />
+    <Compile Include="TypeGenerator.cs" />
     <Compile Include="VkXmlCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
