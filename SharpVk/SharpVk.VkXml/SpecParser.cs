@@ -344,6 +344,9 @@ namespace SharpVk.VkXml
                 case "const @":
                     return PointerType.ConstValue;
                 case "@*":
+                case "struct @*":
+                    // struct {type}* is a syntactic quirk of C structs with no
+                    // typedef; treat them like regular pointers.
                     return PointerType.Pointer;
                 case "@**":
                     return PointerType.DoublePointer;
@@ -351,8 +354,6 @@ namespace SharpVk.VkXml
                     return PointerType.ConstPointer;
                 case "const @* const*":
                     return PointerType.DoubleConstPointer;
-                case "struct @*":
-                    return PointerType.StructPointer;
                 default:
                     throw new NotSupportedException(string.Format("Unknown pointer type string '{0}'.", typeString));
             }

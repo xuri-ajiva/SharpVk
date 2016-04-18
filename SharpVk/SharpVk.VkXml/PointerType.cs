@@ -7,7 +7,6 @@
         Pointer,
         DoublePointer,
         ConstPointer,
-        DoubleConstPointer,
-        StructPointer
+        DoubleConstPointer
     }
 }
