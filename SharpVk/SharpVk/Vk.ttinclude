@@ -1,7 +1,9 @@
 ﻿<#@ assembly name="System.Xml" #>
 <#@ assembly name="System.Xml.Linq" #>
 <#@ assembly name="$(SolutionDir)Lib\SharpVk.VkXml.dll" #>
+<#@ import namespace="Microsoft.CSharp" #>
 <#@ import namespace="SharpVk.VkXml" #>
+<#@ import namespace="System.CodeDom" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ import namespace="System.IO" #>
 <#@ import namespace="System.Net" #>
@@ -17,8 +19,17 @@ Dictionary<string, string> baseTypes = new Dictionary<string, string>()
 
 string[] extensionSuffixes = new[]{"KHR", "EXT"};
 
+private static CSharpCodeProvider codeDomCompiler = new CSharpCodeProvider();
+
 private static VkXmlCache xmlCache;
 private static TypeDefCache typeCache;
+
+string GetTypeName(Type type)
+{
+	var codeDomType = new CodeTypeReference(type);
+
+	return codeDomCompiler.GetTypeOutput(codeDomType);
+}
  
 XDocument GetVkXml()
 {
@@ -28,6 +39,13 @@ XDocument GetVkXml()
     }
 
     return xmlCache.GetVkXml();
+}
+
+SpecParser GetParser()
+{
+	GetVkXml();
+
+	return new SpecParser(xmlCache);
 }
 
 TypeDef GetTypeDef(string vkTypeName)

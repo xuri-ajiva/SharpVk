@@ -42,6 +42,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Constants.cs">
+      <DependentUpon>Constants.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Structs.cs">
       <DependentUpon>Structs.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -87,6 +92,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Constants.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Constants.cs</LastGenOutput>
+    </Content>
     <Content Include="Structs.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Structs.cs</LastGenOutput>

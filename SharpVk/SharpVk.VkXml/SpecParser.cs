@@ -117,6 +117,81 @@ namespace SharpVk.VkXml
                 typeXml.Add(name, newType);
             }
 
+            var enumXml = new Dictionary<string, ParsedEnum>();
+
+            foreach (var vkEnum in vkXml.Element("registry").Elements("enums"))
+            {
+                string name = vkEnum.Attribute("name").Value;
+                string type = vkEnum.Attribute("type")?.Value;
+
+                string extension;
+
+                string[] nameParts = GetNameParts(name, out extension);
+
+                var newEnum = new ParsedEnum
+                {
+                    VkName = name,
+                    Type = type,
+                    NameParts = nameParts,
+                    Extension = extension
+                };
+
+                foreach (var vkField in vkEnum.Elements("enum"))
+                {
+                    string fieldName = vkField.Attribute("name").Value;
+                    bool isBitmask = true;
+                    string value = vkField.Attribute("bitpos")?.Value;
+
+                    if (value == null)
+                    {
+                        isBitmask = false;
+                        value = vkField.Attribute("value").Value;
+
+                        // Special case for handling C "unsigned long long"
+                        // (64-bit unsigned integer)
+                        if (value == "(~0ULL)")
+                        {
+                            value = "(~0UL)";
+                        }
+
+                        value = value.Trim('(', ')');
+
+                        Console.WriteLine(value);
+                    }
+
+                    var fieldNameParts = fieldName.Split('_')
+                                                    .Select(x => x.ToLower())
+                                                    .ToArray()
+                                                    .AsEnumerable();
+
+                    if (fieldNameParts.First() == "vk")
+                    {
+                        fieldNameParts = fieldNameParts.Skip(1);
+                    }
+
+                    int prefixSkipCount = 0;
+
+                    while (nameParts != null
+                        && prefixSkipCount < nameParts.Length
+                        && nameParts[prefixSkipCount] == fieldNameParts.ElementAt(prefixSkipCount))
+                    {
+                        prefixSkipCount++;
+                    }
+
+                    fieldNameParts = fieldNameParts.Skip(prefixSkipCount);
+
+                    newEnum.Fields.Add(fieldName, new ParsedEnumField
+                    {
+                        VkName = fieldName,
+                        NameParts = fieldNameParts.ToArray(),
+                        IsBitmask = isBitmask,
+                        Value = value
+                    });
+                }
+
+                enumXml.Add(name, newEnum);
+            }
+
             var commandXml = new Dictionary<string, ParsedCommand>();
 
             foreach (var vkCommand in vkXml.Element("registry").Element("commands").Elements("command"))
@@ -167,6 +242,9 @@ namespace SharpVk.VkXml
 
             var requiredTypes = new List<string>();
             var requiredCommand = new List<string>();
+            var requiredConstant = new List<string>();
+
+            var constants = enumXml["API Constants"];
 
             foreach (var requirement in vkFeature.Elements("require").SelectMany(x => x.Elements()))
             {
@@ -176,6 +254,7 @@ namespace SharpVk.VkXml
                         requiredCommand.Add(requirement.Attribute("name").Value);
                         break;
                     case "enum":
+                        requiredConstant.Add(requirement.Attribute("name").Value);
                         break;
                     case "type":
                         requiredTypes.Add(requirement.Attribute("name").Value);
@@ -186,6 +265,11 @@ namespace SharpVk.VkXml
             }
 
             var result = new ParsedSpec();
+
+            foreach (var constant in requiredConstant)
+            {
+                result.Constants[constant] = constants.Fields[constant];
+            }
 
             foreach (var commandName in requiredCommand.Distinct())
             {
@@ -339,6 +423,18 @@ namespace SharpVk.VkXml
                 get;
                 private set;
             } = new Dictionary<string, ParsedCommand>();
+
+            public Dictionary<string, ParsedEnum> Enumerations
+            {
+                get;
+                private set;
+            } = new Dictionary<string, ParsedEnum>();
+
+            public Dictionary<string, ParsedEnumField> Constants
+            {
+                get;
+                private set;
+            } = new Dictionary<string, ParsedEnumField>();
         }
 
         public class ParsedElement
@@ -347,6 +443,7 @@ namespace SharpVk.VkXml
             public string Type;
             public string[] NameParts;
             public string Extension;
+            public string Comment;
         }
 
         public class ParsedType
@@ -390,6 +487,19 @@ namespace SharpVk.VkXml
             : ParsedElement
         {
             public PointerType PointerType;
+        }
+
+        public class ParsedEnum
+            : ParsedElement
+        {
+            public readonly Dictionary<string, ParsedEnumField> Fields = new Dictionary<string, ParsedEnumField>();
+        }
+
+        public class ParsedEnumField
+            : ParsedElement
+        {
+            public string Value;
+            public bool IsBitmask;
         }
     }
 }

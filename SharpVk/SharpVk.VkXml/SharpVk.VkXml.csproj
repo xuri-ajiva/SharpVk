@@ -53,6 +53,7 @@
     <Compile Include="TypeDef.cs" />
     <Compile Include="TypeDefCache.cs" />
     <Compile Include="TypeGenerator.cs" />
+    <Compile Include="TypeSet.cs" />
     <Compile Include="VkXmlCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

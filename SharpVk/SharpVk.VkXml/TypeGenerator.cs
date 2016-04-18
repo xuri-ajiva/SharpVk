@@ -7,14 +7,48 @@ namespace SharpVk.VkXml
 {
     public class TypeGenerator
     {
-        public void Generate(SpecParser.ParsedSpec spec)
+        public TypeSet Generate(SpecParser.ParsedSpec spec)
         {
             var typeData = GetTypeData(spec);
 
+            var result = new TypeSet();
+
+            foreach (var constant in spec.Constants.Values)
+            {
+                Type type;
+
+                string typeSuffix = new string(constant.Value.Reverse()
+                                                                .TakeWhile(char.IsLetter)
+                                                                .Reverse()
+                                                                .ToArray());
+
+                switch (typeSuffix.ToLower())
+                {
+                    case "f":
+                        type = typeof(float);
+                        break;
+                    case "u":
+                    default:
+                        type = typeof(uint);
+                        break;
+                    case "ul":
+                        type = typeof(ulong);
+                        break;
+                }
+
+                result.Constants.Add(new TypeSet.VkConstant
+                {
+                    Name = GetNameForElement(constant),
+                    Type = type,
+                    Value = constant.Value
+                });
+            }
+
             foreach (var type in typeData.Values.Where(x => x.RequiresInterop))
             {
-                Console.WriteLine(type.Name);
             }
+
+            return result;
         }
 
         private static Dictionary<string, TypeDesc> GetTypeData(SpecParser.ParsedSpec spec)
@@ -22,10 +56,7 @@ namespace SharpVk.VkXml
             var typeData = spec.Types.Values.ToDictionary(x => x.VkName, x => new TypeDesc
             {
                 Data = x,
-                Name = x.NameParts?.Select(CapitaliseFirst)
-                                    ?.Aggregate(new StringBuilder(), (builder, value) => builder.Append(value))
-                                    ?.ToString()
-                                    ?? x.VkName,
+                Name = GetNameForElement(x),
                 RequiresInterop = x.Members.Any(y => y.FixedLength.Type != SpecParser.FixedLengthType.None
                                                             || (y.PointerType != PointerType.Value && y.PointerType != PointerType.ConstValue))
             });
@@ -49,6 +80,14 @@ namespace SharpVk.VkXml
             }
 
             return typeData;
+        }
+
+        private static string GetNameForElement(SpecParser.ParsedElement element)
+        {
+            return element.NameParts?.Select(CapitaliseFirst)
+                                    ?.Aggregate(new StringBuilder(), (builder, value) => builder.Append(value))
+                                    ?.ToString()
+                                    ?? element.VkName;
         }
 
         private static string CapitaliseFirst(string value)

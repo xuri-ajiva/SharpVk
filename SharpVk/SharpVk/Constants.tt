@@ -1,0 +1,33 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Net" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Xml.Linq" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<#@ include file=".\License.tt" #>
+<#@ include file=".\Vk.ttinclude" #>
+<#
+	var parser = GetParser();
+	var generator = new TypeGenerator();
+
+	var types = generator.Generate(parser.Run());
+#>
+namespace SharpVk
+{
+	public static class Constants
+	{
+<#
+foreach(var constant in types.Constants)
+{
+#>
+		public const <#=GetTypeName(constant.Type)#> <#=constant.Name#> = <#=constant.Value#>;
+<#
+}
+#>
+	}
+}
