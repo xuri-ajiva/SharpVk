@@ -12,95 +12,45 @@
 <#@ include file=".\License.tt" #>
 <#@ include file=".\Vk.ttinclude" #>
 <#
-	var vkXml = GetVkXml();
+	var parser = GetParser();
+	var generator = new TypeGenerator();
+
+	var types = generator.Generate(parser.Run());
 #>
 using System;
 
 namespace SharpVk
 {
 <#
-	foreach(var enumeration in vkXml.Element("registry").Elements("enums"))
+foreach(var enumeration in types.Enumerations)
+{
+	if(enumeration.IsFlags)
+    {
+#>
+		[Flags]<#
+    }
+#>
+		public enum <#=enumeration.Name#>
+		{
+<#
+	bool first = true;
+
+	foreach(var field in enumeration.Fields)
 	{
-		if(enumeration.Attribute("type") != null)
+		if(first)
         {
-			string vkTypeName = enumeration.Attribute("name").Value;
-			string enumName = MapTypeName(vkTypeName);
-			string prefix = "";
-
-			if(enumeration.Attribute("expand") != null)
-            {
-				prefix = enumeration.Attribute("expand").Value + "_";
-            }
-
-			string digitPrefix = enumName;
-
-			if(digitPrefix.EndsWith("Type") || digitPrefix.EndsWith("Flag"))
-			{
-				digitPrefix = digitPrefix.Substring(0, digitPrefix.Length - 4);
-			}
-
-			if(enumeration.Attribute("type").Value == "bitmask")
-			{
-				#>
-	[Flags]
-<#
-			}
+			first = false;
+        }
+		else
+        {
 #>
-	public enum <#=enumName#>
-	{
-<#
-			foreach(var enumerationField in enumeration.Elements("enum"))
-			{
-				string fieldName = enumerationField.Attribute("name").Value;
-
-				if(fieldName.StartsWith(prefix))
-                {
-					fieldName = fieldName.Substring(prefix.Length);
-                }
-
-				var nameParts = fieldName.Split('_');
-
-				fieldName = string.Join("", nameParts.Select(x => char.ToUpper(x[0]) + x.Substring(1).ToLower()));
-
-				if(enumeration.Attribute("type").Value == "bitmask" && vkTypeName.EndsWith("FlagBits"))
-				{
-					fieldName = fieldName.Substring(vkTypeName.Length - 8);
-
-					if(fieldName.EndsWith("Bit"))
-					{
-						fieldName = fieldName.Substring(0, fieldName.Length - 3);
-					}
-				}
-
-				if(fieldName.StartsWith("Vk"))
-				{
-					fieldName = fieldName.Substring(2);
-				}
-
-				if(char.IsDigit(fieldName[0]))
-                {
-					fieldName = digitPrefix + fieldName;
-                }
-
-				string fieldValue = "0";
-
-				if(enumerationField.Attribute("value") != null)
-                {
-					fieldValue = enumerationField.Attribute("value").Value;
-                }
-				else
-                {
-					fieldValue = "1 << " + enumerationField.Attribute("bitpos").Value;
-                }
-#>
-		<#=fieldName#> = <#=fieldValue#>,
-<#
-			}
-#>
-	}
-
 <#
         }
+#>			<#=field.Name#> = <#=field.Value#>,<#
 	}
+#>
+		}
+<#
+}
 #>
 }

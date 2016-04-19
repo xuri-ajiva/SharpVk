@@ -155,8 +155,6 @@ namespace SharpVk.VkXml
                         }
 
                         value = value.Trim('(', ')');
-
-                        Console.WriteLine(value);
                     }
 
                     var fieldNameParts = fieldName.Split('_')
@@ -277,6 +275,8 @@ namespace SharpVk.VkXml
 
                 result.Commands.Add(commandName, command);
 
+                requiredTypes.Add(command.Type);
+
                 foreach (var param in command.Params)
                 {
                     requiredTypes.Add(param.Type);
@@ -293,11 +293,21 @@ namespace SharpVk.VkXml
 
                 newTypes.Clear();
 
-                foreach (var member in typesToCheck.SelectMany(x => typeXml[x].Members))
+                foreach (var typeName in typesToCheck)
                 {
-                    if (!requiredTypes.Contains(member.Type) && !newTypes.Contains(member.Type))
+                    var type = typeXml[typeName];
+
+                    if (type.Requires != null && !requiredTypes.Contains(type.Requires) && !newTypes.Contains(type.Requires))
                     {
-                        newTypes.Add(member.Type);
+                        newTypes.Add(type.Requires);
+                    }
+
+                    foreach (var member in type.Members)
+                    {
+                        if (!requiredTypes.Contains(member.Type) && !newTypes.Contains(member.Type))
+                        {
+                            newTypes.Add(member.Type);
+                        }
                     }
                 }
 
@@ -309,6 +319,14 @@ namespace SharpVk.VkXml
                 var type = typeXml[typeName];
 
                 result.Types.Add(typeName, type);
+            }
+
+            foreach (var type in result.Types.Values)
+            {
+                if (type.Category == TypeCategory.@enum)
+                {
+                    result.Enumerations.Add(type.VkName, enumXml[type.VkName]);
+                }
             }
 
             return result;
