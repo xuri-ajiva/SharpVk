@@ -15,41 +15,6 @@ using System;
 
 namespace SharpVk.Interop
 {
-	public struct Bool32
-	{
-		private uint value;
-
-		public Bool32(bool value)
-		{
-			this.value = value ? 1u : 0;
-		}
-
-		public static implicit operator Bool32(bool value)
-		{
-			return new Bool32(value);
-		}
-
-		public static implicit operator bool(Bool32 value)
-		{
-			return value.value != 0;
-		}
-	}
-
-	public struct DeviceSize
-	{
-		private ulong value;
-
-		public static implicit operator DeviceSize(ulong value)
-		{
-			return new DeviceSize { value = value };
-		}
-
-		public static implicit operator ulong(DeviceSize size)
-		{
-			return size.value;
-		}
-	}
-
 	public struct SampleMask
 	{
 		private uint value;

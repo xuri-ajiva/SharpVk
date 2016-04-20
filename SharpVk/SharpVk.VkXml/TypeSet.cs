@@ -17,6 +17,12 @@ namespace SharpVk.VkXml
             private set;
         } = new List<VkEnumeration>();
 
+        public List<VkStruct> Structs
+        {
+            get;
+            private set;
+        } = new List<VkStruct>();
+
         public class VkConstant
         {
             public string Name
@@ -68,6 +74,36 @@ namespace SharpVk.VkXml
             }
 
             public string Value
+            {
+                get;
+                set;
+            }
+        }
+
+        public class VkStruct
+        {
+            public string Name
+            {
+                get;
+                set;
+            }
+
+            public List<VkStructMember> Members
+            {
+                get;
+                private set;
+            } = new List<VkStructMember>();
+        }
+
+        public class VkStructMember
+        {
+            public string Name
+            {
+                get;
+                set;
+            }
+
+            public string TypeName
             {
                 get;
                 set;

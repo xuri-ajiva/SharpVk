@@ -80,6 +80,12 @@ namespace SharpVk
 		}
 
 		[Flags]
+		public enum BufferViewCreateFlags
+		{
+			None = 0,
+		}
+
+		[Flags]
 		public enum ColorComponentFlags
 		{
 			None = 0,
@@ -144,6 +150,36 @@ namespace SharpVk
 		}
 
 		[Flags]
+		public enum DescriptorPoolResetFlags
+		{
+			None = 0,
+		}
+
+		[Flags]
+		public enum DescriptorSetLayoutCreateFlags
+		{
+			None = 0,
+		}
+
+		[Flags]
+		public enum DeviceCreateFlags
+		{
+			None = 0,
+		}
+
+		[Flags]
+		public enum DeviceQueueCreateFlags
+		{
+			None = 0,
+		}
+
+		[Flags]
+		public enum EventCreateFlags
+		{
+			None = 0,
+		}
+
+		[Flags]
 		public enum FenceCreateFlags
 		{
 			None = 0,
@@ -167,6 +203,12 @@ namespace SharpVk
 			BlitSrc = 1 << 10,
 			BlitDst = 1 << 11,
 			SampledImageFilterLinear = 1 << 12,
+		}
+
+		[Flags]
+		public enum FramebufferCreateFlags
+		{
+			None = 0,
 		}
 
 		[Flags]
@@ -205,10 +247,28 @@ namespace SharpVk
 		}
 
 		[Flags]
+		public enum ImageViewCreateFlags
+		{
+			None = 0,
+		}
+
+		[Flags]
+		public enum InstanceCreateFlags
+		{
+			None = 0,
+		}
+
+		[Flags]
 		public enum MemoryHeapFlags
 		{
 			None = 0,
 			DeviceLocal = 1 << 0,
+		}
+
+		[Flags]
+		public enum MemoryMapFlags
+		{
+			None = 0,
 		}
 
 		[Flags]
@@ -223,12 +283,66 @@ namespace SharpVk
 		}
 
 		[Flags]
+		public enum PipelineCacheCreateFlags
+		{
+			None = 0,
+		}
+
+		[Flags]
+		public enum PipelineColorBlendStateCreateFlags
+		{
+			None = 0,
+		}
+
+		[Flags]
 		public enum PipelineCreateFlags
 		{
 			None = 0,
 			DisableOptimization = 1 << 0,
 			AllowDerivatives = 1 << 1,
 			Derivative = 1 << 2,
+		}
+
+		[Flags]
+		public enum PipelineDepthStencilStateCreateFlags
+		{
+			None = 0,
+		}
+
+		[Flags]
+		public enum PipelineDynamicStateCreateFlags
+		{
+			None = 0,
+		}
+
+		[Flags]
+		public enum PipelineInputAssemblyStateCreateFlags
+		{
+			None = 0,
+		}
+
+		[Flags]
+		public enum PipelineLayoutCreateFlags
+		{
+			None = 0,
+		}
+
+		[Flags]
+		public enum PipelineMultisampleStateCreateFlags
+		{
+			None = 0,
+		}
+
+		[Flags]
+		public enum PipelineRasterizationStateCreateFlags
+		{
+			None = 0,
+		}
+
+		[Flags]
+		public enum PipelineShaderStageCreateFlags
+		{
+			None = 0,
 		}
 
 		[Flags]
@@ -252,6 +366,24 @@ namespace SharpVk
 			Host = 1 << 14,
 			AllGraphics = 1 << 15,
 			AllCommands = 1 << 16,
+		}
+
+		[Flags]
+		public enum PipelineTessellationStateCreateFlags
+		{
+			None = 0,
+		}
+
+		[Flags]
+		public enum PipelineVertexInputStateCreateFlags
+		{
+			None = 0,
+		}
+
+		[Flags]
+		public enum PipelineViewportStateCreateFlags
+		{
+			None = 0,
 		}
 
 		[Flags]
@@ -279,6 +411,12 @@ namespace SharpVk
 		}
 
 		[Flags]
+		public enum QueryPoolCreateFlags
+		{
+			None = 0,
+		}
+
+		[Flags]
 		public enum QueryResultFlags
 		{
 			None = 0,
@@ -299,6 +437,12 @@ namespace SharpVk
 		}
 
 		[Flags]
+		public enum RenderPassCreateFlags
+		{
+			None = 0,
+		}
+
+		[Flags]
 		public enum SampleCountFlags
 		{
 			None = 0,
@@ -309,6 +453,24 @@ namespace SharpVk
 			SampleCountFlag16 = 1 << 4,
 			SampleCountFlag32 = 1 << 5,
 			SampleCountFlag64 = 1 << 6,
+		}
+
+		[Flags]
+		public enum SamplerCreateFlags
+		{
+			None = 0,
+		}
+
+		[Flags]
+		public enum SemaphoreCreateFlags
+		{
+			None = 0,
+		}
+
+		[Flags]
+		public enum ShaderModuleCreateFlags
+		{
+			None = 0,
 		}
 
 		[Flags]
@@ -348,6 +510,12 @@ namespace SharpVk
 			Front = 1 << 0,
 			Back = 1 << 1,
 			FrontAndBack = 0x00000003,
+		}
+
+		[Flags]
+		public enum SubpassDescriptionFlags
+		{
+			None = 0,
 		}
 
 		public enum AttachmentLoadOp

@@ -24,73 +24,115 @@ using System;
 
 namespace SharpVk
 {
-
-	public struct Offset2D
+	public struct Bool32
 	{
+		private uint value;
 
-		public int X;
+		public Bool32(bool value)
+		{
+			this.value = value
+							? Constants.True
+							: Constants.False;
+		}
 
-		public int Y;
+		public static implicit operator Bool32(bool value)
+		{
+			return new Bool32(value);
+		}
+
+		public static implicit operator bool(Bool32 value)
+		{
+			return value.value != Constants.False;
+		}
 	}
 
-	public struct Offset3D
+	public struct DeviceSize
 	{
+		private ulong value;
 
-		public int X;
+		public static implicit operator DeviceSize(ulong value)
+		{
+			return new DeviceSize { value = value };
+		}
 
-		public int Y;
-
-		public int Z;
+		public static implicit operator ulong(DeviceSize size)
+		{
+			return size.value;
+		}
 	}
 
-	public struct Extent2D
+	public struct AttachmentDescription
 	{
 
-		public uint Width;
+		public AttachmentDescriptionFlags Flags;
 
-		public uint Height;
+		public Format Format;
+
+		public SampleCountFlags Samples;
+
+		public AttachmentLoadOp LoadOp;
+
+		public AttachmentStoreOp StoreOp;
+
+		public AttachmentLoadOp StencilLoadOp;
+
+		public AttachmentStoreOp StencilStoreOp;
+
+		public ImageLayout InitialLayout;
+
+		public ImageLayout FinalLayout;
 	}
 
-	public struct Extent3D
+	public struct AttachmentReference
 	{
 
-		public uint Width;
+		public uint Attachment;
 
-		public uint Height;
-
-		public uint Depth;
+		public ImageLayout Layout;
 	}
 
-	public struct Viewport
+	public struct BufferCopy
 	{
 
-		public float X;
+		public DeviceSize SrcOffset;
 
-		public float Y;
+		public DeviceSize DstOffset;
 
-		public float Width;
-
-		public float Height;
-
-		public float MinDepth;
-
-		public float MaxDepth;
+		public DeviceSize Size;
 	}
 
-	public struct Rect2D
+	public struct BufferImageCopy
 	{
 
-		public Offset2D Offset;
+		public DeviceSize BufferOffset;
 
-		public Extent2D Extent;
+		public uint BufferRowLength;
+
+		public uint BufferImageHeight;
+
+		public ImageSubresourceLayers ImageSubresource;
+
+		public Offset3D ImageOffset;
+
+		public Extent3D ImageExtent;
 	}
 
-	public struct Rect3D
+	public struct ClearAttachment
 	{
 
-		public Offset3D Offset;
+		public ImageAspectFlags AspectMask;
 
-		public Extent3D Extent;
+		public uint ColorAttachment;
+
+		public ClearValue ClearValue;
+	}
+
+	public struct ClearDepthStencilValue
+	{
+
+		public float Depth;
+
+		public uint Stencil;
 	}
 
 	public struct ClearRect
@@ -115,34 +157,66 @@ namespace SharpVk
 		public ComponentSwizzle A;
 	}
 
-	public struct QueueFamilyProperties
+	public struct DescriptorPoolSize
 	{
 
-		public QueueFlags QueueFlags;
+		public DescriptorType Type;
 
-		public uint QueueCount;
-
-		public uint TimestampValidBits;
-
-		public Extent3D MinImageTransferGranularity;
+		public uint DescriptorCount;
 	}
 
-	public struct SparseImageFormatProperties
+	public struct DispatchIndirectCommand
 	{
 
-		public ImageAspectFlags AspectMask;
+		public uint X;
 
-		public Extent3D ImageGranularity;
+		public uint Y;
 
-		public SparseImageFormatFlags Flags;
+		public uint Z;
 	}
 
-	public struct MemoryType
+	public struct DrawIndexedIndirectCommand
 	{
 
-		public MemoryPropertyFlags PropertyFlags;
+		public uint IndexCount;
 
-		public uint HeapIndex;
+		public uint InstanceCount;
+
+		public uint FirstIndex;
+
+		public int VertexOffset;
+
+		public uint FirstInstance;
+	}
+
+	public struct DrawIndirectCommand
+	{
+
+		public uint VertexCount;
+
+		public uint InstanceCount;
+
+		public uint FirstVertex;
+
+		public uint FirstInstance;
+	}
+
+	public struct Extent2D
+	{
+
+		public uint Width;
+
+		public uint Height;
+	}
+
+	public struct Extent3D
+	{
+
+		public uint Width;
+
+		public uint Height;
+
+		public uint Depth;
 	}
 
 	public struct FormatProperties
@@ -153,6 +227,48 @@ namespace SharpVk
 		public FormatFeatureFlags OptimalTilingFeatures;
 
 		public FormatFeatureFlags BufferFeatures;
+	}
+
+	public struct ImageCopy
+	{
+
+		public ImageSubresourceLayers SrcSubresource;
+
+		public Offset3D SrcOffset;
+
+		public ImageSubresourceLayers DstSubresource;
+
+		public Offset3D DstOffset;
+
+		public Extent3D Extent;
+	}
+
+	public struct ImageFormatProperties
+	{
+
+		public Extent3D MaxExtent;
+
+		public uint MaxMipLevels;
+
+		public uint MaxArrayLayers;
+
+		public SampleCountFlags SampleCounts;
+
+		public DeviceSize MaxResourceSize;
+	}
+
+	public struct ImageResolve
+	{
+
+		public ImageSubresourceLayers SrcSubresource;
+
+		public Offset3D SrcOffset;
+
+		public ImageSubresourceLayers DstSubresource;
+
+		public Offset3D DstOffset;
+
+		public Extent3D Extent;
 	}
 
 	public struct ImageSubresource
@@ -191,72 +307,260 @@ namespace SharpVk
 		public uint LayerCount;
 	}
 
-	public struct ImageCopy
+	public struct MemoryHeap
 	{
 
-		public ImageSubresourceLayers SrcSubresource;
+		public DeviceSize Size;
 
-		public Offset3D SrcOffset;
-
-		public ImageSubresourceLayers DstSubresource;
-
-		public Offset3D DstOffset;
-
-		public Extent3D Extent;
+		public MemoryHeapFlags Flags;
 	}
 
-	public struct ImageResolve
+	public struct MemoryRequirements
 	{
 
-		public ImageSubresourceLayers SrcSubresource;
+		public DeviceSize Size;
 
-		public Offset3D SrcOffset;
+		public DeviceSize Alignment;
 
-		public ImageSubresourceLayers DstSubresource;
-
-		public Offset3D DstOffset;
-
-		public Extent3D Extent;
+		public uint MemoryTypeBits;
 	}
 
-	public struct DescriptorPoolSize
+	public struct MemoryType
 	{
 
-		public DescriptorType Type;
+		public MemoryPropertyFlags PropertyFlags;
 
-		public uint DescriptorCount;
+		public uint HeapIndex;
+	}
+
+	public struct Offset2D
+	{
+
+		public int X;
+
+		public int Y;
+	}
+
+	public struct Offset3D
+	{
+
+		public int X;
+
+		public int Y;
+
+		public int Z;
+	}
+
+	public struct PhysicalDeviceFeatures
+	{
+
+		public Bool32 RobustBufferAccess;
+
+		public Bool32 FullDrawIndexUint32;
+
+		public Bool32 ImageCubeArray;
+
+		public Bool32 IndependentBlend;
+
+		public Bool32 GeometryShader;
+
+		public Bool32 TessellationShader;
+
+		public Bool32 SampleRateShading;
+
+		public Bool32 DualSrcBlend;
+
+		public Bool32 LogicOp;
+
+		public Bool32 MultiDrawIndirect;
+
+		public Bool32 DrawIndirectFirstInstance;
+
+		public Bool32 DepthClamp;
+
+		public Bool32 DepthBiasClamp;
+
+		public Bool32 FillModeNonSolid;
+
+		public Bool32 DepthBounds;
+
+		public Bool32 WideLines;
+
+		public Bool32 LargePoints;
+
+		public Bool32 AlphaToOne;
+
+		public Bool32 MultiViewport;
+
+		public Bool32 SamplerAnisotropy;
+
+		public Bool32 TextureCompressionETC2;
+
+		public Bool32 TextureCompressionASTC_LDR;
+
+		public Bool32 TextureCompressionBC;
+
+		public Bool32 OcclusionQueryPrecise;
+
+		public Bool32 PipelineStatisticsQuery;
+
+		public Bool32 VertexPipelineStoresAndAtomics;
+
+		public Bool32 FragmentStoresAndAtomics;
+
+		public Bool32 ShaderTessellationAndGeometryPointSize;
+
+		public Bool32 ShaderImageGatherExtended;
+
+		public Bool32 ShaderStorageImageExtendedFormats;
+
+		public Bool32 ShaderStorageImageMultisample;
+
+		public Bool32 ShaderStorageImageReadWithoutFormat;
+
+		public Bool32 ShaderStorageImageWriteWithoutFormat;
+
+		public Bool32 ShaderUniformBufferArrayDynamicIndexing;
+
+		public Bool32 ShaderSampledImageArrayDynamicIndexing;
+
+		public Bool32 ShaderStorageBufferArrayDynamicIndexing;
+
+		public Bool32 ShaderStorageImageArrayDynamicIndexing;
+
+		public Bool32 ShaderClipDistance;
+
+		public Bool32 ShaderCullDistance;
+
+		public Bool32 ShaderFloat64;
+
+		public Bool32 ShaderInt64;
+
+		public Bool32 ShaderInt16;
+
+		public Bool32 ShaderResourceResidency;
+
+		public Bool32 ShaderResourceMinLod;
+
+		public Bool32 SparseBinding;
+
+		public Bool32 SparseResidencyBuffer;
+
+		public Bool32 SparseResidencyImage2D;
+
+		public Bool32 SparseResidencyImage3D;
+
+		public Bool32 SparseResidency2Samples;
+
+		public Bool32 SparseResidency4Samples;
+
+		public Bool32 SparseResidency8Samples;
+
+		public Bool32 SparseResidency16Samples;
+
+		public Bool32 SparseResidencyAliased;
+
+		public Bool32 VariableMultisampleRate;
+
+		public Bool32 InheritedQueries;
+	}
+
+	public struct PhysicalDeviceSparseProperties
+	{
+
+		public Bool32 ResidencyStandard2DBlockShape;
+
+		public Bool32 ResidencyStandard2DMultisampleBlockShape;
+
+		public Bool32 ResidencyStandard3DBlockShape;
+
+		public Bool32 ResidencyAlignedMipSize;
+
+		public Bool32 ResidencyNonResidentStrict;
+	}
+
+	public struct PipelineColorBlendAttachmentState
+	{
+
+		public Bool32 BlendEnable;
+
+		public BlendFactor SrcColorBlendFactor;
+
+		public BlendFactor DstColorBlendFactor;
+
+		public BlendOp ColorBlendOp;
+
+		public BlendFactor SrcAlphaBlendFactor;
+
+		public BlendFactor DstAlphaBlendFactor;
+
+		public BlendOp AlphaBlendOp;
+
+		public ColorComponentFlags ColorWriteMask;
+	}
+
+	public struct PushConstantRange
+	{
+
+		public ShaderStageFlags StageFlags;
+
+		public uint Offset;
+
+		public uint Size;
+	}
+
+	public struct QueueFamilyProperties
+	{
+
+		public QueueFlags QueueFlags;
+
+		public uint QueueCount;
+
+		public uint TimestampValidBits;
+
+		public Extent3D MinImageTransferGranularity;
+	}
+
+	public struct Rect2D
+	{
+
+		public Offset2D Offset;
+
+		public Extent2D Extent;
+	}
+
+	public struct SparseImageFormatProperties
+	{
+
+		public ImageAspectFlags AspectMask;
+
+		public Extent3D ImageGranularity;
+
+		public SparseImageFormatFlags Flags;
+	}
+
+	public struct SparseImageMemoryRequirements
+	{
+
+		public SparseImageFormatProperties FormatProperties;
+
+		public uint ImageMipTailFirstLod;
+
+		public DeviceSize ImageMipTailSize;
+
+		public DeviceSize ImageMipTailOffset;
+
+		public DeviceSize ImageMipTailStride;
 	}
 
 	public struct SpecializationMapEntry
 	{
 
-		public uint ConstantID;
+		public uint Constant;
 
 		public uint Offset;
 
 		public UIntPtr Size;
-	}
-
-	public struct VertexInputBindingDescription
-	{
-
-		public uint Binding;
-
-		public uint Stride;
-
-		public VertexInputRate InputRate;
-	}
-
-	public struct VertexInputAttributeDescription
-	{
-
-		public uint Location;
-
-		public uint Binding;
-
-		public Format Format;
-
-		public uint Offset;
 	}
 
 	public struct StencilOpState
@@ -277,64 +581,6 @@ namespace SharpVk
 		public uint Reference;
 	}
 
-	public struct PushConstantRange
-	{
-
-		public ShaderStageFlags StageFlags;
-
-		public uint Offset;
-
-		public uint Size;
-	}
-
-	public struct ClearDepthStencilValue
-	{
-
-		public float Depth;
-
-		public uint Stencil;
-	}
-
-	public struct ClearAttachment
-	{
-
-		public ImageAspectFlags AspectMask;
-
-		public uint ColorAttachment;
-
-		public ClearValue ClearValue;
-	}
-
-	public struct AttachmentDescription
-	{
-
-		public AttachmentDescriptionFlags Flags;
-
-		public Format Format;
-
-		public SampleCountFlags Samples;
-
-		public AttachmentLoadOp LoadOp;
-
-		public AttachmentStoreOp StoreOp;
-
-		public AttachmentLoadOp StencilLoadOp;
-
-		public AttachmentStoreOp StencilStoreOp;
-
-		public ImageLayout InitialLayout;
-
-		public ImageLayout FinalLayout;
-	}
-
-	public struct AttachmentReference
-	{
-
-		public uint Attachment;
-
-		public ImageLayout Layout;
-	}
-
 	public struct SubpassDependency
 	{
 
@@ -353,39 +599,55 @@ namespace SharpVk
 		public DependencyFlags DependencyFlags;
 	}
 
-	public struct DrawIndirectCommand
+	public struct SubresourceLayout
 	{
 
-		public uint VertexCount;
+		public DeviceSize Offset;
 
-		public uint InstanceCount;
+		public DeviceSize Size;
 
-		public uint FirstVertex;
+		public DeviceSize RowPitch;
 
-		public uint FirstInstance;
+		public DeviceSize ArrayPitch;
+
+		public DeviceSize DepthPitch;
 	}
 
-	public struct DrawIndexedIndirectCommand
+	public struct VertexInputAttributeDescription
 	{
 
-		public uint IndexCount;
+		public uint Location;
 
-		public uint InstanceCount;
+		public uint Binding;
 
-		public uint FirstIndex;
+		public Format Format;
 
-		public int VertexOffset;
-
-		public uint FirstInstance;
+		public uint Offset;
 	}
 
-	public struct DispatchIndirectCommand
+	public struct VertexInputBindingDescription
 	{
 
-		public uint X;
+		public uint Binding;
 
-		public uint Y;
+		public uint Stride;
 
-		public uint Z;
+		public VertexInputRate InputRate;
+	}
+
+	public struct Viewport
+	{
+
+		public float X;
+
+		public float Y;
+
+		public float Width;
+
+		public float Height;
+
+		public float MinDepth;
+
+		public float MaxDepth;
 	}
 }

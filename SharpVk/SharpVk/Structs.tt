@@ -11,26 +11,65 @@
 <#@ output extension=".cs" #>
 <#@ include file=".\License.tt" #>
 <#@ include file=".\Vk.ttinclude" #>
+<#
+	var parser = GetParser();
+	var generator = new TypeGenerator();
+
+	var types = generator.Generate(parser.Run());
+#>
 using System;
 
 namespace SharpVk
 {
-<#
-	var structs = GetStructs();
-
-	foreach(var structType in structs.Where(x => x.IsSimpleStruct))
+	public struct Bool32
 	{
-		string structName = structType.Name;
+		private uint value;
+
+		public Bool32(bool value)
+		{
+			this.value = value
+							? Constants.True
+							: Constants.False;
+		}
+
+		public static implicit operator Bool32(bool value)
+		{
+			return new Bool32(value);
+		}
+
+		public static implicit operator bool(Bool32 value)
+		{
+			return value.value != Constants.False;
+		}
+	}
+
+	public struct DeviceSize
+	{
+		private ulong value;
+
+		public static implicit operator DeviceSize(ulong value)
+		{
+			return new DeviceSize { value = value };
+		}
+
+		public static implicit operator ulong(DeviceSize size)
+		{
+			return size.value;
+		}
+	}
+<#
+	foreach(var structType in types.Structs)
+	{
 #>
 
-	public struct <#=structName#>
+	public struct <#=structType.Name#>
 	{
 <#
 		foreach(var member in structType.Members)
         {
 #>
 
-		public <#=member.Type.Name#> <#=member.Name#>;
+		public <#=member.TypeName#> <#=member.Name#>;
 <#
         }
 #>

@@ -333,7 +333,7 @@ namespace SharpVk.VkXml
                             });
                         }
 
-                        if (type.Category == Category.@struct && !members.Any(x => x.Type.Category == Category.handle || x.Type.Category == Category.@struct || x.PointerCount > 0 || x.Size > 0 || x.Type.Category == Category.basetype))
+                        if (type.Category == Category.@struct && !members.Any(x => x.Type.Category == Category.handle || x.Type.Category == Category.@struct || x.PointerCount > 0 || x.Size > 0))
                         {
                             type.IsSimpleStruct = true;
                         }
@@ -348,7 +348,7 @@ namespace SharpVk.VkXml
 
                     foreach (var type in this.typeCache.Values.Where(x => !x.IsSimpleStruct))
                     {
-                        if (type.Category == Category.@struct && !type.Members.Any(x => x.Type.Category == Category.handle || (x.Type.Category == Category.@struct && !x.Type.IsSimpleStruct) || x.PointerCount > 0 || x.Size > 0 || x.Type.Category == Category.basetype))
+                        if (type.Category == Category.@struct && !type.Members.Any(x => (x.Type.Category == Category.@struct && !x.Type.IsSimpleStruct) || x.Type.Category == Category.handle || x.PointerCount > 0 || x.Size > 0))
                         {
                             type.IsSimpleStruct = true;
                         }

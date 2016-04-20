@@ -83,6 +83,9 @@ namespace SharpVk.VkXml
                     bool isOptional = optional != null
                                         ? bool.Parse(optional)
                                         : false;
+                    string memberExtension;
+
+                    string[] memberNameParts = GetNameParts(memberName, out memberExtension, false);
                     ParsedFixedLength fixedLength = new ParsedFixedLength();
 
                     var typeNodes = nameElement.NodesBeforeSelf();
@@ -103,6 +106,19 @@ namespace SharpVk.VkXml
                             fixedLength.Type = FixedLengthType.IntegerLiteral;
                         }
                     }
+                    else
+                    {
+                        int fixedLengthIndex = memberName.IndexOf('[');
+
+                        if (fixedLengthIndex >= 0)
+                        {
+                            string fixedLengthString = memberName.Substring(fixedLengthIndex);
+                            memberName = memberName.Substring(0, fixedLengthIndex);
+
+                            fixedLength.Value = fixedLengthParser.Parse(fixedLengthString);
+                            fixedLength.Type = FixedLengthType.IntegerLiteral;
+                        }
+                    }
 
                     newType.Members.Add(new ParsedMember
                     {
@@ -110,7 +126,9 @@ namespace SharpVk.VkXml
                         Type = memberType,
                         IsOptional = isOptional,
                         FixedLength = fixedLength,
-                        PointerType = pointerType
+                        PointerType = pointerType,
+                        NameParts = memberNameParts,
+                        Extension = extension
                     });
                 }
 
@@ -377,24 +395,31 @@ namespace SharpVk.VkXml
             }
         }
 
+        private static readonly Parser<string> firstPart = from head in Parse.Letter
+                                                           from tail in Parse.Lower.Many()
+                                                           select new string(new[] { head }.Concat(tail).ToArray()).ToLower();
+
         private static readonly Parser<string> namePart = from head in Parse.Upper
                                                           from tail in Parse.Lower.AtLeastOnce()
                                                           select new string(new[] { head }.Concat(tail).ToArray()).ToLower();
 
         private static readonly Parser<string> numberPart = Parse.Digit
-                                                        .Many()
+                                                        .AtLeastOnce()
                                                         .Text();
 
         private static readonly Parser<string> keywordPart = Parse.String("2D")
                                                         .Or(Parse.String("3D"))
+                                                        .Or(Parse.String("ETC2"))
+                                                        .Or(Parse.String("ASTC_LDR"))
+                                                        .Or(Parse.String("BC"))
                                                         .Text();
 
-        private static readonly Parser<NameParts> namePartsParser = from prefix in Parse.IgnoreCase("vk")
+        private static readonly Parser<NameParts> namePartsParser = from first in firstPart
                                                                     from parts in keywordPart.Or(numberPart).Or(namePart).Many()
                                                                     from extension in Parse.Upper.Many().Text().End()
                                                                     select new NameParts
                                                                     {
-                                                                        Parts = parts.ToArray(),
+                                                                        Parts = new[] { first }.Concat(parts).ToArray(),
                                                                         Extension = string.IsNullOrEmpty(extension)
                                                                                      ? null
                                                                                      : extension.ToLower()
@@ -411,15 +436,22 @@ namespace SharpVk.VkXml
             public string Extension;
         }
 
-        public static string[] GetNameParts(string vkName, out string extension)
+        public static string[] GetNameParts(string vkName, out string extension, bool hasVkPrefix = true)
         {
             var result = namePartsParser.TryParse(vkName);
 
-            if (result.WasSuccessful)
+            if (result.WasSuccessful && (!hasVkPrefix || result.Value.Parts[0] == "vk"))
             {
                 extension = result.Value.Extension;
 
-                return result.Value.Parts;
+                if (hasVkPrefix)
+                {
+                    return result.Value.Parts.Skip(1).ToArray();
+                }
+                else
+                {
+                    return result.Value.Parts;
+                }
             }
             else
             {
