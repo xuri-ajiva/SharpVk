@@ -14,164 +14,40 @@
 namespace SharpVk
 {
 <#
-var vkXml = GetVkXml();
+var parser = GetParser();
+var generator = new TypeGenerator();
 
-foreach(var handle in GetHandles())
+var types = generator.Generate(parser.Run());
+
+foreach(var handle in types.Handles)
 {
-	var keywords = new[]{"object", "event"};
-
-	var commands = GetCommands();
-
-	var createCommand = commands.FirstOrDefault(x => x.Name == "vkCreate" + handle.Name && x.Params.First().Type.Category != Category.handle);
-
-	var destroyCommand = commands.FirstOrDefault(x => x.Name == "vkDestroy" + handle.Name && x.Params.First().Type == handle);
 #>
 	public class <#=handle.Name#>
-<#
-	if(destroyCommand != null)
 	{
-#>
-		: System.IDisposable
+		internal readonly Interop.<#=handle.Name#> handle;
+
 <#
-	}
-#>
-	{
-		private Interop.<#=handle.Name#> handle;
-<#
-	if(createCommand != null)
-	{
-#>
-
-		public <#=handle.Name#>(<#
-	bool isFirst = true;
-
-	int paramCount = createCommand.Params.Count();
-
-	foreach(var parameter in createCommand.Params.Take(paramCount - 1))
+	if(handle.ParentHandle != null)
     {
-		string paramName = parameter.Name;
+#>
+		private readonly <#=handle.ParentHandle#> parent;
 
-			int pointerCount = 0;
-			
-			while(paramName[0] == 'p' && (paramName[1] == 'p' || char.IsUpper(paramName[1])))
-			{
-				pointerCount++;
-
-				paramName = paramName.Substring(1);
-            }
-
-			if(pointerCount > 0)
-            {
-				paramName = paramName = char.ToLower(paramName[0]) + paramName.Substring(1);
-            }
-
-			var paramType = parameter.Type;
-			
-			string paramTypeName = paramType.Name;
-
-			if(keywords.Contains(paramName))
-            {
-				paramName = "@" + paramName;
-            }
-
-			if(isFirst)
-            {
-				isFirst = false;
-            }
-			else
-            {
-				#>, <#
-            }
-			
-			#><#=paramTypeName#> <#=paramName#><#
-    }
-		#>)
+		internal <#=handle.Name#>(Interop.<#=handle.Name#> handle, <#=handle.ParentHandle#> parent)
 		{
-			unsafe
-			{
-				Interop.<#=handle.Name#> newHandle;
-<#
-	isFirst = true;
-
-	var arguments = new List<string>();
-
-	foreach(var parameter in createCommand.Params.Take(paramCount - 1))
-    {
-		string paramName = parameter.Name;
-
-			int pointerCount = 0;
-			
-			while(paramName[0] == 'p' && (paramName[1] == 'p' || char.IsUpper(paramName[1])))
-			{
-				pointerCount++;
-
-				paramName = paramName.Substring(1);
-            }
-
-			//bool isOutput = !parameter.Value.StartsWith("const") && pointerCount > 0;
-
-			if(pointerCount > 0)
-            {
-				paramName = char.ToLower(paramName[0]) + paramName.Substring(1);
-            }
-
-			var paramType = parameter.Type;
-
-			string paramTypeName = paramType.Name;
-
-			string marshalledParamName = "marshalled" + char.ToUpper(paramName[0]) + paramName.Substring(1);
-
-			if(paramType.Category == Category.@struct && !paramType.IsSimpleStruct)
-            {
-				arguments.Add(string.Format("{0} == null ? null : &{1}, ", paramName, marshalledParamName));
-				paramName = "(" + paramName + "?.MarshalTo()).GetValueOrDefault()";
-            }
-			else
-			{
-				arguments.Add(paramName + ", ");
-			}
-#>
-				var <#=marshalledParamName#> = <#=paramName#>;
-<#
-    }
-
-	string argumentsString = string.Join("", arguments);
-		#>
-				Result createResult = Interop.Commands.<#=createCommand.Name#>(<#=argumentsString#>&newHandle);
-
-				ResultUtil.HandleResult(createResult);
-
-				this.handle = newHandle;
-			}
+			this.handle = handle;
+			this.parent = parent;
 		}
 <#
-	}
+    }
 	else
-	{
+    {
 #>
-
 		internal <#=handle.Name#>(Interop.<#=handle.Name#> handle)
 		{
 			this.handle = handle;
 		}
 <#
-	}
-	
-	if(destroyCommand != null)
-	{
-#>
-
-		public void Dispose()
-		{
-			unsafe
-			{
-				Interop.<#=handle.Name#> handle = this.handle;
-
-				Interop.Commands.<#=destroyCommand.Name#>(handle, null);
-			}
-		}
-<#
-	}
+    }
 #>
 	}
 

@@ -23,335 +23,325 @@
 
 namespace SharpVk
 {
-	public class Instance
-		: System.IDisposable
-	{
-		private Interop.Instance handle;
-
-		public Instance(InstanceCreateInfo createInfo, AllocationCallbacks allocator)
-		{
-			unsafe
-			{
-				Interop.Instance newHandle;
-				var marshalledCreateInfo = (createInfo?.MarshalTo()).GetValueOrDefault();
-				var marshalledAllocator = (allocator?.MarshalTo()).GetValueOrDefault();
-				Result createResult = Interop.Commands.vkCreateInstance(createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &newHandle);
-
-				ResultUtil.HandleResult(createResult);
-
-				this.handle = newHandle;
-			}
-		}
-
-		public void Dispose()
-		{
-			unsafe
-			{
-				Interop.Instance handle = this.handle;
-
-				Interop.Commands.vkDestroyInstance(handle, null);
-			}
-		}
-	}
-
-	public class PhysicalDevice
-	{
-		private Interop.PhysicalDevice handle;
-
-		internal PhysicalDevice(Interop.PhysicalDevice handle)
-		{
-			this.handle = handle;
-		}
-	}
-
-	public class Device
-		: System.IDisposable
-	{
-		private Interop.Device handle;
-
-		internal Device(Interop.Device handle)
-		{
-			this.handle = handle;
-		}
-
-		public void Dispose()
-		{
-			unsafe
-			{
-				Interop.Device handle = this.handle;
-
-				Interop.Commands.vkDestroyDevice(handle, null);
-			}
-		}
-	}
-
-	public class Queue
-	{
-		private Interop.Queue handle;
-
-		internal Queue(Interop.Queue handle)
-		{
-			this.handle = handle;
-		}
-	}
-
-	public class CommandBuffer
-	{
-		private Interop.CommandBuffer handle;
-
-		internal CommandBuffer(Interop.CommandBuffer handle)
-		{
-			this.handle = handle;
-		}
-	}
-
-	public class DeviceMemory
-	{
-		private Interop.DeviceMemory handle;
-
-		internal DeviceMemory(Interop.DeviceMemory handle)
-		{
-			this.handle = handle;
-		}
-	}
-
-	public class CommandPool
-	{
-		private Interop.CommandPool handle;
-
-		internal CommandPool(Interop.CommandPool handle)
-		{
-			this.handle = handle;
-		}
-	}
-
 	public class Buffer
 	{
-		private Interop.Buffer handle;
+		internal readonly Interop.Buffer handle;
 
-		internal Buffer(Interop.Buffer handle)
+		private readonly Device parent;
+
+		internal Buffer(Interop.Buffer handle, Device parent)
 		{
 			this.handle = handle;
+			this.parent = parent;
 		}
 	}
 
 	public class BufferView
 	{
-		private Interop.BufferView handle;
+		internal readonly Interop.BufferView handle;
 
-		internal BufferView(Interop.BufferView handle)
+		private readonly Device parent;
+
+		internal BufferView(Interop.BufferView handle, Device parent)
 		{
 			this.handle = handle;
+			this.parent = parent;
 		}
 	}
 
-	public class Image
+	public class CommandBuffer
 	{
-		private Interop.Image handle;
+		internal readonly Interop.CommandBuffer handle;
 
-		internal Image(Interop.Image handle)
+		private readonly CommandPool parent;
+
+		internal CommandBuffer(Interop.CommandBuffer handle, CommandPool parent)
 		{
 			this.handle = handle;
+			this.parent = parent;
 		}
 	}
 
-	public class ImageView
+	public class CommandPool
 	{
-		private Interop.ImageView handle;
+		internal readonly Interop.CommandPool handle;
 
-		internal ImageView(Interop.ImageView handle)
+		private readonly Device parent;
+
+		internal CommandPool(Interop.CommandPool handle, Device parent)
 		{
 			this.handle = handle;
-		}
-	}
-
-	public class ShaderModule
-	{
-		private Interop.ShaderModule handle;
-
-		internal ShaderModule(Interop.ShaderModule handle)
-		{
-			this.handle = handle;
-		}
-	}
-
-	public class Pipeline
-	{
-		private Interop.Pipeline handle;
-
-		internal Pipeline(Interop.Pipeline handle)
-		{
-			this.handle = handle;
-		}
-	}
-
-	public class PipelineLayout
-	{
-		private Interop.PipelineLayout handle;
-
-		internal PipelineLayout(Interop.PipelineLayout handle)
-		{
-			this.handle = handle;
-		}
-	}
-
-	public class Sampler
-	{
-		private Interop.Sampler handle;
-
-		internal Sampler(Interop.Sampler handle)
-		{
-			this.handle = handle;
-		}
-	}
-
-	public class DescriptorSet
-	{
-		private Interop.DescriptorSet handle;
-
-		internal DescriptorSet(Interop.DescriptorSet handle)
-		{
-			this.handle = handle;
-		}
-	}
-
-	public class DescriptorSetLayout
-	{
-		private Interop.DescriptorSetLayout handle;
-
-		internal DescriptorSetLayout(Interop.DescriptorSetLayout handle)
-		{
-			this.handle = handle;
+			this.parent = parent;
 		}
 	}
 
 	public class DescriptorPool
 	{
-		private Interop.DescriptorPool handle;
+		internal readonly Interop.DescriptorPool handle;
 
-		internal DescriptorPool(Interop.DescriptorPool handle)
+		private readonly Device parent;
+
+		internal DescriptorPool(Interop.DescriptorPool handle, Device parent)
 		{
 			this.handle = handle;
+			this.parent = parent;
 		}
 	}
 
-	public class Fence
+	public class DescriptorSet
 	{
-		private Interop.Fence handle;
+		internal readonly Interop.DescriptorSet handle;
 
-		internal Fence(Interop.Fence handle)
+		private readonly DescriptorPool parent;
+
+		internal DescriptorSet(Interop.DescriptorSet handle, DescriptorPool parent)
 		{
 			this.handle = handle;
+			this.parent = parent;
 		}
 	}
 
-	public class Semaphore
+	public class DescriptorSetLayout
 	{
-		private Interop.Semaphore handle;
+		internal readonly Interop.DescriptorSetLayout handle;
 
-		internal Semaphore(Interop.Semaphore handle)
+		private readonly Device parent;
+
+		internal DescriptorSetLayout(Interop.DescriptorSetLayout handle, Device parent)
 		{
 			this.handle = handle;
+			this.parent = parent;
+		}
+	}
+
+	public class Device
+	{
+		internal readonly Interop.Device handle;
+
+		private readonly PhysicalDevice parent;
+
+		internal Device(Interop.Device handle, PhysicalDevice parent)
+		{
+			this.handle = handle;
+			this.parent = parent;
+		}
+	}
+
+	public class DeviceMemory
+	{
+		internal readonly Interop.DeviceMemory handle;
+
+		private readonly Device parent;
+
+		internal DeviceMemory(Interop.DeviceMemory handle, Device parent)
+		{
+			this.handle = handle;
+			this.parent = parent;
 		}
 	}
 
 	public class Event
 	{
-		private Interop.Event handle;
+		internal readonly Interop.Event handle;
 
-		internal Event(Interop.Event handle)
+		private readonly Device parent;
+
+		internal Event(Interop.Event handle, Device parent)
 		{
 			this.handle = handle;
+			this.parent = parent;
 		}
 	}
 
-	public class QueryPool
+	public class Fence
 	{
-		private Interop.QueryPool handle;
+		internal readonly Interop.Fence handle;
 
-		internal QueryPool(Interop.QueryPool handle)
+		private readonly Device parent;
+
+		internal Fence(Interop.Fence handle, Device parent)
 		{
 			this.handle = handle;
+			this.parent = parent;
 		}
 	}
 
 	public class Framebuffer
 	{
-		private Interop.Framebuffer handle;
+		internal readonly Interop.Framebuffer handle;
 
-		internal Framebuffer(Interop.Framebuffer handle)
+		private readonly Device parent;
+
+		internal Framebuffer(Interop.Framebuffer handle, Device parent)
+		{
+			this.handle = handle;
+			this.parent = parent;
+		}
+	}
+
+	public class Image
+	{
+		internal readonly Interop.Image handle;
+
+		private readonly Device parent;
+
+		internal Image(Interop.Image handle, Device parent)
+		{
+			this.handle = handle;
+			this.parent = parent;
+		}
+	}
+
+	public class ImageView
+	{
+		internal readonly Interop.ImageView handle;
+
+		private readonly Device parent;
+
+		internal ImageView(Interop.ImageView handle, Device parent)
+		{
+			this.handle = handle;
+			this.parent = parent;
+		}
+	}
+
+	public class Instance
+	{
+		internal readonly Interop.Instance handle;
+
+		internal Instance(Interop.Instance handle)
 		{
 			this.handle = handle;
 		}
 	}
 
-	public class RenderPass
+	public class PhysicalDevice
 	{
-		private Interop.RenderPass handle;
+		internal readonly Interop.PhysicalDevice handle;
 
-		internal RenderPass(Interop.RenderPass handle)
+		private readonly Instance parent;
+
+		internal PhysicalDevice(Interop.PhysicalDevice handle, Instance parent)
 		{
 			this.handle = handle;
+			this.parent = parent;
+		}
+	}
+
+	public class Pipeline
+	{
+		internal readonly Interop.Pipeline handle;
+
+		private readonly Device parent;
+
+		internal Pipeline(Interop.Pipeline handle, Device parent)
+		{
+			this.handle = handle;
+			this.parent = parent;
 		}
 	}
 
 	public class PipelineCache
 	{
-		private Interop.PipelineCache handle;
+		internal readonly Interop.PipelineCache handle;
 
-		internal PipelineCache(Interop.PipelineCache handle)
+		private readonly Device parent;
+
+		internal PipelineCache(Interop.PipelineCache handle, Device parent)
 		{
 			this.handle = handle;
+			this.parent = parent;
 		}
 	}
 
-	public class DisplayKHR
+	public class PipelineLayout
 	{
-		private Interop.DisplayKHR handle;
+		internal readonly Interop.PipelineLayout handle;
 
-		internal DisplayKHR(Interop.DisplayKHR handle)
+		private readonly Device parent;
+
+		internal PipelineLayout(Interop.PipelineLayout handle, Device parent)
 		{
 			this.handle = handle;
+			this.parent = parent;
 		}
 	}
 
-	public class DisplayModeKHR
+	public class QueryPool
 	{
-		private Interop.DisplayModeKHR handle;
+		internal readonly Interop.QueryPool handle;
 
-		internal DisplayModeKHR(Interop.DisplayModeKHR handle)
+		private readonly Device parent;
+
+		internal QueryPool(Interop.QueryPool handle, Device parent)
 		{
 			this.handle = handle;
+			this.parent = parent;
 		}
 	}
 
-	public class SurfaceKHR
+	public class Queue
 	{
-		private Interop.SurfaceKHR handle;
+		internal readonly Interop.Queue handle;
 
-		internal SurfaceKHR(Interop.SurfaceKHR handle)
+		private readonly Device parent;
+
+		internal Queue(Interop.Queue handle, Device parent)
 		{
 			this.handle = handle;
+			this.parent = parent;
 		}
 	}
 
-	public class SwapchainKHR
+	public class RenderPass
 	{
-		private Interop.SwapchainKHR handle;
+		internal readonly Interop.RenderPass handle;
 
-		internal SwapchainKHR(Interop.SwapchainKHR handle)
+		private readonly Device parent;
+
+		internal RenderPass(Interop.RenderPass handle, Device parent)
 		{
 			this.handle = handle;
+			this.parent = parent;
 		}
 	}
 
-	public class DebugReportCallbackEXT
+	public class Sampler
 	{
-		private Interop.DebugReportCallbackEXT handle;
+		internal readonly Interop.Sampler handle;
 
-		internal DebugReportCallbackEXT(Interop.DebugReportCallbackEXT handle)
+		private readonly Device parent;
+
+		internal Sampler(Interop.Sampler handle, Device parent)
 		{
 			this.handle = handle;
+			this.parent = parent;
+		}
+	}
+
+	public class Semaphore
+	{
+		internal readonly Interop.Semaphore handle;
+
+		private readonly Device parent;
+
+		internal Semaphore(Interop.Semaphore handle, Device parent)
+		{
+			this.handle = handle;
+			this.parent = parent;
+		}
+	}
+
+	public class ShaderModule
+	{
+		internal readonly Interop.ShaderModule handle;
+
+		private readonly Device parent;
+
+		internal ShaderModule(Interop.ShaderModule handle, Device parent)
+		{
+			this.handle = handle;
+			this.parent = parent;
 		}
 	}
 

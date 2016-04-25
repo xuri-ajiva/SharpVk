@@ -29,6 +29,12 @@ namespace SharpVk.VkXml
             private set;
         } = new List<VkStruct>();
 
+        public List<VkHandle> Handles
+        {
+            get;
+            private set;
+        } = new List<VkHandle>();
+
         public class VkConstant
         {
             public string Name
@@ -116,6 +122,21 @@ namespace SharpVk.VkXml
             }
 
             public string FieldOffset
+            {
+                get;
+                set;
+            }
+        }
+
+        public class VkHandle
+        {
+            public string Name
+            {
+                get;
+                set;
+            }
+
+            public string ParentHandle
             {
                 get;
                 set;

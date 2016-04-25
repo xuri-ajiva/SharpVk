@@ -12,14 +12,17 @@
 <#@ include file="..\License.tt" #>
 <#@ include file="..\Vk.ttinclude" #>
 <#
-	var handles = GetHandles();
+	var parser = GetParser();
+	var generator = new TypeGenerator();
+
+	var types = generator.Generate(parser.Run());
 #>
 using System;
 
 namespace SharpVk.Interop
 {
 <#
-	foreach(var handle in handles)
+	foreach(var handle in types.Handles)
 	{
 #>
 	public struct <#=handle.Name#>

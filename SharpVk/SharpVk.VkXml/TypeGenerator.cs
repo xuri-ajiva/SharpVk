@@ -33,6 +33,34 @@ namespace SharpVk.VkXml
 
             GenerateEnumerations(spec, typeData, result);
 
+            GenerateUnions(typeData, result);
+
+            GenerateNonInteropStructs(typeData, result);
+
+            foreach (var type in typeData.Values.Where(x => x.RequiresInterop))
+            {
+            }
+
+            foreach (var type in typeData.Values.Where(x => x.Data.Category == TypeCategory.handle))
+            {
+                var newHandle = new TypeSet.VkHandle
+                {
+                    Name = type.Name
+                };
+
+                if (type.Data.Parent != null)
+                {
+                    newHandle.ParentHandle = typeData[type.Data.Parent].Name;
+                }
+
+                result.Handles.Add(newHandle);
+            }
+
+            return result;
+        }
+
+        private static void GenerateUnions(Dictionary<string, TypeDesc> typeData, TypeSet result)
+        {
             foreach (var type in typeData.Values.Where(x => x.Data.Category == TypeCategory.union))
             {
                 var newStruct = new TypeSet.VkStruct
@@ -57,8 +85,6 @@ namespace SharpVk.VkXml
                         case SpecParser.FixedLengthType.IntegerLiteral:
                             int length = int.Parse(member.FixedLength.Value);
 
-                            Console.WriteLine("{0}: {1}", member.VkName, length);
-
                             for (int index = 0; index < length; index++)
                             {
                                 var nameParts = member.NameParts.Concat(new[] { "_", index.ToString() });
@@ -78,14 +104,6 @@ namespace SharpVk.VkXml
 
                 result.Unions.Add(newStruct);
             }
-
-            GenerateNonInteropStructs(typeData, result);
-
-            foreach (var type in typeData.Values.Where(x => x.RequiresInterop))
-            {
-            }
-
-            return result;
         }
 
         private static void SetPrimitiveTypeNames(Dictionary<string, TypeDesc> typeData)

@@ -24,41 +24,6 @@ using System;
 
 namespace SharpVk.Interop
 {
-	public struct Instance
-	{
-		public IntPtr Handle;
-	}
-
-	public struct PhysicalDevice
-	{
-		public IntPtr Handle;
-	}
-
-	public struct Device
-	{
-		public IntPtr Handle;
-	}
-
-	public struct Queue
-	{
-		public IntPtr Handle;
-	}
-
-	public struct CommandBuffer
-	{
-		public IntPtr Handle;
-	}
-
-	public struct DeviceMemory
-	{
-		public IntPtr Handle;
-	}
-
-	public struct CommandPool
-	{
-		public IntPtr Handle;
-	}
-
 	public struct Buffer
 	{
 		public IntPtr Handle;
@@ -69,32 +34,17 @@ namespace SharpVk.Interop
 		public IntPtr Handle;
 	}
 
-	public struct Image
+	public struct CommandBuffer
 	{
 		public IntPtr Handle;
 	}
 
-	public struct ImageView
+	public struct CommandPool
 	{
 		public IntPtr Handle;
 	}
 
-	public struct ShaderModule
-	{
-		public IntPtr Handle;
-	}
-
-	public struct Pipeline
-	{
-		public IntPtr Handle;
-	}
-
-	public struct PipelineLayout
-	{
-		public IntPtr Handle;
-	}
-
-	public struct Sampler
+	public struct DescriptorPool
 	{
 		public IntPtr Handle;
 	}
@@ -109,17 +59,12 @@ namespace SharpVk.Interop
 		public IntPtr Handle;
 	}
 
-	public struct DescriptorPool
+	public struct Device
 	{
 		public IntPtr Handle;
 	}
 
-	public struct Fence
-	{
-		public IntPtr Handle;
-	}
-
-	public struct Semaphore
+	public struct DeviceMemory
 	{
 		public IntPtr Handle;
 	}
@@ -129,7 +74,7 @@ namespace SharpVk.Interop
 		public IntPtr Handle;
 	}
 
-	public struct QueryPool
+	public struct Fence
 	{
 		public IntPtr Handle;
 	}
@@ -139,7 +84,27 @@ namespace SharpVk.Interop
 		public IntPtr Handle;
 	}
 
-	public struct RenderPass
+	public struct Image
+	{
+		public IntPtr Handle;
+	}
+
+	public struct ImageView
+	{
+		public IntPtr Handle;
+	}
+
+	public struct Instance
+	{
+		public IntPtr Handle;
+	}
+
+	public struct PhysicalDevice
+	{
+		public IntPtr Handle;
+	}
+
+	public struct Pipeline
 	{
 		public IntPtr Handle;
 	}
@@ -149,27 +114,37 @@ namespace SharpVk.Interop
 		public IntPtr Handle;
 	}
 
-	public struct DisplayKHR
+	public struct PipelineLayout
 	{
 		public IntPtr Handle;
 	}
 
-	public struct DisplayModeKHR
+	public struct QueryPool
 	{
 		public IntPtr Handle;
 	}
 
-	public struct SurfaceKHR
+	public struct Queue
 	{
 		public IntPtr Handle;
 	}
 
-	public struct SwapchainKHR
+	public struct RenderPass
 	{
 		public IntPtr Handle;
 	}
 
-	public struct DebugReportCallbackEXT
+	public struct Sampler
+	{
+		public IntPtr Handle;
+	}
+
+	public struct Semaphore
+	{
+		public IntPtr Handle;
+	}
+
+	public struct ShaderModule
 	{
 		public IntPtr Handle;
 	}
