@@ -52,6 +52,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Unions.cs">
+      <DependentUpon>Unions.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Structs.cs">
       <DependentUpon>Structs.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -60,11 +65,6 @@
     <Compile Include="ResultUtil.cs" />
     <Compile Include="Classes.cs">
       <DependentUpon>Classes.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Unions.cs">
-      <DependentUpon>Unions.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -100,6 +100,10 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Enums.cs</LastGenOutput>
     </Content>
+    <Content Include="Unions.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Unions.cs</LastGenOutput>
+    </Content>
     <Content Include="Structs.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Structs.cs</LastGenOutput>
@@ -108,10 +112,6 @@
     <Content Include="Classes.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Classes.cs</LastGenOutput>
-    </Content>
-    <Content Include="Unions.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Unions.cs</LastGenOutput>
     </Content>
     <Content Include="Interop\Handles.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

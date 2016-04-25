@@ -1,51 +1,40 @@
-﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
 <#@ assembly name="System.Core" #>
 <#@ assembly name="System.Xml" #>
 <#@ assembly name="System.Xml.Linq" #>
+<#@ import namespace="System.IO" #>
 <#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Net" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Xml.Linq" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
 <#@ include file=".\License.tt" #>
 <#@ include file=".\Vk.ttinclude" #>
+<#
+	var parser = GetParser();
+	var generator = new TypeGenerator();
+
+	var types = generator.Generate(parser.Run());
+#>
 using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
 <#
-	foreach(var union in GetUnions())
+	foreach(var structType in types.Unions)
 	{
 #>
 	[StructLayout(LayoutKind.Explicit)]
-	public struct <#=union.Name#>
+	public struct <#=structType.Name#>
 	{
 <#
-		foreach(var member in union.Members)
+		foreach(var member in structType.Members)
         {
-			string memberTypeName = member.Type.Name;
-			if(member.Type.Category == Category.@struct && !member.Type.IsSimpleStruct)
-			{
-				memberTypeName = "Interop." + memberTypeName;
-			}
-
-			if(member.Size == 0)
-			{
 #>
-		[FieldOffset(0)]
-		public <#=memberTypeName#> <#=member.Name#>;
+		[FieldOffset(<#=member.FieldOffset#>)]
+		public <#=member.TypeName#> <#=member.Name#>;
 <#
-			}
-			else
-			{
-				for(int index = 0; index < member.Size; index++)
-				{
-#>
-		[FieldOffset(sizeof(<#=memberTypeName#>) * <#=index#>)]
-		public <#=memberTypeName#> <#=member.Name#>_<#=index#>;
-<#
-				}
-			}
         }
 #>
 	}

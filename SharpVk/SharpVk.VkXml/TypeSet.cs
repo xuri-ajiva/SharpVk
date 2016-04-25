@@ -23,6 +23,12 @@ namespace SharpVk.VkXml
             private set;
         } = new List<VkStruct>();
 
+        public List<VkStruct> Unions
+        {
+            get;
+            private set;
+        } = new List<VkStruct>();
+
         public class VkConstant
         {
             public string Name
@@ -104,6 +110,12 @@ namespace SharpVk.VkXml
             }
 
             public string TypeName
+            {
+                get;
+                set;
+            }
+
+            public string FieldOffset
             {
                 get;
                 set;

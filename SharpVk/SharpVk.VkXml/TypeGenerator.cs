@@ -19,12 +19,77 @@ namespace SharpVk.VkXml
             {"size_t", "UIntPtr"}
         };
 
+        private static readonly string[] digitsSuffix = new[] { "flags", "type", "bits" };
+
         public TypeSet Generate(SpecParser.ParsedSpec spec)
         {
             var typeData = GetTypeData(spec);
 
             var result = new TypeSet();
 
+            SetPrimitiveTypeNames(typeData);
+
+            GenerateConstants(spec, result);
+
+            GenerateEnumerations(spec, typeData, result);
+
+            foreach (var type in typeData.Values.Where(x => x.Data.Category == TypeCategory.union))
+            {
+                var newStruct = new TypeSet.VkStruct
+                {
+                    Name = type.Name
+                };
+
+                foreach (var member in type.Data.Members)
+                {
+                    switch (member.FixedLength.Type)
+                    {
+                        case SpecParser.FixedLengthType.None:
+                            newStruct.Members.Add(new TypeSet.VkStructMember
+                            {
+                                Name = JoinNameParts(member.NameParts),
+                                TypeName = typeData[GetMemberTypeName(member)].Name,
+                                FieldOffset = "0"
+                            });
+                            break;
+                        case SpecParser.FixedLengthType.EnumReference:
+                            throw new NotSupportedException("Fixed-length arrays with named lengths are not currently supported in Unions.");
+                        case SpecParser.FixedLengthType.IntegerLiteral:
+                            int length = int.Parse(member.FixedLength.Value);
+
+                            Console.WriteLine("{0}: {1}", member.VkName, length);
+
+                            for (int index = 0; index < length; index++)
+                            {
+                                var nameParts = member.NameParts.Concat(new[] { "_", index.ToString() });
+                                string typeName = typeData[GetMemberTypeName(member)].Name;
+
+                                newStruct.Members.Add(new TypeSet.VkStructMember
+                                {
+                                    Name = JoinNameParts(nameParts),
+                                    TypeName = typeName,
+                                    FieldOffset = string.Format("sizeof({0}) * {1}", typeName, index)
+                                });
+                            }
+
+                            break;
+                    }
+                }
+
+                result.Unions.Add(newStruct);
+            }
+
+            GenerateNonInteropStructs(typeData, result);
+
+            foreach (var type in typeData.Values.Where(x => x.RequiresInterop))
+            {
+            }
+
+            return result;
+        }
+
+        private static void SetPrimitiveTypeNames(Dictionary<string, TypeDesc> typeData)
+        {
             foreach (var type in typeData.Values)
             {
                 if (type.Data.Category == TypeCategory.None)
@@ -32,11 +97,10 @@ namespace SharpVk.VkXml
                     type.Name = primitiveTypes[type.Data.VkName];
                 }
             }
+        }
 
-            GenerateConstants(spec, result);
-
-            GenerateEnumerations(spec, typeData, result);
-
+        private static void GenerateNonInteropStructs(Dictionary<string, TypeDesc> typeData, TypeSet result)
+        {
             foreach (var type in typeData.Values.Where(x => !x.RequiresInterop && x.Data.Category == TypeCategory.@struct))
             {
                 var newStruct = new TypeSet.VkStruct
@@ -46,32 +110,31 @@ namespace SharpVk.VkXml
 
                 foreach (var member in type.Data.Members)
                 {
-                    string memberTypeName = member.Type;
-
-                    if (memberTypeName.EndsWith("Bits"))
-                    {
-                        // Some struct members incorrectly reference the
-                        // "*FlagBits" enum name, rather than the "Flags"
-                        // type name. Quietly fix that here.
-
-                        memberTypeName = memberTypeName.Replace("FlagBits", "Flags");
-                    }
-
                     newStruct.Members.Add(new TypeSet.VkStructMember
                     {
                         Name = JoinNameParts(member.NameParts),
-                        TypeName = typeData[memberTypeName].Name
+                        TypeName = typeData[GetMemberTypeName(member)].Name
                     });
                 }
 
                 result.Structs.Add(newStruct);
             }
+        }
 
-            foreach (var type in typeData.Values.Where(x => x.RequiresInterop))
+        private static string GetMemberTypeName(SpecParser.ParsedMember member)
+        {
+            string memberTypeName = member.Type;
+
+            if (memberTypeName.EndsWith("Bits"))
             {
+                // Some struct members incorrectly reference the
+                // "*FlagBits" enum name, rather than the "Flags"
+                // type name. Quietly fix that here.
+
+                memberTypeName = memberTypeName.Replace("FlagBits", "Flags");
             }
 
-            return result;
+            return memberTypeName;
         }
 
         private static void GenerateEnumerations(SpecParser.ParsedSpec spec, Dictionary<string, TypeDesc> typeData, TypeSet result)
@@ -134,8 +197,6 @@ namespace SharpVk.VkXml
             });
         }
 
-        private static readonly string[] digitsSuffix = new[] { "flags", "type", "bits" };
-
         private static void PopulateFields(TypeSet.VkEnumeration newEnumeration, SpecParser.ParsedEnum enumeration)
         {
             string digitsPrefix = JoinNameParts(enumeration.NameParts.TakeWhile(x => !digitsSuffix.Contains(x)));
@@ -197,11 +258,7 @@ namespace SharpVk.VkXml
             {
                 Data = x,
                 Name = GetNameForElement(x),
-                RequiresInterop = x.Category == TypeCategory.@struct
-                                                    && x.Members.Any(y => y.FixedLength.Type != SpecParser.FixedLengthType.None
-                                                                            || (y.PointerType != PointerType.Value
-                                                                                && y.PointerType != PointerType.ConstValue
-                                                                            || spec.Types[y.Type].Category == TypeCategory.handle))
+                RequiresInterop = RequiresInterop(spec, x)
             });
 
             bool newInteropTypes = true;
@@ -223,6 +280,16 @@ namespace SharpVk.VkXml
             }
 
             return typeData;
+        }
+
+        private static bool RequiresInterop(SpecParser.ParsedSpec spec, SpecParser.ParsedType type)
+        {
+            return type.Category == TypeCategory.@struct
+                && type.Members.Any(y =>
+                    y.FixedLength.Type != SpecParser.FixedLengthType.None
+                        || (y.PointerType != PointerType.Value
+                            && y.PointerType != PointerType.ConstValue
+                            || spec.Types[y.Type].Category == TypeCategory.handle));
         }
 
         private static string GetNameForElement(SpecParser.ParsedElement element, int trimFromEnd = 0)
