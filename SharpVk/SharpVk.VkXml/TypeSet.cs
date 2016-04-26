@@ -29,6 +29,12 @@ namespace SharpVk.VkXml
             private set;
         } = new List<VkStruct>();
 
+        public List<VkClass> Classes
+        {
+            get;
+            private set;
+        } = new List<VkClass>();
+
         public List<VkStruct> Unions
         {
             get;
@@ -40,6 +46,42 @@ namespace SharpVk.VkXml
             get;
             private set;
         } = new List<VkHandle>();
+
+        public class VkClass
+        {
+            public string Name
+            {
+                get;
+                set;
+            }
+
+            public List<VkClassProperty> Properties
+            {
+                get;
+                private set;
+            } = new List<VkClassProperty>();
+        }
+
+        public class VkClassProperty
+        {
+            public string Name
+            {
+                get;
+                set;
+            }
+
+            public string TypeName
+            {
+                get;
+                set;
+            }
+
+            public bool IsReadOnly
+            {
+                get;
+                set;
+            }
+        }
 
         public class VkConstant
         {

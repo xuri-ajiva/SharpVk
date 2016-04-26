@@ -24,6 +24,21 @@ using System;
 
 namespace SharpVk
 {
+	public struct SampleMask
+	{
+		private uint value;
+
+		public static implicit operator SampleMask(uint value)
+		{
+			return new SampleMask { value = value };
+		}
+
+		public static implicit operator uint(SampleMask size)
+		{
+			return size.value;
+		}
+	}
+
 	public struct Bool32
 	{
 		private uint value;
@@ -94,9 +109,9 @@ namespace SharpVk
 	public struct BufferCopy
 	{
 
-		public DeviceSize SrcOffset;
+		public DeviceSize SourceOffset;
 
-		public DeviceSize DstOffset;
+		public DeviceSize DestinationOffset;
 
 		public DeviceSize Size;
 	}
@@ -232,13 +247,13 @@ namespace SharpVk
 	public struct ImageCopy
 	{
 
-		public ImageSubresourceLayers SrcSubresource;
+		public ImageSubresourceLayers SourceSubresource;
 
-		public Offset3D SrcOffset;
+		public Offset3D SourceOffset;
 
-		public ImageSubresourceLayers DstSubresource;
+		public ImageSubresourceLayers DestinationSubresource;
 
-		public Offset3D DstOffset;
+		public Offset3D DestinationOffset;
 
 		public Extent3D Extent;
 	}
@@ -260,13 +275,13 @@ namespace SharpVk
 	public struct ImageResolve
 	{
 
-		public ImageSubresourceLayers SrcSubresource;
+		public ImageSubresourceLayers SourceSubresource;
 
-		public Offset3D SrcOffset;
+		public Offset3D SourceOffset;
 
-		public ImageSubresourceLayers DstSubresource;
+		public ImageSubresourceLayers DestinationSubresource;
 
-		public Offset3D DstOffset;
+		public Offset3D DestinationOffset;
 
 		public Extent3D Extent;
 	}
@@ -368,7 +383,7 @@ namespace SharpVk
 
 		public Bool32 SampleRateShading;
 
-		public Bool32 DualSrcBlend;
+		public Bool32 DualSourceBlend;
 
 		public Bool32 LogicOp;
 
@@ -484,15 +499,15 @@ namespace SharpVk
 
 		public Bool32 BlendEnable;
 
-		public BlendFactor SrcColorBlendFactor;
+		public BlendFactor SourceColorBlendFactor;
 
-		public BlendFactor DstColorBlendFactor;
+		public BlendFactor DestinationColorBlendFactor;
 
 		public BlendOp ColorBlendOp;
 
-		public BlendFactor SrcAlphaBlendFactor;
+		public BlendFactor SourceAlphaBlendFactor;
 
-		public BlendFactor DstAlphaBlendFactor;
+		public BlendFactor DestinationAlphaBlendFactor;
 
 		public BlendOp AlphaBlendOp;
 
@@ -584,17 +599,17 @@ namespace SharpVk
 	public struct SubpassDependency
 	{
 
-		public uint SrcSubpass;
+		public uint SourceSubpass;
 
-		public uint DstSubpass;
+		public uint DestinationSubpass;
 
-		public PipelineStageFlags SrcStageMask;
+		public PipelineStageFlags SourceStageMask;
 
-		public PipelineStageFlags DstStageMask;
+		public PipelineStageFlags DestinationStageMask;
 
-		public AccessFlags SrcAccessMask;
+		public AccessFlags SourceAccessMask;
 
-		public AccessFlags DstAccessMask;
+		public AccessFlags DestinationAccessMask;
 
 		public DependencyFlags DependencyFlags;
 	}

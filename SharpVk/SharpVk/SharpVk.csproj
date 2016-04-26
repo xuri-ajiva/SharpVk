@@ -63,11 +63,11 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="ResultUtil.cs" />
-    <None Include="Classes.cs">
+    <Compile Include="Classes.cs">
       <DependentUpon>Classes.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-    </None>
+    </Compile>
     <Compile Include="Interop\Handles.cs">
       <DependentUpon>Handles.tt</DependentUpon>
       <AutoGen>True</AutoGen>

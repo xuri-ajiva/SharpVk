@@ -21,132 +21,16 @@
 //SOFTWARE.
 
 using System;
-using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
 
-	public class PhysicalDeviceProperties
+	public class AllocationCallbacks
 	{
-
-		public uint ApiVersion
-		{
-			get;
-			private set;
-		}
-
-		public uint DriverVersion
-		{
-			get;
-			private set;
-		}
-
-		public uint VendorID
-		{
-			get;
-			private set;
-		}
-
-		public uint DeviceID
-		{
-			get;
-			private set;
-		}
-
-		public PhysicalDeviceType DeviceType
-		{
-			get;
-			private set;
-		}
-
-		public string DeviceName
-		{
-			get;
-			private set;
-		}
-
-		public byte[] PipelineCacheUUID
-		{
-			get;
-			private set;
-		}
-
-		public PhysicalDeviceLimits Limits
-		{
-			get;
-			private set;
-		}
-
-		public PhysicalDeviceSparseProperties SparseProperties
-		{
-			get;
-			private set;
-		}
-	}
-
-	public class ExtensionProperties
-	{
-
-		public string ExtensionName
-		{
-			get;
-			private set;
-		}
-
-		public uint SpecVersion
-		{
-			get;
-			private set;
-		}
-	}
-
-	public class LayerProperties
-	{
-
-		public string LayerName
-		{
-			get;
-			private set;
-		}
-
-		public uint SpecVersion
-		{
-			get;
-			private set;
-		}
-
-		public uint ImplementationVersion
-		{
-			get;
-			private set;
-		}
-
-		public string Description
-		{
-			get;
-			private set;
-		}
 	}
 
 	public class ApplicationInfo
 	{
-
-		internal unsafe Interop.ApplicationInfo MarshalTo()
-		{
-			var result = new Interop.ApplicationInfo();
-
-			result.SType = StructureType.ApplicationInfo;
-
-			result.ApplicationName = Interop.HeapUtil.MarshalStringToPointer(this.ApplicationName);
-			result.ApplicationVersion = this.ApplicationVersion;
-			result.EngineName = Interop.HeapUtil.MarshalStringToPointer(this.EngineName);
-			result.EngineVersion = this.EngineVersion;
-			result.ApiVersion = this.ApiVersion;
-
-			return result;
-		}
-
-
 		public string ApplicationName
 		{
 			get;
@@ -176,78 +60,232 @@ namespace SharpVk
 			get;
 			set;
 		}
+
 	}
 
-	public class AllocationCallbacks
+	public class BindSparseInfo
 	{
-
-		internal unsafe Interop.AllocationCallbacks MarshalTo()
-		{
-			var result = new Interop.AllocationCallbacks();
-			result.PfnAllocation = this.PfnAllocation;
-			result.PfnReallocation = this.PfnReallocation;
-			result.PfnFree = this.PfnFree;
-			result.PfnInternalAllocation = this.PfnInternalAllocation;
-			result.PfnInternalFree = this.PfnInternalFree;
-
-			return result;
-		}
-
-
-		public IntPtr PfnAllocation
+		public Semaphore[] WaitSemaphores
 		{
 			get;
 			set;
 		}
 
-		public IntPtr PfnReallocation
+		public SparseBufferMemoryBindInfo[] BufferBinds
 		{
 			get;
 			set;
 		}
 
-		public IntPtr PfnFree
+		public SparseImageOpaqueMemoryBindInfo[] ImageOpaqueBinds
 		{
 			get;
 			set;
 		}
 
-		public IntPtr PfnInternalAllocation
+		public SparseImageMemoryBindInfo[] ImageBinds
 		{
 			get;
 			set;
 		}
 
-		public IntPtr PfnInternalFree
+		public Semaphore[] SignalSemaphores
 		{
 			get;
 			set;
 		}
+
 	}
 
-	public class DeviceQueueCreateInfo
+	public class BufferCreateInfo
 	{
-
-		internal unsafe Interop.DeviceQueueCreateInfo MarshalTo()
+		public BufferCreateFlags Flags
 		{
-			var result = new Interop.DeviceQueueCreateInfo();
-
-			result.SType = StructureType.DeviceQueueCreateInfo;
-
-			result.Flags = this.Flags;
-			result.QueueFamilyIndex = this.QueueFamilyIndex;
-			if(this.QueuePriorities != null)
-			{
-				result.QueuePriorities = (float*)Marshal.AllocHGlobal(Marshal.SizeOf<float>() * this.QueuePriorities.Length).ToPointer();
-				Interop.HeapUtil.MarshalArrayToPointer(this.QueuePriorities, this.QueuePriorities.Length, result.QueuePriorities);
-				result.QueueCount = (uint)(this.QueuePriorities.Length);
-			}
-
-			return result;
+			get;
+			set;
 		}
 
+		public DeviceSize Size
+		{
+			get;
+			set;
+		}
 
-		public uint Flags
+		public BufferUsageFlags Usage
+		{
+			get;
+			set;
+		}
+
+		public SharingMode SharingMode
+		{
+			get;
+			set;
+		}
+
+		public uint[] QueueFamilyIndices
+		{
+			get;
+			set;
+		}
+
+	}
+
+	public class BufferMemoryBarrier
+	{
+		public AccessFlags SourceAccessMask
+		{
+			get;
+			set;
+		}
+
+		public AccessFlags DestinationAccessMask
+		{
+			get;
+			set;
+		}
+
+		public uint SourceQueueFamilyIndex
+		{
+			get;
+			set;
+		}
+
+		public uint DestinationQueueFamilyIndex
+		{
+			get;
+			set;
+		}
+
+		public Buffer Buffer
+		{
+			get;
+			set;
+		}
+
+		public DeviceSize Offset
+		{
+			get;
+			set;
+		}
+
+		public DeviceSize Size
+		{
+			get;
+			set;
+		}
+
+	}
+
+	public class BufferViewCreateInfo
+	{
+		public BufferViewCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public Buffer Buffer
+		{
+			get;
+			set;
+		}
+
+		public Format Format
+		{
+			get;
+			set;
+		}
+
+		public DeviceSize Offset
+		{
+			get;
+			set;
+		}
+
+		public DeviceSize Range
+		{
+			get;
+			set;
+		}
+
+	}
+
+	public class CommandBufferAllocateInfo
+	{
+		public CommandPool CommandPool
+		{
+			get;
+			set;
+		}
+
+		public CommandBufferLevel Level
+		{
+			get;
+			set;
+		}
+
+		public uint CommandBufferCount
+		{
+			get;
+			set;
+		}
+
+	}
+
+	public class CommandBufferBeginInfo
+	{
+		public CommandBufferUsageFlags Flags
+		{
+			get;
+			set;
+		}
+
+	}
+
+	public class CommandBufferInheritanceInfo
+	{
+		public RenderPass RenderPass
+		{
+			get;
+			set;
+		}
+
+		public uint Subpass
+		{
+			get;
+			set;
+		}
+
+		public Framebuffer Framebuffer
+		{
+			get;
+			set;
+		}
+
+		public Bool32 OcclusionQueryEnable
+		{
+			get;
+			set;
+		}
+
+		public QueryControlFlags QueryFlags
+		{
+			get;
+			set;
+		}
+
+		public QueryPipelineStatisticFlags PipelineStatistics
+		{
+			get;
+			set;
+		}
+
+	}
+
+	public class CommandPoolCreateInfo
+	{
+		public CommandPoolCreateFlags Flags
 		{
 			get;
 			set;
@@ -259,41 +297,217 @@ namespace SharpVk
 			set;
 		}
 
-		public float[] QueuePriorities
+	}
+
+	public class ComputePipelineCreateInfo
+	{
+		public PipelineCreateFlags Flags
 		{
 			get;
 			set;
 		}
+
+		public PipelineShaderStageCreateInfo Stage
+		{
+			get;
+			set;
+		}
+
+		public PipelineLayout Layout
+		{
+			get;
+			set;
+		}
+
+		public Pipeline BasePipelineHandle
+		{
+			get;
+			set;
+		}
+
+		public int BasePipelineIndex
+		{
+			get;
+			set;
+		}
+
+	}
+
+	public class CopyDescriptorSet
+	{
+		public DescriptorSet SourceSet
+		{
+			get;
+			set;
+		}
+
+		public uint SourceBinding
+		{
+			get;
+			set;
+		}
+
+		public uint SourceArrayElement
+		{
+			get;
+			set;
+		}
+
+		public DescriptorSet DestinationSet
+		{
+			get;
+			set;
+		}
+
+		public uint DestinationBinding
+		{
+			get;
+			set;
+		}
+
+		public uint DestinationArrayElement
+		{
+			get;
+			set;
+		}
+
+		public uint DescriptorCount
+		{
+			get;
+			set;
+		}
+
+	}
+
+	public class DescriptorBufferInfo
+	{
+		public Buffer Buffer
+		{
+			get;
+			set;
+		}
+
+		public DeviceSize Offset
+		{
+			get;
+			set;
+		}
+
+		public DeviceSize Range
+		{
+			get;
+			set;
+		}
+
+	}
+
+	public class DescriptorImageInfo
+	{
+		public Sampler Sampler
+		{
+			get;
+			set;
+		}
+
+		public ImageView ImageView
+		{
+			get;
+			set;
+		}
+
+		public ImageLayout ImageLayout
+		{
+			get;
+			set;
+		}
+
+	}
+
+	public class DescriptorPoolCreateInfo
+	{
+		public DescriptorPoolCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public uint MaxSets
+		{
+			get;
+			set;
+		}
+
+		public DescriptorPoolSize[] PoolSizes
+		{
+			get;
+			set;
+		}
+
+	}
+
+	public class DescriptorSetAllocateInfo
+	{
+		public DescriptorPool DescriptorPool
+		{
+			get;
+			set;
+		}
+
+		public DescriptorSetLayout[] SetLayouts
+		{
+			get;
+			set;
+		}
+
+	}
+
+	public class DescriptorSetLayoutBinding
+	{
+		public uint Binding
+		{
+			get;
+			set;
+		}
+
+		public DescriptorType DescriptorType
+		{
+			get;
+			set;
+		}
+
+		public ShaderStageFlags StageFlags
+		{
+			get;
+			set;
+		}
+
+		public Sampler[] ImmutableSamplers
+		{
+			get;
+			set;
+		}
+
+	}
+
+	public class DescriptorSetLayoutCreateInfo
+	{
+		public DescriptorSetLayoutCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public DescriptorSetLayoutBinding[] Bindings
+		{
+			get;
+			set;
+		}
+
 	}
 
 	public class DeviceCreateInfo
 	{
-
-		internal unsafe Interop.DeviceCreateInfo MarshalTo()
-		{
-			var result = new Interop.DeviceCreateInfo();
-
-			result.SType = StructureType.DeviceCreateInfo;
-
-			result.Flags = this.Flags;
-			if(this.EnabledLayerNames != null)
-			{
-				result.EnabledLayerNames = (char**)Marshal.AllocHGlobal(Marshal.SizeOf<string>() * this.EnabledLayerNames.Length).ToPointer();
-				Interop.HeapUtil.MarshalArrayToPointer(this.EnabledLayerNames, this.EnabledLayerNames.Length, result.EnabledLayerNames);
-				result.EnabledLayerCount = (uint)(this.EnabledLayerNames.Length);
-			}
-			if(this.EnabledExtensionNames != null)
-			{
-				result.EnabledExtensionNames = (char**)Marshal.AllocHGlobal(Marshal.SizeOf<string>() * this.EnabledExtensionNames.Length).ToPointer();
-				Interop.HeapUtil.MarshalArrayToPointer(this.EnabledExtensionNames, this.EnabledExtensionNames.Length, result.EnabledExtensionNames);
-				result.EnabledExtensionCount = (uint)(this.EnabledExtensionNames.Length);
-			}
-
-			return result;
-		}
-
-
-		public uint Flags
+		public DeviceCreateFlags Flags
 		{
 			get;
 			set;
@@ -317,573 +531,182 @@ namespace SharpVk
 			set;
 		}
 
-		public PhysicalDeviceFeatures EnabledFeatures
-		{
-			get;
-			set;
-		}
 	}
 
-	public class InstanceCreateInfo
+	public class DeviceQueueCreateInfo
 	{
-
-		internal unsafe Interop.InstanceCreateInfo MarshalTo()
-		{
-			var result = new Interop.InstanceCreateInfo();
-
-			result.SType = StructureType.InstanceCreateInfo;
-
-			result.Flags = this.Flags;
-			if(this.EnabledLayerNames != null)
-			{
-				result.EnabledLayerNames = (char**)Marshal.AllocHGlobal(Marshal.SizeOf<string>() * this.EnabledLayerNames.Length).ToPointer();
-				Interop.HeapUtil.MarshalArrayToPointer(this.EnabledLayerNames, this.EnabledLayerNames.Length, result.EnabledLayerNames);
-				result.EnabledLayerCount = (uint)(this.EnabledLayerNames.Length);
-			}
-			if(this.EnabledExtensionNames != null)
-			{
-				result.EnabledExtensionNames = (char**)Marshal.AllocHGlobal(Marshal.SizeOf<string>() * this.EnabledExtensionNames.Length).ToPointer();
-				Interop.HeapUtil.MarshalArrayToPointer(this.EnabledExtensionNames, this.EnabledExtensionNames.Length, result.EnabledExtensionNames);
-				result.EnabledExtensionCount = (uint)(this.EnabledExtensionNames.Length);
-			}
-
-			return result;
-		}
-
-
-		public uint Flags
+		public DeviceQueueCreateFlags Flags
 		{
 			get;
 			set;
 		}
 
-		public ApplicationInfo ApplicationInfo
+		public uint QueueFamilyIndex
 		{
 			get;
 			set;
 		}
 
-		public string[] EnabledLayerNames
+		public float[] QueuePriorities
 		{
 			get;
 			set;
 		}
 
-		public string[] EnabledExtensionNames
-		{
-			get;
-			set;
-		}
 	}
 
-	public class PhysicalDeviceMemoryProperties
+	public class EventCreateInfo
 	{
-
-		public uint MemoryTypeCount
+		public EventCreateFlags Flags
 		{
 			get;
-			private set;
+			set;
 		}
 
-		public MemoryType MemoryTypes
-		{
-			get;
-			private set;
-		}
-
-		public uint MemoryHeapCount
-		{
-			get;
-			private set;
-		}
-
-		public MemoryHeap MemoryHeaps
-		{
-			get;
-			private set;
-		}
 	}
 
-	public class MemoryAllocateInfo
+	public class ExtensionProperties
 	{
-
-		internal unsafe Interop.MemoryAllocateInfo MarshalTo()
-		{
-			var result = new Interop.MemoryAllocateInfo();
-
-			result.SType = StructureType.MemoryAllocateInfo;
-
-			result.AllocationSize = this.AllocationSize;
-			result.MemoryTypeIndex = this.MemoryTypeIndex;
-
-			return result;
-		}
-
-
-		public ulong AllocationSize
+		public char ExtensionName
 		{
 			get;
 			set;
 		}
 
-		public uint MemoryTypeIndex
+		public uint SpecVersion
 		{
 			get;
 			set;
 		}
+
 	}
 
-	public class MappedMemoryRange
+	public class FenceCreateInfo
 	{
-
-		internal unsafe Interop.MappedMemoryRange MarshalTo()
-		{
-			var result = new Interop.MappedMemoryRange();
-
-			result.SType = StructureType.MappedMemoryRange;
-
-			result.Offset = this.Offset;
-			result.Size = this.Size;
-
-			return result;
-		}
-
-
-		public ulong Offset
+		public FenceCreateFlags Flags
 		{
 			get;
 			set;
 		}
 
-		public ulong Size
-		{
-			get;
-			set;
-		}
 	}
 
-	public class DescriptorBufferInfo
+	public class FramebufferCreateInfo
 	{
-
-		internal unsafe Interop.DescriptorBufferInfo MarshalTo()
-		{
-			var result = new Interop.DescriptorBufferInfo();
-			result.Offset = this.Offset;
-			result.Range = this.Range;
-
-			return result;
-		}
-
-
-		public ulong Offset
+		public FramebufferCreateFlags Flags
 		{
 			get;
 			set;
 		}
 
-		public ulong Range
+		public RenderPass RenderPass
 		{
 			get;
 			set;
 		}
+
+		public ImageView[] Attachments
+		{
+			get;
+			set;
+		}
+
+		public uint Width
+		{
+			get;
+			set;
+		}
+
+		public uint Height
+		{
+			get;
+			set;
+		}
+
+		public uint Layers
+		{
+			get;
+			set;
+		}
+
 	}
 
-	public class DescriptorImageInfo
+	public class GraphicsPipelineCreateInfo
 	{
-
-		internal unsafe Interop.DescriptorImageInfo MarshalTo()
-		{
-			var result = new Interop.DescriptorImageInfo();
-			result.ImageLayout = this.ImageLayout;
-
-			return result;
-		}
-
-
-		public ImageLayout ImageLayout
+		public PipelineCreateFlags Flags
 		{
 			get;
 			set;
 		}
+
+		public PipelineShaderStageCreateInfo[] Stages
+		{
+			get;
+			set;
+		}
+
+		public PipelineLayout Layout
+		{
+			get;
+			set;
+		}
+
+		public RenderPass RenderPass
+		{
+			get;
+			set;
+		}
+
+		public uint Subpass
+		{
+			get;
+			set;
+		}
+
+		public Pipeline BasePipelineHandle
+		{
+			get;
+			set;
+		}
+
+		public int BasePipelineIndex
+		{
+			get;
+			set;
+		}
+
 	}
 
-	public class WriteDescriptorSet
+	public class ImageBlit
 	{
-
-		internal unsafe Interop.WriteDescriptorSet MarshalTo()
-		{
-			var result = new Interop.WriteDescriptorSet();
-
-			result.SType = StructureType.WriteDescriptorSet;
-
-			result.DstBinding = this.DstBinding;
-			result.DstArrayElement = this.DstArrayElement;
-			result.DescriptorType = this.DescriptorType;
-
-			return result;
-		}
-
-
-		public uint DstBinding
+		public ImageSubresourceLayers SourceSubresource
 		{
 			get;
 			set;
 		}
 
-		public uint DstArrayElement
+		public Offset3D SourceOffsets
 		{
 			get;
 			set;
 		}
 
-		public DescriptorType DescriptorType
+		public ImageSubresourceLayers DestinationSubresource
 		{
 			get;
 			set;
 		}
 
-		public DescriptorImageInfo[] ImageInfo
+		public Offset3D DestinationOffsets
 		{
 			get;
 			set;
 		}
 
-		public DescriptorBufferInfo[] BufferInfo
-		{
-			get;
-			set;
-		}
-	}
-
-	public class CopyDescriptorSet
-	{
-
-		internal unsafe Interop.CopyDescriptorSet MarshalTo()
-		{
-			var result = new Interop.CopyDescriptorSet();
-
-			result.SType = StructureType.CopyDescriptorSet;
-
-			result.SrcBinding = this.SrcBinding;
-			result.SrcArrayElement = this.SrcArrayElement;
-			result.DstBinding = this.DstBinding;
-			result.DstArrayElement = this.DstArrayElement;
-			result.DescriptorCount = this.DescriptorCount;
-
-			return result;
-		}
-
-
-		public uint SrcBinding
-		{
-			get;
-			set;
-		}
-
-		public uint SrcArrayElement
-		{
-			get;
-			set;
-		}
-
-		public uint DstBinding
-		{
-			get;
-			set;
-		}
-
-		public uint DstArrayElement
-		{
-			get;
-			set;
-		}
-
-		public uint DescriptorCount
-		{
-			get;
-			set;
-		}
-	}
-
-	public class BufferCreateInfo
-	{
-
-		internal unsafe Interop.BufferCreateInfo MarshalTo()
-		{
-			var result = new Interop.BufferCreateInfo();
-
-			result.SType = StructureType.BufferCreateInfo;
-
-			result.Flags = this.Flags;
-			result.Size = this.Size;
-			result.Usage = this.Usage;
-			result.SharingMode = this.SharingMode;
-			if(this.QueueFamilyIndices != null)
-			{
-				result.QueueFamilyIndices = (uint*)Marshal.AllocHGlobal(Marshal.SizeOf<uint>() * this.QueueFamilyIndices.Length).ToPointer();
-				Interop.HeapUtil.MarshalArrayToPointer(this.QueueFamilyIndices, this.QueueFamilyIndices.Length, result.QueueFamilyIndices);
-				result.QueueFamilyIndexCount = (uint)(this.QueueFamilyIndices.Length);
-			}
-
-			return result;
-		}
-
-
-		public BufferCreateFlags Flags
-		{
-			get;
-			set;
-		}
-
-		public ulong Size
-		{
-			get;
-			set;
-		}
-
-		public BufferUsageFlags Usage
-		{
-			get;
-			set;
-		}
-
-		public SharingMode SharingMode
-		{
-			get;
-			set;
-		}
-
-		public uint[] QueueFamilyIndices
-		{
-			get;
-			set;
-		}
-	}
-
-	public class BufferViewCreateInfo
-	{
-
-		internal unsafe Interop.BufferViewCreateInfo MarshalTo()
-		{
-			var result = new Interop.BufferViewCreateInfo();
-
-			result.SType = StructureType.BufferViewCreateInfo;
-
-			result.Flags = this.Flags;
-			result.Format = this.Format;
-			result.Offset = this.Offset;
-			result.Range = this.Range;
-
-			return result;
-		}
-
-
-		public uint Flags
-		{
-			get;
-			set;
-		}
-
-		public Format Format
-		{
-			get;
-			set;
-		}
-
-		public ulong Offset
-		{
-			get;
-			set;
-		}
-
-		public ulong Range
-		{
-			get;
-			set;
-		}
-	}
-
-	public class MemoryBarrier
-	{
-
-		internal unsafe Interop.MemoryBarrier MarshalTo()
-		{
-			var result = new Interop.MemoryBarrier();
-
-			result.SType = StructureType.MemoryBarrier;
-
-			result.SrcAccessMask = this.SrcAccessMask;
-			result.DstAccessMask = this.DstAccessMask;
-
-			return result;
-		}
-
-
-		public AccessFlags SrcAccessMask
-		{
-			get;
-			set;
-		}
-
-		public AccessFlags DstAccessMask
-		{
-			get;
-			set;
-		}
-	}
-
-	public class BufferMemoryBarrier
-	{
-
-		internal unsafe Interop.BufferMemoryBarrier MarshalTo()
-		{
-			var result = new Interop.BufferMemoryBarrier();
-
-			result.SType = StructureType.BufferMemoryBarrier;
-
-			result.SrcAccessMask = this.SrcAccessMask;
-			result.DstAccessMask = this.DstAccessMask;
-			result.SrcQueueFamilyIndex = this.SrcQueueFamilyIndex;
-			result.DstQueueFamilyIndex = this.DstQueueFamilyIndex;
-			result.Offset = this.Offset;
-			result.Size = this.Size;
-
-			return result;
-		}
-
-
-		public AccessFlags SrcAccessMask
-		{
-			get;
-			set;
-		}
-
-		public AccessFlags DstAccessMask
-		{
-			get;
-			set;
-		}
-
-		public uint SrcQueueFamilyIndex
-		{
-			get;
-			set;
-		}
-
-		public uint DstQueueFamilyIndex
-		{
-			get;
-			set;
-		}
-
-		public ulong Offset
-		{
-			get;
-			set;
-		}
-
-		public ulong Size
-		{
-			get;
-			set;
-		}
-	}
-
-	public class ImageMemoryBarrier
-	{
-
-		internal unsafe Interop.ImageMemoryBarrier MarshalTo()
-		{
-			var result = new Interop.ImageMemoryBarrier();
-
-			result.SType = StructureType.ImageMemoryBarrier;
-
-			result.SrcAccessMask = this.SrcAccessMask;
-			result.DstAccessMask = this.DstAccessMask;
-			result.OldLayout = this.OldLayout;
-			result.NewLayout = this.NewLayout;
-			result.SrcQueueFamilyIndex = this.SrcQueueFamilyIndex;
-			result.DstQueueFamilyIndex = this.DstQueueFamilyIndex;
-			result.SubresourceRange = this.SubresourceRange;
-
-			return result;
-		}
-
-
-		public AccessFlags SrcAccessMask
-		{
-			get;
-			set;
-		}
-
-		public AccessFlags DstAccessMask
-		{
-			get;
-			set;
-		}
-
-		public ImageLayout OldLayout
-		{
-			get;
-			set;
-		}
-
-		public ImageLayout NewLayout
-		{
-			get;
-			set;
-		}
-
-		public uint SrcQueueFamilyIndex
-		{
-			get;
-			set;
-		}
-
-		public uint DstQueueFamilyIndex
-		{
-			get;
-			set;
-		}
-
-		public ImageSubresourceRange SubresourceRange
-		{
-			get;
-			set;
-		}
 	}
 
 	public class ImageCreateInfo
 	{
-
-		internal unsafe Interop.ImageCreateInfo MarshalTo()
-		{
-			var result = new Interop.ImageCreateInfo();
-
-			result.SType = StructureType.ImageCreateInfo;
-
-			result.Flags = this.Flags;
-			result.ImageType = this.ImageType;
-			result.Format = this.Format;
-			result.Extent = this.Extent;
-			result.MipLevels = this.MipLevels;
-			result.ArrayLayers = this.ArrayLayers;
-			result.Samples = this.Samples;
-			result.Tiling = this.Tiling;
-			result.Usage = this.Usage;
-			result.SharingMode = this.SharingMode;
-			if(this.QueueFamilyIndices != null)
-			{
-				result.QueueFamilyIndices = (uint*)Marshal.AllocHGlobal(Marshal.SizeOf<uint>() * this.QueueFamilyIndices.Length).ToPointer();
-				Interop.HeapUtil.MarshalArrayToPointer(this.QueueFamilyIndices, this.QueueFamilyIndices.Length, result.QueueFamilyIndices);
-				result.QueueFamilyIndexCount = (uint)(this.QueueFamilyIndices.Length);
-			}
-			result.InitialLayout = this.InitialLayout;
-
-			return result;
-		}
-
-
 		public ImageCreateFlags Flags
 		{
 			get;
@@ -955,28 +778,70 @@ namespace SharpVk
 			get;
 			set;
 		}
+
+	}
+
+	public class ImageMemoryBarrier
+	{
+		public AccessFlags SourceAccessMask
+		{
+			get;
+			set;
+		}
+
+		public AccessFlags DestinationAccessMask
+		{
+			get;
+			set;
+		}
+
+		public ImageLayout OldLayout
+		{
+			get;
+			set;
+		}
+
+		public ImageLayout NewLayout
+		{
+			get;
+			set;
+		}
+
+		public uint SourceQueueFamilyIndex
+		{
+			get;
+			set;
+		}
+
+		public uint DestinationQueueFamilyIndex
+		{
+			get;
+			set;
+		}
+
+		public Image Image
+		{
+			get;
+			set;
+		}
+
+		public ImageSubresourceRange SubresourceRange
+		{
+			get;
+			set;
+		}
+
 	}
 
 	public class ImageViewCreateInfo
 	{
-
-		internal unsafe Interop.ImageViewCreateInfo MarshalTo()
+		public ImageViewCreateFlags Flags
 		{
-			var result = new Interop.ImageViewCreateInfo();
-
-			result.SType = StructureType.ImageViewCreateInfo;
-
-			result.Flags = this.Flags;
-			result.ViewType = this.ViewType;
-			result.Format = this.Format;
-			result.Components = this.Components;
-			result.SubresourceRange = this.SubresourceRange;
-
-			return result;
+			get;
+			set;
 		}
 
-
-		public uint Flags
+		public Image Image
 		{
 			get;
 			set;
@@ -1005,776 +870,864 @@ namespace SharpVk
 			get;
 			set;
 		}
+
 	}
 
-	public class SparseMemoryBind
+	public class InstanceCreateInfo
 	{
-
-		internal unsafe Interop.SparseMemoryBind MarshalTo()
-		{
-			var result = new Interop.SparseMemoryBind();
-			result.ResourceOffset = this.ResourceOffset;
-			result.Size = this.Size;
-			result.MemoryOffset = this.MemoryOffset;
-			result.Flags = this.Flags;
-
-			return result;
-		}
-
-
-		public ulong ResourceOffset
+		public InstanceCreateFlags Flags
 		{
 			get;
 			set;
 		}
 
-		public ulong Size
+		public string[] EnabledLayerNames
 		{
 			get;
 			set;
 		}
 
-		public ulong MemoryOffset
+		public string[] EnabledExtensionNames
 		{
 			get;
 			set;
-		}
-
-		public SparseMemoryBindFlags Flags
-		{
-			get;
-			set;
-		}
-	}
-
-	public class SparseImageMemoryBind
-	{
-
-		internal unsafe Interop.SparseImageMemoryBind MarshalTo()
-		{
-			var result = new Interop.SparseImageMemoryBind();
-			result.Subresource = this.Subresource;
-			result.Offset = this.Offset;
-			result.Extent = this.Extent;
-			result.MemoryOffset = this.MemoryOffset;
-			result.Flags = this.Flags;
-
-			return result;
-		}
-
-
-		public ImageSubresource Subresource
-		{
-			get;
-			set;
-		}
-
-		public Offset3D Offset
-		{
-			get;
-			set;
-		}
-
-		public Extent3D Extent
-		{
-			get;
-			set;
-		}
-
-		public ulong MemoryOffset
-		{
-			get;
-			set;
-		}
-
-		public SparseMemoryBindFlags Flags
-		{
-			get;
-			set;
-		}
-	}
-
-	public class SparseBufferMemoryBindInfo
-	{
-
-		internal unsafe Interop.SparseBufferMemoryBindInfo MarshalTo()
-		{
-			var result = new Interop.SparseBufferMemoryBindInfo();
-
-			return result;
-		}
-
-
-		public SparseMemoryBind[] Binds
-		{
-			get;
-			set;
-		}
-	}
-
-	public class SparseImageOpaqueMemoryBindInfo
-	{
-
-		internal unsafe Interop.SparseImageOpaqueMemoryBindInfo MarshalTo()
-		{
-			var result = new Interop.SparseImageOpaqueMemoryBindInfo();
-
-			return result;
-		}
-
-
-		public SparseMemoryBind[] Binds
-		{
-			get;
-			set;
-		}
-	}
-
-	public class SparseImageMemoryBindInfo
-	{
-
-		internal unsafe Interop.SparseImageMemoryBindInfo MarshalTo()
-		{
-			var result = new Interop.SparseImageMemoryBindInfo();
-
-			return result;
-		}
-
-
-		public SparseImageMemoryBind[] Binds
-		{
-			get;
-			set;
-		}
-	}
-
-	public class BindSparseInfo
-	{
-
-		internal unsafe Interop.BindSparseInfo MarshalTo()
-		{
-			var result = new Interop.BindSparseInfo();
-
-			result.SType = StructureType.BindSparseInfo;
-
-
-			return result;
-		}
-
-
-		public SparseBufferMemoryBindInfo[] BufferBinds
-		{
-			get;
-			set;
-		}
-
-		public SparseImageOpaqueMemoryBindInfo[] ImageOpaqueBinds
-		{
-			get;
-			set;
-		}
-
-		public SparseImageMemoryBindInfo[] ImageBinds
-		{
-			get;
-			set;
-		}
-	}
-
-	public class ImageBlit
-	{
-
-		internal unsafe Interop.ImageBlit MarshalTo()
-		{
-			var result = new Interop.ImageBlit();
-			result.SrcSubresource = this.SrcSubresource;
-			result.SrcOffsets = this.SrcOffsets;
-			result.DstSubresource = this.DstSubresource;
-			result.DstOffsets = this.DstOffsets;
-
-			return result;
-		}
-
-
-		public ImageSubresourceLayers SrcSubresource
-		{
-			get;
-			set;
-		}
-
-		public Offset3D SrcOffsets
-		{
-			get;
-			set;
-		}
-
-		public ImageSubresourceLayers DstSubresource
-		{
-			get;
-			set;
-		}
-
-		public Offset3D DstOffsets
-		{
-			get;
-			set;
-		}
-	}
-
-	public class ShaderModuleCreateInfo
-	{
-
-		internal unsafe Interop.ShaderModuleCreateInfo MarshalTo()
-		{
-			var result = new Interop.ShaderModuleCreateInfo();
-
-			result.SType = StructureType.ShaderModuleCreateInfo;
-
-			result.Flags = this.Flags;
-			if(this.Code != null)
-			{
-				result.Code = (uint*)Marshal.AllocHGlobal(Marshal.SizeOf<uint>() * this.Code.Length).ToPointer();
-				Interop.HeapUtil.MarshalArrayToPointer(this.Code, this.Code.Length, result.Code);
-				result.CodeSize = (UIntPtr)(this.Code.Length * 4);
-			}
-
-			return result;
-		}
-
-
-		public uint Flags
-		{
-			get;
-			set;
-		}
-
-		public uint[] Code
-		{
-			get;
-			set;
-		}
-	}
-
-	public class DescriptorSetLayoutBinding
-	{
-
-		internal unsafe Interop.DescriptorSetLayoutBinding MarshalTo()
-		{
-			var result = new Interop.DescriptorSetLayoutBinding();
-			result.Binding = this.Binding;
-			result.DescriptorType = this.DescriptorType;
-			result.StageFlags = this.StageFlags;
-
-			return result;
-		}
-
-
-		public uint Binding
-		{
-			get;
-			set;
-		}
-
-		public DescriptorType DescriptorType
-		{
-			get;
-			set;
-		}
-
-		public ShaderStageFlags StageFlags
-		{
-			get;
-			set;
-		}
-	}
-
-	public class DescriptorSetLayoutCreateInfo
-	{
-
-		internal unsafe Interop.DescriptorSetLayoutCreateInfo MarshalTo()
-		{
-			var result = new Interop.DescriptorSetLayoutCreateInfo();
-
-			result.SType = StructureType.DescriptorSetLayoutCreateInfo;
-
-			result.Flags = this.Flags;
-
-			return result;
-		}
-
-
-		public uint Flags
-		{
-			get;
-			set;
-		}
-
-		public DescriptorSetLayoutBinding[] Bindings
-		{
-			get;
-			set;
-		}
-	}
-
-	public class DescriptorPoolCreateInfo
-	{
-
-		internal unsafe Interop.DescriptorPoolCreateInfo MarshalTo()
-		{
-			var result = new Interop.DescriptorPoolCreateInfo();
-
-			result.SType = StructureType.DescriptorPoolCreateInfo;
-
-			result.Flags = this.Flags;
-			result.MaxSets = this.MaxSets;
-
-			return result;
-		}
-
-
-		public DescriptorPoolCreateFlags Flags
-		{
-			get;
-			set;
-		}
-
-		public uint MaxSets
-		{
-			get;
-			set;
-		}
-
-		public DescriptorPoolSize[] PoolSizes
-		{
-			get;
-			set;
-		}
-	}
-
-	public class DescriptorSetAllocateInfo
-	{
-
-		internal unsafe Interop.DescriptorSetAllocateInfo MarshalTo()
-		{
-			var result = new Interop.DescriptorSetAllocateInfo();
-
-			result.SType = StructureType.DescriptorSetAllocateInfo;
-
-
-			return result;
 		}
 
 	}
 
-	public class SpecializationInfo
+	public class LayerProperties
 	{
-
-		internal unsafe Interop.SpecializationInfo MarshalTo()
-		{
-			var result = new Interop.SpecializationInfo();
-
-			return result;
-		}
-
-
-		public SpecializationMapEntry[] MapEntries
+		public char LayerName
 		{
 			get;
 			set;
 		}
+
+		public uint SpecVersion
+		{
+			get;
+			set;
+		}
+
+		public uint ImplementationVersion
+		{
+			get;
+			set;
+		}
+
+		public char Description
+		{
+			get;
+			set;
+		}
+
 	}
 
-	public class PipelineShaderStageCreateInfo
+	public class MappedMemoryRange
 	{
-
-		internal unsafe Interop.PipelineShaderStageCreateInfo MarshalTo()
-		{
-			var result = new Interop.PipelineShaderStageCreateInfo();
-
-			result.SType = StructureType.PipelineShaderStageCreateInfo;
-
-			result.Flags = this.Flags;
-			result.Stage = this.Stage;
-			result.Name = Interop.HeapUtil.MarshalStringToPointer(this.Name);
-
-			return result;
-		}
-
-
-		public uint Flags
+		public DeviceMemory Memory
 		{
 			get;
 			set;
 		}
 
-		public ShaderStageFlags Stage
+		public DeviceSize Offset
 		{
 			get;
 			set;
 		}
 
-		public string Name
+		public DeviceSize Size
 		{
 			get;
 			set;
 		}
 
-		public SpecializationInfo SpecializationInfo
-		{
-			get;
-			set;
-		}
 	}
 
-	public class ComputePipelineCreateInfo
+	public class MemoryAllocateInfo
 	{
-
-		internal unsafe Interop.ComputePipelineCreateInfo MarshalTo()
-		{
-			var result = new Interop.ComputePipelineCreateInfo();
-
-			result.SType = StructureType.ComputePipelineCreateInfo;
-
-			result.Flags = this.Flags;
-			result.Stage = this.Stage.MarshalTo();
-			result.BasePipelineIndex = this.BasePipelineIndex;
-
-			return result;
-		}
-
-
-		public PipelineCreateFlags Flags
+		public DeviceSize AllocationSize
 		{
 			get;
 			set;
 		}
 
-		public PipelineShaderStageCreateInfo Stage
+		public uint MemoryTypeIndex
 		{
 			get;
 			set;
 		}
 
-		public int BasePipelineIndex
-		{
-			get;
-			set;
-		}
 	}
 
-	public class PipelineVertexInputStateCreateInfo
+	public class MemoryBarrier
 	{
-
-		internal unsafe Interop.PipelineVertexInputStateCreateInfo MarshalTo()
-		{
-			var result = new Interop.PipelineVertexInputStateCreateInfo();
-
-			result.SType = StructureType.PipelineVertexInputStateCreateInfo;
-
-			result.Flags = this.Flags;
-
-			return result;
-		}
-
-
-		public uint Flags
+		public AccessFlags SourceAccessMask
 		{
 			get;
 			set;
 		}
 
-		public VertexInputBindingDescription[] VertexBindingDescriptions
+		public AccessFlags DestinationAccessMask
 		{
 			get;
 			set;
 		}
 
-		public VertexInputAttributeDescription[] VertexAttributeDescriptions
-		{
-			get;
-			set;
-		}
 	}
 
-	public class PipelineInputAssemblyStateCreateInfo
+	public class PhysicalDeviceLimits
 	{
-
-		internal unsafe Interop.PipelineInputAssemblyStateCreateInfo MarshalTo()
-		{
-			var result = new Interop.PipelineInputAssemblyStateCreateInfo();
-
-			result.SType = StructureType.PipelineInputAssemblyStateCreateInfo;
-
-			result.Flags = this.Flags;
-			result.Topology = this.Topology;
-			result.PrimitiveRestartEnable = this.PrimitiveRestartEnable;
-
-			return result;
-		}
-
-
-		public uint Flags
+		public uint MaxImageDimension1D
 		{
 			get;
 			set;
 		}
 
-		public PrimitiveTopology Topology
+		public uint MaxImageDimension2D
 		{
 			get;
 			set;
 		}
 
-		public bool PrimitiveRestartEnable
+		public uint MaxImageDimension3D
 		{
 			get;
 			set;
 		}
+
+		public uint MaxImageDimensionCube
+		{
+			get;
+			set;
+		}
+
+		public uint MaxImageArrayLayers
+		{
+			get;
+			set;
+		}
+
+		public uint MaxTexelBufferElements
+		{
+			get;
+			set;
+		}
+
+		public uint MaxUniformBufferRange
+		{
+			get;
+			set;
+		}
+
+		public uint MaxStorageBufferRange
+		{
+			get;
+			set;
+		}
+
+		public uint MaxPushConstantsSize
+		{
+			get;
+			set;
+		}
+
+		public uint MaxMemoryAllocationCount
+		{
+			get;
+			set;
+		}
+
+		public uint MaxSamplerAllocationCount
+		{
+			get;
+			set;
+		}
+
+		public DeviceSize BufferImageGranularity
+		{
+			get;
+			set;
+		}
+
+		public DeviceSize SparseAddressSpaceSize
+		{
+			get;
+			set;
+		}
+
+		public uint MaxBoundDescriptorSets
+		{
+			get;
+			set;
+		}
+
+		public uint MaxPerStageDescriptorSamplers
+		{
+			get;
+			set;
+		}
+
+		public uint MaxPerStageDescriptorUniformBuffers
+		{
+			get;
+			set;
+		}
+
+		public uint MaxPerStageDescriptorStorageBuffers
+		{
+			get;
+			set;
+		}
+
+		public uint MaxPerStageDescriptorSampledImages
+		{
+			get;
+			set;
+		}
+
+		public uint MaxPerStageDescriptorStorageImages
+		{
+			get;
+			set;
+		}
+
+		public uint MaxPerStageDescriptorInputAttachments
+		{
+			get;
+			set;
+		}
+
+		public uint MaxPerStageResources
+		{
+			get;
+			set;
+		}
+
+		public uint MaxDescriptorSetSamplers
+		{
+			get;
+			set;
+		}
+
+		public uint MaxDescriptorSetUniformBuffers
+		{
+			get;
+			set;
+		}
+
+		public uint MaxDescriptorSetUniformBuffersDynamic
+		{
+			get;
+			set;
+		}
+
+		public uint MaxDescriptorSetStorageBuffers
+		{
+			get;
+			set;
+		}
+
+		public uint MaxDescriptorSetStorageBuffersDynamic
+		{
+			get;
+			set;
+		}
+
+		public uint MaxDescriptorSetSampledImages
+		{
+			get;
+			set;
+		}
+
+		public uint MaxDescriptorSetStorageImages
+		{
+			get;
+			set;
+		}
+
+		public uint MaxDescriptorSetInputAttachments
+		{
+			get;
+			set;
+		}
+
+		public uint MaxVertexInputAttributes
+		{
+			get;
+			set;
+		}
+
+		public uint MaxVertexInputBindings
+		{
+			get;
+			set;
+		}
+
+		public uint MaxVertexInputAttributeOffset
+		{
+			get;
+			set;
+		}
+
+		public uint MaxVertexInputBindingStride
+		{
+			get;
+			set;
+		}
+
+		public uint MaxVertexOutputComponents
+		{
+			get;
+			set;
+		}
+
+		public uint MaxTessellationGenerationLevel
+		{
+			get;
+			set;
+		}
+
+		public uint MaxTessellationPatchSize
+		{
+			get;
+			set;
+		}
+
+		public uint MaxTessellationControlPerVertexInputComponents
+		{
+			get;
+			set;
+		}
+
+		public uint MaxTessellationControlPerVertexOutputComponents
+		{
+			get;
+			set;
+		}
+
+		public uint MaxTessellationControlPerPatchOutputComponents
+		{
+			get;
+			set;
+		}
+
+		public uint MaxTessellationControlTotalOutputComponents
+		{
+			get;
+			set;
+		}
+
+		public uint MaxTessellationEvaluationInputComponents
+		{
+			get;
+			set;
+		}
+
+		public uint MaxTessellationEvaluationOutputComponents
+		{
+			get;
+			set;
+		}
+
+		public uint MaxGeometryShaderInvocations
+		{
+			get;
+			set;
+		}
+
+		public uint MaxGeometryInputComponents
+		{
+			get;
+			set;
+		}
+
+		public uint MaxGeometryOutputComponents
+		{
+			get;
+			set;
+		}
+
+		public uint MaxGeometryOutputVertices
+		{
+			get;
+			set;
+		}
+
+		public uint MaxGeometryTotalOutputComponents
+		{
+			get;
+			set;
+		}
+
+		public uint MaxFragmentInputComponents
+		{
+			get;
+			set;
+		}
+
+		public uint MaxFragmentOutputAttachments
+		{
+			get;
+			set;
+		}
+
+		public uint MaxFragmentDualSourceAttachments
+		{
+			get;
+			set;
+		}
+
+		public uint MaxFragmentCombinedOutputResources
+		{
+			get;
+			set;
+		}
+
+		public uint MaxComputeSharedMemorySize
+		{
+			get;
+			set;
+		}
+
+		public uint MaxComputeWorkGroupCount
+		{
+			get;
+			set;
+		}
+
+		public uint MaxComputeWorkGroupInvocations
+		{
+			get;
+			set;
+		}
+
+		public uint MaxComputeWorkGroupSize
+		{
+			get;
+			set;
+		}
+
+		public uint SubPixelPrecisionBits
+		{
+			get;
+			set;
+		}
+
+		public uint SubTexelPrecisionBits
+		{
+			get;
+			set;
+		}
+
+		public uint MipmapPrecisionBits
+		{
+			get;
+			set;
+		}
+
+		public uint MaxDrawIndexedIndexValue
+		{
+			get;
+			set;
+		}
+
+		public uint MaxDrawIndirectCount
+		{
+			get;
+			set;
+		}
+
+		public float MaxSamplerLodBias
+		{
+			get;
+			set;
+		}
+
+		public float MaxSamplerAnisotropy
+		{
+			get;
+			set;
+		}
+
+		public uint MaxViewports
+		{
+			get;
+			set;
+		}
+
+		public uint MaxViewportDimensions
+		{
+			get;
+			set;
+		}
+
+		public float ViewportBoundsRange
+		{
+			get;
+			set;
+		}
+
+		public uint ViewportSubPixelBits
+		{
+			get;
+			set;
+		}
+
+		public UIntPtr MinMemoryMapAlignment
+		{
+			get;
+			set;
+		}
+
+		public DeviceSize MinTexelBufferOffsetAlignment
+		{
+			get;
+			set;
+		}
+
+		public DeviceSize MinUniformBufferOffsetAlignment
+		{
+			get;
+			set;
+		}
+
+		public DeviceSize MinStorageBufferOffsetAlignment
+		{
+			get;
+			set;
+		}
+
+		public int MinTexelOffset
+		{
+			get;
+			set;
+		}
+
+		public uint MaxTexelOffset
+		{
+			get;
+			set;
+		}
+
+		public int MinTexelGatherOffset
+		{
+			get;
+			set;
+		}
+
+		public uint MaxTexelGatherOffset
+		{
+			get;
+			set;
+		}
+
+		public float MinInterpolationOffset
+		{
+			get;
+			set;
+		}
+
+		public float MaxInterpolationOffset
+		{
+			get;
+			set;
+		}
+
+		public uint SubPixelInterpolationOffsetBits
+		{
+			get;
+			set;
+		}
+
+		public uint MaxFramebufferWidth
+		{
+			get;
+			set;
+		}
+
+		public uint MaxFramebufferHeight
+		{
+			get;
+			set;
+		}
+
+		public uint MaxFramebufferLayers
+		{
+			get;
+			set;
+		}
+
+		public SampleCountFlags FramebufferColorSampleCounts
+		{
+			get;
+			set;
+		}
+
+		public SampleCountFlags FramebufferDepthSampleCounts
+		{
+			get;
+			set;
+		}
+
+		public SampleCountFlags FramebufferStencilSampleCounts
+		{
+			get;
+			set;
+		}
+
+		public SampleCountFlags FramebufferNoAttachmentsSampleCounts
+		{
+			get;
+			set;
+		}
+
+		public uint MaxColorAttachments
+		{
+			get;
+			set;
+		}
+
+		public SampleCountFlags SampledImageColorSampleCounts
+		{
+			get;
+			set;
+		}
+
+		public SampleCountFlags SampledImageIntegerSampleCounts
+		{
+			get;
+			set;
+		}
+
+		public SampleCountFlags SampledImageDepthSampleCounts
+		{
+			get;
+			set;
+		}
+
+		public SampleCountFlags SampledImageStencilSampleCounts
+		{
+			get;
+			set;
+		}
+
+		public SampleCountFlags StorageImageSampleCounts
+		{
+			get;
+			set;
+		}
+
+		public uint MaxSampleMaskWords
+		{
+			get;
+			set;
+		}
+
+		public Bool32 TimestampComputeAndGraphics
+		{
+			get;
+			set;
+		}
+
+		public float TimestampPeriod
+		{
+			get;
+			set;
+		}
+
+		public uint MaxClipDistances
+		{
+			get;
+			set;
+		}
+
+		public uint MaxCullDistances
+		{
+			get;
+			set;
+		}
+
+		public uint MaxCombinedClipAndCullDistances
+		{
+			get;
+			set;
+		}
+
+		public uint DiscreteQueuePriorities
+		{
+			get;
+			set;
+		}
+
+		public float PointSizeRange
+		{
+			get;
+			set;
+		}
+
+		public float LineWidthRange
+		{
+			get;
+			set;
+		}
+
+		public float PointSizeGranularity
+		{
+			get;
+			set;
+		}
+
+		public float LineWidthGranularity
+		{
+			get;
+			set;
+		}
+
+		public Bool32 StrictLines
+		{
+			get;
+			set;
+		}
+
+		public Bool32 StandardSampleLocations
+		{
+			get;
+			set;
+		}
+
+		public DeviceSize OptimalBufferCopyOffsetAlignment
+		{
+			get;
+			set;
+		}
+
+		public DeviceSize OptimalBufferCopyRowPitchAlignment
+		{
+			get;
+			set;
+		}
+
+		public DeviceSize NonCoherentAtomSize
+		{
+			get;
+			set;
+		}
+
 	}
 
-	public class PipelineTessellationStateCreateInfo
+	public class PhysicalDeviceMemoryProperties
 	{
-
-		internal unsafe Interop.PipelineTessellationStateCreateInfo MarshalTo()
-		{
-			var result = new Interop.PipelineTessellationStateCreateInfo();
-
-			result.SType = StructureType.PipelineTessellationStateCreateInfo;
-
-			result.Flags = this.Flags;
-			result.PatchControlPoints = this.PatchControlPoints;
-
-			return result;
-		}
-
-
-		public uint Flags
+		public uint MemoryTypeCount
 		{
 			get;
 			set;
 		}
 
-		public uint PatchControlPoints
+		public MemoryType MemoryTypes
 		{
 			get;
 			set;
 		}
+
+		public uint MemoryHeapCount
+		{
+			get;
+			set;
+		}
+
+		public MemoryHeap MemoryHeaps
+		{
+			get;
+			set;
+		}
+
 	}
 
-	public class PipelineViewportStateCreateInfo
+	public class PhysicalDeviceProperties
 	{
-
-		internal unsafe Interop.PipelineViewportStateCreateInfo MarshalTo()
-		{
-			var result = new Interop.PipelineViewportStateCreateInfo();
-
-			result.SType = StructureType.PipelineViewportStateCreateInfo;
-
-			result.Flags = this.Flags;
-
-			return result;
-		}
-
-
-		public uint Flags
+		public uint ApiVersion
 		{
 			get;
 			set;
 		}
 
-		public Viewport[] Viewports
+		public uint DriverVersion
 		{
 			get;
 			set;
 		}
 
-		public Rect2D[] Scissors
+		public uint Vendor
 		{
 			get;
 			set;
 		}
+
+		public uint Device
+		{
+			get;
+			set;
+		}
+
+		public PhysicalDeviceType DeviceType
+		{
+			get;
+			set;
+		}
+
+		public char DeviceName
+		{
+			get;
+			set;
+		}
+
+		public byte PipelineCache
+		{
+			get;
+			set;
+		}
+
+		public PhysicalDeviceLimits Limits
+		{
+			get;
+			set;
+		}
+
+		public PhysicalDeviceSparseProperties SparseProperties
+		{
+			get;
+			set;
+		}
+
 	}
 
-	public class PipelineRasterizationStateCreateInfo
+	public class PipelineCacheCreateInfo
 	{
-
-		internal unsafe Interop.PipelineRasterizationStateCreateInfo MarshalTo()
-		{
-			var result = new Interop.PipelineRasterizationStateCreateInfo();
-
-			result.SType = StructureType.PipelineRasterizationStateCreateInfo;
-
-			result.Flags = this.Flags;
-			result.DepthClampEnable = this.DepthClampEnable;
-			result.RasterizerDiscardEnable = this.RasterizerDiscardEnable;
-			result.PolygonMode = this.PolygonMode;
-			result.CullMode = this.CullMode;
-			result.FrontFace = this.FrontFace;
-			result.DepthBiasEnable = this.DepthBiasEnable;
-			result.DepthBiasConstantFactor = this.DepthBiasConstantFactor;
-			result.DepthBiasClamp = this.DepthBiasClamp;
-			result.DepthBiasSlopeFactor = this.DepthBiasSlopeFactor;
-			result.LineWidth = this.LineWidth;
-
-			return result;
-		}
-
-
-		public uint Flags
+		public PipelineCacheCreateFlags Flags
 		{
 			get;
 			set;
 		}
 
-		public bool DepthClampEnable
+		public byte[] InitialData
 		{
 			get;
 			set;
 		}
 
-		public bool RasterizerDiscardEnable
-		{
-			get;
-			set;
-		}
-
-		public PolygonMode PolygonMode
-		{
-			get;
-			set;
-		}
-
-		public CullModeFlags CullMode
-		{
-			get;
-			set;
-		}
-
-		public FrontFace FrontFace
-		{
-			get;
-			set;
-		}
-
-		public bool DepthBiasEnable
-		{
-			get;
-			set;
-		}
-
-		public float DepthBiasConstantFactor
-		{
-			get;
-			set;
-		}
-
-		public float DepthBiasClamp
-		{
-			get;
-			set;
-		}
-
-		public float DepthBiasSlopeFactor
-		{
-			get;
-			set;
-		}
-
-		public float LineWidth
-		{
-			get;
-			set;
-		}
-	}
-
-	public class PipelineMultisampleStateCreateInfo
-	{
-
-		internal unsafe Interop.PipelineMultisampleStateCreateInfo MarshalTo()
-		{
-			var result = new Interop.PipelineMultisampleStateCreateInfo();
-
-			result.SType = StructureType.PipelineMultisampleStateCreateInfo;
-
-			result.Flags = this.Flags;
-			result.RasterizationSamples = this.RasterizationSamples;
-			result.SampleShadingEnable = this.SampleShadingEnable;
-			result.MinSampleShading = this.MinSampleShading;
-			result.AlphaToCoverageEnable = this.AlphaToCoverageEnable;
-			result.AlphaToOneEnable = this.AlphaToOneEnable;
-
-			return result;
-		}
-
-
-		public uint Flags
-		{
-			get;
-			set;
-		}
-
-		public SampleCountFlags RasterizationSamples
-		{
-			get;
-			set;
-		}
-
-		public bool SampleShadingEnable
-		{
-			get;
-			set;
-		}
-
-		public float MinSampleShading
-		{
-			get;
-			set;
-		}
-
-		public uint[] SampleMask
-		{
-			get;
-			set;
-		}
-
-		public bool AlphaToCoverageEnable
-		{
-			get;
-			set;
-		}
-
-		public bool AlphaToOneEnable
-		{
-			get;
-			set;
-		}
 	}
 
 	public class PipelineColorBlendStateCreateInfo
 	{
-
-		internal unsafe Interop.PipelineColorBlendStateCreateInfo MarshalTo()
-		{
-			var result = new Interop.PipelineColorBlendStateCreateInfo();
-
-			result.SType = StructureType.PipelineColorBlendStateCreateInfo;
-
-			result.Flags = this.Flags;
-			result.LogicOpEnable = this.LogicOpEnable;
-			result.LogicOp = this.LogicOp;
-			Interop.HeapUtil.MarshalArrayToPointer(this.BlendConstants, 4, result.BlendConstants);
-
-			return result;
-		}
-
-
-		public uint Flags
+		public PipelineColorBlendStateCreateFlags Flags
 		{
 			get;
 			set;
 		}
 
-		public bool LogicOpEnable
+		public Bool32 LogicOpEnable
 		{
 			get;
 			set;
@@ -1792,78 +1745,29 @@ namespace SharpVk
 			set;
 		}
 
-		public float[] BlendConstants
-		{
-			get;
-			set;
-		}
-	}
-
-	public class PipelineDynamicStateCreateInfo
-	{
-
-		internal unsafe Interop.PipelineDynamicStateCreateInfo MarshalTo()
-		{
-			var result = new Interop.PipelineDynamicStateCreateInfo();
-
-			result.SType = StructureType.PipelineDynamicStateCreateInfo;
-
-			result.Flags = this.Flags;
-
-			return result;
-		}
-
-
-		public uint Flags
+		public float BlendConstants
 		{
 			get;
 			set;
 		}
 
-		public DynamicState[] DynamicStates
-		{
-			get;
-			set;
-		}
 	}
 
 	public class PipelineDepthStencilStateCreateInfo
 	{
-
-		internal unsafe Interop.PipelineDepthStencilStateCreateInfo MarshalTo()
-		{
-			var result = new Interop.PipelineDepthStencilStateCreateInfo();
-
-			result.SType = StructureType.PipelineDepthStencilStateCreateInfo;
-
-			result.Flags = this.Flags;
-			result.DepthTestEnable = this.DepthTestEnable;
-			result.DepthWriteEnable = this.DepthWriteEnable;
-			result.DepthCompareOp = this.DepthCompareOp;
-			result.DepthBoundsTestEnable = this.DepthBoundsTestEnable;
-			result.StencilTestEnable = this.StencilTestEnable;
-			result.Front = this.Front;
-			result.Back = this.Back;
-			result.MinDepthBounds = this.MinDepthBounds;
-			result.MaxDepthBounds = this.MaxDepthBounds;
-
-			return result;
-		}
-
-
-		public uint Flags
+		public PipelineDepthStencilStateCreateFlags Flags
 		{
 			get;
 			set;
 		}
 
-		public bool DepthTestEnable
+		public Bool32 DepthTestEnable
 		{
 			get;
 			set;
 		}
 
-		public bool DepthWriteEnable
+		public Bool32 DepthWriteEnable
 		{
 			get;
 			set;
@@ -1875,13 +1779,13 @@ namespace SharpVk
 			set;
 		}
 
-		public bool DepthBoundsTestEnable
+		public Bool32 DepthBoundsTestEnable
 		{
 			get;
 			set;
 		}
 
-		public bool StencilTestEnable
+		public Bool32 StencilTestEnable
 		{
 			get;
 			set;
@@ -1910,142 +1814,56 @@ namespace SharpVk
 			get;
 			set;
 		}
+
 	}
 
-	public class GraphicsPipelineCreateInfo
+	public class PipelineDynamicStateCreateInfo
 	{
-
-		internal unsafe Interop.GraphicsPipelineCreateInfo MarshalTo()
-		{
-			var result = new Interop.GraphicsPipelineCreateInfo();
-
-			result.SType = StructureType.GraphicsPipelineCreateInfo;
-
-			result.Flags = this.Flags;
-			result.Subpass = this.Subpass;
-			result.BasePipelineIndex = this.BasePipelineIndex;
-
-			return result;
-		}
-
-
-		public PipelineCreateFlags Flags
+		public PipelineDynamicStateCreateFlags Flags
 		{
 			get;
 			set;
 		}
 
-		public PipelineShaderStageCreateInfo[] Stages
+		public DynamicState[] DynamicStates
 		{
 			get;
 			set;
 		}
 
-		public PipelineVertexInputStateCreateInfo VertexInputState
-		{
-			get;
-			set;
-		}
-
-		public PipelineInputAssemblyStateCreateInfo InputAssemblyState
-		{
-			get;
-			set;
-		}
-
-		public PipelineTessellationStateCreateInfo TessellationState
-		{
-			get;
-			set;
-		}
-
-		public PipelineViewportStateCreateInfo ViewportState
-		{
-			get;
-			set;
-		}
-
-		public PipelineRasterizationStateCreateInfo RasterizationState
-		{
-			get;
-			set;
-		}
-
-		public PipelineMultisampleStateCreateInfo MultisampleState
-		{
-			get;
-			set;
-		}
-
-		public PipelineDepthStencilStateCreateInfo DepthStencilState
-		{
-			get;
-			set;
-		}
-
-		public PipelineColorBlendStateCreateInfo ColorBlendState
-		{
-			get;
-			set;
-		}
-
-		public PipelineDynamicStateCreateInfo DynamicState
-		{
-			get;
-			set;
-		}
-
-		public uint Subpass
-		{
-			get;
-			set;
-		}
-
-		public int BasePipelineIndex
-		{
-			get;
-			set;
-		}
 	}
 
-	public class PipelineCacheCreateInfo
+	public class PipelineInputAssemblyStateCreateInfo
 	{
-
-		internal unsafe Interop.PipelineCacheCreateInfo MarshalTo()
-		{
-			var result = new Interop.PipelineCacheCreateInfo();
-
-			result.SType = StructureType.PipelineCacheCreateInfo;
-
-			result.Flags = this.Flags;
-
-			return result;
-		}
-
-
-		public uint Flags
+		public PipelineInputAssemblyStateCreateFlags Flags
 		{
 			get;
 			set;
 		}
+
+		public PrimitiveTopology Topology
+		{
+			get;
+			set;
+		}
+
+		public Bool32 PrimitiveRestartEnable
+		{
+			get;
+			set;
+		}
+
 	}
 
 	public class PipelineLayoutCreateInfo
 	{
-
-		internal unsafe Interop.PipelineLayoutCreateInfo MarshalTo()
+		public PipelineLayoutCreateFlags Flags
 		{
-			var result = new Interop.PipelineLayoutCreateInfo();
-
-			result.SType = StructureType.PipelineLayoutCreateInfo;
-
-			result.Flags = this.Flags;
-
-			return result;
+			get;
+			set;
 		}
 
-
-		public uint Flags
+		public DescriptorSetLayout[] SetLayouts
 		{
 			get;
 			set;
@@ -2056,39 +1874,294 @@ namespace SharpVk
 			get;
 			set;
 		}
+
+	}
+
+	public class PipelineMultisampleStateCreateInfo
+	{
+		public PipelineMultisampleStateCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public SampleCountFlags RasterizationSamples
+		{
+			get;
+			set;
+		}
+
+		public Bool32 SampleShadingEnable
+		{
+			get;
+			set;
+		}
+
+		public float MinSampleShading
+		{
+			get;
+			set;
+		}
+
+		public Bool32 AlphaToCoverageEnable
+		{
+			get;
+			set;
+		}
+
+		public Bool32 AlphaToOneEnable
+		{
+			get;
+			set;
+		}
+
+	}
+
+	public class PipelineRasterizationStateCreateInfo
+	{
+		public PipelineRasterizationStateCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public Bool32 DepthClampEnable
+		{
+			get;
+			set;
+		}
+
+		public Bool32 RasterizerDiscardEnable
+		{
+			get;
+			set;
+		}
+
+		public PolygonMode PolygonMode
+		{
+			get;
+			set;
+		}
+
+		public CullModeFlags CullMode
+		{
+			get;
+			set;
+		}
+
+		public FrontFace FrontFace
+		{
+			get;
+			set;
+		}
+
+		public Bool32 DepthBiasEnable
+		{
+			get;
+			set;
+		}
+
+		public float DepthBiasConstantFactor
+		{
+			get;
+			set;
+		}
+
+		public float DepthBiasClamp
+		{
+			get;
+			set;
+		}
+
+		public float DepthBiasSlopeFactor
+		{
+			get;
+			set;
+		}
+
+		public float LineWidth
+		{
+			get;
+			set;
+		}
+
+	}
+
+	public class PipelineShaderStageCreateInfo
+	{
+		public PipelineShaderStageCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public ShaderStageFlags Stage
+		{
+			get;
+			set;
+		}
+
+		public ShaderModule Module
+		{
+			get;
+			set;
+		}
+
+		public string Name
+		{
+			get;
+			set;
+		}
+
+	}
+
+	public class PipelineTessellationStateCreateInfo
+	{
+		public PipelineTessellationStateCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public uint PatchControlPoints
+		{
+			get;
+			set;
+		}
+
+	}
+
+	public class PipelineVertexInputStateCreateInfo
+	{
+		public PipelineVertexInputStateCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public VertexInputBindingDescription[] VertexBindingDescriptions
+		{
+			get;
+			set;
+		}
+
+		public VertexInputAttributeDescription[] VertexAttributeDescriptions
+		{
+			get;
+			set;
+		}
+
+	}
+
+	public class PipelineViewportStateCreateInfo
+	{
+		public PipelineViewportStateCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public Viewport[] Viewports
+		{
+			get;
+			set;
+		}
+
+		public Rect2D[] Scissors
+		{
+			get;
+			set;
+		}
+
+	}
+
+	public class QueryPoolCreateInfo
+	{
+		public QueryPoolCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public QueryType QueryType
+		{
+			get;
+			set;
+		}
+
+		public uint QueryCount
+		{
+			get;
+			set;
+		}
+
+		public QueryPipelineStatisticFlags PipelineStatistics
+		{
+			get;
+			set;
+		}
+
+	}
+
+	public class RenderPassBeginInfo
+	{
+		public RenderPass RenderPass
+		{
+			get;
+			set;
+		}
+
+		public Framebuffer Framebuffer
+		{
+			get;
+			set;
+		}
+
+		public Rect2D RenderArea
+		{
+			get;
+			set;
+		}
+
+		public ClearValue[] ClearValues
+		{
+			get;
+			set;
+		}
+
+	}
+
+	public class RenderPassCreateInfo
+	{
+		public RenderPassCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public AttachmentDescription[] Attachments
+		{
+			get;
+			set;
+		}
+
+		public SubpassDescription[] Subpasses
+		{
+			get;
+			set;
+		}
+
+		public SubpassDependency[] Dependencies
+		{
+			get;
+			set;
+		}
+
 	}
 
 	public class SamplerCreateInfo
 	{
-
-		internal unsafe Interop.SamplerCreateInfo MarshalTo()
-		{
-			var result = new Interop.SamplerCreateInfo();
-
-			result.SType = StructureType.SamplerCreateInfo;
-
-			result.Flags = this.Flags;
-			result.MagFilter = this.MagFilter;
-			result.MinFilter = this.MinFilter;
-			result.MipmapMode = this.MipmapMode;
-			result.AddressModeU = this.AddressModeU;
-			result.AddressModeV = this.AddressModeV;
-			result.AddressModeW = this.AddressModeW;
-			result.MipLodBias = this.MipLodBias;
-			result.AnisotropyEnable = this.AnisotropyEnable;
-			result.MaxAnisotropy = this.MaxAnisotropy;
-			result.CompareEnable = this.CompareEnable;
-			result.CompareOp = this.CompareOp;
-			result.MinLod = this.MinLod;
-			result.MaxLod = this.MaxLod;
-			result.BorderColor = this.BorderColor;
-			result.UnnormalizedCoordinates = this.UnnormalizedCoordinates;
-
-			return result;
-		}
-
-
-		public uint Flags
+		public SamplerCreateFlags Flags
 		{
 			get;
 			set;
@@ -2136,7 +2209,7 @@ namespace SharpVk
 			set;
 		}
 
-		public bool AnisotropyEnable
+		public Bool32 AnisotropyEnable
 		{
 			get;
 			set;
@@ -2148,7 +2221,7 @@ namespace SharpVk
 			set;
 		}
 
-		public bool CompareEnable
+		public Bool32 CompareEnable
 		{
 			get;
 			set;
@@ -2178,190 +2251,209 @@ namespace SharpVk
 			set;
 		}
 
-		public bool UnnormalizedCoordinates
+		public Bool32 UnnormalizedCoordinates
 		{
 			get;
 			set;
 		}
+
 	}
 
-	public class CommandPoolCreateInfo
+	public class SemaphoreCreateInfo
 	{
-
-		internal unsafe Interop.CommandPoolCreateInfo MarshalTo()
-		{
-			var result = new Interop.CommandPoolCreateInfo();
-
-			result.SType = StructureType.CommandPoolCreateInfo;
-
-			result.Flags = this.Flags;
-			result.QueueFamilyIndex = this.QueueFamilyIndex;
-
-			return result;
-		}
-
-
-		public CommandPoolCreateFlags Flags
+		public SemaphoreCreateFlags Flags
 		{
 			get;
 			set;
 		}
 
-		public uint QueueFamilyIndex
-		{
-			get;
-			set;
-		}
 	}
 
-	public class CommandBufferAllocateInfo
+	public class ShaderModuleCreateInfo
 	{
-
-		internal unsafe Interop.CommandBufferAllocateInfo MarshalTo()
-		{
-			var result = new Interop.CommandBufferAllocateInfo();
-
-			result.SType = StructureType.CommandBufferAllocateInfo;
-
-			result.Level = this.Level;
-			result.CommandBufferCount = this.CommandBufferCount;
-
-			return result;
-		}
-
-
-		public CommandBufferLevel Level
+		public ShaderModuleCreateFlags Flags
 		{
 			get;
 			set;
 		}
 
-		public uint CommandBufferCount
+		public UIntPtr CodeSize
 		{
 			get;
 			set;
 		}
+
 	}
 
-	public class CommandBufferInheritanceInfo
+	public class SparseBufferMemoryBindInfo
 	{
-
-		internal unsafe Interop.CommandBufferInheritanceInfo MarshalTo()
-		{
-			var result = new Interop.CommandBufferInheritanceInfo();
-
-			result.SType = StructureType.CommandBufferInheritanceInfo;
-
-			result.Subpass = this.Subpass;
-			result.OcclusionQueryEnable = this.OcclusionQueryEnable;
-			result.QueryFlags = this.QueryFlags;
-			result.PipelineStatistics = this.PipelineStatistics;
-
-			return result;
-		}
-
-
-		public uint Subpass
+		public Buffer Buffer
 		{
 			get;
 			set;
 		}
 
-		public bool OcclusionQueryEnable
+		public SparseMemoryBind[] Binds
 		{
 			get;
 			set;
 		}
 
-		public QueryControlFlags QueryFlags
-		{
-			get;
-			set;
-		}
-
-		public QueryPipelineStatisticFlags PipelineStatistics
-		{
-			get;
-			set;
-		}
 	}
 
-	public class CommandBufferBeginInfo
+	public class SparseImageMemoryBind
 	{
-
-		internal unsafe Interop.CommandBufferBeginInfo MarshalTo()
-		{
-			var result = new Interop.CommandBufferBeginInfo();
-
-			result.SType = StructureType.CommandBufferBeginInfo;
-
-			result.Flags = this.Flags;
-
-			return result;
-		}
-
-
-		public CommandBufferUsageFlags Flags
+		public ImageSubresource Subresource
 		{
 			get;
 			set;
 		}
 
-		public CommandBufferInheritanceInfo InheritanceInfo
+		public Offset3D Offset
 		{
 			get;
 			set;
 		}
+
+		public Extent3D Extent
+		{
+			get;
+			set;
+		}
+
+		public DeviceMemory Memory
+		{
+			get;
+			set;
+		}
+
+		public DeviceSize MemoryOffset
+		{
+			get;
+			set;
+		}
+
+		public SparseMemoryBindFlags Flags
+		{
+			get;
+			set;
+		}
+
 	}
 
-	public class RenderPassBeginInfo
+	public class SparseImageMemoryBindInfo
 	{
-
-		internal unsafe Interop.RenderPassBeginInfo MarshalTo()
-		{
-			var result = new Interop.RenderPassBeginInfo();
-
-			result.SType = StructureType.RenderPassBeginInfo;
-
-			result.RenderArea = this.RenderArea;
-
-			return result;
-		}
-
-
-		public Rect2D RenderArea
+		public Image Image
 		{
 			get;
 			set;
 		}
 
-		public ClearValue[] ClearValues
+		public SparseImageMemoryBind[] Binds
 		{
 			get;
 			set;
 		}
+
+	}
+
+	public class SparseImageOpaqueMemoryBindInfo
+	{
+		public Image Image
+		{
+			get;
+			set;
+		}
+
+		public SparseMemoryBind[] Binds
+		{
+			get;
+			set;
+		}
+
+	}
+
+	public class SparseMemoryBind
+	{
+		public DeviceSize ResourceOffset
+		{
+			get;
+			set;
+		}
+
+		public DeviceSize Size
+		{
+			get;
+			set;
+		}
+
+		public DeviceMemory Memory
+		{
+			get;
+			set;
+		}
+
+		public DeviceSize MemoryOffset
+		{
+			get;
+			set;
+		}
+
+		public SparseMemoryBindFlags Flags
+		{
+			get;
+			set;
+		}
+
+	}
+
+	public class SpecializationInfo
+	{
+		public SpecializationMapEntry[] MapEntries
+		{
+			get;
+			set;
+		}
+
+		public byte[] Data
+		{
+			get;
+			set;
+		}
+
+	}
+
+	public class SubmitInfo
+	{
+		public Semaphore[] WaitSemaphores
+		{
+			get;
+			set;
+		}
+
+		public PipelineStageFlags[] WaitDestinationStageMask
+		{
+			get;
+			set;
+		}
+
+		public CommandBuffer[] CommandBuffers
+		{
+			get;
+			set;
+		}
+
+		public Semaphore[] SignalSemaphores
+		{
+			get;
+			set;
+		}
+
 	}
 
 	public class SubpassDescription
 	{
-
-		internal unsafe Interop.SubpassDescription MarshalTo()
-		{
-			var result = new Interop.SubpassDescription();
-			result.Flags = this.Flags;
-			result.PipelineBindPoint = this.PipelineBindPoint;
-			if(this.PreserveAttachments != null)
-			{
-				result.PreserveAttachments = (uint*)Marshal.AllocHGlobal(Marshal.SizeOf<uint>() * this.PreserveAttachments.Length).ToPointer();
-				Interop.HeapUtil.MarshalArrayToPointer(this.PreserveAttachments, this.PreserveAttachments.Length, result.PreserveAttachments);
-				result.PreserveAttachmentCount = (uint)(this.PreserveAttachments.Length);
-			}
-
-			return result;
-		}
-
-
-		public uint Flags
+		public SubpassDescriptionFlags Flags
 		{
 			get;
 			set;
@@ -2391,869 +2483,57 @@ namespace SharpVk
 			set;
 		}
 
-		public AttachmentReference DepthStencilAttachment
-		{
-			get;
-			set;
-		}
-
 		public uint[] PreserveAttachments
 		{
 			get;
 			set;
 		}
+
 	}
 
-	public class RenderPassCreateInfo
+	public class WriteDescriptorSet
 	{
-
-		internal unsafe Interop.RenderPassCreateInfo MarshalTo()
-		{
-			var result = new Interop.RenderPassCreateInfo();
-
-			result.SType = StructureType.RenderPassCreateInfo;
-
-			result.Flags = this.Flags;
-
-			return result;
-		}
-
-
-		public uint Flags
+		public DescriptorSet DestinationSet
 		{
 			get;
 			set;
 		}
 
-		public AttachmentDescription[] Attachments
+		public uint DestinationBinding
 		{
 			get;
 			set;
 		}
 
-		public SubpassDescription[] Subpasses
+		public uint DestinationArrayElement
 		{
 			get;
 			set;
 		}
 
-		public SubpassDependency[] Dependencies
+		public DescriptorType DescriptorType
 		{
 			get;
 			set;
 		}
-	}
 
-	public class EventCreateInfo
-	{
-
-		internal unsafe Interop.EventCreateInfo MarshalTo()
-		{
-			var result = new Interop.EventCreateInfo();
-
-			result.SType = StructureType.EventCreateInfo;
-
-			result.Flags = this.Flags;
-
-			return result;
-		}
-
-
-		public uint Flags
-		{
-			get;
-			set;
-		}
-	}
-
-	public class FenceCreateInfo
-	{
-
-		internal unsafe Interop.FenceCreateInfo MarshalTo()
-		{
-			var result = new Interop.FenceCreateInfo();
-
-			result.SType = StructureType.FenceCreateInfo;
-
-			result.Flags = this.Flags;
-
-			return result;
-		}
-
-
-		public FenceCreateFlags Flags
-		{
-			get;
-			set;
-		}
-	}
-
-	public class PhysicalDeviceLimits
-	{
-
-		public uint MaxImageDimension1D
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxImageDimension2D
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxImageDimension3D
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxImageDimensionCube
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxImageArrayLayers
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxTexelBufferElements
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxUniformBufferRange
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxStorageBufferRange
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxPushConstantsSize
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxMemoryAllocationCount
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxSamplerAllocationCount
-		{
-			get;
-			private set;
-		}
-
-		public ulong BufferImageGranularity
-		{
-			get;
-			private set;
-		}
-
-		public ulong SparseAddressSpaceSize
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxBoundDescriptorSets
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxPerStageDescriptorSamplers
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxPerStageDescriptorUniformBuffers
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxPerStageDescriptorStorageBuffers
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxPerStageDescriptorSampledImages
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxPerStageDescriptorStorageImages
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxPerStageDescriptorInputAttachments
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxPerStageResources
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxDescriptorSetSamplers
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxDescriptorSetUniformBuffers
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxDescriptorSetUniformBuffersDynamic
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxDescriptorSetStorageBuffers
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxDescriptorSetStorageBuffersDynamic
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxDescriptorSetSampledImages
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxDescriptorSetStorageImages
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxDescriptorSetInputAttachments
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxVertexInputAttributes
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxVertexInputBindings
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxVertexInputAttributeOffset
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxVertexInputBindingStride
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxVertexOutputComponents
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxTessellationGenerationLevel
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxTessellationPatchSize
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxTessellationControlPerVertexInputComponents
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxTessellationControlPerVertexOutputComponents
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxTessellationControlPerPatchOutputComponents
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxTessellationControlTotalOutputComponents
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxTessellationEvaluationInputComponents
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxTessellationEvaluationOutputComponents
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxGeometryShaderInvocations
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxGeometryInputComponents
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxGeometryOutputComponents
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxGeometryOutputVertices
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxGeometryTotalOutputComponents
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxFragmentInputComponents
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxFragmentOutputAttachments
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxFragmentDualSrcAttachments
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxFragmentCombinedOutputResources
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxComputeSharedMemorySize
-		{
-			get;
-			private set;
-		}
-
-		public uint[] MaxComputeWorkGroupCount
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxComputeWorkGroupInvocations
-		{
-			get;
-			private set;
-		}
-
-		public uint[] MaxComputeWorkGroupSize
-		{
-			get;
-			private set;
-		}
-
-		public uint SubPixelPrecisionBits
-		{
-			get;
-			private set;
-		}
-
-		public uint SubTexelPrecisionBits
-		{
-			get;
-			private set;
-		}
-
-		public uint MipmapPrecisionBits
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxDrawIndexedIndexValue
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxDrawIndirectCount
-		{
-			get;
-			private set;
-		}
-
-		public float MaxSamplerLodBias
-		{
-			get;
-			private set;
-		}
-
-		public float MaxSamplerAnisotropy
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxViewports
-		{
-			get;
-			private set;
-		}
-
-		public uint[] MaxViewportDimensions
-		{
-			get;
-			private set;
-		}
-
-		public float[] ViewportBoundsRange
-		{
-			get;
-			private set;
-		}
-
-		public uint ViewportSubPixelBits
-		{
-			get;
-			private set;
-		}
-
-		public UIntPtr MinMemoryMapAlignment
-		{
-			get;
-			private set;
-		}
-
-		public ulong MinTexelBufferOffsetAlignment
-		{
-			get;
-			private set;
-		}
-
-		public ulong MinUniformBufferOffsetAlignment
-		{
-			get;
-			private set;
-		}
-
-		public ulong MinStorageBufferOffsetAlignment
-		{
-			get;
-			private set;
-		}
-
-		public int MinTexelOffset
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxTexelOffset
-		{
-			get;
-			private set;
-		}
-
-		public int MinTexelGatherOffset
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxTexelGatherOffset
-		{
-			get;
-			private set;
-		}
-
-		public float MinInterpolationOffset
-		{
-			get;
-			private set;
-		}
-
-		public float MaxInterpolationOffset
-		{
-			get;
-			private set;
-		}
-
-		public uint SubPixelInterpolationOffsetBits
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxFramebufferWidth
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxFramebufferHeight
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxFramebufferLayers
-		{
-			get;
-			private set;
-		}
-
-		public SampleCountFlags FramebufferColorSampleCounts
-		{
-			get;
-			private set;
-		}
-
-		public SampleCountFlags FramebufferDepthSampleCounts
-		{
-			get;
-			private set;
-		}
-
-		public SampleCountFlags FramebufferStencilSampleCounts
-		{
-			get;
-			private set;
-		}
-
-		public SampleCountFlags FramebufferNoAttachmentsSampleCounts
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxColorAttachments
-		{
-			get;
-			private set;
-		}
-
-		public SampleCountFlags SampledImageColorSampleCounts
-		{
-			get;
-			private set;
-		}
-
-		public SampleCountFlags SampledImageIntegerSampleCounts
-		{
-			get;
-			private set;
-		}
-
-		public SampleCountFlags SampledImageDepthSampleCounts
-		{
-			get;
-			private set;
-		}
-
-		public SampleCountFlags SampledImageStencilSampleCounts
-		{
-			get;
-			private set;
-		}
-
-		public SampleCountFlags StorageImageSampleCounts
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxSampleMaskWords
-		{
-			get;
-			private set;
-		}
-
-		public bool TimestampComputeAndGraphics
-		{
-			get;
-			private set;
-		}
-
-		public float TimestampPeriod
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxClipDistances
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxCullDistances
-		{
-			get;
-			private set;
-		}
-
-		public uint MaxCombinedClipAndCullDistances
-		{
-			get;
-			private set;
-		}
-
-		public uint DiscreteQueuePriorities
-		{
-			get;
-			private set;
-		}
-
-		public float[] PointSizeRange
-		{
-			get;
-			private set;
-		}
-
-		public float[] LineWidthRange
-		{
-			get;
-			private set;
-		}
-
-		public float PointSizeGranularity
-		{
-			get;
-			private set;
-		}
-
-		public float LineWidthGranularity
-		{
-			get;
-			private set;
-		}
-
-		public bool StrictLines
-		{
-			get;
-			private set;
-		}
-
-		public bool StandardSampleLocations
-		{
-			get;
-			private set;
-		}
-
-		public ulong OptimalBufferCopyOffsetAlignment
-		{
-			get;
-			private set;
-		}
-
-		public ulong OptimalBufferCopyRowPitchAlignment
-		{
-			get;
-			private set;
-		}
-
-		public ulong NonCoherentAtomSize
-		{
-			get;
-			private set;
-		}
-	}
-
-	public class SemaphoreCreateInfo
-	{
-
-		internal unsafe Interop.SemaphoreCreateInfo MarshalTo()
-		{
-			var result = new Interop.SemaphoreCreateInfo();
-
-			result.SType = StructureType.SemaphoreCreateInfo;
-
-			result.Flags = this.Flags;
-
-			return result;
-		}
-
-
-		public uint Flags
-		{
-			get;
-			set;
-		}
-	}
-
-	public class QueryPoolCreateInfo
-	{
-
-		internal unsafe Interop.QueryPoolCreateInfo MarshalTo()
-		{
-			var result = new Interop.QueryPoolCreateInfo();
-
-			result.SType = StructureType.QueryPoolCreateInfo;
-
-			result.Flags = this.Flags;
-			result.QueryType = this.QueryType;
-			result.QueryCount = this.QueryCount;
-			result.PipelineStatistics = this.PipelineStatistics;
-
-			return result;
-		}
-
-
-		public uint Flags
+		public DescriptorImageInfo[] ImageInfo
 		{
 			get;
 			set;
 		}
 
-		public QueryType QueryType
+		public DescriptorBufferInfo[] BufferInfo
 		{
 			get;
 			set;
 		}
 
-		public uint QueryCount
+		public BufferView[] TexelBufferView
 		{
 			get;
 			set;
 		}
 
-		public QueryPipelineStatisticFlags PipelineStatistics
-		{
-			get;
-			set;
-		}
-	}
-
-	public class FramebufferCreateInfo
-	{
-
-		internal unsafe Interop.FramebufferCreateInfo MarshalTo()
-		{
-			var result = new Interop.FramebufferCreateInfo();
-
-			result.SType = StructureType.FramebufferCreateInfo;
-
-			result.Flags = this.Flags;
-			result.Width = this.Width;
-			result.Height = this.Height;
-			result.Layers = this.Layers;
-
-			return result;
-		}
-
-
-		public uint Flags
-		{
-			get;
-			set;
-		}
-
-		public uint Width
-		{
-			get;
-			set;
-		}
-
-		public uint Height
-		{
-			get;
-			set;
-		}
-
-		public uint Layers
-		{
-			get;
-			set;
-		}
-	}
-
-	public class SubmitInfo
-	{
-
-		internal unsafe Interop.SubmitInfo MarshalTo()
-		{
-			var result = new Interop.SubmitInfo();
-
-			result.SType = StructureType.SubmitInfo;
-
-
-			return result;
-		}
-
-
-		public PipelineStageFlags[] WaitDstStageMask
-		{
-			get;
-			set;
-		}
 	}
 }

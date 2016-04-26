@@ -19,7 +19,7 @@ namespace SharpVk.VkXml
             {"size_t", "UIntPtr"}
         };
 
-        private static readonly string[] digitsSuffix = new[] { "flags", "type", "bits" };
+        private static readonly string[] digitsSuffix = new[] { "flags", "flag", "type", "bits", "bit" };
 
         public TypeSet Generate(SpecParser.ParsedSpec spec)
         {
@@ -39,21 +39,97 @@ namespace SharpVk.VkXml
 
             foreach (var type in typeData.Values.Where(x => x.RequiresInterop))
             {
-                var newStruct = new TypeSet.VkStruct()
+                var newStruct = new TypeSet.VkStruct
                 {
                     Name = type.Name
                 };
 
+                var newClass = new TypeSet.VkClass
+                {
+                    Name = type.Name
+                };
+
+                var lenMembers = new List<string>();
+                var members = new Dictionary<string, MemberDesc>();
+
                 foreach (var member in type.Data.Members)
                 {
-                    newStruct.Members.Add(new TypeSet.VkStructMember
+                    var memberType = typeData[GetMemberTypeName(member)];
+
+                    var memberDesc = new MemberDesc
                     {
                         Name = JoinNameParts(member.NameParts),
-                        TypeName = ApplyPointerType(member, typeData[GetMemberTypeName(member)].Name)
+                        InteropTypeName = ApplyPointerType(member, memberType.Name),
+                        PublicTypeName = memberType.Name
+                    };
+
+                    int pointerCount = member.PointerType.GetPointerCount();
+
+                    string publicTypeSuffix = "";
+
+                    if (member.Dimensions != null)
+                    {
+                        foreach (var dimension in member.Dimensions)
+                        {
+                            switch (dimension.Type)
+                            {
+                                case SpecParser.LenType.NullTerminated:
+                                    memberDesc.PublicTypeName = "string";
+                                    break;
+                                case SpecParser.LenType.Expression:
+                                    publicTypeSuffix += "[]";
+
+                                    if (pointerCount == 1 && memberDesc.PublicTypeName == "void")
+                                    {
+                                        memberDesc.PublicTypeName = "byte";
+                                    }
+
+                                    if (dimension.Value != null)
+                                    {
+                                        lenMembers.Add(dimension.Value);
+                                    }
+
+                                    break;
+                            }
+
+                            pointerCount--;
+                        }
+                    }
+
+                    memberDesc.PublicTypeName += publicTypeSuffix;
+
+                    if (member.VkName == "sType"
+                            || member.VkName == "pNext"
+                            || memberType.Data.Category == TypeCategory.funcpointer)
+                    {
+                        memberDesc.IsInteropOnly = true;
+                    }
+
+                    newStruct.Members.Add(new TypeSet.VkStructMember
+                    {
+                        Name = memberDesc.Name,
+                        TypeName = memberDesc.InteropTypeName
+                    });
+
+                    members.Add(member.VkName, memberDesc);
+                }
+
+                foreach (var memberName in lenMembers)
+                {
+                    members[memberName].IsInteropOnly = true;
+                }
+
+                foreach (var member in members.Values.Where(x => !x.IsInteropOnly))
+                {
+                    newClass.Properties.Add(new TypeSet.VkClassProperty
+                    {
+                        Name = member.Name,
+                        TypeName = member.PublicTypeName
                     });
                 }
 
                 result.InteropStructs.Add(newStruct);
+                result.Classes.Add(newClass);
             }
 
             foreach (var type in typeData.Values.Where(x => x.Data.Category == TypeCategory.handle))
@@ -72,6 +148,11 @@ namespace SharpVk.VkXml
             }
 
             return result;
+        }
+
+        private static bool IsPointer(SpecParser.ParsedMember member)
+        {
+            return member.PointerType != PointerType.Value && member.PointerType != PointerType.ConstValue;
         }
 
         private static void GenerateUnions(Dictionary<string, TypeDesc> typeData, TypeSet result)
@@ -177,19 +258,7 @@ namespace SharpVk.VkXml
 
         private static string ApplyPointerType(SpecParser.ParsedMember member, string memberTypeName)
         {
-            switch (member.PointerType)
-            {
-                case PointerType.Pointer:
-                case PointerType.ConstPointer:
-                    memberTypeName += "*";
-                    break;
-                case PointerType.DoublePointer:
-                case PointerType.DoubleConstPointer:
-                    memberTypeName += "**";
-                    break;
-            }
-
-            return memberTypeName;
+            return memberTypeName + new string('*', member.PointerType.GetPointerCount());
         }
 
         private static void GenerateEnumerations(SpecParser.ParsedSpec spec, Dictionary<string, TypeDesc> typeData, TypeSet result)
@@ -396,6 +465,14 @@ namespace SharpVk.VkXml
             public SpecParser.ParsedType Data;
             public bool RequiresInterop;
             public string Name;
+        }
+
+        private class MemberDesc
+        {
+            public string Name;
+            public bool IsInteropOnly;
+            public string InteropTypeName;
+            public string PublicTypeName;
         }
     }
 }

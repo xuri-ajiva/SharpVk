@@ -9,6 +9,49 @@ namespace SharpVk.VkXml
 {
     public class SpecParser
     {
+        private static readonly Parser<string> firstPart = from head in Parse.Letter
+                                                           from tail in Parse.Lower.Many()
+                                                           select new string(new[] { head }.Concat(tail).ToArray()).ToLower();
+
+        private static readonly Parser<string> namePart = from head in Parse.Upper
+                                                          from tail in Parse.Lower.AtLeastOnce()
+                                                          select new string(new[] { head }.Concat(tail).ToArray()).ToLower();
+
+        private static readonly Parser<string> numberPart = Parse.Digit
+                                                        .AtLeastOnce()
+                                                        .Text();
+
+        private static readonly Parser<string> keywordPart = Parse.String("2D")
+                                                        .Or(Parse.String("3D"))
+                                                        .Or(Parse.String("ETC2"))
+                                                        .Or(Parse.String("ASTC_LDR"))
+                                                        .Or(Parse.String("BC"))
+                                                        .Text();
+
+        private static readonly Parser<NameParts> namePartsParser = from first in firstPart
+                                                                    from parts in keywordPart
+                                                                                    .Or(numberPart)
+                                                                                    .Or(namePart)
+                                                                                    .Many()
+                                                                    from extension in Parse.Upper.Many().Text().End()
+                                                                    select new NameParts
+                                                                    {
+                                                                        Parts = new[] { first }.Concat(parts).ToArray(),
+                                                                        Extension = string.IsNullOrEmpty(extension)
+                                                                                     ? null
+                                                                                     : extension.ToLower()
+                                                                    };
+
+        private static readonly Parser<string> fixedLengthParser = from open in Parse.Char('[')
+                                                                   from digits in Parse.Digit.AtLeastOnce().Text()
+                                                                   from close in Parse.Char(']')
+                                                                   select digits;
+
+        private static readonly Parser<ParsedLen> lenPartParser = Parse.String("null-terminated").Select(x => new ParsedLen { Type = LenType.NullTerminated })
+                                                                        .Or(Parse.Letter.AtLeastOnce().Text().Select(x => new ParsedLen { Value = x, Type = LenType.Expression }));
+
+        private static readonly Parser<IEnumerable<ParsedLen>> lenParser = lenPartParser.DelimitedBy(Parse.Char(',').Token()).End();
+
         private readonly IVkXmlCache xmlCache;
 
         public SpecParser(IVkXmlCache xmlCache)
@@ -117,25 +160,29 @@ namespace SharpVk.VkXml
                         }
                     }
 
-                    int pointerCount = 0;
-
-                    switch (pointerType)
-                    {
-                        case PointerType.Pointer:
-                        case PointerType.ConstPointer:
-                            pointerCount = 1;
-                            break;
-                        case PointerType.DoublePointer:
-                        case PointerType.DoubleConstPointer:
-                            pointerCount = 2;
-                            break;
-                    }
+                    int pointerCount = pointerType.GetPointerCount();
 
                     while (pointerCount > 0 && memberName.StartsWith("p"))
                     {
                         memberName = memberName.Substring(1);
 
                         pointerCount--;
+                    }
+
+                    ParsedLen[] dimensions = null;
+
+                    if (vkMember.Attribute("len") != null)
+                    {
+                        var lenResult = lenParser.TryParse(vkMember.Attribute("len").Value);
+
+                        if (lenResult.WasSuccessful)
+                        {
+                            dimensions = lenResult.Value.ToArray();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Could not parse len {0} for {1}", vkMember.Attribute("len").Value, memberName);
+                        }
                     }
 
                     string memberExtension;
@@ -150,7 +197,8 @@ namespace SharpVk.VkXml
                         FixedLength = fixedLength,
                         PointerType = pointerType,
                         NameParts = memberNameParts,
-                        Extension = extension
+                        Extension = extension,
+                        Dimensions = dimensions
                     });
                 }
 
@@ -417,41 +465,6 @@ namespace SharpVk.VkXml
             }
         }
 
-        private static readonly Parser<string> firstPart = from head in Parse.Letter
-                                                           from tail in Parse.Lower.Many()
-                                                           select new string(new[] { head }.Concat(tail).ToArray()).ToLower();
-
-        private static readonly Parser<string> namePart = from head in Parse.Upper
-                                                          from tail in Parse.Lower.AtLeastOnce()
-                                                          select new string(new[] { head }.Concat(tail).ToArray()).ToLower();
-
-        private static readonly Parser<string> numberPart = Parse.Digit
-                                                        .AtLeastOnce()
-                                                        .Text();
-
-        private static readonly Parser<string> keywordPart = Parse.String("2D")
-                                                        .Or(Parse.String("3D"))
-                                                        .Or(Parse.String("ETC2"))
-                                                        .Or(Parse.String("ASTC_LDR"))
-                                                        .Or(Parse.String("BC"))
-                                                        .Text();
-
-        private static readonly Parser<NameParts> namePartsParser = from first in firstPart
-                                                                    from parts in keywordPart.Or(numberPart).Or(namePart).Many()
-                                                                    from extension in Parse.Upper.Many().Text().End()
-                                                                    select new NameParts
-                                                                    {
-                                                                        Parts = new[] { first }.Concat(parts).ToArray(),
-                                                                        Extension = string.IsNullOrEmpty(extension)
-                                                                                     ? null
-                                                                                     : extension.ToLower()
-                                                                    };
-
-        private static readonly Parser<string> fixedLengthParser = from open in Parse.Char('[')
-                                                                   from digits in Parse.Digit.AtLeastOnce().Text()
-                                                                   from close in Parse.Char(']')
-                                                                   select digits;
-
         private struct NameParts
         {
             public string[] Parts;
@@ -557,6 +570,7 @@ namespace SharpVk.VkXml
             public bool IsOptional;
             public ParsedFixedLength FixedLength;
             public PointerType PointerType;
+            public ParsedLen[] Dimensions;
         }
 
         public class ParsedCommand
@@ -582,6 +596,18 @@ namespace SharpVk.VkXml
         {
             public string Value;
             public bool IsBitmask;
+        }
+
+        public class ParsedLen
+        {
+            public string Value;
+            public LenType Type;
+        }
+
+        public enum LenType
+        {
+            Expression,
+            NullTerminated
         }
     }
 }

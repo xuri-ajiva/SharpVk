@@ -68,8 +68,8 @@ namespace SharpVk
 		public enum BufferUsageFlags
 		{
 			None = 0,
-			TransferSrc = 1 << 0,
-			TransferDst = 1 << 1,
+			TransferSource = 1 << 0,
+			TransferDestination = 1 << 1,
 			UniformTexelBuffer = 1 << 2,
 			StorageTexelBuffer = 1 << 3,
 			UniformBuffer = 1 << 4,
@@ -200,8 +200,8 @@ namespace SharpVk
 			ColorAttachment = 1 << 7,
 			ColorAttachmentBlend = 1 << 8,
 			DepthStencilAttachment = 1 << 9,
-			BlitSrc = 1 << 10,
-			BlitDst = 1 << 11,
+			BlitSource = 1 << 10,
+			BlitDestination = 1 << 11,
 			SampledImageFilterLinear = 1 << 12,
 		}
 
@@ -236,8 +236,8 @@ namespace SharpVk
 		public enum ImageUsageFlags
 		{
 			None = 0,
-			TransferSrc = 1 << 0,
-			TransferDst = 1 << 1,
+			TransferSource = 1 << 0,
+			TransferDestination = 1 << 1,
 			Sampled = 1 << 2,
 			Storage = 1 << 3,
 			ColorAttachment = 1 << 4,
@@ -420,7 +420,7 @@ namespace SharpVk
 		public enum QueryResultFlags
 		{
 			None = 0,
-			QueryResultFlag64 = 1 << 0,
+			QueryResult64 = 1 << 0,
 			Wait = 1 << 1,
 			WithAvailability = 1 << 2,
 			Partial = 1 << 3,
@@ -446,13 +446,13 @@ namespace SharpVk
 		public enum SampleCountFlags
 		{
 			None = 0,
-			SampleCountFlag1 = 1 << 0,
-			SampleCountFlag2 = 1 << 1,
-			SampleCountFlag4 = 1 << 2,
-			SampleCountFlag8 = 1 << 3,
-			SampleCountFlag16 = 1 << 4,
-			SampleCountFlag32 = 1 << 5,
-			SampleCountFlag64 = 1 << 6,
+			SampleCount1 = 1 << 0,
+			SampleCount2 = 1 << 1,
+			SampleCount4 = 1 << 2,
+			SampleCount8 = 1 << 3,
+			SampleCount16 = 1 << 4,
+			SampleCount32 = 1 << 5,
+			SampleCount64 = 1 << 6,
 		}
 
 		[Flags]
@@ -535,19 +535,19 @@ namespace SharpVk
 		{
 			Zero = 0,
 			One = 1,
-			SrcColor = 2,
-			OneMinusSrcColor = 3,
-			DstColor = 4,
-			OneMinusDstColor = 5,
-			SrcAlpha = 6,
-			OneMinusSrcAlpha = 7,
-			DstAlpha = 8,
-			OneMinusDstAlpha = 9,
+			SourceColor = 2,
+			OneMinusSourceColor = 3,
+			DestinationColor = 4,
+			OneMinusDestinationColor = 5,
+			SourceAlpha = 6,
+			OneMinusSourceAlpha = 7,
+			DestinationAlpha = 8,
+			OneMinusDestinationAlpha = 9,
 			ConstantColor = 10,
 			OneMinusConstantColor = 11,
 			ConstantAlpha = 12,
 			OneMinusConstantAlpha = 13,
-			SrcAlphaSaturate = 14,
+			SourceAlphaSaturate = 14,
 			Src1Color = 15,
 			OneMinusSrc1Color = 16,
 			Src1Alpha = 17,
@@ -839,8 +839,8 @@ namespace SharpVk
 			DepthStencilAttachmentOptimal = 3,
 			DepthStencilReadOnlyOptimal = 4,
 			ShaderReadOnlyOptimal = 5,
-			TransferSrcOptimal = 6,
-			TransferDstOptimal = 7,
+			TransferSourceOptimal = 6,
+			TransferDestinationOptimal = 7,
 			Preinitialized = 8,
 		}
 

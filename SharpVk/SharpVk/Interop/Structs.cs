@@ -24,20 +24,6 @@ using System;
 
 namespace SharpVk.Interop
 {
-	public struct SampleMask
-	{
-		private uint value;
-
-		public static implicit operator SampleMask(uint value)
-		{
-			return new SampleMask { value = value };
-		}
-
-		public static implicit operator uint(SampleMask size)
-		{
-			return size.value;
-		}
-	}
 
 	public unsafe struct AllocationCallbacks
 	{
