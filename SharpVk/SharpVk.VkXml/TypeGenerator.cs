@@ -39,6 +39,21 @@ namespace SharpVk.VkXml
 
             foreach (var type in typeData.Values.Where(x => x.RequiresInterop))
             {
+                var newStruct = new TypeSet.VkStruct()
+                {
+                    Name = type.Name
+                };
+
+                foreach (var member in type.Data.Members)
+                {
+                    newStruct.Members.Add(new TypeSet.VkStructMember
+                    {
+                        Name = JoinNameParts(member.NameParts),
+                        TypeName = ApplyPointerType(member, typeData[GetMemberTypeName(member)].Name)
+                    });
+                }
+
+                result.InteropStructs.Add(newStruct);
             }
 
             foreach (var type in typeData.Values.Where(x => x.Data.Category == TypeCategory.handle))
@@ -110,9 +125,14 @@ namespace SharpVk.VkXml
         {
             foreach (var type in typeData.Values)
             {
-                if (type.Data.Category == TypeCategory.None)
+                switch (type.Data.Category)
                 {
-                    type.Name = primitiveTypes[type.Data.VkName];
+                    case TypeCategory.None:
+                        type.Name = primitiveTypes[type.Data.VkName];
+                        break;
+                    case TypeCategory.funcpointer:
+                        type.Name = "IntPtr";
+                        break;
                 }
             }
         }
@@ -150,6 +170,23 @@ namespace SharpVk.VkXml
                 // type name. Quietly fix that here.
 
                 memberTypeName = memberTypeName.Replace("FlagBits", "Flags");
+            }
+
+            return memberTypeName;
+        }
+
+        private static string ApplyPointerType(SpecParser.ParsedMember member, string memberTypeName)
+        {
+            switch (member.PointerType)
+            {
+                case PointerType.Pointer:
+                case PointerType.ConstPointer:
+                    memberTypeName += "*";
+                    break;
+                case PointerType.DoublePointer:
+                case PointerType.DoubleConstPointer:
+                    memberTypeName += "**";
+                    break;
             }
 
             return memberTypeName;
@@ -324,9 +361,25 @@ namespace SharpVk.VkXml
 
         private static string JoinNameParts(IEnumerable<string> parts)
         {
-            return parts.Select(CapitaliseFirst)
+            return parts.Select(ExpandAbbreviations)
+                        .Select(CapitaliseFirst)
                         .Aggregate(new StringBuilder(), (builder, value) => builder.Append(value))
                         .ToString();
+        }
+
+        private static string ExpandAbbreviations(string value)
+        {
+            switch (value)
+            {
+                case "src":
+                    return "source";
+                case "dst":
+                    return "destination";
+                case "cmd":
+                    return "command";
+                default:
+                    return value;
+            }
         }
 
         private static string CapitaliseFirst(string value)

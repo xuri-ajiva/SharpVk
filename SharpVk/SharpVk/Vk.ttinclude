@@ -22,7 +22,6 @@ string[] extensionSuffixes = new[]{"KHR", "EXT"};
 private static CSharpCodeProvider codeDomCompiler = new CSharpCodeProvider();
 
 private static VkXmlCache xmlCache;
-private static TypeDefCache typeCache;
 
 string GetTypeName(Type type)
 {
@@ -46,93 +45,6 @@ SpecParser GetParser()
 	GetVkXml();
 
 	return new SpecParser(xmlCache);
-}
-
-TypeDef GetTypeDef(string vkTypeName)
-{
-	if(xmlCache == null)
-	{
-		xmlCache = new VkXmlCache(Path.Combine(Host.ResolvePath("."), "obj\\VkTemplates"));
-    }
-
-	if(typeCache == null)
-    {
-		typeCache = new TypeDefCache(xmlCache);
-    }
-
-	var types = typeCache.GetAllTypes();
-
-	if(!types.ContainsKey(vkTypeName))
-    {
-		throw new Exception(string.Format("Unrecognised VK Type {0}", vkTypeName));
-    }
-
-	return types[vkTypeName];
-}
-
-IEnumerable<TypeDef> GetStructs()
-{	
-	if(xmlCache == null)
-	{
-		xmlCache = new VkXmlCache(Path.Combine(Host.ResolvePath("."), "obj\\VkTemplates"));
-    }
-
-	if(typeCache == null)
-    {
-		typeCache = new TypeDefCache(xmlCache);
-    }
-
-	return typeCache.GetAllTypes().Select(x => x.Value).Where(x => x.Category == Category.@struct && !extensionSuffixes.Any(y => x.Name.EndsWith(y)));
-}
-
-IEnumerable<TypeDef> GetHandles()
-{	
-	if(xmlCache == null)
-	{
-		xmlCache = new VkXmlCache(Path.Combine(Host.ResolvePath("."), "obj\\VkTemplates"));
-    }
-
-	if(typeCache == null)
-    {
-		typeCache = new TypeDefCache(xmlCache);
-    }
-
-	return typeCache.GetAllTypes().Select(x => x.Value).Where(x => x.Category == Category.handle);
-}
-
-IEnumerable<TypeDef> GetUnions()
-{
-	if(xmlCache == null)
-	{
-		xmlCache = new VkXmlCache(Path.Combine(Host.ResolvePath("."), "obj\\VkTemplates"));
-    }
-
-	if(typeCache == null)
-    {
-		typeCache = new TypeDefCache(xmlCache);
-    }
-
-	return typeCache.GetAllTypes().Select(x => x.Value).Where(x => x.Category == Category.union);
-}
-
-IEnumerable<CommandDef> GetCommands()
-{
-	if(xmlCache == null)
-	{
-		xmlCache = new VkXmlCache(Path.Combine(Host.ResolvePath("."), "obj\\VkTemplates"));
-    }
-
-	if(typeCache == null)
-    {
-		typeCache = new TypeDefCache(xmlCache);
-    }
-
-	return typeCache.GetAllCommands().Values;
-}
-
-string MapTypeName(string vkTypeName)
-{
-	return GetTypeDef(vkTypeName).Name;
 }
 
 string MapBaseTypeName(string baseTypeName)

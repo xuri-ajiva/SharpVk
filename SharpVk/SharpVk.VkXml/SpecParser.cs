@@ -83,9 +83,6 @@ namespace SharpVk.VkXml
                     bool isOptional = optional != null
                                         ? bool.Parse(optional)
                                         : false;
-                    string memberExtension;
-
-                    string[] memberNameParts = GetNameParts(memberName, out memberExtension, false);
                     ParsedFixedLength fixedLength = new ParsedFixedLength();
 
                     var typeNodes = nameElement.NodesBeforeSelf();
@@ -119,6 +116,31 @@ namespace SharpVk.VkXml
                             fixedLength.Type = FixedLengthType.IntegerLiteral;
                         }
                     }
+
+                    int pointerCount = 0;
+
+                    switch (pointerType)
+                    {
+                        case PointerType.Pointer:
+                        case PointerType.ConstPointer:
+                            pointerCount = 1;
+                            break;
+                        case PointerType.DoublePointer:
+                        case PointerType.DoubleConstPointer:
+                            pointerCount = 2;
+                            break;
+                    }
+
+                    while (pointerCount > 0 && memberName.StartsWith("p"))
+                    {
+                        memberName = memberName.Substring(1);
+
+                        pointerCount--;
+                    }
+
+                    string memberExtension;
+
+                    string[] memberNameParts = GetNameParts(memberName, out memberExtension, false);
 
                     newType.Members.Add(new ParsedMember
                     {
@@ -444,13 +466,22 @@ namespace SharpVk.VkXml
             {
                 extension = result.Value.Extension;
 
+                var parts = result.Value.Parts.AsEnumerable();
+
+                if (extension != null && extension.Length == 1)
+                {
+                    parts = parts.Concat(new[] { extension });
+
+                    extension = null;
+                }
+
                 if (hasVkPrefix)
                 {
-                    return result.Value.Parts.Skip(1).ToArray();
+                    return parts.Skip(1).ToArray();
                 }
                 else
                 {
-                    return result.Value.Parts;
+                    return parts.ToArray();
                 }
             }
             else

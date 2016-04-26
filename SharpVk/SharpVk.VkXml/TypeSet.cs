@@ -23,6 +23,12 @@ namespace SharpVk.VkXml
             private set;
         } = new List<VkStruct>();
 
+        public List<VkStruct> InteropStructs
+        {
+            get;
+            private set;
+        } = new List<VkStruct>();
+
         public List<VkStruct> Unions
         {
             get;

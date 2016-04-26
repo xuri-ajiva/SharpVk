@@ -30,59 +30,27 @@ namespace SharpVk.Interop
 		}
 	}
 <#
-	foreach(var structType in GetStructs().Where(x => !x.IsSimpleStruct))
-	{
-		string structName = structType.Name;
+var parser = GetParser();
+var generator = new TypeGenerator();
+
+var types = generator.Generate(parser.Run());
+
+foreach(var structType in types.InteropStructs)
+{
 #>
 
-	public unsafe struct <#=structName#>
+	public unsafe struct <#=structType.Name#>
 	{
 <#
-		var members = new List<string>();
-
-		foreach(var member in structType.Members)
-        {
-			string memberTypeName = member.Type.Name;
-
-			if(member.Type.Category == Category.funcpointer)
-            {
-				memberTypeName = "IntPtr";
-            }
-			else if(member.PointerCount > 0)
-            {
-				memberTypeName += new string('*', member.PointerCount);
-            }
-
-			if(member.Size == 0)
-            {
-				members.Add(string.Format("{0} {1}", memberTypeName, member.Name));
-            }
-			else
-            {
-				if(member.Type.IsPrimitive)
-				{
-					members.Add(string.Format("fixed {0} {1}[{2}]", memberTypeName, member.Name, member.Size));
-				}
-				else
-				{
-					for(int fieldIndex = 0;fieldIndex < member.Size;fieldIndex++)
-					{
-						members.Add(string.Format("{0} {1}{2}", memberTypeName, member.Name, fieldIndex == 0 ? "" : "_" + fieldIndex));
-					}
-				}
-            }
-        }
-
-		foreach(var member in members)
-        {
+	foreach(var member in structType.Members)
+	{
 #>
-
-		public <#=member#>;
+		public <#=member.TypeName#> <#=member.Name#>;
 <#
-        }
+	}
 #>
 	}
 <#
-	}
+}
 #>
 }
