@@ -50,14 +50,6 @@ foreach(var enumeration in types.Enumerations)
 	}
 #>
 	}
-
-	internal static class <#=enumeration.Name#>Extensions
-	{
-		internal unsafe static <#=enumeration.Name#>* MarshalTo(this <#=enumeration.Name#>[] values)
-		{
-			throw new NotImplementedException();
-		}
-	}
 <#
 }
 #>

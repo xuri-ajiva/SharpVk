@@ -66,6 +66,12 @@ namespace SharpVk.VkXml
                 get;
                 private set;
             } = new List<VkClassProperty>();
+
+            public List<string> MarshalStatements
+            {
+                get;
+                private set;
+            } = new List<string>();
         }
 
         public class VkClassProperty
@@ -77,18 +83,6 @@ namespace SharpVk.VkXml
             }
 
             public string TypeName
-            {
-                get;
-                set;
-            }
-
-            public bool RequiresMarshalling
-            {
-                get;
-                set;
-            }
-
-            public bool RequiresPacking
             {
                 get;
                 set;
@@ -201,6 +195,75 @@ namespace SharpVk.VkXml
                 get;
                 set;
             }
+
+            public List<VkHandleMethod> Methods
+            {
+                get;
+                private set;
+            } = new List<VkHandleMethod>();
+        }
+
+        public class VkHandleMethod
+        {
+            public string Name
+            {
+                get;
+                set;
+            }
+
+            public string ReturnTypeName
+            {
+                get;
+                set;
+            }
+
+            public string CommandName
+            {
+                get;
+                set;
+            }
+
+            public List<VkMethodParam> Parameters
+            {
+                get;
+                private set;
+            } = new List<VkMethodParam>();
+        }
+
+        public class VkMethodParam
+        {
+            public string Name
+            {
+                get;
+                set;
+            }
+
+            public string TypeName
+            {
+                get;
+                set;
+            }
+
+            public VkMethodParamType ParamType
+            {
+                get;
+                set;
+            }
+
+            public bool RequiresInputParam
+            {
+                get
+                {
+                    return this.ParamType == VkMethodParamType.Passthrough;
+                }
+            }
+        }
+
+        public enum VkMethodParamType
+        {
+            ThisHandle,
+            ParentHandle,
+            Passthrough
         }
 
         public class VkCommand

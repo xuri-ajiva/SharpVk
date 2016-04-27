@@ -187,7 +187,9 @@ namespace SharpVk.VkXml
                         else
                         {
                             dimensions = new[] { new ParsedLen { Type = LenType.Expression } };
-                            Console.WriteLine("Could not parse len {0} for {1}", vkMember.Attribute("len").Value, memberName);
+                            //HACK Placeholder warning till I get round to
+                            //parsing LaTeX Maths statements
+                            Console.WriteLine("Could not parse len {0} for {2}.{1}", vkMember.Attribute("len").Value, memberName, name);
                         }
                     }
 
@@ -241,8 +243,8 @@ namespace SharpVk.VkXml
                         isBitmask = false;
                         value = vkField.Attribute("value").Value;
 
-                        // Special case for handling C "unsigned long long"
-                        // (64-bit unsigned integer)
+                        // Special case for mapping C "unsigned long long"
+                        // (64-bit unsigned integer) to C# UInt64
                         if (value == "(~0ULL)")
                         {
                             value = "(~0UL)";
@@ -295,12 +297,17 @@ namespace SharpVk.VkXml
 
                 string[] nameParts = GetNameParts(name, out extension);
 
+                string[] verbExceptions = new[] { "cmd", "queue", "device" };
+
+                string verb = verbExceptions.Contains(nameParts[0]) ? nameParts[1] : nameParts[0];
+
                 var newCommand = new ParsedCommand
                 {
                     VkName = name,
                     Type = type,
                     NameParts = nameParts,
-                    Extension = extension
+                    Extension = extension,
+                    Verb = verb
                 };
 
                 commandXml.Add(name, newCommand);
@@ -332,6 +339,11 @@ namespace SharpVk.VkXml
 
             var vkFeature = vkXml.Element("registry").Elements("feature").Single(x => x.Attribute("api").Value == "vulkan");
 
+            return FilterRequiredElement(typeXml, enumXml, commandXml, vkFeature);
+        }
+
+        private static ParsedSpec FilterRequiredElement(Dictionary<string, ParsedType> typeXml, Dictionary<string, ParsedEnum> enumXml, Dictionary<string, ParsedCommand> commandXml, XElement vkFeature)
+        {
             var requiredTypes = new List<string>();
             var requiredCommand = new List<string>();
             var requiredConstant = new List<string>();
@@ -363,7 +375,9 @@ namespace SharpVk.VkXml
                 result.Constants[constant] = constants.Fields[constant];
             }
 
-            foreach (var commandName in requiredCommand.Distinct())
+            //HACK Artificially limit the set of required commands to simplify
+            //the API while working on marshalling and the public handles
+            foreach (var commandName in requiredCommand.Distinct().Take(2))
             {
                 var command = commandXml[commandName];
 
@@ -394,6 +408,11 @@ namespace SharpVk.VkXml
                     if (type.Requires != null && !requiredTypes.Contains(type.Requires) && !newTypes.Contains(type.Requires))
                     {
                         newTypes.Add(type.Requires);
+                    }
+
+                    if (type.Parent != null && !requiredTypes.Contains(type.Parent) && !newTypes.Contains(type.Parent))
+                    {
+                        newTypes.Add(type.Parent);
                     }
 
                     foreach (var member in type.Members)
@@ -582,6 +601,7 @@ namespace SharpVk.VkXml
         public class ParsedCommand
             : ParsedElement
         {
+            public string Verb;
             public readonly List<ParsedParam> Params = new List<ParsedParam>();
         }
 

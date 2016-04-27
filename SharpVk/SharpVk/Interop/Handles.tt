@@ -27,7 +27,18 @@ namespace SharpVk.Interop
 #>
 	public struct <#=handle.Name#>
 	{
-		public IntPtr Handle;
+		internal IntPtr handle;
+
+		public static <#=handle.Name#> Null
+		{
+			get
+			{
+				return new <#=handle.Name#>
+                {
+                    handle = IntPtr.Zero
+                };
+			}
+		}
 	}
 
 <#

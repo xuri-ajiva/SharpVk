@@ -88,19 +88,6 @@ namespace SharpVk
 <#
         }
 #>
-
-		internal unsafe <#=structType.Name#>* MarshalTo()
-		{
-			throw new NotImplementedException();
-		}
-	}
-
-	internal static class <#=structType.Name#>Extensions
-	{
-		internal unsafe static <#=structType.Name#>* MarshalTo(this <#=structType.Name#>[] values)
-		{
-			throw new NotImplementedException();
-		}
 	}
 <#
 	}

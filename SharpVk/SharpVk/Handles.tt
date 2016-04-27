@@ -50,17 +50,52 @@ foreach(var handle in types.Handles)
 <#
     }
 #>
+<#
+	foreach(var method in handle.Methods)
+    {
+#>
+
+		public <#=method.ReturnTypeName#> <#=method.Name#>()
+		{
+			unsafe
+			{
+				Interop.Commands.<#=method.CommandName#>(<#
+		bool isFirst = true;
+
+		foreach(var param in method.Parameters)
+		{
+			if(isFirst)
+			{
+				isFirst = false;
+			}
+			else
+			{
+				#>, <#
+			}
+			switch(param.ParamType)
+			{
+				case TypeSet.VkMethodParamType.ThisHandle:
+				#>this.handle<#
+				break;
+				case TypeSet.VkMethodParamType.ParentHandle:
+				#>this.parent<#
+				break;
+				case TypeSet.VkMethodParamType.Passthrough:
+				#>null<#
+				break;
+			}
+		}
+				#>);
+				throw new NotImplementedException();
+			}
+		}
+<#
+    }
+#>
+
 		internal Interop.<#=handle.Name#> MarshalTo()
 		{
 			return this.handle;
-		}
-	}
-
-	internal static class <#=handle.Name#>Extensions
-	{
-		internal unsafe static Interop.<#=handle.Name#>* MarshalTo(this <#=handle.Name#>[] values)
-		{
-			throw new NotImplementedException();
 		}
 	}
 

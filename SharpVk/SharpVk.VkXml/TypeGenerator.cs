@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
@@ -17,6 +18,12 @@ namespace SharpVk.VkXml
             {"uint64_t", "ulong"},
             {"int32_t", "int"},
             {"size_t", "UIntPtr"}
+        };
+
+        private static readonly string[] keywords = new[]
+        {
+            "object",
+            "event"
         };
 
         private static readonly string[] digitsSuffix = new[] { "flags", "flag", "type", "bits", "bit" };
@@ -39,15 +46,68 @@ namespace SharpVk.VkXml
 
             GenerateClasses(typeData, result);
 
-            GenerateHandles(typeData, result);
+            var handleLookup = GenerateHandles(typeData, result);
 
+            GenerateCommands(spec, typeData, handleLookup, result);
+
+            return result;
+        }
+
+        private static void GenerateCommands(SpecParser.ParsedSpec spec, Dictionary<string, TypeDesc> typeData, Dictionary<string, TypeSet.VkHandle> handleLookup, TypeSet result)
+        {
             foreach (var command in spec.Commands.Values)
             {
+                string commandName = command.VkName;
+
                 var newCommand = new TypeSet.VkCommand
                 {
-                    Name = command.VkName,
+                    Name = commandName,
                     ReturnTypeName = typeData[command.Type].Name
                 };
+
+                var handleParams = command.Params.TakeWhile(x => typeData[x.Type].Data.Category == TypeCategory.handle);
+
+                var lastParam = command.Params.Last();
+
+                bool lastParamReturns = false;
+
+                if (typeData[lastParam.Type].Data.Category == TypeCategory.handle && lastParam.PointerType == PointerType.Pointer)
+                {
+                    lastParamReturns = true;
+                }
+
+                var handle = handleParams.Any()
+                                ? handleLookup[handleParams.Last().Type]
+                                : handleLookup[command.Params.Last().Type];
+
+                var newMethod = new TypeSet.VkHandleMethod
+                {
+                    Name = commandName,
+                    ReturnTypeName = GetFormattedTypeName(typeData, command),
+                    CommandName = commandName
+                };
+
+                if (!handleParams.Any())
+                {
+                    Debug.Assert(lastParamReturns);
+                }
+                else
+                {
+                    if (handleParams.Count() > 1)
+                    {
+                        newMethod.Parameters.Add(new TypeSet.VkMethodParam
+                        {
+                            ParamType = TypeSet.VkMethodParamType.ParentHandle
+                        });
+                    }
+
+                    newMethod.Parameters.Add(new TypeSet.VkMethodParam
+                    {
+                        ParamType = TypeSet.VkMethodParamType.ThisHandle
+                    });
+                }
+
+                int parameterIndex = 0;
 
                 foreach (var parameter in command.Params)
                 {
@@ -62,7 +122,7 @@ namespace SharpVk.VkXml
                     string paramName = JoinNameParts(nameParts, true);
                     string typeName = typeData[GetMemberTypeName(parameter)].Name + new string('*', pointerCount);
 
-                    if (paramName == "event" || paramName == "object")
+                    if (keywords.Contains(paramName))
                     {
                         paramName = "@" + paramName;
                     }
@@ -72,16 +132,37 @@ namespace SharpVk.VkXml
                         Name = paramName,
                         TypeName = typeName
                     });
+
+                    if (parameterIndex >= handleParams.Count())
+                    {
+                        Console.WriteLine(paramName);
+                        
+                        newMethod.Parameters.Add(new TypeSet.VkMethodParam
+                        {
+                            Name = paramName,
+                            ParamType = TypeSet.VkMethodParamType.Passthrough
+                        });
+                    }
+
+                    parameterIndex++;
                 }
 
                 result.Commands.Add(newCommand);
-            }
 
-            return result;
+                handle.Methods.Add(newMethod);
+            }
         }
 
-        private static void GenerateHandles(Dictionary<string, TypeDesc> typeData, TypeSet result)
+
+        private static string GetFormattedTypeName(Dictionary<string, TypeDesc> typeData, SpecParser.ParsedElement element)
         {
+            return typeData[GetMemberTypeName(element)].Name;
+        }
+
+        private static Dictionary<string, TypeSet.VkHandle> GenerateHandles(Dictionary<string, TypeDesc> typeData, TypeSet result)
+        {
+            var handleLookup = new Dictionary<string, TypeSet.VkHandle>();
+
             foreach (var type in typeData.Values.Where(x => x.Data.Category == TypeCategory.handle))
             {
                 var newHandle = new TypeSet.VkHandle
@@ -95,7 +176,10 @@ namespace SharpVk.VkXml
                 }
 
                 result.Handles.Add(newHandle);
+                handleLookup.Add(type.Data.VkName, newHandle);
             }
+
+            return handleLookup;
         }
 
         private static void GenerateClasses(Dictionary<string, TypeDesc> typeData, TypeSet result)
@@ -115,10 +199,12 @@ namespace SharpVk.VkXml
                 var lenMembers = new List<string>();
                 var members = new Dictionary<string, MemberDesc>();
 
+                var memberNameLookup = type.Data.Members.ToDictionary(x => x.VkName, x => JoinNameParts(x.NameParts));
+
                 foreach (var member in type.Data.Members)
                 {
                     var memberType = typeData[GetMemberTypeName(member)];
-                    string memberName = JoinNameParts(member.NameParts);
+                    string memberName = memberNameLookup[member.VkName];
 
                     var memberDesc = new MemberDesc
                     {
@@ -127,67 +213,92 @@ namespace SharpVk.VkXml
                         PublicTypeName = memberType.Name
                     };
 
-                    int pointerCount = member.PointerType.GetPointerCount();
-
-                    string publicTypeSuffix = "";
+                    bool isPointer = member.PointerType.IsPointer();
 
                     if (member.Dimensions != null)
                     {
-                        foreach (var dimension in member.Dimensions)
+                        if (member.Dimensions.Length > 1)
                         {
-                            switch (dimension.Type)
+                            // Assume that 2-dimensional arrays are string[]
+                            Debug.Assert(member.Type == "char");
+
+                            memberDesc.PublicTypeName = "string[]";
+
+                            var lenMember = member.Dimensions[0].Value;
+
+                            lenMembers.Add(lenMember);
+
+                            newClass.MarshalStatements.Add(string.Format("result.{0} = this.{1} == null ? 0 : (uint)this.{1}.Length;", memberNameLookup[lenMember], memberDesc.Name));
+                            newClass.MarshalStatements.Add(string.Format("result.{0} = this.{0} == null ? null : Interop.HeapUtil.MarshalTo(this.{0});", memberDesc.Name));
+                        }
+                        else
+                        {
+                            switch (member.Dimensions[0].Type)
                             {
                                 case SpecParser.LenType.NullTerminated:
                                     memberDesc.PublicTypeName = "string";
 
-                                    memberDesc.RequiresMarshalling = true;
+                                    newClass.MarshalStatements.Add(string.Format("result.{0} = Interop.HeapUtil.MarshalTo(this.{0});", memberDesc.Name));
                                     break;
                                 case SpecParser.LenType.Expression:
-                                    publicTypeSuffix += "[]";
 
-                                    if (pointerCount == 1 && memberDesc.PublicTypeName == "void")
+                                    if (isPointer && memberDesc.PublicTypeName == "void")
                                     {
-                                        memberDesc.PublicTypeName = "byte";
+                                        memberDesc.PublicTypeName = "IntPtr";
+                                    }
+                                    else
+                                    {
+                                        memberDesc.PublicTypeName += "[]";
                                     }
 
-                                    if (dimension.Value != null)
+                                    if (member.Dimensions[0].Value != null)
                                     {
-                                        lenMembers.Add(dimension.Value);
+                                        lenMembers.Add(member.Dimensions[0].Value);
                                     }
-
-                                    memberDesc.RequiresMarshalling = true;
 
                                     break;
                             }
-
-                            pointerCount--;
                         }
                     }
-
-                    memberDesc.PublicTypeName += publicTypeSuffix;
-
-                    if (member.VkName == "sType"
-                            || member.VkName == "pNext"
-                            || memberType.Data.Category == TypeCategory.funcpointer)
+                    else if (member.VkName == "sType"
+                                || member.VkName == "pNext"
+                                || memberType.Data.Category == TypeCategory.funcpointer)
                     {
                         memberDesc.IsInteropOnly = true;
-                    }
-                    else if (pointerCount > 0 && memberDesc.PublicTypeName == "void")
-                    {
-                        pointerCount--;
 
+                        if (member.VkName == "sType")
+                        {
+                            newClass.MarshalStatements.Add(string.Format("result.SType = StructureType.{0};", type.Name));
+                        }
+                    }
+                    else if (isPointer && memberDesc.PublicTypeName == "void")
+                    {
                         memberDesc.PublicTypeName = "IntPtr";
 
-                        memberDesc.RequiresMarshalling = true;
+                        newClass.MarshalStatements.Add(string.Format("result.{0} = this.{0}.ToPointer();", memberDesc.Name));
                     }
-                    else if (memberType.Data.Category == TypeCategory.handle || pointerCount > 0)
+                    else if (memberType.Data.Category == TypeCategory.handle || isPointer)
                     {
-                        memberDesc.RequiresMarshalling = true;
-                    }
+                        string nullString = isPointer ? "null" : string.Format("Interop.{0}.Null", memberDesc.InteropTypeName);
 
-                    if (memberType.RequiresInterop)
+                        newClass.MarshalStatements.Add(string.Format("result.{0} = this.{0} == null ? {1} : this.{0}.MarshalTo();", memberDesc.Name, nullString));
+                    }
+                    else if (memberType.RequiresInterop)
                     {
-                        memberDesc.RequiresPacking = true;
+                    }
+                    else if (memberDesc.Name.EndsWith("Version") && memberDesc.PublicTypeName == "uint")
+                    {
+                        memberDesc.PublicTypeName = "Version";
+                        memberDesc.IsSimpleMarshal = true;
+                    }
+                    else if (memberDesc.PublicTypeName == "DeviceSize")
+                    {
+                        memberDesc.PublicTypeName = "ulong";
+                        memberDesc.IsSimpleMarshal = true;
+                    }
+                    else
+                    {
+                        memberDesc.IsSimpleMarshal = true;
                     }
 
                     newStruct.Members.Add(new TypeSet.VkStructMember
@@ -209,20 +320,18 @@ namespace SharpVk.VkXml
                     newClass.Properties.Add(new TypeSet.VkClassProperty
                     {
                         Name = member.Name,
-                        TypeName = member.PublicTypeName,
-                        RequiresMarshalling = member.RequiresMarshalling,
-                        RequiresPacking = member.RequiresPacking
+                        TypeName = member.PublicTypeName
                     });
+
+                    if (member.IsSimpleMarshal)
+                    {
+                        newClass.MarshalStatements.Add(string.Format("result.{0} = this.{0};", member.Name));
+                    }
                 }
 
                 result.InteropStructs.Add(newStruct);
                 result.Classes.Add(newClass);
             }
-        }
-
-        private static bool IsPointer(SpecParser.ParsedMember member)
-        {
-            return member.PointerType != PointerType.Value && member.PointerType != PointerType.ConstValue;
         }
 
         private static void GenerateUnions(Dictionary<string, TypeDesc> typeData, TypeSet result)
@@ -541,10 +650,10 @@ namespace SharpVk.VkXml
         {
             public string Name;
             public bool IsInteropOnly;
+            public bool IsSimpleMarshal;
             public string InteropTypeName;
             public string PublicTypeName;
-            public bool RequiresMarshalling;
-            public bool RequiresPacking;
+            public List<string> MarshalStatements = new List<string>();
         }
     }
 }

@@ -12,47 +12,9 @@
 <#@ include file=".\License.tt" #>
 <#@ include file=".\Vk.ttinclude" #>
 using System;
-using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
-	internal unsafe static class MarshalExtensions
-	{
-        internal static void* MarshalTo(this IntPtr value)
-        {
-            return value.ToPointer();
-        }
-
-        internal static char* MarshalTo(this string value)
-        {
-            return Interop.HeapUtil.MarshalStringToPointer(value);
-        }
-
-        internal static char** MarshalTo(this string[] value)
-        {
-			throw new NotImplementedException();
-        }
-
-        internal static SampleMask* MarshalTo(this SampleMask[] value)
-        {
-			throw new NotImplementedException();
-        }
-
-        internal static uint* MarshalTo(this uint[] values)
-		{
-            return Interop.HeapUtil.MarshalArrayToPointer(values);
-		}
-
-        internal static float* MarshalTo(this float[] values)
-		{
-            return Interop.HeapUtil.MarshalArrayToPointer(values);
-		}
-
-        internal static byte* MarshalTo(this byte[] values)
-		{
-            return Interop.HeapUtil.MarshalArrayToPointer(values);
-		}
-	}
 <#
 var parser = GetParser();
 var generator = new TypeGenerator();
@@ -82,10 +44,10 @@ foreach(var classType in types.Classes)
         {
             var result = new Interop.<#=classType.Name#>();
 <#
-	foreach(var classProperty in classType.Properties)
+	foreach(var statement in classType.MarshalStatements)
 	{
 #>
-			result.<#=classProperty.Name#> = this.<#=classProperty.Name#><#if(classProperty.RequiresMarshalling){#>.MarshalTo()<#}else if(classProperty.RequiresPacking){#>.Pack()<#}#>;
+			<#=statement#>
 <#
 	}
 #>
@@ -95,19 +57,7 @@ foreach(var classType in types.Classes)
 
 		internal unsafe Interop.<#=classType.Name#>* MarshalTo()
         {
-            IntPtr pointer = Marshal.AllocHGlobal(Marshal.SizeOf<Interop.<#=classType.Name#>>());
-
-            Marshal.StructureToPtr(this.Pack(), pointer, false);
-
-            return (Interop.<#=classType.Name#>*)pointer.ToPointer();
-		}
-	}
-
-	internal static class <#=classType.Name#>Extensions
-	{
-		internal unsafe static Interop.<#=classType.Name#>* MarshalTo(this <#=classType.Name#>[] values)
-		{
-			throw new NotImplementedException();
+            return (Interop.<#=classType.Name#>*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 <#
