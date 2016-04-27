@@ -37,6 +37,69 @@ namespace SharpVk.VkXml
 
             GenerateNonInteropStructs(typeData, result);
 
+            GenerateClasses(typeData, result);
+
+            GenerateHandles(typeData, result);
+
+            foreach (var command in spec.Commands.Values)
+            {
+                var newCommand = new TypeSet.VkCommand
+                {
+                    Name = command.VkName,
+                    ReturnTypeName = typeData[command.Type].Name
+                };
+
+                foreach (var parameter in command.Params)
+                {
+                    var nameParts = parameter.NameParts.AsEnumerable();
+                    int pointerCount = parameter.PointerType.GetPointerCount();
+
+                    if (pointerCount > 0)
+                    {
+                        nameParts = nameParts.Skip(1);
+                    }
+
+                    string paramName = JoinNameParts(nameParts, true);
+                    string typeName = typeData[GetMemberTypeName(parameter)].Name + new string('*', pointerCount);
+
+                    if (paramName == "event" || paramName == "object")
+                    {
+                        paramName = "@" + paramName;
+                    }
+
+                    newCommand.Parameters.Add(new TypeSet.VkCommandParameter
+                    {
+                        Name = paramName,
+                        TypeName = typeName
+                    });
+                }
+
+                result.Commands.Add(newCommand);
+            }
+
+            return result;
+        }
+
+        private static void GenerateHandles(Dictionary<string, TypeDesc> typeData, TypeSet result)
+        {
+            foreach (var type in typeData.Values.Where(x => x.Data.Category == TypeCategory.handle))
+            {
+                var newHandle = new TypeSet.VkHandle
+                {
+                    Name = type.Name
+                };
+
+                if (type.Data.Parent != null)
+                {
+                    newHandle.ParentHandle = typeData[type.Data.Parent].Name;
+                }
+
+                result.Handles.Add(newHandle);
+            }
+        }
+
+        private static void GenerateClasses(Dictionary<string, TypeDesc> typeData, TypeSet result)
+        {
             foreach (var type in typeData.Values.Where(x => x.RequiresInterop))
             {
                 var newStruct = new TypeSet.VkStruct
@@ -155,23 +218,6 @@ namespace SharpVk.VkXml
                 result.InteropStructs.Add(newStruct);
                 result.Classes.Add(newClass);
             }
-
-            foreach (var type in typeData.Values.Where(x => x.Data.Category == TypeCategory.handle))
-            {
-                var newHandle = new TypeSet.VkHandle
-                {
-                    Name = type.Name
-                };
-
-                if (type.Data.Parent != null)
-                {
-                    newHandle.ParentHandle = typeData[type.Data.Parent].Name;
-                }
-
-                result.Handles.Add(newHandle);
-            }
-
-            return result;
         }
 
         private static bool IsPointer(SpecParser.ParsedMember member)
@@ -264,7 +310,7 @@ namespace SharpVk.VkXml
             }
         }
 
-        private static string GetMemberTypeName(SpecParser.ParsedMember member)
+        private static string GetMemberTypeName(SpecParser.ParsedElement member)
         {
             string memberTypeName = member.Type;
 
@@ -452,10 +498,10 @@ namespace SharpVk.VkXml
             }
         }
 
-        private static string JoinNameParts(IEnumerable<string> parts)
+        private static string JoinNameParts(IEnumerable<string> parts, bool camelCase = false)
         {
             return parts.Select(ExpandAbbreviations)
-                        .Select(CapitaliseFirst)
+                        .Select((x, y) => (camelCase && y == 0) ? x : CapitaliseFirst(x))
                         .Aggregate(new StringBuilder(), (builder, value) => builder.Append(value))
                         .ToString();
         }

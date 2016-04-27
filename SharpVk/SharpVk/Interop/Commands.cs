@@ -39,10 +39,13 @@ namespace SharpVk.Interop
 		public static extern Result vkEnumeratePhysicalDevices(Instance instance, uint* physicalDeviceCount, PhysicalDevice* physicalDevices);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-		public static extern IntPtr vkGetDeviceProcAddr(Device device, char* name);
+		public static extern void vkGetPhysicalDeviceFeatures(PhysicalDevice physicalDevice, PhysicalDeviceFeatures* features);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-		public static extern IntPtr vkGetInstanceProcAddr(Instance instance, char* name);
+		public static extern void vkGetPhysicalDeviceFormatProperties(PhysicalDevice physicalDevice, Format format, FormatProperties* formatProperties);
+
+		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
+		public static extern Result vkGetPhysicalDeviceImageFormatProperties(PhysicalDevice physicalDevice, Format format, ImageType type, ImageTiling tiling, ImageUsageFlags usage, ImageCreateFlags flags, ImageFormatProperties* imageFormatProperties);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
 		public static extern void vkGetPhysicalDeviceProperties(PhysicalDevice physicalDevice, PhysicalDeviceProperties* properties);
@@ -54,13 +57,10 @@ namespace SharpVk.Interop
 		public static extern void vkGetPhysicalDeviceMemoryProperties(PhysicalDevice physicalDevice, PhysicalDeviceMemoryProperties* memoryProperties);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-		public static extern void vkGetPhysicalDeviceFeatures(PhysicalDevice physicalDevice, PhysicalDeviceFeatures* features);
+		public static extern IntPtr vkGetInstanceProcAddr(Instance instance, char* name);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-		public static extern void vkGetPhysicalDeviceFormatProperties(PhysicalDevice physicalDevice, Format format, FormatProperties* formatProperties);
-
-		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-		public static extern Result vkGetPhysicalDeviceImageFormatProperties(PhysicalDevice physicalDevice, Format format, ImageType type, ImageTiling tiling, ImageUsageFlags usage, ImageCreateFlags flags, ImageFormatProperties* imageFormatProperties);
+		public static extern IntPtr vkGetDeviceProcAddr(Device device, char* name);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
 		public static extern Result vkCreateDevice(PhysicalDevice physicalDevice, DeviceCreateInfo* createInfo, AllocationCallbacks* allocator, Device* device);
@@ -69,16 +69,16 @@ namespace SharpVk.Interop
 		public static extern void vkDestroyDevice(Device device, AllocationCallbacks* allocator);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-		public static extern Result vkEnumerateInstanceLayerProperties(uint* propertyCount, LayerProperties* properties);
-
-		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
 		public static extern Result vkEnumerateInstanceExtensionProperties(char* layerName, uint* propertyCount, ExtensionProperties* properties);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-		public static extern Result vkEnumerateDeviceLayerProperties(PhysicalDevice physicalDevice, uint* propertyCount, LayerProperties* properties);
+		public static extern Result vkEnumerateDeviceExtensionProperties(PhysicalDevice physicalDevice, char* layerName, uint* propertyCount, ExtensionProperties* properties);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-		public static extern Result vkEnumerateDeviceExtensionProperties(PhysicalDevice physicalDevice, char* layerName, uint* propertyCount, ExtensionProperties* properties);
+		public static extern Result vkEnumerateInstanceLayerProperties(uint* propertyCount, LayerProperties* properties);
+
+		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
+		public static extern Result vkEnumerateDeviceLayerProperties(PhysicalDevice physicalDevice, uint* propertyCount, LayerProperties* properties);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
 		public static extern void vkGetDeviceQueue(Device device, uint queueFamilyIndex, uint queueIndex, Queue* queue);
@@ -99,7 +99,7 @@ namespace SharpVk.Interop
 		public static extern void vkFreeMemory(Device device, DeviceMemory memory, AllocationCallbacks* allocator);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-		public static extern Result vkMapMemory(Device device, DeviceMemory memory, DeviceSize offset, DeviceSize size, uint flags, void** data);
+		public static extern Result vkMapMemory(Device device, DeviceMemory memory, DeviceSize offset, DeviceSize size, MemoryMapFlags flags, void** data);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
 		public static extern void vkUnmapMemory(Device device, DeviceMemory memory);
@@ -114,16 +114,16 @@ namespace SharpVk.Interop
 		public static extern void vkGetDeviceMemoryCommitment(Device device, DeviceMemory memory, DeviceSize* committedMemoryInBytes);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-		public static extern void vkGetBufferMemoryRequirements(Device device, Buffer buffer, MemoryRequirements* memoryRequirements);
-
-		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
 		public static extern Result vkBindBufferMemory(Device device, Buffer buffer, DeviceMemory memory, DeviceSize memoryOffset);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-		public static extern void vkGetImageMemoryRequirements(Device device, Image image, MemoryRequirements* memoryRequirements);
+		public static extern Result vkBindImageMemory(Device device, Image image, DeviceMemory memory, DeviceSize memoryOffset);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-		public static extern Result vkBindImageMemory(Device device, Image image, DeviceMemory memory, DeviceSize memoryOffset);
+		public static extern void vkGetBufferMemoryRequirements(Device device, Buffer buffer, MemoryRequirements* memoryRequirements);
+
+		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
+		public static extern void vkGetImageMemoryRequirements(Device device, Image image, MemoryRequirements* memoryRequirements);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
 		public static extern void vkGetImageSparseMemoryRequirements(Device device, Image image, uint* sparseMemoryRequirementCount, SparseImageMemoryRequirements* sparseMemoryRequirements);
@@ -222,7 +222,7 @@ namespace SharpVk.Interop
 		public static extern Result vkGetPipelineCacheData(Device device, PipelineCache pipelineCache, UIntPtr* dataSize, void* data);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-		public static extern Result vkMergePipelineCaches(Device device, PipelineCache dstCache, uint srcCacheCount, PipelineCache* srcCaches);
+		public static extern Result vkMergePipelineCaches(Device device, PipelineCache destinationCache, uint sourceCacheCount, PipelineCache* sourceCaches);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
 		public static extern Result vkCreateGraphicsPipelines(Device device, PipelineCache pipelineCache, uint createInfoCount, GraphicsPipelineCreateInfo* createInfos, AllocationCallbacks* allocator, Pipeline* pipelines);
@@ -258,7 +258,7 @@ namespace SharpVk.Interop
 		public static extern void vkDestroyDescriptorPool(Device device, DescriptorPool descriptorPool, AllocationCallbacks* allocator);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-		public static extern Result vkResetDescriptorPool(Device device, DescriptorPool descriptorPool, uint flags);
+		public static extern Result vkResetDescriptorPool(Device device, DescriptorPool descriptorPool, DescriptorPoolResetFlags flags);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
 		public static extern Result vkAllocateDescriptorSets(Device device, DescriptorSetAllocateInfo* allocateInfo, DescriptorSet* descriptorSets);
@@ -366,25 +366,25 @@ namespace SharpVk.Interop
 		public static extern void vkCmdDispatchIndirect(CommandBuffer commandBuffer, Buffer buffer, DeviceSize offset);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-		public static extern void vkCmdCopyBuffer(CommandBuffer commandBuffer, Buffer srcBuffer, Buffer dstBuffer, uint regionCount, BufferCopy* regions);
+		public static extern void vkCmdCopyBuffer(CommandBuffer commandBuffer, Buffer sourceBuffer, Buffer destinationBuffer, uint regionCount, BufferCopy* regions);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-		public static extern void vkCmdCopyImage(CommandBuffer commandBuffer, Image srcImage, ImageLayout srcImageLayout, Image dstImage, ImageLayout dstImageLayout, uint regionCount, ImageCopy* regions);
+		public static extern void vkCmdCopyImage(CommandBuffer commandBuffer, Image sourceImage, ImageLayout sourceImageLayout, Image destinationImage, ImageLayout destinationImageLayout, uint regionCount, ImageCopy* regions);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-		public static extern void vkCmdBlitImage(CommandBuffer commandBuffer, Image srcImage, ImageLayout srcImageLayout, Image dstImage, ImageLayout dstImageLayout, uint regionCount, ImageBlit* regions, Filter filter);
+		public static extern void vkCmdBlitImage(CommandBuffer commandBuffer, Image sourceImage, ImageLayout sourceImageLayout, Image destinationImage, ImageLayout destinationImageLayout, uint regionCount, ImageBlit* regions, Filter filter);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-		public static extern void vkCmdCopyBufferToImage(CommandBuffer commandBuffer, Buffer srcBuffer, Image dstImage, ImageLayout dstImageLayout, uint regionCount, BufferImageCopy* regions);
+		public static extern void vkCmdCopyBufferToImage(CommandBuffer commandBuffer, Buffer sourceBuffer, Image destinationImage, ImageLayout destinationImageLayout, uint regionCount, BufferImageCopy* regions);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-		public static extern void vkCmdCopyImageToBuffer(CommandBuffer commandBuffer, Image srcImage, ImageLayout srcImageLayout, Buffer dstBuffer, uint regionCount, BufferImageCopy* regions);
+		public static extern void vkCmdCopyImageToBuffer(CommandBuffer commandBuffer, Image sourceImage, ImageLayout sourceImageLayout, Buffer destinationBuffer, uint regionCount, BufferImageCopy* regions);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-		public static extern void vkCmdUpdateBuffer(CommandBuffer commandBuffer, Buffer dstBuffer, DeviceSize dstOffset, DeviceSize dataSize, uint* data);
+		public static extern void vkCmdUpdateBuffer(CommandBuffer commandBuffer, Buffer destinationBuffer, DeviceSize destinationOffset, DeviceSize dataSize, uint* data);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-		public static extern void vkCmdFillBuffer(CommandBuffer commandBuffer, Buffer dstBuffer, DeviceSize dstOffset, DeviceSize size, uint data);
+		public static extern void vkCmdFillBuffer(CommandBuffer commandBuffer, Buffer destinationBuffer, DeviceSize destinationOffset, DeviceSize size, uint data);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
 		public static extern void vkCmdClearColorImage(CommandBuffer commandBuffer, Image image, ImageLayout imageLayout, ClearColorValue* color, uint rangeCount, ImageSubresourceRange* ranges);
@@ -396,7 +396,7 @@ namespace SharpVk.Interop
 		public static extern void vkCmdClearAttachments(CommandBuffer commandBuffer, uint attachmentCount, ClearAttachment* attachments, uint rectCount, ClearRect* rects);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-		public static extern void vkCmdResolveImage(CommandBuffer commandBuffer, Image srcImage, ImageLayout srcImageLayout, Image dstImage, ImageLayout dstImageLayout, uint regionCount, ImageResolve* regions);
+		public static extern void vkCmdResolveImage(CommandBuffer commandBuffer, Image sourceImage, ImageLayout sourceImageLayout, Image destinationImage, ImageLayout destinationImageLayout, uint regionCount, ImageResolve* regions);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
 		public static extern void vkCmdSetEvent(CommandBuffer commandBuffer, Event @event, PipelineStageFlags stageMask);
@@ -405,10 +405,10 @@ namespace SharpVk.Interop
 		public static extern void vkCmdResetEvent(CommandBuffer commandBuffer, Event @event, PipelineStageFlags stageMask);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-		public static extern void vkCmdWaitEvents(CommandBuffer commandBuffer, uint eventCount, Event* events, PipelineStageFlags srcStageMask, PipelineStageFlags dstStageMask, uint memoryBarrierCount, MemoryBarrier* memoryBarriers, uint bufferMemoryBarrierCount, BufferMemoryBarrier* bufferMemoryBarriers, uint imageMemoryBarrierCount, ImageMemoryBarrier* imageMemoryBarriers);
+		public static extern void vkCmdWaitEvents(CommandBuffer commandBuffer, uint eventCount, Event* events, PipelineStageFlags sourceStageMask, PipelineStageFlags destinationStageMask, uint memoryBarrierCount, MemoryBarrier* memoryBarriers, uint bufferMemoryBarrierCount, BufferMemoryBarrier* bufferMemoryBarriers, uint imageMemoryBarrierCount, ImageMemoryBarrier* imageMemoryBarriers);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-		public static extern void vkCmdPipelineBarrier(CommandBuffer commandBuffer, PipelineStageFlags srcStageMask, PipelineStageFlags dstStageMask, DependencyFlags dependencyFlags, uint memoryBarrierCount, MemoryBarrier* memoryBarriers, uint bufferMemoryBarrierCount, BufferMemoryBarrier* bufferMemoryBarriers, uint imageMemoryBarrierCount, ImageMemoryBarrier* imageMemoryBarriers);
+		public static extern void vkCmdPipelineBarrier(CommandBuffer commandBuffer, PipelineStageFlags sourceStageMask, PipelineStageFlags destinationStageMask, DependencyFlags dependencyFlags, uint memoryBarrierCount, MemoryBarrier* memoryBarriers, uint bufferMemoryBarrierCount, BufferMemoryBarrier* bufferMemoryBarriers, uint imageMemoryBarrierCount, ImageMemoryBarrier* imageMemoryBarriers);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
 		public static extern void vkCmdBeginQuery(CommandBuffer commandBuffer, QueryPool queryPool, uint query, QueryControlFlags flags);
@@ -423,7 +423,7 @@ namespace SharpVk.Interop
 		public static extern void vkCmdWriteTimestamp(CommandBuffer commandBuffer, PipelineStageFlags pipelineStage, QueryPool queryPool, uint query);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-		public static extern void vkCmdCopyQueryPoolResults(CommandBuffer commandBuffer, QueryPool queryPool, uint firstQuery, uint queryCount, Buffer dstBuffer, DeviceSize dstOffset, DeviceSize stride, QueryResultFlags flags);
+		public static extern void vkCmdCopyQueryPoolResults(CommandBuffer commandBuffer, QueryPool queryPool, uint firstQuery, uint queryCount, Buffer destinationBuffer, DeviceSize destinationOffset, DeviceSize stride, QueryResultFlags flags);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
 		public static extern void vkCmdPushConstants(CommandBuffer commandBuffer, PipelineLayout layout, ShaderStageFlags stageFlags, uint offset, uint size, void* values);

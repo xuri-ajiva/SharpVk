@@ -21,27 +21,21 @@ namespace SharpVk.Interop
 		public const string VulkanDll = "vulkan-1.dll";
 
 <#
-	var keywords = new[]{"object", "event"};
+var parser = GetParser();
+var generator = new TypeGenerator();
 
-	foreach(var command in GetCommands())
-	{
+var types = generator.Generate(parser.Run());
+
+foreach(var command in types.Commands)
+{
 #>
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-		public static extern <#= command.Type.Name #> <#= command.Name #>(<#
+		public static extern <#=command.ReturnTypeName#> <#=command.Name#>(<#
 
 		bool isFirst = true;
 
-		foreach(var parameter in command.Params)
+		foreach(var parameter in command.Parameters)
         {
-			string paramName = parameter.Name;
-
-			string paramTypeName = parameter.Type.Name;
-
-			if(parameter.PointerCount > 0)
-            {
-				paramTypeName += new string('*', parameter.PointerCount);
-            }
-			
 			if(isFirst)
             {
 				isFirst = false;
@@ -51,12 +45,12 @@ namespace SharpVk.Interop
 				#>, <#
             }
 			
-			#><#=paramTypeName#> <#=paramName#><#
+			#><#=parameter.TypeName#> <#=parameter.Name#><#
         }
 #>);
 
 <#
-	}
+}
 #>
 	}
 }

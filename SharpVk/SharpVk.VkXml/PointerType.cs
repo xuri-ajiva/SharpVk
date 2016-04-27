@@ -26,5 +26,17 @@
                     return 0;
             }
         }
+
+        public static bool IsPointer(this PointerType pointerType)
+        {
+            switch (pointerType)
+            {
+                case PointerType.Value:
+                case PointerType.ConstValue:
+                    return false;
+                default:
+                    return true;
+            }
+        }
     }
 }

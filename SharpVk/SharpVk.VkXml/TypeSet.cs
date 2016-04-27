@@ -47,6 +47,12 @@ namespace SharpVk.VkXml
             private set;
         } = new List<VkHandle>();
 
+        public List<VkCommand> Commands
+        {
+            get;
+            private set;
+        } = new List<VkCommand>();
+
         public class VkClass
         {
             public string Name
@@ -191,6 +197,42 @@ namespace SharpVk.VkXml
             }
 
             public string ParentHandle
+            {
+                get;
+                set;
+            }
+        }
+
+        public class VkCommand
+        {
+            public string Name
+            {
+                get;
+                set;
+            }
+
+            public string ReturnTypeName
+            {
+                get;
+                set;
+            }
+
+            public List<VkCommandParameter> Parameters
+            {
+                get;
+                private set;
+            } = new List<VkCommandParameter>();
+        }
+
+        public class VkCommandParameter
+        {
+            public string Name
+            {
+                get;
+                set;
+            }
+
+            public string TypeName
             {
                 get;
                 set;

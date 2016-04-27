@@ -317,7 +317,7 @@ namespace SharpVk.VkXml
 
                     string paramExtension;
 
-                    string[] paramNameParts = GetNameParts(paramName, out paramExtension);
+                    string[] paramNameParts = GetNameParts(paramName, out paramExtension, false);
 
                     newCommand.Params.Add(new ParsedParam
                     {
