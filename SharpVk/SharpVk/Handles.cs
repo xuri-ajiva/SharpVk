@@ -20,12 +20,13 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
+using System;
 
 namespace SharpVk
 {
 	public class Buffer
 	{
-		internal readonly Interop.Buffer handle;
+		private readonly Interop.Buffer handle;
 
 		private readonly Device parent;
 
@@ -34,11 +35,23 @@ namespace SharpVk
 			this.handle = handle;
 			this.parent = parent;
 		}
+		internal Interop.Buffer MarshalTo()
+		{
+			return this.handle;
+		}
+	}
+
+	internal static class BufferExtensions
+	{
+		internal unsafe static Interop.Buffer* MarshalTo(this Buffer[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public class BufferView
 	{
-		internal readonly Interop.BufferView handle;
+		private readonly Interop.BufferView handle;
 
 		private readonly Device parent;
 
@@ -47,11 +60,23 @@ namespace SharpVk
 			this.handle = handle;
 			this.parent = parent;
 		}
+		internal Interop.BufferView MarshalTo()
+		{
+			return this.handle;
+		}
+	}
+
+	internal static class BufferViewExtensions
+	{
+		internal unsafe static Interop.BufferView* MarshalTo(this BufferView[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public class CommandBuffer
 	{
-		internal readonly Interop.CommandBuffer handle;
+		private readonly Interop.CommandBuffer handle;
 
 		private readonly CommandPool parent;
 
@@ -60,11 +85,23 @@ namespace SharpVk
 			this.handle = handle;
 			this.parent = parent;
 		}
+		internal Interop.CommandBuffer MarshalTo()
+		{
+			return this.handle;
+		}
+	}
+
+	internal static class CommandBufferExtensions
+	{
+		internal unsafe static Interop.CommandBuffer* MarshalTo(this CommandBuffer[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public class CommandPool
 	{
-		internal readonly Interop.CommandPool handle;
+		private readonly Interop.CommandPool handle;
 
 		private readonly Device parent;
 
@@ -73,11 +110,23 @@ namespace SharpVk
 			this.handle = handle;
 			this.parent = parent;
 		}
+		internal Interop.CommandPool MarshalTo()
+		{
+			return this.handle;
+		}
+	}
+
+	internal static class CommandPoolExtensions
+	{
+		internal unsafe static Interop.CommandPool* MarshalTo(this CommandPool[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public class DescriptorPool
 	{
-		internal readonly Interop.DescriptorPool handle;
+		private readonly Interop.DescriptorPool handle;
 
 		private readonly Device parent;
 
@@ -86,11 +135,23 @@ namespace SharpVk
 			this.handle = handle;
 			this.parent = parent;
 		}
+		internal Interop.DescriptorPool MarshalTo()
+		{
+			return this.handle;
+		}
+	}
+
+	internal static class DescriptorPoolExtensions
+	{
+		internal unsafe static Interop.DescriptorPool* MarshalTo(this DescriptorPool[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public class DescriptorSet
 	{
-		internal readonly Interop.DescriptorSet handle;
+		private readonly Interop.DescriptorSet handle;
 
 		private readonly DescriptorPool parent;
 
@@ -99,11 +160,23 @@ namespace SharpVk
 			this.handle = handle;
 			this.parent = parent;
 		}
+		internal Interop.DescriptorSet MarshalTo()
+		{
+			return this.handle;
+		}
+	}
+
+	internal static class DescriptorSetExtensions
+	{
+		internal unsafe static Interop.DescriptorSet* MarshalTo(this DescriptorSet[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public class DescriptorSetLayout
 	{
-		internal readonly Interop.DescriptorSetLayout handle;
+		private readonly Interop.DescriptorSetLayout handle;
 
 		private readonly Device parent;
 
@@ -112,11 +185,23 @@ namespace SharpVk
 			this.handle = handle;
 			this.parent = parent;
 		}
+		internal Interop.DescriptorSetLayout MarshalTo()
+		{
+			return this.handle;
+		}
+	}
+
+	internal static class DescriptorSetLayoutExtensions
+	{
+		internal unsafe static Interop.DescriptorSetLayout* MarshalTo(this DescriptorSetLayout[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public class Device
 	{
-		internal readonly Interop.Device handle;
+		private readonly Interop.Device handle;
 
 		private readonly PhysicalDevice parent;
 
@@ -125,11 +210,23 @@ namespace SharpVk
 			this.handle = handle;
 			this.parent = parent;
 		}
+		internal Interop.Device MarshalTo()
+		{
+			return this.handle;
+		}
+	}
+
+	internal static class DeviceExtensions
+	{
+		internal unsafe static Interop.Device* MarshalTo(this Device[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public class DeviceMemory
 	{
-		internal readonly Interop.DeviceMemory handle;
+		private readonly Interop.DeviceMemory handle;
 
 		private readonly Device parent;
 
@@ -138,11 +235,23 @@ namespace SharpVk
 			this.handle = handle;
 			this.parent = parent;
 		}
+		internal Interop.DeviceMemory MarshalTo()
+		{
+			return this.handle;
+		}
+	}
+
+	internal static class DeviceMemoryExtensions
+	{
+		internal unsafe static Interop.DeviceMemory* MarshalTo(this DeviceMemory[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public class Event
 	{
-		internal readonly Interop.Event handle;
+		private readonly Interop.Event handle;
 
 		private readonly Device parent;
 
@@ -151,11 +260,23 @@ namespace SharpVk
 			this.handle = handle;
 			this.parent = parent;
 		}
+		internal Interop.Event MarshalTo()
+		{
+			return this.handle;
+		}
+	}
+
+	internal static class EventExtensions
+	{
+		internal unsafe static Interop.Event* MarshalTo(this Event[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public class Fence
 	{
-		internal readonly Interop.Fence handle;
+		private readonly Interop.Fence handle;
 
 		private readonly Device parent;
 
@@ -164,11 +285,23 @@ namespace SharpVk
 			this.handle = handle;
 			this.parent = parent;
 		}
+		internal Interop.Fence MarshalTo()
+		{
+			return this.handle;
+		}
+	}
+
+	internal static class FenceExtensions
+	{
+		internal unsafe static Interop.Fence* MarshalTo(this Fence[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public class Framebuffer
 	{
-		internal readonly Interop.Framebuffer handle;
+		private readonly Interop.Framebuffer handle;
 
 		private readonly Device parent;
 
@@ -177,11 +310,23 @@ namespace SharpVk
 			this.handle = handle;
 			this.parent = parent;
 		}
+		internal Interop.Framebuffer MarshalTo()
+		{
+			return this.handle;
+		}
+	}
+
+	internal static class FramebufferExtensions
+	{
+		internal unsafe static Interop.Framebuffer* MarshalTo(this Framebuffer[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public class Image
 	{
-		internal readonly Interop.Image handle;
+		private readonly Interop.Image handle;
 
 		private readonly Device parent;
 
@@ -190,11 +335,23 @@ namespace SharpVk
 			this.handle = handle;
 			this.parent = parent;
 		}
+		internal Interop.Image MarshalTo()
+		{
+			return this.handle;
+		}
+	}
+
+	internal static class ImageExtensions
+	{
+		internal unsafe static Interop.Image* MarshalTo(this Image[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public class ImageView
 	{
-		internal readonly Interop.ImageView handle;
+		private readonly Interop.ImageView handle;
 
 		private readonly Device parent;
 
@@ -203,21 +360,45 @@ namespace SharpVk
 			this.handle = handle;
 			this.parent = parent;
 		}
+		internal Interop.ImageView MarshalTo()
+		{
+			return this.handle;
+		}
+	}
+
+	internal static class ImageViewExtensions
+	{
+		internal unsafe static Interop.ImageView* MarshalTo(this ImageView[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public class Instance
 	{
-		internal readonly Interop.Instance handle;
+		private readonly Interop.Instance handle;
 
 		internal Instance(Interop.Instance handle)
 		{
 			this.handle = handle;
 		}
+		internal Interop.Instance MarshalTo()
+		{
+			return this.handle;
+		}
+	}
+
+	internal static class InstanceExtensions
+	{
+		internal unsafe static Interop.Instance* MarshalTo(this Instance[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public class PhysicalDevice
 	{
-		internal readonly Interop.PhysicalDevice handle;
+		private readonly Interop.PhysicalDevice handle;
 
 		private readonly Instance parent;
 
@@ -226,11 +407,23 @@ namespace SharpVk
 			this.handle = handle;
 			this.parent = parent;
 		}
+		internal Interop.PhysicalDevice MarshalTo()
+		{
+			return this.handle;
+		}
+	}
+
+	internal static class PhysicalDeviceExtensions
+	{
+		internal unsafe static Interop.PhysicalDevice* MarshalTo(this PhysicalDevice[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public class Pipeline
 	{
-		internal readonly Interop.Pipeline handle;
+		private readonly Interop.Pipeline handle;
 
 		private readonly Device parent;
 
@@ -239,11 +432,23 @@ namespace SharpVk
 			this.handle = handle;
 			this.parent = parent;
 		}
+		internal Interop.Pipeline MarshalTo()
+		{
+			return this.handle;
+		}
+	}
+
+	internal static class PipelineExtensions
+	{
+		internal unsafe static Interop.Pipeline* MarshalTo(this Pipeline[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public class PipelineCache
 	{
-		internal readonly Interop.PipelineCache handle;
+		private readonly Interop.PipelineCache handle;
 
 		private readonly Device parent;
 
@@ -252,11 +457,23 @@ namespace SharpVk
 			this.handle = handle;
 			this.parent = parent;
 		}
+		internal Interop.PipelineCache MarshalTo()
+		{
+			return this.handle;
+		}
+	}
+
+	internal static class PipelineCacheExtensions
+	{
+		internal unsafe static Interop.PipelineCache* MarshalTo(this PipelineCache[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public class PipelineLayout
 	{
-		internal readonly Interop.PipelineLayout handle;
+		private readonly Interop.PipelineLayout handle;
 
 		private readonly Device parent;
 
@@ -265,11 +482,23 @@ namespace SharpVk
 			this.handle = handle;
 			this.parent = parent;
 		}
+		internal Interop.PipelineLayout MarshalTo()
+		{
+			return this.handle;
+		}
+	}
+
+	internal static class PipelineLayoutExtensions
+	{
+		internal unsafe static Interop.PipelineLayout* MarshalTo(this PipelineLayout[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public class QueryPool
 	{
-		internal readonly Interop.QueryPool handle;
+		private readonly Interop.QueryPool handle;
 
 		private readonly Device parent;
 
@@ -278,11 +507,23 @@ namespace SharpVk
 			this.handle = handle;
 			this.parent = parent;
 		}
+		internal Interop.QueryPool MarshalTo()
+		{
+			return this.handle;
+		}
+	}
+
+	internal static class QueryPoolExtensions
+	{
+		internal unsafe static Interop.QueryPool* MarshalTo(this QueryPool[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public class Queue
 	{
-		internal readonly Interop.Queue handle;
+		private readonly Interop.Queue handle;
 
 		private readonly Device parent;
 
@@ -291,11 +532,23 @@ namespace SharpVk
 			this.handle = handle;
 			this.parent = parent;
 		}
+		internal Interop.Queue MarshalTo()
+		{
+			return this.handle;
+		}
+	}
+
+	internal static class QueueExtensions
+	{
+		internal unsafe static Interop.Queue* MarshalTo(this Queue[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public class RenderPass
 	{
-		internal readonly Interop.RenderPass handle;
+		private readonly Interop.RenderPass handle;
 
 		private readonly Device parent;
 
@@ -304,11 +557,23 @@ namespace SharpVk
 			this.handle = handle;
 			this.parent = parent;
 		}
+		internal Interop.RenderPass MarshalTo()
+		{
+			return this.handle;
+		}
+	}
+
+	internal static class RenderPassExtensions
+	{
+		internal unsafe static Interop.RenderPass* MarshalTo(this RenderPass[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public class Sampler
 	{
-		internal readonly Interop.Sampler handle;
+		private readonly Interop.Sampler handle;
 
 		private readonly Device parent;
 
@@ -317,11 +582,23 @@ namespace SharpVk
 			this.handle = handle;
 			this.parent = parent;
 		}
+		internal Interop.Sampler MarshalTo()
+		{
+			return this.handle;
+		}
+	}
+
+	internal static class SamplerExtensions
+	{
+		internal unsafe static Interop.Sampler* MarshalTo(this Sampler[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public class Semaphore
 	{
-		internal readonly Interop.Semaphore handle;
+		private readonly Interop.Semaphore handle;
 
 		private readonly Device parent;
 
@@ -330,11 +607,23 @@ namespace SharpVk
 			this.handle = handle;
 			this.parent = parent;
 		}
+		internal Interop.Semaphore MarshalTo()
+		{
+			return this.handle;
+		}
+	}
+
+	internal static class SemaphoreExtensions
+	{
+		internal unsafe static Interop.Semaphore* MarshalTo(this Semaphore[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public class ShaderModule
 	{
-		internal readonly Interop.ShaderModule handle;
+		private readonly Interop.ShaderModule handle;
 
 		private readonly Device parent;
 
@@ -342,6 +631,18 @@ namespace SharpVk
 		{
 			this.handle = handle;
 			this.parent = parent;
+		}
+		internal Interop.ShaderModule MarshalTo()
+		{
+			return this.handle;
+		}
+	}
+
+	internal static class ShaderModuleExtensions
+	{
+		internal unsafe static Interop.ShaderModule* MarshalTo(this ShaderModule[] values)
+		{
+			throw new NotImplementedException();
 		}
 	}
 

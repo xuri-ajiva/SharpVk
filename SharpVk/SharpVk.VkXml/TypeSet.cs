@@ -76,7 +76,13 @@ namespace SharpVk.VkXml
                 set;
             }
 
-            public bool IsReadOnly
+            public bool RequiresMarshalling
+            {
+                get;
+                set;
+            }
+
+            public bool RequiresPacking
             {
                 get;
                 set;

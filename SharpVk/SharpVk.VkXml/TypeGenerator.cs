@@ -55,10 +55,11 @@ namespace SharpVk.VkXml
                 foreach (var member in type.Data.Members)
                 {
                     var memberType = typeData[GetMemberTypeName(member)];
+                    string memberName = JoinNameParts(member.NameParts);
 
                     var memberDesc = new MemberDesc
                     {
-                        Name = JoinNameParts(member.NameParts),
+                        Name = memberName,
                         InteropTypeName = ApplyPointerType(member, memberType.Name),
                         PublicTypeName = memberType.Name
                     };
@@ -75,6 +76,8 @@ namespace SharpVk.VkXml
                             {
                                 case SpecParser.LenType.NullTerminated:
                                     memberDesc.PublicTypeName = "string";
+
+                                    memberDesc.RequiresMarshalling = true;
                                     break;
                                 case SpecParser.LenType.Expression:
                                     publicTypeSuffix += "[]";
@@ -88,6 +91,8 @@ namespace SharpVk.VkXml
                                     {
                                         lenMembers.Add(dimension.Value);
                                     }
+
+                                    memberDesc.RequiresMarshalling = true;
 
                                     break;
                             }
@@ -103,6 +108,23 @@ namespace SharpVk.VkXml
                             || memberType.Data.Category == TypeCategory.funcpointer)
                     {
                         memberDesc.IsInteropOnly = true;
+                    }
+                    else if (pointerCount > 0 && memberDesc.PublicTypeName == "void")
+                    {
+                        pointerCount--;
+
+                        memberDesc.PublicTypeName = "IntPtr";
+
+                        memberDesc.RequiresMarshalling = true;
+                    }
+                    else if (memberType.Data.Category == TypeCategory.handle || pointerCount > 0)
+                    {
+                        memberDesc.RequiresMarshalling = true;
+                    }
+
+                    if (memberType.RequiresInterop)
+                    {
+                        memberDesc.RequiresPacking = true;
                     }
 
                     newStruct.Members.Add(new TypeSet.VkStructMember
@@ -124,7 +146,9 @@ namespace SharpVk.VkXml
                     newClass.Properties.Add(new TypeSet.VkClassProperty
                     {
                         Name = member.Name,
-                        TypeName = member.PublicTypeName
+                        TypeName = member.PublicTypeName,
+                        RequiresMarshalling = member.RequiresMarshalling,
+                        RequiresPacking = member.RequiresPacking
                     });
                 }
 
@@ -473,6 +497,8 @@ namespace SharpVk.VkXml
             public bool IsInteropOnly;
             public string InteropTypeName;
             public string PublicTypeName;
+            public bool RequiresMarshalling;
+            public bool RequiresPacking;
         }
     }
 }

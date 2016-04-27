@@ -510,11 +510,11 @@ namespace SharpVk.Interop
 	{
 		public uint ApiVersion;
 		public uint DriverVersion;
-		public uint Vendor;
-		public uint Device;
+		public uint VendorID;
+		public uint DeviceID;
 		public PhysicalDeviceType DeviceType;
 		public char DeviceName;
-		public byte PipelineCache;
+		public byte PipelineCacheUUID;
 		public PhysicalDeviceLimits Limits;
 		public PhysicalDeviceSparseProperties SparseProperties;
 	}

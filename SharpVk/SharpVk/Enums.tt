@@ -27,11 +27,11 @@ foreach(var enumeration in types.Enumerations)
 	if(enumeration.IsFlags)
     {
 #>
-		[Flags]<#
+	[Flags]<#
     }
 #>
-		public enum <#=enumeration.Name#>
-		{
+	public enum <#=enumeration.Name#>
+	{
 <#
 	bool first = true;
 
@@ -46,10 +46,18 @@ foreach(var enumeration in types.Enumerations)
 #>
 <#
         }
-#>			<#=field.Name#> = <#=field.Value#>,<#
+#>		<#=field.Name#> = <#=field.Value#>,<#
 	}
 #>
+	}
+
+	internal static class <#=enumeration.Name#>Extensions
+	{
+		internal unsafe static <#=enumeration.Name#>* MarshalTo(this <#=enumeration.Name#>[] values)
+		{
+			throw new NotImplementedException();
 		}
+	}
 <#
 }
 #>

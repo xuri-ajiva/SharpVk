@@ -96,6 +96,19 @@ namespace SharpVk
 		public ImageLayout InitialLayout;
 
 		public ImageLayout FinalLayout;
+
+		internal unsafe AttachmentDescription* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class AttachmentDescriptionExtensions
+	{
+		internal unsafe static AttachmentDescription* MarshalTo(this AttachmentDescription[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct AttachmentReference
@@ -104,6 +117,19 @@ namespace SharpVk
 		public uint Attachment;
 
 		public ImageLayout Layout;
+
+		internal unsafe AttachmentReference* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class AttachmentReferenceExtensions
+	{
+		internal unsafe static AttachmentReference* MarshalTo(this AttachmentReference[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct BufferCopy
@@ -114,6 +140,19 @@ namespace SharpVk
 		public DeviceSize DestinationOffset;
 
 		public DeviceSize Size;
+
+		internal unsafe BufferCopy* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class BufferCopyExtensions
+	{
+		internal unsafe static BufferCopy* MarshalTo(this BufferCopy[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct BufferImageCopy
@@ -130,6 +169,19 @@ namespace SharpVk
 		public Offset3D ImageOffset;
 
 		public Extent3D ImageExtent;
+
+		internal unsafe BufferImageCopy* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class BufferImageCopyExtensions
+	{
+		internal unsafe static BufferImageCopy* MarshalTo(this BufferImageCopy[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct ClearAttachment
@@ -140,6 +192,19 @@ namespace SharpVk
 		public uint ColorAttachment;
 
 		public ClearValue ClearValue;
+
+		internal unsafe ClearAttachment* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class ClearAttachmentExtensions
+	{
+		internal unsafe static ClearAttachment* MarshalTo(this ClearAttachment[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct ClearDepthStencilValue
@@ -148,6 +213,19 @@ namespace SharpVk
 		public float Depth;
 
 		public uint Stencil;
+
+		internal unsafe ClearDepthStencilValue* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class ClearDepthStencilValueExtensions
+	{
+		internal unsafe static ClearDepthStencilValue* MarshalTo(this ClearDepthStencilValue[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct ClearRect
@@ -158,6 +236,19 @@ namespace SharpVk
 		public uint BaseArrayLayer;
 
 		public uint LayerCount;
+
+		internal unsafe ClearRect* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class ClearRectExtensions
+	{
+		internal unsafe static ClearRect* MarshalTo(this ClearRect[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct ComponentMapping
@@ -170,6 +261,19 @@ namespace SharpVk
 		public ComponentSwizzle B;
 
 		public ComponentSwizzle A;
+
+		internal unsafe ComponentMapping* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class ComponentMappingExtensions
+	{
+		internal unsafe static ComponentMapping* MarshalTo(this ComponentMapping[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct DescriptorPoolSize
@@ -178,6 +282,19 @@ namespace SharpVk
 		public DescriptorType Type;
 
 		public uint DescriptorCount;
+
+		internal unsafe DescriptorPoolSize* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class DescriptorPoolSizeExtensions
+	{
+		internal unsafe static DescriptorPoolSize* MarshalTo(this DescriptorPoolSize[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct DispatchIndirectCommand
@@ -188,6 +305,19 @@ namespace SharpVk
 		public uint Y;
 
 		public uint Z;
+
+		internal unsafe DispatchIndirectCommand* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class DispatchIndirectCommandExtensions
+	{
+		internal unsafe static DispatchIndirectCommand* MarshalTo(this DispatchIndirectCommand[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct DrawIndexedIndirectCommand
@@ -202,6 +332,19 @@ namespace SharpVk
 		public int VertexOffset;
 
 		public uint FirstInstance;
+
+		internal unsafe DrawIndexedIndirectCommand* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class DrawIndexedIndirectCommandExtensions
+	{
+		internal unsafe static DrawIndexedIndirectCommand* MarshalTo(this DrawIndexedIndirectCommand[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct DrawIndirectCommand
@@ -214,6 +357,19 @@ namespace SharpVk
 		public uint FirstVertex;
 
 		public uint FirstInstance;
+
+		internal unsafe DrawIndirectCommand* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class DrawIndirectCommandExtensions
+	{
+		internal unsafe static DrawIndirectCommand* MarshalTo(this DrawIndirectCommand[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct Extent2D
@@ -222,6 +378,19 @@ namespace SharpVk
 		public uint Width;
 
 		public uint Height;
+
+		internal unsafe Extent2D* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class Extent2DExtensions
+	{
+		internal unsafe static Extent2D* MarshalTo(this Extent2D[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct Extent3D
@@ -232,6 +401,19 @@ namespace SharpVk
 		public uint Height;
 
 		public uint Depth;
+
+		internal unsafe Extent3D* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class Extent3DExtensions
+	{
+		internal unsafe static Extent3D* MarshalTo(this Extent3D[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct FormatProperties
@@ -242,6 +424,19 @@ namespace SharpVk
 		public FormatFeatureFlags OptimalTilingFeatures;
 
 		public FormatFeatureFlags BufferFeatures;
+
+		internal unsafe FormatProperties* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class FormatPropertiesExtensions
+	{
+		internal unsafe static FormatProperties* MarshalTo(this FormatProperties[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct ImageCopy
@@ -256,6 +451,19 @@ namespace SharpVk
 		public Offset3D DestinationOffset;
 
 		public Extent3D Extent;
+
+		internal unsafe ImageCopy* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class ImageCopyExtensions
+	{
+		internal unsafe static ImageCopy* MarshalTo(this ImageCopy[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct ImageFormatProperties
@@ -270,6 +478,19 @@ namespace SharpVk
 		public SampleCountFlags SampleCounts;
 
 		public DeviceSize MaxResourceSize;
+
+		internal unsafe ImageFormatProperties* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class ImageFormatPropertiesExtensions
+	{
+		internal unsafe static ImageFormatProperties* MarshalTo(this ImageFormatProperties[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct ImageResolve
@@ -284,6 +505,19 @@ namespace SharpVk
 		public Offset3D DestinationOffset;
 
 		public Extent3D Extent;
+
+		internal unsafe ImageResolve* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class ImageResolveExtensions
+	{
+		internal unsafe static ImageResolve* MarshalTo(this ImageResolve[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct ImageSubresource
@@ -294,6 +528,19 @@ namespace SharpVk
 		public uint MipLevel;
 
 		public uint ArrayLayer;
+
+		internal unsafe ImageSubresource* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class ImageSubresourceExtensions
+	{
+		internal unsafe static ImageSubresource* MarshalTo(this ImageSubresource[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct ImageSubresourceLayers
@@ -306,6 +553,19 @@ namespace SharpVk
 		public uint BaseArrayLayer;
 
 		public uint LayerCount;
+
+		internal unsafe ImageSubresourceLayers* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class ImageSubresourceLayersExtensions
+	{
+		internal unsafe static ImageSubresourceLayers* MarshalTo(this ImageSubresourceLayers[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct ImageSubresourceRange
@@ -320,6 +580,19 @@ namespace SharpVk
 		public uint BaseArrayLayer;
 
 		public uint LayerCount;
+
+		internal unsafe ImageSubresourceRange* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class ImageSubresourceRangeExtensions
+	{
+		internal unsafe static ImageSubresourceRange* MarshalTo(this ImageSubresourceRange[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct MemoryHeap
@@ -328,6 +601,19 @@ namespace SharpVk
 		public DeviceSize Size;
 
 		public MemoryHeapFlags Flags;
+
+		internal unsafe MemoryHeap* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class MemoryHeapExtensions
+	{
+		internal unsafe static MemoryHeap* MarshalTo(this MemoryHeap[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct MemoryRequirements
@@ -338,6 +624,19 @@ namespace SharpVk
 		public DeviceSize Alignment;
 
 		public uint MemoryTypeBits;
+
+		internal unsafe MemoryRequirements* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class MemoryRequirementsExtensions
+	{
+		internal unsafe static MemoryRequirements* MarshalTo(this MemoryRequirements[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct MemoryType
@@ -346,6 +645,19 @@ namespace SharpVk
 		public MemoryPropertyFlags PropertyFlags;
 
 		public uint HeapIndex;
+
+		internal unsafe MemoryType* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class MemoryTypeExtensions
+	{
+		internal unsafe static MemoryType* MarshalTo(this MemoryType[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct Offset2D
@@ -354,6 +666,19 @@ namespace SharpVk
 		public int X;
 
 		public int Y;
+
+		internal unsafe Offset2D* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class Offset2DExtensions
+	{
+		internal unsafe static Offset2D* MarshalTo(this Offset2D[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct Offset3D
@@ -364,6 +689,19 @@ namespace SharpVk
 		public int Y;
 
 		public int Z;
+
+		internal unsafe Offset3D* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class Offset3DExtensions
+	{
+		internal unsafe static Offset3D* MarshalTo(this Offset3D[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct PhysicalDeviceFeatures
@@ -478,6 +816,19 @@ namespace SharpVk
 		public Bool32 VariableMultisampleRate;
 
 		public Bool32 InheritedQueries;
+
+		internal unsafe PhysicalDeviceFeatures* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class PhysicalDeviceFeaturesExtensions
+	{
+		internal unsafe static PhysicalDeviceFeatures* MarshalTo(this PhysicalDeviceFeatures[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct PhysicalDeviceSparseProperties
@@ -492,6 +843,19 @@ namespace SharpVk
 		public Bool32 ResidencyAlignedMipSize;
 
 		public Bool32 ResidencyNonResidentStrict;
+
+		internal unsafe PhysicalDeviceSparseProperties* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class PhysicalDeviceSparsePropertiesExtensions
+	{
+		internal unsafe static PhysicalDeviceSparseProperties* MarshalTo(this PhysicalDeviceSparseProperties[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct PipelineColorBlendAttachmentState
@@ -512,6 +876,19 @@ namespace SharpVk
 		public BlendOp AlphaBlendOp;
 
 		public ColorComponentFlags ColorWriteMask;
+
+		internal unsafe PipelineColorBlendAttachmentState* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class PipelineColorBlendAttachmentStateExtensions
+	{
+		internal unsafe static PipelineColorBlendAttachmentState* MarshalTo(this PipelineColorBlendAttachmentState[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct PushConstantRange
@@ -522,6 +899,19 @@ namespace SharpVk
 		public uint Offset;
 
 		public uint Size;
+
+		internal unsafe PushConstantRange* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class PushConstantRangeExtensions
+	{
+		internal unsafe static PushConstantRange* MarshalTo(this PushConstantRange[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct QueueFamilyProperties
@@ -534,6 +924,19 @@ namespace SharpVk
 		public uint TimestampValidBits;
 
 		public Extent3D MinImageTransferGranularity;
+
+		internal unsafe QueueFamilyProperties* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class QueueFamilyPropertiesExtensions
+	{
+		internal unsafe static QueueFamilyProperties* MarshalTo(this QueueFamilyProperties[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct Rect2D
@@ -542,6 +945,19 @@ namespace SharpVk
 		public Offset2D Offset;
 
 		public Extent2D Extent;
+
+		internal unsafe Rect2D* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class Rect2DExtensions
+	{
+		internal unsafe static Rect2D* MarshalTo(this Rect2D[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct SparseImageFormatProperties
@@ -552,6 +968,19 @@ namespace SharpVk
 		public Extent3D ImageGranularity;
 
 		public SparseImageFormatFlags Flags;
+
+		internal unsafe SparseImageFormatProperties* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class SparseImageFormatPropertiesExtensions
+	{
+		internal unsafe static SparseImageFormatProperties* MarshalTo(this SparseImageFormatProperties[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct SparseImageMemoryRequirements
@@ -566,16 +995,42 @@ namespace SharpVk
 		public DeviceSize ImageMipTailOffset;
 
 		public DeviceSize ImageMipTailStride;
+
+		internal unsafe SparseImageMemoryRequirements* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class SparseImageMemoryRequirementsExtensions
+	{
+		internal unsafe static SparseImageMemoryRequirements* MarshalTo(this SparseImageMemoryRequirements[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct SpecializationMapEntry
 	{
 
-		public uint Constant;
+		public uint ConstantID;
 
 		public uint Offset;
 
 		public UIntPtr Size;
+
+		internal unsafe SpecializationMapEntry* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class SpecializationMapEntryExtensions
+	{
+		internal unsafe static SpecializationMapEntry* MarshalTo(this SpecializationMapEntry[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct StencilOpState
@@ -594,6 +1049,19 @@ namespace SharpVk
 		public uint WriteMask;
 
 		public uint Reference;
+
+		internal unsafe StencilOpState* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class StencilOpStateExtensions
+	{
+		internal unsafe static StencilOpState* MarshalTo(this StencilOpState[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct SubpassDependency
@@ -612,6 +1080,19 @@ namespace SharpVk
 		public AccessFlags DestinationAccessMask;
 
 		public DependencyFlags DependencyFlags;
+
+		internal unsafe SubpassDependency* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class SubpassDependencyExtensions
+	{
+		internal unsafe static SubpassDependency* MarshalTo(this SubpassDependency[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct SubresourceLayout
@@ -626,6 +1107,19 @@ namespace SharpVk
 		public DeviceSize ArrayPitch;
 
 		public DeviceSize DepthPitch;
+
+		internal unsafe SubresourceLayout* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class SubresourceLayoutExtensions
+	{
+		internal unsafe static SubresourceLayout* MarshalTo(this SubresourceLayout[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct VertexInputAttributeDescription
@@ -638,6 +1132,19 @@ namespace SharpVk
 		public Format Format;
 
 		public uint Offset;
+
+		internal unsafe VertexInputAttributeDescription* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class VertexInputAttributeDescriptionExtensions
+	{
+		internal unsafe static VertexInputAttributeDescription* MarshalTo(this VertexInputAttributeDescription[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct VertexInputBindingDescription
@@ -648,6 +1155,19 @@ namespace SharpVk
 		public uint Stride;
 
 		public VertexInputRate InputRate;
+
+		internal unsafe VertexInputBindingDescription* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class VertexInputBindingDescriptionExtensions
+	{
+		internal unsafe static VertexInputBindingDescription* MarshalTo(this VertexInputBindingDescription[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 	public struct Viewport
@@ -664,5 +1184,18 @@ namespace SharpVk
 		public float MinDepth;
 
 		public float MaxDepth;
+
+		internal unsafe Viewport* MarshalTo()
+		{
+			throw new NotImplementedException();
+		}
+	}
+
+	internal static class ViewportExtensions
+	{
+		internal unsafe static Viewport* MarshalTo(this Viewport[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

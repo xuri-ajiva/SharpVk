@@ -10,6 +10,7 @@
 <#@ import namespace="System.Collections.Generic" #>
 <#@ include file=".\License.tt" #>
 <#@ include file=".\Vk.ttinclude" #>
+using System;
 
 namespace SharpVk
 {
@@ -24,7 +25,7 @@ foreach(var handle in types.Handles)
 #>
 	public class <#=handle.Name#>
 	{
-		internal readonly Interop.<#=handle.Name#> handle;
+		private readonly Interop.<#=handle.Name#> handle;
 
 <#
 	if(handle.ParentHandle != null)
@@ -49,6 +50,18 @@ foreach(var handle in types.Handles)
 <#
     }
 #>
+		internal Interop.<#=handle.Name#> MarshalTo()
+		{
+			return this.handle;
+		}
+	}
+
+	internal static class <#=handle.Name#>Extensions
+	{
+		internal unsafe static Interop.<#=handle.Name#>* MarshalTo(this <#=handle.Name#>[] values)
+		{
+			throw new NotImplementedException();
+		}
 	}
 
 <#

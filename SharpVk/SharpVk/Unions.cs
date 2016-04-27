@@ -53,6 +53,14 @@ namespace SharpVk
 		public uint Uint32_3;
 	}
 
+	internal static class ClearColorValueExtensions
+	{
+		internal unsafe static ClearColorValue* MarshalTo(this ClearColorValue[] values)
+		{
+			throw new System.NotImplementedException();
+		}
+	}
+
 	[StructLayout(LayoutKind.Explicit)]
 	public struct ClearValue
 	{
@@ -60,6 +68,14 @@ namespace SharpVk
 		public ClearColorValue Color;
 		[FieldOffset(0)]
 		public ClearDepthStencilValue DepthStencil;
+	}
+
+	internal static class ClearValueExtensions
+	{
+		internal unsafe static ClearValue* MarshalTo(this ClearValue[] values)
+		{
+			throw new System.NotImplementedException();
+		}
 	}
 
 }

@@ -26,6 +26,8 @@ namespace SharpVk.VkXml
                                                         .Or(Parse.String("ETC2"))
                                                         .Or(Parse.String("ASTC_LDR"))
                                                         .Or(Parse.String("BC"))
+                                                        .Or(Parse.String("ID"))
+                                                        .Or(Parse.String("UUID"))
                                                         .Text();
 
         private static readonly Parser<NameParts> namePartsParser = from first in firstPart
@@ -160,6 +162,9 @@ namespace SharpVk.VkXml
                         }
                     }
 
+                    // Capture member name without array suffix
+                    string vkName = memberName;
+
                     int pointerCount = pointerType.GetPointerCount();
 
                     while (pointerCount > 0 && memberName.StartsWith("p"))
@@ -181,6 +186,7 @@ namespace SharpVk.VkXml
                         }
                         else
                         {
+                            dimensions = new[] { new ParsedLen { Type = LenType.Expression } };
                             Console.WriteLine("Could not parse len {0} for {1}", vkMember.Attribute("len").Value, memberName);
                         }
                     }
@@ -191,7 +197,7 @@ namespace SharpVk.VkXml
 
                     newType.Members.Add(new ParsedMember
                     {
-                        VkName = memberName,
+                        VkName = vkName,
                         Type = memberType,
                         IsOptional = isOptional,
                         FixedLength = fixedLength,
