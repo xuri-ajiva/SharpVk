@@ -257,7 +257,7 @@ namespace SharpVk.VkXml
                     {
                         if (member.Dimensions.Length > 1)
                         {
-                            // Assume that 2-dimensional arrays are string[]
+                            //HACK Assume that 2-dimensional arrays are string[]
                             Debug.Assert(member.Type == "char");
 
                             memberDesc.PublicTypeName = "string[]";

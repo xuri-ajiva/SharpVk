@@ -98,8 +98,12 @@ namespace SharpVk
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(allocator != null) marshalledAllocator = allocator.Pack();
 				Interop.Instance marshalledInstance;
+
 				Interop.Commands.vkCreateInstance(createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledInstance);
+
 				result = new Instance(marshalledInstance);
+
+				Interop.HeapUtil.FreeLog();
 
 				return result;
 			}
@@ -111,7 +115,11 @@ namespace SharpVk
 			{
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(allocator != null) marshalledAllocator = allocator.Pack();
+
 				Interop.Commands.vkDestroyInstance(this.handle, allocator == null ? null : &marshalledAllocator);
+
+
+				Interop.HeapUtil.FreeLog();
 			}
 		}
 

@@ -180,6 +180,12 @@ namespace SharpVk.VkXml
                 get;
                 set;
             }
+
+            public bool RequiresCleanup
+            {
+                get;
+                set;
+            }
         }
 
         public class VkHandle

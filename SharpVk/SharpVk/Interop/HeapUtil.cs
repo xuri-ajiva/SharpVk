@@ -5,13 +5,32 @@ using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
+    internal class AllocationLog
+    {
+        public List<IntPtr> StructAllocations = new List<IntPtr>();
+        public List<IntPtr> StringAllocations = new List<IntPtr>();
+
+        public void Clear()
+        {
+            this.StructAllocations.Clear();
+            this.StringAllocations.Clear();
+        }
+    }
+
     internal static unsafe class HeapUtil
     {
+        [ThreadStatic]
+        private static AllocationLog ThreadLog = new AllocationLog();
+
         private static IntPtr Allocate<T>(int count = 1)
         {
             int size = Marshal.SizeOf<T>();
 
-            return Marshal.AllocHGlobal(size * count);
+            IntPtr pointer = Marshal.AllocHGlobal(size * count);
+
+            ThreadLog.StructAllocations.Add(pointer);
+
+            return pointer;
         }
 
         internal static IntPtr AllocateAndClear<T>()
@@ -40,16 +59,45 @@ namespace SharpVk.Interop
             return pointer;
         }
 
+        internal static void FreeLog()
+        {
+            for(int index = 0; index < ThreadLog.StructAllocations.Count; index++)
+            {
+                FreeStruct(ThreadLog.StructAllocations[index]);
+            }
+
+            for (int index = 0; index < ThreadLog.StringAllocations.Count; index++)
+            {
+                FreeString(ThreadLog.StringAllocations[index]);
+            }
+
+            ThreadLog.Clear();
+        }
+
+        internal static void FreeStruct(IntPtr pointer)
+        {
+            Marshal.FreeHGlobal(pointer);
+        }
+
+        internal static void FreeString(IntPtr pointer)
+        {
+            FreeStruct(pointer);
+        }
+
         internal static void Free(void* pointer)
         {
-            Marshal.FreeHGlobal(new IntPtr(pointer));
+            FreeStruct(new IntPtr(pointer));
         }
 
         internal static char* MarshalTo(string value)
         {
             if (value == null)
             {
-                return (char*)Marshal.StringToHGlobalAnsi(value).ToPointer();
+                IntPtr pointer = Marshal.StringToHGlobalAnsi(value);
+
+                ThreadLog.StringAllocations.Add(pointer);
+
+                return (char*)pointer.ToPointer();
             }
             else
             {
@@ -73,12 +121,12 @@ namespace SharpVk.Interop
             return Marshal.PtrToStringAnsi(new IntPtr(pointer));
         }
 
-        internal static string MarshalPointerToString(char* pointer, int length)
+        internal static string MarshalFrom(char* pointer, int length)
         {
             return Marshal.PtrToStringAnsi(new IntPtr(pointer), length);
         }
 
-        internal static byte[] MarshalPointerToArray(byte* pointer, int length)
+        internal static byte[] MarshalFrom(byte* pointer, int length)
         {
             var newArray = new byte[length];
 
@@ -87,7 +135,7 @@ namespace SharpVk.Interop
             return newArray;
         }
 
-        internal static float[] MarshalPointerToArray(float* pointer, int length)
+        internal static float[] MarshalFrom(float* pointer, int length)
         {
             var newArray = new float[length];
 
@@ -96,7 +144,7 @@ namespace SharpVk.Interop
             return newArray;
         }
 
-        internal static uint[] MarshalPointerToArray(uint* pointer, int length)
+        internal static uint[] MarshalFrom(uint* pointer, int length)
         {
             var newArray = new uint[length];
 
@@ -109,41 +157,41 @@ namespace SharpVk.Interop
             return newArray;
         }
 
-        internal static byte* MarshalArrayToPointer(byte[] value)
+        internal static byte* MarshalTo(byte[] value)
         {
-            byte* pointer = (byte*)Marshal.AllocHGlobal(value.Length).ToPointer();
+            byte* pointer = (byte*)Allocate<byte>(value.Length).ToPointer();
 
-            MarshalArrayToPointer(value, value.Length, pointer);
+            MarshalTo(value, value.Length, pointer);
 
             return pointer;
         }
 
-        internal static float* MarshalArrayToPointer(float[] value)
+        internal static float* MarshalTo(float[] value)
         {
-            float* pointer = (float*)Marshal.AllocHGlobal(value.Length * sizeof(float)).ToPointer();
+            float* pointer = (float*)Allocate<float>(value.Length).ToPointer();
 
-            MarshalArrayToPointer(value, value.Length, pointer);
+            MarshalTo(value, value.Length, pointer);
 
             return pointer;
         }
 
-        internal static uint* MarshalArrayToPointer(uint[] value)
+        internal static uint* MarshalTo(uint[] value)
         {
-            uint* pointer = (uint*)Marshal.AllocHGlobal(value.Length * sizeof(uint)).ToPointer();
+            uint* pointer = (uint*)Allocate<uint>(value.Length).ToPointer();
 
-            MarshalArrayToPointer(value, value.Length, pointer);
+            MarshalTo(value, value.Length, pointer);
 
             return pointer;
         }
 
-        internal static void* MarshalArrayToPointer<T>(IEnumerable<T> value, int length)
+        internal static void* MarshalTo<T>(IEnumerable<T> value, int length)
             where T : struct
         {
             int size = Marshal.SizeOf<T>();
 
             T[] valueArray = value.ToArray();
 
-            IntPtr pointer = Marshal.AllocHGlobal(length * size);
+            IntPtr pointer = Allocate<T>(valueArray.Length);
 
             for (int index = 0; index < length; index++)
             {
@@ -153,17 +201,17 @@ namespace SharpVk.Interop
             return pointer.ToPointer();
         }
 
-        internal static void MarshalArrayToPointer(byte[] value, int length, byte* pointer)
+        internal static void MarshalTo(byte[] value, int length, byte* pointer)
         {
             Marshal.Copy(value, 0, new IntPtr(pointer), length);
         }
 
-        internal static void MarshalArrayToPointer(float[] value, int length, float* pointer)
+        internal static void MarshalTo(float[] value, int length, float* pointer)
         {
             Marshal.Copy(value, 0, new IntPtr(pointer), length);
         }
 
-        internal static void MarshalArrayToPointer(uint[] value, int length, uint* pointer)
+        internal static void MarshalTo(uint[] value, int length, uint* pointer)
         {
             //Marshal.Copy doesn't support uints for some reason...
             for (int index = 0; index < length; index++)

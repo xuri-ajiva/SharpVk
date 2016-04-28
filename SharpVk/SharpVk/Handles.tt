@@ -100,6 +100,7 @@ foreach(var handle in types.Handles)
 <#
 		}
 #>
+
 				Interop.Commands.<#=method.CommandName#>(<#
 		bool isFirst = true;
 
@@ -128,6 +129,7 @@ foreach(var handle in types.Handles)
 			}
 		}
 				#>);
+
 <#
 		foreach(var statement in method.MarshalFromStatements)
 		{
@@ -135,6 +137,8 @@ foreach(var handle in types.Handles)
 <#
 		}
 #>
+
+				Interop.HeapUtil.FreeLog();
 <#
 		if(method.ReturnTypeName != "void")
 		{
