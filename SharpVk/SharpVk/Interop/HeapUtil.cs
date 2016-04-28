@@ -21,8 +21,13 @@ namespace SharpVk.Interop
     {
         [ThreadStatic]
         private static AllocationLog ThreadLog = new AllocationLog();
+        
+        internal static IntPtr Allocate<T>(uint count)
+        {
+            return Allocate<T>(count);
+        }
 
-        private static IntPtr Allocate<T>(int count = 1)
+        internal static IntPtr Allocate<T>(int count = 1)
         {
             int size = Marshal.SizeOf<T>();
 

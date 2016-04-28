@@ -235,6 +235,12 @@ namespace SharpVk.VkXml
                 set;
             }
 
+            public bool IsDoubleInvoke
+            {
+                get;
+                set;
+            }
+
             public List<VkMethodParam> Parameters
             {
                 get;
@@ -242,6 +248,12 @@ namespace SharpVk.VkXml
             } = new List<VkMethodParam>();
 
             public List<string> MarshalToStatements
+            {
+                get;
+                private set;
+            } = new List<string>();
+
+            public List<string> MarshalMidStatements
             {
                 get;
                 private set;
@@ -262,6 +274,12 @@ namespace SharpVk.VkXml
                 set;
             }
 
+            public string PreInvokeArgumentName
+            {
+                get;
+                set;
+            }
+
             public string ArgumentName
             {
                 get;
@@ -273,28 +291,6 @@ namespace SharpVk.VkXml
                 get;
                 set;
             }
-
-            public VkMethodParamType ParamType
-            {
-                get;
-                set;
-            }
-
-            public bool RequiresInputParam
-            {
-                get
-                {
-                    return this.ParamType == VkMethodParamType.Passthrough;
-                }
-            }
-        }
-
-        public enum VkMethodParamType
-        {
-            ThisHandle,
-            ParentHandle,
-            Passthrough,
-            Result
         }
 
         public class VkCommand

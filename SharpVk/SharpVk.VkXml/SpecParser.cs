@@ -174,24 +174,7 @@ namespace SharpVk.VkXml
                         pointerCount--;
                     }
 
-                    ParsedLen[] dimensions = null;
-
-                    if (vkMember.Attribute("len") != null)
-                    {
-                        var lenResult = lenParser.TryParse(vkMember.Attribute("len").Value);
-
-                        if (lenResult.WasSuccessful)
-                        {
-                            dimensions = lenResult.Value.ToArray();
-                        }
-                        else
-                        {
-                            dimensions = new[] { new ParsedLen { Type = LenType.Expression } };
-                            //HACK Placeholder warning till I get round to
-                            //parsing LaTeX Maths statements
-                            Console.WriteLine("Could not parse len {0} for {2}.{1}", vkMember.Attribute("len").Value, memberName, name);
-                        }
-                    }
+                    ParsedLen[] dimensions = GetDimensions(name, vkMember, memberName);
 
                     string memberExtension;
 
@@ -318,9 +301,15 @@ namespace SharpVk.VkXml
 
                     string paramName = nameElement.Value;
                     string paramType = vkParam.Element("type").Value;
+                    string optional = vkParam.Element("optional")?.Value;
+                    bool isOptional = optional != null
+                                        ? bool.Parse(optional)
+                                        : false;
 
                     var typeNodes = nameElement.NodesBeforeSelf();
                     PointerType pointerType = GetPointerType(typeNodes);
+
+                    ParsedLen[] dimensions = GetDimensions(name, vkParam, paramName);
 
                     string paramExtension;
 
@@ -332,7 +321,9 @@ namespace SharpVk.VkXml
                         Type = paramType,
                         PointerType = pointerType,
                         NameParts = paramNameParts,
-                        Extension = paramExtension
+                        Extension = paramExtension,
+                        IsOptional = isOptional,
+                        Dimensions = dimensions
                     });
                 }
             }
@@ -340,6 +331,30 @@ namespace SharpVk.VkXml
             var vkFeature = vkXml.Element("registry").Elements("feature").Single(x => x.Attribute("api").Value == "vulkan");
 
             return FilterRequiredElement(typeXml, enumXml, commandXml, vkFeature);
+        }
+
+        private static ParsedLen[] GetDimensions(string name, XElement vkMember, string memberName)
+        {
+            ParsedLen[] dimensions = null;
+
+            if (vkMember.Attribute("len") != null)
+            {
+                var lenResult = lenParser.TryParse(vkMember.Attribute("len").Value);
+
+                if (lenResult.WasSuccessful)
+                {
+                    dimensions = lenResult.Value.ToArray();
+                }
+                else
+                {
+                    dimensions = new[] { new ParsedLen { Type = LenType.Expression } };
+                    //HACK Placeholder warning till I get round to
+                    //parsing LaTeX Maths statements
+                    Console.WriteLine("Could not parse len {0} for {2}.{1}", vkMember.Attribute("len").Value, memberName, name);
+                }
+            }
+
+            return dimensions;
         }
 
         private static ParsedSpec FilterRequiredElement(Dictionary<string, ParsedType> typeXml, Dictionary<string, ParsedEnum> enumXml, Dictionary<string, ParsedCommand> commandXml, XElement vkFeature)
@@ -377,7 +392,7 @@ namespace SharpVk.VkXml
 
             //HACK Artificially limit the set of required commands to simplify
             //the API while working on marshalling and the public handles
-            foreach (var commandName in requiredCommand.Distinct().Take(2))
+            foreach (var commandName in requiredCommand.Distinct().Take(3))
             {
                 var command = commandXml[commandName];
 
@@ -592,9 +607,7 @@ namespace SharpVk.VkXml
         public class ParsedMember
             : ParsedPointerElement
         {
-            public bool IsOptional;
             public ParsedFixedLength FixedLength;
-            public ParsedLen[] Dimensions;
         }
 
         public class ParsedCommand
@@ -607,6 +620,8 @@ namespace SharpVk.VkXml
         public class ParsedPointerElement
             : ParsedElement
         {
+            public bool IsOptional;
+            public ParsedLen[] Dimensions;
             public PointerType PointerType;
         }
 

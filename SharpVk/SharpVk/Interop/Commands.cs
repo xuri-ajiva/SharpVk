@@ -35,5 +35,8 @@ namespace SharpVk.Interop
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
 		public static extern void vkDestroyInstance(Instance instance, AllocationCallbacks* allocator);
 
+		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
+		public static extern Result vkEnumeratePhysicalDevices(Instance instance, uint* physicalDeviceCount, PhysicalDevice* physicalDevices);
+
 	}
 }

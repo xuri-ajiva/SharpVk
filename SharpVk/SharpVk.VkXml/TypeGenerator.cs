@@ -99,29 +99,34 @@ namespace SharpVk.VkXml
                     {
                         newMethod.Parameters.Add(new TypeSet.VkMethodParam
                         {
-                            ParamType = TypeSet.VkMethodParamType.ParentHandle
+                            ArgumentName = "this.parent.handle"
                         });
                     }
 
                     newMethod.Parameters.Add(new TypeSet.VkMethodParam
                     {
-                        ParamType = TypeSet.VkMethodParamType.ThisHandle
+                        ArgumentName = "this.handle"
                     });
                 }
 
                 int parameterIndex = 0;
 
-                foreach (var parameter in command.Params)
+                var paramNameLookup = command.Params.ToDictionary(x => x.VkName, x =>
                 {
-                    var nameParts = parameter.NameParts.AsEnumerable();
-                    int pointerCount = parameter.PointerType.GetPointerCount();
+                    var nameParts = x.NameParts.AsEnumerable();
+                    int pointerCount = x.PointerType.GetPointerCount();
 
                     if (pointerCount > 0)
                     {
                         nameParts = nameParts.Skip(1);
                     }
+                    return JoinNameParts(nameParts, true);
+                });
 
-                    string paramName = JoinNameParts(nameParts, true);
+                foreach (var parameter in command.Params)
+                {
+
+                    string paramName = paramNameLookup[parameter.VkName];
                     var paramType = typeData[GetMemberTypeName(parameter)];
 
                     string marshalledName = "marshalled" + CapitaliseFirst(paramName);
@@ -141,30 +146,63 @@ namespace SharpVk.VkXml
 
                     if (parameterIndex >= handleParams.Count())
                     {
-                        Console.WriteLine(paramName);
-
-                        if (lastParamReturns && parameterIndex == command.Params.Count() - 1)
+                        if (lastParamReturns && parameterIndex == command.Params.Count() - 2 && command.Verb == "enumerate")
                         {
                             newMethod.Parameters.Add(new TypeSet.VkMethodParam
                             {
-                                ArgumentName = "&" + marshalledName,
-                                TypeName = paramType.Name,
-                                ParamType = TypeSet.VkMethodParamType.Result
+                                ArgumentName = "&" + paramName
                             });
 
-                            newMethod.ReturnTypeName = paramType.Name;
-
-                            newMethod.MarshalToStatements.Add(string.Format("Interop.{0} {1};", paramType.Name, marshalledName));
-                            newMethod.MarshalFromStatements.Add(string.Format("result = new {0}({1});", paramType.Name, marshalledName));
+                            newMethod.MarshalToStatements.Add(string.Format("{0} {1};", paramType.Name, paramName));
                         }
-                        else if(paramType.RequiresInterop)
+                        else if (lastParamReturns && parameterIndex == command.Params.Count() - 1)
+                        {
+                            if (command.Verb == "enumerate")
+                            {
+                                newMethod.Parameters.Add(new TypeSet.VkMethodParam
+                                {
+                                    PreInvokeArgumentName = "null",
+                                    ArgumentName = marshalledName,
+                                    TypeName = paramType.Name
+                                });
+
+                                newMethod.ReturnTypeName = paramType.Name + "[]";
+                                newMethod.IsDoubleInvoke = true;
+
+                                newMethod.MarshalToStatements.Add(string.Format("Interop.{0}* {1} = null;", paramType.Name, marshalledName));
+
+                                string lenParam = paramNameLookup[parameter.Dimensions.First().Value];
+
+                                newMethod.MarshalMidStatements.Add(string.Format("{1} = (Interop.{0}*)Interop.HeapUtil.Allocate<Interop.{0}>({2});", paramType.Name, marshalledName, lenParam));
+
+                                newMethod.MarshalFromStatements.Add(string.Format("result = new {0}[{1}];", paramType.Name, lenParam));
+
+                                newMethod.MarshalFromStatements.Add(string.Format("for(int index = 0; index < {0}; index++)", lenParam));
+                                newMethod.MarshalFromStatements.Add("{");
+                                newMethod.MarshalFromStatements.Add(string.Format("\tresult[index] = new {0}({1}[index]{2});", paramType.Name, marshalledName, paramType.Data.Parent != null ? ", this" : ""));
+                                newMethod.MarshalFromStatements.Add("}");
+                            }
+                            else
+                            {
+                                newMethod.Parameters.Add(new TypeSet.VkMethodParam
+                                {
+                                    ArgumentName = "&" + marshalledName,
+                                    TypeName = paramType.Name
+                                });
+
+                                newMethod.ReturnTypeName = paramType.Name;
+
+                                newMethod.MarshalToStatements.Add(string.Format("Interop.{0} {1};", paramType.Name, marshalledName));
+                                newMethod.MarshalFromStatements.Add(string.Format("result = new {0}({1});", paramType.Name, marshalledName));
+                            }
+                        }
+                        else if (paramType.RequiresInterop)
                         {
                             newMethod.Parameters.Add(new TypeSet.VkMethodParam
                             {
                                 Name = paramName,
                                 ArgumentName = string.Format("{1} == null ? null : &{0}", marshalledName, paramName),
-                                TypeName = paramType.Name,
-                                ParamType = TypeSet.VkMethodParamType.Passthrough
+                                TypeName = paramType.Name
                             });
 
                             newMethod.MarshalToStatements.Add(string.Format("Interop.{0} {1};", paramType.Name, marshalledName));
@@ -176,8 +214,7 @@ namespace SharpVk.VkXml
                             {
                                 Name = paramName,
                                 ArgumentName = paramName,
-                                TypeName = paramType.Name,
-                                ParamType = TypeSet.VkMethodParamType.Passthrough
+                                TypeName = paramType.Name
                             });
                         }
                     }

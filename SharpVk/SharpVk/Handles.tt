@@ -60,23 +60,14 @@ foreach(var handle in types.Handles)
 
 		foreach(var param in method.Parameters)
 		{
-			string paramString = null;
-
-			switch(param.ParamType)
-			{
-				case TypeSet.VkMethodParamType.Passthrough:
-					paramString = string.Format("{0} {1}", param.TypeName, param.Name);
-					break;
-			}
-
-			if(previousParamSet && paramString != null)
+			if(previousParamSet && param.Name != null)
 			{
 				#>, <#
 			}
 
-			if(paramString != null)
+			if(param.Name != null)
 			{
-				#><#=paramString#><#
+				#><#=param.TypeName#> <#=param.Name#><#
 
 				previousParamSet = true;
 			}
@@ -99,10 +90,41 @@ foreach(var handle in types.Handles)
 #>				<#=statement#>
 <#
 		}
+
+		bool isFirst;
+
+		if(method.IsDoubleInvoke)
+		{
+#>
+				Interop.Commands.<#=method.CommandName#>(<#
+			isFirst = true;
+
+			foreach(var param in method.Parameters)
+			{
+				if(isFirst)
+				{
+					isFirst = false;
+				}
+				else
+				{
+#>, <#
+				}
+#><#=param.PreInvokeArgumentName ?? param.ArgumentName#><#
+			}
+				#>);
+
+<#
+		}
+
+		foreach(var statement in method.MarshalMidStatements)
+		{
+#>				<#=statement#>
+<#
+		}
 #>
 
 				Interop.Commands.<#=method.CommandName#>(<#
-		bool isFirst = true;
+		isFirst = true;
 
 		foreach(var param in method.Parameters)
 		{
@@ -112,21 +134,9 @@ foreach(var handle in types.Handles)
 			}
 			else
 			{
-				#>, <#
+#>, <#
 			}
-			switch(param.ParamType)
-			{
-				case TypeSet.VkMethodParamType.ThisHandle:
-				#>this.handle<#
-				break;
-				case TypeSet.VkMethodParamType.ParentHandle:
-				#>this.parent.MarshalTo()<#
-				break;
-				case TypeSet.VkMethodParamType.Passthrough:
-				case TypeSet.VkMethodParamType.Result:
-				#><#=param.ArgumentName#><#
-				break;
-			}
+#><#=param.ArgumentName#><#
 		}
 				#>);
 

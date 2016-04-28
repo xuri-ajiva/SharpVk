@@ -123,6 +123,32 @@ namespace SharpVk
 			}
 		}
 
+		public PhysicalDevice[] EnumeratePhysicalDevices()
+		{
+			unsafe
+			{
+				PhysicalDevice[] result = default(PhysicalDevice[]);
+
+				uint physicalDeviceCount;
+				Interop.PhysicalDevice* marshalledPhysicalDevices = null;
+				Interop.Commands.vkEnumeratePhysicalDevices(this.handle, &physicalDeviceCount, null);
+
+				marshalledPhysicalDevices = (Interop.PhysicalDevice*)Interop.HeapUtil.Allocate<Interop.PhysicalDevice>(physicalDeviceCount);
+
+				Interop.Commands.vkEnumeratePhysicalDevices(this.handle, &physicalDeviceCount, marshalledPhysicalDevices);
+
+				result = new PhysicalDevice[physicalDeviceCount];
+				for(int index = 0; index < physicalDeviceCount; index++)
+				{
+					result[index] = new PhysicalDevice(marshalledPhysicalDevices[index], this);
+				}
+
+				Interop.HeapUtil.FreeLog();
+
+				return result;
+			}
+		}
+
 		internal Interop.Instance MarshalTo()
 		{
 			return this.handle;
