@@ -223,16 +223,40 @@ namespace SharpVk.VkXml
                 set;
             }
 
+            public bool IsStatic
+            {
+                get;
+                set;
+            }
+
             public List<VkMethodParam> Parameters
             {
                 get;
                 private set;
             } = new List<VkMethodParam>();
+
+            public List<string> MarshalToStatements
+            {
+                get;
+                private set;
+            } = new List<string>();
+
+            public List<string> MarshalFromStatements
+            {
+                get;
+                private set;
+            } = new List<string>();
         }
 
         public class VkMethodParam
         {
             public string Name
+            {
+                get;
+                set;
+            }
+
+            public string ArgumentName
             {
                 get;
                 set;
@@ -263,7 +287,8 @@ namespace SharpVk.VkXml
         {
             ThisHandle,
             ParentHandle,
-            Passthrough
+            Passthrough,
+            Result
         }
 
         public class VkCommand

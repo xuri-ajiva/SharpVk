@@ -55,10 +55,51 @@ foreach(var handle in types.Handles)
     {
 #>
 
-		public <#=method.ReturnTypeName#> <#=method.Name#>()
+		public <#if(method.IsStatic)#>static <#;#><#=method.ReturnTypeName#> <#=method.Name#>(<#
+		bool previousParamSet = false;
+
+		foreach(var param in method.Parameters)
+		{
+			string paramString = null;
+
+			switch(param.ParamType)
+			{
+				case TypeSet.VkMethodParamType.Passthrough:
+					paramString = string.Format("{0} {1}", param.TypeName, param.Name);
+					break;
+			}
+
+			if(previousParamSet && paramString != null)
+			{
+				#>, <#
+			}
+
+			if(paramString != null)
+			{
+				#><#=paramString#><#
+
+				previousParamSet = true;
+			}
+		}
+				#>)
 		{
 			unsafe
 			{
+<#
+		if(method.ReturnTypeName != "void")
+		{
+#>				<#=method.ReturnTypeName#> result = default(<#=method.ReturnTypeName#>);
+
+<#
+		}
+#>
+<#
+		foreach(var statement in method.MarshalToStatements)
+		{
+#>				<#=statement#>
+<#
+		}
+#>
 				Interop.Commands.<#=method.CommandName#>(<#
 		bool isFirst = true;
 
@@ -78,15 +119,31 @@ foreach(var handle in types.Handles)
 				#>this.handle<#
 				break;
 				case TypeSet.VkMethodParamType.ParentHandle:
-				#>this.parent<#
+				#>this.parent.MarshalTo()<#
 				break;
 				case TypeSet.VkMethodParamType.Passthrough:
-				#>null<#
+				case TypeSet.VkMethodParamType.Result:
+				#><#=param.ArgumentName#><#
 				break;
 			}
 		}
 				#>);
-				throw new NotImplementedException();
+<#
+		foreach(var statement in method.MarshalFromStatements)
+		{
+#>				<#=statement#>
+<#
+		}
+#>
+<#
+		if(method.ReturnTypeName != "void")
+		{
+#>
+
+				return result;
+<#
+		}
+#>
 			}
 		}
 <#

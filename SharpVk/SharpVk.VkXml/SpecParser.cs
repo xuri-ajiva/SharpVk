@@ -590,11 +590,10 @@ namespace SharpVk.VkXml
         }
 
         public class ParsedMember
-            : ParsedElement
+            : ParsedPointerElement
         {
             public bool IsOptional;
             public ParsedFixedLength FixedLength;
-            public PointerType PointerType;
             public ParsedLen[] Dimensions;
         }
 
@@ -605,10 +604,15 @@ namespace SharpVk.VkXml
             public readonly List<ParsedParam> Params = new List<ParsedParam>();
         }
 
-        public class ParsedParam
+        public class ParsedPointerElement
             : ParsedElement
         {
             public PointerType PointerType;
+        }
+
+        public class ParsedParam
+            : ParsedPointerElement
+        {
         }
 
         public class ParsedEnum

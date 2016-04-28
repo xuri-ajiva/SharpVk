@@ -82,14 +82,16 @@ namespace SharpVk.VkXml
 
                 var newMethod = new TypeSet.VkHandleMethod
                 {
-                    Name = commandName,
-                    ReturnTypeName = GetFormattedTypeName(typeData, command),
+                    Name = JoinNameParts(command.NameParts),
+                    ReturnTypeName = "void",
                     CommandName = commandName
                 };
 
                 if (!handleParams.Any())
                 {
                     Debug.Assert(lastParamReturns);
+
+                    newMethod.IsStatic = true;
                 }
                 else
                 {
@@ -120,28 +122,64 @@ namespace SharpVk.VkXml
                     }
 
                     string paramName = JoinNameParts(nameParts, true);
-                    string typeName = typeData[GetMemberTypeName(parameter)].Name + new string('*', pointerCount);
+                    var paramType = typeData[GetMemberTypeName(parameter)];
+
+                    string marshalledName = "marshalled" + CapitaliseFirst(paramName);
 
                     if (keywords.Contains(paramName))
                     {
                         paramName = "@" + paramName;
                     }
 
+                    string interopTypeName = ApplyPointerType(parameter, paramType.Name);
+
                     newCommand.Parameters.Add(new TypeSet.VkCommandParameter
                     {
                         Name = paramName,
-                        TypeName = typeName
+                        TypeName = interopTypeName
                     });
 
                     if (parameterIndex >= handleParams.Count())
                     {
                         Console.WriteLine(paramName);
-                        
-                        newMethod.Parameters.Add(new TypeSet.VkMethodParam
+
+                        if (lastParamReturns && parameterIndex == command.Params.Count() - 1)
                         {
-                            Name = paramName,
-                            ParamType = TypeSet.VkMethodParamType.Passthrough
-                        });
+                            newMethod.Parameters.Add(new TypeSet.VkMethodParam
+                            {
+                                ArgumentName = "&" + marshalledName,
+                                TypeName = paramType.Name,
+                                ParamType = TypeSet.VkMethodParamType.Result
+                            });
+
+                            newMethod.ReturnTypeName = paramType.Name;
+
+                            newMethod.MarshalToStatements.Add(string.Format("Interop.{0} {1};", paramType.Name, marshalledName));
+                            newMethod.MarshalFromStatements.Add(string.Format("result = new {0}({1});", paramType.Name, marshalledName));
+                        }
+                        else if(paramType.RequiresInterop)
+                        {
+                            newMethod.Parameters.Add(new TypeSet.VkMethodParam
+                            {
+                                Name = paramName,
+                                ArgumentName = string.Format("{1} == null ? null : &{0}", marshalledName, paramName),
+                                TypeName = paramType.Name,
+                                ParamType = TypeSet.VkMethodParamType.Passthrough
+                            });
+
+                            newMethod.MarshalToStatements.Add(string.Format("Interop.{0} {1};", paramType.Name, marshalledName));
+                            newMethod.MarshalToStatements.Add(string.Format("if({1} != null) {0} = {1}.Pack();", marshalledName, paramName));
+                        }
+                        else
+                        {
+                            newMethod.Parameters.Add(new TypeSet.VkMethodParam
+                            {
+                                Name = paramName,
+                                ArgumentName = paramName,
+                                TypeName = paramType.Name,
+                                ParamType = TypeSet.VkMethodParamType.Passthrough
+                            });
+                        }
                     }
 
                     parameterIndex++;
@@ -435,7 +473,7 @@ namespace SharpVk.VkXml
             return memberTypeName;
         }
 
-        private static string ApplyPointerType(SpecParser.ParsedMember member, string memberTypeName)
+        private static string ApplyPointerType(SpecParser.ParsedPointerElement member, string memberTypeName)
         {
             return memberTypeName + new string('*', member.PointerType.GetPointerCount());
         }

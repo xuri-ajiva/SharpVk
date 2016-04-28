@@ -87,21 +87,31 @@ namespace SharpVk
 			this.handle = handle;
 		}
 
-		public Result vkCreateInstance()
+		public static Instance CreateInstance(InstanceCreateInfo createInfo, AllocationCallbacks allocator)
 		{
 			unsafe
 			{
-				Interop.Commands.vkCreateInstance(null, null, null);
-				throw new NotImplementedException();
+				Instance result = default(Instance);
+
+				Interop.InstanceCreateInfo marshalledCreateInfo;
+				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+				Interop.Instance marshalledInstance;
+				Interop.Commands.vkCreateInstance(createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledInstance);
+				result = new Instance(marshalledInstance);
+
+				return result;
 			}
 		}
 
-		public void vkDestroyInstance()
+		public void DestroyInstance(AllocationCallbacks allocator)
 		{
 			unsafe
 			{
-				Interop.Commands.vkDestroyInstance(this.handle, null);
-				throw new NotImplementedException();
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+				Interop.Commands.vkDestroyInstance(this.handle, allocator == null ? null : &marshalledAllocator);
 			}
 		}
 
