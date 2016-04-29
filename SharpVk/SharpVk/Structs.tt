@@ -56,6 +56,11 @@ namespace SharpVk
 		{
 			return value.value != Constants.False;
 		}
+
+		public override string ToString()
+		{
+			return ((bool)this).ToString();
+		}
 	}
 
 	public struct DeviceSize

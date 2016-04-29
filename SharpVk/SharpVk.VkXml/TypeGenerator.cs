@@ -71,7 +71,7 @@ namespace SharpVk.VkXml
 
                 bool lastParamReturns = false;
 
-                if (typeData[lastParam.Type].Data.Category == TypeCategory.handle && lastParam.PointerType == PointerType.Pointer)
+                if (lastParam.PointerType == PointerType.Pointer)
                 {
                     lastParamReturns = true;
                 }
@@ -184,16 +184,26 @@ namespace SharpVk.VkXml
                             }
                             else
                             {
-                                newMethod.Parameters.Add(new TypeSet.VkMethodParam
-                                {
-                                    ArgumentName = "&" + marshalledName,
-                                    TypeName = paramType.Name
-                                });
+                                string argumentName;
 
                                 newMethod.ReturnTypeName = paramType.Name;
 
-                                newMethod.MarshalToStatements.Add(string.Format("Interop.{0} {1};", paramType.Name, marshalledName));
-                                newMethod.MarshalFromStatements.Add(string.Format("result = new {0}({1});", paramType.Name, marshalledName));
+                                if (paramType.RequiresInterop || paramType.Data.Category == TypeCategory.handle)
+                                {
+                                    argumentName = "&" + marshalledName;
+                                    newMethod.MarshalToStatements.Add(string.Format("Interop.{0} {1};", paramType.Name, marshalledName));
+                                    newMethod.MarshalFromStatements.Add(string.Format("result = new {0}({1});", paramType.Name, marshalledName));
+                                }
+                                else
+                                {
+                                    argumentName = "&result";
+                                }
+
+                                newMethod.Parameters.Add(new TypeSet.VkMethodParam
+                                {
+                                    ArgumentName = argumentName,
+                                    TypeName = paramType.Name
+                                });
                             }
                         }
                         else if (paramType.RequiresInterop)

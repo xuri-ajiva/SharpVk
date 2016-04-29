@@ -24,7 +24,7 @@ namespace SharpVk.Interop
         
         internal static IntPtr Allocate<T>(uint count)
         {
-            return Allocate<T>(count);
+            return Allocate<T>((int)count);
         }
 
         internal static IntPtr Allocate<T>(int count = 1)
@@ -96,7 +96,7 @@ namespace SharpVk.Interop
 
         internal static char* MarshalTo(string value)
         {
-            if (value == null)
+            if (value != null)
             {
                 IntPtr pointer = Marshal.StringToHGlobalAnsi(value);
 
@@ -229,7 +229,7 @@ namespace SharpVk.Interop
         {
             for (int index = 0; index < length; index++)
             {
-                *(pointer + length) = MarshalTo(value[index]);
+                pointer[index] = MarshalTo(value[index]);
             }
         }
     }

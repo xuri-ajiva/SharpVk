@@ -392,7 +392,7 @@ namespace SharpVk.VkXml
 
             //HACK Artificially limit the set of required commands to simplify
             //the API while working on marshalling and the public handles
-            foreach (var commandName in requiredCommand.Distinct().Take(3))
+            foreach (var commandName in requiredCommand.Distinct().Take(6))
             {
                 var command = commandXml[commandName];
 

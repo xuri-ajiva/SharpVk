@@ -167,6 +167,54 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
+		public PhysicalDeviceFeatures GetPhysicalDeviceFeatures()
+		{
+			unsafe
+			{
+				PhysicalDeviceFeatures result = default(PhysicalDeviceFeatures);
+
+
+				Interop.Commands.vkGetPhysicalDeviceFeatures(this.handle, &result);
+
+
+				Interop.HeapUtil.FreeLog();
+
+				return result;
+			}
+		}
+
+		public FormatProperties GetPhysicalDeviceFormatProperties(Format format)
+		{
+			unsafe
+			{
+				FormatProperties result = default(FormatProperties);
+
+
+				Interop.Commands.vkGetPhysicalDeviceFormatProperties(this.handle, format, &result);
+
+
+				Interop.HeapUtil.FreeLog();
+
+				return result;
+			}
+		}
+
+		public ImageFormatProperties GetPhysicalDeviceImageFormatProperties(Format format, ImageType type, ImageTiling tiling, ImageUsageFlags usage, ImageCreateFlags flags)
+		{
+			unsafe
+			{
+				ImageFormatProperties result = default(ImageFormatProperties);
+
+
+				Interop.Commands.vkGetPhysicalDeviceImageFormatProperties(this.handle, format, type, tiling, usage, flags, &result);
+
+
+				Interop.HeapUtil.FreeLog();
+
+				return result;
+			}
+		}
+
 		internal Interop.PhysicalDevice MarshalTo()
 		{
 			return this.handle;
