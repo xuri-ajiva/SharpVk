@@ -278,7 +278,8 @@ namespace SharpVk.VkXml
 
                 var newClass = new TypeSet.VkClass
                 {
-                    Name = type.Name
+                    Name = type.Name,
+                    IsOutput = type.Data.IsReturnedOnly
                 };
 
                 var lenMembers = new List<string>();
@@ -313,8 +314,8 @@ namespace SharpVk.VkXml
 
                             lenMembers.Add(lenMember);
 
-                            newClass.MarshalStatements.Add(string.Format("result.{0} = this.{1} == null ? 0 : (uint)this.{1}.Length;", memberNameLookup[lenMember], memberDesc.Name));
-                            newClass.MarshalStatements.Add(string.Format("result.{0} = this.{0} == null ? null : Interop.HeapUtil.MarshalTo(this.{0});", memberDesc.Name));
+                            newClass.MarshalToStatements.Add(string.Format("result.{0} = this.{1} == null ? 0 : (uint)this.{1}.Length;", memberNameLookup[lenMember], memberDesc.Name));
+                            newClass.MarshalToStatements.Add(string.Format("result.{0} = this.{0} == null ? null : Interop.HeapUtil.MarshalTo(this.{0});", memberDesc.Name));
                         }
                         else
                         {
@@ -323,7 +324,8 @@ namespace SharpVk.VkXml
                                 case SpecParser.LenType.NullTerminated:
                                     memberDesc.PublicTypeName = "string";
 
-                                    newClass.MarshalStatements.Add(string.Format("result.{0} = Interop.HeapUtil.MarshalTo(this.{0});", memberDesc.Name));
+                                    newClass.MarshalToStatements.Add(string.Format("result.{0} = Interop.HeapUtil.MarshalTo(this.{0});", memberDesc.Name));
+                                    newClass.MarshalFromStatements.Add(string.Format("result.{0} = Interop.HeapUtil.MarshalFrom(value->{0});", memberDesc.Name));
                                     break;
                                 case SpecParser.LenType.Expression:
 
@@ -353,42 +355,80 @@ namespace SharpVk.VkXml
 
                         if (member.VkName == "sType")
                         {
-                            newClass.MarshalStatements.Add(string.Format("result.SType = StructureType.{0};", type.Name));
+                            newClass.MarshalToStatements.Add(string.Format("result.SType = StructureType.{0};", type.Name));
                         }
                     }
                     else if (isPointer && memberDesc.PublicTypeName == "void")
                     {
                         memberDesc.PublicTypeName = "IntPtr";
 
-                        newClass.MarshalStatements.Add(string.Format("result.{0} = this.{0}.ToPointer();", memberDesc.Name));
+                        newClass.MarshalToStatements.Add(string.Format("result.{0} = this.{0}.ToPointer();", memberDesc.Name));
+                        newClass.MarshalFromStatements.Add(string.Format("result.{0} = new IntPtr(value->{0});", memberDesc.Name));
                     }
                     else if (memberType.Data.Category == TypeCategory.handle || isPointer)
                     {
                         string nullString = isPointer ? "null" : string.Format("Interop.{0}.Null", memberDesc.InteropTypeName);
 
-                        newClass.MarshalStatements.Add(string.Format("result.{0} = this.{0} == null ? {1} : this.{0}.MarshalTo();", memberDesc.Name, nullString));
+                        newClass.MarshalToStatements.Add(string.Format("result.{0} = this.{0} == null ? {1} : this.{0}.MarshalTo();", memberDesc.Name, nullString));
                     }
                     else if (memberType.RequiresInterop)
                     {
+                        newClass.MarshalToStatements.Add(string.Format("result.{0} = this.{0}.Pack();", memberDesc.Name));
                     }
-                    else if (memberDesc.Name.EndsWith("Version") && memberDesc.PublicTypeName == "uint")
+                    else if (member.FixedLength.Type != SpecParser.FixedLengthType.None)
                     {
-                        memberDesc.PublicTypeName = "Version";
-                        memberDesc.IsSimpleMarshal = true;
-                    }
-                    else if (memberDesc.PublicTypeName == "DeviceSize")
-                    {
-                        memberDesc.PublicTypeName = "ulong";
-                        memberDesc.IsSimpleMarshal = true;
+                        if (member.Type == "char")
+                        {
+                            memberDesc.PublicTypeName = "string";
+                        }
+                        else
+                        {
+                            memberDesc.PublicTypeName += "[]";
+                        }
+
+                        string fixedLengthValue = member.FixedLength.Value;
+
+                        if(member.FixedLength.Type == SpecParser.FixedLengthType.EnumReference)
+                        {
+                            //TODO Map this to a constant
+                            fixedLengthValue = "16";
+                        }
+
+                        newClass.MarshalFromStatements.Add(string.Format("result.{0} = Interop.HeapUtil.MarshalFrom(value->{0}, {1});", memberDesc.Name, fixedLengthValue));
                     }
                     else
                     {
                         memberDesc.IsSimpleMarshal = true;
                     }
 
+                    if (memberDesc.Name.EndsWith("Version") && memberDesc.PublicTypeName == "uint")
+                    {
+                        memberDesc.PublicTypeName = "Version";
+                    }
+                    else if (memberDesc.PublicTypeName == "DeviceSize")
+                    {
+                        memberDesc.PublicTypeName = "ulong";
+                    }
+                    //else if (memberDesc.Name.EndsWith("UUID") && memberDesc.PublicTypeName == "byte[]")
+                    //{
+                    //    memberDesc.PublicTypeName = "Guid";
+                    //}
+
+                    string structMemberName = memberDesc.Name;
+
+                    switch (member.FixedLength.Type)
+                    {
+                        case SpecParser.FixedLengthType.EnumReference:
+                            structMemberName += "[16]";
+                            break;
+                        case SpecParser.FixedLengthType.IntegerLiteral:
+                            structMemberName += "[" + member.FixedLength.Value + "]";
+                            break;
+                    }
+
                     newStruct.Members.Add(new TypeSet.VkStructMember
                     {
-                        Name = memberDesc.Name,
+                        Name = structMemberName,
                         TypeName = memberDesc.InteropTypeName
                     });
 
@@ -410,7 +450,8 @@ namespace SharpVk.VkXml
 
                     if (member.IsSimpleMarshal)
                     {
-                        newClass.MarshalStatements.Add(string.Format("result.{0} = this.{0};", member.Name));
+                        newClass.MarshalToStatements.Add(string.Format("result.{0} = this.{0};", member.Name));
+                        newClass.MarshalFromStatements.Add(string.Format("result.{0} = value->{0};", member.Name));
                     }
                 }
 
@@ -522,7 +563,18 @@ namespace SharpVk.VkXml
 
         private static string ApplyPointerType(SpecParser.ParsedPointerElement member, string memberTypeName)
         {
-            return memberTypeName + new string('*', member.PointerType.GetPointerCount());
+            if (member.PointerType.IsPointer())
+            {
+                return memberTypeName + new string('*', member.PointerType.GetPointerCount());
+            }
+            else if (member.FixedLength.Type != SpecParser.FixedLengthType.None)
+            {
+                return "fixed " + memberTypeName;
+            }
+            else
+            {
+                return memberTypeName;
+            }
         }
 
         private static void GenerateEnumerations(SpecParser.ParsedSpec spec, Dictionary<string, TypeDesc> typeData, TypeSet result)

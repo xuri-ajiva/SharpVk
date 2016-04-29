@@ -336,6 +336,15 @@ namespace SharpVk
 		Image3d = 2,
 	}
 
+	public enum PhysicalDeviceType
+	{
+		Other = 0,
+		IntegratedGpu = 1,
+		DiscreteGpu = 2,
+		VirtualGpu = 3,
+		Cpu = 4,
+	}
+
 	public enum PipelineCacheHeaderVersion
 	{
 		One = 1,

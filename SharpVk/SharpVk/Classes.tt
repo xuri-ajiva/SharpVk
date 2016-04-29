@@ -31,20 +31,24 @@ foreach(var classType in types.Classes)
 	foreach(var classProperty in classType.Properties)
 	{
 #>
+
 		public <#=classProperty.TypeName#> <#=classProperty.Name#>
 		{
 			get;
 			set;
 		}
-
 <#
 	}
+
+	if(!classType.IsOutput)
+	{
 #>
+
         internal unsafe Interop.<#=classType.Name#> Pack()
         {
             var result = new Interop.<#=classType.Name#>();
 <#
-	foreach(var statement in classType.MarshalStatements)
+	foreach(var statement in classType.MarshalToStatements)
 	{
 #>
 			<#=statement#>
@@ -59,6 +63,35 @@ foreach(var classType in types.Classes)
         {
             return (Interop.<#=classType.Name#>*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
+<#
+	}
+	else
+	{
+#>
+
+		internal unsafe <#=classType.Name#> Unpack(Interop.<#=classType.Name#> value)
+		{
+			return MarshalFrom(&value);
+		}
+
+		internal unsafe <#=classType.Name#> MarshalFrom(Interop.<#=classType.Name#>* value)
+		{
+            var result = new <#=classType.Name#>();
+
+<#
+	foreach(var statement in classType.MarshalFromStatements)
+	{
+#>
+			<#=statement#>
+<#
+	}
+#>
+
+			return result;
+		}
+<#
+	}
+#>
 	}
 <#
 }

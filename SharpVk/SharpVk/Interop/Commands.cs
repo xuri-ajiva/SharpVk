@@ -47,5 +47,8 @@ namespace SharpVk.Interop
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
 		public static extern Result vkGetPhysicalDeviceImageFormatProperties(PhysicalDevice physicalDevice, Format format, ImageType type, ImageTiling tiling, ImageUsageFlags usage, ImageCreateFlags flags, ImageFormatProperties* imageFormatProperties);
 
+		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
+		public static extern void vkGetPhysicalDeviceProperties(PhysicalDevice physicalDevice, PhysicalDeviceProperties* properties);
+
 	}
 }

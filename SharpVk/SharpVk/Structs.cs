@@ -278,4 +278,18 @@ namespace SharpVk
 
 		public Bool32 InheritedQueries;
 	}
+
+	public struct PhysicalDeviceSparseProperties
+	{
+
+		public Bool32 ResidencyStandard2DBlockShape;
+
+		public Bool32 ResidencyStandard2DMultisampleBlockShape;
+
+		public Bool32 ResidencyStandard3DBlockShape;
+
+		public Bool32 ResidencyAlignedMipSize;
+
+		public Bool32 ResidencyNonResidentStrict;
+	}
 }

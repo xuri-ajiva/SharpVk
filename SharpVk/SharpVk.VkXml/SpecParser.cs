@@ -392,7 +392,7 @@ namespace SharpVk.VkXml
 
             //HACK Artificially limit the set of required commands to simplify
             //the API while working on marshalling and the public handles
-            foreach (var commandName in requiredCommand.Distinct().Take(6))
+            foreach (var commandName in requiredCommand.Distinct().Take(7))
             {
                 var command = commandXml[commandName];
 
@@ -607,7 +607,6 @@ namespace SharpVk.VkXml
         public class ParsedMember
             : ParsedPointerElement
         {
-            public ParsedFixedLength FixedLength;
         }
 
         public class ParsedCommand
@@ -621,6 +620,7 @@ namespace SharpVk.VkXml
             : ParsedElement
         {
             public bool IsOptional;
+            public ParsedFixedLength FixedLength;
             public ParsedLen[] Dimensions;
             public PointerType PointerType;
         }

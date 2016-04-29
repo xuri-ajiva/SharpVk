@@ -61,13 +61,25 @@ namespace SharpVk.VkXml
                 set;
             }
 
+            public bool IsOutput
+            {
+                get;
+                set;
+            }
+
             public List<VkClassProperty> Properties
             {
                 get;
                 private set;
             } = new List<VkClassProperty>();
 
-            public List<string> MarshalStatements
+            public List<string> MarshalToStatements
+            {
+                get;
+                private set;
+            } = new List<string>();
+
+            public List<string> MarshalFromStatements
             {
                 get;
                 private set;

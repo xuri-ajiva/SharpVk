@@ -21,7 +21,7 @@ namespace SharpVk.Interop
     {
         [ThreadStatic]
         private static AllocationLog ThreadLog = new AllocationLog();
-        
+
         internal static IntPtr Allocate<T>(uint count)
         {
             return Allocate<T>((int)count);
@@ -66,7 +66,7 @@ namespace SharpVk.Interop
 
         internal static void FreeLog()
         {
-            for(int index = 0; index < ThreadLog.StructAllocations.Count; index++)
+            for (int index = 0; index < ThreadLog.StructAllocations.Count; index++)
             {
                 FreeStruct(ThreadLog.StructAllocations[index]);
             }
@@ -206,6 +206,13 @@ namespace SharpVk.Interop
             return pointer.ToPointer();
         }
 
+        internal static void MarshalTo(Guid value, int length, byte* pointer)
+        {
+            void* valuePointer = &value;
+
+            System.Buffer.MemoryCopy(valuePointer, pointer, length, length);
+        }
+
         internal static void MarshalTo(byte[] value, int length, byte* pointer)
         {
             Marshal.Copy(value, 0, new IntPtr(pointer), length);
@@ -223,6 +230,17 @@ namespace SharpVk.Interop
             {
                 *(pointer + length) = value[index];
             }
+        }
+
+        internal static void MarshalTo(string value, int length, char* pointer)
+        {
+            char* stringPointer = MarshalTo(value);
+
+            int stringLength = value.Length;
+
+            int minLength = stringLength < length ? stringLength : length;
+
+            System.Buffer.MemoryCopy(stringPointer, pointer, length, minLength);
         }
 
         internal static void MarshalTo(string[] value, int length, char** pointer)
