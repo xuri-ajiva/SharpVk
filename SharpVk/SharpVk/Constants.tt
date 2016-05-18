@@ -1,4 +1,4 @@
-﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
 <#@ assembly name="System.Core" #>
 <#@ assembly name="System.Xml" #>
 <#@ assembly name="System.Xml.Linq" #>
@@ -12,10 +12,10 @@
 <#@ include file=".\License.tt" #>
 <#@ include file=".\Vk.ttinclude" #>
 <#
-	var parser = GetParser();
-	var generator = new TypeGenerator();
+var parser = GetParser();
+var generator = new TypeGenerator();
 
-	var types = generator.Generate(parser.Run());
+var types = generator.Generate(parser.Run());
 #>
 namespace SharpVk
 {
@@ -24,10 +24,8 @@ namespace SharpVk
 <#
 foreach(var constant in types.Constants)
 {
-#>
-		public const <#=GetTypeName(constant.Type)#> <#=constant.Name#> = <#=constant.Value#>;
+#>		public const <#=GetTypeName(constant.Type)#> <#=constant.Name#> = <#=constant.Value#>;
 <#
 }
-#>
-	}
+#>	}
 }

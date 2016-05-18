@@ -44,7 +44,7 @@ namespace SharpVk.VkXml
 
             GenerateNonInteropStructs(typeData, result);
 
-            GenerateClasses(typeData, result);
+            GenerateClasses(spec, typeData, result);
 
             var handleLookup = GenerateHandles(typeData, result);
 
@@ -188,11 +188,17 @@ namespace SharpVk.VkXml
 
                                 newMethod.ReturnTypeName = paramType.Name;
 
-                                if (paramType.RequiresInterop || paramType.Data.Category == TypeCategory.handle)
+                                if (paramType.Data.Category == TypeCategory.handle)
                                 {
                                     argumentName = "&" + marshalledName;
                                     newMethod.MarshalToStatements.Add(string.Format("Interop.{0} {1};", paramType.Name, marshalledName));
                                     newMethod.MarshalFromStatements.Add(string.Format("result = new {0}({1});", paramType.Name, marshalledName));
+                                }
+                                else if (paramType.RequiresInterop)
+                                {
+                                    argumentName = "&" + marshalledName;
+                                    newMethod.MarshalToStatements.Add(string.Format("Interop.{0} {1};", paramType.Name, marshalledName));
+                                    newMethod.MarshalFromStatements.Add(string.Format("result = {0}.MarshalFrom(&{1});", paramType.Name, marshalledName));
                                 }
                                 else
                                 {
@@ -267,7 +273,7 @@ namespace SharpVk.VkXml
             return handleLookup;
         }
 
-        private static void GenerateClasses(Dictionary<string, TypeDesc> typeData, TypeSet result)
+        private static void GenerateClasses(SpecParser.ParsedSpec spec, Dictionary<string, TypeDesc> typeData, TypeSet result)
         {
             foreach (var type in typeData.Values.Where(x => x.RequiresInterop))
             {
@@ -374,27 +380,36 @@ namespace SharpVk.VkXml
                     else if (memberType.RequiresInterop)
                     {
                         newClass.MarshalToStatements.Add(string.Format("result.{0} = this.{0}.Pack();", memberDesc.Name));
+                        newClass.MarshalFromStatements.Add(string.Format("result.{0} = {1}.MarshalFrom(&value->{0});", memberDesc.Name, memberDesc.PublicTypeName));
                     }
                     else if (member.FixedLength.Type != SpecParser.FixedLengthType.None)
                     {
+
+                        string fixedLengthValue = member.FixedLength.Value;
+
+                        if (member.FixedLength.Type == SpecParser.FixedLengthType.EnumReference)
+                        {
+                            fixedLengthValue = "(int)Constants." + GetNameForElement(spec.Constants[member.FixedLength.Value]);
+                        }
+
                         if (member.Type == "char")
                         {
                             memberDesc.PublicTypeName = "string";
+
+                            newClass.MarshalFromStatements.Add(string.Format("result.{0} = System.Text.Encoding.UTF8.GetString(Interop.HeapUtil.MarshalFrom(value->{0}, {1})).TrimEnd((char)0);", memberDesc.Name, fixedLengthValue));
+                        }
+                        else if (memberDesc.Name.EndsWith("UUID"))
+                        {
+                            memberDesc.PublicTypeName = "Guid";
+
+                            newClass.MarshalFromStatements.Add(string.Format("result.{0} = new Guid(Interop.HeapUtil.MarshalFrom(value->{0}, {1}));", memberDesc.Name, fixedLengthValue));
                         }
                         else
                         {
                             memberDesc.PublicTypeName += "[]";
+
+                            newClass.MarshalFromStatements.Add(string.Format("result.{0} = Interop.HeapUtil.MarshalFrom(value->{0}, {1});", memberDesc.Name, fixedLengthValue));
                         }
-
-                        string fixedLengthValue = member.FixedLength.Value;
-
-                        if(member.FixedLength.Type == SpecParser.FixedLengthType.EnumReference)
-                        {
-                            //TODO Map this to a constant
-                            fixedLengthValue = "16";
-                        }
-
-                        newClass.MarshalFromStatements.Add(string.Format("result.{0} = Interop.HeapUtil.MarshalFrom(value->{0}, {1});", memberDesc.Name, fixedLengthValue));
                     }
                     else
                     {
@@ -409,21 +424,25 @@ namespace SharpVk.VkXml
                     {
                         memberDesc.PublicTypeName = "ulong";
                     }
-                    //else if (memberDesc.Name.EndsWith("UUID") && memberDesc.PublicTypeName == "byte[]")
-                    //{
-                    //    memberDesc.PublicTypeName = "Guid";
-                    //}
 
                     string structMemberName = memberDesc.Name;
 
-                    switch (member.FixedLength.Type)
+                    if (member.FixedLength.Type != SpecParser.FixedLengthType.None)
                     {
-                        case SpecParser.FixedLengthType.EnumReference:
-                            structMemberName += "[16]";
-                            break;
-                        case SpecParser.FixedLengthType.IntegerLiteral:
-                            structMemberName += "[" + member.FixedLength.Value + "]";
-                            break;
+                        if (memberDesc.InteropTypeName == "fixed char")
+                        {
+                            memberDesc.InteropTypeName = "fixed byte";
+                        }
+
+                        switch (member.FixedLength.Type)
+                        {
+                            case SpecParser.FixedLengthType.EnumReference:
+                                structMemberName += "[(int)Constants." + GetNameForElement(spec.Constants[member.FixedLength.Value]) + "]";
+                                break;
+                            case SpecParser.FixedLengthType.IntegerLiteral:
+                                structMemberName += "[" + member.FixedLength.Value + "]";
+                                break;
+                        }
                     }
 
                     newStruct.Members.Add(new TypeSet.VkStructMember

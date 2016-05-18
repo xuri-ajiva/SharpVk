@@ -210,8 +210,8 @@ namespace SharpVk.Interop
 		public uint VendorID;
 		public uint DeviceID;
 		public PhysicalDeviceType DeviceType;
-		public fixed char DeviceName[16];
-		public fixed byte PipelineCacheUUID[16];
+		public fixed byte DeviceName[(int)Constants.MaxPhysicalDeviceNameSize];
+		public fixed byte PipelineCacheUUID[(int)Constants.UuidSize];
 		public PhysicalDeviceLimits Limits;
 		public PhysicalDeviceSparseProperties SparseProperties;
 	}

@@ -74,7 +74,7 @@ foreach(var classType in types.Classes)
 			return MarshalFrom(&value);
 		}
 
-		internal unsafe <#=classType.Name#> MarshalFrom(Interop.<#=classType.Name#>* value)
+		internal static unsafe <#=classType.Name#> MarshalFrom(Interop.<#=classType.Name#>* value)
 		{
             var result = new <#=classType.Name#>();
 

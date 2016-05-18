@@ -961,7 +961,7 @@ namespace SharpVk
 			return MarshalFrom(&value);
 		}
 
-		internal unsafe PhysicalDeviceLimits MarshalFrom(Interop.PhysicalDeviceLimits* value)
+		internal static unsafe PhysicalDeviceLimits MarshalFrom(Interop.PhysicalDeviceLimits* value)
 		{
             var result = new PhysicalDeviceLimits();
 
@@ -1115,7 +1115,7 @@ namespace SharpVk
 			set;
 		}
 
-		public byte[] PipelineCacheUUID
+		public Guid PipelineCacheUUID
 		{
 			get;
 			set;
@@ -1138,12 +1138,13 @@ namespace SharpVk
 			return MarshalFrom(&value);
 		}
 
-		internal unsafe PhysicalDeviceProperties MarshalFrom(Interop.PhysicalDeviceProperties* value)
+		internal static unsafe PhysicalDeviceProperties MarshalFrom(Interop.PhysicalDeviceProperties* value)
 		{
             var result = new PhysicalDeviceProperties();
 
-			result.DeviceName = Interop.HeapUtil.MarshalFrom(value->DeviceName, 16);
-			result.PipelineCacheUUID = Interop.HeapUtil.MarshalFrom(value->PipelineCacheUUID, 16);
+			result.DeviceName = System.Text.Encoding.UTF8.GetString(Interop.HeapUtil.MarshalFrom(value->DeviceName, (int)Constants.MaxPhysicalDeviceNameSize)).TrimEnd((char)0);
+			result.PipelineCacheUUID = new Guid(Interop.HeapUtil.MarshalFrom(value->PipelineCacheUUID, (int)Constants.UuidSize));
+			result.Limits = PhysicalDeviceLimits.MarshalFrom(&value->Limits);
 			result.ApiVersion = value->ApiVersion;
 			result.DriverVersion = value->DriverVersion;
 			result.VendorID = value->VendorID;

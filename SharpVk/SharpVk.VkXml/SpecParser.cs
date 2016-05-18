@@ -385,13 +385,8 @@ namespace SharpVk.VkXml
 
             var result = new ParsedSpec();
 
-            foreach (var constant in requiredConstant)
-            {
-                result.Constants[constant] = constants.Fields[constant];
-            }
-
             //HACK Artificially limit the set of required commands to simplify
-            //the API while working on marshalling and the public handles
+            // the API while working on marshalling and the public handles
             foreach (var commandName in requiredCommand.Distinct().Take(7))
             {
                 var command = commandXml[commandName];
@@ -447,6 +442,16 @@ namespace SharpVk.VkXml
                 var type = typeXml[typeName];
 
                 result.Types.Add(typeName, type);
+
+                foreach (var member in type.Members)
+                {
+                    if (member.FixedLength.Type == FixedLengthType.EnumReference
+                            && constants.Fields.ContainsKey(member.FixedLength.Value)
+                            && !requiredConstant.Contains(member.FixedLength.Value))
+                    {
+                        requiredConstant.Add(member.FixedLength.Value);
+                    }
+                }
             }
 
             foreach (var type in result.Types.Values)
@@ -455,6 +460,11 @@ namespace SharpVk.VkXml
                 {
                     result.Enumerations.Add(type.VkName, enumXml[type.VkName]);
                 }
+            }
+
+            foreach (var constant in requiredConstant)
+            {
+                result.Constants[constant] = constants.Fields[constant];
             }
 
             return result;

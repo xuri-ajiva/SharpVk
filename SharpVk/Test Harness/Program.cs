@@ -22,34 +22,28 @@ namespace SharpVk
 
             foreach (var device in devices)
             {
-                var features = device.GetPhysicalDeviceFeatures();
+                var deviceProperties = device.GetPhysicalDeviceProperties();
 
-                Enumerate(features);
-
-                var formatProps = device.GetPhysicalDeviceFormatProperties(Format.A8b8g8r8UnormPack32);
-
-                Enumerate(formatProps);
+                Enumerate(deviceProperties);
+                Console.WriteLine();
             }
 
             Console.WriteLine("Done");
             Console.ReadLine();
 
             instance.DestroyInstance(null);
-
-            //var parser = new SpecParser(new VkXmlCache("./vkXml.xml"));
-
-            //var spec = parser.Run();
-
-            //var generator = new TypeGenerator();
-
-            //generator.Generate(spec);
         }
 
-        private static void Enumerate<T>(T features)
+        private static void Enumerate<T>(T target)
         {
-            foreach (var field in typeof(T).GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public))
+            foreach (var field in typeof(T).GetFields(BindingFlags.Instance | BindingFlags.Public))
             {
-                Console.WriteLine("{0} = {1}", field.Name, field.GetValue(features));
+                Console.WriteLine("{0} = {1}", field.Name, field.GetValue(target));
+            }
+
+            foreach (var property in typeof(T).GetProperties(BindingFlags.Instance | BindingFlags.Public))
+            {
+                Console.WriteLine("{0} = {1}", property.Name, property.GetValue(target));
             }
         }
     }

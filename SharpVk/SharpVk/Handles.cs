@@ -215,6 +215,24 @@ namespace SharpVk
 			}
 		}
 
+		public PhysicalDeviceProperties GetPhysicalDeviceProperties()
+		{
+			unsafe
+			{
+				PhysicalDeviceProperties result = default(PhysicalDeviceProperties);
+
+				Interop.PhysicalDeviceProperties marshalledProperties;
+
+				Interop.Commands.vkGetPhysicalDeviceProperties(this.handle, &marshalledProperties);
+
+				result = PhysicalDeviceProperties.MarshalFrom(&marshalledProperties);
+
+				Interop.HeapUtil.FreeLog();
+
+				return result;
+			}
+		}
+
 		internal Interop.PhysicalDevice MarshalTo()
 		{
 			return this.handle;
