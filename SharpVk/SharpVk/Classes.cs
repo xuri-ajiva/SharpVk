@@ -166,6 +166,96 @@ namespace SharpVk
 		}
 	}
 
+	public class DeviceCreateInfo
+	{
+
+		public DeviceCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public DeviceQueueCreateInfo[] QueueCreateInfos
+		{
+			get;
+			set;
+		}
+
+		public string[] EnabledLayerNames
+		{
+			get;
+			set;
+		}
+
+		public string[] EnabledExtensionNames
+		{
+			get;
+			set;
+		}
+
+		public PhysicalDeviceFeatures EnabledFeatures
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.DeviceCreateInfo Pack()
+        {
+            var result = new Interop.DeviceCreateInfo();
+			result.SType = StructureType.DeviceCreateInfo;
+			result.EnabledLayerCount = this.EnabledLayerNames == null ? 0 : (uint)this.EnabledLayerNames.Length;
+			result.EnabledLayerNames = this.EnabledLayerNames == null ? null : Interop.HeapUtil.MarshalTo(this.EnabledLayerNames);
+			result.EnabledExtensionCount = this.EnabledExtensionNames == null ? 0 : (uint)this.EnabledExtensionNames.Length;
+			result.EnabledExtensionNames = this.EnabledExtensionNames == null ? null : Interop.HeapUtil.MarshalTo(this.EnabledExtensionNames);
+			result.EnabledFeatures = (PhysicalDeviceFeatures*)Interop.HeapUtil.AllocateAndMarshal(this.EnabledFeatures);
+			result.Flags = this.Flags;
+
+            return result;
+        }
+
+		internal unsafe Interop.DeviceCreateInfo* MarshalTo()
+        {
+            return (Interop.DeviceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class DeviceQueueCreateInfo
+	{
+
+		public DeviceQueueCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public uint QueueFamilyIndex
+		{
+			get;
+			set;
+		}
+
+		public float[] QueuePriorities
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.DeviceQueueCreateInfo Pack()
+        {
+            var result = new Interop.DeviceQueueCreateInfo();
+			result.SType = StructureType.DeviceQueueCreateInfo;
+			result.Flags = this.Flags;
+			result.QueueFamilyIndex = this.QueueFamilyIndex;
+
+            return result;
+        }
+
+		internal unsafe Interop.DeviceQueueCreateInfo* MarshalTo()
+        {
+            return (Interop.DeviceQueueCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
 	public class ImageMemoryBarrier
 	{
 

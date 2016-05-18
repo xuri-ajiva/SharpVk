@@ -64,6 +64,32 @@ namespace SharpVk.Interop
 	}
 
     [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct DeviceCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public DeviceCreateFlags Flags;
+		public uint QueueCreateInfoCount;
+		public DeviceQueueCreateInfo* QueueCreateInfos;
+		public uint EnabledLayerCount;
+		public char** EnabledLayerNames;
+		public uint EnabledExtensionCount;
+		public char** EnabledExtensionNames;
+		public PhysicalDeviceFeatures* EnabledFeatures;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct DeviceQueueCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public DeviceQueueCreateFlags Flags;
+		public uint QueueFamilyIndex;
+		public uint QueueCount;
+		public float* QueuePriorities;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
 	public unsafe struct ImageMemoryBarrier
 	{
 		public StructureType SType;

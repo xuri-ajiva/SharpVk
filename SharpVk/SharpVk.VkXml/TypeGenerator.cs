@@ -77,7 +77,9 @@ namespace SharpVk.VkXml
 
                 var handle = handleParams.Any()
                                 ? handleLookup[handleParams.Last().Type]
-                                : handleLookup[command.Params.Last().Type];
+                                : handleLookup.ContainsKey(command.Params.Last().Type)
+                                    ? handleLookup[command.Params.Last().Type]
+                                    : handleLookup["VkInstance"];
 
                 var newMethod = new TypeSet.VkHandleMethod
                 {
@@ -200,9 +202,13 @@ namespace SharpVk.VkXml
 
                                 if (paramType.Data.Category == TypeCategory.handle)
                                 {
+                                    string parentArgument = paramType.Data.Parent != null
+                                                                ? ", this"
+                                                                : "";
+
                                     argumentName = "&" + marshalledName;
                                     newMethod.MarshalToStatements.Add(string.Format("Interop.{0} {1};", paramType.Name, marshalledName));
-                                    newMethod.MarshalFromStatements.Add(string.Format("result = new {0}({1});", paramType.Name, marshalledName));
+                                    newMethod.MarshalFromStatements.Add(string.Format("result = new {0}({1}{2});", paramType.Name, marshalledName, parentArgument));
                                 }
                                 else if (paramType.RequiresInterop)
                                 {
@@ -369,6 +375,10 @@ namespace SharpVk.VkXml
                                 || member.VkName == "pNext"
                                 || memberType.Data.Category == TypeCategory.funcpointer)
                     {
+                        // These fields are not to be exposed to the public API
+                        // as they are either not supported or have pre-defined
+                        // values
+
                         memberDesc.IsInteropOnly = true;
 
                         if (member.VkName == "sType")
@@ -383,11 +393,15 @@ namespace SharpVk.VkXml
                         newClass.MarshalToStatements.Add(string.Format("result.{0} = this.{0}.ToPointer();", memberDesc.Name));
                         newClass.MarshalFromStatements.Add(string.Format("result.{0} = new IntPtr(value->{0});", memberDesc.Name));
                     }
-                    else if (memberType.Data.Category == TypeCategory.handle || isPointer)
+                    else if (memberType.Data.Category == TypeCategory.handle || (isPointer && memberType.RequiresInterop))
                     {
                         string nullString = isPointer ? "null" : string.Format("Interop.{0}.Null", memberDesc.InteropTypeName);
 
                         newClass.MarshalToStatements.Add(string.Format("result.{0} = this.{0} == null ? {1} : this.{0}.MarshalTo();", memberDesc.Name, nullString));
+                    }
+                    else if (isPointer)
+                    {
+                        newClass.MarshalToStatements.Add(string.Format("result.{0} = ({1}*)Interop.HeapUtil.AllocateAndMarshal(this.{0});", memberDesc.Name, memberType.Name));
                     }
                     else if (memberType.RequiresInterop)
                     {

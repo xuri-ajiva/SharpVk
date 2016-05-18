@@ -54,6 +54,20 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
+		public void DestroyDevice(AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+
+				Interop.Commands.vkDestroyDevice(this.handle, allocator == null ? null : &marshalledAllocator);
+
+
+				Interop.HeapUtil.FreeLog();
+			}
+		}
+
 		internal Interop.Device MarshalTo()
 		{
 			return this.handle;
@@ -270,6 +284,28 @@ namespace SharpVk
 				Interop.Commands.vkGetPhysicalDeviceMemoryProperties(this.handle, &marshalledMemoryProperties);
 
 				result = PhysicalDeviceMemoryProperties.MarshalFrom(&marshalledMemoryProperties);
+
+				Interop.HeapUtil.FreeLog();
+
+				return result;
+			}
+		}
+
+		public Device CreateDevice(DeviceCreateInfo createInfo, AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				Device result = default(Device);
+
+				Interop.DeviceCreateInfo marshalledCreateInfo;
+				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+				Interop.Device marshalledDevice;
+
+				Interop.Commands.vkCreateDevice(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledDevice);
+
+				result = new Device(marshalledDevice, this);
 
 				Interop.HeapUtil.FreeLog();
 

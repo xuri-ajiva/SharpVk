@@ -49,6 +49,18 @@ namespace SharpVk
 	}
 
 	[Flags]
+	public enum DeviceCreateFlags
+	{
+		None = 0,
+	}
+
+	[Flags]
+	public enum DeviceQueueCreateFlags
+	{
+		None = 0,
+	}
+
+	[Flags]
 	public enum FormatFeatureFlags
 	{
 		None = 0,
