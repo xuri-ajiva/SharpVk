@@ -50,5 +50,11 @@ namespace SharpVk.Interop
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
 		public static extern void vkGetPhysicalDeviceProperties(PhysicalDevice physicalDevice, PhysicalDeviceProperties* properties);
 
+		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
+		public static extern void vkGetPhysicalDeviceQueueFamilyProperties(PhysicalDevice physicalDevice, uint* queueFamilyPropertyCount, QueueFamilyProperties* queueFamilyProperties);
+
+		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
+		public static extern void vkGetPhysicalDeviceMemoryProperties(PhysicalDevice physicalDevice, PhysicalDeviceMemoryProperties* memoryProperties);
+
 	}
 }

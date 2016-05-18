@@ -21,10 +21,12 @@
 //SOFTWARE.
 
 using System;
+using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
 
+    [StructLayout(LayoutKind.Sequential)]
 	public unsafe struct AllocationCallbacks
 	{
 		public void* UserData;
@@ -35,6 +37,7 @@ namespace SharpVk.Interop
 		public IntPtr PfnInternalFree;
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public unsafe struct ApplicationInfo
 	{
 		public StructureType SType;
@@ -46,6 +49,7 @@ namespace SharpVk.Interop
 		public uint ApiVersion;
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public unsafe struct BufferMemoryBarrier
 	{
 		public StructureType SType;
@@ -59,6 +63,7 @@ namespace SharpVk.Interop
 		public DeviceSize Size;
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public unsafe struct ImageMemoryBarrier
 	{
 		public StructureType SType;
@@ -73,6 +78,7 @@ namespace SharpVk.Interop
 		public ImageSubresourceRange SubresourceRange;
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public unsafe struct InstanceCreateInfo
 	{
 		public StructureType SType;
@@ -85,6 +91,7 @@ namespace SharpVk.Interop
 		public char** EnabledExtensionNames;
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public unsafe struct MemoryBarrier
 	{
 		public StructureType SType;
@@ -93,6 +100,7 @@ namespace SharpVk.Interop
 		public AccessFlags DestinationAccessMask;
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public unsafe struct PhysicalDeviceLimits
 	{
 		public uint MaxImageDimension1D;
@@ -203,6 +211,62 @@ namespace SharpVk.Interop
 		public DeviceSize NonCoherentAtomSize;
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct PhysicalDeviceMemoryProperties
+	{
+		public uint MemoryTypeCount;
+		public MemoryType MemoryTypes;
+		private MemoryType MemoryTypes_1;
+		private MemoryType MemoryTypes_2;
+		private MemoryType MemoryTypes_3;
+		private MemoryType MemoryTypes_4;
+		private MemoryType MemoryTypes_5;
+		private MemoryType MemoryTypes_6;
+		private MemoryType MemoryTypes_7;
+		private MemoryType MemoryTypes_8;
+		private MemoryType MemoryTypes_9;
+		private MemoryType MemoryTypes_10;
+		private MemoryType MemoryTypes_11;
+		private MemoryType MemoryTypes_12;
+		private MemoryType MemoryTypes_13;
+		private MemoryType MemoryTypes_14;
+		private MemoryType MemoryTypes_15;
+		private MemoryType MemoryTypes_16;
+		private MemoryType MemoryTypes_17;
+		private MemoryType MemoryTypes_18;
+		private MemoryType MemoryTypes_19;
+		private MemoryType MemoryTypes_20;
+		private MemoryType MemoryTypes_21;
+		private MemoryType MemoryTypes_22;
+		private MemoryType MemoryTypes_23;
+		private MemoryType MemoryTypes_24;
+		private MemoryType MemoryTypes_25;
+		private MemoryType MemoryTypes_26;
+		private MemoryType MemoryTypes_27;
+		private MemoryType MemoryTypes_28;
+		private MemoryType MemoryTypes_29;
+		private MemoryType MemoryTypes_30;
+		private MemoryType MemoryTypes_31;
+		public uint MemoryHeapCount;
+		public MemoryHeap MemoryHeaps;
+		private MemoryHeap MemoryHeaps_1;
+		private MemoryHeap MemoryHeaps_2;
+		private MemoryHeap MemoryHeaps_3;
+		private MemoryHeap MemoryHeaps_4;
+		private MemoryHeap MemoryHeaps_5;
+		private MemoryHeap MemoryHeaps_6;
+		private MemoryHeap MemoryHeaps_7;
+		private MemoryHeap MemoryHeaps_8;
+		private MemoryHeap MemoryHeaps_9;
+		private MemoryHeap MemoryHeaps_10;
+		private MemoryHeap MemoryHeaps_11;
+		private MemoryHeap MemoryHeaps_12;
+		private MemoryHeap MemoryHeaps_13;
+		private MemoryHeap MemoryHeaps_14;
+		private MemoryHeap MemoryHeaps_15;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
 	public unsafe struct PhysicalDeviceProperties
 	{
 		public uint ApiVersion;

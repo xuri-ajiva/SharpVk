@@ -1,5 +1,4 @@
-﻿using SharpVk.VkXml;
-using System;
+﻿using System;
 using System.Reflection;
 
 namespace SharpVk

@@ -233,6 +233,50 @@ namespace SharpVk
 			}
 		}
 
+		public QueueFamilyProperties[] GetPhysicalDeviceQueueFamilyProperties()
+		{
+			unsafe
+			{
+				QueueFamilyProperties[] result = default(QueueFamilyProperties[]);
+
+				uint queueFamilyPropertyCount;
+				QueueFamilyProperties* marshalledQueueFamilyProperties = null;
+				Interop.Commands.vkGetPhysicalDeviceQueueFamilyProperties(this.handle, &queueFamilyPropertyCount, null);
+
+				marshalledQueueFamilyProperties = (QueueFamilyProperties*)Interop.HeapUtil.Allocate<QueueFamilyProperties>(queueFamilyPropertyCount);
+
+				Interop.Commands.vkGetPhysicalDeviceQueueFamilyProperties(this.handle, &queueFamilyPropertyCount, marshalledQueueFamilyProperties);
+
+				result = new QueueFamilyProperties[queueFamilyPropertyCount];
+				for(int index = 0; index < queueFamilyPropertyCount; index++)
+				{
+					result[index] = marshalledQueueFamilyProperties[index];
+				}
+
+				Interop.HeapUtil.FreeLog();
+
+				return result;
+			}
+		}
+
+		public PhysicalDeviceMemoryProperties GetPhysicalDeviceMemoryProperties()
+		{
+			unsafe
+			{
+				PhysicalDeviceMemoryProperties result = default(PhysicalDeviceMemoryProperties);
+
+				Interop.PhysicalDeviceMemoryProperties marshalledMemoryProperties;
+
+				Interop.Commands.vkGetPhysicalDeviceMemoryProperties(this.handle, &marshalledMemoryProperties);
+
+				result = PhysicalDeviceMemoryProperties.MarshalFrom(&marshalledMemoryProperties);
+
+				Interop.HeapUtil.FreeLog();
+
+				return result;
+			}
+		}
+
 		internal Interop.PhysicalDevice MarshalTo()
 		{
 			return this.handle;

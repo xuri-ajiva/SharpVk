@@ -12,6 +12,7 @@
 <#@ include file="..\License.tt" #>
 <#@ include file="..\Vk.ttinclude" #>
 using System;
+using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
@@ -25,13 +26,14 @@ foreach(var structType in types.InteropStructs)
 {
 #>
 
+    [StructLayout(LayoutKind.Sequential)]
 	public unsafe struct <#=structType.Name#>
 	{
 <#
 	foreach(var member in structType.Members)
 	{
 #>
-		public <#=member.TypeName#> <#=member.Name#>;
+		<#=member.IsPrivate ? "private" : "public" #> <#=member.TypeName#> <#=member.Name#>;
 <#
 	}
 #>

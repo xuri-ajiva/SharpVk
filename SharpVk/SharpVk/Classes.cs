@@ -1076,6 +1076,49 @@ namespace SharpVk
 		}
 	}
 
+	public class PhysicalDeviceMemoryProperties
+	{
+
+		public MemoryType[] MemoryTypes
+		{
+			get;
+			set;
+		}
+
+		public MemoryHeap[] MemoryHeaps
+		{
+			get;
+			set;
+		}
+
+		internal unsafe PhysicalDeviceMemoryProperties Unpack(Interop.PhysicalDeviceMemoryProperties value)
+		{
+			return MarshalFrom(&value);
+		}
+
+		internal static unsafe PhysicalDeviceMemoryProperties MarshalFrom(Interop.PhysicalDeviceMemoryProperties* value)
+		{
+            var result = new PhysicalDeviceMemoryProperties();
+
+			result.MemoryTypes = new MemoryType[value->MemoryTypeCount];
+			MemoryType* MemoryTypesPointer = &value->MemoryTypes;
+			for (int index = 0; index < value->MemoryTypeCount; index++)
+			{
+			    result.MemoryTypes[index] = *MemoryTypesPointer;
+			    MemoryTypesPointer++;
+			}
+			result.MemoryHeaps = new MemoryHeap[value->MemoryHeapCount];
+			MemoryHeap* MemoryHeapsPointer = &value->MemoryHeaps;
+			for (int index = 0; index < value->MemoryHeapCount; index++)
+			{
+			    result.MemoryHeaps[index] = *MemoryHeapsPointer;
+			    MemoryHeapsPointer++;
+			}
+
+			return result;
+		}
+	}
+
 	public class PhysicalDeviceProperties
 	{
 

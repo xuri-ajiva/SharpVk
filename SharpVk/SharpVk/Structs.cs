@@ -165,6 +165,22 @@ namespace SharpVk
 		public uint LayerCount;
 	}
 
+	public struct MemoryHeap
+	{
+
+		public DeviceSize Size;
+
+		public MemoryHeapFlags Flags;
+	}
+
+	public struct MemoryType
+	{
+
+		public MemoryPropertyFlags PropertyFlags;
+
+		public uint HeapIndex;
+	}
+
 	public struct PhysicalDeviceFeatures
 	{
 
@@ -291,5 +307,17 @@ namespace SharpVk
 		public Bool32 ResidencyAlignedMipSize;
 
 		public Bool32 ResidencyNonResidentStrict;
+	}
+
+	public struct QueueFamilyProperties
+	{
+
+		public QueueFlags QueueFlags;
+
+		public uint QueueCount;
+
+		public uint TimestampValidBits;
+
+		public Extent3D MinImageTransferGranularity;
 	}
 }

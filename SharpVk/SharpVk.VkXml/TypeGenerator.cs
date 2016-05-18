@@ -69,12 +69,11 @@ namespace SharpVk.VkXml
 
                 var lastParam = command.Params.Last();
 
-                bool lastParamReturns = false;
-
-                if (lastParam.PointerType == PointerType.Pointer)
-                {
-                    lastParamReturns = true;
-                }
+                bool lastParamReturns = lastParam.PointerType == PointerType.Pointer;
+                bool lastParamIsArray = lastParamReturns
+                                            && lastParam.Dimensions != null
+                                            && lastParam.Dimensions.Any(x => x.Type != SpecParser.LenType.NullTerminated);
+                bool enumeratePattern = command.Verb == "enumerate" || lastParamIsArray;
 
                 var handle = handleParams.Any()
                                 ? handleLookup[handleParams.Last().Type]
@@ -136,17 +135,15 @@ namespace SharpVk.VkXml
                         paramName = "@" + paramName;
                     }
 
-                    string interopTypeName = ApplyPointerType(parameter, paramType.Name);
-
                     newCommand.Parameters.Add(new TypeSet.VkCommandParameter
                     {
                         Name = paramName,
-                        TypeName = interopTypeName
+                        TypeName = ApplyPointerType(parameter, paramType)
                     });
 
                     if (parameterIndex >= handleParams.Count())
                     {
-                        if (lastParamReturns && parameterIndex == command.Params.Count() - 2 && command.Verb == "enumerate")
+                        if (lastParamReturns && parameterIndex == command.Params.Count() - 2 && enumeratePattern)
                         {
                             newMethod.Parameters.Add(new TypeSet.VkMethodParam
                             {
@@ -157,8 +154,10 @@ namespace SharpVk.VkXml
                         }
                         else if (lastParamReturns && parameterIndex == command.Params.Count() - 1)
                         {
-                            if (command.Verb == "enumerate")
+                            if (enumeratePattern)
                             {
+                                bool requiresMarshalling = paramType.RequiresInterop || paramType.Data.Category == TypeCategory.handle;
+
                                 newMethod.Parameters.Add(new TypeSet.VkMethodParam
                                 {
                                     PreInvokeArgumentName = "null",
@@ -169,17 +168,28 @@ namespace SharpVk.VkXml
                                 newMethod.ReturnTypeName = paramType.Name + "[]";
                                 newMethod.IsDoubleInvoke = true;
 
-                                newMethod.MarshalToStatements.Add(string.Format("Interop.{0}* {1} = null;", paramType.Name, marshalledName));
+                                string interopTypeName = requiresMarshalling
+                                                            ? "Interop." + paramType.Name
+                                                            : paramType.Name;
+
+                                newMethod.MarshalToStatements.Add(string.Format("{0}* {1} = null;", interopTypeName, marshalledName));
 
                                 string lenParam = paramNameLookup[parameter.Dimensions.First().Value];
 
-                                newMethod.MarshalMidStatements.Add(string.Format("{1} = (Interop.{0}*)Interop.HeapUtil.Allocate<Interop.{0}>({2});", paramType.Name, marshalledName, lenParam));
+                                newMethod.MarshalMidStatements.Add(string.Format("{1} = ({0}*)Interop.HeapUtil.Allocate<{0}>({2});", interopTypeName, marshalledName, lenParam));
 
                                 newMethod.MarshalFromStatements.Add(string.Format("result = new {0}[{1}];", paramType.Name, lenParam));
 
                                 newMethod.MarshalFromStatements.Add(string.Format("for(int index = 0; index < {0}; index++)", lenParam));
                                 newMethod.MarshalFromStatements.Add("{");
-                                newMethod.MarshalFromStatements.Add(string.Format("\tresult[index] = new {0}({1}[index]{2});", paramType.Name, marshalledName, paramType.Data.Parent != null ? ", this" : ""));
+                                if (requiresMarshalling)
+                                {
+                                    newMethod.MarshalFromStatements.Add(string.Format("\tresult[index] = new {0}({1}[index]{2});", paramType.Name, marshalledName, paramType.Data.Parent != null ? ", this" : ""));
+                                }
+                                else
+                                {
+                                    newMethod.MarshalFromStatements.Add(string.Format("\tresult[index] = {0}[index]{1};", marshalledName, paramType.Data.Parent != null ? ", this" : ""));
+                                }
                                 newMethod.MarshalFromStatements.Add("}");
                             }
                             else
@@ -301,7 +311,9 @@ namespace SharpVk.VkXml
                     var memberDesc = new MemberDesc
                     {
                         Name = memberName,
-                        InteropTypeName = ApplyPointerType(member, memberType.Name),
+                        Repetitions = 1,
+                        InteropNameSuffix = "",
+                        InteropTypeName = ApplyPointerType(member, memberType),
                         PublicTypeName = memberType.Name
                     };
 
@@ -384,7 +396,6 @@ namespace SharpVk.VkXml
                     }
                     else if (member.FixedLength.Type != SpecParser.FixedLengthType.None)
                     {
-
                         string fixedLengthValue = member.FixedLength.Value;
 
                         if (member.FixedLength.Type == SpecParser.FixedLengthType.EnumReference)
@@ -406,9 +417,72 @@ namespace SharpVk.VkXml
                         }
                         else
                         {
-                            memberDesc.PublicTypeName += "[]";
+                            if (memberType.IsPrimitive)
+                            {
+                                newClass.MarshalFromStatements.Add(string.Format("result.{0} = Interop.HeapUtil.MarshalFrom(value->{0}, {1});", memberDesc.Name, fixedLengthValue));
+                            }
+                            else
+                            {
+                                string pointerVarName = memberDesc.Name + "Pointer";
 
-                            newClass.MarshalFromStatements.Add(string.Format("result.{0} = Interop.HeapUtil.MarshalFrom(value->{0}, {1});", memberDesc.Name, fixedLengthValue));
+                                //HACK There's no len attribute for fixed-length
+                                // fields, so work out what the len field name
+                                // should be
+
+                                string lenMember = memberDesc.Name.TrimEnd('s') + "Count";
+
+                                newClass.MarshalFromStatements.Add(string.Format("result.{2} = new {0}[value->{1}];", memberDesc.PublicTypeName, lenMember, memberDesc.Name));
+                                newClass.MarshalFromStatements.Add(string.Format("{0}* {1} = &value->{2};", memberDesc.PublicTypeName, pointerVarName, memberDesc.Name));
+                                newClass.MarshalFromStatements.Add(string.Format("for (int index = 0; index < value->{0}; index++)", lenMember));
+                                newClass.MarshalFromStatements.Add(string.Format("{{"));
+                                newClass.MarshalFromStatements.Add(string.Format("    result.{1}[index] = *{0};", pointerVarName, memberDesc.Name));
+                                newClass.MarshalFromStatements.Add(string.Format("    {0}++;", pointerVarName));
+                                newClass.MarshalFromStatements.Add(string.Format("}}"));
+                            }
+
+                            memberDesc.PublicTypeName += "[]";
+                        }
+
+                        if (memberType.IsPrimitive)
+                        {
+                            if (memberDesc.InteropTypeName == "fixed char")
+                            {
+                                memberDesc.InteropTypeName = "fixed byte";
+                            }
+
+                            switch (member.FixedLength.Type)
+                            {
+                                case SpecParser.FixedLengthType.EnumReference:
+                                    memberDesc.InteropNameSuffix = "[(int)Constants." + GetNameForElement(spec.Constants[member.FixedLength.Value]) + "]";
+                                    break;
+                                case SpecParser.FixedLengthType.IntegerLiteral:
+                                    memberDesc.InteropNameSuffix = "[" + member.FixedLength.Value + "]";
+                                    break;
+                            }
+                        }
+                        else
+                        {
+                            string repetitionValue = "1";
+
+                            switch (member.FixedLength.Type)
+                            {
+                                case SpecParser.FixedLengthType.EnumReference:
+                                    repetitionValue = spec.Constants[member.FixedLength.Value].Value;
+                                    break;
+                                case SpecParser.FixedLengthType.IntegerLiteral:
+                                    repetitionValue = member.FixedLength.Value;
+                                    break;
+                            }
+
+                            memberDesc.Repetitions = int.Parse(repetitionValue);
+
+                            //HACK There's no len attribute for fixed-length
+                            // fields, so work out what the len field name
+                            // should be
+
+                            string lenMember = member.VkName.TrimEnd('s') + "Count";
+
+                            lenMembers.Add(lenMember);
                         }
                     }
                     else
@@ -425,31 +499,22 @@ namespace SharpVk.VkXml
                         memberDesc.PublicTypeName = "ulong";
                     }
 
-                    string structMemberName = memberDesc.Name;
-
-                    if (member.FixedLength.Type != SpecParser.FixedLengthType.None)
+                    for (int repetitionIndex = 0; repetitionIndex < memberDesc.Repetitions; repetitionIndex++)
                     {
-                        if (memberDesc.InteropTypeName == "fixed char")
+                        string name = memberDesc.Name + memberDesc.InteropNameSuffix;
+
+                        if (repetitionIndex > 0)
                         {
-                            memberDesc.InteropTypeName = "fixed byte";
+                            name += "_" + repetitionIndex;
                         }
 
-                        switch (member.FixedLength.Type)
+                        newStruct.Members.Add(new TypeSet.VkStructMember
                         {
-                            case SpecParser.FixedLengthType.EnumReference:
-                                structMemberName += "[(int)Constants." + GetNameForElement(spec.Constants[member.FixedLength.Value]) + "]";
-                                break;
-                            case SpecParser.FixedLengthType.IntegerLiteral:
-                                structMemberName += "[" + member.FixedLength.Value + "]";
-                                break;
-                        }
+                            Name = name,
+                            TypeName = memberDesc.InteropTypeName,
+                            IsPrivate = repetitionIndex > 0
+                        });
                     }
-
-                    newStruct.Members.Add(new TypeSet.VkStructMember
-                    {
-                        Name = structMemberName,
-                        TypeName = memberDesc.InteropTypeName
-                    });
 
                     members.Add(member.VkName, memberDesc);
                 }
@@ -580,19 +645,19 @@ namespace SharpVk.VkXml
             return memberTypeName;
         }
 
-        private static string ApplyPointerType(SpecParser.ParsedPointerElement member, string memberTypeName)
+        private static string ApplyPointerType(SpecParser.ParsedPointerElement member, TypeDesc memberType)
         {
             if (member.PointerType.IsPointer())
             {
-                return memberTypeName + new string('*', member.PointerType.GetPointerCount());
+                return memberType.Name + new string('*', member.PointerType.GetPointerCount());
             }
-            else if (member.FixedLength.Type != SpecParser.FixedLengthType.None)
+            else if (member.FixedLength.Type != SpecParser.FixedLengthType.None && memberType.IsPrimitive)
             {
-                return "fixed " + memberTypeName;
+                return "fixed " + memberType.Name;
             }
             else
             {
-                return memberTypeName;
+                return memberType.Name;
             }
         }
 
@@ -717,7 +782,9 @@ namespace SharpVk.VkXml
             {
                 Data = x,
                 Name = GetNameForElement(x),
-                RequiresInterop = RequiresInterop(spec, x)
+                RequiresInterop = RequiresInterop(spec, x),
+                IsPrimitive = x.Category == TypeCategory.basetype
+                                || x.Category == TypeCategory.None
             });
 
             bool newInteropTypes = true;
@@ -799,12 +866,15 @@ namespace SharpVk.VkXml
         {
             public SpecParser.ParsedType Data;
             public bool RequiresInterop;
+            public bool IsPrimitive;
             public string Name;
         }
 
         private class MemberDesc
         {
             public string Name;
+            public string InteropNameSuffix;
+            public int Repetitions;
             public bool IsInteropOnly;
             public bool IsSimpleMarshal;
             public string InteropTypeName;

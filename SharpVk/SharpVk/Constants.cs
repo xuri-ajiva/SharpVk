@@ -20,7 +20,6 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
-
 namespace SharpVk
 {
 	public static class Constants
@@ -34,6 +33,8 @@ namespace SharpVk
 		public const uint False = 0;
 		public const uint QueueFamilyIgnored = ~0U;
 		public const uint SubpassExternal = ~0U;
+		public const uint MaxMemoryTypes = 32;
+		public const uint MaxMemoryHeaps = 16;
 		public const uint MaxPhysicalDeviceNameSize = 256;
 		public const uint UuidSize = 16;
 	}

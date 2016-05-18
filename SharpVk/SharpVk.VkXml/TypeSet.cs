@@ -198,6 +198,12 @@ namespace SharpVk.VkXml
                 get;
                 set;
             }
+
+            public bool IsPrivate
+            {
+                get;
+                set;
+            }
         }
 
         public class VkHandle
