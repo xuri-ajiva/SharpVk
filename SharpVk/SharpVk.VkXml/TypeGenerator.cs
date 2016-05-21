@@ -176,23 +176,26 @@ namespace SharpVk.VkXml
 
                                 newMethod.MarshalToStatements.Add(string.Format("{0}* {1} = null;", interopTypeName, marshalledName));
 
-                                string lenParam = paramNameLookup[parameter.Dimensions.First().Value];
-
-                                newMethod.MarshalMidStatements.Add(string.Format("{1} = ({0}*)Interop.HeapUtil.Allocate<{0}>({2});", interopTypeName, marshalledName, lenParam));
-
-                                newMethod.MarshalFromStatements.Add(string.Format("result = new {0}[{1}];", paramType.Name, lenParam));
-
-                                newMethod.MarshalFromStatements.Add(string.Format("for(int index = 0; index < {0}; index++)", lenParam));
-                                newMethod.MarshalFromStatements.Add("{");
-                                if (requiresMarshalling)
+                                if (parameter.Dimensions[0].Value != null)
                                 {
-                                    newMethod.MarshalFromStatements.Add(string.Format("\tresult[index] = new {0}({1}[index]{2});", paramType.Name, marshalledName, paramType.Data.Parent != null ? ", this" : ""));
+                                    string lenParam = paramNameLookup[parameter.Dimensions[0].Value];
+
+                                    newMethod.MarshalMidStatements.Add(string.Format("{1} = ({0}*)Interop.HeapUtil.Allocate<{0}>({2});", interopTypeName, marshalledName, lenParam));
+
+                                    newMethod.MarshalFromStatements.Add(string.Format("result = new {0}[{1}];", paramType.Name, lenParam));
+
+                                    newMethod.MarshalFromStatements.Add(string.Format("for(int index = 0; index < {0}; index++)", lenParam));
+                                    newMethod.MarshalFromStatements.Add("{");
+                                    if (requiresMarshalling)
+                                    {
+                                        newMethod.MarshalFromStatements.Add(string.Format("\tresult[index] = new {0}({1}[index]{2});", paramType.Name, marshalledName, paramType.Data.Parent != null ? ", this" : ""));
+                                    }
+                                    else
+                                    {
+                                        newMethod.MarshalFromStatements.Add(string.Format("\tresult[index] = {0}[index]{1};", marshalledName, paramType.Data.Parent != null ? ", this" : ""));
+                                    }
+                                    newMethod.MarshalFromStatements.Add("}");
                                 }
-                                else
-                                {
-                                    newMethod.MarshalFromStatements.Add(string.Format("\tresult[index] = {0}[index]{1};", marshalledName, paramType.Data.Parent != null ? ", this" : ""));
-                                }
-                                newMethod.MarshalFromStatements.Add("}");
                             }
                             else
                             {
@@ -338,8 +341,8 @@ namespace SharpVk.VkXml
 
                             lenMembers.Add(lenMember);
 
-                            newClass.MarshalToStatements.Add(string.Format("result.{0} = this.{1} == null ? 0 : (uint)this.{1}.Length;", memberNameLookup[lenMember], memberDesc.Name));
-                            newClass.MarshalToStatements.Add(string.Format("result.{0} = this.{0} == null ? null : Interop.HeapUtil.MarshalTo(this.{0});", memberDesc.Name));
+                            newClass.MarshalToStatements.Add(string.Format("result.{0} = (uint)(this.{1}?.Length ?? 0);", memberNameLookup[lenMember], memberName));
+                            newClass.MarshalToStatements.Add(string.Format("result.{0} = this.{0} == null ? null : Interop.HeapUtil.MarshalTo(this.{0});", memberName));
                         }
                         else
                         {
@@ -348,8 +351,8 @@ namespace SharpVk.VkXml
                                 case SpecParser.LenType.NullTerminated:
                                     memberDesc.PublicTypeName = "string";
 
-                                    newClass.MarshalToStatements.Add(string.Format("result.{0} = Interop.HeapUtil.MarshalTo(this.{0});", memberDesc.Name));
-                                    newClass.MarshalFromStatements.Add(string.Format("result.{0} = Interop.HeapUtil.MarshalFrom(value->{0});", memberDesc.Name));
+                                    newClass.MarshalToStatements.Add(string.Format("result.{0} = Interop.HeapUtil.MarshalTo(this.{0});", memberName));
+                                    newClass.MarshalFromStatements.Add(string.Format("result.{0} = Interop.HeapUtil.MarshalFrom(value->{0});", memberName));
                                     break;
                                 case SpecParser.LenType.Expression:
 
@@ -360,6 +363,34 @@ namespace SharpVk.VkXml
                                     else
                                     {
                                         memberDesc.PublicTypeName += "[]";
+
+                                        //HACL Ignore unparsed len fields temporarily
+                                        if (member.Dimensions[0].Value != null)
+                                        {
+                                            newClass.MarshalToStatements.Add(string.Format("result.{0} = (uint)(this.{1}?.Length ?? 0);", memberNameLookup[member.Dimensions[0].Value], memberName));
+                                        }
+
+                                        if (memberType.RequiresInterop)
+                                        {
+                                            newClass.MarshalToStatements.Add($"if (this.{memberName} != null)");
+                                            newClass.MarshalToStatements.Add("{");
+                                            newClass.MarshalToStatements.Add($"int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.{memberType.Name}>();");
+                                            newClass.MarshalToStatements.Add($"   IntPtr pointer = Interop.HeapUtil.Allocate<Interop.{memberType.Name}>(this.{memberName}.Length);");
+                                            newClass.MarshalToStatements.Add($"    for (int index = 0; index < this.{memberName}.Length; index++)");
+                                            newClass.MarshalToStatements.Add("    {");
+                                            newClass.MarshalToStatements.Add($"        System.Runtime.InteropServices.Marshal.StructureToPtr(this.{memberName}[index].Pack(), pointer + (size * index), false);");
+                                            newClass.MarshalToStatements.Add("    }");
+                                            newClass.MarshalToStatements.Add($"    result.{memberName} = (Interop.{memberType.Name}*)pointer.ToPointer();");
+                                            newClass.MarshalToStatements.Add("}");
+                                            newClass.MarshalToStatements.Add("else");
+                                            newClass.MarshalToStatements.Add("{");
+                                            newClass.MarshalToStatements.Add($"    result.{memberName} = null;");
+                                            newClass.MarshalToStatements.Add("}");
+                                        }
+                                        else
+                                        {
+                                            newClass.MarshalToStatements.Add(string.Format("result.{0} = this.{0} == null ? null : Interop.HeapUtil.MarshalTo(this.{0});", memberName));
+                                        }
                                     }
 
                                     if (member.Dimensions[0].Value != null)
@@ -496,7 +527,10 @@ namespace SharpVk.VkXml
 
                             string lenMember = member.VkName.TrimEnd('s') + "Count";
 
-                            lenMembers.Add(lenMember);
+                            if (memberNameLookup.ContainsKey(lenMember))
+                            {
+                                lenMembers.Add(lenMember);
+                            }
                         }
                     }
                     else

@@ -303,7 +303,7 @@ namespace SharpVk
 				if(allocator != null) marshalledAllocator = allocator.Pack();
 				Interop.Device marshalledDevice;
 
-				Interop.Commands.vkCreateDevice(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledDevice);
+				Result commandResult = Interop.Commands.vkCreateDevice(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledDevice);
 
 				result = new Device(marshalledDevice, this);
 

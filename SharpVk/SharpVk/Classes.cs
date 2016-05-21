@@ -203,9 +203,24 @@ namespace SharpVk
         {
             var result = new Interop.DeviceCreateInfo();
 			result.SType = StructureType.DeviceCreateInfo;
-			result.EnabledLayerCount = this.EnabledLayerNames == null ? 0 : (uint)this.EnabledLayerNames.Length;
+			result.QueueCreateInfoCount = (uint)(this.QueueCreateInfos?.Length ?? 0);
+			if (this.QueueCreateInfos != null)
+			{
+			int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.DeviceQueueCreateInfo>();
+			   IntPtr pointer = Interop.HeapUtil.Allocate<Interop.DeviceQueueCreateInfo>(this.QueueCreateInfos.Length);
+			    for (int index = 0; index < this.QueueCreateInfos.Length; index++)
+			    {
+			        System.Runtime.InteropServices.Marshal.StructureToPtr(this.QueueCreateInfos[index].Pack(), pointer + (size * index), false);
+			    }
+			    result.QueueCreateInfos = (Interop.DeviceQueueCreateInfo*)pointer.ToPointer();
+			}
+			else
+			{
+			    result.QueueCreateInfos = null;
+			}
+			result.EnabledLayerCount = (uint)(this.EnabledLayerNames?.Length ?? 0);
 			result.EnabledLayerNames = this.EnabledLayerNames == null ? null : Interop.HeapUtil.MarshalTo(this.EnabledLayerNames);
-			result.EnabledExtensionCount = this.EnabledExtensionNames == null ? 0 : (uint)this.EnabledExtensionNames.Length;
+			result.EnabledExtensionCount = (uint)(this.EnabledExtensionNames?.Length ?? 0);
 			result.EnabledExtensionNames = this.EnabledExtensionNames == null ? null : Interop.HeapUtil.MarshalTo(this.EnabledExtensionNames);
 			result.EnabledFeatures = (PhysicalDeviceFeatures*)Interop.HeapUtil.AllocateAndMarshal(this.EnabledFeatures);
 			result.Flags = this.Flags;
@@ -244,6 +259,8 @@ namespace SharpVk
         {
             var result = new Interop.DeviceQueueCreateInfo();
 			result.SType = StructureType.DeviceQueueCreateInfo;
+			result.QueueCount = (uint)(this.QueuePriorities?.Length ?? 0);
+			result.QueuePriorities = this.QueuePriorities == null ? null : Interop.HeapUtil.MarshalTo(this.QueuePriorities);
 			result.Flags = this.Flags;
 			result.QueueFamilyIndex = this.QueueFamilyIndex;
 
@@ -361,9 +378,9 @@ namespace SharpVk
             var result = new Interop.InstanceCreateInfo();
 			result.SType = StructureType.InstanceCreateInfo;
 			result.ApplicationInfo = this.ApplicationInfo == null ? null : this.ApplicationInfo.MarshalTo();
-			result.EnabledLayerCount = this.EnabledLayerNames == null ? 0 : (uint)this.EnabledLayerNames.Length;
+			result.EnabledLayerCount = (uint)(this.EnabledLayerNames?.Length ?? 0);
 			result.EnabledLayerNames = this.EnabledLayerNames == null ? null : Interop.HeapUtil.MarshalTo(this.EnabledLayerNames);
-			result.EnabledExtensionCount = this.EnabledExtensionNames == null ? 0 : (uint)this.EnabledExtensionNames.Length;
+			result.EnabledExtensionCount = (uint)(this.EnabledExtensionNames?.Length ?? 0);
 			result.EnabledExtensionNames = this.EnabledExtensionNames == null ? null : Interop.HeapUtil.MarshalTo(this.EnabledExtensionNames);
 			result.Flags = this.Flags;
 

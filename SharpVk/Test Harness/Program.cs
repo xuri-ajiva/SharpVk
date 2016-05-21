@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SharpVk.VkXml;
+using System;
 using System.Reflection;
 
 namespace SharpVk
@@ -17,14 +18,25 @@ namespace SharpVk
                 EnabledExtensionNames = new[] { "VK_KHR_surface", "VK_KHR_win32_surface" }
             }, null);
 
-            var devices = instance.EnumeratePhysicalDevices();
+            var physicalDevices = instance.EnumeratePhysicalDevices();
 
-            foreach (var device in devices)
+            var deviceCreateInfo = new DeviceCreateInfo
             {
-                var deviceProperties = device.GetPhysicalDeviceProperties();
+                QueueCreateInfos = new[]
+                {
+                    new DeviceQueueCreateInfo
+                    {
+                        QueueFamilyIndex = 0,
+                        QueuePriorities = new float[] { 1 }
+                    }
+                }
+            };
 
-                Enumerate(deviceProperties);
-                Console.WriteLine();
+            foreach (var physicalDevice in physicalDevices)
+            {
+                var device = physicalDevice.CreateDevice(deviceCreateInfo, null);
+
+                device.DestroyDevice(null);
             }
 
             Console.WriteLine("Done");

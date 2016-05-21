@@ -37,6 +37,11 @@ namespace SharpVk
 		{
 			return size.value;
 		}
+
+		public override string ToString()
+		{
+			return this.value.ToString();
+		}
 	}
 
 	public struct Bool32
@@ -78,6 +83,11 @@ namespace SharpVk
 		public static implicit operator ulong(DeviceSize size)
 		{
 			return size.value;
+		}
+
+		public override string ToString()
+		{
+			return this.value.ToString();
 		}
 	}
 
