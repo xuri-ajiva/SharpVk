@@ -15,8 +15,8 @@ VK API Commands that are correctly generated, compiled & executed (against NVidi
   - [ ] vkGetInstanceProcAddr
   - [ ] vkGetDeviceProcAddr
 - Device
-  - [ ] vkCreateDevice
-  - [ ] vkDestroyDevice
+  - [x] vkCreateDevice
+  - [x] vkDestroyDevice
 - Extensions & Layers
   - [ ] vkEnumerateInstanceExtensionProperties
   - [ ] vkEnumerateDeviceExtensionProperties
