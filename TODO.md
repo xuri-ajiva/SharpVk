@@ -1,9 +1,8 @@
 VK API Commands that are correctly generated, compiled & executed (against NVidia implementation on Windows):
 
--  Instance
+-  Device initialization
   - [x] vkCreateInstance
   - [x] vkDestroyInstance
-- Physical Device
   - [x] vkEnumeratePhysicalDevices
   - [x] vkGetPhysicalDeviceFeatures
   - [x] vkGetPhysicalDeviceFormatProperties
@@ -11,24 +10,23 @@ VK API Commands that are correctly generated, compiled & executed (against NVidi
   - [x] vkGetPhysicalDeviceProperties
   - [x] vkGetPhysicalDeviceQueueFamilyProperties
   - [x] vkGetPhysicalDeviceMemoryProperties
-- Function Pointers
   - [ ] vkGetInstanceProcAddr
   - [ ] vkGetDeviceProcAddr
-- Device
+- Device commands
   - [x] vkCreateDevice
   - [x] vkDestroyDevice
-- Extensions & Layers
+- Extension discovery commands
   - [ ] vkEnumerateInstanceExtensionProperties
   - [ ] vkEnumerateDeviceExtensionProperties
+- Layer discovery commands
   - [ ] vkEnumerateInstanceLayerProperties
   - [ ] vkEnumerateDeviceLayerProperties
-- Queues
+- Queue commands
   - [ ] vkGetDeviceQueue
   - [ ] vkQueueSubmit
   - [ ] vkQueueWaitIdle
   - [ ] vkDeviceWaitIdle
-  - [ ] vkQueueBindSparse
-- Memory
+- Memory commands
   - [ ] vkAllocateMemory
   - [ ] vkFreeMemory
   - [ ] vkMapMemory
@@ -36,51 +34,66 @@ VK API Commands that are correctly generated, compiled & executed (against NVidi
   - [ ] vkFlushMappedMemoryRanges
   - [ ] vkInvalidateMappedMemoryRanges
   - [ ] vkGetDeviceMemoryCommitment
+- Memory management API commands
   - [ ] vkBindBufferMemory
   - [ ] vkBindImageMemory
   - [ ] vkGetBufferMemoryRequirements
   - [ ] vkGetImageMemoryRequirements
+- Sparse resource memory management API commands
   - [ ] vkGetImageSparseMemoryRequirements
   - [ ] vkGetPhysicalDeviceSparseImageFormatProperties
-- Synchronisation
+  - [ ] vkQueueBindSparse
+- Fence commands
   - [ ] vkCreateFence
   - [ ] vkDestroyFence
   - [ ] vkResetFences
   - [ ] vkGetFenceStatus
   - [ ] vkWaitForFences
+- Queue semaphore commands
   - [ ] vkCreateSemaphore
   - [ ] vkDestroySemaphore
+- Event commands
   - [ ] vkCreateEvent
   - [ ] vkDestroyEvent
   - [ ] vkGetEventStatus
   - [ ] vkSetEvent
   - [ ] vkResetEvent
-- Resources
+- Query commands
   - [ ] vkCreateQueryPool
   - [ ] vkDestroyQueryPool
   - [ ] vkGetQueryPoolResults
+- Buffer commands
   - [ ] vkCreateBuffer
   - [ ] vkDestroyBuffer
+- Buffer view commands
   - [ ] vkCreateBufferView
   - [ ] vkDestroyBufferView
+- Image commands
   - [ ] vkCreateImage
   - [ ] vkDestroyImage
   - [ ] vkGetImageSubresourceLayout
+- Image view commands
   - [ ] vkCreateImageView
   - [ ] vkDestroyImageView
+- Shader commands
   - [ ] vkCreateShaderModule
   - [ ] vkDestroyShaderModule
+- Pipeline Cache commands
   - [ ] vkCreatePipelineCache
   - [ ] vkDestroyPipelineCache
   - [ ] vkGetPipelineCacheData
   - [ ] vkMergePipelineCaches
+- Pipeline commands
   - [ ] vkCreateGraphicsPipelines
   - [ ] vkCreateComputePipelines
   - [ ] vkDestroyPipeline
+- Pipeline layout commands
   - [ ] vkCreatePipelineLayout
   - [ ] vkDestroyPipelineLayout
+- Sampler commands
   - [ ] vkCreateSampler
   - [ ] vkDestroySampler
+- Descriptor set commands
   - [ ] vkCreateDescriptorSetLayout
   - [ ] vkDestroyDescriptorSetLayout
   - [ ] vkCreateDescriptorPool
@@ -89,20 +102,23 @@ VK API Commands that are correctly generated, compiled & executed (against NVidi
   - [ ] vkAllocateDescriptorSets
   - [ ] vkFreeDescriptorSets
   - [ ] vkUpdateDescriptorSets
+- Pass commands
   - [ ] vkCreateFramebuffer
   - [ ] vkDestroyFramebuffer
   - [ ] vkCreateRenderPass
   - [ ] vkDestroyRenderPass
   - [ ] vkGetRenderAreaGranularity
-- Command Buffers
+- Command pool commands
   - [ ] vkCreateCommandPool
   - [ ] vkDestroyCommandPool
   - [ ] vkResetCommandPool
+- Command buffer commands
   - [ ] vkAllocateCommandBuffers
   - [ ] vkFreeCommandBuffers
   - [ ] vkBeginCommandBuffer
   - [ ] vkEndCommandBuffer
   - [ ] vkResetCommandBuffer
+- Command buffer building commands
   - [ ] vkCmdBindPipeline
   - [ ] vkCmdSetViewport
   - [ ] vkCmdSetScissor
