@@ -10,17 +10,17 @@ VK API Commands that are correctly generated, compiled & executed (against NVidi
   - [x] vkGetPhysicalDeviceProperties
   - [x] vkGetPhysicalDeviceQueueFamilyProperties
   - [x] vkGetPhysicalDeviceMemoryProperties
-  - [ ] vkGetInstanceProcAddr
-  - [ ] vkGetDeviceProcAddr
+  - [x] vkGetInstanceProcAddr
+  - [x] vkGetDeviceProcAddr
 - Device commands
   - [x] vkCreateDevice
   - [x] vkDestroyDevice
 - Extension discovery commands
-  - [ ] vkEnumerateInstanceExtensionProperties
-  - [ ] vkEnumerateDeviceExtensionProperties
+  - [x] vkEnumerateInstanceExtensionProperties
+  - [x] vkEnumerateDeviceExtensionProperties
 - Layer discovery commands
-  - [ ] vkEnumerateInstanceLayerProperties
-  - [ ] vkEnumerateDeviceLayerProperties
+  - [x] vkEnumerateInstanceLayerProperties
+  - [x] vkEnumerateDeviceLayerProperties
 - Queue commands
   - [ ] vkGetDeviceQueue
   - [ ] vkQueueSubmit

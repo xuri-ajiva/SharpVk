@@ -11,6 +11,12 @@ namespace SharpVk.VkXml
             private set;
         } = new List<VkConstant>();
 
+        public List<VkConstant> Exceptions
+        {
+            get;
+            private set;
+        } = new List<VkConstant>();
+
         public List<VkEnumeration> Enumerations
         {
             get;
@@ -254,6 +260,12 @@ namespace SharpVk.VkXml
             }
 
             public bool IsDoubleInvoke
+            {
+                get;
+                set;
+            }
+
+            public bool IsPassthroughResult
             {
                 get;
                 set;

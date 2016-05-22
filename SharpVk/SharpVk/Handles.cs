@@ -54,6 +54,23 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
+		public IntPtr GetDeviceProcAddr(string name)
+		{
+			unsafe
+			{
+				IntPtr result = default(IntPtr);
+
+				char* marshalledName = Interop.HeapUtil.MarshalTo(name);
+
+				Interop.Commands.vkGetDeviceProcAddr(this.handle, marshalledName);
+
+
+				Interop.HeapUtil.FreeLog();
+
+				return result;
+			}
+		}
+
 		public void DestroyDevice(AllocationCallbacks allocator)
 		{
 			unsafe
@@ -65,6 +82,24 @@ namespace SharpVk
 
 
 				Interop.HeapUtil.FreeLog();
+			}
+		}
+
+		public Queue GetDeviceQueue(uint queueFamilyIndex, uint queueIndex)
+		{
+			unsafe
+			{
+				Queue result = default(Queue);
+
+				Interop.Queue marshalledQueue;
+
+				Interop.Commands.vkGetDeviceQueue(this.handle, queueFamilyIndex, queueIndex, &marshalledQueue);
+
+				result = new Queue(marshalledQueue, this);
+
+				Interop.HeapUtil.FreeLog();
+
+				return result;
 			}
 		}
 
@@ -155,6 +190,76 @@ namespace SharpVk
 				for(int index = 0; index < physicalDeviceCount; index++)
 				{
 					result[index] = new PhysicalDevice(marshalledPhysicalDevices[index], this);
+				}
+
+				Interop.HeapUtil.FreeLog();
+
+				return result;
+			}
+		}
+
+		public IntPtr GetInstanceProcAddr(string name)
+		{
+			unsafe
+			{
+				IntPtr result = default(IntPtr);
+
+				char* marshalledName = Interop.HeapUtil.MarshalTo(name);
+
+				Interop.Commands.vkGetInstanceProcAddr(this.handle, marshalledName);
+
+
+				Interop.HeapUtil.FreeLog();
+
+				return result;
+			}
+		}
+
+		public static ExtensionProperties[] EnumerateInstanceExtensionProperties(string layerName)
+		{
+			unsafe
+			{
+				ExtensionProperties[] result = default(ExtensionProperties[]);
+
+				char* marshalledLayerName = Interop.HeapUtil.MarshalTo(layerName);
+				uint propertyCount;
+				Interop.ExtensionProperties* marshalledProperties = null;
+				Interop.Commands.vkEnumerateInstanceExtensionProperties(marshalledLayerName, &propertyCount, null);
+
+				marshalledProperties = (Interop.ExtensionProperties*)Interop.HeapUtil.Allocate<Interop.ExtensionProperties>(propertyCount);
+
+				Interop.Commands.vkEnumerateInstanceExtensionProperties(marshalledLayerName, &propertyCount, marshalledProperties);
+
+				result = new ExtensionProperties[propertyCount];
+				for(int index = 0; index < propertyCount; index++)
+				{
+					result[index] = ExtensionProperties.MarshalFrom(&marshalledProperties[index]);
+				}
+
+				Interop.HeapUtil.FreeLog();
+
+				return result;
+			}
+		}
+
+		public static LayerProperties[] EnumerateInstanceLayerProperties()
+		{
+			unsafe
+			{
+				LayerProperties[] result = default(LayerProperties[]);
+
+				uint propertyCount;
+				Interop.LayerProperties* marshalledProperties = null;
+				Interop.Commands.vkEnumerateInstanceLayerProperties(&propertyCount, null);
+
+				marshalledProperties = (Interop.LayerProperties*)Interop.HeapUtil.Allocate<Interop.LayerProperties>(propertyCount);
+
+				Interop.Commands.vkEnumerateInstanceLayerProperties(&propertyCount, marshalledProperties);
+
+				result = new LayerProperties[propertyCount];
+				for(int index = 0; index < propertyCount; index++)
+				{
+					result[index] = LayerProperties.MarshalFrom(&marshalledProperties[index]);
 				}
 
 				Interop.HeapUtil.FreeLog();
@@ -303,7 +408,7 @@ namespace SharpVk
 				if(allocator != null) marshalledAllocator = allocator.Pack();
 				Interop.Device marshalledDevice;
 
-				Result commandResult = Interop.Commands.vkCreateDevice(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledDevice);
+				Interop.Commands.vkCreateDevice(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledDevice);
 
 				result = new Device(marshalledDevice, this);
 
@@ -313,7 +418,78 @@ namespace SharpVk
 			}
 		}
 
+		public ExtensionProperties[] EnumerateDeviceExtensionProperties(string layerName)
+		{
+			unsafe
+			{
+				ExtensionProperties[] result = default(ExtensionProperties[]);
+
+				char* marshalledLayerName = Interop.HeapUtil.MarshalTo(layerName);
+				uint propertyCount;
+				Interop.ExtensionProperties* marshalledProperties = null;
+				Interop.Commands.vkEnumerateDeviceExtensionProperties(this.handle, marshalledLayerName, &propertyCount, null);
+
+				marshalledProperties = (Interop.ExtensionProperties*)Interop.HeapUtil.Allocate<Interop.ExtensionProperties>(propertyCount);
+
+				Interop.Commands.vkEnumerateDeviceExtensionProperties(this.handle, marshalledLayerName, &propertyCount, marshalledProperties);
+
+				result = new ExtensionProperties[propertyCount];
+				for(int index = 0; index < propertyCount; index++)
+				{
+					result[index] = ExtensionProperties.MarshalFrom(&marshalledProperties[index]);
+				}
+
+				Interop.HeapUtil.FreeLog();
+
+				return result;
+			}
+		}
+
+		public LayerProperties[] EnumerateDeviceLayerProperties()
+		{
+			unsafe
+			{
+				LayerProperties[] result = default(LayerProperties[]);
+
+				uint propertyCount;
+				Interop.LayerProperties* marshalledProperties = null;
+				Interop.Commands.vkEnumerateDeviceLayerProperties(this.handle, &propertyCount, null);
+
+				marshalledProperties = (Interop.LayerProperties*)Interop.HeapUtil.Allocate<Interop.LayerProperties>(propertyCount);
+
+				Interop.Commands.vkEnumerateDeviceLayerProperties(this.handle, &propertyCount, marshalledProperties);
+
+				result = new LayerProperties[propertyCount];
+				for(int index = 0; index < propertyCount; index++)
+				{
+					result[index] = LayerProperties.MarshalFrom(&marshalledProperties[index]);
+				}
+
+				Interop.HeapUtil.FreeLog();
+
+				return result;
+			}
+		}
+
 		internal Interop.PhysicalDevice MarshalTo()
+		{
+			return this.handle;
+		}
+	}
+
+	public class Queue
+	{
+		private readonly Interop.Queue handle;
+
+		private readonly Device parent;
+
+		internal Queue(Interop.Queue handle, Device parent)
+		{
+			this.handle = handle;
+			this.parent = parent;
+		}
+
+		internal Interop.Queue MarshalTo()
 		{
 			return this.handle;
 		}

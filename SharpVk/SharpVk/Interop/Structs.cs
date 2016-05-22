@@ -90,6 +90,13 @@ namespace SharpVk.Interop
 	}
 
     [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct ExtensionProperties
+	{
+		public fixed byte ExtensionName[(int)Constants.MaxExtensionNameSize];
+		public uint SpecVersion;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
 	public unsafe struct ImageMemoryBarrier
 	{
 		public StructureType SType;
@@ -115,6 +122,15 @@ namespace SharpVk.Interop
 		public char** EnabledLayerNames;
 		public uint EnabledExtensionCount;
 		public char** EnabledExtensionNames;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct LayerProperties
+	{
+		public fixed byte LayerName[(int)Constants.MaxExtensionNameSize];
+		public uint SpecVersion;
+		public uint ImplementationVersion;
+		public fixed byte Description[(int)Constants.MaxDescriptionSize];
 	}
 
     [StructLayout(LayoutKind.Sequential)]

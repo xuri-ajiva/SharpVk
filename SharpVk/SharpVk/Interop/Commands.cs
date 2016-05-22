@@ -57,10 +57,31 @@ namespace SharpVk.Interop
 		public static extern void vkGetPhysicalDeviceMemoryProperties(PhysicalDevice physicalDevice, PhysicalDeviceMemoryProperties* memoryProperties);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
+		public static extern IntPtr vkGetInstanceProcAddr(Instance instance, char* name);
+
+		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
+		public static extern IntPtr vkGetDeviceProcAddr(Device device, char* name);
+
+		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
 		public static extern Result vkCreateDevice(PhysicalDevice physicalDevice, DeviceCreateInfo* createInfo, AllocationCallbacks* allocator, Device* device);
 
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
 		public static extern void vkDestroyDevice(Device device, AllocationCallbacks* allocator);
+
+		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
+		public static extern Result vkEnumerateInstanceExtensionProperties(char* layerName, uint* propertyCount, ExtensionProperties* properties);
+
+		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
+		public static extern Result vkEnumerateDeviceExtensionProperties(PhysicalDevice physicalDevice, char* layerName, uint* propertyCount, ExtensionProperties* properties);
+
+		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
+		public static extern Result vkEnumerateInstanceLayerProperties(uint* propertyCount, LayerProperties* properties);
+
+		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
+		public static extern Result vkEnumerateDeviceLayerProperties(PhysicalDevice physicalDevice, uint* propertyCount, LayerProperties* properties);
+
+		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
+		public static extern void vkGetDeviceQueue(Device device, uint queueFamilyIndex, uint queueIndex, Queue* queue);
 
 	}
 }

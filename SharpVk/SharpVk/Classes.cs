@@ -273,6 +273,37 @@ namespace SharpVk
 		}
 	}
 
+	public class ExtensionProperties
+	{
+
+		public string ExtensionName
+		{
+			get;
+			set;
+		}
+
+		public Version SpecVersion
+		{
+			get;
+			set;
+		}
+
+		internal unsafe ExtensionProperties Unpack(Interop.ExtensionProperties value)
+		{
+			return MarshalFrom(&value);
+		}
+
+		internal static unsafe ExtensionProperties MarshalFrom(Interop.ExtensionProperties* value)
+		{
+            var result = new ExtensionProperties();
+
+			result.ExtensionName = System.Text.Encoding.UTF8.GetString(Interop.HeapUtil.MarshalFrom(value->ExtensionName, (int)Constants.MaxExtensionNameSize)).TrimEnd((char)0);
+			result.SpecVersion = value->SpecVersion;
+
+			return result;
+		}
+	}
+
 	public class ImageMemoryBarrier
 	{
 
@@ -390,6 +421,51 @@ namespace SharpVk
 		internal unsafe Interop.InstanceCreateInfo* MarshalTo()
         {
             return (Interop.InstanceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class LayerProperties
+	{
+
+		public string LayerName
+		{
+			get;
+			set;
+		}
+
+		public Version SpecVersion
+		{
+			get;
+			set;
+		}
+
+		public Version ImplementationVersion
+		{
+			get;
+			set;
+		}
+
+		public string Description
+		{
+			get;
+			set;
+		}
+
+		internal unsafe LayerProperties Unpack(Interop.LayerProperties value)
+		{
+			return MarshalFrom(&value);
+		}
+
+		internal static unsafe LayerProperties MarshalFrom(Interop.LayerProperties* value)
+		{
+            var result = new LayerProperties();
+
+			result.LayerName = System.Text.Encoding.UTF8.GetString(Interop.HeapUtil.MarshalFrom(value->LayerName, (int)Constants.MaxExtensionNameSize)).TrimEnd((char)0);
+			result.Description = System.Text.Encoding.UTF8.GetString(Interop.HeapUtil.MarshalFrom(value->Description, (int)Constants.MaxDescriptionSize)).TrimEnd((char)0);
+			result.SpecVersion = value->SpecVersion;
+			result.ImplementationVersion = value->ImplementationVersion;
+
+			return result;
 		}
 	}
 

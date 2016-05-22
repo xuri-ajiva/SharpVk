@@ -15,7 +15,7 @@ namespace SharpVk
                     ApplicationName = "Example Application",
                     EngineName = "SharpVK"
                 },
-                EnabledExtensionNames = new[] { "VK_KHR_surface", "VK_KHR_win32_surface" }
+                //EnabledExtensionNames = new[] { "VK_KHR_surface", "VK_KHR_win32_surface" }
             }, null);
 
             var physicalDevices = instance.EnumeratePhysicalDevices();

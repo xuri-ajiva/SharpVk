@@ -1,4 +1,15 @@
-﻿//The MIT License (MIT)
+﻿
+
+
+
+
+
+
+
+
+
+
+//The MIT License (MIT)
 //
 //Copyright (c) 2016 Andrew Armstrong/FacticiusVir
 //
@@ -20,6 +31,7 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
+
 namespace SharpVk
 {
 	public static class Constants
@@ -33,6 +45,8 @@ namespace SharpVk
 		public const uint False = 0;
 		public const uint QueueFamilyIgnored = ~0U;
 		public const uint SubpassExternal = ~0U;
+		public const uint MaxExtensionNameSize = 256;
+		public const uint MaxDescriptionSize = 256;
 		public const uint MaxMemoryTypes = 32;
 		public const uint MaxMemoryHeaps = 16;
 		public const uint MaxPhysicalDeviceNameSize = 256;

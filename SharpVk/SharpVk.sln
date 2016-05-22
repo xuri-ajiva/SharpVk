@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test Harness", "Test Harness\Test Harness.csproj", "{F3FC01CD-9765-4FC4-8D00-83C6D37BEF86}"
 EndProject
@@ -11,6 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpVk", "SharpVk\SharpVk.
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpVk.VkXml", "SharpVk.VkXml\SharpVk.VkXml.csproj", "{BBA0786E-CB48-43A7-AF46-6DD9E3482FD2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5B770042-CFC1-4B48-90B3-8686E2A940A1}"
+	ProjectSection(SolutionItems) = preProject
+		..\TODO.md = ..\TODO.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

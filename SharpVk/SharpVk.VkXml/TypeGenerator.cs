@@ -38,6 +38,8 @@ namespace SharpVk.VkXml
 
             GenerateConstants(spec, result);
 
+            GenerateExceptions(spec, result);
+
             GenerateEnumerations(spec, typeData, result);
 
             GenerateUnions(typeData, result);
@@ -186,7 +188,11 @@ namespace SharpVk.VkXml
 
                                     newMethod.MarshalFromStatements.Add(string.Format("for(int index = 0; index < {0}; index++)", lenParam));
                                     newMethod.MarshalFromStatements.Add("{");
-                                    if (requiresMarshalling)
+                                    if (paramType.RequiresInterop)
+                                    {
+                                        newMethod.MarshalFromStatements.Add($"\tresult[index] = {paramType.Name}.MarshalFrom(&{marshalledName}[index]);");
+                                    }
+                                    else if (paramType.Data.Category == TypeCategory.handle)
                                     {
                                         newMethod.MarshalFromStatements.Add(string.Format("\tresult[index] = new {0}({1}[index]{2});", paramType.Name, marshalledName, paramType.Data.Parent != null ? ", this" : ""));
                                     }
@@ -243,6 +249,24 @@ namespace SharpVk.VkXml
                             newMethod.MarshalToStatements.Add(string.Format("Interop.{0} {1};", paramType.Name, marshalledName));
                             newMethod.MarshalToStatements.Add(string.Format("if({1} != null) {0} = {1}.Pack();", marshalledName, paramName));
                         }
+                        else if (parameter.Dimensions?.Length > 0)
+                        {
+                            if (parameter.Dimensions[0].Type == SpecParser.LenType.NullTerminated)
+                            {
+                                newMethod.MarshalToStatements.Add($"char* {marshalledName} = Interop.HeapUtil.MarshalTo({paramName});");
+
+                                newMethod.Parameters.Add(new TypeSet.VkMethodParam
+                                {
+                                    Name = paramName,
+                                    ArgumentName = marshalledName,
+                                    TypeName = "string"
+                                });
+                            }
+                            else
+                            {
+                                throw new NotImplementedException();
+                            }
+                        }
                         else
                         {
                             newMethod.Parameters.Add(new TypeSet.VkMethodParam
@@ -255,6 +279,12 @@ namespace SharpVk.VkXml
                     }
 
                     parameterIndex++;
+                }
+
+                if (command.Type == "PFN_vkVoidFunction")
+                {
+                    newMethod.ReturnTypeName = "IntPtr";
+                    newMethod.IsPassthroughResult = true;
                 }
 
                 result.Commands.Add(newCommand);
@@ -820,6 +850,26 @@ namespace SharpVk.VkXml
                     Name = GetNameForElement(constant),
                     Type = type,
                     Value = constant.Value
+                });
+            }
+        }
+
+        private static void GenerateExceptions(SpecParser.ParsedSpec spec, TypeSet result)
+        {
+            var resultEnum = spec.Enumerations["VkResult"];
+
+            string enumName = GetNameForElement(resultEnum);
+
+            foreach (var error in resultEnum.Fields.Values
+                                        .Where(x=>int.Parse(x.Value) < 0))
+            {
+                string errorFieldName = GetNameForElement(error);
+
+                result.Exceptions.Add(new TypeSet.VkConstant
+                {
+                    Name = JoinNameParts(error.NameParts.Skip(1)) + "Exception",
+                    Type = typeof(int),
+                    Value = $"{enumName}.{errorFieldName}"
                 });
             }
         }

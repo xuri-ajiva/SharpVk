@@ -1,0 +1,56 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Net" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Xml.Linq" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<#@ include file=".\License.tt" #>
+<#@ include file=".\Vk.ttinclude" #>
+<#
+	var parser = GetParser();
+	var generator = new TypeGenerator();
+
+	var types = generator.Generate(parser.Run());
+#>using System;
+
+namespace SharpVk
+{
+	public class SharpVkException
+		: Exception
+	{
+		public static bool IsError(Result resultCode)
+		{
+			return (int)resultCode < 0;
+		}
+
+		public static SharpVkException Create(Result resultCode)
+		{
+			switch(resultCode)
+			{
+<#
+foreach(var exception in types.Exceptions)
+{
+#>				case <#=exception.Value#>:
+					return new <#=exception.Name#>();
+<#}#>			}
+
+			return new SharpVkException();
+		}
+	}
+
+<#
+foreach(var exception in types.Exceptions)
+{
+#>	public class <#=exception.Name#>
+		: SharpVkException
+	{
+	}
+<#
+#>//		public const <#=GetTypeName(exception.Type)#> <#=exception.Name#> = <#=exception.Value#>;
+<#}#>
+}

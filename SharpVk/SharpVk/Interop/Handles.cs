@@ -104,4 +104,20 @@ namespace SharpVk.Interop
 		}
 	}
 
+	public struct Queue
+	{
+		internal IntPtr handle;
+
+		public static Queue Null
+		{
+			get
+			{
+				return new Queue
+                {
+                    handle = IntPtr.Zero
+                };
+			}
+		}
+	}
+
 }
