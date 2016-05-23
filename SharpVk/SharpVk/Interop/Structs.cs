@@ -50,6 +50,23 @@ namespace SharpVk.Interop
 	}
 
     [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct BindSparseInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public uint WaitSemaphoreCount;
+		public Semaphore* WaitSemaphores;
+		public uint BufferBindCount;
+		public SparseBufferMemoryBindInfo* BufferBinds;
+		public uint ImageOpaqueBindCount;
+		public SparseImageOpaqueMemoryBindInfo* ImageOpaqueBinds;
+		public uint ImageBindCount;
+		public SparseImageMemoryBindInfo* ImageBinds;
+		public uint SignalSemaphoreCount;
+		public Semaphore* SignalSemaphores;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
 	public unsafe struct BufferMemoryBarrier
 	{
 		public StructureType SType;
@@ -339,6 +356,51 @@ namespace SharpVk.Interop
 		public fixed byte PipelineCacheUUID[(int)Constants.UuidSize];
 		public PhysicalDeviceLimits Limits;
 		public PhysicalDeviceSparseProperties SparseProperties;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct SparseBufferMemoryBindInfo
+	{
+		public Buffer Buffer;
+		public uint BindCount;
+		public SparseMemoryBind* Binds;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct SparseImageMemoryBind
+	{
+		public ImageSubresource Subresource;
+		public Offset3D Offset;
+		public Extent3D Extent;
+		public DeviceMemory Memory;
+		public DeviceSize MemoryOffset;
+		public SparseMemoryBindFlags Flags;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct SparseImageMemoryBindInfo
+	{
+		public Image Image;
+		public uint BindCount;
+		public SparseImageMemoryBind* Binds;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct SparseImageOpaqueMemoryBindInfo
+	{
+		public Image Image;
+		public uint BindCount;
+		public SparseMemoryBind* Binds;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct SparseMemoryBind
+	{
+		public DeviceSize ResourceOffset;
+		public DeviceSize Size;
+		public DeviceMemory Memory;
+		public DeviceSize MemoryOffset;
+		public SparseMemoryBindFlags Flags;
 	}
 
     [StructLayout(LayoutKind.Sequential)]

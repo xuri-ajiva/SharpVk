@@ -161,6 +161,16 @@ namespace SharpVk
 		public DeviceSize MaxResourceSize;
 	}
 
+	public struct ImageSubresource
+	{
+
+		public ImageAspectFlags AspectMask;
+
+		public uint MipLevel;
+
+		public uint ArrayLayer;
+	}
+
 	public struct ImageSubresourceRange
 	{
 
@@ -183,12 +193,32 @@ namespace SharpVk
 		public MemoryHeapFlags Flags;
 	}
 
+	public struct MemoryRequirements
+	{
+
+		public DeviceSize Size;
+
+		public DeviceSize Alignment;
+
+		public uint MemoryTypeBits;
+	}
+
 	public struct MemoryType
 	{
 
 		public MemoryPropertyFlags PropertyFlags;
 
 		public uint HeapIndex;
+	}
+
+	public struct Offset3D
+	{
+
+		public int X;
+
+		public int Y;
+
+		public int Z;
 	}
 
 	public struct PhysicalDeviceFeatures
@@ -329,5 +359,29 @@ namespace SharpVk
 		public uint TimestampValidBits;
 
 		public Extent3D MinImageTransferGranularity;
+	}
+
+	public struct SparseImageFormatProperties
+	{
+
+		public ImageAspectFlags AspectMask;
+
+		public Extent3D ImageGranularity;
+
+		public SparseImageFormatFlags Flags;
+	}
+
+	public struct SparseImageMemoryRequirements
+	{
+
+		public SparseImageFormatProperties FormatProperties;
+
+		public uint ImageMipTailFirstLod;
+
+		public DeviceSize ImageMipTailSize;
+
+		public DeviceSize ImageMipTailOffset;
+
+		public DeviceSize ImageMipTailStride;
 	}
 }

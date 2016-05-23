@@ -190,6 +190,22 @@ namespace SharpVk
 		SampleCount64 = 1 << 6,
 	}
 
+	[Flags]
+	public enum SparseImageFormatFlags
+	{
+		None = 0,
+		SingleMiptail = 1 << 0,
+		AlignedMipSize = 1 << 1,
+		NonstandardBlockSize = 1 << 2,
+	}
+
+	[Flags]
+	public enum SparseMemoryBindFlags
+	{
+		None = 0,
+		Metadata = 1 << 0,
+	}
+
 	public enum Format
 	{
 		Undefined = 0,

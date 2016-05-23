@@ -67,7 +67,19 @@ namespace SharpVk.VkXml
                     ReturnTypeName = typeData[command.Type].Name
                 };
 
-                var handleParams = command.Params.TakeWhile(x => typeData[x.Type].Data.Category == TypeCategory.handle);
+                var handleParams = command.Params.TakeWhile((x, index) =>
+                {
+                    var paramTypeData = typeData[x.Type].Data;
+
+                    if (paramTypeData.Category != TypeCategory.handle)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        return index == 0 || paramTypeData.Parent == typeData[command.Params[index - 1].Type].Data.VkName;
+                    }
+                });
 
                 var lastParam = command.Params.Last();
 

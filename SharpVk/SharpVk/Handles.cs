@@ -36,6 +36,35 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
+		public void BindBufferMemory(DeviceMemory memory, DeviceSize memoryOffset)
+		{
+			unsafe
+			{
+				Interop.DeviceMemory marshalledMemory = memory?.Pack() ?? Interop.DeviceMemory.Null;
+
+				Interop.Commands.vkBindBufferMemory(this.parent.handle, this.handle, marshalledMemory, memoryOffset);
+
+
+				Interop.HeapUtil.FreeLog();
+			}
+		}
+
+		public MemoryRequirements GetBufferMemoryRequirements()
+		{
+			unsafe
+			{
+				MemoryRequirements result = default(MemoryRequirements);
+
+
+				Interop.Commands.vkGetBufferMemoryRequirements(this.parent.handle, this.handle, &result);
+
+
+				Interop.HeapUtil.FreeLog();
+
+				return result;
+			}
+		}
+
 		internal Interop.Buffer Pack()
 		{
 			return this.handle;
@@ -305,6 +334,61 @@ namespace SharpVk
 		{
 			this.handle = handle;
 			this.parent = parent;
+		}
+
+		public void BindImageMemory(DeviceMemory memory, DeviceSize memoryOffset)
+		{
+			unsafe
+			{
+				Interop.DeviceMemory marshalledMemory = memory?.Pack() ?? Interop.DeviceMemory.Null;
+
+				Interop.Commands.vkBindImageMemory(this.parent.handle, this.handle, marshalledMemory, memoryOffset);
+
+
+				Interop.HeapUtil.FreeLog();
+			}
+		}
+
+		public MemoryRequirements GetImageMemoryRequirements()
+		{
+			unsafe
+			{
+				MemoryRequirements result = default(MemoryRequirements);
+
+
+				Interop.Commands.vkGetImageMemoryRequirements(this.parent.handle, this.handle, &result);
+
+
+				Interop.HeapUtil.FreeLog();
+
+				return result;
+			}
+		}
+
+		public SparseImageMemoryRequirements[] GetImageSparseMemoryRequirements()
+		{
+			unsafe
+			{
+				SparseImageMemoryRequirements[] result = default(SparseImageMemoryRequirements[]);
+
+				uint sparseMemoryRequirementCount;
+				SparseImageMemoryRequirements* marshalledSparseMemoryRequirements = null;
+				Interop.Commands.vkGetImageSparseMemoryRequirements(this.parent.handle, this.handle, &sparseMemoryRequirementCount, null);
+
+				marshalledSparseMemoryRequirements = (SparseImageMemoryRequirements*)Interop.HeapUtil.Allocate<SparseImageMemoryRequirements>(sparseMemoryRequirementCount);
+
+				Interop.Commands.vkGetImageSparseMemoryRequirements(this.parent.handle, this.handle, &sparseMemoryRequirementCount, marshalledSparseMemoryRequirements);
+
+				result = new SparseImageMemoryRequirements[sparseMemoryRequirementCount];
+				for(int index = 0; index < sparseMemoryRequirementCount; index++)
+				{
+					result[index] = marshalledSparseMemoryRequirements[index];
+				}
+
+				Interop.HeapUtil.FreeLog();
+
+				return result;
+			}
 		}
 
 		internal Interop.Image Pack()
@@ -657,6 +741,32 @@ namespace SharpVk
 			}
 		}
 
+		public SparseImageFormatProperties[] GetPhysicalDeviceSparseImageFormatProperties(Format format, ImageType type, SampleCountFlags samples, ImageUsageFlags usage, ImageTiling tiling)
+		{
+			unsafe
+			{
+				SparseImageFormatProperties[] result = default(SparseImageFormatProperties[]);
+
+				uint propertyCount;
+				SparseImageFormatProperties* marshalledProperties = null;
+				Interop.Commands.vkGetPhysicalDeviceSparseImageFormatProperties(this.handle, format, type, samples, usage, tiling, &propertyCount, null);
+
+				marshalledProperties = (SparseImageFormatProperties*)Interop.HeapUtil.Allocate<SparseImageFormatProperties>(propertyCount);
+
+				Interop.Commands.vkGetPhysicalDeviceSparseImageFormatProperties(this.handle, format, type, samples, usage, tiling, &propertyCount, marshalledProperties);
+
+				result = new SparseImageFormatProperties[propertyCount];
+				for(int index = 0; index < propertyCount; index++)
+				{
+					result[index] = marshalledProperties[index];
+				}
+
+				Interop.HeapUtil.FreeLog();
+
+				return result;
+			}
+		}
+
 		internal Interop.PhysicalDevice Pack()
 		{
 			return this.handle;
@@ -694,6 +804,19 @@ namespace SharpVk
 			{
 
 				Interop.Commands.vkQueueWaitIdle(this.handle);
+
+
+				Interop.HeapUtil.FreeLog();
+			}
+		}
+
+		public void QueueBindSparse(BindSparseInfo[] bindInfo, Fence fence)
+		{
+			unsafe
+			{
+				Interop.Fence marshalledFence = fence?.Pack() ?? Interop.Fence.Null;
+
+				Interop.Commands.vkQueueBindSparse(this.handle, (uint)bindInfo.Length, null, marshalledFence);
 
 
 				Interop.HeapUtil.FreeLog();

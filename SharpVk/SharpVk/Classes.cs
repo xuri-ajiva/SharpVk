@@ -100,6 +100,138 @@ namespace SharpVk
 		}
 	}
 
+	public class BindSparseInfo
+	{
+
+		public Semaphore[] WaitSemaphores
+		{
+			get;
+			set;
+		}
+
+		public SparseBufferMemoryBindInfo[] BufferBinds
+		{
+			get;
+			set;
+		}
+
+		public SparseImageOpaqueMemoryBindInfo[] ImageOpaqueBinds
+		{
+			get;
+			set;
+		}
+
+		public SparseImageMemoryBindInfo[] ImageBinds
+		{
+			get;
+			set;
+		}
+
+		public Semaphore[] SignalSemaphores
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.BindSparseInfo Pack()
+        {
+            var result = new Interop.BindSparseInfo();
+			result.SType = StructureType.BindSparseInfo;
+			result.WaitSemaphoreCount = (uint)(this.WaitSemaphores?.Length ?? 0);
+			
+			//WaitSemaphores
+			if (this.WaitSemaphores != null)
+			{
+			    int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.Semaphore>();
+			    IntPtr pointer = Interop.HeapUtil.Allocate<Interop.Semaphore>(this.WaitSemaphores.Length);
+			    for (int index = 0; index < this.WaitSemaphores.Length; index++)
+			    {
+			        System.Runtime.InteropServices.Marshal.StructureToPtr(this.WaitSemaphores[index].Pack(), pointer + (size * index), false);
+			    }
+			    result.WaitSemaphores = (Interop.Semaphore*)pointer.ToPointer();
+			}
+			else
+			{
+			    result.WaitSemaphores = null;
+			}
+			result.BufferBindCount = (uint)(this.BufferBinds?.Length ?? 0);
+			
+			//BufferBinds
+			if (this.BufferBinds != null)
+			{
+			    int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.SparseBufferMemoryBindInfo>();
+			    IntPtr pointer = Interop.HeapUtil.Allocate<Interop.SparseBufferMemoryBindInfo>(this.BufferBinds.Length);
+			    for (int index = 0; index < this.BufferBinds.Length; index++)
+			    {
+			        System.Runtime.InteropServices.Marshal.StructureToPtr(this.BufferBinds[index].Pack(), pointer + (size * index), false);
+			    }
+			    result.BufferBinds = (Interop.SparseBufferMemoryBindInfo*)pointer.ToPointer();
+			}
+			else
+			{
+			    result.BufferBinds = null;
+			}
+			result.ImageOpaqueBindCount = (uint)(this.ImageOpaqueBinds?.Length ?? 0);
+			
+			//ImageOpaqueBinds
+			if (this.ImageOpaqueBinds != null)
+			{
+			    int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.SparseImageOpaqueMemoryBindInfo>();
+			    IntPtr pointer = Interop.HeapUtil.Allocate<Interop.SparseImageOpaqueMemoryBindInfo>(this.ImageOpaqueBinds.Length);
+			    for (int index = 0; index < this.ImageOpaqueBinds.Length; index++)
+			    {
+			        System.Runtime.InteropServices.Marshal.StructureToPtr(this.ImageOpaqueBinds[index].Pack(), pointer + (size * index), false);
+			    }
+			    result.ImageOpaqueBinds = (Interop.SparseImageOpaqueMemoryBindInfo*)pointer.ToPointer();
+			}
+			else
+			{
+			    result.ImageOpaqueBinds = null;
+			}
+			result.ImageBindCount = (uint)(this.ImageBinds?.Length ?? 0);
+			
+			//ImageBinds
+			if (this.ImageBinds != null)
+			{
+			    int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.SparseImageMemoryBindInfo>();
+			    IntPtr pointer = Interop.HeapUtil.Allocate<Interop.SparseImageMemoryBindInfo>(this.ImageBinds.Length);
+			    for (int index = 0; index < this.ImageBinds.Length; index++)
+			    {
+			        System.Runtime.InteropServices.Marshal.StructureToPtr(this.ImageBinds[index].Pack(), pointer + (size * index), false);
+			    }
+			    result.ImageBinds = (Interop.SparseImageMemoryBindInfo*)pointer.ToPointer();
+			}
+			else
+			{
+			    result.ImageBinds = null;
+			}
+			result.SignalSemaphoreCount = (uint)(this.SignalSemaphores?.Length ?? 0);
+			
+			//SignalSemaphores
+			if (this.SignalSemaphores != null)
+			{
+			    int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.Semaphore>();
+			    IntPtr pointer = Interop.HeapUtil.Allocate<Interop.Semaphore>(this.SignalSemaphores.Length);
+			    for (int index = 0; index < this.SignalSemaphores.Length; index++)
+			    {
+			        System.Runtime.InteropServices.Marshal.StructureToPtr(this.SignalSemaphores[index].Pack(), pointer + (size * index), false);
+			    }
+			    result.SignalSemaphores = (Interop.Semaphore*)pointer.ToPointer();
+			}
+			else
+			{
+			    result.SignalSemaphores = null;
+			}
+
+            return result;
+        }
+
+		internal unsafe Interop.BindSparseInfo* MarshalTo()
+        {
+            return (Interop.BindSparseInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
 	public class BufferMemoryBarrier
 	{
 
@@ -1450,6 +1582,253 @@ namespace SharpVk
 			result.SparseProperties = value->SparseProperties;
 
 			return result;
+		}
+	}
+
+	public class SparseBufferMemoryBindInfo
+	{
+
+		public Buffer Buffer
+		{
+			get;
+			set;
+		}
+
+		public SparseMemoryBind[] Binds
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.SparseBufferMemoryBindInfo Pack()
+        {
+            var result = new Interop.SparseBufferMemoryBindInfo();
+			result.Buffer = this.Buffer?.Pack() ?? Interop.Buffer.Null;
+			result.BindCount = (uint)(this.Binds?.Length ?? 0);
+			
+			//Binds
+			if (this.Binds != null)
+			{
+			    int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.SparseMemoryBind>();
+			    IntPtr pointer = Interop.HeapUtil.Allocate<Interop.SparseMemoryBind>(this.Binds.Length);
+			    for (int index = 0; index < this.Binds.Length; index++)
+			    {
+			        System.Runtime.InteropServices.Marshal.StructureToPtr(this.Binds[index].Pack(), pointer + (size * index), false);
+			    }
+			    result.Binds = (Interop.SparseMemoryBind*)pointer.ToPointer();
+			}
+			else
+			{
+			    result.Binds = null;
+			}
+
+            return result;
+        }
+
+		internal unsafe Interop.SparseBufferMemoryBindInfo* MarshalTo()
+        {
+            return (Interop.SparseBufferMemoryBindInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class SparseImageMemoryBind
+	{
+
+		public ImageSubresource Subresource
+		{
+			get;
+			set;
+		}
+
+		public Offset3D Offset
+		{
+			get;
+			set;
+		}
+
+		public Extent3D Extent
+		{
+			get;
+			set;
+		}
+
+		public DeviceMemory Memory
+		{
+			get;
+			set;
+		}
+
+		public ulong MemoryOffset
+		{
+			get;
+			set;
+		}
+
+		public SparseMemoryBindFlags Flags
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.SparseImageMemoryBind Pack()
+        {
+            var result = new Interop.SparseImageMemoryBind();
+			result.Memory = this.Memory?.Pack() ?? Interop.DeviceMemory.Null;
+			result.Subresource = this.Subresource;
+			result.Offset = this.Offset;
+			result.Extent = this.Extent;
+			result.MemoryOffset = this.MemoryOffset;
+			result.Flags = this.Flags;
+
+            return result;
+        }
+
+		internal unsafe Interop.SparseImageMemoryBind* MarshalTo()
+        {
+            return (Interop.SparseImageMemoryBind*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class SparseImageMemoryBindInfo
+	{
+
+		public Image Image
+		{
+			get;
+			set;
+		}
+
+		public SparseImageMemoryBind[] Binds
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.SparseImageMemoryBindInfo Pack()
+        {
+            var result = new Interop.SparseImageMemoryBindInfo();
+			result.Image = this.Image?.Pack() ?? Interop.Image.Null;
+			result.BindCount = (uint)(this.Binds?.Length ?? 0);
+			
+			//Binds
+			if (this.Binds != null)
+			{
+			    int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.SparseImageMemoryBind>();
+			    IntPtr pointer = Interop.HeapUtil.Allocate<Interop.SparseImageMemoryBind>(this.Binds.Length);
+			    for (int index = 0; index < this.Binds.Length; index++)
+			    {
+			        System.Runtime.InteropServices.Marshal.StructureToPtr(this.Binds[index].Pack(), pointer + (size * index), false);
+			    }
+			    result.Binds = (Interop.SparseImageMemoryBind*)pointer.ToPointer();
+			}
+			else
+			{
+			    result.Binds = null;
+			}
+
+            return result;
+        }
+
+		internal unsafe Interop.SparseImageMemoryBindInfo* MarshalTo()
+        {
+            return (Interop.SparseImageMemoryBindInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class SparseImageOpaqueMemoryBindInfo
+	{
+
+		public Image Image
+		{
+			get;
+			set;
+		}
+
+		public SparseMemoryBind[] Binds
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.SparseImageOpaqueMemoryBindInfo Pack()
+        {
+            var result = new Interop.SparseImageOpaqueMemoryBindInfo();
+			result.Image = this.Image?.Pack() ?? Interop.Image.Null;
+			result.BindCount = (uint)(this.Binds?.Length ?? 0);
+			
+			//Binds
+			if (this.Binds != null)
+			{
+			    int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.SparseMemoryBind>();
+			    IntPtr pointer = Interop.HeapUtil.Allocate<Interop.SparseMemoryBind>(this.Binds.Length);
+			    for (int index = 0; index < this.Binds.Length; index++)
+			    {
+			        System.Runtime.InteropServices.Marshal.StructureToPtr(this.Binds[index].Pack(), pointer + (size * index), false);
+			    }
+			    result.Binds = (Interop.SparseMemoryBind*)pointer.ToPointer();
+			}
+			else
+			{
+			    result.Binds = null;
+			}
+
+            return result;
+        }
+
+		internal unsafe Interop.SparseImageOpaqueMemoryBindInfo* MarshalTo()
+        {
+            return (Interop.SparseImageOpaqueMemoryBindInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class SparseMemoryBind
+	{
+
+		public ulong ResourceOffset
+		{
+			get;
+			set;
+		}
+
+		public ulong Size
+		{
+			get;
+			set;
+		}
+
+		public DeviceMemory Memory
+		{
+			get;
+			set;
+		}
+
+		public ulong MemoryOffset
+		{
+			get;
+			set;
+		}
+
+		public SparseMemoryBindFlags Flags
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.SparseMemoryBind Pack()
+        {
+            var result = new Interop.SparseMemoryBind();
+			result.Memory = this.Memory?.Pack() ?? Interop.DeviceMemory.Null;
+			result.ResourceOffset = this.ResourceOffset;
+			result.Size = this.Size;
+			result.MemoryOffset = this.MemoryOffset;
+			result.Flags = this.Flags;
+
+            return result;
+        }
+
+		internal unsafe Interop.SparseMemoryBind* MarshalTo()
+        {
+            return (Interop.SparseMemoryBind*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
