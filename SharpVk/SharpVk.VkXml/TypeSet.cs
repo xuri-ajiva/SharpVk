@@ -321,6 +321,18 @@ namespace SharpVk.VkXml
                 get;
                 set;
             }
+
+            public string FixedName
+            {
+                get;
+                set;
+            }
+
+            public string FixedType
+            {
+                get;
+                set;
+            }
         }
 
         public class VkCommand

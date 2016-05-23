@@ -67,6 +67,19 @@ namespace SharpVk.Interop
 	}
 
     [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct BufferCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public BufferCreateFlags Flags;
+		public DeviceSize Size;
+		public BufferUsageFlags Usage;
+		public SharingMode SharingMode;
+		public uint QueueFamilyIndexCount;
+		public uint* QueueFamilyIndices;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
 	public unsafe struct BufferMemoryBarrier
 	{
 		public StructureType SType;
@@ -78,6 +91,18 @@ namespace SharpVk.Interop
 		public Buffer Buffer;
 		public DeviceSize Offset;
 		public DeviceSize Size;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct BufferViewCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public BufferViewCreateFlags Flags;
+		public Buffer Buffer;
+		public Format Format;
+		public DeviceSize Offset;
+		public DeviceSize Range;
 	}
 
     [StructLayout(LayoutKind.Sequential)]
@@ -104,6 +129,14 @@ namespace SharpVk.Interop
 		public uint QueueFamilyIndex;
 		public uint QueueCount;
 		public float* QueuePriorities;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct EventCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public EventCreateFlags Flags;
 	}
 
     [StructLayout(LayoutKind.Sequential)]
@@ -364,6 +397,25 @@ namespace SharpVk.Interop
 		public fixed byte PipelineCacheUUID[(int)Constants.UuidSize];
 		public PhysicalDeviceLimits Limits;
 		public PhysicalDeviceSparseProperties SparseProperties;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct QueryPoolCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public QueryPoolCreateFlags Flags;
+		public QueryType QueryType;
+		public uint QueryCount;
+		public QueryPipelineStatisticFlags PipelineStatistics;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct SemaphoreCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public SemaphoreCreateFlags Flags;
 	}
 
     [StructLayout(LayoutKind.Sequential)]

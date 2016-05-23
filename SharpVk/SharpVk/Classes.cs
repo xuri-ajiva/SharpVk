@@ -232,6 +232,59 @@ namespace SharpVk
 		}
 	}
 
+	public class BufferCreateInfo
+	{
+
+		public BufferCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public ulong Size
+		{
+			get;
+			set;
+		}
+
+		public BufferUsageFlags Usage
+		{
+			get;
+			set;
+		}
+
+		public SharingMode SharingMode
+		{
+			get;
+			set;
+		}
+
+		public uint[] QueueFamilyIndices
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.BufferCreateInfo Pack()
+        {
+            var result = new Interop.BufferCreateInfo();
+			result.SType = StructureType.BufferCreateInfo;
+			result.QueueFamilyIndexCount = (uint)(this.QueueFamilyIndices?.Length ?? 0);
+			result.QueueFamilyIndices = this.QueueFamilyIndices == null ? null : Interop.HeapUtil.MarshalTo(this.QueueFamilyIndices);
+			result.Flags = this.Flags;
+			result.Size = this.Size;
+			result.Usage = this.Usage;
+			result.SharingMode = this.SharingMode;
+
+            return result;
+        }
+
+		internal unsafe Interop.BufferCreateInfo* MarshalTo()
+        {
+            return (Interop.BufferCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
 	public class BufferMemoryBarrier
 	{
 
@@ -295,6 +348,58 @@ namespace SharpVk
 		internal unsafe Interop.BufferMemoryBarrier* MarshalTo()
         {
             return (Interop.BufferMemoryBarrier*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class BufferViewCreateInfo
+	{
+
+		public BufferViewCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public Buffer Buffer
+		{
+			get;
+			set;
+		}
+
+		public Format Format
+		{
+			get;
+			set;
+		}
+
+		public ulong Offset
+		{
+			get;
+			set;
+		}
+
+		public ulong Range
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.BufferViewCreateInfo Pack()
+        {
+            var result = new Interop.BufferViewCreateInfo();
+			result.SType = StructureType.BufferViewCreateInfo;
+			result.Buffer = this.Buffer?.Pack() ?? Interop.Buffer.Null;
+			result.Flags = this.Flags;
+			result.Format = this.Format;
+			result.Offset = this.Offset;
+			result.Range = this.Range;
+
+            return result;
+        }
+
+		internal unsafe Interop.BufferViewCreateInfo* MarshalTo()
+        {
+            return (Interop.BufferViewCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -404,6 +509,30 @@ namespace SharpVk
 		internal unsafe Interop.DeviceQueueCreateInfo* MarshalTo()
         {
             return (Interop.DeviceQueueCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class EventCreateInfo
+	{
+
+		public EventCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.EventCreateInfo Pack()
+        {
+            var result = new Interop.EventCreateInfo();
+			result.SType = StructureType.EventCreateInfo;
+			result.Flags = this.Flags;
+
+            return result;
+        }
+
+		internal unsafe Interop.EventCreateInfo* MarshalTo()
+        {
+            return (Interop.EventCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -1606,6 +1735,75 @@ namespace SharpVk
 			result.SparseProperties = value->SparseProperties;
 
 			return result;
+		}
+	}
+
+	public class QueryPoolCreateInfo
+	{
+
+		public QueryPoolCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public QueryType QueryType
+		{
+			get;
+			set;
+		}
+
+		public uint QueryCount
+		{
+			get;
+			set;
+		}
+
+		public QueryPipelineStatisticFlags PipelineStatistics
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.QueryPoolCreateInfo Pack()
+        {
+            var result = new Interop.QueryPoolCreateInfo();
+			result.SType = StructureType.QueryPoolCreateInfo;
+			result.Flags = this.Flags;
+			result.QueryType = this.QueryType;
+			result.QueryCount = this.QueryCount;
+			result.PipelineStatistics = this.PipelineStatistics;
+
+            return result;
+        }
+
+		internal unsafe Interop.QueryPoolCreateInfo* MarshalTo()
+        {
+            return (Interop.QueryPoolCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class SemaphoreCreateInfo
+	{
+
+		public SemaphoreCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.SemaphoreCreateInfo Pack()
+        {
+            var result = new Interop.SemaphoreCreateInfo();
+			result.SType = StructureType.SemaphoreCreateInfo;
+			result.Flags = this.Flags;
+
+            return result;
+        }
+
+		internal unsafe Interop.SemaphoreCreateInfo* MarshalTo()
+        {
+            return (Interop.SemaphoreCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 

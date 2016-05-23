@@ -265,7 +265,7 @@ namespace SharpVk.VkXml
 
                             newMethod.Parameters.Add(new TypeSet.VkMethodParam
                             {
-                                ArgumentName = $"(uint){mapping}.Length"
+                                ArgumentName = $"({paramType.Name}){mapping}.Length"
                             });
                         }
                         else if (parameter.Dimensions?.Length > 0)
@@ -283,26 +283,40 @@ namespace SharpVk.VkXml
                             }
                             else
                             {
+                                string fixedName = null;
+                                string fixedType = null;
+                                string paramTypeName = (paramType.Name == "void" ? "byte" : paramType.Name);
+
+                                if (paramType.RequiresInterop || paramType.Data.Category == TypeCategory.handle)
+                                {
+                                    newMethod.MarshalToStatements.Add($"Interop.{paramType.Name}* {marshalledName};");
+                                    newMethod.MarshalToStatements.Add($"if ({paramName} != null)");
+                                    newMethod.MarshalToStatements.Add("{");
+                                    newMethod.MarshalToStatements.Add($"    {marshalledName} = (Interop.{paramType.Name}*)Interop.HeapUtil.Allocate<Interop.{paramType.Name}>({paramName}.Length);");
+                                    newMethod.MarshalToStatements.Add($"    for (int index = 0; index < {paramName}.Length; index++)");
+                                    newMethod.MarshalToStatements.Add("    {");
+                                    newMethod.MarshalToStatements.Add($"        {marshalledName}[index] = {paramName}[index].Pack();");
+                                    newMethod.MarshalToStatements.Add("    }");
+                                    newMethod.MarshalToStatements.Add("}");
+                                    newMethod.MarshalToStatements.Add($"else");
+                                    newMethod.MarshalToStatements.Add("{");
+                                    newMethod.MarshalToStatements.Add($"    {marshalledName} = null;");
+                                    newMethod.MarshalToStatements.Add("}");
+                                }
+                                else
+                                {
+                                    fixedName = marshalledName;
+                                    fixedType = paramTypeName + "*";
+                                }
+
                                 newMethod.Parameters.Add(new TypeSet.VkMethodParam
                                 {
                                     Name = paramName,
                                     ArgumentName = marshalledName,
-                                    TypeName = paramType.Name + "[]"
+                                    TypeName = paramTypeName + "[]",
+                                    FixedName = fixedName,
+                                    FixedType = fixedType
                                 });
-
-                                newMethod.MarshalToStatements.Add($"Interop.{paramType.Name}* {marshalledName};");
-                                newMethod.MarshalToStatements.Add($"if ({paramName} != null)");
-                                newMethod.MarshalToStatements.Add("{");
-                                newMethod.MarshalToStatements.Add($"    {marshalledName} = (Interop.{paramType.Name}*)Interop.HeapUtil.Allocate<Interop.{paramType.Name}>({paramName}.Length);");
-                                newMethod.MarshalToStatements.Add($"    for (int index = 0; index < {paramName}.Length; index++)");
-                                newMethod.MarshalToStatements.Add("    {");
-                                newMethod.MarshalToStatements.Add($"        {marshalledName}[index] = {paramName}[index].Pack();");
-                                newMethod.MarshalToStatements.Add("    }");
-                                newMethod.MarshalToStatements.Add("}");
-                                newMethod.MarshalToStatements.Add($"else");
-                                newMethod.MarshalToStatements.Add("{");
-                                newMethod.MarshalToStatements.Add($"    {marshalledName} = null;");
-                                newMethod.MarshalToStatements.Add("}");
                             }
                         }
                         else if (paramType.Data.Category == TypeCategory.handle)

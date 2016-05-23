@@ -40,6 +40,22 @@ namespace SharpVk.Interop
 		}
 	}
 
+	public struct BufferView
+	{
+		internal IntPtr handle;
+
+		public static BufferView Null
+		{
+			get
+			{
+				return new BufferView
+                {
+                    handle = IntPtr.Zero
+                };
+			}
+		}
+	}
+
 	public struct CommandBuffer
 	{
 		internal IntPtr handle;
@@ -104,6 +120,22 @@ namespace SharpVk.Interop
 		}
 	}
 
+	public struct Event
+	{
+		internal IntPtr handle;
+
+		public static Event Null
+		{
+			get
+			{
+				return new Event
+                {
+                    handle = IntPtr.Zero
+                };
+			}
+		}
+	}
+
 	public struct Fence
 	{
 		internal IntPtr handle;
@@ -161,6 +193,22 @@ namespace SharpVk.Interop
 			get
 			{
 				return new PhysicalDevice
+                {
+                    handle = IntPtr.Zero
+                };
+			}
+		}
+	}
+
+	public struct QueryPool
+	{
+		internal IntPtr handle;
+
+		public static QueryPool Null
+		{
+			get
+			{
+				return new QueryPool
                 {
                     handle = IntPtr.Zero
                 };

@@ -121,8 +121,13 @@ foreach(var handle in types.Handles)
 #>				<#=statement#>
 <#
 		}
-#>
 
+		foreach(var fixedParam in method.Parameters.Where(x => !string.IsNullOrEmpty(x.FixedName)))
+		{
+#>				fixed(<#=fixedParam.FixedType#> <#=fixedParam.FixedName#> = <#=fixedParam.Name#>)
+<#
+		}
+#>
 				Interop.Commands.<#=method.CommandName#>(<#
 		isFirst = true;
 

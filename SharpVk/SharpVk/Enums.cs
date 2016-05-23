@@ -49,6 +49,36 @@ namespace SharpVk
 	}
 
 	[Flags]
+	public enum BufferCreateFlags
+	{
+		None = 0,
+		SparseBinding = 1 << 0,
+		SparseResidency = 1 << 1,
+		SparseAliased = 1 << 2,
+	}
+
+	[Flags]
+	public enum BufferUsageFlags
+	{
+		None = 0,
+		TransferSource = 1 << 0,
+		TransferDestination = 1 << 1,
+		UniformTexelBuffer = 1 << 2,
+		StorageTexelBuffer = 1 << 3,
+		UniformBuffer = 1 << 4,
+		StorageBuffer = 1 << 5,
+		IndexBuffer = 1 << 6,
+		VertexBuffer = 1 << 7,
+		IndirectBuffer = 1 << 8,
+	}
+
+	[Flags]
+	public enum BufferViewCreateFlags
+	{
+		None = 0,
+	}
+
+	[Flags]
 	public enum DeviceCreateFlags
 	{
 		None = 0,
@@ -56,6 +86,12 @@ namespace SharpVk
 
 	[Flags]
 	public enum DeviceQueueCreateFlags
+	{
+		None = 0,
+	}
+
+	[Flags]
+	public enum EventCreateFlags
 	{
 		None = 0,
 	}
@@ -175,6 +211,39 @@ namespace SharpVk
 	}
 
 	[Flags]
+	public enum QueryPipelineStatisticFlags
+	{
+		None = 0,
+		InputAssemblyVertices = 1 << 0,
+		InputAssemblyPrimitives = 1 << 1,
+		VertexShaderInvocations = 1 << 2,
+		GeometryShaderInvocations = 1 << 3,
+		GeometryShaderPrimitives = 1 << 4,
+		ClippingInvocations = 1 << 5,
+		ClippingPrimitives = 1 << 6,
+		FragmentShaderInvocations = 1 << 7,
+		TessellationControlShaderPatches = 1 << 8,
+		TessellationEvaluationShaderInvocations = 1 << 9,
+		ComputeShaderInvocations = 1 << 10,
+	}
+
+	[Flags]
+	public enum QueryPoolCreateFlags
+	{
+		None = 0,
+	}
+
+	[Flags]
+	public enum QueryResultFlags
+	{
+		None = 0,
+		QueryResult64 = 1 << 0,
+		Wait = 1 << 1,
+		WithAvailability = 1 << 2,
+		Partial = 1 << 3,
+	}
+
+	[Flags]
 	public enum QueueFlags
 	{
 		None = 0,
@@ -195,6 +264,12 @@ namespace SharpVk
 		SampleCount16 = 1 << 4,
 		SampleCount32 = 1 << 5,
 		SampleCount64 = 1 << 6,
+	}
+
+	[Flags]
+	public enum SemaphoreCreateFlags
+	{
+		None = 0,
 	}
 
 	[Flags]
@@ -442,6 +517,13 @@ namespace SharpVk
 		One = 1,
 	}
 
+	public enum QueryType
+	{
+		Occlusion = 0,
+		PipelineStatistics = 1,
+		Timestamp = 2,
+	}
+
 	public enum Result
 	{
 		Success = 0,
@@ -461,6 +543,12 @@ namespace SharpVk
 		ErrorIncompatibleDriver = -9,
 		ErrorTooManyObjects = -10,
 		ErrorFormatNotSupported = -11,
+	}
+
+	public enum SharingMode
+	{
+		Exclusive = 0,
+		Concurrent = 1,
 	}
 
 	public enum StructureType
