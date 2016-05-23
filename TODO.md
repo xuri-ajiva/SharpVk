@@ -1,165 +1,166 @@
-VK API Commands that are correctly generated, compiled & executed (against NVidia implementation on Windows):
-
--  Device initialization
-  - [x] vkCreateInstance
-  - [x] vkDestroyInstance
-  - [x] vkEnumeratePhysicalDevices
-  - [x] vkGetPhysicalDeviceFeatures
-  - [x] vkGetPhysicalDeviceFormatProperties
-  - [x] vkGetPhysicalDeviceImageFormatProperties
-  - [x] vkGetPhysicalDeviceProperties
-  - [x] vkGetPhysicalDeviceQueueFamilyProperties
-  - [x] vkGetPhysicalDeviceMemoryProperties
-  - [x] vkGetInstanceProcAddr
-  - [x] vkGetDeviceProcAddr
-- Device commands
-  - [x] vkCreateDevice
-  - [x] vkDestroyDevice
-- Extension discovery commands
-  - [x] vkEnumerateInstanceExtensionProperties
-  - [x] vkEnumerateDeviceExtensionProperties
-- Layer discovery commands
-  - [x] vkEnumerateInstanceLayerProperties
-  - [x] vkEnumerateDeviceLayerProperties
-- Queue commands
-  - [ ] vkGetDeviceQueue
-  - [ ] vkQueueSubmit
-  - [ ] vkQueueWaitIdle
-  - [ ] vkDeviceWaitIdle
-- Memory commands
-  - [ ] vkAllocateMemory
-  - [ ] vkFreeMemory
-  - [ ] vkMapMemory
-  - [ ] vkUnmapMemory
-  - [ ] vkFlushMappedMemoryRanges
-  - [ ] vkInvalidateMappedMemoryRanges
-  - [ ] vkGetDeviceMemoryCommitment
-- Memory management API commands
-  - [ ] vkBindBufferMemory
-  - [ ] vkBindImageMemory
-  - [ ] vkGetBufferMemoryRequirements
-  - [ ] vkGetImageMemoryRequirements
-- Sparse resource memory management API commands
-  - [ ] vkGetImageSparseMemoryRequirements
-  - [ ] vkGetPhysicalDeviceSparseImageFormatProperties
-  - [ ] vkQueueBindSparse
-- Fence commands
-  - [ ] vkCreateFence
-  - [ ] vkDestroyFence
-  - [ ] vkResetFences
-  - [ ] vkGetFenceStatus
-  - [ ] vkWaitForFences
-- Queue semaphore commands
-  - [ ] vkCreateSemaphore
-  - [ ] vkDestroySemaphore
-- Event commands
-  - [ ] vkCreateEvent
-  - [ ] vkDestroyEvent
-  - [ ] vkGetEventStatus
-  - [ ] vkSetEvent
-  - [ ] vkResetEvent
-- Query commands
-  - [ ] vkCreateQueryPool
-  - [ ] vkDestroyQueryPool
-  - [ ] vkGetQueryPoolResults
-- Buffer commands
-  - [ ] vkCreateBuffer
-  - [ ] vkDestroyBuffer
-- Buffer view commands
-  - [ ] vkCreateBufferView
-  - [ ] vkDestroyBufferView
-- Image commands
-  - [ ] vkCreateImage
-  - [ ] vkDestroyImage
-  - [ ] vkGetImageSubresourceLayout
-- Image view commands
-  - [ ] vkCreateImageView
-  - [ ] vkDestroyImageView
-- Shader commands
-  - [ ] vkCreateShaderModule
-  - [ ] vkDestroyShaderModule
-- Pipeline Cache commands
-  - [ ] vkCreatePipelineCache
-  - [ ] vkDestroyPipelineCache
-  - [ ] vkGetPipelineCacheData
-  - [ ] vkMergePipelineCaches
-- Pipeline commands
-  - [ ] vkCreateGraphicsPipelines
-  - [ ] vkCreateComputePipelines
-  - [ ] vkDestroyPipeline
-- Pipeline layout commands
-  - [ ] vkCreatePipelineLayout
-  - [ ] vkDestroyPipelineLayout
-- Sampler commands
-  - [ ] vkCreateSampler
-  - [ ] vkDestroySampler
-- Descriptor set commands
-  - [ ] vkCreateDescriptorSetLayout
-  - [ ] vkDestroyDescriptorSetLayout
-  - [ ] vkCreateDescriptorPool
-  - [ ] vkDestroyDescriptorPool
-  - [ ] vkResetDescriptorPool
-  - [ ] vkAllocateDescriptorSets
-  - [ ] vkFreeDescriptorSets
-  - [ ] vkUpdateDescriptorSets
-- Pass commands
-  - [ ] vkCreateFramebuffer
-  - [ ] vkDestroyFramebuffer
-  - [ ] vkCreateRenderPass
-  - [ ] vkDestroyRenderPass
-  - [ ] vkGetRenderAreaGranularity
-- Command pool commands
-  - [ ] vkCreateCommandPool
-  - [ ] vkDestroyCommandPool
-  - [ ] vkResetCommandPool
-- Command buffer commands
-  - [ ] vkAllocateCommandBuffers
-  - [ ] vkFreeCommandBuffers
-  - [ ] vkBeginCommandBuffer
-  - [ ] vkEndCommandBuffer
-  - [ ] vkResetCommandBuffer
-- Command buffer building commands
-  - [ ] vkCmdBindPipeline
-  - [ ] vkCmdSetViewport
-  - [ ] vkCmdSetScissor
-  - [ ] vkCmdSetLineWidth
-  - [ ] vkCmdSetDepthBias
-  - [ ] vkCmdSetBlendConstants
-  - [ ] vkCmdSetDepthBounds
-  - [ ] vkCmdSetStencilCompareMask
-  - [ ] vkCmdSetStencilWriteMask
-  - [ ] vkCmdSetStencilReference
-  - [ ] vkCmdBindDescriptorSets
-  - [ ] vkCmdBindIndexBuffer
-  - [ ] vkCmdBindVertexBuffers
-  - [ ] vkCmdDraw
-  - [ ] vkCmdDrawIndexed
-  - [ ] vkCmdDrawIndirect
-  - [ ] vkCmdDrawIndexedIndirect
-  - [ ] vkCmdDispatch
-  - [ ] vkCmdDispatchIndirect
-  - [ ] vkCmdCopyBuffer
-  - [ ] vkCmdCopyImage
-  - [ ] vkCmdBlitImage
-  - [ ] vkCmdCopyBufferToImage
-  - [ ] vkCmdCopyImageToBuffer
-  - [ ] vkCmdUpdateBuffer
-  - [ ] vkCmdFillBuffer
-  - [ ] vkCmdClearColorImage
-  - [ ] vkCmdClearDepthStencilImage
-  - [ ] vkCmdClearAttachments
-  - [ ] vkCmdResolveImage
-  - [ ] vkCmdSetEvent
-  - [ ] vkCmdResetEvent
-  - [ ] vkCmdWaitEvents
-  - [ ] vkCmdPipelineBarrier
-  - [ ] vkCmdBeginQuery
-  - [ ] vkCmdEndQuery
-  - [ ] vkCmdResetQueryPool
-  - [ ] vkCmdWriteTimestamp
-  - [ ] vkCmdCopyQueryPoolResults
-  - [ ] vkCmdPushConstants
-  - [ ] vkCmdBeginRenderPass
-  - [ ] vkCmdNextSubpass
-  - [ ] vkCmdEndRenderPass
-  - [ ] vkCmdExecuteCommands
+- [ ] GetFenceStatus & WaitForFence return result as non-error VkResult codes - these need handling and returning
+- [ ] AllocationCallbacks should be stored in ancestor Instance & references from there
+- [ ] VK API Commands should be correctly generated, compiled & executed (against NVidia implementation on Windows):
+  -  Device initialization
+    - [x] vkCreateInstance
+    - [x] vkDestroyInstance
+    - [x] vkEnumeratePhysicalDevices
+    - [x] vkGetPhysicalDeviceFeatures
+    - [x] vkGetPhysicalDeviceFormatProperties
+    - [x] vkGetPhysicalDeviceImageFormatProperties
+    - [x] vkGetPhysicalDeviceProperties
+    - [x] vkGetPhysicalDeviceQueueFamilyProperties
+    - [x] vkGetPhysicalDeviceMemoryProperties
+    - [x] vkGetInstanceProcAddr
+    - [x] vkGetDeviceProcAddr
+  - Device commands
+    - [x] vkCreateDevice
+    - [x] vkDestroyDevice
+  - Extension discovery commands
+    - [x] vkEnumerateInstanceExtensionProperties
+    - [x] vkEnumerateDeviceExtensionProperties
+  - Layer discovery commands
+    - [x] vkEnumerateInstanceLayerProperties
+    - [x] vkEnumerateDeviceLayerProperties
+  - Queue commands
+    - [ ] vkGetDeviceQueue
+    - [ ] vkQueueSubmit
+    - [ ] vkQueueWaitIdle
+    - [ ] vkDeviceWaitIdle
+  - Memory commands
+    - [ ] vkAllocateMemory
+    - [ ] vkFreeMemory
+    - [ ] vkMapMemory
+    - [ ] vkUnmapMemory
+    - [ ] vkFlushMappedMemoryRanges
+    - [ ] vkInvalidateMappedMemoryRanges
+    - [ ] vkGetDeviceMemoryCommitment
+  - Memory management API commands
+    - [ ] vkBindBufferMemory
+    - [ ] vkBindImageMemory
+    - [ ] vkGetBufferMemoryRequirements
+    - [ ] vkGetImageMemoryRequirements
+  - Sparse resource memory management API commands
+    - [ ] vkGetImageSparseMemoryRequirements
+    - [ ] vkGetPhysicalDeviceSparseImageFormatProperties
+    - [ ] vkQueueBindSparse
+  - Fence commands
+    - [ ] vkCreateFence
+    - [ ] vkDestroyFence
+    - [ ] vkResetFences
+    - [ ] vkGetFenceStatus
+    - [ ] vkWaitForFences
+  - Queue semaphore commands
+    - [ ] vkCreateSemaphore
+    - [ ] vkDestroySemaphore
+  - Event commands
+    - [ ] vkCreateEvent
+    - [ ] vkDestroyEvent
+    - [ ] vkGetEventStatus
+    - [ ] vkSetEvent
+    - [ ] vkResetEvent
+  - Query commands
+    - [ ] vkCreateQueryPool
+    - [ ] vkDestroyQueryPool
+    - [ ] vkGetQueryPoolResults
+  - Buffer commands
+    - [ ] vkCreateBuffer
+    - [ ] vkDestroyBuffer
+  - Buffer view commands
+    - [ ] vkCreateBufferView
+    - [ ] vkDestroyBufferView
+  - Image commands
+    - [ ] vkCreateImage
+    - [ ] vkDestroyImage
+    - [ ] vkGetImageSubresourceLayout
+  - Image view commands
+    - [ ] vkCreateImageView
+    - [ ] vkDestroyImageView
+  - Shader commands
+    - [ ] vkCreateShaderModule
+    - [ ] vkDestroyShaderModule
+  - Pipeline Cache commands
+    - [ ] vkCreatePipelineCache
+    - [ ] vkDestroyPipelineCache
+    - [ ] vkGetPipelineCacheData
+    - [ ] vkMergePipelineCaches
+  - Pipeline commands
+    - [ ] vkCreateGraphicsPipelines
+    - [ ] vkCreateComputePipelines
+    - [ ] vkDestroyPipeline
+  - Pipeline layout commands
+    - [ ] vkCreatePipelineLayout
+    - [ ] vkDestroyPipelineLayout
+  - Sampler commands
+    - [ ] vkCreateSampler
+    - [ ] vkDestroySampler
+  - Descriptor set commands
+    - [ ] vkCreateDescriptorSetLayout
+    - [ ] vkDestroyDescriptorSetLayout
+    - [ ] vkCreateDescriptorPool
+    - [ ] vkDestroyDescriptorPool
+    - [ ] vkResetDescriptorPool
+    - [ ] vkAllocateDescriptorSets
+    - [ ] vkFreeDescriptorSets
+    - [ ] vkUpdateDescriptorSets
+  - Pass commands
+    - [ ] vkCreateFramebuffer
+    - [ ] vkDestroyFramebuffer
+    - [ ] vkCreateRenderPass
+    - [ ] vkDestroyRenderPass
+    - [ ] vkGetRenderAreaGranularity
+  - Command pool commands
+    - [ ] vkCreateCommandPool
+    - [ ] vkDestroyCommandPool
+    - [ ] vkResetCommandPool
+  - Command buffer commands
+    - [ ] vkAllocateCommandBuffers
+    - [ ] vkFreeCommandBuffers
+    - [ ] vkBeginCommandBuffer
+    - [ ] vkEndCommandBuffer
+    - [ ] vkResetCommandBuffer
+  - Command buffer building commands
+    - [ ] vkCmdBindPipeline
+    - [ ] vkCmdSetViewport
+    - [ ] vkCmdSetScissor
+    - [ ] vkCmdSetLineWidth
+    - [ ] vkCmdSetDepthBias
+    - [ ] vkCmdSetBlendConstants
+    - [ ] vkCmdSetDepthBounds
+    - [ ] vkCmdSetStencilCompareMask
+    - [ ] vkCmdSetStencilWriteMask
+    - [ ] vkCmdSetStencilReference
+    - [ ] vkCmdBindDescriptorSets
+    - [ ] vkCmdBindIndexBuffer
+    - [ ] vkCmdBindVertexBuffers
+    - [ ] vkCmdDraw
+    - [ ] vkCmdDrawIndexed
+    - [ ] vkCmdDrawIndirect
+    - [ ] vkCmdDrawIndexedIndirect
+    - [ ] vkCmdDispatch
+    - [ ] vkCmdDispatchIndirect
+    - [ ] vkCmdCopyBuffer
+    - [ ] vkCmdCopyImage
+    - [ ] vkCmdBlitImage
+    - [ ] vkCmdCopyBufferToImage
+    - [ ] vkCmdCopyImageToBuffer
+    - [ ] vkCmdUpdateBuffer
+    - [ ] vkCmdFillBuffer
+    - [ ] vkCmdClearColorImage
+    - [ ] vkCmdClearDepthStencilImage
+    - [ ] vkCmdClearAttachments
+    - [ ] vkCmdResolveImage
+    - [ ] vkCmdSetEvent
+    - [ ] vkCmdResetEvent
+    - [ ] vkCmdWaitEvents
+    - [ ] vkCmdPipelineBarrier
+    - [ ] vkCmdBeginQuery
+    - [ ] vkCmdEndQuery
+    - [ ] vkCmdResetQueryPool
+    - [ ] vkCmdWriteTimestamp
+    - [ ] vkCmdCopyQueryPoolResults
+    - [ ] vkCmdPushConstants
+    - [ ] vkCmdBeginRenderPass
+    - [ ] vkCmdNextSubpass
+    - [ ] vkCmdEndRenderPass
+    - [ ] vkCmdExecuteCommands

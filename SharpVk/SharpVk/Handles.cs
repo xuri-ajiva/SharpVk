@@ -206,8 +206,21 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				Interop.MappedMemoryRange* marshalledMemoryRanges;
+				if (memoryRanges != null)
+				{
+				    marshalledMemoryRanges = (Interop.MappedMemoryRange*)Interop.HeapUtil.Allocate<Interop.MappedMemoryRange>(memoryRanges.Length);
+				    for (int index = 0; index < memoryRanges.Length; index++)
+				    {
+				        marshalledMemoryRanges[index] = memoryRanges[index].Pack();
+				    }
+				}
+				else
+				{
+				    marshalledMemoryRanges = null;
+				}
 
-				Interop.Commands.vkFlushMappedMemoryRanges(this.handle, (uint)memoryRanges.Length, null);
+				Interop.Commands.vkFlushMappedMemoryRanges(this.handle, (uint)memoryRanges.Length, marshalledMemoryRanges);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -218,8 +231,93 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				Interop.MappedMemoryRange* marshalledMemoryRanges;
+				if (memoryRanges != null)
+				{
+				    marshalledMemoryRanges = (Interop.MappedMemoryRange*)Interop.HeapUtil.Allocate<Interop.MappedMemoryRange>(memoryRanges.Length);
+				    for (int index = 0; index < memoryRanges.Length; index++)
+				    {
+				        marshalledMemoryRanges[index] = memoryRanges[index].Pack();
+				    }
+				}
+				else
+				{
+				    marshalledMemoryRanges = null;
+				}
 
-				Interop.Commands.vkInvalidateMappedMemoryRanges(this.handle, (uint)memoryRanges.Length, null);
+				Interop.Commands.vkInvalidateMappedMemoryRanges(this.handle, (uint)memoryRanges.Length, marshalledMemoryRanges);
+
+
+				Interop.HeapUtil.FreeLog();
+			}
+		}
+
+		public Fence CreateFence(FenceCreateInfo createInfo, AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				Fence result = default(Fence);
+
+				Interop.FenceCreateInfo marshalledCreateInfo;
+				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+				Interop.Fence marshalledFence;
+
+				Interop.Commands.vkCreateFence(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledFence);
+
+				result = new Fence(marshalledFence, this);
+
+				Interop.HeapUtil.FreeLog();
+
+				return result;
+			}
+		}
+
+		public void ResetFences(Fence[] fences)
+		{
+			unsafe
+			{
+				Interop.Fence* marshalledFences;
+				if (fences != null)
+				{
+				    marshalledFences = (Interop.Fence*)Interop.HeapUtil.Allocate<Interop.Fence>(fences.Length);
+				    for (int index = 0; index < fences.Length; index++)
+				    {
+				        marshalledFences[index] = fences[index].Pack();
+				    }
+				}
+				else
+				{
+				    marshalledFences = null;
+				}
+
+				Interop.Commands.vkResetFences(this.handle, (uint)fences.Length, marshalledFences);
+
+
+				Interop.HeapUtil.FreeLog();
+			}
+		}
+
+		public void WaitForFences(Fence[] fences, Bool32 waitAll, ulong timeout)
+		{
+			unsafe
+			{
+				Interop.Fence* marshalledFences;
+				if (fences != null)
+				{
+				    marshalledFences = (Interop.Fence*)Interop.HeapUtil.Allocate<Interop.Fence>(fences.Length);
+				    for (int index = 0; index < fences.Length; index++)
+				    {
+				        marshalledFences[index] = fences[index].Pack();
+				    }
+				}
+				else
+				{
+				    marshalledFences = null;
+				}
+
+				Interop.Commands.vkWaitForFences(this.handle, (uint)fences.Length, marshalledFences, waitAll, timeout);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -316,6 +414,32 @@ namespace SharpVk
 		{
 			this.handle = handle;
 			this.parent = parent;
+		}
+
+		public void DestroyFence(AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+
+				Interop.Commands.vkDestroyFence(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+
+
+				Interop.HeapUtil.FreeLog();
+			}
+		}
+
+		public void GetFenceStatus()
+		{
+			unsafe
+			{
+
+				Interop.Commands.vkGetFenceStatus(this.parent.handle, this.handle);
+
+
+				Interop.HeapUtil.FreeLog();
+			}
 		}
 
 		internal Interop.Fence Pack()
@@ -789,9 +913,22 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				Interop.SubmitInfo* marshalledSubmits;
+				if (submits != null)
+				{
+				    marshalledSubmits = (Interop.SubmitInfo*)Interop.HeapUtil.Allocate<Interop.SubmitInfo>(submits.Length);
+				    for (int index = 0; index < submits.Length; index++)
+				    {
+				        marshalledSubmits[index] = submits[index].Pack();
+				    }
+				}
+				else
+				{
+				    marshalledSubmits = null;
+				}
 				Interop.Fence marshalledFence = fence?.Pack() ?? Interop.Fence.Null;
 
-				Interop.Commands.vkQueueSubmit(this.handle, (uint)submits.Length, null, marshalledFence);
+				Interop.Commands.vkQueueSubmit(this.handle, (uint)submits.Length, marshalledSubmits, marshalledFence);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -814,9 +951,22 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				Interop.BindSparseInfo* marshalledBindInfo;
+				if (bindInfo != null)
+				{
+				    marshalledBindInfo = (Interop.BindSparseInfo*)Interop.HeapUtil.Allocate<Interop.BindSparseInfo>(bindInfo.Length);
+				    for (int index = 0; index < bindInfo.Length; index++)
+				    {
+				        marshalledBindInfo[index] = bindInfo[index].Pack();
+				    }
+				}
+				else
+				{
+				    marshalledBindInfo = null;
+				}
 				Interop.Fence marshalledFence = fence?.Pack() ?? Interop.Fence.Null;
 
-				Interop.Commands.vkQueueBindSparse(this.handle, (uint)bindInfo.Length, null, marshalledFence);
+				Interop.Commands.vkQueueBindSparse(this.handle, (uint)bindInfo.Length, marshalledBindInfo, marshalledFence);
 
 
 				Interop.HeapUtil.FreeLog();

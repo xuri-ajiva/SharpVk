@@ -134,5 +134,20 @@ namespace SharpVk.Interop
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
 		public static extern Result vkQueueBindSparse(Queue queue, uint bindInfoCount, BindSparseInfo* bindInfo, Fence fence);
 
+		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
+		public static extern Result vkCreateFence(Device device, FenceCreateInfo* createInfo, AllocationCallbacks* allocator, Fence* fence);
+
+		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
+		public static extern void vkDestroyFence(Device device, Fence fence, AllocationCallbacks* allocator);
+
+		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
+		public static extern Result vkResetFences(Device device, uint fenceCount, Fence* fences);
+
+		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
+		public static extern Result vkGetFenceStatus(Device device, Fence fence);
+
+		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
+		public static extern Result vkWaitForFences(Device device, uint fenceCount, Fence* fences, Bool32 waitAll, ulong timeout);
+
 	}
 }

@@ -286,9 +286,23 @@ namespace SharpVk.VkXml
                                 newMethod.Parameters.Add(new TypeSet.VkMethodParam
                                 {
                                     Name = paramName,
-                                    ArgumentName = "null",
+                                    ArgumentName = marshalledName,
                                     TypeName = paramType.Name + "[]"
                                 });
+
+                                newMethod.MarshalToStatements.Add($"Interop.{paramType.Name}* {marshalledName};");
+                                newMethod.MarshalToStatements.Add($"if ({paramName} != null)");
+                                newMethod.MarshalToStatements.Add("{");
+                                newMethod.MarshalToStatements.Add($"    {marshalledName} = (Interop.{paramType.Name}*)Interop.HeapUtil.Allocate<Interop.{paramType.Name}>({paramName}.Length);");
+                                newMethod.MarshalToStatements.Add($"    for (int index = 0; index < {paramName}.Length; index++)");
+                                newMethod.MarshalToStatements.Add("    {");
+                                newMethod.MarshalToStatements.Add($"        {marshalledName}[index] = {paramName}[index].Pack();");
+                                newMethod.MarshalToStatements.Add("    }");
+                                newMethod.MarshalToStatements.Add("}");
+                                newMethod.MarshalToStatements.Add($"else");
+                                newMethod.MarshalToStatements.Add("{");
+                                newMethod.MarshalToStatements.Add($"    {marshalledName} = null;");
+                                newMethod.MarshalToStatements.Add("}");
                             }
                         }
                         else if (paramType.Data.Category == TypeCategory.handle)

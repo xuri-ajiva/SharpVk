@@ -438,6 +438,30 @@ namespace SharpVk
 		}
 	}
 
+	public class FenceCreateInfo
+	{
+
+		public FenceCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.FenceCreateInfo Pack()
+        {
+            var result = new Interop.FenceCreateInfo();
+			result.SType = StructureType.FenceCreateInfo;
+			result.Flags = this.Flags;
+
+            return result;
+        }
+
+		internal unsafe Interop.FenceCreateInfo* MarshalTo()
+        {
+            return (Interop.FenceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
 	public class ImageMemoryBarrier
 	{
 

@@ -61,6 +61,13 @@ namespace SharpVk
 	}
 
 	[Flags]
+	public enum FenceCreateFlags
+	{
+		None = 0,
+		Signaled = 1 << 0,
+	}
+
+	[Flags]
 	public enum FormatFeatureFlags
 	{
 		None = 0,

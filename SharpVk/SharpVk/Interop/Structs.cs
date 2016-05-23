@@ -114,6 +114,14 @@ namespace SharpVk.Interop
 	}
 
     [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct FenceCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public FenceCreateFlags Flags;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
 	public unsafe struct ImageMemoryBarrier
 	{
 		public StructureType SType;
