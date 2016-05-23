@@ -149,7 +149,7 @@ namespace SharpVk
         {
             var result = new Interop.BufferMemoryBarrier();
 			result.SType = StructureType.BufferMemoryBarrier;
-			result.Buffer = this.Buffer == null ? Interop.Buffer.Null : this.Buffer.MarshalTo();
+			result.Buffer = this.Buffer?.Pack() ?? Interop.Buffer.Null;
 			result.SourceAccessMask = this.SourceAccessMask;
 			result.DestinationAccessMask = this.DestinationAccessMask;
 			result.SourceQueueFamilyIndex = this.SourceQueueFamilyIndex;
@@ -204,10 +204,12 @@ namespace SharpVk
             var result = new Interop.DeviceCreateInfo();
 			result.SType = StructureType.DeviceCreateInfo;
 			result.QueueCreateInfoCount = (uint)(this.QueueCreateInfos?.Length ?? 0);
+			
+			//QueueCreateInfos
 			if (this.QueueCreateInfos != null)
 			{
-			int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.DeviceQueueCreateInfo>();
-			   IntPtr pointer = Interop.HeapUtil.Allocate<Interop.DeviceQueueCreateInfo>(this.QueueCreateInfos.Length);
+			    int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.DeviceQueueCreateInfo>();
+			    IntPtr pointer = Interop.HeapUtil.Allocate<Interop.DeviceQueueCreateInfo>(this.QueueCreateInfos.Length);
 			    for (int index = 0; index < this.QueueCreateInfos.Length; index++)
 			    {
 			        System.Runtime.InteropServices.Marshal.StructureToPtr(this.QueueCreateInfos[index].Pack(), pointer + (size * index), false);
@@ -359,7 +361,7 @@ namespace SharpVk
         {
             var result = new Interop.ImageMemoryBarrier();
 			result.SType = StructureType.ImageMemoryBarrier;
-			result.Image = this.Image == null ? Interop.Image.Null : this.Image.MarshalTo();
+			result.Image = this.Image?.Pack() ?? Interop.Image.Null;
 			result.SourceAccessMask = this.SourceAccessMask;
 			result.DestinationAccessMask = this.DestinationAccessMask;
 			result.OldLayout = this.OldLayout;
@@ -1379,6 +1381,113 @@ namespace SharpVk
 			result.SparseProperties = value->SparseProperties;
 
 			return result;
+		}
+	}
+
+	public class SubmitInfo
+	{
+
+		public Semaphore[] WaitSemaphores
+		{
+			get;
+			set;
+		}
+
+		public PipelineStageFlags[] WaitDestinationStageMask
+		{
+			get;
+			set;
+		}
+
+		public CommandBuffer[] CommandBuffers
+		{
+			get;
+			set;
+		}
+
+		public Semaphore[] SignalSemaphores
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.SubmitInfo Pack()
+        {
+            var result = new Interop.SubmitInfo();
+			result.SType = StructureType.SubmitInfo;
+			result.WaitSemaphoreCount = (uint)(this.WaitSemaphores?.Length ?? 0);
+			
+			//WaitSemaphores
+			if (this.WaitSemaphores != null)
+			{
+			    int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.Semaphore>();
+			    IntPtr pointer = Interop.HeapUtil.Allocate<Interop.Semaphore>(this.WaitSemaphores.Length);
+			    for (int index = 0; index < this.WaitSemaphores.Length; index++)
+			    {
+			        System.Runtime.InteropServices.Marshal.StructureToPtr(this.WaitSemaphores[index].Pack(), pointer + (size * index), false);
+			    }
+			    result.WaitSemaphores = (Interop.Semaphore*)pointer.ToPointer();
+			}
+			else
+			{
+			    result.WaitSemaphores = null;
+			}
+			result.WaitSemaphoreCount = (uint)(this.WaitDestinationStageMask?.Length ?? 0);
+			
+			//WaitDestinationStageMask
+			if (this.WaitDestinationStageMask != null)
+			{
+			    result.WaitDestinationStageMask = (PipelineStageFlags*)Interop.HeapUtil.Allocate<uint>(this.WaitDestinationStageMask.Length).ToPointer();
+			    for (int index = 0; index < this.WaitDestinationStageMask.Length; index++)
+			    {
+			        result.WaitDestinationStageMask[index] = this.WaitDestinationStageMask[index];
+			    }
+			}
+			else
+			{
+			    result.WaitDestinationStageMask = null;
+			}
+			result.CommandBufferCount = (uint)(this.CommandBuffers?.Length ?? 0);
+			
+			//CommandBuffers
+			if (this.CommandBuffers != null)
+			{
+			    int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.CommandBuffer>();
+			    IntPtr pointer = Interop.HeapUtil.Allocate<Interop.CommandBuffer>(this.CommandBuffers.Length);
+			    for (int index = 0; index < this.CommandBuffers.Length; index++)
+			    {
+			        System.Runtime.InteropServices.Marshal.StructureToPtr(this.CommandBuffers[index].Pack(), pointer + (size * index), false);
+			    }
+			    result.CommandBuffers = (Interop.CommandBuffer*)pointer.ToPointer();
+			}
+			else
+			{
+			    result.CommandBuffers = null;
+			}
+			result.SignalSemaphoreCount = (uint)(this.SignalSemaphores?.Length ?? 0);
+			
+			//SignalSemaphores
+			if (this.SignalSemaphores != null)
+			{
+			    int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.Semaphore>();
+			    IntPtr pointer = Interop.HeapUtil.Allocate<Interop.Semaphore>(this.SignalSemaphores.Length);
+			    for (int index = 0; index < this.SignalSemaphores.Length; index++)
+			    {
+			        System.Runtime.InteropServices.Marshal.StructureToPtr(this.SignalSemaphores[index].Pack(), pointer + (size * index), false);
+			    }
+			    result.SignalSemaphores = (Interop.Semaphore*)pointer.ToPointer();
+			}
+			else
+			{
+			    result.SignalSemaphores = null;
+			}
+
+            return result;
+        }
+
+		internal unsafe Interop.SubmitInfo* MarshalTo()
+        {
+            return (Interop.SubmitInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 }

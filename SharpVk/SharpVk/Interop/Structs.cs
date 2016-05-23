@@ -321,4 +321,18 @@ namespace SharpVk.Interop
 		public PhysicalDeviceLimits Limits;
 		public PhysicalDeviceSparseProperties SparseProperties;
 	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct SubmitInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public uint WaitSemaphoreCount;
+		public Semaphore* WaitSemaphores;
+		public PipelineStageFlags* WaitDestinationStageMask;
+		public uint CommandBufferCount;
+		public CommandBuffer* CommandBuffers;
+		public uint SignalSemaphoreCount;
+		public Semaphore* SignalSemaphores;
+	}
 }

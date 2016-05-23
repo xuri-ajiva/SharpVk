@@ -40,6 +40,38 @@ namespace SharpVk.Interop
 		}
 	}
 
+	public struct CommandBuffer
+	{
+		internal IntPtr handle;
+
+		public static CommandBuffer Null
+		{
+			get
+			{
+				return new CommandBuffer
+                {
+                    handle = IntPtr.Zero
+                };
+			}
+		}
+	}
+
+	public struct CommandPool
+	{
+		internal IntPtr handle;
+
+		public static CommandPool Null
+		{
+			get
+			{
+				return new CommandPool
+                {
+                    handle = IntPtr.Zero
+                };
+			}
+		}
+	}
+
 	public struct Device
 	{
 		internal IntPtr handle;
@@ -49,6 +81,22 @@ namespace SharpVk.Interop
 			get
 			{
 				return new Device
+                {
+                    handle = IntPtr.Zero
+                };
+			}
+		}
+	}
+
+	public struct Fence
+	{
+		internal IntPtr handle;
+
+		public static Fence Null
+		{
+			get
+			{
+				return new Fence
                 {
                     handle = IntPtr.Zero
                 };
@@ -113,6 +161,22 @@ namespace SharpVk.Interop
 			get
 			{
 				return new Queue
+                {
+                    handle = IntPtr.Zero
+                };
+			}
+		}
+	}
+
+	public struct Semaphore
+	{
+		internal IntPtr handle;
+
+		public static Semaphore Null
+		{
+			get
+			{
+				return new Semaphore
                 {
                     handle = IntPtr.Zero
                 };

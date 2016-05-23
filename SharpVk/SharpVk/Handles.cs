@@ -36,7 +36,43 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		internal Interop.Buffer MarshalTo()
+		internal Interop.Buffer Pack()
+		{
+			return this.handle;
+		}
+	}
+
+	public class CommandBuffer
+	{
+		private readonly Interop.CommandBuffer handle;
+
+		private readonly CommandPool parent;
+
+		internal CommandBuffer(Interop.CommandBuffer handle, CommandPool parent)
+		{
+			this.handle = handle;
+			this.parent = parent;
+		}
+
+		internal Interop.CommandBuffer Pack()
+		{
+			return this.handle;
+		}
+	}
+
+	public class CommandPool
+	{
+		private readonly Interop.CommandPool handle;
+
+		private readonly Device parent;
+
+		internal CommandPool(Interop.CommandPool handle, Device parent)
+		{
+			this.handle = handle;
+			this.parent = parent;
+		}
+
+		internal Interop.CommandPool Pack()
 		{
 			return this.handle;
 		}
@@ -103,7 +139,37 @@ namespace SharpVk
 			}
 		}
 
-		internal Interop.Device MarshalTo()
+		public void DeviceWaitIdle()
+		{
+			unsafe
+			{
+
+				Interop.Commands.vkDeviceWaitIdle(this.handle);
+
+
+				Interop.HeapUtil.FreeLog();
+			}
+		}
+
+		internal Interop.Device Pack()
+		{
+			return this.handle;
+		}
+	}
+
+	public class Fence
+	{
+		private readonly Interop.Fence handle;
+
+		private readonly Device parent;
+
+		internal Fence(Interop.Fence handle, Device parent)
+		{
+			this.handle = handle;
+			this.parent = parent;
+		}
+
+		internal Interop.Fence Pack()
 		{
 			return this.handle;
 		}
@@ -121,7 +187,7 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		internal Interop.Image MarshalTo()
+		internal Interop.Image Pack()
 		{
 			return this.handle;
 		}
@@ -268,7 +334,7 @@ namespace SharpVk
 			}
 		}
 
-		internal Interop.Instance MarshalTo()
+		internal Interop.Instance Pack()
 		{
 			return this.handle;
 		}
@@ -471,7 +537,7 @@ namespace SharpVk
 			}
 		}
 
-		internal Interop.PhysicalDevice MarshalTo()
+		internal Interop.PhysicalDevice Pack()
 		{
 			return this.handle;
 		}
@@ -489,7 +555,50 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		internal Interop.Queue MarshalTo()
+		public void QueueSubmit(SubmitInfo[] submits, Fence fence)
+		{
+			unsafe
+			{
+				Interop.Fence marshalledFence = fence?.Pack() ?? Interop.Fence.Null;
+
+				Interop.Commands.vkQueueSubmit(this.handle, (uint)submits.Length, null, marshalledFence);
+
+
+				Interop.HeapUtil.FreeLog();
+			}
+		}
+
+		public void QueueWaitIdle()
+		{
+			unsafe
+			{
+
+				Interop.Commands.vkQueueWaitIdle(this.handle);
+
+
+				Interop.HeapUtil.FreeLog();
+			}
+		}
+
+		internal Interop.Queue Pack()
+		{
+			return this.handle;
+		}
+	}
+
+	public class Semaphore
+	{
+		private readonly Interop.Semaphore handle;
+
+		private readonly Device parent;
+
+		internal Semaphore(Interop.Semaphore handle, Device parent)
+		{
+			this.handle = handle;
+			this.parent = parent;
+		}
+
+		internal Interop.Semaphore Pack()
 		{
 			return this.handle;
 		}

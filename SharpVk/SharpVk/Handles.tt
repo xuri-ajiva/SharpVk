@@ -164,7 +164,7 @@ foreach(var handle in types.Handles)
     }
 #>
 
-		internal Interop.<#=handle.Name#> MarshalTo()
+		internal Interop.<#=handle.Name#> Pack()
 		{
 			return this.handle;
 		}
