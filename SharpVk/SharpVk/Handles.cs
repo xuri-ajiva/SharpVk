@@ -461,6 +461,69 @@ namespace SharpVk
 			}
 		}
 
+		public Image CreateImage(ImageCreateInfo createInfo, AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				Image result = default(Image);
+
+				Interop.ImageCreateInfo marshalledCreateInfo;
+				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+				Interop.Image marshalledImage;
+				Interop.Commands.vkCreateImage(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledImage);
+
+				result = new Image(marshalledImage, this);
+
+				Interop.HeapUtil.FreeLog();
+
+				return result;
+			}
+		}
+
+		public ImageView CreateImageView(ImageViewCreateInfo createInfo, AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				ImageView result = default(ImageView);
+
+				Interop.ImageViewCreateInfo marshalledCreateInfo;
+				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+				Interop.ImageView marshalledView;
+				Interop.Commands.vkCreateImageView(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledView);
+
+				result = new ImageView(marshalledView, this);
+
+				Interop.HeapUtil.FreeLog();
+
+				return result;
+			}
+		}
+
+		public ShaderModule CreateShaderModule(ShaderModuleCreateInfo createInfo, AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				ShaderModule result = default(ShaderModule);
+
+				Interop.ShaderModuleCreateInfo marshalledCreateInfo;
+				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+				Interop.ShaderModule marshalledShaderModule;
+				Interop.Commands.vkCreateShaderModule(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledShaderModule);
+
+				result = new ShaderModule(marshalledShaderModule, this);
+
+				Interop.HeapUtil.FreeLog();
+
+				return result;
+			}
+		}
+
 		internal Interop.Device Pack()
 		{
 			return this.handle;
@@ -692,11 +755,11 @@ namespace SharpVk
 				SparseImageMemoryRequirements* marshalledSparseMemoryRequirements = null;
 				Interop.Commands.vkGetImageSparseMemoryRequirements(this.parent.handle, this.handle, &sparseMemoryRequirementCount, null);
 
-				marshalledSparseMemoryRequirements = (SparseImageMemoryRequirements*)Interop.HeapUtil.Allocate<SparseImageMemoryRequirements>(sparseMemoryRequirementCount);
+				marshalledSparseMemoryRequirements = (SparseImageMemoryRequirements*)Interop.HeapUtil.Allocate<SparseImageMemoryRequirements>((uint)sparseMemoryRequirementCount);
 				Interop.Commands.vkGetImageSparseMemoryRequirements(this.parent.handle, this.handle, &sparseMemoryRequirementCount, marshalledSparseMemoryRequirements);
 
-				result = new SparseImageMemoryRequirements[sparseMemoryRequirementCount];
-				for(int index = 0; index < sparseMemoryRequirementCount; index++)
+				result = new SparseImageMemoryRequirements[(uint)sparseMemoryRequirementCount];
+				for(int index = 0; index < (uint)sparseMemoryRequirementCount; index++)
 				{
 					result[index] = marshalledSparseMemoryRequirements[index];
 				}
@@ -707,7 +770,66 @@ namespace SharpVk
 			}
 		}
 
+		public void DestroyImage(AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+				Interop.Commands.vkDestroyImage(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+
+
+				Interop.HeapUtil.FreeLog();
+			}
+		}
+
+		public SubresourceLayout GetImageSubresourceLayout(ImageSubresource subresource)
+		{
+			unsafe
+			{
+				SubresourceLayout result = default(SubresourceLayout);
+
+				Interop.Commands.vkGetImageSubresourceLayout(this.parent.handle, this.handle, &subresource, &result);
+
+
+				Interop.HeapUtil.FreeLog();
+
+				return result;
+			}
+		}
+
 		internal Interop.Image Pack()
+		{
+			return this.handle;
+		}
+	}
+
+	public class ImageView
+	{
+		internal readonly Interop.ImageView handle;
+
+		private readonly Device parent;
+
+		internal ImageView(Interop.ImageView handle, Device parent)
+		{
+			this.handle = handle;
+			this.parent = parent;
+		}
+
+		public void DestroyImageView(AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+				Interop.Commands.vkDestroyImageView(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+
+
+				Interop.HeapUtil.FreeLog();
+			}
+		}
+
+		internal Interop.ImageView Pack()
 		{
 			return this.handle;
 		}
@@ -766,11 +888,11 @@ namespace SharpVk
 				Interop.PhysicalDevice* marshalledPhysicalDevices = null;
 				Interop.Commands.vkEnumeratePhysicalDevices(this.handle, &physicalDeviceCount, null);
 
-				marshalledPhysicalDevices = (Interop.PhysicalDevice*)Interop.HeapUtil.Allocate<Interop.PhysicalDevice>(physicalDeviceCount);
+				marshalledPhysicalDevices = (Interop.PhysicalDevice*)Interop.HeapUtil.Allocate<Interop.PhysicalDevice>((uint)physicalDeviceCount);
 				Interop.Commands.vkEnumeratePhysicalDevices(this.handle, &physicalDeviceCount, marshalledPhysicalDevices);
 
-				result = new PhysicalDevice[physicalDeviceCount];
-				for(int index = 0; index < physicalDeviceCount; index++)
+				result = new PhysicalDevice[(uint)physicalDeviceCount];
+				for(int index = 0; index < (uint)physicalDeviceCount; index++)
 				{
 					result[index] = new PhysicalDevice(marshalledPhysicalDevices[index], this);
 				}
@@ -808,11 +930,11 @@ namespace SharpVk
 				Interop.ExtensionProperties* marshalledProperties = null;
 				Interop.Commands.vkEnumerateInstanceExtensionProperties(marshalledLayerName, &propertyCount, null);
 
-				marshalledProperties = (Interop.ExtensionProperties*)Interop.HeapUtil.Allocate<Interop.ExtensionProperties>(propertyCount);
+				marshalledProperties = (Interop.ExtensionProperties*)Interop.HeapUtil.Allocate<Interop.ExtensionProperties>((uint)propertyCount);
 				Interop.Commands.vkEnumerateInstanceExtensionProperties(marshalledLayerName, &propertyCount, marshalledProperties);
 
-				result = new ExtensionProperties[propertyCount];
-				for(int index = 0; index < propertyCount; index++)
+				result = new ExtensionProperties[(uint)propertyCount];
+				for(int index = 0; index < (uint)propertyCount; index++)
 				{
 					result[index] = ExtensionProperties.MarshalFrom(&marshalledProperties[index]);
 				}
@@ -833,11 +955,11 @@ namespace SharpVk
 				Interop.LayerProperties* marshalledProperties = null;
 				Interop.Commands.vkEnumerateInstanceLayerProperties(&propertyCount, null);
 
-				marshalledProperties = (Interop.LayerProperties*)Interop.HeapUtil.Allocate<Interop.LayerProperties>(propertyCount);
+				marshalledProperties = (Interop.LayerProperties*)Interop.HeapUtil.Allocate<Interop.LayerProperties>((uint)propertyCount);
 				Interop.Commands.vkEnumerateInstanceLayerProperties(&propertyCount, marshalledProperties);
 
-				result = new LayerProperties[propertyCount];
-				for(int index = 0; index < propertyCount; index++)
+				result = new LayerProperties[(uint)propertyCount];
+				for(int index = 0; index < (uint)propertyCount; index++)
 				{
 					result[index] = LayerProperties.MarshalFrom(&marshalledProperties[index]);
 				}
@@ -938,11 +1060,11 @@ namespace SharpVk
 				QueueFamilyProperties* marshalledQueueFamilyProperties = null;
 				Interop.Commands.vkGetPhysicalDeviceQueueFamilyProperties(this.handle, &queueFamilyPropertyCount, null);
 
-				marshalledQueueFamilyProperties = (QueueFamilyProperties*)Interop.HeapUtil.Allocate<QueueFamilyProperties>(queueFamilyPropertyCount);
+				marshalledQueueFamilyProperties = (QueueFamilyProperties*)Interop.HeapUtil.Allocate<QueueFamilyProperties>((uint)queueFamilyPropertyCount);
 				Interop.Commands.vkGetPhysicalDeviceQueueFamilyProperties(this.handle, &queueFamilyPropertyCount, marshalledQueueFamilyProperties);
 
-				result = new QueueFamilyProperties[queueFamilyPropertyCount];
-				for(int index = 0; index < queueFamilyPropertyCount; index++)
+				result = new QueueFamilyProperties[(uint)queueFamilyPropertyCount];
+				for(int index = 0; index < (uint)queueFamilyPropertyCount; index++)
 				{
 					result[index] = marshalledQueueFamilyProperties[index];
 				}
@@ -1002,11 +1124,11 @@ namespace SharpVk
 				Interop.ExtensionProperties* marshalledProperties = null;
 				Interop.Commands.vkEnumerateDeviceExtensionProperties(this.handle, marshalledLayerName, &propertyCount, null);
 
-				marshalledProperties = (Interop.ExtensionProperties*)Interop.HeapUtil.Allocate<Interop.ExtensionProperties>(propertyCount);
+				marshalledProperties = (Interop.ExtensionProperties*)Interop.HeapUtil.Allocate<Interop.ExtensionProperties>((uint)propertyCount);
 				Interop.Commands.vkEnumerateDeviceExtensionProperties(this.handle, marshalledLayerName, &propertyCount, marshalledProperties);
 
-				result = new ExtensionProperties[propertyCount];
-				for(int index = 0; index < propertyCount; index++)
+				result = new ExtensionProperties[(uint)propertyCount];
+				for(int index = 0; index < (uint)propertyCount; index++)
 				{
 					result[index] = ExtensionProperties.MarshalFrom(&marshalledProperties[index]);
 				}
@@ -1027,11 +1149,11 @@ namespace SharpVk
 				Interop.LayerProperties* marshalledProperties = null;
 				Interop.Commands.vkEnumerateDeviceLayerProperties(this.handle, &propertyCount, null);
 
-				marshalledProperties = (Interop.LayerProperties*)Interop.HeapUtil.Allocate<Interop.LayerProperties>(propertyCount);
+				marshalledProperties = (Interop.LayerProperties*)Interop.HeapUtil.Allocate<Interop.LayerProperties>((uint)propertyCount);
 				Interop.Commands.vkEnumerateDeviceLayerProperties(this.handle, &propertyCount, marshalledProperties);
 
-				result = new LayerProperties[propertyCount];
-				for(int index = 0; index < propertyCount; index++)
+				result = new LayerProperties[(uint)propertyCount];
+				for(int index = 0; index < (uint)propertyCount; index++)
 				{
 					result[index] = LayerProperties.MarshalFrom(&marshalledProperties[index]);
 				}
@@ -1052,11 +1174,11 @@ namespace SharpVk
 				SparseImageFormatProperties* marshalledProperties = null;
 				Interop.Commands.vkGetPhysicalDeviceSparseImageFormatProperties(this.handle, format, type, samples, usage, tiling, &propertyCount, null);
 
-				marshalledProperties = (SparseImageFormatProperties*)Interop.HeapUtil.Allocate<SparseImageFormatProperties>(propertyCount);
+				marshalledProperties = (SparseImageFormatProperties*)Interop.HeapUtil.Allocate<SparseImageFormatProperties>((uint)propertyCount);
 				Interop.Commands.vkGetPhysicalDeviceSparseImageFormatProperties(this.handle, format, type, samples, usage, tiling, &propertyCount, marshalledProperties);
 
-				result = new SparseImageFormatProperties[propertyCount];
-				for(int index = 0; index < propertyCount; index++)
+				result = new SparseImageFormatProperties[(uint)propertyCount];
+				for(int index = 0; index < (uint)propertyCount; index++)
 				{
 					result[index] = marshalledProperties[index];
 				}
@@ -1221,6 +1343,37 @@ namespace SharpVk
 		}
 
 		internal Interop.Semaphore Pack()
+		{
+			return this.handle;
+		}
+	}
+
+	public class ShaderModule
+	{
+		internal readonly Interop.ShaderModule handle;
+
+		private readonly Device parent;
+
+		internal ShaderModule(Interop.ShaderModule handle, Device parent)
+		{
+			this.handle = handle;
+			this.parent = parent;
+		}
+
+		public void DestroyShaderModule(AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+				Interop.Commands.vkDestroyShaderModule(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+
+
+				Interop.HeapUtil.FreeLog();
+			}
+		}
+
+		internal Interop.ShaderModule Pack()
 		{
 			return this.handle;
 		}

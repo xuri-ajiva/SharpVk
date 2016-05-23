@@ -91,6 +91,18 @@ namespace SharpVk
 		}
 	}
 
+	public struct ComponentMapping
+	{
+
+		public ComponentSwizzle R;
+
+		public ComponentSwizzle G;
+
+		public ComponentSwizzle B;
+
+		public ComponentSwizzle A;
+	}
+
 	public struct DispatchIndirectCommand
 	{
 
@@ -383,5 +395,19 @@ namespace SharpVk
 		public DeviceSize ImageMipTailOffset;
 
 		public DeviceSize ImageMipTailStride;
+	}
+
+	public struct SubresourceLayout
+	{
+
+		public DeviceSize Offset;
+
+		public DeviceSize Size;
+
+		public DeviceSize RowPitch;
+
+		public DeviceSize ArrayPitch;
+
+		public DeviceSize DepthPitch;
 	}
 }

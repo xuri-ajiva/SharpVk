@@ -591,6 +591,108 @@ namespace SharpVk
 		}
 	}
 
+	public class ImageCreateInfo
+	{
+
+		public ImageCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public ImageType ImageType
+		{
+			get;
+			set;
+		}
+
+		public Format Format
+		{
+			get;
+			set;
+		}
+
+		public Extent3D Extent
+		{
+			get;
+			set;
+		}
+
+		public uint MipLevels
+		{
+			get;
+			set;
+		}
+
+		public uint ArrayLayers
+		{
+			get;
+			set;
+		}
+
+		public SampleCountFlags Samples
+		{
+			get;
+			set;
+		}
+
+		public ImageTiling Tiling
+		{
+			get;
+			set;
+		}
+
+		public ImageUsageFlags Usage
+		{
+			get;
+			set;
+		}
+
+		public SharingMode SharingMode
+		{
+			get;
+			set;
+		}
+
+		public uint[] QueueFamilyIndices
+		{
+			get;
+			set;
+		}
+
+		public ImageLayout InitialLayout
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.ImageCreateInfo Pack()
+        {
+            var result = new Interop.ImageCreateInfo();
+			result.SType = StructureType.ImageCreateInfo;
+			result.QueueFamilyIndexCount = (uint)(this.QueueFamilyIndices?.Length ?? 0);
+			result.QueueFamilyIndices = this.QueueFamilyIndices == null ? null : Interop.HeapUtil.MarshalTo(this.QueueFamilyIndices);
+			result.Flags = this.Flags;
+			result.ImageType = this.ImageType;
+			result.Format = this.Format;
+			result.Extent = this.Extent;
+			result.MipLevels = this.MipLevels;
+			result.ArrayLayers = this.ArrayLayers;
+			result.Samples = this.Samples;
+			result.Tiling = this.Tiling;
+			result.Usage = this.Usage;
+			result.SharingMode = this.SharingMode;
+			result.InitialLayout = this.InitialLayout;
+
+            return result;
+        }
+
+		internal unsafe Interop.ImageCreateInfo* MarshalTo()
+        {
+            return (Interop.ImageCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
 	public class ImageMemoryBarrier
 	{
 
@@ -661,6 +763,65 @@ namespace SharpVk
 		internal unsafe Interop.ImageMemoryBarrier* MarshalTo()
         {
             return (Interop.ImageMemoryBarrier*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class ImageViewCreateInfo
+	{
+
+		public ImageViewCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public Image Image
+		{
+			get;
+			set;
+		}
+
+		public ImageViewType ViewType
+		{
+			get;
+			set;
+		}
+
+		public Format Format
+		{
+			get;
+			set;
+		}
+
+		public ComponentMapping Components
+		{
+			get;
+			set;
+		}
+
+		public ImageSubresourceRange SubresourceRange
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.ImageViewCreateInfo Pack()
+        {
+            var result = new Interop.ImageViewCreateInfo();
+			result.SType = StructureType.ImageViewCreateInfo;
+			result.Image = this.Image?.Pack() ?? Interop.Image.Null;
+			result.Flags = this.Flags;
+			result.ViewType = this.ViewType;
+			result.Format = this.Format;
+			result.Components = this.Components;
+			result.SubresourceRange = this.SubresourceRange;
+
+            return result;
+        }
+
+		internal unsafe Interop.ImageViewCreateInfo* MarshalTo()
+        {
+            return (Interop.ImageViewCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -1804,6 +1965,44 @@ namespace SharpVk
 		internal unsafe Interop.SemaphoreCreateInfo* MarshalTo()
         {
             return (Interop.SemaphoreCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class ShaderModuleCreateInfo
+	{
+
+		public ShaderModuleCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public UIntPtr CodeSize
+		{
+			get;
+			set;
+		}
+
+		public uint[] Code
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.ShaderModuleCreateInfo Pack()
+        {
+            var result = new Interop.ShaderModuleCreateInfo();
+			result.SType = StructureType.ShaderModuleCreateInfo;
+			result.Code = this.Code == null ? null : Interop.HeapUtil.MarshalTo(this.Code);
+			result.Flags = this.Flags;
+			result.CodeSize = this.CodeSize;
+
+            return result;
+        }
+
+		internal unsafe Interop.ShaderModuleCreateInfo* MarshalTo()
+        {
+            return (Interop.ShaderModuleCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 

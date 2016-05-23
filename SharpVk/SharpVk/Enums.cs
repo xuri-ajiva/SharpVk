@@ -158,6 +158,12 @@ namespace SharpVk
 	}
 
 	[Flags]
+	public enum ImageViewCreateFlags
+	{
+		None = 0,
+	}
+
+	[Flags]
 	public enum InstanceCreateFlags
 	{
 		None = 0,
@@ -273,6 +279,12 @@ namespace SharpVk
 	}
 
 	[Flags]
+	public enum ShaderModuleCreateFlags
+	{
+		None = 0,
+	}
+
+	[Flags]
 	public enum SparseImageFormatFlags
 	{
 		None = 0,
@@ -286,6 +298,17 @@ namespace SharpVk
 	{
 		None = 0,
 		Metadata = 1 << 0,
+	}
+
+	public enum ComponentSwizzle
+	{
+		Identity = 0,
+		Zero = 1,
+		One = 2,
+		R = 3,
+		G = 4,
+		B = 5,
+		A = 6,
 	}
 
 	public enum Format
@@ -501,6 +524,17 @@ namespace SharpVk
 		Image1d = 0,
 		Image2d = 1,
 		Image3d = 2,
+	}
+
+	public enum ImageViewType
+	{
+		ImageView1d = 0,
+		ImageView2d = 1,
+		ImageView3d = 2,
+		Cube = 3,
+		ImageView1dArray = 4,
+		ImageView2dArray = 5,
+		CubeArray = 6,
 	}
 
 	public enum PhysicalDeviceType

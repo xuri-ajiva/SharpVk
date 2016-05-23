@@ -168,6 +168,22 @@ namespace SharpVk.Interop
 		}
 	}
 
+	public struct ImageView
+	{
+		internal IntPtr handle;
+
+		public static ImageView Null
+		{
+			get
+			{
+				return new ImageView
+                {
+                    handle = IntPtr.Zero
+                };
+			}
+		}
+	}
+
 	public struct Instance
 	{
 		internal IntPtr handle;
@@ -241,6 +257,22 @@ namespace SharpVk.Interop
 			get
 			{
 				return new Semaphore
+                {
+                    handle = IntPtr.Zero
+                };
+			}
+		}
+	}
+
+	public struct ShaderModule
+	{
+		internal IntPtr handle;
+
+		public static ShaderModule Null
+		{
+			get
+			{
+				return new ShaderModule
                 {
                     handle = IntPtr.Zero
                 };

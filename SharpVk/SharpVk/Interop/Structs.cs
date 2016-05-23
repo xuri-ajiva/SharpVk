@@ -155,6 +155,26 @@ namespace SharpVk.Interop
 	}
 
     [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct ImageCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public ImageCreateFlags Flags;
+		public ImageType ImageType;
+		public Format Format;
+		public Extent3D Extent;
+		public uint MipLevels;
+		public uint ArrayLayers;
+		public SampleCountFlags Samples;
+		public ImageTiling Tiling;
+		public ImageUsageFlags Usage;
+		public SharingMode SharingMode;
+		public uint QueueFamilyIndexCount;
+		public uint* QueueFamilyIndices;
+		public ImageLayout InitialLayout;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
 	public unsafe struct ImageMemoryBarrier
 	{
 		public StructureType SType;
@@ -166,6 +186,19 @@ namespace SharpVk.Interop
 		public uint SourceQueueFamilyIndex;
 		public uint DestinationQueueFamilyIndex;
 		public Image Image;
+		public ImageSubresourceRange SubresourceRange;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct ImageViewCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public ImageViewCreateFlags Flags;
+		public Image Image;
+		public ImageViewType ViewType;
+		public Format Format;
+		public ComponentMapping Components;
 		public ImageSubresourceRange SubresourceRange;
 	}
 
@@ -416,6 +449,16 @@ namespace SharpVk.Interop
 		public StructureType SType;
 		public void* Next;
 		public SemaphoreCreateFlags Flags;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct ShaderModuleCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public ShaderModuleCreateFlags Flags;
+		public UIntPtr CodeSize;
+		public uint* Code;
 	}
 
     [StructLayout(LayoutKind.Sequential)]

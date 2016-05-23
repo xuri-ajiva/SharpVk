@@ -184,19 +184,23 @@ namespace SharpVk.VkXml
                             {
                                 bool requiresMarshalling = paramType.RequiresInterop || paramType.Data.Category == TypeCategory.handle;
 
+                                string paramTypeName = paramType.Name == "void"
+                                                        ? "byte"
+                                                        : paramType.Name;
+
                                 newMethod.Parameters.Add(new TypeSet.VkMethodParam
                                 {
                                     PreInvokeArgumentName = "null",
                                     ArgumentName = marshalledName,
-                                    TypeName = paramType.Name
+                                    TypeName = paramTypeName
                                 });
 
-                                newMethod.ReturnTypeName = paramType.Name + "[]";
+                                newMethod.ReturnTypeName = paramTypeName + "[]";
                                 newMethod.IsDoubleInvoke = true;
 
                                 string interopTypeName = requiresMarshalling
-                                                            ? "Interop." + paramType.Name
-                                                            : paramType.Name;
+                                                            ? "Interop." + paramTypeName
+                                                            : paramTypeName;
 
                                 newMethod.MarshalToStatements.Add(string.Format("{0}* {1} = null;", interopTypeName, marshalledName));
 
@@ -204,19 +208,19 @@ namespace SharpVk.VkXml
                                 {
                                     string lenParam = paramNameLookup[parameter.Dimensions[0].Value];
 
-                                    newMethod.MarshalMidStatements.Add(string.Format("{1} = ({0}*)Interop.HeapUtil.Allocate<{0}>({2});", interopTypeName, marshalledName, lenParam));
+                                    newMethod.MarshalMidStatements.Add(string.Format("{1} = ({0}*)Interop.HeapUtil.Allocate<{0}>((uint){2});", interopTypeName, marshalledName, lenParam));
 
-                                    newMethod.MarshalFromStatements.Add(string.Format("result = new {0}[{1}];", paramType.Name, lenParam));
+                                    newMethod.MarshalFromStatements.Add(string.Format("result = new {0}[(uint){1}];", paramTypeName, lenParam));
 
-                                    newMethod.MarshalFromStatements.Add(string.Format("for(int index = 0; index < {0}; index++)", lenParam));
+                                    newMethod.MarshalFromStatements.Add(string.Format("for(int index = 0; index < (uint){0}; index++)", lenParam));
                                     newMethod.MarshalFromStatements.Add("{");
                                     if (paramType.RequiresInterop)
                                     {
-                                        newMethod.MarshalFromStatements.Add($"\tresult[index] = {paramType.Name}.MarshalFrom(&{marshalledName}[index]);");
+                                        newMethod.MarshalFromStatements.Add($"\tresult[index] = {paramTypeName}.MarshalFrom(&{marshalledName}[index]);");
                                     }
                                     else if (paramType.Data.Category == TypeCategory.handle)
                                     {
-                                        newMethod.MarshalFromStatements.Add(string.Format("\tresult[index] = new {0}({1}[index]{2});", paramType.Name, marshalledName, paramType.Data.Parent != null ? ", this" : ""));
+                                        newMethod.MarshalFromStatements.Add(string.Format("\tresult[index] = new {0}({1}[index]{2});", paramTypeName, marshalledName, paramType.Data.Parent != null ? ", this" : ""));
                                     }
                                     else
                                     {
@@ -357,6 +361,15 @@ namespace SharpVk.VkXml
 
                             newMethod.MarshalToStatements.Add($"void* {marshalledName};");
                             newMethod.MarshalFromStatements.Add($"{paramName} = new IntPtr({marshalledName});");
+                        }
+                        else if(parameter.PointerType.IsPointer())
+                        {
+                            newMethod.Parameters.Add(new TypeSet.VkMethodParam
+                            {
+                                Name = paramName,
+                                ArgumentName = "&" + paramName,
+                                TypeName = paramType.Name
+                            });
                         }
                         else
                         {
