@@ -88,6 +88,22 @@ namespace SharpVk.Interop
 		}
 	}
 
+	public struct DeviceMemory
+	{
+		internal IntPtr handle;
+
+		public static DeviceMemory Null
+		{
+			get
+			{
+				return new DeviceMemory
+                {
+                    handle = IntPtr.Zero
+                };
+			}
+		}
+	}
+
 	public struct Fence
 	{
 		internal IntPtr handle;

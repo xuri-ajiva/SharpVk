@@ -128,6 +128,12 @@ namespace SharpVk
 	}
 
 	[Flags]
+	public enum MemoryMapFlags
+	{
+		None = 0,
+	}
+
+	[Flags]
 	public enum MemoryPropertyFlags
 	{
 		None = 0,

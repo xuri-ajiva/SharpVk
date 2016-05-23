@@ -25,7 +25,7 @@ foreach(var handle in types.Handles)
 #>
 	public class <#=handle.Name#>
 	{
-		private readonly Interop.<#=handle.Name#> handle;
+		internal readonly Interop.<#=handle.Name#> handle;
 
 <#
 	if(handle.ParentHandle != null)

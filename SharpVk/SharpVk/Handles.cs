@@ -26,7 +26,7 @@ namespace SharpVk
 {
 	public class Buffer
 	{
-		private readonly Interop.Buffer handle;
+		internal readonly Interop.Buffer handle;
 
 		private readonly Device parent;
 
@@ -44,7 +44,7 @@ namespace SharpVk
 
 	public class CommandBuffer
 	{
-		private readonly Interop.CommandBuffer handle;
+		internal readonly Interop.CommandBuffer handle;
 
 		private readonly CommandPool parent;
 
@@ -62,7 +62,7 @@ namespace SharpVk
 
 	public class CommandPool
 	{
-		private readonly Interop.CommandPool handle;
+		internal readonly Interop.CommandPool handle;
 
 		private readonly Device parent;
 
@@ -80,7 +80,7 @@ namespace SharpVk
 
 	public class Device
 	{
-		private readonly Interop.Device handle;
+		internal readonly Interop.Device handle;
 
 		private readonly PhysicalDevice parent;
 
@@ -151,7 +151,127 @@ namespace SharpVk
 			}
 		}
 
+		public DeviceMemory AllocateMemory(MemoryAllocateInfo allocateInfo, AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				DeviceMemory result = default(DeviceMemory);
+
+				Interop.MemoryAllocateInfo marshalledAllocateInfo;
+				if(allocateInfo != null) marshalledAllocateInfo = allocateInfo.Pack();
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+				Interop.DeviceMemory marshalledMemory;
+
+				Interop.Commands.vkAllocateMemory(this.handle, allocateInfo == null ? null : &marshalledAllocateInfo, allocator == null ? null : &marshalledAllocator, &marshalledMemory);
+
+				result = new DeviceMemory(marshalledMemory, this);
+
+				Interop.HeapUtil.FreeLog();
+
+				return result;
+			}
+		}
+
+		public void FlushMappedMemoryRanges(MappedMemoryRange[] memoryRanges)
+		{
+			unsafe
+			{
+
+				Interop.Commands.vkFlushMappedMemoryRanges(this.handle, (uint)memoryRanges.Length, null);
+
+
+				Interop.HeapUtil.FreeLog();
+			}
+		}
+
+		public void InvalidateMappedMemoryRanges(MappedMemoryRange[] memoryRanges)
+		{
+			unsafe
+			{
+
+				Interop.Commands.vkInvalidateMappedMemoryRanges(this.handle, (uint)memoryRanges.Length, null);
+
+
+				Interop.HeapUtil.FreeLog();
+			}
+		}
+
 		internal Interop.Device Pack()
+		{
+			return this.handle;
+		}
+	}
+
+	public class DeviceMemory
+	{
+		internal readonly Interop.DeviceMemory handle;
+
+		private readonly Device parent;
+
+		internal DeviceMemory(Interop.DeviceMemory handle, Device parent)
+		{
+			this.handle = handle;
+			this.parent = parent;
+		}
+
+		public void FreeMemory(AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+
+				Interop.Commands.vkFreeMemory(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+
+
+				Interop.HeapUtil.FreeLog();
+			}
+		}
+
+		public void MapMemory(DeviceSize offset, DeviceSize size, MemoryMapFlags flags, ref IntPtr data)
+		{
+			unsafe
+			{
+				void* marshalledData;
+
+				Interop.Commands.vkMapMemory(this.parent.handle, this.handle, offset, size, flags, &marshalledData);
+
+				data = new IntPtr(marshalledData);
+
+				Interop.HeapUtil.FreeLog();
+			}
+		}
+
+		public void UnmapMemory()
+		{
+			unsafe
+			{
+
+				Interop.Commands.vkUnmapMemory(this.parent.handle, this.handle);
+
+
+				Interop.HeapUtil.FreeLog();
+			}
+		}
+
+		public DeviceSize GetDeviceMemoryCommitment()
+		{
+			unsafe
+			{
+				DeviceSize result = default(DeviceSize);
+
+
+				Interop.Commands.vkGetDeviceMemoryCommitment(this.parent.handle, this.handle, &result);
+
+
+				Interop.HeapUtil.FreeLog();
+
+				return result;
+			}
+		}
+
+		internal Interop.DeviceMemory Pack()
 		{
 			return this.handle;
 		}
@@ -159,7 +279,7 @@ namespace SharpVk
 
 	public class Fence
 	{
-		private readonly Interop.Fence handle;
+		internal readonly Interop.Fence handle;
 
 		private readonly Device parent;
 
@@ -177,7 +297,7 @@ namespace SharpVk
 
 	public class Image
 	{
-		private readonly Interop.Image handle;
+		internal readonly Interop.Image handle;
 
 		private readonly Device parent;
 
@@ -195,7 +315,7 @@ namespace SharpVk
 
 	public class Instance
 	{
-		private readonly Interop.Instance handle;
+		internal readonly Interop.Instance handle;
 
 		internal Instance(Interop.Instance handle)
 		{
@@ -342,7 +462,7 @@ namespace SharpVk
 
 	public class PhysicalDevice
 	{
-		private readonly Interop.PhysicalDevice handle;
+		internal readonly Interop.PhysicalDevice handle;
 
 		private readonly Instance parent;
 
@@ -545,7 +665,7 @@ namespace SharpVk
 
 	public class Queue
 	{
-		private readonly Interop.Queue handle;
+		internal readonly Interop.Queue handle;
 
 		private readonly Device parent;
 
@@ -588,7 +708,7 @@ namespace SharpVk
 
 	public class Semaphore
 	{
-		private readonly Interop.Semaphore handle;
+		internal readonly Interop.Semaphore handle;
 
 		private readonly Device parent;
 

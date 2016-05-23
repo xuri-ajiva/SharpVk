@@ -471,6 +471,75 @@ namespace SharpVk
 		}
 	}
 
+	public class MappedMemoryRange
+	{
+
+		public DeviceMemory Memory
+		{
+			get;
+			set;
+		}
+
+		public ulong Offset
+		{
+			get;
+			set;
+		}
+
+		public ulong Size
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.MappedMemoryRange Pack()
+        {
+            var result = new Interop.MappedMemoryRange();
+			result.SType = StructureType.MappedMemoryRange;
+			result.Memory = this.Memory?.Pack() ?? Interop.DeviceMemory.Null;
+			result.Offset = this.Offset;
+			result.Size = this.Size;
+
+            return result;
+        }
+
+		internal unsafe Interop.MappedMemoryRange* MarshalTo()
+        {
+            return (Interop.MappedMemoryRange*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class MemoryAllocateInfo
+	{
+
+		public ulong AllocationSize
+		{
+			get;
+			set;
+		}
+
+		public uint MemoryTypeIndex
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.MemoryAllocateInfo Pack()
+        {
+            var result = new Interop.MemoryAllocateInfo();
+			result.SType = StructureType.MemoryAllocateInfo;
+			result.AllocationSize = this.AllocationSize;
+			result.MemoryTypeIndex = this.MemoryTypeIndex;
+
+            return result;
+        }
+
+		internal unsafe Interop.MemoryAllocateInfo* MarshalTo()
+        {
+            return (Interop.MemoryAllocateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
 	public class MemoryBarrier
 	{
 

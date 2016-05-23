@@ -306,6 +306,18 @@ namespace SharpVk.VkXml
                             newMethod.MarshalToStatements.Add(string.Format("Interop.{0} {1};", paramType.Name, marshalledName));
                             newMethod.MarshalToStatements.Add(string.Format("if({1} != null) {0} = {1}.Pack();", marshalledName, paramName));
                         }
+                        else if (parameter.Type == "void" && parameter.PointerType == PointerType.DoublePointer)
+                        {
+                            newMethod.Parameters.Add(new TypeSet.VkMethodParam
+                            {
+                                Name = paramName,
+                                ArgumentName = "&" + marshalledName,
+                                TypeName = "ref IntPtr"
+                            });
+
+                            newMethod.MarshalToStatements.Add($"void* {marshalledName};");
+                            newMethod.MarshalFromStatements.Add($"{paramName} = new IntPtr({marshalledName});");
+                        }
                         else
                         {
                             newMethod.Parameters.Add(new TypeSet.VkMethodParam

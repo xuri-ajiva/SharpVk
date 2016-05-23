@@ -134,6 +134,25 @@ namespace SharpVk.Interop
 	}
 
     [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct MappedMemoryRange
+	{
+		public StructureType SType;
+		public void* Next;
+		public DeviceMemory Memory;
+		public DeviceSize Offset;
+		public DeviceSize Size;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct MemoryAllocateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public DeviceSize AllocationSize;
+		public uint MemoryTypeIndex;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
 	public unsafe struct MemoryBarrier
 	{
 		public StructureType SType;
