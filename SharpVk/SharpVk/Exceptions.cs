@@ -58,6 +58,8 @@ namespace SharpVk
 					return new TooManyObjectsException();
 				case Result.ErrorFormatNotSupported:
 					return new FormatNotSupportedException();
+				case Result.ErrorFragmentedPool:
+					return new FragmentedPoolException();
 			}
 
 			return new SharpVkException();
@@ -119,5 +121,10 @@ namespace SharpVk
 	{
 	}
 //		public const int FormatNotSupportedException = Result.ErrorFormatNotSupported;
+	public class FragmentedPoolException
+		: SharpVkException
+	{
+	}
+//		public const int FragmentedPoolException = Result.ErrorFragmentedPool;
 
 }

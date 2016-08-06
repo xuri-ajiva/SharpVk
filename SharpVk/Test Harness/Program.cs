@@ -1,5 +1,6 @@
 ﻿using SharpVk.VkXml;
 using System;
+using System.Linq;
 using System.Reflection;
 
 namespace SharpVk
@@ -15,7 +16,7 @@ namespace SharpVk
                     ApplicationName = "Example Application",
                     EngineName = "SharpVK"
                 },
-                //EnabledExtensionNames = new[] { "VK_KHR_surface", "VK_KHR_win32_surface" }
+                EnabledExtensionNames = new[] { "VK_KHR_surface", "VK_KHR_win32_surface" }
             }, null);
 
             var physicalDevices = instance.EnumeratePhysicalDevices();
@@ -34,7 +35,32 @@ namespace SharpVk
 
             foreach (var physicalDevice in physicalDevices)
             {
+                Enumerate(physicalDevice.GetPhysicalDeviceProperties());
+
+                uint memoryTypeIndex = (uint)physicalDevice.GetPhysicalDeviceMemoryProperties()
+                                                                                        .MemoryTypes
+                                                                                        .Select((mem, index) => Tuple.Create(mem, index))
+                                                                                        .First(x => x.Item1.PropertyFlags.HasFlag(MemoryPropertyFlags.HostVisible)).Item2;
+
                 var device = physicalDevice.CreateDevice(deviceCreateInfo, null);
+
+                var memoryAllocateInfo = new MemoryAllocateInfo
+                {
+                    MemoryTypeIndex = memoryTypeIndex,
+                    AllocationSize = 1 << 20
+                };
+
+                var memBlock = device.AllocateMemory(memoryAllocateInfo, null);
+
+                IntPtr dataPointer = IntPtr.Zero;
+
+                memBlock.MapMemory(0, 1024, MemoryMapFlags.None, ref dataPointer);
+                
+                memBlock.UnmapMemory();
+
+                ulong size = memBlock.GetDeviceMemoryCommitment();
+
+                memBlock.FreeMemory(null);
 
                 device.DestroyDevice(null);
             }

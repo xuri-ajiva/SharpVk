@@ -577,6 +577,7 @@ namespace SharpVk
 		ErrorIncompatibleDriver = -9,
 		ErrorTooManyObjects = -10,
 		ErrorFormatNotSupported = -11,
+		ErrorFragmentedPool = -12,
 	}
 
 	public enum SharingMode

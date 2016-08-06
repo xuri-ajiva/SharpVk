@@ -1,5 +1,7 @@
 - [ ] GetFenceStatus & WaitForFence return result as non-error VkResult codes - these need handling and returning
+- [ ] Throw exceptions for error VkResult codes
 - [ ] AllocationCallbacks should be stored in ancestor Instance & references from there
+- [ ] Non-Dispatchable handles should be fixed to 64-bit, to prevent stack mismatchs on x86 builds
 - [ ] VK API Commands should be correctly generated, compiled & executed (against NVidia implementation on Windows):
   -  Device initialization
     - [x] vkCreateInstance
@@ -23,15 +25,15 @@
     - [x] vkEnumerateInstanceLayerProperties
     - [x] vkEnumerateDeviceLayerProperties
   - Queue commands
-    - [ ] vkGetDeviceQueue
+    - [x] vkGetDeviceQueue
     - [ ] vkQueueSubmit
-    - [ ] vkQueueWaitIdle
+    - [x] vkQueueWaitIdle
     - [ ] vkDeviceWaitIdle
   - Memory commands
-    - [ ] vkAllocateMemory
-    - [ ] vkFreeMemory
-    - [ ] vkMapMemory
-    - [ ] vkUnmapMemory
+    - [x] vkAllocateMemory
+    - [x] vkFreeMemory
+    - [x] vkMapMemory
+    - [x] vkUnmapMemory
     - [ ] vkFlushMappedMemoryRanges
     - [ ] vkInvalidateMappedMemoryRanges
     - [ ] vkGetDeviceMemoryCommitment
