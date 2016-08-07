@@ -433,6 +433,19 @@ namespace SharpVk.Interop
 	}
 
     [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct PresentInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public uint WaitSemaphoreCount;
+		public Semaphore* WaitSemaphores;
+		public uint SwapchainCount;
+		public Swapchain* Swapchains;
+		public uint* ImageIndices;
+		public Result* Results;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
 	public unsafe struct QueryPoolCreateInfo
 	{
 		public StructureType SType;
@@ -518,5 +531,38 @@ namespace SharpVk.Interop
 		public CommandBuffer* CommandBuffers;
 		public uint SignalSemaphoreCount;
 		public Semaphore* SignalSemaphores;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct SwapchainCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public SwapchainCreateFlags Flags;
+		public Surface Surface;
+		public uint MinImageCount;
+		public Format ImageFormat;
+		public ColorSpace ImageColorSpace;
+		public Extent2D ImageExtent;
+		public uint ImageArrayLayers;
+		public ImageUsageFlags ImageUsage;
+		public SharingMode ImageSharingMode;
+		public uint QueueFamilyIndexCount;
+		public uint* QueueFamilyIndices;
+		public SurfaceTransformFlags PreTransform;
+		public CompositeAlphaFlags CompositeAlpha;
+		public PresentMode PresentMode;
+		public Bool32 Clipped;
+		public Swapchain OldSwapchain;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct Win32SurfaceCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public Win32SurfaceCreateFlags Flags;
+		public IntPtr Hinstance;
+		public IntPtr Hwnd;
 	}
 }

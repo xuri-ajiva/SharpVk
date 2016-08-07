@@ -280,4 +280,36 @@ namespace SharpVk.Interop
 		}
 	}
 
+	public struct Surface
+	{
+		internal IntPtr handle;
+
+		public static Surface Null
+		{
+			get
+			{
+				return new Surface
+                {
+                    handle = IntPtr.Zero
+                };
+			}
+		}
+	}
+
+	public struct Swapchain
+	{
+		internal IntPtr handle;
+
+		public static Swapchain Null
+		{
+			get
+			{
+				return new Swapchain
+                {
+                    handle = IntPtr.Zero
+                };
+			}
+		}
+	}
+
 }

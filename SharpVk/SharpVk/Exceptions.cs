@@ -24,7 +24,7 @@ using System;
 
 namespace SharpVk
 {
-	public class SharpVkException
+	public abstract class SharpVkException
 		: Exception
 	{
 		public static bool IsError(Result resultCode)
@@ -34,6 +34,11 @@ namespace SharpVk
 
 		public static SharpVkException Create(Result resultCode)
 		{
+			if(!IsError(resultCode))
+			{
+				return null;
+			}
+
 			switch(resultCode)
 			{
 				case Result.ErrorOutOfHostMemory:
@@ -60,71 +65,125 @@ namespace SharpVk
 					return new FormatNotSupportedException();
 				case Result.ErrorFragmentedPool:
 					return new FragmentedPoolException();
+				case Result.ErrorSurfaceLost:
+					return new SurfaceLostException();
+				case Result.ErrorNativeWindowInUse:
+					return new NativeWindowInUseException();
+				case Result.ErrorOutOfDate:
+					return new OutOfDateException();
 			}
 
-			return new SharpVkException();
+			return new UnknownSharpVkException(resultCode);
 		}
+
+		public abstract Result ResultCode
+		{
+			get;
+		}
+	}
+
+	public class UnknownSharpVkException
+		: SharpVkException
+	{
+		private Result resultCode;
+
+		public UnknownSharpVkException(Result resultCode)
+		{
+			this.resultCode = resultCode;
+		}
+
+		public override Result ResultCode => this.resultCode;
 	}
 
 	public class OutOfHostMemoryException
 		: SharpVkException
 	{
+		public override Result ResultCode => Result.ErrorOutOfHostMemory;
 	}
-//		public const int OutOfHostMemoryException = Result.ErrorOutOfHostMemory;
+
 	public class OutOfDeviceMemoryException
 		: SharpVkException
 	{
+		public override Result ResultCode => Result.ErrorOutOfDeviceMemory;
 	}
-//		public const int OutOfDeviceMemoryException = Result.ErrorOutOfDeviceMemory;
+
 	public class InitializationFailedException
 		: SharpVkException
 	{
+		public override Result ResultCode => Result.ErrorInitializationFailed;
 	}
-//		public const int InitializationFailedException = Result.ErrorInitializationFailed;
+
 	public class DeviceLostException
 		: SharpVkException
 	{
+		public override Result ResultCode => Result.ErrorDeviceLost;
 	}
-//		public const int DeviceLostException = Result.ErrorDeviceLost;
+
 	public class MemoryMapFailedException
 		: SharpVkException
 	{
+		public override Result ResultCode => Result.ErrorMemoryMapFailed;
 	}
-//		public const int MemoryMapFailedException = Result.ErrorMemoryMapFailed;
+
 	public class LayerNotPresentException
 		: SharpVkException
 	{
+		public override Result ResultCode => Result.ErrorLayerNotPresent;
 	}
-//		public const int LayerNotPresentException = Result.ErrorLayerNotPresent;
+
 	public class ExtensionNotPresentException
 		: SharpVkException
 	{
+		public override Result ResultCode => Result.ErrorExtensionNotPresent;
 	}
-//		public const int ExtensionNotPresentException = Result.ErrorExtensionNotPresent;
+
 	public class FeatureNotPresentException
 		: SharpVkException
 	{
+		public override Result ResultCode => Result.ErrorFeatureNotPresent;
 	}
-//		public const int FeatureNotPresentException = Result.ErrorFeatureNotPresent;
+
 	public class IncompatibleDriverException
 		: SharpVkException
 	{
+		public override Result ResultCode => Result.ErrorIncompatibleDriver;
 	}
-//		public const int IncompatibleDriverException = Result.ErrorIncompatibleDriver;
+
 	public class TooManyObjectsException
 		: SharpVkException
 	{
+		public override Result ResultCode => Result.ErrorTooManyObjects;
 	}
-//		public const int TooManyObjectsException = Result.ErrorTooManyObjects;
+
 	public class FormatNotSupportedException
 		: SharpVkException
 	{
+		public override Result ResultCode => Result.ErrorFormatNotSupported;
 	}
-//		public const int FormatNotSupportedException = Result.ErrorFormatNotSupported;
+
 	public class FragmentedPoolException
 		: SharpVkException
 	{
+		public override Result ResultCode => Result.ErrorFragmentedPool;
 	}
-//		public const int FragmentedPoolException = Result.ErrorFragmentedPool;
+
+	public class SurfaceLostException
+		: SharpVkException
+	{
+		public override Result ResultCode => Result.ErrorSurfaceLost;
+	}
+
+	public class NativeWindowInUseException
+		: SharpVkException
+	{
+		public override Result ResultCode => Result.ErrorNativeWindowInUse;
+	}
+
+	public class OutOfDateException
+		: SharpVkException
+	{
+		public override Result ResultCode => Result.ErrorOutOfDate;
+	}
+
 
 }

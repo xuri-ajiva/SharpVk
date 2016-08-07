@@ -1,7 +1,8 @@
 - [ ] GetFenceStatus & WaitForFence return result as non-error VkResult codes - these need handling and returning
-- [ ] Throw exceptions for error VkResult codes
+- [x] Throw exceptions for error VkResult codes
 - [ ] AllocationCallbacks should be stored in ancestor Instance & references from there
-- [ ] Non-Dispatchable handles should be fixed to 64-bit, to prevent stack mismatchs on x86 builds
+- [ ] Non-Dispatchable handles should be fixed to 64-bit, to prevent stack mismatches on x86 builds
+- [ ] Flags vs FlagBits may indicate a set of flags versus an individual flag value - needs investigation
 - [ ] VK API Commands should be correctly generated, compiled & executed (against NVidia implementation on Windows):
   -  Device initialization
     - [x] vkCreateInstance
@@ -36,7 +37,7 @@
     - [x] vkUnmapMemory
     - [ ] vkFlushMappedMemoryRanges
     - [ ] vkInvalidateMappedMemoryRanges
-    - [ ] vkGetDeviceMemoryCommitment
+    - [x] vkGetDeviceMemoryCommitment
   - Memory management API commands
     - [ ] vkBindBufferMemory
     - [ ] vkBindImageMemory
@@ -166,3 +167,18 @@
     - [ ] vkCmdNextSubpass
     - [ ] vkCmdEndRenderPass
     - [ ] vkCmdExecuteCommands
+  - VK_KHR_surface
+    - [ ] vkDestroySurfaceKHR
+    - [ ] vkGetPhysicalDeviceSurfaceSupportKHR
+    - [x] vkGetPhysicalDeviceSurfaceCapabilitiesKHR
+    - [ ] vkGetPhysicalDeviceSurfaceFormatsKHR
+    - [ ] vkGetPhysicalDeviceSurfacePresentModesKHR
+  - VK_KHR_swapchain
+    - [x] vkCreateSwapchainKHR
+    - [x] vkDestroySwapchainKHR
+    - [x] vkGetSwapchainImagesKHR
+    - [ ] vkAcquireNextImageKHR
+    - [ ] vkQueuePresentKHR
+  - VK_KHR_win32_surface
+    - [x] vkCreateWin32SurfaceKHR
+    - [ ] vkGetPhysicalDeviceWin32PresentationSupportKHR

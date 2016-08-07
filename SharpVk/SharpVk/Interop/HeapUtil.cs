@@ -180,6 +180,15 @@ namespace SharpVk.Interop
             return pointer;
         }
 
+        internal static int* MarshalTo(int[] value)
+        {
+            int* pointer = (int*)Allocate<int>(value.Length).ToPointer();
+
+            MarshalTo(value, value.Length, pointer);
+
+            return pointer;
+        }
+
         internal static uint* MarshalTo(uint[] value)
         {
             uint* pointer = (uint*)Allocate<uint>(value.Length).ToPointer();
@@ -219,6 +228,11 @@ namespace SharpVk.Interop
         }
 
         internal static void MarshalTo(float[] value, int length, float* pointer)
+        {
+            Marshal.Copy(value, 0, new IntPtr(pointer), length);
+        }
+
+        internal static void MarshalTo(int[] value, int length, int* pointer)
         {
             Marshal.Copy(value, 0, new IntPtr(pointer), length);
         }

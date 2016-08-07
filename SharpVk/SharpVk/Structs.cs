@@ -21,6 +21,7 @@
 //SOFTWARE.
 
 using System;
+using System.Text;
 
 namespace SharpVk
 {
@@ -101,6 +102,20 @@ namespace SharpVk
 		public ComponentSwizzle B;
 
 		public ComponentSwizzle A;
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("ComponentMapping");
+            builder.AppendLine("{");
+            builder.AppendLine($"R: {this.R}");
+            builder.AppendLine($"G: {this.G}");
+            builder.AppendLine($"B: {this.B}");
+            builder.AppendLine($"A: {this.A}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
 	}
 
 	public struct DispatchIndirectCommand
@@ -111,6 +126,19 @@ namespace SharpVk
 		public uint Y;
 
 		public uint Z;
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("DispatchIndirectCommand");
+            builder.AppendLine("{");
+            builder.AppendLine($"X: {this.X}");
+            builder.AppendLine($"Y: {this.Y}");
+            builder.AppendLine($"Z: {this.Z}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
 	}
 
 	public struct DrawIndexedIndirectCommand
@@ -125,6 +153,21 @@ namespace SharpVk
 		public int VertexOffset;
 
 		public uint FirstInstance;
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("DrawIndexedIndirectCommand");
+            builder.AppendLine("{");
+            builder.AppendLine($"IndexCount: {this.IndexCount}");
+            builder.AppendLine($"InstanceCount: {this.InstanceCount}");
+            builder.AppendLine($"FirstIndex: {this.FirstIndex}");
+            builder.AppendLine($"VertexOffset: {this.VertexOffset}");
+            builder.AppendLine($"FirstInstance: {this.FirstInstance}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
 	}
 
 	public struct DrawIndirectCommand
@@ -137,6 +180,40 @@ namespace SharpVk
 		public uint FirstVertex;
 
 		public uint FirstInstance;
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("DrawIndirectCommand");
+            builder.AppendLine("{");
+            builder.AppendLine($"VertexCount: {this.VertexCount}");
+            builder.AppendLine($"InstanceCount: {this.InstanceCount}");
+            builder.AppendLine($"FirstVertex: {this.FirstVertex}");
+            builder.AppendLine($"FirstInstance: {this.FirstInstance}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
+	}
+
+	public struct Extent2D
+	{
+
+		public uint Width;
+
+		public uint Height;
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("Extent2D");
+            builder.AppendLine("{");
+            builder.AppendLine($"Width: {this.Width}");
+            builder.AppendLine($"Height: {this.Height}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
 	}
 
 	public struct Extent3D
@@ -147,6 +224,19 @@ namespace SharpVk
 		public uint Height;
 
 		public uint Depth;
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("Extent3D");
+            builder.AppendLine("{");
+            builder.AppendLine($"Width: {this.Width}");
+            builder.AppendLine($"Height: {this.Height}");
+            builder.AppendLine($"Depth: {this.Depth}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
 	}
 
 	public struct FormatProperties
@@ -157,6 +247,19 @@ namespace SharpVk
 		public FormatFeatureFlags OptimalTilingFeatures;
 
 		public FormatFeatureFlags BufferFeatures;
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("FormatProperties");
+            builder.AppendLine("{");
+            builder.AppendLine($"LinearTilingFeatures: {this.LinearTilingFeatures}");
+            builder.AppendLine($"OptimalTilingFeatures: {this.OptimalTilingFeatures}");
+            builder.AppendLine($"BufferFeatures: {this.BufferFeatures}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
 	}
 
 	public struct ImageFormatProperties
@@ -171,6 +274,21 @@ namespace SharpVk
 		public SampleCountFlags SampleCounts;
 
 		public DeviceSize MaxResourceSize;
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("ImageFormatProperties");
+            builder.AppendLine("{");
+            builder.AppendLine($"MaxExtent: {this.MaxExtent}");
+            builder.AppendLine($"MaxMipLevels: {this.MaxMipLevels}");
+            builder.AppendLine($"MaxArrayLayers: {this.MaxArrayLayers}");
+            builder.AppendLine($"SampleCounts: {this.SampleCounts}");
+            builder.AppendLine($"MaxResourceSize: {this.MaxResourceSize}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
 	}
 
 	public struct ImageSubresource
@@ -181,6 +299,19 @@ namespace SharpVk
 		public uint MipLevel;
 
 		public uint ArrayLayer;
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("ImageSubresource");
+            builder.AppendLine("{");
+            builder.AppendLine($"AspectMask: {this.AspectMask}");
+            builder.AppendLine($"MipLevel: {this.MipLevel}");
+            builder.AppendLine($"ArrayLayer: {this.ArrayLayer}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
 	}
 
 	public struct ImageSubresourceRange
@@ -195,6 +326,21 @@ namespace SharpVk
 		public uint BaseArrayLayer;
 
 		public uint LayerCount;
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("ImageSubresourceRange");
+            builder.AppendLine("{");
+            builder.AppendLine($"AspectMask: {this.AspectMask}");
+            builder.AppendLine($"BaseMipLevel: {this.BaseMipLevel}");
+            builder.AppendLine($"LevelCount: {this.LevelCount}");
+            builder.AppendLine($"BaseArrayLayer: {this.BaseArrayLayer}");
+            builder.AppendLine($"LayerCount: {this.LayerCount}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
 	}
 
 	public struct MemoryHeap
@@ -203,6 +349,18 @@ namespace SharpVk
 		public DeviceSize Size;
 
 		public MemoryHeapFlags Flags;
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("MemoryHeap");
+            builder.AppendLine("{");
+            builder.AppendLine($"Size: {this.Size}");
+            builder.AppendLine($"Flags: {this.Flags}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
 	}
 
 	public struct MemoryRequirements
@@ -213,6 +371,19 @@ namespace SharpVk
 		public DeviceSize Alignment;
 
 		public uint MemoryTypeBits;
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("MemoryRequirements");
+            builder.AppendLine("{");
+            builder.AppendLine($"Size: {this.Size}");
+            builder.AppendLine($"Alignment: {this.Alignment}");
+            builder.AppendLine($"MemoryTypeBits: {this.MemoryTypeBits}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
 	}
 
 	public struct MemoryType
@@ -221,6 +392,18 @@ namespace SharpVk
 		public MemoryPropertyFlags PropertyFlags;
 
 		public uint HeapIndex;
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("MemoryType");
+            builder.AppendLine("{");
+            builder.AppendLine($"PropertyFlags: {this.PropertyFlags}");
+            builder.AppendLine($"HeapIndex: {this.HeapIndex}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
 	}
 
 	public struct Offset3D
@@ -231,6 +414,19 @@ namespace SharpVk
 		public int Y;
 
 		public int Z;
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("Offset3D");
+            builder.AppendLine("{");
+            builder.AppendLine($"X: {this.X}");
+            builder.AppendLine($"Y: {this.Y}");
+            builder.AppendLine($"Z: {this.Z}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
 	}
 
 	public struct PhysicalDeviceFeatures
@@ -345,6 +541,71 @@ namespace SharpVk
 		public Bool32 VariableMultisampleRate;
 
 		public Bool32 InheritedQueries;
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("PhysicalDeviceFeatures");
+            builder.AppendLine("{");
+            builder.AppendLine($"RobustBufferAccess: {this.RobustBufferAccess}");
+            builder.AppendLine($"FullDrawIndexUint32: {this.FullDrawIndexUint32}");
+            builder.AppendLine($"ImageCubeArray: {this.ImageCubeArray}");
+            builder.AppendLine($"IndependentBlend: {this.IndependentBlend}");
+            builder.AppendLine($"GeometryShader: {this.GeometryShader}");
+            builder.AppendLine($"TessellationShader: {this.TessellationShader}");
+            builder.AppendLine($"SampleRateShading: {this.SampleRateShading}");
+            builder.AppendLine($"DualSourceBlend: {this.DualSourceBlend}");
+            builder.AppendLine($"LogicOp: {this.LogicOp}");
+            builder.AppendLine($"MultiDrawIndirect: {this.MultiDrawIndirect}");
+            builder.AppendLine($"DrawIndirectFirstInstance: {this.DrawIndirectFirstInstance}");
+            builder.AppendLine($"DepthClamp: {this.DepthClamp}");
+            builder.AppendLine($"DepthBiasClamp: {this.DepthBiasClamp}");
+            builder.AppendLine($"FillModeNonSolid: {this.FillModeNonSolid}");
+            builder.AppendLine($"DepthBounds: {this.DepthBounds}");
+            builder.AppendLine($"WideLines: {this.WideLines}");
+            builder.AppendLine($"LargePoints: {this.LargePoints}");
+            builder.AppendLine($"AlphaToOne: {this.AlphaToOne}");
+            builder.AppendLine($"MultiViewport: {this.MultiViewport}");
+            builder.AppendLine($"SamplerAnisotropy: {this.SamplerAnisotropy}");
+            builder.AppendLine($"TextureCompressionETC2: {this.TextureCompressionETC2}");
+            builder.AppendLine($"TextureCompressionASTC_LDR: {this.TextureCompressionASTC_LDR}");
+            builder.AppendLine($"TextureCompressionBC: {this.TextureCompressionBC}");
+            builder.AppendLine($"OcclusionQueryPrecise: {this.OcclusionQueryPrecise}");
+            builder.AppendLine($"PipelineStatisticsQuery: {this.PipelineStatisticsQuery}");
+            builder.AppendLine($"VertexPipelineStoresAndAtomics: {this.VertexPipelineStoresAndAtomics}");
+            builder.AppendLine($"FragmentStoresAndAtomics: {this.FragmentStoresAndAtomics}");
+            builder.AppendLine($"ShaderTessellationAndGeometryPointSize: {this.ShaderTessellationAndGeometryPointSize}");
+            builder.AppendLine($"ShaderImageGatherExtended: {this.ShaderImageGatherExtended}");
+            builder.AppendLine($"ShaderStorageImageExtendedFormats: {this.ShaderStorageImageExtendedFormats}");
+            builder.AppendLine($"ShaderStorageImageMultisample: {this.ShaderStorageImageMultisample}");
+            builder.AppendLine($"ShaderStorageImageReadWithoutFormat: {this.ShaderStorageImageReadWithoutFormat}");
+            builder.AppendLine($"ShaderStorageImageWriteWithoutFormat: {this.ShaderStorageImageWriteWithoutFormat}");
+            builder.AppendLine($"ShaderUniformBufferArrayDynamicIndexing: {this.ShaderUniformBufferArrayDynamicIndexing}");
+            builder.AppendLine($"ShaderSampledImageArrayDynamicIndexing: {this.ShaderSampledImageArrayDynamicIndexing}");
+            builder.AppendLine($"ShaderStorageBufferArrayDynamicIndexing: {this.ShaderStorageBufferArrayDynamicIndexing}");
+            builder.AppendLine($"ShaderStorageImageArrayDynamicIndexing: {this.ShaderStorageImageArrayDynamicIndexing}");
+            builder.AppendLine($"ShaderClipDistance: {this.ShaderClipDistance}");
+            builder.AppendLine($"ShaderCullDistance: {this.ShaderCullDistance}");
+            builder.AppendLine($"ShaderFloat64: {this.ShaderFloat64}");
+            builder.AppendLine($"ShaderInt64: {this.ShaderInt64}");
+            builder.AppendLine($"ShaderInt16: {this.ShaderInt16}");
+            builder.AppendLine($"ShaderResourceResidency: {this.ShaderResourceResidency}");
+            builder.AppendLine($"ShaderResourceMinLod: {this.ShaderResourceMinLod}");
+            builder.AppendLine($"SparseBinding: {this.SparseBinding}");
+            builder.AppendLine($"SparseResidencyBuffer: {this.SparseResidencyBuffer}");
+            builder.AppendLine($"SparseResidencyImage2D: {this.SparseResidencyImage2D}");
+            builder.AppendLine($"SparseResidencyImage3D: {this.SparseResidencyImage3D}");
+            builder.AppendLine($"SparseResidency2Samples: {this.SparseResidency2Samples}");
+            builder.AppendLine($"SparseResidency4Samples: {this.SparseResidency4Samples}");
+            builder.AppendLine($"SparseResidency8Samples: {this.SparseResidency8Samples}");
+            builder.AppendLine($"SparseResidency16Samples: {this.SparseResidency16Samples}");
+            builder.AppendLine($"SparseResidencyAliased: {this.SparseResidencyAliased}");
+            builder.AppendLine($"VariableMultisampleRate: {this.VariableMultisampleRate}");
+            builder.AppendLine($"InheritedQueries: {this.InheritedQueries}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
 	}
 
 	public struct PhysicalDeviceSparseProperties
@@ -359,6 +620,21 @@ namespace SharpVk
 		public Bool32 ResidencyAlignedMipSize;
 
 		public Bool32 ResidencyNonResidentStrict;
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("PhysicalDeviceSparseProperties");
+            builder.AppendLine("{");
+            builder.AppendLine($"ResidencyStandard2DBlockShape: {this.ResidencyStandard2DBlockShape}");
+            builder.AppendLine($"ResidencyStandard2DMultisampleBlockShape: {this.ResidencyStandard2DMultisampleBlockShape}");
+            builder.AppendLine($"ResidencyStandard3DBlockShape: {this.ResidencyStandard3DBlockShape}");
+            builder.AppendLine($"ResidencyAlignedMipSize: {this.ResidencyAlignedMipSize}");
+            builder.AppendLine($"ResidencyNonResidentStrict: {this.ResidencyNonResidentStrict}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
 	}
 
 	public struct QueueFamilyProperties
@@ -371,6 +647,20 @@ namespace SharpVk
 		public uint TimestampValidBits;
 
 		public Extent3D MinImageTransferGranularity;
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("QueueFamilyProperties");
+            builder.AppendLine("{");
+            builder.AppendLine($"QueueFlags: {this.QueueFlags}");
+            builder.AppendLine($"QueueCount: {this.QueueCount}");
+            builder.AppendLine($"TimestampValidBits: {this.TimestampValidBits}");
+            builder.AppendLine($"MinImageTransferGranularity: {this.MinImageTransferGranularity}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
 	}
 
 	public struct SparseImageFormatProperties
@@ -381,6 +671,19 @@ namespace SharpVk
 		public Extent3D ImageGranularity;
 
 		public SparseImageFormatFlags Flags;
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("SparseImageFormatProperties");
+            builder.AppendLine("{");
+            builder.AppendLine($"AspectMask: {this.AspectMask}");
+            builder.AppendLine($"ImageGranularity: {this.ImageGranularity}");
+            builder.AppendLine($"Flags: {this.Flags}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
 	}
 
 	public struct SparseImageMemoryRequirements
@@ -395,6 +698,21 @@ namespace SharpVk
 		public DeviceSize ImageMipTailOffset;
 
 		public DeviceSize ImageMipTailStride;
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("SparseImageMemoryRequirements");
+            builder.AppendLine("{");
+            builder.AppendLine($"FormatProperties: {this.FormatProperties}");
+            builder.AppendLine($"ImageMipTailFirstLod: {this.ImageMipTailFirstLod}");
+            builder.AppendLine($"ImageMipTailSize: {this.ImageMipTailSize}");
+            builder.AppendLine($"ImageMipTailOffset: {this.ImageMipTailOffset}");
+            builder.AppendLine($"ImageMipTailStride: {this.ImageMipTailStride}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
 	}
 
 	public struct SubresourceLayout
@@ -409,5 +727,84 @@ namespace SharpVk
 		public DeviceSize ArrayPitch;
 
 		public DeviceSize DepthPitch;
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("SubresourceLayout");
+            builder.AppendLine("{");
+            builder.AppendLine($"Offset: {this.Offset}");
+            builder.AppendLine($"Size: {this.Size}");
+            builder.AppendLine($"RowPitch: {this.RowPitch}");
+            builder.AppendLine($"ArrayPitch: {this.ArrayPitch}");
+            builder.AppendLine($"DepthPitch: {this.DepthPitch}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
+	}
+
+	public struct SurfaceCapabilities
+	{
+
+		public uint MinImageCount;
+
+		public uint MaxImageCount;
+
+		public Extent2D CurrentExtent;
+
+		public Extent2D MinImageExtent;
+
+		public Extent2D MaxImageExtent;
+
+		public uint MaxImageArrayLayers;
+
+		public SurfaceTransformFlags SupportedTransforms;
+
+		public SurfaceTransformFlags CurrentTransform;
+
+		public CompositeAlphaFlags SupportedCompositeAlpha;
+
+		public ImageUsageFlags SupportedUsageFlags;
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("SurfaceCapabilities");
+            builder.AppendLine("{");
+            builder.AppendLine($"MinImageCount: {this.MinImageCount}");
+            builder.AppendLine($"MaxImageCount: {this.MaxImageCount}");
+            builder.AppendLine($"CurrentExtent: {this.CurrentExtent}");
+            builder.AppendLine($"MinImageExtent: {this.MinImageExtent}");
+            builder.AppendLine($"MaxImageExtent: {this.MaxImageExtent}");
+            builder.AppendLine($"MaxImageArrayLayers: {this.MaxImageArrayLayers}");
+            builder.AppendLine($"SupportedTransforms: {this.SupportedTransforms}");
+            builder.AppendLine($"CurrentTransform: {this.CurrentTransform}");
+            builder.AppendLine($"SupportedCompositeAlpha: {this.SupportedCompositeAlpha}");
+            builder.AppendLine($"SupportedUsageFlags: {this.SupportedUsageFlags}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
+	}
+
+	public struct SurfaceFormat
+	{
+
+		public Format Format;
+
+		public ColorSpace ColorSpace;
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("SurfaceFormat");
+            builder.AppendLine("{");
+            builder.AppendLine($"Format: {this.Format}");
+            builder.AppendLine($"ColorSpace: {this.ColorSpace}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
 	}
 }

@@ -1899,6 +1899,98 @@ namespace SharpVk
 		}
 	}
 
+	public class PresentInfo
+	{
+
+		public Semaphore[] WaitSemaphores
+		{
+			get;
+			set;
+		}
+
+		public Swapchain[] Swapchains
+		{
+			get;
+			set;
+		}
+
+		public uint[] ImageIndices
+		{
+			get;
+			set;
+		}
+
+		public Result[] Results
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.PresentInfo Pack()
+        {
+            var result = new Interop.PresentInfo();
+			result.SType = StructureType.PresentInfo;
+			result.WaitSemaphoreCount = (uint)(this.WaitSemaphores?.Length ?? 0);
+			
+			//WaitSemaphores
+			if (this.WaitSemaphores != null)
+			{
+			    int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.Semaphore>();
+			    IntPtr pointer = Interop.HeapUtil.Allocate<Interop.Semaphore>(this.WaitSemaphores.Length);
+			    for (int index = 0; index < this.WaitSemaphores.Length; index++)
+			    {
+			        System.Runtime.InteropServices.Marshal.StructureToPtr(this.WaitSemaphores[index].Pack(), pointer + (size * index), false);
+			    }
+			    result.WaitSemaphores = (Interop.Semaphore*)pointer.ToPointer();
+			}
+			else
+			{
+			    result.WaitSemaphores = null;
+			}
+			result.SwapchainCount = (uint)(this.Swapchains?.Length ?? 0);
+			
+			//Swapchains
+			if (this.Swapchains != null)
+			{
+			    int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.Swapchain>();
+			    IntPtr pointer = Interop.HeapUtil.Allocate<Interop.Swapchain>(this.Swapchains.Length);
+			    for (int index = 0; index < this.Swapchains.Length; index++)
+			    {
+			        System.Runtime.InteropServices.Marshal.StructureToPtr(this.Swapchains[index].Pack(), pointer + (size * index), false);
+			    }
+			    result.Swapchains = (Interop.Swapchain*)pointer.ToPointer();
+			}
+			else
+			{
+			    result.Swapchains = null;
+			}
+			result.SwapchainCount = (uint)(this.ImageIndices?.Length ?? 0);
+			result.ImageIndices = this.ImageIndices == null ? null : Interop.HeapUtil.MarshalTo(this.ImageIndices);
+			result.SwapchainCount = (uint)(this.Results?.Length ?? 0);
+			
+			//Results
+			if (this.Results != null)
+			{
+			    result.Results = (Result*)Interop.HeapUtil.Allocate<uint>(this.Results.Length).ToPointer();
+			    for (int index = 0; index < this.Results.Length; index++)
+			    {
+			        result.Results[index] = this.Results[index];
+			    }
+			}
+			else
+			{
+			    result.Results = null;
+			}
+
+            return result;
+        }
+
+		internal unsafe Interop.PresentInfo* MarshalTo()
+        {
+            return (Interop.PresentInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
 	public class QueryPoolCreateInfo
 	{
 
@@ -2357,6 +2449,167 @@ namespace SharpVk
 		internal unsafe Interop.SubmitInfo* MarshalTo()
         {
             return (Interop.SubmitInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class SwapchainCreateInfo
+	{
+
+		public SwapchainCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public Surface Surface
+		{
+			get;
+			set;
+		}
+
+		public uint MinImageCount
+		{
+			get;
+			set;
+		}
+
+		public Format ImageFormat
+		{
+			get;
+			set;
+		}
+
+		public ColorSpace ImageColorSpace
+		{
+			get;
+			set;
+		}
+
+		public Extent2D ImageExtent
+		{
+			get;
+			set;
+		}
+
+		public uint ImageArrayLayers
+		{
+			get;
+			set;
+		}
+
+		public ImageUsageFlags ImageUsage
+		{
+			get;
+			set;
+		}
+
+		public SharingMode ImageSharingMode
+		{
+			get;
+			set;
+		}
+
+		public uint[] QueueFamilyIndices
+		{
+			get;
+			set;
+		}
+
+		public SurfaceTransformFlags PreTransform
+		{
+			get;
+			set;
+		}
+
+		public CompositeAlphaFlags CompositeAlpha
+		{
+			get;
+			set;
+		}
+
+		public PresentMode PresentMode
+		{
+			get;
+			set;
+		}
+
+		public Bool32 Clipped
+		{
+			get;
+			set;
+		}
+
+		public Swapchain OldSwapchain
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.SwapchainCreateInfo Pack()
+        {
+            var result = new Interop.SwapchainCreateInfo();
+			result.SType = StructureType.SwapchainCreateInfo;
+			result.Surface = this.Surface?.Pack() ?? Interop.Surface.Null;
+			result.QueueFamilyIndexCount = (uint)(this.QueueFamilyIndices?.Length ?? 0);
+			result.QueueFamilyIndices = this.QueueFamilyIndices == null ? null : Interop.HeapUtil.MarshalTo(this.QueueFamilyIndices);
+			result.OldSwapchain = this.OldSwapchain?.Pack() ?? Interop.Swapchain.Null;
+			result.Flags = this.Flags;
+			result.MinImageCount = this.MinImageCount;
+			result.ImageFormat = this.ImageFormat;
+			result.ImageColorSpace = this.ImageColorSpace;
+			result.ImageExtent = this.ImageExtent;
+			result.ImageArrayLayers = this.ImageArrayLayers;
+			result.ImageUsage = this.ImageUsage;
+			result.ImageSharingMode = this.ImageSharingMode;
+			result.PreTransform = this.PreTransform;
+			result.CompositeAlpha = this.CompositeAlpha;
+			result.PresentMode = this.PresentMode;
+			result.Clipped = this.Clipped;
+
+            return result;
+        }
+
+		internal unsafe Interop.SwapchainCreateInfo* MarshalTo()
+        {
+            return (Interop.SwapchainCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class Win32SurfaceCreateInfo
+	{
+
+		public Win32SurfaceCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public IntPtr Hinstance
+		{
+			get;
+			set;
+		}
+
+		public IntPtr Hwnd
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.Win32SurfaceCreateInfo Pack()
+        {
+            var result = new Interop.Win32SurfaceCreateInfo();
+			result.SType = StructureType.Win32SurfaceCreateInfo;
+			result.Flags = this.Flags;
+			result.Hinstance = this.Hinstance;
+			result.Hwnd = this.Hwnd;
+
+            return result;
+        }
+
+		internal unsafe Interop.Win32SurfaceCreateInfo* MarshalTo()
+        {
+            return (Interop.Win32SurfaceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 }

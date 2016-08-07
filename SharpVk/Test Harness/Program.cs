@@ -1,14 +1,20 @@
 ﻿using SharpVk.VkXml;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Windows.Forms;
 
 namespace SharpVk
 {
     class Program
     {
+        [STAThread]
         static void Main(string[] args)
         {
+            GenerateTypes();
+
             var instance = Instance.CreateInstance(new InstanceCreateInfo
             {
                 ApplicationInfo = new ApplicationInfo
@@ -33,40 +39,53 @@ namespace SharpVk
                 }
             };
 
+            var surfaceForm = new Form
+            {
+                Height = 720,
+                Width = 1280
+            };
+
+            var surfaceCreateInfo = new Win32SurfaceCreateInfo
+            {
+                Flags = Win32SurfaceCreateFlags.None,
+                Hinstance = IntPtr.Zero,
+                Hwnd = surfaceForm.Handle
+            };
+
+            var surface = instance.CreateWin32Surface(surfaceCreateInfo, null);
+
+            var swapchainInfo = new SwapchainCreateInfo
+            {
+                Surface = surface,
+                Flags = SwapchainCreateFlags.None,
+                PresentMode = PresentMode.Immediate
+            };
+
+            var devices = new List<Device>();
+
             foreach (var physicalDevice in physicalDevices)
             {
-                Enumerate(physicalDevice.GetPhysicalDeviceProperties());
-
-                uint memoryTypeIndex = (uint)physicalDevice.GetPhysicalDeviceMemoryProperties()
-                                                                                        .MemoryTypes
-                                                                                        .Select((mem, index) => Tuple.Create(mem, index))
-                                                                                        .First(x => x.Item1.PropertyFlags.HasFlag(MemoryPropertyFlags.HostVisible)).Item2;
-
                 var device = physicalDevice.CreateDevice(deviceCreateInfo, null);
 
-                var memoryAllocateInfo = new MemoryAllocateInfo
-                {
-                    MemoryTypeIndex = memoryTypeIndex,
-                    AllocationSize = 1 << 20
-                };
+                Enumerate(physicalDevice.GetPhysicalDeviceSurfaceCapabilities(surface));
 
-                var memBlock = device.AllocateMemory(memoryAllocateInfo, null);
+                var swapchain = device.CreateSwapchain(swapchainInfo, null);
 
-                IntPtr dataPointer = IntPtr.Zero;
+                var images = swapchain.GetSwapchainImages();
 
-                memBlock.MapMemory(0, 1024, MemoryMapFlags.None, ref dataPointer);
-                
-                memBlock.UnmapMemory();
+                swapchain.DestroySwapchain(null);
 
-                ulong size = memBlock.GetDeviceMemoryCommitment();
+                devices.Add(device);
+            }
+            
+            surfaceForm.ShowDialog();
 
-                memBlock.FreeMemory(null);
-
+            foreach (var device in devices)
+            {
                 device.DestroyDevice(null);
             }
 
-            Console.WriteLine("Done");
-            Console.ReadLine();
+            surface.DestroySurface(null);
 
             instance.DestroyInstance(null);
         }
@@ -82,6 +101,16 @@ namespace SharpVk
             {
                 Console.WriteLine("{0} = {1}", property.Name, property.GetValue(target));
             }
+        }
+
+        private static void GenerateTypes()
+        {
+            var xmlCache = new VkXmlCache(".\\obj\\VkTemplates");
+
+            var parser = new SpecParser(xmlCache);
+            var generator = new TypeGenerator();
+
+            var types = generator.Generate(parser.Run());
         }
     }
 }

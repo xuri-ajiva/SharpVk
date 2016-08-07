@@ -9,6 +9,8 @@ namespace SharpVk.VkXml
 {
     public class SpecParser
     {
+        private static readonly string[] knownExtensions = new[] { "khr" };
+
         private static readonly Parser<string> firstPart = from head in Parse.Letter
                                                            from tail in Parse.Lower.Many()
                                                            select new string(new[] { head }.Concat(tail).ToArray()).ToLower();
@@ -180,10 +182,20 @@ namespace SharpVk.VkXml
 
                     string[] memberNameParts = GetNameParts(memberName, out memberExtension, false);
 
+                    string typeExtension;
+
+                    string[] typeNameParts = GetNameParts(memberType, out typeExtension, true);
+
+                    string typeWithoutExtension = typeNameParts != null
+                                                    ? "Vk" + string.Join("", typeNameParts.Select(CapitaliseFirst))
+                                                    : null;
+
                     newType.Members.Add(new ParsedMember
                     {
                         VkName = vkName,
                         Type = memberType,
+                        TypeWithoutExtension = typeWithoutExtension,
+                        TypeExtension = typeExtension,
                         IsOptional = isOptional,
                         FixedLength = fixedLength,
                         PointerType = pointerType,
@@ -236,26 +248,7 @@ namespace SharpVk.VkXml
                         value = value.Trim('(', ')');
                     }
 
-                    var fieldNameParts = fieldName.Split('_')
-                                                    .Select(x => x.ToLower())
-                                                    .ToArray()
-                                                    .AsEnumerable();
-
-                    if (fieldNameParts.First() == "vk")
-                    {
-                        fieldNameParts = fieldNameParts.Skip(1);
-                    }
-
-                    int prefixSkipCount = 0;
-
-                    while (nameParts != null
-                        && prefixSkipCount < nameParts.Length
-                        && nameParts[prefixSkipCount] == fieldNameParts.ElementAt(prefixSkipCount))
-                    {
-                        prefixSkipCount++;
-                    }
-
-                    fieldNameParts = fieldNameParts.Skip(prefixSkipCount);
+                    IEnumerable<string> fieldNameParts = GetEnumFieldNameParts(nameParts, fieldName);
 
                     newEnum.Fields.Add(fieldName, new ParsedEnumField
                     {
@@ -330,7 +323,51 @@ namespace SharpVk.VkXml
 
             var vkFeature = vkXml.Element("registry").Elements("feature").Single(x => x.Attribute("api").Value == "vulkan");
 
-            return FilterRequiredElement(typeXml, enumXml, commandXml, vkFeature);
+            var extensionsToInclude = new[] { "VK_KHR_surface", "VK_KHR_win32_surface", "VK_KHR_swapchain" };
+
+            var vkExtensions = vkXml.Element("registry").Element("extensions").Elements("extension").Where(x => extensionsToInclude.Contains(x.Attribute("name")?.Value));
+
+            return FilterRequiredElement(typeXml, enumXml, commandXml, vkFeature, vkExtensions);
+        }
+
+        private static IEnumerable<string> GetEnumFieldNameParts(string[] nameParts, string fieldName)
+        {
+            var fieldNameParts = fieldName.Split('_')
+                                            .Select(x => x.ToLower())
+                                            .ToArray()
+                                            .AsEnumerable();
+
+            if (fieldNameParts.First() == "vk")
+            {
+                fieldNameParts = fieldNameParts.Skip(1);
+            }
+
+            int prefixSkipCount = 0;
+
+            while (nameParts != null
+                && prefixSkipCount < nameParts.Length
+                && nameParts[prefixSkipCount] == fieldNameParts.ElementAt(prefixSkipCount))
+            {
+                prefixSkipCount++;
+            }
+
+            fieldNameParts = fieldNameParts.Skip(prefixSkipCount);
+
+            if (knownExtensions.Contains(fieldNameParts.Last()))
+            {
+                fieldNameParts = fieldNameParts.Take(fieldNameParts.Count() - 1);
+            }
+
+            return fieldNameParts;
+        }
+
+        private static string CapitaliseFirst(string value)
+        {
+            var charArray = value.ToCharArray();
+
+            charArray[0] = char.ToUpper(charArray[0]);
+
+            return new string(charArray);
         }
 
         private static ParsedLen[] GetDimensions(string name, XElement vkMember, string memberName)
@@ -357,7 +394,7 @@ namespace SharpVk.VkXml
             return dimensions;
         }
 
-        private static ParsedSpec FilterRequiredElement(Dictionary<string, ParsedType> typeXml, Dictionary<string, ParsedEnum> enumXml, Dictionary<string, ParsedCommand> commandXml, XElement vkFeature)
+        private static ParsedSpec FilterRequiredElement(Dictionary<string, ParsedType> typeXml, Dictionary<string, ParsedEnum> enumXml, Dictionary<string, ParsedCommand> commandXml, XElement vkFeature, IEnumerable<XElement> extensions)
         {
             var requiredTypes = new List<string>();
             var requiredCommand = new List<string>();
@@ -383,11 +420,58 @@ namespace SharpVk.VkXml
                 }
             }
 
-            var result = new ParsedSpec();
-
             //HACK Artificially limit the set of required commands to simplify
             // the API while working on marshalling and the public handles
-            foreach (var commandName in requiredCommand.Distinct().Take(61))
+            requiredCommand = new List<string>(requiredCommand.Distinct().Take(61));
+
+            foreach (var extension in extensions)
+            {
+                int extensionNumber = int.Parse(extension.Attribute("number").Value);
+
+                foreach (var requirement in extension.Elements("require").Elements())
+                {
+                    switch (requirement.Name.LocalName)
+                    {
+                        case "command":
+                            requiredCommand.Add(requirement.Attribute("name").Value);
+                            break;
+                        case "enum":
+                            if (requirement.Attribute("extends") != null)
+                            {
+                                var extendedEnum = enumXml[requirement.Attribute("extends").Value];
+
+                                int offset = int.Parse(requirement.Attribute("offset").Value);
+
+                                string vkName = requirement.Attribute("name").Value;
+                                int value = 1000000000 + 1000 * (extensionNumber - 1) + offset;
+
+                                if (requirement.Attribute("dir")?.Value == "-")
+                                {
+                                    value = -value;
+                                }
+
+                                var nameParts = GetEnumFieldNameParts(extendedEnum.NameParts, vkName);
+
+                                extendedEnum.Fields.Add(vkName, new ParsedEnumField
+                                {
+                                    VkName = vkName,
+                                    Value = value.ToString(),
+                                    NameParts = nameParts.ToArray()
+                                });
+                            }
+                            break;
+                        case "type":
+                            requiredTypes.Add(requirement.Attribute("name").Value);
+                            break;
+                            //default:
+                            //    throw new Exception("Unexpected requirement type: " + requirement.Name.LocalName);
+                    }
+                }
+            }
+
+            var result = new ParsedSpec();
+
+            foreach (var commandName in requiredCommand.Distinct())
             {
                 var command = commandXml[commandName];
 
@@ -586,6 +670,8 @@ namespace SharpVk.VkXml
         {
             public string VkName;
             public string Type;
+            public string TypeWithoutExtension;
+            public string TypeExtension;
             public string[] NameParts;
             public string Extension;
             public string Comment;

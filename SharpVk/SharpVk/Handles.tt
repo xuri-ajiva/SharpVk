@@ -33,12 +33,31 @@ foreach(var handle in types.Handles)
 #>
 		private readonly <#=handle.ParentHandle#> parent;
 
+<#
+		if(handle.AssociatedHandle != null)
+        {
+#>
+		private readonly <#=handle.AssociatedHandle#> associated;
+
+		internal <#=handle.Name#>(Interop.<#=handle.Name#> handle, <#=handle.ParentHandle#> parent, <#=handle.AssociatedHandle#> associated)
+		{
+			this.handle = handle;
+			this.parent = parent;
+			this.associated = associated;
+		}
+<#
+        }
+		else
+        {
+#>
+
 		internal <#=handle.Name#>(Interop.<#=handle.Name#> handle, <#=handle.ParentHandle#> parent)
 		{
 			this.handle = handle;
 			this.parent = parent;
 		}
 <#
+        }
     }
 	else
     {
@@ -83,6 +102,13 @@ foreach(var handle in types.Handles)
 
 <#
 		}
+
+		if(method.HasVkResult)
+        {
+#>				Result commandResult;
+
+<#
+        }
 #>
 <#
 		foreach(var statement in method.MarshalToStatements)
@@ -96,7 +122,7 @@ foreach(var handle in types.Handles)
 		if(method.IsDoubleInvoke)
 		{
 #>
-				Interop.Commands.<#=method.CommandName#>(<#
+				<#if(method.HasVkResult){#>commandResult = <#}#>Interop.Commands.<#=method.CommandName#>(<#
 			isFirst = true;
 
 			foreach(var param in method.Parameters)
@@ -114,6 +140,14 @@ foreach(var handle in types.Handles)
 				#>);
 
 <#
+			if(method.HasVkResult)
+			{
+#>				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+<#
+			}
 		}
 
 		foreach(var statement in method.MarshalMidStatements)
@@ -128,7 +162,7 @@ foreach(var handle in types.Handles)
 <#
 		}
 #>
-				Interop.Commands.<#=method.CommandName#>(<#
+				<#if(method.HasVkResult){#>commandResult = <#}#>Interop.Commands.<#=method.CommandName#>(<#
 		isFirst = true;
 
 		foreach(var param in method.Parameters)
@@ -146,6 +180,15 @@ foreach(var handle in types.Handles)
 				#>);
 
 <#
+		if(method.HasVkResult)
+		{
+#>				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+<#
+		}
+
 		foreach(var statement in method.MarshalFromStatements)
 		{
 #>				<#=statement#>
@@ -154,6 +197,7 @@ foreach(var handle in types.Handles)
 #>
 
 				Interop.HeapUtil.FreeLog();
+
 <#
 		if(method.ReturnTypeName != "void")
 		{

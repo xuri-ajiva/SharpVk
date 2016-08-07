@@ -20,7 +20,7 @@
 
 namespace SharpVk
 {
-	public class SharpVkException
+	public abstract class SharpVkException
 		: Exception
 	{
 		public static bool IsError(Result resultCode)
@@ -30,6 +30,11 @@ namespace SharpVk
 
 		public static SharpVkException Create(Result resultCode)
 		{
+			if(!IsError(resultCode))
+			{
+				return null;
+			}
+
 			switch(resultCode)
 			{
 <#
@@ -39,8 +44,26 @@ foreach(var exception in types.Exceptions)
 					return new <#=exception.Name#>();
 <#}#>			}
 
-			return new SharpVkException();
+			return new UnknownSharpVkException(resultCode);
 		}
+
+		public abstract Result ResultCode
+		{
+			get;
+		}
+	}
+
+	public class UnknownSharpVkException
+		: SharpVkException
+	{
+		private Result resultCode;
+
+		public UnknownSharpVkException(Result resultCode)
+		{
+			this.resultCode = resultCode;
+		}
+
+		public override Result ResultCode => this.resultCode;
 	}
 
 <#
@@ -49,8 +72,9 @@ foreach(var exception in types.Exceptions)
 #>	public class <#=exception.Name#>
 		: SharpVkException
 	{
+		public override Result ResultCode => <#=exception.Value#>;
 	}
 <#
-#>//		public const <#=GetTypeName(exception.Type)#> <#=exception.Name#> = <#=exception.Value#>;
+#>
 <#}#>
 }

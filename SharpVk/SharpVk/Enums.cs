@@ -79,6 +79,16 @@ namespace SharpVk
 	}
 
 	[Flags]
+	public enum CompositeAlphaFlags
+	{
+		None = 0,
+		Opaque = 1 << 0,
+		PreMultiplied = 1 << 1,
+		PostMultiplied = 1 << 2,
+		Inherit = 1 << 3,
+	}
+
+	[Flags]
 	public enum DeviceCreateFlags
 	{
 		None = 0,
@@ -300,6 +310,38 @@ namespace SharpVk
 		Metadata = 1 << 0,
 	}
 
+	[Flags]
+	public enum SurfaceTransformFlags
+	{
+		None = 0,
+		Identity = 1 << 0,
+		Rotate90 = 1 << 1,
+		Rotate180 = 1 << 2,
+		Rotate270 = 1 << 3,
+		HorizontalMirror = 1 << 4,
+		HorizontalMirrorRotate90 = 1 << 5,
+		HorizontalMirrorRotate180 = 1 << 6,
+		HorizontalMirrorRotate270 = 1 << 7,
+		Inherit = 1 << 8,
+	}
+
+	[Flags]
+	public enum SwapchainCreateFlags
+	{
+		None = 0,
+	}
+
+	[Flags]
+	public enum Win32SurfaceCreateFlags
+	{
+		None = 0,
+	}
+
+	public enum ColorSpace
+	{
+		SrgbNonlinear = 0,
+	}
+
 	public enum ComponentSwizzle
 	{
 		Identity = 0,
@@ -511,6 +553,7 @@ namespace SharpVk
 		TransferSourceOptimal = 6,
 		TransferDestinationOptimal = 7,
 		Preinitialized = 8,
+		PresentSource = 1000001002,
 	}
 
 	public enum ImageTiling
@@ -551,6 +594,14 @@ namespace SharpVk
 		One = 1,
 	}
 
+	public enum PresentMode
+	{
+		Immediate = 0,
+		Mailbox = 1,
+		Fifo = 2,
+		FifoRelaxed = 3,
+	}
+
 	public enum QueryType
 	{
 		Occlusion = 0,
@@ -578,6 +629,10 @@ namespace SharpVk
 		ErrorTooManyObjects = -10,
 		ErrorFormatNotSupported = -11,
 		ErrorFragmentedPool = -12,
+		ErrorSurfaceLost = -1000000000,
+		ErrorNativeWindowInUse = -1000000001,
+		Suboptimal = 1000001003,
+		ErrorOutOfDate = -1000001004,
 	}
 
 	public enum SharingMode
@@ -637,5 +692,8 @@ namespace SharpVk
 		MemoryBarrier = 46,
 		LoaderInstanceCreateInfo = 47,
 		LoaderDeviceCreateInfo = 48,
+		SwapchainCreateInfo = 1000001000,
+		PresentInfo = 1000001001,
+		Win32SurfaceCreateInfo = 1000009000,
 	}
 }

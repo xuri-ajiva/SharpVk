@@ -226,6 +226,12 @@ namespace SharpVk.VkXml
                 set;
             }
 
+            public string AssociatedHandle
+            {
+                get;
+                set;
+            }
+
             public List<VkHandleMethod> Methods
             {
                 get;
@@ -266,6 +272,12 @@ namespace SharpVk.VkXml
             }
 
             public bool IsPassthroughResult
+            {
+                get;
+                set;
+            }
+
+            public bool HasVkResult
             {
                 get;
                 set;
