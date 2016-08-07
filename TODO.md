@@ -1,8 +1,11 @@
 - [ ] GetFenceStatus & WaitForFence return result as non-error VkResult codes - these need handling and returning
-- [x] Throw exceptions for error VkResult codes
+  - [x] Throw exceptions for error VkResult codes
 - [ ] AllocationCallbacks should be stored in ancestor Instance & references from there
 - [ ] Non-Dispatchable handles should be fixed to 64-bit, to prevent stack mismatches on x86 builds
 - [ ] Flags vs FlagBits may indicate a set of flags versus an individual flag value - needs investigation
+- [x] Prettify Public API Methods (Issue #5)
+    - [ ] Correctly handle Cmd prefix
+- [ ] Implement IDispose pattern for handles with Destroy command
 - [ ] VK API Commands should be correctly generated, compiled & executed (against NVidia implementation on Windows):
   -  Device initialization
     - [x] vkCreateInstance
@@ -29,7 +32,7 @@
     - [x] vkGetDeviceQueue
     - [ ] vkQueueSubmit
     - [x] vkQueueWaitIdle
-    - [ ] vkDeviceWaitIdle
+    - [x] vkDeviceWaitIdle
   - Memory commands
     - [x] vkAllocateMemory
     - [x] vkFreeMemory
@@ -54,8 +57,8 @@
     - [ ] vkGetFenceStatus
     - [ ] vkWaitForFences
   - Queue semaphore commands
-    - [ ] vkCreateSemaphore
-    - [ ] vkDestroySemaphore
+    - [x] vkCreateSemaphore
+    - [x] vkDestroySemaphore
   - Event commands
     - [ ] vkCreateEvent
     - [ ] vkDestroyEvent
@@ -74,11 +77,11 @@
     - [ ] vkDestroyBufferView
   - Image commands
     - [ ] vkCreateImage
-    - [ ] vkDestroyImage
+    - [x] vkDestroyImage
     - [ ] vkGetImageSubresourceLayout
   - Image view commands
-    - [ ] vkCreateImageView
-    - [ ] vkDestroyImageView
+    - [x] vkCreateImageView
+    - [x] vkDestroyImageView
   - Shader commands
     - [ ] vkCreateShaderModule
     - [ ] vkDestroyShaderModule
@@ -168,17 +171,17 @@
     - [ ] vkCmdEndRenderPass
     - [ ] vkCmdExecuteCommands
   - VK_KHR_surface
-    - [ ] vkDestroySurfaceKHR
-    - [ ] vkGetPhysicalDeviceSurfaceSupportKHR
+    - [x] vkDestroySurfaceKHR
+    - [x] vkGetPhysicalDeviceSurfaceSupportKHR
     - [x] vkGetPhysicalDeviceSurfaceCapabilitiesKHR
-    - [ ] vkGetPhysicalDeviceSurfaceFormatsKHR
+    - [x] vkGetPhysicalDeviceSurfaceFormatsKHR
     - [ ] vkGetPhysicalDeviceSurfacePresentModesKHR
   - VK_KHR_swapchain
     - [x] vkCreateSwapchainKHR
     - [x] vkDestroySwapchainKHR
     - [x] vkGetSwapchainImagesKHR
-    - [ ] vkAcquireNextImageKHR
-    - [ ] vkQueuePresentKHR
+    - [x] vkAcquireNextImageKHR
+    - [x] vkQueuePresentKHR
   - VK_KHR_win32_surface
     - [x] vkCreateWin32SurfaceKHR
     - [ ] vkGetPhysicalDeviceWin32PresentationSupportKHR

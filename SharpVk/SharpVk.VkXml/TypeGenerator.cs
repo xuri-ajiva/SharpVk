@@ -94,11 +94,15 @@ namespace SharpVk.VkXml
                     }
                 });
 
-                var handle = handleParams.Any()
-                                    ? handleLookup[handleParams.Last().Type]
-                                    : handleLookup.ContainsKey(command.Params.Last().Type)
-                                        ? handleLookup[command.Params.Last().Type]
-                                        : handleLookup["VkInstance"];
+                var handleTypeName = handleParams.Any()
+                                        ? handleParams.Last().Type
+                                        : handleLookup.ContainsKey(command.Params.Last().Type)
+                                            ? command.Params.Last().Type
+                                            : "VkInstance";
+
+                var handleType = typeData[handleTypeName];
+
+                var handle = handleLookup[handleTypeName];
 
                 var lastParam = command.Params.Last();
 
@@ -108,9 +112,25 @@ namespace SharpVk.VkXml
                                             && lastParam.Dimensions.Any(x => x.Type != SpecParser.LenType.NullTerminated);
                 bool enumeratePattern = command.Verb == "enumerate" || lastParamIsArray;
 
+                var methodNameParts = command.NameParts;
+
+                int verbPrefixLength = 1;
+
+                if (methodNameParts.First() != command.Verb)
+                {
+                    verbPrefixLength = 0;
+                }
+
+                if (handleType.Data.NameParts
+                            .Zip(methodNameParts.Skip(verbPrefixLength), Tuple.Create)
+                            .All(x => x.Item1 == x.Item2))
+                {
+                    methodNameParts = methodNameParts.Take(verbPrefixLength).Concat(methodNameParts.Skip(handleType.Data.NameParts.Count() + verbPrefixLength)).ToArray();
+                }
+
                 var newMethod = new TypeSet.VkHandleMethod
                 {
-                    Name = JoinNameParts(command.NameParts),
+                    Name = JoinNameParts(methodNameParts),
                     ReturnTypeName = "void",
                     CommandName = commandName
                 };
@@ -490,11 +510,11 @@ namespace SharpVk.VkXml
                 {
                     var handle = handleLookup[command.Params.Last().Type];
 
-                    if(typeData[command.Params.First().Type].Data.Category == TypeCategory.handle)
+                    if (typeData[command.Params.First().Type].Data.Category == TypeCategory.handle)
                     {
                         var associatedHandle = handleLookup[command.Params.First().Type];
 
-                        if(handle.ParentHandle != associatedHandle.Name)
+                        if (handle.ParentHandle != associatedHandle.Name)
                         {
                             handle.AssociatedHandle = associatedHandle.Name;
                         }

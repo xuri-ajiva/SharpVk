@@ -37,7 +37,7 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public void BindBufferMemory(DeviceMemory memory, DeviceSize memoryOffset)
+		public void BindMemory(DeviceMemory memory, DeviceSize memoryOffset)
 		{
 			unsafe
 			{
@@ -56,7 +56,7 @@ namespace SharpVk
 			}
 		}
 
-		public MemoryRequirements GetBufferMemoryRequirements()
+		public MemoryRequirements GetMemoryRequirements()
 		{
 			unsafe
 			{
@@ -72,7 +72,7 @@ namespace SharpVk
 			}
 		}
 
-		public void DestroyBuffer(AllocationCallbacks allocator)
+		public void Destroy(AllocationCallbacks allocator)
 		{
 			unsafe
 			{
@@ -105,7 +105,7 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public void DestroyBufferView(AllocationCallbacks allocator)
+		public void Destroy(AllocationCallbacks allocator)
 		{
 			unsafe
 			{
@@ -176,7 +176,7 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public IntPtr GetDeviceProcAddr(string name)
+		public IntPtr GetProcAddr(string name)
 		{
 			unsafe
 			{
@@ -193,7 +193,7 @@ namespace SharpVk
 			}
 		}
 
-		public void DestroyDevice(AllocationCallbacks allocator)
+		public void Destroy(AllocationCallbacks allocator)
 		{
 			unsafe
 			{
@@ -207,7 +207,7 @@ namespace SharpVk
 			}
 		}
 
-		public Queue GetDeviceQueue(uint queueFamilyIndex, uint queueIndex)
+		public Queue GetQueue(uint queueFamilyIndex, uint queueIndex)
 		{
 			unsafe
 			{
@@ -225,7 +225,7 @@ namespace SharpVk
 			}
 		}
 
-		public void DeviceWaitIdle()
+		public void WaitIdle()
 		{
 			unsafe
 			{
@@ -740,7 +740,7 @@ namespace SharpVk
 			}
 		}
 
-		public DeviceSize GetDeviceMemoryCommitment()
+		public DeviceSize GetCommitment()
 		{
 			unsafe
 			{
@@ -775,7 +775,7 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public void DestroyEvent(AllocationCallbacks allocator)
+		public void Destroy(AllocationCallbacks allocator)
 		{
 			unsafe
 			{
@@ -789,7 +789,7 @@ namespace SharpVk
 			}
 		}
 
-		public void GetEventStatus()
+		public void GetStatus()
 		{
 			unsafe
 			{
@@ -807,7 +807,7 @@ namespace SharpVk
 			}
 		}
 
-		public void SetEvent()
+		public void Set()
 		{
 			unsafe
 			{
@@ -825,7 +825,7 @@ namespace SharpVk
 			}
 		}
 
-		public void ResetEvent()
+		public void Reset()
 		{
 			unsafe
 			{
@@ -862,7 +862,7 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public void DestroyFence(AllocationCallbacks allocator)
+		public void Destroy(AllocationCallbacks allocator)
 		{
 			unsafe
 			{
@@ -876,7 +876,7 @@ namespace SharpVk
 			}
 		}
 
-		public void GetFenceStatus()
+		public void GetStatus()
 		{
 			unsafe
 			{
@@ -913,7 +913,7 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public void BindImageMemory(DeviceMemory memory, DeviceSize memoryOffset)
+		public void BindMemory(DeviceMemory memory, DeviceSize memoryOffset)
 		{
 			unsafe
 			{
@@ -932,7 +932,7 @@ namespace SharpVk
 			}
 		}
 
-		public MemoryRequirements GetImageMemoryRequirements()
+		public MemoryRequirements GetMemoryRequirements()
 		{
 			unsafe
 			{
@@ -948,7 +948,7 @@ namespace SharpVk
 			}
 		}
 
-		public SparseImageMemoryRequirements[] GetImageSparseMemoryRequirements()
+		public SparseImageMemoryRequirements[] GetSparseMemoryRequirements()
 		{
 			unsafe
 			{
@@ -974,7 +974,7 @@ namespace SharpVk
 			}
 		}
 
-		public void DestroyImage(AllocationCallbacks allocator)
+		public void Destroy(AllocationCallbacks allocator)
 		{
 			unsafe
 			{
@@ -988,7 +988,7 @@ namespace SharpVk
 			}
 		}
 
-		public SubresourceLayout GetImageSubresourceLayout(ImageSubresource subresource)
+		public SubresourceLayout GetSubresourceLayout(ImageSubresource subresource)
 		{
 			unsafe
 			{
@@ -1023,7 +1023,7 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public void DestroyImageView(AllocationCallbacks allocator)
+		public void Destroy(AllocationCallbacks allocator)
 		{
 			unsafe
 			{
@@ -1052,7 +1052,7 @@ namespace SharpVk
 			this.handle = handle;
 		}
 
-		public static Instance CreateInstance(InstanceCreateInfo createInfo, AllocationCallbacks allocator)
+		public static Instance Create(InstanceCreateInfo createInfo, AllocationCallbacks allocator)
 		{
 			unsafe
 			{
@@ -1080,7 +1080,7 @@ namespace SharpVk
 			}
 		}
 
-		public void DestroyInstance(AllocationCallbacks allocator)
+		public void Destroy(AllocationCallbacks allocator)
 		{
 			unsafe
 			{
@@ -1130,7 +1130,7 @@ namespace SharpVk
 			}
 		}
 
-		public IntPtr GetInstanceProcAddr(string name)
+		public IntPtr GetProcAddr(string name)
 		{
 			unsafe
 			{
@@ -1147,7 +1147,7 @@ namespace SharpVk
 			}
 		}
 
-		public static ExtensionProperties[] EnumerateInstanceExtensionProperties(string layerName)
+		public static ExtensionProperties[] EnumerateExtensionProperties(string layerName)
 		{
 			unsafe
 			{
@@ -1184,7 +1184,7 @@ namespace SharpVk
 			}
 		}
 
-		public static LayerProperties[] EnumerateInstanceLayerProperties()
+		public static LayerProperties[] EnumerateLayerProperties()
 		{
 			unsafe
 			{
@@ -1267,7 +1267,7 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public PhysicalDeviceFeatures GetPhysicalDeviceFeatures()
+		public PhysicalDeviceFeatures GetFeatures()
 		{
 			unsafe
 			{
@@ -1283,7 +1283,7 @@ namespace SharpVk
 			}
 		}
 
-		public FormatProperties GetPhysicalDeviceFormatProperties(Format format)
+		public FormatProperties GetFormatProperties(Format format)
 		{
 			unsafe
 			{
@@ -1299,7 +1299,7 @@ namespace SharpVk
 			}
 		}
 
-		public ImageFormatProperties GetPhysicalDeviceImageFormatProperties(Format format, ImageType type, ImageTiling tiling, ImageUsageFlags usage, ImageCreateFlags flags)
+		public ImageFormatProperties GetImageFormatProperties(Format format, ImageType type, ImageTiling tiling, ImageUsageFlags usage, ImageCreateFlags flags)
 		{
 			unsafe
 			{
@@ -1321,7 +1321,7 @@ namespace SharpVk
 			}
 		}
 
-		public PhysicalDeviceProperties GetPhysicalDeviceProperties()
+		public PhysicalDeviceProperties GetProperties()
 		{
 			unsafe
 			{
@@ -1339,7 +1339,7 @@ namespace SharpVk
 			}
 		}
 
-		public QueueFamilyProperties[] GetPhysicalDeviceQueueFamilyProperties()
+		public QueueFamilyProperties[] GetQueueFamilyProperties()
 		{
 			unsafe
 			{
@@ -1365,7 +1365,7 @@ namespace SharpVk
 			}
 		}
 
-		public PhysicalDeviceMemoryProperties GetPhysicalDeviceMemoryProperties()
+		public PhysicalDeviceMemoryProperties GetMemoryProperties()
 		{
 			unsafe
 			{
@@ -1484,7 +1484,7 @@ namespace SharpVk
 			}
 		}
 
-		public SparseImageFormatProperties[] GetPhysicalDeviceSparseImageFormatProperties(Format format, ImageType type, SampleCountFlags samples, ImageUsageFlags usage, ImageTiling tiling)
+		public SparseImageFormatProperties[] GetSparseImageFormatProperties(Format format, ImageType type, SampleCountFlags samples, ImageUsageFlags usage, ImageTiling tiling)
 		{
 			unsafe
 			{
@@ -1510,7 +1510,7 @@ namespace SharpVk
 			}
 		}
 
-		public Bool32 GetPhysicalDeviceSurfaceSupport(uint queueFamilyIndex, Surface surface)
+		public Bool32 GetSurfaceSupport(uint queueFamilyIndex, Surface surface)
 		{
 			unsafe
 			{
@@ -1533,7 +1533,7 @@ namespace SharpVk
 			}
 		}
 
-		public SurfaceCapabilities GetPhysicalDeviceSurfaceCapabilities(Surface surface)
+		public SurfaceCapabilities GetSurfaceCapabilities(Surface surface)
 		{
 			unsafe
 			{
@@ -1556,7 +1556,7 @@ namespace SharpVk
 			}
 		}
 
-		public SurfaceFormat[] GetPhysicalDeviceSurfaceFormats(Surface surface)
+		public SurfaceFormat[] GetSurfaceFormats(Surface surface)
 		{
 			unsafe
 			{
@@ -1593,7 +1593,7 @@ namespace SharpVk
 			}
 		}
 
-		public PresentMode[] GetPhysicalDeviceSurfacePresentModes(Surface surface)
+		public PresentMode[] GetSurfacePresentModes(Surface surface)
 		{
 			unsafe
 			{
@@ -1630,7 +1630,7 @@ namespace SharpVk
 			}
 		}
 
-		public void GetPhysicalDeviceWin32PresentationSupport(uint queueFamilyIndex)
+		public void GetWin32PresentationSupport(uint queueFamilyIndex)
 		{
 			unsafe
 			{
@@ -1661,7 +1661,7 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public void DestroyQueryPool(AllocationCallbacks allocator)
+		public void Destroy(AllocationCallbacks allocator)
 		{
 			unsafe
 			{
@@ -1675,7 +1675,7 @@ namespace SharpVk
 			}
 		}
 
-		public void GetQueryPoolResults(uint firstQuery, uint queryCount, byte[] data, DeviceSize stride, QueryResultFlags flags)
+		public void GetResults(uint firstQuery, uint queryCount, byte[] data, DeviceSize stride, QueryResultFlags flags)
 		{
 			unsafe
 			{
@@ -1713,7 +1713,7 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public void QueueSubmit(SubmitInfo[] submits, Fence fence)
+		public void Submit(SubmitInfo[] submits, Fence fence)
 		{
 			unsafe
 			{
@@ -1745,7 +1745,7 @@ namespace SharpVk
 			}
 		}
 
-		public void QueueWaitIdle()
+		public void WaitIdle()
 		{
 			unsafe
 			{
@@ -1763,7 +1763,7 @@ namespace SharpVk
 			}
 		}
 
-		public void QueueBindSparse(BindSparseInfo[] bindInfo, Fence fence)
+		public void BindSparse(BindSparseInfo[] bindInfo, Fence fence)
 		{
 			unsafe
 			{
@@ -1795,7 +1795,7 @@ namespace SharpVk
 			}
 		}
 
-		public void QueuePresent(PresentInfo presentInfo)
+		public void Present(PresentInfo presentInfo)
 		{
 			unsafe
 			{
@@ -1834,7 +1834,7 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public void DestroySemaphore(AllocationCallbacks allocator)
+		public void Destroy(AllocationCallbacks allocator)
 		{
 			unsafe
 			{
@@ -1867,7 +1867,7 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public void DestroyShaderModule(AllocationCallbacks allocator)
+		public void Destroy(AllocationCallbacks allocator)
 		{
 			unsafe
 			{
@@ -1900,7 +1900,7 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public void DestroySurface(AllocationCallbacks allocator)
+		public void Destroy(AllocationCallbacks allocator)
 		{
 			unsafe
 			{
@@ -1935,7 +1935,7 @@ namespace SharpVk
 			this.associated = associated;
 		}
 
-		public void DestroySwapchain(AllocationCallbacks allocator)
+		public void Destroy(AllocationCallbacks allocator)
 		{
 			unsafe
 			{
@@ -1949,7 +1949,7 @@ namespace SharpVk
 			}
 		}
 
-		public Image[] GetSwapchainImages()
+		public Image[] GetImages()
 		{
 			unsafe
 			{
