@@ -32,7 +32,7 @@
                 return (int)(value) & 0xfff;
             }
         }
-
+        
         public static implicit operator Version(uint value)
         {
             return new Version { value = value };

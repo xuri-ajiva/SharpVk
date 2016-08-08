@@ -87,7 +87,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="ResultUtil.cs" />
     <Compile Include="Classes.cs">
       <DependentUpon>Classes.tt</DependentUpon>
       <AutoGen>True</AutoGen>

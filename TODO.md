@@ -1,6 +1,6 @@
 - [ ] GetFenceStatus & WaitForFence return result as non-error VkResult codes - these need handling and returning
   - [x] Throw exceptions for error VkResult codes
-- [ ] AllocationCallbacks should be stored in ancestor Instance & references from there
+- [ ] AllocationCallbacks should be stored in ancestor Instance & referenced from there
 - [ ] Non-Dispatchable handles should be fixed to 64-bit, to prevent stack mismatches on x86 builds
 - [ ] Flags vs FlagBits may indicate a set of flags versus an individual flag value - needs investigation
 - [x] Prettify Public API Methods (Issue #5)

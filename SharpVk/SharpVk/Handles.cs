@@ -183,7 +183,7 @@ namespace SharpVk
 				IntPtr result = default(IntPtr);
 
 				char* marshalledName = Interop.HeapUtil.MarshalTo(name);
-				Interop.Commands.vkGetDeviceProcAddr(this.handle, marshalledName);
+				result = Interop.Commands.vkGetDeviceProcAddr(this.handle, marshalledName);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -1137,7 +1137,7 @@ namespace SharpVk
 				IntPtr result = default(IntPtr);
 
 				char* marshalledName = Interop.HeapUtil.MarshalTo(name);
-				Interop.Commands.vkGetInstanceProcAddr(this.handle, marshalledName);
+				result = Interop.Commands.vkGetInstanceProcAddr(this.handle, marshalledName);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -1630,15 +1630,19 @@ namespace SharpVk
 			}
 		}
 
-		public void GetWin32PresentationSupport(uint queueFamilyIndex)
+		public bool GetWin32PresentationSupport(uint queueFamilyIndex)
 		{
 			unsafe
 			{
-				Interop.Commands.vkGetPhysicalDeviceWin32PresentationSupportKHR(this.handle, queueFamilyIndex);
+				bool result = default(bool);
+
+				result = Interop.Commands.vkGetPhysicalDeviceWin32PresentationSupportKHR(this.handle, queueFamilyIndex);
 
 
 				Interop.HeapUtil.FreeLog();
 
+
+				return result;
 			}
 		}
 

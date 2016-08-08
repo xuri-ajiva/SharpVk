@@ -162,7 +162,7 @@ foreach(var handle in types.Handles)
 <#
 		}
 #>
-				<#if(method.HasVkResult){#>commandResult = <#}#>Interop.Commands.<#=method.CommandName#>(<#
+				<#if(method.HasVkResult){#>commandResult = <#}#><#if(method.IsPassthroughResult){#>result = <#}#>Interop.Commands.<#=method.CommandName#>(<#
 		isFirst = true;
 
 		foreach(var param in method.Parameters)

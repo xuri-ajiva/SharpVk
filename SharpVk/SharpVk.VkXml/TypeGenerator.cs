@@ -470,6 +470,11 @@ namespace SharpVk.VkXml
                     newMethod.ReturnTypeName = "IntPtr";
                     newMethod.IsPassthroughResult = true;
                 }
+                else if(command.Type == "VkBool32")
+                {
+                    newMethod.ReturnTypeName = "bool";
+                    newMethod.IsPassthroughResult = true;
+                }
 
                 newMethod.HasVkResult = command.Type == "VkResult";
 
