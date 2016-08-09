@@ -6,6 +6,7 @@
 - [x] Prettify Public API Methods (Issue #5)
     - [ ] Correctly handle Cmd prefix
 - [ ] Implement IDispose pattern for handles with Destroy command
+- [ ] Move Extension objects into a new namespace
 - [ ] VK API Commands should be correctly generated, compiled & executed (against NVidia implementation on Windows):
   -  Device initialization
     - [x] vkCreateInstance
