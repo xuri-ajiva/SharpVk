@@ -51,8 +51,25 @@ namespace SharpVk.VkXml
                                                                    from close in Parse.Char(']')
                                                                    select digits;
 
+        private static readonly Parser<ParsedExpression> lenExpressionParserRef = Parse.Ref(() => lenExpressionParser);
+
+        private static readonly Parser<ParsedExpressionToken> lenTokenParser = Parse.Letter.AtLeastOnce().Text().Select(x => new ParsedExpressionToken { Value = x });
+
+        private static readonly Parser<ParsedExpressionOperator> lenDereferenceParser = from left in lenTokenParser
+                                                                                        from op in Parse.String("->")
+                                                                                        from right in lenTokenParser
+                                                                                        select new ParsedExpressionOperator
+                                                                                        {
+                                                                                            Operator = ParsedOperatorType.Dereference,
+                                                                                            LeftOperand = left,
+                                                                                            RightOperand = right
+                                                                                        };
+
+        private static readonly Parser<ParsedExpression> lenExpressionParser = ((Parser<ParsedExpression>)lenDereferenceParser)
+                                                                                    .Or(lenTokenParser);
+
         private static readonly Parser<ParsedLen> lenPartParser = Parse.String("null-terminated").Select(x => new ParsedLen { Type = LenType.NullTerminated })
-                                                                        .Or(Parse.Letter.AtLeastOnce().Text().Select(x => new ParsedLen { Value = x, Type = LenType.Expression }));
+                                                                        .Or(lenExpressionParser.Select(x => new ParsedLen { Value = x, Type = LenType.Expression }));
 
         private static readonly Parser<IEnumerable<ParsedLen>> lenParser = lenPartParser.DelimitedBy(Parse.Char(',').Token()).End();
 
@@ -422,7 +439,7 @@ namespace SharpVk.VkXml
 
             //HACK Artificially limit the set of required commands to simplify
             // the API while working on marshalling and the public handles
-            requiredCommand = new List<string>(requiredCommand.Distinct().Take(61));
+            requiredCommand = new List<string>(requiredCommand.Distinct().Take(85));
 
             foreach (var extension in extensions)
             {
@@ -575,7 +592,7 @@ namespace SharpVk.VkXml
                 {
                     return x.ToString();
                 }
-            }).Aggregate((y, z) => y + z).Trim();
+            }).Aggregate(string.Concat).Trim();
 
             switch (typeString)
             {
@@ -741,8 +758,49 @@ namespace SharpVk.VkXml
 
         public class ParsedLen
         {
-            public string Value;
+            public ParsedExpression Value;
             public LenType Type;
+        }
+
+        public abstract class ParsedExpression
+        {
+            public abstract void Visit<T>(IParsedExpressionVisitor<T> visitor, T state);
+        }
+
+        public class ParsedExpressionToken
+            : ParsedExpression
+        {
+            public string Value;
+
+            public override void Visit<T>(IParsedExpressionVisitor<T> visitor, T state)
+            {
+                visitor.Visit(this, state);
+            }
+        }
+
+        public class ParsedExpressionOperator
+            : ParsedExpression
+        {
+            public ParsedOperatorType Operator;
+            public ParsedExpression LeftOperand;
+            public ParsedExpressionToken RightOperand;
+
+            public override void Visit<T>(IParsedExpressionVisitor<T> visitor, T state)
+            {
+                visitor.Visit(this, state);
+            }
+        }
+
+        public enum ParsedOperatorType
+        {
+            Dereference
+        }
+
+        public interface IParsedExpressionVisitor<T>
+        {
+            void Visit(ParsedExpressionOperator parsedExpressionOperator, T state);
+
+            void Visit(ParsedExpressionToken parsedExpressionToken, T state);
         }
 
         public enum LenType

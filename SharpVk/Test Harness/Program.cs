@@ -97,13 +97,7 @@ namespace SharpVk
 
             var imageViews = images.Select(image => device.CreateImageView(new ImageViewCreateInfo
             {
-                Components = new ComponentMapping
-                {
-                    R = ComponentSwizzle.R,
-                    G = ComponentSwizzle.G,
-                    B = ComponentSwizzle.B,
-                    A = ComponentSwizzle.A
-                },
+                //Components = ComponentMapping.Default,
                 Format = surfaceFormats.First().Format,
                 Image = image,
                 Flags = ImageViewCreateFlags.None,
@@ -118,20 +112,19 @@ namespace SharpVk
                 }
             }, null)).ToArray();
 
-            surfaceForm.Paint += (x, y) =>
-            {
-                uint nextImage = swapchain.AcquireNextImage(uint.MaxValue, presentCompleteSemaphore, null);
+            uint nextImage = swapchain.AcquireNextImage(uint.MaxValue, presentCompleteSemaphore, null);
 
-                presentQueue.Present(new PresentInfo
-                  {
-                      ImageIndices = new uint[] { nextImage },
-                      Results = null,
-                      WaitSemaphores = null,
-                      Swapchains = new[] { swapchain }
-                  });
-              };
+            presentQueue.Present(new PresentInfo
+            {
+                ImageIndices = new uint[] { nextImage },
+                Results = null,
+                WaitSemaphores = null,
+                Swapchains = new[] { swapchain }
+            });
 
             surfaceForm.ShowDialog();
+            
+            presentQueue.WaitIdle();
 
             device.WaitIdle();
 
@@ -140,14 +133,17 @@ namespace SharpVk
                 imageView.Destroy(null);
             }
 
-            foreach(var image in images)
+            foreach (var image in images)
             {
                 image.Destroy(null);
             }
 
             presentCompleteSemaphore.Destroy(null);
 
-            swapchain.Destroy(null);
+            //TODO This method throws an AccessViolationException if the
+            // surfaceForm is closed by clicking the Close title bar button.
+            // May just be a synchronisation issue.
+            //swapchain.Destroy(null);
 
             device.Destroy(null);
 

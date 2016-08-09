@@ -88,19 +88,36 @@ namespace SharpVk
 			return this.value.ToString();
 		}
 	}
+
+	public partial struct ComponentMapping
+	{
+		public static ComponentMapping Default
+		{
+			get
+			{
+				return new ComponentMapping
+					{
+						R = ComponentSwizzle.R,
+						G = ComponentSwizzle.G,
+						B = ComponentSwizzle.B,
+						A = ComponentSwizzle.A
+					};
+			}
+		}
+	}
 <#
 	foreach(var structType in types.Structs)
 	{
 #>
 
-	public struct <#=structType.Name#>
+	public partial struct <#=structType.Name#>
 	{
 <#
 		foreach(var member in structType.Members)
         {
 #>
-
 		public <#=member.TypeName#> <#=member.Name#>;
+
 <#
         }
 #>
