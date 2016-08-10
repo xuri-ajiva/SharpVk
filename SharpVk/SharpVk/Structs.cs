@@ -1,6 +1,6 @@
 ﻿//The MIT License (MIT)
 //
-//Copyright (c) 2016 Andrew Armstrong/FacticiusVir
+//Copyright (c) Andrew Armstrong/FacticiusVir 2016
 //
 //Permission is hereby granted, free of charge, to any person obtaining a copy
 //of this software and associated documentation files (the "Software"), to deal
@@ -76,7 +76,12 @@ namespace SharpVk
 	{
 		private ulong value;
 
-		public static implicit operator DeviceSize(ulong value)
+        public static explicit operator DeviceSize(int value)
+        {
+            return new DeviceSize { value = (ulong)value };
+        }
+
+        public static implicit operator DeviceSize(ulong value)
 		{
 			return new DeviceSize { value = value };
 		}
@@ -109,6 +114,188 @@ namespace SharpVk
 		}
 	}
 
+	public partial struct AttachmentDescription
+	{
+		public AttachmentDescriptionFlags Flags;
+
+		public Format Format;
+
+		public SampleCountFlags Samples;
+
+		public AttachmentLoadOp LoadOp;
+
+		public AttachmentStoreOp StoreOp;
+
+		public AttachmentLoadOp StencilLoadOp;
+
+		public AttachmentStoreOp StencilStoreOp;
+
+		public ImageLayout InitialLayout;
+
+		public ImageLayout FinalLayout;
+
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("AttachmentDescription");
+            builder.AppendLine("{");
+            builder.AppendLine($"Flags: {this.Flags}");
+            builder.AppendLine($"Format: {this.Format}");
+            builder.AppendLine($"Samples: {this.Samples}");
+            builder.AppendLine($"LoadOp: {this.LoadOp}");
+            builder.AppendLine($"StoreOp: {this.StoreOp}");
+            builder.AppendLine($"StencilLoadOp: {this.StencilLoadOp}");
+            builder.AppendLine($"StencilStoreOp: {this.StencilStoreOp}");
+            builder.AppendLine($"InitialLayout: {this.InitialLayout}");
+            builder.AppendLine($"FinalLayout: {this.FinalLayout}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
+	}
+
+	public partial struct AttachmentReference
+	{
+		public uint Attachment;
+
+		public ImageLayout Layout;
+
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("AttachmentReference");
+            builder.AppendLine("{");
+            builder.AppendLine($"Attachment: {this.Attachment}");
+            builder.AppendLine($"Layout: {this.Layout}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
+	}
+
+	public partial struct BufferCopy
+	{
+		public DeviceSize SourceOffset;
+
+		public DeviceSize DestinationOffset;
+
+		public DeviceSize Size;
+
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("BufferCopy");
+            builder.AppendLine("{");
+            builder.AppendLine($"SourceOffset: {this.SourceOffset}");
+            builder.AppendLine($"DestinationOffset: {this.DestinationOffset}");
+            builder.AppendLine($"Size: {this.Size}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
+	}
+
+	public partial struct BufferImageCopy
+	{
+		public DeviceSize BufferOffset;
+
+		public uint BufferRowLength;
+
+		public uint BufferImageHeight;
+
+		public ImageSubresourceLayers ImageSubresource;
+
+		public Offset3D ImageOffset;
+
+		public Extent3D ImageExtent;
+
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("BufferImageCopy");
+            builder.AppendLine("{");
+            builder.AppendLine($"BufferOffset: {this.BufferOffset}");
+            builder.AppendLine($"BufferRowLength: {this.BufferRowLength}");
+            builder.AppendLine($"BufferImageHeight: {this.BufferImageHeight}");
+            builder.AppendLine($"ImageSubresource: {this.ImageSubresource}");
+            builder.AppendLine($"ImageOffset: {this.ImageOffset}");
+            builder.AppendLine($"ImageExtent: {this.ImageExtent}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
+	}
+
+	public partial struct ClearAttachment
+	{
+		public ImageAspectFlags AspectMask;
+
+		public uint ColorAttachment;
+
+		public ClearValue ClearValue;
+
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("ClearAttachment");
+            builder.AppendLine("{");
+            builder.AppendLine($"AspectMask: {this.AspectMask}");
+            builder.AppendLine($"ColorAttachment: {this.ColorAttachment}");
+            builder.AppendLine($"ClearValue: {this.ClearValue}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
+	}
+
+	public partial struct ClearDepthStencilValue
+	{
+		public float Depth;
+
+		public uint Stencil;
+
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("ClearDepthStencilValue");
+            builder.AppendLine("{");
+            builder.AppendLine($"Depth: {this.Depth}");
+            builder.AppendLine($"Stencil: {this.Stencil}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
+	}
+
+	public partial struct ClearRect
+	{
+		public Rect2D Rect;
+
+		public uint BaseArrayLayer;
+
+		public uint LayerCount;
+
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("ClearRect");
+            builder.AppendLine("{");
+            builder.AppendLine($"Rect: {this.Rect}");
+            builder.AppendLine($"BaseArrayLayer: {this.BaseArrayLayer}");
+            builder.AppendLine($"LayerCount: {this.LayerCount}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
+	}
+
 	public partial struct ComponentMapping
 	{
 		public ComponentSwizzle R;
@@ -129,6 +316,26 @@ namespace SharpVk
             builder.AppendLine($"G: {this.G}");
             builder.AppendLine($"B: {this.B}");
             builder.AppendLine($"A: {this.A}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
+	}
+
+	public partial struct DescriptorPoolSize
+	{
+		public DescriptorType Type;
+
+		public uint DescriptorCount;
+
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("DescriptorPoolSize");
+            builder.AppendLine("{");
+            builder.AppendLine($"Type: {this.Type}");
+            builder.AppendLine($"DescriptorCount: {this.DescriptorCount}");
             builder.Append("}");
 
 			return builder.ToString();
@@ -279,6 +486,35 @@ namespace SharpVk
 		}
 	}
 
+	public partial struct ImageCopy
+	{
+		public ImageSubresourceLayers SourceSubresource;
+
+		public Offset3D SourceOffset;
+
+		public ImageSubresourceLayers DestinationSubresource;
+
+		public Offset3D DestinationOffset;
+
+		public Extent3D Extent;
+
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("ImageCopy");
+            builder.AppendLine("{");
+            builder.AppendLine($"SourceSubresource: {this.SourceSubresource}");
+            builder.AppendLine($"SourceOffset: {this.SourceOffset}");
+            builder.AppendLine($"DestinationSubresource: {this.DestinationSubresource}");
+            builder.AppendLine($"DestinationOffset: {this.DestinationOffset}");
+            builder.AppendLine($"Extent: {this.Extent}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
+	}
+
 	public partial struct ImageFormatProperties
 	{
 		public Extent3D MaxExtent;
@@ -308,6 +544,35 @@ namespace SharpVk
 		}
 	}
 
+	public partial struct ImageResolve
+	{
+		public ImageSubresourceLayers SourceSubresource;
+
+		public Offset3D SourceOffset;
+
+		public ImageSubresourceLayers DestinationSubresource;
+
+		public Offset3D DestinationOffset;
+
+		public Extent3D Extent;
+
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("ImageResolve");
+            builder.AppendLine("{");
+            builder.AppendLine($"SourceSubresource: {this.SourceSubresource}");
+            builder.AppendLine($"SourceOffset: {this.SourceOffset}");
+            builder.AppendLine($"DestinationSubresource: {this.DestinationSubresource}");
+            builder.AppendLine($"DestinationOffset: {this.DestinationOffset}");
+            builder.AppendLine($"Extent: {this.Extent}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
+	}
+
 	public partial struct ImageSubresource
 	{
 		public ImageAspectFlags AspectMask;
@@ -325,6 +590,32 @@ namespace SharpVk
             builder.AppendLine($"AspectMask: {this.AspectMask}");
             builder.AppendLine($"MipLevel: {this.MipLevel}");
             builder.AppendLine($"ArrayLayer: {this.ArrayLayer}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
+	}
+
+	public partial struct ImageSubresourceLayers
+	{
+		public ImageAspectFlags AspectMask;
+
+		public uint MipLevel;
+
+		public uint BaseArrayLayer;
+
+		public uint LayerCount;
+
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("ImageSubresourceLayers");
+            builder.AppendLine("{");
+            builder.AppendLine($"AspectMask: {this.AspectMask}");
+            builder.AppendLine($"MipLevel: {this.MipLevel}");
+            builder.AppendLine($"BaseArrayLayer: {this.BaseArrayLayer}");
+            builder.AppendLine($"LayerCount: {this.LayerCount}");
             builder.Append("}");
 
 			return builder.ToString();
@@ -885,6 +1176,41 @@ namespace SharpVk
             builder.AppendLine($"CompareMask: {this.CompareMask}");
             builder.AppendLine($"WriteMask: {this.WriteMask}");
             builder.AppendLine($"Reference: {this.Reference}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
+	}
+
+	public partial struct SubpassDependency
+	{
+		public uint SourceSubpass;
+
+		public uint DestinationSubpass;
+
+		public PipelineStageFlags SourceStageMask;
+
+		public PipelineStageFlags DestinationStageMask;
+
+		public AccessFlags SourceAccessMask;
+
+		public AccessFlags DestinationAccessMask;
+
+		public DependencyFlags DependencyFlags;
+
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("SubpassDependency");
+            builder.AppendLine("{");
+            builder.AppendLine($"SourceSubpass: {this.SourceSubpass}");
+            builder.AppendLine($"DestinationSubpass: {this.DestinationSubpass}");
+            builder.AppendLine($"SourceStageMask: {this.SourceStageMask}");
+            builder.AppendLine($"DestinationStageMask: {this.DestinationStageMask}");
+            builder.AppendLine($"SourceAccessMask: {this.SourceAccessMask}");
+            builder.AppendLine($"DestinationAccessMask: {this.DestinationAccessMask}");
+            builder.AppendLine($"DependencyFlags: {this.DependencyFlags}");
             builder.Append("}");
 
 			return builder.ToString();

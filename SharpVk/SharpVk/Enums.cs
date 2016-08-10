@@ -1,6 +1,6 @@
 ﻿//The MIT License (MIT)
 //
-//Copyright (c) 2016 Andrew Armstrong/FacticiusVir
+//Copyright (c) Andrew Armstrong/FacticiusVir 2016
 //
 //Permission is hereby granted, free of charge, to any person obtaining a copy
 //of this software and associated documentation files (the "Software"), to deal
@@ -49,6 +49,13 @@ namespace SharpVk
 	}
 
 	[Flags]
+	public enum AttachmentDescriptionFlags
+	{
+		None = 0,
+		MayAlias = 1 << 0,
+	}
+
+	[Flags]
 	public enum BufferCreateFlags
 	{
 		None = 0,
@@ -89,6 +96,37 @@ namespace SharpVk
 	}
 
 	[Flags]
+	public enum CommandBufferResetFlags
+	{
+		None = 0,
+		ReleaseResources = 1 << 0,
+	}
+
+	[Flags]
+	public enum CommandBufferUsageFlags
+	{
+		None = 0,
+		OneTimeSubmit = 1 << 0,
+		RenderPassContinue = 1 << 1,
+		SimultaneousUse = 1 << 2,
+	}
+
+	[Flags]
+	public enum CommandPoolCreateFlags
+	{
+		None = 0,
+		Transient = 1 << 0,
+		ResetCommandBuffer = 1 << 1,
+	}
+
+	[Flags]
+	public enum CommandPoolResetFlags
+	{
+		None = 0,
+		ReleaseResources = 1 << 0,
+	}
+
+	[Flags]
 	public enum CompositeAlphaFlags
 	{
 		None = 0,
@@ -105,6 +143,32 @@ namespace SharpVk
 		Front = 1 << 0,
 		Back = 1 << 1,
 		FrontAndBack = 0x00000003,
+	}
+
+	[Flags]
+	public enum DependencyFlags
+	{
+		None = 0,
+		ByRegion = 1 << 0,
+	}
+
+	[Flags]
+	public enum DescriptorPoolCreateFlags
+	{
+		None = 0,
+		FreeDescriptorSet = 1 << 0,
+	}
+
+	[Flags]
+	public enum DescriptorPoolResetFlags
+	{
+		None = 0,
+	}
+
+	[Flags]
+	public enum DescriptorSetLayoutCreateFlags
+	{
+		None = 0,
 	}
 
 	[Flags]
@@ -149,6 +213,12 @@ namespace SharpVk
 		BlitSource = 1 << 10,
 		BlitDestination = 1 << 11,
 		SampledImageFilterLinear = 1 << 12,
+	}
+
+	[Flags]
+	public enum FramebufferCreateFlags
+	{
+		None = 0,
 	}
 
 	[Flags]
@@ -327,6 +397,13 @@ namespace SharpVk
 	}
 
 	[Flags]
+	public enum QueryControlFlags
+	{
+		None = 0,
+		Precise = 1 << 0,
+	}
+
+	[Flags]
 	public enum QueryPipelineStatisticFlags
 	{
 		None = 0,
@@ -370,6 +447,12 @@ namespace SharpVk
 	}
 
 	[Flags]
+	public enum RenderPassCreateFlags
+	{
+		None = 0,
+	}
+
+	[Flags]
 	public enum SampleCountFlags
 	{
 		None = 0,
@@ -380,6 +463,12 @@ namespace SharpVk
 		SampleCount16 = 1 << 4,
 		SampleCount32 = 1 << 5,
 		SampleCount64 = 1 << 6,
+	}
+
+	[Flags]
+	public enum SamplerCreateFlags
+	{
+		None = 0,
 	}
 
 	[Flags]
@@ -425,6 +514,21 @@ namespace SharpVk
 	}
 
 	[Flags]
+	public enum StencilFaceFlags
+	{
+		None = 0,
+		Front = 1 << 0,
+		Back = 1 << 1,
+		FrontAndBack = 0x00000003,
+	}
+
+	[Flags]
+	public enum SubpassDescriptionFlags
+	{
+		None = 0,
+	}
+
+	[Flags]
 	public enum SurfaceTransformFlags
 	{
 		None = 0,
@@ -449,6 +553,19 @@ namespace SharpVk
 	public enum Win32SurfaceCreateFlags
 	{
 		None = 0,
+	}
+
+	public enum AttachmentLoadOp
+	{
+		Load = 0,
+		Clear = 1,
+		DontCare = 2,
+	}
+
+	public enum AttachmentStoreOp
+	{
+		Store = 0,
+		DontCare = 1,
 	}
 
 	public enum BlendFactor
@@ -483,9 +600,25 @@ namespace SharpVk
 		Max = 4,
 	}
 
+	public enum BorderColor
+	{
+		FloatTransparentBlack = 0,
+		IntTransparentBlack = 1,
+		FloatOpaqueBlack = 2,
+		IntOpaqueBlack = 3,
+		FloatOpaqueWhite = 4,
+		IntOpaqueWhite = 5,
+	}
+
 	public enum ColorSpace
 	{
 		SrgbNonlinear = 0,
+	}
+
+	public enum CommandBufferLevel
+	{
+		Primary = 0,
+		Secondary = 1,
 	}
 
 	public enum CompareOp
@@ -511,6 +644,21 @@ namespace SharpVk
 		A = 6,
 	}
 
+	public enum DescriptorType
+	{
+		Sampler = 0,
+		CombinedImageSampler = 1,
+		SampledImage = 2,
+		StorageImage = 3,
+		UniformTexelBuffer = 4,
+		StorageTexelBuffer = 5,
+		UniformBuffer = 6,
+		StorageBuffer = 7,
+		UniformBufferDynamic = 8,
+		StorageBufferDynamic = 9,
+		InputAttachment = 10,
+	}
+
 	public enum DynamicState
 	{
 		Viewport = 0,
@@ -522,6 +670,12 @@ namespace SharpVk
 		StencilCompareMask = 6,
 		StencilWriteMask = 7,
 		StencilReference = 8,
+	}
+
+	public enum Filter
+	{
+		Nearest = 0,
+		Linear = 1,
 	}
 
 	public enum Format
@@ -757,6 +911,12 @@ namespace SharpVk
 		CubeArray = 6,
 	}
 
+	public enum IndexType
+	{
+		Uint16 = 0,
+		Uint32 = 1,
+	}
+
 	public enum LogicOp
 	{
 		Clear = 0,
@@ -784,6 +944,12 @@ namespace SharpVk
 		DiscreteGpu = 2,
 		VirtualGpu = 3,
 		Cpu = 4,
+	}
+
+	public enum PipelineBindPoint
+	{
+		Graphics = 0,
+		Compute = 1,
 	}
 
 	public enum PipelineCacheHeaderVersion
@@ -852,6 +1018,20 @@ namespace SharpVk
 		ErrorNativeWindowInUse = -1000000001,
 		Suboptimal = 1000001003,
 		ErrorOutOfDate = -1000001004,
+	}
+
+	public enum SamplerAddressMode
+	{
+		Repeat = 0,
+		MirroredRepeat = 1,
+		ClampToEdge = 2,
+		ClampToBorder = 3,
+	}
+
+	public enum SamplerMipmapMode
+	{
+		Nearest = 0,
+		Linear = 1,
 	}
 
 	public enum SharingMode
@@ -926,6 +1106,12 @@ namespace SharpVk
 		SwapchainCreateInfo = 1000001000,
 		PresentInfo = 1000001001,
 		Win32SurfaceCreateInfo = 1000009000,
+	}
+
+	public enum SubpassContents
+	{
+		Inline = 0,
+		SecondaryCommandBuffers = 1,
 	}
 
 	public enum VertexInputRate

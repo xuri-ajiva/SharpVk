@@ -1,6 +1,6 @@
 ﻿//The MIT License (MIT)
 //
-//Copyright (c) 2016 Andrew Armstrong/FacticiusVir
+//Copyright (c) Andrew Armstrong/FacticiusVir 2016
 //
 //Permission is hereby granted, free of charge, to any person obtaining a copy
 //of this software and associated documentation files (the "Software"), to deal
@@ -403,6 +403,165 @@ namespace SharpVk
 		}
 	}
 
+	public class CommandBufferAllocateInfo
+	{
+
+		public CommandPool CommandPool
+		{
+			get;
+			set;
+		}
+
+		public CommandBufferLevel Level
+		{
+			get;
+			set;
+		}
+
+		public uint CommandBufferCount
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.CommandBufferAllocateInfo Pack()
+        {
+            var result = new Interop.CommandBufferAllocateInfo();
+			result.SType = StructureType.CommandBufferAllocateInfo;
+			result.CommandPool = this.CommandPool?.Pack() ?? Interop.CommandPool.Null;
+			result.Level = this.Level;
+			result.CommandBufferCount = this.CommandBufferCount;
+
+            return result;
+        }
+
+		internal unsafe Interop.CommandBufferAllocateInfo* MarshalTo()
+        {
+            return (Interop.CommandBufferAllocateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class CommandBufferBeginInfo
+	{
+
+		public CommandBufferUsageFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public CommandBufferInheritanceInfo InheritanceInfo
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.CommandBufferBeginInfo Pack()
+        {
+            var result = new Interop.CommandBufferBeginInfo();
+			result.SType = StructureType.CommandBufferBeginInfo;
+			result.InheritanceInfo = this.InheritanceInfo == null ? null : this.InheritanceInfo.MarshalTo();
+			result.Flags = this.Flags;
+
+            return result;
+        }
+
+		internal unsafe Interop.CommandBufferBeginInfo* MarshalTo()
+        {
+            return (Interop.CommandBufferBeginInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class CommandBufferInheritanceInfo
+	{
+
+		public RenderPass RenderPass
+		{
+			get;
+			set;
+		}
+
+		public uint Subpass
+		{
+			get;
+			set;
+		}
+
+		public Framebuffer Framebuffer
+		{
+			get;
+			set;
+		}
+
+		public Bool32 OcclusionQueryEnable
+		{
+			get;
+			set;
+		}
+
+		public QueryControlFlags QueryFlags
+		{
+			get;
+			set;
+		}
+
+		public QueryPipelineStatisticFlags PipelineStatistics
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.CommandBufferInheritanceInfo Pack()
+        {
+            var result = new Interop.CommandBufferInheritanceInfo();
+			result.SType = StructureType.CommandBufferInheritanceInfo;
+			result.RenderPass = this.RenderPass?.Pack() ?? Interop.RenderPass.Null;
+			result.Framebuffer = this.Framebuffer?.Pack() ?? Interop.Framebuffer.Null;
+			result.Subpass = this.Subpass;
+			result.OcclusionQueryEnable = this.OcclusionQueryEnable;
+			result.QueryFlags = this.QueryFlags;
+			result.PipelineStatistics = this.PipelineStatistics;
+
+            return result;
+        }
+
+		internal unsafe Interop.CommandBufferInheritanceInfo* MarshalTo()
+        {
+            return (Interop.CommandBufferInheritanceInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class CommandPoolCreateInfo
+	{
+
+		public CommandPoolCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public uint QueueFamilyIndex
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.CommandPoolCreateInfo Pack()
+        {
+            var result = new Interop.CommandPoolCreateInfo();
+			result.SType = StructureType.CommandPoolCreateInfo;
+			result.Flags = this.Flags;
+			result.QueueFamilyIndex = this.QueueFamilyIndex;
+
+            return result;
+        }
+
+		internal unsafe Interop.CommandPoolCreateInfo* MarshalTo()
+        {
+            return (Interop.CommandPoolCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
 	public class ComputePipelineCreateInfo
 	{
 
@@ -452,6 +611,352 @@ namespace SharpVk
 		internal unsafe Interop.ComputePipelineCreateInfo* MarshalTo()
         {
             return (Interop.ComputePipelineCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class CopyDescriptorSet
+	{
+
+		public DescriptorSet SourceSet
+		{
+			get;
+			set;
+		}
+
+		public uint SourceBinding
+		{
+			get;
+			set;
+		}
+
+		public uint SourceArrayElement
+		{
+			get;
+			set;
+		}
+
+		public DescriptorSet DestinationSet
+		{
+			get;
+			set;
+		}
+
+		public uint DestinationBinding
+		{
+			get;
+			set;
+		}
+
+		public uint DestinationArrayElement
+		{
+			get;
+			set;
+		}
+
+		public uint DescriptorCount
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.CopyDescriptorSet Pack()
+        {
+            var result = new Interop.CopyDescriptorSet();
+			result.SType = StructureType.CopyDescriptorSet;
+			result.SourceSet = this.SourceSet?.Pack() ?? Interop.DescriptorSet.Null;
+			result.DestinationSet = this.DestinationSet?.Pack() ?? Interop.DescriptorSet.Null;
+			result.SourceBinding = this.SourceBinding;
+			result.SourceArrayElement = this.SourceArrayElement;
+			result.DestinationBinding = this.DestinationBinding;
+			result.DestinationArrayElement = this.DestinationArrayElement;
+			result.DescriptorCount = this.DescriptorCount;
+
+            return result;
+        }
+
+		internal unsafe Interop.CopyDescriptorSet* MarshalTo()
+        {
+            return (Interop.CopyDescriptorSet*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class DescriptorBufferInfo
+	{
+
+		public Buffer Buffer
+		{
+			get;
+			set;
+		}
+
+		public ulong Offset
+		{
+			get;
+			set;
+		}
+
+		public ulong Range
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.DescriptorBufferInfo Pack()
+        {
+            var result = new Interop.DescriptorBufferInfo();
+			result.Buffer = this.Buffer?.Pack() ?? Interop.Buffer.Null;
+			result.Offset = this.Offset;
+			result.Range = this.Range;
+
+            return result;
+        }
+
+		internal unsafe Interop.DescriptorBufferInfo* MarshalTo()
+        {
+            return (Interop.DescriptorBufferInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class DescriptorImageInfo
+	{
+
+		public Sampler Sampler
+		{
+			get;
+			set;
+		}
+
+		public ImageView ImageView
+		{
+			get;
+			set;
+		}
+
+		public ImageLayout ImageLayout
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.DescriptorImageInfo Pack()
+        {
+            var result = new Interop.DescriptorImageInfo();
+			result.Sampler = this.Sampler?.Pack() ?? Interop.Sampler.Null;
+			result.ImageView = this.ImageView?.Pack() ?? Interop.ImageView.Null;
+			result.ImageLayout = this.ImageLayout;
+
+            return result;
+        }
+
+		internal unsafe Interop.DescriptorImageInfo* MarshalTo()
+        {
+            return (Interop.DescriptorImageInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class DescriptorPoolCreateInfo
+	{
+
+		public DescriptorPoolCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public uint MaxSets
+		{
+			get;
+			set;
+		}
+
+		public DescriptorPoolSize[] PoolSizes
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.DescriptorPoolCreateInfo Pack()
+        {
+            var result = new Interop.DescriptorPoolCreateInfo();
+			result.SType = StructureType.DescriptorPoolCreateInfo;
+			result.PoolSizeCount = (uint)(this.PoolSizes?.Length ?? 0);
+			
+			//PoolSizes
+			if (this.PoolSizes != null)
+			{
+			    result.PoolSizes = (DescriptorPoolSize*)Interop.HeapUtil.Allocate<uint>(this.PoolSizes.Length).ToPointer();
+			    for (int index = 0; index < this.PoolSizes.Length; index++)
+			    {
+			        result.PoolSizes[index] = this.PoolSizes[index];
+			    }
+			}
+			else
+			{
+			    result.PoolSizes = null;
+			}
+			result.Flags = this.Flags;
+			result.MaxSets = this.MaxSets;
+
+            return result;
+        }
+
+		internal unsafe Interop.DescriptorPoolCreateInfo* MarshalTo()
+        {
+            return (Interop.DescriptorPoolCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class DescriptorSetAllocateInfo
+	{
+
+		public DescriptorPool DescriptorPool
+		{
+			get;
+			set;
+		}
+
+		public DescriptorSetLayout[] SetLayouts
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.DescriptorSetAllocateInfo Pack()
+        {
+            var result = new Interop.DescriptorSetAllocateInfo();
+			result.SType = StructureType.DescriptorSetAllocateInfo;
+			result.DescriptorPool = this.DescriptorPool?.Pack() ?? Interop.DescriptorPool.Null;
+			result.DescriptorSetCount = (uint)(this.SetLayouts?.Length ?? 0);
+			
+			//SetLayouts
+			if (this.SetLayouts != null)
+			{
+			    int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.DescriptorSetLayout>();
+			    IntPtr pointer = Interop.HeapUtil.Allocate<Interop.DescriptorSetLayout>(this.SetLayouts.Length);
+			    for (int index = 0; index < this.SetLayouts.Length; index++)
+			    {
+			        System.Runtime.InteropServices.Marshal.StructureToPtr(this.SetLayouts[index].Pack(), pointer + (size * index), false);
+			    }
+			    result.SetLayouts = (Interop.DescriptorSetLayout*)pointer.ToPointer();
+			}
+			else
+			{
+			    result.SetLayouts = null;
+			}
+
+            return result;
+        }
+
+		internal unsafe Interop.DescriptorSetAllocateInfo* MarshalTo()
+        {
+            return (Interop.DescriptorSetAllocateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class DescriptorSetLayoutBinding
+	{
+
+		public uint Binding
+		{
+			get;
+			set;
+		}
+
+		public DescriptorType DescriptorType
+		{
+			get;
+			set;
+		}
+
+		public ShaderStageFlags StageFlags
+		{
+			get;
+			set;
+		}
+
+		public Sampler[] ImmutableSamplers
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.DescriptorSetLayoutBinding Pack()
+        {
+            var result = new Interop.DescriptorSetLayoutBinding();
+			result.DescriptorCount = (uint)(this.ImmutableSamplers?.Length ?? 0);
+			
+			//ImmutableSamplers
+			if (this.ImmutableSamplers != null)
+			{
+			    int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.Sampler>();
+			    IntPtr pointer = Interop.HeapUtil.Allocate<Interop.Sampler>(this.ImmutableSamplers.Length);
+			    for (int index = 0; index < this.ImmutableSamplers.Length; index++)
+			    {
+			        System.Runtime.InteropServices.Marshal.StructureToPtr(this.ImmutableSamplers[index].Pack(), pointer + (size * index), false);
+			    }
+			    result.ImmutableSamplers = (Interop.Sampler*)pointer.ToPointer();
+			}
+			else
+			{
+			    result.ImmutableSamplers = null;
+			}
+			result.Binding = this.Binding;
+			result.DescriptorType = this.DescriptorType;
+			result.StageFlags = this.StageFlags;
+
+            return result;
+        }
+
+		internal unsafe Interop.DescriptorSetLayoutBinding* MarshalTo()
+        {
+            return (Interop.DescriptorSetLayoutBinding*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class DescriptorSetLayoutCreateInfo
+	{
+
+		public DescriptorSetLayoutCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public DescriptorSetLayoutBinding[] Bindings
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.DescriptorSetLayoutCreateInfo Pack()
+        {
+            var result = new Interop.DescriptorSetLayoutCreateInfo();
+			result.SType = StructureType.DescriptorSetLayoutCreateInfo;
+			result.BindingCount = (uint)(this.Bindings?.Length ?? 0);
+			
+			//Bindings
+			if (this.Bindings != null)
+			{
+			    int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.DescriptorSetLayoutBinding>();
+			    IntPtr pointer = Interop.HeapUtil.Allocate<Interop.DescriptorSetLayoutBinding>(this.Bindings.Length);
+			    for (int index = 0; index < this.Bindings.Length; index++)
+			    {
+			        System.Runtime.InteropServices.Marshal.StructureToPtr(this.Bindings[index].Pack(), pointer + (size * index), false);
+			    }
+			    result.Bindings = (Interop.DescriptorSetLayoutBinding*)pointer.ToPointer();
+			}
+			else
+			{
+			    result.Bindings = null;
+			}
+			result.Flags = this.Flags;
+
+            return result;
+        }
+
+		internal unsafe Interop.DescriptorSetLayoutCreateInfo* MarshalTo()
+        {
+            return (Interop.DescriptorSetLayoutCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -643,6 +1148,81 @@ namespace SharpVk
 		}
 	}
 
+	public class FramebufferCreateInfo
+	{
+
+		public FramebufferCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public RenderPass RenderPass
+		{
+			get;
+			set;
+		}
+
+		public ImageView[] Attachments
+		{
+			get;
+			set;
+		}
+
+		public uint Width
+		{
+			get;
+			set;
+		}
+
+		public uint Height
+		{
+			get;
+			set;
+		}
+
+		public uint Layers
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.FramebufferCreateInfo Pack()
+        {
+            var result = new Interop.FramebufferCreateInfo();
+			result.SType = StructureType.FramebufferCreateInfo;
+			result.RenderPass = this.RenderPass?.Pack() ?? Interop.RenderPass.Null;
+			result.AttachmentCount = (uint)(this.Attachments?.Length ?? 0);
+			
+			//Attachments
+			if (this.Attachments != null)
+			{
+			    int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.ImageView>();
+			    IntPtr pointer = Interop.HeapUtil.Allocate<Interop.ImageView>(this.Attachments.Length);
+			    for (int index = 0; index < this.Attachments.Length; index++)
+			    {
+			        System.Runtime.InteropServices.Marshal.StructureToPtr(this.Attachments[index].Pack(), pointer + (size * index), false);
+			    }
+			    result.Attachments = (Interop.ImageView*)pointer.ToPointer();
+			}
+			else
+			{
+			    result.Attachments = null;
+			}
+			result.Flags = this.Flags;
+			result.Width = this.Width;
+			result.Height = this.Height;
+			result.Layers = this.Layers;
+
+            return result;
+        }
+
+		internal unsafe Interop.FramebufferCreateInfo* MarshalTo()
+        {
+            return (Interop.FramebufferCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
 	public class GraphicsPipelineCreateInfo
 	{
 
@@ -785,6 +1365,48 @@ namespace SharpVk
 		internal unsafe Interop.GraphicsPipelineCreateInfo* MarshalTo()
         {
             return (Interop.GraphicsPipelineCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class ImageBlit
+	{
+
+		public ImageSubresourceLayers SourceSubresource
+		{
+			get;
+			set;
+		}
+
+		public Offset3D[] SourceOffsets
+		{
+			get;
+			set;
+		}
+
+		public ImageSubresourceLayers DestinationSubresource
+		{
+			get;
+			set;
+		}
+
+		public Offset3D[] DestinationOffsets
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.ImageBlit Pack()
+        {
+            var result = new Interop.ImageBlit();
+			result.SourceSubresource = this.SourceSubresource;
+			result.DestinationSubresource = this.DestinationSubresource;
+
+            return result;
+        }
+
+		internal unsafe Interop.ImageBlit* MarshalTo()
+        {
+            return (Interop.ImageBlit*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -2941,6 +3563,270 @@ namespace SharpVk
 		}
 	}
 
+	public class RenderPassBeginInfo
+	{
+
+		public RenderPass RenderPass
+		{
+			get;
+			set;
+		}
+
+		public Framebuffer Framebuffer
+		{
+			get;
+			set;
+		}
+
+		public Rect2D RenderArea
+		{
+			get;
+			set;
+		}
+
+		public ClearValue[] ClearValues
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.RenderPassBeginInfo Pack()
+        {
+            var result = new Interop.RenderPassBeginInfo();
+			result.SType = StructureType.RenderPassBeginInfo;
+			result.RenderPass = this.RenderPass?.Pack() ?? Interop.RenderPass.Null;
+			result.Framebuffer = this.Framebuffer?.Pack() ?? Interop.Framebuffer.Null;
+			result.ClearValueCount = (uint)(this.ClearValues?.Length ?? 0);
+			result.ClearValues = this.ClearValues == null ? null : (ClearValue*)Interop.HeapUtil.MarshalTo(this.ClearValues, (int)this.ClearValues.Length);
+			result.RenderArea = this.RenderArea;
+
+            return result;
+        }
+
+		internal unsafe Interop.RenderPassBeginInfo* MarshalTo()
+        {
+            return (Interop.RenderPassBeginInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class RenderPassCreateInfo
+	{
+
+		public RenderPassCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public AttachmentDescription[] Attachments
+		{
+			get;
+			set;
+		}
+
+		public SubpassDescription[] Subpasses
+		{
+			get;
+			set;
+		}
+
+		public SubpassDependency[] Dependencies
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.RenderPassCreateInfo Pack()
+        {
+            var result = new Interop.RenderPassCreateInfo();
+			result.SType = StructureType.RenderPassCreateInfo;
+			result.AttachmentCount = (uint)(this.Attachments?.Length ?? 0);
+			
+			//Attachments
+			if (this.Attachments != null)
+			{
+			    result.Attachments = (AttachmentDescription*)Interop.HeapUtil.Allocate<uint>(this.Attachments.Length).ToPointer();
+			    for (int index = 0; index < this.Attachments.Length; index++)
+			    {
+			        result.Attachments[index] = this.Attachments[index];
+			    }
+			}
+			else
+			{
+			    result.Attachments = null;
+			}
+			result.SubpassCount = (uint)(this.Subpasses?.Length ?? 0);
+			
+			//Subpasses
+			if (this.Subpasses != null)
+			{
+			    int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.SubpassDescription>();
+			    IntPtr pointer = Interop.HeapUtil.Allocate<Interop.SubpassDescription>(this.Subpasses.Length);
+			    for (int index = 0; index < this.Subpasses.Length; index++)
+			    {
+			        System.Runtime.InteropServices.Marshal.StructureToPtr(this.Subpasses[index].Pack(), pointer + (size * index), false);
+			    }
+			    result.Subpasses = (Interop.SubpassDescription*)pointer.ToPointer();
+			}
+			else
+			{
+			    result.Subpasses = null;
+			}
+			result.DependencyCount = (uint)(this.Dependencies?.Length ?? 0);
+			
+			//Dependencies
+			if (this.Dependencies != null)
+			{
+			    result.Dependencies = (SubpassDependency*)Interop.HeapUtil.Allocate<uint>(this.Dependencies.Length).ToPointer();
+			    for (int index = 0; index < this.Dependencies.Length; index++)
+			    {
+			        result.Dependencies[index] = this.Dependencies[index];
+			    }
+			}
+			else
+			{
+			    result.Dependencies = null;
+			}
+			result.Flags = this.Flags;
+
+            return result;
+        }
+
+		internal unsafe Interop.RenderPassCreateInfo* MarshalTo()
+        {
+            return (Interop.RenderPassCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class SamplerCreateInfo
+	{
+
+		public SamplerCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public Filter MagFilter
+		{
+			get;
+			set;
+		}
+
+		public Filter MinFilter
+		{
+			get;
+			set;
+		}
+
+		public SamplerMipmapMode MipmapMode
+		{
+			get;
+			set;
+		}
+
+		public SamplerAddressMode AddressModeU
+		{
+			get;
+			set;
+		}
+
+		public SamplerAddressMode AddressModeV
+		{
+			get;
+			set;
+		}
+
+		public SamplerAddressMode AddressModeW
+		{
+			get;
+			set;
+		}
+
+		public float MipLodBias
+		{
+			get;
+			set;
+		}
+
+		public Bool32 AnisotropyEnable
+		{
+			get;
+			set;
+		}
+
+		public float MaxAnisotropy
+		{
+			get;
+			set;
+		}
+
+		public Bool32 CompareEnable
+		{
+			get;
+			set;
+		}
+
+		public CompareOp CompareOp
+		{
+			get;
+			set;
+		}
+
+		public float MinLod
+		{
+			get;
+			set;
+		}
+
+		public float MaxLod
+		{
+			get;
+			set;
+		}
+
+		public BorderColor BorderColor
+		{
+			get;
+			set;
+		}
+
+		public Bool32 UnnormalizedCoordinates
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.SamplerCreateInfo Pack()
+        {
+            var result = new Interop.SamplerCreateInfo();
+			result.SType = StructureType.SamplerCreateInfo;
+			result.Flags = this.Flags;
+			result.MagFilter = this.MagFilter;
+			result.MinFilter = this.MinFilter;
+			result.MipmapMode = this.MipmapMode;
+			result.AddressModeU = this.AddressModeU;
+			result.AddressModeV = this.AddressModeV;
+			result.AddressModeW = this.AddressModeW;
+			result.MipLodBias = this.MipLodBias;
+			result.AnisotropyEnable = this.AnisotropyEnable;
+			result.MaxAnisotropy = this.MaxAnisotropy;
+			result.CompareEnable = this.CompareEnable;
+			result.CompareOp = this.CompareOp;
+			result.MinLod = this.MinLod;
+			result.MaxLod = this.MaxLod;
+			result.BorderColor = this.BorderColor;
+			result.UnnormalizedCoordinates = this.UnnormalizedCoordinates;
+
+            return result;
+        }
+
+		internal unsafe Interop.SamplerCreateInfo* MarshalTo()
+        {
+            return (Interop.SamplerCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
 	public class SemaphoreCreateInfo
 	{
 
@@ -3400,6 +4286,114 @@ namespace SharpVk
 		}
 	}
 
+	public class SubpassDescription
+	{
+
+		public SubpassDescriptionFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public PipelineBindPoint PipelineBindPoint
+		{
+			get;
+			set;
+		}
+
+		public AttachmentReference[] InputAttachments
+		{
+			get;
+			set;
+		}
+
+		public AttachmentReference[] ColorAttachments
+		{
+			get;
+			set;
+		}
+
+		public AttachmentReference[] ResolveAttachments
+		{
+			get;
+			set;
+		}
+
+		public AttachmentReference DepthStencilAttachment
+		{
+			get;
+			set;
+		}
+
+		public uint[] PreserveAttachments
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.SubpassDescription Pack()
+        {
+            var result = new Interop.SubpassDescription();
+			result.InputAttachmentCount = (uint)(this.InputAttachments?.Length ?? 0);
+			
+			//InputAttachments
+			if (this.InputAttachments != null)
+			{
+			    result.InputAttachments = (AttachmentReference*)Interop.HeapUtil.Allocate<uint>(this.InputAttachments.Length).ToPointer();
+			    for (int index = 0; index < this.InputAttachments.Length; index++)
+			    {
+			        result.InputAttachments[index] = this.InputAttachments[index];
+			    }
+			}
+			else
+			{
+			    result.InputAttachments = null;
+			}
+			result.ColorAttachmentCount = (uint)(this.ColorAttachments?.Length ?? 0);
+			
+			//ColorAttachments
+			if (this.ColorAttachments != null)
+			{
+			    result.ColorAttachments = (AttachmentReference*)Interop.HeapUtil.Allocate<uint>(this.ColorAttachments.Length).ToPointer();
+			    for (int index = 0; index < this.ColorAttachments.Length; index++)
+			    {
+			        result.ColorAttachments[index] = this.ColorAttachments[index];
+			    }
+			}
+			else
+			{
+			    result.ColorAttachments = null;
+			}
+			result.ColorAttachmentCount = (uint)(this.ResolveAttachments?.Length ?? 0);
+			
+			//ResolveAttachments
+			if (this.ResolveAttachments != null)
+			{
+			    result.ResolveAttachments = (AttachmentReference*)Interop.HeapUtil.Allocate<uint>(this.ResolveAttachments.Length).ToPointer();
+			    for (int index = 0; index < this.ResolveAttachments.Length; index++)
+			    {
+			        result.ResolveAttachments[index] = this.ResolveAttachments[index];
+			    }
+			}
+			else
+			{
+			    result.ResolveAttachments = null;
+			}
+			result.DepthStencilAttachment = (AttachmentReference*)Interop.HeapUtil.AllocateAndMarshal(this.DepthStencilAttachment);
+			result.PreserveAttachmentCount = (uint)(this.PreserveAttachments?.Length ?? 0);
+			result.PreserveAttachments = this.PreserveAttachments == null ? null : Interop.HeapUtil.MarshalTo(this.PreserveAttachments);
+			result.Flags = this.Flags;
+			result.PipelineBindPoint = this.PipelineBindPoint;
+
+            return result;
+        }
+
+		internal unsafe Interop.SubpassDescription* MarshalTo()
+        {
+            return (Interop.SubpassDescription*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
 	public class SwapchainCreateInfo
 	{
 
@@ -3558,6 +4552,120 @@ namespace SharpVk
 		internal unsafe Interop.Win32SurfaceCreateInfo* MarshalTo()
         {
             return (Interop.Win32SurfaceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class WriteDescriptorSet
+	{
+
+		public DescriptorSet DestinationSet
+		{
+			get;
+			set;
+		}
+
+		public uint DestinationBinding
+		{
+			get;
+			set;
+		}
+
+		public uint DestinationArrayElement
+		{
+			get;
+			set;
+		}
+
+		public DescriptorType DescriptorType
+		{
+			get;
+			set;
+		}
+
+		public DescriptorImageInfo[] ImageInfo
+		{
+			get;
+			set;
+		}
+
+		public DescriptorBufferInfo[] BufferInfo
+		{
+			get;
+			set;
+		}
+
+		public BufferView[] TexelBufferView
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.WriteDescriptorSet Pack()
+        {
+            var result = new Interop.WriteDescriptorSet();
+			result.SType = StructureType.WriteDescriptorSet;
+			result.DestinationSet = this.DestinationSet?.Pack() ?? Interop.DescriptorSet.Null;
+			result.DescriptorCount = (uint)(this.ImageInfo?.Length ?? 0);
+			
+			//ImageInfo
+			if (this.ImageInfo != null)
+			{
+			    int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.DescriptorImageInfo>();
+			    IntPtr pointer = Interop.HeapUtil.Allocate<Interop.DescriptorImageInfo>(this.ImageInfo.Length);
+			    for (int index = 0; index < this.ImageInfo.Length; index++)
+			    {
+			        System.Runtime.InteropServices.Marshal.StructureToPtr(this.ImageInfo[index].Pack(), pointer + (size * index), false);
+			    }
+			    result.ImageInfo = (Interop.DescriptorImageInfo*)pointer.ToPointer();
+			}
+			else
+			{
+			    result.ImageInfo = null;
+			}
+			result.DescriptorCount = (uint)(this.BufferInfo?.Length ?? 0);
+			
+			//BufferInfo
+			if (this.BufferInfo != null)
+			{
+			    int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.DescriptorBufferInfo>();
+			    IntPtr pointer = Interop.HeapUtil.Allocate<Interop.DescriptorBufferInfo>(this.BufferInfo.Length);
+			    for (int index = 0; index < this.BufferInfo.Length; index++)
+			    {
+			        System.Runtime.InteropServices.Marshal.StructureToPtr(this.BufferInfo[index].Pack(), pointer + (size * index), false);
+			    }
+			    result.BufferInfo = (Interop.DescriptorBufferInfo*)pointer.ToPointer();
+			}
+			else
+			{
+			    result.BufferInfo = null;
+			}
+			result.DescriptorCount = (uint)(this.TexelBufferView?.Length ?? 0);
+			
+			//TexelBufferView
+			if (this.TexelBufferView != null)
+			{
+			    int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.BufferView>();
+			    IntPtr pointer = Interop.HeapUtil.Allocate<Interop.BufferView>(this.TexelBufferView.Length);
+			    for (int index = 0; index < this.TexelBufferView.Length; index++)
+			    {
+			        System.Runtime.InteropServices.Marshal.StructureToPtr(this.TexelBufferView[index].Pack(), pointer + (size * index), false);
+			    }
+			    result.TexelBufferView = (Interop.BufferView*)pointer.ToPointer();
+			}
+			else
+			{
+			    result.TexelBufferView = null;
+			}
+			result.DestinationBinding = this.DestinationBinding;
+			result.DestinationArrayElement = this.DestinationArrayElement;
+			result.DescriptorType = this.DescriptorType;
+
+            return result;
+        }
+
+		internal unsafe Interop.WriteDescriptorSet* MarshalTo()
+        {
+            return (Interop.WriteDescriptorSet*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 }

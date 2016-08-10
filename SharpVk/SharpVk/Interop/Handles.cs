@@ -1,6 +1,6 @@
 ﻿//The MIT License (MIT)
 //
-//Copyright (c) 2016 Andrew Armstrong/FacticiusVir
+//Copyright (c) Andrew Armstrong/FacticiusVir 2016
 //
 //Permission is hereby granted, free of charge, to any person obtaining a copy
 //of this software and associated documentation files (the "Software"), to deal
@@ -88,6 +88,38 @@ namespace SharpVk.Interop
 		}
 	}
 
+	public struct DescriptorPool
+	{
+		internal IntPtr handle;
+
+		public static DescriptorPool Null
+		{
+			get
+			{
+				return new DescriptorPool
+                {
+                    handle = IntPtr.Zero
+                };
+			}
+		}
+	}
+
+	public struct DescriptorSet
+	{
+		internal IntPtr handle;
+
+		public static DescriptorSet Null
+		{
+			get
+			{
+				return new DescriptorSet
+                {
+                    handle = IntPtr.Zero
+                };
+			}
+		}
+	}
+
 	public struct DescriptorSetLayout
 	{
 		internal IntPtr handle;
@@ -161,6 +193,22 @@ namespace SharpVk.Interop
 			get
 			{
 				return new Fence
+                {
+                    handle = IntPtr.Zero
+                };
+			}
+		}
+	}
+
+	public struct Framebuffer
+	{
+		internal IntPtr handle;
+
+		public static Framebuffer Null
+		{
+			get
+			{
+				return new Framebuffer
                 {
                     handle = IntPtr.Zero
                 };
@@ -321,6 +369,22 @@ namespace SharpVk.Interop
 			get
 			{
 				return new RenderPass
+                {
+                    handle = IntPtr.Zero
+                };
+			}
+		}
+	}
+
+	public struct Sampler
+	{
+		internal IntPtr handle;
+
+		public static Sampler Null
+		{
+			get
+			{
+				return new Sampler
                 {
                     handle = IntPtr.Zero
                 };

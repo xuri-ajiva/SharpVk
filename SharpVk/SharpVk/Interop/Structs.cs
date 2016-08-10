@@ -1,6 +1,6 @@
 ﻿//The MIT License (MIT)
 //
-//Copyright (c) 2016 Andrew Armstrong/FacticiusVir
+//Copyright (c) Andrew Armstrong/FacticiusVir 2016
 //
 //Permission is hereby granted, free of charge, to any person obtaining a copy
 //of this software and associated documentation files (the "Software"), to deal
@@ -106,6 +106,47 @@ namespace SharpVk.Interop
 	}
 
     [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct CommandBufferAllocateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public CommandPool CommandPool;
+		public CommandBufferLevel Level;
+		public uint CommandBufferCount;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct CommandBufferBeginInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public CommandBufferUsageFlags Flags;
+		public CommandBufferInheritanceInfo* InheritanceInfo;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct CommandBufferInheritanceInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public RenderPass RenderPass;
+		public uint Subpass;
+		public Framebuffer Framebuffer;
+		public Bool32 OcclusionQueryEnable;
+		public QueryControlFlags QueryFlags;
+		public QueryPipelineStatisticFlags PipelineStatistics;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct CommandPoolCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public CommandPoolCreateFlags Flags;
+		public uint QueueFamilyIndex;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
 	public unsafe struct ComputePipelineCreateInfo
 	{
 		public StructureType SType;
@@ -115,6 +156,77 @@ namespace SharpVk.Interop
 		public PipelineLayout Layout;
 		public Pipeline BasePipelineHandle;
 		public int BasePipelineIndex;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct CopyDescriptorSet
+	{
+		public StructureType SType;
+		public void* Next;
+		public DescriptorSet SourceSet;
+		public uint SourceBinding;
+		public uint SourceArrayElement;
+		public DescriptorSet DestinationSet;
+		public uint DestinationBinding;
+		public uint DestinationArrayElement;
+		public uint DescriptorCount;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct DescriptorBufferInfo
+	{
+		public Buffer Buffer;
+		public DeviceSize Offset;
+		public DeviceSize Range;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct DescriptorImageInfo
+	{
+		public Sampler Sampler;
+		public ImageView ImageView;
+		public ImageLayout ImageLayout;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct DescriptorPoolCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public DescriptorPoolCreateFlags Flags;
+		public uint MaxSets;
+		public uint PoolSizeCount;
+		public DescriptorPoolSize* PoolSizes;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct DescriptorSetAllocateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public DescriptorPool DescriptorPool;
+		public uint DescriptorSetCount;
+		public DescriptorSetLayout* SetLayouts;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct DescriptorSetLayoutBinding
+	{
+		public uint Binding;
+		public DescriptorType DescriptorType;
+		public uint DescriptorCount;
+		public ShaderStageFlags StageFlags;
+		public Sampler* ImmutableSamplers;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct DescriptorSetLayoutCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public DescriptorSetLayoutCreateFlags Flags;
+		public uint BindingCount;
+		public DescriptorSetLayoutBinding* Bindings;
 	}
 
     [StructLayout(LayoutKind.Sequential)]
@@ -167,6 +279,20 @@ namespace SharpVk.Interop
 	}
 
     [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct FramebufferCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public FramebufferCreateFlags Flags;
+		public RenderPass RenderPass;
+		public uint AttachmentCount;
+		public ImageView* Attachments;
+		public uint Width;
+		public uint Height;
+		public uint Layers;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
 	public unsafe struct GraphicsPipelineCreateInfo
 	{
 		public StructureType SType;
@@ -188,6 +314,17 @@ namespace SharpVk.Interop
 		public uint Subpass;
 		public Pipeline BasePipelineHandle;
 		public int BasePipelineIndex;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct ImageBlit
+	{
+		public ImageSubresourceLayers SourceSubresource;
+		public Offset3D SourceOffsets;
+		private Offset3D SourceOffsets_1;
+		public ImageSubresourceLayers DestinationSubresource;
+		public Offset3D DestinationOffsets;
+		private Offset3D DestinationOffsets_1;
 	}
 
     [StructLayout(LayoutKind.Sequential)]
@@ -642,6 +779,55 @@ namespace SharpVk.Interop
 	}
 
     [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct RenderPassBeginInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public RenderPass RenderPass;
+		public Framebuffer Framebuffer;
+		public Rect2D RenderArea;
+		public uint ClearValueCount;
+		public ClearValue* ClearValues;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct RenderPassCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public RenderPassCreateFlags Flags;
+		public uint AttachmentCount;
+		public AttachmentDescription* Attachments;
+		public uint SubpassCount;
+		public SubpassDescription* Subpasses;
+		public uint DependencyCount;
+		public SubpassDependency* Dependencies;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct SamplerCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public SamplerCreateFlags Flags;
+		public Filter MagFilter;
+		public Filter MinFilter;
+		public SamplerMipmapMode MipmapMode;
+		public SamplerAddressMode AddressModeU;
+		public SamplerAddressMode AddressModeV;
+		public SamplerAddressMode AddressModeW;
+		public float MipLodBias;
+		public Bool32 AnisotropyEnable;
+		public float MaxAnisotropy;
+		public Bool32 CompareEnable;
+		public CompareOp CompareOp;
+		public float MinLod;
+		public float MaxLod;
+		public BorderColor BorderColor;
+		public Bool32 UnnormalizedCoordinates;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
 	public unsafe struct SemaphoreCreateInfo
 	{
 		public StructureType SType;
@@ -728,6 +914,21 @@ namespace SharpVk.Interop
 	}
 
     [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct SubpassDescription
+	{
+		public SubpassDescriptionFlags Flags;
+		public PipelineBindPoint PipelineBindPoint;
+		public uint InputAttachmentCount;
+		public AttachmentReference* InputAttachments;
+		public uint ColorAttachmentCount;
+		public AttachmentReference* ColorAttachments;
+		public AttachmentReference* ResolveAttachments;
+		public AttachmentReference* DepthStencilAttachment;
+		public uint PreserveAttachmentCount;
+		public uint* PreserveAttachments;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
 	public unsafe struct SwapchainCreateInfo
 	{
 		public StructureType SType;
@@ -758,5 +959,20 @@ namespace SharpVk.Interop
 		public Win32SurfaceCreateFlags Flags;
 		public IntPtr Hinstance;
 		public IntPtr Hwnd;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct WriteDescriptorSet
+	{
+		public StructureType SType;
+		public void* Next;
+		public DescriptorSet DestinationSet;
+		public uint DestinationBinding;
+		public uint DestinationArrayElement;
+		public uint DescriptorCount;
+		public DescriptorType DescriptorType;
+		public DescriptorImageInfo* ImageInfo;
+		public DescriptorBufferInfo* BufferInfo;
+		public BufferView* TexelBufferView;
 	}
 }

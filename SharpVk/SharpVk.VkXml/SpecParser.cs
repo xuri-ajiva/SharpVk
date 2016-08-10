@@ -468,7 +468,7 @@ namespace SharpVk.VkXml
 
             //HACK Artificially limit the set of required commands to simplify
             // the API while working on marshalling and the public handles
-            requiredCommand = new List<string>(requiredCommand.Distinct().Take(70));
+            requiredCommand = new List<string>(requiredCommand.Distinct());
 
             foreach (var extension in extensions)
             {

@@ -15,6 +15,8 @@ namespace SharpVk
         static void Main(string[] args)
         {
             GenerateTypes();
+            Console.WriteLine("Done");
+            Console.ReadLine();
         }
 
         private static void Enumerate<T>(T target)

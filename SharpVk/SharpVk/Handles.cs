@@ -1,6 +1,6 @@
 ﻿//The MIT License (MIT)
 //
-//Copyright (c) 2016 Andrew Armstrong/FacticiusVir
+//Copyright (c) Andrew Armstrong/FacticiusVir 2016
 //
 //Permission is hereby granted, free of charge, to any person obtaining a copy
 //of this software and associated documentation files (the "Software"), to deal
@@ -138,6 +138,781 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
+		public void Begin(CommandBufferBeginInfo beginInfo)
+		{
+			unsafe
+			{
+				Result commandResult;
+
+				Interop.CommandBufferBeginInfo marshalledBeginInfo;
+				if(beginInfo != null) marshalledBeginInfo = beginInfo.Pack();
+				commandResult = Interop.Commands.vkBeginCommandBuffer(this.handle, beginInfo == null ? null : &marshalledBeginInfo);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void End()
+		{
+			unsafe
+			{
+				Result commandResult;
+
+				commandResult = Interop.Commands.vkEndCommandBuffer(this.handle);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void Reset(CommandBufferResetFlags flags)
+		{
+			unsafe
+			{
+				Result commandResult;
+
+				commandResult = Interop.Commands.vkResetCommandBuffer(this.handle, flags);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void BindPipeline(PipelineBindPoint pipelineBindPoint, Pipeline pipeline)
+		{
+			unsafe
+			{
+				Interop.Pipeline marshalledPipeline = pipeline?.Pack() ?? Interop.Pipeline.Null;
+				Interop.Commands.vkCmdBindPipeline(this.handle, pipelineBindPoint, marshalledPipeline);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void SetViewport(uint firstViewport, Viewport[] viewports)
+		{
+			unsafe
+			{
+				fixed(Viewport* marshalledViewports = viewports)
+				Interop.Commands.vkCmdSetViewport(this.handle, firstViewport, (uint)viewports.Length, marshalledViewports);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void SetScissor(uint firstScissor, Rect2D[] scissors)
+		{
+			unsafe
+			{
+				fixed(Rect2D* marshalledScissors = scissors)
+				Interop.Commands.vkCmdSetScissor(this.handle, firstScissor, (uint)scissors.Length, marshalledScissors);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void SetLineWidth(float lineWidth)
+		{
+			unsafe
+			{
+				Interop.Commands.vkCmdSetLineWidth(this.handle, lineWidth);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void SetDepthBias(float depthBiasConstantFactor, float depthBiasClamp, float depthBiasSlopeFactor)
+		{
+			unsafe
+			{
+				Interop.Commands.vkCmdSetDepthBias(this.handle, depthBiasConstantFactor, depthBiasClamp, depthBiasSlopeFactor);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void SetBlendConstants(float blendConstants)
+		{
+			unsafe
+			{
+				Interop.Commands.vkCmdSetBlendConstants(this.handle, blendConstants);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void SetDepthBounds(float minDepthBounds, float maxDepthBounds)
+		{
+			unsafe
+			{
+				Interop.Commands.vkCmdSetDepthBounds(this.handle, minDepthBounds, maxDepthBounds);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void SetStencilCompareMask(StencilFaceFlags faceMask, uint compareMask)
+		{
+			unsafe
+			{
+				Interop.Commands.vkCmdSetStencilCompareMask(this.handle, faceMask, compareMask);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void SetStencilWriteMask(StencilFaceFlags faceMask, uint writeMask)
+		{
+			unsafe
+			{
+				Interop.Commands.vkCmdSetStencilWriteMask(this.handle, faceMask, writeMask);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void SetStencilReference(StencilFaceFlags faceMask, uint reference)
+		{
+			unsafe
+			{
+				Interop.Commands.vkCmdSetStencilReference(this.handle, faceMask, reference);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void BindDescriptorSets(PipelineBindPoint pipelineBindPoint, PipelineLayout layout, uint firstSet, DescriptorSet[] descriptorSets, uint[] dynamicOffsets)
+		{
+			unsafe
+			{
+				Interop.PipelineLayout marshalledLayout = layout?.Pack() ?? Interop.PipelineLayout.Null;
+				Interop.DescriptorSet* marshalledDescriptorSets;
+				if (descriptorSets != null)
+				{
+				    marshalledDescriptorSets = (Interop.DescriptorSet*)Interop.HeapUtil.Allocate<Interop.DescriptorSet>(descriptorSets.Length);
+				    for (int index = 0; index < descriptorSets.Length; index++)
+				    {
+				        marshalledDescriptorSets[index] = descriptorSets[index].Pack();
+				    }
+				}
+				else
+				{
+				    marshalledDescriptorSets = null;
+				}
+				fixed(uint* marshalledDynamicOffsets = dynamicOffsets)
+				Interop.Commands.vkCmdBindDescriptorSets(this.handle, pipelineBindPoint, marshalledLayout, firstSet, (uint)descriptorSets.Length, marshalledDescriptorSets, (uint)dynamicOffsets.Length, marshalledDynamicOffsets);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void BindIndexBuffer(Buffer buffer, DeviceSize offset, IndexType indexType)
+		{
+			unsafe
+			{
+				Interop.Buffer marshalledBuffer = buffer?.Pack() ?? Interop.Buffer.Null;
+				Interop.Commands.vkCmdBindIndexBuffer(this.handle, marshalledBuffer, offset, indexType);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void BindVertexBuffers(uint firstBinding, Buffer[] buffers, DeviceSize[] offsets)
+		{
+			unsafe
+			{
+				Interop.Buffer* marshalledBuffers;
+				if (buffers != null)
+				{
+				    marshalledBuffers = (Interop.Buffer*)Interop.HeapUtil.Allocate<Interop.Buffer>(buffers.Length);
+				    for (int index = 0; index < buffers.Length; index++)
+				    {
+				        marshalledBuffers[index] = buffers[index].Pack();
+				    }
+				}
+				else
+				{
+				    marshalledBuffers = null;
+				}
+				fixed(DeviceSize* marshalledOffsets = offsets)
+				Interop.Commands.vkCmdBindVertexBuffers(this.handle, firstBinding, (uint)offsets.Length, marshalledBuffers, marshalledOffsets);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void Draw(uint vertexCount, uint instanceCount, uint firstVertex, uint firstInstance)
+		{
+			unsafe
+			{
+				Interop.Commands.vkCmdDraw(this.handle, vertexCount, instanceCount, firstVertex, firstInstance);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void DrawIndexed(uint indexCount, uint instanceCount, uint firstIndex, int vertexOffset, uint firstInstance)
+		{
+			unsafe
+			{
+				Interop.Commands.vkCmdDrawIndexed(this.handle, indexCount, instanceCount, firstIndex, vertexOffset, firstInstance);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void DrawIndirect(Buffer buffer, DeviceSize offset, uint drawCount, uint stride)
+		{
+			unsafe
+			{
+				Interop.Buffer marshalledBuffer = buffer?.Pack() ?? Interop.Buffer.Null;
+				Interop.Commands.vkCmdDrawIndirect(this.handle, marshalledBuffer, offset, drawCount, stride);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void DrawIndexedIndirect(Buffer buffer, DeviceSize offset, uint drawCount, uint stride)
+		{
+			unsafe
+			{
+				Interop.Buffer marshalledBuffer = buffer?.Pack() ?? Interop.Buffer.Null;
+				Interop.Commands.vkCmdDrawIndexedIndirect(this.handle, marshalledBuffer, offset, drawCount, stride);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void Dispatch(uint x, uint y, uint z)
+		{
+			unsafe
+			{
+				Interop.Commands.vkCmdDispatch(this.handle, x, y, z);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void DispatchIndirect(Buffer buffer, DeviceSize offset)
+		{
+			unsafe
+			{
+				Interop.Buffer marshalledBuffer = buffer?.Pack() ?? Interop.Buffer.Null;
+				Interop.Commands.vkCmdDispatchIndirect(this.handle, marshalledBuffer, offset);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void CopyBuffer(Buffer sourceBuffer, Buffer destinationBuffer, BufferCopy[] regions)
+		{
+			unsafe
+			{
+				Interop.Buffer marshalledSourceBuffer = sourceBuffer?.Pack() ?? Interop.Buffer.Null;
+				Interop.Buffer marshalledDestinationBuffer = destinationBuffer?.Pack() ?? Interop.Buffer.Null;
+				fixed(BufferCopy* marshalledRegions = regions)
+				Interop.Commands.vkCmdCopyBuffer(this.handle, marshalledSourceBuffer, marshalledDestinationBuffer, (uint)regions.Length, marshalledRegions);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void CopyImage(Image sourceImage, ImageLayout sourceImageLayout, Image destinationImage, ImageLayout destinationImageLayout, ImageCopy[] regions)
+		{
+			unsafe
+			{
+				Interop.Image marshalledSourceImage = sourceImage?.Pack() ?? Interop.Image.Null;
+				Interop.Image marshalledDestinationImage = destinationImage?.Pack() ?? Interop.Image.Null;
+				fixed(ImageCopy* marshalledRegions = regions)
+				Interop.Commands.vkCmdCopyImage(this.handle, marshalledSourceImage, sourceImageLayout, marshalledDestinationImage, destinationImageLayout, (uint)regions.Length, marshalledRegions);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void BlitImage(Image sourceImage, ImageLayout sourceImageLayout, Image destinationImage, ImageLayout destinationImageLayout, ImageBlit[] regions, Filter filter)
+		{
+			unsafe
+			{
+				Interop.Image marshalledSourceImage = sourceImage?.Pack() ?? Interop.Image.Null;
+				Interop.Image marshalledDestinationImage = destinationImage?.Pack() ?? Interop.Image.Null;
+				Interop.ImageBlit* marshalledRegions;
+				if (regions != null)
+				{
+				    marshalledRegions = (Interop.ImageBlit*)Interop.HeapUtil.Allocate<Interop.ImageBlit>(regions.Length);
+				    for (int index = 0; index < regions.Length; index++)
+				    {
+				        marshalledRegions[index] = regions[index].Pack();
+				    }
+				}
+				else
+				{
+				    marshalledRegions = null;
+				}
+				Interop.Commands.vkCmdBlitImage(this.handle, marshalledSourceImage, sourceImageLayout, marshalledDestinationImage, destinationImageLayout, (uint)regions.Length, marshalledRegions, filter);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void CopyBufferToImage(Buffer sourceBuffer, Image destinationImage, ImageLayout destinationImageLayout, BufferImageCopy[] regions)
+		{
+			unsafe
+			{
+				Interop.Buffer marshalledSourceBuffer = sourceBuffer?.Pack() ?? Interop.Buffer.Null;
+				Interop.Image marshalledDestinationImage = destinationImage?.Pack() ?? Interop.Image.Null;
+				fixed(BufferImageCopy* marshalledRegions = regions)
+				Interop.Commands.vkCmdCopyBufferToImage(this.handle, marshalledSourceBuffer, marshalledDestinationImage, destinationImageLayout, (uint)regions.Length, marshalledRegions);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void CopyImageToBuffer(Image sourceImage, ImageLayout sourceImageLayout, Buffer destinationBuffer, BufferImageCopy[] regions)
+		{
+			unsafe
+			{
+				Interop.Image marshalledSourceImage = sourceImage?.Pack() ?? Interop.Image.Null;
+				Interop.Buffer marshalledDestinationBuffer = destinationBuffer?.Pack() ?? Interop.Buffer.Null;
+				fixed(BufferImageCopy* marshalledRegions = regions)
+				Interop.Commands.vkCmdCopyImageToBuffer(this.handle, marshalledSourceImage, sourceImageLayout, marshalledDestinationBuffer, (uint)regions.Length, marshalledRegions);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void UpdateBuffer(Buffer destinationBuffer, DeviceSize destinationOffset, byte[] data)
+		{
+			unsafe
+			{
+				Interop.Buffer marshalledDestinationBuffer = destinationBuffer?.Pack() ?? Interop.Buffer.Null;
+				fixed(byte* marshalledData = data)
+				Interop.Commands.vkCmdUpdateBuffer(this.handle, marshalledDestinationBuffer, destinationOffset, (DeviceSize)data.Length, marshalledData);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void FillBuffer(Buffer destinationBuffer, DeviceSize destinationOffset, DeviceSize size, uint data)
+		{
+			unsafe
+			{
+				Interop.Buffer marshalledDestinationBuffer = destinationBuffer?.Pack() ?? Interop.Buffer.Null;
+				Interop.Commands.vkCmdFillBuffer(this.handle, marshalledDestinationBuffer, destinationOffset, size, data);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void ClearColorImage(Image image, ImageLayout imageLayout, ClearColorValue color, ImageSubresourceRange[] ranges)
+		{
+			unsafe
+			{
+				Interop.Image marshalledImage = image?.Pack() ?? Interop.Image.Null;
+				fixed(ImageSubresourceRange* marshalledRanges = ranges)
+				Interop.Commands.vkCmdClearColorImage(this.handle, marshalledImage, imageLayout, &color, (uint)ranges.Length, marshalledRanges);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void ClearDepthStencilImage(Image image, ImageLayout imageLayout, ClearDepthStencilValue depthStencil, ImageSubresourceRange[] ranges)
+		{
+			unsafe
+			{
+				Interop.Image marshalledImage = image?.Pack() ?? Interop.Image.Null;
+				fixed(ImageSubresourceRange* marshalledRanges = ranges)
+				Interop.Commands.vkCmdClearDepthStencilImage(this.handle, marshalledImage, imageLayout, &depthStencil, (uint)ranges.Length, marshalledRanges);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void ClearAttachments(ClearAttachment[] attachments, ClearRect[] rects)
+		{
+			unsafe
+			{
+				fixed(ClearAttachment* marshalledAttachments = attachments)
+				fixed(ClearRect* marshalledRects = rects)
+				Interop.Commands.vkCmdClearAttachments(this.handle, (uint)attachments.Length, marshalledAttachments, (uint)rects.Length, marshalledRects);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void ResolveImage(Image sourceImage, ImageLayout sourceImageLayout, Image destinationImage, ImageLayout destinationImageLayout, ImageResolve[] regions)
+		{
+			unsafe
+			{
+				Interop.Image marshalledSourceImage = sourceImage?.Pack() ?? Interop.Image.Null;
+				Interop.Image marshalledDestinationImage = destinationImage?.Pack() ?? Interop.Image.Null;
+				fixed(ImageResolve* marshalledRegions = regions)
+				Interop.Commands.vkCmdResolveImage(this.handle, marshalledSourceImage, sourceImageLayout, marshalledDestinationImage, destinationImageLayout, (uint)regions.Length, marshalledRegions);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void SetEvent(Event @event, PipelineStageFlags stageMask)
+		{
+			unsafe
+			{
+				Interop.Event marshalledEvent = @event?.Pack() ?? Interop.Event.Null;
+				Interop.Commands.vkCmdSetEvent(this.handle, marshalledEvent, stageMask);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void ResetEvent(Event @event, PipelineStageFlags stageMask)
+		{
+			unsafe
+			{
+				Interop.Event marshalledEvent = @event?.Pack() ?? Interop.Event.Null;
+				Interop.Commands.vkCmdResetEvent(this.handle, marshalledEvent, stageMask);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void WaitEvents(Event[] events, PipelineStageFlags sourceStageMask, PipelineStageFlags destinationStageMask, MemoryBarrier[] memoryBarriers, BufferMemoryBarrier[] bufferMemoryBarriers, ImageMemoryBarrier[] imageMemoryBarriers)
+		{
+			unsafe
+			{
+				Interop.Event* marshalledEvents;
+				if (events != null)
+				{
+				    marshalledEvents = (Interop.Event*)Interop.HeapUtil.Allocate<Interop.Event>(events.Length);
+				    for (int index = 0; index < events.Length; index++)
+				    {
+				        marshalledEvents[index] = events[index].Pack();
+				    }
+				}
+				else
+				{
+				    marshalledEvents = null;
+				}
+				Interop.MemoryBarrier* marshalledMemoryBarriers;
+				if (memoryBarriers != null)
+				{
+				    marshalledMemoryBarriers = (Interop.MemoryBarrier*)Interop.HeapUtil.Allocate<Interop.MemoryBarrier>(memoryBarriers.Length);
+				    for (int index = 0; index < memoryBarriers.Length; index++)
+				    {
+				        marshalledMemoryBarriers[index] = memoryBarriers[index].Pack();
+				    }
+				}
+				else
+				{
+				    marshalledMemoryBarriers = null;
+				}
+				Interop.BufferMemoryBarrier* marshalledBufferMemoryBarriers;
+				if (bufferMemoryBarriers != null)
+				{
+				    marshalledBufferMemoryBarriers = (Interop.BufferMemoryBarrier*)Interop.HeapUtil.Allocate<Interop.BufferMemoryBarrier>(bufferMemoryBarriers.Length);
+				    for (int index = 0; index < bufferMemoryBarriers.Length; index++)
+				    {
+				        marshalledBufferMemoryBarriers[index] = bufferMemoryBarriers[index].Pack();
+				    }
+				}
+				else
+				{
+				    marshalledBufferMemoryBarriers = null;
+				}
+				Interop.ImageMemoryBarrier* marshalledImageMemoryBarriers;
+				if (imageMemoryBarriers != null)
+				{
+				    marshalledImageMemoryBarriers = (Interop.ImageMemoryBarrier*)Interop.HeapUtil.Allocate<Interop.ImageMemoryBarrier>(imageMemoryBarriers.Length);
+				    for (int index = 0; index < imageMemoryBarriers.Length; index++)
+				    {
+				        marshalledImageMemoryBarriers[index] = imageMemoryBarriers[index].Pack();
+				    }
+				}
+				else
+				{
+				    marshalledImageMemoryBarriers = null;
+				}
+				Interop.Commands.vkCmdWaitEvents(this.handle, (uint)events.Length, marshalledEvents, sourceStageMask, destinationStageMask, (uint)memoryBarriers.Length, marshalledMemoryBarriers, (uint)bufferMemoryBarriers.Length, marshalledBufferMemoryBarriers, (uint)imageMemoryBarriers.Length, marshalledImageMemoryBarriers);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void PipelineBarrier(PipelineStageFlags sourceStageMask, PipelineStageFlags destinationStageMask, DependencyFlags dependencyFlags, MemoryBarrier[] memoryBarriers, BufferMemoryBarrier[] bufferMemoryBarriers, ImageMemoryBarrier[] imageMemoryBarriers)
+		{
+			unsafe
+			{
+				Interop.MemoryBarrier* marshalledMemoryBarriers;
+				if (memoryBarriers != null)
+				{
+				    marshalledMemoryBarriers = (Interop.MemoryBarrier*)Interop.HeapUtil.Allocate<Interop.MemoryBarrier>(memoryBarriers.Length);
+				    for (int index = 0; index < memoryBarriers.Length; index++)
+				    {
+				        marshalledMemoryBarriers[index] = memoryBarriers[index].Pack();
+				    }
+				}
+				else
+				{
+				    marshalledMemoryBarriers = null;
+				}
+				Interop.BufferMemoryBarrier* marshalledBufferMemoryBarriers;
+				if (bufferMemoryBarriers != null)
+				{
+				    marshalledBufferMemoryBarriers = (Interop.BufferMemoryBarrier*)Interop.HeapUtil.Allocate<Interop.BufferMemoryBarrier>(bufferMemoryBarriers.Length);
+				    for (int index = 0; index < bufferMemoryBarriers.Length; index++)
+				    {
+				        marshalledBufferMemoryBarriers[index] = bufferMemoryBarriers[index].Pack();
+				    }
+				}
+				else
+				{
+				    marshalledBufferMemoryBarriers = null;
+				}
+				Interop.ImageMemoryBarrier* marshalledImageMemoryBarriers;
+				if (imageMemoryBarriers != null)
+				{
+				    marshalledImageMemoryBarriers = (Interop.ImageMemoryBarrier*)Interop.HeapUtil.Allocate<Interop.ImageMemoryBarrier>(imageMemoryBarriers.Length);
+				    for (int index = 0; index < imageMemoryBarriers.Length; index++)
+				    {
+				        marshalledImageMemoryBarriers[index] = imageMemoryBarriers[index].Pack();
+				    }
+				}
+				else
+				{
+				    marshalledImageMemoryBarriers = null;
+				}
+				Interop.Commands.vkCmdPipelineBarrier(this.handle, sourceStageMask, destinationStageMask, dependencyFlags, (uint)memoryBarriers.Length, marshalledMemoryBarriers, (uint)bufferMemoryBarriers.Length, marshalledBufferMemoryBarriers, (uint)imageMemoryBarriers.Length, marshalledImageMemoryBarriers);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void BeginQuery(QueryPool queryPool, uint query, QueryControlFlags flags)
+		{
+			unsafe
+			{
+				Interop.QueryPool marshalledQueryPool = queryPool?.Pack() ?? Interop.QueryPool.Null;
+				Interop.Commands.vkCmdBeginQuery(this.handle, marshalledQueryPool, query, flags);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void EndQuery(QueryPool queryPool, uint query)
+		{
+			unsafe
+			{
+				Interop.QueryPool marshalledQueryPool = queryPool?.Pack() ?? Interop.QueryPool.Null;
+				Interop.Commands.vkCmdEndQuery(this.handle, marshalledQueryPool, query);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void ResetQueryPool(QueryPool queryPool, uint firstQuery, uint queryCount)
+		{
+			unsafe
+			{
+				Interop.QueryPool marshalledQueryPool = queryPool?.Pack() ?? Interop.QueryPool.Null;
+				Interop.Commands.vkCmdResetQueryPool(this.handle, marshalledQueryPool, firstQuery, queryCount);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void WriteTimestamp(PipelineStageFlags pipelineStage, QueryPool queryPool, uint query)
+		{
+			unsafe
+			{
+				Interop.QueryPool marshalledQueryPool = queryPool?.Pack() ?? Interop.QueryPool.Null;
+				Interop.Commands.vkCmdWriteTimestamp(this.handle, pipelineStage, marshalledQueryPool, query);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void CopyQueryPoolResults(QueryPool queryPool, uint firstQuery, uint queryCount, Buffer destinationBuffer, DeviceSize destinationOffset, DeviceSize stride, QueryResultFlags flags)
+		{
+			unsafe
+			{
+				Interop.QueryPool marshalledQueryPool = queryPool?.Pack() ?? Interop.QueryPool.Null;
+				Interop.Buffer marshalledDestinationBuffer = destinationBuffer?.Pack() ?? Interop.Buffer.Null;
+				Interop.Commands.vkCmdCopyQueryPoolResults(this.handle, marshalledQueryPool, firstQuery, queryCount, marshalledDestinationBuffer, destinationOffset, stride, flags);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void PushConstants(PipelineLayout layout, ShaderStageFlags stageFlags, uint offset, byte[] values)
+		{
+			unsafe
+			{
+				Interop.PipelineLayout marshalledLayout = layout?.Pack() ?? Interop.PipelineLayout.Null;
+				fixed(byte* marshalledValues = values)
+				Interop.Commands.vkCmdPushConstants(this.handle, marshalledLayout, stageFlags, offset, (uint)values.Length, marshalledValues);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void BeginRenderPass(RenderPassBeginInfo renderPassBegin, SubpassContents contents)
+		{
+			unsafe
+			{
+				Interop.RenderPassBeginInfo marshalledRenderPassBegin;
+				if(renderPassBegin != null) marshalledRenderPassBegin = renderPassBegin.Pack();
+				Interop.Commands.vkCmdBeginRenderPass(this.handle, renderPassBegin == null ? null : &marshalledRenderPassBegin, contents);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void NextSubpass(SubpassContents contents)
+		{
+			unsafe
+			{
+				Interop.Commands.vkCmdNextSubpass(this.handle, contents);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void EndRenderPass()
+		{
+			unsafe
+			{
+				Interop.Commands.vkCmdEndRenderPass(this.handle);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void ExecuteCommands(CommandBuffer[] commandBuffers)
+		{
+			unsafe
+			{
+				Interop.CommandBuffer* marshalledCommandBuffers;
+				if (commandBuffers != null)
+				{
+				    marshalledCommandBuffers = (Interop.CommandBuffer*)Interop.HeapUtil.Allocate<Interop.CommandBuffer>(commandBuffers.Length);
+				    for (int index = 0; index < commandBuffers.Length; index++)
+				    {
+				        marshalledCommandBuffers[index] = commandBuffers[index].Pack();
+				    }
+				}
+				else
+				{
+				    marshalledCommandBuffers = null;
+				}
+				Interop.Commands.vkCmdExecuteCommands(this.handle, (uint)commandBuffers.Length, marshalledCommandBuffers);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
 		internal Interop.CommandBuffer Pack()
 		{
 			return this.handle;
@@ -157,7 +932,165 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
+		public void Destroy(AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+				Interop.Commands.vkDestroyCommandPool(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void Reset(CommandPoolResetFlags flags)
+		{
+			unsafe
+			{
+				Result commandResult;
+
+				commandResult = Interop.Commands.vkResetCommandPool(this.parent.handle, this.handle, flags);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void FreeCommandBuffers(CommandBuffer[] commandBuffers)
+		{
+			unsafe
+			{
+				Interop.CommandBuffer* marshalledCommandBuffers;
+				if (commandBuffers != null)
+				{
+				    marshalledCommandBuffers = (Interop.CommandBuffer*)Interop.HeapUtil.Allocate<Interop.CommandBuffer>(commandBuffers.Length);
+				    for (int index = 0; index < commandBuffers.Length; index++)
+				    {
+				        marshalledCommandBuffers[index] = commandBuffers[index].Pack();
+				    }
+				}
+				else
+				{
+				    marshalledCommandBuffers = null;
+				}
+				Interop.Commands.vkFreeCommandBuffers(this.parent.handle, this.handle, (uint)commandBuffers.Length, marshalledCommandBuffers);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
 		internal Interop.CommandPool Pack()
+		{
+			return this.handle;
+		}
+	}
+
+	public class DescriptorPool
+	{
+		internal readonly Interop.DescriptorPool handle;
+
+		private readonly Device parent;
+
+
+		internal DescriptorPool(Interop.DescriptorPool handle, Device parent)
+		{
+			this.handle = handle;
+			this.parent = parent;
+		}
+
+		public void Destroy(AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+				Interop.Commands.vkDestroyDescriptorPool(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void Reset(DescriptorPoolResetFlags flags)
+		{
+			unsafe
+			{
+				Result commandResult;
+
+				commandResult = Interop.Commands.vkResetDescriptorPool(this.parent.handle, this.handle, flags);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void FreeDescriptorSets(DescriptorSet[] descriptorSets)
+		{
+			unsafe
+			{
+				Result commandResult;
+
+				Interop.DescriptorSet* marshalledDescriptorSets;
+				if (descriptorSets != null)
+				{
+				    marshalledDescriptorSets = (Interop.DescriptorSet*)Interop.HeapUtil.Allocate<Interop.DescriptorSet>(descriptorSets.Length);
+				    for (int index = 0; index < descriptorSets.Length; index++)
+				    {
+				        marshalledDescriptorSets[index] = descriptorSets[index].Pack();
+				    }
+				}
+				else
+				{
+				    marshalledDescriptorSets = null;
+				}
+				commandResult = Interop.Commands.vkFreeDescriptorSets(this.parent.handle, this.handle, (uint)descriptorSets.Length, marshalledDescriptorSets);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		internal Interop.DescriptorPool Pack()
+		{
+			return this.handle;
+		}
+	}
+
+	public class DescriptorSet
+	{
+		internal readonly Interop.DescriptorSet handle;
+
+		private readonly DescriptorPool parent;
+
+
+		internal DescriptorSet(Interop.DescriptorSet handle, DescriptorPool parent)
+		{
+			this.handle = handle;
+			this.parent = parent;
+		}
+
+		internal Interop.DescriptorSet Pack()
 		{
 			return this.handle;
 		}
@@ -174,6 +1107,20 @@ namespace SharpVk
 		{
 			this.handle = handle;
 			this.parent = parent;
+		}
+
+		public void Destroy(AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+				Interop.Commands.vkDestroyDescriptorSetLayout(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
 		}
 
 		internal Interop.DescriptorSetLayout Pack()
@@ -722,6 +1669,264 @@ namespace SharpVk
 			}
 		}
 
+		public Sampler CreateSampler(SamplerCreateInfo createInfo, AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				Sampler result = default(Sampler);
+
+				Result commandResult;
+
+				Interop.SamplerCreateInfo marshalledCreateInfo;
+				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+				Interop.Sampler marshalledSampler;
+				commandResult = Interop.Commands.vkCreateSampler(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledSampler);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+				result = new Sampler(marshalledSampler, this);
+
+				Interop.HeapUtil.FreeLog();
+
+
+				return result;
+			}
+		}
+
+		public DescriptorSetLayout CreateDescriptorSetLayout(DescriptorSetLayoutCreateInfo createInfo, AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				DescriptorSetLayout result = default(DescriptorSetLayout);
+
+				Result commandResult;
+
+				Interop.DescriptorSetLayoutCreateInfo marshalledCreateInfo;
+				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+				Interop.DescriptorSetLayout marshalledSetLayout;
+				commandResult = Interop.Commands.vkCreateDescriptorSetLayout(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledSetLayout);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+				result = new DescriptorSetLayout(marshalledSetLayout, this);
+
+				Interop.HeapUtil.FreeLog();
+
+
+				return result;
+			}
+		}
+
+		public DescriptorPool CreateDescriptorPool(DescriptorPoolCreateInfo createInfo, AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				DescriptorPool result = default(DescriptorPool);
+
+				Result commandResult;
+
+				Interop.DescriptorPoolCreateInfo marshalledCreateInfo;
+				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+				Interop.DescriptorPool marshalledDescriptorPool;
+				commandResult = Interop.Commands.vkCreateDescriptorPool(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledDescriptorPool);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+				result = new DescriptorPool(marshalledDescriptorPool, this);
+
+				Interop.HeapUtil.FreeLog();
+
+
+				return result;
+			}
+		}
+
+		public DescriptorSet AllocateDescriptorSets(DescriptorSetAllocateInfo allocateInfo)
+		{
+			unsafe
+			{
+				DescriptorSet result = default(DescriptorSet);
+
+				Result commandResult;
+
+				Interop.DescriptorSetAllocateInfo marshalledAllocateInfo;
+				if(allocateInfo != null) marshalledAllocateInfo = allocateInfo.Pack();
+				Interop.DescriptorSet marshalledDescriptorSets;
+				commandResult = Interop.Commands.vkAllocateDescriptorSets(this.handle, allocateInfo == null ? null : &marshalledAllocateInfo, &marshalledDescriptorSets);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+				result = new DescriptorSet(marshalledDescriptorSets, allocateInfo.DescriptorPool);
+
+				Interop.HeapUtil.FreeLog();
+
+
+				return result;
+			}
+		}
+
+		public void UpdateDescriptorSets(WriteDescriptorSet[] descriptorWrites, CopyDescriptorSet[] descriptorCopies)
+		{
+			unsafe
+			{
+				Interop.WriteDescriptorSet* marshalledDescriptorWrites;
+				if (descriptorWrites != null)
+				{
+				    marshalledDescriptorWrites = (Interop.WriteDescriptorSet*)Interop.HeapUtil.Allocate<Interop.WriteDescriptorSet>(descriptorWrites.Length);
+				    for (int index = 0; index < descriptorWrites.Length; index++)
+				    {
+				        marshalledDescriptorWrites[index] = descriptorWrites[index].Pack();
+				    }
+				}
+				else
+				{
+				    marshalledDescriptorWrites = null;
+				}
+				Interop.CopyDescriptorSet* marshalledDescriptorCopies;
+				if (descriptorCopies != null)
+				{
+				    marshalledDescriptorCopies = (Interop.CopyDescriptorSet*)Interop.HeapUtil.Allocate<Interop.CopyDescriptorSet>(descriptorCopies.Length);
+				    for (int index = 0; index < descriptorCopies.Length; index++)
+				    {
+				        marshalledDescriptorCopies[index] = descriptorCopies[index].Pack();
+				    }
+				}
+				else
+				{
+				    marshalledDescriptorCopies = null;
+				}
+				Interop.Commands.vkUpdateDescriptorSets(this.handle, (uint)descriptorWrites.Length, marshalledDescriptorWrites, (uint)descriptorCopies.Length, marshalledDescriptorCopies);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public Framebuffer CreateFramebuffer(FramebufferCreateInfo createInfo, AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				Framebuffer result = default(Framebuffer);
+
+				Result commandResult;
+
+				Interop.FramebufferCreateInfo marshalledCreateInfo;
+				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+				Interop.Framebuffer marshalledFramebuffer;
+				commandResult = Interop.Commands.vkCreateFramebuffer(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledFramebuffer);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+				result = new Framebuffer(marshalledFramebuffer, this);
+
+				Interop.HeapUtil.FreeLog();
+
+
+				return result;
+			}
+		}
+
+		public RenderPass CreateRenderPass(RenderPassCreateInfo createInfo, AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				RenderPass result = default(RenderPass);
+
+				Result commandResult;
+
+				Interop.RenderPassCreateInfo marshalledCreateInfo;
+				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+				Interop.RenderPass marshalledRenderPass;
+				commandResult = Interop.Commands.vkCreateRenderPass(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledRenderPass);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+				result = new RenderPass(marshalledRenderPass, this);
+
+				Interop.HeapUtil.FreeLog();
+
+
+				return result;
+			}
+		}
+
+		public CommandPool CreateCommandPool(CommandPoolCreateInfo createInfo, AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				CommandPool result = default(CommandPool);
+
+				Result commandResult;
+
+				Interop.CommandPoolCreateInfo marshalledCreateInfo;
+				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+				Interop.CommandPool marshalledCommandPool;
+				commandResult = Interop.Commands.vkCreateCommandPool(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledCommandPool);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+				result = new CommandPool(marshalledCommandPool, this);
+
+				Interop.HeapUtil.FreeLog();
+
+
+				return result;
+			}
+		}
+
+		public CommandBuffer AllocateCommandBuffers(CommandBufferAllocateInfo allocateInfo)
+		{
+			unsafe
+			{
+				CommandBuffer result = default(CommandBuffer);
+
+				Result commandResult;
+
+				Interop.CommandBufferAllocateInfo marshalledAllocateInfo;
+				if(allocateInfo != null) marshalledAllocateInfo = allocateInfo.Pack();
+				Interop.CommandBuffer marshalledCommandBuffers;
+				commandResult = Interop.Commands.vkAllocateCommandBuffers(this.handle, allocateInfo == null ? null : &marshalledAllocateInfo, &marshalledCommandBuffers);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+				result = new CommandBuffer(marshalledCommandBuffers, allocateInfo.CommandPool);
+
+				Interop.HeapUtil.FreeLog();
+
+
+				return result;
+			}
+		}
+
 		public Swapchain CreateSwapchain(SwapchainCreateInfo createInfo, AllocationCallbacks allocator)
 		{
 			unsafe
@@ -970,6 +2175,39 @@ namespace SharpVk
 		}
 
 		internal Interop.Fence Pack()
+		{
+			return this.handle;
+		}
+	}
+
+	public class Framebuffer
+	{
+		internal readonly Interop.Framebuffer handle;
+
+		private readonly Device parent;
+
+
+		internal Framebuffer(Interop.Framebuffer handle, Device parent)
+		{
+			this.handle = handle;
+			this.parent = parent;
+		}
+
+		public void Destroy(AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+				Interop.Commands.vkDestroyFramebuffer(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		internal Interop.Framebuffer Pack()
 		{
 			return this.handle;
 		}
@@ -2157,7 +3395,70 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
+		public void Destroy(AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+				Interop.Commands.vkDestroyRenderPass(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public Extent2D GetRenderAreaGranularity()
+		{
+			unsafe
+			{
+				Extent2D result = default(Extent2D);
+
+				Interop.Commands.vkGetRenderAreaGranularity(this.parent.handle, this.handle, &result);
+
+
+				Interop.HeapUtil.FreeLog();
+
+
+				return result;
+			}
+		}
+
 		internal Interop.RenderPass Pack()
+		{
+			return this.handle;
+		}
+	}
+
+	public class Sampler
+	{
+		internal readonly Interop.Sampler handle;
+
+		private readonly Device parent;
+
+
+		internal Sampler(Interop.Sampler handle, Device parent)
+		{
+			this.handle = handle;
+			this.parent = parent;
+		}
+
+		public void Destroy(AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+				Interop.Commands.vkDestroySampler(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		internal Interop.Sampler Pack()
 		{
 			return this.handle;
 		}
