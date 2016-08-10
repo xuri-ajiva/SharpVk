@@ -110,7 +110,11 @@ namespace SharpVk.VkXml
                 bool lastParamIsArray = lastParamReturns
                                             && lastParam.Dimensions != null
                                             && lastParam.Dimensions.Any(x => x.Type != SpecParser.LenType.NullTerminated);
-                bool enumeratePattern = command.Verb == "enumerate" || lastParamIsArray;
+
+                bool lastParamLenFieldByRef = lastParamIsArray
+                                                && command.Params.Single(x => x.VkName == ((SpecParser.ParsedExpressionToken)lastParam.Dimensions[0].Value).Value).PointerType == PointerType.Pointer;
+
+                bool enumeratePattern = command.Verb == "enumerate" || (lastParamIsArray && lastParamLenFieldByRef);
 
                 var methodNameParts = command.NameParts;
 
@@ -189,7 +193,12 @@ namespace SharpVk.VkXml
                             && parameter.Dimensions[0].Type == SpecParser.LenType.Expression
                             && parameter.Dimensions[0].Value is SpecParser.ParsedExpressionToken)
                     {
-                        lenParamMapping[((SpecParser.ParsedExpressionToken)parameter.Dimensions[0].Value).Value] = paramNameLookup[parameter.VkName];
+                        string lenParam = ((SpecParser.ParsedExpressionToken)parameter.Dimensions[0].Value).Value;
+
+                        if (!lenParamMapping.ContainsKey(lenParam) || parameter.PointerType != PointerType.Pointer)
+                        {
+                            lenParamMapping[lenParam] = paramNameLookup[parameter.VkName];
+                        }
                     }
                 }
 
@@ -304,24 +313,36 @@ namespace SharpVk.VkXml
                                     {
                                         var parentHandle = handleLookup[paramType.Data.Parent];
 
-                                        if (handle != parentHandle)
+                                        if (handle == parentHandle)
                                         {
-                                            // If the containing handle is not the parent of the handle being returned,
-                                            // assume that the first param after all handles is a CreateInfo containing
-                                            // a field with the parent handle to assign.
-                                            // Also include a reference to the containing handle, as it will be the
-                                            // associated handle for this instance.
-
-                                            var createInfoParam = command.Params.Skip(handleParams.Count()).First();
-                                            var createInfoType = typeData[GetMemberTypeName(createInfoParam)];
-
-                                            var parentHandleMember = createInfoType.Data.Members.First(x => x.Type == paramType.Data.Parent);
-
-                                            parentArgument = $", {paramNameLookup[createInfoParam.VkName]}.{GetNameForElement(parentHandleMember)}, this";
+                                            parentArgument = ", this";
+                                        }
+                                        else if (handle.ParentHandle == parentHandle.Name)
+                                        {
+                                            parentArgument = ", this.parent";
                                         }
                                         else
                                         {
-                                            parentArgument = ", this";
+                                            // If the containing handle (or its parent) is not the parent of the handle
+                                            // being returned, assume that the first param after all handles is a
+                                            // CreateInfo containing a field with the parent handle to assign.
+                                            // Also include a reference to the containing handle, as it will be the
+                                            // associated handle for this instance.
+
+                                            var createInfoParam = command.Params.Skip(handleParams.Count()).FirstOrDefault(x => x.VkName.EndsWith("CreateInfo"));
+
+                                            if (createInfoParam != null)
+                                            {
+                                                var createInfoType = typeData[GetMemberTypeName(createInfoParam)];
+
+                                                var parentHandleMember = createInfoType.Data.Members.First(x => x.Type == paramType.Data.Parent);
+
+                                                parentArgument = $", {paramNameLookup[createInfoParam.VkName]}.{GetNameForElement(parentHandleMember)}, this";
+                                            }
+                                            else
+                                            {
+                                                throw new NotImplementedException();
+                                            }
                                         }
                                     }
 
@@ -648,7 +669,7 @@ namespace SharpVk.VkXml
                                             newClass.MarshalToStatements.Add($"    result.{memberName} = null;");
                                             newClass.MarshalToStatements.Add("}");
                                         }
-                                        else if(memberType.Data.Category == TypeCategory.basetype)
+                                        else if (memberType.Data.Category == TypeCategory.basetype)
                                         {
                                             string lenExpression = expressionBuilder.Build(member.Dimensions[0].Value);
                                             newClass.MarshalToStatements.Add($"result.{memberName} = this.{memberName} == null ? null : ({memberType.Name}*)Interop.HeapUtil.MarshalTo(this.{memberName}, (int){lenExpression});");
