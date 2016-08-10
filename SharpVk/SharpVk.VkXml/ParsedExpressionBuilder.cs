@@ -9,12 +9,12 @@ namespace SharpVk.VkXml
         : SpecParser.IParsedExpressionVisitor<ParsedExpressionBuilder.ExpressionBuildState>
     {
         private Dictionary<string, string> paramNameLookup;
-        private Dictionary<string, SpecParser.ParsedParam> paramLookup;
+        private Dictionary<string, SpecParser.ParsedElement> elementLookup;
         private Dictionary<string, TypeGenerator.TypeDesc> typeData;
 
-        public ParsedExpressionBuilder(Dictionary<string, string> paramNameLookup, List<SpecParser.ParsedParam> commandParams, Dictionary<string, TypeGenerator.TypeDesc> typeData)
+        public ParsedExpressionBuilder(Dictionary<string, string> paramNameLookup, IEnumerable<SpecParser.ParsedElement> elements, Dictionary<string, TypeGenerator.TypeDesc> typeData)
         {
-            this.paramLookup = commandParams.ToDictionary(x => x.VkName, x => x);
+            this.elementLookup = elements.ToDictionary(x => x.VkName, x => x);
             this.paramNameLookup = paramNameLookup;
             this.typeData = typeData;
         }
@@ -22,7 +22,7 @@ namespace SharpVk.VkXml
         public void Visit(SpecParser.ParsedExpressionToken parsedExpressionToken, ExpressionBuildState state)
         {
             state.Builder.Append(paramNameLookup[parsedExpressionToken.Value]);
-            state.ExpressionType = paramLookup[parsedExpressionToken.Value].Type;
+            state.ExpressionType = elementLookup[parsedExpressionToken.Value].Type;
         }
 
         public void Visit(SpecParser.ParsedExpressionReference reference, ExpressionBuildState state)
@@ -56,12 +56,28 @@ namespace SharpVk.VkXml
 
         public void Visit(SpecParser.ParsedExpressionLiteral literal, ExpressionBuildState state)
         {
-            throw new NotImplementedException();
+            state.Builder.Append(literal.Value + "f");
+            state.ExpressionType = "float";
         }
 
         public void Visit(SpecParser.ParsedExpressionOperator @operator, ExpressionBuildState state)
         {
-            throw new NotImplementedException();
+            switch (@operator.Operator)
+            {
+                case SpecParser.ParsedOperatorType.Divide:
+                    state.Builder.Append("(int)");
+                    @operator.LeftOperand.Visit(this, state);
+                    state.Builder.Append(" / ");
+                    @operator.RightOperand.Visit(this, state);
+                    break;
+                case SpecParser.ParsedOperatorType.Ceiling:
+                    state.Builder.Append("Math.Ceiling(");
+                    @operator.LeftOperand.Visit(this, state);
+                    state.Builder.Append(")");
+                    break;
+                default:
+                    throw new NotImplementedException();
+            }
         }
     }
 }

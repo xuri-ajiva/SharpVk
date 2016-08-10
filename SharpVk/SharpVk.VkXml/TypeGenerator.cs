@@ -194,7 +194,7 @@ namespace SharpVk.VkXml
                 }
 
                 var parsedExpressionBuilder = new ParsedExpressionBuilder(paramNameLookup, command.Params, typeData);
-                
+
                 foreach (var parameter in command.Params)
                 {
 
@@ -549,6 +549,8 @@ namespace SharpVk.VkXml
 
                 var memberNameLookup = type.Data.Members.ToDictionary(x => x.VkName, x => JoinNameParts(x.NameParts));
 
+                var expressionBuilder = new ParsedExpressionBuilder(memberNameLookup, type.Data.Members, typeData);
+
                 foreach (var member in type.Data.Members)
                 {
                     var memberType = typeData[GetMemberTypeName(member)];
@@ -593,6 +595,8 @@ namespace SharpVk.VkXml
                                     break;
                                 case SpecParser.LenType.Expression:
 
+                                    var lenToken = member.Dimensions[0].Value as SpecParser.ParsedExpressionToken;
+
                                     if (isPointer && memberDesc.PublicTypeName == "void")
                                     {
                                         memberDesc.PublicTypeName = "IntPtr";
@@ -601,10 +605,9 @@ namespace SharpVk.VkXml
                                     {
                                         memberDesc.PublicTypeName += "[]";
 
-                                        //HACK Ignore unparsed len fields temporarily
-                                        if (member.Dimensions[0].Value != null)
+                                        if (lenToken != null)
                                         {
-                                            var lenMember = memberNameLookup[((SpecParser.ParsedExpressionToken)member.Dimensions[0].Value).Value];
+                                            var lenMember = memberNameLookup[lenToken.Value];
 
                                             newClass.MarshalToStatements.Add(string.Format("result.{0} = (uint)(this.{1}?.Length ?? 0);", lenMember, memberName));
                                         }
@@ -645,13 +648,18 @@ namespace SharpVk.VkXml
                                             newClass.MarshalToStatements.Add($"    result.{memberName} = null;");
                                             newClass.MarshalToStatements.Add("}");
                                         }
+                                        else if(memberType.Data.Category == TypeCategory.basetype)
+                                        {
+                                            string lenExpression = expressionBuilder.Build(member.Dimensions[0].Value);
+                                            newClass.MarshalToStatements.Add($"result.{memberName} = this.{memberName} == null ? null : ({memberType.Name}*)Interop.HeapUtil.MarshalTo(this.{memberName}, (int){lenExpression});");
+                                        }
                                         else
                                         {
                                             newClass.MarshalToStatements.Add(string.Format("result.{0} = this.{0} == null ? null : Interop.HeapUtil.MarshalTo(this.{0});", memberName));
                                         }
                                     }
 
-                                    if (member.Dimensions[0].Value != null)
+                                    if (lenToken != null)
                                     {
                                         lenMembers.Add(((SpecParser.ParsedExpressionToken)member.Dimensions[0].Value).Value);
                                     }
