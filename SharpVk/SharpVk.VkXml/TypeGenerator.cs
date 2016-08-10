@@ -628,7 +628,7 @@ namespace SharpVk.VkXml
                                             newClass.MarshalToStatements.Add($"    result.{memberName} = null;");
                                             newClass.MarshalToStatements.Add("}");
                                         }
-                                        else if (memberType.Data.Category == TypeCategory.bitmask || memberType.Data.Category == TypeCategory.@enum)
+                                        else if (memberType.Data.Category == TypeCategory.bitmask || memberType.Data.Category == TypeCategory.@enum || memberType.Data.Category == TypeCategory.@struct)
                                         {
                                             newClass.MarshalToStatements.Add("");
                                             newClass.MarshalToStatements.Add($"//{memberName}");

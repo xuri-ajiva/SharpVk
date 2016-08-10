@@ -25,21 +25,14 @@ namespace SharpVk.VkXml
             state.ExpressionType = paramLookup[parsedExpressionToken.Value].Type;
         }
 
-        public void Visit(SpecParser.ParsedExpressionOperator parsedExpressionOperator, ExpressionBuildState state)
+        public void Visit(SpecParser.ParsedExpressionReference reference, ExpressionBuildState state)
         {
-            switch (parsedExpressionOperator.Operator)
-            {
-                case SpecParser.ParsedOperatorType.Dereference:
-                    parsedExpressionOperator.LeftOperand.Visit(this, state);
-                    state.Builder.Append(".");
-                    var targetType = typeData[state.ExpressionType];
-                    var member = targetType.Data.Members.Single(x => x.VkName == parsedExpressionOperator.RightOperand.Value);
-                    state.Builder.Append(TypeGenerator.GetNameForElement(member));
-                    state.ExpressionType = member.Type;
-                    break;
-                default:
-                    throw new NotImplementedException();
-            }
+            reference.LeftOperand.Visit(this, state);
+            state.Builder.Append(".");
+            var targetType = typeData[state.ExpressionType];
+            var member = targetType.Data.Members.Single(x => x.VkName == reference.RightOperand.Value);
+            state.Builder.Append(TypeGenerator.GetNameForElement(member));
+            state.ExpressionType = member.Type;
         }
 
         public class ExpressionBuildState
@@ -59,6 +52,16 @@ namespace SharpVk.VkXml
             });
 
             return builder.ToString();
+        }
+
+        public void Visit(SpecParser.ParsedExpressionLiteral literal, ExpressionBuildState state)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Visit(SpecParser.ParsedExpressionOperator @operator, ExpressionBuildState state)
+        {
+            throw new NotImplementedException();
         }
     }
 }

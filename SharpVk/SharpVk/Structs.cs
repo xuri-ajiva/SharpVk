@@ -92,9 +92,25 @@ namespace SharpVk
 		}
 	}
 
-	public struct ComponentMapping
+	public partial struct ComponentMapping
 	{
+		public static ComponentMapping Default
+		{
+			get
+			{
+				return new ComponentMapping
+					{
+						R = ComponentSwizzle.R,
+						G = ComponentSwizzle.G,
+						B = ComponentSwizzle.B,
+						A = ComponentSwizzle.A
+					};
+			}
+		}
+	}
 
+	public partial struct ComponentMapping
+	{
 		public ComponentSwizzle R;
 
 		public ComponentSwizzle G;
@@ -102,6 +118,7 @@ namespace SharpVk
 		public ComponentSwizzle B;
 
 		public ComponentSwizzle A;
+
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -118,14 +135,14 @@ namespace SharpVk
 		}
 	}
 
-	public struct DispatchIndirectCommand
+	public partial struct DispatchIndirectCommand
 	{
-
 		public uint X;
 
 		public uint Y;
 
 		public uint Z;
+
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -141,9 +158,8 @@ namespace SharpVk
 		}
 	}
 
-	public struct DrawIndexedIndirectCommand
+	public partial struct DrawIndexedIndirectCommand
 	{
-
 		public uint IndexCount;
 
 		public uint InstanceCount;
@@ -153,6 +169,7 @@ namespace SharpVk
 		public int VertexOffset;
 
 		public uint FirstInstance;
+
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -170,9 +187,8 @@ namespace SharpVk
 		}
 	}
 
-	public struct DrawIndirectCommand
+	public partial struct DrawIndirectCommand
 	{
-
 		public uint VertexCount;
 
 		public uint InstanceCount;
@@ -180,6 +196,7 @@ namespace SharpVk
 		public uint FirstVertex;
 
 		public uint FirstInstance;
+
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -196,12 +213,12 @@ namespace SharpVk
 		}
 	}
 
-	public struct Extent2D
+	public partial struct Extent2D
 	{
-
 		public uint Width;
 
 		public uint Height;
+
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -216,14 +233,14 @@ namespace SharpVk
 		}
 	}
 
-	public struct Extent3D
+	public partial struct Extent3D
 	{
-
 		public uint Width;
 
 		public uint Height;
 
 		public uint Depth;
+
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -239,14 +256,14 @@ namespace SharpVk
 		}
 	}
 
-	public struct FormatProperties
+	public partial struct FormatProperties
 	{
-
 		public FormatFeatureFlags LinearTilingFeatures;
 
 		public FormatFeatureFlags OptimalTilingFeatures;
 
 		public FormatFeatureFlags BufferFeatures;
+
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -262,9 +279,8 @@ namespace SharpVk
 		}
 	}
 
-	public struct ImageFormatProperties
+	public partial struct ImageFormatProperties
 	{
-
 		public Extent3D MaxExtent;
 
 		public uint MaxMipLevels;
@@ -274,6 +290,7 @@ namespace SharpVk
 		public SampleCountFlags SampleCounts;
 
 		public DeviceSize MaxResourceSize;
+
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -291,14 +308,14 @@ namespace SharpVk
 		}
 	}
 
-	public struct ImageSubresource
+	public partial struct ImageSubresource
 	{
-
 		public ImageAspectFlags AspectMask;
 
 		public uint MipLevel;
 
 		public uint ArrayLayer;
+
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -314,9 +331,8 @@ namespace SharpVk
 		}
 	}
 
-	public struct ImageSubresourceRange
+	public partial struct ImageSubresourceRange
 	{
-
 		public ImageAspectFlags AspectMask;
 
 		public uint BaseMipLevel;
@@ -326,6 +342,7 @@ namespace SharpVk
 		public uint BaseArrayLayer;
 
 		public uint LayerCount;
+
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -343,12 +360,12 @@ namespace SharpVk
 		}
 	}
 
-	public struct MemoryHeap
+	public partial struct MemoryHeap
 	{
-
 		public DeviceSize Size;
 
 		public MemoryHeapFlags Flags;
+
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -363,14 +380,14 @@ namespace SharpVk
 		}
 	}
 
-	public struct MemoryRequirements
+	public partial struct MemoryRequirements
 	{
-
 		public DeviceSize Size;
 
 		public DeviceSize Alignment;
 
 		public uint MemoryTypeBits;
+
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -386,12 +403,12 @@ namespace SharpVk
 		}
 	}
 
-	public struct MemoryType
+	public partial struct MemoryType
 	{
-
 		public MemoryPropertyFlags PropertyFlags;
 
 		public uint HeapIndex;
+
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -406,14 +423,34 @@ namespace SharpVk
 		}
 	}
 
-	public struct Offset3D
+	public partial struct Offset2D
 	{
+		public int X;
 
+		public int Y;
+
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("Offset2D");
+            builder.AppendLine("{");
+            builder.AppendLine($"X: {this.X}");
+            builder.AppendLine($"Y: {this.Y}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
+	}
+
+	public partial struct Offset3D
+	{
 		public int X;
 
 		public int Y;
 
 		public int Z;
+
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -429,9 +466,8 @@ namespace SharpVk
 		}
 	}
 
-	public struct PhysicalDeviceFeatures
+	public partial struct PhysicalDeviceFeatures
 	{
-
 		public Bool32 RobustBufferAccess;
 
 		public Bool32 FullDrawIndexUint32;
@@ -541,6 +577,7 @@ namespace SharpVk
 		public Bool32 VariableMultisampleRate;
 
 		public Bool32 InheritedQueries;
+
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -608,9 +645,8 @@ namespace SharpVk
 		}
 	}
 
-	public struct PhysicalDeviceSparseProperties
+	public partial struct PhysicalDeviceSparseProperties
 	{
-
 		public Bool32 ResidencyStandard2DBlockShape;
 
 		public Bool32 ResidencyStandard2DMultisampleBlockShape;
@@ -620,6 +656,7 @@ namespace SharpVk
 		public Bool32 ResidencyAlignedMipSize;
 
 		public Bool32 ResidencyNonResidentStrict;
+
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -637,9 +674,69 @@ namespace SharpVk
 		}
 	}
 
-	public struct QueueFamilyProperties
+	public partial struct PipelineColorBlendAttachmentState
 	{
+		public Bool32 BlendEnable;
 
+		public BlendFactor SourceColorBlendFactor;
+
+		public BlendFactor DestinationColorBlendFactor;
+
+		public BlendOp ColorBlendOp;
+
+		public BlendFactor SourceAlphaBlendFactor;
+
+		public BlendFactor DestinationAlphaBlendFactor;
+
+		public BlendOp AlphaBlendOp;
+
+		public ColorComponentFlags ColorWriteMask;
+
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("PipelineColorBlendAttachmentState");
+            builder.AppendLine("{");
+            builder.AppendLine($"BlendEnable: {this.BlendEnable}");
+            builder.AppendLine($"SourceColorBlendFactor: {this.SourceColorBlendFactor}");
+            builder.AppendLine($"DestinationColorBlendFactor: {this.DestinationColorBlendFactor}");
+            builder.AppendLine($"ColorBlendOp: {this.ColorBlendOp}");
+            builder.AppendLine($"SourceAlphaBlendFactor: {this.SourceAlphaBlendFactor}");
+            builder.AppendLine($"DestinationAlphaBlendFactor: {this.DestinationAlphaBlendFactor}");
+            builder.AppendLine($"AlphaBlendOp: {this.AlphaBlendOp}");
+            builder.AppendLine($"ColorWriteMask: {this.ColorWriteMask}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
+	}
+
+	public partial struct PushConstantRange
+	{
+		public ShaderStageFlags StageFlags;
+
+		public uint Offset;
+
+		public uint Size;
+
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("PushConstantRange");
+            builder.AppendLine("{");
+            builder.AppendLine($"StageFlags: {this.StageFlags}");
+            builder.AppendLine($"Offset: {this.Offset}");
+            builder.AppendLine($"Size: {this.Size}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
+	}
+
+	public partial struct QueueFamilyProperties
+	{
 		public QueueFlags QueueFlags;
 
 		public uint QueueCount;
@@ -647,6 +744,7 @@ namespace SharpVk
 		public uint TimestampValidBits;
 
 		public Extent3D MinImageTransferGranularity;
+
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -663,14 +761,34 @@ namespace SharpVk
 		}
 	}
 
-	public struct SparseImageFormatProperties
+	public partial struct Rect2D
 	{
+		public Offset2D Offset;
 
+		public Extent2D Extent;
+
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("Rect2D");
+            builder.AppendLine("{");
+            builder.AppendLine($"Offset: {this.Offset}");
+            builder.AppendLine($"Extent: {this.Extent}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
+	}
+
+	public partial struct SparseImageFormatProperties
+	{
 		public ImageAspectFlags AspectMask;
 
 		public Extent3D ImageGranularity;
 
 		public SparseImageFormatFlags Flags;
+
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -686,9 +804,8 @@ namespace SharpVk
 		}
 	}
 
-	public struct SparseImageMemoryRequirements
+	public partial struct SparseImageMemoryRequirements
 	{
-
 		public SparseImageFormatProperties FormatProperties;
 
 		public uint ImageMipTailFirstLod;
@@ -698,6 +815,7 @@ namespace SharpVk
 		public DeviceSize ImageMipTailOffset;
 
 		public DeviceSize ImageMipTailStride;
+
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -715,9 +833,66 @@ namespace SharpVk
 		}
 	}
 
-	public struct SubresourceLayout
+	public partial struct SpecializationMapEntry
 	{
+		public uint ConstantID;
 
+		public uint Offset;
+
+		public UIntPtr Size;
+
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("SpecializationMapEntry");
+            builder.AppendLine("{");
+            builder.AppendLine($"ConstantID: {this.ConstantID}");
+            builder.AppendLine($"Offset: {this.Offset}");
+            builder.AppendLine($"Size: {this.Size}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
+	}
+
+	public partial struct StencilOpState
+	{
+		public StencilOp FailOp;
+
+		public StencilOp PassOp;
+
+		public StencilOp DepthFailOp;
+
+		public CompareOp CompareOp;
+
+		public uint CompareMask;
+
+		public uint WriteMask;
+
+		public uint Reference;
+
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("StencilOpState");
+            builder.AppendLine("{");
+            builder.AppendLine($"FailOp: {this.FailOp}");
+            builder.AppendLine($"PassOp: {this.PassOp}");
+            builder.AppendLine($"DepthFailOp: {this.DepthFailOp}");
+            builder.AppendLine($"CompareOp: {this.CompareOp}");
+            builder.AppendLine($"CompareMask: {this.CompareMask}");
+            builder.AppendLine($"WriteMask: {this.WriteMask}");
+            builder.AppendLine($"Reference: {this.Reference}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
+	}
+
+	public partial struct SubresourceLayout
+	{
 		public DeviceSize Offset;
 
 		public DeviceSize Size;
@@ -727,6 +902,7 @@ namespace SharpVk
 		public DeviceSize ArrayPitch;
 
 		public DeviceSize DepthPitch;
+
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -744,9 +920,8 @@ namespace SharpVk
 		}
 	}
 
-	public struct SurfaceCapabilities
+	public partial struct SurfaceCapabilities
 	{
-
 		public uint MinImageCount;
 
 		public uint MaxImageCount;
@@ -766,6 +941,7 @@ namespace SharpVk
 		public CompositeAlphaFlags SupportedCompositeAlpha;
 
 		public ImageUsageFlags SupportedUsageFlags;
+
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -788,12 +964,12 @@ namespace SharpVk
 		}
 	}
 
-	public struct SurfaceFormat
+	public partial struct SurfaceFormat
 	{
-
 		public Format Format;
 
 		public ColorSpace ColorSpace;
+
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -802,6 +978,87 @@ namespace SharpVk
             builder.AppendLine("{");
             builder.AppendLine($"Format: {this.Format}");
             builder.AppendLine($"ColorSpace: {this.ColorSpace}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
+	}
+
+	public partial struct VertexInputAttributeDescription
+	{
+		public uint Location;
+
+		public uint Binding;
+
+		public Format Format;
+
+		public uint Offset;
+
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("VertexInputAttributeDescription");
+            builder.AppendLine("{");
+            builder.AppendLine($"Location: {this.Location}");
+            builder.AppendLine($"Binding: {this.Binding}");
+            builder.AppendLine($"Format: {this.Format}");
+            builder.AppendLine($"Offset: {this.Offset}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
+	}
+
+	public partial struct VertexInputBindingDescription
+	{
+		public uint Binding;
+
+		public uint Stride;
+
+		public VertexInputRate InputRate;
+
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("VertexInputBindingDescription");
+            builder.AppendLine("{");
+            builder.AppendLine($"Binding: {this.Binding}");
+            builder.AppendLine($"Stride: {this.Stride}");
+            builder.AppendLine($"InputRate: {this.InputRate}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
+	}
+
+	public partial struct Viewport
+	{
+		public float X;
+
+		public float Y;
+
+		public float Width;
+
+		public float Height;
+
+		public float MinDepth;
+
+		public float MaxDepth;
+
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("Viewport");
+            builder.AppendLine("{");
+            builder.AppendLine($"X: {this.X}");
+            builder.AppendLine($"Y: {this.Y}");
+            builder.AppendLine($"Width: {this.Width}");
+            builder.AppendLine($"Height: {this.Height}");
+            builder.AppendLine($"MinDepth: {this.MinDepth}");
+            builder.AppendLine($"MaxDepth: {this.MaxDepth}");
             builder.Append("}");
 
 			return builder.ToString();

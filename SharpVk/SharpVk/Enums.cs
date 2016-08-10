@@ -79,6 +79,16 @@ namespace SharpVk
 	}
 
 	[Flags]
+	public enum ColorComponentFlags
+	{
+		None = 0,
+		R = 1 << 0,
+		G = 1 << 1,
+		B = 1 << 2,
+		A = 1 << 3,
+	}
+
+	[Flags]
 	public enum CompositeAlphaFlags
 	{
 		None = 0,
@@ -86,6 +96,15 @@ namespace SharpVk
 		PreMultiplied = 1 << 1,
 		PostMultiplied = 1 << 2,
 		Inherit = 1 << 3,
+	}
+
+	[Flags]
+	public enum CullModeFlags
+	{
+		None = 0,
+		Front = 1 << 0,
+		Back = 1 << 1,
+		FrontAndBack = 0x00000003,
 	}
 
 	[Flags]
@@ -204,6 +223,69 @@ namespace SharpVk
 	}
 
 	[Flags]
+	public enum PipelineCacheCreateFlags
+	{
+		None = 0,
+	}
+
+	[Flags]
+	public enum PipelineColorBlendStateCreateFlags
+	{
+		None = 0,
+	}
+
+	[Flags]
+	public enum PipelineCreateFlags
+	{
+		None = 0,
+		DisableOptimization = 1 << 0,
+		AllowDerivatives = 1 << 1,
+		Derivative = 1 << 2,
+	}
+
+	[Flags]
+	public enum PipelineDepthStencilStateCreateFlags
+	{
+		None = 0,
+	}
+
+	[Flags]
+	public enum PipelineDynamicStateCreateFlags
+	{
+		None = 0,
+	}
+
+	[Flags]
+	public enum PipelineInputAssemblyStateCreateFlags
+	{
+		None = 0,
+	}
+
+	[Flags]
+	public enum PipelineLayoutCreateFlags
+	{
+		None = 0,
+	}
+
+	[Flags]
+	public enum PipelineMultisampleStateCreateFlags
+	{
+		None = 0,
+	}
+
+	[Flags]
+	public enum PipelineRasterizationStateCreateFlags
+	{
+		None = 0,
+	}
+
+	[Flags]
+	public enum PipelineShaderStageCreateFlags
+	{
+		None = 0,
+	}
+
+	[Flags]
 	public enum PipelineStageFlags
 	{
 		None = 0,
@@ -224,6 +306,24 @@ namespace SharpVk
 		Host = 1 << 14,
 		AllGraphics = 1 << 15,
 		AllCommands = 1 << 16,
+	}
+
+	[Flags]
+	public enum PipelineTessellationStateCreateFlags
+	{
+		None = 0,
+	}
+
+	[Flags]
+	public enum PipelineVertexInputStateCreateFlags
+	{
+		None = 0,
+	}
+
+	[Flags]
+	public enum PipelineViewportStateCreateFlags
+	{
+		None = 0,
 	}
 
 	[Flags]
@@ -295,6 +395,20 @@ namespace SharpVk
 	}
 
 	[Flags]
+	public enum ShaderStageFlags
+	{
+		None = 0,
+		Vertex = 1 << 0,
+		TessellationControl = 1 << 1,
+		TessellationEvaluation = 1 << 2,
+		Geometry = 1 << 3,
+		Fragment = 1 << 4,
+		Compute = 1 << 5,
+		AllGraphics = 0x0000001F,
+		All = 0x7FFFFFFF,
+	}
+
+	[Flags]
 	public enum SparseImageFormatFlags
 	{
 		None = 0,
@@ -337,9 +451,53 @@ namespace SharpVk
 		None = 0,
 	}
 
+	public enum BlendFactor
+	{
+		Zero = 0,
+		One = 1,
+		SourceColor = 2,
+		OneMinusSourceColor = 3,
+		DestinationColor = 4,
+		OneMinusDestinationColor = 5,
+		SourceAlpha = 6,
+		OneMinusSourceAlpha = 7,
+		DestinationAlpha = 8,
+		OneMinusDestinationAlpha = 9,
+		ConstantColor = 10,
+		OneMinusConstantColor = 11,
+		ConstantAlpha = 12,
+		OneMinusConstantAlpha = 13,
+		SourceAlphaSaturate = 14,
+		Src1Color = 15,
+		OneMinusSrc1Color = 16,
+		Src1Alpha = 17,
+		OneMinusSrc1Alpha = 18,
+	}
+
+	public enum BlendOp
+	{
+		Add = 0,
+		Subtract = 1,
+		ReverseSubtract = 2,
+		Min = 3,
+		Max = 4,
+	}
+
 	public enum ColorSpace
 	{
 		SrgbNonlinear = 0,
+	}
+
+	public enum CompareOp
+	{
+		Never = 0,
+		Less = 1,
+		Equal = 2,
+		LessOrEqual = 3,
+		Greater = 4,
+		NotEqual = 5,
+		GreaterOrEqual = 6,
+		Always = 7,
 	}
 
 	public enum ComponentSwizzle
@@ -351,6 +509,19 @@ namespace SharpVk
 		G = 4,
 		B = 5,
 		A = 6,
+	}
+
+	public enum DynamicState
+	{
+		Viewport = 0,
+		Scissor = 1,
+		LineWidth = 2,
+		DepthBias = 3,
+		BlendConstants = 4,
+		DepthBounds = 5,
+		StencilCompareMask = 6,
+		StencilWriteMask = 7,
+		StencilReference = 8,
 	}
 
 	public enum Format
@@ -542,6 +713,12 @@ namespace SharpVk
 		Astc12x12SrgbBlock = 184,
 	}
 
+	public enum FrontFace
+	{
+		CounterClockwise = 0,
+		Clockwise = 1,
+	}
+
 	public enum ImageLayout
 	{
 		Undefined = 0,
@@ -580,6 +757,26 @@ namespace SharpVk
 		CubeArray = 6,
 	}
 
+	public enum LogicOp
+	{
+		Clear = 0,
+		And = 1,
+		AndReverse = 2,
+		Copy = 3,
+		AndInverted = 4,
+		NoOp = 5,
+		Xor = 6,
+		Or = 7,
+		Nor = 8,
+		Equivalent = 9,
+		Invert = 10,
+		OrReverse = 11,
+		CopyInverted = 12,
+		OrInverted = 13,
+		Nand = 14,
+		Set = 15,
+	}
+
 	public enum PhysicalDeviceType
 	{
 		Other = 0,
@@ -594,12 +791,34 @@ namespace SharpVk
 		One = 1,
 	}
 
+	public enum PolygonMode
+	{
+		Fill = 0,
+		Line = 1,
+		Point = 2,
+	}
+
 	public enum PresentMode
 	{
 		Immediate = 0,
 		Mailbox = 1,
 		Fifo = 2,
 		FifoRelaxed = 3,
+	}
+
+	public enum PrimitiveTopology
+	{
+		PointList = 0,
+		LineList = 1,
+		LineStrip = 2,
+		TriangleList = 3,
+		TriangleStrip = 4,
+		TriangleFan = 5,
+		LineListWithAdjacency = 6,
+		LineStripWithAdjacency = 7,
+		TriangleListWithAdjacency = 8,
+		TriangleStripWithAdjacency = 9,
+		PatchList = 10,
 	}
 
 	public enum QueryType
@@ -639,6 +858,18 @@ namespace SharpVk
 	{
 		Exclusive = 0,
 		Concurrent = 1,
+	}
+
+	public enum StencilOp
+	{
+		Keep = 0,
+		Zero = 1,
+		Replace = 2,
+		IncrementAndClamp = 3,
+		DecrementAndClamp = 4,
+		Invert = 5,
+		IncrementAndWrap = 6,
+		DecrementAndWrap = 7,
 	}
 
 	public enum StructureType
@@ -695,5 +926,11 @@ namespace SharpVk
 		SwapchainCreateInfo = 1000001000,
 		PresentInfo = 1000001001,
 		Win32SurfaceCreateInfo = 1000009000,
+	}
+
+	public enum VertexInputRate
+	{
+		Vertex = 0,
+		Instance = 1,
 	}
 }
