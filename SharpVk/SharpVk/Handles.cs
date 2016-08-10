@@ -163,6 +163,25 @@ namespace SharpVk
 		}
 	}
 
+	public class DescriptorSetLayout
+	{
+		internal readonly Interop.DescriptorSetLayout handle;
+
+		private readonly Device parent;
+
+
+		internal DescriptorSetLayout(Interop.DescriptorSetLayout handle, Device parent)
+		{
+			this.handle = handle;
+			this.parent = parent;
+		}
+
+		internal Interop.DescriptorSetLayout Pack()
+		{
+			return this.handle;
+		}
+	}
+
 	public class Device
 	{
 		internal readonly Interop.Device handle;
@@ -639,6 +658,62 @@ namespace SharpVk
 					throw SharpVkException.Create(commandResult);
 				}
 				result = new ShaderModule(marshalledShaderModule, this);
+
+				Interop.HeapUtil.FreeLog();
+
+
+				return result;
+			}
+		}
+
+		public PipelineCache CreatePipelineCache(PipelineCacheCreateInfo createInfo, AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				PipelineCache result = default(PipelineCache);
+
+				Result commandResult;
+
+				Interop.PipelineCacheCreateInfo marshalledCreateInfo;
+				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+				Interop.PipelineCache marshalledPipelineCache;
+				commandResult = Interop.Commands.vkCreatePipelineCache(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledPipelineCache);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+				result = new PipelineCache(marshalledPipelineCache, this);
+
+				Interop.HeapUtil.FreeLog();
+
+
+				return result;
+			}
+		}
+
+		public PipelineLayout CreatePipelineLayout(PipelineLayoutCreateInfo createInfo, AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				PipelineLayout result = default(PipelineLayout);
+
+				Result commandResult;
+
+				Interop.PipelineLayoutCreateInfo marshalledCreateInfo;
+				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+				Interop.PipelineLayout marshalledPipelineLayout;
+				commandResult = Interop.Commands.vkCreatePipelineLayout(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledPipelineLayout);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+				result = new PipelineLayout(marshalledPipelineLayout, this);
 
 				Interop.HeapUtil.FreeLog();
 
@@ -1652,6 +1727,250 @@ namespace SharpVk
 		}
 	}
 
+	public class Pipeline
+	{
+		internal readonly Interop.Pipeline handle;
+
+		private readonly Device parent;
+
+
+		internal Pipeline(Interop.Pipeline handle, Device parent)
+		{
+			this.handle = handle;
+			this.parent = parent;
+		}
+
+		public void Destroy(AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+				Interop.Commands.vkDestroyPipeline(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		internal Interop.Pipeline Pack()
+		{
+			return this.handle;
+		}
+	}
+
+	public class PipelineCache
+	{
+		internal readonly Interop.PipelineCache handle;
+
+		private readonly Device parent;
+
+
+		internal PipelineCache(Interop.PipelineCache handle, Device parent)
+		{
+			this.handle = handle;
+			this.parent = parent;
+		}
+
+		public void Destroy(AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+				Interop.Commands.vkDestroyPipelineCache(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public byte[] GetData()
+		{
+			unsafe
+			{
+				byte[] result = default(byte[]);
+
+				Result commandResult;
+
+				UIntPtr dataSize;
+				byte* marshalledData = null;
+				commandResult = Interop.Commands.vkGetPipelineCacheData(this.parent.handle, this.handle, &dataSize, null);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+				marshalledData = (byte*)Interop.HeapUtil.Allocate<byte>((uint)dataSize);
+				commandResult = Interop.Commands.vkGetPipelineCacheData(this.parent.handle, this.handle, &dataSize, marshalledData);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+				result = new byte[(uint)dataSize];
+				for(int index = 0; index < (uint)dataSize; index++)
+				{
+					result[index] = marshalledData[index];
+				}
+
+				Interop.HeapUtil.FreeLog();
+
+
+				return result;
+			}
+		}
+
+		public void MergePipelineCaches(PipelineCache[] sourceCaches)
+		{
+			unsafe
+			{
+				Result commandResult;
+
+				Interop.PipelineCache* marshalledSourceCaches;
+				if (sourceCaches != null)
+				{
+				    marshalledSourceCaches = (Interop.PipelineCache*)Interop.HeapUtil.Allocate<Interop.PipelineCache>(sourceCaches.Length);
+				    for (int index = 0; index < sourceCaches.Length; index++)
+				    {
+				        marshalledSourceCaches[index] = sourceCaches[index].Pack();
+				    }
+				}
+				else
+				{
+				    marshalledSourceCaches = null;
+				}
+				commandResult = Interop.Commands.vkMergePipelineCaches(this.parent.handle, this.handle, (uint)sourceCaches.Length, marshalledSourceCaches);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public Pipeline CreateGraphicsPipelines(GraphicsPipelineCreateInfo[] createInfos, AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				Pipeline result = default(Pipeline);
+
+				Result commandResult;
+
+				Interop.GraphicsPipelineCreateInfo* marshalledCreateInfos;
+				if (createInfos != null)
+				{
+				    marshalledCreateInfos = (Interop.GraphicsPipelineCreateInfo*)Interop.HeapUtil.Allocate<Interop.GraphicsPipelineCreateInfo>(createInfos.Length);
+				    for (int index = 0; index < createInfos.Length; index++)
+				    {
+				        marshalledCreateInfos[index] = createInfos[index].Pack();
+				    }
+				}
+				else
+				{
+				    marshalledCreateInfos = null;
+				}
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+				Interop.Pipeline marshalledPipelines;
+				commandResult = Interop.Commands.vkCreateGraphicsPipelines(this.parent.handle, this.handle, (uint)createInfos.Length, marshalledCreateInfos, allocator == null ? null : &marshalledAllocator, &marshalledPipelines);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+				result = new Pipeline(marshalledPipelines, this.parent);
+
+				Interop.HeapUtil.FreeLog();
+
+
+				return result;
+			}
+		}
+
+		public Pipeline CreateComputePipelines(ComputePipelineCreateInfo[] createInfos, AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				Pipeline result = default(Pipeline);
+
+				Result commandResult;
+
+				Interop.ComputePipelineCreateInfo* marshalledCreateInfos;
+				if (createInfos != null)
+				{
+				    marshalledCreateInfos = (Interop.ComputePipelineCreateInfo*)Interop.HeapUtil.Allocate<Interop.ComputePipelineCreateInfo>(createInfos.Length);
+				    for (int index = 0; index < createInfos.Length; index++)
+				    {
+				        marshalledCreateInfos[index] = createInfos[index].Pack();
+				    }
+				}
+				else
+				{
+				    marshalledCreateInfos = null;
+				}
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+				Interop.Pipeline marshalledPipelines;
+				commandResult = Interop.Commands.vkCreateComputePipelines(this.parent.handle, this.handle, (uint)createInfos.Length, marshalledCreateInfos, allocator == null ? null : &marshalledAllocator, &marshalledPipelines);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+				result = new Pipeline(marshalledPipelines, this.parent);
+
+				Interop.HeapUtil.FreeLog();
+
+
+				return result;
+			}
+		}
+
+		internal Interop.PipelineCache Pack()
+		{
+			return this.handle;
+		}
+	}
+
+	public class PipelineLayout
+	{
+		internal readonly Interop.PipelineLayout handle;
+
+		private readonly Device parent;
+
+
+		internal PipelineLayout(Interop.PipelineLayout handle, Device parent)
+		{
+			this.handle = handle;
+			this.parent = parent;
+		}
+
+		public void Destroy(AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+				Interop.Commands.vkDestroyPipelineLayout(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		internal Interop.PipelineLayout Pack()
+		{
+			return this.handle;
+		}
+	}
+
 	public class QueryPool
 	{
 		internal readonly Interop.QueryPool handle;
@@ -1820,6 +2139,25 @@ namespace SharpVk
 		}
 
 		internal Interop.Queue Pack()
+		{
+			return this.handle;
+		}
+	}
+
+	public class RenderPass
+	{
+		internal readonly Interop.RenderPass handle;
+
+		private readonly Device parent;
+
+
+		internal RenderPass(Interop.RenderPass handle, Device parent)
+		{
+			this.handle = handle;
+			this.parent = parent;
+		}
+
+		internal Interop.RenderPass Pack()
 		{
 			return this.handle;
 		}

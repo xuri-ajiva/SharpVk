@@ -403,6 +403,58 @@ namespace SharpVk
 		}
 	}
 
+	public class ComputePipelineCreateInfo
+	{
+
+		public PipelineCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public PipelineShaderStageCreateInfo Stage
+		{
+			get;
+			set;
+		}
+
+		public PipelineLayout Layout
+		{
+			get;
+			set;
+		}
+
+		public Pipeline BasePipelineHandle
+		{
+			get;
+			set;
+		}
+
+		public int BasePipelineIndex
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.ComputePipelineCreateInfo Pack()
+        {
+            var result = new Interop.ComputePipelineCreateInfo();
+			result.SType = StructureType.ComputePipelineCreateInfo;
+			result.Stage = this.Stage.Pack();
+			result.Layout = this.Layout?.Pack() ?? Interop.PipelineLayout.Null;
+			result.BasePipelineHandle = this.BasePipelineHandle?.Pack() ?? Interop.Pipeline.Null;
+			result.Flags = this.Flags;
+			result.BasePipelineIndex = this.BasePipelineIndex;
+
+            return result;
+        }
+
+		internal unsafe Interop.ComputePipelineCreateInfo* MarshalTo()
+        {
+            return (Interop.ComputePipelineCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
 	public class DeviceCreateInfo
 	{
 
@@ -588,6 +640,151 @@ namespace SharpVk
 		internal unsafe Interop.FenceCreateInfo* MarshalTo()
         {
             return (Interop.FenceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class GraphicsPipelineCreateInfo
+	{
+
+		public PipelineCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public PipelineShaderStageCreateInfo[] Stages
+		{
+			get;
+			set;
+		}
+
+		public PipelineVertexInputStateCreateInfo VertexInputState
+		{
+			get;
+			set;
+		}
+
+		public PipelineInputAssemblyStateCreateInfo InputAssemblyState
+		{
+			get;
+			set;
+		}
+
+		public PipelineTessellationStateCreateInfo TessellationState
+		{
+			get;
+			set;
+		}
+
+		public PipelineViewportStateCreateInfo ViewportState
+		{
+			get;
+			set;
+		}
+
+		public PipelineRasterizationStateCreateInfo RasterizationState
+		{
+			get;
+			set;
+		}
+
+		public PipelineMultisampleStateCreateInfo MultisampleState
+		{
+			get;
+			set;
+		}
+
+		public PipelineDepthStencilStateCreateInfo DepthStencilState
+		{
+			get;
+			set;
+		}
+
+		public PipelineColorBlendStateCreateInfo ColorBlendState
+		{
+			get;
+			set;
+		}
+
+		public PipelineDynamicStateCreateInfo DynamicState
+		{
+			get;
+			set;
+		}
+
+		public PipelineLayout Layout
+		{
+			get;
+			set;
+		}
+
+		public RenderPass RenderPass
+		{
+			get;
+			set;
+		}
+
+		public uint Subpass
+		{
+			get;
+			set;
+		}
+
+		public Pipeline BasePipelineHandle
+		{
+			get;
+			set;
+		}
+
+		public int BasePipelineIndex
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.GraphicsPipelineCreateInfo Pack()
+        {
+            var result = new Interop.GraphicsPipelineCreateInfo();
+			result.SType = StructureType.GraphicsPipelineCreateInfo;
+			result.StageCount = (uint)(this.Stages?.Length ?? 0);
+			
+			//Stages
+			if (this.Stages != null)
+			{
+			    int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.PipelineShaderStageCreateInfo>();
+			    IntPtr pointer = Interop.HeapUtil.Allocate<Interop.PipelineShaderStageCreateInfo>(this.Stages.Length);
+			    for (int index = 0; index < this.Stages.Length; index++)
+			    {
+			        System.Runtime.InteropServices.Marshal.StructureToPtr(this.Stages[index].Pack(), pointer + (size * index), false);
+			    }
+			    result.Stages = (Interop.PipelineShaderStageCreateInfo*)pointer.ToPointer();
+			}
+			else
+			{
+			    result.Stages = null;
+			}
+			result.VertexInputState = this.VertexInputState == null ? null : this.VertexInputState.MarshalTo();
+			result.InputAssemblyState = this.InputAssemblyState == null ? null : this.InputAssemblyState.MarshalTo();
+			result.TessellationState = this.TessellationState == null ? null : this.TessellationState.MarshalTo();
+			result.ViewportState = this.ViewportState == null ? null : this.ViewportState.MarshalTo();
+			result.RasterizationState = this.RasterizationState == null ? null : this.RasterizationState.MarshalTo();
+			result.MultisampleState = this.MultisampleState == null ? null : this.MultisampleState.MarshalTo();
+			result.DepthStencilState = this.DepthStencilState == null ? null : this.DepthStencilState.MarshalTo();
+			result.ColorBlendState = this.ColorBlendState == null ? null : this.ColorBlendState.MarshalTo();
+			result.DynamicState = this.DynamicState == null ? null : this.DynamicState.MarshalTo();
+			result.Layout = this.Layout?.Pack() ?? Interop.PipelineLayout.Null;
+			result.RenderPass = this.RenderPass?.Pack() ?? Interop.RenderPass.Null;
+			result.BasePipelineHandle = this.BasePipelineHandle?.Pack() ?? Interop.Pipeline.Null;
+			result.Flags = this.Flags;
+			result.Subpass = this.Subpass;
+			result.BasePipelineIndex = this.BasePipelineIndex;
+
+            return result;
+        }
+
+		internal unsafe Interop.GraphicsPipelineCreateInfo* MarshalTo()
+        {
+            return (Interop.GraphicsPipelineCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -1899,6 +2096,714 @@ namespace SharpVk
 		}
 	}
 
+	public class PipelineCacheCreateInfo
+	{
+
+		public PipelineCacheCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public IntPtr InitialData
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.PipelineCacheCreateInfo Pack()
+        {
+            var result = new Interop.PipelineCacheCreateInfo();
+			result.SType = StructureType.PipelineCacheCreateInfo;
+			result.Flags = this.Flags;
+
+            return result;
+        }
+
+		internal unsafe Interop.PipelineCacheCreateInfo* MarshalTo()
+        {
+            return (Interop.PipelineCacheCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class PipelineColorBlendStateCreateInfo
+	{
+
+		public PipelineColorBlendStateCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public Bool32 LogicOpEnable
+		{
+			get;
+			set;
+		}
+
+		public LogicOp LogicOp
+		{
+			get;
+			set;
+		}
+
+		public PipelineColorBlendAttachmentState[] Attachments
+		{
+			get;
+			set;
+		}
+
+		public float[] BlendConstants
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.PipelineColorBlendStateCreateInfo Pack()
+        {
+            var result = new Interop.PipelineColorBlendStateCreateInfo();
+			result.SType = StructureType.PipelineColorBlendStateCreateInfo;
+			result.AttachmentCount = (uint)(this.Attachments?.Length ?? 0);
+			
+			//Attachments
+			if (this.Attachments != null)
+			{
+			    result.Attachments = (PipelineColorBlendAttachmentState*)Interop.HeapUtil.Allocate<uint>(this.Attachments.Length).ToPointer();
+			    for (int index = 0; index < this.Attachments.Length; index++)
+			    {
+			        result.Attachments[index] = this.Attachments[index];
+			    }
+			}
+			else
+			{
+			    result.Attachments = null;
+			}
+			result.Flags = this.Flags;
+			result.LogicOpEnable = this.LogicOpEnable;
+			result.LogicOp = this.LogicOp;
+
+            return result;
+        }
+
+		internal unsafe Interop.PipelineColorBlendStateCreateInfo* MarshalTo()
+        {
+            return (Interop.PipelineColorBlendStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class PipelineDepthStencilStateCreateInfo
+	{
+
+		public PipelineDepthStencilStateCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public Bool32 DepthTestEnable
+		{
+			get;
+			set;
+		}
+
+		public Bool32 DepthWriteEnable
+		{
+			get;
+			set;
+		}
+
+		public CompareOp DepthCompareOp
+		{
+			get;
+			set;
+		}
+
+		public Bool32 DepthBoundsTestEnable
+		{
+			get;
+			set;
+		}
+
+		public Bool32 StencilTestEnable
+		{
+			get;
+			set;
+		}
+
+		public StencilOpState Front
+		{
+			get;
+			set;
+		}
+
+		public StencilOpState Back
+		{
+			get;
+			set;
+		}
+
+		public float MinDepthBounds
+		{
+			get;
+			set;
+		}
+
+		public float MaxDepthBounds
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.PipelineDepthStencilStateCreateInfo Pack()
+        {
+            var result = new Interop.PipelineDepthStencilStateCreateInfo();
+			result.SType = StructureType.PipelineDepthStencilStateCreateInfo;
+			result.Flags = this.Flags;
+			result.DepthTestEnable = this.DepthTestEnable;
+			result.DepthWriteEnable = this.DepthWriteEnable;
+			result.DepthCompareOp = this.DepthCompareOp;
+			result.DepthBoundsTestEnable = this.DepthBoundsTestEnable;
+			result.StencilTestEnable = this.StencilTestEnable;
+			result.Front = this.Front;
+			result.Back = this.Back;
+			result.MinDepthBounds = this.MinDepthBounds;
+			result.MaxDepthBounds = this.MaxDepthBounds;
+
+            return result;
+        }
+
+		internal unsafe Interop.PipelineDepthStencilStateCreateInfo* MarshalTo()
+        {
+            return (Interop.PipelineDepthStencilStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class PipelineDynamicStateCreateInfo
+	{
+
+		public PipelineDynamicStateCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public DynamicState[] DynamicStates
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.PipelineDynamicStateCreateInfo Pack()
+        {
+            var result = new Interop.PipelineDynamicStateCreateInfo();
+			result.SType = StructureType.PipelineDynamicStateCreateInfo;
+			result.DynamicStateCount = (uint)(this.DynamicStates?.Length ?? 0);
+			
+			//DynamicStates
+			if (this.DynamicStates != null)
+			{
+			    result.DynamicStates = (DynamicState*)Interop.HeapUtil.Allocate<uint>(this.DynamicStates.Length).ToPointer();
+			    for (int index = 0; index < this.DynamicStates.Length; index++)
+			    {
+			        result.DynamicStates[index] = this.DynamicStates[index];
+			    }
+			}
+			else
+			{
+			    result.DynamicStates = null;
+			}
+			result.Flags = this.Flags;
+
+            return result;
+        }
+
+		internal unsafe Interop.PipelineDynamicStateCreateInfo* MarshalTo()
+        {
+            return (Interop.PipelineDynamicStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class PipelineInputAssemblyStateCreateInfo
+	{
+
+		public PipelineInputAssemblyStateCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public PrimitiveTopology Topology
+		{
+			get;
+			set;
+		}
+
+		public Bool32 PrimitiveRestartEnable
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.PipelineInputAssemblyStateCreateInfo Pack()
+        {
+            var result = new Interop.PipelineInputAssemblyStateCreateInfo();
+			result.SType = StructureType.PipelineInputAssemblyStateCreateInfo;
+			result.Flags = this.Flags;
+			result.Topology = this.Topology;
+			result.PrimitiveRestartEnable = this.PrimitiveRestartEnable;
+
+            return result;
+        }
+
+		internal unsafe Interop.PipelineInputAssemblyStateCreateInfo* MarshalTo()
+        {
+            return (Interop.PipelineInputAssemblyStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class PipelineLayoutCreateInfo
+	{
+
+		public PipelineLayoutCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public DescriptorSetLayout[] SetLayouts
+		{
+			get;
+			set;
+		}
+
+		public PushConstantRange[] PushConstantRanges
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.PipelineLayoutCreateInfo Pack()
+        {
+            var result = new Interop.PipelineLayoutCreateInfo();
+			result.SType = StructureType.PipelineLayoutCreateInfo;
+			result.SetLayoutCount = (uint)(this.SetLayouts?.Length ?? 0);
+			
+			//SetLayouts
+			if (this.SetLayouts != null)
+			{
+			    int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.DescriptorSetLayout>();
+			    IntPtr pointer = Interop.HeapUtil.Allocate<Interop.DescriptorSetLayout>(this.SetLayouts.Length);
+			    for (int index = 0; index < this.SetLayouts.Length; index++)
+			    {
+			        System.Runtime.InteropServices.Marshal.StructureToPtr(this.SetLayouts[index].Pack(), pointer + (size * index), false);
+			    }
+			    result.SetLayouts = (Interop.DescriptorSetLayout*)pointer.ToPointer();
+			}
+			else
+			{
+			    result.SetLayouts = null;
+			}
+			result.PushConstantRangeCount = (uint)(this.PushConstantRanges?.Length ?? 0);
+			
+			//PushConstantRanges
+			if (this.PushConstantRanges != null)
+			{
+			    result.PushConstantRanges = (PushConstantRange*)Interop.HeapUtil.Allocate<uint>(this.PushConstantRanges.Length).ToPointer();
+			    for (int index = 0; index < this.PushConstantRanges.Length; index++)
+			    {
+			        result.PushConstantRanges[index] = this.PushConstantRanges[index];
+			    }
+			}
+			else
+			{
+			    result.PushConstantRanges = null;
+			}
+			result.Flags = this.Flags;
+
+            return result;
+        }
+
+		internal unsafe Interop.PipelineLayoutCreateInfo* MarshalTo()
+        {
+            return (Interop.PipelineLayoutCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class PipelineMultisampleStateCreateInfo
+	{
+
+		public PipelineMultisampleStateCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public SampleCountFlags RasterizationSamples
+		{
+			get;
+			set;
+		}
+
+		public Bool32 SampleShadingEnable
+		{
+			get;
+			set;
+		}
+
+		public float MinSampleShading
+		{
+			get;
+			set;
+		}
+
+		public SampleMask[] SampleMask
+		{
+			get;
+			set;
+		}
+
+		public Bool32 AlphaToCoverageEnable
+		{
+			get;
+			set;
+		}
+
+		public Bool32 AlphaToOneEnable
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.PipelineMultisampleStateCreateInfo Pack()
+        {
+            var result = new Interop.PipelineMultisampleStateCreateInfo();
+			result.SType = StructureType.PipelineMultisampleStateCreateInfo;
+			result.SampleMask = this.SampleMask == null ? null : (SampleMask*)Interop.HeapUtil.MarshalTo(this.SampleMask, (int)Math.Ceiling((int)RasterizationSamples / 32f));
+			result.Flags = this.Flags;
+			result.RasterizationSamples = this.RasterizationSamples;
+			result.SampleShadingEnable = this.SampleShadingEnable;
+			result.MinSampleShading = this.MinSampleShading;
+			result.AlphaToCoverageEnable = this.AlphaToCoverageEnable;
+			result.AlphaToOneEnable = this.AlphaToOneEnable;
+
+            return result;
+        }
+
+		internal unsafe Interop.PipelineMultisampleStateCreateInfo* MarshalTo()
+        {
+            return (Interop.PipelineMultisampleStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class PipelineRasterizationStateCreateInfo
+	{
+
+		public PipelineRasterizationStateCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public Bool32 DepthClampEnable
+		{
+			get;
+			set;
+		}
+
+		public Bool32 RasterizerDiscardEnable
+		{
+			get;
+			set;
+		}
+
+		public PolygonMode PolygonMode
+		{
+			get;
+			set;
+		}
+
+		public CullModeFlags CullMode
+		{
+			get;
+			set;
+		}
+
+		public FrontFace FrontFace
+		{
+			get;
+			set;
+		}
+
+		public Bool32 DepthBiasEnable
+		{
+			get;
+			set;
+		}
+
+		public float DepthBiasConstantFactor
+		{
+			get;
+			set;
+		}
+
+		public float DepthBiasClamp
+		{
+			get;
+			set;
+		}
+
+		public float DepthBiasSlopeFactor
+		{
+			get;
+			set;
+		}
+
+		public float LineWidth
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.PipelineRasterizationStateCreateInfo Pack()
+        {
+            var result = new Interop.PipelineRasterizationStateCreateInfo();
+			result.SType = StructureType.PipelineRasterizationStateCreateInfo;
+			result.Flags = this.Flags;
+			result.DepthClampEnable = this.DepthClampEnable;
+			result.RasterizerDiscardEnable = this.RasterizerDiscardEnable;
+			result.PolygonMode = this.PolygonMode;
+			result.CullMode = this.CullMode;
+			result.FrontFace = this.FrontFace;
+			result.DepthBiasEnable = this.DepthBiasEnable;
+			result.DepthBiasConstantFactor = this.DepthBiasConstantFactor;
+			result.DepthBiasClamp = this.DepthBiasClamp;
+			result.DepthBiasSlopeFactor = this.DepthBiasSlopeFactor;
+			result.LineWidth = this.LineWidth;
+
+            return result;
+        }
+
+		internal unsafe Interop.PipelineRasterizationStateCreateInfo* MarshalTo()
+        {
+            return (Interop.PipelineRasterizationStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class PipelineShaderStageCreateInfo
+	{
+
+		public PipelineShaderStageCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public ShaderStageFlags Stage
+		{
+			get;
+			set;
+		}
+
+		public ShaderModule Module
+		{
+			get;
+			set;
+		}
+
+		public string Name
+		{
+			get;
+			set;
+		}
+
+		public SpecializationInfo SpecializationInfo
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.PipelineShaderStageCreateInfo Pack()
+        {
+            var result = new Interop.PipelineShaderStageCreateInfo();
+			result.SType = StructureType.PipelineShaderStageCreateInfo;
+			result.Module = this.Module?.Pack() ?? Interop.ShaderModule.Null;
+			result.Name = Interop.HeapUtil.MarshalTo(this.Name);
+			result.SpecializationInfo = this.SpecializationInfo == null ? null : this.SpecializationInfo.MarshalTo();
+			result.Flags = this.Flags;
+			result.Stage = this.Stage;
+
+            return result;
+        }
+
+		internal unsafe Interop.PipelineShaderStageCreateInfo* MarshalTo()
+        {
+            return (Interop.PipelineShaderStageCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class PipelineTessellationStateCreateInfo
+	{
+
+		public PipelineTessellationStateCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public uint PatchControlPoints
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.PipelineTessellationStateCreateInfo Pack()
+        {
+            var result = new Interop.PipelineTessellationStateCreateInfo();
+			result.SType = StructureType.PipelineTessellationStateCreateInfo;
+			result.Flags = this.Flags;
+			result.PatchControlPoints = this.PatchControlPoints;
+
+            return result;
+        }
+
+		internal unsafe Interop.PipelineTessellationStateCreateInfo* MarshalTo()
+        {
+            return (Interop.PipelineTessellationStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class PipelineVertexInputStateCreateInfo
+	{
+
+		public PipelineVertexInputStateCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public VertexInputBindingDescription[] VertexBindingDescriptions
+		{
+			get;
+			set;
+		}
+
+		public VertexInputAttributeDescription[] VertexAttributeDescriptions
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.PipelineVertexInputStateCreateInfo Pack()
+        {
+            var result = new Interop.PipelineVertexInputStateCreateInfo();
+			result.SType = StructureType.PipelineVertexInputStateCreateInfo;
+			result.VertexBindingDescriptionCount = (uint)(this.VertexBindingDescriptions?.Length ?? 0);
+			
+			//VertexBindingDescriptions
+			if (this.VertexBindingDescriptions != null)
+			{
+			    result.VertexBindingDescriptions = (VertexInputBindingDescription*)Interop.HeapUtil.Allocate<uint>(this.VertexBindingDescriptions.Length).ToPointer();
+			    for (int index = 0; index < this.VertexBindingDescriptions.Length; index++)
+			    {
+			        result.VertexBindingDescriptions[index] = this.VertexBindingDescriptions[index];
+			    }
+			}
+			else
+			{
+			    result.VertexBindingDescriptions = null;
+			}
+			result.VertexAttributeDescriptionCount = (uint)(this.VertexAttributeDescriptions?.Length ?? 0);
+			
+			//VertexAttributeDescriptions
+			if (this.VertexAttributeDescriptions != null)
+			{
+			    result.VertexAttributeDescriptions = (VertexInputAttributeDescription*)Interop.HeapUtil.Allocate<uint>(this.VertexAttributeDescriptions.Length).ToPointer();
+			    for (int index = 0; index < this.VertexAttributeDescriptions.Length; index++)
+			    {
+			        result.VertexAttributeDescriptions[index] = this.VertexAttributeDescriptions[index];
+			    }
+			}
+			else
+			{
+			    result.VertexAttributeDescriptions = null;
+			}
+			result.Flags = this.Flags;
+
+            return result;
+        }
+
+		internal unsafe Interop.PipelineVertexInputStateCreateInfo* MarshalTo()
+        {
+            return (Interop.PipelineVertexInputStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class PipelineViewportStateCreateInfo
+	{
+
+		public PipelineViewportStateCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public Viewport[] Viewports
+		{
+			get;
+			set;
+		}
+
+		public Rect2D[] Scissors
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.PipelineViewportStateCreateInfo Pack()
+        {
+            var result = new Interop.PipelineViewportStateCreateInfo();
+			result.SType = StructureType.PipelineViewportStateCreateInfo;
+			result.ViewportCount = (uint)(this.Viewports?.Length ?? 0);
+			
+			//Viewports
+			if (this.Viewports != null)
+			{
+			    result.Viewports = (Viewport*)Interop.HeapUtil.Allocate<uint>(this.Viewports.Length).ToPointer();
+			    for (int index = 0; index < this.Viewports.Length; index++)
+			    {
+			        result.Viewports[index] = this.Viewports[index];
+			    }
+			}
+			else
+			{
+			    result.Viewports = null;
+			}
+			result.ScissorCount = (uint)(this.Scissors?.Length ?? 0);
+			
+			//Scissors
+			if (this.Scissors != null)
+			{
+			    result.Scissors = (Rect2D*)Interop.HeapUtil.Allocate<uint>(this.Scissors.Length).ToPointer();
+			    for (int index = 0; index < this.Scissors.Length; index++)
+			    {
+			        result.Scissors[index] = this.Scissors[index];
+			    }
+			}
+			else
+			{
+			    result.Scissors = null;
+			}
+			result.Flags = this.Flags;
+
+            return result;
+        }
+
+		internal unsafe Interop.PipelineViewportStateCreateInfo* MarshalTo()
+        {
+            return (Interop.PipelineViewportStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
 	public class PresentInfo
 	{
 
@@ -2342,6 +3247,49 @@ namespace SharpVk
 		internal unsafe Interop.SparseMemoryBind* MarshalTo()
         {
             return (Interop.SparseMemoryBind*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class SpecializationInfo
+	{
+
+		public SpecializationMapEntry[] MapEntries
+		{
+			get;
+			set;
+		}
+
+		public IntPtr Data
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.SpecializationInfo Pack()
+        {
+            var result = new Interop.SpecializationInfo();
+			result.MapEntryCount = (uint)(this.MapEntries?.Length ?? 0);
+			
+			//MapEntries
+			if (this.MapEntries != null)
+			{
+			    result.MapEntries = (SpecializationMapEntry*)Interop.HeapUtil.Allocate<uint>(this.MapEntries.Length).ToPointer();
+			    for (int index = 0; index < this.MapEntries.Length; index++)
+			    {
+			        result.MapEntries[index] = this.MapEntries[index];
+			    }
+			}
+			else
+			{
+			    result.MapEntries = null;
+			}
+
+            return result;
+        }
+
+		internal unsafe Interop.SpecializationInfo* MarshalTo()
+        {
+            return (Interop.SpecializationInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 

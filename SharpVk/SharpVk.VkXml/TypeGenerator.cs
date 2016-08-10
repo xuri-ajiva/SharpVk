@@ -110,7 +110,11 @@ namespace SharpVk.VkXml
                 bool lastParamIsArray = lastParamReturns
                                             && lastParam.Dimensions != null
                                             && lastParam.Dimensions.Any(x => x.Type != SpecParser.LenType.NullTerminated);
-                bool enumeratePattern = command.Verb == "enumerate" || lastParamIsArray;
+
+                bool lastParamLenFieldByRef = lastParamIsArray
+                                                && command.Params.Single(x => x.VkName == ((SpecParser.ParsedExpressionToken)lastParam.Dimensions[0].Value).Value).PointerType == PointerType.Pointer;
+
+                bool enumeratePattern = command.Verb == "enumerate" || (lastParamIsArray && lastParamLenFieldByRef);
 
                 var methodNameParts = command.NameParts;
 
@@ -185,11 +189,20 @@ namespace SharpVk.VkXml
 
                 foreach (var parameter in command.Params)
                 {
-                    if (parameter.Dimensions?.Count() > 0 && parameter.Dimensions[0].Type == SpecParser.LenType.Expression)
+                    if (parameter.Dimensions?.Count() > 0
+                            && parameter.Dimensions[0].Type == SpecParser.LenType.Expression
+                            && parameter.Dimensions[0].Value is SpecParser.ParsedExpressionToken)
                     {
-                        lenParamMapping[parameter.Dimensions[0].Value] = paramNameLookup[parameter.VkName];
+                        string lenParam = ((SpecParser.ParsedExpressionToken)parameter.Dimensions[0].Value).Value;
+
+                        if (!lenParamMapping.ContainsKey(lenParam) || parameter.PointerType != PointerType.Pointer)
+                        {
+                            lenParamMapping[lenParam] = paramNameLookup[parameter.VkName];
+                        }
                     }
                 }
+
+                var parsedExpressionBuilder = new ParsedExpressionBuilder(paramNameLookup, command.Params, typeData);
 
                 foreach (var parameter in command.Params)
                 {
@@ -249,13 +262,13 @@ namespace SharpVk.VkXml
 
                                 if (parameter.Dimensions[0].Value != null)
                                 {
-                                    string lenParam = paramNameLookup[parameter.Dimensions[0].Value];
+                                    string lenExpression = parsedExpressionBuilder.Build(parameter.Dimensions[0].Value);
 
-                                    newMethod.MarshalMidStatements.Add(string.Format("{1} = ({0}*)Interop.HeapUtil.Allocate<{0}>((uint){2});", interopTypeName, marshalledName, lenParam));
+                                    newMethod.MarshalMidStatements.Add(string.Format("{1} = ({0}*)Interop.HeapUtil.Allocate<{0}>((uint){2});", interopTypeName, marshalledName, lenExpression));
 
-                                    newMethod.MarshalFromStatements.Add(string.Format("result = new {0}[(uint){1}];", paramTypeName, lenParam));
+                                    newMethod.MarshalFromStatements.Add(string.Format("result = new {0}[(uint){1}];", paramTypeName, lenExpression));
 
-                                    newMethod.MarshalFromStatements.Add(string.Format("for(int index = 0; index < (uint){0}; index++)", lenParam));
+                                    newMethod.MarshalFromStatements.Add(string.Format("for(int index = 0; index < (uint){0}; index++)", lenExpression));
                                     newMethod.MarshalFromStatements.Add("{");
                                     if (paramType.RequiresInterop)
                                     {
@@ -300,24 +313,36 @@ namespace SharpVk.VkXml
                                     {
                                         var parentHandle = handleLookup[paramType.Data.Parent];
 
-                                        if (handle != parentHandle)
+                                        if (handle == parentHandle)
                                         {
-                                            // If the containing handle is not the parent of the handle being returned,
-                                            // assume that the first param after all handles is a CreateInfo containing
-                                            // a field with the parent handle to assign.
-                                            // Also include a reference to the containing handle, as it will be the
-                                            // associated handle for this instance.
-
-                                            var createInfoParam = command.Params.Skip(handleParams.Count()).First();
-                                            var createInfoType = typeData[GetMemberTypeName(createInfoParam)];
-
-                                            var parentHandleMember = createInfoType.Data.Members.First(x => x.Type == paramType.Data.Parent);
-
-                                            parentArgument = $", {paramNameLookup[createInfoParam.VkName]}.{GetNameForElement(parentHandleMember)}, this";
+                                            parentArgument = ", this";
+                                        }
+                                        else if (handle.ParentHandle == parentHandle.Name)
+                                        {
+                                            parentArgument = ", this.parent";
                                         }
                                         else
                                         {
-                                            parentArgument = ", this";
+                                            // If the containing handle (or its parent) is not the parent of the handle
+                                            // being returned, assume that the first param after all handles is a
+                                            // CreateInfo containing a field with the parent handle to assign.
+                                            // Also include a reference to the containing handle, as it will be the
+                                            // associated handle for this instance.
+
+                                            var createInfoParam = command.Params.Skip(handleParams.Count()).FirstOrDefault(x => x.VkName.EndsWith("CreateInfo"));
+
+                                            if (createInfoParam != null)
+                                            {
+                                                var createInfoType = typeData[GetMemberTypeName(createInfoParam)];
+
+                                                var parentHandleMember = createInfoType.Data.Members.First(x => x.Type == paramType.Data.Parent);
+
+                                                parentArgument = $", {paramNameLookup[createInfoParam.VkName]}.{GetNameForElement(parentHandleMember)}, this";
+                                            }
+                                            else
+                                            {
+                                                throw new NotImplementedException();
+                                            }
                                         }
                                     }
 
@@ -550,6 +575,8 @@ namespace SharpVk.VkXml
 
                 var memberNameLookup = type.Data.Members.ToDictionary(x => x.VkName, x => JoinNameParts(x.NameParts));
 
+                var expressionBuilder = new ParsedExpressionBuilder(memberNameLookup, type.Data.Members, typeData);
+
                 foreach (var member in type.Data.Members)
                 {
                     var memberType = typeData[GetMemberTypeName(member)];
@@ -570,12 +597,12 @@ namespace SharpVk.VkXml
                     {
                         if (member.Dimensions.Length > 1)
                         {
-                            //HACK Assume that 2-dimensional arrays are string[]
+                            //HACK Assume that 2-dimensional arrays are string[] with a simple len field
                             Debug.Assert(member.Type == "char");
 
                             memberDesc.PublicTypeName = "string[]";
 
-                            var lenMember = member.Dimensions[0].Value;
+                            var lenMember = ((SpecParser.ParsedExpressionToken)member.Dimensions[0].Value).Value;
 
                             lenMembers.Add(lenMember);
 
@@ -594,6 +621,8 @@ namespace SharpVk.VkXml
                                     break;
                                 case SpecParser.LenType.Expression:
 
+                                    var lenToken = member.Dimensions[0].Value as SpecParser.ParsedExpressionToken;
+
                                     if (isPointer && memberDesc.PublicTypeName == "void")
                                     {
                                         memberDesc.PublicTypeName = "IntPtr";
@@ -602,10 +631,11 @@ namespace SharpVk.VkXml
                                     {
                                         memberDesc.PublicTypeName += "[]";
 
-                                        //HACL Ignore unparsed len fields temporarily
-                                        if (member.Dimensions[0].Value != null)
+                                        if (lenToken != null)
                                         {
-                                            newClass.MarshalToStatements.Add(string.Format("result.{0} = (uint)(this.{1}?.Length ?? 0);", memberNameLookup[member.Dimensions[0].Value], memberName));
+                                            var lenMember = memberNameLookup[lenToken.Value];
+
+                                            newClass.MarshalToStatements.Add(string.Format("result.{0} = (uint)(this.{1}?.Length ?? 0);", lenMember, memberName));
                                         }
 
                                         if (memberType.RequiresInterop || memberType.Data.Category == TypeCategory.handle)
@@ -627,7 +657,7 @@ namespace SharpVk.VkXml
                                             newClass.MarshalToStatements.Add($"    result.{memberName} = null;");
                                             newClass.MarshalToStatements.Add("}");
                                         }
-                                        else if (memberType.Data.Category == TypeCategory.bitmask || memberType.Data.Category == TypeCategory.@enum)
+                                        else if (memberType.Data.Category == TypeCategory.bitmask || memberType.Data.Category == TypeCategory.@enum || memberType.Data.Category == TypeCategory.@struct)
                                         {
                                             newClass.MarshalToStatements.Add("");
                                             newClass.MarshalToStatements.Add($"//{memberName}");
@@ -644,15 +674,20 @@ namespace SharpVk.VkXml
                                             newClass.MarshalToStatements.Add($"    result.{memberName} = null;");
                                             newClass.MarshalToStatements.Add("}");
                                         }
+                                        else if (memberType.Data.Category == TypeCategory.basetype)
+                                        {
+                                            string lenExpression = expressionBuilder.Build(member.Dimensions[0].Value);
+                                            newClass.MarshalToStatements.Add($"result.{memberName} = this.{memberName} == null ? null : ({memberType.Name}*)Interop.HeapUtil.MarshalTo(this.{memberName}, (int){lenExpression});");
+                                        }
                                         else
                                         {
                                             newClass.MarshalToStatements.Add(string.Format("result.{0} = this.{0} == null ? null : Interop.HeapUtil.MarshalTo(this.{0});", memberName));
                                         }
                                     }
 
-                                    if (member.Dimensions[0].Value != null)
+                                    if (lenToken != null)
                                     {
-                                        lenMembers.Add(member.Dimensions[0].Value);
+                                        lenMembers.Add(((SpecParser.ParsedExpressionToken)member.Dimensions[0].Value).Value);
                                     }
 
                                     break;
@@ -1150,7 +1185,7 @@ namespace SharpVk.VkXml
                             || spec.Types[y.Type].Category == TypeCategory.handle));
         }
 
-        private static string GetNameForElement(SpecParser.ParsedElement element, int trimFromEnd = 0)
+        internal static string GetNameForElement(SpecParser.ParsedElement element, int trimFromEnd = 0)
         {
             if (element.NameParts == null)
             {
@@ -1194,7 +1229,7 @@ namespace SharpVk.VkXml
             return new string(charArray);
         }
 
-        private class TypeDesc
+        internal class TypeDesc
         {
             public SpecParser.ParsedType Data;
             public bool RequiresInterop;

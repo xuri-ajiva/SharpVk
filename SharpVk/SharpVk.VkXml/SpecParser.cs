@@ -51,8 +51,54 @@ namespace SharpVk.VkXml
                                                                    from close in Parse.Char(']')
                                                                    select digits;
 
+        private static readonly Parser<ParsedExpression> lenExpressionParserRef = Parse.Ref(() => lenExpressionParser);
+
+        private static readonly Parser<ParsedExpressionToken> lenTokenParser = Parse.Letter.AtLeastOnce().Text().Select(x => new ParsedExpressionToken { Value = x });
+
+        private static readonly Parser<ParsedExpressionReference> lenDereferenceParser = from left in lenTokenParser
+                                                                                         from op in Parse.String("->")
+                                                                                         from right in lenTokenParser
+                                                                                         select new ParsedExpressionReference
+                                                                                         {
+                                                                                             LeftOperand = left,
+                                                                                             RightOperand = right
+                                                                                         };
+
+        private static readonly Parser<string> Sign = Parse.Char('-').Optional().Select(x => x.IsDefined ? "-" : "");
+
+        private static readonly Parser<ParsedExpressionLiteral> integerLiteral = from sign in Sign
+                                                                                 from digits in Parse.Digit.AtLeastOnce().Text().Token()
+                                                                                 select new SpecParser.ParsedExpressionLiteral { Value = sign + digits };
+
+        private static readonly Parser<ParsedExpressionToken> latexToken = Parse.LetterOrDigit.AtLeastOnce()
+                                                                                                 .Where(x => char.IsLetter(x.First()))
+                                                                                                 .Text()
+                                                                                                 .Token()
+                                                                                                 .Select(x => new SpecParser.ParsedExpressionToken { Value = x });
+
+        private static readonly Parser<ParsedExpression> latexSubexpressionRef = Parse.Ref(() => latexSubexpression);
+
+        private static readonly Parser<ParsedExpression> latexUnaryOperatorExpression = latexSubexpressionRef.Contained(Parse.String("\\lceil{"), Parse.String("}\\rceil")).Token().Select(x => new SpecParser.ParsedExpressionOperator { LeftOperand = x, Operator = SpecParser.ParsedOperatorType.Ceiling });
+
+        private static readonly Parser<ParsedExpression> latexPrimaryExpression = ((Parser<SpecParser.ParsedExpression>)latexToken)
+                                                                                                                                    .Or(latexToken.Contained(Parse.String("\\mathit{"), Parse.String("}")))
+                                                                                                                                    .Or(integerLiteral)
+                                                                                                                                    .Or(latexUnaryOperatorExpression);
+
+        private static readonly Parser<ParsedExpression> latexMultiplicativeExpression = Parse.ChainOperator(Parse.String("\\over").Token(),
+                                                                                                                            latexPrimaryExpression,
+                                                                                                                            (op, left, right) => new SpecParser.ParsedExpressionOperator { LeftOperand = left, RightOperand = right, Operator = SpecParser.ParsedOperatorType.Divide });
+
+        private static readonly Parser<ParsedExpression> latexSubexpression = latexMultiplicativeExpression;
+
+        private static readonly Parser<ParsedExpression> latexExpression = latexSubexpression.Contained(Parse.String("latexmath:[$"), Parse.String("$]"));
+
+        private static readonly Parser<ParsedExpression> lenExpressionParser = latexExpression
+                                                                                    .Or(lenDereferenceParser)
+                                                                                    .Or(lenTokenParser);
+
         private static readonly Parser<ParsedLen> lenPartParser = Parse.String("null-terminated").Select(x => new ParsedLen { Type = LenType.NullTerminated })
-                                                                        .Or(Parse.Letter.AtLeastOnce().Text().Select(x => new ParsedLen { Value = x, Type = LenType.Expression }));
+                                                                        .Or(lenExpressionParser.Select(x => new ParsedLen { Value = x, Type = LenType.Expression }));
 
         private static readonly Parser<IEnumerable<ParsedLen>> lenParser = lenPartParser.DelimitedBy(Parse.Char(',').Token()).End();
 
@@ -422,7 +468,7 @@ namespace SharpVk.VkXml
 
             //HACK Artificially limit the set of required commands to simplify
             // the API while working on marshalling and the public handles
-            requiredCommand = new List<string>(requiredCommand.Distinct().Take(61));
+            requiredCommand = new List<string>(requiredCommand.Distinct().Take(70));
 
             foreach (var extension in extensions)
             {
@@ -575,7 +621,7 @@ namespace SharpVk.VkXml
                 {
                     return x.ToString();
                 }
-            }).Aggregate((y, z) => y + z).Trim();
+            }).Aggregate(string.Concat).Trim();
 
             switch (typeString)
             {
@@ -741,8 +787,92 @@ namespace SharpVk.VkXml
 
         public class ParsedLen
         {
-            public string Value;
+            public ParsedExpression Value;
             public LenType Type;
+        }
+
+        public abstract class ParsedExpression
+        {
+            public abstract void Visit<T>(IParsedExpressionVisitor<T> visitor, T state);
+        }
+
+        public class ParsedExpressionLiteral
+            : ParsedExpression
+        {
+            public string Value;
+
+            public override void Visit<T>(IParsedExpressionVisitor<T> visitor, T state)
+            {
+                visitor.Visit(this, state);
+            }
+
+            public override string ToString()
+            {
+                return $"Literal: {Value}";
+            }
+        }
+
+        public class ParsedExpressionToken
+            : ParsedExpression
+        {
+            public string Value;
+
+            public override void Visit<T>(IParsedExpressionVisitor<T> visitor, T state)
+            {
+                visitor.Visit(this, state);
+            }
+
+            public override string ToString()
+            {
+                return $"Token: '{this.Value}'";
+            }
+        }
+
+        public class ParsedExpressionReference
+            : ParsedExpression
+        {
+            public ParsedExpression LeftOperand;
+            public ParsedExpressionToken RightOperand;
+
+            public override void Visit<T>(IParsedExpressionVisitor<T> visitor, T state)
+            {
+                visitor.Visit(this, state);
+            }
+        }
+
+        public class ParsedExpressionOperator
+            : ParsedExpression
+        {
+            public ParsedOperatorType Operator;
+            public ParsedExpression LeftOperand;
+            public ParsedExpression RightOperand;
+
+            public override void Visit<T>(IParsedExpressionVisitor<T> visitor, T state)
+            {
+                visitor.Visit(this, state);
+            }
+
+            public override string ToString()
+            {
+                return $"Operator: {LeftOperand} {Operator} {RightOperand}";
+            }
+        }
+
+        public enum ParsedOperatorType
+        {
+            Divide,
+            Ceiling
+        }
+
+        public interface IParsedExpressionVisitor<T>
+        {
+            void Visit(ParsedExpressionReference reference, T state);
+
+            void Visit(ParsedExpressionToken token, T state);
+
+            void Visit(ParsedExpressionLiteral literal, T state);
+
+            void Visit(ParsedExpressionOperator @operator, T state);
         }
 
         public enum LenType

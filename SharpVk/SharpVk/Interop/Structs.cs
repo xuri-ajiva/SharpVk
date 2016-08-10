@@ -106,6 +106,18 @@ namespace SharpVk.Interop
 	}
 
     [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct ComputePipelineCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public PipelineCreateFlags Flags;
+		public PipelineShaderStageCreateInfo Stage;
+		public PipelineLayout Layout;
+		public Pipeline BasePipelineHandle;
+		public int BasePipelineIndex;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
 	public unsafe struct DeviceCreateInfo
 	{
 		public StructureType SType;
@@ -152,6 +164,30 @@ namespace SharpVk.Interop
 		public StructureType SType;
 		public void* Next;
 		public FenceCreateFlags Flags;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct GraphicsPipelineCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public PipelineCreateFlags Flags;
+		public uint StageCount;
+		public PipelineShaderStageCreateInfo* Stages;
+		public PipelineVertexInputStateCreateInfo* VertexInputState;
+		public PipelineInputAssemblyStateCreateInfo* InputAssemblyState;
+		public PipelineTessellationStateCreateInfo* TessellationState;
+		public PipelineViewportStateCreateInfo* ViewportState;
+		public PipelineRasterizationStateCreateInfo* RasterizationState;
+		public PipelineMultisampleStateCreateInfo* MultisampleState;
+		public PipelineDepthStencilStateCreateInfo* DepthStencilState;
+		public PipelineColorBlendStateCreateInfo* ColorBlendState;
+		public PipelineDynamicStateCreateInfo* DynamicState;
+		public PipelineLayout Layout;
+		public RenderPass RenderPass;
+		public uint Subpass;
+		public Pipeline BasePipelineHandle;
+		public int BasePipelineIndex;
 	}
 
     [StructLayout(LayoutKind.Sequential)]
@@ -433,6 +469,155 @@ namespace SharpVk.Interop
 	}
 
     [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct PipelineCacheCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public PipelineCacheCreateFlags Flags;
+		public UIntPtr InitialDataSize;
+		public void* InitialData;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct PipelineColorBlendStateCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public PipelineColorBlendStateCreateFlags Flags;
+		public Bool32 LogicOpEnable;
+		public LogicOp LogicOp;
+		public uint AttachmentCount;
+		public PipelineColorBlendAttachmentState* Attachments;
+		public fixed float BlendConstants[4];
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct PipelineDepthStencilStateCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public PipelineDepthStencilStateCreateFlags Flags;
+		public Bool32 DepthTestEnable;
+		public Bool32 DepthWriteEnable;
+		public CompareOp DepthCompareOp;
+		public Bool32 DepthBoundsTestEnable;
+		public Bool32 StencilTestEnable;
+		public StencilOpState Front;
+		public StencilOpState Back;
+		public float MinDepthBounds;
+		public float MaxDepthBounds;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct PipelineDynamicStateCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public PipelineDynamicStateCreateFlags Flags;
+		public uint DynamicStateCount;
+		public DynamicState* DynamicStates;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct PipelineInputAssemblyStateCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public PipelineInputAssemblyStateCreateFlags Flags;
+		public PrimitiveTopology Topology;
+		public Bool32 PrimitiveRestartEnable;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct PipelineLayoutCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public PipelineLayoutCreateFlags Flags;
+		public uint SetLayoutCount;
+		public DescriptorSetLayout* SetLayouts;
+		public uint PushConstantRangeCount;
+		public PushConstantRange* PushConstantRanges;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct PipelineMultisampleStateCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public PipelineMultisampleStateCreateFlags Flags;
+		public SampleCountFlags RasterizationSamples;
+		public Bool32 SampleShadingEnable;
+		public float MinSampleShading;
+		public SampleMask* SampleMask;
+		public Bool32 AlphaToCoverageEnable;
+		public Bool32 AlphaToOneEnable;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct PipelineRasterizationStateCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public PipelineRasterizationStateCreateFlags Flags;
+		public Bool32 DepthClampEnable;
+		public Bool32 RasterizerDiscardEnable;
+		public PolygonMode PolygonMode;
+		public CullModeFlags CullMode;
+		public FrontFace FrontFace;
+		public Bool32 DepthBiasEnable;
+		public float DepthBiasConstantFactor;
+		public float DepthBiasClamp;
+		public float DepthBiasSlopeFactor;
+		public float LineWidth;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct PipelineShaderStageCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public PipelineShaderStageCreateFlags Flags;
+		public ShaderStageFlags Stage;
+		public ShaderModule Module;
+		public char* Name;
+		public SpecializationInfo* SpecializationInfo;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct PipelineTessellationStateCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public PipelineTessellationStateCreateFlags Flags;
+		public uint PatchControlPoints;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct PipelineVertexInputStateCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public PipelineVertexInputStateCreateFlags Flags;
+		public uint VertexBindingDescriptionCount;
+		public VertexInputBindingDescription* VertexBindingDescriptions;
+		public uint VertexAttributeDescriptionCount;
+		public VertexInputAttributeDescription* VertexAttributeDescriptions;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct PipelineViewportStateCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public PipelineViewportStateCreateFlags Flags;
+		public uint ViewportCount;
+		public Viewport* Viewports;
+		public uint ScissorCount;
+		public Rect2D* Scissors;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
 	public unsafe struct PresentInfo
 	{
 		public StructureType SType;
@@ -517,6 +702,15 @@ namespace SharpVk.Interop
 		public DeviceMemory Memory;
 		public DeviceSize MemoryOffset;
 		public SparseMemoryBindFlags Flags;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct SpecializationInfo
+	{
+		public uint MapEntryCount;
+		public SpecializationMapEntry* MapEntries;
+		public UIntPtr DataSize;
+		public void* Data;
 	}
 
     [StructLayout(LayoutKind.Sequential)]

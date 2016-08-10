@@ -88,6 +88,22 @@ namespace SharpVk.Interop
 		}
 	}
 
+	public struct DescriptorSetLayout
+	{
+		internal IntPtr handle;
+
+		public static DescriptorSetLayout Null
+		{
+			get
+			{
+				return new DescriptorSetLayout
+                {
+                    handle = IntPtr.Zero
+                };
+			}
+		}
+	}
+
 	public struct Device
 	{
 		internal IntPtr handle;
@@ -216,6 +232,54 @@ namespace SharpVk.Interop
 		}
 	}
 
+	public struct Pipeline
+	{
+		internal IntPtr handle;
+
+		public static Pipeline Null
+		{
+			get
+			{
+				return new Pipeline
+                {
+                    handle = IntPtr.Zero
+                };
+			}
+		}
+	}
+
+	public struct PipelineCache
+	{
+		internal IntPtr handle;
+
+		public static PipelineCache Null
+		{
+			get
+			{
+				return new PipelineCache
+                {
+                    handle = IntPtr.Zero
+                };
+			}
+		}
+	}
+
+	public struct PipelineLayout
+	{
+		internal IntPtr handle;
+
+		public static PipelineLayout Null
+		{
+			get
+			{
+				return new PipelineLayout
+                {
+                    handle = IntPtr.Zero
+                };
+			}
+		}
+	}
+
 	public struct QueryPool
 	{
 		internal IntPtr handle;
@@ -241,6 +305,22 @@ namespace SharpVk.Interop
 			get
 			{
 				return new Queue
+                {
+                    handle = IntPtr.Zero
+                };
+			}
+		}
+	}
+
+	public struct RenderPass
+	{
+		internal IntPtr handle;
+
+		public static RenderPass Null
+		{
+			get
+			{
+				return new RenderPass
                 {
                     handle = IntPtr.Zero
                 };
