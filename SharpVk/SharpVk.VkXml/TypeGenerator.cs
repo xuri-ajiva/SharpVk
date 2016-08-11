@@ -88,8 +88,12 @@ namespace SharpVk.VkXml
                             var paramHandle = handleLookup[x.Type];
                             var previousParamHandle = handleLookup[command.Params[index - 1].Type];
 
-                            return previousParamHandle.Name == paramHandle.ParentHandle
-                                    || previousParamHandle.Name == paramHandle.AssociatedHandle;
+                            //HACK Ignore the IsOptional check for Destroy methods until
+                            // command duplication (across parent & optional child handle)
+                            // is working
+                            return (!x.IsOptional || command.Verb == "destroy")
+                                    && (previousParamHandle.Name == paramHandle.ParentHandle
+                                        || previousParamHandle.Name == paramHandle.AssociatedHandle);
                         }
                     }
                 });
@@ -132,7 +136,7 @@ namespace SharpVk.VkXml
                 {
                     methodNameParts = methodNameParts.Take(verbPrefixLength).Concat(methodNameParts.Skip(handleType.Data.NameParts.Count() + verbPrefixLength)).ToArray();
                 }
-                else if(handleTypeName == "VkCommandBuffer" && methodNameParts.First() == "cmd")
+                else if (handleTypeName == "VkCommandBuffer" && methodNameParts.First() == "cmd")
                 {
                     methodNameParts = methodNameParts.Skip(1).ToArray();
                 }
@@ -640,7 +644,7 @@ namespace SharpVk.VkXml
                                     else
                                     {
                                         memberDesc.PublicTypeName += "[]";
-                                        
+
                                         if (lenToken != null)
                                         {
                                             string lenMember = memberNameLookup[lenToken.Value];

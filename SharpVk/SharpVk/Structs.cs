@@ -99,16 +99,16 @@ namespace SharpVk
 
 	public partial struct ComponentMapping
 	{
-		public static ComponentMapping Default
+		public static ComponentMapping Identity
 		{
 			get
 			{
 				return new ComponentMapping
 					{
-						R = ComponentSwizzle.R,
-						G = ComponentSwizzle.G,
-						B = ComponentSwizzle.B,
-						A = ComponentSwizzle.A
+						R = ComponentSwizzle.Identity,
+						G = ComponentSwizzle.Identity,
+						B = ComponentSwizzle.Identity,
+						A = ComponentSwizzle.Identity
 					};
 			}
 		}

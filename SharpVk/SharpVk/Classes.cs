@@ -3860,7 +3860,7 @@ namespace SharpVk
 			set;
 		}
 
-		public UIntPtr CodeSize
+		public int CodeSize
 		{
 			get;
 			set;
@@ -3878,7 +3878,7 @@ namespace SharpVk
 			result.SType = StructureType.ShaderModuleCreateInfo;
 			result.Code = this.Code == null ? null : Interop.HeapUtil.MarshalTo(this.Code);
 			result.Flags = this.Flags;
-			result.CodeSize = this.CodeSize;
+			result.CodeSize = (UIntPtr)this.CodeSize;
 
             return result;
         }

@@ -232,6 +232,12 @@ namespace SharpVk.VkXml
                 set;
             }
 
+            public bool IsDispatch
+            {
+                get;
+                set;
+            }
+
             public List<VkHandleMethod> Methods
             {
                 get;

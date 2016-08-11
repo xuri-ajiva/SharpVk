@@ -151,6 +151,9 @@ namespace SharpVk.VkXml
                 bool isReturnedOnly = returnedOnly != null
                                         ? bool.Parse(returnedOnly)
                                         : false;
+                string type = category == TypeCategory.handle
+                                ? vkType.Element("type").Value
+                                : null;
 
                 string extension;
 
@@ -164,7 +167,8 @@ namespace SharpVk.VkXml
                     Parent = parent,
                     IsReturnedOnly = isReturnedOnly,
                     NameParts = nameParts,
-                    Extension = extension
+                    Extension = extension,
+                    Type = type
                 };
 
                 foreach (var vkMember in vkType.Elements("member"))
@@ -340,10 +344,9 @@ namespace SharpVk.VkXml
 
                     string paramName = nameElement.Value;
                     string paramType = vkParam.Element("type").Value;
-                    string optional = vkParam.Element("optional")?.Value;
-                    bool isOptional = optional != null
-                                        ? bool.Parse(optional)
-                                        : false;
+                    string optional = vkParam.Attribute("optional")?.Value;
+                    bool isOptional;
+                    bool.TryParse(optional, out isOptional);
 
                     var typeNodes = nameElement.NodesBeforeSelf();
                     PointerType pointerType = GetPointerType(typeNodes);

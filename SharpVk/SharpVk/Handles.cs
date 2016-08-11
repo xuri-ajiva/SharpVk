@@ -1237,6 +1237,21 @@ namespace SharpVk
 			}
 		}
 
+		public void FreeMemory(DeviceMemory memory, AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				Interop.DeviceMemory marshalledMemory = memory?.Pack() ?? Interop.DeviceMemory.Null;
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+				Interop.Commands.vkFreeMemory(this.handle, marshalledMemory, allocator == null ? null : &marshalledAllocator);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
 		public void FlushMappedMemoryRanges(MappedMemoryRange[] memoryRanges)
 		{
 			unsafe
@@ -1641,6 +1656,86 @@ namespace SharpVk
 			}
 		}
 
+		public Pipeline CreateGraphicsPipelines(PipelineCache pipelineCache, GraphicsPipelineCreateInfo[] createInfos, AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				Pipeline result = default(Pipeline);
+
+				Result commandResult;
+
+				Interop.PipelineCache marshalledPipelineCache = pipelineCache?.Pack() ?? Interop.PipelineCache.Null;
+				Interop.GraphicsPipelineCreateInfo* marshalledCreateInfos;
+				if (createInfos != null)
+				{
+				    marshalledCreateInfos = (Interop.GraphicsPipelineCreateInfo*)Interop.HeapUtil.Allocate<Interop.GraphicsPipelineCreateInfo>(createInfos.Length);
+				    for (int index = 0; index < createInfos.Length; index++)
+				    {
+				        marshalledCreateInfos[index] = createInfos[index].Pack();
+				    }
+				}
+				else
+				{
+				    marshalledCreateInfos = null;
+				}
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+				Interop.Pipeline marshalledPipelines;
+				commandResult = Interop.Commands.vkCreateGraphicsPipelines(this.handle, marshalledPipelineCache, (uint)createInfos.Length, marshalledCreateInfos, allocator == null ? null : &marshalledAllocator, &marshalledPipelines);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+				result = new Pipeline(marshalledPipelines, this);
+
+				Interop.HeapUtil.FreeLog();
+
+
+				return result;
+			}
+		}
+
+		public Pipeline CreateComputePipelines(PipelineCache pipelineCache, ComputePipelineCreateInfo[] createInfos, AllocationCallbacks allocator)
+		{
+			unsafe
+			{
+				Pipeline result = default(Pipeline);
+
+				Result commandResult;
+
+				Interop.PipelineCache marshalledPipelineCache = pipelineCache?.Pack() ?? Interop.PipelineCache.Null;
+				Interop.ComputePipelineCreateInfo* marshalledCreateInfos;
+				if (createInfos != null)
+				{
+				    marshalledCreateInfos = (Interop.ComputePipelineCreateInfo*)Interop.HeapUtil.Allocate<Interop.ComputePipelineCreateInfo>(createInfos.Length);
+				    for (int index = 0; index < createInfos.Length; index++)
+				    {
+				        marshalledCreateInfos[index] = createInfos[index].Pack();
+				    }
+				}
+				else
+				{
+				    marshalledCreateInfos = null;
+				}
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(allocator != null) marshalledAllocator = allocator.Pack();
+				Interop.Pipeline marshalledPipelines;
+				commandResult = Interop.Commands.vkCreateComputePipelines(this.handle, marshalledPipelineCache, (uint)createInfos.Length, marshalledCreateInfos, allocator == null ? null : &marshalledAllocator, &marshalledPipelines);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+				result = new Pipeline(marshalledPipelines, this);
+
+				Interop.HeapUtil.FreeLog();
+
+
+				return result;
+			}
+		}
+
 		public PipelineLayout CreatePipelineLayout(PipelineLayoutCreateInfo createInfo, AllocationCallbacks allocator)
 		{
 			unsafe
@@ -1972,20 +2067,6 @@ namespace SharpVk
 		{
 			this.handle = handle;
 			this.parent = parent;
-		}
-
-		public void FreeMemory(AllocationCallbacks allocator)
-		{
-			unsafe
-			{
-				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
-				Interop.Commands.vkFreeMemory(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
-
-
-				Interop.HeapUtil.FreeLog();
-
-			}
 		}
 
 		public void MapMemory(DeviceSize offset, DeviceSize size, MemoryMapFlags flags, ref IntPtr data)
@@ -3089,84 +3170,6 @@ namespace SharpVk
 
 				Interop.HeapUtil.FreeLog();
 
-			}
-		}
-
-		public Pipeline CreateGraphicsPipelines(GraphicsPipelineCreateInfo[] createInfos, AllocationCallbacks allocator)
-		{
-			unsafe
-			{
-				Pipeline result = default(Pipeline);
-
-				Result commandResult;
-
-				Interop.GraphicsPipelineCreateInfo* marshalledCreateInfos;
-				if (createInfos != null)
-				{
-				    marshalledCreateInfos = (Interop.GraphicsPipelineCreateInfo*)Interop.HeapUtil.Allocate<Interop.GraphicsPipelineCreateInfo>(createInfos.Length);
-				    for (int index = 0; index < createInfos.Length; index++)
-				    {
-				        marshalledCreateInfos[index] = createInfos[index].Pack();
-				    }
-				}
-				else
-				{
-				    marshalledCreateInfos = null;
-				}
-				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
-				Interop.Pipeline marshalledPipelines;
-				commandResult = Interop.Commands.vkCreateGraphicsPipelines(this.parent.handle, this.handle, (uint)createInfos.Length, marshalledCreateInfos, allocator == null ? null : &marshalledAllocator, &marshalledPipelines);
-
-				if (SharpVkException.IsError(commandResult))
-				{
-					throw SharpVkException.Create(commandResult);
-				}
-				result = new Pipeline(marshalledPipelines, this.parent);
-
-				Interop.HeapUtil.FreeLog();
-
-
-				return result;
-			}
-		}
-
-		public Pipeline CreateComputePipelines(ComputePipelineCreateInfo[] createInfos, AllocationCallbacks allocator)
-		{
-			unsafe
-			{
-				Pipeline result = default(Pipeline);
-
-				Result commandResult;
-
-				Interop.ComputePipelineCreateInfo* marshalledCreateInfos;
-				if (createInfos != null)
-				{
-				    marshalledCreateInfos = (Interop.ComputePipelineCreateInfo*)Interop.HeapUtil.Allocate<Interop.ComputePipelineCreateInfo>(createInfos.Length);
-				    for (int index = 0; index < createInfos.Length; index++)
-				    {
-				        marshalledCreateInfos[index] = createInfos[index].Pack();
-				    }
-				}
-				else
-				{
-				    marshalledCreateInfos = null;
-				}
-				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
-				Interop.Pipeline marshalledPipelines;
-				commandResult = Interop.Commands.vkCreateComputePipelines(this.parent.handle, this.handle, (uint)createInfos.Length, marshalledCreateInfos, allocator == null ? null : &marshalledAllocator, &marshalledPipelines);
-
-				if (SharpVkException.IsError(commandResult))
-				{
-					throw SharpVkException.Create(commandResult);
-				}
-				result = new Pipeline(marshalledPipelines, this.parent);
-
-				Interop.HeapUtil.FreeLog();
-
-
-				return result;
 			}
 		}
 
