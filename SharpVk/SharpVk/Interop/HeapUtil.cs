@@ -20,7 +20,20 @@ namespace SharpVk.Interop
     internal static unsafe class HeapUtil
     {
         [ThreadStatic]
-        private static AllocationLog ThreadLog = new AllocationLog();
+        private static AllocationLog threadLog;
+
+        private static AllocationLog ThreadLog
+        {
+            get
+            {
+                if (threadLog == null)
+                {
+                    threadLog = new AllocationLog();
+                }
+
+                return threadLog;
+            }
+        }
 
         internal static IntPtr Allocate<T>(uint count)
         {
@@ -242,7 +255,7 @@ namespace SharpVk.Interop
             //Marshal.Copy doesn't support uints for some reason...
             for (int index = 0; index < length; index++)
             {
-                *(pointer + length) = value[index];
+                *(pointer + index) = value[index];
             }
         }
 

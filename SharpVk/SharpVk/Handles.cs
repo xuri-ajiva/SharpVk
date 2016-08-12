@@ -1656,11 +1656,11 @@ namespace SharpVk
 			}
 		}
 
-		public Pipeline CreateGraphicsPipelines(PipelineCache pipelineCache, GraphicsPipelineCreateInfo[] createInfos, AllocationCallbacks allocator)
+		public Pipeline[] CreateGraphicsPipelines(PipelineCache pipelineCache, GraphicsPipelineCreateInfo[] createInfos, AllocationCallbacks allocator)
 		{
 			unsafe
 			{
-				Pipeline result = default(Pipeline);
+				Pipeline[] result = default(Pipeline[]);
 
 				Result commandResult;
 
@@ -1680,14 +1680,18 @@ namespace SharpVk
 				}
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(allocator != null) marshalledAllocator = allocator.Pack();
-				Interop.Pipeline marshalledPipelines;
-				commandResult = Interop.Commands.vkCreateGraphicsPipelines(this.handle, marshalledPipelineCache, (uint)createInfos.Length, marshalledCreateInfos, allocator == null ? null : &marshalledAllocator, &marshalledPipelines);
+				Interop.Pipeline* marshalledPipelines = (Interop.Pipeline*)Interop.HeapUtil.Allocate<Interop.Pipeline>(createInfos.Length);
+				commandResult = Interop.Commands.vkCreateGraphicsPipelines(this.handle, marshalledPipelineCache, (uint)createInfos.Length, marshalledCreateInfos, allocator == null ? null : &marshalledAllocator, marshalledPipelines);
 
 				if (SharpVkException.IsError(commandResult))
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				result = new Pipeline(marshalledPipelines, this);
+				result = new Pipeline[(uint)createInfos.Length];
+				for(int index = 0; index < (uint)createInfos.Length; index++)
+				{
+					result[index] = new Pipeline(marshalledPipelines[index], this);
+				}
 
 				Interop.HeapUtil.FreeLog();
 
@@ -1696,11 +1700,11 @@ namespace SharpVk
 			}
 		}
 
-		public Pipeline CreateComputePipelines(PipelineCache pipelineCache, ComputePipelineCreateInfo[] createInfos, AllocationCallbacks allocator)
+		public Pipeline[] CreateComputePipelines(PipelineCache pipelineCache, ComputePipelineCreateInfo[] createInfos, AllocationCallbacks allocator)
 		{
 			unsafe
 			{
-				Pipeline result = default(Pipeline);
+				Pipeline[] result = default(Pipeline[]);
 
 				Result commandResult;
 
@@ -1720,14 +1724,18 @@ namespace SharpVk
 				}
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(allocator != null) marshalledAllocator = allocator.Pack();
-				Interop.Pipeline marshalledPipelines;
-				commandResult = Interop.Commands.vkCreateComputePipelines(this.handle, marshalledPipelineCache, (uint)createInfos.Length, marshalledCreateInfos, allocator == null ? null : &marshalledAllocator, &marshalledPipelines);
+				Interop.Pipeline* marshalledPipelines = (Interop.Pipeline*)Interop.HeapUtil.Allocate<Interop.Pipeline>(createInfos.Length);
+				commandResult = Interop.Commands.vkCreateComputePipelines(this.handle, marshalledPipelineCache, (uint)createInfos.Length, marshalledCreateInfos, allocator == null ? null : &marshalledAllocator, marshalledPipelines);
 
 				if (SharpVkException.IsError(commandResult))
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				result = new Pipeline(marshalledPipelines, this);
+				result = new Pipeline[(uint)createInfos.Length];
+				for(int index = 0; index < (uint)createInfos.Length; index++)
+				{
+					result[index] = new Pipeline(marshalledPipelines[index], this);
+				}
 
 				Interop.HeapUtil.FreeLog();
 
@@ -1848,24 +1856,28 @@ namespace SharpVk
 			}
 		}
 
-		public DescriptorSet AllocateDescriptorSets(DescriptorSetAllocateInfo allocateInfo)
+		public DescriptorSet[] AllocateDescriptorSets(DescriptorSetAllocateInfo allocateInfo)
 		{
 			unsafe
 			{
-				DescriptorSet result = default(DescriptorSet);
+				DescriptorSet[] result = default(DescriptorSet[]);
 
 				Result commandResult;
 
 				Interop.DescriptorSetAllocateInfo marshalledAllocateInfo;
 				if(allocateInfo != null) marshalledAllocateInfo = allocateInfo.Pack();
-				Interop.DescriptorSet marshalledDescriptorSets;
-				commandResult = Interop.Commands.vkAllocateDescriptorSets(this.handle, allocateInfo == null ? null : &marshalledAllocateInfo, &marshalledDescriptorSets);
+				Interop.DescriptorSet* marshalledDescriptorSets = (Interop.DescriptorSet*)Interop.HeapUtil.Allocate<Interop.DescriptorSet>(allocateInfo.SetLayouts.Length);
+				commandResult = Interop.Commands.vkAllocateDescriptorSets(this.handle, allocateInfo == null ? null : &marshalledAllocateInfo, marshalledDescriptorSets);
 
 				if (SharpVkException.IsError(commandResult))
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				result = new DescriptorSet(marshalledDescriptorSets, allocateInfo.DescriptorPool);
+				result = new DescriptorSet[(uint)allocateInfo.SetLayouts.Length];
+				for(int index = 0; index < (uint)allocateInfo.SetLayouts.Length; index++)
+				{
+					result[index] = new DescriptorSet(marshalledDescriptorSets[index], allocateInfo.DescriptorPool);
+				}
 
 				Interop.HeapUtil.FreeLog();
 
@@ -1996,24 +2008,28 @@ namespace SharpVk
 			}
 		}
 
-		public CommandBuffer AllocateCommandBuffers(CommandBufferAllocateInfo allocateInfo)
+		public CommandBuffer[] AllocateCommandBuffers(CommandBufferAllocateInfo allocateInfo)
 		{
 			unsafe
 			{
-				CommandBuffer result = default(CommandBuffer);
+				CommandBuffer[] result = default(CommandBuffer[]);
 
 				Result commandResult;
 
 				Interop.CommandBufferAllocateInfo marshalledAllocateInfo;
 				if(allocateInfo != null) marshalledAllocateInfo = allocateInfo.Pack();
-				Interop.CommandBuffer marshalledCommandBuffers;
-				commandResult = Interop.Commands.vkAllocateCommandBuffers(this.handle, allocateInfo == null ? null : &marshalledAllocateInfo, &marshalledCommandBuffers);
+				Interop.CommandBuffer* marshalledCommandBuffers = (Interop.CommandBuffer*)Interop.HeapUtil.Allocate<Interop.CommandBuffer>(allocateInfo.CommandBufferCount);
+				commandResult = Interop.Commands.vkAllocateCommandBuffers(this.handle, allocateInfo == null ? null : &marshalledAllocateInfo, marshalledCommandBuffers);
 
 				if (SharpVkException.IsError(commandResult))
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				result = new CommandBuffer(marshalledCommandBuffers, allocateInfo.CommandPool);
+				result = new CommandBuffer[(uint)allocateInfo.CommandBufferCount];
+				for(int index = 0; index < (uint)allocateInfo.CommandBufferCount; index++)
+				{
+					result[index] = new CommandBuffer(marshalledCommandBuffers[index], allocateInfo.CommandPool);
+				}
 
 				Interop.HeapUtil.FreeLog();
 

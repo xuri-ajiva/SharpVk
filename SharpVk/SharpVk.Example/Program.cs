@@ -64,15 +64,15 @@ namespace SharpVk.Example
                 {
                     QueueCreateInfos = new[]
                     {
-                    new DeviceQueueCreateInfo
-                    {
-                        QueueFamilyIndex = graphicsQueues.First(),
-                        QueuePriorities = new float[] { 1 }
+                        new DeviceQueueCreateInfo
+                        {
+                            QueueFamilyIndex = graphicsQueues.First(),
+                            QueuePriorities = new float[] { 1 }
+                        }
                     }
-                }
                 }, null);
 
-                var presentQueue = device.GetQueue(graphicsQueues.First(), 0);
+                var graphicsQueue = device.GetQueue(graphicsQueues.First(), 0);
 
                 var swapchain = device.CreateSwapchain(new SwapchainCreateInfo
                 {
@@ -92,11 +92,6 @@ namespace SharpVk.Example
                 }, null);
 
                 var images = swapchain.GetImages();
-
-                var presentCompleteSemaphore = device.CreateSemaphore(new SemaphoreCreateInfo
-                {
-                    Flags = SemaphoreCreateFlags.None
-                }, null);
 
                 var imageViews = images.Select(image => device.CreateImageView(new ImageViewCreateInfo
                 {
@@ -133,19 +128,31 @@ namespace SharpVk.Example
                     },
                     Subpasses = new[]
                     {
-                    new SubpassDescription
-                    {
-                        PipelineBindPoint = PipelineBindPoint.Graphics,
-                        ColorAttachments = new []
+                        new SubpassDescription
                         {
-                            new AttachmentReference
+                            PipelineBindPoint = PipelineBindPoint.Graphics,
+                            ColorAttachments = new []
                             {
-                                Attachment = 0,
-                                Layout = ImageLayout.ColorAttachmentOptimal
+                                new AttachmentReference
+                                {
+                                    Attachment = 0,
+                                    Layout = ImageLayout.ColorAttachmentOptimal
+                                }
                             }
                         }
+                    },
+                    Dependencies = new[]
+                    {
+                        new SubpassDependency
+                        {
+                            SourceSubpass = Constants.SubpassExternal,
+                            DestinationSubpass = 0,
+                            SourceStageMask = PipelineStageFlags.BottomOfPipe,
+                            SourceAccessMask = AccessFlags.MemoryRead,
+                            DestinationStageMask = PipelineStageFlags.ColorAttachmentOutput,
+                            DestinationAccessMask = AccessFlags.ColorAttachmentRead | AccessFlags.ColorAttachmentWrite
+                        }
                     }
-                }
                 }, null);
 
                 int codeSize;
@@ -251,7 +258,7 @@ namespace SharpVk.Example
                             }
                         }
                     }
-                }, null);
+                }, null).Single();
 
                 var frameBuffers = imageViews.Select(x => device.CreateFramebuffer(new FramebufferCreateInfo
                 {
@@ -262,19 +269,97 @@ namespace SharpVk.Example
                     Width = surfaceCapabilities.CurrentExtent.Width
                 }, null)).ToArray();
 
-                uint nextImage = swapchain.AcquireNextImage(uint.MaxValue, presentCompleteSemaphore, null);
-
-                presentQueue.Present(new PresentInfo
+                var commandPool = device.CreateCommandPool(new CommandPoolCreateInfo
                 {
-                    ImageIndices = new uint[] { nextImage },
-                    Results = null,
-                    WaitSemaphores = null,
-                    Swapchains = new[] { swapchain }
+                    QueueFamilyIndex = graphicsQueues.First()
+                }, null);
+
+                var commandBuffers = device.AllocateCommandBuffers(new CommandBufferAllocateInfo
+                {
+                    CommandBufferCount = (uint)frameBuffers.Length,
+                    CommandPool = commandPool,
+                    Level = CommandBufferLevel.Primary
                 });
+
+                for (int index = 0; index < frameBuffers.Length; index++)
+                {
+                    var commandBuffer = commandBuffers[index];
+
+                    commandBuffer.Begin(new CommandBufferBeginInfo
+                    {
+                        Flags = CommandBufferUsageFlags.SimultaneousUse
+                    });
+
+                    commandBuffer.BeginRenderPass(new RenderPassBeginInfo
+                    {
+                        RenderPass = renderPass,
+                        Framebuffer = frameBuffers[index],
+                        RenderArea = new Rect2D
+                        {
+                            Offset = new Offset2D(),
+                            Extent = surfaceCapabilities.CurrentExtent
+                        },
+                        ClearValues = new[]
+                        {
+                            new ClearValue
+                            {
+                                Color = new ClearColorValue
+                                {
+                                    Float32_0 = 0,
+                                    Float32_1 = 0,
+                                    Float32_2 = 0,
+                                    Float32_3 = 1,
+                                }
+                            }
+                        }
+                    }, SubpassContents.Inline);
+
+                    commandBuffer.BindPipeline(PipelineBindPoint.Graphics, pipeline);
+
+                    commandBuffer.Draw(3, 1, 0, 0);
+
+                    commandBuffer.End();
+                }
+
+                var imageAvailableSemaphore = device.CreateSemaphore(new SemaphoreCreateInfo(), null);
+                var renderFinishedSemaphore = device.CreateSemaphore(new SemaphoreCreateInfo(), null);
+
+                //bool running = true;
 
                 surfaceForm.ShowDialog();
 
+                //while (running)
+                //{
+                //    Application.DoEvents();
+                    //    graphicsQueue.WaitIdle();
+
+                    //    uint nextImage = swapchain.AcquireNextImage(uint.MaxValue, imageAvailableSemaphore, null);
+
+                    //    graphicsQueue.Submit(new[]
+                    //    {
+                    //            new SubmitInfo
+                    //            {
+                    //                CommandBuffers = new CommandBuffer[] { commandBuffers[nextImage] },
+                    //                SignalSemaphores = new[] { renderFinishedSemaphore },
+                    //                WaitDestinationStageMask = new [] { PipelineStageFlags.ColorAttachmentOutput },
+                    //                WaitSemaphores = new [] { imageAvailableSemaphore }
+                    //            }
+                    //        }, null);
+
+                    //    graphicsQueue.Present(new PresentInfo
+                    //    {
+                    //        ImageIndices = new uint[] { nextImage },
+                    //        Results = null,
+                    //        WaitSemaphores = new[] { renderFinishedSemaphore },
+                    //        Swapchains = new[] { swapchain }
+                    //    });
+                //}
+
                 device.WaitIdle();
+
+                commandPool.FreeCommandBuffers(commandBuffers);
+
+                commandPool.Destroy(null);
 
                 fragShader.Destroy(null);
 
@@ -296,7 +381,8 @@ namespace SharpVk.Example
                     image.Destroy(null);
                 }
 
-                presentCompleteSemaphore.Destroy(null);
+                imageAvailableSemaphore.Destroy(null);
+                renderFinishedSemaphore.Destroy(null);
 
                 //swapchain.Destroy(null);
 
@@ -315,7 +401,7 @@ namespace SharpVk.Example
         private static uint[] LoadShaderData(string filePath, out int codeSize)
         {
             var fileBytes = File.ReadAllBytes(filePath);
-            var shaderData = new uint[fileBytes.Length / 4];
+            var shaderData = new uint[(int)Math.Ceiling(fileBytes.Length / 4f)];
 
             System.Buffer.BlockCopy(fileBytes, 0, shaderData, 0, fileBytes.Length);
 

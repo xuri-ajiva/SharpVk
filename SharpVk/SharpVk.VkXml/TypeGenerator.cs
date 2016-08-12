@@ -211,7 +211,7 @@ namespace SharpVk.VkXml
                     }
                 }
 
-                var parsedExpressionBuilder = new ParsedExpressionBuilder(paramNameLookup, command.Params, typeData);
+                var parsedExpressionBuilder = new ParsedExpressionBuilder(paramNameLookup, command.Params, lenParamMapping, typeData);
 
                 foreach (var parameter in command.Params)
                 {
@@ -299,7 +299,7 @@ namespace SharpVk.VkXml
                                             }
                                         }
 
-                                        newMethod.MarshalFromStatements.Add($"\tresult[index] = new {paramTypeName}({marshalledName}[index]{parentArgument});"); //, paramTypeName, marshalledName, paramType.Data.Parent != null ? ", this" : ""));
+                                        newMethod.MarshalFromStatements.Add($"\tresult[index] = new {paramTypeName}({marshalledName}[index]{parentArgument});");
                                     }
                                     else
                                     {
@@ -360,9 +360,30 @@ namespace SharpVk.VkXml
                                         }
                                     }
 
-                                    argumentName = "&" + marshalledName;
-                                    newMethod.MarshalToStatements.Add(string.Format("Interop.{0} {1};", paramType.Name, marshalledName));
-                                    newMethod.MarshalFromStatements.Add(string.Format("result = new {0}({1}{2});", paramType.Name, marshalledName, parentArgument));
+                                    if (parameter.Dimensions != null)
+                                    {
+                                        argumentName = marshalledName;
+
+                                        newMethod.ReturnTypeName = paramType.Name + "[]";
+
+                                        string lenExpression = parsedExpressionBuilder.Build(parameter.Dimensions[0].Value);
+
+                                        newMethod.MarshalToStatements.Add($"Interop.{paramType.Name}* {marshalledName} = (Interop.{paramType.Name}*)Interop.HeapUtil.Allocate<Interop.{paramType.Name}>({lenExpression});");
+
+                                        newMethod.MarshalFromStatements.Add(string.Format("result = new {0}[(uint){1}];", paramType.Name, lenExpression));
+
+                                        newMethod.MarshalFromStatements.Add(string.Format("for(int index = 0; index < (uint){0}; index++)", lenExpression));
+                                        newMethod.MarshalFromStatements.Add("{");    
+                                        newMethod.MarshalFromStatements.Add($"\tresult[index] = new {paramType.Name}({marshalledName}[index]{parentArgument});");
+                                        newMethod.MarshalFromStatements.Add("}");
+                                    }
+                                    else
+                                    {
+                                        argumentName = "&" + marshalledName;
+
+                                        newMethod.MarshalToStatements.Add(string.Format("Interop.{0} {1};", paramType.Name, marshalledName));
+                                        newMethod.MarshalFromStatements.Add(string.Format("result = new {0}({1}{2});", paramType.Name, marshalledName, parentArgument));
+                                    }
                                 }
                                 else if (paramType.RequiresInterop)
                                 {
@@ -589,7 +610,7 @@ namespace SharpVk.VkXml
 
                 var memberNameLookup = type.Data.Members.ToDictionary(x => x.VkName, x => JoinNameParts(x.NameParts));
 
-                var expressionBuilder = new ParsedExpressionBuilder(memberNameLookup, type.Data.Members, typeData);
+                var expressionBuilder = new ParsedExpressionBuilder(memberNameLookup, type.Data.Members, null, typeData);
 
                 foreach (var member in type.Data.Members)
                 {
