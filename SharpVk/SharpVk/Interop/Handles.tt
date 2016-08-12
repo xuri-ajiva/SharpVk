@@ -27,6 +27,10 @@ namespace SharpVk.Interop
 #>
 	public struct <#=handle.Name#>
 	{
+<#
+		if(handle.IsDispatch)
+		{
+#>
 		internal IntPtr handle;
 
 		public static <#=handle.Name#> Null
@@ -39,6 +43,26 @@ namespace SharpVk.Interop
                 };
 			}
 		}
+<#
+		}
+		else
+		{
+#>
+		internal ulong handle;
+
+		public static <#=handle.Name#> Null
+		{
+			get
+			{
+				return new <#=handle.Name#>
+                {
+                    handle = 0L
+                };
+			}
+		}
+<#
+		}
+#>
 	}
 
 <#

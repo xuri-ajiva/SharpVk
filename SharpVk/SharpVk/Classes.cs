@@ -784,7 +784,7 @@ namespace SharpVk
 			//PoolSizes
 			if (this.PoolSizes != null)
 			{
-			    result.PoolSizes = (DescriptorPoolSize*)Interop.HeapUtil.Allocate<uint>(this.PoolSizes.Length).ToPointer();
+			    result.PoolSizes = (DescriptorPoolSize*)Interop.HeapUtil.Allocate<DescriptorPoolSize>(this.PoolSizes.Length).ToPointer();
 			    for (int index = 0; index < this.PoolSizes.Length; index++)
 			    {
 			        result.PoolSizes[index] = this.PoolSizes[index];
@@ -2790,7 +2790,7 @@ namespace SharpVk
 			//Attachments
 			if (this.Attachments != null)
 			{
-			    result.Attachments = (PipelineColorBlendAttachmentState*)Interop.HeapUtil.Allocate<uint>(this.Attachments.Length).ToPointer();
+			    result.Attachments = (PipelineColorBlendAttachmentState*)Interop.HeapUtil.Allocate<PipelineColorBlendAttachmentState>(this.Attachments.Length).ToPointer();
 			    for (int index = 0; index < this.Attachments.Length; index++)
 			    {
 			        result.Attachments[index] = this.Attachments[index];
@@ -2924,7 +2924,7 @@ namespace SharpVk
 			//DynamicStates
 			if (this.DynamicStates != null)
 			{
-			    result.DynamicStates = (DynamicState*)Interop.HeapUtil.Allocate<uint>(this.DynamicStates.Length).ToPointer();
+			    result.DynamicStates = (DynamicState*)Interop.HeapUtil.Allocate<DynamicState>(this.DynamicStates.Length).ToPointer();
 			    for (int index = 0; index < this.DynamicStates.Length; index++)
 			    {
 			        result.DynamicStates[index] = this.DynamicStates[index];
@@ -3030,7 +3030,7 @@ namespace SharpVk
 			//PushConstantRanges
 			if (this.PushConstantRanges != null)
 			{
-			    result.PushConstantRanges = (PushConstantRange*)Interop.HeapUtil.Allocate<uint>(this.PushConstantRanges.Length).ToPointer();
+			    result.PushConstantRanges = (PushConstantRange*)Interop.HeapUtil.Allocate<PushConstantRange>(this.PushConstantRanges.Length).ToPointer();
 			    for (int index = 0; index < this.PushConstantRanges.Length; index++)
 			    {
 			        result.PushConstantRanges[index] = this.PushConstantRanges[index];
@@ -3100,7 +3100,21 @@ namespace SharpVk
         {
             var result = new Interop.PipelineMultisampleStateCreateInfo();
 			result.SType = StructureType.PipelineMultisampleStateCreateInfo;
-			result.SampleMask = this.SampleMask == null ? null : (SampleMask*)Interop.HeapUtil.MarshalTo(this.SampleMask, (int)Math.Ceiling((int)RasterizationSamples / 32f));
+			
+			//SampleMask
+			if (this.SampleMask != null && Math.Ceiling((int)RasterizationSamples / (float)32) > 0)
+			{
+			    int length = (int)(Math.Ceiling((int)RasterizationSamples / (float)32));
+			    result.SampleMask = (SampleMask*)Interop.HeapUtil.Allocate<SampleMask>(length).ToPointer();
+			    for (int index = 0; index < length; index++)
+			    {
+			        result.SampleMask[index] = this.SampleMask[index];
+			    }
+			}
+			else
+			{
+			    result.SampleMask = null;
+			}
 			result.Flags = this.Flags;
 			result.RasterizationSamples = this.RasterizationSamples;
 			result.SampleShadingEnable = this.SampleShadingEnable;
@@ -3324,7 +3338,7 @@ namespace SharpVk
 			//VertexBindingDescriptions
 			if (this.VertexBindingDescriptions != null)
 			{
-			    result.VertexBindingDescriptions = (VertexInputBindingDescription*)Interop.HeapUtil.Allocate<uint>(this.VertexBindingDescriptions.Length).ToPointer();
+			    result.VertexBindingDescriptions = (VertexInputBindingDescription*)Interop.HeapUtil.Allocate<VertexInputBindingDescription>(this.VertexBindingDescriptions.Length).ToPointer();
 			    for (int index = 0; index < this.VertexBindingDescriptions.Length; index++)
 			    {
 			        result.VertexBindingDescriptions[index] = this.VertexBindingDescriptions[index];
@@ -3339,7 +3353,7 @@ namespace SharpVk
 			//VertexAttributeDescriptions
 			if (this.VertexAttributeDescriptions != null)
 			{
-			    result.VertexAttributeDescriptions = (VertexInputAttributeDescription*)Interop.HeapUtil.Allocate<uint>(this.VertexAttributeDescriptions.Length).ToPointer();
+			    result.VertexAttributeDescriptions = (VertexInputAttributeDescription*)Interop.HeapUtil.Allocate<VertexInputAttributeDescription>(this.VertexAttributeDescriptions.Length).ToPointer();
 			    for (int index = 0; index < this.VertexAttributeDescriptions.Length; index++)
 			    {
 			        result.VertexAttributeDescriptions[index] = this.VertexAttributeDescriptions[index];
@@ -3390,7 +3404,7 @@ namespace SharpVk
 			//Viewports
 			if (this.Viewports != null)
 			{
-			    result.Viewports = (Viewport*)Interop.HeapUtil.Allocate<uint>(this.Viewports.Length).ToPointer();
+			    result.Viewports = (Viewport*)Interop.HeapUtil.Allocate<Viewport>(this.Viewports.Length).ToPointer();
 			    for (int index = 0; index < this.Viewports.Length; index++)
 			    {
 			        result.Viewports[index] = this.Viewports[index];
@@ -3405,7 +3419,7 @@ namespace SharpVk
 			//Scissors
 			if (this.Scissors != null)
 			{
-			    result.Scissors = (Rect2D*)Interop.HeapUtil.Allocate<uint>(this.Scissors.Length).ToPointer();
+			    result.Scissors = (Rect2D*)Interop.HeapUtil.Allocate<Rect2D>(this.Scissors.Length).ToPointer();
 			    for (int index = 0; index < this.Scissors.Length; index++)
 			    {
 			        result.Scissors[index] = this.Scissors[index];
@@ -3498,7 +3512,7 @@ namespace SharpVk
 			//Results
 			if (this.Results != null)
 			{
-			    result.Results = (Result*)Interop.HeapUtil.Allocate<uint>(this.Results.Length).ToPointer();
+			    result.Results = (Result*)Interop.HeapUtil.Allocate<Result>(this.Results.Length).ToPointer();
 			    for (int index = 0; index < this.Results.Length; index++)
 			    {
 			        result.Results[index] = this.Results[index];
@@ -3597,7 +3611,21 @@ namespace SharpVk
 			result.RenderPass = this.RenderPass?.Pack() ?? Interop.RenderPass.Null;
 			result.Framebuffer = this.Framebuffer?.Pack() ?? Interop.Framebuffer.Null;
 			result.ClearValueCount = (uint)(this.ClearValues?.Length ?? 0);
-			result.ClearValues = this.ClearValues == null ? null : (ClearValue*)Interop.HeapUtil.MarshalTo(this.ClearValues, (int)this.ClearValues.Length);
+			
+			//ClearValues
+			if (this.ClearValues != null && this.ClearValues.Length > 0)
+			{
+			    int length = (int)(this.ClearValues.Length);
+			    result.ClearValues = (ClearValue*)Interop.HeapUtil.Allocate<ClearValue>(length).ToPointer();
+			    for (int index = 0; index < length; index++)
+			    {
+			        result.ClearValues[index] = this.ClearValues[index];
+			    }
+			}
+			else
+			{
+			    result.ClearValues = null;
+			}
 			result.RenderArea = this.RenderArea;
 
             return result;
@@ -3645,7 +3673,7 @@ namespace SharpVk
 			//Attachments
 			if (this.Attachments != null)
 			{
-			    result.Attachments = (AttachmentDescription*)Interop.HeapUtil.Allocate<uint>(this.Attachments.Length).ToPointer();
+			    result.Attachments = (AttachmentDescription*)Interop.HeapUtil.Allocate<AttachmentDescription>(this.Attachments.Length).ToPointer();
 			    for (int index = 0; index < this.Attachments.Length; index++)
 			    {
 			        result.Attachments[index] = this.Attachments[index];
@@ -3677,7 +3705,7 @@ namespace SharpVk
 			//Dependencies
 			if (this.Dependencies != null)
 			{
-			    result.Dependencies = (SubpassDependency*)Interop.HeapUtil.Allocate<uint>(this.Dependencies.Length).ToPointer();
+			    result.Dependencies = (SubpassDependency*)Interop.HeapUtil.Allocate<SubpassDependency>(this.Dependencies.Length).ToPointer();
 			    for (int index = 0; index < this.Dependencies.Length; index++)
 			    {
 			        result.Dependencies[index] = this.Dependencies[index];
@@ -3860,7 +3888,7 @@ namespace SharpVk
 			set;
 		}
 
-		public int CodeSize
+		public UIntPtr CodeSize
 		{
 			get;
 			set;
@@ -3878,7 +3906,7 @@ namespace SharpVk
 			result.SType = StructureType.ShaderModuleCreateInfo;
 			result.Code = this.Code == null ? null : Interop.HeapUtil.MarshalTo(this.Code);
 			result.Flags = this.Flags;
-			result.CodeSize = (UIntPtr)this.CodeSize;
+			result.CodeSize = this.CodeSize;
 
             return result;
         }
@@ -4159,7 +4187,7 @@ namespace SharpVk
 			//MapEntries
 			if (this.MapEntries != null)
 			{
-			    result.MapEntries = (SpecializationMapEntry*)Interop.HeapUtil.Allocate<uint>(this.MapEntries.Length).ToPointer();
+			    result.MapEntries = (SpecializationMapEntry*)Interop.HeapUtil.Allocate<SpecializationMapEntry>(this.MapEntries.Length).ToPointer();
 			    for (int index = 0; index < this.MapEntries.Length; index++)
 			    {
 			        result.MapEntries[index] = this.MapEntries[index];
@@ -4232,7 +4260,7 @@ namespace SharpVk
 			//WaitDestinationStageMask
 			if (this.WaitDestinationStageMask != null)
 			{
-			    result.WaitDestinationStageMask = (PipelineStageFlags*)Interop.HeapUtil.Allocate<uint>(this.WaitDestinationStageMask.Length).ToPointer();
+			    result.WaitDestinationStageMask = (PipelineStageFlags*)Interop.HeapUtil.Allocate<PipelineStageFlags>(this.WaitDestinationStageMask.Length).ToPointer();
 			    for (int index = 0; index < this.WaitDestinationStageMask.Length; index++)
 			    {
 			        result.WaitDestinationStageMask[index] = this.WaitDestinationStageMask[index];
@@ -4339,7 +4367,7 @@ namespace SharpVk
 			//InputAttachments
 			if (this.InputAttachments != null)
 			{
-			    result.InputAttachments = (AttachmentReference*)Interop.HeapUtil.Allocate<uint>(this.InputAttachments.Length).ToPointer();
+			    result.InputAttachments = (AttachmentReference*)Interop.HeapUtil.Allocate<AttachmentReference>(this.InputAttachments.Length).ToPointer();
 			    for (int index = 0; index < this.InputAttachments.Length; index++)
 			    {
 			        result.InputAttachments[index] = this.InputAttachments[index];
@@ -4354,7 +4382,7 @@ namespace SharpVk
 			//ColorAttachments
 			if (this.ColorAttachments != null)
 			{
-			    result.ColorAttachments = (AttachmentReference*)Interop.HeapUtil.Allocate<uint>(this.ColorAttachments.Length).ToPointer();
+			    result.ColorAttachments = (AttachmentReference*)Interop.HeapUtil.Allocate<AttachmentReference>(this.ColorAttachments.Length).ToPointer();
 			    for (int index = 0; index < this.ColorAttachments.Length; index++)
 			    {
 			        result.ColorAttachments[index] = this.ColorAttachments[index];
@@ -4369,7 +4397,7 @@ namespace SharpVk
 			//ResolveAttachments
 			if (this.ResolveAttachments != null)
 			{
-			    result.ResolveAttachments = (AttachmentReference*)Interop.HeapUtil.Allocate<uint>(this.ResolveAttachments.Length).ToPointer();
+			    result.ResolveAttachments = (AttachmentReference*)Interop.HeapUtil.Allocate<AttachmentReference>(this.ResolveAttachments.Length).ToPointer();
 			    for (int index = 0; index < this.ResolveAttachments.Length; index++)
 			    {
 			        result.ResolveAttachments[index] = this.ResolveAttachments[index];

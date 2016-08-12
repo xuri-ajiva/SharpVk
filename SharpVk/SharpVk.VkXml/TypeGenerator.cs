@@ -555,9 +555,12 @@ namespace SharpVk.VkXml
 
             foreach (var type in typeData.Values.Where(x => x.Data.Category == TypeCategory.handle))
             {
+                bool isDispatch = type.Data.Type != "VK_DEFINE_NON_DISPATCHABLE_HANDLE";
+
                 var newHandle = new TypeSet.VkHandle
                 {
-                    Name = type.Name
+                    Name = type.Name,
+                    IsDispatch = isDispatch
                 };
 
                 if (type.Data.Parent != null)
@@ -698,7 +701,7 @@ namespace SharpVk.VkXml
                                             newClass.MarshalToStatements.Add($"//{memberName}");
                                             newClass.MarshalToStatements.Add($"if (this.{memberName} != null)");
                                             newClass.MarshalToStatements.Add("{");
-                                            newClass.MarshalToStatements.Add($"    result.{memberName} = ({memberType.Name}*)Interop.HeapUtil.Allocate<uint>(this.{memberName}.Length).ToPointer();");
+                                            newClass.MarshalToStatements.Add($"    result.{memberName} = ({memberType.Name}*)Interop.HeapUtil.Allocate<{memberType.Name}>(this.{memberName}.Length).ToPointer();");
                                             newClass.MarshalToStatements.Add($"    for (int index = 0; index < this.{memberName}.Length; index++)");
                                             newClass.MarshalToStatements.Add("    {");
                                             newClass.MarshalToStatements.Add($"        result.{memberName}[index] = this.{memberName}[index];");
@@ -714,7 +717,21 @@ namespace SharpVk.VkXml
                                             string lenExpression = lenToken != null
                                                 ? $"this.{memberName}.Length"
                                                 : expressionBuilder.Build(member.Dimensions[0].Value);
-                                            newClass.MarshalToStatements.Add($"result.{memberName} = this.{memberName} == null ? null : ({memberType.Name}*)Interop.HeapUtil.MarshalTo(this.{memberName}, (int){lenExpression});");
+                                            newClass.MarshalToStatements.Add("");
+                                            newClass.MarshalToStatements.Add($"//{memberName}");
+                                            newClass.MarshalToStatements.Add($"if (this.{memberName} != null && {lenExpression} > 0)");
+                                            newClass.MarshalToStatements.Add("{");
+                                            newClass.MarshalToStatements.Add($"    int length = (int)({lenExpression});");
+                                            newClass.MarshalToStatements.Add($"    result.{memberName} = ({memberType.Name}*)Interop.HeapUtil.Allocate<{memberType.Name}>(length).ToPointer();");
+                                            newClass.MarshalToStatements.Add($"    for (int index = 0; index < length; index++)");
+                                            newClass.MarshalToStatements.Add("    {");
+                                            newClass.MarshalToStatements.Add($"        result.{memberName}[index] = this.{memberName}[index];");
+                                            newClass.MarshalToStatements.Add("    }");
+                                            newClass.MarshalToStatements.Add("}");
+                                            newClass.MarshalToStatements.Add("else");
+                                            newClass.MarshalToStatements.Add("{");
+                                            newClass.MarshalToStatements.Add($"    result.{memberName} = null;");
+                                            newClass.MarshalToStatements.Add("}");
                                         }
                                         else
                                         {

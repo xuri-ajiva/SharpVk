@@ -161,7 +161,7 @@ namespace SharpVk.Example
                 var vertShader = device.CreateShaderModule(new ShaderModuleCreateInfo
                 {
                     Code = vertShaderData,
-                    CodeSize = codeSize
+                    CodeSize = (UIntPtr)codeSize
                 }, null);
 
                 var fragShaderData = LoadShaderData(@".\Shaders\frag.spv", out codeSize);
@@ -169,7 +169,7 @@ namespace SharpVk.Example
                 var fragShader = device.CreateShaderModule(new ShaderModuleCreateInfo
                 {
                     Code = fragShaderData,
-                    CodeSize = codeSize
+                    CodeSize = (UIntPtr)codeSize
                 }, null);
 
                 var pipelineLayout = device.CreatePipelineLayout(new PipelineLayoutCreateInfo(), null);
@@ -299,16 +299,16 @@ namespace SharpVk.Example
                             Offset = new Offset2D(),
                             Extent = surfaceCapabilities.CurrentExtent
                         },
-                        ClearValues = new[]
+                        ClearValues = new ClearValue[]
                         {
-                            new ClearValue
+                            new ClearValue()
                             {
                                 Color = new ClearColorValue
                                 {
                                     Float32_0 = 0,
                                     Float32_1 = 0,
                                     Float32_2 = 0,
-                                    Float32_3 = 1,
+                                    Float32_3 = 1
                                 }
                             }
                         }
@@ -326,50 +326,50 @@ namespace SharpVk.Example
 
                 //bool running = true;
 
-                surfaceForm.ShowDialog();
+                //surfaceForm.ShowDialog();
 
                 //while (running)
                 //{
                 //    Application.DoEvents();
-                    //    graphicsQueue.WaitIdle();
+                //    graphicsQueue.WaitIdle();
 
-                    //    uint nextImage = swapchain.AcquireNextImage(uint.MaxValue, imageAvailableSemaphore, null);
+                //    uint nextImage = swapchain.AcquireNextImage(uint.MaxValue, imageAvailableSemaphore, null);
 
-                    //    graphicsQueue.Submit(new[]
-                    //    {
-                    //            new SubmitInfo
-                    //            {
-                    //                CommandBuffers = new CommandBuffer[] { commandBuffers[nextImage] },
-                    //                SignalSemaphores = new[] { renderFinishedSemaphore },
-                    //                WaitDestinationStageMask = new [] { PipelineStageFlags.ColorAttachmentOutput },
-                    //                WaitSemaphores = new [] { imageAvailableSemaphore }
-                    //            }
-                    //        }, null);
+                //    graphicsQueue.Submit(new[]
+                //    {
+                //            new SubmitInfo
+                //            {
+                //                CommandBuffers = new CommandBuffer[] { commandBuffers[nextImage] },
+                //                SignalSemaphores = new[] { renderFinishedSemaphore },
+                //                WaitDestinationStageMask = new [] { PipelineStageFlags.ColorAttachmentOutput },
+                //                WaitSemaphores = new [] { imageAvailableSemaphore }
+                //            }
+                //        }, null);
 
-                    //    graphicsQueue.Present(new PresentInfo
-                    //    {
-                    //        ImageIndices = new uint[] { nextImage },
-                    //        Results = null,
-                    //        WaitSemaphores = new[] { renderFinishedSemaphore },
-                    //        Swapchains = new[] { swapchain }
-                    //    });
+                //    graphicsQueue.Present(new PresentInfo
+                //    {
+                //        ImageIndices = new uint[] { nextImage },
+                //        Results = null,
+                //        WaitSemaphores = new[] { renderFinishedSemaphore },
+                //        Swapchains = new[] { swapchain }
+                //    });
                 //}
 
-                device.WaitIdle();
+                //device.WaitIdle();
 
-                commandPool.FreeCommandBuffers(commandBuffers);
+                //commandPool.FreeCommandBuffers(commandBuffers);
 
-                commandPool.Destroy(null);
+                //commandPool.Destroy(null);
 
                 fragShader.Destroy(null);
 
                 vertShader.Destroy(null);
 
-                renderPass.Destroy(null);
+                //renderPass.Destroy(null);
 
-                pipelineLayout.Destroy(null);
+                //pipelineLayout.Destroy(null);
 
-                pipeline.Destroy(null);
+                //pipeline.Destroy(null);
 
                 foreach (var imageView in imageViews)
                 {

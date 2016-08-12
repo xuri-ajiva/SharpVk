@@ -2,7 +2,7 @@
   - [x] Throw exceptions for error VkResult codes
 - [ ] Check for not-null on non-optional parameters
 - [ ] AllocationCallbacks should be stored in ancestor Instance & referenced from there
-- [ ] Non-Dispatchable handles should be fixed to 64-bit, to prevent stack mismatches on x86 builds
+- [x] Non-Dispatchable handles should be fixed to 64-bit, to prevent stack mismatches on x86 builds
 - [ ] Flags vs FlagBits may indicate a set of flags versus an individual flag value - needs investigation
 - [x] Prettify Public API Methods (Issue #5)
     - [x] Correctly handle Cmd prefix
@@ -85,20 +85,20 @@
     - [x] vkCreateImageView
     - [x] vkDestroyImageView
   - Shader commands
-    - [ ] vkCreateShaderModule
-    - [ ] vkDestroyShaderModule
+    - [x] vkCreateShaderModule
+    - [x] vkDestroyShaderModule
   - Pipeline Cache commands
     - [ ] vkCreatePipelineCache
     - [ ] vkDestroyPipelineCache
     - [ ] vkGetPipelineCacheData
     - [ ] vkMergePipelineCaches
   - Pipeline commands
-    - [ ] vkCreateGraphicsPipelines
+    - [x] vkCreateGraphicsPipelines
     - [ ] vkCreateComputePipelines
-    - [ ] vkDestroyPipeline
+    - [x] vkDestroyPipeline
   - Pipeline layout commands
-    - [ ] vkCreatePipelineLayout
-    - [ ] vkDestroyPipelineLayout
+    - [x] vkCreatePipelineLayout
+    - [x] vkDestroyPipelineLayout
   - Sampler commands
     - [ ] vkCreateSampler
     - [ ] vkDestroySampler
@@ -112,23 +112,23 @@
     - [ ] vkFreeDescriptorSets
     - [ ] vkUpdateDescriptorSets
   - Pass commands
-    - [ ] vkCreateFramebuffer
-    - [ ] vkDestroyFramebuffer
-    - [ ] vkCreateRenderPass
-    - [ ] vkDestroyRenderPass
+    - [x] vkCreateFramebuffer
+    - [x] vkDestroyFramebuffer
+    - [x] vkCreateRenderPass
+    - [x] vkDestroyRenderPass
     - [ ] vkGetRenderAreaGranularity
   - Command pool commands
-    - [ ] vkCreateCommandPool
-    - [ ] vkDestroyCommandPool
+    - [x] vkCreateCommandPool
+    - [x] vkDestroyCommandPool
     - [ ] vkResetCommandPool
   - Command buffer commands
-    - [ ] vkAllocateCommandBuffers
-    - [ ] vkFreeCommandBuffers
-    - [ ] vkBeginCommandBuffer
-    - [ ] vkEndCommandBuffer
+    - [x] vkAllocateCommandBuffers
+    - [x] vkFreeCommandBuffers
+    - [x] vkBeginCommandBuffer
+    - [x] vkEndCommandBuffer
     - [ ] vkResetCommandBuffer
   - Command buffer building commands
-    - [ ] vkCmdBindPipeline
+    - [x] vkCmdBindPipeline
     - [ ] vkCmdSetViewport
     - [ ] vkCmdSetScissor
     - [ ] vkCmdSetLineWidth
@@ -141,7 +141,7 @@
     - [ ] vkCmdBindDescriptorSets
     - [ ] vkCmdBindIndexBuffer
     - [ ] vkCmdBindVertexBuffers
-    - [ ] vkCmdDraw
+    - [x] vkCmdDraw
     - [ ] vkCmdDrawIndexed
     - [ ] vkCmdDrawIndirect
     - [ ] vkCmdDrawIndexedIndirect

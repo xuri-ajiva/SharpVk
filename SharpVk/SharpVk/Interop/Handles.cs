@@ -26,7 +26,7 @@ namespace SharpVk.Interop
 {
 	public struct Buffer
 	{
-		internal IntPtr handle;
+		internal ulong handle;
 
 		public static Buffer Null
 		{
@@ -34,7 +34,7 @@ namespace SharpVk.Interop
 			{
 				return new Buffer
                 {
-                    handle = IntPtr.Zero
+                    handle = 0L
                 };
 			}
 		}
@@ -42,7 +42,7 @@ namespace SharpVk.Interop
 
 	public struct BufferView
 	{
-		internal IntPtr handle;
+		internal ulong handle;
 
 		public static BufferView Null
 		{
@@ -50,7 +50,7 @@ namespace SharpVk.Interop
 			{
 				return new BufferView
                 {
-                    handle = IntPtr.Zero
+                    handle = 0L
                 };
 			}
 		}
@@ -74,7 +74,7 @@ namespace SharpVk.Interop
 
 	public struct CommandPool
 	{
-		internal IntPtr handle;
+		internal ulong handle;
 
 		public static CommandPool Null
 		{
@@ -82,7 +82,7 @@ namespace SharpVk.Interop
 			{
 				return new CommandPool
                 {
-                    handle = IntPtr.Zero
+                    handle = 0L
                 };
 			}
 		}
@@ -90,7 +90,7 @@ namespace SharpVk.Interop
 
 	public struct DescriptorPool
 	{
-		internal IntPtr handle;
+		internal ulong handle;
 
 		public static DescriptorPool Null
 		{
@@ -98,7 +98,7 @@ namespace SharpVk.Interop
 			{
 				return new DescriptorPool
                 {
-                    handle = IntPtr.Zero
+                    handle = 0L
                 };
 			}
 		}
@@ -106,7 +106,7 @@ namespace SharpVk.Interop
 
 	public struct DescriptorSet
 	{
-		internal IntPtr handle;
+		internal ulong handle;
 
 		public static DescriptorSet Null
 		{
@@ -114,7 +114,7 @@ namespace SharpVk.Interop
 			{
 				return new DescriptorSet
                 {
-                    handle = IntPtr.Zero
+                    handle = 0L
                 };
 			}
 		}
@@ -122,7 +122,7 @@ namespace SharpVk.Interop
 
 	public struct DescriptorSetLayout
 	{
-		internal IntPtr handle;
+		internal ulong handle;
 
 		public static DescriptorSetLayout Null
 		{
@@ -130,7 +130,7 @@ namespace SharpVk.Interop
 			{
 				return new DescriptorSetLayout
                 {
-                    handle = IntPtr.Zero
+                    handle = 0L
                 };
 			}
 		}
@@ -154,7 +154,7 @@ namespace SharpVk.Interop
 
 	public struct DeviceMemory
 	{
-		internal IntPtr handle;
+		internal ulong handle;
 
 		public static DeviceMemory Null
 		{
@@ -162,7 +162,7 @@ namespace SharpVk.Interop
 			{
 				return new DeviceMemory
                 {
-                    handle = IntPtr.Zero
+                    handle = 0L
                 };
 			}
 		}
@@ -170,7 +170,7 @@ namespace SharpVk.Interop
 
 	public struct Event
 	{
-		internal IntPtr handle;
+		internal ulong handle;
 
 		public static Event Null
 		{
@@ -178,7 +178,7 @@ namespace SharpVk.Interop
 			{
 				return new Event
                 {
-                    handle = IntPtr.Zero
+                    handle = 0L
                 };
 			}
 		}
@@ -186,7 +186,7 @@ namespace SharpVk.Interop
 
 	public struct Fence
 	{
-		internal IntPtr handle;
+		internal ulong handle;
 
 		public static Fence Null
 		{
@@ -194,7 +194,7 @@ namespace SharpVk.Interop
 			{
 				return new Fence
                 {
-                    handle = IntPtr.Zero
+                    handle = 0L
                 };
 			}
 		}
@@ -202,7 +202,7 @@ namespace SharpVk.Interop
 
 	public struct Framebuffer
 	{
-		internal IntPtr handle;
+		internal ulong handle;
 
 		public static Framebuffer Null
 		{
@@ -210,7 +210,7 @@ namespace SharpVk.Interop
 			{
 				return new Framebuffer
                 {
-                    handle = IntPtr.Zero
+                    handle = 0L
                 };
 			}
 		}
@@ -218,7 +218,7 @@ namespace SharpVk.Interop
 
 	public struct Image
 	{
-		internal IntPtr handle;
+		internal ulong handle;
 
 		public static Image Null
 		{
@@ -226,7 +226,7 @@ namespace SharpVk.Interop
 			{
 				return new Image
                 {
-                    handle = IntPtr.Zero
+                    handle = 0L
                 };
 			}
 		}
@@ -234,7 +234,7 @@ namespace SharpVk.Interop
 
 	public struct ImageView
 	{
-		internal IntPtr handle;
+		internal ulong handle;
 
 		public static ImageView Null
 		{
@@ -242,7 +242,7 @@ namespace SharpVk.Interop
 			{
 				return new ImageView
                 {
-                    handle = IntPtr.Zero
+                    handle = 0L
                 };
 			}
 		}
@@ -282,7 +282,7 @@ namespace SharpVk.Interop
 
 	public struct Pipeline
 	{
-		internal IntPtr handle;
+		internal ulong handle;
 
 		public static Pipeline Null
 		{
@@ -290,7 +290,7 @@ namespace SharpVk.Interop
 			{
 				return new Pipeline
                 {
-                    handle = IntPtr.Zero
+                    handle = 0L
                 };
 			}
 		}
@@ -298,7 +298,7 @@ namespace SharpVk.Interop
 
 	public struct PipelineCache
 	{
-		internal IntPtr handle;
+		internal ulong handle;
 
 		public static PipelineCache Null
 		{
@@ -306,7 +306,7 @@ namespace SharpVk.Interop
 			{
 				return new PipelineCache
                 {
-                    handle = IntPtr.Zero
+                    handle = 0L
                 };
 			}
 		}
@@ -314,7 +314,7 @@ namespace SharpVk.Interop
 
 	public struct PipelineLayout
 	{
-		internal IntPtr handle;
+		internal ulong handle;
 
 		public static PipelineLayout Null
 		{
@@ -322,7 +322,7 @@ namespace SharpVk.Interop
 			{
 				return new PipelineLayout
                 {
-                    handle = IntPtr.Zero
+                    handle = 0L
                 };
 			}
 		}
@@ -330,7 +330,7 @@ namespace SharpVk.Interop
 
 	public struct QueryPool
 	{
-		internal IntPtr handle;
+		internal ulong handle;
 
 		public static QueryPool Null
 		{
@@ -338,7 +338,7 @@ namespace SharpVk.Interop
 			{
 				return new QueryPool
                 {
-                    handle = IntPtr.Zero
+                    handle = 0L
                 };
 			}
 		}
@@ -362,7 +362,7 @@ namespace SharpVk.Interop
 
 	public struct RenderPass
 	{
-		internal IntPtr handle;
+		internal ulong handle;
 
 		public static RenderPass Null
 		{
@@ -370,7 +370,7 @@ namespace SharpVk.Interop
 			{
 				return new RenderPass
                 {
-                    handle = IntPtr.Zero
+                    handle = 0L
                 };
 			}
 		}
@@ -378,7 +378,7 @@ namespace SharpVk.Interop
 
 	public struct Sampler
 	{
-		internal IntPtr handle;
+		internal ulong handle;
 
 		public static Sampler Null
 		{
@@ -386,7 +386,7 @@ namespace SharpVk.Interop
 			{
 				return new Sampler
                 {
-                    handle = IntPtr.Zero
+                    handle = 0L
                 };
 			}
 		}
@@ -394,7 +394,7 @@ namespace SharpVk.Interop
 
 	public struct Semaphore
 	{
-		internal IntPtr handle;
+		internal ulong handle;
 
 		public static Semaphore Null
 		{
@@ -402,7 +402,7 @@ namespace SharpVk.Interop
 			{
 				return new Semaphore
                 {
-                    handle = IntPtr.Zero
+                    handle = 0L
                 };
 			}
 		}
@@ -410,7 +410,7 @@ namespace SharpVk.Interop
 
 	public struct ShaderModule
 	{
-		internal IntPtr handle;
+		internal ulong handle;
 
 		public static ShaderModule Null
 		{
@@ -418,7 +418,7 @@ namespace SharpVk.Interop
 			{
 				return new ShaderModule
                 {
-                    handle = IntPtr.Zero
+                    handle = 0L
                 };
 			}
 		}
@@ -426,7 +426,7 @@ namespace SharpVk.Interop
 
 	public struct Surface
 	{
-		internal IntPtr handle;
+		internal ulong handle;
 
 		public static Surface Null
 		{
@@ -434,7 +434,7 @@ namespace SharpVk.Interop
 			{
 				return new Surface
                 {
-                    handle = IntPtr.Zero
+                    handle = 0L
                 };
 			}
 		}
@@ -442,7 +442,7 @@ namespace SharpVk.Interop
 
 	public struct Swapchain
 	{
-		internal IntPtr handle;
+		internal ulong handle;
 
 		public static Swapchain Null
 		{
@@ -450,7 +450,7 @@ namespace SharpVk.Interop
 			{
 				return new Swapchain
                 {
-                    handle = IntPtr.Zero
+                    handle = 0L
                 };
 			}
 		}

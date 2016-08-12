@@ -21,6 +21,7 @@
 //SOFTWARE.
 
 using System;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace SharpVk
@@ -76,12 +77,12 @@ namespace SharpVk
 	{
 		private ulong value;
 
-        public static explicit operator DeviceSize(int value)
-        {
-            return new DeviceSize { value = (ulong)value };
-        }
+		public static implicit operator DeviceSize(int value)
+		{
+			return new DeviceSize { value = (ulong)value };
+		}
 
-        public static implicit operator DeviceSize(ulong value)
+		public static implicit operator DeviceSize(ulong value)
 		{
 			return new DeviceSize { value = value };
 		}
@@ -114,6 +115,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct AttachmentDescription
 	{
 		public AttachmentDescriptionFlags Flags;
@@ -155,6 +157,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct AttachmentReference
 	{
 		public uint Attachment;
@@ -175,6 +178,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct BufferCopy
 	{
 		public DeviceSize SourceOffset;
@@ -198,6 +202,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct BufferImageCopy
 	{
 		public DeviceSize BufferOffset;
@@ -230,6 +235,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct ClearAttachment
 	{
 		public ImageAspectFlags AspectMask;
@@ -253,6 +259,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct ClearDepthStencilValue
 	{
 		public float Depth;
@@ -273,6 +280,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct ClearRect
 	{
 		public Rect2D Rect;
@@ -296,6 +304,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct ComponentMapping
 	{
 		public ComponentSwizzle R;
@@ -322,6 +331,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct DescriptorPoolSize
 	{
 		public DescriptorType Type;
@@ -342,6 +352,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct DispatchIndirectCommand
 	{
 		public uint X;
@@ -365,6 +376,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct DrawIndexedIndirectCommand
 	{
 		public uint IndexCount;
@@ -394,6 +406,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct DrawIndirectCommand
 	{
 		public uint VertexCount;
@@ -420,6 +433,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct Extent2D
 	{
 		public uint Width;
@@ -440,6 +454,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct Extent3D
 	{
 		public uint Width;
@@ -463,6 +478,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct FormatProperties
 	{
 		public FormatFeatureFlags LinearTilingFeatures;
@@ -486,6 +502,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct ImageCopy
 	{
 		public ImageSubresourceLayers SourceSubresource;
@@ -515,6 +532,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct ImageFormatProperties
 	{
 		public Extent3D MaxExtent;
@@ -544,6 +562,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct ImageResolve
 	{
 		public ImageSubresourceLayers SourceSubresource;
@@ -573,6 +592,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct ImageSubresource
 	{
 		public ImageAspectFlags AspectMask;
@@ -596,6 +616,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct ImageSubresourceLayers
 	{
 		public ImageAspectFlags AspectMask;
@@ -622,6 +643,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct ImageSubresourceRange
 	{
 		public ImageAspectFlags AspectMask;
@@ -651,6 +673,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct MemoryHeap
 	{
 		public DeviceSize Size;
@@ -671,6 +694,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct MemoryRequirements
 	{
 		public DeviceSize Size;
@@ -694,6 +718,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct MemoryType
 	{
 		public MemoryPropertyFlags PropertyFlags;
@@ -714,6 +739,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct Offset2D
 	{
 		public int X;
@@ -734,6 +760,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct Offset3D
 	{
 		public int X;
@@ -757,6 +784,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct PhysicalDeviceFeatures
 	{
 		public Bool32 RobustBufferAccess;
@@ -936,6 +964,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct PhysicalDeviceSparseProperties
 	{
 		public Bool32 ResidencyStandard2DBlockShape;
@@ -965,6 +994,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct PipelineColorBlendAttachmentState
 	{
 		public Bool32 BlendEnable;
@@ -1003,6 +1033,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct PushConstantRange
 	{
 		public ShaderStageFlags StageFlags;
@@ -1026,6 +1057,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct QueueFamilyProperties
 	{
 		public QueueFlags QueueFlags;
@@ -1052,6 +1084,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct Rect2D
 	{
 		public Offset2D Offset;
@@ -1072,6 +1105,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct SparseImageFormatProperties
 	{
 		public ImageAspectFlags AspectMask;
@@ -1095,6 +1129,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct SparseImageMemoryRequirements
 	{
 		public SparseImageFormatProperties FormatProperties;
@@ -1124,6 +1159,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct SpecializationMapEntry
 	{
 		public uint ConstantID;
@@ -1147,6 +1183,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct StencilOpState
 	{
 		public StencilOp FailOp;
@@ -1182,6 +1219,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct SubpassDependency
 	{
 		public uint SourceSubpass;
@@ -1217,6 +1255,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct SubresourceLayout
 	{
 		public DeviceSize Offset;
@@ -1246,6 +1285,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct SurfaceCapabilities
 	{
 		public uint MinImageCount;
@@ -1290,6 +1330,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct SurfaceFormat
 	{
 		public Format Format;
@@ -1310,6 +1351,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct VertexInputAttributeDescription
 	{
 		public uint Location;
@@ -1336,6 +1378,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct VertexInputBindingDescription
 	{
 		public uint Binding;
@@ -1359,6 +1402,7 @@ namespace SharpVk
 		}
 	}
 
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct Viewport
 	{
 		public float X;

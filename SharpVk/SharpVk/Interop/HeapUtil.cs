@@ -255,7 +255,7 @@ namespace SharpVk.Interop
             //Marshal.Copy doesn't support uints for some reason...
             for (int index = 0; index < length; index++)
             {
-                *(pointer + index) = value[index];
+                pointer[index] = value[index];
             }
         }
 
