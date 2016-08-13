@@ -273,7 +273,11 @@ namespace SharpVk.VkXml
                                 {
                                     string lenExpression = parsedExpressionBuilder.Build(parameter.Dimensions[0].Value);
 
-                                    newMethod.MarshalMidStatements.Add(string.Format("{1} = ({0}*)Interop.HeapUtil.Allocate<{0}>((uint){2});", interopTypeName, marshalledName, lenExpression));
+                                    string allocateType = paramType.Data.Category == TypeCategory.@enum || paramType.Data.Category == TypeCategory.bitmask
+                                                            ? "int"
+                                                            : interopTypeName;
+
+                                    newMethod.MarshalMidStatements.Add($"{marshalledName} = ({interopTypeName}*)Interop.HeapUtil.Allocate<{allocateType}>((uint){lenExpression});");
 
                                     newMethod.MarshalFromStatements.Add(string.Format("result = new {0}[(uint){1}];", paramTypeName, lenExpression));
 
@@ -368,12 +372,16 @@ namespace SharpVk.VkXml
 
                                         string lenExpression = parsedExpressionBuilder.Build(parameter.Dimensions[0].Value);
 
-                                        newMethod.MarshalToStatements.Add($"Interop.{paramType.Name}* {marshalledName} = (Interop.{paramType.Name}*)Interop.HeapUtil.Allocate<Interop.{paramType.Name}>({lenExpression});");
+                                        string allocateType = paramType.Data.Category == TypeCategory.@enum || paramType.Data.Category == TypeCategory.bitmask
+                                                                ? "int"
+                                                                : "Interop." + paramType.Name;
+
+                                        newMethod.MarshalToStatements.Add($"Interop.{paramType.Name}* {marshalledName} = (Interop.{paramType.Name}*)Interop.HeapUtil.Allocate<{allocateType}>({lenExpression});");
 
                                         newMethod.MarshalFromStatements.Add(string.Format("result = new {0}[(uint){1}];", paramType.Name, lenExpression));
 
                                         newMethod.MarshalFromStatements.Add(string.Format("for(int index = 0; index < (uint){0}; index++)", lenExpression));
-                                        newMethod.MarshalFromStatements.Add("{");    
+                                        newMethod.MarshalFromStatements.Add("{");
                                         newMethod.MarshalFromStatements.Add($"\tresult[index] = new {paramType.Name}({marshalledName}[index]{parentArgument});");
                                         newMethod.MarshalFromStatements.Add("}");
                                     }
@@ -608,7 +616,7 @@ namespace SharpVk.VkXml
                     IsOutput = type.Data.IsReturnedOnly
                 };
 
-                var lenMembers = new List<string>();
+                var lenMembers = new Dictionary<string, string>();
                 var members = new Dictionary<string, MemberDesc>();
 
                 var memberNameLookup = type.Data.Members.ToDictionary(x => x.VkName, x => JoinNameParts(x.NameParts));
@@ -640,11 +648,14 @@ namespace SharpVk.VkXml
 
                             memberDesc.PublicTypeName = "string[]";
 
-                            var lenMember = ((SpecParser.ParsedExpressionToken)member.Dimensions[0].Value).Value;
+                            var lenToken = ((SpecParser.ParsedExpressionToken)member.Dimensions[0].Value).Value;
+                            string lenMember = memberNameLookup[lenToken];
 
-                            lenMembers.Add(lenMember);
+                            if (!lenMembers.ContainsKey(lenMember) || !member.IsOptional)
+                            {
+                                lenMembers[lenToken] = $"this.{memberName}?.Length ?? 0";
+                            }
 
-                            newClass.MarshalToStatements.Add(string.Format("result.{0} = (uint)(this.{1}?.Length ?? 0);", memberNameLookup[lenMember], memberName));
                             newClass.MarshalToStatements.Add(string.Format("result.{0} = this.{0} == null ? null : Interop.HeapUtil.MarshalTo(this.{0});", memberName));
                         }
                         else
@@ -663,89 +674,87 @@ namespace SharpVk.VkXml
 
                                     if (isPointer && memberDesc.PublicTypeName == "void")
                                     {
-                                        memberDesc.PublicTypeName = "IntPtr";
+                                        memberDesc.PublicTypeName = "byte";
+                                    }
+
+                                    memberDesc.PublicTypeName += "[]";
+
+                                    if (memberType.RequiresInterop || memberType.Data.Category == TypeCategory.handle)
+                                    {
+                                        newClass.MarshalToStatements.Add("");
+                                        newClass.MarshalToStatements.Add($"//{memberName}");
+                                        newClass.MarshalToStatements.Add($"if (this.{memberName} != null)");
+                                        newClass.MarshalToStatements.Add("{");
+                                        newClass.MarshalToStatements.Add($"    int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.{memberType.Name}>();");
+                                        newClass.MarshalToStatements.Add($"    IntPtr pointer = Interop.HeapUtil.Allocate<Interop.{memberType.Name}>(this.{memberName}.Length);");
+                                        newClass.MarshalToStatements.Add($"    for (int index = 0; index < this.{memberName}.Length; index++)");
+                                        newClass.MarshalToStatements.Add("    {");
+                                        newClass.MarshalToStatements.Add($"        System.Runtime.InteropServices.Marshal.StructureToPtr(this.{memberName}[index].Pack(), pointer + (size * index), false);");
+                                        newClass.MarshalToStatements.Add("    }");
+                                        newClass.MarshalToStatements.Add($"    result.{memberName} = (Interop.{memberType.Name}*)pointer.ToPointer();");
+                                        newClass.MarshalToStatements.Add("}");
+                                        newClass.MarshalToStatements.Add("else");
+                                        newClass.MarshalToStatements.Add("{");
+                                        newClass.MarshalToStatements.Add($"    result.{memberName} = null;");
+                                        newClass.MarshalToStatements.Add("}");
+                                    }
+                                    else if (memberType.Data.Category == TypeCategory.bitmask || memberType.Data.Category == TypeCategory.@enum || memberType.Data.Category == TypeCategory.@struct)
+                                    {
+                                        string allocateType = memberType.Data.Category == TypeCategory.@struct
+                                                                ? memberType.Name
+                                                                : "int";
+
+                                        newClass.MarshalToStatements.Add("");
+                                        newClass.MarshalToStatements.Add($"//{memberName}");
+                                        newClass.MarshalToStatements.Add($"if (this.{memberName} != null)");
+                                        newClass.MarshalToStatements.Add("{");
+                                        newClass.MarshalToStatements.Add($"    result.{memberName} = ({memberType.Name}*)Interop.HeapUtil.Allocate<{allocateType}>(this.{memberName}.Length).ToPointer();");
+                                        newClass.MarshalToStatements.Add($"    for (int index = 0; index < this.{memberName}.Length; index++)");
+                                        newClass.MarshalToStatements.Add("    {");
+                                        newClass.MarshalToStatements.Add($"        result.{memberName}[index] = this.{memberName}[index];");
+                                        newClass.MarshalToStatements.Add("    }");
+                                        newClass.MarshalToStatements.Add("}");
+                                        newClass.MarshalToStatements.Add("else");
+                                        newClass.MarshalToStatements.Add("{");
+                                        newClass.MarshalToStatements.Add($"    result.{memberName} = null;");
+                                        newClass.MarshalToStatements.Add("}");
+                                    }
+                                    else if (memberType.Data.Category == TypeCategory.basetype || memberType.Data.Category == TypeCategory.union)
+                                    {
+                                        string lenExpression = lenToken != null
+                                            ? $"this.{memberName}.Length"
+                                            : expressionBuilder.Build(member.Dimensions[0].Value);
+                                        newClass.MarshalToStatements.Add("");
+                                        newClass.MarshalToStatements.Add($"//{memberName}");
+                                        newClass.MarshalToStatements.Add($"if (this.{memberName} != null && {lenExpression} > 0)");
+                                        newClass.MarshalToStatements.Add("{");
+                                        newClass.MarshalToStatements.Add($"    int length = (int)({lenExpression});");
+                                        newClass.MarshalToStatements.Add($"    result.{memberName} = ({memberType.Name}*)Interop.HeapUtil.Allocate<{memberType.Name}>(length).ToPointer();");
+                                        newClass.MarshalToStatements.Add($"    for (int index = 0; index < length; index++)");
+                                        newClass.MarshalToStatements.Add("    {");
+                                        newClass.MarshalToStatements.Add($"        result.{memberName}[index] = this.{memberName}[index];");
+                                        newClass.MarshalToStatements.Add("    }");
+                                        newClass.MarshalToStatements.Add("}");
+                                        newClass.MarshalToStatements.Add("else");
+                                        newClass.MarshalToStatements.Add("{");
+                                        newClass.MarshalToStatements.Add($"    result.{memberName} = null;");
+                                        newClass.MarshalToStatements.Add("}");
                                     }
                                     else
                                     {
-                                        memberDesc.PublicTypeName += "[]";
-
-                                        if (lenToken != null)
-                                        {
-                                            string lenMember = memberNameLookup[lenToken.Value];
-
-                                            newClass.MarshalToStatements.Add(string.Format("result.{0} = (uint)(this.{1}?.Length ?? 0);", lenMember, memberName));
-                                        }
-
-                                        if (memberType.RequiresInterop || memberType.Data.Category == TypeCategory.handle)
-                                        {
-                                            newClass.MarshalToStatements.Add("");
-                                            newClass.MarshalToStatements.Add($"//{memberName}");
-                                            newClass.MarshalToStatements.Add($"if (this.{memberName} != null)");
-                                            newClass.MarshalToStatements.Add("{");
-                                            newClass.MarshalToStatements.Add($"    int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.{memberType.Name}>();");
-                                            newClass.MarshalToStatements.Add($"    IntPtr pointer = Interop.HeapUtil.Allocate<Interop.{memberType.Name}>(this.{memberName}.Length);");
-                                            newClass.MarshalToStatements.Add($"    for (int index = 0; index < this.{memberName}.Length; index++)");
-                                            newClass.MarshalToStatements.Add("    {");
-                                            newClass.MarshalToStatements.Add($"        System.Runtime.InteropServices.Marshal.StructureToPtr(this.{memberName}[index].Pack(), pointer + (size * index), false);");
-                                            newClass.MarshalToStatements.Add("    }");
-                                            newClass.MarshalToStatements.Add($"    result.{memberName} = (Interop.{memberType.Name}*)pointer.ToPointer();");
-                                            newClass.MarshalToStatements.Add("}");
-                                            newClass.MarshalToStatements.Add("else");
-                                            newClass.MarshalToStatements.Add("{");
-                                            newClass.MarshalToStatements.Add($"    result.{memberName} = null;");
-                                            newClass.MarshalToStatements.Add("}");
-                                        }
-                                        else if (memberType.Data.Category == TypeCategory.bitmask || memberType.Data.Category == TypeCategory.@enum || memberType.Data.Category == TypeCategory.@struct)
-                                        {
-                                            string allocateType = memberType.Data.Category == TypeCategory.@struct
-                                                                    ? memberType.Name
-                                                                    : "int";
-
-                                            newClass.MarshalToStatements.Add("");
-                                            newClass.MarshalToStatements.Add($"//{memberName}");
-                                            newClass.MarshalToStatements.Add($"if (this.{memberName} != null)");
-                                            newClass.MarshalToStatements.Add("{");
-                                            newClass.MarshalToStatements.Add($"    result.{memberName} = ({memberType.Name}*)Interop.HeapUtil.Allocate<{allocateType}>(this.{memberName}.Length).ToPointer();");
-                                            newClass.MarshalToStatements.Add($"    for (int index = 0; index < this.{memberName}.Length; index++)");
-                                            newClass.MarshalToStatements.Add("    {");
-                                            newClass.MarshalToStatements.Add($"        result.{memberName}[index] = this.{memberName}[index];");
-                                            newClass.MarshalToStatements.Add("    }");
-                                            newClass.MarshalToStatements.Add("}");
-                                            newClass.MarshalToStatements.Add("else");
-                                            newClass.MarshalToStatements.Add("{");
-                                            newClass.MarshalToStatements.Add($"    result.{memberName} = null;");
-                                            newClass.MarshalToStatements.Add("}");
-                                        }
-                                        else if (memberType.Data.Category == TypeCategory.basetype || memberType.Data.Category == TypeCategory.union)
-                                        {
-                                            string lenExpression = lenToken != null
-                                                ? $"this.{memberName}.Length"
-                                                : expressionBuilder.Build(member.Dimensions[0].Value);
-                                            newClass.MarshalToStatements.Add("");
-                                            newClass.MarshalToStatements.Add($"//{memberName}");
-                                            newClass.MarshalToStatements.Add($"if (this.{memberName} != null && {lenExpression} > 0)");
-                                            newClass.MarshalToStatements.Add("{");
-                                            newClass.MarshalToStatements.Add($"    int length = (int)({lenExpression});");
-                                            newClass.MarshalToStatements.Add($"    result.{memberName} = ({memberType.Name}*)Interop.HeapUtil.Allocate<{memberType.Name}>(length).ToPointer();");
-                                            newClass.MarshalToStatements.Add($"    for (int index = 0; index < length; index++)");
-                                            newClass.MarshalToStatements.Add("    {");
-                                            newClass.MarshalToStatements.Add($"        result.{memberName}[index] = this.{memberName}[index];");
-                                            newClass.MarshalToStatements.Add("    }");
-                                            newClass.MarshalToStatements.Add("}");
-                                            newClass.MarshalToStatements.Add("else");
-                                            newClass.MarshalToStatements.Add("{");
-                                            newClass.MarshalToStatements.Add($"    result.{memberName} = null;");
-                                            newClass.MarshalToStatements.Add("}");
-                                        }
-                                        else
-                                        {
-                                            newClass.MarshalToStatements.Add(string.Format("result.{0} = this.{0} == null ? null : Interop.HeapUtil.MarshalTo(this.{0});", memberName));
-                                        }
+                                        newClass.MarshalToStatements.Add(string.Format("result.{0} = this.{0} == null ? null : Interop.HeapUtil.MarshalTo(this.{0});", memberName));
                                     }
 
                                     if (lenToken != null)
                                     {
-                                        lenMembers.Add(((SpecParser.ParsedExpressionToken)member.Dimensions[0].Value).Value);
+                                        string lenTokenName = ((SpecParser.ParsedExpressionToken)member.Dimensions[0].Value).Value;
+
+                                        if (!lenMembers.ContainsKey(lenTokenName) || !member.IsOptional)
+                                        {
+                                            string lenMember = memberNameLookup[lenToken.Value];
+
+                                            lenMembers[lenTokenName] = $"this.{memberName}?.Length ?? 0";
+                                        }
                                     }
 
                                     break;
@@ -879,9 +888,9 @@ namespace SharpVk.VkXml
 
                             string lenMember = member.VkName.TrimEnd('s') + "Count";
 
-                            if (memberNameLookup.ContainsKey(lenMember))
+                            if (memberNameLookup.ContainsKey(lenMember) && !lenMembers.ContainsKey(lenMember))
                             {
-                                lenMembers.Add(lenMember);
+                                lenMembers.Add(lenMember, null);
                             }
                         }
                     }
@@ -919,9 +928,11 @@ namespace SharpVk.VkXml
                     members.Add(member.VkName, memberDesc);
                 }
 
-                foreach (var memberName in lenMembers)
+                foreach (var memberName in lenMembers.Keys)
                 {
                     members[memberName].IsInteropOnly = true;
+
+                    newClass.MarshalToStatements.Add($"result.{memberNameLookup[memberName]} = ({members[memberName].InteropTypeName})({lenMembers[memberName]});");
                 }
 
                 foreach (var member in members.Values.Where(x => !x.IsInteropOnly))

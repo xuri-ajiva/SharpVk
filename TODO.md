@@ -10,6 +10,7 @@
 - [ ] Move Extension objects into a new namespace
 - [ ] Generate Pfn_* delegates and define a procedure for hooking Debug callbacks
 - [ ] Pull list of "known extensions" from spec instead of using hard-coded array in SpecParser
+- [ ] Convert all formatted strings to use string interpolation
 - [ ] VK API Commands should be correctly generated, compiled & executed (against NVidia implementation on Windows):
   -  Device initialization
     - [x] vkCreateInstance

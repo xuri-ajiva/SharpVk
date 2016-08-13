@@ -137,7 +137,6 @@ namespace SharpVk
         {
             var result = new Interop.BindSparseInfo();
 			result.SType = StructureType.BindSparseInfo;
-			result.WaitSemaphoreCount = (uint)(this.WaitSemaphores?.Length ?? 0);
 			
 			//WaitSemaphores
 			if (this.WaitSemaphores != null)
@@ -154,7 +153,6 @@ namespace SharpVk
 			{
 			    result.WaitSemaphores = null;
 			}
-			result.BufferBindCount = (uint)(this.BufferBinds?.Length ?? 0);
 			
 			//BufferBinds
 			if (this.BufferBinds != null)
@@ -171,7 +169,6 @@ namespace SharpVk
 			{
 			    result.BufferBinds = null;
 			}
-			result.ImageOpaqueBindCount = (uint)(this.ImageOpaqueBinds?.Length ?? 0);
 			
 			//ImageOpaqueBinds
 			if (this.ImageOpaqueBinds != null)
@@ -188,7 +185,6 @@ namespace SharpVk
 			{
 			    result.ImageOpaqueBinds = null;
 			}
-			result.ImageBindCount = (uint)(this.ImageBinds?.Length ?? 0);
 			
 			//ImageBinds
 			if (this.ImageBinds != null)
@@ -205,7 +201,6 @@ namespace SharpVk
 			{
 			    result.ImageBinds = null;
 			}
-			result.SignalSemaphoreCount = (uint)(this.SignalSemaphores?.Length ?? 0);
 			
 			//SignalSemaphores
 			if (this.SignalSemaphores != null)
@@ -222,6 +217,11 @@ namespace SharpVk
 			{
 			    result.SignalSemaphores = null;
 			}
+			result.WaitSemaphoreCount = (uint)(this.WaitSemaphores?.Length ?? 0);
+			result.BufferBindCount = (uint)(this.BufferBinds?.Length ?? 0);
+			result.ImageOpaqueBindCount = (uint)(this.ImageOpaqueBinds?.Length ?? 0);
+			result.ImageBindCount = (uint)(this.ImageBinds?.Length ?? 0);
+			result.SignalSemaphoreCount = (uint)(this.SignalSemaphores?.Length ?? 0);
 
             return result;
         }
@@ -269,8 +269,8 @@ namespace SharpVk
         {
             var result = new Interop.BufferCreateInfo();
 			result.SType = StructureType.BufferCreateInfo;
-			result.QueueFamilyIndexCount = (uint)(this.QueueFamilyIndices?.Length ?? 0);
 			result.QueueFamilyIndices = this.QueueFamilyIndices == null ? null : Interop.HeapUtil.MarshalTo(this.QueueFamilyIndices);
+			result.QueueFamilyIndexCount = (uint)(this.QueueFamilyIndices?.Length ?? 0);
 			result.Flags = this.Flags;
 			result.Size = this.Size;
 			result.Usage = this.Usage;
@@ -682,19 +682,12 @@ namespace SharpVk
 
 	public class DebugReportCallbackCreateInfo
 	{
-        public delegate Bool32 DebugCallback(DebugReportFlags flags, DebugReportObjectType objectType, ulong @object, UIntPtr location, int messageCode, string layerPrefix, string message, IntPtr userData);
 
-        public DebugReportFlags Flags
+		public DebugReportFlags Flags
 		{
 			get;
 			set;
 		}
-
-        public DebugCallback Callback
-        {
-            get;
-            set;
-        }
 
 		public IntPtr UserData
 		{
@@ -706,8 +699,7 @@ namespace SharpVk
         {
             var result = new Interop.DebugReportCallbackCreateInfo();
 			result.SType = StructureType.DebugReportCallbackCreateInfo;
-            result.PfnCallback = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.Callback);
-            result.UserData = this.UserData.ToPointer();
+			result.UserData = this.UserData.ToPointer();
 			result.Flags = this.Flags;
 
             return result;
@@ -818,7 +810,6 @@ namespace SharpVk
         {
             var result = new Interop.DescriptorPoolCreateInfo();
 			result.SType = StructureType.DescriptorPoolCreateInfo;
-			result.PoolSizeCount = (uint)(this.PoolSizes?.Length ?? 0);
 			
 			//PoolSizes
 			if (this.PoolSizes != null)
@@ -833,6 +824,7 @@ namespace SharpVk
 			{
 			    result.PoolSizes = null;
 			}
+			result.PoolSizeCount = (uint)(this.PoolSizes?.Length ?? 0);
 			result.Flags = this.Flags;
 			result.MaxSets = this.MaxSets;
 
@@ -865,7 +857,6 @@ namespace SharpVk
             var result = new Interop.DescriptorSetAllocateInfo();
 			result.SType = StructureType.DescriptorSetAllocateInfo;
 			result.DescriptorPool = this.DescriptorPool?.Pack() ?? Interop.DescriptorPool.Null;
-			result.DescriptorSetCount = (uint)(this.SetLayouts?.Length ?? 0);
 			
 			//SetLayouts
 			if (this.SetLayouts != null)
@@ -882,6 +873,7 @@ namespace SharpVk
 			{
 			    result.SetLayouts = null;
 			}
+			result.DescriptorSetCount = (uint)(this.SetLayouts?.Length ?? 0);
 
             return result;
         }
@@ -922,7 +914,6 @@ namespace SharpVk
         internal unsafe Interop.DescriptorSetLayoutBinding Pack()
         {
             var result = new Interop.DescriptorSetLayoutBinding();
-			result.DescriptorCount = (uint)(this.ImmutableSamplers?.Length ?? 0);
 			
 			//ImmutableSamplers
 			if (this.ImmutableSamplers != null)
@@ -939,6 +930,7 @@ namespace SharpVk
 			{
 			    result.ImmutableSamplers = null;
 			}
+			result.DescriptorCount = (uint)(this.ImmutableSamplers?.Length ?? 0);
 			result.Binding = this.Binding;
 			result.DescriptorType = this.DescriptorType;
 			result.StageFlags = this.StageFlags;
@@ -971,7 +963,6 @@ namespace SharpVk
         {
             var result = new Interop.DescriptorSetLayoutCreateInfo();
 			result.SType = StructureType.DescriptorSetLayoutCreateInfo;
-			result.BindingCount = (uint)(this.Bindings?.Length ?? 0);
 			
 			//Bindings
 			if (this.Bindings != null)
@@ -988,6 +979,7 @@ namespace SharpVk
 			{
 			    result.Bindings = null;
 			}
+			result.BindingCount = (uint)(this.Bindings?.Length ?? 0);
 			result.Flags = this.Flags;
 
             return result;
@@ -1036,7 +1028,6 @@ namespace SharpVk
         {
             var result = new Interop.DeviceCreateInfo();
 			result.SType = StructureType.DeviceCreateInfo;
-			result.QueueCreateInfoCount = (uint)(this.QueueCreateInfos?.Length ?? 0);
 			
 			//QueueCreateInfos
 			if (this.QueueCreateInfos != null)
@@ -1053,11 +1044,12 @@ namespace SharpVk
 			{
 			    result.QueueCreateInfos = null;
 			}
-			result.EnabledLayerCount = (uint)(this.EnabledLayerNames?.Length ?? 0);
 			result.EnabledLayerNames = this.EnabledLayerNames == null ? null : Interop.HeapUtil.MarshalTo(this.EnabledLayerNames);
-			result.EnabledExtensionCount = (uint)(this.EnabledExtensionNames?.Length ?? 0);
 			result.EnabledExtensionNames = this.EnabledExtensionNames == null ? null : Interop.HeapUtil.MarshalTo(this.EnabledExtensionNames);
 			result.EnabledFeatures = (PhysicalDeviceFeatures*)Interop.HeapUtil.AllocateAndMarshal(this.EnabledFeatures);
+			result.QueueCreateInfoCount = (uint)(this.QueueCreateInfos?.Length ?? 0);
+			result.EnabledLayerCount = (uint)(this.EnabledLayerNames?.Length ?? 0);
+			result.EnabledExtensionCount = (uint)(this.EnabledExtensionNames?.Length ?? 0);
 			result.Flags = this.Flags;
 
             return result;
@@ -1094,8 +1086,8 @@ namespace SharpVk
         {
             var result = new Interop.DeviceQueueCreateInfo();
 			result.SType = StructureType.DeviceQueueCreateInfo;
-			result.QueueCount = (uint)(this.QueuePriorities?.Length ?? 0);
 			result.QueuePriorities = this.QueuePriorities == null ? null : Interop.HeapUtil.MarshalTo(this.QueuePriorities);
+			result.QueueCount = (uint)(this.QueuePriorities?.Length ?? 0);
 			result.Flags = this.Flags;
 			result.QueueFamilyIndex = this.QueueFamilyIndex;
 
@@ -1231,7 +1223,6 @@ namespace SharpVk
             var result = new Interop.FramebufferCreateInfo();
 			result.SType = StructureType.FramebufferCreateInfo;
 			result.RenderPass = this.RenderPass?.Pack() ?? Interop.RenderPass.Null;
-			result.AttachmentCount = (uint)(this.Attachments?.Length ?? 0);
 			
 			//Attachments
 			if (this.Attachments != null)
@@ -1248,6 +1239,7 @@ namespace SharpVk
 			{
 			    result.Attachments = null;
 			}
+			result.AttachmentCount = (uint)(this.Attachments?.Length ?? 0);
 			result.Flags = this.Flags;
 			result.Width = this.Width;
 			result.Height = this.Height;
@@ -1365,7 +1357,6 @@ namespace SharpVk
         {
             var result = new Interop.GraphicsPipelineCreateInfo();
 			result.SType = StructureType.GraphicsPipelineCreateInfo;
-			result.StageCount = (uint)(this.Stages?.Length ?? 0);
 			
 			//Stages
 			if (this.Stages != null)
@@ -1394,6 +1385,7 @@ namespace SharpVk
 			result.Layout = this.Layout?.Pack() ?? Interop.PipelineLayout.Null;
 			result.RenderPass = this.RenderPass?.Pack() ?? Interop.RenderPass.Null;
 			result.BasePipelineHandle = this.BasePipelineHandle?.Pack() ?? Interop.Pipeline.Null;
+			result.StageCount = (uint)(this.Stages?.Length ?? 0);
 			result.Flags = this.Flags;
 			result.Subpass = this.Subpass;
 			result.BasePipelineIndex = this.BasePipelineIndex;
@@ -1528,8 +1520,8 @@ namespace SharpVk
         {
             var result = new Interop.ImageCreateInfo();
 			result.SType = StructureType.ImageCreateInfo;
-			result.QueueFamilyIndexCount = (uint)(this.QueueFamilyIndices?.Length ?? 0);
 			result.QueueFamilyIndices = this.QueueFamilyIndices == null ? null : Interop.HeapUtil.MarshalTo(this.QueueFamilyIndices);
+			result.QueueFamilyIndexCount = (uint)(this.QueueFamilyIndices?.Length ?? 0);
 			result.Flags = this.Flags;
 			result.ImageType = this.ImageType;
 			result.Format = this.Format;
@@ -1715,10 +1707,10 @@ namespace SharpVk
             var result = new Interop.InstanceCreateInfo();
 			result.SType = StructureType.InstanceCreateInfo;
 			result.ApplicationInfo = this.ApplicationInfo == null ? null : this.ApplicationInfo.MarshalTo();
-			result.EnabledLayerCount = (uint)(this.EnabledLayerNames?.Length ?? 0);
 			result.EnabledLayerNames = this.EnabledLayerNames == null ? null : Interop.HeapUtil.MarshalTo(this.EnabledLayerNames);
-			result.EnabledExtensionCount = (uint)(this.EnabledExtensionNames?.Length ?? 0);
 			result.EnabledExtensionNames = this.EnabledExtensionNames == null ? null : Interop.HeapUtil.MarshalTo(this.EnabledExtensionNames);
+			result.EnabledLayerCount = (uint)(this.EnabledLayerNames?.Length ?? 0);
+			result.EnabledExtensionCount = (uint)(this.EnabledExtensionNames?.Length ?? 0);
 			result.Flags = this.Flags;
 
             return result;
@@ -2766,7 +2758,7 @@ namespace SharpVk
 			set;
 		}
 
-		public IntPtr InitialData
+		public byte[] InitialData
 		{
 			get;
 			set;
@@ -2776,6 +2768,8 @@ namespace SharpVk
         {
             var result = new Interop.PipelineCacheCreateInfo();
 			result.SType = StructureType.PipelineCacheCreateInfo;
+			result.InitialData = this.InitialData == null ? null : Interop.HeapUtil.MarshalTo(this.InitialData);
+			result.InitialDataSize = (UIntPtr)(this.InitialData?.Length ?? 0);
 			result.Flags = this.Flags;
 
             return result;
@@ -2824,7 +2818,6 @@ namespace SharpVk
         {
             var result = new Interop.PipelineColorBlendStateCreateInfo();
 			result.SType = StructureType.PipelineColorBlendStateCreateInfo;
-			result.AttachmentCount = (uint)(this.Attachments?.Length ?? 0);
 			
 			//Attachments
 			if (this.Attachments != null)
@@ -2839,6 +2832,7 @@ namespace SharpVk
 			{
 			    result.Attachments = null;
 			}
+			result.AttachmentCount = (uint)(this.Attachments?.Length ?? 0);
 			result.Flags = this.Flags;
 			result.LogicOpEnable = this.LogicOpEnable;
 			result.LogicOp = this.LogicOp;
@@ -2958,7 +2952,6 @@ namespace SharpVk
         {
             var result = new Interop.PipelineDynamicStateCreateInfo();
 			result.SType = StructureType.PipelineDynamicStateCreateInfo;
-			result.DynamicStateCount = (uint)(this.DynamicStates?.Length ?? 0);
 			
 			//DynamicStates
 			if (this.DynamicStates != null)
@@ -2973,6 +2966,7 @@ namespace SharpVk
 			{
 			    result.DynamicStates = null;
 			}
+			result.DynamicStateCount = (uint)(this.DynamicStates?.Length ?? 0);
 			result.Flags = this.Flags;
 
             return result;
@@ -3047,7 +3041,6 @@ namespace SharpVk
         {
             var result = new Interop.PipelineLayoutCreateInfo();
 			result.SType = StructureType.PipelineLayoutCreateInfo;
-			result.SetLayoutCount = (uint)(this.SetLayouts?.Length ?? 0);
 			
 			//SetLayouts
 			if (this.SetLayouts != null)
@@ -3064,7 +3057,6 @@ namespace SharpVk
 			{
 			    result.SetLayouts = null;
 			}
-			result.PushConstantRangeCount = (uint)(this.PushConstantRanges?.Length ?? 0);
 			
 			//PushConstantRanges
 			if (this.PushConstantRanges != null)
@@ -3079,6 +3071,8 @@ namespace SharpVk
 			{
 			    result.PushConstantRanges = null;
 			}
+			result.SetLayoutCount = (uint)(this.SetLayouts?.Length ?? 0);
+			result.PushConstantRangeCount = (uint)(this.PushConstantRanges?.Length ?? 0);
 			result.Flags = this.Flags;
 
             return result;
@@ -3372,7 +3366,6 @@ namespace SharpVk
         {
             var result = new Interop.PipelineVertexInputStateCreateInfo();
 			result.SType = StructureType.PipelineVertexInputStateCreateInfo;
-			result.VertexBindingDescriptionCount = (uint)(this.VertexBindingDescriptions?.Length ?? 0);
 			
 			//VertexBindingDescriptions
 			if (this.VertexBindingDescriptions != null)
@@ -3387,7 +3380,6 @@ namespace SharpVk
 			{
 			    result.VertexBindingDescriptions = null;
 			}
-			result.VertexAttributeDescriptionCount = (uint)(this.VertexAttributeDescriptions?.Length ?? 0);
 			
 			//VertexAttributeDescriptions
 			if (this.VertexAttributeDescriptions != null)
@@ -3402,6 +3394,8 @@ namespace SharpVk
 			{
 			    result.VertexAttributeDescriptions = null;
 			}
+			result.VertexBindingDescriptionCount = (uint)(this.VertexBindingDescriptions?.Length ?? 0);
+			result.VertexAttributeDescriptionCount = (uint)(this.VertexAttributeDescriptions?.Length ?? 0);
 			result.Flags = this.Flags;
 
             return result;
@@ -3438,7 +3432,6 @@ namespace SharpVk
         {
             var result = new Interop.PipelineViewportStateCreateInfo();
 			result.SType = StructureType.PipelineViewportStateCreateInfo;
-			result.ViewportCount = (uint)(this.Viewports?.Length ?? 0);
 			
 			//Viewports
 			if (this.Viewports != null)
@@ -3453,7 +3446,6 @@ namespace SharpVk
 			{
 			    result.Viewports = null;
 			}
-			result.ScissorCount = (uint)(this.Scissors?.Length ?? 0);
 			
 			//Scissors
 			if (this.Scissors != null)
@@ -3468,6 +3460,8 @@ namespace SharpVk
 			{
 			    result.Scissors = null;
 			}
+			result.ViewportCount = (uint)(this.Viewports?.Length ?? 0);
+			result.ScissorCount = (uint)(this.Scissors?.Length ?? 0);
 			result.Flags = this.Flags;
 
             return result;
@@ -3510,7 +3504,6 @@ namespace SharpVk
         {
             var result = new Interop.PresentInfo();
 			result.SType = StructureType.PresentInfo;
-			result.WaitSemaphoreCount = (uint)(this.WaitSemaphores?.Length ?? 0);
 			
 			//WaitSemaphores
 			if (this.WaitSemaphores != null)
@@ -3527,7 +3520,6 @@ namespace SharpVk
 			{
 			    result.WaitSemaphores = null;
 			}
-			result.SwapchainCount = (uint)(this.Swapchains?.Length ?? 0);
 			
 			//Swapchains
 			if (this.Swapchains != null)
@@ -3544,9 +3536,7 @@ namespace SharpVk
 			{
 			    result.Swapchains = null;
 			}
-			result.SwapchainCount = (uint)(this.ImageIndices?.Length ?? 0);
 			result.ImageIndices = this.ImageIndices == null ? null : Interop.HeapUtil.MarshalTo(this.ImageIndices);
-			result.SwapchainCount = (uint)(this.Results?.Length ?? 0);
 			
 			//Results
 			if (this.Results != null)
@@ -3561,6 +3551,8 @@ namespace SharpVk
 			{
 			    result.Results = null;
 			}
+			result.WaitSemaphoreCount = (uint)(this.WaitSemaphores?.Length ?? 0);
+			result.SwapchainCount = (uint)(this.ImageIndices?.Length ?? 0);
 
             return result;
         }
@@ -3649,7 +3641,6 @@ namespace SharpVk
 			result.SType = StructureType.RenderPassBeginInfo;
 			result.RenderPass = this.RenderPass?.Pack() ?? Interop.RenderPass.Null;
 			result.Framebuffer = this.Framebuffer?.Pack() ?? Interop.Framebuffer.Null;
-			result.ClearValueCount = (uint)(this.ClearValues?.Length ?? 0);
 			
 			//ClearValues
 			if (this.ClearValues != null && this.ClearValues.Length > 0)
@@ -3665,6 +3656,7 @@ namespace SharpVk
 			{
 			    result.ClearValues = null;
 			}
+			result.ClearValueCount = (uint)(this.ClearValues?.Length ?? 0);
 			result.RenderArea = this.RenderArea;
 
             return result;
@@ -3707,7 +3699,6 @@ namespace SharpVk
         {
             var result = new Interop.RenderPassCreateInfo();
 			result.SType = StructureType.RenderPassCreateInfo;
-			result.AttachmentCount = (uint)(this.Attachments?.Length ?? 0);
 			
 			//Attachments
 			if (this.Attachments != null)
@@ -3722,7 +3713,6 @@ namespace SharpVk
 			{
 			    result.Attachments = null;
 			}
-			result.SubpassCount = (uint)(this.Subpasses?.Length ?? 0);
 			
 			//Subpasses
 			if (this.Subpasses != null)
@@ -3739,7 +3729,6 @@ namespace SharpVk
 			{
 			    result.Subpasses = null;
 			}
-			result.DependencyCount = (uint)(this.Dependencies?.Length ?? 0);
 			
 			//Dependencies
 			if (this.Dependencies != null)
@@ -3754,6 +3743,9 @@ namespace SharpVk
 			{
 			    result.Dependencies = null;
 			}
+			result.AttachmentCount = (uint)(this.Attachments?.Length ?? 0);
+			result.SubpassCount = (uint)(this.Subpasses?.Length ?? 0);
+			result.DependencyCount = (uint)(this.Dependencies?.Length ?? 0);
 			result.Flags = this.Flags;
 
             return result;
@@ -3975,7 +3967,6 @@ namespace SharpVk
         {
             var result = new Interop.SparseBufferMemoryBindInfo();
 			result.Buffer = this.Buffer?.Pack() ?? Interop.Buffer.Null;
-			result.BindCount = (uint)(this.Binds?.Length ?? 0);
 			
 			//Binds
 			if (this.Binds != null)
@@ -3992,6 +3983,7 @@ namespace SharpVk
 			{
 			    result.Binds = null;
 			}
+			result.BindCount = (uint)(this.Binds?.Length ?? 0);
 
             return result;
         }
@@ -4079,7 +4071,6 @@ namespace SharpVk
         {
             var result = new Interop.SparseImageMemoryBindInfo();
 			result.Image = this.Image?.Pack() ?? Interop.Image.Null;
-			result.BindCount = (uint)(this.Binds?.Length ?? 0);
 			
 			//Binds
 			if (this.Binds != null)
@@ -4096,6 +4087,7 @@ namespace SharpVk
 			{
 			    result.Binds = null;
 			}
+			result.BindCount = (uint)(this.Binds?.Length ?? 0);
 
             return result;
         }
@@ -4125,7 +4117,6 @@ namespace SharpVk
         {
             var result = new Interop.SparseImageOpaqueMemoryBindInfo();
 			result.Image = this.Image?.Pack() ?? Interop.Image.Null;
-			result.BindCount = (uint)(this.Binds?.Length ?? 0);
 			
 			//Binds
 			if (this.Binds != null)
@@ -4142,6 +4133,7 @@ namespace SharpVk
 			{
 			    result.Binds = null;
 			}
+			result.BindCount = (uint)(this.Binds?.Length ?? 0);
 
             return result;
         }
@@ -4212,7 +4204,7 @@ namespace SharpVk
 			set;
 		}
 
-		public IntPtr Data
+		public byte[] Data
 		{
 			get;
 			set;
@@ -4221,7 +4213,6 @@ namespace SharpVk
         internal unsafe Interop.SpecializationInfo Pack()
         {
             var result = new Interop.SpecializationInfo();
-			result.MapEntryCount = (uint)(this.MapEntries?.Length ?? 0);
 			
 			//MapEntries
 			if (this.MapEntries != null)
@@ -4236,6 +4227,9 @@ namespace SharpVk
 			{
 			    result.MapEntries = null;
 			}
+			result.Data = this.Data == null ? null : Interop.HeapUtil.MarshalTo(this.Data);
+			result.MapEntryCount = (uint)(this.MapEntries?.Length ?? 0);
+			result.DataSize = (UIntPtr)(this.Data?.Length ?? 0);
 
             return result;
         }
@@ -4277,7 +4271,6 @@ namespace SharpVk
         {
             var result = new Interop.SubmitInfo();
 			result.SType = StructureType.SubmitInfo;
-			result.WaitSemaphoreCount = (uint)(this.WaitSemaphores?.Length ?? 0);
 			
 			//WaitSemaphores
 			if (this.WaitSemaphores != null)
@@ -4294,7 +4287,6 @@ namespace SharpVk
 			{
 			    result.WaitSemaphores = null;
 			}
-			result.WaitSemaphoreCount = (uint)(this.WaitDestinationStageMask?.Length ?? 0);
 			
 			//WaitDestinationStageMask
 			if (this.WaitDestinationStageMask != null)
@@ -4309,7 +4301,6 @@ namespace SharpVk
 			{
 			    result.WaitDestinationStageMask = null;
 			}
-			result.CommandBufferCount = (uint)(this.CommandBuffers?.Length ?? 0);
 			
 			//CommandBuffers
 			if (this.CommandBuffers != null)
@@ -4326,7 +4317,6 @@ namespace SharpVk
 			{
 			    result.CommandBuffers = null;
 			}
-			result.SignalSemaphoreCount = (uint)(this.SignalSemaphores?.Length ?? 0);
 			
 			//SignalSemaphores
 			if (this.SignalSemaphores != null)
@@ -4343,6 +4333,9 @@ namespace SharpVk
 			{
 			    result.SignalSemaphores = null;
 			}
+			result.WaitSemaphoreCount = (uint)(this.WaitDestinationStageMask?.Length ?? 0);
+			result.CommandBufferCount = (uint)(this.CommandBuffers?.Length ?? 0);
+			result.SignalSemaphoreCount = (uint)(this.SignalSemaphores?.Length ?? 0);
 
             return result;
         }
@@ -4401,7 +4394,6 @@ namespace SharpVk
         internal unsafe Interop.SubpassDescription Pack()
         {
             var result = new Interop.SubpassDescription();
-			result.InputAttachmentCount = (uint)(this.InputAttachments?.Length ?? 0);
 			
 			//InputAttachments
 			if (this.InputAttachments != null)
@@ -4416,7 +4408,6 @@ namespace SharpVk
 			{
 			    result.InputAttachments = null;
 			}
-			result.ColorAttachmentCount = (uint)(this.ColorAttachments?.Length ?? 0);
 			
 			//ColorAttachments
 			if (this.ColorAttachments != null)
@@ -4446,8 +4437,10 @@ namespace SharpVk
 			    result.ResolveAttachments = null;
 			}
 			result.DepthStencilAttachment = (AttachmentReference*)Interop.HeapUtil.AllocateAndMarshal(this.DepthStencilAttachment);
-			result.PreserveAttachmentCount = (uint)(this.PreserveAttachments?.Length ?? 0);
 			result.PreserveAttachments = this.PreserveAttachments == null ? null : Interop.HeapUtil.MarshalTo(this.PreserveAttachments);
+			result.InputAttachmentCount = (uint)(this.InputAttachments?.Length ?? 0);
+			result.ColorAttachmentCount = (uint)(this.ColorAttachments?.Length ?? 0);
+			result.PreserveAttachmentCount = (uint)(this.PreserveAttachments?.Length ?? 0);
 			result.Flags = this.Flags;
 			result.PipelineBindPoint = this.PipelineBindPoint;
 
@@ -4558,9 +4551,9 @@ namespace SharpVk
             var result = new Interop.SwapchainCreateInfo();
 			result.SType = StructureType.SwapchainCreateInfo;
 			result.Surface = this.Surface?.Pack() ?? Interop.Surface.Null;
-			result.QueueFamilyIndexCount = (uint)(this.QueueFamilyIndices?.Length ?? 0);
 			result.QueueFamilyIndices = this.QueueFamilyIndices == null ? null : Interop.HeapUtil.MarshalTo(this.QueueFamilyIndices);
 			result.OldSwapchain = this.OldSwapchain?.Pack() ?? Interop.Swapchain.Null;
+			result.QueueFamilyIndexCount = (uint)(this.QueueFamilyIndices?.Length ?? 0);
 			result.Flags = this.Flags;
 			result.MinImageCount = this.MinImageCount;
 			result.ImageFormat = this.ImageFormat;
@@ -4671,7 +4664,6 @@ namespace SharpVk
             var result = new Interop.WriteDescriptorSet();
 			result.SType = StructureType.WriteDescriptorSet;
 			result.DestinationSet = this.DestinationSet?.Pack() ?? Interop.DescriptorSet.Null;
-			result.DescriptorCount = (uint)(this.ImageInfo?.Length ?? 0);
 			
 			//ImageInfo
 			if (this.ImageInfo != null)
@@ -4688,7 +4680,6 @@ namespace SharpVk
 			{
 			    result.ImageInfo = null;
 			}
-			result.DescriptorCount = (uint)(this.BufferInfo?.Length ?? 0);
 			
 			//BufferInfo
 			if (this.BufferInfo != null)
@@ -4705,7 +4696,6 @@ namespace SharpVk
 			{
 			    result.BufferInfo = null;
 			}
-			result.DescriptorCount = (uint)(this.TexelBufferView?.Length ?? 0);
 			
 			//TexelBufferView
 			if (this.TexelBufferView != null)
@@ -4722,6 +4712,7 @@ namespace SharpVk
 			{
 			    result.TexelBufferView = null;
 			}
+			result.DescriptorCount = (uint)(this.TexelBufferView?.Length ?? 0);
 			result.DestinationBinding = this.DestinationBinding;
 			result.DestinationArrayElement = this.DestinationArrayElement;
 			result.DescriptorType = this.DescriptorType;

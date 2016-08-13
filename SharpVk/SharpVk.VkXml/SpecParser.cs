@@ -176,7 +176,7 @@ namespace SharpVk.VkXml
                     var nameElement = vkMember.Element("name");
                     string memberName = nameElement.Value;
                     string memberType = vkMember.Element("type").Value;
-                    string optional = vkMember.Element("optional")?.Value;
+                    string optional = vkMember.Attribute("optional")?.Value;
                     bool isOptional = optional != null
                                         ? bool.Parse(optional)
                                         : false;

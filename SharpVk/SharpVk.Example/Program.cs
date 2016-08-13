@@ -25,13 +25,7 @@ namespace SharpVk.Example
                         ApplicationName = "Example Application",
                         EngineName = "SharpVK"
                     },
-                    EnabledExtensionNames = new[] { "VK_KHR_surface", "VK_KHR_win32_surface", "VK_EXT_debug_report" }
-                }, null);
-
-                instance.CreateDebugReportCallback(new DebugReportCallbackCreateInfo
-                {
-                    Callback = Callback,
-                    Flags = DebugReportFlags.DebugBit | DebugReportFlags.ErrorBit | DebugReportFlags.PerformanceWarningBit | DebugReportFlags.WarningBit | DebugReportFlags.InformationBit
+                    EnabledExtensionNames = new[] { "VK_KHR_surface", "VK_KHR_win32_surface" }
                 }, null);
                 
                 var surfaceForm = new Form
@@ -414,18 +408,6 @@ namespace SharpVk.Example
             {
                 Debug.WriteLine(ex.Message);
             }
-        }
-
-        private static readonly object debugLockObject = new object();
-
-        private static Bool32 Callback(DebugReportFlags flags, DebugReportObjectType objectType, ulong @object, UIntPtr location, int messageCode, string layerPrefix, string message, IntPtr userData)
-        {
-            lock (debugLockObject)
-            {
-                Debug.WriteLine(message);
-            }
-
-            return true;
         }
 
         private static uint[] LoadShaderData(string filePath, out int codeSize)

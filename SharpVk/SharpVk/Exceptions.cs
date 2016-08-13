@@ -71,8 +71,8 @@ namespace SharpVk
 					return new NativeWindowInUseException();
 				case Result.ErrorOutOfDate:
 					return new OutOfDateException();
-				case Result.ErrorValidationFailedExt:
-					return new ValidationFailedExtException();
+				case Result.ErrorValidationFailed:
+					return new ValidationFailedException();
 			}
 
 			return new UnknownSharpVkException(resultCode);
@@ -187,10 +187,10 @@ namespace SharpVk
 		public override Result ResultCode => Result.ErrorOutOfDate;
 	}
 
-	public class ValidationFailedExtException
+	public class ValidationFailedException
 		: SharpVkException
 	{
-		public override Result ResultCode => Result.ErrorValidationFailedExt;
+		public override Result ResultCode => Result.ErrorValidationFailed;
 	}
 
 

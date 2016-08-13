@@ -2486,7 +2486,7 @@ namespace SharpVk
 		}
 	}
 
-	public unsafe class Instance
+	public class Instance
 	{
 		internal readonly Interop.Instance handle;
 
@@ -2691,9 +2691,7 @@ namespace SharpVk
 			}
 		}
 
-        private delegate Result CreateDebugReportCallbackDelegate(Interop.Instance instance, Interop.DebugReportCallbackCreateInfo* createInfo, Interop.AllocationCallbacks* allocator, Interop.DebugReportCallback* callback);
-            
-        public DebugReportCallback CreateDebugReportCallback(DebugReportCallbackCreateInfo createInfo, AllocationCallbacks allocator)
+		public DebugReportCallback CreateDebugReportCallback(DebugReportCallbackCreateInfo createInfo, AllocationCallbacks allocator)
 		{
 			unsafe
 			{
@@ -2706,13 +2704,7 @@ namespace SharpVk
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(allocator != null) marshalledAllocator = allocator.Pack();
 				Interop.DebugReportCallback marshalledCallback;
-
-                var delegatePointer = this.GetProcAddr("vkCreateDebugReportCallbackEXT");
-
-                var @delegate = System.Runtime.InteropServices.Marshal.GetDelegateForFunctionPointer<CreateDebugReportCallbackDelegate>(delegatePointer);
-
-
-                commandResult = @delegate(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledCallback);
+				commandResult = Interop.Commands.vkCreateDebugReportCallbackEXT(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledCallback);
 
 				if (SharpVkException.IsError(commandResult))
 				{
