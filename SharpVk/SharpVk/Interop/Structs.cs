@@ -173,6 +173,16 @@ namespace SharpVk.Interop
 	}
 
     [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct DebugReportCallbackCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public DebugReportFlags Flags;
+		public IntPtr PfnCallback;
+		public void* UserData;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
 	public unsafe struct DescriptorBufferInfo
 	{
 		public Buffer Buffer;

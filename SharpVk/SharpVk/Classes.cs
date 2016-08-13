@@ -680,6 +680,45 @@ namespace SharpVk
 		}
 	}
 
+	public class DebugReportCallbackCreateInfo
+	{
+        public delegate Bool32 DebugCallback(DebugReportFlags flags, DebugReportObjectType objectType, ulong @object, UIntPtr location, int messageCode, string layerPrefix, string message, IntPtr userData);
+
+        public DebugReportFlags Flags
+		{
+			get;
+			set;
+		}
+
+        public DebugCallback Callback
+        {
+            get;
+            set;
+        }
+
+		public IntPtr UserData
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.DebugReportCallbackCreateInfo Pack()
+        {
+            var result = new Interop.DebugReportCallbackCreateInfo();
+			result.SType = StructureType.DebugReportCallbackCreateInfo;
+            result.PfnCallback = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.Callback);
+            result.UserData = this.UserData.ToPointer();
+			result.Flags = this.Flags;
+
+            return result;
+        }
+
+		internal unsafe Interop.DebugReportCallbackCreateInfo* MarshalTo()
+        {
+            return (Interop.DebugReportCallbackCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
 	public class DescriptorBufferInfo
 	{
 
@@ -2924,7 +2963,7 @@ namespace SharpVk
 			//DynamicStates
 			if (this.DynamicStates != null)
 			{
-			    result.DynamicStates = (DynamicState*)Interop.HeapUtil.Allocate<DynamicState>(this.DynamicStates.Length).ToPointer();
+			    result.DynamicStates = (DynamicState*)Interop.HeapUtil.Allocate<int>(this.DynamicStates.Length).ToPointer();
 			    for (int index = 0; index < this.DynamicStates.Length; index++)
 			    {
 			        result.DynamicStates[index] = this.DynamicStates[index];
@@ -3512,7 +3551,7 @@ namespace SharpVk
 			//Results
 			if (this.Results != null)
 			{
-			    result.Results = (Result*)Interop.HeapUtil.Allocate<Result>(this.Results.Length).ToPointer();
+			    result.Results = (Result*)Interop.HeapUtil.Allocate<int>(this.Results.Length).ToPointer();
 			    for (int index = 0; index < this.Results.Length; index++)
 			    {
 			        result.Results[index] = this.Results[index];
@@ -4260,7 +4299,7 @@ namespace SharpVk
 			//WaitDestinationStageMask
 			if (this.WaitDestinationStageMask != null)
 			{
-			    result.WaitDestinationStageMask = (PipelineStageFlags*)Interop.HeapUtil.Allocate<PipelineStageFlags>(this.WaitDestinationStageMask.Length).ToPointer();
+			    result.WaitDestinationStageMask = (PipelineStageFlags*)Interop.HeapUtil.Allocate<int>(this.WaitDestinationStageMask.Length).ToPointer();
 			    for (int index = 0; index < this.WaitDestinationStageMask.Length; index++)
 			    {
 			        result.WaitDestinationStageMask[index] = this.WaitDestinationStageMask[index];
@@ -4392,7 +4431,6 @@ namespace SharpVk
 			{
 			    result.ColorAttachments = null;
 			}
-			result.ColorAttachmentCount = (uint)(this.ResolveAttachments?.Length ?? 0);
 			
 			//ResolveAttachments
 			if (this.ResolveAttachments != null)

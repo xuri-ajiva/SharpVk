@@ -88,6 +88,22 @@ namespace SharpVk.Interop
 		}
 	}
 
+	public struct DebugReportCallback
+	{
+		internal ulong handle;
+
+		public static DebugReportCallback Null
+		{
+			get
+			{
+				return new DebugReportCallback
+                {
+                    handle = 0L
+                };
+			}
+		}
+	}
+
 	public struct DescriptorPool
 	{
 		internal ulong handle;

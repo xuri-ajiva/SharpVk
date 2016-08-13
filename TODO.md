@@ -8,6 +8,8 @@
     - [x] Correctly handle Cmd prefix
 - [ ] Implement IDispose pattern for handles with Destroy command
 - [ ] Move Extension objects into a new namespace
+- [ ] Generate Pfn_* delegates and define a procedure for hooking Debug callbacks
+- [ ] Pull list of "known extensions" from spec instead of using hard-coded array in SpecParser
 - [ ] VK API Commands should be correctly generated, compiled & executed (against NVidia implementation on Windows):
   -  Device initialization
     - [x] vkCreateInstance
@@ -168,16 +170,16 @@
     - [ ] vkCmdWriteTimestamp
     - [ ] vkCmdCopyQueryPoolResults
     - [ ] vkCmdPushConstants
-    - [ ] vkCmdBeginRenderPass
+    - [x] vkCmdBeginRenderPass
     - [ ] vkCmdNextSubpass
-    - [ ] vkCmdEndRenderPass
+    - [x] vkCmdEndRenderPass
     - [ ] vkCmdExecuteCommands
   - VK_KHR_surface
     - [x] vkDestroySurfaceKHR
     - [x] vkGetPhysicalDeviceSurfaceSupportKHR
     - [x] vkGetPhysicalDeviceSurfaceCapabilitiesKHR
     - [x] vkGetPhysicalDeviceSurfaceFormatsKHR
-    - [ ] vkGetPhysicalDeviceSurfacePresentModesKHR
+    - [x] vkGetPhysicalDeviceSurfacePresentModesKHR
   - VK_KHR_swapchain
     - [x] vkCreateSwapchainKHR
     - [x] vkDestroySwapchainKHR
@@ -186,4 +188,4 @@
     - [x] vkQueuePresentKHR
   - VK_KHR_win32_surface
     - [x] vkCreateWin32SurfaceKHR
-    - [ ] vkGetPhysicalDeviceWin32PresentationSupportKHR
+    - [x] vkGetPhysicalDeviceWin32PresentationSupportKHR

@@ -9,7 +9,7 @@ namespace SharpVk.VkXml
 {
     public class SpecParser
     {
-        private static readonly string[] knownExtensions = new[] { "khr" };
+        private static readonly string[] knownExtensions = new[] { "khr", "ext" };
 
         private static readonly Parser<string> firstPart = from head in Parse.Letter
                                                            from tail in Parse.Lower.Many()
@@ -372,7 +372,7 @@ namespace SharpVk.VkXml
 
             var vkFeature = vkXml.Element("registry").Elements("feature").Single(x => x.Attribute("api").Value == "vulkan");
 
-            var extensionsToInclude = new[] { "VK_KHR_surface", "VK_KHR_win32_surface", "VK_KHR_swapchain" };
+            var extensionsToInclude = new[] { "VK_KHR_surface", "VK_KHR_win32_surface", "VK_KHR_swapchain", "VK_EXT_debug_report" };
 
             var vkExtensions = vkXml.Element("registry").Element("extensions").Elements("extension").Where(x => extensionsToInclude.Contains(x.Attribute("name")?.Value));
 

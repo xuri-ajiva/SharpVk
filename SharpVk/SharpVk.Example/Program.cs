@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -24,18 +25,25 @@ namespace SharpVk.Example
                         ApplicationName = "Example Application",
                         EngineName = "SharpVK"
                     },
-                    EnabledExtensionNames = new[] { "VK_KHR_surface", "VK_KHR_win32_surface" }
+                    EnabledExtensionNames = new[] { "VK_KHR_surface", "VK_KHR_win32_surface", "VK_EXT_debug_report" }
                 }, null);
 
+                instance.CreateDebugReportCallback(new DebugReportCallbackCreateInfo
+                {
+                    Callback = Callback,
+                    Flags = DebugReportFlags.DebugBit | DebugReportFlags.ErrorBit | DebugReportFlags.PerformanceWarningBit | DebugReportFlags.WarningBit | DebugReportFlags.InformationBit
+                }, null);
+                
                 var surfaceForm = new Form
                 {
                     ClientSize = new Size(1280, 720)
                 };
 
+                surfaceForm.Show();
+                surfaceForm.Focus();
+
                 var surfaceCreateInfo = new Win32SurfaceCreateInfo
                 {
-                    Flags = Win32SurfaceCreateFlags.None,
-                    Hinstance = IntPtr.Zero,
                     Hwnd = surfaceForm.Handle
                 };
 
@@ -58,6 +66,8 @@ namespace SharpVk.Example
 
                 var surfaceFormats = physicalDevice.GetSurfaceFormats(surface);
 
+                var presentModes = physicalDevice.GetSurfacePresentModes(surface);
+
                 var surfaceFormat = surfaceFormats.First();
 
                 var device = physicalDevice.CreateDevice(new DeviceCreateInfo
@@ -69,7 +79,8 @@ namespace SharpVk.Example
                             QueueFamilyIndex = graphicsQueues.First(),
                             QueuePriorities = new float[] { 1 }
                         }
-                    }
+                    },
+                    EnabledExtensionNames = new[] { "VK_KHR_swapchain" }
                 }, null);
 
                 var graphicsQueue = device.GetQueue(graphicsQueues.First(), 0);
@@ -78,7 +89,7 @@ namespace SharpVk.Example
                 {
                     Surface = surface,
                     Flags = SwapchainCreateFlags.None,
-                    PresentMode = PresentMode.Immediate,
+                    PresentMode = presentModes.First(),
                     MinImageCount = 2,
                     ImageExtent = surfaceCapabilities.CurrentExtent,
                     ImageUsage = ImageUsageFlags.ColorAttachment,
@@ -124,12 +135,16 @@ namespace SharpVk.Example
                             StencilStoreOp = AttachmentStoreOp.DontCare,
                             InitialLayout = ImageLayout.Undefined,
                             FinalLayout = ImageLayout.PresentSource
-                        }
+                        },
                     },
                     Subpasses = new[]
                     {
                         new SubpassDescription
                         {
+                            DepthStencilAttachment = new AttachmentReference
+                            {
+                                Attachment = Constants.AttachmentUnused
+                            },
                             PipelineBindPoint = PipelineBindPoint.Graphics,
                             ColorAttachments = new []
                             {
@@ -154,7 +169,6 @@ namespace SharpVk.Example
                         }
                     }
                 }, null);
-
                 int codeSize;
                 var vertShaderData = LoadShaderData(@".\Shaders\vert.spv", out codeSize);
 
@@ -216,14 +230,15 @@ namespace SharpVk.Example
                             RasterizerDiscardEnable = false,
                             PolygonMode = PolygonMode.Fill,
                             LineWidth = 1,
-                            CullMode = CullModeFlags.Back,
+                            CullMode = CullModeFlags.None,
                             FrontFace = FrontFace.Clockwise,
                             DepthBiasEnable = false
                         },
                         MultisampleState = new PipelineMultisampleStateCreateInfo
                         {
-                            SampleShadingEnable=false,
-                            RasterizationSamples = SampleCountFlags.SampleCount1
+                            SampleShadingEnable = false,
+                            RasterizationSamples = SampleCountFlags.SampleCount1,
+                            MinSampleShading = 1  
                         },
                         ColorBlendState = new PipelineColorBlendStateCreateInfo
                         {
@@ -235,7 +250,13 @@ namespace SharpVk.Example
                                                         | ColorComponentFlags.G
                                                         | ColorComponentFlags.B
                                                         | ColorComponentFlags.A,
-                                    BlendEnable = false
+                                    BlendEnable = false,
+                                    SourceColorBlendFactor = BlendFactor.One,
+                                    DestinationColorBlendFactor = BlendFactor.Zero,
+                                    ColorBlendOp = BlendOp.Add,
+                                    SourceAlphaBlendFactor = BlendFactor.One,
+                                    DestinationAlphaBlendFactor = BlendFactor.Zero,
+                                    AlphaBlendOp = BlendOp.Add
                                 }
                             },
                             LogicOpEnable = false,
@@ -318,58 +339,55 @@ namespace SharpVk.Example
 
                     commandBuffer.Draw(3, 1, 0, 0);
 
+                    commandBuffer.EndRenderPass();
+
                     commandBuffer.End();
                 }
 
                 var imageAvailableSemaphore = device.CreateSemaphore(new SemaphoreCreateInfo(), null);
                 var renderFinishedSemaphore = device.CreateSemaphore(new SemaphoreCreateInfo(), null);
+                
+                while(!surfaceForm.IsDisposed)
+                {
+                    Application.DoEvents();
 
-                //bool running = true;
+                    graphicsQueue.WaitIdle();
 
-                //surfaceForm.ShowDialog();
+                    uint nextImage = swapchain.AcquireNextImage(uint.MaxValue, imageAvailableSemaphore, null);
 
-                //while (running)
-                //{
-                //    Application.DoEvents();
-                //    graphicsQueue.WaitIdle();
+                    graphicsQueue.Submit(new SubmitInfo[]
+                    {
+                        new SubmitInfo
+                        {
+                            CommandBuffers = new CommandBuffer[] { commandBuffers[nextImage] },
+                            SignalSemaphores = new[] { renderFinishedSemaphore },
+                            WaitDestinationStageMask = new [] { PipelineStageFlags.ColorAttachmentOutput },
+                            WaitSemaphores = new [] { imageAvailableSemaphore }
+                        }
+                    }, null);
 
-                //    uint nextImage = swapchain.AcquireNextImage(uint.MaxValue, imageAvailableSemaphore, null);
+                    graphicsQueue.Present(new PresentInfo
+                    {
+                        ImageIndices = new uint[] { nextImage },
+                        Results = new Result[1],
+                        WaitSemaphores = new[] { renderFinishedSemaphore },
+                        Swapchains = new[] { swapchain }
+                    });
+                }
 
-                //    graphicsQueue.Submit(new[]
-                //    {
-                //            new SubmitInfo
-                //            {
-                //                CommandBuffers = new CommandBuffer[] { commandBuffers[nextImage] },
-                //                SignalSemaphores = new[] { renderFinishedSemaphore },
-                //                WaitDestinationStageMask = new [] { PipelineStageFlags.ColorAttachmentOutput },
-                //                WaitSemaphores = new [] { imageAvailableSemaphore }
-                //            }
-                //        }, null);
+                commandPool.FreeCommandBuffers(commandBuffers);
 
-                //    graphicsQueue.Present(new PresentInfo
-                //    {
-                //        ImageIndices = new uint[] { nextImage },
-                //        Results = null,
-                //        WaitSemaphores = new[] { renderFinishedSemaphore },
-                //        Swapchains = new[] { swapchain }
-                //    });
-                //}
-
-                //device.WaitIdle();
-
-                //commandPool.FreeCommandBuffers(commandBuffers);
-
-                //commandPool.Destroy(null);
+                commandPool.Destroy(null);
 
                 fragShader.Destroy(null);
 
                 vertShader.Destroy(null);
 
-                //renderPass.Destroy(null);
+                renderPass.Destroy(null);
 
-                //pipelineLayout.Destroy(null);
+                pipelineLayout.Destroy(null);
 
-                //pipeline.Destroy(null);
+                pipeline.Destroy(null);
 
                 foreach (var imageView in imageViews)
                 {
@@ -396,6 +414,18 @@ namespace SharpVk.Example
             {
                 Debug.WriteLine(ex.Message);
             }
+        }
+
+        private static readonly object debugLockObject = new object();
+
+        private static Bool32 Callback(DebugReportFlags flags, DebugReportObjectType objectType, ulong @object, UIntPtr location, int messageCode, string layerPrefix, string message, IntPtr userData)
+        {
+            lock (debugLockObject)
+            {
+                Debug.WriteLine(message);
+            }
+
+            return true;
         }
 
         private static uint[] LoadShaderData(string filePath, out int codeSize)

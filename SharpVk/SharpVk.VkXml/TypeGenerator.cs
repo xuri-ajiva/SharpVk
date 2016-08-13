@@ -697,11 +697,15 @@ namespace SharpVk.VkXml
                                         }
                                         else if (memberType.Data.Category == TypeCategory.bitmask || memberType.Data.Category == TypeCategory.@enum || memberType.Data.Category == TypeCategory.@struct)
                                         {
+                                            string allocateType = memberType.Data.Category == TypeCategory.@struct
+                                                                    ? memberType.Name
+                                                                    : "int";
+
                                             newClass.MarshalToStatements.Add("");
                                             newClass.MarshalToStatements.Add($"//{memberName}");
                                             newClass.MarshalToStatements.Add($"if (this.{memberName} != null)");
                                             newClass.MarshalToStatements.Add("{");
-                                            newClass.MarshalToStatements.Add($"    result.{memberName} = ({memberType.Name}*)Interop.HeapUtil.Allocate<{memberType.Name}>(this.{memberName}.Length).ToPointer();");
+                                            newClass.MarshalToStatements.Add($"    result.{memberName} = ({memberType.Name}*)Interop.HeapUtil.Allocate<{allocateType}>(this.{memberName}.Length).ToPointer();");
                                             newClass.MarshalToStatements.Add($"    for (int index = 0; index < this.{memberName}.Length; index++)");
                                             newClass.MarshalToStatements.Add("    {");
                                             newClass.MarshalToStatements.Add($"        result.{memberName}[index] = this.{memberName}[index];");

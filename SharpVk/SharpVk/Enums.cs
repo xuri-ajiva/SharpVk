@@ -146,6 +146,17 @@ namespace SharpVk
 	}
 
 	[Flags]
+	public enum DebugReportFlags
+	{
+		None = 0,
+		Information = 1 << 0,
+		Warning = 1 << 1,
+		PerformanceWarning = 1 << 2,
+		Error = 1 << 3,
+		Debug = 1 << 4,
+	}
+
+	[Flags]
 	public enum DependencyFlags
 	{
 		None = 0,
@@ -644,6 +655,45 @@ namespace SharpVk
 		A = 6,
 	}
 
+	public enum DebugReportError
+	{
+		None = 0,
+		CallbackRef = 1,
+	}
+
+	public enum DebugReportObjectType
+	{
+		Unknown = 0,
+		Instance = 1,
+		PhysicalDevice = 2,
+		Device = 3,
+		Queue = 4,
+		Semaphore = 5,
+		CommandBuffer = 6,
+		Fence = 7,
+		DeviceMemory = 8,
+		Buffer = 9,
+		Image = 10,
+		Event = 11,
+		QueryPool = 12,
+		BufferView = 13,
+		ImageView = 14,
+		ShaderModule = 15,
+		PipelineCache = 16,
+		PipelineLayout = 17,
+		RenderPass = 18,
+		Pipeline = 19,
+		DescriptorSetLayout = 20,
+		Sampler = 21,
+		DescriptorPool = 22,
+		DescriptorSet = 23,
+		Framebuffer = 24,
+		CommandPool = 25,
+		SurfaceKhr = 26,
+		SwapchainKhr = 27,
+		DebugReport = 28,
+	}
+
 	public enum DescriptorType
 	{
 		Sampler = 0,
@@ -1018,6 +1068,7 @@ namespace SharpVk
 		ErrorNativeWindowInUse = -1000000001,
 		Suboptimal = 1000001003,
 		ErrorOutOfDate = -1000001004,
+		ErrorValidationFailed = -1000011001,
 	}
 
 	public enum SamplerAddressMode
@@ -1106,6 +1157,7 @@ namespace SharpVk
 		SwapchainCreateInfo = 1000001000,
 		PresentInfo = 1000001001,
 		Win32SurfaceCreateInfo = 1000009000,
+		DebugReportCallbackCreateInfo = 1000011000,
 	}
 
 	public enum SubpassContents
