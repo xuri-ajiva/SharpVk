@@ -468,14 +468,15 @@ namespace SharpVk.VkXml
                         throw new Exception("Unexpected requirement type: " + requirement.Name.LocalName);
                 }
             }
-
-            //HACK Artificially limit the set of required commands to simplify
-            // the API while working on marshalling and the public handles
-            requiredCommand = new List<string>(requiredCommand.Distinct());
+            
+            var result = new ParsedSpec();
 
             foreach (var extension in extensions)
             {
+                string extensionName = extension.Attribute("name").Value;
                 int extensionNumber = int.Parse(extension.Attribute("number").Value);
+
+                var extensionNameParts = GetEnumFieldNameParts(null, extensionName).ToArray();
 
                 foreach (var requirement in extension.Elements("require").Elements())
                 {
@@ -485,13 +486,14 @@ namespace SharpVk.VkXml
                             requiredCommand.Add(requirement.Attribute("name").Value);
                             break;
                         case "enum":
+                            string vkName = requirement.Attribute("name").Value;
+
                             if (requirement.Attribute("extends") != null)
                             {
                                 var extendedEnum = enumXml[requirement.Attribute("extends").Value];
 
                                 int offset = int.Parse(requirement.Attribute("offset").Value);
 
-                                string vkName = requirement.Attribute("name").Value;
                                 int value = 1000000000 + 1000 * (extensionNumber - 1) + offset;
 
                                 if (requirement.Attribute("dir")?.Value == "-")
@@ -508,17 +510,27 @@ namespace SharpVk.VkXml
                                     NameParts = nameParts.ToArray()
                                 });
                             }
+                            else
+                            {
+                                string value = requirement.Attribute("value").Value;
+
+                                var nameParts = GetEnumFieldNameParts(extensionNameParts, vkName);
+
+                                result.Constants.Add(vkName, new ParsedEnumField
+                                {
+                                    VkName = vkName,
+                                    NameParts = nameParts.ToArray(),
+                                    ConstantSubGroup = extensionNameParts,
+                                    Value = value
+                                });
+                            }
                             break;
                         case "type":
                             requiredTypes.Add(requirement.Attribute("name").Value);
                             break;
-                            //default:
-                            //    throw new Exception("Unexpected requirement type: " + requirement.Name.LocalName);
                     }
                 }
             }
-
-            var result = new ParsedSpec();
 
             foreach (var commandName in requiredCommand.Distinct())
             {
@@ -786,6 +798,7 @@ namespace SharpVk.VkXml
         {
             public string Value;
             public bool IsBitmask;
+            public string[] ConstantSubGroup;
         }
 
         public class ParsedLen

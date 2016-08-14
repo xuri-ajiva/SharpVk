@@ -30,6 +30,14 @@ namespace SharpVk
 
 		private readonly Device parent;
 
+		internal AllocationCallbacks Allocator
+		{
+			get
+			{
+				return this.parent.Allocator;
+			}
+		}
+
 
 		internal Buffer(Interop.Buffer handle, Device parent)
 		{
@@ -72,13 +80,13 @@ namespace SharpVk
 			}
 		}
 
-		public void Destroy(AllocationCallbacks allocator)
+		public void Destroy()
 		{
 			unsafe
 			{
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
-				Interop.Commands.vkDestroyBuffer(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
+				Interop.Commands.vkDestroyBuffer(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -98,6 +106,14 @@ namespace SharpVk
 
 		private readonly Device parent;
 
+		internal AllocationCallbacks Allocator
+		{
+			get
+			{
+				return this.parent.Allocator;
+			}
+		}
+
 
 		internal BufferView(Interop.BufferView handle, Device parent)
 		{
@@ -105,13 +121,13 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public void Destroy(AllocationCallbacks allocator)
+		public void Destroy()
 		{
 			unsafe
 			{
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
-				Interop.Commands.vkDestroyBufferView(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
+				Interop.Commands.vkDestroyBufferView(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -130,6 +146,14 @@ namespace SharpVk
 		internal readonly Interop.CommandBuffer handle;
 
 		private readonly CommandPool parent;
+
+		internal AllocationCallbacks Allocator
+		{
+			get
+			{
+				return this.parent.Allocator;
+			}
+		}
 
 
 		internal CommandBuffer(Interop.CommandBuffer handle, CommandPool parent)
@@ -925,6 +949,14 @@ namespace SharpVk
 
 		private readonly Device parent;
 
+		internal AllocationCallbacks Allocator
+		{
+			get
+			{
+				return this.parent.Allocator;
+			}
+		}
+
 
 		internal CommandPool(Interop.CommandPool handle, Device parent)
 		{
@@ -932,13 +964,13 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public void Destroy(AllocationCallbacks allocator)
+		public void Destroy()
 		{
 			unsafe
 			{
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
-				Interop.Commands.vkDestroyCommandPool(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
+				Interop.Commands.vkDestroyCommandPool(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -1001,6 +1033,14 @@ namespace SharpVk
 
 		private readonly Instance parent;
 
+		internal AllocationCallbacks Allocator
+		{
+			get
+			{
+				return this.parent.Allocator;
+			}
+		}
+
 
 		internal DebugReportCallback(Interop.DebugReportCallback handle, Instance parent)
 		{
@@ -1008,13 +1048,13 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public void Destroy(AllocationCallbacks allocator)
+		public void Destroy()
 		{
 			unsafe
 			{
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
-				Interop.Commands.vkDestroyDebugReportCallbackEXT(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
+				Interop.Commands.vkDestroyDebugReportCallbackEXT(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -1034,6 +1074,14 @@ namespace SharpVk
 
 		private readonly Device parent;
 
+		internal AllocationCallbacks Allocator
+		{
+			get
+			{
+				return this.parent.Allocator;
+			}
+		}
+
 
 		internal DescriptorPool(Interop.DescriptorPool handle, Device parent)
 		{
@@ -1041,13 +1089,13 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public void Destroy(AllocationCallbacks allocator)
+		public void Destroy()
 		{
 			unsafe
 			{
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
-				Interop.Commands.vkDestroyDescriptorPool(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
+				Interop.Commands.vkDestroyDescriptorPool(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -1116,6 +1164,14 @@ namespace SharpVk
 
 		private readonly DescriptorPool parent;
 
+		internal AllocationCallbacks Allocator
+		{
+			get
+			{
+				return this.parent.Allocator;
+			}
+		}
+
 
 		internal DescriptorSet(Interop.DescriptorSet handle, DescriptorPool parent)
 		{
@@ -1135,6 +1191,14 @@ namespace SharpVk
 
 		private readonly Device parent;
 
+		internal AllocationCallbacks Allocator
+		{
+			get
+			{
+				return this.parent.Allocator;
+			}
+		}
+
 
 		internal DescriptorSetLayout(Interop.DescriptorSetLayout handle, Device parent)
 		{
@@ -1142,13 +1206,13 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public void Destroy(AllocationCallbacks allocator)
+		public void Destroy()
 		{
 			unsafe
 			{
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
-				Interop.Commands.vkDestroyDescriptorSetLayout(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
+				Interop.Commands.vkDestroyDescriptorSetLayout(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -1167,6 +1231,14 @@ namespace SharpVk
 		internal readonly Interop.Device handle;
 
 		private readonly PhysicalDevice parent;
+
+		internal AllocationCallbacks Allocator
+		{
+			get
+			{
+				return this.parent.Allocator;
+			}
+		}
 
 
 		internal Device(Interop.Device handle, PhysicalDevice parent)
@@ -1192,13 +1264,13 @@ namespace SharpVk
 			}
 		}
 
-		public void Destroy(AllocationCallbacks allocator)
+		public void Destroy()
 		{
 			unsafe
 			{
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
-				Interop.Commands.vkDestroyDevice(this.handle, allocator == null ? null : &marshalledAllocator);
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
+				Interop.Commands.vkDestroyDevice(this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -1242,7 +1314,7 @@ namespace SharpVk
 			}
 		}
 
-		public DeviceMemory AllocateMemory(MemoryAllocateInfo allocateInfo, AllocationCallbacks allocator)
+		public DeviceMemory AllocateMemory(MemoryAllocateInfo allocateInfo)
 		{
 			unsafe
 			{
@@ -1253,9 +1325,9 @@ namespace SharpVk
 				Interop.MemoryAllocateInfo marshalledAllocateInfo;
 				if(allocateInfo != null) marshalledAllocateInfo = allocateInfo.Pack();
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
 				Interop.DeviceMemory marshalledMemory;
-				commandResult = Interop.Commands.vkAllocateMemory(this.handle, allocateInfo == null ? null : &marshalledAllocateInfo, allocator == null ? null : &marshalledAllocator, &marshalledMemory);
+				commandResult = Interop.Commands.vkAllocateMemory(this.handle, allocateInfo == null ? null : &marshalledAllocateInfo, this.parent.Allocator == null ? null : &marshalledAllocator, &marshalledMemory);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -1270,14 +1342,14 @@ namespace SharpVk
 			}
 		}
 
-		public void FreeMemory(DeviceMemory memory, AllocationCallbacks allocator)
+		public void FreeMemory(DeviceMemory memory)
 		{
 			unsafe
 			{
 				Interop.DeviceMemory marshalledMemory = memory?.Pack() ?? Interop.DeviceMemory.Null;
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
-				Interop.Commands.vkFreeMemory(this.handle, marshalledMemory, allocator == null ? null : &marshalledAllocator);
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
+				Interop.Commands.vkFreeMemory(this.handle, marshalledMemory, this.parent.Allocator == null ? null : &marshalledAllocator);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -1347,7 +1419,7 @@ namespace SharpVk
 			}
 		}
 
-		public Fence CreateFence(FenceCreateInfo createInfo, AllocationCallbacks allocator)
+		public Fence CreateFence(FenceCreateInfo createInfo)
 		{
 			unsafe
 			{
@@ -1358,9 +1430,9 @@ namespace SharpVk
 				Interop.FenceCreateInfo marshalledCreateInfo;
 				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
 				Interop.Fence marshalledFence;
-				commandResult = Interop.Commands.vkCreateFence(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledFence);
+				commandResult = Interop.Commands.vkCreateFence(this.handle, createInfo == null ? null : &marshalledCreateInfo, this.parent.Allocator == null ? null : &marshalledAllocator, &marshalledFence);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -1437,7 +1509,7 @@ namespace SharpVk
 			}
 		}
 
-		public Semaphore CreateSemaphore(SemaphoreCreateInfo createInfo, AllocationCallbacks allocator)
+		public Semaphore CreateSemaphore(SemaphoreCreateInfo createInfo)
 		{
 			unsafe
 			{
@@ -1448,9 +1520,9 @@ namespace SharpVk
 				Interop.SemaphoreCreateInfo marshalledCreateInfo;
 				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
 				Interop.Semaphore marshalledSemaphore;
-				commandResult = Interop.Commands.vkCreateSemaphore(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledSemaphore);
+				commandResult = Interop.Commands.vkCreateSemaphore(this.handle, createInfo == null ? null : &marshalledCreateInfo, this.parent.Allocator == null ? null : &marshalledAllocator, &marshalledSemaphore);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -1465,7 +1537,7 @@ namespace SharpVk
 			}
 		}
 
-		public Event CreateEvent(EventCreateInfo createInfo, AllocationCallbacks allocator)
+		public Event CreateEvent(EventCreateInfo createInfo)
 		{
 			unsafe
 			{
@@ -1476,9 +1548,9 @@ namespace SharpVk
 				Interop.EventCreateInfo marshalledCreateInfo;
 				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
 				Interop.Event marshalledEvent;
-				commandResult = Interop.Commands.vkCreateEvent(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledEvent);
+				commandResult = Interop.Commands.vkCreateEvent(this.handle, createInfo == null ? null : &marshalledCreateInfo, this.parent.Allocator == null ? null : &marshalledAllocator, &marshalledEvent);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -1493,7 +1565,7 @@ namespace SharpVk
 			}
 		}
 
-		public QueryPool CreateQueryPool(QueryPoolCreateInfo createInfo, AllocationCallbacks allocator)
+		public QueryPool CreateQueryPool(QueryPoolCreateInfo createInfo)
 		{
 			unsafe
 			{
@@ -1504,9 +1576,9 @@ namespace SharpVk
 				Interop.QueryPoolCreateInfo marshalledCreateInfo;
 				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
 				Interop.QueryPool marshalledQueryPool;
-				commandResult = Interop.Commands.vkCreateQueryPool(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledQueryPool);
+				commandResult = Interop.Commands.vkCreateQueryPool(this.handle, createInfo == null ? null : &marshalledCreateInfo, this.parent.Allocator == null ? null : &marshalledAllocator, &marshalledQueryPool);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -1521,7 +1593,7 @@ namespace SharpVk
 			}
 		}
 
-		public Buffer CreateBuffer(BufferCreateInfo createInfo, AllocationCallbacks allocator)
+		public Buffer CreateBuffer(BufferCreateInfo createInfo)
 		{
 			unsafe
 			{
@@ -1532,9 +1604,9 @@ namespace SharpVk
 				Interop.BufferCreateInfo marshalledCreateInfo;
 				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
 				Interop.Buffer marshalledBuffer;
-				commandResult = Interop.Commands.vkCreateBuffer(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledBuffer);
+				commandResult = Interop.Commands.vkCreateBuffer(this.handle, createInfo == null ? null : &marshalledCreateInfo, this.parent.Allocator == null ? null : &marshalledAllocator, &marshalledBuffer);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -1549,7 +1621,7 @@ namespace SharpVk
 			}
 		}
 
-		public BufferView CreateBufferView(BufferViewCreateInfo createInfo, AllocationCallbacks allocator)
+		public BufferView CreateBufferView(BufferViewCreateInfo createInfo)
 		{
 			unsafe
 			{
@@ -1560,9 +1632,9 @@ namespace SharpVk
 				Interop.BufferViewCreateInfo marshalledCreateInfo;
 				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
 				Interop.BufferView marshalledView;
-				commandResult = Interop.Commands.vkCreateBufferView(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledView);
+				commandResult = Interop.Commands.vkCreateBufferView(this.handle, createInfo == null ? null : &marshalledCreateInfo, this.parent.Allocator == null ? null : &marshalledAllocator, &marshalledView);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -1577,7 +1649,7 @@ namespace SharpVk
 			}
 		}
 
-		public Image CreateImage(ImageCreateInfo createInfo, AllocationCallbacks allocator)
+		public Image CreateImage(ImageCreateInfo createInfo)
 		{
 			unsafe
 			{
@@ -1588,9 +1660,9 @@ namespace SharpVk
 				Interop.ImageCreateInfo marshalledCreateInfo;
 				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
 				Interop.Image marshalledImage;
-				commandResult = Interop.Commands.vkCreateImage(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledImage);
+				commandResult = Interop.Commands.vkCreateImage(this.handle, createInfo == null ? null : &marshalledCreateInfo, this.parent.Allocator == null ? null : &marshalledAllocator, &marshalledImage);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -1605,7 +1677,7 @@ namespace SharpVk
 			}
 		}
 
-		public ImageView CreateImageView(ImageViewCreateInfo createInfo, AllocationCallbacks allocator)
+		public ImageView CreateImageView(ImageViewCreateInfo createInfo)
 		{
 			unsafe
 			{
@@ -1616,9 +1688,9 @@ namespace SharpVk
 				Interop.ImageViewCreateInfo marshalledCreateInfo;
 				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
 				Interop.ImageView marshalledView;
-				commandResult = Interop.Commands.vkCreateImageView(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledView);
+				commandResult = Interop.Commands.vkCreateImageView(this.handle, createInfo == null ? null : &marshalledCreateInfo, this.parent.Allocator == null ? null : &marshalledAllocator, &marshalledView);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -1633,7 +1705,7 @@ namespace SharpVk
 			}
 		}
 
-		public ShaderModule CreateShaderModule(ShaderModuleCreateInfo createInfo, AllocationCallbacks allocator)
+		public ShaderModule CreateShaderModule(ShaderModuleCreateInfo createInfo)
 		{
 			unsafe
 			{
@@ -1644,9 +1716,9 @@ namespace SharpVk
 				Interop.ShaderModuleCreateInfo marshalledCreateInfo;
 				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
 				Interop.ShaderModule marshalledShaderModule;
-				commandResult = Interop.Commands.vkCreateShaderModule(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledShaderModule);
+				commandResult = Interop.Commands.vkCreateShaderModule(this.handle, createInfo == null ? null : &marshalledCreateInfo, this.parent.Allocator == null ? null : &marshalledAllocator, &marshalledShaderModule);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -1661,7 +1733,7 @@ namespace SharpVk
 			}
 		}
 
-		public PipelineCache CreatePipelineCache(PipelineCacheCreateInfo createInfo, AllocationCallbacks allocator)
+		public PipelineCache CreatePipelineCache(PipelineCacheCreateInfo createInfo)
 		{
 			unsafe
 			{
@@ -1672,9 +1744,9 @@ namespace SharpVk
 				Interop.PipelineCacheCreateInfo marshalledCreateInfo;
 				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
 				Interop.PipelineCache marshalledPipelineCache;
-				commandResult = Interop.Commands.vkCreatePipelineCache(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledPipelineCache);
+				commandResult = Interop.Commands.vkCreatePipelineCache(this.handle, createInfo == null ? null : &marshalledCreateInfo, this.parent.Allocator == null ? null : &marshalledAllocator, &marshalledPipelineCache);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -1689,7 +1761,7 @@ namespace SharpVk
 			}
 		}
 
-		public Pipeline[] CreateGraphicsPipelines(PipelineCache pipelineCache, GraphicsPipelineCreateInfo[] createInfos, AllocationCallbacks allocator)
+		public Pipeline[] CreateGraphicsPipelines(PipelineCache pipelineCache, GraphicsPipelineCreateInfo[] createInfos)
 		{
 			unsafe
 			{
@@ -1712,9 +1784,9 @@ namespace SharpVk
 				    marshalledCreateInfos = null;
 				}
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
 				Interop.Pipeline* marshalledPipelines = (Interop.Pipeline*)Interop.HeapUtil.Allocate<Interop.Pipeline>(createInfos.Length);
-				commandResult = Interop.Commands.vkCreateGraphicsPipelines(this.handle, marshalledPipelineCache, (uint)createInfos.Length, marshalledCreateInfos, allocator == null ? null : &marshalledAllocator, marshalledPipelines);
+				commandResult = Interop.Commands.vkCreateGraphicsPipelines(this.handle, marshalledPipelineCache, (uint)createInfos.Length, marshalledCreateInfos, this.parent.Allocator == null ? null : &marshalledAllocator, marshalledPipelines);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -1733,7 +1805,7 @@ namespace SharpVk
 			}
 		}
 
-		public Pipeline[] CreateComputePipelines(PipelineCache pipelineCache, ComputePipelineCreateInfo[] createInfos, AllocationCallbacks allocator)
+		public Pipeline[] CreateComputePipelines(PipelineCache pipelineCache, ComputePipelineCreateInfo[] createInfos)
 		{
 			unsafe
 			{
@@ -1756,9 +1828,9 @@ namespace SharpVk
 				    marshalledCreateInfos = null;
 				}
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
 				Interop.Pipeline* marshalledPipelines = (Interop.Pipeline*)Interop.HeapUtil.Allocate<Interop.Pipeline>(createInfos.Length);
-				commandResult = Interop.Commands.vkCreateComputePipelines(this.handle, marshalledPipelineCache, (uint)createInfos.Length, marshalledCreateInfos, allocator == null ? null : &marshalledAllocator, marshalledPipelines);
+				commandResult = Interop.Commands.vkCreateComputePipelines(this.handle, marshalledPipelineCache, (uint)createInfos.Length, marshalledCreateInfos, this.parent.Allocator == null ? null : &marshalledAllocator, marshalledPipelines);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -1777,7 +1849,7 @@ namespace SharpVk
 			}
 		}
 
-		public PipelineLayout CreatePipelineLayout(PipelineLayoutCreateInfo createInfo, AllocationCallbacks allocator)
+		public PipelineLayout CreatePipelineLayout(PipelineLayoutCreateInfo createInfo)
 		{
 			unsafe
 			{
@@ -1788,9 +1860,9 @@ namespace SharpVk
 				Interop.PipelineLayoutCreateInfo marshalledCreateInfo;
 				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
 				Interop.PipelineLayout marshalledPipelineLayout;
-				commandResult = Interop.Commands.vkCreatePipelineLayout(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledPipelineLayout);
+				commandResult = Interop.Commands.vkCreatePipelineLayout(this.handle, createInfo == null ? null : &marshalledCreateInfo, this.parent.Allocator == null ? null : &marshalledAllocator, &marshalledPipelineLayout);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -1805,7 +1877,7 @@ namespace SharpVk
 			}
 		}
 
-		public Sampler CreateSampler(SamplerCreateInfo createInfo, AllocationCallbacks allocator)
+		public Sampler CreateSampler(SamplerCreateInfo createInfo)
 		{
 			unsafe
 			{
@@ -1816,9 +1888,9 @@ namespace SharpVk
 				Interop.SamplerCreateInfo marshalledCreateInfo;
 				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
 				Interop.Sampler marshalledSampler;
-				commandResult = Interop.Commands.vkCreateSampler(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledSampler);
+				commandResult = Interop.Commands.vkCreateSampler(this.handle, createInfo == null ? null : &marshalledCreateInfo, this.parent.Allocator == null ? null : &marshalledAllocator, &marshalledSampler);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -1833,7 +1905,7 @@ namespace SharpVk
 			}
 		}
 
-		public DescriptorSetLayout CreateDescriptorSetLayout(DescriptorSetLayoutCreateInfo createInfo, AllocationCallbacks allocator)
+		public DescriptorSetLayout CreateDescriptorSetLayout(DescriptorSetLayoutCreateInfo createInfo)
 		{
 			unsafe
 			{
@@ -1844,9 +1916,9 @@ namespace SharpVk
 				Interop.DescriptorSetLayoutCreateInfo marshalledCreateInfo;
 				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
 				Interop.DescriptorSetLayout marshalledSetLayout;
-				commandResult = Interop.Commands.vkCreateDescriptorSetLayout(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledSetLayout);
+				commandResult = Interop.Commands.vkCreateDescriptorSetLayout(this.handle, createInfo == null ? null : &marshalledCreateInfo, this.parent.Allocator == null ? null : &marshalledAllocator, &marshalledSetLayout);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -1861,7 +1933,7 @@ namespace SharpVk
 			}
 		}
 
-		public DescriptorPool CreateDescriptorPool(DescriptorPoolCreateInfo createInfo, AllocationCallbacks allocator)
+		public DescriptorPool CreateDescriptorPool(DescriptorPoolCreateInfo createInfo)
 		{
 			unsafe
 			{
@@ -1872,9 +1944,9 @@ namespace SharpVk
 				Interop.DescriptorPoolCreateInfo marshalledCreateInfo;
 				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
 				Interop.DescriptorPool marshalledDescriptorPool;
-				commandResult = Interop.Commands.vkCreateDescriptorPool(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledDescriptorPool);
+				commandResult = Interop.Commands.vkCreateDescriptorPool(this.handle, createInfo == null ? null : &marshalledCreateInfo, this.parent.Allocator == null ? null : &marshalledAllocator, &marshalledDescriptorPool);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -1957,7 +2029,7 @@ namespace SharpVk
 			}
 		}
 
-		public Framebuffer CreateFramebuffer(FramebufferCreateInfo createInfo, AllocationCallbacks allocator)
+		public Framebuffer CreateFramebuffer(FramebufferCreateInfo createInfo)
 		{
 			unsafe
 			{
@@ -1968,9 +2040,9 @@ namespace SharpVk
 				Interop.FramebufferCreateInfo marshalledCreateInfo;
 				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
 				Interop.Framebuffer marshalledFramebuffer;
-				commandResult = Interop.Commands.vkCreateFramebuffer(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledFramebuffer);
+				commandResult = Interop.Commands.vkCreateFramebuffer(this.handle, createInfo == null ? null : &marshalledCreateInfo, this.parent.Allocator == null ? null : &marshalledAllocator, &marshalledFramebuffer);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -1985,7 +2057,7 @@ namespace SharpVk
 			}
 		}
 
-		public RenderPass CreateRenderPass(RenderPassCreateInfo createInfo, AllocationCallbacks allocator)
+		public RenderPass CreateRenderPass(RenderPassCreateInfo createInfo)
 		{
 			unsafe
 			{
@@ -1996,9 +2068,9 @@ namespace SharpVk
 				Interop.RenderPassCreateInfo marshalledCreateInfo;
 				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
 				Interop.RenderPass marshalledRenderPass;
-				commandResult = Interop.Commands.vkCreateRenderPass(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledRenderPass);
+				commandResult = Interop.Commands.vkCreateRenderPass(this.handle, createInfo == null ? null : &marshalledCreateInfo, this.parent.Allocator == null ? null : &marshalledAllocator, &marshalledRenderPass);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -2013,7 +2085,7 @@ namespace SharpVk
 			}
 		}
 
-		public CommandPool CreateCommandPool(CommandPoolCreateInfo createInfo, AllocationCallbacks allocator)
+		public CommandPool CreateCommandPool(CommandPoolCreateInfo createInfo)
 		{
 			unsafe
 			{
@@ -2024,9 +2096,9 @@ namespace SharpVk
 				Interop.CommandPoolCreateInfo marshalledCreateInfo;
 				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
 				Interop.CommandPool marshalledCommandPool;
-				commandResult = Interop.Commands.vkCreateCommandPool(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledCommandPool);
+				commandResult = Interop.Commands.vkCreateCommandPool(this.handle, createInfo == null ? null : &marshalledCreateInfo, this.parent.Allocator == null ? null : &marshalledAllocator, &marshalledCommandPool);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -2071,7 +2143,7 @@ namespace SharpVk
 			}
 		}
 
-		public Swapchain CreateSwapchain(SwapchainCreateInfo createInfo, AllocationCallbacks allocator)
+		public Swapchain CreateSwapchain(SwapchainCreateInfo createInfo)
 		{
 			unsafe
 			{
@@ -2082,9 +2154,9 @@ namespace SharpVk
 				Interop.SwapchainCreateInfo marshalledCreateInfo;
 				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
 				Interop.Swapchain marshalledSwapchain;
-				commandResult = Interop.Commands.vkCreateSwapchainKHR(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledSwapchain);
+				commandResult = Interop.Commands.vkCreateSwapchainKHR(this.handle, createInfo == null ? null : &marshalledCreateInfo, this.parent.Allocator == null ? null : &marshalledAllocator, &marshalledSwapchain);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -2110,6 +2182,14 @@ namespace SharpVk
 		internal readonly Interop.DeviceMemory handle;
 
 		private readonly Device parent;
+
+		internal AllocationCallbacks Allocator
+		{
+			get
+			{
+				return this.parent.Allocator;
+			}
+		}
 
 
 		internal DeviceMemory(Interop.DeviceMemory handle, Device parent)
@@ -2178,6 +2258,14 @@ namespace SharpVk
 
 		private readonly Device parent;
 
+		internal AllocationCallbacks Allocator
+		{
+			get
+			{
+				return this.parent.Allocator;
+			}
+		}
+
 
 		internal Event(Interop.Event handle, Device parent)
 		{
@@ -2185,13 +2273,13 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public void Destroy(AllocationCallbacks allocator)
+		public void Destroy()
 		{
 			unsafe
 			{
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
-				Interop.Commands.vkDestroyEvent(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
+				Interop.Commands.vkDestroyEvent(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -2265,6 +2353,14 @@ namespace SharpVk
 
 		private readonly Device parent;
 
+		internal AllocationCallbacks Allocator
+		{
+			get
+			{
+				return this.parent.Allocator;
+			}
+		}
+
 
 		internal Fence(Interop.Fence handle, Device parent)
 		{
@@ -2272,13 +2368,13 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public void Destroy(AllocationCallbacks allocator)
+		public void Destroy()
 		{
 			unsafe
 			{
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
-				Interop.Commands.vkDestroyFence(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
+				Interop.Commands.vkDestroyFence(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -2316,6 +2412,14 @@ namespace SharpVk
 
 		private readonly Device parent;
 
+		internal AllocationCallbacks Allocator
+		{
+			get
+			{
+				return this.parent.Allocator;
+			}
+		}
+
 
 		internal Framebuffer(Interop.Framebuffer handle, Device parent)
 		{
@@ -2323,13 +2427,13 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public void Destroy(AllocationCallbacks allocator)
+		public void Destroy()
 		{
 			unsafe
 			{
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
-				Interop.Commands.vkDestroyFramebuffer(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
+				Interop.Commands.vkDestroyFramebuffer(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -2348,6 +2452,14 @@ namespace SharpVk
 		internal readonly Interop.Image handle;
 
 		private readonly Device parent;
+
+		internal AllocationCallbacks Allocator
+		{
+			get
+			{
+				return this.parent.Allocator;
+			}
+		}
 
 
 		internal Image(Interop.Image handle, Device parent)
@@ -2417,13 +2529,13 @@ namespace SharpVk
 			}
 		}
 
-		public void Destroy(AllocationCallbacks allocator)
+		public void Destroy()
 		{
 			unsafe
 			{
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
-				Interop.Commands.vkDestroyImage(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
+				Interop.Commands.vkDestroyImage(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -2459,6 +2571,14 @@ namespace SharpVk
 
 		private readonly Device parent;
 
+		internal AllocationCallbacks Allocator
+		{
+			get
+			{
+				return this.parent.Allocator;
+			}
+		}
+
 
 		internal ImageView(Interop.ImageView handle, Device parent)
 		{
@@ -2466,13 +2586,13 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public void Destroy(AllocationCallbacks allocator)
+		public void Destroy()
 		{
 			unsafe
 			{
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
-				Interop.Commands.vkDestroyImageView(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
+				Interop.Commands.vkDestroyImageView(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -2490,9 +2610,21 @@ namespace SharpVk
 	{
 		internal readonly Interop.Instance handle;
 
-		internal Instance(Interop.Instance handle)
+		private AllocationCallbacks allocator;
+
+		internal AllocationCallbacks Allocator
+		{
+			get
+			{
+				return this.allocator;
+			}
+		}
+
+		internal Instance(Interop.Instance handle, AllocationCallbacks allocator)
 		{
 			this.handle = handle;
+
+			this.allocator = allocator;
 		}
 
 		public static Instance Create(InstanceCreateInfo createInfo, AllocationCallbacks allocator)
@@ -2514,7 +2646,7 @@ namespace SharpVk
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				result = new Instance(marshalledInstance);
+				result = new Instance(marshalledInstance, allocator);
 
 				Interop.HeapUtil.FreeLog();
 
@@ -2523,13 +2655,13 @@ namespace SharpVk
 			}
 		}
 
-		public void Destroy(AllocationCallbacks allocator)
+		public void Destroy()
 		{
 			unsafe
 			{
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
-				Interop.Commands.vkDestroyInstance(this.handle, allocator == null ? null : &marshalledAllocator);
+				if(this.allocator != null) marshalledAllocator = this.allocator.Pack();
+				Interop.Commands.vkDestroyInstance(this.handle, this.allocator == null ? null : &marshalledAllocator);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -2663,7 +2795,7 @@ namespace SharpVk
 			}
 		}
 
-		public Surface CreateWin32Surface(Win32SurfaceCreateInfo createInfo, AllocationCallbacks allocator)
+		public Surface CreateWin32Surface(Win32SurfaceCreateInfo createInfo)
 		{
 			unsafe
 			{
@@ -2674,9 +2806,9 @@ namespace SharpVk
 				Interop.Win32SurfaceCreateInfo marshalledCreateInfo;
 				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
+				if(this.allocator != null) marshalledAllocator = this.allocator.Pack();
 				Interop.Surface marshalledSurface;
-				commandResult = Interop.Commands.vkCreateWin32SurfaceKHR(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledSurface);
+				commandResult = Interop.Commands.vkCreateWin32SurfaceKHR(this.handle, createInfo == null ? null : &marshalledCreateInfo, this.allocator == null ? null : &marshalledAllocator, &marshalledSurface);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -2691,7 +2823,7 @@ namespace SharpVk
 			}
 		}
 
-		public DebugReportCallback CreateDebugReportCallback(DebugReportCallbackCreateInfo createInfo, AllocationCallbacks allocator)
+		public DebugReportCallback CreateDebugReportCallback(DebugReportCallbackCreateInfo createInfo)
 		{
 			unsafe
 			{
@@ -2702,9 +2834,9 @@ namespace SharpVk
 				Interop.DebugReportCallbackCreateInfo marshalledCreateInfo;
 				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
+				if(this.allocator != null) marshalledAllocator = this.allocator.Pack();
 				Interop.DebugReportCallback marshalledCallback;
-				commandResult = Interop.Commands.vkCreateDebugReportCallbackEXT(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledCallback);
+				commandResult = Interop.Commands.vkCreateDebugReportCallbackEXT(this.handle, createInfo == null ? null : &marshalledCreateInfo, this.allocator == null ? null : &marshalledAllocator, &marshalledCallback);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -2742,6 +2874,14 @@ namespace SharpVk
 		internal readonly Interop.PhysicalDevice handle;
 
 		private readonly Instance parent;
+
+		internal AllocationCallbacks Allocator
+		{
+			get
+			{
+				return this.parent.Allocator;
+			}
+		}
 
 
 		internal PhysicalDevice(Interop.PhysicalDevice handle, Instance parent)
@@ -2866,7 +3006,7 @@ namespace SharpVk
 			}
 		}
 
-		public Device CreateDevice(DeviceCreateInfo createInfo, AllocationCallbacks allocator)
+		public Device CreateDevice(DeviceCreateInfo createInfo)
 		{
 			unsafe
 			{
@@ -2877,9 +3017,9 @@ namespace SharpVk
 				Interop.DeviceCreateInfo marshalledCreateInfo;
 				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
 				Interop.Device marshalledDevice;
-				commandResult = Interop.Commands.vkCreateDevice(this.handle, createInfo == null ? null : &marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledDevice);
+				commandResult = Interop.Commands.vkCreateDevice(this.handle, createInfo == null ? null : &marshalledCreateInfo, this.parent.Allocator == null ? null : &marshalledAllocator, &marshalledDevice);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -3141,6 +3281,14 @@ namespace SharpVk
 
 		private readonly Device parent;
 
+		internal AllocationCallbacks Allocator
+		{
+			get
+			{
+				return this.parent.Allocator;
+			}
+		}
+
 
 		internal Pipeline(Interop.Pipeline handle, Device parent)
 		{
@@ -3148,13 +3296,13 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public void Destroy(AllocationCallbacks allocator)
+		public void Destroy()
 		{
 			unsafe
 			{
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
-				Interop.Commands.vkDestroyPipeline(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
+				Interop.Commands.vkDestroyPipeline(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -3174,6 +3322,14 @@ namespace SharpVk
 
 		private readonly Device parent;
 
+		internal AllocationCallbacks Allocator
+		{
+			get
+			{
+				return this.parent.Allocator;
+			}
+		}
+
 
 		internal PipelineCache(Interop.PipelineCache handle, Device parent)
 		{
@@ -3181,13 +3337,13 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public void Destroy(AllocationCallbacks allocator)
+		public void Destroy()
 		{
 			unsafe
 			{
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
-				Interop.Commands.vkDestroyPipelineCache(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
+				Interop.Commands.vkDestroyPipelineCache(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -3274,6 +3430,14 @@ namespace SharpVk
 
 		private readonly Device parent;
 
+		internal AllocationCallbacks Allocator
+		{
+			get
+			{
+				return this.parent.Allocator;
+			}
+		}
+
 
 		internal PipelineLayout(Interop.PipelineLayout handle, Device parent)
 		{
@@ -3281,13 +3445,13 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public void Destroy(AllocationCallbacks allocator)
+		public void Destroy()
 		{
 			unsafe
 			{
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
-				Interop.Commands.vkDestroyPipelineLayout(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
+				Interop.Commands.vkDestroyPipelineLayout(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -3307,6 +3471,14 @@ namespace SharpVk
 
 		private readonly Device parent;
 
+		internal AllocationCallbacks Allocator
+		{
+			get
+			{
+				return this.parent.Allocator;
+			}
+		}
+
 
 		internal QueryPool(Interop.QueryPool handle, Device parent)
 		{
@@ -3314,13 +3486,13 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public void Destroy(AllocationCallbacks allocator)
+		public void Destroy()
 		{
 			unsafe
 			{
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
-				Interop.Commands.vkDestroyQueryPool(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
+				Interop.Commands.vkDestroyQueryPool(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -3358,6 +3530,14 @@ namespace SharpVk
 		internal readonly Interop.Queue handle;
 
 		private readonly Device parent;
+
+		internal AllocationCallbacks Allocator
+		{
+			get
+			{
+				return this.parent.Allocator;
+			}
+		}
 
 
 		internal Queue(Interop.Queue handle, Device parent)
@@ -3480,6 +3660,14 @@ namespace SharpVk
 
 		private readonly Device parent;
 
+		internal AllocationCallbacks Allocator
+		{
+			get
+			{
+				return this.parent.Allocator;
+			}
+		}
+
 
 		internal RenderPass(Interop.RenderPass handle, Device parent)
 		{
@@ -3487,13 +3675,13 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public void Destroy(AllocationCallbacks allocator)
+		public void Destroy()
 		{
 			unsafe
 			{
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
-				Interop.Commands.vkDestroyRenderPass(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
+				Interop.Commands.vkDestroyRenderPass(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -3529,6 +3717,14 @@ namespace SharpVk
 
 		private readonly Device parent;
 
+		internal AllocationCallbacks Allocator
+		{
+			get
+			{
+				return this.parent.Allocator;
+			}
+		}
+
 
 		internal Sampler(Interop.Sampler handle, Device parent)
 		{
@@ -3536,13 +3732,13 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public void Destroy(AllocationCallbacks allocator)
+		public void Destroy()
 		{
 			unsafe
 			{
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
-				Interop.Commands.vkDestroySampler(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
+				Interop.Commands.vkDestroySampler(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -3562,6 +3758,14 @@ namespace SharpVk
 
 		private readonly Device parent;
 
+		internal AllocationCallbacks Allocator
+		{
+			get
+			{
+				return this.parent.Allocator;
+			}
+		}
+
 
 		internal Semaphore(Interop.Semaphore handle, Device parent)
 		{
@@ -3569,13 +3773,13 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public void Destroy(AllocationCallbacks allocator)
+		public void Destroy()
 		{
 			unsafe
 			{
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
-				Interop.Commands.vkDestroySemaphore(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
+				Interop.Commands.vkDestroySemaphore(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -3595,6 +3799,14 @@ namespace SharpVk
 
 		private readonly Device parent;
 
+		internal AllocationCallbacks Allocator
+		{
+			get
+			{
+				return this.parent.Allocator;
+			}
+		}
+
 
 		internal ShaderModule(Interop.ShaderModule handle, Device parent)
 		{
@@ -3602,13 +3814,13 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public void Destroy(AllocationCallbacks allocator)
+		public void Destroy()
 		{
 			unsafe
 			{
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
-				Interop.Commands.vkDestroyShaderModule(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
+				Interop.Commands.vkDestroyShaderModule(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -3628,6 +3840,14 @@ namespace SharpVk
 
 		private readonly Instance parent;
 
+		internal AllocationCallbacks Allocator
+		{
+			get
+			{
+				return this.parent.Allocator;
+			}
+		}
+
 
 		internal Surface(Interop.Surface handle, Instance parent)
 		{
@@ -3635,13 +3855,13 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public void Destroy(AllocationCallbacks allocator)
+		public void Destroy()
 		{
 			unsafe
 			{
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
-				Interop.Commands.vkDestroySurfaceKHR(this.parent.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
+				Interop.Commands.vkDestroySurfaceKHR(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -3661,6 +3881,14 @@ namespace SharpVk
 
 		private readonly Surface parent;
 
+		internal AllocationCallbacks Allocator
+		{
+			get
+			{
+				return this.parent.Allocator;
+			}
+		}
+
 		private readonly Device associated;
 
 		internal Swapchain(Interop.Swapchain handle, Surface parent, Device associated)
@@ -3670,13 +3898,13 @@ namespace SharpVk
 			this.associated = associated;
 		}
 
-		public void Destroy(AllocationCallbacks allocator)
+		public void Destroy()
 		{
 			unsafe
 			{
 				Interop.AllocationCallbacks marshalledAllocator;
-				if(allocator != null) marshalledAllocator = allocator.Pack();
-				Interop.Commands.vkDestroySwapchainKHR(this.associated.handle, this.handle, allocator == null ? null : &marshalledAllocator);
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
+				Interop.Commands.vkDestroySwapchainKHR(this.associated.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
 
 
 				Interop.HeapUtil.FreeLog();

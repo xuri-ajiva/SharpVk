@@ -16,16 +16,28 @@ var parser = GetParser();
 var generator = new TypeGenerator();
 
 var types = generator.Generate(parser.Run());
+
+var subGroups = types.Constants.Select(x => x.SubGroupName).Distinct();
+
 #>
 namespace SharpVk
 {
-	public static class Constants
+<#
+foreach(var subGroup in subGroups)
+{
+#>
+	public static class <#=subGroup ?? "Constants"#>
 	{
 <#
-foreach(var constant in types.Constants)
-{
+	foreach(var constant in types.Constants.Where(x => x.SubGroupName == subGroup))
+	{
 #>		public const <#=GetTypeName(constant.Type)#> <#=constant.Name#> = <#=constant.Value#>;
 <#
+	}
+#>
+	}
+
+<#
 }
-#>	}
+#>
 }

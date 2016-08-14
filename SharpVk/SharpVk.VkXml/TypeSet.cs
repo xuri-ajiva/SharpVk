@@ -115,6 +115,12 @@ namespace SharpVk.VkXml
                 set;
             }
 
+            public string SubGroupName
+            {
+                get;
+                set;
+            }
+
             public Type Type
             {
                 get;

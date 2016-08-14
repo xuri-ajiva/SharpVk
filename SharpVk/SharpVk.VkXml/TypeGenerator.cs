@@ -363,6 +363,10 @@ namespace SharpVk.VkXml
                                             }
                                         }
                                     }
+                                    else
+                                    {
+                                        parentArgument = ", allocator";
+                                    }
 
                                     if (parameter.Dimensions != null)
                                     {
@@ -488,15 +492,31 @@ namespace SharpVk.VkXml
                         }
                         else if (paramType.RequiresInterop)
                         {
-                            newMethod.Parameters.Add(new TypeSet.VkMethodParam
+                            string publicParamName = paramName;
+                            string paramSource = paramName;
+
+                            if (paramName == "allocator" && handleParams.Count() > 0)
                             {
-                                Name = paramName,
-                                ArgumentName = $"{paramName} == null ? null : &{marshalledName}",
-                                TypeName = paramType.Name
-                            });
+                                publicParamName = null;
+                                if (handle.ParentHandle != null)
+                                {
+                                    paramSource = "this.parent.Allocator";
+                                }
+                                else
+                                {
+                                    paramSource = "this.allocator";
+                                }
+                            }
 
                             newMethod.MarshalToStatements.Add(string.Format("Interop.{0} {1};", paramType.Name, marshalledName));
-                            newMethod.MarshalToStatements.Add(string.Format("if({1} != null) {0} = {1}.Pack();", marshalledName, paramName));
+                            newMethod.MarshalToStatements.Add(string.Format("if({1} != null) {0} = {1}.Pack();", marshalledName, paramSource));
+
+                            newMethod.Parameters.Add(new TypeSet.VkMethodParam
+                            {
+                                Name = publicParamName,
+                                ArgumentName = $"{paramSource} == null ? null : &{marshalledName}",
+                                TypeName = paramType.Name
+                            });
                         }
                         else if (parameter.Type == "void" && parameter.PointerType == PointerType.DoublePointer)
                         {
@@ -1164,29 +1184,44 @@ namespace SharpVk.VkXml
             {
                 Type type;
 
-                string typeSuffix = new string(constant.Value.Reverse()
-                                                                .TakeWhile(char.IsLetter)
-                                                                .Reverse()
-                                                                .ToArray());
-
-                switch (typeSuffix.ToLower())
+                if(char.IsLetter(constant.Value[0]))
                 {
-                    case "f":
-                        type = typeof(float);
-                        break;
-                    case "u":
-                    default:
-                        type = typeof(uint);
-                        break;
-                    case "ul":
-                        type = typeof(ulong);
-                        break;
+                    // Looks like some extension enums are used for type name
+                    // mapping - not sure what this is supposed to do yet, so
+                    // skip them for now.
+                    continue;
+                }
+                else if (constant.Value.StartsWith("\""))
+                {
+                    type = typeof(string);
+                }
+                else
+                {
+                    string typeSuffix = new string(constant.Value.Reverse()
+                                                                    .TakeWhile(char.IsLetter)
+                                                                    .Reverse()
+                                                                    .ToArray());
+
+                    switch (typeSuffix.ToLower())
+                    {
+                        case "f":
+                            type = typeof(float);
+                            break;
+                        case "u":
+                        default:
+                            type = typeof(uint);
+                            break;
+                        case "ul":
+                            type = typeof(ulong);
+                            break;
+                    }
                 }
 
                 result.Constants.Add(new TypeSet.VkConstant
                 {
                     Name = GetNameForElement(constant),
                     Type = type,
+                    SubGroupName = constant.ConstantSubGroup == null ? null : JoinNameParts(constant.ConstantSubGroup),
                     Value = constant.Value
                 });
             }

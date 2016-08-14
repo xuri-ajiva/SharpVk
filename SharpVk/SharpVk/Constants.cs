@@ -22,6 +22,30 @@
 
 namespace SharpVk
 {
+	public static class KhrSurface
+	{
+		public const uint SpecVersion = 25;
+		public const string ExtensionName = "VK_KHR_surface";
+	}
+
+	public static class KhrSwapchain
+	{
+		public const uint SpecVersion = 68;
+		public const string ExtensionName = "VK_KHR_swapchain";
+	}
+
+	public static class KhrWin32Surface
+	{
+		public const uint SpecVersion = 5;
+		public const string ExtensionName = "VK_KHR_win32_surface";
+	}
+
+	public static class ExtDebugReport
+	{
+		public const uint SpecVersion = 3;
+		public const string ExtensionName = "VK_EXT_debug_report";
+	}
+
 	public static class Constants
 	{
 		public const float LodClampNone = 1000.0f;
@@ -40,4 +64,5 @@ namespace SharpVk
 		public const uint MaxPhysicalDeviceNameSize = 256;
 		public const uint UuidSize = 16;
 	}
+
 }

@@ -1,18 +1,20 @@
 - [ ] GetFenceStatus & WaitForFence return result as non-error VkResult codes - these need handling and returning
   - [x] Throw exceptions for error VkResult codes
 - [ ] Check for not-null on non-optional parameters
-- [ ] AllocationCallbacks should be stored in ancestor Instance & referenced from there
+- [x] AllocationCallbacks should be stored in ancestor Instance & referenced from there
 - [x] Non-Dispatchable handles should be fixed to 64-bit, to prevent stack mismatches on x86 builds
 - [ ] Flags vs FlagBits may indicate a set of flags versus an individual flag value - needs investigation
 - [x] Prettify Public API Methods (Issue #5)
     - [x] Correctly handle Cmd prefix
 - [ ] Implement IDispose pattern for handles with Destroy command
 - [ ] Move Extension objects into a new namespace
+- [ ] Generate all supported extensions
 - [ ] Generate Pfn_* delegates and define a procedure for hooking Debug callbacks
 - [ ] Pull list of "known extensions" from spec instead of using hard-coded array in SpecParser
 - [ ] Convert all formatted strings to use string interpolation
 - [ ] Collapse *Info structures into method parameters
-- [ ] Generate Engine & API Version and Extension name constants
+- [ ] Generate Engine & API Version
+    - [x] and Extension name constants
 - [ ] VK API Commands should be correctly generated, compiled & executed (against NVidia implementation on Windows):
   -  Device initialization
     - [x] vkCreateInstance
