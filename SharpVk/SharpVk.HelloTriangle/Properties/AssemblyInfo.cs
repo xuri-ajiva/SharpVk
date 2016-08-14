@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SharpVk.Example")]
+[assembly: AssemblyTitle("SharpVk.HelloTriangle")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SharpVk.Example")]
+[assembly: AssemblyProduct("SharpVk.HelloTriangle")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("e161c104-5346-4324-82cb-63086ab330d0")]
+[assembly: Guid("17144f43-9b1b-4c5b-8003-dbeb98845d62")]
 
 // Version information for an assembly consists of the following four values:
 //
