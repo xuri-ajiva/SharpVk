@@ -144,8 +144,20 @@ namespace SharpVk.Interop
             return Marshal.PtrToStringAnsi(new IntPtr(pointer), length);
         }
 
-        internal static byte[] MarshalFrom(byte* pointer, int length)
+        internal static byte[] MarshalFrom(byte* pointer, int length, bool isNullTerminated = false)
         {
+            if (isNullTerminated)
+            {
+                int actualLength = 0;
+
+                while (actualLength < length && pointer[actualLength] != 0)
+                {
+                    actualLength++;
+                }
+
+                length = actualLength;
+            }
+
             var newArray = new byte[length];
 
             Marshal.Copy(new IntPtr(pointer), newArray, 0, length);

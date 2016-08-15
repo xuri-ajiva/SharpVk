@@ -883,7 +883,7 @@ namespace SharpVk.VkXml
                         {
                             memberDesc.PublicTypeName = "string";
 
-                            newClass.MarshalFromStatements.Add(string.Format("result.{0} = System.Text.Encoding.UTF8.GetString(Interop.HeapUtil.MarshalFrom(value->{0}, {1})).TrimEnd((char)0);", memberDesc.Name, fixedLengthValue));
+                            newClass.MarshalFromStatements.Add(string.Format("result.{0} = System.Text.Encoding.UTF8.GetString(Interop.HeapUtil.MarshalFrom(value->{0}, {1}, true));", memberDesc.Name, fixedLengthValue));
                         }
                         else if (memberDesc.Name.EndsWith("UUID"))
                         {
