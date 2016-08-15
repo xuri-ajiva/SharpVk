@@ -1,3 +1,4 @@
+## General Backlog
 - [ ] GetFenceStatus & WaitForFence return result as non-error VkResult codes - these need handling and returning
   - [x] Throw exceptions for error VkResult codes
 - [ ] Check for not-null on non-optional parameters
@@ -11,10 +12,15 @@
 - [x] Generate all supported extensions
 - [ ] Generate Pfn_* delegates and define a procedure for hooking Debug callbacks
 - [ ] Pull list of "known extensions" from spec instead of using hard-coded array in SpecParser
-- [ ] Convert all formatted strings to use string interpolation
 - [ ] Collapse *Info structures into method parameters
+- [x] Generate Extension name constants
+
+## v0.3.0 Backlog
+- [ ] Replace T4 Templates
 - [ ] Generate Engine & API Version
-    - [x] and Extension name constants
+- [ ] Convert all formatted strings to use string interpolation
+
+## API Testing Backlog
 - [ ] VK API Commands should be correctly generated, compiled & executed (against NVidia implementation on Windows):
   -  Device initialization
     - [x] vkCreateInstance
