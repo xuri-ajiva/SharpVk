@@ -124,46 +124,46 @@ namespace SharpVk.HelloTriangle
         {
             device.WaitIdle();
 
-            this.renderFinishedSemaphore.Destroy(null);
+            this.renderFinishedSemaphore.Dispose();
             this.renderFinishedSemaphore = null;
 
-            this.imageAvailableSemaphore.Destroy(null); ;
+            this.imageAvailableSemaphore.Dispose();
             this.imageAvailableSemaphore = null;
 
-            this.commandPool.Destroy(null); ;
+            this.commandPool.Dispose();
             this.commandPool = null;
 
             foreach (var frameBuffer in this.frameBuffers)
             {
-                frameBuffer.Destroy(null);
+                frameBuffer.Dispose();
             }
             this.frameBuffers = null;
 
-            this.pipeline.Destroy(null);
+            this.pipeline.Dispose();
             this.pipeline = null;
 
-            this.pipelineLayout.Destroy(null);
+            this.pipelineLayout.Dispose();
             this.pipelineLayout = null;
 
             foreach (var imageView in this.swapChainImageViews)
             {
-                imageView.Destroy(null);
+                imageView.Dispose();
             }
             this.swapChainImageViews = null;
 
-            this.renderPass.Destroy(null);
+            this.renderPass.Dispose();
             this.renderPass = null;
 
-            this.swapChain.Destroy(null);
+            this.swapChain.Dispose();
             this.swapChain = null;
 
-            this.device.Destroy(null);
+            this.device.Dispose();
             this.renderFinishedSemaphore = null;
 
-            this.surface.Destroy(null);
+            this.surface.Dispose();
             this.renderFinishedSemaphore = null;
 
-            this.instance.Destroy(null);
+            this.instance.Dispose();
             this.renderFinishedSemaphore = null;
         }
 
@@ -215,7 +215,7 @@ namespace SharpVk.HelloTriangle
             this.surface = this.instance.CreateWin32Surface(new Win32SurfaceCreateInfo
             {
                 Hwnd = this.window.Handle
-            }, null);
+            });   
         }
 
         private void PickPhysicalDevice()
@@ -238,7 +238,7 @@ namespace SharpVk.HelloTriangle
                                                     QueuePriorities = new[] { 1f }
                                                 }).ToArray(),
                 EnabledExtensionNames = new[] { "VK_KHR_swapchain" }
-            }, null);
+            });
 
             this.graphicsQueue = this.device.GetQueue(queueFamilies.GraphicsFamily.Value, 0);
             this.presentQueue = this.device.GetQueue(queueFamilies.PresentFamily.Value, 0);
@@ -281,7 +281,7 @@ namespace SharpVk.HelloTriangle
                 Clipped = true,
                 CompositeAlpha = CompositeAlphaFlags.Opaque,
                 OldSwapchain = this.swapChain
-            }, null);
+            });
 
             this.swapChainImages = this.swapChain.GetImages();
             this.swapChainFormat = surfaceFormat.Format;
@@ -305,7 +305,7 @@ namespace SharpVk.HelloTriangle
                     BaseArrayLayer = 0,
                     LayerCount = 1
                 }
-            }, null)).ToArray();
+            })).ToArray();
         }
 
         private void CreateRenderPass()
@@ -357,7 +357,7 @@ namespace SharpVk.HelloTriangle
                             DestinationAccessMask = AccessFlags.ColorAttachmentRead | AccessFlags.ColorAttachmentWrite
                         }
                     }
-            }, null);
+            });
         }
 
         private void CreateGraphicsPipeline()
@@ -369,7 +369,7 @@ namespace SharpVk.HelloTriangle
             {
                 Code = vertShaderData,
                 CodeSize = (UIntPtr)codeSize
-            }, null);
+            });
 
             var fragShaderData = LoadShaderData(@".\Shaders\frag.spv", out codeSize);
 
@@ -377,9 +377,9 @@ namespace SharpVk.HelloTriangle
             {
                 Code = fragShaderData,
                 CodeSize = (UIntPtr)codeSize
-            }, null);
+            });
 
-            this.pipelineLayout = device.CreatePipelineLayout(new PipelineLayoutCreateInfo(), null);
+            this.pipelineLayout = device.CreatePipelineLayout(new PipelineLayoutCreateInfo());
 
             this.pipeline = device.CreateGraphicsPipelines(null, new[]
             {
@@ -472,7 +472,7 @@ namespace SharpVk.HelloTriangle
                             }
                         }
                     }
-                }, null).Single();
+                }).Single();
         }
 
         private void CreateFrameBuffers()
@@ -484,7 +484,7 @@ namespace SharpVk.HelloTriangle
                 Layers = 1,
                 Height = this.swapChainExtent.Height,
                 Width = this.swapChainExtent.Width
-            }, null)).ToArray();
+            })).ToArray();
         }
 
         private void CreateCommandPool()
@@ -494,7 +494,7 @@ namespace SharpVk.HelloTriangle
             this.commandPool = device.CreateCommandPool(new CommandPoolCreateInfo
             {
                 QueueFamilyIndex = queueFamilies.GraphicsFamily.Value
-            }, null);
+            });
         }
 
         private void CreateCommandBuffers()
@@ -551,8 +551,8 @@ namespace SharpVk.HelloTriangle
 
         private void CreateSemaphores()
         {
-            this.imageAvailableSemaphore = device.CreateSemaphore(new SemaphoreCreateInfo(), null);
-            this.renderFinishedSemaphore = device.CreateSemaphore(new SemaphoreCreateInfo(), null);
+            this.imageAvailableSemaphore = device.CreateSemaphore(new SemaphoreCreateInfo());
+            this.renderFinishedSemaphore = device.CreateSemaphore(new SemaphoreCreateInfo());
         }
 
         private QueueFamilyIndices FindQueueFamilies(PhysicalDevice device)

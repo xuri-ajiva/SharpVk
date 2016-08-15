@@ -33,8 +33,8 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SharpVk, Version=0.1.1.86, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpVk.0.1.1\lib\net46\SharpVk.dll</HintPath>
+    <Reference Include="SharpVk, Version=0.2.0.91, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpVk.0.2.0\lib\net46\SharpVk.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -53,10 +53,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
     <Content Include="Shaders\frag.spv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="packages.config" />
     <None Include="ReadMe.md" />
     <None Include="Shaders\ReadMe.md" />
     <None Include="Shaders\shader.frag" />
