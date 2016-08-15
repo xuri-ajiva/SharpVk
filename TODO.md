@@ -1,6 +1,7 @@
-
-- [x] Throw exceptions for error VkResult codes
-- [x] Check for not-null on non-optional parameters
+## General Backlog
+- [ ] GetFenceStatus & WaitForFence return result as non-error VkResult codes - these need handling and returning
+  - [x] Throw exceptions for error VkResult codes
+- [ ] Check for not-null on non-optional parameters
 - [x] AllocationCallbacks should be stored in ancestor Instance & referenced from there
 - [x] Non-Dispatchable handles should be fixed to 64-bit, to prevent stack mismatches on x86 builds
 - [ ] Flags vs FlagBits may indicate a set of flags versus an individual flag value - needs investigation
@@ -12,12 +13,9 @@
 - [ ] Generate Pfn_* delegates and define a procedure for hooking Debug callbacks
 - [ ] Pull list of "known extensions" from spec instead of using hard-coded array in SpecParser
 - [ ] Collapse *Info structures into method parameters
-- [x] Extension name constants
-- [x] Generate fixed-length struct with no len as Vectors (e.g. Vector4<int>)
-- [ ] Move examples to cross-platform windowing library
+- [x] Generate Extension name constants
 
 ## v0.3.0 Backlog
-- [ ] GetFenceStatus & WaitForFence return result as non-error VkResult codes - these need handling and returning
 - [ ] Replace T4 Templates
 - [ ] Generate Engine & API Version
 - [ ] Convert all formatted strings to use string interpolation
@@ -59,9 +57,9 @@
     - [ ] vkInvalidateMappedMemoryRanges
     - [x] vkGetDeviceMemoryCommitment
   - Memory management API commands
-    - [x] vkBindBufferMemory
+    - [ ] vkBindBufferMemory
     - [ ] vkBindImageMemory
-    - [x] vkGetBufferMemoryRequirements
+    - [ ] vkGetBufferMemoryRequirements
     - [ ] vkGetImageMemoryRequirements
   - Sparse resource memory management API commands
     - [ ] vkGetImageSparseMemoryRequirements
@@ -87,8 +85,8 @@
     - [ ] vkDestroyQueryPool
     - [ ] vkGetQueryPoolResults
   - Buffer commands
-    - [x] vkCreateBuffer
-    - [x] vkDestroyBuffer
+    - [ ] vkCreateBuffer
+    - [ ] vkDestroyBuffer
   - Buffer view commands
     - [ ] vkCreateBufferView
     - [ ] vkDestroyBufferView
@@ -135,7 +133,7 @@
   - Command pool commands
     - [x] vkCreateCommandPool
     - [x] vkDestroyCommandPool
-    - [x] vkResetCommandPool
+    - [ ] vkResetCommandPool
   - Command buffer commands
     - [x] vkAllocateCommandBuffers
     - [x] vkFreeCommandBuffers
@@ -155,7 +153,7 @@
     - [ ] vkCmdSetStencilReference
     - [ ] vkCmdBindDescriptorSets
     - [ ] vkCmdBindIndexBuffer
-    - [x] vkCmdBindVertexBuffers
+    - [ ] vkCmdBindVertexBuffers
     - [x] vkCmdDraw
     - [ ] vkCmdDrawIndexed
     - [ ] vkCmdDrawIndirect
