@@ -204,8 +204,8 @@ namespace SharpVk.HelloTriangle
                 },
                 EnabledExtensionNames = new[]
                 {
-                    "VK_KHR_surface",
-                    "VK_KHR_win32_surface"
+                    KhrSurface.ExtensionName,
+                    KhrWin32Surface.ExtensionName
                 }
             }, null);
         }
@@ -237,7 +237,7 @@ namespace SharpVk.HelloTriangle
                                                     QueueFamilyIndex = index,
                                                     QueuePriorities = new[] { 1f }
                                                 }).ToArray(),
-                EnabledExtensionNames = new[] { "VK_KHR_swapchain" }
+                EnabledExtensionNames = new[] { KhrSwapchain.ExtensionName }
             });
 
             this.graphicsQueue = this.device.GetQueue(queueFamilies.GraphicsFamily.Value, 0);
@@ -634,7 +634,7 @@ namespace SharpVk.HelloTriangle
 
         private bool IsSuitableDevice(PhysicalDevice device)
         {
-            return device.EnumerateDeviceExtensionProperties(null).Any(extension => extension.ExtensionName == "VK_KHR_swapchain")
+            return device.EnumerateDeviceExtensionProperties(null).Any(extension => extension.ExtensionName == KhrSwapchain.ExtensionName)
                     && FindQueueFamilies(device).IsComplete;
         }
 
