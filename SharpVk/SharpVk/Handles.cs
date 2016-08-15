@@ -2465,13 +2465,15 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public void GetDisplayPlaneCapabilities(uint planeIndex, DisplayPlaneCapabilities capabilities)
+		public DisplayPlaneCapabilities GetDisplayPlaneCapabilities(uint planeIndex)
 		{
 			unsafe
 			{
+				DisplayPlaneCapabilities result = default(DisplayPlaneCapabilities);
+
 				Result commandResult;
 
-				commandResult = Interop.Commands.vkGetDisplayPlaneCapabilitiesKHR(this.parent.handle, this.handle, planeIndex, &capabilities);
+				commandResult = Interop.Commands.vkGetDisplayPlaneCapabilitiesKHR(this.parent.handle, this.handle, planeIndex, &result);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -2480,6 +2482,8 @@ namespace SharpVk
 
 				Interop.HeapUtil.FreeLog();
 
+
+				return result;
 			}
 		}
 
@@ -3331,15 +3335,19 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public void GetFeatures(PhysicalDeviceFeatures features)
+		public PhysicalDeviceFeatures GetFeatures()
 		{
 			unsafe
 			{
-				Interop.Commands.vkGetPhysicalDeviceFeatures(this.handle, &features);
+				PhysicalDeviceFeatures result = default(PhysicalDeviceFeatures);
+
+				Interop.Commands.vkGetPhysicalDeviceFeatures(this.handle, &result);
 
 
 				Interop.HeapUtil.FreeLog();
 
+
+				return result;
 			}
 		}
 
@@ -3593,14 +3601,16 @@ namespace SharpVk
 			}
 		}
 
-		public void GetSurfaceCapabilities(Surface surface, SurfaceCapabilities surfaceCapabilities)
+		public SurfaceCapabilities GetSurfaceCapabilities(Surface surface)
 		{
 			unsafe
 			{
+				SurfaceCapabilities result = default(SurfaceCapabilities);
+
 				Result commandResult;
 
 				Interop.Surface marshalledSurface = surface?.Pack() ?? Interop.Surface.Null;
-				commandResult = Interop.Commands.vkGetPhysicalDeviceSurfaceCapabilitiesKHR(this.handle, marshalledSurface, &surfaceCapabilities);
+				commandResult = Interop.Commands.vkGetPhysicalDeviceSurfaceCapabilitiesKHR(this.handle, marshalledSurface, &result);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -3609,6 +3619,8 @@ namespace SharpVk
 
 				Interop.HeapUtil.FreeLog();
 
+
+				return result;
 			}
 		}
 
@@ -4385,15 +4397,19 @@ namespace SharpVk
 			}
 		}
 
-		public void GetRenderAreaGranularity(Extent2D granularity)
+		public Extent2D GetRenderAreaGranularity()
 		{
 			unsafe
 			{
-				Interop.Commands.vkGetRenderAreaGranularity(this.parent.handle, this.handle, &granularity);
+				Extent2D result = default(Extent2D);
+
+				Interop.Commands.vkGetRenderAreaGranularity(this.parent.handle, this.handle, &result);
 
 
 				Interop.HeapUtil.FreeLog();
 
+
+				return result;
 			}
 		}
 

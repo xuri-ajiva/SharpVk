@@ -132,7 +132,8 @@ namespace SharpVk.VkXml
                 bool lastParamReturns = lastParam.PointerType == PointerType.Pointer
                                             && (typeData[lastParam.Type].Data.IsReturnedOnly
                                                 || typeData[lastParam.Type].Data.Category != TypeCategory.@struct
-                                                || lastParamLenFieldByRef)
+                                                || lastParamLenFieldByRef
+                                                || command.Verb == "get")
                                             && (command.Type == "VkResult" || command.Type == "void");
 
                 if (lastParamReturns && classLookup.ContainsKey(lastParam.Type))
