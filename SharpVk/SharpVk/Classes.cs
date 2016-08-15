@@ -48,6 +48,37 @@ namespace SharpVk
 		}
 	}
 
+	public class AndroidSurfaceCreateInfo
+	{
+
+		public AndroidSurfaceCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public IntPtr Window
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.AndroidSurfaceCreateInfo Pack()
+        {
+            var result = new Interop.AndroidSurfaceCreateInfo();
+			result.SType = StructureType.AndroidSurfaceCreateInfo;
+			result.Window = (IntPtr*)Interop.HeapUtil.AllocateAndMarshal(this.Window);
+			result.Flags = this.Flags;
+
+            return result;
+        }
+
+		internal unsafe Interop.AndroidSurfaceCreateInfo* MarshalTo()
+        {
+            return (Interop.AndroidSurfaceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
 	public class ApplicationInfo
 	{
 
@@ -680,6 +711,120 @@ namespace SharpVk
 		}
 	}
 
+	public class DebugMarkerMarkerInfo
+	{
+
+		public string MarkerName
+		{
+			get;
+			set;
+		}
+
+		public float[] Color
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.DebugMarkerMarkerInfo Pack()
+        {
+            var result = new Interop.DebugMarkerMarkerInfo();
+			result.SType = StructureType.DebugMarkerMarkerInfo;
+			result.MarkerName = Interop.HeapUtil.MarshalTo(this.MarkerName);
+
+            return result;
+        }
+
+		internal unsafe Interop.DebugMarkerMarkerInfo* MarshalTo()
+        {
+            return (Interop.DebugMarkerMarkerInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class DebugMarkerObjectNameInfo
+	{
+
+		public DebugReportObjectType ObjectType
+		{
+			get;
+			set;
+		}
+
+		public ulong Object
+		{
+			get;
+			set;
+		}
+
+		public string ObjectName
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.DebugMarkerObjectNameInfo Pack()
+        {
+            var result = new Interop.DebugMarkerObjectNameInfo();
+			result.SType = StructureType.DebugMarkerObjectNameInfo;
+			result.ObjectName = Interop.HeapUtil.MarshalTo(this.ObjectName);
+			result.ObjectType = this.ObjectType;
+			result.Object = this.Object;
+
+            return result;
+        }
+
+		internal unsafe Interop.DebugMarkerObjectNameInfo* MarshalTo()
+        {
+            return (Interop.DebugMarkerObjectNameInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class DebugMarkerObjectTagInfo
+	{
+
+		public DebugReportObjectType ObjectType
+		{
+			get;
+			set;
+		}
+
+		public ulong Object
+		{
+			get;
+			set;
+		}
+
+		public ulong TagName
+		{
+			get;
+			set;
+		}
+
+		public byte[] Tag
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.DebugMarkerObjectTagInfo Pack()
+        {
+            var result = new Interop.DebugMarkerObjectTagInfo();
+			result.SType = StructureType.DebugMarkerObjectTagInfo;
+			result.Tag = this.Tag == null ? null : Interop.HeapUtil.MarshalTo(this.Tag);
+			result.TagSize = (UIntPtr)(this.Tag?.Length ?? 0);
+			result.ObjectType = this.ObjectType;
+			result.Object = this.Object;
+			result.TagName = this.TagName;
+
+            return result;
+        }
+
+		internal unsafe Interop.DebugMarkerObjectTagInfo* MarshalTo()
+        {
+            return (Interop.DebugMarkerObjectTagInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
 	public class DebugReportCallbackCreateInfo
 	{
 
@@ -708,6 +853,85 @@ namespace SharpVk
 		internal unsafe Interop.DebugReportCallbackCreateInfo* MarshalTo()
         {
             return (Interop.DebugReportCallbackCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class DedicatedAllocationBufferCreateInfo
+	{
+
+		public Bool32 DedicatedAllocation
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.DedicatedAllocationBufferCreateInfo Pack()
+        {
+            var result = new Interop.DedicatedAllocationBufferCreateInfo();
+			result.SType = StructureType.DedicatedAllocationBufferCreateInfo;
+			result.DedicatedAllocation = this.DedicatedAllocation;
+
+            return result;
+        }
+
+		internal unsafe Interop.DedicatedAllocationBufferCreateInfo* MarshalTo()
+        {
+            return (Interop.DedicatedAllocationBufferCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class DedicatedAllocationImageCreateInfo
+	{
+
+		public Bool32 DedicatedAllocation
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.DedicatedAllocationImageCreateInfo Pack()
+        {
+            var result = new Interop.DedicatedAllocationImageCreateInfo();
+			result.SType = StructureType.DedicatedAllocationImageCreateInfo;
+			result.DedicatedAllocation = this.DedicatedAllocation;
+
+            return result;
+        }
+
+		internal unsafe Interop.DedicatedAllocationImageCreateInfo* MarshalTo()
+        {
+            return (Interop.DedicatedAllocationImageCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class DedicatedAllocationMemoryAllocateInfo
+	{
+
+		public Image Image
+		{
+			get;
+			set;
+		}
+
+		public Buffer Buffer
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.DedicatedAllocationMemoryAllocateInfo Pack()
+        {
+            var result = new Interop.DedicatedAllocationMemoryAllocateInfo();
+			result.SType = StructureType.DedicatedAllocationMemoryAllocateInfo;
+			result.Image = this.Image?.Pack() ?? Interop.Image.Null;
+			result.Buffer = this.Buffer?.Pack() ?? Interop.Buffer.Null;
+
+            return result;
+        }
+
+		internal unsafe Interop.DedicatedAllocationMemoryAllocateInfo* MarshalTo()
+        {
+            return (Interop.DedicatedAllocationMemoryAllocateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -1097,6 +1321,273 @@ namespace SharpVk
 		internal unsafe Interop.DeviceQueueCreateInfo* MarshalTo()
         {
             return (Interop.DeviceQueueCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class DisplayModeCreateInfo
+	{
+
+		public DisplayModeCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public DisplayModeParameters Parameters
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.DisplayModeCreateInfo Pack()
+        {
+            var result = new Interop.DisplayModeCreateInfo();
+			result.SType = StructureType.DisplayModeCreateInfo;
+			result.Flags = this.Flags;
+			result.Parameters = this.Parameters;
+
+            return result;
+        }
+
+		internal unsafe Interop.DisplayModeCreateInfo* MarshalTo()
+        {
+            return (Interop.DisplayModeCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class DisplayModeProperties
+	{
+
+		public DisplayMode DisplayMode
+		{
+			get;
+			set;
+		}
+
+		public DisplayModeParameters Parameters
+		{
+			get;
+			set;
+		}
+
+		internal unsafe DisplayModeProperties Unpack(Interop.DisplayModeProperties value)
+		{
+			return MarshalFrom(&value);
+		}
+
+		internal static unsafe DisplayModeProperties MarshalFrom(Interop.DisplayModeProperties* value)
+		{
+            var result = new DisplayModeProperties();
+
+			result.Parameters = value->Parameters;
+
+			return result;
+		}
+	}
+
+	public class DisplayPlaneProperties
+	{
+
+		public Display CurrentDisplay
+		{
+			get;
+			set;
+		}
+
+		public uint CurrentStackIndex
+		{
+			get;
+			set;
+		}
+
+		internal unsafe DisplayPlaneProperties Unpack(Interop.DisplayPlaneProperties value)
+		{
+			return MarshalFrom(&value);
+		}
+
+		internal static unsafe DisplayPlaneProperties MarshalFrom(Interop.DisplayPlaneProperties* value)
+		{
+            var result = new DisplayPlaneProperties();
+
+			result.CurrentStackIndex = value->CurrentStackIndex;
+
+			return result;
+		}
+	}
+
+	public class DisplayPresentInfo
+	{
+
+		public Rect2D SourceRect
+		{
+			get;
+			set;
+		}
+
+		public Rect2D DestinationRect
+		{
+			get;
+			set;
+		}
+
+		public Bool32 Persistent
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.DisplayPresentInfo Pack()
+        {
+            var result = new Interop.DisplayPresentInfo();
+			result.SType = StructureType.DisplayPresentInfo;
+			result.SourceRect = this.SourceRect;
+			result.DestinationRect = this.DestinationRect;
+			result.Persistent = this.Persistent;
+
+            return result;
+        }
+
+		internal unsafe Interop.DisplayPresentInfo* MarshalTo()
+        {
+            return (Interop.DisplayPresentInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class DisplayProperties
+	{
+
+		public Display Display
+		{
+			get;
+			set;
+		}
+
+		public string DisplayName
+		{
+			get;
+			set;
+		}
+
+		public Extent2D PhysicalDimensions
+		{
+			get;
+			set;
+		}
+
+		public Extent2D PhysicalResolution
+		{
+			get;
+			set;
+		}
+
+		public SurfaceTransformFlags SupportedTransforms
+		{
+			get;
+			set;
+		}
+
+		public Bool32 PlaneReorderPossible
+		{
+			get;
+			set;
+		}
+
+		public Bool32 PersistentContent
+		{
+			get;
+			set;
+		}
+
+		internal unsafe DisplayProperties Unpack(Interop.DisplayProperties value)
+		{
+			return MarshalFrom(&value);
+		}
+
+		internal static unsafe DisplayProperties MarshalFrom(Interop.DisplayProperties* value)
+		{
+            var result = new DisplayProperties();
+
+			result.DisplayName = Interop.HeapUtil.MarshalFrom(value->DisplayName);
+			result.PhysicalDimensions = value->PhysicalDimensions;
+			result.PhysicalResolution = value->PhysicalResolution;
+			result.SupportedTransforms = value->SupportedTransforms;
+			result.PlaneReorderPossible = value->PlaneReorderPossible;
+			result.PersistentContent = value->PersistentContent;
+
+			return result;
+		}
+	}
+
+	public class DisplaySurfaceCreateInfo
+	{
+
+		public DisplaySurfaceCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public DisplayMode DisplayMode
+		{
+			get;
+			set;
+		}
+
+		public uint PlaneIndex
+		{
+			get;
+			set;
+		}
+
+		public uint PlaneStackIndex
+		{
+			get;
+			set;
+		}
+
+		public SurfaceTransformFlags Transform
+		{
+			get;
+			set;
+		}
+
+		public float GlobalAlpha
+		{
+			get;
+			set;
+		}
+
+		public DisplayPlaneAlphaFlags AlphaMode
+		{
+			get;
+			set;
+		}
+
+		public Extent2D ImageExtent
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.DisplaySurfaceCreateInfo Pack()
+        {
+            var result = new Interop.DisplaySurfaceCreateInfo();
+			result.SType = StructureType.DisplaySurfaceCreateInfo;
+			result.DisplayMode = this.DisplayMode?.Pack() ?? Interop.DisplayMode.Null;
+			result.Flags = this.Flags;
+			result.PlaneIndex = this.PlaneIndex;
+			result.PlaneStackIndex = this.PlaneStackIndex;
+			result.Transform = this.Transform;
+			result.GlobalAlpha = this.GlobalAlpha;
+			result.AlphaMode = this.AlphaMode;
+			result.ImageExtent = this.ImageExtent;
+
+            return result;
+        }
+
+		internal unsafe Interop.DisplaySurfaceCreateInfo* MarshalTo()
+        {
+            return (Interop.DisplaySurfaceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -1864,6 +2355,44 @@ namespace SharpVk
 		internal unsafe Interop.MemoryBarrier* MarshalTo()
         {
             return (Interop.MemoryBarrier*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class MirSurfaceCreateInfo
+	{
+
+		public MirSurfaceCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public IntPtr Connection
+		{
+			get;
+			set;
+		}
+
+		public IntPtr MirSurface
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.MirSurfaceCreateInfo Pack()
+        {
+            var result = new Interop.MirSurfaceCreateInfo();
+			result.SType = StructureType.MirSurfaceCreateInfo;
+			result.Connection = (IntPtr*)Interop.HeapUtil.AllocateAndMarshal(this.Connection);
+			result.MirSurface = (IntPtr*)Interop.HeapUtil.AllocateAndMarshal(this.MirSurface);
+			result.Flags = this.Flags;
+
+            return result;
+        }
+
+		internal unsafe Interop.MirSurfaceCreateInfo* MarshalTo()
+        {
+            return (Interop.MirSurfaceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -3258,6 +3787,30 @@ namespace SharpVk
 		}
 	}
 
+	public class PipelineRasterizationStateRasterizationOrder
+	{
+
+		public RasterizationOrder RasterizationOrder
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.PipelineRasterizationStateRasterizationOrder Pack()
+        {
+            var result = new Interop.PipelineRasterizationStateRasterizationOrder();
+			result.SType = StructureType.PipelineRasterizationStateRasterizationOrder;
+			result.RasterizationOrder = this.RasterizationOrder;
+
+            return result;
+        }
+
+		internal unsafe Interop.PipelineRasterizationStateRasterizationOrder* MarshalTo()
+        {
+            return (Interop.PipelineRasterizationStateRasterizationOrder*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
 	public class PipelineShaderStageCreateInfo
 	{
 
@@ -4576,6 +5129,44 @@ namespace SharpVk
 		}
 	}
 
+	public class WaylandSurfaceCreateInfo
+	{
+
+		public WaylandSurfaceCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public IntPtr Display
+		{
+			get;
+			set;
+		}
+
+		public IntPtr Surface
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.WaylandSurfaceCreateInfo Pack()
+        {
+            var result = new Interop.WaylandSurfaceCreateInfo();
+			result.SType = StructureType.WaylandSurfaceCreateInfo;
+			result.Flags = this.Flags;
+			result.Display = this.Display;
+			result.Surface = this.Surface;
+
+            return result;
+        }
+
+		internal unsafe Interop.WaylandSurfaceCreateInfo* MarshalTo()
+        {
+            return (Interop.WaylandSurfaceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
 	public class Win32SurfaceCreateInfo
 	{
 
@@ -4723,6 +5314,82 @@ namespace SharpVk
 		internal unsafe Interop.WriteDescriptorSet* MarshalTo()
         {
             return (Interop.WriteDescriptorSet*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class XcbSurfaceCreateInfo
+	{
+
+		public XcbSurfaceCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public IntPtr Connection
+		{
+			get;
+			set;
+		}
+
+		public IntPtr Window
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.XcbSurfaceCreateInfo Pack()
+        {
+            var result = new Interop.XcbSurfaceCreateInfo();
+			result.SType = StructureType.XcbSurfaceCreateInfo;
+			result.Connection = (IntPtr*)Interop.HeapUtil.AllocateAndMarshal(this.Connection);
+			result.Flags = this.Flags;
+			result.Window = this.Window;
+
+            return result;
+        }
+
+		internal unsafe Interop.XcbSurfaceCreateInfo* MarshalTo()
+        {
+            return (Interop.XcbSurfaceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+	public class XlibSurfaceCreateInfo
+	{
+
+		public XlibSurfaceCreateFlags Flags
+		{
+			get;
+			set;
+		}
+
+		public IntPtr Dpy
+		{
+			get;
+			set;
+		}
+
+		public IntPtr Window
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.XlibSurfaceCreateInfo Pack()
+        {
+            var result = new Interop.XlibSurfaceCreateInfo();
+			result.SType = StructureType.XlibSurfaceCreateInfo;
+			result.Dpy = (IntPtr*)Interop.HeapUtil.AllocateAndMarshal(this.Dpy);
+			result.Flags = this.Flags;
+			result.Window = this.Window;
+
+            return result;
+        }
+
+		internal unsafe Interop.XlibSurfaceCreateInfo* MarshalTo()
+        {
+            return (Interop.XlibSurfaceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 }

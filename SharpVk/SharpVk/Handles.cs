@@ -25,6 +25,7 @@ using System;
 namespace SharpVk
 {
 	public class Buffer
+		: IDisposable
 	{
 		internal readonly Interop.Buffer handle;
 
@@ -98,9 +99,15 @@ namespace SharpVk
 		{
 			return this.handle;
 		}
+
+		public void Dispose()
+		{
+			this.Destroy();
+		}
 	}
 
 	public class BufferView
+		: IDisposable
 	{
 		internal readonly Interop.BufferView handle;
 
@@ -138,6 +145,11 @@ namespace SharpVk
 		internal Interop.BufferView Pack()
 		{
 			return this.handle;
+		}
+
+		public void Dispose()
+		{
+			this.Destroy();
 		}
 	}
 
@@ -937,6 +949,46 @@ namespace SharpVk
 			}
 		}
 
+		public void DebugMarkerBegin(DebugMarkerMarkerInfo markerInfo)
+		{
+			unsafe
+			{
+				Interop.DebugMarkerMarkerInfo marshalledMarkerInfo;
+				if(markerInfo != null) marshalledMarkerInfo = markerInfo.Pack();
+				Interop.Commands.vkCmdDebugMarkerBeginEXT(this.handle, markerInfo == null ? null : &marshalledMarkerInfo);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void DebugMarkerEnd()
+		{
+			unsafe
+			{
+				Interop.Commands.vkCmdDebugMarkerEndEXT(this.handle);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void DebugMarkerInsert(DebugMarkerMarkerInfo markerInfo)
+		{
+			unsafe
+			{
+				Interop.DebugMarkerMarkerInfo marshalledMarkerInfo;
+				if(markerInfo != null) marshalledMarkerInfo = markerInfo.Pack();
+				Interop.Commands.vkCmdDebugMarkerInsertEXT(this.handle, markerInfo == null ? null : &marshalledMarkerInfo);
+
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
 		internal Interop.CommandBuffer Pack()
 		{
 			return this.handle;
@@ -944,6 +996,7 @@ namespace SharpVk
 	}
 
 	public class CommandPool
+		: IDisposable
 	{
 		internal readonly Interop.CommandPool handle;
 
@@ -1025,9 +1078,15 @@ namespace SharpVk
 		{
 			return this.handle;
 		}
+
+		public void Dispose()
+		{
+			this.Destroy();
+		}
 	}
 
 	public class DebugReportCallback
+		: IDisposable
 	{
 		internal readonly Interop.DebugReportCallback handle;
 
@@ -1066,9 +1125,15 @@ namespace SharpVk
 		{
 			return this.handle;
 		}
+
+		public void Dispose()
+		{
+			this.Destroy();
+		}
 	}
 
 	public class DescriptorPool
+		: IDisposable
 	{
 		internal readonly Interop.DescriptorPool handle;
 
@@ -1156,6 +1221,11 @@ namespace SharpVk
 		{
 			return this.handle;
 		}
+
+		public void Dispose()
+		{
+			this.Destroy();
+		}
 	}
 
 	public class DescriptorSet
@@ -1186,6 +1256,7 @@ namespace SharpVk
 	}
 
 	public class DescriptorSetLayout
+		: IDisposable
 	{
 		internal readonly Interop.DescriptorSetLayout handle;
 
@@ -1224,9 +1295,15 @@ namespace SharpVk
 		{
 			return this.handle;
 		}
+
+		public void Dispose()
+		{
+			this.Destroy();
+		}
 	}
 
 	public class Device
+		: IDisposable
 	{
 		internal readonly Interop.Device handle;
 
@@ -2171,9 +2248,97 @@ namespace SharpVk
 			}
 		}
 
+		public Swapchain[] CreateSharedSwapchains(SwapchainCreateInfo[] createInfos)
+		{
+			unsafe
+			{
+				Swapchain[] result = default(Swapchain[]);
+
+				Result commandResult;
+
+				Interop.SwapchainCreateInfo* marshalledCreateInfos;
+				if (createInfos != null)
+				{
+				    marshalledCreateInfos = (Interop.SwapchainCreateInfo*)Interop.HeapUtil.Allocate<Interop.SwapchainCreateInfo>(createInfos.Length);
+				    for (int index = 0; index < createInfos.Length; index++)
+				    {
+				        marshalledCreateInfos[index] = createInfos[index].Pack();
+				    }
+				}
+				else
+				{
+				    marshalledCreateInfos = null;
+				}
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
+				Interop.Swapchain* marshalledSwapchains = (Interop.Swapchain*)Interop.HeapUtil.Allocate<Interop.Swapchain>(createInfos.Length);
+				commandResult = Interop.Commands.vkCreateSharedSwapchainsKHR(this.handle, (uint)createInfos.Length, marshalledCreateInfos, this.parent.Allocator == null ? null : &marshalledAllocator, marshalledSwapchains);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+				result = new Swapchain[(uint)createInfos.Length];
+				for(int index = 0; index < (uint)createInfos.Length; index++)
+				{
+					result[index] = new Swapchain(marshalledSwapchains[index], createInfos[index].Surface, this);
+				}
+
+				Interop.HeapUtil.FreeLog();
+
+
+				return result;
+			}
+		}
+
+		public void DebugMarkerSetObjectTag(DebugMarkerObjectTagInfo tagInfo)
+		{
+			unsafe
+			{
+				Result commandResult;
+
+				Interop.DebugMarkerObjectTagInfo marshalledTagInfo;
+				if(tagInfo != null) marshalledTagInfo = tagInfo.Pack();
+				commandResult = Interop.Commands.vkDebugMarkerSetObjectTagEXT(this.handle, tagInfo == null ? null : &marshalledTagInfo);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		public void DebugMarkerSetObjectName(DebugMarkerObjectNameInfo nameInfo)
+		{
+			unsafe
+			{
+				Result commandResult;
+
+				Interop.DebugMarkerObjectNameInfo marshalledNameInfo;
+				if(nameInfo != null) marshalledNameInfo = nameInfo.Pack();
+				commandResult = Interop.Commands.vkDebugMarkerSetObjectNameEXT(this.handle, nameInfo == null ? null : &marshalledNameInfo);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
 		internal Interop.Device Pack()
 		{
 			return this.handle;
+		}
+
+		public void Dispose()
+		{
+			this.Destroy();
 		}
 	}
 
@@ -2198,20 +2363,20 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public void MapMemory(DeviceSize offset, DeviceSize size, MemoryMapFlags flags, ref IntPtr data)
+		public void MapMemory(DeviceSize offset, DeviceSize size, MemoryMapFlags flags, ref IntPtr ppData)
 		{
 			unsafe
 			{
 				Result commandResult;
 
-				void* marshalledData;
-				commandResult = Interop.Commands.vkMapMemory(this.parent.handle, this.handle, offset, size, flags, &marshalledData);
+				void* marshalledPpData;
+				commandResult = Interop.Commands.vkMapMemory(this.parent.handle, this.handle, offset, size, flags, &marshalledPpData);
 
 				if (SharpVkException.IsError(commandResult))
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				data = new IntPtr(marshalledData);
+				ppData = new IntPtr(marshalledPpData);
 
 				Interop.HeapUtil.FreeLog();
 
@@ -2252,7 +2417,80 @@ namespace SharpVk
 		}
 	}
 
+	public class Display
+	{
+		internal readonly Interop.Display handle;
+
+		private AllocationCallbacks allocator;
+
+		internal AllocationCallbacks Allocator
+		{
+			get
+			{
+				return this.allocator;
+			}
+		}
+
+		internal Display(Interop.Display handle, AllocationCallbacks allocator)
+		{
+			this.handle = handle;
+
+			this.allocator = allocator;
+		}
+
+		internal Interop.Display Pack()
+		{
+			return this.handle;
+		}
+	}
+
+	public class DisplayMode
+	{
+		internal readonly Interop.DisplayMode handle;
+
+		private readonly PhysicalDevice parent;
+
+		internal AllocationCallbacks Allocator
+		{
+			get
+			{
+				return this.parent.Allocator;
+			}
+		}
+
+
+		internal DisplayMode(Interop.DisplayMode handle, PhysicalDevice parent)
+		{
+			this.handle = handle;
+			this.parent = parent;
+		}
+
+		public void GetDisplayPlaneCapabilities(uint planeIndex, DisplayPlaneCapabilities capabilities)
+		{
+			unsafe
+			{
+				Result commandResult;
+
+				commandResult = Interop.Commands.vkGetDisplayPlaneCapabilitiesKHR(this.parent.handle, this.handle, planeIndex, &capabilities);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+
+				Interop.HeapUtil.FreeLog();
+
+			}
+		}
+
+		internal Interop.DisplayMode Pack()
+		{
+			return this.handle;
+		}
+	}
+
 	public class Event
+		: IDisposable
 	{
 		internal readonly Interop.Event handle;
 
@@ -2345,9 +2583,15 @@ namespace SharpVk
 		{
 			return this.handle;
 		}
+
+		public void Dispose()
+		{
+			this.Destroy();
+		}
 	}
 
 	public class Fence
+		: IDisposable
 	{
 		internal readonly Interop.Fence handle;
 
@@ -2404,9 +2648,15 @@ namespace SharpVk
 		{
 			return this.handle;
 		}
+
+		public void Dispose()
+		{
+			this.Destroy();
+		}
 	}
 
 	public class Framebuffer
+		: IDisposable
 	{
 		internal readonly Interop.Framebuffer handle;
 
@@ -2445,9 +2695,15 @@ namespace SharpVk
 		{
 			return this.handle;
 		}
+
+		public void Dispose()
+		{
+			this.Destroy();
+		}
 	}
 
 	public class Image
+		: IDisposable
 	{
 		internal readonly Interop.Image handle;
 
@@ -2563,9 +2819,15 @@ namespace SharpVk
 		{
 			return this.handle;
 		}
+
+		public void Dispose()
+		{
+			this.Destroy();
+		}
 	}
 
 	public class ImageView
+		: IDisposable
 	{
 		internal readonly Interop.ImageView handle;
 
@@ -2604,9 +2866,15 @@ namespace SharpVk
 		{
 			return this.handle;
 		}
+
+		public void Dispose()
+		{
+			this.Destroy();
+		}
 	}
 
 	public class Instance
+		: IDisposable
 	{
 		internal readonly Interop.Instance handle;
 
@@ -2795,6 +3063,174 @@ namespace SharpVk
 			}
 		}
 
+		public Surface CreateDisplayPlaneSurface(DisplaySurfaceCreateInfo createInfo)
+		{
+			unsafe
+			{
+				Surface result = default(Surface);
+
+				Result commandResult;
+
+				Interop.DisplaySurfaceCreateInfo marshalledCreateInfo;
+				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(this.allocator != null) marshalledAllocator = this.allocator.Pack();
+				Interop.Surface marshalledSurface;
+				commandResult = Interop.Commands.vkCreateDisplayPlaneSurfaceKHR(this.handle, createInfo == null ? null : &marshalledCreateInfo, this.allocator == null ? null : &marshalledAllocator, &marshalledSurface);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+				result = new Surface(marshalledSurface, this);
+
+				Interop.HeapUtil.FreeLog();
+
+
+				return result;
+			}
+		}
+
+		public Surface CreateXlibSurface(XlibSurfaceCreateInfo createInfo)
+		{
+			unsafe
+			{
+				Surface result = default(Surface);
+
+				Result commandResult;
+
+				Interop.XlibSurfaceCreateInfo marshalledCreateInfo;
+				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(this.allocator != null) marshalledAllocator = this.allocator.Pack();
+				Interop.Surface marshalledSurface;
+				commandResult = Interop.Commands.vkCreateXlibSurfaceKHR(this.handle, createInfo == null ? null : &marshalledCreateInfo, this.allocator == null ? null : &marshalledAllocator, &marshalledSurface);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+				result = new Surface(marshalledSurface, this);
+
+				Interop.HeapUtil.FreeLog();
+
+
+				return result;
+			}
+		}
+
+		public Surface CreateXcbSurface(XcbSurfaceCreateInfo createInfo)
+		{
+			unsafe
+			{
+				Surface result = default(Surface);
+
+				Result commandResult;
+
+				Interop.XcbSurfaceCreateInfo marshalledCreateInfo;
+				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(this.allocator != null) marshalledAllocator = this.allocator.Pack();
+				Interop.Surface marshalledSurface;
+				commandResult = Interop.Commands.vkCreateXcbSurfaceKHR(this.handle, createInfo == null ? null : &marshalledCreateInfo, this.allocator == null ? null : &marshalledAllocator, &marshalledSurface);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+				result = new Surface(marshalledSurface, this);
+
+				Interop.HeapUtil.FreeLog();
+
+
+				return result;
+			}
+		}
+
+		public Surface CreateWaylandSurface(WaylandSurfaceCreateInfo createInfo)
+		{
+			unsafe
+			{
+				Surface result = default(Surface);
+
+				Result commandResult;
+
+				Interop.WaylandSurfaceCreateInfo marshalledCreateInfo;
+				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(this.allocator != null) marshalledAllocator = this.allocator.Pack();
+				Interop.Surface marshalledSurface;
+				commandResult = Interop.Commands.vkCreateWaylandSurfaceKHR(this.handle, createInfo == null ? null : &marshalledCreateInfo, this.allocator == null ? null : &marshalledAllocator, &marshalledSurface);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+				result = new Surface(marshalledSurface, this);
+
+				Interop.HeapUtil.FreeLog();
+
+
+				return result;
+			}
+		}
+
+		public Surface CreateMirSurface(MirSurfaceCreateInfo createInfo)
+		{
+			unsafe
+			{
+				Surface result = default(Surface);
+
+				Result commandResult;
+
+				Interop.MirSurfaceCreateInfo marshalledCreateInfo;
+				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(this.allocator != null) marshalledAllocator = this.allocator.Pack();
+				Interop.Surface marshalledSurface;
+				commandResult = Interop.Commands.vkCreateMirSurfaceKHR(this.handle, createInfo == null ? null : &marshalledCreateInfo, this.allocator == null ? null : &marshalledAllocator, &marshalledSurface);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+				result = new Surface(marshalledSurface, this);
+
+				Interop.HeapUtil.FreeLog();
+
+
+				return result;
+			}
+		}
+
+		public Surface CreateAndroidSurface(AndroidSurfaceCreateInfo createInfo)
+		{
+			unsafe
+			{
+				Surface result = default(Surface);
+
+				Result commandResult;
+
+				Interop.AndroidSurfaceCreateInfo marshalledCreateInfo;
+				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(this.allocator != null) marshalledAllocator = this.allocator.Pack();
+				Interop.Surface marshalledSurface;
+				commandResult = Interop.Commands.vkCreateAndroidSurfaceKHR(this.handle, createInfo == null ? null : &marshalledCreateInfo, this.allocator == null ? null : &marshalledAllocator, &marshalledSurface);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+				result = new Surface(marshalledSurface, this);
+
+				Interop.HeapUtil.FreeLog();
+
+
+				return result;
+			}
+		}
+
 		public Surface CreateWin32Surface(Win32SurfaceCreateInfo createInfo)
 		{
 			unsafe
@@ -2867,6 +3303,11 @@ namespace SharpVk
 		{
 			return this.handle;
 		}
+
+		public void Dispose()
+		{
+			this.Destroy();
+		}
 	}
 
 	public class PhysicalDevice
@@ -2890,19 +3331,15 @@ namespace SharpVk
 			this.parent = parent;
 		}
 
-		public PhysicalDeviceFeatures GetFeatures()
+		public void GetFeatures(PhysicalDeviceFeatures features)
 		{
 			unsafe
 			{
-				PhysicalDeviceFeatures result = default(PhysicalDeviceFeatures);
-
-				Interop.Commands.vkGetPhysicalDeviceFeatures(this.handle, &result);
+				Interop.Commands.vkGetPhysicalDeviceFeatures(this.handle, &features);
 
 
 				Interop.HeapUtil.FreeLog();
 
-
-				return result;
 			}
 		}
 
@@ -3156,16 +3593,14 @@ namespace SharpVk
 			}
 		}
 
-		public SurfaceCapabilities GetSurfaceCapabilities(Surface surface)
+		public void GetSurfaceCapabilities(Surface surface, SurfaceCapabilities surfaceCapabilities)
 		{
 			unsafe
 			{
-				SurfaceCapabilities result = default(SurfaceCapabilities);
-
 				Result commandResult;
 
 				Interop.Surface marshalledSurface = surface?.Pack() ?? Interop.Surface.Null;
-				commandResult = Interop.Commands.vkGetPhysicalDeviceSurfaceCapabilitiesKHR(this.handle, marshalledSurface, &result);
+				commandResult = Interop.Commands.vkGetPhysicalDeviceSurfaceCapabilitiesKHR(this.handle, marshalledSurface, &surfaceCapabilities);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -3174,8 +3609,6 @@ namespace SharpVk
 
 				Interop.HeapUtil.FreeLog();
 
-
-				return result;
 			}
 		}
 
@@ -3253,6 +3686,244 @@ namespace SharpVk
 			}
 		}
 
+		public DisplayProperties[] GetDisplayProperties()
+		{
+			unsafe
+			{
+				DisplayProperties[] result = default(DisplayProperties[]);
+
+				Result commandResult;
+
+				uint propertyCount;
+				Interop.DisplayProperties* marshalledProperties = null;
+				commandResult = Interop.Commands.vkGetPhysicalDeviceDisplayPropertiesKHR(this.handle, &propertyCount, null);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+				marshalledProperties = (Interop.DisplayProperties*)Interop.HeapUtil.Allocate<Interop.DisplayProperties>((uint)propertyCount);
+				commandResult = Interop.Commands.vkGetPhysicalDeviceDisplayPropertiesKHR(this.handle, &propertyCount, marshalledProperties);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+				result = new DisplayProperties[(uint)propertyCount];
+				for(int index = 0; index < (uint)propertyCount; index++)
+				{
+					result[index] = DisplayProperties.MarshalFrom(&marshalledProperties[index]);
+				}
+
+				Interop.HeapUtil.FreeLog();
+
+
+				return result;
+			}
+		}
+
+		public DisplayPlaneProperties[] GetDisplayPlaneProperties()
+		{
+			unsafe
+			{
+				DisplayPlaneProperties[] result = default(DisplayPlaneProperties[]);
+
+				Result commandResult;
+
+				uint propertyCount;
+				Interop.DisplayPlaneProperties* marshalledProperties = null;
+				commandResult = Interop.Commands.vkGetPhysicalDeviceDisplayPlanePropertiesKHR(this.handle, &propertyCount, null);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+				marshalledProperties = (Interop.DisplayPlaneProperties*)Interop.HeapUtil.Allocate<Interop.DisplayPlaneProperties>((uint)propertyCount);
+				commandResult = Interop.Commands.vkGetPhysicalDeviceDisplayPlanePropertiesKHR(this.handle, &propertyCount, marshalledProperties);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+				result = new DisplayPlaneProperties[(uint)propertyCount];
+				for(int index = 0; index < (uint)propertyCount; index++)
+				{
+					result[index] = DisplayPlaneProperties.MarshalFrom(&marshalledProperties[index]);
+				}
+
+				Interop.HeapUtil.FreeLog();
+
+
+				return result;
+			}
+		}
+
+		public Display[] GetDisplayPlaneSupportedDisplays(uint planeIndex)
+		{
+			unsafe
+			{
+				Display[] result = default(Display[]);
+
+				Result commandResult;
+
+				uint displayCount;
+				Interop.Display* marshalledDisplays = null;
+				commandResult = Interop.Commands.vkGetDisplayPlaneSupportedDisplaysKHR(this.handle, planeIndex, &displayCount, null);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+				marshalledDisplays = (Interop.Display*)Interop.HeapUtil.Allocate<Interop.Display>((uint)displayCount);
+				commandResult = Interop.Commands.vkGetDisplayPlaneSupportedDisplaysKHR(this.handle, planeIndex, &displayCount, marshalledDisplays);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+				result = new Display[(uint)displayCount];
+				for(int index = 0; index < (uint)displayCount; index++)
+				{
+					result[index] = new Display(marshalledDisplays[index], this.Allocator);
+				}
+
+				Interop.HeapUtil.FreeLog();
+
+
+				return result;
+			}
+		}
+
+		public DisplayModeProperties[] GetDisplayModeProperties(Display display)
+		{
+			unsafe
+			{
+				DisplayModeProperties[] result = default(DisplayModeProperties[]);
+
+				Result commandResult;
+
+				Interop.Display marshalledDisplay = display?.Pack() ?? Interop.Display.Null;
+				uint propertyCount;
+				Interop.DisplayModeProperties* marshalledProperties = null;
+				commandResult = Interop.Commands.vkGetDisplayModePropertiesKHR(this.handle, marshalledDisplay, &propertyCount, null);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+				marshalledProperties = (Interop.DisplayModeProperties*)Interop.HeapUtil.Allocate<Interop.DisplayModeProperties>((uint)propertyCount);
+				commandResult = Interop.Commands.vkGetDisplayModePropertiesKHR(this.handle, marshalledDisplay, &propertyCount, marshalledProperties);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+				result = new DisplayModeProperties[(uint)propertyCount];
+				for(int index = 0; index < (uint)propertyCount; index++)
+				{
+					result[index] = DisplayModeProperties.MarshalFrom(&marshalledProperties[index]);
+				}
+
+				Interop.HeapUtil.FreeLog();
+
+
+				return result;
+			}
+		}
+
+		public DisplayMode CreateDisplayMode(Display display, DisplayModeCreateInfo createInfo)
+		{
+			unsafe
+			{
+				DisplayMode result = default(DisplayMode);
+
+				Result commandResult;
+
+				Interop.Display marshalledDisplay = display?.Pack() ?? Interop.Display.Null;
+				Interop.DisplayModeCreateInfo marshalledCreateInfo;
+				if(createInfo != null) marshalledCreateInfo = createInfo.Pack();
+				Interop.AllocationCallbacks marshalledAllocator;
+				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Pack();
+				Interop.DisplayMode marshalledMode;
+				commandResult = Interop.Commands.vkCreateDisplayModeKHR(this.handle, marshalledDisplay, createInfo == null ? null : &marshalledCreateInfo, this.parent.Allocator == null ? null : &marshalledAllocator, &marshalledMode);
+
+				if (SharpVkException.IsError(commandResult))
+				{
+					throw SharpVkException.Create(commandResult);
+				}
+				result = new DisplayMode(marshalledMode, this);
+
+				Interop.HeapUtil.FreeLog();
+
+
+				return result;
+			}
+		}
+
+		public bool GetXlibPresentationSupport(uint queueFamilyIndex, IntPtr dpy, IntPtr visualID)
+		{
+			unsafe
+			{
+				bool result = default(bool);
+
+				result = Interop.Commands.vkGetPhysicalDeviceXlibPresentationSupportKHR(this.handle, queueFamilyIndex, &dpy, visualID);
+
+
+				Interop.HeapUtil.FreeLog();
+
+
+				return result;
+			}
+		}
+
+		public bool GetXcbPresentationSupport(uint queueFamilyIndex, IntPtr connection, IntPtr visual_id)
+		{
+			unsafe
+			{
+				bool result = default(bool);
+
+				result = Interop.Commands.vkGetPhysicalDeviceXcbPresentationSupportKHR(this.handle, queueFamilyIndex, &connection, visual_id);
+
+
+				Interop.HeapUtil.FreeLog();
+
+
+				return result;
+			}
+		}
+
+		public bool GetWaylandPresentationSupport(uint queueFamilyIndex, IntPtr display)
+		{
+			unsafe
+			{
+				bool result = default(bool);
+
+				result = Interop.Commands.vkGetPhysicalDeviceWaylandPresentationSupportKHR(this.handle, queueFamilyIndex, display);
+
+
+				Interop.HeapUtil.FreeLog();
+
+
+				return result;
+			}
+		}
+
+		public bool GetMirPresentationSupport(uint queueFamilyIndex, IntPtr connection)
+		{
+			unsafe
+			{
+				bool result = default(bool);
+
+				result = Interop.Commands.vkGetPhysicalDeviceMirPresentationSupportKHR(this.handle, queueFamilyIndex, &connection);
+
+
+				Interop.HeapUtil.FreeLog();
+
+
+				return result;
+			}
+		}
+
 		public bool GetWin32PresentationSupport(uint queueFamilyIndex)
 		{
 			unsafe
@@ -3276,6 +3947,7 @@ namespace SharpVk
 	}
 
 	public class Pipeline
+		: IDisposable
 	{
 		internal readonly Interop.Pipeline handle;
 
@@ -3314,9 +3986,15 @@ namespace SharpVk
 		{
 			return this.handle;
 		}
+
+		public void Dispose()
+		{
+			this.Destroy();
+		}
 	}
 
 	public class PipelineCache
+		: IDisposable
 	{
 		internal readonly Interop.PipelineCache handle;
 
@@ -3422,9 +4100,15 @@ namespace SharpVk
 		{
 			return this.handle;
 		}
+
+		public void Dispose()
+		{
+			this.Destroy();
+		}
 	}
 
 	public class PipelineLayout
+		: IDisposable
 	{
 		internal readonly Interop.PipelineLayout handle;
 
@@ -3463,9 +4147,15 @@ namespace SharpVk
 		{
 			return this.handle;
 		}
+
+		public void Dispose()
+		{
+			this.Destroy();
+		}
 	}
 
 	public class QueryPool
+		: IDisposable
 	{
 		internal readonly Interop.QueryPool handle;
 
@@ -3522,6 +4212,11 @@ namespace SharpVk
 		internal Interop.QueryPool Pack()
 		{
 			return this.handle;
+		}
+
+		public void Dispose()
+		{
+			this.Destroy();
 		}
 	}
 
@@ -3655,6 +4350,7 @@ namespace SharpVk
 	}
 
 	public class RenderPass
+		: IDisposable
 	{
 		internal readonly Interop.RenderPass handle;
 
@@ -3689,19 +4385,15 @@ namespace SharpVk
 			}
 		}
 
-		public Extent2D GetRenderAreaGranularity()
+		public void GetRenderAreaGranularity(Extent2D granularity)
 		{
 			unsafe
 			{
-				Extent2D result = default(Extent2D);
-
-				Interop.Commands.vkGetRenderAreaGranularity(this.parent.handle, this.handle, &result);
+				Interop.Commands.vkGetRenderAreaGranularity(this.parent.handle, this.handle, &granularity);
 
 
 				Interop.HeapUtil.FreeLog();
 
-
-				return result;
 			}
 		}
 
@@ -3709,9 +4401,15 @@ namespace SharpVk
 		{
 			return this.handle;
 		}
+
+		public void Dispose()
+		{
+			this.Destroy();
+		}
 	}
 
 	public class Sampler
+		: IDisposable
 	{
 		internal readonly Interop.Sampler handle;
 
@@ -3750,9 +4448,15 @@ namespace SharpVk
 		{
 			return this.handle;
 		}
+
+		public void Dispose()
+		{
+			this.Destroy();
+		}
 	}
 
 	public class Semaphore
+		: IDisposable
 	{
 		internal readonly Interop.Semaphore handle;
 
@@ -3791,9 +4495,15 @@ namespace SharpVk
 		{
 			return this.handle;
 		}
+
+		public void Dispose()
+		{
+			this.Destroy();
+		}
 	}
 
 	public class ShaderModule
+		: IDisposable
 	{
 		internal readonly Interop.ShaderModule handle;
 
@@ -3832,9 +4542,15 @@ namespace SharpVk
 		{
 			return this.handle;
 		}
+
+		public void Dispose()
+		{
+			this.Destroy();
+		}
 	}
 
 	public class Surface
+		: IDisposable
 	{
 		internal readonly Interop.Surface handle;
 
@@ -3873,9 +4589,15 @@ namespace SharpVk
 		{
 			return this.handle;
 		}
+
+		public void Dispose()
+		{
+			this.Destroy();
+		}
 	}
 
 	public class Swapchain
+		: IDisposable
 	{
 		internal readonly Interop.Swapchain handle;
 
@@ -3975,6 +4697,11 @@ namespace SharpVk
 		internal Interop.Swapchain Pack()
 		{
 			return this.handle;
+		}
+
+		public void Dispose()
+		{
+			this.Destroy();
 		}
 	}
 

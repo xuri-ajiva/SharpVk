@@ -6,9 +6,9 @@
 - [ ] Flags vs FlagBits may indicate a set of flags versus an individual flag value - needs investigation
 - [x] Prettify Public API Methods (Issue #5)
     - [x] Correctly handle Cmd prefix
-- [ ] Implement IDispose pattern for handles with Destroy command
+- [x] Implement IDispose pattern for handles with Destroy command
 - [ ] Move Extension objects into a new namespace
-- [ ] Generate all supported extensions
+- [x] Generate all supported extensions
 - [ ] Generate Pfn_* delegates and define a procedure for hooking Debug callbacks
 - [ ] Pull list of "known extensions" from spec instead of using hard-coded array in SpecParser
 - [ ] Convert all formatted strings to use string interpolation
@@ -39,7 +39,7 @@
     - [x] vkEnumerateDeviceLayerProperties
   - Queue commands
     - [x] vkGetDeviceQueue
-    - [ ] vkQueueSubmit
+    - [x] vkQueueSubmit
     - [x] vkQueueWaitIdle
     - [x] vkDeviceWaitIdle
   - Memory commands

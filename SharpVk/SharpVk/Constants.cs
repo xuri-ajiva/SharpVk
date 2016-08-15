@@ -34,6 +34,48 @@ namespace SharpVk
 		public const string ExtensionName = "VK_KHR_swapchain";
 	}
 
+	public static class KhrDisplay
+	{
+		public const uint SpecVersion = 21;
+		public const string ExtensionName = "VK_KHR_display";
+	}
+
+	public static class KhrDisplaySwapchain
+	{
+		public const uint SpecVersion = 9;
+		public const string ExtensionName = "VK_KHR_display_swapchain";
+	}
+
+	public static class KhrXlibSurface
+	{
+		public const uint SpecVersion = 6;
+		public const string ExtensionName = "VK_KHR_xlib_surface";
+	}
+
+	public static class KhrXcbSurface
+	{
+		public const uint SpecVersion = 6;
+		public const string ExtensionName = "VK_KHR_xcb_surface";
+	}
+
+	public static class KhrWaylandSurface
+	{
+		public const uint SpecVersion = 5;
+		public const string ExtensionName = "VK_KHR_wayland_surface";
+	}
+
+	public static class KhrMirSurface
+	{
+		public const uint SpecVersion = 4;
+		public const string ExtensionName = "VK_KHR_mir_surface";
+	}
+
+	public static class KhrAndroidSurface
+	{
+		public const uint SpecVersion = 6;
+		public const string ExtensionName = "VK_KHR_android_surface";
+	}
+
 	public static class KhrWin32Surface
 	{
 		public const uint SpecVersion = 5;
@@ -44,6 +86,66 @@ namespace SharpVk
 	{
 		public const uint SpecVersion = 3;
 		public const string ExtensionName = "VK_EXT_debug_report";
+	}
+
+	public static class NvGlslShader
+	{
+		public const uint SpecVersion = 1;
+		public const string ExtensionName = "VK_NV_glsl_shader";
+	}
+
+	public static class KhrSamplerMirrorClampToEdge
+	{
+		public const uint SpecVersion = 1;
+		public const string ExtensionName = "VK_KHR_sampler_mirror_clamp_to_edge";
+	}
+
+	public static class ImgFilterCubic
+	{
+		public const uint SpecVersion = 1;
+		public const string ExtensionName = "VK_IMG_filter_cubic";
+	}
+
+	public static class AmdRasterizationOrder
+	{
+		public const uint SpecVersion = 1;
+		public const string ExtensionName = "VK_AMD_rasterization_order";
+	}
+
+	public static class AmdShaderTrinaryMinmax
+	{
+		public const uint SpecVersion = 1;
+		public const string ExtensionName = "VK_AMD_shader_trinary_minmax";
+	}
+
+	public static class AmdShaderExplicitVertexParameter
+	{
+		public const uint SpecVersion = 1;
+		public const string ExtensionName = "VK_AMD_shader_explicit_vertex_parameter";
+	}
+
+	public static class ExtDebugMarker
+	{
+		public const uint SpecVersion = 3;
+		public const string ExtensionName = "VK_EXT_debug_marker";
+	}
+
+	public static class AmdGcnShader
+	{
+		public const uint SpecVersion = 1;
+		public const string ExtensionName = "VK_AMD_gcn_shader";
+	}
+
+	public static class NvDedicatedAllocation
+	{
+		public const uint SpecVersion = 1;
+		public const string ExtensionName = "VK_NV_dedicated_allocation";
+	}
+
+	public static class ImgFormatPvrtc
+	{
+		public const uint SpecVersion = 1;
+		public const string ExtensionName = "VK_IMG_format_pvrtc";
 	}
 
 	public static class Constants

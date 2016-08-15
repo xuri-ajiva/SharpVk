@@ -377,6 +377,69 @@ namespace SharpVk
 	}
 
     [StructLayout(LayoutKind.Sequential)]
+	public partial struct DisplayModeParameters
+	{
+		public Extent2D VisibleRegion;
+
+		public uint RefreshRate;
+
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("DisplayModeParameters");
+            builder.AppendLine("{");
+            builder.AppendLine($"VisibleRegion: {this.VisibleRegion}");
+            builder.AppendLine($"RefreshRate: {this.RefreshRate}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public partial struct DisplayPlaneCapabilities
+	{
+		public DisplayPlaneAlphaFlags SupportedAlpha;
+
+		public Offset2D MinSourcePosition;
+
+		public Offset2D MaxSourcePosition;
+
+		public Extent2D MinSourceExtent;
+
+		public Extent2D MaxSourceExtent;
+
+		public Offset2D MinDestinationPosition;
+
+		public Offset2D MaxDestinationPosition;
+
+		public Extent2D MinDestinationExtent;
+
+		public Extent2D MaxDestinationExtent;
+
+		public override string ToString()
+		{
+			var builder = new StringBuilder();
+			
+            builder.AppendLine("DisplayPlaneCapabilities");
+            builder.AppendLine("{");
+            builder.AppendLine($"SupportedAlpha: {this.SupportedAlpha}");
+            builder.AppendLine($"MinSourcePosition: {this.MinSourcePosition}");
+            builder.AppendLine($"MaxSourcePosition: {this.MaxSourcePosition}");
+            builder.AppendLine($"MinSourceExtent: {this.MinSourceExtent}");
+            builder.AppendLine($"MaxSourceExtent: {this.MaxSourceExtent}");
+            builder.AppendLine($"MinDestinationPosition: {this.MinDestinationPosition}");
+            builder.AppendLine($"MaxDestinationPosition: {this.MaxDestinationPosition}");
+            builder.AppendLine($"MinDestinationExtent: {this.MinDestinationExtent}");
+            builder.AppendLine($"MaxDestinationExtent: {this.MaxDestinationExtent}");
+            builder.Append("}");
+
+			return builder.ToString();
+		}
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
 	public partial struct DrawIndexedIndirectCommand
 	{
 		public uint IndexCount;

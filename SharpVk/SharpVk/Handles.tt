@@ -24,6 +24,9 @@ foreach(var handle in types.Handles)
 {
 #>
 	public class <#=handle.Name#>
+<#if(handle.IsDisposable)#>
+		: IDisposable
+<#;#>
 	{
 		internal readonly Interop.<#=handle.Name#> handle;
 
@@ -237,6 +240,18 @@ foreach(var handle in types.Handles)
 		{
 			return this.handle;
 		}
+<#
+	if(handle.IsDisposable)
+    {
+#>
+
+		public void Dispose()
+		{
+			this.Destroy();
+		}
+<#
+    }
+#>
 	}
 
 <#

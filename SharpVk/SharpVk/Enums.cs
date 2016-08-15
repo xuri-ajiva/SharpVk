@@ -49,6 +49,12 @@ namespace SharpVk
 	}
 
 	[Flags]
+	public enum AndroidSurfaceCreateFlags
+	{
+		None = 0,
+	}
+
+	[Flags]
 	public enum AttachmentDescriptionFlags
 	{
 		None = 0,
@@ -195,6 +201,28 @@ namespace SharpVk
 	}
 
 	[Flags]
+	public enum DisplayModeCreateFlags
+	{
+		None = 0,
+	}
+
+	[Flags]
+	public enum DisplayPlaneAlphaFlags
+	{
+		None = 0,
+		Opaque = 1 << 0,
+		Global = 1 << 1,
+		PerPixel = 1 << 2,
+		PerPixelPremultiplied = 1 << 3,
+	}
+
+	[Flags]
+	public enum DisplaySurfaceCreateFlags
+	{
+		None = 0,
+	}
+
+	[Flags]
 	public enum EventCreateFlags
 	{
 		None = 0,
@@ -224,6 +252,7 @@ namespace SharpVk
 		BlitSource = 1 << 10,
 		BlitDestination = 1 << 11,
 		SampledImageFilterLinear = 1 << 12,
+		SampledImageFilterCubicBitImg = 13,
 	}
 
 	[Flags]
@@ -301,6 +330,12 @@ namespace SharpVk
 		HostCoherent = 1 << 2,
 		HostCached = 1 << 3,
 		LazilyAllocated = 1 << 4,
+	}
+
+	[Flags]
+	public enum MirSurfaceCreateFlags
+	{
+		None = 0,
 	}
 
 	[Flags]
@@ -561,7 +596,25 @@ namespace SharpVk
 	}
 
 	[Flags]
+	public enum WaylandSurfaceCreateFlags
+	{
+		None = 0,
+	}
+
+	[Flags]
 	public enum Win32SurfaceCreateFlags
+	{
+		None = 0,
+	}
+
+	[Flags]
+	public enum XcbSurfaceCreateFlags
+	{
+		None = 0,
+	}
+
+	[Flags]
+	public enum XlibSurfaceCreateFlags
 	{
 		None = 0,
 	}
@@ -726,6 +779,7 @@ namespace SharpVk
 	{
 		Nearest = 0,
 		Linear = 1,
+		CubicImg = 1000015000,
 	}
 
 	public enum Format
@@ -915,6 +969,14 @@ namespace SharpVk
 		Astc12x10SrgbBlock = 182,
 		Astc12x12UnormBlock = 183,
 		Astc12x12SrgbBlock = 184,
+		Pvrtc12bppUnormBlockImg = 1000054000,
+		Pvrtc14bppUnormBlockImg = 1000054001,
+		Pvrtc22bppUnormBlockImg = 1000054002,
+		Pvrtc24bppUnormBlockImg = 1000054003,
+		Pvrtc12bppSrgbBlockImg = 1000054004,
+		Pvrtc14bppSrgbBlockImg = 1000054005,
+		Pvrtc22bppSrgbBlockImg = 1000054006,
+		Pvrtc24bppSrgbBlockImg = 1000054007,
 	}
 
 	public enum FrontFace
@@ -1044,6 +1106,12 @@ namespace SharpVk
 		Timestamp = 2,
 	}
 
+	public enum RasterizationOrder
+	{
+		Strict = 0,
+		Relaxed = 1,
+	}
+
 	public enum Result
 	{
 		Success = 0,
@@ -1068,7 +1136,9 @@ namespace SharpVk
 		ErrorNativeWindowInUse = -1000000001,
 		Suboptimal = 1000001003,
 		ErrorOutOfDate = -1000001004,
+		ErrorIncompatibleDisplay = -1000003001,
 		ErrorValidationFailed = -1000011001,
+		ErrorInvalidShader = -1000012000,
 	}
 
 	public enum SamplerAddressMode
@@ -1077,6 +1147,7 @@ namespace SharpVk
 		MirroredRepeat = 1,
 		ClampToEdge = 2,
 		ClampToBorder = 3,
+		MirrorClampToEdge = 4,
 	}
 
 	public enum SamplerMipmapMode
@@ -1156,8 +1227,23 @@ namespace SharpVk
 		LoaderDeviceCreateInfo = 48,
 		SwapchainCreateInfo = 1000001000,
 		PresentInfo = 1000001001,
+		DisplayModeCreateInfo = 1000002000,
+		DisplaySurfaceCreateInfo = 1000002001,
+		DisplayPresentInfo = 1000003000,
+		XlibSurfaceCreateInfo = 1000004000,
+		XcbSurfaceCreateInfo = 1000005000,
+		WaylandSurfaceCreateInfo = 1000006000,
+		MirSurfaceCreateInfo = 1000007000,
+		AndroidSurfaceCreateInfo = 1000008000,
 		Win32SurfaceCreateInfo = 1000009000,
 		DebugReportCallbackCreateInfo = 1000011000,
+		PipelineRasterizationStateRasterizationOrder = 1000018000,
+		DebugMarkerObjectNameInfo = 1000022000,
+		DebugMarkerObjectTagInfo = 1000022001,
+		DebugMarkerMarkerInfo = 1000022002,
+		DedicatedAllocationImageCreateInfo = 1000026000,
+		DedicatedAllocationBufferCreateInfo = 1000026001,
+		DedicatedAllocationMemoryAllocateInfo = 1000026002,
 	}
 
 	public enum SubpassContents

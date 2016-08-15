@@ -38,6 +38,15 @@ namespace SharpVk.Interop
 	}
 
     [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct AndroidSurfaceCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public AndroidSurfaceCreateFlags Flags;
+		public IntPtr* Window;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
 	public unsafe struct ApplicationInfo
 	{
 		public StructureType SType;
@@ -173,6 +182,37 @@ namespace SharpVk.Interop
 	}
 
     [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct DebugMarkerMarkerInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public char* MarkerName;
+		public fixed float Color[4];
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct DebugMarkerObjectNameInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public DebugReportObjectType ObjectType;
+		public ulong Object;
+		public char* ObjectName;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct DebugMarkerObjectTagInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public DebugReportObjectType ObjectType;
+		public ulong Object;
+		public ulong TagName;
+		public UIntPtr TagSize;
+		public void* Tag;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
 	public unsafe struct DebugReportCallbackCreateInfo
 	{
 		public StructureType SType;
@@ -180,6 +220,31 @@ namespace SharpVk.Interop
 		public DebugReportFlags Flags;
 		public IntPtr PfnCallback;
 		public void* UserData;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct DedicatedAllocationBufferCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public Bool32 DedicatedAllocation;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct DedicatedAllocationImageCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public Bool32 DedicatedAllocation;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct DedicatedAllocationMemoryAllocateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public Image Image;
+		public Buffer Buffer;
 	}
 
     [StructLayout(LayoutKind.Sequential)]
@@ -263,6 +328,66 @@ namespace SharpVk.Interop
 		public uint QueueFamilyIndex;
 		public uint QueueCount;
 		public float* QueuePriorities;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct DisplayModeCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public DisplayModeCreateFlags Flags;
+		public DisplayModeParameters Parameters;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct DisplayModeProperties
+	{
+		public DisplayMode DisplayMode;
+		public DisplayModeParameters Parameters;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct DisplayPlaneProperties
+	{
+		public Display CurrentDisplay;
+		public uint CurrentStackIndex;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct DisplayPresentInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public Rect2D SourceRect;
+		public Rect2D DestinationRect;
+		public Bool32 Persistent;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct DisplayProperties
+	{
+		public Display Display;
+		public char* DisplayName;
+		public Extent2D PhysicalDimensions;
+		public Extent2D PhysicalResolution;
+		public SurfaceTransformFlags SupportedTransforms;
+		public Bool32 PlaneReorderPossible;
+		public Bool32 PersistentContent;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct DisplaySurfaceCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public DisplaySurfaceCreateFlags Flags;
+		public DisplayMode DisplayMode;
+		public uint PlaneIndex;
+		public uint PlaneStackIndex;
+		public SurfaceTransformFlags Transform;
+		public float GlobalAlpha;
+		public DisplayPlaneAlphaFlags AlphaMode;
+		public Extent2D ImageExtent;
 	}
 
     [StructLayout(LayoutKind.Sequential)]
@@ -433,6 +558,16 @@ namespace SharpVk.Interop
 		public void* Next;
 		public AccessFlags SourceAccessMask;
 		public AccessFlags DestinationAccessMask;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct MirSurfaceCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public MirSurfaceCreateFlags Flags;
+		public IntPtr* Connection;
+		public IntPtr* MirSurface;
 	}
 
     [StructLayout(LayoutKind.Sequential)]
@@ -720,6 +855,14 @@ namespace SharpVk.Interop
 	}
 
     [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct PipelineRasterizationStateRasterizationOrder
+	{
+		public StructureType SType;
+		public void* Next;
+		public RasterizationOrder RasterizationOrder;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
 	public unsafe struct PipelineShaderStageCreateInfo
 	{
 		public StructureType SType;
@@ -962,6 +1105,16 @@ namespace SharpVk.Interop
 	}
 
     [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct WaylandSurfaceCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public WaylandSurfaceCreateFlags Flags;
+		public IntPtr Display;
+		public IntPtr Surface;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
 	public unsafe struct Win32SurfaceCreateInfo
 	{
 		public StructureType SType;
@@ -984,5 +1137,25 @@ namespace SharpVk.Interop
 		public DescriptorImageInfo* ImageInfo;
 		public DescriptorBufferInfo* BufferInfo;
 		public BufferView* TexelBufferView;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct XcbSurfaceCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public XcbSurfaceCreateFlags Flags;
+		public IntPtr* Connection;
+		public IntPtr Window;
+	}
+
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct XlibSurfaceCreateInfo
+	{
+		public StructureType SType;
+		public void* Next;
+		public XlibSurfaceCreateFlags Flags;
+		public IntPtr* Dpy;
+		public IntPtr Window;
 	}
 }

@@ -71,8 +71,12 @@ namespace SharpVk
 					return new NativeWindowInUseException();
 				case Result.ErrorOutOfDate:
 					return new OutOfDateException();
+				case Result.ErrorIncompatibleDisplay:
+					return new IncompatibleDisplayException();
 				case Result.ErrorValidationFailed:
 					return new ValidationFailedException();
+				case Result.ErrorInvalidShader:
+					return new InvalidShaderException();
 			}
 
 			return new UnknownSharpVkException(resultCode);
@@ -187,10 +191,22 @@ namespace SharpVk
 		public override Result ResultCode => Result.ErrorOutOfDate;
 	}
 
+	public class IncompatibleDisplayException
+		: SharpVkException
+	{
+		public override Result ResultCode => Result.ErrorIncompatibleDisplay;
+	}
+
 	public class ValidationFailedException
 		: SharpVkException
 	{
 		public override Result ResultCode => Result.ErrorValidationFailed;
+	}
+
+	public class InvalidShaderException
+		: SharpVkException
+	{
+		public override Result ResultCode => Result.ErrorInvalidShader;
 	}
 
 

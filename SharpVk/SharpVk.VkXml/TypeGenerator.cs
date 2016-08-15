@@ -19,7 +19,18 @@ namespace SharpVk.VkXml
             {"int32_t", "int"},
             {"size_t", "UIntPtr"},
             {"HINSTANCE", "IntPtr" },
-            {"HWND", "IntPtr" }
+            {"HWND", "IntPtr" },
+            {"ANativeWindow", "IntPtr" },
+            {"Display", "IntPtr" },
+            {"VisualID", "IntPtr" },
+            {"Window", "IntPtr" },
+            {"MirConnection", "IntPtr" },
+            {"MirSurface", "IntPtr" },
+            {"wl_display", "IntPtr" },
+            {"wl_surface", "IntPtr" },
+            {"xcb_connection_t", "IntPtr" },
+            {"xcb_visualid_t", "IntPtr" },
+            {"xcb_window_t", "IntPtr" }
         };
 
         private static readonly string[] keywords = new[]
@@ -48,16 +59,16 @@ namespace SharpVk.VkXml
 
             GenerateNonInteropStructs(typeData, result);
 
-            GenerateClasses(spec, typeData, result);
+            var classLookup = GenerateClasses(spec, typeData, result);
 
             var handleLookup = GenerateHandles(spec, typeData, result);
 
-            GenerateCommands(spec, typeData, handleLookup, result);
+            GenerateCommands(spec, typeData, handleLookup, classLookup, result);
 
             return result;
         }
 
-        private static void GenerateCommands(SpecParser.ParsedSpec spec, Dictionary<string, TypeDesc> typeData, Dictionary<string, TypeSet.VkHandle> handleLookup, TypeSet result)
+        private static void GenerateCommands(SpecParser.ParsedSpec spec, Dictionary<string, TypeDesc> typeData, Dictionary<string, TypeSet.VkHandle> handleLookup, Dictionary<string, TypeSet.VkClass> classLookup, TypeSet result)
         {
             foreach (var command in spec.Commands.Values)
             {
@@ -110,14 +121,24 @@ namespace SharpVk.VkXml
 
                 var lastParam = command.Params.Last();
 
-                bool lastParamReturns = lastParam.PointerType == PointerType.Pointer;
-                bool lastParamIsArray = lastParamReturns
+                bool lastParamIsArray = lastParam.PointerType == PointerType.Pointer
                                             && lastParam.Dimensions != null
                                             && lastParam.Dimensions.Any(x => x.Type != SpecParser.LenType.NullTerminated);
 
                 bool lastParamLenFieldByRef = lastParamIsArray
                                                 && lastParam.Dimensions[0].Value is SpecParser.ParsedExpressionToken
                                                 && command.Params.Single(x => x.VkName == ((SpecParser.ParsedExpressionToken)lastParam.Dimensions[0].Value).Value).PointerType == PointerType.Pointer;
+
+                bool lastParamReturns = lastParam.PointerType == PointerType.Pointer
+                                            && (typeData[lastParam.Type].Data.IsReturnedOnly
+                                                || typeData[lastParam.Type].Data.Category != TypeCategory.@struct
+                                                || lastParamLenFieldByRef)
+                                            && (command.Type == "VkResult" || command.Type == "void");
+
+                if (lastParamReturns && classLookup.ContainsKey(lastParam.Type))
+                {
+                    classLookup[lastParam.Type].IsOutput = true;
+                }
 
                 bool enumeratePattern = command.Verb == "enumerate" || (lastParamIsArray && lastParamLenFieldByRef);
 
@@ -184,14 +205,21 @@ namespace SharpVk.VkXml
 
                 var paramNameLookup = command.Params.ToDictionary(x => x.VkName, x =>
                 {
-                    var nameParts = x.NameParts.AsEnumerable();
-                    int pointerCount = x.PointerType.GetPointerCount();
-
-                    if (pointerCount > 0)
+                    if (x.NameParts != null)
                     {
-                        nameParts = nameParts.Skip(1);
+                        var nameParts = x.NameParts.AsEnumerable();
+                        int pointerCount = x.PointerType.GetPointerCount();
+
+                        if (pointerCount > 0 && nameParts.First() == "p")
+                        {
+                            nameParts = nameParts.Skip(1);
+                        }
+                        return JoinNameParts(nameParts, true);
                     }
-                    return JoinNameParts(nameParts, true);
+                    else
+                    {
+                        return x.VkName;
+                    }
                 });
 
                 var lenParamMapping = new Dictionary<string, string>();
@@ -302,6 +330,10 @@ namespace SharpVk.VkXml
                                                 parentArgument = ", this";
                                             }
                                         }
+                                        else
+                                        {
+                                            parentArgument = ", this.Allocator";
+                                        }
 
                                         newMethod.MarshalFromStatements.Add($"\tresult[index] = new {paramTypeName}({marshalledName}[index]{parentArgument});");
                                     }
@@ -342,7 +374,7 @@ namespace SharpVk.VkXml
                                             // Also include a reference to the containing handle, as it will be the
                                             // associated handle for this instance.
 
-                                            var createInfoParam = command.Params.Skip(handleParams.Count()).FirstOrDefault(x => x.VkName.EndsWith(CapitaliseFirst(command.Verb) + "Info"));
+                                            var createInfoParam = command.Params.Skip(handleParams.Count()).FirstOrDefault(x => typeData[x.Type].Name.EndsWith(CapitaliseFirst(command.Verb) + "Info"));
 
                                             if (createInfoParam != null)
                                             {
@@ -350,7 +382,14 @@ namespace SharpVk.VkXml
 
                                                 var parentHandleMember = createInfoType.Data.Members.First(x => x.Type == paramType.Data.Parent);
 
-                                                parentArgument = $", {paramNameLookup[createInfoParam.VkName]}.{GetNameForElement(parentHandleMember)}";
+                                                string createInfoParamName = paramNameLookup[createInfoParam.VkName];
+
+                                                if (createInfoParam.Dimensions != null && createInfoParam.Dimensions.Length > 0)
+                                                {
+                                                    createInfoParamName += "[index]";
+                                                }
+
+                                                parentArgument = $", {createInfoParamName}.{GetNameForElement(parentHandleMember)}";
 
                                                 if (handleLookup[paramType.Data.VkName].AssociatedHandle != null)
                                                 {
@@ -616,13 +655,21 @@ namespace SharpVk.VkXml
                         }
                     }
                 }
+                else if (command.Verb == "destroy")
+                {
+                    var handle = handleLookup[command.Params.AsEnumerable().Reverse().Skip(1).First().Type];
+
+                    handle.IsDisposable = true;
+                }
             }
 
             return handleLookup;
         }
 
-        private static void GenerateClasses(SpecParser.ParsedSpec spec, Dictionary<string, TypeDesc> typeData, TypeSet result)
+        private static Dictionary<string, TypeSet.VkClass> GenerateClasses(SpecParser.ParsedSpec spec, Dictionary<string, TypeDesc> typeData, TypeSet result)
         {
+            var classLookup = new Dictionary<string, TypeSet.VkClass>();
+
             foreach (var type in typeData.Values.Where(x => x.RequiresInterop))
             {
                 var newStruct = new TypeSet.VkStruct
@@ -635,6 +682,8 @@ namespace SharpVk.VkXml
                     Name = type.Name,
                     IsOutput = type.Data.IsReturnedOnly
                 };
+
+                classLookup.Add(type.Data.VkName, newClass);
 
                 var lenMembers = new Dictionary<string, string>();
                 var members = new Dictionary<string, MemberDesc>();
@@ -973,6 +1022,8 @@ namespace SharpVk.VkXml
                 result.InteropStructs.Add(newStruct);
                 result.Classes.Add(newClass);
             }
+
+            return classLookup;
         }
 
         private static void GenerateUnions(Dictionary<string, TypeDesc> typeData, TypeSet result)
@@ -1184,7 +1235,7 @@ namespace SharpVk.VkXml
             {
                 Type type;
 
-                if(char.IsLetter(constant.Value[0]))
+                if (char.IsLetter(constant.Value[0]))
                 {
                     // Looks like some extension enums are used for type name
                     // mapping - not sure what this is supposed to do yet, so

@@ -9,7 +9,7 @@ namespace SharpVk.VkXml
 {
     public class SpecParser
     {
-        private static readonly string[] knownExtensions = new[] { "khr", "ext" };
+        private static readonly string[] knownExtensions = new[] { "khr", "ext", "nv", "amd" };
 
         private static readonly Parser<string> firstPart = from head in Parse.Letter
                                                            from tail in Parse.Lower.Many()
@@ -158,6 +158,14 @@ namespace SharpVk.VkXml
                 string extension;
 
                 string[] nameParts = GetNameParts(name, out extension);
+
+                // VkDisplayModeKHR has two parents defined, but associated
+                // handle should cover the requirements for the second
+                // so just take the first
+                if (parent != null)
+                {
+                    parent = parent.Split(',').First();
+                }
 
                 var newType = new ParsedType
                 {
@@ -372,9 +380,7 @@ namespace SharpVk.VkXml
 
             var vkFeature = vkXml.Element("registry").Elements("feature").Single(x => x.Attribute("api").Value == "vulkan");
 
-            var extensionsToInclude = new[] { "VK_KHR_surface", "VK_KHR_win32_surface", "VK_KHR_swapchain", "VK_EXT_debug_report" };
-
-            var vkExtensions = vkXml.Element("registry").Element("extensions").Elements("extension").Where(x => extensionsToInclude.Contains(x.Attribute("name")?.Value));
+            var vkExtensions = vkXml.Element("registry").Element("extensions").Elements("extension").Where(x => x.Attribute("supported").Value == "vulkan");
 
             return FilterRequiredElement(typeXml, enumXml, commandXml, vkFeature, vkExtensions);
         }
@@ -468,7 +474,7 @@ namespace SharpVk.VkXml
                         throw new Exception("Unexpected requirement type: " + requirement.Name.LocalName);
                 }
             }
-            
+
             var result = new ParsedSpec();
 
             foreach (var extension in extensions)
@@ -492,9 +498,22 @@ namespace SharpVk.VkXml
                             {
                                 var extendedEnum = enumXml[requirement.Attribute("extends").Value];
 
-                                int offset = int.Parse(requirement.Attribute("offset").Value);
+                                int value;
 
-                                int value = 1000000000 + 1000 * (extensionNumber - 1) + offset;
+                                if (requirement.Attribute("offset") != null)
+                                {
+                                    int offset = int.Parse(requirement.Attribute("offset").Value);
+
+                                    value = 1000000000 + 1000 * (extensionNumber - 1) + offset;
+                                }
+                                else if (requirement.Attribute("bitpos") != null)
+                                {
+                                    value = int.Parse(requirement.Attribute("bitpos").Value);
+                                }
+                                else
+                                {
+                                    value = int.Parse(requirement.Attribute("value").Value);
+                                }
 
                                 if (requirement.Attribute("dir")?.Value == "-")
                                 {
@@ -560,21 +579,28 @@ namespace SharpVk.VkXml
                 {
                     var type = typeXml[typeName];
 
-                    if (type.Requires != null && !requiredTypes.Contains(type.Requires) && !newTypes.Contains(type.Requires))
+                    var possibleNewTypes = new List<string>();
+
+                    if (type.Requires != null)
                     {
-                        newTypes.Add(type.Requires);
+                        possibleNewTypes.AddRange(type.Requires.Split(','));
                     }
 
-                    if (type.Parent != null && !requiredTypes.Contains(type.Parent) && !newTypes.Contains(type.Parent))
+                    if (type.Parent != null)
                     {
-                        newTypes.Add(type.Parent);
+                        possibleNewTypes.AddRange(type.Parent.Split(','));
                     }
 
                     foreach (var member in type.Members)
                     {
-                        if (!requiredTypes.Contains(member.Type) && !newTypes.Contains(member.Type))
+                        possibleNewTypes.AddRange(member.Type.Split(','));
+                    }
+
+                    foreach (var possibleNewType in possibleNewTypes.Distinct())
+                    {
+                        if (!requiredTypes.Contains(possibleNewType) && !newTypes.Contains(possibleNewType))
                         {
-                            newTypes.Add(member.Type);
+                            newTypes.Add(possibleNewType);
                         }
                     }
                 }
@@ -643,11 +669,11 @@ namespace SharpVk.VkXml
                 case "@":
                     return PointerType.Value;
                 case "const @":
-                    return PointerType.ConstValue;
-                case "@*":
                 case "struct @*":
                     // struct {type}* is a syntactic quirk of C structs with no
                     // typedef; treat them like regular pointers.
+                    return PointerType.ConstValue;
+                case "@*":
                     return PointerType.Pointer;
                 case "@**":
                     return PointerType.DoublePointer;

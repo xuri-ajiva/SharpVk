@@ -244,6 +244,12 @@ namespace SharpVk.VkXml
                 set;
             }
 
+            public bool IsDisposable
+            {
+                get;
+                set;
+            }
+
             public List<VkHandleMethod> Methods
             {
                 get;

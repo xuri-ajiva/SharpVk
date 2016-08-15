@@ -184,6 +184,38 @@ namespace SharpVk.Interop
 		}
 	}
 
+	public struct Display
+	{
+		internal ulong handle;
+
+		public static Display Null
+		{
+			get
+			{
+				return new Display
+                {
+                    handle = 0L
+                };
+			}
+		}
+	}
+
+	public struct DisplayMode
+	{
+		internal ulong handle;
+
+		public static DisplayMode Null
+		{
+			get
+			{
+				return new DisplayMode
+                {
+                    handle = 0L
+                };
+			}
+		}
+	}
+
 	public struct Event
 	{
 		internal ulong handle;
