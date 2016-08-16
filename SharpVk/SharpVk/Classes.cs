@@ -1639,7 +1639,7 @@ namespace SharpVk
 		{
             var result = new ExtensionProperties();
 
-			result.ExtensionName = System.Text.Encoding.UTF8.GetString(Interop.HeapUtil.MarshalFrom(value->ExtensionName, (int)Constants.MaxExtensionNameSize)).TrimEnd((char)0);
+			result.ExtensionName = System.Text.Encoding.UTF8.GetString(Interop.HeapUtil.MarshalFrom(value->ExtensionName, (int)Constants.MaxExtensionNameSize, true));
 			result.SpecVersion = value->SpecVersion;
 
 			return result;
@@ -2249,8 +2249,8 @@ namespace SharpVk
 		{
             var result = new LayerProperties();
 
-			result.LayerName = System.Text.Encoding.UTF8.GetString(Interop.HeapUtil.MarshalFrom(value->LayerName, (int)Constants.MaxExtensionNameSize)).TrimEnd((char)0);
-			result.Description = System.Text.Encoding.UTF8.GetString(Interop.HeapUtil.MarshalFrom(value->Description, (int)Constants.MaxDescriptionSize)).TrimEnd((char)0);
+			result.LayerName = System.Text.Encoding.UTF8.GetString(Interop.HeapUtil.MarshalFrom(value->LayerName, (int)Constants.MaxExtensionNameSize, true));
+			result.Description = System.Text.Encoding.UTF8.GetString(Interop.HeapUtil.MarshalFrom(value->Description, (int)Constants.MaxDescriptionSize, true));
 			result.SpecVersion = value->SpecVersion;
 			result.ImplementationVersion = value->ImplementationVersion;
 
@@ -3264,7 +3264,7 @@ namespace SharpVk
 		{
             var result = new PhysicalDeviceProperties();
 
-			result.DeviceName = System.Text.Encoding.UTF8.GetString(Interop.HeapUtil.MarshalFrom(value->DeviceName, (int)Constants.MaxPhysicalDeviceNameSize)).TrimEnd((char)0);
+			result.DeviceName = System.Text.Encoding.UTF8.GetString(Interop.HeapUtil.MarshalFrom(value->DeviceName, (int)Constants.MaxPhysicalDeviceNameSize, true));
 			result.PipelineCacheUUID = new Guid(Interop.HeapUtil.MarshalFrom(value->PipelineCacheUUID, (int)Constants.UuidSize));
 			result.Limits = PhysicalDeviceLimits.MarshalFrom(&value->Limits);
 			result.ApiVersion = value->ApiVersion;
