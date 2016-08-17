@@ -15,6 +15,8 @@
 - [ ] Collapse *Info structures into method parameters
 - [ ] Generate Engine & API Version
     - [x] and Extension name constants
+- [ ] Generate fixed-length struct with no len as Vectors (e.g. Vector4<int>)
+- [ ] Move examples to cross-platform windowing library
 - [ ] VK API Commands should be correctly generated, compiled & executed (against NVidia implementation on Windows):
   -  Device initialization
     - [x] vkCreateInstance
