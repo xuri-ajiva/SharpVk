@@ -528,7 +528,14 @@ namespace SharpVk.VkXml
                                 TypeName = paramType.Name
                             });
 
-                            newMethod.MarshalToStatements.Add($"Interop.{paramType.Name} {marshalledName} = {paramName}?.Pack() ?? Interop.{paramType.Name}.Null;");
+                            if (parameter.IsOptional)
+                            {
+                                newMethod.MarshalToStatements.Add($"Interop.{paramType.Name} {marshalledName} = {paramName}?.Pack() ?? Interop.{paramType.Name}.Null;");
+                            }
+                            else
+                            {
+                                newMethod.MarshalToStatements.Add($"Interop.{paramType.Name} {marshalledName} = {paramName}.Pack();");
+                            }
                         }
                         else if (paramType.RequiresInterop)
                         {
@@ -549,13 +556,32 @@ namespace SharpVk.VkXml
                             }
 
                             newMethod.MarshalToStatements.Add(string.Format("Interop.{0} {1};", paramType.Name, marshalledName));
-                            newMethod.MarshalToStatements.Add(string.Format("if({1} != null) {0} = {1}.Pack();", marshalledName, paramSource));
+                            string paramTypeName = paramType.Name;
+                            string argumentName = "&" + marshalledName;
+
+                            if (parameter.IsOptional)
+                            {
+                                newMethod.MarshalToStatements.Add(string.Format("if({1} != null) {0} = {1}.Value.Pack();", marshalledName, paramSource));
+
+                                paramTypeName += "?";
+
+                                if (publicParamName != null)
+                                {
+                                    publicParamName += " = null";
+                                }
+
+                                argumentName = $"{paramSource} == null ? null : " + argumentName;
+                            }
+                            else
+                            {
+                                newMethod.MarshalToStatements.Add(string.Format("{0} = {1}.Pack();", marshalledName, paramSource));
+                            }
 
                             newMethod.Parameters.Add(new TypeSet.VkMethodParam
                             {
                                 Name = publicParamName,
-                                ArgumentName = $"{paramSource} == null ? null : &{marshalledName}",
-                                TypeName = paramType.Name
+                                ArgumentName = argumentName,
+                                TypeName = paramTypeName
                             });
                         }
                         else if (parameter.Type == "void" && parameter.PointerType == PointerType.DoublePointer)
@@ -859,7 +885,9 @@ namespace SharpVk.VkXml
                     }
                     else if (isPointer && memberType.RequiresInterop)
                     {
-                        newClass.MarshalToStatements.Add(string.Format("result.{0} = this.{0} == null ? null : this.{0}.MarshalTo();", memberDesc.Name));
+                        newClass.MarshalToStatements.Add(string.Format("result.{0} = this.{0} == null ? null : this.{0}.Value.MarshalTo();", memberDesc.Name));
+
+                        memberDesc.PublicTypeName += "?";
                     }
                     else if (isPointer)
                     {
@@ -1052,19 +1080,30 @@ namespace SharpVk.VkXml
                             throw new NotSupportedException("Fixed-length arrays with named lengths are not currently supported in Unions.");
                         case SpecParser.FixedLengthType.IntegerLiteral:
                             int length = int.Parse(member.FixedLength.Value);
+                            var nameParts = member.NameParts;
+                            string typeName = typeData[GetMemberTypeName(member)].Name;
 
-                            for (int index = 0; index < length; index++)
+                            switch (typeName)
                             {
-                                var nameParts = member.NameParts.Concat(new[] { "_", index.ToString() });
-                                string typeName = typeData[GetMemberTypeName(member)].Name;
-
-                                newStruct.Members.Add(new TypeSet.VkStructMember
-                                {
-                                    Name = JoinNameParts(nameParts),
-                                    TypeName = typeName,
-                                    FieldOffset = string.Format("sizeof({0}) * {1}", typeName, index)
-                                });
+                                case "float":
+                                    typeName = "vec" + length;
+                                    break;
+                                case "int":
+                                    typeName = "ivec" + length;
+                                    break;
+                                case "uint":
+                                    typeName = "uvec" + length;
+                                    break;
+                                default:
+                                    throw new NotSupportedException();
                             }
+
+                            newStruct.Members.Add(new TypeSet.VkStructMember
+                            {
+                                Name = JoinNameParts(nameParts),
+                                TypeName = typeName,
+                                FieldOffset = "0"
+                            });
 
                             break;
                     }

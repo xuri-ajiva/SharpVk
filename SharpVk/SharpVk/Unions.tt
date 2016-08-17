@@ -17,6 +17,7 @@
 
 	var types = generator.Generate(parser.Run());
 #>
+using GlmSharp;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
@@ -34,6 +35,15 @@ namespace SharpVk
 #>
 		[FieldOffset(<#=member.FieldOffset#>)]
 		public <#=member.TypeName#> <#=member.Name#>;
+
+        public static implicit operator <#=structType.Name#>(<#=member.TypeName#> value)
+        {
+            return new <#=structType.Name#>
+            {
+                <#=member.Name#> = value
+            };
+        }
+
 <#
         }
 #>

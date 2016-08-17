@@ -20,6 +20,7 @@
 //OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 //SOFTWARE.
 
+using GlmSharp;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
@@ -27,30 +28,39 @@ namespace SharpVk
 	[StructLayout(LayoutKind.Explicit)]
 	public struct ClearColorValue
 	{
-		[FieldOffset(sizeof(float) * 0)]
-		public float Float32_0;
-		[FieldOffset(sizeof(float) * 1)]
-		public float Float32_1;
-		[FieldOffset(sizeof(float) * 2)]
-		public float Float32_2;
-		[FieldOffset(sizeof(float) * 3)]
-		public float Float32_3;
-		[FieldOffset(sizeof(int) * 0)]
-		public int Int32_0;
-		[FieldOffset(sizeof(int) * 1)]
-		public int Int32_1;
-		[FieldOffset(sizeof(int) * 2)]
-		public int Int32_2;
-		[FieldOffset(sizeof(int) * 3)]
-		public int Int32_3;
-		[FieldOffset(sizeof(uint) * 0)]
-		public uint Uint32_0;
-		[FieldOffset(sizeof(uint) * 1)]
-		public uint Uint32_1;
-		[FieldOffset(sizeof(uint) * 2)]
-		public uint Uint32_2;
-		[FieldOffset(sizeof(uint) * 3)]
-		public uint Uint32_3;
+		[FieldOffset(0)]
+		public vec4 Float32;
+
+        public static implicit operator ClearColorValue(vec4 value)
+        {
+            return new ClearColorValue
+            {
+                Float32 = value
+            };
+        }
+
+		[FieldOffset(0)]
+		public ivec4 Int32;
+
+        public static implicit operator ClearColorValue(ivec4 value)
+        {
+            return new ClearColorValue
+            {
+                Int32 = value
+            };
+        }
+
+		[FieldOffset(0)]
+		public uvec4 Uint32;
+
+        public static implicit operator ClearColorValue(uvec4 value)
+        {
+            return new ClearColorValue
+            {
+                Uint32 = value
+            };
+        }
+
 	}
 
 	[StructLayout(LayoutKind.Explicit)]
@@ -58,8 +68,26 @@ namespace SharpVk
 	{
 		[FieldOffset(0)]
 		public ClearColorValue Color;
+
+        public static implicit operator ClearValue(ClearColorValue value)
+        {
+            return new ClearValue
+            {
+                Color = value
+            };
+        }
+
 		[FieldOffset(0)]
 		public ClearDepthStencilValue DepthStencil;
+
+        public static implicit operator ClearValue(ClearDepthStencilValue value)
+        {
+            return new ClearValue
+            {
+                DepthStencil = value
+            };
+        }
+
 	}
 
 }
