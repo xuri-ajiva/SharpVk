@@ -582,16 +582,7 @@ namespace SharpVk.VertexBuffers
                     },
                     ClearValues = new ClearValue[]
                     {
-                            new ClearValue()
-                            {
-                                Color = new ClearColorValue
-                                {
-                                    Float32_0 = 0,
-                                    Float32_1 = 0,
-                                    Float32_2 = 0,
-                                    Float32_3 = 1
-                                }
-                            }
+                        (ClearColorValue)new vec4(0, 0, 0, 1)
                     }
                 }, SubpassContents.Inline);
 

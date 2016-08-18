@@ -59,9 +59,9 @@
     - [ ] vkInvalidateMappedMemoryRanges
     - [x] vkGetDeviceMemoryCommitment
   - Memory management API commands
-    - [ ] vkBindBufferMemory
+    - [x] vkBindBufferMemory
     - [ ] vkBindImageMemory
-    - [ ] vkGetBufferMemoryRequirements
+    - [x] vkGetBufferMemoryRequirements
     - [ ] vkGetImageMemoryRequirements
   - Sparse resource memory management API commands
     - [ ] vkGetImageSparseMemoryRequirements
@@ -87,8 +87,8 @@
     - [ ] vkDestroyQueryPool
     - [ ] vkGetQueryPoolResults
   - Buffer commands
-    - [ ] vkCreateBuffer
-    - [ ] vkDestroyBuffer
+    - [x] vkCreateBuffer
+    - [x] vkDestroyBuffer
   - Buffer view commands
     - [ ] vkCreateBufferView
     - [ ] vkDestroyBufferView
@@ -135,7 +135,7 @@
   - Command pool commands
     - [x] vkCreateCommandPool
     - [x] vkDestroyCommandPool
-    - [ ] vkResetCommandPool
+    - [x] vkResetCommandPool
   - Command buffer commands
     - [x] vkAllocateCommandBuffers
     - [x] vkFreeCommandBuffers
@@ -155,7 +155,7 @@
     - [ ] vkCmdSetStencilReference
     - [ ] vkCmdBindDescriptorSets
     - [ ] vkCmdBindIndexBuffer
-    - [ ] vkCmdBindVertexBuffers
+    - [x] vkCmdBindVertexBuffers
     - [x] vkCmdDraw
     - [ ] vkCmdDrawIndexed
     - [ ] vkCmdDrawIndirect
