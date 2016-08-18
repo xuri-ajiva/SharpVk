@@ -113,6 +113,30 @@ namespace SharpVk.HelloTriangle
         {
             this.device.WaitIdle();
 
+            foreach (var frameBuffer in this.frameBuffers)
+            {
+                frameBuffer.Dispose();
+            }
+            this.frameBuffers = null;
+
+            this.pipeline.Dispose();
+            this.pipeline = null;
+
+            this.pipelineLayout.Dispose();
+            this.pipelineLayout = null;
+
+            foreach (var imageView in this.swapChainImageViews)
+            {
+                imageView.Dispose();
+            }
+            this.swapChainImageViews = null;
+
+            this.renderPass.Dispose();
+            this.renderPass = null;
+
+            this.swapChain.Dispose();
+            this.swapChain = null;
+
             this.CreateSwapChain();
             this.CreateImageViews();
             this.CreateRenderPass();
@@ -216,7 +240,7 @@ namespace SharpVk.HelloTriangle
             this.surface = this.instance.CreateWin32Surface(new Win32SurfaceCreateInfo
             {
                 Hwnd = this.window.Handle
-            });   
+            });
         }
 
         private void PickPhysicalDevice()

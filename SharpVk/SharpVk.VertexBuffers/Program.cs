@@ -124,6 +124,30 @@ namespace SharpVk.VertexBuffers
         {
             this.device.WaitIdle();
 
+            foreach (var frameBuffer in this.frameBuffers)
+            {
+                frameBuffer.Dispose();
+            }
+            this.frameBuffers = null;
+
+            this.pipeline.Dispose();
+            this.pipeline = null;
+
+            this.pipelineLayout.Dispose();
+            this.pipelineLayout = null;
+
+            foreach (var imageView in this.swapChainImageViews)
+            {
+                imageView.Dispose();
+            }
+            this.swapChainImageViews = null;
+
+            this.renderPass.Dispose();
+            this.renderPass = null;
+
+            this.swapChain.Dispose();
+            this.swapChain = null;
+
             this.CreateSwapChain();
             this.CreateImageViews();
             this.CreateRenderPass();
@@ -218,14 +242,14 @@ namespace SharpVk.VertexBuffers
                     ApplicationName = "Vertex Buffers",
                     ApplicationVersion = new Version(1, 0, 0),
                     EngineName = "SharpVk",
-                    EngineVersion = new Version(0, 2, 1)
+                    EngineVersion = new Version(0, 2, 2)
                 },
                 EnabledExtensionNames = new[]
                 {
                     KhrSurface.ExtensionName,
                     KhrWin32Surface.ExtensionName
                 }
-            }, null);
+            });
         }
 
         private void CreateSurface()
