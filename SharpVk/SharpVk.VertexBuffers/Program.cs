@@ -26,14 +26,22 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace SharpVk.HelloTriangle
+namespace SharpVk.VertexBuffers
 {
     public class Program
     {
         private const int SurfaceWidth = 800;
         private const int SurfaceHeight = 600;
+
+        private readonly Vertex[] vertices = new[]
+        {
+            new Vertex(new vec2(0.0f, -0.5f), new vec3(1.0f, 0.0f, 0.0f)),
+            new Vertex(new vec2(0.5f, 0.5f), new vec3(0.0f, 1.0f, 0.0f)),
+            new Vertex(new vec2(-0.5f, 0.5f), new vec3(0.0f, 0.0f, 1.0f))
+        };
 
         private Form window;
         private Instance instance;
@@ -50,6 +58,8 @@ namespace SharpVk.HelloTriangle
         private Pipeline pipeline;
         private Framebuffer[] frameBuffers;
         private CommandPool commandPool;
+        private Buffer vertexBuffer;
+        private DeviceMemory vertexBufferMemory;
         private CommandBuffer[] commandBuffers;
         private Semaphore imageAvailableSemaphore;
         private Semaphore renderFinishedSemaphore;
@@ -93,6 +103,7 @@ namespace SharpVk.HelloTriangle
             this.CreateGraphicsPipeline();
             this.CreateFrameBuffers();
             this.CreateCommandPool();
+            this.CreateVertexBuffers();
             this.CreateCommandBuffers();
             this.CreateSemaphores();
         }
@@ -154,6 +165,12 @@ namespace SharpVk.HelloTriangle
 
             this.imageAvailableSemaphore.Dispose();
             this.imageAvailableSemaphore = null;
+
+            this.device.FreeMemory(this.vertexBufferMemory);
+            this.vertexBufferMemory = null;
+
+            this.vertexBuffer.Dispose();
+            this.vertexBuffer = null;
 
             this.commandPool.Dispose();
             this.commandPool = null;
@@ -222,17 +239,17 @@ namespace SharpVk.HelloTriangle
             {
                 ApplicationInfo = new ApplicationInfo
                 {
-                    ApplicationName = "Hello Triangle",
+                    ApplicationName = "Vertex Buffers",
                     ApplicationVersion = new Version(1, 0, 0),
                     EngineName = "SharpVk",
-                    EngineVersion = new Version(0, 1, 1)
+                    EngineVersion = new Version(0, 2, 2)
                 },
                 EnabledExtensionNames = new[]
                 {
                     KhrSurface.ExtensionName,
                     KhrWin32Surface.ExtensionName
                 }
-            }, null);
+            });
         }
 
         private void CreateSurface()
@@ -404,6 +421,9 @@ namespace SharpVk.HelloTriangle
                 CodeSize = (UIntPtr)codeSize
             });
 
+            var bindingDescription = Vertex.GetBindingDescription();
+            var attributeDescriptions = Vertex.GetAttributeDescriptions();
+
             this.pipelineLayout = device.CreatePipelineLayout(new PipelineLayoutCreateInfo());
 
             this.pipeline = device.CreateGraphicsPipelines(null, new[]
@@ -413,7 +433,11 @@ namespace SharpVk.HelloTriangle
                         Layout = this.pipelineLayout,
                         RenderPass = this.renderPass,
                         Subpass = 0,
-                        VertexInputState = new PipelineVertexInputStateCreateInfo(),
+                        VertexInputState = new PipelineVertexInputStateCreateInfo()
+                        {
+                            VertexBindingDescriptions = new [] { bindingDescription },
+                            VertexAttributeDescriptions = attributeDescriptions
+                        },
                         InputAssemblyState = new PipelineInputAssemblyStateCreateInfo
                         {
                             PrimitiveRestartEnable = false,
@@ -522,8 +546,39 @@ namespace SharpVk.HelloTriangle
             });
         }
 
+        private void CreateVertexBuffers()
+        {
+            this.vertexBuffer = this.device.CreateBuffer(new BufferCreateInfo
+            {
+                Size = (ulong)(Marshal.SizeOf<Vertex>() * vertices.Length),
+                Usage = BufferUsageFlags.VertexBuffer,
+                SharingMode = SharingMode.Exclusive
+            });
+
+            var memoryRequirements = this.vertexBuffer.GetMemoryRequirements();
+
+            uint memoryTypeIndex = this.FindMemoryType(memoryRequirements.MemoryTypeBits, MemoryPropertyFlags.HostVisible | MemoryPropertyFlags.HostCoherent);
+
+            this.vertexBufferMemory = this.device.AllocateMemory(new MemoryAllocateInfo
+            {
+                AllocationSize = memoryRequirements.Size,
+                MemoryTypeIndex = memoryTypeIndex
+            });
+
+            this.vertexBuffer.BindMemory(this.vertexBufferMemory, 0);
+
+            IntPtr memoryBuffer = IntPtr.Zero;
+            this.vertexBufferMemory.MapMemory(0, memoryRequirements.Size, MemoryMapFlags.None, ref memoryBuffer);
+
+            BufferCopy(vertices, 0, memoryBuffer, vertices.Length);
+
+            this.vertexBufferMemory.UnmapMemory();
+        }
+
         private void CreateCommandBuffers()
         {
+            this.commandPool.Reset(CommandPoolResetFlags.ReleaseResources);
+
             this.commandBuffers = device.AllocateCommandBuffers(new CommandBufferAllocateInfo
             {
                 CommandBufferCount = (uint)this.frameBuffers.Length,
@@ -557,7 +612,9 @@ namespace SharpVk.HelloTriangle
 
                 commandBuffer.BindPipeline(PipelineBindPoint.Graphics, this.pipeline);
 
-                commandBuffer.Draw(3, 1, 0, 0);
+                commandBuffer.BindVertexBuffers(0, new[] { this.vertexBuffer }, new DeviceSize[] { 0 });
+
+                commandBuffer.Draw((uint)this.vertices.Length, 1, 0, 0);
 
                 commandBuffer.EndRenderPass();
 
@@ -569,6 +626,22 @@ namespace SharpVk.HelloTriangle
         {
             this.imageAvailableSemaphore = device.CreateSemaphore(new SemaphoreCreateInfo());
             this.renderFinishedSemaphore = device.CreateSemaphore(new SemaphoreCreateInfo());
+        }
+
+        private uint FindMemoryType(uint typeFilter, MemoryPropertyFlags flags)
+        {
+            var memoryProperties = this.physicalDevice.GetMemoryProperties();
+
+            for (int i = 0; i < memoryProperties.MemoryTypes.Length; i++)
+            {
+                if ((typeFilter & (1u << i)) > 0
+                        && memoryProperties.MemoryTypes[i].PropertyFlags.HasFlag(flags))
+                {
+                    return (uint)i;
+                }
+            }
+
+            throw new Exception("No compatible memory type.");
         }
 
         private QueueFamilyIndices FindQueueFamilies(PhysicalDevice device)
@@ -654,6 +727,18 @@ namespace SharpVk.HelloTriangle
                     && FindQueueFamilies(device).IsComplete;
         }
 
+        private static void BufferCopy<T>(T[] data, int startIndex, IntPtr pointer, int count)
+        {
+            int datumSize = Marshal.SizeOf<T>();
+
+            for (int index = startIndex; index < startIndex + count; index++)
+            {
+                Marshal.StructureToPtr(data[index], pointer, false);
+
+                pointer += datumSize;
+            }
+        }
+
         private static uint[] LoadShaderData(string filePath, out int codeSize)
         {
             var fileBytes = File.ReadAllBytes(filePath);
@@ -702,6 +787,49 @@ namespace SharpVk.HelloTriangle
             public SurfaceCapabilities Capabilities;
             public SurfaceFormat[] Formats;
             public PresentMode[] PresentModes;
+        }
+
+        private struct Vertex
+        {
+            public Vertex(vec2 position, vec3 colour)
+            {
+                this.Position = position;
+                this.Colour = colour;
+            }
+
+            public vec2 Position;
+            public vec3 Colour;
+
+            public static VertexInputBindingDescription GetBindingDescription()
+            {
+                return new VertexInputBindingDescription()
+                {
+                    Binding = 0,
+                    Stride = (uint)Marshal.SizeOf<Vertex>(),
+                    InputRate = VertexInputRate.Vertex
+                };
+            }
+
+            public static VertexInputAttributeDescription[] GetAttributeDescriptions()
+            {
+                return new VertexInputAttributeDescription[]
+                {
+                    new VertexInputAttributeDescription
+                    {
+                        Binding = 0,
+                        Location = 0,
+                        Format = Format.R32g32Sfloat,
+                        Offset = (uint)Marshal.OffsetOf<Vertex>("Position")
+                    },
+                    new VertexInputAttributeDescription
+                    {
+                        Binding = 0,
+                        Location = 1,
+                        Format = Format.R32g32b32Sfloat,
+                        Offset = (uint)Marshal.OffsetOf<Vertex>("Colour")
+                    }
+                };
+            }
         }
     }
 }

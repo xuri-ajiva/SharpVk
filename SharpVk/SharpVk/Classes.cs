@@ -25,7 +25,7 @@ using System;
 namespace SharpVk
 {
 
-	public class AllocationCallbacks
+	public struct AllocationCallbacks
 	{
 
 		public IntPtr UserData
@@ -48,7 +48,7 @@ namespace SharpVk
 		}
 	}
 
-	public class AndroidSurfaceCreateInfo
+	public struct AndroidSurfaceCreateInfo
 	{
 
 		public AndroidSurfaceCreateFlags Flags
@@ -79,7 +79,7 @@ namespace SharpVk
 		}
 	}
 
-	public class ApplicationInfo
+	public struct ApplicationInfo
 	{
 
 		public string ApplicationName
@@ -131,7 +131,7 @@ namespace SharpVk
 		}
 	}
 
-	public class BindSparseInfo
+	public struct BindSparseInfo
 	{
 
 		public Semaphore[] WaitSemaphores
@@ -263,7 +263,7 @@ namespace SharpVk
 		}
 	}
 
-	public class BufferCreateInfo
+	public struct BufferCreateInfo
 	{
 
 		public BufferCreateFlags Flags
@@ -316,7 +316,7 @@ namespace SharpVk
 		}
 	}
 
-	public class BufferMemoryBarrier
+	public struct BufferMemoryBarrier
 	{
 
 		public AccessFlags SourceAccessMask
@@ -382,7 +382,7 @@ namespace SharpVk
 		}
 	}
 
-	public class BufferViewCreateInfo
+	public struct BufferViewCreateInfo
 	{
 
 		public BufferViewCreateFlags Flags
@@ -434,7 +434,7 @@ namespace SharpVk
 		}
 	}
 
-	public class CommandBufferAllocateInfo
+	public struct CommandBufferAllocateInfo
 	{
 
 		public CommandPool CommandPool
@@ -472,7 +472,7 @@ namespace SharpVk
 		}
 	}
 
-	public class CommandBufferBeginInfo
+	public struct CommandBufferBeginInfo
 	{
 
 		public CommandBufferUsageFlags Flags
@@ -481,7 +481,7 @@ namespace SharpVk
 			set;
 		}
 
-		public CommandBufferInheritanceInfo InheritanceInfo
+		public CommandBufferInheritanceInfo? InheritanceInfo
 		{
 			get;
 			set;
@@ -491,7 +491,7 @@ namespace SharpVk
         {
             var result = new Interop.CommandBufferBeginInfo();
 			result.SType = StructureType.CommandBufferBeginInfo;
-			result.InheritanceInfo = this.InheritanceInfo == null ? null : this.InheritanceInfo.MarshalTo();
+			result.InheritanceInfo = this.InheritanceInfo == null ? null : this.InheritanceInfo.Value.MarshalTo();
 			result.Flags = this.Flags;
 
             return result;
@@ -503,7 +503,7 @@ namespace SharpVk
 		}
 	}
 
-	public class CommandBufferInheritanceInfo
+	public struct CommandBufferInheritanceInfo
 	{
 
 		public RenderPass RenderPass
@@ -562,7 +562,7 @@ namespace SharpVk
 		}
 	}
 
-	public class CommandPoolCreateInfo
+	public struct CommandPoolCreateInfo
 	{
 
 		public CommandPoolCreateFlags Flags
@@ -593,7 +593,7 @@ namespace SharpVk
 		}
 	}
 
-	public class ComputePipelineCreateInfo
+	public struct ComputePipelineCreateInfo
 	{
 
 		public PipelineCreateFlags Flags
@@ -645,7 +645,7 @@ namespace SharpVk
 		}
 	}
 
-	public class CopyDescriptorSet
+	public struct CopyDescriptorSet
 	{
 
 		public DescriptorSet SourceSet
@@ -711,7 +711,7 @@ namespace SharpVk
 		}
 	}
 
-	public class DebugMarkerMarkerInfo
+	public struct DebugMarkerMarkerInfo
 	{
 
 		public string MarkerName
@@ -741,7 +741,7 @@ namespace SharpVk
 		}
 	}
 
-	public class DebugMarkerObjectNameInfo
+	public struct DebugMarkerObjectNameInfo
 	{
 
 		public DebugReportObjectType ObjectType
@@ -779,7 +779,7 @@ namespace SharpVk
 		}
 	}
 
-	public class DebugMarkerObjectTagInfo
+	public struct DebugMarkerObjectTagInfo
 	{
 
 		public DebugReportObjectType ObjectType
@@ -825,7 +825,7 @@ namespace SharpVk
 		}
 	}
 
-	public class DebugReportCallbackCreateInfo
+	public struct DebugReportCallbackCreateInfo
 	{
 
 		public DebugReportFlags Flags
@@ -856,7 +856,7 @@ namespace SharpVk
 		}
 	}
 
-	public class DedicatedAllocationBufferCreateInfo
+	public struct DedicatedAllocationBufferCreateInfo
 	{
 
 		public Bool32 DedicatedAllocation
@@ -880,7 +880,7 @@ namespace SharpVk
 		}
 	}
 
-	public class DedicatedAllocationImageCreateInfo
+	public struct DedicatedAllocationImageCreateInfo
 	{
 
 		public Bool32 DedicatedAllocation
@@ -904,7 +904,7 @@ namespace SharpVk
 		}
 	}
 
-	public class DedicatedAllocationMemoryAllocateInfo
+	public struct DedicatedAllocationMemoryAllocateInfo
 	{
 
 		public Image Image
@@ -935,7 +935,7 @@ namespace SharpVk
 		}
 	}
 
-	public class DescriptorBufferInfo
+	public struct DescriptorBufferInfo
 	{
 
 		public Buffer Buffer
@@ -972,7 +972,7 @@ namespace SharpVk
 		}
 	}
 
-	public class DescriptorImageInfo
+	public struct DescriptorImageInfo
 	{
 
 		public Sampler Sampler
@@ -1009,7 +1009,7 @@ namespace SharpVk
 		}
 	}
 
-	public class DescriptorPoolCreateInfo
+	public struct DescriptorPoolCreateInfo
 	{
 
 		public DescriptorPoolCreateFlags Flags
@@ -1061,7 +1061,7 @@ namespace SharpVk
 		}
 	}
 
-	public class DescriptorSetAllocateInfo
+	public struct DescriptorSetAllocateInfo
 	{
 
 		public DescriptorPool DescriptorPool
@@ -1108,7 +1108,7 @@ namespace SharpVk
 		}
 	}
 
-	public class DescriptorSetLayoutBinding
+	public struct DescriptorSetLayoutBinding
 	{
 
 		public uint Binding
@@ -1168,7 +1168,7 @@ namespace SharpVk
 		}
 	}
 
-	public class DescriptorSetLayoutCreateInfo
+	public struct DescriptorSetLayoutCreateInfo
 	{
 
 		public DescriptorSetLayoutCreateFlags Flags
@@ -1215,7 +1215,7 @@ namespace SharpVk
 		}
 	}
 
-	public class DeviceCreateInfo
+	public struct DeviceCreateInfo
 	{
 
 		public DeviceCreateFlags Flags
@@ -1285,7 +1285,7 @@ namespace SharpVk
 		}
 	}
 
-	public class DeviceQueueCreateInfo
+	public struct DeviceQueueCreateInfo
 	{
 
 		public DeviceQueueCreateFlags Flags
@@ -1324,7 +1324,7 @@ namespace SharpVk
 		}
 	}
 
-	public class DisplayModeCreateInfo
+	public struct DisplayModeCreateInfo
 	{
 
 		public DisplayModeCreateFlags Flags
@@ -1355,7 +1355,7 @@ namespace SharpVk
 		}
 	}
 
-	public class DisplayModeProperties
+	public struct DisplayModeProperties
 	{
 
 		public DisplayMode DisplayMode
@@ -1385,7 +1385,7 @@ namespace SharpVk
 		}
 	}
 
-	public class DisplayPlaneProperties
+	public struct DisplayPlaneProperties
 	{
 
 		public Display CurrentDisplay
@@ -1415,7 +1415,7 @@ namespace SharpVk
 		}
 	}
 
-	public class DisplayPresentInfo
+	public struct DisplayPresentInfo
 	{
 
 		public Rect2D SourceRect
@@ -1453,7 +1453,7 @@ namespace SharpVk
 		}
 	}
 
-	public class DisplayProperties
+	public struct DisplayProperties
 	{
 
 		public Display Display
@@ -1518,7 +1518,7 @@ namespace SharpVk
 		}
 	}
 
-	public class DisplaySurfaceCreateInfo
+	public struct DisplaySurfaceCreateInfo
 	{
 
 		public DisplaySurfaceCreateFlags Flags
@@ -1591,7 +1591,7 @@ namespace SharpVk
 		}
 	}
 
-	public class EventCreateInfo
+	public struct EventCreateInfo
 	{
 
 		public EventCreateFlags Flags
@@ -1615,7 +1615,7 @@ namespace SharpVk
 		}
 	}
 
-	public class ExtensionProperties
+	public struct ExtensionProperties
 	{
 
 		public string ExtensionName
@@ -1646,7 +1646,7 @@ namespace SharpVk
 		}
 	}
 
-	public class FenceCreateInfo
+	public struct FenceCreateInfo
 	{
 
 		public FenceCreateFlags Flags
@@ -1670,7 +1670,7 @@ namespace SharpVk
 		}
 	}
 
-	public class FramebufferCreateInfo
+	public struct FramebufferCreateInfo
 	{
 
 		public FramebufferCreateFlags Flags
@@ -1745,7 +1745,7 @@ namespace SharpVk
 		}
 	}
 
-	public class GraphicsPipelineCreateInfo
+	public struct GraphicsPipelineCreateInfo
 	{
 
 		public PipelineCreateFlags Flags
@@ -1760,55 +1760,55 @@ namespace SharpVk
 			set;
 		}
 
-		public PipelineVertexInputStateCreateInfo VertexInputState
+		public PipelineVertexInputStateCreateInfo? VertexInputState
 		{
 			get;
 			set;
 		}
 
-		public PipelineInputAssemblyStateCreateInfo InputAssemblyState
+		public PipelineInputAssemblyStateCreateInfo? InputAssemblyState
 		{
 			get;
 			set;
 		}
 
-		public PipelineTessellationStateCreateInfo TessellationState
+		public PipelineTessellationStateCreateInfo? TessellationState
 		{
 			get;
 			set;
 		}
 
-		public PipelineViewportStateCreateInfo ViewportState
+		public PipelineViewportStateCreateInfo? ViewportState
 		{
 			get;
 			set;
 		}
 
-		public PipelineRasterizationStateCreateInfo RasterizationState
+		public PipelineRasterizationStateCreateInfo? RasterizationState
 		{
 			get;
 			set;
 		}
 
-		public PipelineMultisampleStateCreateInfo MultisampleState
+		public PipelineMultisampleStateCreateInfo? MultisampleState
 		{
 			get;
 			set;
 		}
 
-		public PipelineDepthStencilStateCreateInfo DepthStencilState
+		public PipelineDepthStencilStateCreateInfo? DepthStencilState
 		{
 			get;
 			set;
 		}
 
-		public PipelineColorBlendStateCreateInfo ColorBlendState
+		public PipelineColorBlendStateCreateInfo? ColorBlendState
 		{
 			get;
 			set;
 		}
 
-		public PipelineDynamicStateCreateInfo DynamicState
+		public PipelineDynamicStateCreateInfo? DynamicState
 		{
 			get;
 			set;
@@ -1864,15 +1864,15 @@ namespace SharpVk
 			{
 			    result.Stages = null;
 			}
-			result.VertexInputState = this.VertexInputState == null ? null : this.VertexInputState.MarshalTo();
-			result.InputAssemblyState = this.InputAssemblyState == null ? null : this.InputAssemblyState.MarshalTo();
-			result.TessellationState = this.TessellationState == null ? null : this.TessellationState.MarshalTo();
-			result.ViewportState = this.ViewportState == null ? null : this.ViewportState.MarshalTo();
-			result.RasterizationState = this.RasterizationState == null ? null : this.RasterizationState.MarshalTo();
-			result.MultisampleState = this.MultisampleState == null ? null : this.MultisampleState.MarshalTo();
-			result.DepthStencilState = this.DepthStencilState == null ? null : this.DepthStencilState.MarshalTo();
-			result.ColorBlendState = this.ColorBlendState == null ? null : this.ColorBlendState.MarshalTo();
-			result.DynamicState = this.DynamicState == null ? null : this.DynamicState.MarshalTo();
+			result.VertexInputState = this.VertexInputState == null ? null : this.VertexInputState.Value.MarshalTo();
+			result.InputAssemblyState = this.InputAssemblyState == null ? null : this.InputAssemblyState.Value.MarshalTo();
+			result.TessellationState = this.TessellationState == null ? null : this.TessellationState.Value.MarshalTo();
+			result.ViewportState = this.ViewportState == null ? null : this.ViewportState.Value.MarshalTo();
+			result.RasterizationState = this.RasterizationState == null ? null : this.RasterizationState.Value.MarshalTo();
+			result.MultisampleState = this.MultisampleState == null ? null : this.MultisampleState.Value.MarshalTo();
+			result.DepthStencilState = this.DepthStencilState == null ? null : this.DepthStencilState.Value.MarshalTo();
+			result.ColorBlendState = this.ColorBlendState == null ? null : this.ColorBlendState.Value.MarshalTo();
+			result.DynamicState = this.DynamicState == null ? null : this.DynamicState.Value.MarshalTo();
 			result.Layout = this.Layout?.Pack() ?? Interop.PipelineLayout.Null;
 			result.RenderPass = this.RenderPass?.Pack() ?? Interop.RenderPass.Null;
 			result.BasePipelineHandle = this.BasePipelineHandle?.Pack() ?? Interop.Pipeline.Null;
@@ -1890,7 +1890,7 @@ namespace SharpVk
 		}
 	}
 
-	public class ImageBlit
+	public struct ImageBlit
 	{
 
 		public ImageSubresourceLayers SourceSubresource
@@ -1932,7 +1932,7 @@ namespace SharpVk
 		}
 	}
 
-	public class ImageCreateInfo
+	public struct ImageCreateInfo
 	{
 
 		public ImageCreateFlags Flags
@@ -2034,7 +2034,7 @@ namespace SharpVk
 		}
 	}
 
-	public class ImageMemoryBarrier
+	public struct ImageMemoryBarrier
 	{
 
 		public AccessFlags SourceAccessMask
@@ -2107,7 +2107,7 @@ namespace SharpVk
 		}
 	}
 
-	public class ImageViewCreateInfo
+	public struct ImageViewCreateInfo
 	{
 
 		public ImageViewCreateFlags Flags
@@ -2166,7 +2166,7 @@ namespace SharpVk
 		}
 	}
 
-	public class InstanceCreateInfo
+	public struct InstanceCreateInfo
 	{
 
 		public InstanceCreateFlags Flags
@@ -2175,7 +2175,7 @@ namespace SharpVk
 			set;
 		}
 
-		public ApplicationInfo ApplicationInfo
+		public ApplicationInfo? ApplicationInfo
 		{
 			get;
 			set;
@@ -2197,7 +2197,7 @@ namespace SharpVk
         {
             var result = new Interop.InstanceCreateInfo();
 			result.SType = StructureType.InstanceCreateInfo;
-			result.ApplicationInfo = this.ApplicationInfo == null ? null : this.ApplicationInfo.MarshalTo();
+			result.ApplicationInfo = this.ApplicationInfo == null ? null : this.ApplicationInfo.Value.MarshalTo();
 			result.EnabledLayerNames = this.EnabledLayerNames == null ? null : Interop.HeapUtil.MarshalTo(this.EnabledLayerNames);
 			result.EnabledExtensionNames = this.EnabledExtensionNames == null ? null : Interop.HeapUtil.MarshalTo(this.EnabledExtensionNames);
 			result.EnabledLayerCount = (uint)(this.EnabledLayerNames?.Length ?? 0);
@@ -2213,7 +2213,7 @@ namespace SharpVk
 		}
 	}
 
-	public class LayerProperties
+	public struct LayerProperties
 	{
 
 		public string LayerName
@@ -2258,7 +2258,7 @@ namespace SharpVk
 		}
 	}
 
-	public class MappedMemoryRange
+	public struct MappedMemoryRange
 	{
 
 		public DeviceMemory Memory
@@ -2296,7 +2296,7 @@ namespace SharpVk
 		}
 	}
 
-	public class MemoryAllocateInfo
+	public struct MemoryAllocateInfo
 	{
 
 		public ulong AllocationSize
@@ -2327,7 +2327,7 @@ namespace SharpVk
 		}
 	}
 
-	public class MemoryBarrier
+	public struct MemoryBarrier
 	{
 
 		public AccessFlags SourceAccessMask
@@ -2358,7 +2358,7 @@ namespace SharpVk
 		}
 	}
 
-	public class MirSurfaceCreateInfo
+	public struct MirSurfaceCreateInfo
 	{
 
 		public MirSurfaceCreateFlags Flags
@@ -2396,7 +2396,7 @@ namespace SharpVk
 		}
 	}
 
-	public class PhysicalDeviceLimits
+	public struct PhysicalDeviceLimits
 	{
 
 		public uint MaxImageDimension1D
@@ -3155,7 +3155,7 @@ namespace SharpVk
 		}
 	}
 
-	public class PhysicalDeviceMemoryProperties
+	public struct PhysicalDeviceMemoryProperties
 	{
 
 		public MemoryType[] MemoryTypes
@@ -3198,7 +3198,7 @@ namespace SharpVk
 		}
 	}
 
-	public class PhysicalDeviceProperties
+	public struct PhysicalDeviceProperties
 	{
 
 		public Version ApiVersion
@@ -3278,7 +3278,7 @@ namespace SharpVk
 		}
 	}
 
-	public class PipelineCacheCreateInfo
+	public struct PipelineCacheCreateInfo
 	{
 
 		public PipelineCacheCreateFlags Flags
@@ -3310,7 +3310,7 @@ namespace SharpVk
 		}
 	}
 
-	public class PipelineColorBlendStateCreateInfo
+	public struct PipelineColorBlendStateCreateInfo
 	{
 
 		public PipelineColorBlendStateCreateFlags Flags
@@ -3375,7 +3375,7 @@ namespace SharpVk
 		}
 	}
 
-	public class PipelineDepthStencilStateCreateInfo
+	public struct PipelineDepthStencilStateCreateInfo
 	{
 
 		public PipelineDepthStencilStateCreateFlags Flags
@@ -3462,7 +3462,7 @@ namespace SharpVk
 		}
 	}
 
-	public class PipelineDynamicStateCreateInfo
+	public struct PipelineDynamicStateCreateInfo
 	{
 
 		public PipelineDynamicStateCreateFlags Flags
@@ -3507,7 +3507,7 @@ namespace SharpVk
 		}
 	}
 
-	public class PipelineInputAssemblyStateCreateInfo
+	public struct PipelineInputAssemblyStateCreateInfo
 	{
 
 		public PipelineInputAssemblyStateCreateFlags Flags
@@ -3545,7 +3545,7 @@ namespace SharpVk
 		}
 	}
 
-	public class PipelineLayoutCreateInfo
+	public struct PipelineLayoutCreateInfo
 	{
 
 		public PipelineLayoutCreateFlags Flags
@@ -3613,7 +3613,7 @@ namespace SharpVk
 		}
 	}
 
-	public class PipelineMultisampleStateCreateInfo
+	public struct PipelineMultisampleStateCreateInfo
 	{
 
 		public PipelineMultisampleStateCreateFlags Flags
@@ -3693,7 +3693,7 @@ namespace SharpVk
 		}
 	}
 
-	public class PipelineRasterizationStateCreateInfo
+	public struct PipelineRasterizationStateCreateInfo
 	{
 
 		public PipelineRasterizationStateCreateFlags Flags
@@ -3787,7 +3787,7 @@ namespace SharpVk
 		}
 	}
 
-	public class PipelineRasterizationStateRasterizationOrder
+	public struct PipelineRasterizationStateRasterizationOrder
 	{
 
 		public RasterizationOrder RasterizationOrder
@@ -3811,7 +3811,7 @@ namespace SharpVk
 		}
 	}
 
-	public class PipelineShaderStageCreateInfo
+	public struct PipelineShaderStageCreateInfo
 	{
 
 		public PipelineShaderStageCreateFlags Flags
@@ -3838,7 +3838,7 @@ namespace SharpVk
 			set;
 		}
 
-		public SpecializationInfo SpecializationInfo
+		public SpecializationInfo? SpecializationInfo
 		{
 			get;
 			set;
@@ -3850,7 +3850,7 @@ namespace SharpVk
 			result.SType = StructureType.PipelineShaderStageCreateInfo;
 			result.Module = this.Module?.Pack() ?? Interop.ShaderModule.Null;
 			result.Name = Interop.HeapUtil.MarshalTo(this.Name);
-			result.SpecializationInfo = this.SpecializationInfo == null ? null : this.SpecializationInfo.MarshalTo();
+			result.SpecializationInfo = this.SpecializationInfo == null ? null : this.SpecializationInfo.Value.MarshalTo();
 			result.Flags = this.Flags;
 			result.Stage = this.Stage;
 
@@ -3863,7 +3863,7 @@ namespace SharpVk
 		}
 	}
 
-	public class PipelineTessellationStateCreateInfo
+	public struct PipelineTessellationStateCreateInfo
 	{
 
 		public PipelineTessellationStateCreateFlags Flags
@@ -3894,7 +3894,7 @@ namespace SharpVk
 		}
 	}
 
-	public class PipelineVertexInputStateCreateInfo
+	public struct PipelineVertexInputStateCreateInfo
 	{
 
 		public PipelineVertexInputStateCreateFlags Flags
@@ -3960,7 +3960,7 @@ namespace SharpVk
 		}
 	}
 
-	public class PipelineViewportStateCreateInfo
+	public struct PipelineViewportStateCreateInfo
 	{
 
 		public PipelineViewportStateCreateFlags Flags
@@ -4026,7 +4026,7 @@ namespace SharpVk
 		}
 	}
 
-	public class PresentInfo
+	public struct PresentInfo
 	{
 
 		public Semaphore[] WaitSemaphores
@@ -4116,7 +4116,7 @@ namespace SharpVk
 		}
 	}
 
-	public class QueryPoolCreateInfo
+	public struct QueryPoolCreateInfo
 	{
 
 		public QueryPoolCreateFlags Flags
@@ -4161,7 +4161,7 @@ namespace SharpVk
 		}
 	}
 
-	public class RenderPassBeginInfo
+	public struct RenderPassBeginInfo
 	{
 
 		public RenderPass RenderPass
@@ -4221,7 +4221,7 @@ namespace SharpVk
 		}
 	}
 
-	public class RenderPassCreateInfo
+	public struct RenderPassCreateInfo
 	{
 
 		public RenderPassCreateFlags Flags
@@ -4310,7 +4310,7 @@ namespace SharpVk
 		}
 	}
 
-	public class SamplerCreateInfo
+	public struct SamplerCreateInfo
 	{
 
 		public SamplerCreateFlags Flags
@@ -4439,7 +4439,7 @@ namespace SharpVk
 		}
 	}
 
-	public class SemaphoreCreateInfo
+	public struct SemaphoreCreateInfo
 	{
 
 		public SemaphoreCreateFlags Flags
@@ -4463,7 +4463,7 @@ namespace SharpVk
 		}
 	}
 
-	public class ShaderModuleCreateInfo
+	public struct ShaderModuleCreateInfo
 	{
 
 		public ShaderModuleCreateFlags Flags
@@ -4501,7 +4501,7 @@ namespace SharpVk
 		}
 	}
 
-	public class SparseBufferMemoryBindInfo
+	public struct SparseBufferMemoryBindInfo
 	{
 
 		public Buffer Buffer
@@ -4547,7 +4547,7 @@ namespace SharpVk
 		}
 	}
 
-	public class SparseImageMemoryBind
+	public struct SparseImageMemoryBind
 	{
 
 		public ImageSubresource Subresource
@@ -4605,7 +4605,7 @@ namespace SharpVk
 		}
 	}
 
-	public class SparseImageMemoryBindInfo
+	public struct SparseImageMemoryBindInfo
 	{
 
 		public Image Image
@@ -4651,7 +4651,7 @@ namespace SharpVk
 		}
 	}
 
-	public class SparseImageOpaqueMemoryBindInfo
+	public struct SparseImageOpaqueMemoryBindInfo
 	{
 
 		public Image Image
@@ -4697,7 +4697,7 @@ namespace SharpVk
 		}
 	}
 
-	public class SparseMemoryBind
+	public struct SparseMemoryBind
 	{
 
 		public ulong ResourceOffset
@@ -4748,7 +4748,7 @@ namespace SharpVk
 		}
 	}
 
-	public class SpecializationInfo
+	public struct SpecializationInfo
 	{
 
 		public SpecializationMapEntry[] MapEntries
@@ -4793,7 +4793,7 @@ namespace SharpVk
 		}
 	}
 
-	public class SubmitInfo
+	public struct SubmitInfo
 	{
 
 		public Semaphore[] WaitSemaphores
@@ -4899,7 +4899,7 @@ namespace SharpVk
 		}
 	}
 
-	public class SubpassDescription
+	public struct SubpassDescription
 	{
 
 		public SubpassDescriptionFlags Flags
@@ -5006,7 +5006,7 @@ namespace SharpVk
 		}
 	}
 
-	public class SwapchainCreateInfo
+	public struct SwapchainCreateInfo
 	{
 
 		public SwapchainCreateFlags Flags
@@ -5129,7 +5129,7 @@ namespace SharpVk
 		}
 	}
 
-	public class WaylandSurfaceCreateInfo
+	public struct WaylandSurfaceCreateInfo
 	{
 
 		public WaylandSurfaceCreateFlags Flags
@@ -5167,7 +5167,7 @@ namespace SharpVk
 		}
 	}
 
-	public class Win32SurfaceCreateInfo
+	public struct Win32SurfaceCreateInfo
 	{
 
 		public Win32SurfaceCreateFlags Flags
@@ -5205,7 +5205,7 @@ namespace SharpVk
 		}
 	}
 
-	public class WriteDescriptorSet
+	public struct WriteDescriptorSet
 	{
 
 		public DescriptorSet DestinationSet
@@ -5317,7 +5317,7 @@ namespace SharpVk
 		}
 	}
 
-	public class XcbSurfaceCreateInfo
+	public struct XcbSurfaceCreateInfo
 	{
 
 		public XcbSurfaceCreateFlags Flags
@@ -5355,7 +5355,7 @@ namespace SharpVk
 		}
 	}
 
-	public class XlibSurfaceCreateInfo
+	public struct XlibSurfaceCreateInfo
 	{
 
 		public XlibSurfaceCreateFlags Flags
