@@ -23,7 +23,7 @@ namespace SharpVk.Shanq
                 {
                     var fieldValue = field.GetValue(constantSelector.Value);
 
-                    expressionVisitor.Visit(Expression.Constant(fieldValue, field.FieldType));
+                    Console.WriteLine(expressionVisitor.Visit(Expression.Constant(fieldValue, field.FieldType)));
                 }
             }
 

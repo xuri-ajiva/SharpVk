@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6DC5E1D5-2186-4AA4-9C49-90DA7458EE85}</ProjectGuid>
+    <ProjectGuid>{65B38A22-87E5-4F27-9922-D6BA96D5618F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SharpVk.Shanq</RootNamespace>
-    <AssemblyName>SharpVk.Shanq</AssemblyName>
+    <RootNamespace>SharpVk.SpirvJson</RootNamespace>
+    <AssemblyName>SharpVk.SpirvJson</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,14 +30,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Remotion.Linq, Version=2.1.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
-      <HintPath>..\packages\Remotion.Linq.2.1.1\lib\net45\Remotion.Linq.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Numerics" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,49 +44,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataField.cs" />
-    <Compile Include="DataStructure.cs" />
-    <Compile Include="DataStructureType.cs" />
-    <Compile Include="HlslExpressionBuilder.cs" />
-    <Compile Include="Hlsl\AssignStatement.cs" />
-    <Compile Include="Hlsl\CastExpression.cs" />
-    <Compile Include="Hlsl\ConstantExpression.cs" />
-    <Compile Include="Hlsl\CreateVectorExpression.cs" />
-    <Compile Include="Hlsl\FunctionExpression.cs" />
-    <Compile Include="Hlsl\InputDataExpression.cs" />
-    <Compile Include="Hlsl\OutputDataExpression.cs" />
-    <Compile Include="Hlsl\VertexShader.cs" />
-    <Compile Include="IAssignStatement.cs" />
-    <Compile Include="ILeftHandShaderExpression.cs" />
-    <Compile Include="InputStructureReferenceExpression.cs" />
-    <Compile Include="IntrinsicFunction.cs" />
-    <Compile Include="IPixelShader.cs" />
-    <Compile Include="IRightHandShaderExpression.cs" />
-    <Compile Include="IShaderExpression.cs" />
-    <Compile Include="IShaderFormatInfo.cs" />
-    <Compile Include="IShaderPart.cs" />
-    <Compile Include="IShaderStatement.cs" />
-    <Compile Include="IVertexShader.cs" />
-    <Compile Include="MemberReferenceExpression.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Queryable\IShanqQueryable.cs" />
-    <Compile Include="Queryable\ShanqExpressionVisitor.cs" />
-    <Compile Include="Queryable\ShanqQueryable.cs" />
-    <Compile Include="Queryable\ShanqQueryExecutor.cs" />
-    <Compile Include="Queryable\ShanqUtil.cs" />
-    <Compile Include="ShaderType.cs" />
-    <Compile Include="SwizzleAttribute.cs" />
+    <Compile Include="SpirvJsonCache.cs" />
+    <Compile Include="SpirvModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SharpVk\SharpVk.csproj">
-      <Project>{a0abab94-7022-4e2d-a13c-e7bad69dd9d3}</Project>
-      <Name>SharpVk</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy *.* $(SolutionDir)\Lib\</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

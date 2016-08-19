@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpVk.Shanq", "SharpVk.Sh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test Harness", "Test Harness\Test Harness.csproj", "{F3FC01CD-9765-4FC4-8D00-83C6D37BEF86}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpVk.SpirvJson", "SharpVk.SpirvJson\SharpVk.SpirvJson.csproj", "{65B38A22-87E5-4F27-9922-D6BA96D5618F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,14 @@ Global
 		{F3FC01CD-9765-4FC4-8D00-83C6D37BEF86}.Release|Any CPU.Build.0 = Release|Any CPU
 		{F3FC01CD-9765-4FC4-8D00-83C6D37BEF86}.Release|x64.ActiveCfg = Release|x64
 		{F3FC01CD-9765-4FC4-8D00-83C6D37BEF86}.Release|x64.Build.0 = Release|x64
+		{65B38A22-87E5-4F27-9922-D6BA96D5618F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65B38A22-87E5-4F27-9922-D6BA96D5618F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65B38A22-87E5-4F27-9922-D6BA96D5618F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{65B38A22-87E5-4F27-9922-D6BA96D5618F}.Debug|x64.Build.0 = Debug|Any CPU
+		{65B38A22-87E5-4F27-9922-D6BA96D5618F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65B38A22-87E5-4F27-9922-D6BA96D5618F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65B38A22-87E5-4F27-9922-D6BA96D5618F}.Release|x64.ActiveCfg = Release|Any CPU
+		{65B38A22-87E5-4F27-9922-D6BA96D5618F}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
