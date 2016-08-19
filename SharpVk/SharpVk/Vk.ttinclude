@@ -44,7 +44,7 @@ SpecParser GetParser()
 {
 	GetVkXml();
 
-	return new SpecParser(xmlCache);
+	return new SpecParser(xmlCache, Path.Combine(Host.ResolvePath("."), "obj\\VkTemplates"));
 }
 
 string MapBaseTypeName(string baseTypeName)

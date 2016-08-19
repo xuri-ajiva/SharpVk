@@ -23,6 +23,16 @@ var types = generator.Generate(parser.Run());
 foreach(var handle in types.Handles)
 {
 #>
+    /// <summary>
+<#
+	foreach(var line in handle.Comment.Split('\n'))
+    {
+#>
+    /// <#=line#>
+<#
+	}
+#>
+    /// </summary>
 	public class <#=handle.Name#>
 <#if(handle.IsDisposable)#>
 		: IDisposable

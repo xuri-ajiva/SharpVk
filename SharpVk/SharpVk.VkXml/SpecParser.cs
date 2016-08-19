@@ -103,10 +103,12 @@ namespace SharpVk.VkXml
         private static readonly Parser<IEnumerable<ParsedLen>> lenParser = lenPartParser.DelimitedBy(Parse.Char(',').Token()).End();
 
         private readonly IVkXmlCache xmlCache;
+        private readonly string tempFilePath;
 
-        public SpecParser(IVkXmlCache xmlCache)
+        public SpecParser(IVkXmlCache xmlCache, string tempFilePath)
         {
             this.xmlCache = xmlCache;
+            this.tempFilePath = tempFilePath;
         }
 
         private string GetTextValue(XNode node)
@@ -377,12 +379,33 @@ namespace SharpVk.VkXml
                     });
                 }
             }
-
+            
             var vkFeature = vkXml.Element("registry").Elements("feature").Single(x => x.Attribute("api").Value == "vulkan");
 
             var vkExtensions = vkXml.Element("registry").Element("extensions").Elements("extension").Where(x => x.Attribute("supported").Value == "vulkan");
 
-            return FilterRequiredElement(typeXml, enumXml, commandXml, vkFeature, vkExtensions);
+            var filteredSpec = FilterRequiredElement(typeXml, enumXml, commandXml, vkFeature, vkExtensions);
+
+            foreach (var handleType in filteredSpec.Types.Values.Where(x => x.Category == TypeCategory.handle && x.Extension == null))
+            {
+                var docFile = new DownloadedFileCache(this.tempFilePath, $"https://raw.githubusercontent.com/KhronosGroup/Vulkan-Docs/1.0/doc/specs/vulkan/man/{handleType.VkName}.txt");
+
+                var docLines = System.IO.File.ReadAllLines(docFile.GetFileLocation());
+
+                int lineIndex;
+
+                for (lineIndex = 0; docLines[lineIndex] != "C Specification"; lineIndex++) ;
+
+                lineIndex += 5;
+
+                var descriptionLines = docLines.Skip(lineIndex).TakeWhile(x => x != "Description");
+
+                descriptionLines = descriptionLines.Take(descriptionLines.Count() - 6).Where(x => !string.IsNullOrWhiteSpace(x));
+
+                handleType.Comment = string.Join("\n", descriptionLines);
+            }
+
+            return filteredSpec;
         }
 
         private static IEnumerable<string> GetEnumFieldNameParts(string[] nameParts, string fieldName)

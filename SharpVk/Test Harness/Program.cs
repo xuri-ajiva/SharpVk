@@ -14,32 +14,37 @@ namespace SharpVk
         [STAThread]
         static void Main(string[] args)
         {
-            GenerateTypes();
+            var xmlCache = new VkXmlCache(".\\TempFiles");
+
+            var parser = new SpecParser(xmlCache, ".\\TempFiles");
+            //var generator = new TypeGenerator();
+
+            //var types = generator.Generate(parser.Run());
+
+            foreach (var handleType in parser.Run().Types.Values.Where(x => x.Category == TypeCategory.@struct && x.Extension == null))
+            {
+                var docFile = new DownloadedFileCache(".\\TempFiles", $"https://raw.githubusercontent.com/KhronosGroup/Vulkan-Docs/1.0/doc/specs/vulkan/man/{handleType.VkName}.txt");
+
+                var docLines = File.ReadAllLines(docFile.GetFileLocation());
+
+                int lineIndex;
+
+                for (lineIndex = 0; docLines[lineIndex] != "Description"; lineIndex++) ;
+
+                lineIndex += 3;
+
+                var descriptionLines = docLines.Skip(lineIndex).AsEnumerable().TakeWhile(x => x != "See Also");
+
+                descriptionLines = descriptionLines.Take(descriptionLines.Count() - 3).Where(x => !string.IsNullOrWhiteSpace(x));
+
+                Console.WriteLine(handleType.VkName);
+                Console.WriteLine();
+                Console.WriteLine(string.Join("\n", descriptionLines));
+                Console.WriteLine();
+            }
+
             Console.WriteLine("Done");
             Console.ReadLine();
-        }
-
-        private static void Enumerate<T>(T target)
-        {
-            foreach (var field in typeof(T).GetFields(BindingFlags.Instance | BindingFlags.Public))
-            {
-                Console.WriteLine("{0} = {1}", field.Name, field.GetValue(target));
-            }
-
-            foreach (var property in typeof(T).GetProperties(BindingFlags.Instance | BindingFlags.Public))
-            {
-                Console.WriteLine("{0} = {1}", property.Name, property.GetValue(target));
-            }
-        }
-
-        private static void GenerateTypes()
-        {
-            var xmlCache = new VkXmlCache(".\\obj\\VkTemplates");
-
-            var parser = new SpecParser(xmlCache);
-            var generator = new TypeGenerator();
-
-            var types = generator.Generate(parser.Run());
         }
     }
 }

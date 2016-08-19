@@ -650,11 +650,13 @@ namespace SharpVk.VkXml
             foreach (var type in typeData.Values.Where(x => x.Data.Category == TypeCategory.handle))
             {
                 bool isDispatch = type.Data.Type != "VK_DEFINE_NON_DISPATCHABLE_HANDLE";
+                string comment = type.Data.Comment ?? "";
 
                 var newHandle = new TypeSet.VkHandle
                 {
                     Name = type.Name,
-                    IsDispatch = isDispatch
+                    IsDispatch = isDispatch,
+                    Comment = comment
                 };
 
                 if (type.Data.Parent != null)

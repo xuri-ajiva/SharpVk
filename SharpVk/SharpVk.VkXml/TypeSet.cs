@@ -226,6 +226,12 @@ namespace SharpVk.VkXml
                 set;
             }
 
+            public string Comment
+            {
+                get;
+                set;
+            }
+
             public string ParentHandle
             {
                 get;

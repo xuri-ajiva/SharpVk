@@ -62,6 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DownloadedFileCache.cs" />
     <Compile Include="ParsedExpressionBuilder.cs" />
     <Compile Include="PointerType.cs" />
     <Compile Include="TypeCategory.cs" />

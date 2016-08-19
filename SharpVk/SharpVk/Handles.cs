@@ -24,6 +24,12 @@ using System;
 
 namespace SharpVk
 {
+    /// <summary>
+    /// Buffers represent linear arrays of data which are used for various
+    /// purposes by binding them to a graphics or compute pipeline via descriptor
+    /// sets or via certain commands, or by directly specifying them as parameters
+    /// to certain commands.
+    /// </summary>
 	public class Buffer
 		: IDisposable
 	{
@@ -106,6 +112,15 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// A _buffer view_ represents a contiguous range of a buffer and a specific
+    /// format to be used to interpret the data. Buffer views are used to enable
+    /// shaders to access buffer contents interpreted as formatted data. In order to
+    /// create a valid buffer view, the buffer must: have been created with at least
+    /// one of the following usage flags:
+    ///   * ename:VK_BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT
+    ///   * ename:VK_BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT
+    /// </summary>
 	public class BufferView
 		: IDisposable
 	{
@@ -153,6 +168,14 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// Command buffers are objects used to record commands which can: be
+    /// subsequently submitted to a device queue for execution. There are two levels
+    /// of command buffers - _primary command buffers_, which can: execute secondary
+    /// command buffers, and which are submitted to queues, and _secondary command
+    /// buffers_, which can: be executed by primary command buffers, and which are
+    /// not directly submitted to queues.
+    /// </summary>
 	public class CommandBuffer
 	{
 		internal readonly Interop.CommandBuffer handle;
@@ -995,6 +1018,15 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// Command pools are opaque objects that command buffer memory is allocated
+    /// from, and which allow the implementation to amortize the cost of resource
+    /// creation across multiple command buffers. Command pools are
+    /// application-synchronized, meaning that a command pool mustnot: be used
+    /// concurrently in multiple threads. That includes use via recording commands
+    /// on any command buffers allocated from the pool, as well as operations that
+    /// allocate, free, and reset command buffers or the pool itself.
+    /// </summary>
 	public class CommandPool
 		: IDisposable
 	{
@@ -1085,6 +1117,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public class DebugReportCallback
 		: IDisposable
 	{
@@ -1132,6 +1167,13 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// A _descriptor pool_
+    /// maintains a pool of descriptors, from which descriptor sets are allocated.
+    /// Descriptor pools are externally synchronized, meaning that the application
+    /// mustnot: allocate and/or free descriptor sets from the same pool in multiple
+    /// threads simultaneously.
+    /// </summary>
 	public class DescriptorPool
 		: IDisposable
 	{
@@ -1228,6 +1270,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public class DescriptorSet
 	{
 		internal readonly Interop.DescriptorSet handle;
@@ -1255,6 +1300,13 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// A descriptor set layout object is defined by an array of zero or more
+    /// descriptor bindings. Each individual descriptor binding is specified by a
+    /// descriptor type, a count (array size) of the number of descriptors in the
+    /// binding, a set of shader stages that can: access the binding, and (if using
+    /// immutable samplers) an array of sampler descriptors.
+    /// </summary>
 	public class DescriptorSetLayout
 		: IDisposable
 	{
@@ -1302,6 +1354,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public class Device
 		: IDisposable
 	{
@@ -2342,6 +2397,10 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// A Vulkan device operates on data in device memory via memory objects that
+    /// are represented in the API by a sname:VkDeviceMemory handle.
+    /// </summary>
 	public class DeviceMemory
 	{
 		internal readonly Interop.DeviceMemory handle;
@@ -2417,6 +2476,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public class Display
 	{
 		internal readonly Interop.Display handle;
@@ -2444,6 +2506,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public class DisplayMode
 	{
 		internal readonly Interop.DisplayMode handle;
@@ -2493,6 +2558,15 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// Events represent a fine-grained synchronization primitive that can: be used
+    /// to gauge progress through a sequence of commands executed on a queue by
+    /// Vulkan. An event is initially in the unsignaled state. It can: be
+    /// signaled by a device, using commands inserted into the command buffer, or by
+    /// the host. It can: also be reset to the unsignaled state by a device or the
+    /// host. The host can: query the state of an event. A device can: wait for one
+    /// or more events to become signaled.
+    /// </summary>
 	public class Event
 		: IDisposable
 	{
@@ -2594,6 +2668,13 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// Fences can: be used by the host to determine completion of execution of
+    /// _queue operations_.
+    /// A fence's status is always either _signaled_ or _unsignaled_. The host can:
+    /// poll the status of a single fence, or wait for any or all of a group of
+    /// fences to become signaled.
+    /// </summary>
 	public class Fence
 		: IDisposable
 	{
@@ -2659,6 +2740,10 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// Render passes operate in conjunction with _framebuffers_. Framebuffers represent a
+    /// collection of specific memory attachments that a render pass instance uses.
+    /// </summary>
 	public class Framebuffer
 		: IDisposable
 	{
@@ -2706,6 +2791,12 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// Images represent multidimensional - up to 3 - arrays of data which can: be
+    /// used for various purposes (e.g. attachments, textures), by binding them to a
+    /// graphics or compute pipeline via descriptor sets, or by directly specifying
+    /// them as parameters to certain commands.
+    /// </summary>
 	public class Image
 		: IDisposable
 	{
@@ -2830,6 +2921,13 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// Image objects are not directly accessed by pipeline shaders for reading or
+    /// writing image data. Instead, _image views_ representing contiguous ranges of
+    /// the image subresources and containing additional metadata are used for that
+    /// purpose. Views must: be created on images of compatible types, and must:
+    /// represent a valid subset of image subresources.
+    /// </summary>
 	public class ImageView
 		: IDisposable
 	{
@@ -2877,6 +2975,12 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// There is no global state in Vulkan and all per-application state is
+    /// stored in a sname:VkInstance object. Creating a sname:VkInstance object
+    /// initializes the Vulkan library and allows the application to pass
+    /// information about itself to the implementation.
+    /// </summary>
 	public class Instance
 		: IDisposable
 	{
@@ -3314,6 +3418,13 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// Vulkan separates the concept of _physical_ and _logical_ devices. A
+    /// physical device usually represents a single device in a system (perhaps made
+    /// up of several individual hardware devices working together), of which there
+    /// are a finite number. A logical device represents an application's view of
+    /// the device.
+    /// </summary>
 	public class PhysicalDevice
 	{
 		internal readonly Interop.PhysicalDevice handle;
@@ -3958,6 +4069,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public class Pipeline
 		: IDisposable
 	{
@@ -4005,6 +4119,18 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// Pipeline cache objects allow the result of pipeline construction to be
+    /// reused between pipelines and between runs of an application. Reuse between
+    /// pipelines is achieved by passing the same pipeline cache object when
+    /// creating multiple related pipelines. Reuse across runs of an application is
+    /// achieved by retrieving pipeline cache contents in one run of an application,
+    /// saving the contents, and using them to preinitialize a pipeline cache on a
+    /// subsequent run. The contents of the pipeline cache objects are
+    /// managed by the implementation. Applications can: manage the host memory
+    /// consumed by a pipeline cache object and control the amount of data
+    /// retrieved from a pipeline cache object.
+    /// </summary>
 	public class PipelineCache
 		: IDisposable
 	{
@@ -4119,6 +4245,16 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// Access to descriptor sets from a pipeline is accomplished through a
+    /// _pipeline layout_. Zero or more descriptor set layouts and zero or more push
+    /// constant ranges are combined to form a
+    /// pipeline layout object which describes the complete set of resources that
+    /// can: be accessed by a pipeline. The pipeline layout represents a sequence of
+    /// descriptor sets with each having a specific layout. This sequence of layouts
+    /// is used to determine the interface between shader stages and shader
+    /// resources. Each pipeline is created using a pipeline layout.
+    /// </summary>
 	public class PipelineLayout
 		: IDisposable
 	{
@@ -4166,6 +4302,10 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// Queries are managed using _query pool_ objects. Each query pool is a
+    /// collection of a specific number of queries of a particular type.
+    /// </summary>
 	public class QueryPool
 		: IDisposable
 	{
@@ -4232,6 +4372,12 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// Creating a logical device also creates the queues associated with that
+    /// device. The queues to create are described by a set of
+    /// slink:VkDeviceQueueCreateInfo structures that are passed to
+    /// flink:vkCreateDevice in pname:pQueueCreateInfos.
+    /// </summary>
 	public class Queue
 	{
 		internal readonly Interop.Queue handle;
@@ -4361,6 +4507,12 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// A _render pass_ represents a collection of attachments, subpasses, and
+    /// dependencies between the subpasses, and describes how the attachments
+    /// are used over the course of the subpasses. The use of a render pass
+    /// in a command buffer is a  _render pass instance_.
+    /// </summary>
 	public class RenderPass
 		: IDisposable
 	{
@@ -4424,6 +4576,11 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// sname:VkSampler objects represent the state of an image sampler which is
+    /// used by the implementation to read image data and apply filtering and other
+    /// transformations for the shader.
+    /// </summary>
 	public class Sampler
 		: IDisposable
 	{
@@ -4471,6 +4628,11 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// Semaphores are used to coordinate queue operations both within a queue and
+    /// between different queues. A semaphore's status is always either _signaled_
+    /// or _unsignaled_.
+    /// </summary>
 	public class Semaphore
 		: IDisposable
 	{
@@ -4518,6 +4680,14 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// _Shader modules_ contain _shader code_ and one or more entry points. Shaders
+    /// are selected from a shader module by specifying an entry point as part of
+    /// <<pipelines,pipeline>> creation. The stages of a pipeline can: use shaders
+    /// that come from different modules. The shader code defining a shader module
+    /// must: be in the SPIR-V format, as described by the <<spirvenv,Vulkan
+    /// Environment for SPIR-V>> appendix.
+    /// </summary>
 	public class ShaderModule
 		: IDisposable
 	{
@@ -4565,6 +4735,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public class Surface
 		: IDisposable
 	{
@@ -4612,6 +4785,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public class Swapchain
 		: IDisposable
 	{
