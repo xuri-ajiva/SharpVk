@@ -1,4 +1,5 @@
-﻿using SharpVk.VkXml;
+﻿using SharpVk.Generator.Generators;
+using SharpVk.VkXml;
 using System;
 
 namespace SharpVk.Generator
@@ -13,6 +14,10 @@ namespace SharpVk.Generator
             var generator = new TypeGenerator();
 
             var types = generator.Generate(parser.Run());
+
+            var fileGenerator = new FileGenerator(".\\Generated");
+
+            new InteropCommandsGenerator().Run(types, fileGenerator);
 
             Console.WriteLine("Done");
             Console.ReadLine();
