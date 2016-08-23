@@ -25,7 +25,7 @@ foreach(var classType in types.Classes)
 {
 #>
 
-	public class <#=classType.Name#>
+	public struct <#=classType.Name#>
 	{
 <#
 	foreach(var classProperty in classType.Properties)

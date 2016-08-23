@@ -36,7 +36,7 @@ foreach(var handle in types.Handles)
 #>
 		private readonly <#=handle.ParentHandle#> parent;
 
-		internal AllocationCallbacks Allocator
+		internal AllocationCallbacks? Allocator
 		{
 			get
 			{
@@ -73,9 +73,9 @@ foreach(var handle in types.Handles)
 	else
     {
 #>
-		private AllocationCallbacks allocator;
+		private AllocationCallbacks? allocator;
 
-		internal AllocationCallbacks Allocator
+		internal AllocationCallbacks? Allocator
 		{
 			get
 			{
@@ -83,7 +83,7 @@ foreach(var handle in types.Handles)
 			}
 		}
 
-		internal <#=handle.Name#>(Interop.<#=handle.Name#> handle, AllocationCallbacks allocator)
+		internal <#=handle.Name#>(Interop.<#=handle.Name#> handle, AllocationCallbacks? allocator)
 		{
 			this.handle = handle;
 
