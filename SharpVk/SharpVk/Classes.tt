@@ -25,6 +25,16 @@ foreach(var classType in types.Classes)
 {
 #>
 
+    /// <summary>
+<#
+	foreach(var line in (classType.Comment ?? "").Split('\n'))
+    {
+#>
+    /// <#=line#>
+<#
+	}
+#>
+    /// </summary>
 	public struct <#=classType.Name#>
 	{
 <#

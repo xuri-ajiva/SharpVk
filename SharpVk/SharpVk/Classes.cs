@@ -25,6 +25,9 @@ using System;
 namespace SharpVk
 {
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct AllocationCallbacks
 	{
 
@@ -48,6 +51,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct AndroidSurfaceCreateInfo
 	{
 
@@ -79,6 +85,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct ApplicationInfo
 	{
 
@@ -131,6 +140,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct BindSparseInfo
 	{
 
@@ -263,6 +275,64 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// Bits which can: be set in pname:usage are:
+    /// // refBegin VkBufferUsageFlagBits - Bitmask specifying allowed usage of a buffer
+    /// include::../api/enums/VkBufferUsageFlagBits.txt[]
+    ///   * ename:VK_BUFFER_USAGE_TRANSFER_SRC_BIT indicates that the buffer can: be
+    ///     used as the source of a _transfer command_ (see the definition of
+    ///     <<synchronization-transfer,ename:VK_PIPELINE_STAGE_TRANSFER_BIT>>).
+    ///   * ename:VK_BUFFER_USAGE_TRANSFER_DST_BIT indicates that the buffer
+    ///     can: be used as the destination of a transfer command.
+    ///   * ename:VK_BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT indicates that the buffer
+    ///     can: be used to create a sname:VkBufferView suitable for occupying a
+    ///     sname:VkDescriptorSet slot of type
+    ///     ename:VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER.
+    ///   * ename:VK_BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT indicates that the buffer
+    ///     can: be used to create a sname:VkBufferView suitable for occupying a
+    ///     sname:VkDescriptorSet slot of type
+    ///     ename:VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER.
+    ///   * ename:VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT indicates that the buffer can:
+    ///     be used in a sname:VkDescriptorBufferInfo suitable for occupying a
+    ///     sname:VkDescriptorSet slot either of type
+    ///     ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER or
+    ///     ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC.
+    ///   * ename:VK_BUFFER_USAGE_STORAGE_BUFFER_BIT indicates that the buffer can:
+    ///     be used in a sname:VkDescriptorBufferInfo suitable for occupying a
+    ///     sname:VkDescriptorSet slot either of type
+    ///     ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER or
+    ///     ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC.
+    ///   * ename:VK_BUFFER_USAGE_INDEX_BUFFER_BIT indicates that the buffer is
+    ///     suitable for passing as the pname:buffer parameter to
+    ///     fname:vkCmdBindIndexBuffer.
+    ///   * ename:VK_BUFFER_USAGE_VERTEX_BUFFER_BIT indicates that the buffer is
+    ///     suitable for passing as an element of the pname:pBuffers array to
+    ///     fname:vkCmdBindVertexBuffers.
+    ///   * ename:VK_BUFFER_USAGE_INDIRECT_BUFFER_BIT indicates that the buffer is
+    ///     suitable for passing as the pname:buffer parameter to
+    ///     fname:vkCmdDrawIndirect, fname:vkCmdDrawIndexedIndirect, or
+    ///     fname:vkCmdDispatchIndirect.
+    /// Any combination of bits can: be specified for pname:usage, but at least one
+    /// of the bits must: be set in order to create a valid buffer.
+    /// Bits which can: be set in pname:flags are:
+    /// // refBegin VkBufferCreateFlagBits - Bitmask specifying additional parameters of a buffer
+    /// include::../api/enums/VkBufferCreateFlagBits.txt[]
+    /// These bits have the following meanings:
+    ///   * ename:VK_BUFFER_CREATE_SPARSE_BINDING_BIT indicates that the buffer will
+    ///     be backed using sparse memory binding.
+    ///   * ename:VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT indicates that the buffer
+    ///     can: be partially backed using sparse memory binding. Buffers
+    ///     created with this flag must: also be created with the
+    ///     ename:VK_BUFFER_CREATE_SPARSE_BINDING_BIT flag.
+    ///   * ename:VK_BUFFER_CREATE_SPARSE_ALIASED_BIT indicates that the buffer will
+    ///     be backed using sparse memory binding with memory ranges that might also
+    ///     simultaneously be backing another buffer (or another portion of the same
+    ///     buffer). Buffers created with this flag must: also be created
+    ///     with the ename:VK_BUFFER_CREATE_SPARSE_BINDING_BIT flag.
+    /// See <<sparsememory-sparseresourcefeatures,Sparse Resource Features>> and
+    /// <<features-features,Physical Device Features>> for details of the sparse
+    /// memory features supported on a device.
+    /// </summary>
 	public struct BufferCreateInfo
 	{
 
@@ -316,6 +386,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct BufferMemoryBarrier
 	{
 
@@ -382,6 +455,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct BufferViewCreateInfo
 	{
 
@@ -434,6 +510,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct CommandBufferAllocateInfo
 	{
 
@@ -472,6 +551,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct CommandBufferBeginInfo
 	{
 
@@ -503,6 +585,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct CommandBufferInheritanceInfo
 	{
 
@@ -562,6 +647,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct CommandPoolCreateInfo
 	{
 
@@ -593,6 +681,13 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// The parameters pname:basePipelineHandle and pname:basePipelineIndex are
+    /// described in more detail in
+    /// <<pipelines-pipeline-derivatives,Pipeline Derivatives>>.
+    /// pname:stage points to a structure of type
+    /// sname:VkPipelineShaderStageCreateInfo.
+    /// </summary>
 	public struct ComputePipelineCreateInfo
 	{
 
@@ -645,6 +740,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct CopyDescriptorSet
 	{
 
@@ -711,6 +809,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct DebugMarkerMarkerInfo
 	{
 
@@ -741,6 +842,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct DebugMarkerObjectNameInfo
 	{
 
@@ -779,6 +883,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct DebugMarkerObjectTagInfo
 	{
 
@@ -825,6 +932,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct DebugReportCallbackCreateInfo
 	{
 
@@ -856,6 +966,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct DedicatedAllocationBufferCreateInfo
 	{
 
@@ -880,6 +993,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct DedicatedAllocationImageCreateInfo
 	{
 
@@ -904,6 +1020,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct DedicatedAllocationMemoryAllocateInfo
 	{
 
@@ -935,6 +1054,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct DescriptorBufferInfo
 	{
 
@@ -972,6 +1094,10 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// Members of sname:VkDescriptorImageInfo that are not used in an update (as
+    /// described above) are ignored.
+    /// </summary>
 	public struct DescriptorImageInfo
 	{
 
@@ -1009,6 +1135,29 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// If multiple sname:VkDescriptorPoolSize structures appear in the
+    /// pname:pPoolSizes array then the pool will be created with enough storage
+    /// for the total number of descriptors of each type.
+    /// Fragmentation of a descriptor pool is possible and may: lead to descriptor
+    /// set allocation failures. A failure due to fragmentation is defined as
+    /// failing a descriptor set allocation despite the sum of all outstanding
+    /// descriptor set allocations from the pool plus the requested allocation
+    /// requiring no more than the total number of descriptors requested at pool
+    /// creation. Implementations provide certain guarantees of when fragmentation
+    /// mustnot: cause allocation failure, as described below.
+    /// If a descriptor pool has not had any descriptor sets freed since it was
+    /// created or most recently reset then fragmentation mustnot: cause an
+    /// allocation failure (note that this is always the case for a pool created
+    /// without the ename:VK_DESCRIPTOR_POOL_CREATE_FREE_DESCRIPTOR_SET_BIT bit
+    /// set). Additionally, if all sets allocated from the pool since it was created
+    /// or most recently reset use the same number of descriptors (of each type) and
+    /// the requested allocation also uses that same number of descriptors (of each
+    /// type), then fragmentation mustnot: cause an allocation failure.
+    /// If an allocation failure occurs due to fragmentation, an application can:
+    /// create an additional descriptor pool to perform further descriptor set
+    /// allocations.
+    /// </summary>
 	public struct DescriptorPoolCreateInfo
 	{
 
@@ -1061,6 +1210,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct DescriptorSetAllocateInfo
 	{
 
@@ -1108,6 +1260,21 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// The above layout definition allows the descriptor bindings to be specified
+    /// sparsely such that not all binding numbers between 0 and the maximum
+    /// binding number need to be specified in the pname:pBindings array. However,
+    /// all binding numbers between 0 and the maximum binding number may: consume
+    /// memory in the descriptor set layout even if not all descriptor bindings are
+    /// used, though it shouldnot:
+    /// consume additional memory from the descriptor pool.
+    /// [NOTE]
+    /// .Note
+    /// ====
+    /// The maximum binding number specified should: be as compact as possible to
+    /// avoid wasted memory.
+    /// ====
+    /// </summary>
 	public struct DescriptorSetLayoutBinding
 	{
 
@@ -1168,6 +1335,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct DescriptorSetLayoutCreateInfo
 	{
 
@@ -1215,6 +1385,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct DeviceCreateInfo
 	{
 
@@ -1285,6 +1458,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct DeviceQueueCreateInfo
 	{
 
@@ -1324,6 +1500,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct DisplayModeCreateInfo
 	{
 
@@ -1355,6 +1534,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct DisplayModeProperties
 	{
 
@@ -1385,6 +1567,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct DisplayPlaneProperties
 	{
 
@@ -1415,6 +1600,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct DisplayPresentInfo
 	{
 
@@ -1453,6 +1641,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct DisplayProperties
 	{
 
@@ -1518,6 +1709,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct DisplaySurfaceCreateInfo
 	{
 
@@ -1591,6 +1785,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct EventCreateInfo
 	{
 
@@ -1615,6 +1812,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct ExtensionProperties
 	{
 
@@ -1646,6 +1846,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct FenceCreateInfo
 	{
 
@@ -1670,6 +1873,30 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// Image subresources used as attachments mustnot: be used via any
+    /// non-attachment usage for the duration of a render pass instance.
+    /// [NOTE]
+    /// .Note
+    /// ====
+    /// This restriction means that the render pass has full knowledge of all uses
+    /// of all of the attachments, so that the implementation is able to make
+    /// correct decisions about when and how to perform layout transitions, when to
+    /// overlap execution of subpasses, etc.
+    /// ====
+    /// [[renderpass-noattachments]]
+    /// It is legal for a subpass to use no color or depth/stencil attachments, and
+    /// rather use shader side effects such as image stores and atomics to produce
+    /// an output. In this case, the subpass continues to use the pname:width,
+    /// pname:height, and pname:layers of the framebuffer to define the dimensions
+    /// of the rendering area, and the pname:rasterizationSamples from each
+    /// pipeline's slink:VkPipelineMultisampleStateCreateInfo to define the number
+    /// of samples used in rasterization; however, if
+    /// slink:VkPhysicalDeviceFeatures::pname:variableMultisampleRate is
+    /// code:VK_FALSE, then all pipelines to be bound with a given zero-attachment
+    /// subpass must: have the same value for
+    /// slink:VkPipelineMultisampleStateCreateInfo::pname:rasterizationSamples.
+    /// </summary>
 	public struct FramebufferCreateInfo
 	{
 
@@ -1745,6 +1972,32 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// The parameters pname:basePipelineHandle and pname:basePipelineIndex are
+    /// described in more detail in
+    /// <<pipelines-pipeline-derivatives,Pipeline Derivatives>>.
+    /// pname:pStages points to an array of slink:VkPipelineShaderStageCreateInfo
+    /// structures, which were previously described in
+    /// <<pipelines-compute,Compute Pipelines>>.
+    /// Bits which can: be set in pname:flags are:
+    /// // refBegin VkPipelineCreateFlagBits - Bitmask controlling how a pipeline is generated
+    /// include::../api/enums/VkPipelineCreateFlagBits.txt[]
+    ///   * ename:VK_PIPELINE_CREATE_DISABLE_OPTIMIZATION_BIT specifies that the
+    ///     created pipeline will not be optimized. Using this flag may: reduce
+    ///     the time taken to create the pipeline.
+    ///   * ename:VK_PIPELINE_CREATE_ALLOW_DERIVATIVES_BIT specifies that the
+    ///     pipeline to be created is allowed to be the parent of a pipeline that
+    ///     will be created in a subsequent call to flink:vkCreateGraphicsPipelines.
+    ///   * ename:VK_PIPELINE_CREATE_DERIVATIVE_BIT specifies that the pipeline to
+    ///     be created will be a child of a previously created parent pipeline.
+    /// It is valid to set both ename:VK_PIPELINE_CREATE_ALLOW_DERIVATIVES_BIT and
+    /// ename:VK_PIPELINE_CREATE_DERIVATIVE_BIT. This allows a pipeline to be both a
+    /// parent and possibly a child in a pipeline hierarchy. See
+    /// <<pipelines-pipeline-derivatives,Pipeline Derivatives>> for more
+    /// information.
+    /// pname:pDynamicState points to a structure of type
+    /// sname:VkPipelineDynamicStateCreateInfo.
+    /// </summary>
 	public struct GraphicsPipelineCreateInfo
 	{
 
@@ -1890,6 +2143,10 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// For each element of the pname:pRegions array, a blit operation is performed
+    /// the specified source and destination regions.
+    /// </summary>
 	public struct ImageBlit
 	{
 
@@ -1932,6 +2189,29 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// Valid limits for the image pname:extent, pname:mipLevels, pname:arrayLayers
+    /// and pname:samples members are queried with the
+    /// flink:vkGetPhysicalDeviceImageFormatProperties command.
+    /// Images created with pname:tiling equal to ename:VK_IMAGE_TILING_LINEAR have
+    /// further restrictions on their limits and capabilities compared to images
+    /// created with pname:tiling equal to ename:VK_IMAGE_TILING_OPTIMAL. Creation
+    /// of images with tiling ename:VK_IMAGE_TILING_LINEAR may: not be supported
+    /// unless other parameters meet all of the constraints:
+    ///   * pname:imageType is ename:VK_IMAGE_TYPE_2D
+    ///   * pname:format is not a depth/stencil format
+    ///   * pname:mipLevels is 1
+    ///   * pname:arrayLayers is 1
+    ///   * pname:samples is ename:VK_SAMPLE_COUNT_1_BIT
+    ///   * pname:usage only includes ename:VK_IMAGE_USAGE_TRANSFER_SRC_BIT
+    ///     and/or ename:VK_IMAGE_USAGE_TRANSFER_DST_BIT
+    /// Implementations may: support additional limits and capabilities beyond those
+    /// listed above. To determine the specific capabilities of an implementation,
+    /// query the valid pname:usage bits by calling
+    /// flink:vkGetPhysicalDeviceFormatProperties and the valid limits for
+    /// pname:mipLevels and pname:arrayLayers by calling
+    /// flink:vkGetPhysicalDeviceImageFormatProperties.
+    /// </summary>
 	public struct ImageCreateInfo
 	{
 
@@ -2034,6 +2314,29 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// If pname:oldLayout differs from pname:newLayout, a layout transition occurs
+    /// as part of the image memory barrier, affecting the data contained in the
+    /// region of the image defined by the pname:subresourceRange. If
+    /// pname:oldLayout is ename:VK_IMAGE_LAYOUT_UNDEFINED, then the data is
+    /// undefined after the layout transition. This may: allow a more efficient
+    /// transition, since the data may: be discarded. The layout transition must:
+    /// occur after all operations using the old layout are completed and before all
+    /// operations using the new layout are started. This is achieved by ensuring
+    /// that there is a memory dependency between previous accesses and the layout
+    /// transition, as well as between the layout transition and subsequent
+    /// accesses, where the layout transition occurs between the two halves of a
+    /// memory dependency in an image memory barrier.
+    /// Layout transitions that are performed via image memory barriers are
+    /// automatically ordered against other layout transitions, including those that
+    /// occur as part of a render pass instance.
+    /// [NOTE]
+    /// .Note
+    /// ====
+    /// See <<resources-image-layouts>> for details on available image layouts
+    /// and their usages.
+    /// ====
+    /// </summary>
 	public struct ImageMemoryBarrier
 	{
 
@@ -2107,6 +2410,113 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// If pname:image was created with the ename:VK_IMAGE_CREATE_MUTABLE_FORMAT_BIT
+    /// flag, pname:format can: be different from the image's format, but if they
+    /// are not equal they must: be _compatible_. Image format compatibility is
+    /// defined in the <<features-formats-compatibility-classes,Format Compatibility
+    /// Classes>> section.
+    /// [[resources-image-views-compatibility]]
+    /// .Image and image view parameter compatibility requirements
+    /// [cols="20%h,35%,45%",options="header"]
+    /// |========================================
+    /// | Dim, Arrayed, MS | Image parameters | View parameters
+    /// | 1D, 0, 0 |
+    /// imageType = ename:VK_IMAGE_TYPE_1D +
+    /// width >= 1 +
+    /// height = 1 +
+    /// depth = 1 +
+    /// arrayLayers >= 1 +
+    /// samples = 1 |
+    /// viewType = ename:VK_VIEW_TYPE_1D +
+    /// baseArrayLayer >= 0 +
+    /// layerCount = 1
+    /// | 1D, 1, 0 |
+    /// imageType = ename:VK_IMAGE_TYPE_1D +
+    /// width >= 1 +
+    /// height = 1 +
+    /// depth = 1 +
+    /// arrayLayers >= 1 +
+    /// samples = 1 |
+    /// viewType = ename:VK_VIEW_TYPE_1D_ARRAY +
+    /// baseArrayLayer >= 0 +
+    /// layerCount >= 1
+    /// | 2D, 0, 0 |
+    /// imageType = ename:VK_IMAGE_TYPE_2D +
+    /// width >= 1 +
+    /// height >= 1 +
+    /// depth = 1 +
+    /// arrayLayers >= 1 +
+    /// samples = 1 |
+    /// viewType = ename:VK_VIEW_TYPE_2D +
+    /// baseArrayLayer >= 0 +
+    /// layerCount = 1
+    /// | 2D, 1, 0 |
+    /// imageType = ename:VK_IMAGE_TYPE_2D +
+    /// width >= 1 +
+    /// height >= 1 +
+    /// depth = 1 +
+    /// arrayLayers >= 1 +
+    /// samples = 1 |
+    /// viewType = ename:VK_VIEW_TYPE_2D_ARRAY +
+    /// baseArrayLayer >= 0 +
+    /// layerCount >= 1
+    /// | 2D, 0, 1 |
+    /// imageType = ename:VK_IMAGE_TYPE_2D +
+    /// width >= 1 +
+    /// height >= 1 +
+    /// depth = 1 +
+    /// arrayLayers >= 1 +
+    /// samples > 1 |
+    /// viewType = ename:VK_VIEW_TYPE_2D +
+    /// baseArrayLayer >= 0 +
+    /// layerCount = 1
+    /// | 2D, 1, 1 |
+    /// imageType = ename:VK_IMAGE_TYPE_2D +
+    /// width >= 1 +
+    /// height >= 1 +
+    /// depth = 1 +
+    /// arrayLayers >= 1 +
+    /// samples > 1 |
+    /// viewType = ename:VK_VIEW_TYPE_2D_ARRAY +
+    /// baseArrayLayer >= 0 +
+    /// layerCount >= 1
+    /// | CUBE, 0, 0 |
+    /// imageType = ename:VK_IMAGE_TYPE_2D +
+    /// width >= 1 +
+    /// height = width +
+    /// depth = 1 +
+    /// arrayLayers >= 6 +
+    /// samples = 1 +
+    /// flags include ename:VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT |
+    /// viewType = ename:VK_VIEW_TYPE_CUBE +
+    /// baseArrayLayer >= 0 +
+    /// layerCount = 6
+    /// | CUBE, 1, 0 |
+    /// imageType = ename:VK_IMAGE_TYPE_2D +
+    /// width >= 1 +
+    /// height = width +
+    /// depth = 1 +
+    /// N >= 1 +
+    /// arrayLayers >= latexmath:[$6 \times N$] +
+    /// samples = 1 +
+    /// flags include ename:VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT |
+    /// viewType = ename:VK_VIEW_TYPE_CUBE_ARRAY +
+    /// baseArrayLayer >= 0 +
+    /// N >= 1 +
+    /// layerCount = latexmath:[$6 \times N$]
+    /// | 3D, 0, 0 |
+    /// imageType = ename:VK_IMAGE_TYPE_3D +
+    /// width >= 1 +
+    /// height >= 1 +
+    /// depth >= 1 +
+    /// arrayLayers = 1 +
+    /// samples = 1 |
+    /// viewType = ename:VK_VIEW_TYPE_3D +
+    /// baseArrayLayer = 0 +
+    /// layerCount = 1
+    /// |========================================
+    /// </summary>
 	public struct ImageViewCreateInfo
 	{
 
@@ -2166,6 +2576,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct InstanceCreateInfo
 	{
 
@@ -2213,6 +2626,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct LayerProperties
 	{
 
@@ -2258,6 +2674,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct MappedMemoryRange
 	{
 
@@ -2296,6 +2715,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct MemoryAllocateInfo
 	{
 
@@ -2327,6 +2749,128 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// pname:srcAccessMask and pname:dstAccessMask, along with pname:srcStageMask
+    /// and pname:dstStageMask from flink:vkCmdPipelineBarrier, define the two
+    /// halves of a memory dependency and an execution dependency. Memory accesses
+    /// using the set of access types in pname:srcAccessMask performed in pipeline
+    /// stages in pname:srcStageMask by the first set of commands must: complete and
+    /// be available to later commands. The side effects of the first set of
+    /// commands will be visible to memory accesses using the set of access types in
+    /// pname:dstAccessMask performed in pipeline stages in pname:dstStageMask by
+    /// the second set of commands. If the barrier is by-region, these requirements
+    /// only apply to invocations within the same framebuffer-space region, for
+    /// pipeline stages that perform framebuffer-space work. The execution
+    /// dependency guarantees that execution of work by the destination stages of
+    /// the second set of commands will not begin until execution of work by the
+    /// source stages of the first set of commands has completed.
+    /// A common type of memory dependency is to avoid a read-after-write hazard. In
+    /// this case, the source access mask and stages will include writes from a
+    /// particular stage, and the destination access mask and stages will indicate
+    /// how those writes will be read in subsequent commands. However, barriers can:
+    /// also express write-after-read dependencies and write-after-write
+    /// dependencies, and are even useful to express read-after-read dependencies
+    /// across an image layout change.
+    /// // refBegin VkAccessFlagBits - Bitmask specifying classes of memory access the will participate in a memory barrier dependency
+    /// Bits which can: be set in slink:VkMemoryBarrier::pname:srcAccessMask and
+    /// slink:VkMemoryBarrier::pname:dstAccessMask include:
+    /// [[synchronization-access-flags]]
+    /// include::../api/enums/VkAccessFlagBits.txt[]
+    ///   * ename:VK_ACCESS_INDIRECT_COMMAND_READ_BIT indicates that the access is
+    ///     an indirect command structure read as part of an indirect drawing
+    ///     command.
+    ///   * ename:VK_ACCESS_INDEX_READ_BIT indicates that the access is an index
+    ///     buffer read.
+    ///   * ename:VK_ACCESS_VERTEX_ATTRIBUTE_READ_BIT indicates that the access is a
+    ///     read via the vertex input bindings.
+    ///   * ename:VK_ACCESS_UNIFORM_READ_BIT indicates that the access is a read via
+    ///     a uniform buffer or dynamic uniform buffer descriptor.
+    ///   * ename:VK_ACCESS_INPUT_ATTACHMENT_READ_BIT indicates that the access is a
+    ///     read via an input attachment descriptor.
+    ///   * ename:VK_ACCESS_SHADER_READ_BIT indicates that the access is a read from
+    ///     a shader via any other descriptor type.
+    ///   * ename:VK_ACCESS_SHADER_WRITE_BIT indicates that the access is a write
+    ///     or atomic from a shader via the same descriptor types as in
+    ///     ename:VK_ACCESS_SHADER_READ_BIT.
+    ///   * ename:VK_ACCESS_COLOR_ATTACHMENT_READ_BIT indicates that the access is a
+    ///     read via a color attachment.
+    ///   * ename:VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT indicates that the access is
+    ///     a write via a color or resolve attachment.
+    ///   * ename:VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_READ_BIT indicates that the
+    ///     access is a read via a depth/stencil attachment.
+    ///   * ename:VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT indicates that the
+    ///     access is a write via a depth/stencil attachment.
+    ///   * ename:VK_ACCESS_TRANSFER_READ_BIT indicates that the access is a read
+    ///     from a transfer (copy, blit, resolve, etc.) operation. For the complete
+    ///     set of transfer operations, see
+    ///     <<synchronization-transfer,ename:VK_PIPELINE_STAGE_TRANSFER_BIT>>.
+    ///   * ename:VK_ACCESS_TRANSFER_WRITE_BIT indicates that the access is a write
+    ///     from a transfer (copy, blit, resolve, etc.) operation. For the complete
+    ///     set of transfer operations, see
+    ///     <<synchronization-transfer,ename:VK_PIPELINE_STAGE_TRANSFER_BIT>>.
+    ///   * ename:VK_ACCESS_HOST_READ_BIT indicates that the access is a read via
+    ///     the host.
+    ///   * ename:VK_ACCESS_HOST_WRITE_BIT indicates that the access is a write via
+    ///     the host.
+    ///   * ename:VK_ACCESS_MEMORY_READ_BIT indicates that the access is a read via
+    ///     a non-specific unit attached to the memory. This unit may: be external
+    ///     to the Vulkan device or otherwise not part of the core Vulkan pipeline.
+    ///     When included in pname:dstAccessMask, all writes using access types in
+    ///     pname:srcAccessMask performed by pipeline stages in pname:srcStageMask
+    ///     must: be visible in memory.
+    ///   * ename:VK_ACCESS_MEMORY_WRITE_BIT indicates that the access is a write
+    ///     via a non-specific unit attached to the memory. This unit may: be
+    ///     external to the Vulkan device or otherwise not part of the core Vulkan
+    ///     pipeline. When included in pname:srcAccessMask, all access types in
+    ///     pname:dstAccessMask from pipeline stages in pname:dstStageMask will
+    ///     observe the side effects of commands that executed before the barrier.
+    ///     When included in pname:dstAccessMask all writes using access types in
+    ///     pname:srcAccessMask performed by pipeline stages in pname:srcStageMask
+    ///     must: be visible in memory.
+    /// Color attachment reads and writes are automatically (without memory or
+    /// execution dependencies) coherent and ordered against themselves and each
+    /// other for a given sample within a subpass of a render pass instance,
+    /// executing in <<fundamentals-queueoperation-apiorder,API order>>. Similarly,
+    /// depth/stencil attachment reads and writes are automatically coherent and
+    /// ordered against themselves and each other in the same circumstances.
+    /// Shader reads and/or writes through two variables (in the same or different
+    /// shader invocations) decorated with code:Coherent and which use the same
+    /// image view or buffer view are automatically coherent with each other, but
+    /// require execution dependencies if a specific order is desired. Similarly,
+    /// shader atomic operations are coherent with each other and with code:Coherent
+    /// variables. Non-code:Coherent shader memory accesses require memory
+    /// dependencies for writes to be available and reads to be visible.
+    /// Certain memory access types are only supported on queues that support a
+    /// particular set of operations. The following table lists, for each access
+    /// flag, which queue capability flag must: be supported by the queue. When
+    /// multiple flags are enumerated in the second column of the table it means
+    /// that the access type is supported on the queue if it supports any of the
+    /// listed capability flags. For further details on queue capabilities see
+    /// <<devsandqueues-physical-device-enumeration,Physical Device Enumeration>>
+    /// and <<devsandqueues-queues,Queues>>.
+    /// .Supported access flags
+    /// [width="100%",cols="67%,33%",options="header",align="center"]
+    /// |========================================
+    /// |Access flag                                                  | Required queue capability flag
+    /// |ename:VK_ACCESS_INDIRECT_COMMAND_READ_BIT                    | ename:VK_QUEUE_GRAPHICS_BIT or ename:VK_QUEUE_COMPUTE_BIT
+    /// |ename:VK_ACCESS_INDEX_READ_BIT                               | ename:VK_QUEUE_GRAPHICS_BIT
+    /// |ename:VK_ACCESS_VERTEX_ATTRIBUTE_READ_BIT                    | ename:VK_QUEUE_GRAPHICS_BIT
+    /// |ename:VK_ACCESS_UNIFORM_READ_BIT                             | ename:VK_QUEUE_GRAPHICS_BIT or ename:VK_QUEUE_COMPUTE_BIT
+    /// |ename:VK_ACCESS_INPUT_ATTACHMENT_READ_BIT                    | ename:VK_QUEUE_GRAPHICS_BIT
+    /// |ename:VK_ACCESS_SHADER_READ_BIT                              | ename:VK_QUEUE_GRAPHICS_BIT or ename:VK_QUEUE_COMPUTE_BIT
+    /// |ename:VK_ACCESS_SHADER_WRITE_BIT                             | ename:VK_QUEUE_GRAPHICS_BIT or ename:VK_QUEUE_COMPUTE_BIT
+    /// |ename:VK_ACCESS_COLOR_ATTACHMENT_READ_BIT                    | ename:VK_QUEUE_GRAPHICS_BIT
+    /// |ename:VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT                   | ename:VK_QUEUE_GRAPHICS_BIT
+    /// |ename:VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_READ_BIT            | ename:VK_QUEUE_GRAPHICS_BIT
+    /// |ename:VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT           | ename:VK_QUEUE_GRAPHICS_BIT
+    /// |ename:VK_ACCESS_TRANSFER_READ_BIT                            | ename:VK_QUEUE_GRAPHICS_BIT, ename:VK_QUEUE_COMPUTE_BIT or ename:VK_QUEUE_TRANSFER_BIT
+    /// |ename:VK_ACCESS_TRANSFER_WRITE_BIT                           | ename:VK_QUEUE_GRAPHICS_BIT, ename:VK_QUEUE_COMPUTE_BIT or ename:VK_QUEUE_TRANSFER_BIT
+    /// |ename:VK_ACCESS_HOST_READ_BIT                                | None
+    /// |ename:VK_ACCESS_HOST_WRITE_BIT                               | None
+    /// |ename:VK_ACCESS_MEMORY_READ_BIT                              | None
+    /// |ename:VK_ACCESS_MEMORY_WRITE_BIT                             | None
+    /// |========================================
+    /// </summary>
 	public struct MemoryBarrier
 	{
 
@@ -2358,6 +2902,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct MirSurfaceCreateInfo
 	{
 
@@ -2396,6 +2943,23 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// // End of list
+    /// 1::
+    ///     For all bitmasks of type elink:VkSampleCountFlags above, possible
+    ///     values include:
+    /// +
+    /// --
+    /// // refBegin VkSampleCountFlagBits - Bitmask specifying sample counts supported for an image used for storage operations
+    /// include::../api/enums/VkSampleCountFlagBits.txt[]
+    /// --
+    /// +
+    /// The sample count limits defined above represent the minimum
+    /// supported sample counts for each image type. Individual images may: support
+    /// additional sample counts, which are queried using
+    /// flink:vkGetPhysicalDeviceImageFormatProperties as described
+    /// in <<features-supported-sample-counts, Supported Sample Counts>>.
+    /// </summary>
 	public struct PhysicalDeviceLimits
 	{
 
@@ -3155,6 +3719,92 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// The sname:VkPhysicalDeviceMemoryProperties structure describes a number of
+    /// _memory heaps_ as well as a number of _memory types_ that can: be used to
+    /// access memory allocated in those heaps. Each heap describes a memory
+    /// resource of a particular size, and each memory type describes a set of
+    /// memory properties (e.g. host cached vs uncached) that can: be used with a
+    /// given memory heap. Allocations using a particular memory type will consume
+    /// resources from the heap indicated by that memory type's heap index. More
+    /// than one memory type may: share each heap, and the heaps and memory types
+    /// provide a mechanism to advertise an accurate size of the physical memory
+    /// resources while allowing the memory to be used with a variety of different
+    /// properties.
+    /// The number of memory heaps is given by pname:memoryHeapCount and is less
+    /// than or equal to ename:VK_MAX_MEMORY_HEAPS. Each heap is described by an
+    /// element of the pname:memoryHeaps array, as a sname:VkMemoryHeap structure.
+    /// The number of memory types available across all memory heaps is given by
+    /// pname:memoryTypeCount and is less than or equal to
+    /// ename:VK_MAX_MEMORY_TYPES. Each memory type is described by an element of
+    /// the pname:memoryTypes array, as a sname:VkMemoryType structure.
+    /// At least one heap must: include ename:VK_MEMORY_HEAP_DEVICE_LOCAL_BIT in
+    /// slink:VkMemoryHeap::pname:flags. If there are multiple heaps that all have similar performance
+    /// characteristics, they may: all include ename:VK_MEMORY_HEAP_DEVICE_LOCAL_BIT.
+    /// In a unified memory architecture (UMA) system, there is often only a single
+    /// memory heap which is considered to be equally ``local'' to the host and to the
+    /// device, and such an implementation must: advertise the heap as device-local.
+    /// Each memory type returned by flink:vkGetPhysicalDeviceMemoryProperties must:
+    /// have its pname:propertyFlags set to one of the following values:
+    ///   * 0
+    ///   * ename:VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | ename:VK_MEMORY_PROPERTY_HOST_COHERENT_BIT
+    ///   * ename:VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | ename:VK_MEMORY_PROPERTY_HOST_CACHED_BIT
+    ///   * ename:VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | ename:VK_MEMORY_PROPERTY_HOST_CACHED_BIT | ename:VK_MEMORY_PROPERTY_HOST_COHERENT_BIT
+    ///   * ename:VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT
+    ///   * ename:VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT | ename:VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | ename:VK_MEMORY_PROPERTY_HOST_COHERENT_BIT
+    ///   * ename:VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT | ename:VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | ename:VK_MEMORY_PROPERTY_HOST_CACHED_BIT
+    ///   * ename:VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT | ename:VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT | ename:VK_MEMORY_PROPERTY_HOST_CACHED_BIT | ename:VK_MEMORY_PROPERTY_HOST_COHERENT_BIT
+    ///   * ename:VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT | ename:VK_MEMORY_PROPERTY_LAZILY_ALLOCATED_BIT
+    /// There must: be at least one memory type with both the
+    /// ename:VK_MEMORY_PROPERTY_HOST_VISIBLE_BIT and
+    /// ename:VK_MEMORY_PROPERTY_HOST_COHERENT_BIT bits set in its pname:propertyFlags.
+    /// There must: be at least one memory type with the
+    /// ename:VK_MEMORY_PROPERTY_DEVICE_LOCAL_BIT bit set in its pname:propertyFlags.
+    /// The memory types are sorted according to a preorder which serves to aid
+    /// in easily selecting an appropriate memory type. Given two memory types X and
+    /// Y, the preorder defines latexmath:[$X \leq Y$] if:
+    ///   * the memory property bits set for X are a strict subset of the memory
+    ///     property bits set for Y. Or,
+    ///   * the memory property bits set for X are the same as the memory property
+    ///     bits set for Y, and X uses a memory heap with greater or equal
+    ///     performance (as determined in an implementation-specific manner).
+    /// Memory types are ordered in the list such that X is assigned a lesser
+    /// pname:memoryTypeIndex than Y if latexmath:[$X \leq Y \land \neg(Y \leq X)$] according to the
+    /// preorder. Note that the list of all allowed memory property flag
+    /// combinations above satisfies this preorder, but other orders would as
+    /// well. The goal of this ordering is to enable applications to use a simple
+    /// search loop in selecting the proper memory type, along the lines of:
+    /// [source,{basebackend@docbook:c++:cpp}]
+    /// ---------------------------------------------------
+    /// // Find a memory type in "memoryTypeBits" that includes all of "properties"
+    /// int32_t FindProperties(uint32_t memoryTypeBits, VkMemoryPropertyFlags properties)
+    /// {
+    ///     for (int32_t i = 0; i < memoryTypeCount; ++i)
+    ///     {
+    ///         if ((memoryTypeBits & (1 << i)) &&
+    ///             ((memoryTypes[i].propertyFlags & properties) == properties))
+    ///             return i;
+    ///     }
+    ///     return -1;
+    /// }
+    /// // Try to find an optimal memory type, or if it does not exist
+    /// // find any compatible memory type
+    /// VkMemoryRequirements memoryRequirements;
+    /// vkGetImageMemoryRequirements(device, image, &memoryRequirements);
+    /// int32_t memoryType = FindProperties(memoryRequirements.memoryTypeBits, optimalProperties);
+    /// if (memoryType == -1)
+    ///     memoryType = FindProperties(memoryRequirements.memoryTypeBits, requiredProperties);
+    /// ---------------------------------------------------
+    /// The loop will find the first supported memory type that has all bits requested in
+    /// code:properties set. If there is no exact match, it will find a closest
+    /// match (i.e. a memory type with the fewest additional bits set), which has
+    /// some additional bits set but which are not detrimental to the behaviors
+    /// requested by code:properties. The application can: first search for the optimal
+    /// properties, e.g. a memory type that is device-local or supports coherent cached
+    /// accesses, as appropriate for the intended usage, and if such a memory type is
+    /// not present can: fallback to searching for a less optimal but guaranteed set of
+    /// properties such as "0" or "host-visible and coherent".
+    /// </summary>
 	public struct PhysicalDeviceMemoryProperties
 	{
 
@@ -3198,6 +3848,43 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// The pname:vendorID and pname:deviceID fields are provided to allow
+    /// applications to adapt to device characteristics that are not
+    /// adequately exposed by other Vulkan queries. These may: include
+    /// performance profiles, hardware errata, or other characteristics.
+    /// In PCI-based implementations, the low sixteen bits of pname:vendorID
+    /// and pname:deviceID must: contain (respectively) the PCI vendor and
+    /// device IDs associated with the hardware device, and the remaining bits
+    /// must: be set to zero. In non-PCI implementations, the choice of what values
+    /// to return may: be dictated by operating system or platform policies. It is
+    /// otherwise at the discretion of the implementer, subject to the following
+    /// constraints and guidelines:
+    ///   * For purposes of physical device identification, the _vendor_ of a
+    ///     physical device is the entity responsible for the most salient
+    ///     characteristics of the hardware represented by the physical device
+    ///     handle. In the case of a discrete GPU, this should: be the GPU
+    ///     chipset vendor. In the case of a GPU or other accelerator integrated
+    ///     into a system-on-chip (SoC), this should: be the supplier of the
+    ///     silicon IP used to create the GPU or other accelerator.
+    ///   * If the vendor of the physical device has a valid PCI vendor ID issued by
+    ///     https://pcisig.com/[PCI-SIG], that ID should: be used to construct
+    ///     pname:vendorID as described above for PCI-based
+    ///     implementations. Implementations that do not return a PCI vendor ID in
+    ///     pname:vendorID must: return a valid Khronos vendor ID, obtained as
+    ///     described in the <<vulkan-styleguide,Vulkan Documentation and Extensions>>
+    ///     document in the section ``Registering a Vendor ID
+    ///     with Khronos''. Khronos vendor IDs are allocated starting at 0x10000,
+    ///     to distinguish them from the PCI vendor ID namespace.
+    ///   * The vendor of the physical device is responsible for selecting
+    ///     pname:deviceID. The value selected should: uniquely
+    ///     identify both the device version and any major configuration options
+    ///     (for example, core count in the case of multicore devices). The same
+    ///     device ID should: be used for all physical implementations of that
+    ///     device version and configuration. For example, all uses of a
+    ///     specific silicon IP GPU version and configuration should use the
+    ///     same device ID, even if those uses occur in different SoCs.
+    /// </summary>
 	public struct PhysicalDeviceProperties
 	{
 
@@ -3278,6 +3965,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct PipelineCacheCreateInfo
 	{
 
@@ -3310,6 +4000,14 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// Each element of the pname:pAttachments array is a
+    /// slink:VkPipelineColorBlendAttachmentState structure specifying per-target
+    /// blending state for each individual color attachment. If the
+    /// <<features-features-independentBlend,independent blending>> feature is not
+    /// enabled on the device, all slink:VkPipelineColorBlendAttachmentState
+    /// elements in the pname:pAttachments array must: be identical.
+    /// </summary>
 	public struct PipelineColorBlendStateCreateInfo
 	{
 
@@ -3375,6 +4073,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct PipelineDepthStencilStateCreateInfo
 	{
 
@@ -3462,6 +4163,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct PipelineDynamicStateCreateInfo
 	{
 
@@ -3507,6 +4211,14 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// Restarting the assembly of primitives discards the most recent index values
+    /// if those elements formed an incomplete primitive, and restarts the primitive
+    /// assembly using the subsequent indices, but only assembling the immediately
+    /// following element through the end of the originally specified elements. The
+    /// primitive restart index value comparison is performed before adding the
+    /// pname:vertexOffset value to the index value.
+    /// </summary>
 	public struct PipelineInputAssemblyStateCreateInfo
 	{
 
@@ -3545,6 +4257,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct PipelineLayoutCreateInfo
 	{
 
@@ -3613,6 +4328,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct PipelineMultisampleStateCreateInfo
 	{
 
@@ -3693,6 +4411,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct PipelineRasterizationStateCreateInfo
 	{
 
@@ -3787,6 +4508,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct PipelineRasterizationStateRasterizationOrder
 	{
 
@@ -3811,6 +4535,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct PipelineShaderStageCreateInfo
 	{
 
@@ -3863,6 +4590,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct PipelineTessellationStateCreateInfo
 	{
 
@@ -3894,6 +4624,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct PipelineVertexInputStateCreateInfo
 	{
 
@@ -3960,6 +4693,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct PipelineViewportStateCreateInfo
 	{
 
@@ -4026,6 +4762,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct PresentInfo
 	{
 
@@ -4116,6 +4855,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct QueryPoolCreateInfo
 	{
 
@@ -4161,6 +4903,24 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// pname:renderArea is the render area that is affected by the render pass
+    /// instance. The effects of attachment load, store and resolve operations are
+    /// restricted to the pixels whose x and y coordinates fall within the render
+    /// area on all attachments. The render area extends to all layers of
+    /// pname:framebuffer. The application must: ensure (using scissor if necessary)
+    /// that all rendering is contained within the render area, otherwise the pixels
+    /// outside of the render area become undefined and shader side effects may:
+    /// occur for fragments outside the render area. The render area must: be
+    /// contained within the framebuffer dimensions.
+    /// [NOTE]
+    /// .Note
+    /// ====
+    /// There may: be a performance cost for using a render area smaller than the
+    /// framebuffer, unless it matches the render area granularity for the render
+    /// pass.
+    /// ====
+    /// </summary>
 	public struct RenderPassBeginInfo
 	{
 
@@ -4221,6 +4981,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct RenderPassCreateInfo
 	{
 
@@ -4310,6 +5073,60 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// [NOTE]
+    /// .Mapping of OpenGL to Vulkan filter modes
+    /// ==================
+    /// pname:magFilter values of ename:VK_FILTER_NEAREST and ename:VK_FILTER_LINEAR
+    /// directly correspond to code:GL_NEAREST and code:GL_LINEAR magnification
+    /// filters. pname:minFilter and pname:mipmapMode combine to correspond to the
+    /// similarly named OpenGL minification filter of
+    /// code:GL_minFilter_MIPMAP_mipmapMode (e.g. pname:minFilter of
+    /// ename:VK_FILTER_LINEAR and pname:mipmapMode of
+    /// ename:VK_SAMPLER_MIPMAP_MODE_NEAREST correspond to
+    /// code:GL_LINEAR_MIPMAP_NEAREST).
+    /// There are no Vulkan filter modes that directly correspond to OpenGL
+    /// minification filters of code:GL_LINEAR or code:GL_NEAREST, but they can: be
+    /// emulated using ename:VK_SAMPLER_MIPMAP_MODE_NEAREST, pname:minLod = 0, and
+    /// pname:maxLod = 0.25, and using pname:minFilter = ename:VK_FILTER_LINEAR or
+    /// pname:minFilter = ename:VK_FILTER_NEAREST, respectively.
+    /// Note that using a pname:maxLod of zero would cause
+    /// <<textures-texel-filtering,magnification>> to always be performed, and the
+    /// pname:magFilter to always be used. This is valid, just not an exact match
+    /// for OpenGL behavior. Clamping the maximum lod to 0.25 allows the
+    /// latexmath:[$\lambda$] value to be non-zero and minification to be performed,
+    /// while still always rounding down to the base level. If the pname:minFilter
+    /// and pname:magFilter are equal, then using a pname:maxLod of zero also works.
+    /// ==================
+    /// pname:addressModeU, pname:addressModeV, and pname:addressModeW must: each
+    /// have one of the following values:
+    /// // refBegin VkSamplerAddressMode - specify behavior of sampling with texture coordinates outside an image
+    /// include::../api/enums/VkSamplerAddressMode.txt[]
+    /// These values control the behavior of sampling with coordinates outside the
+    /// range latexmath:[$[0,1\]$] for the respective u, v, or w coordinate as defined in the
+    /// <<textures-wrapping-operation, Wrapping Operation>> section.
+    ///   * ename:VK_SAMPLER_ADDRESS_MODE_REPEAT indicates that the repeat wrap mode
+    ///     will be used.
+    ///   * ename:VK_SAMPLER_ADDRESS_MODE_MIRRORED_REPEAT indicates that the
+    ///     mirrored repeat wrap mode will be used.
+    ///   * ename:VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_EDGE indicates that the clamp to
+    ///     edge wrap mode will be used.
+    ///   * ename:VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_BORDER indicates that the clamp
+    ///     to border wrap mode will be used.
+    ///   * ename:VK_SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE indicates that
+    ///     the mirror clamp to edge wrap mode will be used. This is only valid
+    ///     if the VK_KHR_mirror_clamp_to_edge extension is enabled.
+    /// The maximum number of sampler objects which can: be simultaneously created
+    /// on a device is implementation-dependent and specified by the
+    /// <<features-limits-maxSamplerAllocationCount,pname:maxSamplerAllocationCount>>
+    /// member of the sname:VkPhysicalDeviceLimits structure. If
+    /// pname:maxSamplerAllocationCount is exceeded, fname:vkCreateSampler will
+    /// return ename:VK_ERROR_TOO_MANY_OBJECTS.
+    /// Since sname:VkSampler is a non-dispatchable handle type, implementations
+    /// may: return the same handle for sampler state vectors that are identical. In
+    /// such cases, all such objects would only count once against the
+    /// pname:maxSamplerAllocationCount limit.
+    /// </summary>
 	public struct SamplerCreateInfo
 	{
 
@@ -4439,6 +5256,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct SemaphoreCreateInfo
 	{
 
@@ -4463,6 +5283,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct ShaderModuleCreateInfo
 	{
 
@@ -4501,6 +5324,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct SparseBufferMemoryBindInfo
 	{
 
@@ -4547,6 +5373,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct SparseImageMemoryBind
 	{
 
@@ -4605,6 +5434,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct SparseImageMemoryBindInfo
 	{
 
@@ -4651,6 +5483,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct SparseImageOpaqueMemoryBindInfo
 	{
 
@@ -4697,6 +5532,34 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// The _binding range_ latexmath:[$[\mathit{resourceOffset},
+    /// \mathit{resourceOffset} + \mathit{size})$] has different constraints based
+    /// on pname:flags. If pname:flags contains
+    /// ename:VK_SPARSE_MEMORY_BIND_METADATA_BIT, the binding range must: be within
+    /// the mip tail region of the metadata aspect. This metadata region is defined
+    /// by:
+    /// [latexmath]
+    /// ++++++++++++++++++++++++++
+    /// \begin{align*}
+    /// \mathit{metadataRegion} = [&
+    ///         \mathit{imageMipTailOffset} + \mathit{imageMipTailStride} \times n,\\
+    ///         &\mathit{imageMipTailOffset} +
+    ///                 \mathit{imageMipTailStride} \times n + \mathit{imageMipTailSize})
+    /// \end{align*}
+    /// ++++++++++++++++++++++++++
+    /// Where pname:imageMipTailOffset, pname:imageMipTailSize, and
+    /// pname:imageMipTailStride values are from the
+    /// slink:VkSparseImageMemoryRequirements that correspond to the metadata aspect
+    /// of the image. The term latexmath:[$n$] is a valid array layer index for the
+    /// image.
+    /// pname:imageMipTailStride is considered to be zero for aspects where
+    /// sname:VkSparseImageMemoryRequirements::pname:formatProperties.flags contains
+    /// ename:VK_SPARSE_IMAGE_FORMAT_SINGLE_MIPTAIL_BIT.
+    /// If pname:flags does not contain ename:VK_SPARSE_MEMORY_BIND_METADATA_BIT,
+    /// the binding range must: be within the range
+    /// latexmath:[$[0, {\mathit{VkMemoryRequirements}::\mathit{size}})$].
+    /// </summary>
 	public struct SparseMemoryBind
 	{
 
@@ -4748,6 +5611,10 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// pname:pMapEntries points to a structure of type
+    /// slink:VkSpecializationMapEntry.
+    /// </summary>
 	public struct SpecializationInfo
 	{
 
@@ -4793,6 +5660,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct SubmitInfo
 	{
 
@@ -4899,6 +5769,20 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// The contents of an attachment within the render area become undefined at
+    /// the start of a subpass S if all of the following conditions are true:
+    ///   * The attachment is used as a color, depth/stencil, or resolve attachment
+    ///     in any subpass in the render pass.
+    ///   * There is a subpass S1 that uses or preserves the attachment, and a
+    ///     subpass dependency from S1 to S.
+    ///   * The attachment is not used or preserved in subpass S.
+    /// Once the contents of an attachment become undefined in subpass S, they
+    /// remain undefined for subpasses in subpass dependency chains starting with
+    /// subpass S until they are written again. However, they remain valid for
+    /// subpasses in other subpass dependency chains starting with subpass S1 if
+    /// those subpasses use or preserve the attachment.
+    /// </summary>
 	public struct SubpassDescription
 	{
 
@@ -5006,6 +5890,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct SwapchainCreateInfo
 	{
 
@@ -5129,6 +6016,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct WaylandSurfaceCreateInfo
 	{
 
@@ -5167,6 +6057,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct Win32SurfaceCreateInfo
 	{
 
@@ -5205,6 +6098,22 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// Only one of pname:pImageInfo, pname:pBufferInfo, or pname:pTexelBufferView
+    /// members is used according to the descriptor type specified in the
+    /// pname:descriptorType member of the containing sname:VkWriteDescriptorSet
+    /// structure, as specified below.
+    /// [[descriptorsets-updates-consecutive, consecutive binding updates]]
+    /// If the pname:dstBinding has fewer than pname:descriptorCount array elements
+    /// remaining starting from pname:dstArrayElement, then the remainder will be
+    /// used to update the subsequent binding - pname:dstBinding+1 starting at array
+    /// element zero. This behavior applies recursively, with the update affecting
+    /// consecutive bindings as needed to update all pname:descriptorCount
+    /// descriptors. All consecutive bindings updated via a single
+    /// sname:VkWriteDescriptorSet structure must: have identical
+    /// pname:descriptorType and pname:stageFlags, and must: all either use
+    /// immutable samplers or must: all not use immutable samplers.
+    /// </summary>
 	public struct WriteDescriptorSet
 	{
 
@@ -5317,6 +6226,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct XcbSurfaceCreateInfo
 	{
 
@@ -5355,6 +6267,9 @@ namespace SharpVk
 		}
 	}
 
+    /// <summary>
+    /// 
+    /// </summary>
 	public struct XlibSurfaceCreateInfo
 	{
 

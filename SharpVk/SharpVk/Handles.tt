@@ -107,6 +107,16 @@ foreach(var handle in types.Handles)
     {
 #>
 
+		/// <summary>
+<#
+		foreach(var line in (method.Comment ?? "").Split('\n'))
+		{
+#>
+		/// <#=line#>
+<#
+        }
+#>
+		/// </summary>
 		public <#if(method.IsStatic)#>static <#;#><#=method.ReturnTypeName#> <#=method.Name#>(<#
 		bool previousParamSet = false;
 

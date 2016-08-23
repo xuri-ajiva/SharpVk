@@ -166,6 +166,7 @@ namespace SharpVk.VkXml
                 var newMethod = new TypeSet.VkHandleMethod
                 {
                     Name = JoinNameParts(methodNameParts),
+                    Comment = command.Comment,
                     ReturnTypeName = "void",
                     CommandName = commandName
                 };
@@ -709,6 +710,7 @@ namespace SharpVk.VkXml
                 var newClass = new TypeSet.VkClass
                 {
                     Name = type.Name,
+                    Comment = type.Data.Comment,
                     IsOutput = type.Data.IsReturnedOnly
                 };
 
@@ -1137,7 +1139,8 @@ namespace SharpVk.VkXml
             {
                 var newStruct = new TypeSet.VkStruct
                 {
-                    Name = type.Name
+                    Name = type.Name,
+                    Comment = type.Data.Comment
                 };
 
                 foreach (var member in type.Data.Members)

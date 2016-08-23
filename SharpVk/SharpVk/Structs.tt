@@ -116,6 +116,16 @@ namespace SharpVk
 	{
 #>
 
+    /// <summary>
+<#
+	foreach(var line in (structType.Comment ?? "").Split('\n'))
+    {
+#>
+    /// <#=line#>
+<#
+	}
+#>
+    /// </summary>
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct <#=structType.Name#>
 	{

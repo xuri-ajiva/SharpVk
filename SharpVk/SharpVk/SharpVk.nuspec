@@ -14,5 +14,8 @@
     <!--<releaseNotes>Summary of changes made in this release of the package.</releaseNotes>-->
     <copyright>Copyright 2016 Andrew Armstrong/FacticiusVir</copyright>
     <tags>SharpVK Vulkan 3D</tags>
+    <files>
+      <file src="bin\**\*.xml" />
+    </files>
   </metadata>
 </package>

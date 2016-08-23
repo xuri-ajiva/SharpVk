@@ -67,6 +67,12 @@ namespace SharpVk.VkXml
                 set;
             }
 
+            public string Comment
+            {
+                get;
+                set;
+            }
+
             public bool IsOutput
             {
                 get;
@@ -178,6 +184,12 @@ namespace SharpVk.VkXml
                 set;
             }
 
+            public string Comment
+            {
+                get;
+                set;
+            }
+
             public List<VkStructMember> Members
             {
                 get;
@@ -266,6 +278,12 @@ namespace SharpVk.VkXml
         public class VkHandleMethod
         {
             public string Name
+            {
+                get;
+                set;
+            }
+
+            public string Comment
             {
                 get;
                 set;
@@ -374,6 +392,12 @@ namespace SharpVk.VkXml
         public class VkCommand
         {
             public string Name
+            {
+                get;
+                set;
+            }
+
+            public string Comment
             {
                 get;
                 set;

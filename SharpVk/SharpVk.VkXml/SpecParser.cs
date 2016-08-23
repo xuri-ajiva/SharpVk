@@ -1,6 +1,7 @@
 ﻿using Sprache;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
@@ -379,18 +380,20 @@ namespace SharpVk.VkXml
                     });
                 }
             }
-            
+
             var vkFeature = vkXml.Element("registry").Elements("feature").Single(x => x.Attribute("api").Value == "vulkan");
 
             var vkExtensions = vkXml.Element("registry").Element("extensions").Elements("extension").Where(x => x.Attribute("supported").Value == "vulkan");
 
             var filteredSpec = FilterRequiredElement(typeXml, enumXml, commandXml, vkFeature, vkExtensions);
 
+            string manPath = "https://raw.githubusercontent.com/KhronosGroup/Vulkan-Docs/1.0/doc/specs/vulkan/man/";
+
             foreach (var handleType in filteredSpec.Types.Values.Where(x => x.Category == TypeCategory.handle && x.Extension == null))
             {
-                var docFile = new DownloadedFileCache(this.tempFilePath, $"https://raw.githubusercontent.com/KhronosGroup/Vulkan-Docs/1.0/doc/specs/vulkan/man/{handleType.VkName}.txt");
+                var docFile = new DownloadedFileCache(this.tempFilePath, $"{manPath}{handleType.VkName}.txt");
 
-                var docLines = System.IO.File.ReadAllLines(docFile.GetFileLocation());
+                var docLines = File.ReadAllLines(docFile.GetFileLocation());
 
                 int lineIndex;
 
@@ -403,6 +406,44 @@ namespace SharpVk.VkXml
                 descriptionLines = descriptionLines.Take(descriptionLines.Count() - 6).Where(x => !string.IsNullOrWhiteSpace(x));
 
                 handleType.Comment = string.Join("\n", descriptionLines);
+            }
+
+            foreach (var structType in filteredSpec.Types.Values.Where(x => x.Category == TypeCategory.@struct && x.Extension == null))
+            {
+                var docFile = new DownloadedFileCache(this.tempFilePath, $"{manPath}{structType.VkName}.txt");
+
+                var docLines = File.ReadAllLines(docFile.GetFileLocation());
+
+                int lineIndex;
+
+                for (lineIndex = 0; docLines[lineIndex] != "Description"; lineIndex++) ;
+
+                lineIndex += 3;
+
+                var descriptionLines = docLines.Skip(lineIndex).AsEnumerable().TakeWhile(x => x != "See Also");
+
+                descriptionLines = descriptionLines.Take(descriptionLines.Count() - 3).Where(x => !string.IsNullOrWhiteSpace(x));
+
+                structType.Comment = string.Join("\n", descriptionLines);
+            }
+
+            foreach (var command in filteredSpec.Commands.Values.Where(x => x.Extension == null))
+            {
+                var docFile = new DownloadedFileCache(this.tempFilePath, $"{manPath}{command.VkName}.txt");
+
+                var docLines = File.ReadAllLines(docFile.GetFileLocation());
+
+                int lineIndex;
+
+                for (lineIndex = 0; docLines[lineIndex] != "Description"; lineIndex++) ;
+
+                lineIndex += 3;
+
+                var descriptionLines = docLines.Skip(lineIndex).AsEnumerable().TakeWhile(x => x != "See Also");
+
+                descriptionLines = descriptionLines.Take(descriptionLines.Count() - 3).Where(x => !string.IsNullOrWhiteSpace(x));
+
+                command.Comment = string.Join("\n", descriptionLines);
             }
 
             return filteredSpec;
