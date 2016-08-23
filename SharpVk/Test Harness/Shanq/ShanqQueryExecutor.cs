@@ -14,7 +14,6 @@ namespace SharpVk.Shanq
         public IEnumerable<T> ExecuteCollection<T>(QueryModel queryModel)
         {
             var sink = new ConsoleSink();
-
             var file = new SpirvFile();
 
             file.AddHeaderStatement(Op.OpCapability, Capability.Shader);
@@ -38,12 +37,10 @@ namespace SharpVk.Shanq
 
             foreach (var field in resultType.GetFields())
             {
-                var typeId = expressionVisitor.Visit(Expression.Constant(field.FieldType));
-                //HACK This should be compared for repetitions
-                ResultId outputPointerId = file.GetNextResultId();
+                var pointerType = typeof(OutputPointer<>).MakeGenericType(field.FieldType);
+                ResultId outputPointerId = expressionVisitor.Visit(Expression.Constant(pointerType));
                 ResultId outputVariableId = file.GetNextResultId();
-
-                file.AddGlobalStatement(outputPointerId, Op.OpTypePointer, StorageClass.Output, typeId);
+                
                 file.AddGlobalStatement(outputVariableId, Op.OpVariable, outputPointerId, StorageClass.Output);
 
                 fieldMapping.Add(field, outputVariableId);
@@ -52,25 +49,41 @@ namespace SharpVk.Shanq
             file.AddHeaderStatement(Op.OpEntryPoint, new object[] { ExecutionModel.Fragment, entryPointerFunctionId, "main" }.Concat(fieldMapping.Select(x => x.Value).Distinct().Cast<object>()).ToArray());
             file.AddHeaderStatement(Op.OpExecutionMode, entryPointerFunctionId, ExecutionMode.OriginUpperLeft);
 
-            foreach(var mapping in fieldMapping)
+            foreach (var mapping in fieldMapping)
             {
                 var attribute = mapping.Key.GetCustomAttribute<LocationAttribute>();
 
                 file.AddHeaderStatement(Op.OpDecorate, mapping.Value, Decoration.Location, attribute.LocationIndex);
             }
 
-            var constantSelector = queryModel.SelectClause.Selector as ConstantExpression;
+            var selector = queryModel.SelectClause.Selector;
 
-            if (constantSelector != null)
+            switch (selector.NodeType)
             {
-                foreach (var field in resultType.GetFields())
-                {
-                    var fieldValue = field.GetValue(constantSelector.Value);
+                case ExpressionType.Constant:
+                    foreach (var field in resultType.GetFields())
+                    {
+                        var fieldValue = field.GetValue(((ConstantExpression)queryModel.SelectClause.Selector).Value);
 
-                    ResultId valueId = expressionVisitor.Visit(Expression.Constant(fieldValue, field.FieldType));
+                        ResultId valueId = expressionVisitor.Visit(Expression.Constant(fieldValue, field.FieldType));
 
-                    file.AddFunctionStatement(Op.OpStore, fieldMapping[field], valueId);
-                }
+                        file.AddFunctionStatement(Op.OpStore, fieldMapping[field], valueId);
+                    }
+                    break;
+                case ExpressionType.MemberInit:
+                    var initExpression = (MemberInitExpression)selector;
+
+                    foreach (var binding in initExpression.Bindings)
+                    {
+                        var fieldValue = ((MemberAssignment)binding).Expression;
+
+                        ResultId valueId = expressionVisitor.Visit(fieldValue);
+
+                        file.AddFunctionStatement(Op.OpStore, fieldMapping[(FieldInfo)binding.Member], valueId);
+                    }
+                    break;
+                default:
+                    throw new NotImplementedException();
             }
 
             file.AddFunctionStatement(Op.OpReturn);

@@ -31,10 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Remotion.Linq, Version=2.1.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
-      <HintPath>..\packages\Remotion.Linq.2.1.1\lib\net45\Remotion.Linq.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -47,41 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DataField.cs" />
-    <Compile Include="DataStructure.cs" />
-    <Compile Include="DataStructureType.cs" />
-    <Compile Include="HlslExpressionBuilder.cs" />
-    <Compile Include="Hlsl\AssignStatement.cs" />
-    <Compile Include="Hlsl\CastExpression.cs" />
-    <Compile Include="Hlsl\ConstantExpression.cs" />
-    <Compile Include="Hlsl\CreateVectorExpression.cs" />
-    <Compile Include="Hlsl\FunctionExpression.cs" />
-    <Compile Include="Hlsl\InputDataExpression.cs" />
-    <Compile Include="Hlsl\OutputDataExpression.cs" />
-    <Compile Include="Hlsl\VertexShader.cs" />
-    <Compile Include="IAssignStatement.cs" />
-    <Compile Include="ILeftHandShaderExpression.cs" />
-    <Compile Include="InputStructureReferenceExpression.cs" />
-    <Compile Include="IntrinsicFunction.cs" />
-    <Compile Include="IPixelShader.cs" />
-    <Compile Include="IRightHandShaderExpression.cs" />
-    <Compile Include="IShaderExpression.cs" />
-    <Compile Include="IShaderFormatInfo.cs" />
-    <Compile Include="IShaderPart.cs" />
-    <Compile Include="IShaderStatement.cs" />
-    <Compile Include="IVertexShader.cs" />
-    <Compile Include="MemberReferenceExpression.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Queryable\IShanqQueryable.cs" />
-    <Compile Include="Queryable\ShanqExpressionVisitor.cs" />
-    <Compile Include="Queryable\ShanqQueryable.cs" />
-    <Compile Include="Queryable\ShanqQueryExecutor.cs" />
-    <Compile Include="Queryable\ShanqUtil.cs" />
-    <Compile Include="ShaderType.cs" />
-    <Compile Include="SwizzleAttribute.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SharpVk\SharpVk.csproj">

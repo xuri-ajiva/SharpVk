@@ -45,6 +45,37 @@ namespace SharpVk.Shanq
             }
         }
 
+        [NodeType(ExpressionType.New)]
+        private ResultId VisitNew(NewExpression expression)
+        {
+            SpirvStatement statement;
+
+            if (IsVectorType(expression.Type))
+            {
+                var operands = new[] { this.Visit(Expression.Constant(expression.Type)) }
+                                    .Concat(expression.Arguments.Select(this.Visit));
+
+                statement = new SpirvStatement(Op.OpConstantComposite, operands.ToArray());
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
+
+            ResultId resultId;
+
+            if (!this.expressionResults.TryGetValue(statement, out resultId))
+            {
+                resultId = this.file.GetNextResultId();
+
+                this.expressionResults.Add(statement, resultId);
+
+                this.file.AddGlobalStatement(resultId, statement);
+            }
+
+            return resultId;
+        }
+
         [NodeType(ExpressionType.Constant)]
         private ResultId VisitConstant(ConstantExpression expression)
         {
@@ -87,6 +118,13 @@ namespace SharpVk.Shanq
                     }
 
                     statement = new SpirvStatement(Op.OpTypeFunction, returnTypeId);
+                }
+                else if (value.IsGenericType && value.BaseType.GetGenericTypeDefinition() == typeof(Pointer<>))
+                {
+                    StorageClass storage = (StorageClass)value.GetProperty("Storage").GetValue(null);
+                    ResultId typeId = this.Visit(Expression.Constant(value.GetGenericArguments()[0]));
+
+                    statement = new SpirvStatement(Op.OpTypePointer, storage, typeId);
                 }
                 else if (value == typeof(float))
                 {
