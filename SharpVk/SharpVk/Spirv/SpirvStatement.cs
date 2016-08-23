@@ -1,12 +1,11 @@
-﻿using SharpVk.Spirv;
-using System;
+﻿using System;
 using System.Linq;
 
-namespace SharpVk.Shanq
+namespace SharpVk.Spirv
 {
-    internal class ShanqStatement
+    public class SpirvStatement
     {
-        public ShanqStatement(Op op, params ShanqOperand[] operands)
+        public SpirvStatement(Op op, params object[] operands)
         {
             this.Op = op;
             this.Operands = operands;
@@ -18,15 +17,32 @@ namespace SharpVk.Shanq
             private set;
         }
 
-        public ShanqOperand[] Operands
+        public object[] Operands
         {
             get;
             private set;
         }
 
+        public override string ToString()
+        {
+            return this.Op + this.Operands.Select(x => " " + FormatOperand(x)).Aggregate("", (x, y) => x + y);
+        }
+
+        private string FormatOperand(object operand)
+        {
+            if (operand.GetType() == typeof(string))
+            {
+                return $"\"{operand}\"";
+            }
+            else
+            {
+                return operand.ToString();
+            }
+        }
+
         public override bool Equals(object obj)
         {
-            var other = obj as ShanqStatement;
+            var other = obj as SpirvStatement;
 
             if (!object.ReferenceEquals(other, null)
                     && this.Op == other.Op
@@ -34,7 +50,7 @@ namespace SharpVk.Shanq
             {
                 for (int index = 0; index < this.Operands.Length; index++)
                 {
-                    if (this.Operands[index].Int32 != other.Operands[index].Int32)
+                    if (!this.Operands[index].Equals(other.Operands[index]))
                     {
                         return false;
                     }
@@ -60,7 +76,7 @@ namespace SharpVk.Shanq
             }
         }
 
-        public static bool operator ==(ShanqStatement left, ShanqStatement right)
+        public static bool operator ==(SpirvStatement left, SpirvStatement right)
         {
             if (object.ReferenceEquals(left, null))
             {
@@ -72,7 +88,7 @@ namespace SharpVk.Shanq
             }
         }
 
-        public static bool operator !=(ShanqStatement left, ShanqStatement right)
+        public static bool operator !=(SpirvStatement left, SpirvStatement right)
         {
             return !(left == right);
         }

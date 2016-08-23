@@ -89,11 +89,19 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Spirv\Grammar.cs">
+      <DependentUpon>Grammar.tt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="Spirv\Enums.cs">
       <DependentUpon>Enums.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Spirv\ISpirvSink.cs" />
+    <Compile Include="Spirv\ResultId.cs" />
+    <Compile Include="Spirv\SpirvStatement.cs" />
     <Compile Include="Unions.cs">
       <DependentUpon>Unions.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -149,6 +157,10 @@
     <Content Include="Enums.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Enums.cs</LastGenOutput>
+    </Content>
+    <Content Include="Spirv\Grammar.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Grammar.cs</LastGenOutput>
     </Content>
     <Content Include="Spirv\Enums.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

@@ -390,6 +390,7 @@ namespace SharpVk.Spirv
 
 	public enum FunctionControl
 	{
+        None = 0,
 		Inline = 1 << 0,
 		DontInline = 1 << 1,
 		Pure = 1 << 2,

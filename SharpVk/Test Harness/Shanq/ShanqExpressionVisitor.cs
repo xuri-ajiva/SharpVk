@@ -5,16 +5,17 @@ using System.Linq;
 using System.Reflection;
 using GlmSharp;
 using SharpVk.Spirv;
+using System.Collections;
 
 namespace SharpVk.Shanq
 {
     internal class ShanqExpressionVisitor
     {
-        private Dictionary<ExpressionType, Func<Expression, int>> expressionVisitors = new Dictionary<ExpressionType, Func<Expression, int>>();
-        private Dictionary<ShanqStatement, int> expressionResults = new Dictionary<ShanqStatement, int>();
-        private int nextResultId = 0;
+        private Dictionary<ExpressionType, Func<Expression, ResultId>> expressionVisitors = new Dictionary<ExpressionType, Func<Expression, ResultId>>();
+        private Dictionary<SpirvStatement, ResultId> expressionResults = new Dictionary<SpirvStatement, ResultId>();
+        private readonly SpirvFile file;
 
-        public ShanqExpressionVisitor()
+        public ShanqExpressionVisitor(SpirvFile file)
         {
             var visitMethods = this.GetType()
                                     .GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
@@ -24,13 +25,15 @@ namespace SharpVk.Shanq
             {
                 var attribute = method.GetCustomAttribute<NodeTypeAttribute>();
 
-                this.expressionVisitors.Add(attribute.NodeType, x => (int)method.Invoke(this, new object[] { x }));
+                this.expressionVisitors.Add(attribute.NodeType, x => (ResultId)method.Invoke(this, new object[] { x }));
             }
+
+            this.file = file;
         }
 
-        public int Visit(Expression expression)
+        public ResultId Visit(Expression expression)
         {
-            Func<Expression, int> visit;
+            Func<Expression, ResultId> visit;
 
             if (!this.expressionVisitors.TryGetValue(expression.NodeType, out visit))
             {
@@ -43,38 +46,85 @@ namespace SharpVk.Shanq
         }
 
         [NodeType(ExpressionType.Constant)]
-        private int VisitConstant(ConstantExpression expression)
+        private ResultId VisitConstant(ConstantExpression expression)
         {
-            ShanqStatement statement = null;
+            SpirvStatement statement;
 
-            if (expression.Type == typeof(vec4))
+            if (IsVectorType(expression.Type))
             {
-                vec4 value = (vec4)expression.Value;
+                var operands = new object[] { expression.Type }
+                                    .Concat(((IEnumerable)expression.Value).OfType<object>())
+                                    .Select(x => (object)this.Visit(Expression.Constant(x)));
 
-                var operands = new object[] { typeof(float), value.x, value.y, value.z, value.w }
-                                    .Select(x => (ShanqOperand)this.Visit(Expression.Constant(x)));
-
-                statement = new ShanqStatement(Op.OpConstantComposite, operands.ToArray());
+                statement = new SpirvStatement(Op.OpConstantComposite, operands.ToArray());
             }
             else if (typeof(Type).IsAssignableFrom(expression.Type))
             {
-                statement = new ShanqStatement(Op.OpTypeFloat);
+                Type value = (Type)expression.Value;
+
+                if (IsVectorType(value))
+                {
+                    Type elementType = value.GetField("x").FieldType;
+
+                    int length = ((IEnumerable)value.GetProperty("Zero", BindingFlags.Public | BindingFlags.Static)
+                                        .GetValue(null))
+                                        .OfType<object>()
+                                        .Count();
+
+                    ResultId elementTypeId = this.Visit(Expression.Constant(elementType));
+
+                    statement = new SpirvStatement(Op.OpTypeVector, elementTypeId, length);
+                }
+                else if (typeof(Delegate).IsAssignableFrom(value))
+                {
+                    var returnType = value.GetMethod("Invoke").ReturnType;
+
+                    ResultId returnTypeId = this.Visit(Expression.Constant(returnType));
+
+                    if (value.GetMethod("Invoke").GetParameters().Length > 0)
+                    {
+                        throw new NotImplementedException();
+                    }
+
+                    statement = new SpirvStatement(Op.OpTypeFunction, returnTypeId);
+                }
+                else if (value == typeof(float))
+                {
+                    statement = new SpirvStatement(Op.OpTypeFloat, 32);
+                }
+                else if (value == typeof(void))
+                {
+                    statement = new SpirvStatement(Op.OpTypeVoid);
+                }
+                else
+                {
+                    throw new NotImplementedException();
+                }
             }
             else
             {
-                statement = new ShanqStatement(Op.OpConstant, (float)expression.Value);
+                ResultId typeOperand = this.Visit(Expression.Constant(expression.Type));
+                statement = new SpirvStatement(Op.OpConstant, typeOperand, (float)expression.Value);
             }
 
-            int resultId;
+            ResultId resultId;
 
             if (!this.expressionResults.TryGetValue(statement, out resultId))
             {
-                resultId = ++this.nextResultId;
+                resultId = this.file.GetNextResultId();
 
                 this.expressionResults.Add(statement, resultId);
+
+                this.file.AddGlobalStatement(resultId, statement);
             }
 
             return resultId;
+        }
+
+        private bool IsVectorType(Type type)
+        {
+            return type.Assembly == typeof(vec3).Assembly
+                && type.Name.Contains("vec");
         }
 
         private class NodeTypeAttribute

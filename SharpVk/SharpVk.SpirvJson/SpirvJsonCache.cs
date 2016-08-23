@@ -21,7 +21,21 @@ namespace SharpVk.SpirvJson
 
         public SpirvModel GetSpirvModel()
         {
-            string tempFile = Path.Combine(this.tempFilePath, "spirv.json");
+            string tempFile = GetJsonFile("spirv.json");
+
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<SpirvModel>(File.ReadAllText(tempFile));
+        }
+
+        public SpirvGrammarModel GetSpirvGrammar()
+        {
+            string tempFile = GetJsonFile("spirv.core.grammar.json");
+
+            return Newtonsoft.Json.JsonConvert.DeserializeObject<SpirvGrammarModel>(File.ReadAllText(tempFile));
+        }
+
+        private string GetJsonFile(string fileName)
+        {
+            string tempFile = Path.Combine(this.tempFilePath, fileName);
 
             if (!File.Exists(tempFile) || File.GetLastWriteTimeUtc(tempFile) + TimeSpan.FromDays(1) < DateTime.UtcNow)
             {
@@ -29,7 +43,7 @@ namespace SharpVk.SpirvJson
                 {
                     Directory.CreateDirectory(Path.GetDirectoryName(tempFile));
 
-                    var fileRequest = WebRequest.Create("https://www.khronos.org/registry/spir-v/api/1.1/spirv.json");
+                    var fileRequest = WebRequest.Create("https://www.khronos.org/registry/spir-v/api/1.1/" + fileName);
 
                     using (var fileResponse = fileRequest.GetResponse())
                     using (var fileStream = File.OpenWrite(tempFile))
@@ -42,7 +56,7 @@ namespace SharpVk.SpirvJson
                 }
             }
 
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<SpirvModel>(File.ReadAllText(tempFile));
+            return tempFile;
         }
     }
 }

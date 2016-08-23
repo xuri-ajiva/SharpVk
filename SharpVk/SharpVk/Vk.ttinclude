@@ -54,7 +54,7 @@ string MapBaseTypeName(string baseTypeName)
 {
 	return baseTypes[baseTypeName];
 }
- 
+
 SpirvModel GetSpirvModel()
 {
 	if(jsonCache == null)
@@ -63,5 +63,15 @@ SpirvModel GetSpirvModel()
     }
 
     return jsonCache.GetSpirvModel();
+}
+
+SpirvGrammarModel GetSpirvGrammar()
+{
+	if(jsonCache == null)
+	{
+		jsonCache = new SpirvJsonCache(Path.Combine(Host.ResolvePath("."), "obj\\VkTemplates"));
+    }
+
+    return jsonCache.GetSpirvGrammar();
 }
 #>
