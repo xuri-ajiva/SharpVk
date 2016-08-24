@@ -28,4 +28,16 @@ namespace SharpVk.Shanq
 
         public static StorageClass Storage => StorageClass.Output;
     }
+
+    public class InputPointer<T>
+        : Pointer<T>
+        where T : struct
+    {
+        public InputPointer(T value)
+            : base(value)
+        {
+        }
+
+        public static StorageClass Storage => StorageClass.Input;
+    }
 }

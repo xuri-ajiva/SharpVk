@@ -6,6 +6,7 @@ using System.Reflection;
 using GlmSharp;
 using SharpVk.Spirv;
 using System.Collections;
+using Remotion.Linq.Clauses.Expressions;
 
 namespace SharpVk.Shanq
 {
@@ -14,6 +15,7 @@ namespace SharpVk.Shanq
         private Dictionary<ExpressionType, Func<Expression, ResultId>> expressionVisitors = new Dictionary<ExpressionType, Func<Expression, ResultId>>();
         private Dictionary<SpirvStatement, ResultId> expressionResults = new Dictionary<SpirvStatement, ResultId>();
         private readonly SpirvFile file;
+        private Dictionary<FieldInfo, ResultId> inputMappings = new Dictionary<FieldInfo, ResultId>();
 
         public ShanqExpressionVisitor(SpirvFile file)
         {
@@ -31,6 +33,11 @@ namespace SharpVk.Shanq
             this.file = file;
         }
 
+        public void AddInputMapping(FieldInfo field, ResultId resultId)
+        {
+            this.inputMappings.Add(field, resultId);
+        }
+
         public ResultId Visit(Expression expression)
         {
             Func<Expression, ResultId> visit;
@@ -45,6 +52,50 @@ namespace SharpVk.Shanq
             }
         }
 
+        [NodeType(ExpressionType.MemberAccess)]
+        private ResultId VisitMemberAccess(MemberExpression expression)
+        {
+            if (expression.Expression is QuerySourceReferenceExpression)
+            {
+                var fieldInfo = (FieldInfo)expression.Member;
+
+                ResultId fieldId = this.inputMappings[fieldInfo];
+
+                ResultId typeId = this.Visit(Expression.Constant(fieldInfo.FieldType));
+
+                ResultId accessId = this.file.GetNextResultId();
+
+                this.file.AddFunctionStatement(accessId, Op.OpLoad, typeId, fieldId);
+
+                return accessId;
+            }
+            else
+            {
+                var targetType = expression.Expression.Type;
+
+                if (IsVectorType(targetType))
+                {
+                    var fieldInfo = (FieldInfo)expression.Member;
+
+                    int fieldIndex = Array.IndexOf(targetType.GetFields(), fieldInfo);
+
+                    ResultId targetId = this.Visit(expression.Expression);
+
+                    ResultId typeId = this.Visit(Expression.Constant(fieldInfo.FieldType));
+
+                    ResultId accessId = this.file.GetNextResultId();
+
+                    this.file.AddFunctionStatement(accessId, Op.OpCompositeExtract, typeId, targetId, fieldIndex);
+
+                    return accessId;
+                }
+                else
+                {
+                    throw new NotImplementedException();
+                }
+            }
+        }
+
         [NodeType(ExpressionType.New)]
         private ResultId VisitNew(NewExpression expression)
         {
@@ -53,27 +104,46 @@ namespace SharpVk.Shanq
             if (IsVectorType(expression.Type))
             {
                 var operands = new[] { this.Visit(Expression.Constant(expression.Type)) }
-                                    .Concat(expression.Arguments.Select(this.Visit));
+                                    .Concat(this.ExpandNewArguments(expression.Arguments));
 
-                statement = new SpirvStatement(Op.OpConstantComposite, operands.ToArray());
+                statement = new SpirvStatement(Op.OpConstantComposite, operands.Cast<object>().ToArray());
             }
             else
             {
                 throw new NotImplementedException();
             }
 
-            ResultId resultId;
+            ResultId resultId = this.file.GetNextResultId();
 
-            if (!this.expressionResults.TryGetValue(statement, out resultId))
-            {
-                resultId = this.file.GetNextResultId();
-
-                this.expressionResults.Add(statement, resultId);
-
-                this.file.AddGlobalStatement(resultId, statement);
-            }
+            this.file.AddFunctionStatement(resultId, statement);
 
             return resultId;
+        }
+
+        private IEnumerable<ResultId> ExpandNewArguments(IEnumerable<Expression> arguments)
+        {
+            foreach (var argument in arguments)
+            {
+                ResultId argumentId = this.Visit(argument);
+
+                if (IsVectorType(argument.Type))
+                {
+                    ResultId typeId = this.Visit(Expression.Constant(GetVectorElementType(argument.Type)));
+
+                    for (int index = 0; index < GetVectorLength(argument.Type); index++)
+                    {
+                        ResultId fieldId = this.file.GetNextResultId();
+
+                        this.file.AddFunctionStatement(fieldId, Op.OpCompositeExtract, typeId, argumentId, index);
+
+                        yield return fieldId;
+                    }
+                }
+                else
+                {
+                    yield return argumentId;
+                }
+            }
         }
 
         [NodeType(ExpressionType.Constant)]
@@ -95,12 +165,8 @@ namespace SharpVk.Shanq
 
                 if (IsVectorType(value))
                 {
-                    Type elementType = value.GetField("x").FieldType;
-
-                    int length = ((IEnumerable)value.GetProperty("Zero", BindingFlags.Public | BindingFlags.Static)
-                                        .GetValue(null))
-                                        .OfType<object>()
-                                        .Count();
+                    Type elementType = GetVectorElementType(value);
+                    int length = GetVectorLength(value);
 
                     ResultId elementTypeId = this.Visit(Expression.Constant(elementType));
 
@@ -157,6 +223,19 @@ namespace SharpVk.Shanq
             }
 
             return resultId;
+        }
+
+        private static Type GetVectorElementType(Type value)
+        {
+            return value.GetField("x").FieldType;
+        }
+
+        private static int GetVectorLength(Type value)
+        {
+            return ((IEnumerable)value.GetProperty("Zero")
+                                .GetValue(null))
+                                .OfType<object>()
+                                .Count();
         }
 
         private bool IsVectorType(Type type)

@@ -33,6 +33,21 @@ namespace SharpVk.Shanq
 
             var fieldMapping = new Dictionary<FieldInfo, ResultId>();
 
+            var inputType = queryModel.MainFromClause.ItemType;
+
+            foreach (var field in inputType.GetFields())
+            {
+                var pointerType = typeof(OutputPointer<>).MakeGenericType(field.FieldType);
+                ResultId inputPointerId = expressionVisitor.Visit(Expression.Constant(pointerType));
+                ResultId inputVariableId = file.GetNextResultId();
+
+                file.AddGlobalStatement(inputVariableId, Op.OpVariable, inputPointerId, StorageClass.Input);
+
+                fieldMapping.Add(field, inputVariableId);
+
+                expressionVisitor.AddInputMapping(field, inputVariableId);
+            }
+
             var resultType = typeof(T);
 
             foreach (var field in resultType.GetFields())
