@@ -2,6 +2,7 @@
 using SharpVk.Spirv;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -11,9 +12,17 @@ namespace SharpVk.Shanq
     public class ShanqQueryExecutor
         : IQueryExecutor
     {
+        private readonly ExecutionModel model;
+        private readonly Stream outputStream;
+
+        public ShanqQueryExecutor(ExecutionModel model, Stream outputStream)
+        {
+            this.model = model;
+            this.outputStream = outputStream;
+        }
+
         public IEnumerable<T> ExecuteCollection<T>(QueryModel queryModel)
         {
-            var sink = new ConsoleSink();
             var file = new SpirvFile();
 
             file.AddHeaderStatement(Op.OpCapability, Capability.Shader);
@@ -55,13 +64,13 @@ namespace SharpVk.Shanq
                 var pointerType = typeof(OutputPointer<>).MakeGenericType(field.FieldType);
                 ResultId outputPointerId = expressionVisitor.Visit(Expression.Constant(pointerType));
                 ResultId outputVariableId = file.GetNextResultId();
-                
+
                 file.AddGlobalStatement(outputVariableId, Op.OpVariable, outputPointerId, StorageClass.Output);
 
                 fieldMapping.Add(field, outputVariableId);
             }
 
-            file.AddHeaderStatement(Op.OpEntryPoint, new object[] { ExecutionModel.Fragment, entryPointerFunctionId, "main" }.Concat(fieldMapping.Select(x => x.Value).Distinct().Cast<object>()).ToArray());
+            file.AddHeaderStatement(Op.OpEntryPoint, new object[] { this.model, entryPointerFunctionId, "main" }.Concat(fieldMapping.Select(x => x.Value).Distinct().Cast<object>()).ToArray());
             file.AddHeaderStatement(Op.OpExecutionMode, entryPointerFunctionId, ExecutionMode.OriginUpperLeft);
 
             foreach (var mapping in fieldMapping)
@@ -103,6 +112,12 @@ namespace SharpVk.Shanq
 
             file.AddFunctionStatement(Op.OpReturn);
             file.AddFunctionStatement(Op.OpFunctionEnd);
+
+            int bound = file.Entries.Select(x => x.ResultId)
+                                        .Where(x => x.HasValue)
+                                        .Max(x => x.Value.Id);
+
+            var sink = new BinarySink(this.outputStream, bound);
 
             foreach (var entry in file.Entries)
             {

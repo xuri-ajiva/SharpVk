@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Remotion.Linq, Version=2.1.0.0, Culture=neutral, PublicKeyToken=fee00910d6e5f53b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Remotion.Linq.2.1.1\lib\net45\Remotion.Linq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -43,13 +47,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BinarySink.cs" />
+    <Compile Include="LocationAttribute.cs" />
+    <Compile Include="Pointer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShanqExpressionVisitor.cs" />
+    <Compile Include="ShanqQueryable.cs" />
+    <Compile Include="ShanqQueryExecutor.cs" />
+    <Compile Include="ShanqShader.cs" />
+    <Compile Include="SpirvFile.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SharpVk\SharpVk.csproj">
       <Project>{a0abab94-7022-4e2d-a13c-e7bad69dd9d3}</Project>
       <Name>SharpVk</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

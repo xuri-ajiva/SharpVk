@@ -14,6 +14,105 @@
 <#
 	var model = GetSpirvGrammar();
 #>
+using System.Collections.Generic;
+using System.Linq;
+
 namespace SharpVk.Spirv
 {
+	public struct OpCode
+	{
+		public Op Op
+		{
+			get;
+			private set;
+		}
+
+		public IEnumerable<Operand> Operands
+		{
+			get;
+			private set;
+		}
+
+        public static readonly Dictionary<Op, OpCode> Lookup;
+
+        static OpCode()
+        {
+            OpCode.Lookup = typeof(OpCode).GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static)
+                            .Where(x => x.FieldType == typeof(OpCode))
+                            .Select(x => (OpCode)x.GetValue(null))
+                            .ToDictionary(x => x.Op);
+        }
+<#
+foreach(var instruction in model.Instructions)
+{
+#>
+
+		public static readonly OpCode <#=instruction.OpName#> = new OpCode
+		{
+			Op = Op.<#=instruction.OpName#>,
+			Operands = new Operand[]
+			{
+<#
+	if(instruction.Operands != null)
+	foreach(var operand in instruction.Operands)
+	{
+#>
+				new Operand
+				{
+					Kind = OperandKind.<#=operand.Kind#>,
+					Quantifier = Quantifier.<#= operand.Quantifier == "*" ? "Multiple" : operand.Quantifier == "?" ? "Optional" : "None" #>,
+					Name = "<#= operand.Name?.Replace("\n", "") ?? ""#>"
+				},
+<#
+	}
+#>
+			}
+		};
+<#
+}
+#>
+	}
+
+	public struct Operand
+	{
+		public OperandKind Kind
+		{
+			get;
+			internal set;
+		}
+
+		public Quantifier Quantifier
+		{
+			get;
+			internal set;
+		}
+		
+		public string Name
+		{
+			get;
+			internal set;
+		}
+	}
+
+	public enum Quantifier
+	{
+		None,
+		Optional,
+		Multiple
+	}
+
+	public class OperandKind
+	{
+<#
+foreach(var operandKind in model.Operand_Kinds)
+{
+#>
+		public static readonly OperandKind <#=operandKind.Kind#> = new OperandKind
+		{
+		};
+
+<#
+}
+#>
+	}
 }

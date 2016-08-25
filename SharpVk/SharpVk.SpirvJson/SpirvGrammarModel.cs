@@ -3,6 +3,7 @@
     public struct SpirvGrammarModel
     {
         public SpirvInstruction[] Instructions;
+        public SpirvOperandKind[] Operand_Kinds;
     }
 
     public struct SpirvInstruction
@@ -18,5 +19,10 @@
         public string Quantifier;
         public string Name;
         public string[] Capability;
+    }
+
+    public struct SpirvOperandKind
+    {
+        public string Kind;
     }
 }
