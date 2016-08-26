@@ -12,6 +12,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpVk.VkXml", "SharpVk.Vk
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5B770042-CFC1-4B48-90B3-8686E2A940A1}"
 	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
 		..\TODO.md = ..\TODO.md
 	EndProjectSection
 EndProject
