@@ -20,14 +20,25 @@
 
 namespace SharpVk
 {
+    /// <summary>
+    /// The base type for exceptions thrown by the SharpVK library.
+    /// </summary>
 	public abstract class SharpVkException
 		: Exception
 	{
+		/// <summary>
+		/// Returns a value indicating whether the given Vulkan result code
+		/// represents an error.
+		/// </summary>
 		public static bool IsError(Result resultCode)
 		{
 			return (int)resultCode < 0;
 		}
 
+		/// <summary>
+		/// Creates and returns a new, specifically-typed exception that
+		/// represents the given result code.
+		/// </summary>
 		public static SharpVkException Create(Result resultCode)
 		{
 			if(!IsError(resultCode))
@@ -46,32 +57,49 @@ foreach(var exception in types.Exceptions)
 
 			return new UnknownSharpVkException(resultCode);
 		}
-
+		
+		/// <summary>
+		/// The Vulkan result code represented by this exception.
+		/// </summary>
 		public abstract Result ResultCode
 		{
 			get;
 		}
 	}
-
+	
+		
+	/// <summary>
+	/// An exception representing a result code not recognised by the SharpVk
+	/// library.
+	/// </summary>
 	public class UnknownSharpVkException
 		: SharpVkException
 	{
 		private Result resultCode;
 
-		public UnknownSharpVkException(Result resultCode)
+		internal UnknownSharpVkException(Result resultCode)
 		{
 			this.resultCode = resultCode;
 		}
-
+		
+		/// <summary>
+		/// The Vulkan result code represented by this exception.
+		/// </summary>
 		public override Result ResultCode => this.resultCode;
 	}
 
 <#
 foreach(var exception in types.Exceptions)
 {
-#>	public class <#=exception.Name#>
+#>	/// <summary>
+	/// -
+	/// </summary>
+	public class <#=exception.Name#>
 		: SharpVkException
 	{
+		/// <summary>
+		/// The Vulkan result code represented by this exception.
+		/// </summary>
 		public override Result ResultCode => <#=exception.Value#>;
 	}
 <#

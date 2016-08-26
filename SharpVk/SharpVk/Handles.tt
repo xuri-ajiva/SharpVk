@@ -265,6 +265,10 @@ foreach(var handle in types.Handles)
     {
 #>
 
+		/// <summary>
+		/// Releases the unmanaged resources associated with this instance and
+		/// destroys the underlying Vulkan handle.
+		/// </summary>
 		public void Dispose()
 		{
 			this.Destroy();

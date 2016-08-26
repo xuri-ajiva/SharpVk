@@ -26,11 +26,13 @@ namespace SharpVk
 {
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct AllocationCallbacks
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public IntPtr UserData
 		{
 			get;
@@ -52,17 +54,21 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct AndroidSurfaceCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public AndroidSurfaceCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public IntPtr Window
 		{
 			get;
@@ -86,35 +92,45 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct ApplicationInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public string ApplicationName
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Version ApplicationVersion
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public string EngineName
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Version EngineVersion
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Version ApiVersion
 		{
 			get;
@@ -141,35 +157,45 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct BindSparseInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Semaphore[] WaitSemaphores
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SparseBufferMemoryBindInfo[] BufferBinds
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SparseImageOpaqueMemoryBindInfo[] ImageOpaqueBinds
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SparseImageMemoryBindInfo[] ImageBinds
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Semaphore[] SignalSemaphores
 		{
 			get;
@@ -281,7 +307,7 @@ namespace SharpVk
     /// include::../api/enums/VkBufferUsageFlagBits.txt[]
     ///   * ename:VK_BUFFER_USAGE_TRANSFER_SRC_BIT indicates that the buffer can: be
     ///     used as the source of a _transfer command_ (see the definition of
-    ///     <<synchronization-transfer,ename:VK_PIPELINE_STAGE_TRANSFER_BIT>>).
+    ///     &lt;&lt;synchronization-transfer,ename:VK_PIPELINE_STAGE_TRANSFER_BIT&gt;&gt;).
     ///   * ename:VK_BUFFER_USAGE_TRANSFER_DST_BIT indicates that the buffer
     ///     can: be used as the destination of a transfer command.
     ///   * ename:VK_BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT indicates that the buffer
@@ -329,37 +355,47 @@ namespace SharpVk
     ///     simultaneously be backing another buffer (or another portion of the same
     ///     buffer). Buffers created with this flag must: also be created
     ///     with the ename:VK_BUFFER_CREATE_SPARSE_BINDING_BIT flag.
-    /// See <<sparsememory-sparseresourcefeatures,Sparse Resource Features>> and
-    /// <<features-features,Physical Device Features>> for details of the sparse
+    /// See &lt;&lt;sparsememory-sparseresourcefeatures,Sparse Resource Features&gt;&gt; and
+    /// &lt;&lt;features-features,Physical Device Features&gt;&gt; for details of the sparse
     /// memory features supported on a device.
     /// </summary>
 	public struct BufferCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public BufferCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ulong Size
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public BufferUsageFlags Usage
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SharingMode SharingMode
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint[] QueueFamilyIndices
 		{
 			get;
@@ -387,47 +423,61 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct BufferMemoryBarrier
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public AccessFlags SourceAccessMask
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public AccessFlags DestinationAccessMask
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint SourceQueueFamilyIndex
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint DestinationQueueFamilyIndex
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Buffer Buffer
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ulong Offset
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ulong Size
 		{
 			get;
@@ -456,35 +506,45 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct BufferViewCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public BufferViewCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Buffer Buffer
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Format Format
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ulong Offset
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ulong Range
 		{
 			get;
@@ -511,23 +571,29 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct CommandBufferAllocateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public CommandPool CommandPool
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public CommandBufferLevel Level
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint CommandBufferCount
 		{
 			get;
@@ -552,17 +618,21 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct CommandBufferBeginInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public CommandBufferUsageFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public CommandBufferInheritanceInfo? InheritanceInfo
 		{
 			get;
@@ -586,41 +656,53 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct CommandBufferInheritanceInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public RenderPass RenderPass
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint Subpass
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Framebuffer Framebuffer
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 OcclusionQueryEnable
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public QueryControlFlags QueryFlags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public QueryPipelineStatisticFlags PipelineStatistics
 		{
 			get;
@@ -648,17 +730,21 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct CommandPoolCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public CommandPoolCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint QueueFamilyIndex
 		{
 			get;
@@ -684,37 +770,47 @@ namespace SharpVk
     /// <summary>
     /// The parameters pname:basePipelineHandle and pname:basePipelineIndex are
     /// described in more detail in
-    /// <<pipelines-pipeline-derivatives,Pipeline Derivatives>>.
+    /// &lt;&lt;pipelines-pipeline-derivatives,Pipeline Derivatives&gt;&gt;.
     /// pname:stage points to a structure of type
     /// sname:VkPipelineShaderStageCreateInfo.
     /// </summary>
 	public struct ComputePipelineCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PipelineCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PipelineShaderStageCreateInfo Stage
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PipelineLayout Layout
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Pipeline BasePipelineHandle
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public int BasePipelineIndex
 		{
 			get;
@@ -741,47 +837,61 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct CopyDescriptorSet
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public DescriptorSet SourceSet
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint SourceBinding
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint SourceArrayElement
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public DescriptorSet DestinationSet
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint DestinationBinding
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint DestinationArrayElement
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint DescriptorCount
 		{
 			get;
@@ -810,17 +920,21 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct DebugMarkerMarkerInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public string MarkerName
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public float[] Color
 		{
 			get;
@@ -843,23 +957,29 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct DebugMarkerObjectNameInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public DebugReportObjectType ObjectType
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ulong Object
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public string ObjectName
 		{
 			get;
@@ -884,29 +1004,37 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct DebugMarkerObjectTagInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public DebugReportObjectType ObjectType
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ulong Object
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ulong TagName
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public byte[] Tag
 		{
 			get;
@@ -933,17 +1061,21 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct DebugReportCallbackCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public DebugReportFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public IntPtr UserData
 		{
 			get;
@@ -967,11 +1099,13 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct DedicatedAllocationBufferCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 DedicatedAllocation
 		{
 			get;
@@ -994,11 +1128,13 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct DedicatedAllocationImageCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 DedicatedAllocation
 		{
 			get;
@@ -1021,17 +1157,21 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct DedicatedAllocationMemoryAllocateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Image Image
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Buffer Buffer
 		{
 			get;
@@ -1055,23 +1195,29 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct DescriptorBufferInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Buffer Buffer
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ulong Offset
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ulong Range
 		{
 			get;
@@ -1100,19 +1246,25 @@ namespace SharpVk
     /// </summary>
 	public struct DescriptorImageInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Sampler Sampler
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ImageView ImageView
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ImageLayout ImageLayout
 		{
 			get;
@@ -1160,19 +1312,25 @@ namespace SharpVk
     /// </summary>
 	public struct DescriptorPoolCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public DescriptorPoolCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxSets
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public DescriptorPoolSize[] PoolSizes
 		{
 			get;
@@ -1211,17 +1369,21 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct DescriptorSetAllocateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public DescriptorPool DescriptorPool
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public DescriptorSetLayout[] SetLayouts
 		{
 			get;
@@ -1277,25 +1439,33 @@ namespace SharpVk
     /// </summary>
 	public struct DescriptorSetLayoutBinding
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint Binding
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public DescriptorType DescriptorType
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ShaderStageFlags StageFlags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Sampler[] ImmutableSamplers
 		{
 			get;
@@ -1336,17 +1506,21 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct DescriptorSetLayoutCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public DescriptorSetLayoutCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public DescriptorSetLayoutBinding[] Bindings
 		{
 			get;
@@ -1386,35 +1560,45 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct DeviceCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public DeviceCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public DeviceQueueCreateInfo[] QueueCreateInfos
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public string[] EnabledLayerNames
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public string[] EnabledExtensionNames
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PhysicalDeviceFeatures EnabledFeatures
 		{
 			get;
@@ -1459,23 +1643,29 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct DeviceQueueCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public DeviceQueueCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint QueueFamilyIndex
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public float[] QueuePriorities
 		{
 			get;
@@ -1501,17 +1691,21 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct DisplayModeCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public DisplayModeCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public DisplayModeParameters Parameters
 		{
 			get;
@@ -1535,17 +1729,21 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct DisplayModeProperties
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public DisplayMode DisplayMode
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public DisplayModeParameters Parameters
 		{
 			get;
@@ -1568,17 +1766,21 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct DisplayPlaneProperties
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Display CurrentDisplay
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint CurrentStackIndex
 		{
 			get;
@@ -1601,23 +1803,29 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct DisplayPresentInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Rect2D SourceRect
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Rect2D DestinationRect
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 Persistent
 		{
 			get;
@@ -1642,47 +1850,61 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct DisplayProperties
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Display Display
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public string DisplayName
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Extent2D PhysicalDimensions
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Extent2D PhysicalResolution
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SurfaceTransformFlags SupportedTransforms
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 PlaneReorderPossible
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 PersistentContent
 		{
 			get;
@@ -1710,53 +1932,69 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct DisplaySurfaceCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public DisplaySurfaceCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public DisplayMode DisplayMode
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint PlaneIndex
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint PlaneStackIndex
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SurfaceTransformFlags Transform
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public float GlobalAlpha
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public DisplayPlaneAlphaFlags AlphaMode
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Extent2D ImageExtent
 		{
 			get;
@@ -1786,11 +2024,13 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct EventCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public EventCreateFlags Flags
 		{
 			get;
@@ -1813,17 +2053,21 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct ExtensionProperties
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public string ExtensionName
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Version SpecVersion
 		{
 			get;
@@ -1847,11 +2091,13 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct FenceCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public FenceCreateFlags Flags
 		{
 			get;
@@ -1899,37 +2145,49 @@ namespace SharpVk
     /// </summary>
 	public struct FramebufferCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public FramebufferCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public RenderPass RenderPass
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ImageView[] Attachments
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint Width
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint Height
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint Layers
 		{
 			get;
@@ -1975,10 +2233,10 @@ namespace SharpVk
     /// <summary>
     /// The parameters pname:basePipelineHandle and pname:basePipelineIndex are
     /// described in more detail in
-    /// <<pipelines-pipeline-derivatives,Pipeline Derivatives>>.
+    /// &lt;&lt;pipelines-pipeline-derivatives,Pipeline Derivatives&gt;&gt;.
     /// pname:pStages points to an array of slink:VkPipelineShaderStageCreateInfo
     /// structures, which were previously described in
-    /// <<pipelines-compute,Compute Pipelines>>.
+    /// &lt;&lt;pipelines-compute,Compute Pipelines&gt;&gt;.
     /// Bits which can: be set in pname:flags are:
     /// // refBegin VkPipelineCreateFlagBits - Bitmask controlling how a pipeline is generated
     /// include::../api/enums/VkPipelineCreateFlagBits.txt[]
@@ -1993,104 +2251,136 @@ namespace SharpVk
     /// It is valid to set both ename:VK_PIPELINE_CREATE_ALLOW_DERIVATIVES_BIT and
     /// ename:VK_PIPELINE_CREATE_DERIVATIVE_BIT. This allows a pipeline to be both a
     /// parent and possibly a child in a pipeline hierarchy. See
-    /// <<pipelines-pipeline-derivatives,Pipeline Derivatives>> for more
+    /// &lt;&lt;pipelines-pipeline-derivatives,Pipeline Derivatives&gt;&gt; for more
     /// information.
     /// pname:pDynamicState points to a structure of type
     /// sname:VkPipelineDynamicStateCreateInfo.
     /// </summary>
 	public struct GraphicsPipelineCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PipelineCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PipelineShaderStageCreateInfo[] Stages
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PipelineVertexInputStateCreateInfo? VertexInputState
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PipelineInputAssemblyStateCreateInfo? InputAssemblyState
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PipelineTessellationStateCreateInfo? TessellationState
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PipelineViewportStateCreateInfo? ViewportState
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PipelineRasterizationStateCreateInfo? RasterizationState
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PipelineMultisampleStateCreateInfo? MultisampleState
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PipelineDepthStencilStateCreateInfo? DepthStencilState
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PipelineColorBlendStateCreateInfo? ColorBlendState
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PipelineDynamicStateCreateInfo? DynamicState
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PipelineLayout Layout
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public RenderPass RenderPass
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint Subpass
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Pipeline BasePipelineHandle
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public int BasePipelineIndex
 		{
 			get;
@@ -2149,25 +2439,33 @@ namespace SharpVk
     /// </summary>
 	public struct ImageBlit
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ImageSubresourceLayers SourceSubresource
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Offset3D[] SourceOffsets
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ImageSubresourceLayers DestinationSubresource
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Offset3D[] DestinationOffsets
 		{
 			get;
@@ -2214,73 +2512,97 @@ namespace SharpVk
     /// </summary>
 	public struct ImageCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ImageCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ImageType ImageType
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Format Format
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Extent3D Extent
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MipLevels
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint ArrayLayers
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SampleCountFlags Samples
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ImageTiling Tiling
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ImageUsageFlags Usage
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SharingMode SharingMode
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint[] QueueFamilyIndices
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ImageLayout InitialLayout
 		{
 			get;
@@ -2333,55 +2655,71 @@ namespace SharpVk
     /// [NOTE]
     /// .Note
     /// ====
-    /// See <<resources-image-layouts>> for details on available image layouts
+    /// See &lt;&lt;resources-image-layouts&gt;&gt; for details on available image layouts
     /// and their usages.
     /// ====
     /// </summary>
 	public struct ImageMemoryBarrier
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public AccessFlags SourceAccessMask
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public AccessFlags DestinationAccessMask
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ImageLayout OldLayout
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ImageLayout NewLayout
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint SourceQueueFamilyIndex
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint DestinationQueueFamilyIndex
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Image Image
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ImageSubresourceRange SubresourceRange
 		{
 			get;
@@ -2414,8 +2752,8 @@ namespace SharpVk
     /// If pname:image was created with the ename:VK_IMAGE_CREATE_MUTABLE_FORMAT_BIT
     /// flag, pname:format can: be different from the image's format, but if they
     /// are not equal they must: be _compatible_. Image format compatibility is
-    /// defined in the <<features-formats-compatibility-classes,Format Compatibility
-    /// Classes>> section.
+    /// defined in the &lt;&lt;features-formats-compatibility-classes,Format Compatibility
+    /// Classes&gt;&gt; section.
     /// [[resources-image-views-compatibility]]
     /// .Image and image view parameter compatibility requirements
     /// [cols="20%h,35%,45%",options="header"]
@@ -2423,93 +2761,93 @@ namespace SharpVk
     /// | Dim, Arrayed, MS | Image parameters | View parameters
     /// | 1D, 0, 0 |
     /// imageType = ename:VK_IMAGE_TYPE_1D +
-    /// width >= 1 +
+    /// width &gt;= 1 +
     /// height = 1 +
     /// depth = 1 +
-    /// arrayLayers >= 1 +
+    /// arrayLayers &gt;= 1 +
     /// samples = 1 |
     /// viewType = ename:VK_VIEW_TYPE_1D +
-    /// baseArrayLayer >= 0 +
+    /// baseArrayLayer &gt;= 0 +
     /// layerCount = 1
     /// | 1D, 1, 0 |
     /// imageType = ename:VK_IMAGE_TYPE_1D +
-    /// width >= 1 +
+    /// width &gt;= 1 +
     /// height = 1 +
     /// depth = 1 +
-    /// arrayLayers >= 1 +
+    /// arrayLayers &gt;= 1 +
     /// samples = 1 |
     /// viewType = ename:VK_VIEW_TYPE_1D_ARRAY +
-    /// baseArrayLayer >= 0 +
-    /// layerCount >= 1
+    /// baseArrayLayer &gt;= 0 +
+    /// layerCount &gt;= 1
     /// | 2D, 0, 0 |
     /// imageType = ename:VK_IMAGE_TYPE_2D +
-    /// width >= 1 +
-    /// height >= 1 +
+    /// width &gt;= 1 +
+    /// height &gt;= 1 +
     /// depth = 1 +
-    /// arrayLayers >= 1 +
+    /// arrayLayers &gt;= 1 +
     /// samples = 1 |
     /// viewType = ename:VK_VIEW_TYPE_2D +
-    /// baseArrayLayer >= 0 +
+    /// baseArrayLayer &gt;= 0 +
     /// layerCount = 1
     /// | 2D, 1, 0 |
     /// imageType = ename:VK_IMAGE_TYPE_2D +
-    /// width >= 1 +
-    /// height >= 1 +
+    /// width &gt;= 1 +
+    /// height &gt;= 1 +
     /// depth = 1 +
-    /// arrayLayers >= 1 +
+    /// arrayLayers &gt;= 1 +
     /// samples = 1 |
     /// viewType = ename:VK_VIEW_TYPE_2D_ARRAY +
-    /// baseArrayLayer >= 0 +
-    /// layerCount >= 1
+    /// baseArrayLayer &gt;= 0 +
+    /// layerCount &gt;= 1
     /// | 2D, 0, 1 |
     /// imageType = ename:VK_IMAGE_TYPE_2D +
-    /// width >= 1 +
-    /// height >= 1 +
+    /// width &gt;= 1 +
+    /// height &gt;= 1 +
     /// depth = 1 +
-    /// arrayLayers >= 1 +
-    /// samples > 1 |
+    /// arrayLayers &gt;= 1 +
+    /// samples &gt; 1 |
     /// viewType = ename:VK_VIEW_TYPE_2D +
-    /// baseArrayLayer >= 0 +
+    /// baseArrayLayer &gt;= 0 +
     /// layerCount = 1
     /// | 2D, 1, 1 |
     /// imageType = ename:VK_IMAGE_TYPE_2D +
-    /// width >= 1 +
-    /// height >= 1 +
+    /// width &gt;= 1 +
+    /// height &gt;= 1 +
     /// depth = 1 +
-    /// arrayLayers >= 1 +
-    /// samples > 1 |
+    /// arrayLayers &gt;= 1 +
+    /// samples &gt; 1 |
     /// viewType = ename:VK_VIEW_TYPE_2D_ARRAY +
-    /// baseArrayLayer >= 0 +
-    /// layerCount >= 1
+    /// baseArrayLayer &gt;= 0 +
+    /// layerCount &gt;= 1
     /// | CUBE, 0, 0 |
     /// imageType = ename:VK_IMAGE_TYPE_2D +
-    /// width >= 1 +
+    /// width &gt;= 1 +
     /// height = width +
     /// depth = 1 +
-    /// arrayLayers >= 6 +
+    /// arrayLayers &gt;= 6 +
     /// samples = 1 +
     /// flags include ename:VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT |
     /// viewType = ename:VK_VIEW_TYPE_CUBE +
-    /// baseArrayLayer >= 0 +
+    /// baseArrayLayer &gt;= 0 +
     /// layerCount = 6
     /// | CUBE, 1, 0 |
     /// imageType = ename:VK_IMAGE_TYPE_2D +
-    /// width >= 1 +
+    /// width &gt;= 1 +
     /// height = width +
     /// depth = 1 +
-    /// N >= 1 +
-    /// arrayLayers >= latexmath:[$6 \times N$] +
+    /// N &gt;= 1 +
+    /// arrayLayers &gt;= latexmath:[$6 \times N$] +
     /// samples = 1 +
     /// flags include ename:VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT |
     /// viewType = ename:VK_VIEW_TYPE_CUBE_ARRAY +
-    /// baseArrayLayer >= 0 +
-    /// N >= 1 +
+    /// baseArrayLayer &gt;= 0 +
+    /// N &gt;= 1 +
     /// layerCount = latexmath:[$6 \times N$]
     /// | 3D, 0, 0 |
     /// imageType = ename:VK_IMAGE_TYPE_3D +
-    /// width >= 1 +
-    /// height >= 1 +
-    /// depth >= 1 +
+    /// width &gt;= 1 +
+    /// height &gt;= 1 +
+    /// depth &gt;= 1 +
     /// arrayLayers = 1 +
     /// samples = 1 |
     /// viewType = ename:VK_VIEW_TYPE_3D +
@@ -2519,37 +2857,49 @@ namespace SharpVk
     /// </summary>
 	public struct ImageViewCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ImageViewCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Image Image
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ImageViewType ViewType
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Format Format
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ComponentMapping Components
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ImageSubresourceRange SubresourceRange
 		{
 			get;
@@ -2577,29 +2927,37 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct InstanceCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public InstanceCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ApplicationInfo? ApplicationInfo
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public string[] EnabledLayerNames
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public string[] EnabledExtensionNames
 		{
 			get;
@@ -2627,29 +2985,37 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct LayerProperties
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public string LayerName
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Version SpecVersion
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Version ImplementationVersion
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public string Description
 		{
 			get;
@@ -2675,23 +3041,29 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct MappedMemoryRange
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public DeviceMemory Memory
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ulong Offset
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ulong Size
 		{
 			get;
@@ -2716,17 +3088,21 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct MemoryAllocateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ulong AllocationSize
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MemoryTypeIndex
 		{
 			get;
@@ -2803,11 +3179,11 @@ namespace SharpVk
     ///   * ename:VK_ACCESS_TRANSFER_READ_BIT indicates that the access is a read
     ///     from a transfer (copy, blit, resolve, etc.) operation. For the complete
     ///     set of transfer operations, see
-    ///     <<synchronization-transfer,ename:VK_PIPELINE_STAGE_TRANSFER_BIT>>.
+    ///     &lt;&lt;synchronization-transfer,ename:VK_PIPELINE_STAGE_TRANSFER_BIT&gt;&gt;.
     ///   * ename:VK_ACCESS_TRANSFER_WRITE_BIT indicates that the access is a write
     ///     from a transfer (copy, blit, resolve, etc.) operation. For the complete
     ///     set of transfer operations, see
-    ///     <<synchronization-transfer,ename:VK_PIPELINE_STAGE_TRANSFER_BIT>>.
+    ///     &lt;&lt;synchronization-transfer,ename:VK_PIPELINE_STAGE_TRANSFER_BIT&gt;&gt;.
     ///   * ename:VK_ACCESS_HOST_READ_BIT indicates that the access is a read via
     ///     the host.
     ///   * ename:VK_ACCESS_HOST_WRITE_BIT indicates that the access is a write via
@@ -2830,7 +3206,7 @@ namespace SharpVk
     /// Color attachment reads and writes are automatically (without memory or
     /// execution dependencies) coherent and ordered against themselves and each
     /// other for a given sample within a subpass of a render pass instance,
-    /// executing in <<fundamentals-queueoperation-apiorder,API order>>. Similarly,
+    /// executing in &lt;&lt;fundamentals-queueoperation-apiorder,API order&gt;&gt;. Similarly,
     /// depth/stencil attachment reads and writes are automatically coherent and
     /// ordered against themselves and each other in the same circumstances.
     /// Shader reads and/or writes through two variables (in the same or different
@@ -2846,8 +3222,8 @@ namespace SharpVk
     /// multiple flags are enumerated in the second column of the table it means
     /// that the access type is supported on the queue if it supports any of the
     /// listed capability flags. For further details on queue capabilities see
-    /// <<devsandqueues-physical-device-enumeration,Physical Device Enumeration>>
-    /// and <<devsandqueues-queues,Queues>>.
+    /// &lt;&lt;devsandqueues-physical-device-enumeration,Physical Device Enumeration&gt;&gt;
+    /// and &lt;&lt;devsandqueues-queues,Queues&gt;&gt;.
     /// .Supported access flags
     /// [width="100%",cols="67%,33%",options="header",align="center"]
     /// |========================================
@@ -2873,13 +3249,17 @@ namespace SharpVk
     /// </summary>
 	public struct MemoryBarrier
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public AccessFlags SourceAccessMask
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public AccessFlags DestinationAccessMask
 		{
 			get;
@@ -2903,23 +3283,29 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct MirSurfaceCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public MirSurfaceCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public IntPtr Connection
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public IntPtr MirSurface
 		{
 			get;
@@ -2958,641 +3344,853 @@ namespace SharpVk
     /// supported sample counts for each image type. Individual images may: support
     /// additional sample counts, which are queried using
     /// flink:vkGetPhysicalDeviceImageFormatProperties as described
-    /// in <<features-supported-sample-counts, Supported Sample Counts>>.
+    /// in &lt;&lt;features-supported-sample-counts, Supported Sample Counts&gt;&gt;.
     /// </summary>
 	public struct PhysicalDeviceLimits
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxImageDimension1D
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxImageDimension2D
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxImageDimension3D
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxImageDimensionCube
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxImageArrayLayers
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxTexelBufferElements
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxUniformBufferRange
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxStorageBufferRange
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxPushConstantsSize
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxMemoryAllocationCount
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxSamplerAllocationCount
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ulong BufferImageGranularity
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ulong SparseAddressSpaceSize
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxBoundDescriptorSets
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxPerStageDescriptorSamplers
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxPerStageDescriptorUniformBuffers
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxPerStageDescriptorStorageBuffers
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxPerStageDescriptorSampledImages
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxPerStageDescriptorStorageImages
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxPerStageDescriptorInputAttachments
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxPerStageResources
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxDescriptorSetSamplers
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxDescriptorSetUniformBuffers
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxDescriptorSetUniformBuffersDynamic
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxDescriptorSetStorageBuffers
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxDescriptorSetStorageBuffersDynamic
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxDescriptorSetSampledImages
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxDescriptorSetStorageImages
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxDescriptorSetInputAttachments
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxVertexInputAttributes
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxVertexInputBindings
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxVertexInputAttributeOffset
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxVertexInputBindingStride
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxVertexOutputComponents
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxTessellationGenerationLevel
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxTessellationPatchSize
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxTessellationControlPerVertexInputComponents
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxTessellationControlPerVertexOutputComponents
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxTessellationControlPerPatchOutputComponents
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxTessellationControlTotalOutputComponents
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxTessellationEvaluationInputComponents
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxTessellationEvaluationOutputComponents
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxGeometryShaderInvocations
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxGeometryInputComponents
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxGeometryOutputComponents
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxGeometryOutputVertices
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxGeometryTotalOutputComponents
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxFragmentInputComponents
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxFragmentOutputAttachments
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxFragmentDualSourceAttachments
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxFragmentCombinedOutputResources
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxComputeSharedMemorySize
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint[] MaxComputeWorkGroupCount
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxComputeWorkGroupInvocations
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint[] MaxComputeWorkGroupSize
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint SubPixelPrecisionBits
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint SubTexelPrecisionBits
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MipmapPrecisionBits
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxDrawIndexedIndexValue
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxDrawIndirectCount
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public float MaxSamplerLodBias
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public float MaxSamplerAnisotropy
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxViewports
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint[] MaxViewportDimensions
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public float[] ViewportBoundsRange
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint ViewportSubPixelBits
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public UIntPtr MinMemoryMapAlignment
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ulong MinTexelBufferOffsetAlignment
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ulong MinUniformBufferOffsetAlignment
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ulong MinStorageBufferOffsetAlignment
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public int MinTexelOffset
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxTexelOffset
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public int MinTexelGatherOffset
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxTexelGatherOffset
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public float MinInterpolationOffset
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public float MaxInterpolationOffset
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint SubPixelInterpolationOffsetBits
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxFramebufferWidth
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxFramebufferHeight
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxFramebufferLayers
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SampleCountFlags FramebufferColorSampleCounts
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SampleCountFlags FramebufferDepthSampleCounts
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SampleCountFlags FramebufferStencilSampleCounts
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SampleCountFlags FramebufferNoAttachmentsSampleCounts
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxColorAttachments
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SampleCountFlags SampledImageColorSampleCounts
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SampleCountFlags SampledImageIntegerSampleCounts
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SampleCountFlags SampledImageDepthSampleCounts
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SampleCountFlags SampledImageStencilSampleCounts
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SampleCountFlags StorageImageSampleCounts
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxSampleMaskWords
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 TimestampComputeAndGraphics
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public float TimestampPeriod
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxClipDistances
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxCullDistances
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxCombinedClipAndCullDistances
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint DiscreteQueuePriorities
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public float[] PointSizeRange
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public float[] LineWidthRange
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public float PointSizeGranularity
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public float LineWidthGranularity
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 StrictLines
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 StandardSampleLocations
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ulong OptimalBufferCopyOffsetAlignment
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ulong OptimalBufferCopyRowPitchAlignment
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ulong NonCoherentAtomSize
 		{
 			get;
@@ -3779,10 +4377,10 @@ namespace SharpVk
     /// // Find a memory type in "memoryTypeBits" that includes all of "properties"
     /// int32_t FindProperties(uint32_t memoryTypeBits, VkMemoryPropertyFlags properties)
     /// {
-    ///     for (int32_t i = 0; i < memoryTypeCount; ++i)
+    ///     for (int32_t i = 0; i &lt; memoryTypeCount; ++i)
     ///     {
-    ///         if ((memoryTypeBits & (1 << i)) &&
-    ///             ((memoryTypes[i].propertyFlags & properties) == properties))
+    ///         if ((memoryTypeBits &amp; (1 &lt;&lt; i)) &amp;&amp;
+    ///             ((memoryTypes[i].propertyFlags &amp; properties) == properties))
     ///             return i;
     ///     }
     ///     return -1;
@@ -3790,7 +4388,7 @@ namespace SharpVk
     /// // Try to find an optimal memory type, or if it does not exist
     /// // find any compatible memory type
     /// VkMemoryRequirements memoryRequirements;
-    /// vkGetImageMemoryRequirements(device, image, &memoryRequirements);
+    /// vkGetImageMemoryRequirements(device, image, &amp;memoryRequirements);
     /// int32_t memoryType = FindProperties(memoryRequirements.memoryTypeBits, optimalProperties);
     /// if (memoryType == -1)
     ///     memoryType = FindProperties(memoryRequirements.memoryTypeBits, requiredProperties);
@@ -3807,13 +4405,17 @@ namespace SharpVk
     /// </summary>
 	public struct PhysicalDeviceMemoryProperties
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public MemoryType[] MemoryTypes
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public MemoryHeap[] MemoryHeaps
 		{
 			get;
@@ -3872,7 +4474,7 @@ namespace SharpVk
     ///     pname:vendorID as described above for PCI-based
     ///     implementations. Implementations that do not return a PCI vendor ID in
     ///     pname:vendorID must: return a valid Khronos vendor ID, obtained as
-    ///     described in the <<vulkan-styleguide,Vulkan Documentation and Extensions>>
+    ///     described in the &lt;&lt;vulkan-styleguide,Vulkan Documentation and Extensions&gt;&gt;
     ///     document in the section ``Registering a Vendor ID
     ///     with Khronos''. Khronos vendor IDs are allocated starting at 0x10000,
     ///     to distinguish them from the PCI vendor ID namespace.
@@ -3887,55 +4489,73 @@ namespace SharpVk
     /// </summary>
 	public struct PhysicalDeviceProperties
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Version ApiVersion
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Version DriverVersion
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint VendorID
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint DeviceID
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PhysicalDeviceType DeviceType
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public string DeviceName
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Guid PipelineCacheUUID
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PhysicalDeviceLimits Limits
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PhysicalDeviceSparseProperties SparseProperties
 		{
 			get;
@@ -3966,17 +4586,21 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct PipelineCacheCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PipelineCacheCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public byte[] InitialData
 		{
 			get;
@@ -4004,37 +4628,47 @@ namespace SharpVk
     /// Each element of the pname:pAttachments array is a
     /// slink:VkPipelineColorBlendAttachmentState structure specifying per-target
     /// blending state for each individual color attachment. If the
-    /// <<features-features-independentBlend,independent blending>> feature is not
+    /// &lt;&lt;features-features-independentBlend,independent blending&gt;&gt; feature is not
     /// enabled on the device, all slink:VkPipelineColorBlendAttachmentState
     /// elements in the pname:pAttachments array must: be identical.
     /// </summary>
 	public struct PipelineColorBlendStateCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PipelineColorBlendStateCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 LogicOpEnable
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public LogicOp LogicOp
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PipelineColorBlendAttachmentState[] Attachments
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public float[] BlendConstants
 		{
 			get;
@@ -4074,65 +4708,85 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct PipelineDepthStencilStateCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PipelineDepthStencilStateCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 DepthTestEnable
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 DepthWriteEnable
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public CompareOp DepthCompareOp
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 DepthBoundsTestEnable
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 StencilTestEnable
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public StencilOpState Front
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public StencilOpState Back
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public float MinDepthBounds
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public float MaxDepthBounds
 		{
 			get;
@@ -4164,17 +4818,21 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct PipelineDynamicStateCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PipelineDynamicStateCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public DynamicState[] DynamicStates
 		{
 			get;
@@ -4221,19 +4879,25 @@ namespace SharpVk
     /// </summary>
 	public struct PipelineInputAssemblyStateCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PipelineInputAssemblyStateCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PrimitiveTopology Topology
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 PrimitiveRestartEnable
 		{
 			get;
@@ -4258,23 +4922,29 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct PipelineLayoutCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PipelineLayoutCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public DescriptorSetLayout[] SetLayouts
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PushConstantRange[] PushConstantRanges
 		{
 			get;
@@ -4329,47 +4999,61 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct PipelineMultisampleStateCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PipelineMultisampleStateCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SampleCountFlags RasterizationSamples
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 SampleShadingEnable
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public float MinSampleShading
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SampleMask[] SampleMask
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 AlphaToCoverageEnable
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 AlphaToOneEnable
 		{
 			get;
@@ -4412,71 +5096,93 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct PipelineRasterizationStateCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PipelineRasterizationStateCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 DepthClampEnable
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 RasterizerDiscardEnable
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PolygonMode PolygonMode
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public CullModeFlags CullMode
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public FrontFace FrontFace
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 DepthBiasEnable
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public float DepthBiasConstantFactor
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public float DepthBiasClamp
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public float DepthBiasSlopeFactor
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public float LineWidth
 		{
 			get;
@@ -4509,11 +5215,13 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct PipelineRasterizationStateRasterizationOrder
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public RasterizationOrder RasterizationOrder
 		{
 			get;
@@ -4536,35 +5244,45 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct PipelineShaderStageCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PipelineShaderStageCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ShaderStageFlags Stage
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ShaderModule Module
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public string Name
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SpecializationInfo? SpecializationInfo
 		{
 			get;
@@ -4591,17 +5309,21 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct PipelineTessellationStateCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PipelineTessellationStateCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint PatchControlPoints
 		{
 			get;
@@ -4625,23 +5347,29 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct PipelineVertexInputStateCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PipelineVertexInputStateCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public VertexInputBindingDescription[] VertexBindingDescriptions
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public VertexInputAttributeDescription[] VertexAttributeDescriptions
 		{
 			get;
@@ -4694,23 +5422,29 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct PipelineViewportStateCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PipelineViewportStateCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Viewport[] Viewports
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Rect2D[] Scissors
 		{
 			get;
@@ -4763,29 +5497,37 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct PresentInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Semaphore[] WaitSemaphores
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Swapchain[] Swapchains
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint[] ImageIndices
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Result[] Results
 		{
 			get;
@@ -4856,29 +5598,37 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct QueryPoolCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public QueryPoolCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public QueryType QueryType
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint QueryCount
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public QueryPipelineStatisticFlags PipelineStatistics
 		{
 			get;
@@ -4923,25 +5673,33 @@ namespace SharpVk
     /// </summary>
 	public struct RenderPassBeginInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public RenderPass RenderPass
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Framebuffer Framebuffer
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Rect2D RenderArea
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ClearValue[] ClearValues
 		{
 			get;
@@ -4982,29 +5740,37 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct RenderPassCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public RenderPassCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public AttachmentDescription[] Attachments
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SubpassDescription[] Subpasses
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SubpassDependency[] Dependencies
 		{
 			get;
@@ -5091,7 +5857,7 @@ namespace SharpVk
     /// pname:maxLod = 0.25, and using pname:minFilter = ename:VK_FILTER_LINEAR or
     /// pname:minFilter = ename:VK_FILTER_NEAREST, respectively.
     /// Note that using a pname:maxLod of zero would cause
-    /// <<textures-texel-filtering,magnification>> to always be performed, and the
+    /// &lt;&lt;textures-texel-filtering,magnification&gt;&gt; to always be performed, and the
     /// pname:magFilter to always be used. This is valid, just not an exact match
     /// for OpenGL behavior. Clamping the maximum lod to 0.25 allows the
     /// latexmath:[$\lambda$] value to be non-zero and minification to be performed,
@@ -5104,7 +5870,7 @@ namespace SharpVk
     /// include::../api/enums/VkSamplerAddressMode.txt[]
     /// These values control the behavior of sampling with coordinates outside the
     /// range latexmath:[$[0,1\]$] for the respective u, v, or w coordinate as defined in the
-    /// <<textures-wrapping-operation, Wrapping Operation>> section.
+    /// &lt;&lt;textures-wrapping-operation, Wrapping Operation&gt;&gt; section.
     ///   * ename:VK_SAMPLER_ADDRESS_MODE_REPEAT indicates that the repeat wrap mode
     ///     will be used.
     ///   * ename:VK_SAMPLER_ADDRESS_MODE_MIRRORED_REPEAT indicates that the
@@ -5118,7 +5884,7 @@ namespace SharpVk
     ///     if the VK_KHR_mirror_clamp_to_edge extension is enabled.
     /// The maximum number of sampler objects which can: be simultaneously created
     /// on a device is implementation-dependent and specified by the
-    /// <<features-limits-maxSamplerAllocationCount,pname:maxSamplerAllocationCount>>
+    /// &lt;&lt;features-limits-maxSamplerAllocationCount,pname:maxSamplerAllocationCount&gt;&gt;
     /// member of the sname:VkPhysicalDeviceLimits structure. If
     /// pname:maxSamplerAllocationCount is exceeded, fname:vkCreateSampler will
     /// return ename:VK_ERROR_TOO_MANY_OBJECTS.
@@ -5129,97 +5895,129 @@ namespace SharpVk
     /// </summary>
 	public struct SamplerCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SamplerCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Filter MagFilter
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Filter MinFilter
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SamplerMipmapMode MipmapMode
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SamplerAddressMode AddressModeU
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SamplerAddressMode AddressModeV
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SamplerAddressMode AddressModeW
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public float MipLodBias
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 AnisotropyEnable
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public float MaxAnisotropy
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 CompareEnable
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public CompareOp CompareOp
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public float MinLod
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public float MaxLod
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public BorderColor BorderColor
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 UnnormalizedCoordinates
 		{
 			get;
@@ -5257,11 +6055,13 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct SemaphoreCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SemaphoreCreateFlags Flags
 		{
 			get;
@@ -5284,23 +6084,29 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct ShaderModuleCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ShaderModuleCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public UIntPtr CodeSize
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint[] Code
 		{
 			get;
@@ -5325,17 +6131,21 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct SparseBufferMemoryBindInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Buffer Buffer
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SparseMemoryBind[] Binds
 		{
 			get;
@@ -5374,41 +6184,53 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct SparseImageMemoryBind
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ImageSubresource Subresource
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Offset3D Offset
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Extent3D Extent
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public DeviceMemory Memory
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ulong MemoryOffset
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SparseMemoryBindFlags Flags
 		{
 			get;
@@ -5435,17 +6257,21 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct SparseImageMemoryBindInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Image Image
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SparseImageMemoryBind[] Binds
 		{
 			get;
@@ -5484,17 +6310,21 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct SparseImageOpaqueMemoryBindInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Image Image
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SparseMemoryBind[] Binds
 		{
 			get;
@@ -5542,9 +6372,9 @@ namespace SharpVk
     /// [latexmath]
     /// ++++++++++++++++++++++++++
     /// \begin{align*}
-    /// \mathit{metadataRegion} = [&
+    /// \mathit{metadataRegion} = [&amp;
     ///         \mathit{imageMipTailOffset} + \mathit{imageMipTailStride} \times n,\\
-    ///         &\mathit{imageMipTailOffset} +
+    ///         &amp;\mathit{imageMipTailOffset} +
     ///                 \mathit{imageMipTailStride} \times n + \mathit{imageMipTailSize})
     /// \end{align*}
     /// ++++++++++++++++++++++++++
@@ -5562,31 +6392,41 @@ namespace SharpVk
     /// </summary>
 	public struct SparseMemoryBind
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ulong ResourceOffset
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ulong Size
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public DeviceMemory Memory
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ulong MemoryOffset
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SparseMemoryBindFlags Flags
 		{
 			get;
@@ -5617,13 +6457,17 @@ namespace SharpVk
     /// </summary>
 	public struct SpecializationInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SpecializationMapEntry[] MapEntries
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public byte[] Data
 		{
 			get;
@@ -5661,29 +6505,37 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct SubmitInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Semaphore[] WaitSemaphores
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PipelineStageFlags[] WaitDestinationStageMask
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public CommandBuffer[] CommandBuffers
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Semaphore[] SignalSemaphores
 		{
 			get;
@@ -5785,43 +6637,57 @@ namespace SharpVk
     /// </summary>
 	public struct SubpassDescription
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SubpassDescriptionFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PipelineBindPoint PipelineBindPoint
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public AttachmentReference[] InputAttachments
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public AttachmentReference[] ColorAttachments
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public AttachmentReference[] ResolveAttachments
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public AttachmentReference DepthStencilAttachment
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint[] PreserveAttachments
 		{
 			get;
@@ -5891,95 +6757,125 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct SwapchainCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SwapchainCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Surface Surface
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MinImageCount
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Format ImageFormat
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ColorSpace ImageColorSpace
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Extent2D ImageExtent
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint ImageArrayLayers
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public ImageUsageFlags ImageUsage
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SharingMode ImageSharingMode
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint[] QueueFamilyIndices
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public SurfaceTransformFlags PreTransform
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public CompositeAlphaFlags CompositeAlpha
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public PresentMode PresentMode
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 Clipped
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Swapchain OldSwapchain
 		{
 			get;
@@ -6017,23 +6913,29 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct WaylandSurfaceCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public WaylandSurfaceCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public IntPtr Display
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public IntPtr Surface
 		{
 			get;
@@ -6058,23 +6960,29 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct Win32SurfaceCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public Win32SurfaceCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public IntPtr Hinstance
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public IntPtr Hwnd
 		{
 			get;
@@ -6116,43 +7024,57 @@ namespace SharpVk
     /// </summary>
 	public struct WriteDescriptorSet
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public DescriptorSet DestinationSet
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint DestinationBinding
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint DestinationArrayElement
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public DescriptorType DescriptorType
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public DescriptorImageInfo[] ImageInfo
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public DescriptorBufferInfo[] BufferInfo
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public BufferView[] TexelBufferView
 		{
 			get;
@@ -6227,23 +7149,29 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct XcbSurfaceCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public XcbSurfaceCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public IntPtr Connection
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public IntPtr Window
 		{
 			get;
@@ -6268,23 +7196,29 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public struct XlibSurfaceCreateInfo
 	{
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public XlibSurfaceCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public IntPtr Dpy
 		{
 			get;
 			set;
 		}
-
+		/// <summary>
+		/// -
+		/// </summary>
 		public IntPtr Window
 		{
 			get;

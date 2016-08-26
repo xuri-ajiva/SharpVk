@@ -26,72 +26,114 @@ using System.Text;
 
 namespace SharpVk
 {
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct SampleMask
 	{
 		private uint value;
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		public static implicit operator SampleMask(uint value)
 		{
 			return new SampleMask { value = value };
 		}
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		public static implicit operator uint(SampleMask size)
 		{
 			return size.value;
 		}
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			return this.value.ToString();
 		}
 	}
-
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct Bool32
 	{
 		private uint value;
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32(bool value)
 		{
 			this.value = value
 							? Constants.True
 							: Constants.False;
 		}
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		public static implicit operator Bool32(bool value)
 		{
 			return new Bool32(value);
 		}
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		public static implicit operator bool(Bool32 value)
 		{
 			return value.value != Constants.False;
 		}
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			return ((bool)this).ToString();
 		}
 	}
-
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct DeviceSize
 	{
 		private ulong value;
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		public static implicit operator DeviceSize(int value)
 		{
 			return new DeviceSize { value = (ulong)value };
 		}
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		public static implicit operator DeviceSize(ulong value)
 		{
 			return new DeviceSize { value = value };
 		}
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		public static implicit operator ulong(DeviceSize size)
 		{
 			return size.value;
 		}
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			return this.value.ToString();
@@ -100,6 +142,9 @@ namespace SharpVk
 
 	public partial struct ComponentMapping
 	{
+		/// <summary>
+		/// Returns a default ComponentMapping of Identity for all components.
+		/// </summary>
 		public static ComponentMapping Identity
 		{
 			get
@@ -133,8 +178,8 @@ namespace SharpVk
     /// must: be converted from the render pass format, to the format of the
     /// attachment, before they are stored or resolved at the end of a render pass
     /// instance via pname:storeOp. Conversions occur as described in
-    /// <<fundamentals-numerics,Numeric Representation and Computation>> and
-    /// <<fundamentals-fixedconv, Fixed-Point Data Conversions>>.
+    /// &lt;&lt;fundamentals-numerics,Numeric Representation and Computation&gt;&gt; and
+    /// &lt;&lt;fundamentals-fixedconv, Fixed-Point Data Conversions&gt;&gt;.
     /// [[renderpass-aliasing]]
     /// If pname:flags includes ename:VK_ATTACHMENT_DESCRIPTION_MAY_ALIAS_BIT, then
     /// the attachment is treated as if it shares physical memory with another
@@ -147,24 +192,54 @@ namespace SharpVk
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct AttachmentDescription
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public AttachmentDescriptionFlags Flags;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Format Format;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public SampleCountFlags Samples;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public AttachmentLoadOp LoadOp;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public AttachmentStoreOp StoreOp;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public AttachmentLoadOp StencilLoadOp;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public AttachmentStoreOp StencilStoreOp;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public ImageLayout InitialLayout;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public ImageLayout FinalLayout;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -187,15 +262,24 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct AttachmentReference
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint Attachment;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public ImageLayout Layout;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -211,17 +295,29 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct BufferCopy
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public DeviceSize SourceOffset;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public DeviceSize DestinationOffset;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public DeviceSize Size;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -272,18 +368,39 @@ namespace SharpVk
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct BufferImageCopy
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public DeviceSize BufferOffset;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint BufferRowLength;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint BufferImageHeight;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public ImageSubresourceLayers ImageSubresource;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Offset3D ImageOffset;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Extent3D ImageExtent;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -316,12 +433,24 @@ namespace SharpVk
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct ClearAttachment
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public ImageAspectFlags AspectMask;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint ColorAttachment;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public ClearValue ClearValue;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -338,15 +467,24 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct ClearDepthStencilValue
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public float Depth;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint Stencil;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -368,12 +506,24 @@ namespace SharpVk
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct ClearRect
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public Rect2D Rect;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint BaseArrayLayer;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint LayerCount;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -399,7 +549,7 @@ namespace SharpVk
     ///   * ename:VK_COMPONENT_SWIZZLE_ONE: the component is set to either 1 or 1.0
     ///     depending on whether the type of the image view format is integer or
     ///     floating-point respectively, as determined by the
-    ///     <<features-formats-definition,Format Definition>> section for each
+    ///     &lt;&lt;features-formats-definition,Format Definition&gt;&gt; section for each
     ///     elink:VkFormat.
     ///   * ename:VK_COMPONENT_SWIZZLE_R: the component is set to the value
     ///     of the R component of the image.
@@ -425,14 +575,29 @@ namespace SharpVk
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct ComponentMapping
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public ComponentSwizzle R;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public ComponentSwizzle G;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public ComponentSwizzle B;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public ComponentSwizzle A;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -450,15 +615,24 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct DescriptorPoolSize
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public DescriptorType Type;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint DescriptorCount;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -481,12 +655,24 @@ namespace SharpVk
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct DispatchIndirectCommand
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint X;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint Y;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint Z;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -508,10 +694,19 @@ namespace SharpVk
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct DisplayModeParameters
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public Extent2D VisibleRegion;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint RefreshRate;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -532,24 +727,54 @@ namespace SharpVk
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct DisplayPlaneCapabilities
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public DisplayPlaneAlphaFlags SupportedAlpha;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Offset2D MinSourcePosition;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Offset2D MaxSourcePosition;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Extent2D MinSourceExtent;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Extent2D MaxSourceExtent;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Offset2D MinDestinationPosition;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Offset2D MaxDestinationPosition;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Extent2D MinDestinationExtent;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Extent2D MaxDestinationExtent;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -579,16 +804,34 @@ namespace SharpVk
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct DrawIndexedIndirectCommand
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint IndexCount;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint InstanceCount;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint FirstIndex;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public int VertexOffset;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint FirstInstance;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -614,14 +857,29 @@ namespace SharpVk
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct DrawIndirectCommand
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint VertexCount;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint InstanceCount;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint FirstVertex;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint FirstInstance;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -639,15 +897,24 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct Extent2D
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint Width;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint Height;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -663,17 +930,29 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct Extent3D
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint Width;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint Height;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint Depth;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -703,10 +982,10 @@ namespace SharpVk
     /// flink:vkGetPhysicalDeviceFormatProperties::pname:format:
     /// ename:VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT::
     ///     sname:VkImageView can: be sampled from. See
-    ///     <<descriptorsets-sampledimage, sampled images>> section.
+    ///     &lt;&lt;descriptorsets-sampledimage, sampled images&gt;&gt; section.
     /// ename:VK_FORMAT_FEATURE_STORAGE_IMAGE_BIT::
     ///     sname:VkImageView can: be used as storage image. See
-    ///     <<descriptorsets-storageimage, storage images>> section.
+    ///     &lt;&lt;descriptorsets-storageimage, storage images&gt;&gt; section.
     /// ename:VK_FORMAT_FEATURE_STORAGE_IMAGE_ATOMIC_BIT::
     ///     sname:VkImageView can: be used as storage image that supports atomic
     ///     operations.
@@ -777,12 +1056,24 @@ namespace SharpVk
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct FormatProperties
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public FormatFeatureFlags LinearTilingFeatures;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public FormatFeatureFlags OptimalTilingFeatures;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public FormatFeatureFlags BufferFeatures;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -799,21 +1090,39 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct ImageCopy
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public ImageSubresourceLayers SourceSubresource;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Offset3D SourceOffset;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public ImageSubresourceLayers DestinationSubresource;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Offset3D DestinationOffset;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Extent3D Extent;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -850,16 +1159,34 @@ namespace SharpVk
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct ImageFormatProperties
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public Extent3D MaxExtent;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxMipLevels;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxArrayLayers;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public SampleCountFlags SampleCounts;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public DeviceSize MaxResourceSize;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -878,21 +1205,39 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct ImageResolve
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public ImageSubresourceLayers SourceSubresource;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Offset3D SourceOffset;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public ImageSubresourceLayers DestinationSubresource;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Offset3D DestinationOffset;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Extent3D Extent;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -911,17 +1256,29 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct ImageSubresource
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public ImageAspectFlags AspectMask;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MipLevel;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint ArrayLayer;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -938,19 +1295,34 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct ImageSubresourceLayers
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public ImageAspectFlags AspectMask;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MipLevel;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint BaseArrayLayer;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint LayerCount;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -1012,16 +1384,34 @@ namespace SharpVk
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct ImageSubresourceRange
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public ImageAspectFlags AspectMask;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint BaseMipLevel;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint LevelCount;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint BaseArrayLayer;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint LayerCount;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -1040,15 +1430,24 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct MemoryHeap
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public DeviceSize Size;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public MemoryHeapFlags Flags;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -1064,17 +1463,29 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct MemoryRequirements
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public DeviceSize Size;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public DeviceSize Alignment;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MemoryTypeBits;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -1091,15 +1502,24 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct MemoryType
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public MemoryPropertyFlags PropertyFlags;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint HeapIndex;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -1115,15 +1535,24 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct Offset2D
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public int X;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public int Y;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -1139,17 +1568,29 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct Offset3D
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public int X;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public int Y;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public int Z;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -1235,7 +1676,7 @@ namespace SharpVk
     ///     when the elink:VkIndexType is ename:VK_INDEX_TYPE_UINT32). If this
     ///     feature is supported, pname:maxDrawIndexedIndexValue must: be 2^32^-1;
     ///     otherwise it must: be no smaller than 2^24^-1. See
-    ///     <<features-limits-maxDrawIndexedIndexValue,maxDrawIndexedIndexValue>>.
+    ///     &lt;&lt;features-limits-maxDrawIndexedIndexValue,maxDrawIndexedIndexValue&gt;&gt;.
     ///   * [[features-features-imageCubeArray]] pname:imageCubeArray indicates
     ///     whether image views with a elink:VkImageViewType of
     ///     ename:VK_IMAGE_VIEW_TYPE_CUBE_ARRAY can: be created, and that the
@@ -1277,7 +1718,7 @@ namespace SharpVk
     ///     ename:VK_BLEND_FACTOR_ONE_MINUS_SRC1_COLOR,
     ///     ename:VK_BLEND_FACTOR_SRC1_ALPHA, and
     ///     ename:VK_BLEND_FACTOR_ONE_MINUS_SRC1_ALPHA enum values mustnot: be used
-    ///     as source or destination blending factors. See <<framebuffer-dsb>>.
+    ///     as source or destination blending factors. See &lt;&lt;framebuffer-dsb&gt;&gt;.
     ///   * [[features-features-logicOp]] pname:logicOp indicates whether logic
     ///     operations are supported. If this feature is not enabled, the
     ///     pname:logicOpEnable member of the
@@ -1290,7 +1731,7 @@ namespace SharpVk
     ///     must: be 0 or 1. The pname:maxDrawIndirectCount member of the
     ///     sname:VkPhysicalDeviceLimits structure must: also be 1 if this feature
     ///     is not supported. See
-    ///     <<features-limits-maxDrawIndirectCount,maxDrawIndirectCount>>.
+    ///     &lt;&lt;features-limits-maxDrawIndirectCount,maxDrawIndirectCount&gt;&gt;.
     ///   * [[features-features-drawIndirectFirstInstance]]
     ///     pname:drawIndirectFirstInstance indicates whether indirect draw calls
     ///     support the pname:firstInstance parameter. If this feature is not
@@ -1496,8 +1937,8 @@ namespace SharpVk
     ///     evaluation shaders, or if the shader modules can: declare the
     ///     code:GeometryPointSize capability for geometry shaders. An
     ///     implementation supporting this feature must: also support one or both of
-    ///     the <<features-features-tessellationShader,pname:tessellationShader>> or
-    ///     <<features-features-geometryShader,pname:geometryShader>> features.
+    ///     the &lt;&lt;features-features-tessellationShader,pname:tessellationShader&gt;&gt; or
+    ///     &lt;&lt;features-features-geometryShader,pname:geometryShader&gt;&gt; features.
     ///   * [[features-features-shaderImageGatherExtended]]
     ///     pname:shaderImageGatherExtended indicates whether the extended set of
     ///     image gather instructions are available in shader code. If this feature
@@ -1620,7 +2061,7 @@ namespace SharpVk
     ///     ename:VK_IMAGE_CREATE_SPARSE_BINDING_BIT set in the pname:flags member
     ///     of the sname:VkBufferCreateInfo and sname:VkImageCreateInfo structures,
     ///     respectively. Otherwise resource memory can: be managed as described in
-    ///     <<sparsememory-sparseresourcefeatures,Sparse Resource Features>>.
+    ///     &lt;&lt;sparsememory-sparseresourcefeatures,Sparse Resource Features&gt;&gt;.
     ///   * [[features-features-sparseResidencyBuffer]] pname:sparseResidencyBuffer
     ///     indicates whether the device can: access partially resident buffers. If
     ///     this feature is not enabled, buffers mustnot: be created with
@@ -1695,116 +2136,284 @@ namespace SharpVk
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct PhysicalDeviceFeatures
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 RobustBufferAccess;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 FullDrawIndexUint32;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 ImageCubeArray;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 IndependentBlend;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 GeometryShader;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 TessellationShader;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 SampleRateShading;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 DualSourceBlend;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 LogicOp;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 MultiDrawIndirect;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 DrawIndirectFirstInstance;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 DepthClamp;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 DepthBiasClamp;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 FillModeNonSolid;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 DepthBounds;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 WideLines;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 LargePoints;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 AlphaToOne;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 MultiViewport;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 SamplerAnisotropy;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 TextureCompressionETC2;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 TextureCompressionASTC_LDR;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 TextureCompressionBC;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 OcclusionQueryPrecise;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 PipelineStatisticsQuery;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 VertexPipelineStoresAndAtomics;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 FragmentStoresAndAtomics;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 ShaderTessellationAndGeometryPointSize;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 ShaderImageGatherExtended;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 ShaderStorageImageExtendedFormats;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 ShaderStorageImageMultisample;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 ShaderStorageImageReadWithoutFormat;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 ShaderStorageImageWriteWithoutFormat;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 ShaderUniformBufferArrayDynamicIndexing;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 ShaderSampledImageArrayDynamicIndexing;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 ShaderStorageBufferArrayDynamicIndexing;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 ShaderStorageImageArrayDynamicIndexing;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 ShaderClipDistance;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 ShaderCullDistance;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 ShaderFloat64;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 ShaderInt64;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 ShaderInt16;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 ShaderResourceResidency;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 ShaderResourceMinLod;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 SparseBinding;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 SparseResidencyBuffer;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 SparseResidencyImage2D;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 SparseResidencyImage3D;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 SparseResidency2Samples;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 SparseResidency4Samples;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 SparseResidency8Samples;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 SparseResidency16Samples;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 SparseResidencyAliased;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 VariableMultisampleRate;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 InheritedQueries;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -1873,21 +2482,39 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct PhysicalDeviceSparseProperties
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 ResidencyStandard2DBlockShape;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 ResidencyStandard2DMultisampleBlockShape;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 ResidencyStandard3DBlockShape;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 ResidencyAlignedMipSize;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 ResidencyNonResidentStrict;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -1906,27 +2533,54 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct PipelineColorBlendAttachmentState
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32 BlendEnable;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public BlendFactor SourceColorBlendFactor;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public BlendFactor DestinationColorBlendFactor;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public BlendOp ColorBlendOp;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public BlendFactor SourceAlphaBlendFactor;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public BlendFactor DestinationAlphaBlendFactor;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public BlendOp AlphaBlendOp;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public ColorComponentFlags ColorWriteMask;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -1948,17 +2602,29 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct PushConstantRange
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public ShaderStageFlags StageFlags;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint Offset;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint Size;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -1986,7 +2652,7 @@ namespace SharpVk
     ///     family support transfer operations.
     ///   * if ename:VK_QUEUE_SPARSE_BINDING_BIT is set, then the queues in this
     ///     queue family support sparse memory management operations (see
-    ///     <<sparsememory,Sparse Resources>>). If any of the sparse resource
+    ///     &lt;&lt;sparsememory,Sparse Resources&gt;&gt;). If any of the sparse resource
     ///     features are enabled, then at least one queue family must: support this
     ///     bit.
     /// If an implementation exposes any queue family that supports graphics
@@ -2003,7 +2669,7 @@ namespace SharpVk
     /// reporting the ename:VK_QUEUE_TRANSFER_BIT capability separately for that
     /// queue family is optional:.
     /// ====
-    /// For further details see <<devsandqueues-queues,Queues>>.
+    /// For further details see &lt;&lt;devsandqueues-queues,Queues&gt;&gt;.
     /// The value returned in pname:minImageTransferGranularity has a unit of
     /// compressed texel blocks for images having a block-compressed format, and a
     /// unit of texels otherwise.
@@ -2051,14 +2717,29 @@ namespace SharpVk
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct QueueFamilyProperties
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public QueueFlags QueueFlags;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint QueueCount;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint TimestampValidBits;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Extent3D MinImageTransferGranularity;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -2076,15 +2757,24 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct Rect2D
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public Offset2D Offset;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Extent2D Extent;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -2100,17 +2790,29 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct SparseImageFormatProperties
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public ImageAspectFlags AspectMask;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Extent3D ImageGranularity;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public SparseImageFormatFlags Flags;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -2127,21 +2829,39 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct SparseImageMemoryRequirements
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public SparseImageFormatProperties FormatProperties;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint ImageMipTailFirstLod;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public DeviceSize ImageMipTailSize;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public DeviceSize ImageMipTailOffset;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public DeviceSize ImageMipTailStride;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -2166,12 +2886,24 @@ namespace SharpVk
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct SpecializationMapEntry
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint ConstantID;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint Offset;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public UIntPtr Size;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -2188,25 +2920,49 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct StencilOpState
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public StencilOp FailOp;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public StencilOp PassOp;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public StencilOp DepthFailOp;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public CompareOp CompareOp;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint CompareMask;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint WriteMask;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint Reference;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -2244,30 +3000,54 @@ namespace SharpVk
     /// commands in the subpass before a call to flink:vkCmdPipelineBarrier and the
     /// second set consists of commands in the subpass following that same call as
     /// described in the
-    /// <<synchronization-pipeline-barriers-subpass-self-dependencies, Subpass
-    /// Self-dependency>> section.
+    /// &lt;&lt;synchronization-pipeline-barriers-subpass-self-dependencies, Subpass
+    /// Self-dependency&gt;&gt; section.
     /// The pname:srcStageMask, pname:dstStageMask, pname:srcAccessMask,
     /// pname:dstAccessMask, and pname:dependencyFlags parameters of the dependency
     /// are interpreted the same way as for other dependencies, as described in
-    /// <<synchronization, Synchronization and Cache Control>>.
+    /// &lt;&lt;synchronization, Synchronization and Cache Control&gt;&gt;.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct SubpassDependency
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint SourceSubpass;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint DestinationSubpass;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public PipelineStageFlags SourceStageMask;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public PipelineStageFlags DestinationStageMask;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public AccessFlags SourceAccessMask;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public AccessFlags DestinationAccessMask;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public DependencyFlags DependencyFlags;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -2328,16 +3108,34 @@ namespace SharpVk
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct SubresourceLayout
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public DeviceSize Offset;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public DeviceSize Size;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public DeviceSize RowPitch;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public DeviceSize ArrayPitch;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public DeviceSize DepthPitch;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -2361,26 +3159,59 @@ namespace SharpVk
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct SurfaceCapabilities
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MinImageCount;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxImageCount;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Extent2D CurrentExtent;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Extent2D MinImageExtent;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Extent2D MaxImageExtent;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint MaxImageArrayLayers;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public SurfaceTransformFlags SupportedTransforms;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public SurfaceTransformFlags CurrentTransform;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public CompositeAlphaFlags SupportedCompositeAlpha;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public ImageUsageFlags SupportedUsageFlags;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -2409,10 +3240,19 @@ namespace SharpVk
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct SurfaceFormat
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public Format Format;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public ColorSpace ColorSpace;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -2428,19 +3268,34 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct VertexInputAttributeDescription
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint Location;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint Binding;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public Format Format;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint Offset;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -2458,17 +3313,29 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct VertexInputBindingDescription
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint Binding;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public uint Stride;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public VertexInputRate InputRate;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();
@@ -2498,36 +3365,57 @@ namespace SharpVk
     /// [latexmath]
     /// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     /// \begin{align*}
-    ///     o_x & = x + \frac{width}{2} \\
-    ///     o_y & = y + \frac{height}{2} \\
-    ///     o_z & = minDepth \\
-    ///     p_x & = width \\
-    ///     p_y & = height \\
-    ///     p_z & = maxDepth - minDepth.
+    ///     o_x &amp; = x + \frac{width}{2} \\
+    ///     o_y &amp; = y + \frac{height}{2} \\
+    ///     o_z &amp; = minDepth \\
+    ///     p_x &amp; = width \\
+    ///     p_y &amp; = height \\
+    ///     p_z &amp; = maxDepth - minDepth.
     /// \end{align*}
     /// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    /// The width and height of the <<features-limits-maxViewportDimensions,
-    /// implementation-dependent maximum viewport dimensions>> must: be greater
+    /// The width and height of the &lt;&lt;features-limits-maxViewportDimensions,
+    /// implementation-dependent maximum viewport dimensions&gt;&gt; must: be greater
     /// than or equal to the width and height of the largest image which can: be
     /// created and attached to a framebuffer.
     /// The floating-point viewport bounds are represented with an
-    /// <<features-limits-viewportSubPixelBits,implementation-dependent precision>>.
+    /// &lt;&lt;features-limits-viewportSubPixelBits,implementation-dependent precision&gt;&gt;.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
 	public partial struct Viewport
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public float X;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public float Y;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public float Width;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public float Height;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public float MinDepth;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public float MaxDepth;
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();

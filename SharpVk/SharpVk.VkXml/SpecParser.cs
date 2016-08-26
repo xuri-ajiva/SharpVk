@@ -405,7 +405,7 @@ namespace SharpVk.VkXml
 
                 descriptionLines = descriptionLines.Take(descriptionLines.Count() - 6).Where(x => !string.IsNullOrWhiteSpace(x));
 
-                handleType.Comment = string.Join("\n", descriptionLines);
+                handleType.Comment = NormaliseComment(string.Join("\n", descriptionLines));
             }
 
             foreach (var structType in filteredSpec.Types.Values.Where(x => x.Category == TypeCategory.@struct && x.Extension == null))
@@ -424,7 +424,7 @@ namespace SharpVk.VkXml
 
                 descriptionLines = descriptionLines.Take(descriptionLines.Count() - 3).Where(x => !string.IsNullOrWhiteSpace(x));
 
-                structType.Comment = string.Join("\n", descriptionLines);
+                structType.Comment = NormaliseComment(string.Join("\n", descriptionLines));
             }
 
             foreach (var command in filteredSpec.Commands.Values.Where(x => x.Extension == null))
@@ -443,10 +443,24 @@ namespace SharpVk.VkXml
 
                 descriptionLines = descriptionLines.Take(descriptionLines.Count() - 3).Where(x => !string.IsNullOrWhiteSpace(x));
 
-                command.Comment = string.Join("\n", descriptionLines);
+                command.Comment = NormaliseComment(string.Join("\n", descriptionLines));
             }
 
             return filteredSpec;
+        }
+
+        private string NormaliseComment(string comment)
+        {
+            if (string.IsNullOrWhiteSpace(comment))
+            {
+                return "-";
+            }
+
+            comment = comment.Replace("&", "&amp;");
+            comment = comment.Replace("<", "&lt;");
+            comment = comment.Replace(">", "&gt;");
+
+            return comment;
         }
 
         private static IEnumerable<string> GetEnumFieldNameParts(string[] nameParts, string fieldName)

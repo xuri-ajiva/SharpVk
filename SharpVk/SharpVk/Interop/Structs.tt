@@ -26,6 +26,9 @@ foreach(var structType in types.InteropStructs)
 {
 #>
 
+	/// <summary>
+	/// -
+	/// </summary>
     [StructLayout(LayoutKind.Sequential)]
 	public unsafe struct <#=structType.Name#>
 	{
@@ -33,6 +36,9 @@ foreach(var structType in types.InteropStructs)
 	foreach(var member in structType.Members)
 	{
 #>
+		/// <summary>
+		/// -
+		/// </summary>
 		<#=member.IsPrivate ? "private" : "public" #> <#=member.TypeName#> <#=member.Name#>;
 <#
 	}

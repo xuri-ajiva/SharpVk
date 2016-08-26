@@ -25,6 +25,9 @@ namespace SharpVk.Interop
 	foreach(var handle in types.Handles)
 	{
 #>
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct <#=handle.Name#>
 	{
 <#
@@ -32,7 +35,10 @@ namespace SharpVk.Interop
 		{
 #>
 		internal IntPtr handle;
-
+		
+		/// <summary>
+		/// Returns a value representing a null <#=handle.Name#> handle.
+		/// </summary>
 		public static <#=handle.Name#> Null
 		{
 			get
@@ -49,7 +55,10 @@ namespace SharpVk.Interop
 		{
 #>
 		internal ulong handle;
-
+		
+		/// <summary>
+		/// Returns a value representing a null <#=handle.Name#> handle.
+		/// </summary>
 		public static <#=handle.Name#> Null
 		{
 			get

@@ -16,8 +16,14 @@ using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
+	/// <summary>
+	/// A container type for all interop methods to the Vulkan API commands.
+	/// </summary>
 	public static unsafe class Commands
 	{
+		/// <summary>
+		/// The filename of the Vulkan DLL to which to bind interop calls.
+		/// </summary>
 		public const string VulkanDll = "vulkan-1.dll";
 
 <#
@@ -29,6 +35,9 @@ var types = generator.Generate(parser.Run());
 foreach(var command in types.Commands)
 {
 #>
+		/// <summary>
+		/// -
+		/// </summary>
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
 		public static extern <#=command.ReturnTypeName#> <#=command.Name#>(<#
 

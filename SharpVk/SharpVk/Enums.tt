@@ -24,6 +24,11 @@ namespace SharpVk
 <#
 foreach(var enumeration in types.Enumerations)
 {
+#>
+
+    /// <summary>
+    /// -
+    /// </summary><#
 	if(enumeration.IsFlags)
     {
 #>
@@ -46,7 +51,10 @@ foreach(var enumeration in types.Enumerations)
 #>
 <#
         }
-#>		<#=field.Name#> = <#=field.Value#>,<#
+#>	    /// <summary>
+	    /// -
+	    /// </summary>
+		<#=field.Name#> = <#=field.Value#>,<#
 	}
 #>
 	}

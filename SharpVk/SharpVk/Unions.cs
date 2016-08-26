@@ -25,12 +25,21 @@ using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
+	/// <summary>
+	/// -
+	/// </summary>
 	[StructLayout(LayoutKind.Explicit)]
 	public struct ClearColorValue
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		[FieldOffset(0)]
 		public vec4 Float32;
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
         public static implicit operator ClearColorValue(vec4 value)
         {
             return new ClearColorValue
@@ -39,9 +48,15 @@ namespace SharpVk
             };
         }
 
+		/// <summary>
+		/// -
+		/// </summary>
 		[FieldOffset(0)]
 		public ivec4 Int32;
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
         public static implicit operator ClearColorValue(ivec4 value)
         {
             return new ClearColorValue
@@ -50,9 +65,15 @@ namespace SharpVk
             };
         }
 
+		/// <summary>
+		/// -
+		/// </summary>
 		[FieldOffset(0)]
 		public uvec4 Uint32;
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
         public static implicit operator ClearColorValue(uvec4 value)
         {
             return new ClearColorValue
@@ -63,12 +84,21 @@ namespace SharpVk
 
 	}
 
+	/// <summary>
+	/// -
+	/// </summary>
 	[StructLayout(LayoutKind.Explicit)]
 	public struct ClearValue
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		[FieldOffset(0)]
 		public ClearColorValue Color;
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
         public static implicit operator ClearValue(ClearColorValue value)
         {
             return new ClearValue
@@ -77,9 +107,15 @@ namespace SharpVk
             };
         }
 
+		/// <summary>
+		/// -
+		/// </summary>
 		[FieldOffset(0)]
 		public ClearDepthStencilValue DepthStencil;
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
         public static implicit operator ClearValue(ClearDepthStencilValue value)
         {
             return new ClearValue

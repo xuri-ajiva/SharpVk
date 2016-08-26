@@ -23,72 +23,114 @@ using System.Text;
 
 namespace SharpVk
 {
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct SampleMask
 	{
 		private uint value;
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		public static implicit operator SampleMask(uint value)
 		{
 			return new SampleMask { value = value };
 		}
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		public static implicit operator uint(SampleMask size)
 		{
 			return size.value;
 		}
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			return this.value.ToString();
 		}
 	}
-
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct Bool32
 	{
 		private uint value;
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		public Bool32(bool value)
 		{
 			this.value = value
 							? Constants.True
 							: Constants.False;
 		}
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		public static implicit operator Bool32(bool value)
 		{
 			return new Bool32(value);
 		}
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		public static implicit operator bool(Bool32 value)
 		{
 			return value.value != Constants.False;
 		}
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			return ((bool)this).ToString();
 		}
 	}
-
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct DeviceSize
 	{
 		private ulong value;
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		public static implicit operator DeviceSize(int value)
 		{
 			return new DeviceSize { value = (ulong)value };
 		}
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		public static implicit operator DeviceSize(ulong value)
 		{
 			return new DeviceSize { value = value };
 		}
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		public static implicit operator ulong(DeviceSize size)
 		{
 			return size.value;
 		}
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			return this.value.ToString();
@@ -97,6 +139,9 @@ namespace SharpVk
 
 	public partial struct ComponentMapping
 	{
+		/// <summary>
+		/// Returns a default ComponentMapping of Identity for all components.
+		/// </summary>
 		public static ComponentMapping Identity
 		{
 			get
@@ -133,11 +178,17 @@ namespace SharpVk
 		foreach(var member in structType.Members)
         {
 #>
+		/// <summary>
+		/// -
+		/// </summary>
 		public <#=member.TypeName#> <#=member.Name#>;
 
 <#
         }
 #>
+		/// <summary>
+		/// -
+		/// </summary>
 		public override string ToString()
 		{
 			var builder = new StringBuilder();

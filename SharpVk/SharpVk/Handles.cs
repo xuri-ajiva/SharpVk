@@ -53,7 +53,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void BindMemory(DeviceMemory memory, DeviceSize memoryOffset)
 		{
@@ -75,7 +75,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public MemoryRequirements GetMemoryRequirements()
 		{
@@ -94,7 +94,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void Destroy()
 		{
@@ -115,6 +115,10 @@ namespace SharpVk
 			return this.handle;
 		}
 
+		/// <summary>
+		/// Releases the unmanaged resources associated with this instance and
+		/// destroys the underlying Vulkan handle.
+		/// </summary>
 		public void Dispose()
 		{
 			this.Destroy();
@@ -153,7 +157,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void Destroy()
 		{
@@ -174,6 +178,10 @@ namespace SharpVk
 			return this.handle;
 		}
 
+		/// <summary>
+		/// Releases the unmanaged resources associated with this instance and
+		/// destroys the underlying Vulkan handle.
+		/// </summary>
 		public void Dispose()
 		{
 			this.Destroy();
@@ -210,7 +218,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void Begin(CommandBufferBeginInfo beginInfo)
 		{
@@ -257,7 +265,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void Reset(CommandBufferResetFlags flags)
 		{
@@ -344,7 +352,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void SetLineWidth(float lineWidth)
 		{
@@ -415,13 +423,13 @@ namespace SharpVk
 		/// o =
 		/// \begin{cases}
 		///     m \times depthBiasSlopeFactor +
-		///          r \times depthBiasConstantFactor  & depthBiasClamp = 0\ or\ NaN \\
+		///          r \times depthBiasConstantFactor  &amp; depthBiasClamp = 0\ or\ NaN \\
 		///     \min(m \times depthBiasSlopeFactor +
 		///          r \times depthBiasConstantFactor,
-		///          depthBiasClamp)                   & depthBiasClamp > 0  \\
+		///          depthBiasClamp)                   &amp; depthBiasClamp &gt; 0  \\
 		///     \max(m \times depthBiasSlopeFactor +
 		///          r \times depthBiasConstantFactor,
-		///          depthBiasClamp)                   & depthBiasClamp < 0  \\
+		///          depthBiasClamp)                   &amp; depthBiasClamp &lt; 0  \\
 		/// \end{cases}
 		/// \end{equation}
 		/// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -447,7 +455,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void SetBlendConstants(float blendConstants)
 		{
@@ -462,7 +470,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void SetDepthBounds(float minDepthBounds, float maxDepthBounds)
 		{
@@ -477,7 +485,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void SetStencilCompareMask(StencilFaceFlags faceMask, uint compareMask)
 		{
@@ -492,7 +500,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void SetStencilWriteMask(StencilFaceFlags faceMask, uint writeMask)
 		{
@@ -507,7 +515,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void SetStencilReference(StencilFaceFlags faceMask, uint reference)
 		{
@@ -531,7 +539,7 @@ namespace SharpVk
 		/// Once bound, a descriptor set affects rendering of subsequent graphics or
 		/// compute commands in the command buffer until a different set is bound to the
 		/// same set number, or else until the set is disturbed as described in
-		/// <<descriptorsets-compatibility, Pipeline Layout Compatibility>>.
+		/// &lt;&lt;descriptorsets-compatibility, Pipeline Layout Compatibility&gt;&gt;.
 		/// A compatible descriptor set must: be bound for all set numbers that any
 		/// shaders in a pipeline access, at the time that a draw or dispatch command is
 		/// recorded to execute using that pipeline. However, if none of the shaders in
@@ -554,8 +562,8 @@ namespace SharpVk
 		/// Each of the pname:pDescriptorSets must: be compatible with the pipeline
 		/// layout specified by pname:layout. The layout used to program the bindings
 		/// must: also be compatible with the pipeline used in subsequent graphics or
-		/// compute commands, as defined in the <<descriptorsets-compatibility, Pipeline
-		/// Layout Compatibility>> section.
+		/// compute commands, as defined in the &lt;&lt;descriptorsets-compatibility, Pipeline
+		/// Layout Compatibility&gt;&gt; section.
 		/// The descriptor set contents bound by a call to fname:vkCmdBindDescriptorSets
 		/// may: be consumed during host execution of the command, or during
 		/// shader execution of the resulting draws, or any time in between. Thus, the
@@ -594,7 +602,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void BindIndexBuffer(Buffer buffer, DeviceSize offset, IndexType indexType)
 		{
@@ -887,24 +895,24 @@ namespace SharpVk
 		///     * For each destination texel, the integer coordinate of that texel is
 		///       converted to an unnormalized texture coordinate, using the effective
 		///       inverse of the equations described in
-		///       <<textures-unnormalized-to-integer, unnormalized to integer
-		///       conversion>>:
+		///       &lt;&lt;textures-unnormalized-to-integer, unnormalized to integer
+		///       conversion&gt;&gt;:
 		/// [latexmath]
 		/// ++++++++++++++++++++++++
 		/// \begin{align*}
-		/// u_{base} & = i + \frac{1}{2}\\
-		/// v_{base} & = j + \frac{1}{2}\\
-		/// w_{base} & = k + \frac{1}{2}\\
+		/// u_{base} &amp; = i + \frac{1}{2}\\
+		/// v_{base} &amp; = j + \frac{1}{2}\\
+		/// w_{base} &amp; = k + \frac{1}{2}\\
 		/// \end{align*}
 		/// ++++++++++++++++++++++++
 		///     * These base coordinates are then offset by the first destination offset:
 		/// [latexmath]
 		/// ++++++++++++++++++++++++
 		/// \begin{align*}
-		/// u_{offset} & = u_{base} - x_{dst_0}\\
-		/// v_{offset} & = v_{base} - y_{dst_0}\\
-		/// w_{offset} & = w_{base} - z_{dst_0}\\
-		/// a_{offset} & = a - baseArrayCount_{dst}
+		/// u_{offset} &amp; = u_{base} - x_{dst_0}\\
+		/// v_{offset} &amp; = v_{base} - y_{dst_0}\\
+		/// w_{offset} &amp; = w_{base} - z_{dst_0}\\
+		/// a_{offset} &amp; = a - baseArrayCount_{dst}
 		/// \end{align*}
 		/// ++++++++++++++++++++++++
 		///     * The scale is determined from the source and destination regions, and
@@ -912,13 +920,13 @@ namespace SharpVk
 		/// [latexmath]
 		/// ++++++++++++++++++++++++
 		/// \begin{align*}
-		/// scale_u & = \frac{x_{src_1} - x_{src_0}}{x_{dst_1} - x_{dst_0}}\\
-		/// scale_v & = \frac{y_{src_1} - y_{src_0}}{y_{dst_1} - y_{dst_0}}\\
-		/// scale_w & = \frac{z_{src_1} - z_{src_0}}{z_{dst_1} - z_{dst_0}}\\
+		/// scale_u &amp; = \frac{x_{src_1} - x_{src_0}}{x_{dst_1} - x_{dst_0}}\\
+		/// scale_v &amp; = \frac{y_{src_1} - y_{src_0}}{y_{dst_1} - y_{dst_0}}\\
+		/// scale_w &amp; = \frac{z_{src_1} - z_{src_0}}{z_{dst_1} - z_{dst_0}}\\
 		/// \\
-		/// u_{scaled} & = u_{offset} * scale_u\\
-		/// v_{scaled} & = v_{offset} * scale_v\\
-		/// w_{scaled} & = w_{offset} * scale_w
+		/// u_{scaled} &amp; = u_{offset} * scale_u\\
+		/// v_{scaled} &amp; = v_{offset} * scale_v\\
+		/// w_{scaled} &amp; = w_{offset} * scale_w
 		/// \end{align*}
 		/// ++++++++++++++++++++++++
 		///     * Finally the source offset is added to the scaled coordinates, to
@@ -927,15 +935,15 @@ namespace SharpVk
 		/// [latexmath]
 		/// ++++++++++++++++++++++++
 		/// \begin{align*}
-		/// u & = u_{scaled} + x_{src_0}\\
-		/// v & = v_{scaled} + y_{src_0}\\
-		/// w & = w_{scaled} + z_{src_0}\\
-		/// q & = mipLevel\\
-		/// a & = a_{offset} + baseArrayCount_{src}
+		/// u &amp; = u_{scaled} + x_{src_0}\\
+		/// v &amp; = v_{scaled} + y_{src_0}\\
+		/// w &amp; = w_{scaled} + z_{src_0}\\
+		/// q &amp; = mipLevel\\
+		/// a &amp; = a_{offset} + baseArrayCount_{src}
 		/// \end{align*}
 		/// ++++++++++++++++++++++++
 		/// These coordinates are used to sample from the source image, as described in
-		/// <<textures, Image Operations chapter>>, with the filter mode equal to that
+		/// &lt;&lt;textures, Image Operations chapter&gt;&gt;, with the filter mode equal to that
 		/// of pname:filter, a mipmap mode of ename:VK_SAMPLER_MIPMAP_MODE_NEAREST and
 		/// an address mode of ename:VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_EDGE.
 		/// Implementations must: clamp at the edge of the source image, and may:
@@ -1048,7 +1056,7 @@ namespace SharpVk
 
 		/// <summary>
 		/// pname:dataSize must: be less than or equal to 65536 bytes. For larger
-		/// updates, applications can: use buffer to buffer <<copies-buffers,copies>>.
+		/// updates, applications can: use buffer to buffer &lt;&lt;copies-buffers,copies&gt;&gt;.
 		/// The source data is copied from the user pointer to the command buffer when
 		/// the command is called.
 		/// fname:vkCmdUpdateBuffer is only allowed outside of a render pass. This
@@ -1109,7 +1117,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void ClearDepthStencilImage(Image image, ImageLayout imageLayout, ClearDepthStencilValue depthStencil, ImageSubresourceRange[] ranges)
 		{
@@ -1180,7 +1188,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void SetEvent(Event @event, PipelineStageFlags stageMask)
 		{
@@ -1196,7 +1204,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void ResetEvent(Event @event, PipelineStageFlags stageMask)
 		{
@@ -1215,7 +1223,7 @@ namespace SharpVk
 		/// fname:vkCmdWaitEvents waits for events set by either fname:vkSetEvent or
 		/// fname:vkCmdSetEvent to become signaled. Logically, it has three phases:
 		///   . Wait at the pipeline stages specified by pname:dstStageMask (see
-		///     <<synchronization-pipeline-stage-flags>>) until the pname:eventCount
+		///     &lt;&lt;synchronization-pipeline-stage-flags&gt;&gt;) until the pname:eventCount
 		///     event objects specified by pname:pEvents become signaled.
 		///     Implementations may: wait for each event object to become signaled
 		///     in sequence (starting with the first event object in pname:pEvents,
@@ -1223,7 +1231,7 @@ namespace SharpVk
 		///     become signaled at the same time.
 		///   . Execute the memory barriers specified by pname:pMemoryBarriers,
 		///     pname:pBufferMemoryBarriers and pname:pImageMemoryBarriers (see
-		///     <<synchronization-memory-barriers>>).
+		///     &lt;&lt;synchronization-memory-barriers&gt;&gt;).
 		///   . Resume execution of pipeline stages specified by pname:dstStageMask
 		/// Implementations may: not execute commands in a pipelined manner, so
 		/// fname:vkCmdWaitEvents may: not observe the results of a subsequent
@@ -1309,7 +1317,7 @@ namespace SharpVk
 		/// pname:pImageMemoryBarriers arrays specifies two halves of a memory
 		/// dependency, as defined above. Specifics of each type of memory barrier and
 		/// the memory access types are defined further in
-		/// <<synchronization-memory-barriers,Memory Barriers>>.
+		/// &lt;&lt;synchronization-memory-barriers,Memory Barriers&gt;&gt;.
 		/// If fname:vkCmdPipelineBarrier is called outside a render pass instance, then
 		/// the first set of commands is all prior commands submitted to the queue and
 		/// recorded in the command buffer and the second set of commands is all
@@ -1374,7 +1382,7 @@ namespace SharpVk
 		/// If the pname:queryType of the pool is ename:VK_QUERY_TYPE_OCCLUSION and
 		/// pname:flags contains ename:VK_QUERY_CONTROL_PRECISE_BIT, an implementation
 		/// must: return a result that matches the actual number of samples passed. This
-		/// is described in more detail in <<queries-occlusion,Occlusion Queries>>.
+		/// is described in more detail in &lt;&lt;queries-occlusion,Occlusion Queries&gt;&gt;.
 		/// [[queries-operation-active]]
 		/// After beginning a query, that query is considered _active_ within the command
 		/// buffer it was called in until that same query is ended. Queries active in a
@@ -1527,7 +1535,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void PushConstants(PipelineLayout layout, ShaderStageFlags stageFlags, uint offset, byte[] values)
 		{
@@ -1769,7 +1777,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void FreeCommandBuffers(CommandBuffer[] commandBuffers)
 		{
@@ -1801,6 +1809,10 @@ namespace SharpVk
 			return this.handle;
 		}
 
+		/// <summary>
+		/// Releases the unmanaged resources associated with this instance and
+		/// destroys the underlying Vulkan handle.
+		/// </summary>
 		public void Dispose()
 		{
 			this.Destroy();
@@ -1854,6 +1866,10 @@ namespace SharpVk
 			return this.handle;
 		}
 
+		/// <summary>
+		/// Releases the unmanaged resources associated with this instance and
+		/// destroys the underlying Vulkan handle.
+		/// </summary>
 		public void Dispose()
 		{
 			this.Destroy();
@@ -1971,6 +1987,10 @@ namespace SharpVk
 			return this.handle;
 		}
 
+		/// <summary>
+		/// Releases the unmanaged resources associated with this instance and
+		/// destroys the underlying Vulkan handle.
+		/// </summary>
 		public void Dispose()
 		{
 			this.Destroy();
@@ -1978,7 +1998,7 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public class DescriptorSet
 	{
@@ -2037,7 +2057,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void Destroy()
 		{
@@ -2058,6 +2078,10 @@ namespace SharpVk
 			return this.handle;
 		}
 
+		/// <summary>
+		/// Releases the unmanaged resources associated with this instance and
+		/// destroys the underlying Vulkan handle.
+		/// </summary>
 		public void Dispose()
 		{
 			this.Destroy();
@@ -2065,7 +2089,7 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public class Device
 		: IDisposable
@@ -2156,7 +2180,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public Queue GetQueue(uint queueFamilyIndex, uint queueIndex)
 		{
@@ -2209,7 +2233,7 @@ namespace SharpVk
 		/// When memory is allocated, its contents are undefined.
 		/// There is an implementation-dependent maximum number of memory allocations
 		/// which can: be simultaneously created on a device. This is specified by the
-		/// <<features-limits-maxMemoryAllocationCount,pname:maxMemoryAllocationCount>>
+		/// &lt;&lt;features-limits-maxMemoryAllocationCount,pname:maxMemoryAllocationCount&gt;&gt;
 		/// member of the sname:VkPhysicalDeviceLimits structure. If
 		/// pname:maxMemoryAllocationCount is exceeded, fname:vkAllocateMemory will
 		/// return ename:VK_ERROR_TOO_MANY_OBJECTS.
@@ -2263,7 +2287,7 @@ namespace SharpVk
 		/// destroyed. Once memory is released, it is returned to the heap from which it
 		/// was allocated.
 		/// How memory objects are bound to Images and Buffers is described in detail in
-		/// the <<resources-association, Resource Memory Association>> section.
+		/// the &lt;&lt;resources-association, Resource Memory Association&gt;&gt; section.
 		/// If a memory object is mapped at the time it is freed, it is implicitly
 		/// unmapped.
 		/// </summary>
@@ -2359,7 +2383,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public Fence CreateFence(FenceCreateInfo createInfo)
 		{
@@ -2453,7 +2477,7 @@ namespace SharpVk
 		/// ename:VK_MEMORY_PROPERTY_HOST_COHERENT_BIT set, then
 		/// fname:vkInvalidateMappedMemoryRanges must: be called after the fence is
 		/// signaled in order to ensure the writes are visible to the host, as described
-		/// in <<memory-device-hostaccess,Host Access to Device Memory Objects>>.
+		/// in &lt;&lt;memory-device-hostaccess,Host Access to Device Memory Objects&gt;&gt;.
 		/// </summary>
 		public void WaitForFences(Fence[] fences, Bool32 waitAll, ulong timeout)
 		{
@@ -2487,7 +2511,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public Semaphore CreateSemaphore(SemaphoreCreateInfo createInfo)
 		{
@@ -2549,7 +2573,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public QueryPool CreateQueryPool(QueryPoolCreateInfo createInfo)
 		{
@@ -2580,7 +2604,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public Buffer CreateBuffer(BufferCreateInfo createInfo)
 		{
@@ -2611,7 +2635,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public BufferView CreateBufferView(BufferViewCreateInfo createInfo)
 		{
@@ -2642,7 +2666,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public Image CreateImage(ImageCreateInfo createInfo)
 		{
@@ -2706,8 +2730,8 @@ namespace SharpVk
 
 		/// <summary>
 		/// Once a shader module has been created, any entry points it contains can: be
-		/// used in pipeline shader stages as described in <<pipelines-compute,Compute
-		/// Pipelines>> and <<pipelines-graphics,Graphics Pipelines>>.
+		/// used in pipeline shader stages as described in &lt;&lt;pipelines-compute,Compute
+		/// Pipelines&gt;&gt; and &lt;&lt;pipelines-graphics,Graphics Pipelines&gt;&gt;.
 		/// </summary>
 		public ShaderModule CreateShaderModule(ShaderModuleCreateInfo createInfo)
 		{
@@ -2842,7 +2866,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public Pipeline[] CreateComputePipelines(PipelineCache pipelineCache, ComputePipelineCreateInfo[] createInfos)
 		{
@@ -2889,7 +2913,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public PipelineLayout CreatePipelineLayout(PipelineLayoutCreateInfo createInfo)
 		{
@@ -2920,7 +2944,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public Sampler CreateSampler(SamplerCreateInfo createInfo)
 		{
@@ -2951,7 +2975,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public DescriptorSetLayout CreateDescriptorSetLayout(DescriptorSetLayoutCreateInfo createInfo)
 		{
@@ -2983,7 +3007,7 @@ namespace SharpVk
 
 		/// <summary>
 		/// pname:pAllocator controls host memory allocation as described in the
-		/// <<memory-allocation, Memory Allocation>> chapter.
+		/// &lt;&lt;memory-allocation, Memory Allocation&gt;&gt; chapter.
 		/// The created descriptor pool is returned in pname:pDescriptorPool.
 		/// </summary>
 		public DescriptorPool CreateDescriptorPool(DescriptorPoolCreateInfo createInfo)
@@ -3128,7 +3152,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public Framebuffer CreateFramebuffer(FramebufferCreateInfo createInfo)
 		{
@@ -3159,7 +3183,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public RenderPass CreateRenderPass(RenderPassCreateInfo createInfo)
 		{
@@ -3190,7 +3214,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public CommandPool CreateCommandPool(CommandPoolCreateInfo createInfo)
 		{
@@ -3221,7 +3245,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public CommandBuffer[] AllocateCommandBuffers(CommandBufferAllocateInfo allocateInfo)
 		{
@@ -3381,6 +3405,10 @@ namespace SharpVk
 			return this.handle;
 		}
 
+		/// <summary>
+		/// Releases the unmanaged resources associated with this instance and
+		/// destroys the underlying Vulkan handle.
+		/// </summary>
 		public void Dispose()
 		{
 			this.Destroy();
@@ -3422,7 +3450,7 @@ namespace SharpVk
 		/// range has completed before the host reads from or writes to that
 		/// range, and that any previously submitted command that reads from that
 		/// range has completed before the host writes to that region (see
-		/// <<synchronization-fences-devicewrites, here>>
+		/// &lt;&lt;synchronization-fences-devicewrites, here&gt;&gt;
 		/// for details on fulfilling such a guarantee). If the device memory was
 		/// allocated without the ename:VK_MEMORY_PROPERTY_HOST_COHERENT_BIT set,
 		/// these guarantees must: be made for an extended range: the application
@@ -3438,7 +3466,7 @@ namespace SharpVk
 		/// ====
 		/// It is important for the application developer to become meticulously
 		/// familiar with all of the mechanisms described in the chapter on
-		/// <<synchronization, Synchronization and Cache Control>> as they are crucial
+		/// &lt;&lt;synchronization, Synchronization and Cache Control&gt;&gt; as they are crucial
 		/// to maintaining memory access ordering.
 		/// ====
 		/// </summary>
@@ -3463,7 +3491,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void UnmapMemory()
 		{
@@ -3623,7 +3651,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void Destroy()
 		{
@@ -3672,7 +3700,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void Set()
 		{
@@ -3693,7 +3721,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void Reset()
 		{
@@ -3718,6 +3746,10 @@ namespace SharpVk
 			return this.handle;
 		}
 
+		/// <summary>
+		/// Releases the unmanaged resources associated with this instance and
+		/// destroys the underlying Vulkan handle.
+		/// </summary>
 		public void Dispose()
 		{
 			this.Destroy();
@@ -3754,7 +3786,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void Destroy()
 		{
@@ -3799,6 +3831,10 @@ namespace SharpVk
 			return this.handle;
 		}
 
+		/// <summary>
+		/// Releases the unmanaged resources associated with this instance and
+		/// destroys the underlying Vulkan handle.
+		/// </summary>
 		public void Dispose()
 		{
 			this.Destroy();
@@ -3832,7 +3868,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void Destroy()
 		{
@@ -3853,6 +3889,10 @@ namespace SharpVk
 			return this.handle;
 		}
 
+		/// <summary>
+		/// Releases the unmanaged resources associated with this instance and
+		/// destroys the underlying Vulkan handle.
+		/// </summary>
 		public void Dispose()
 		{
 			this.Destroy();
@@ -3888,7 +3928,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void BindMemory(DeviceMemory memory, DeviceSize memoryOffset)
 		{
@@ -3910,7 +3950,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public MemoryRequirements GetMemoryRequirements()
 		{
@@ -3980,7 +4020,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void Destroy()
 		{
@@ -4021,6 +4061,10 @@ namespace SharpVk
 			return this.handle;
 		}
 
+		/// <summary>
+		/// Releases the unmanaged resources associated with this instance and
+		/// destroys the underlying Vulkan handle.
+		/// </summary>
 		public void Dispose()
 		{
 			this.Destroy();
@@ -4057,7 +4101,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void Destroy()
 		{
@@ -4078,6 +4122,10 @@ namespace SharpVk
 			return this.handle;
 		}
 
+		/// <summary>
+		/// Releases the unmanaged resources associated with this instance and
+		/// destroys the underlying Vulkan handle.
+		/// </summary>
 		public void Dispose()
 		{
 			this.Destroy();
@@ -4150,7 +4198,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void Destroy()
 		{
@@ -4656,6 +4704,10 @@ namespace SharpVk
 			return this.handle;
 		}
 
+		/// <summary>
+		/// Releases the unmanaged resources associated with this instance and
+		/// destroys the underlying Vulkan handle.
+		/// </summary>
 		public void Dispose()
 		{
 			this.Destroy();
@@ -4691,7 +4743,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public PhysicalDeviceFeatures GetFeatures()
 		{
@@ -4710,7 +4762,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public FormatProperties GetFormatProperties(Format format)
 		{
@@ -4769,7 +4821,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public PhysicalDeviceProperties GetProperties()
 		{
@@ -4827,7 +4879,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public PhysicalDeviceMemoryProperties GetMemoryProperties()
 		{
@@ -5446,7 +5498,7 @@ namespace SharpVk
 	}
 
     /// <summary>
-    /// 
+    /// -
     /// </summary>
 	public class Pipeline
 		: IDisposable
@@ -5471,7 +5523,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void Destroy()
 		{
@@ -5492,6 +5544,10 @@ namespace SharpVk
 			return this.handle;
 		}
 
+		/// <summary>
+		/// Releases the unmanaged resources associated with this instance and
+		/// destroys the underlying Vulkan handle.
+		/// </summary>
 		public void Dispose()
 		{
 			this.Destroy();
@@ -5533,7 +5589,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void Destroy()
 		{
@@ -5688,6 +5744,10 @@ namespace SharpVk
 			return this.handle;
 		}
 
+		/// <summary>
+		/// Releases the unmanaged resources associated with this instance and
+		/// destroys the underlying Vulkan handle.
+		/// </summary>
 		public void Dispose()
 		{
 			this.Destroy();
@@ -5727,7 +5787,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void Destroy()
 		{
@@ -5748,6 +5808,10 @@ namespace SharpVk
 			return this.handle;
 		}
 
+		/// <summary>
+		/// Releases the unmanaged resources associated with this instance and
+		/// destroys the underlying Vulkan handle.
+		/// </summary>
 		public void Dispose()
 		{
 			this.Destroy();
@@ -5781,7 +5845,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void Destroy()
 		{
@@ -5801,7 +5865,7 @@ namespace SharpVk
 		/// If no bits are set in pname:flags, and all requested queries are
 		/// in the available state, results are written as an array of
 		/// 32-bit unsigned integer values. The behavior when not all queries
-		/// are available, is described <<queries-wait-bit-not-set, below>>.
+		/// are available, is described &lt;&lt;queries-wait-bit-not-set, below&gt;&gt;.
 		/// If ename:VK_QUERY_RESULT_64_BIT is not set and the result overflows a
 		/// 32-bit value, the value may: either wrap or saturate. Similarly, if
 		/// ename:VK_QUERY_RESULT_64_BIT is set and the result overflows a 64-bit
@@ -5890,6 +5954,10 @@ namespace SharpVk
 			return this.handle;
 		}
 
+		/// <summary>
+		/// Releases the unmanaged resources associated with this instance and
+		/// destroys the underlying Vulkan handle.
+		/// </summary>
 		public void Dispose()
 		{
 			this.Destroy();
@@ -5932,20 +6000,20 @@ namespace SharpVk
 		/// possible.
 		/// ====
 		/// fname:vkQueueSubmit is a
-		/// <<devsandqueues-submission,queue submission command>>, with each batch
+		/// &lt;&lt;devsandqueues-submission,queue submission command&gt;&gt;, with each batch
 		/// defined by an element of pname:pSubmits as an instance of the
 		/// slink:VkSubmitInfo structure.
 		/// Fence and semaphore operations submitted with flink:vkQueueSubmit have
 		/// additional ordering constraints compared to other submission commands,
 		/// with dependencies involving previous and subsequent queue operations.
 		/// Information about these additional constraints can be found in the
-		/// <<synchronization-semaphores, semaphore>> and
-		/// <<synchronization-semaphores, fence>> sections of
-		/// <<synchronization, the synchronization chapter>>.
+		/// &lt;&lt;synchronization-semaphores, semaphore&gt;&gt; and
+		/// &lt;&lt;synchronization-semaphores, fence&gt;&gt; sections of
+		/// &lt;&lt;synchronization, the synchronization chapter&gt;&gt;.
 		/// Details on the interaction of pname:pWaitDstStageMask with synchronization
 		/// are described in the
-		/// <<synchronization-semaphores-waiting, semaphore wait operation>> section of
-		/// <<synchronization, the synchronization chapter>>.
+		/// &lt;&lt;synchronization-semaphores-waiting, semaphore wait operation&gt;&gt; section of
+		/// &lt;&lt;synchronization, the synchronization chapter&gt;&gt;.
 		/// </summary>
 		public void Submit(SubmitInfo[] submits, Fence fence)
 		{
@@ -6003,7 +6071,7 @@ namespace SharpVk
 
 		/// <summary>
 		/// fname:vkQueueBindSparse is a
-		/// <<devsandqueues-submission,queue submission command>>, with each batch
+		/// &lt;&lt;devsandqueues-submission,queue submission command&gt;&gt;, with each batch
 		/// defined by an element of pname:pBindInfo as an instance of the
 		/// slink:VkBindSparseInfo structure.
 		/// Within a batch, a given range of a resource must: not be bound more than
@@ -6016,7 +6084,7 @@ namespace SharpVk
 		/// access memory, synchronization primitives used in this command effectively
 		/// only define execution dependencies.
 		/// Additional information about fence and semaphore operation is described in
-		/// <<synchronization, the synchronization chapter>>.
+		/// &lt;&lt;synchronization, the synchronization chapter&gt;&gt;.
 		/// </summary>
 		public void BindSparse(BindSparseInfo[] bindInfo, Fence fence)
 		{
@@ -6108,7 +6176,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void Destroy()
 		{
@@ -6165,6 +6233,10 @@ namespace SharpVk
 			return this.handle;
 		}
 
+		/// <summary>
+		/// Releases the unmanaged resources associated with this instance and
+		/// destroys the underlying Vulkan handle.
+		/// </summary>
 		public void Dispose()
 		{
 			this.Destroy();
@@ -6199,7 +6271,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void Destroy()
 		{
@@ -6220,6 +6292,10 @@ namespace SharpVk
 			return this.handle;
 		}
 
+		/// <summary>
+		/// Releases the unmanaged resources associated with this instance and
+		/// destroys the underlying Vulkan handle.
+		/// </summary>
 		public void Dispose()
 		{
 			this.Destroy();
@@ -6254,7 +6330,7 @@ namespace SharpVk
 		}
 
 		/// <summary>
-		/// 
+		/// -
 		/// </summary>
 		public void Destroy()
 		{
@@ -6275,6 +6351,10 @@ namespace SharpVk
 			return this.handle;
 		}
 
+		/// <summary>
+		/// Releases the unmanaged resources associated with this instance and
+		/// destroys the underlying Vulkan handle.
+		/// </summary>
 		public void Dispose()
 		{
 			this.Destroy();
@@ -6284,10 +6364,10 @@ namespace SharpVk
     /// <summary>
     /// _Shader modules_ contain _shader code_ and one or more entry points. Shaders
     /// are selected from a shader module by specifying an entry point as part of
-    /// <<pipelines,pipeline>> creation. The stages of a pipeline can: use shaders
+    /// &lt;&lt;pipelines,pipeline&gt;&gt; creation. The stages of a pipeline can: use shaders
     /// that come from different modules. The shader code defining a shader module
-    /// must: be in the SPIR-V format, as described by the <<spirvenv,Vulkan
-    /// Environment for SPIR-V>> appendix.
+    /// must: be in the SPIR-V format, as described by the &lt;&lt;spirvenv,Vulkan
+    /// Environment for SPIR-V&gt;&gt; appendix.
     /// </summary>
 	public class ShaderModule
 		: IDisposable
@@ -6334,6 +6414,10 @@ namespace SharpVk
 			return this.handle;
 		}
 
+		/// <summary>
+		/// Releases the unmanaged resources associated with this instance and
+		/// destroys the underlying Vulkan handle.
+		/// </summary>
 		public void Dispose()
 		{
 			this.Destroy();
@@ -6387,6 +6471,10 @@ namespace SharpVk
 			return this.handle;
 		}
 
+		/// <summary>
+		/// Releases the unmanaged resources associated with this instance and
+		/// destroys the underlying Vulkan handle.
+		/// </summary>
 		public void Dispose()
 		{
 			this.Destroy();
@@ -6508,6 +6596,10 @@ namespace SharpVk
 			return this.handle;
 		}
 
+		/// <summary>
+		/// Releases the unmanaged resources associated with this instance and
+		/// destroys the underlying Vulkan handle.
+		/// </summary>
 		public void Dispose()
 		{
 			this.Destroy();

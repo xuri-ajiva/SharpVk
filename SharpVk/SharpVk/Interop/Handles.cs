@@ -24,10 +24,16 @@ using System;
 
 namespace SharpVk.Interop
 {
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct Buffer
 	{
 		internal ulong handle;
-
+		
+		/// <summary>
+		/// Returns a value representing a null Buffer handle.
+		/// </summary>
 		public static Buffer Null
 		{
 			get
@@ -40,10 +46,16 @@ namespace SharpVk.Interop
 		}
 	}
 
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct BufferView
 	{
 		internal ulong handle;
-
+		
+		/// <summary>
+		/// Returns a value representing a null BufferView handle.
+		/// </summary>
 		public static BufferView Null
 		{
 			get
@@ -56,10 +68,16 @@ namespace SharpVk.Interop
 		}
 	}
 
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct CommandBuffer
 	{
 		internal IntPtr handle;
-
+		
+		/// <summary>
+		/// Returns a value representing a null CommandBuffer handle.
+		/// </summary>
 		public static CommandBuffer Null
 		{
 			get
@@ -72,10 +90,16 @@ namespace SharpVk.Interop
 		}
 	}
 
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct CommandPool
 	{
 		internal ulong handle;
-
+		
+		/// <summary>
+		/// Returns a value representing a null CommandPool handle.
+		/// </summary>
 		public static CommandPool Null
 		{
 			get
@@ -88,10 +112,16 @@ namespace SharpVk.Interop
 		}
 	}
 
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct DebugReportCallback
 	{
 		internal ulong handle;
-
+		
+		/// <summary>
+		/// Returns a value representing a null DebugReportCallback handle.
+		/// </summary>
 		public static DebugReportCallback Null
 		{
 			get
@@ -104,10 +134,16 @@ namespace SharpVk.Interop
 		}
 	}
 
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct DescriptorPool
 	{
 		internal ulong handle;
-
+		
+		/// <summary>
+		/// Returns a value representing a null DescriptorPool handle.
+		/// </summary>
 		public static DescriptorPool Null
 		{
 			get
@@ -120,10 +156,16 @@ namespace SharpVk.Interop
 		}
 	}
 
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct DescriptorSet
 	{
 		internal ulong handle;
-
+		
+		/// <summary>
+		/// Returns a value representing a null DescriptorSet handle.
+		/// </summary>
 		public static DescriptorSet Null
 		{
 			get
@@ -136,10 +178,16 @@ namespace SharpVk.Interop
 		}
 	}
 
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct DescriptorSetLayout
 	{
 		internal ulong handle;
-
+		
+		/// <summary>
+		/// Returns a value representing a null DescriptorSetLayout handle.
+		/// </summary>
 		public static DescriptorSetLayout Null
 		{
 			get
@@ -152,10 +200,16 @@ namespace SharpVk.Interop
 		}
 	}
 
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct Device
 	{
 		internal IntPtr handle;
-
+		
+		/// <summary>
+		/// Returns a value representing a null Device handle.
+		/// </summary>
 		public static Device Null
 		{
 			get
@@ -168,10 +222,16 @@ namespace SharpVk.Interop
 		}
 	}
 
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct DeviceMemory
 	{
 		internal ulong handle;
-
+		
+		/// <summary>
+		/// Returns a value representing a null DeviceMemory handle.
+		/// </summary>
 		public static DeviceMemory Null
 		{
 			get
@@ -184,10 +244,16 @@ namespace SharpVk.Interop
 		}
 	}
 
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct Display
 	{
 		internal ulong handle;
-
+		
+		/// <summary>
+		/// Returns a value representing a null Display handle.
+		/// </summary>
 		public static Display Null
 		{
 			get
@@ -200,10 +266,16 @@ namespace SharpVk.Interop
 		}
 	}
 
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct DisplayMode
 	{
 		internal ulong handle;
-
+		
+		/// <summary>
+		/// Returns a value representing a null DisplayMode handle.
+		/// </summary>
 		public static DisplayMode Null
 		{
 			get
@@ -216,10 +288,16 @@ namespace SharpVk.Interop
 		}
 	}
 
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct Event
 	{
 		internal ulong handle;
-
+		
+		/// <summary>
+		/// Returns a value representing a null Event handle.
+		/// </summary>
 		public static Event Null
 		{
 			get
@@ -232,10 +310,16 @@ namespace SharpVk.Interop
 		}
 	}
 
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct Fence
 	{
 		internal ulong handle;
-
+		
+		/// <summary>
+		/// Returns a value representing a null Fence handle.
+		/// </summary>
 		public static Fence Null
 		{
 			get
@@ -248,10 +332,16 @@ namespace SharpVk.Interop
 		}
 	}
 
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct Framebuffer
 	{
 		internal ulong handle;
-
+		
+		/// <summary>
+		/// Returns a value representing a null Framebuffer handle.
+		/// </summary>
 		public static Framebuffer Null
 		{
 			get
@@ -264,10 +354,16 @@ namespace SharpVk.Interop
 		}
 	}
 
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct Image
 	{
 		internal ulong handle;
-
+		
+		/// <summary>
+		/// Returns a value representing a null Image handle.
+		/// </summary>
 		public static Image Null
 		{
 			get
@@ -280,10 +376,16 @@ namespace SharpVk.Interop
 		}
 	}
 
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct ImageView
 	{
 		internal ulong handle;
-
+		
+		/// <summary>
+		/// Returns a value representing a null ImageView handle.
+		/// </summary>
 		public static ImageView Null
 		{
 			get
@@ -296,10 +398,16 @@ namespace SharpVk.Interop
 		}
 	}
 
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct Instance
 	{
 		internal IntPtr handle;
-
+		
+		/// <summary>
+		/// Returns a value representing a null Instance handle.
+		/// </summary>
 		public static Instance Null
 		{
 			get
@@ -312,10 +420,16 @@ namespace SharpVk.Interop
 		}
 	}
 
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct PhysicalDevice
 	{
 		internal IntPtr handle;
-
+		
+		/// <summary>
+		/// Returns a value representing a null PhysicalDevice handle.
+		/// </summary>
 		public static PhysicalDevice Null
 		{
 			get
@@ -328,10 +442,16 @@ namespace SharpVk.Interop
 		}
 	}
 
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct Pipeline
 	{
 		internal ulong handle;
-
+		
+		/// <summary>
+		/// Returns a value representing a null Pipeline handle.
+		/// </summary>
 		public static Pipeline Null
 		{
 			get
@@ -344,10 +464,16 @@ namespace SharpVk.Interop
 		}
 	}
 
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct PipelineCache
 	{
 		internal ulong handle;
-
+		
+		/// <summary>
+		/// Returns a value representing a null PipelineCache handle.
+		/// </summary>
 		public static PipelineCache Null
 		{
 			get
@@ -360,10 +486,16 @@ namespace SharpVk.Interop
 		}
 	}
 
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct PipelineLayout
 	{
 		internal ulong handle;
-
+		
+		/// <summary>
+		/// Returns a value representing a null PipelineLayout handle.
+		/// </summary>
 		public static PipelineLayout Null
 		{
 			get
@@ -376,10 +508,16 @@ namespace SharpVk.Interop
 		}
 	}
 
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct QueryPool
 	{
 		internal ulong handle;
-
+		
+		/// <summary>
+		/// Returns a value representing a null QueryPool handle.
+		/// </summary>
 		public static QueryPool Null
 		{
 			get
@@ -392,10 +530,16 @@ namespace SharpVk.Interop
 		}
 	}
 
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct Queue
 	{
 		internal IntPtr handle;
-
+		
+		/// <summary>
+		/// Returns a value representing a null Queue handle.
+		/// </summary>
 		public static Queue Null
 		{
 			get
@@ -408,10 +552,16 @@ namespace SharpVk.Interop
 		}
 	}
 
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct RenderPass
 	{
 		internal ulong handle;
-
+		
+		/// <summary>
+		/// Returns a value representing a null RenderPass handle.
+		/// </summary>
 		public static RenderPass Null
 		{
 			get
@@ -424,10 +574,16 @@ namespace SharpVk.Interop
 		}
 	}
 
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct Sampler
 	{
 		internal ulong handle;
-
+		
+		/// <summary>
+		/// Returns a value representing a null Sampler handle.
+		/// </summary>
 		public static Sampler Null
 		{
 			get
@@ -440,10 +596,16 @@ namespace SharpVk.Interop
 		}
 	}
 
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct Semaphore
 	{
 		internal ulong handle;
-
+		
+		/// <summary>
+		/// Returns a value representing a null Semaphore handle.
+		/// </summary>
 		public static Semaphore Null
 		{
 			get
@@ -456,10 +618,16 @@ namespace SharpVk.Interop
 		}
 	}
 
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct ShaderModule
 	{
 		internal ulong handle;
-
+		
+		/// <summary>
+		/// Returns a value representing a null ShaderModule handle.
+		/// </summary>
 		public static ShaderModule Null
 		{
 			get
@@ -472,10 +640,16 @@ namespace SharpVk.Interop
 		}
 	}
 
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct Surface
 	{
 		internal ulong handle;
-
+		
+		/// <summary>
+		/// Returns a value representing a null Surface handle.
+		/// </summary>
 		public static Surface Null
 		{
 			get
@@ -488,10 +662,16 @@ namespace SharpVk.Interop
 		}
 	}
 
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct Swapchain
 	{
 		internal ulong handle;
-
+		
+		/// <summary>
+		/// Returns a value representing a null Swapchain handle.
+		/// </summary>
 		public static Swapchain Null
 		{
 			get

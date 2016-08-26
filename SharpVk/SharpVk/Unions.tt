@@ -26,6 +26,9 @@ namespace SharpVk
 	foreach(var structType in types.Unions)
 	{
 #>
+	/// <summary>
+	/// -
+	/// </summary>
 	[StructLayout(LayoutKind.Explicit)]
 	public struct <#=structType.Name#>
 	{
@@ -33,9 +36,15 @@ namespace SharpVk
 		foreach(var member in structType.Members)
         {
 #>
+		/// <summary>
+		/// -
+		/// </summary>
 		[FieldOffset(<#=member.FieldOffset#>)]
 		public <#=member.TypeName#> <#=member.Name#>;
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
         public static implicit operator <#=structType.Name#>(<#=member.TypeName#> value)
         {
             return new <#=structType.Name#>
