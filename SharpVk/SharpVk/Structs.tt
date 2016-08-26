@@ -163,10 +163,12 @@ namespace SharpVk
 
     /// <summary>
 <#
-	foreach(var line in (structType.Comment ?? "").Split('\n'))
+	foreach(var line in structType.Comment)
     {
 #>
+	/// <para>
     /// <#=line#>
+	/// </para>
 <#
 	}
 #>
@@ -178,8 +180,17 @@ namespace SharpVk
 		foreach(var member in structType.Members)
         {
 #>
-		/// <summary>
-		/// -
+	   /// <summary>
+<#
+			foreach(var line in member.Comment)
+			{
+#>
+		/// <para>
+		/// <#=line#>
+		/// </para>
+<#
+			}
+#>
 		/// </summary>
 		public <#=member.TypeName#> <#=member.Name#>;
 

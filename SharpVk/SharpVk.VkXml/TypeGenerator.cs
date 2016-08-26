@@ -166,7 +166,7 @@ namespace SharpVk.VkXml
                 var newMethod = new TypeSet.VkHandleMethod
                 {
                     Name = JoinNameParts(methodNameParts),
-                    Comment = command.Comment,
+                    Comment = command.Comment ?? new List<string> { "-" },
                     ReturnTypeName = "void",
                     CommandName = commandName
                 };
@@ -651,13 +651,12 @@ namespace SharpVk.VkXml
             foreach (var type in typeData.Values.Where(x => x.Data.Category == TypeCategory.handle))
             {
                 bool isDispatch = type.Data.Type != "VK_DEFINE_NON_DISPATCHABLE_HANDLE";
-                string comment = type.Data.Comment ?? "";
 
                 var newHandle = new TypeSet.VkHandle
                 {
                     Name = type.Name,
                     IsDispatch = isDispatch,
-                    Comment = comment
+                    Comment = type.Data.Comment ?? new List<string> { "-" }
                 };
 
                 if (type.Data.Parent != null)
@@ -710,7 +709,7 @@ namespace SharpVk.VkXml
                 var newClass = new TypeSet.VkClass
                 {
                     Name = type.Name,
-                    Comment = type.Data.Comment,
+                    Comment = type.Data.Comment ?? new List<string> { "-" },
                     IsOutput = type.Data.IsReturnedOnly
                 };
 
@@ -731,6 +730,7 @@ namespace SharpVk.VkXml
                     var memberDesc = new MemberDesc
                     {
                         Name = memberName,
+                        Comment = member.Comment ?? new List<string> { "-" },
                         Repetitions = 1,
                         InteropNameSuffix = "",
                         InteropTypeName = ApplyPointerType(member, memberType),
@@ -1042,6 +1042,7 @@ namespace SharpVk.VkXml
                     newClass.Properties.Add(new TypeSet.VkClassProperty
                     {
                         Name = member.Name,
+                        Comment = member.Comment,
                         TypeName = member.PublicTypeName
                     });
 
@@ -1140,7 +1141,7 @@ namespace SharpVk.VkXml
                 var newStruct = new TypeSet.VkStruct
                 {
                     Name = type.Name,
-                    Comment = type.Data.Comment
+                    Comment = type.Data.Comment ?? new List<string> { "-" }
                 };
 
                 foreach (var member in type.Data.Members)
@@ -1148,6 +1149,7 @@ namespace SharpVk.VkXml
                     newStruct.Members.Add(new TypeSet.VkStructMember
                     {
                         Name = JoinNameParts(member.NameParts),
+                        Comment = member.Comment ?? new List<string> { "-" },
                         TypeName = typeData[GetMemberTypeName(member)].Name
                     });
                 }
@@ -1203,6 +1205,7 @@ namespace SharpVk.VkXml
                 var newEnumeration = new TypeSet.VkEnumeration
                 {
                     Name = type.Name,
+                    Comment = type.Data.Comment ?? new List<string> { "-" },
                     IsFlags = true
                 };
 
@@ -1211,6 +1214,8 @@ namespace SharpVk.VkXml
                     enumerationTypes.Remove(type.Data.Requires);
 
                     var enumeration = spec.Enumerations[type.Data.Requires];
+
+                    newEnumeration.Comment = enumeration.Comment ?? newEnumeration.Comment;
 
                     // Add a zero-valued None field for bitmasks (if not already defined)
                     // so API users don't have to typecast zero when no flags are required
@@ -1231,12 +1236,13 @@ namespace SharpVk.VkXml
 
             foreach (var type in enumerationTypes.Values)
             {
+                var enumeration = spec.Enumerations[type.Data.VkName];
+
                 var newEnumeration = new TypeSet.VkEnumeration
                 {
-                    Name = type.Name
+                    Name = type.Name,
+                    Comment = enumeration.Comment ?? new List<string> { "-" }
                 };
-
-                var enumeration = spec.Enumerations[type.Data.VkName];
 
                 PopulateFields(newEnumeration, enumeration);
 
@@ -1447,6 +1453,7 @@ namespace SharpVk.VkXml
             public string InteropTypeName;
             public string PublicTypeName;
             public List<string> MarshalStatements = new List<string>();
+            public List<string> Comment;
         }
     }
 }

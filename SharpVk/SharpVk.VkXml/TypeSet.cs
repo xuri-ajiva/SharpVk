@@ -67,7 +67,7 @@ namespace SharpVk.VkXml
                 set;
             }
 
-            public string Comment
+            public List<string> Comment
             {
                 get;
                 set;
@@ -101,6 +101,12 @@ namespace SharpVk.VkXml
         public class VkClassProperty
         {
             public string Name
+            {
+                get;
+                set;
+            }
+
+            public List<string> Comment
             {
                 get;
                 set;
@@ -154,6 +160,12 @@ namespace SharpVk.VkXml
                 set;
             }
 
+            public List<string> Comment
+            {
+                get;
+                set;
+            }
+
             public List<VkEnumerationField> Fields
             {
                 get;
@@ -184,7 +196,7 @@ namespace SharpVk.VkXml
                 set;
             }
 
-            public string Comment
+            public List<string> Comment
             {
                 get;
                 set;
@@ -200,6 +212,12 @@ namespace SharpVk.VkXml
         public class VkStructMember
         {
             public string Name
+            {
+                get;
+                set;
+            }
+
+            public List<string> Comment
             {
                 get;
                 set;
@@ -238,7 +256,7 @@ namespace SharpVk.VkXml
                 set;
             }
 
-            public string Comment
+            public List<string> Comment
             {
                 get;
                 set;
@@ -283,7 +301,7 @@ namespace SharpVk.VkXml
                 set;
             }
 
-            public string Comment
+            public List<string> Comment
             {
                 get;
                 set;

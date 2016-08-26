@@ -25,7 +25,7 @@ foreach(var handle in types.Handles)
 #>
     /// <summary>
 <#
-	foreach(var line in handle.Comment.Split('\n'))
+	foreach(var line in handle.Comment)
     {
 #>
     /// <#=line#>
@@ -109,7 +109,7 @@ foreach(var handle in types.Handles)
 
 		/// <summary>
 <#
-		foreach(var line in (method.Comment ?? "").Split('\n'))
+		foreach(var line in method.Comment)
 		{
 #>
 		/// <#=line#>

@@ -27,10 +27,12 @@ foreach(var classType in types.Classes)
 
     /// <summary>
 <#
-	foreach(var line in (classType.Comment ?? "-").Split('\n'))
+	foreach(var line in classType.Comment)
     {
 #>
+    /// <para>
     /// <#=line#>
+    /// </para>
 <#
 	}
 #>
@@ -41,8 +43,17 @@ foreach(var classType in types.Classes)
 	foreach(var classProperty in classType.Properties)
 	{
 #>
-		/// <summary>
-		/// -
+	    /// <summary>
+<#
+		foreach(var line in classProperty.Comment)
+		{
+#>
+		/// <para>
+		/// <#=line#>
+		/// </para>
+<#
+		}
+#>
 		/// </summary>
 		public <#=classProperty.TypeName#> <#=classProperty.Name#>
 		{

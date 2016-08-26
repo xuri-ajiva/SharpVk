@@ -27,7 +27,16 @@ foreach(var enumeration in types.Enumerations)
 #>
 
     /// <summary>
-    /// -
+<#
+	foreach(var line in enumeration.Comment)
+    {
+#>
+    /// <para>
+    /// <#=line#>
+    /// </para>
+<#
+	}
+#>
     /// </summary><#
 	if(enumeration.IsFlags)
     {

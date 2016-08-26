@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Linq;
 
@@ -387,66 +389,165 @@ namespace SharpVk.VkXml
 
             var filteredSpec = FilterRequiredElement(typeXml, enumXml, commandXml, vkFeature, vkExtensions);
 
-            string manPath = "https://raw.githubusercontent.com/KhronosGroup/Vulkan-Docs/1.0/doc/specs/vulkan/man/";
-
             foreach (var handleType in filteredSpec.Types.Values.Where(x => x.Category == TypeCategory.handle && x.Extension == null))
             {
-                var docFile = new DownloadedFileCache(this.tempFilePath, $"{manPath}{handleType.VkName}.txt");
-
-                var docLines = File.ReadAllLines(docFile.GetFileLocation());
-
-                int lineIndex;
-
-                for (lineIndex = 0; docLines[lineIndex] != "C Specification"; lineIndex++) ;
-
-                lineIndex += 5;
-
-                var descriptionLines = docLines.Skip(lineIndex).TakeWhile(x => x != "Description");
-
-                descriptionLines = descriptionLines.Take(descriptionLines.Count() - 6).Where(x => !string.IsNullOrWhiteSpace(x));
-
-                handleType.Comment = NormaliseComment(string.Join("\n", descriptionLines));
+                this.ApplyDocumentation(handleType);
             }
 
             foreach (var structType in filteredSpec.Types.Values.Where(x => x.Category == TypeCategory.@struct && x.Extension == null))
             {
-                var docFile = new DownloadedFileCache(this.tempFilePath, $"{manPath}{structType.VkName}.txt");
+                this.ApplyDocumentation(structType);
+            }
 
-                var docLines = File.ReadAllLines(docFile.GetFileLocation());
+            foreach (var enumType in filteredSpec.Types.Values.Where(x => x.Category == TypeCategory.@enum && x.Extension == null))
+            {
+                this.ApplyDocumentation(enumType);
+            }
 
-                int lineIndex;
-
-                for (lineIndex = 0; docLines[lineIndex] != "Description"; lineIndex++) ;
-
-                lineIndex += 3;
-
-                var descriptionLines = docLines.Skip(lineIndex).AsEnumerable().TakeWhile(x => x != "See Also");
-
-                descriptionLines = descriptionLines.Take(descriptionLines.Count() - 3).Where(x => !string.IsNullOrWhiteSpace(x));
-
-                structType.Comment = NormaliseComment(string.Join("\n", descriptionLines));
+            foreach (var bitmaskType in filteredSpec.Types.Values.Where(x => x.Category == TypeCategory.bitmask && x.Extension == null))
+            {
+                this.ApplyDocumentation(bitmaskType);
             }
 
             foreach (var command in filteredSpec.Commands.Values.Where(x => x.Extension == null))
             {
-                var docFile = new DownloadedFileCache(this.tempFilePath, $"{manPath}{command.VkName}.txt");
+                this.ApplyDocumentation(command);
+            }
 
-                var docLines = File.ReadAllLines(docFile.GetFileLocation());
-
-                int lineIndex;
-
-                for (lineIndex = 0; docLines[lineIndex] != "Description"; lineIndex++) ;
-
-                lineIndex += 3;
-
-                var descriptionLines = docLines.Skip(lineIndex).AsEnumerable().TakeWhile(x => x != "See Also");
-
-                descriptionLines = descriptionLines.Take(descriptionLines.Count() - 3).Where(x => !string.IsNullOrWhiteSpace(x));
-
-                command.Comment = NormaliseComment(string.Join("\n", descriptionLines));
+            foreach (var enumeration in filteredSpec.Enumerations.Values.Where(x => x.Extension == null))
+            {
+                this.ApplyDocumentation(enumeration);
             }
 
             return filteredSpec;
+        }
+
+        private void ApplyDocumentation(ParsedElement element)
+        {
+            var sections = GetDocumentationSections(element.VkName);
+
+            var commentParagraphs = new List<string>();
+
+            commentParagraphs.Add(GetNameSummary(sections));
+
+            List<string> specLines;
+
+            if (sections.TryGetValue("C Specification", out specLines) && specLines.Any())
+            {
+                if (specLines.Last().EndsWith(":"))
+                {
+                    specLines.Remove(specLines.Last());
+                }
+
+                commentParagraphs.AddRange(specLines);
+            }
+
+            commentParagraphs.AddRange(sections["Description"]);
+
+            element.Comment = commentParagraphs.Select(this.NormaliseComment).ToList();
+
+            var parsedType = element as ParsedType;
+
+            List<string> memberLines;
+
+            if (parsedType != null && sections.TryGetValue("Members", out memberLines) && memberLines.Any())
+            {
+                var memberEntries = memberLines.First().Split('*')
+                                                        .Where(x => !string.IsNullOrWhiteSpace(x))
+                                                        .Select(x => x.Trim());
+
+                foreach (var memberEntry in memberEntries)
+                {
+                    if (memberEntry.StartsWith("pname:"))
+                    {
+                        string memberName = memberEntry.Substring(6);
+
+                        int endOfTokenIndex = memberName.TakeWhile(char.IsLetterOrDigit).Count();
+
+                        memberName = memberName.Substring(0, endOfTokenIndex);
+
+                        var member = parsedType.Members.Single(x => x.VkName == memberName);
+
+                        member.Comment = new List<string> { NormaliseComment(memberEntry) };
+                    }
+                }
+            }
+        }
+
+        private static string GetNameSummary(Dictionary<string, List<string>> sections)
+        {
+            string nameSummary = sections["Name"].First();
+
+            return nameSummary.Substring(nameSummary.IndexOf(" ") + 3);
+        }
+
+        private Dictionary<string, List<string>> GetDocumentationSections(string fileName)
+        {
+            string manPath = "https://raw.githubusercontent.com/KhronosGroup/Vulkan-Docs/1.0/doc/specs/vulkan/man/";
+
+            var docFile = new DownloadedFileCache(this.tempFilePath, $"{manPath}{fileName}.txt");
+
+            var docLines = File.ReadAllLines(docFile.GetFileLocation());
+
+            var sectionHeaders = new Dictionary<int, string>();
+
+            for (int lineIndex = 0; lineIndex < docLines.Length; lineIndex++)
+            {
+                if (docLines[lineIndex].Length > 0 && docLines[lineIndex].All(ch => ch == '-'
+                                                    && docLines[lineIndex].Length == docLines[lineIndex - 1].Length))
+                {
+                    sectionHeaders[lineIndex - 1] = docLines[lineIndex - 1];
+                }
+            }
+
+            var sectionBodies = new Dictionary<string, List<string>>();
+
+            for (int sectionIndex = 0; sectionIndex < sectionHeaders.Count; sectionIndex++)
+            {
+                int key = sectionHeaders.Keys.ElementAt(sectionIndex);
+                string header = sectionHeaders[key];
+
+                int start = key + 2;
+
+                while (string.IsNullOrWhiteSpace(docLines[start]))
+                {
+                    start++;
+                }
+
+                var lines = docLines.Skip(start);
+
+                if (sectionIndex < (sectionHeaders.Count - 1))
+                {
+                    lines = lines.Take(sectionHeaders.Keys.ElementAt(sectionIndex + 1) - start);
+                }
+
+                var paragraphs = new List<string>();
+                var paragraphBuilder = new StringBuilder();
+
+                foreach (var line in lines)
+                {
+                    string cleanedLine = Regex.Replace(line, @"(\[\[.*\]\])", "").Trim();
+
+                    if (string.IsNullOrWhiteSpace(cleanedLine))
+                    {
+                        paragraphs.Add(paragraphBuilder.ToString().Trim());
+                        paragraphBuilder.Clear();
+                    }
+                    else
+                    {
+                        paragraphBuilder.Append(" ");
+                        paragraphBuilder.Append(cleanedLine);
+                    }
+                }
+
+                paragraphs.RemoveAll(x => x.StartsWith("//"));
+                paragraphs.RemoveAll(x => x.StartsWith("include:"));
+                paragraphs.RemoveAll(x => x.All(char.IsPunctuation));
+
+                sectionBodies.Add(header, paragraphs);
+            }
+
+            return sectionBodies;
         }
 
         private string NormaliseComment(string comment)
@@ -839,7 +940,7 @@ namespace SharpVk.VkXml
             public string TypeExtension;
             public string[] NameParts;
             public string Extension;
-            public string Comment;
+            public List<string> Comment;
         }
 
         public class ParsedType

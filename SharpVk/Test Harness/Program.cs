@@ -1,5 +1,9 @@
 ﻿using SharpVk.VkXml;
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
 
 namespace SharpVk
 {
@@ -14,7 +18,7 @@ namespace SharpVk
             var generator = new TypeGenerator();
 
             var types = generator.Generate(parser.Run());
-
+            
             Console.WriteLine("Done");
             Console.ReadLine();
         }
