@@ -42,21 +42,6 @@ namespace SharpVk.Shanq
 
             var fieldMapping = new Dictionary<FieldInfo, ResultId>();
 
-            var inputType = queryModel.MainFromClause.ItemType;
-
-            foreach (var field in inputType.GetFields())
-            {
-                var pointerType = typeof(OutputPointer<>).MakeGenericType(field.FieldType);
-                ResultId inputPointerId = expressionVisitor.Visit(Expression.Constant(pointerType));
-                ResultId inputVariableId = file.GetNextResultId();
-
-                file.AddGlobalStatement(inputVariableId, Op.OpVariable, inputPointerId, StorageClass.Input);
-
-                fieldMapping.Add(field, inputVariableId);
-
-                expressionVisitor.AddInputMapping(field, inputVariableId);
-            }
-
             var resultType = typeof(T);
 
             foreach (var field in resultType.GetFields())
@@ -70,14 +55,39 @@ namespace SharpVk.Shanq
                 fieldMapping.Add(field, outputVariableId);
             }
 
+            var inputType = queryModel.MainFromClause.ItemType;
+
+            foreach (var field in inputType.GetFields())
+            {
+                var pointerType = typeof(InputPointer<>).MakeGenericType(field.FieldType);
+                ResultId inputPointerId = expressionVisitor.Visit(Expression.Constant(pointerType));
+                ResultId inputVariableId = file.GetNextResultId();
+
+                file.AddGlobalStatement(inputVariableId, Op.OpVariable, inputPointerId, StorageClass.Input);
+
+                fieldMapping.Add(field, inputVariableId);
+
+                expressionVisitor.AddInputMapping(field, inputVariableId);
+            }
+
             file.AddHeaderStatement(Op.OpEntryPoint, new object[] { this.model, entryPointerFunctionId, "main" }.Concat(fieldMapping.Select(x => x.Value).Distinct().Cast<object>()).ToArray());
             file.AddHeaderStatement(Op.OpExecutionMode, entryPointerFunctionId, ExecutionMode.OriginUpperLeft);
 
             foreach (var mapping in fieldMapping)
             {
-                var attribute = mapping.Key.GetCustomAttribute<LocationAttribute>();
+                if (mapping.Key.GetCustomAttribute<LocationAttribute>() != null)
+                {
+                    var attribute = mapping.Key.GetCustomAttribute<LocationAttribute>();
 
-                file.AddHeaderStatement(Op.OpDecorate, mapping.Value, Decoration.Location, attribute.LocationIndex);
+                    file.AddHeaderStatement(Op.OpDecorate, mapping.Value, Decoration.Location, attribute.LocationIndex);
+                }
+
+                if (mapping.Key.GetCustomAttribute<BuiltInAttribute>() != null)
+                {
+                    var attribute = mapping.Key.GetCustomAttribute<BuiltInAttribute>();
+
+                    file.AddHeaderStatement(Op.OpDecorate, mapping.Value, Decoration.BuiltIn, attribute.BuiltIn);
+                }
             }
 
             var selector = queryModel.SelectClause.Selector;
@@ -115,7 +125,7 @@ namespace SharpVk.Shanq
 
             int bound = file.Entries.Select(x => x.ResultId)
                                         .Where(x => x.HasValue)
-                                        .Max(x => x.Value.Id);
+                                        .Max(x => x.Value.Id) + 1;
 
             var sink = new BinarySink(this.outputStream, bound);
 

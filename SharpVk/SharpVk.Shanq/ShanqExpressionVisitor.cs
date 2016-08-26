@@ -106,7 +106,7 @@ namespace SharpVk.Shanq
                 var operands = new[] { this.Visit(Expression.Constant(expression.Type)) }
                                     .Concat(this.ExpandNewArguments(expression.Arguments));
 
-                statement = new SpirvStatement(Op.OpConstantComposite, operands.Cast<object>().ToArray());
+                statement = new SpirvStatement(Op.OpCompositeConstruct, operands.Cast<object>().ToArray());
             }
             else
             {

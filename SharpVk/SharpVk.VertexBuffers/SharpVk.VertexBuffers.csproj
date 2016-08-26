@@ -37,10 +37,6 @@
       <HintPath>..\packages\GlmSharp.0.9.8\lib\Net45\GlmSharp.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SharpVk, Version=0.2.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SharpVk.0.2.3\lib\net46\SharpVk.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -68,6 +64,16 @@
     <Content Include="Shaders\vert.spv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SharpVk.Shanq\SharpVk.Shanq.csproj">
+      <Project>{6dc5e1d5-2186-4aa4-9c49-90da7458ee85}</Project>
+      <Name>SharpVk.Shanq</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SharpVk\SharpVk.csproj">
+      <Project>{a0abab94-7022-4e2d-a13c-e7bad69dd9d3}</Project>
+      <Name>SharpVk</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

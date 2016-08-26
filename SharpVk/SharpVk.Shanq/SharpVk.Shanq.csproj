@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BinarySink.cs" />
+    <Compile Include="BuiltinAttribute.cs" />
     <Compile Include="LocationAttribute.cs" />
     <Compile Include="Pointer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -11,6 +11,13 @@ namespace SharpVk.Shanq
 {
     public static class ShanqShader<TInput>
     {
+        public static void CreateFragment<TOutput>(Stream outputStream, Func<IQueryable<TInput>, IQueryable<TOutput>> shaderFunction)
+        {
+            var queryable = new ShanqQueryable<TInput>(QueryParser.CreateDefault(), new ShanqQueryExecutor(ExecutionModel.Fragment, outputStream));
+
+            shaderFunction(queryable).ToArray();
+        }
+
         public static void Create<TOutput>(ExecutionModel model, Stream outputStream, Func<IQueryable<TInput>, IQueryable<TOutput>> shaderFunction)
         {
             var queryable = new ShanqQueryable<TInput>(QueryParser.CreateDefault(), new ShanqQueryExecutor(model, outputStream));

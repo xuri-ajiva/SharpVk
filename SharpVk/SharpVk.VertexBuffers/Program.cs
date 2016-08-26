@@ -21,6 +21,8 @@
 //SOFTWARE.
 
 using GlmSharp;
+using SharpVk.Shanq;
+using SharpVk.Spirv;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -414,7 +416,26 @@ namespace SharpVk.VertexBuffers
         private void CreateGraphicsPipeline()
         {
             int codeSize;
-            var vertShaderData = LoadShaderData(@".\Shaders\vert.spv", out codeSize);
+
+            //var vertShaderStream = new MemoryStream();
+
+            //ShanqShader<Vertex>.Create(ExecutionModel.Vertex,
+            //                            vertShaderStream,
+            //                            vertexInput => from input in vertexInput
+            //                                           select new VertexOutput
+            //                                           {
+            //                                               Colour = input.Colour,
+            //                                               Position = new vec4(input.Position, 0, 1)
+            //                                           });
+
+            //int vertShaderLength = (int)vertShaderStream.Length;
+
+            //var vertShaderBytes = vertShaderStream.GetBuffer().Take(vertShaderLength + (vertShaderLength % 4)).ToArray();
+
+            //var vertShaderData = LoadShaderData(vertShaderBytes, out codeSize);
+            //codeSize = vertShaderLength;
+
+            var vertShaderData = LoadShaderData(".\\Shaders\\vert.spv", out codeSize);
 
             var vertShader = device.CreateShaderModule(new ShaderModuleCreateInfo
             {
@@ -422,7 +443,21 @@ namespace SharpVk.VertexBuffers
                 CodeSize = (UIntPtr)codeSize
             });
 
-            var fragShaderData = LoadShaderData(@".\Shaders\frag.spv", out codeSize);
+            var fragShaderStream = new MemoryStream();
+
+            ShanqShader<FragmentInput>.CreateFragment(fragShaderStream,
+                                                        fragmentInput => from input in fragmentInput
+                                                                         select new FragmentOutput
+                                                                         {
+                                                                             Colour = new vec4(input.Colour, 1f)
+                                                                         });
+
+            int fragShaderLength = (int)fragShaderStream.Length;
+
+            var fragShaderBytes = fragShaderStream.GetBuffer().Take(fragShaderLength + (fragShaderLength % 4)).ToArray();
+
+            var fragShaderData = LoadShaderData(fragShaderBytes, out codeSize);
+            codeSize = fragShaderLength;
 
             var fragShader = device.CreateShaderModule(new ShaderModuleCreateInfo
             {
@@ -751,11 +786,17 @@ namespace SharpVk.VertexBuffers
         private static uint[] LoadShaderData(string filePath, out int codeSize)
         {
             var fileBytes = File.ReadAllBytes(filePath);
-            var shaderData = new uint[(int)Math.Ceiling(fileBytes.Length / 4f)];
 
-            System.Buffer.BlockCopy(fileBytes, 0, shaderData, 0, fileBytes.Length);
+            return LoadShaderData(fileBytes, out codeSize);
+        }
 
-            codeSize = fileBytes.Length;
+        private static uint[] LoadShaderData(byte[] shaderBytes, out int codeSize)
+        {
+            var shaderData = new uint[(int)Math.Ceiling(shaderBytes.Length / 4f)];
+
+            System.Buffer.BlockCopy(shaderBytes, 0, shaderData, 0, shaderBytes.Length);
+
+            codeSize = shaderBytes.Length;
 
             return shaderData;
         }
@@ -798,6 +839,27 @@ namespace SharpVk.VertexBuffers
             public PresentMode[] PresentModes;
         }
 
+        private struct VertexOutput
+        {
+            [Location(0)]
+            public vec3 Colour;
+
+            [BuiltIn(BuiltIn.Position)]
+            public vec4 Position;
+        }
+
+        private struct FragmentInput
+        {
+            [Location(0)]
+            public vec3 Colour;
+        }
+
+        private struct FragmentOutput
+        {
+            [Location(0)]
+            public vec4 Colour;
+        }
+
         private struct Vertex
         {
             public Vertex(vec2 position, vec3 colour)
@@ -806,7 +868,10 @@ namespace SharpVk.VertexBuffers
                 this.Colour = colour;
             }
 
+            [Location(0)]
             public vec2 Position;
+
+            [Location(1)]
             public vec3 Colour;
 
             public static VertexInputBindingDescription GetBindingDescription()
