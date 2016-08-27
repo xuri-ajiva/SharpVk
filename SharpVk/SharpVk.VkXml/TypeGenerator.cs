@@ -1066,7 +1066,8 @@ namespace SharpVk.VkXml
             {
                 var newStruct = new TypeSet.VkStruct
                 {
-                    Name = type.Name
+                    Name = type.Name,
+                    Comment = type.Data.Comment ?? new List<string> { "-" }
                 };
 
                 foreach (var member in type.Data.Members)
@@ -1077,6 +1078,7 @@ namespace SharpVk.VkXml
                             newStruct.Members.Add(new TypeSet.VkStructMember
                             {
                                 Name = JoinNameParts(member.NameParts),
+                                Comment = member.Comment ?? new List<string> { "-" },
                                 TypeName = typeData[GetMemberTypeName(member)].Name,
                                 FieldOffset = "0"
                             });
@@ -1106,6 +1108,7 @@ namespace SharpVk.VkXml
                             newStruct.Members.Add(new TypeSet.VkStructMember
                             {
                                 Name = JoinNameParts(nameParts),
+                                Comment = member.Comment ?? new List<string> { "-" },
                                 TypeName = typeName,
                                 FieldOffset = "0"
                             });

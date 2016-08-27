@@ -389,24 +389,11 @@ namespace SharpVk.VkXml
 
             var filteredSpec = FilterRequiredElement(typeXml, enumXml, commandXml, vkFeature, vkExtensions);
 
-            foreach (var handleType in filteredSpec.Types.Values.Where(x => x.Category == TypeCategory.handle && x.Extension == null))
-            {
-                this.ApplyDocumentation(handleType);
-            }
+            var documentedTypes = new[] { TypeCategory.handle, TypeCategory.@struct, TypeCategory.@enum, TypeCategory.bitmask, TypeCategory.union };
 
-            foreach (var structType in filteredSpec.Types.Values.Where(x => x.Category == TypeCategory.@struct && x.Extension == null))
+            foreach (var type in filteredSpec.Types.Values.Where(x => documentedTypes.Contains(x.Category) && x.Extension == null))
             {
-                this.ApplyDocumentation(structType);
-            }
-
-            foreach (var enumType in filteredSpec.Types.Values.Where(x => x.Category == TypeCategory.@enum && x.Extension == null))
-            {
-                this.ApplyDocumentation(enumType);
-            }
-
-            foreach (var bitmaskType in filteredSpec.Types.Values.Where(x => x.Category == TypeCategory.bitmask && x.Extension == null))
-            {
-                this.ApplyDocumentation(bitmaskType);
+                this.ApplyDocumentation(type);
             }
 
             foreach (var command in filteredSpec.Commands.Values.Where(x => x.Extension == null))

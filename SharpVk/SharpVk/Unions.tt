@@ -26,9 +26,18 @@ namespace SharpVk
 	foreach(var structType in types.Unions)
 	{
 #>
-	/// <summary>
-	/// -
-	/// </summary>
+    /// <summary>
+<#
+	foreach(var line in structType.Comment)
+    {
+#>
+	/// <para>
+    /// <#=line#>
+	/// </para>
+<#
+	}
+#>
+    /// </summary>
 	[StructLayout(LayoutKind.Explicit)]
 	public struct <#=structType.Name#>
 	{
@@ -36,14 +45,23 @@ namespace SharpVk
 		foreach(var member in structType.Members)
         {
 #>
-		/// <summary>
-		/// -
+	   /// <summary>
+<#
+			foreach(var line in member.Comment)
+			{
+#>
+		/// <para>
+		/// <#=line#>
+		/// </para>
+<#
+			}
+#>
 		/// </summary>
 		[FieldOffset(<#=member.FieldOffset#>)]
 		public <#=member.TypeName#> <#=member.Name#>;
 		
 		/// <summary>
-		/// -
+		/// Implicit convertion of <#=member.TypeName#> to <#=structType.Name#>.
 		/// </summary>
         public static implicit operator <#=structType.Name#>(<#=member.TypeName#> value)
         {
