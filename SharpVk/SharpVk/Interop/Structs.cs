@@ -610,6 +610,26 @@ namespace SharpVk.Interop
 	/// -
 	/// </summary>
     [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct DebugReportLayerFlags
+	{
+		/// <summary>
+		/// -
+		/// </summary>
+		public StructureType SType;
+		/// <summary>
+		/// -
+		/// </summary>
+		public void* Next;
+		/// <summary>
+		/// -
+		/// </summary>
+		public ulong EnabledValidationFlags;
+	}
+
+	/// <summary>
+	/// -
+	/// </summary>
+    [StructLayout(LayoutKind.Sequential)]
 	public unsafe struct DedicatedAllocationBufferCreateInfo
 	{
 		/// <summary>
@@ -1098,6 +1118,50 @@ namespace SharpVk.Interop
 	/// -
 	/// </summary>
     [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct ExportMemoryAllocateInfo
+	{
+		/// <summary>
+		/// -
+		/// </summary>
+		public StructureType SType;
+		/// <summary>
+		/// -
+		/// </summary>
+		public void* Next;
+		/// <summary>
+		/// -
+		/// </summary>
+		public ExternalMemoryHandleTypeFlags HandleTypes;
+	}
+
+	/// <summary>
+	/// -
+	/// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct ExportMemoryWin32HandleInfo
+	{
+		/// <summary>
+		/// -
+		/// </summary>
+		public StructureType SType;
+		/// <summary>
+		/// -
+		/// </summary>
+		public void* Next;
+		/// <summary>
+		/// -
+		/// </summary>
+		public SECURITY_ATTRIBUTES* Attributes;
+		/// <summary>
+		/// -
+		/// </summary>
+		public uint DwAccess;
+	}
+
+	/// <summary>
+	/// -
+	/// </summary>
+    [StructLayout(LayoutKind.Sequential)]
 	public unsafe struct ExtensionProperties
 	{
 		/// <summary>
@@ -1108,6 +1172,26 @@ namespace SharpVk.Interop
 		/// -
 		/// </summary>
 		public uint SpecVersion;
+	}
+
+	/// <summary>
+	/// -
+	/// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct ExternalMemoryImageCreateInfo
+	{
+		/// <summary>
+		/// -
+		/// </summary>
+		public StructureType SType;
+		/// <summary>
+		/// -
+		/// </summary>
+		public void* Next;
+		/// <summary>
+		/// -
+		/// </summary>
+		public ExternalMemoryHandleTypeFlags HandleTypes;
 	}
 
 	/// <summary>
@@ -1444,6 +1528,30 @@ namespace SharpVk.Interop
 		/// -
 		/// </summary>
 		public ImageSubresourceRange SubresourceRange;
+	}
+
+	/// <summary>
+	/// -
+	/// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct ImportMemoryWin32HandleInfo
+	{
+		/// <summary>
+		/// -
+		/// </summary>
+		public StructureType SType;
+		/// <summary>
+		/// -
+		/// </summary>
+		public void* Next;
+		/// <summary>
+		/// -
+		/// </summary>
+		public ExternalMemoryHandleTypeFlags HandleType;
+		/// <summary>
+		/// -
+		/// </summary>
+		public IntPtr Handle;
 	}
 
 	/// <summary>
@@ -3392,6 +3500,50 @@ namespace SharpVk.Interop
 		/// -
 		/// </summary>
 		public IntPtr Surface;
+	}
+
+	/// <summary>
+	/// -
+	/// </summary>
+    [StructLayout(LayoutKind.Sequential)]
+	public unsafe struct Win32KeyedMutexAcquireReleaseInfo
+	{
+		/// <summary>
+		/// -
+		/// </summary>
+		public StructureType SType;
+		/// <summary>
+		/// -
+		/// </summary>
+		public void* Next;
+		/// <summary>
+		/// -
+		/// </summary>
+		public uint AcquireCount;
+		/// <summary>
+		/// -
+		/// </summary>
+		public DeviceMemory* AcquireSyncs;
+		/// <summary>
+		/// -
+		/// </summary>
+		public ulong* AcquireKeys;
+		/// <summary>
+		/// -
+		/// </summary>
+		public uint* AcquireTimeoutMilliseconds;
+		/// <summary>
+		/// -
+		/// </summary>
+		public uint ReleaseCount;
+		/// <summary>
+		/// -
+		/// </summary>
+		public DeviceMemory* ReleaseSyncs;
+		/// <summary>
+		/// -
+		/// </summary>
+		public ulong* ReleaseKeys;
 	}
 
 	/// <summary>

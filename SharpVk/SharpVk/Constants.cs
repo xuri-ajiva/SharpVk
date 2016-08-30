@@ -180,7 +180,7 @@ namespace SharpVk
 	    /// <summary>
 	    /// -
 	    /// </summary>
-		public const uint SpecVersion = 3;
+		public const uint SpecVersion = 4;
 	    /// <summary>
 	    /// -
 	    /// </summary>
@@ -325,6 +325,21 @@ namespace SharpVk
     /// <summary>
     /// -
     /// </summary>
+	public static class AmdDrawIndirectCount
+	{
+	    /// <summary>
+	    /// -
+	    /// </summary>
+		public const uint ExtensionDrawIndirectCountSpecVersion = 1;
+	    /// <summary>
+	    /// -
+	    /// </summary>
+		public const string ExtensionDrawIndirectCountExtensionName = "VK_AMD_draw_indirect_count";
+	}
+
+    /// <summary>
+    /// -
+    /// </summary>
 	public static class ImgFormatPvrtc
 	{
 	    /// <summary>
@@ -335,6 +350,66 @@ namespace SharpVk
 	    /// -
 	    /// </summary>
 		public const string ExtensionName = "VK_IMG_format_pvrtc";
+	}
+
+    /// <summary>
+    /// -
+    /// </summary>
+	public static class NvExternalMemoryCapabilities
+	{
+	    /// <summary>
+	    /// -
+	    /// </summary>
+		public const uint SpecVersion = 1;
+	    /// <summary>
+	    /// -
+	    /// </summary>
+		public const string ExtensionName = "VK_NV_external_memory_capabilities";
+	}
+
+    /// <summary>
+    /// -
+    /// </summary>
+	public static class NvExternalMemory
+	{
+	    /// <summary>
+	    /// -
+	    /// </summary>
+		public const uint SpecVersion = 1;
+	    /// <summary>
+	    /// -
+	    /// </summary>
+		public const string ExtensionName = "VK_NV_external_memory";
+	}
+
+    /// <summary>
+    /// -
+    /// </summary>
+	public static class NvExternalMemoryWin32
+	{
+	    /// <summary>
+	    /// -
+	    /// </summary>
+		public const uint SpecVersion = 1;
+	    /// <summary>
+	    /// -
+	    /// </summary>
+		public const string ExtensionName = "VK_NV_external_memory_win32";
+	}
+
+    /// <summary>
+    /// -
+    /// </summary>
+	public static class NvWin32KeyedMutex
+	{
+	    /// <summary>
+	    /// -
+	    /// </summary>
+		public const uint SpecVersion = 1;
+	    /// <summary>
+	    /// -
+	    /// </summary>
+		public const string ExtensionName = "VK_NV_win32_keyed_mutex";
 	}
 
     /// <summary>

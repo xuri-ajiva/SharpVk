@@ -1237,6 +1237,39 @@ namespace SharpVk
     /// -
     /// </para>
     /// </summary>
+	public struct DebugReportLayerFlags
+	{
+	    /// <summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
+		public ulong EnabledValidationFlags
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.DebugReportLayerFlags Pack()
+        {
+            var result = new Interop.DebugReportLayerFlags();
+			result.SType = StructureType.DebugReportLayerFlags;
+			result.EnabledValidationFlags = this.EnabledValidationFlags;
+
+            return result;
+        }
+
+		internal unsafe Interop.DebugReportLayerFlags* MarshalTo()
+        {
+            return (Interop.DebugReportLayerFlags*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+    /// <summary>
+    /// <para>
+    /// -
+    /// </para>
+    /// </summary>
 	public struct DedicatedAllocationBufferCreateInfo
 	{
 	    /// <summary>
@@ -2320,6 +2353,83 @@ namespace SharpVk
 
     /// <summary>
     /// <para>
+    /// -
+    /// </para>
+    /// </summary>
+	public struct ExportMemoryAllocateInfo
+	{
+	    /// <summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
+		public ExternalMemoryHandleTypeFlags HandleTypes
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.ExportMemoryAllocateInfo Pack()
+        {
+            var result = new Interop.ExportMemoryAllocateInfo();
+			result.SType = StructureType.ExportMemoryAllocateInfo;
+			result.HandleTypes = this.HandleTypes;
+
+            return result;
+        }
+
+		internal unsafe Interop.ExportMemoryAllocateInfo* MarshalTo()
+        {
+            return (Interop.ExportMemoryAllocateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+    /// <summary>
+    /// <para>
+    /// -
+    /// </para>
+    /// </summary>
+	public struct ExportMemoryWin32HandleInfo
+	{
+	    /// <summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
+		public SECURITY_ATTRIBUTES Attributes
+		{
+			get;
+			set;
+		}
+	    /// <summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
+		public uint DwAccess
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.ExportMemoryWin32HandleInfo Pack()
+        {
+            var result = new Interop.ExportMemoryWin32HandleInfo();
+			result.SType = StructureType.ExportMemoryWin32HandleInfo;
+			result.Attributes = (SECURITY_ATTRIBUTES*)Interop.HeapUtil.AllocateAndMarshal(this.Attributes);
+			result.DwAccess = this.DwAccess;
+
+            return result;
+        }
+
+		internal unsafe Interop.ExportMemoryWin32HandleInfo* MarshalTo()
+        {
+            return (Interop.ExportMemoryWin32HandleInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+    /// <summary>
+    /// <para>
     /// Structure specifying a extension properties
     /// </para>
     /// </summary>
@@ -2359,6 +2469,39 @@ namespace SharpVk
 			result.SpecVersion = value->SpecVersion;
 
 			return result;
+		}
+	}
+
+    /// <summary>
+    /// <para>
+    /// -
+    /// </para>
+    /// </summary>
+	public struct ExternalMemoryImageCreateInfo
+	{
+	    /// <summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
+		public ExternalMemoryHandleTypeFlags HandleTypes
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.ExternalMemoryImageCreateInfo Pack()
+        {
+            var result = new Interop.ExternalMemoryImageCreateInfo();
+			result.SType = StructureType.ExternalMemoryImageCreateInfo;
+			result.HandleTypes = this.HandleTypes;
+
+            return result;
+        }
+
+		internal unsafe Interop.ExternalMemoryImageCreateInfo* MarshalTo()
+        {
+            return (Interop.ExternalMemoryImageCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -2529,6 +2672,9 @@ namespace SharpVk
     /// </para>
     /// <para>
     /// pname:pDynamicState points to a structure of type sname:VkPipelineDynamicStateCreateInfo.
+    /// </para>
+    /// <para>
+    /// ifdef::VK_NV_glsl_shader[] If any shader stage fails to compile, ifdef::VK_EXT_debug_report[] the compile log will be reported back to the application, and endif::VK_EXT_debug_report[] ename:VK_ERROR_INVALID_SHADER_NV will be generated. endif::VK_NV_glsl_shader[]
     /// </para>
     /// </summary>
 	public struct GraphicsPipelineCreateInfo
@@ -3188,6 +3334,50 @@ namespace SharpVk
 
     /// <summary>
     /// <para>
+    /// -
+    /// </para>
+    /// </summary>
+	public struct ImportMemoryWin32HandleInfo
+	{
+	    /// <summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
+		public ExternalMemoryHandleTypeFlags HandleType
+		{
+			get;
+			set;
+		}
+	    /// <summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
+		public IntPtr Handle
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.ImportMemoryWin32HandleInfo Pack()
+        {
+            var result = new Interop.ImportMemoryWin32HandleInfo();
+			result.SType = StructureType.ImportMemoryWin32HandleInfo;
+			result.HandleType = this.HandleType;
+			result.Handle = this.Handle;
+
+            return result;
+        }
+
+		internal unsafe Interop.ImportMemoryWin32HandleInfo* MarshalTo()
+        {
+            return (Interop.ImportMemoryWin32HandleInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+    /// <summary>
+    /// <para>
     /// Structure specifying parameters of a newly created instance
     /// </para>
     /// </summary>
@@ -3436,7 +3626,7 @@ namespace SharpVk
     /// * ename:VK_ACCESS_INDIRECT_COMMAND_READ_BIT indicates that the access is an indirect command structure read as part of an indirect drawing command. * ename:VK_ACCESS_INDEX_READ_BIT indicates that the access is an index buffer read. * ename:VK_ACCESS_VERTEX_ATTRIBUTE_READ_BIT indicates that the access is a read via the vertex input bindings. * ename:VK_ACCESS_UNIFORM_READ_BIT indicates that the access is a read via a uniform buffer or dynamic uniform buffer descriptor. * ename:VK_ACCESS_INPUT_ATTACHMENT_READ_BIT indicates that the access is a read via an input attachment descriptor. * ename:VK_ACCESS_SHADER_READ_BIT indicates that the access is a read from a shader via any other descriptor type. * ename:VK_ACCESS_SHADER_WRITE_BIT indicates that the access is a write or atomic from a shader via the same descriptor types as in ename:VK_ACCESS_SHADER_READ_BIT. * ename:VK_ACCESS_COLOR_ATTACHMENT_READ_BIT indicates that the access is a read via a color attachment. * ename:VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT indicates that the access is a write via a color or resolve attachment. * ename:VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_READ_BIT indicates that the access is a read via a depth/stencil attachment. * ename:VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT indicates that the access is a write via a depth/stencil attachment. * ename:VK_ACCESS_TRANSFER_READ_BIT indicates that the access is a read from a transfer (copy, blit, resolve, etc.) operation. For the complete set of transfer operations, see &lt;&lt;synchronization-transfer,ename:VK_PIPELINE_STAGE_TRANSFER_BIT&gt;&gt;. * ename:VK_ACCESS_TRANSFER_WRITE_BIT indicates that the access is a write from a transfer (copy, blit, resolve, etc.) operation. For the complete set of transfer operations, see &lt;&lt;synchronization-transfer,ename:VK_PIPELINE_STAGE_TRANSFER_BIT&gt;&gt;. * ename:VK_ACCESS_HOST_READ_BIT indicates that the access is a read via the host. * ename:VK_ACCESS_HOST_WRITE_BIT indicates that the access is a write via the host. * ename:VK_ACCESS_MEMORY_READ_BIT indicates that the access is a read via a non-specific unit attached to the memory. This unit may: be external to the Vulkan device or otherwise not part of the core Vulkan pipeline. When included in pname:dstAccessMask, all writes using access types in pname:srcAccessMask performed by pipeline stages in pname:srcStageMask must: be visible in memory. * ename:VK_ACCESS_MEMORY_WRITE_BIT indicates that the access is a write via a non-specific unit attached to the memory. This unit may: be external to the Vulkan device or otherwise not part of the core Vulkan pipeline. When included in pname:srcAccessMask, all access types in pname:dstAccessMask from pipeline stages in pname:dstStageMask will observe the side effects of commands that executed before the barrier. When included in pname:dstAccessMask all writes using access types in pname:srcAccessMask performed by pipeline stages in pname:srcStageMask must: be visible in memory.
     /// </para>
     /// <para>
-    /// Color attachment reads and writes are automatically (without memory or execution dependencies) coherent and ordered against themselves and each other for a given sample within a subpass of a render pass instance, executing in &lt;&lt;fundamentals-queueoperation-apiorder,API order&gt;&gt;. Similarly, depth/stencil attachment reads and writes are automatically coherent and ordered against themselves and each other in the same circumstances.
+    /// Color attachment reads and writes are automatically (without memory or execution dependencies) coherent and ordered against themselves and each other for a given sample within a subpass of a render pass instance, executing in &lt;&lt;primrast-order,rasterization order&gt;&gt;. Similarly, depth/stencil attachment reads and writes are automatically coherent and ordered against themselves and each other in the same circumstances.
     /// </para>
     /// <para>
     /// Shader reads and/or writes through two variables (in the same or different shader invocations) decorated with code:Coherent and which use the same image view or buffer view are automatically coherent with each other, but require execution dependencies if a specific order is desired. Similarly, shader atomic operations are coherent with each other and with code:Coherent variables. Non-code:Coherent shader memory accesses require memory dependencies for writes to be available and reads to be visible.
@@ -5537,6 +5727,9 @@ namespace SharpVk
     /// <para>
     /// Structure specifying parameters of a newly created pipeline rasterization state
     /// </para>
+    /// <para>
+    /// ifdef::VK_AMD_rasterization_order[] The application can: also chain a sname:VkPipelineRasterizationStateRasterizationOrderAMD structure to the sname:VkPipelineRasterizationStateCreateInfo structure through its pname:pNext member. This structure enables selecting the rasterization order to use when rendering with the corresponding graphics pipeline as described in &lt;&lt;primrast-order, Rasterization Order&gt;&gt;. endif::VK_AMD_rasterization_order[]
+    /// </para>
     /// </summary>
 	public struct PipelineRasterizationStateCreateInfo
 	{
@@ -6390,7 +6583,7 @@ namespace SharpVk
     /// These values control the behavior of sampling with coordinates outside the range latexmath:[$[0,1\]$] for the respective u, v, or w coordinate as defined in the &lt;&lt;textures-wrapping-operation, Wrapping Operation&gt;&gt; section.
     /// </para>
     /// <para>
-    /// * ename:VK_SAMPLER_ADDRESS_MODE_REPEAT indicates that the repeat wrap mode will be used. * ename:VK_SAMPLER_ADDRESS_MODE_MIRRORED_REPEAT indicates that the mirrored repeat wrap mode will be used. * ename:VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_EDGE indicates that the clamp to edge wrap mode will be used. * ename:VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_BORDER indicates that the clamp to border wrap mode will be used. * ename:VK_SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE indicates that the mirror clamp to edge wrap mode will be used. This is only valid if the VK_KHR_mirror_clamp_to_edge extension is enabled.
+    /// * ename:VK_SAMPLER_ADDRESS_MODE_REPEAT indicates that the repeat wrap mode will be used. * ename:VK_SAMPLER_ADDRESS_MODE_MIRRORED_REPEAT indicates that the mirrored repeat wrap mode will be used. * ename:VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_EDGE indicates that the clamp to edge wrap mode will be used. * ename:VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_BORDER indicates that the clamp to border wrap mode will be used. * ename:VK_SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE indicates that the mirror clamp to edge wrap mode will be used. This is only valid if the +VK_KHR_mirror_clamp_to_edge+ extension is enabled.
     /// </para>
     /// <para>
     /// The maximum number of sampler objects which can: be simultaneously created on a device is implementation-dependent and specified by the &lt;&lt;features-limits-maxSamplerAllocationCount,pname:maxSamplerAllocationCount&gt;&gt; member of the sname:VkPhysicalDeviceLimits structure. If pname:maxSamplerAllocationCount is exceeded, fname:vkCreateSampler will return ename:VK_ERROR_TOO_MANY_OBJECTS.
@@ -7612,6 +7805,105 @@ namespace SharpVk
 		internal unsafe Interop.WaylandSurfaceCreateInfo* MarshalTo()
         {
             return (Interop.WaylandSurfaceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+    /// <summary>
+    /// <para>
+    /// -
+    /// </para>
+    /// </summary>
+	public struct Win32KeyedMutexAcquireReleaseInfo
+	{
+	    /// <summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
+		public uint AcquireCount
+		{
+			get;
+			set;
+		}
+	    /// <summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
+		public DeviceMemory AcquireSyncs
+		{
+			get;
+			set;
+		}
+	    /// <summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
+		public ulong AcquireKeys
+		{
+			get;
+			set;
+		}
+	    /// <summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
+		public uint AcquireTimeoutMilliseconds
+		{
+			get;
+			set;
+		}
+	    /// <summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
+		public uint ReleaseCount
+		{
+			get;
+			set;
+		}
+	    /// <summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
+		public DeviceMemory ReleaseSyncs
+		{
+			get;
+			set;
+		}
+	    /// <summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
+		public ulong ReleaseKeys
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.Win32KeyedMutexAcquireReleaseInfo Pack()
+        {
+            var result = new Interop.Win32KeyedMutexAcquireReleaseInfo();
+			result.SType = StructureType.Win32KeyedMutexAcquireReleaseInfo;
+			result.AcquireSyncs = this.AcquireSyncs?.Pack() ?? Interop.DeviceMemory*.Null;
+			result.AcquireKeys = (ulong*)Interop.HeapUtil.AllocateAndMarshal(this.AcquireKeys);
+			result.AcquireTimeoutMilliseconds = (uint*)Interop.HeapUtil.AllocateAndMarshal(this.AcquireTimeoutMilliseconds);
+			result.ReleaseSyncs = this.ReleaseSyncs?.Pack() ?? Interop.DeviceMemory*.Null;
+			result.ReleaseKeys = (ulong*)Interop.HeapUtil.AllocateAndMarshal(this.ReleaseKeys);
+			result.AcquireCount = this.AcquireCount;
+			result.ReleaseCount = this.ReleaseCount;
+
+            return result;
+        }
+
+		internal unsafe Interop.Win32KeyedMutexAcquireReleaseInfo* MarshalTo()
+        {
+            return (Interop.Win32KeyedMutexAcquireReleaseInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 

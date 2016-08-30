@@ -1079,5 +1079,29 @@ namespace SharpVk.Interop
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
 		public static extern void vkCmdDebugMarkerInsertEXT(CommandBuffer commandBuffer, DebugMarkerMarkerInfo* markerInfo);
 
+		/// <summary>
+		/// -
+		/// </summary>
+		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
+		public static extern void vkCmdDrawIndirectCountAMD(CommandBuffer commandBuffer, Buffer buffer, DeviceSize offset, Buffer countBuffer, DeviceSize countBufferOffset, uint maxDrawCount, uint stride);
+
+		/// <summary>
+		/// -
+		/// </summary>
+		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
+		public static extern void vkCmdDrawIndexedIndirectCountAMD(CommandBuffer commandBuffer, Buffer buffer, DeviceSize offset, Buffer countBuffer, DeviceSize countBufferOffset, uint maxDrawCount, uint stride);
+
+		/// <summary>
+		/// -
+		/// </summary>
+		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
+		public static extern Result vkGetPhysicalDeviceExternalImageFormatPropertiesNV(PhysicalDevice physicalDevice, Format format, ImageType type, ImageTiling tiling, ImageUsageFlags usage, ImageCreateFlags flags, ExternalMemoryHandleTypeFlags externalHandleType, ExternalImageFormatProperties* externalImageFormatProperties);
+
+		/// <summary>
+		/// -
+		/// </summary>
+		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
+		public static extern Result vkGetMemoryWin32HandleNV(Device device, DeviceMemory memory, ExternalMemoryHandleTypeFlags handleType, IntPtr* handle);
+
 	}
 }
