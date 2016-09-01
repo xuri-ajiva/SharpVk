@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
 
@@ -295,6 +296,7 @@ namespace SharpVk.VkXml
                     string fieldName = vkField.Attribute("name").Value;
                     bool isBitmask = true;
                     string value = vkField.Attribute("bitpos")?.Value;
+                    string comment = vkField.Attribute("comment")?.Value;
 
                     if (value == null)
                     {
@@ -318,7 +320,8 @@ namespace SharpVk.VkXml
                         VkName = fieldName,
                         NameParts = fieldNameParts.ToArray(),
                         IsBitmask = isBitmask,
-                        Value = value
+                        Value = value,
+                        Comment = comment != null ? new List<string> { comment } : null
                     });
                 }
 
@@ -389,22 +392,15 @@ namespace SharpVk.VkXml
 
             var filteredSpec = FilterRequiredElement(typeXml, enumXml, commandXml, vkFeature, vkExtensions);
 
-            var documentedTypes = new[] { TypeCategory.handle, TypeCategory.@struct, TypeCategory.@enum, TypeCategory.bitmask, TypeCategory.union };
+            var documentedCategories = new[] { TypeCategory.handle, TypeCategory.@struct, TypeCategory.@enum, TypeCategory.bitmask };
 
-            foreach (var type in filteredSpec.Types.Values.Where(x => documentedTypes.Contains(x.Category) && x.Extension == null))
-            {
-                this.ApplyDocumentation(type);
-            }
+            IEnumerable<ParsedElement> documentedElements = filteredSpec.Types.Values.Where(x => documentedCategories.Contains(x.Category) && x.Extension == null);
 
-            foreach (var command in filteredSpec.Commands.Values.Where(x => x.Extension == null))
-            {
-                this.ApplyDocumentation(command);
-            }
+            documentedElements = documentedElements.Concat(filteredSpec.Commands.Values.Where(x => x.Extension == null));
 
-            foreach (var enumeration in filteredSpec.Enumerations.Values.Where(x => x.Extension == null))
-            {
-                this.ApplyDocumentation(enumeration);
-            }
+            documentedElements = documentedElements.Concat(filteredSpec.Enumerations.Values.Where(x => x.Extension == null));
+
+            Parallel.ForEach(documentedElements, this.ApplyDocumentation);
 
             return filteredSpec;
         }
