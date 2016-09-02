@@ -24,6 +24,18 @@ namespace SharpVk.Spirv
 
         public void AddStatement(ResultId? resultId, SpirvStatement statement)
         {
+            if (resultId.HasValue)
+            {
+                Console.Write($" {resultId.Value}".PadRight(5));
+                Console.Write(" = ");
+            }
+            else
+            {
+                Console.Write("        ");
+            }
+
+            Console.WriteLine(statement);
+
             var opCode = OpCode.Lookup[statement.Op];
 
             var arguments = statement.Operands.ToList();
