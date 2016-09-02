@@ -181,6 +181,12 @@ namespace SharpVk.VkXml
                 set;
             }
 
+            public List<string> Comment
+            {
+                get;
+                set;
+            }
+
             public string Value
             {
                 get;

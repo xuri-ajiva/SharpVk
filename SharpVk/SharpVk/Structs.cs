@@ -26,11 +26,25 @@ using System.Text;
 
 namespace SharpVk
 {
+	/// <summary>
+	/// -
+	/// </summary>
 	[StructLayout(LayoutKind.Sequential)]
 	public struct SECURITY_ATTRIBUTES
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public int nLength;
+
+		/// <summary>
+		/// -
+		/// </summary>
 		public IntPtr lpSecurityDescriptor;
+
+		/// <summary>
+		/// -
+		/// </summary>
 		public int bInheritHandle;
 	}
 

@@ -61,8 +61,17 @@ foreach(var enumeration in types.Enumerations)
 <#
         }
 #>	    /// <summary>
-	    /// -
-	    /// </summary>
+<#
+		foreach(var line in field.Comment)
+		{
+#>
+		/// <para>
+		/// <#=line#>
+		/// </para>
+<#
+		}
+#>
+		/// </summary>
 		<#=field.Name#> = <#=field.Value#>,<#
 	}
 #>

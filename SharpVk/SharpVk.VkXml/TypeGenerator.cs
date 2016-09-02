@@ -56,13 +56,13 @@ namespace SharpVk.VkXml
 
             GenerateExceptions(spec, result);
 
-            GenerateEnumerations(spec, typeData, result);
+            var enumLookup = GenerateEnumerations(spec, typeData, result);
 
             GenerateUnions(typeData, result);
 
             GenerateNonInteropStructs(typeData, result);
 
-            var classLookup = GenerateClasses(spec, typeData, result);
+            var classLookup = GenerateClasses(spec, typeData, result, enumLookup);
 
             var handleLookup = GenerateHandles(spec, typeData, result);
 
@@ -698,7 +698,7 @@ namespace SharpVk.VkXml
             return handleLookup;
         }
 
-        private static Dictionary<string, TypeSet.VkClass> GenerateClasses(SpecParser.ParsedSpec spec, Dictionary<string, TypeDesc> typeData, TypeSet result)
+        private static Dictionary<string, TypeSet.VkClass> GenerateClasses(SpecParser.ParsedSpec spec, Dictionary<string, TypeDesc> typeData, TypeSet result, Dictionary<string, TypeSet.VkEnumerationField> enumLookup)
         {
             var classLookup = new Dictionary<string, TypeSet.VkClass>();
 
@@ -742,7 +742,19 @@ namespace SharpVk.VkXml
 
                     bool isPointer = member.PointerType.IsPointer();
 
-                    if (member.Dimensions != null)
+                    if (member.Values != null)
+                    {
+                        //HACK The only use of values currently is the
+                        // enumeration binding for sType
+
+                        memberDesc.IsInteropOnly = true;
+
+                        var enumerationType = typeData[member.Type];
+                        var enumerationField = enumLookup[member.Values];
+
+                        newClass.MarshalToStatements.Add($"result.{memberName} = {enumerationType.Name}.{enumerationField.Name};");
+                    }
+                    else if (member.Dimensions != null)
                     {
                         if (member.Dimensions.Length > 1)
                         {
@@ -864,8 +876,7 @@ namespace SharpVk.VkXml
                             }
                         }
                     }
-                    else if (member.VkName == "sType"
-                                || member.VkName == "pNext"
+                    else if (member.VkName == "pNext"
                                 || memberType.Data.Category == TypeCategory.funcpointer)
                     {
                         // These fields are not to be exposed to the public API
@@ -888,7 +899,14 @@ namespace SharpVk.VkXml
                     }
                     else if (memberType.Data.Category == TypeCategory.handle)
                     {
-                        newClass.MarshalToStatements.Add(string.Format("result.{0} = this.{0}?.Pack() ?? Interop.{1}.Null;", memberDesc.Name, memberDesc.InteropTypeName));
+                        if (member.PointerType.IsPointer())
+                        {
+                            newClass.MarshalToStatements.Add($"result.{memberDesc.Name} = this.{memberDesc.Name} == null ? null : (Interop.{memberDesc.InteropTypeName})Interop.HeapUtil.AllocateAndMarshal(this.{memberDesc.Name}.Pack());");
+                        }
+                        else
+                        {
+                            newClass.MarshalToStatements.Add($"result.{memberDesc.Name} = this.{memberDesc.Name}?.Pack() ?? Interop.{memberDesc.InteropTypeName}.Null;");
+                        }
                     }
                     else if (isPointer && memberType.RequiresInterop)
                     {
@@ -1201,8 +1219,10 @@ namespace SharpVk.VkXml
             }
         }
 
-        private static void GenerateEnumerations(SpecParser.ParsedSpec spec, Dictionary<string, TypeDesc> typeData, TypeSet result)
+        private static Dictionary<string, TypeSet.VkEnumerationField> GenerateEnumerations(SpecParser.ParsedSpec spec, Dictionary<string, TypeDesc> typeData, TypeSet result)
         {
+            var resultLookup = new Dictionary<string, TypeSet.VkEnumerationField>();
+
             var enumerationTypes = typeData.Values.Where(x => x.Data.Category == TypeCategory.@enum).ToDictionary(x => x.Data.VkName);
 
             foreach (var type in typeData.Values.Where(x => x.Data.Category == TypeCategory.bitmask))
@@ -1230,7 +1250,7 @@ namespace SharpVk.VkXml
                         PopulateNoneField(newEnumeration);
                     }
 
-                    PopulateFields(newEnumeration, enumeration);
+                    PopulateFields(newEnumeration, enumeration, resultLookup);
                 }
                 else
                 {
@@ -1250,10 +1270,12 @@ namespace SharpVk.VkXml
                     Comment = enumeration.Comment ?? new List<string> { "-" }
                 };
 
-                PopulateFields(newEnumeration, enumeration);
+                PopulateFields(newEnumeration, enumeration, resultLookup);
 
                 result.Enumerations.Add(newEnumeration);
             }
+
+            return resultLookup;
         }
 
         private static void PopulateNoneField(TypeSet.VkEnumeration newEnumeration)
@@ -1261,11 +1283,12 @@ namespace SharpVk.VkXml
             newEnumeration.Fields.Add(new TypeSet.VkEnumerationField
             {
                 Name = "None",
+                Comment = new List<string> { "-" },
                 Value = "0"
             });
         }
 
-        private static void PopulateFields(TypeSet.VkEnumeration newEnumeration, SpecParser.ParsedEnum enumeration)
+        private static void PopulateFields(TypeSet.VkEnumeration newEnumeration, SpecParser.ParsedEnum enumeration, Dictionary<string, TypeSet.VkEnumerationField> resultLookup)
         {
             string digitsPrefix = JoinNameParts(enumeration.NameParts.TakeWhile(x => !digitsSuffix.Contains(x)));
 
@@ -1278,11 +1301,16 @@ namespace SharpVk.VkXml
                     fieldName = digitsPrefix + fieldName;
                 }
 
-                newEnumeration.Fields.Add(new TypeSet.VkEnumerationField
+                var newField = new TypeSet.VkEnumerationField
                 {
                     Name = fieldName,
+                    Comment = field.Comment ?? new List<string> { "-" },
                     Value = field.IsBitmask ? "1 << " + field.Value : field.Value
-                });
+                };
+
+                newEnumeration.Fields.Add(newField);
+
+                resultLookup.Add(field.VkName, newField);
             }
         }
 

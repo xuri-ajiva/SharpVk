@@ -1253,7 +1253,7 @@ namespace SharpVk
         internal unsafe Interop.DebugReportLayerFlags Pack()
         {
             var result = new Interop.DebugReportLayerFlags();
-			result.SType = StructureType.DebugReportLayerFlags;
+			result.SType = StructureType.DebugReportValidationFlags;
 			result.EnabledValidationFlags = this.EnabledValidationFlags;
 
             return result;
@@ -7820,7 +7820,7 @@ namespace SharpVk
 		/// -
 		/// </para>
 		/// </summary>
-		public uint AcquireCount
+		public DeviceMemory[] AcquireSyncs
 		{
 			get;
 			set;
@@ -7830,7 +7830,7 @@ namespace SharpVk
 		/// -
 		/// </para>
 		/// </summary>
-		public DeviceMemory AcquireSyncs
+		public ulong[] AcquireKeys
 		{
 			get;
 			set;
@@ -7840,7 +7840,7 @@ namespace SharpVk
 		/// -
 		/// </para>
 		/// </summary>
-		public ulong AcquireKeys
+		public uint[] AcquireTimeoutMilliseconds
 		{
 			get;
 			set;
@@ -7850,7 +7850,7 @@ namespace SharpVk
 		/// -
 		/// </para>
 		/// </summary>
-		public uint AcquireTimeoutMilliseconds
+		public DeviceMemory[] ReleaseSyncs
 		{
 			get;
 			set;
@@ -7860,27 +7860,7 @@ namespace SharpVk
 		/// -
 		/// </para>
 		/// </summary>
-		public uint ReleaseCount
-		{
-			get;
-			set;
-		}
-	    /// <summary>
-		/// <para>
-		/// -
-		/// </para>
-		/// </summary>
-		public DeviceMemory ReleaseSyncs
-		{
-			get;
-			set;
-		}
-	    /// <summary>
-		/// <para>
-		/// -
-		/// </para>
-		/// </summary>
-		public ulong ReleaseKeys
+		public ulong[] ReleaseKeys
 		{
 			get;
 			set;
@@ -7890,13 +7870,43 @@ namespace SharpVk
         {
             var result = new Interop.Win32KeyedMutexAcquireReleaseInfo();
 			result.SType = StructureType.Win32KeyedMutexAcquireReleaseInfo;
-			result.AcquireSyncs = this.AcquireSyncs?.Pack() ?? Interop.DeviceMemory*.Null;
-			result.AcquireKeys = (ulong*)Interop.HeapUtil.AllocateAndMarshal(this.AcquireKeys);
-			result.AcquireTimeoutMilliseconds = (uint*)Interop.HeapUtil.AllocateAndMarshal(this.AcquireTimeoutMilliseconds);
-			result.ReleaseSyncs = this.ReleaseSyncs?.Pack() ?? Interop.DeviceMemory*.Null;
-			result.ReleaseKeys = (ulong*)Interop.HeapUtil.AllocateAndMarshal(this.ReleaseKeys);
-			result.AcquireCount = this.AcquireCount;
-			result.ReleaseCount = this.ReleaseCount;
+			
+			//AcquireSyncs
+			if (this.AcquireSyncs != null)
+			{
+			    int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.DeviceMemory>();
+			    IntPtr pointer = Interop.HeapUtil.Allocate<Interop.DeviceMemory>(this.AcquireSyncs.Length);
+			    for (int index = 0; index < this.AcquireSyncs.Length; index++)
+			    {
+			        System.Runtime.InteropServices.Marshal.StructureToPtr(this.AcquireSyncs[index].Pack(), pointer + (size * index), false);
+			    }
+			    result.AcquireSyncs = (Interop.DeviceMemory*)pointer.ToPointer();
+			}
+			else
+			{
+			    result.AcquireSyncs = null;
+			}
+			result.AcquireKeys = this.AcquireKeys == null ? null : Interop.HeapUtil.MarshalTo(this.AcquireKeys);
+			result.AcquireTimeoutMilliseconds = this.AcquireTimeoutMilliseconds == null ? null : Interop.HeapUtil.MarshalTo(this.AcquireTimeoutMilliseconds);
+			
+			//ReleaseSyncs
+			if (this.ReleaseSyncs != null)
+			{
+			    int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.DeviceMemory>();
+			    IntPtr pointer = Interop.HeapUtil.Allocate<Interop.DeviceMemory>(this.ReleaseSyncs.Length);
+			    for (int index = 0; index < this.ReleaseSyncs.Length; index++)
+			    {
+			        System.Runtime.InteropServices.Marshal.StructureToPtr(this.ReleaseSyncs[index].Pack(), pointer + (size * index), false);
+			    }
+			    result.ReleaseSyncs = (Interop.DeviceMemory*)pointer.ToPointer();
+			}
+			else
+			{
+			    result.ReleaseSyncs = null;
+			}
+			result.ReleaseKeys = this.ReleaseKeys == null ? null : Interop.HeapUtil.MarshalTo(this.ReleaseKeys);
+			result.AcquireCount = (uint)(this.AcquireTimeoutMilliseconds?.Length ?? 0);
+			result.ReleaseCount = (uint)(this.ReleaseKeys?.Length ?? 0);
 
             return result;
         }

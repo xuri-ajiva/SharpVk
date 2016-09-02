@@ -40,76 +40,112 @@ namespace SharpVk
 	public enum AccessFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Controls coherency of indirect command reads
+		/// </para>
+		/// </summary>
 		IndirectCommandRead = 1 << 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Controls coherency of index reads
+		/// </para>
+		/// </summary>
 		IndexRead = 1 << 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Controls coherency of vertex attribute reads
+		/// </para>
+		/// </summary>
 		VertexAttributeRead = 1 << 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Controls coherency of uniform buffer reads
+		/// </para>
+		/// </summary>
 		UniformRead = 1 << 3,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Controls coherency of input attachment reads
+		/// </para>
+		/// </summary>
 		InputAttachmentRead = 1 << 4,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Controls coherency of shader reads
+		/// </para>
+		/// </summary>
 		ShaderRead = 1 << 5,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Controls coherency of shader writes
+		/// </para>
+		/// </summary>
 		ShaderWrite = 1 << 6,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Controls coherency of color attachment reads
+		/// </para>
+		/// </summary>
 		ColorAttachmentRead = 1 << 7,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Controls coherency of color attachment writes
+		/// </para>
+		/// </summary>
 		ColorAttachmentWrite = 1 << 8,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Controls coherency of depth/stencil attachment reads
+		/// </para>
+		/// </summary>
 		DepthStencilAttachmentRead = 1 << 9,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Controls coherency of depth/stencil attachment writes
+		/// </para>
+		/// </summary>
 		DepthStencilAttachmentWrite = 1 << 10,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Controls coherency of transfer reads
+		/// </para>
+		/// </summary>
 		TransferRead = 1 << 11,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Controls coherency of transfer writes
+		/// </para>
+		/// </summary>
 		TransferWrite = 1 << 12,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Controls coherency of host reads
+		/// </para>
+		/// </summary>
 		HostRead = 1 << 13,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Controls coherency of host writes
+		/// </para>
+		/// </summary>
 		HostWrite = 1 << 14,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Controls coherency of memory reads
+		/// </para>
+		/// </summary>
 		MemoryRead = 1 << 15,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Controls coherency of memory writes
+		/// </para>
+		/// </summary>
 		MemoryWrite = 1 << 16,
 	}
 
@@ -122,8 +158,10 @@ namespace SharpVk
 	public enum AndroidSurfaceCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -142,12 +180,16 @@ namespace SharpVk
 	public enum AttachmentDescriptionFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// The attachment may alias physical memory of another attachment in the same render pass
+		/// </para>
+		/// </summary>
 		MayAlias = 1 << 0,
 	}
 
@@ -166,20 +208,28 @@ namespace SharpVk
 	public enum BufferCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Buffer should support sparse backing
+		/// </para>
+		/// </summary>
 		SparseBinding = 1 << 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Buffer should support sparse backing with partial residency
+		/// </para>
+		/// </summary>
 		SparseResidency = 1 << 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Buffer should support constent data access to physical memory ranges mapped into multiple locations of sparse buffers
+		/// </para>
+		/// </summary>
 		SparseAliased = 1 << 2,
 	}
 
@@ -198,44 +248,64 @@ namespace SharpVk
 	public enum BufferUsageFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Can be used as a source of transfer operations
+		/// </para>
+		/// </summary>
 		TransferSource = 1 << 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Can be used as a destination of transfer operations
+		/// </para>
+		/// </summary>
 		TransferDestination = 1 << 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Can be used as TBO
+		/// </para>
+		/// </summary>
 		UniformTexelBuffer = 1 << 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Can be used as IBO
+		/// </para>
+		/// </summary>
 		StorageTexelBuffer = 1 << 3,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Can be used as UBO
+		/// </para>
+		/// </summary>
 		UniformBuffer = 1 << 4,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Can be used as SSBO
+		/// </para>
+		/// </summary>
 		StorageBuffer = 1 << 5,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Can be used as source of fixed-function index fetch (index buffer)
+		/// </para>
+		/// </summary>
 		IndexBuffer = 1 << 6,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Can be used as source of fixed-function vertex fetch (VBO)
+		/// </para>
+		/// </summary>
 		VertexBuffer = 1 << 7,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Can be the source of indirect parameters (e.g. indirect buffer, parameter buffer)
+		/// </para>
+		/// </summary>
 		IndirectBuffer = 1 << 8,
 	}
 
@@ -251,8 +321,10 @@ namespace SharpVk
 	public enum BufferViewCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -268,24 +340,34 @@ namespace SharpVk
 	public enum ColorComponentFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R = 1 << 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		G = 1 << 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		B = 1 << 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		A = 1 << 3,
 	}
 
@@ -304,12 +386,16 @@ namespace SharpVk
 	public enum CommandBufferResetFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Release resources owned by the buffer
+		/// </para>
+		/// </summary>
 		ReleaseResources = 1 << 0,
 	}
 
@@ -328,20 +414,28 @@ namespace SharpVk
 	public enum CommandBufferUsageFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		OneTimeSubmit = 1 << 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		RenderPassContinue = 1 << 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Command buffer may be submitted/executed more than once simultaneously
+		/// </para>
+		/// </summary>
 		SimultaneousUse = 1 << 2,
 	}
 
@@ -360,16 +454,22 @@ namespace SharpVk
 	public enum CommandPoolCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Command buffers have a short lifetime
+		/// </para>
+		/// </summary>
 		Transient = 1 << 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Command buffers may release their memory individually
+		/// </para>
+		/// </summary>
 		ResetCommandBuffer = 1 << 1,
 	}
 
@@ -388,12 +488,16 @@ namespace SharpVk
 	public enum CommandPoolResetFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Release resources owned by the pool
+		/// </para>
+		/// </summary>
 		ReleaseResources = 1 << 0,
 	}
 
@@ -406,24 +510,34 @@ namespace SharpVk
 	public enum CompositeAlphaFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Opaque = 1 << 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		PreMultiplied = 1 << 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		PostMultiplied = 1 << 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Inherit = 1 << 3,
 	}
 
@@ -439,20 +553,28 @@ namespace SharpVk
 	public enum CullModeFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Front = 1 << 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Back = 1 << 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		FrontAndBack = 0x00000003,
 	}
 
@@ -465,28 +587,40 @@ namespace SharpVk
 	public enum DebugReportFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Information = 1 << 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Warning = 1 << 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		PerformanceWarning = 1 << 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Error = 1 << 3,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Debug = 1 << 4,
 	}
 
@@ -505,12 +639,16 @@ namespace SharpVk
 	public enum DependencyFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Dependency is per pixel region 
+		/// </para>
+		/// </summary>
 		ByRegion = 1 << 0,
 	}
 
@@ -529,12 +667,16 @@ namespace SharpVk
 	public enum DescriptorPoolCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Descriptor sets may be freed individually
+		/// </para>
+		/// </summary>
 		FreeDescriptorSet = 1 << 0,
 	}
 
@@ -550,8 +692,10 @@ namespace SharpVk
 	public enum DescriptorPoolResetFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -567,8 +711,10 @@ namespace SharpVk
 	public enum DescriptorSetLayoutCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -584,8 +730,10 @@ namespace SharpVk
 	public enum DeviceCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -601,8 +749,10 @@ namespace SharpVk
 	public enum DeviceQueueCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -615,8 +765,10 @@ namespace SharpVk
 	public enum DisplayModeCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -629,24 +781,34 @@ namespace SharpVk
 	public enum DisplayPlaneAlphaFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Opaque = 1 << 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Global = 1 << 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		PerPixel = 1 << 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		PerPixelPremultiplied = 1 << 3,
 	}
 
@@ -659,8 +821,10 @@ namespace SharpVk
 	public enum DisplaySurfaceCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -676,8 +840,10 @@ namespace SharpVk
 	public enum EventCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -690,20 +856,28 @@ namespace SharpVk
 	public enum ExternalMemoryFeatureFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		DedicatedOnlyBit = 0x00000001,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		ExportableBit = 0x00000002,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		ImportableBit = 0x00000004,
 	}
 
@@ -716,24 +890,34 @@ namespace SharpVk
 	public enum ExternalMemoryHandleTypeFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		OpaqueWin32Bit = 0x00000001,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		OpaqueWin32KmtBit = 0x00000002,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		D3d11ImageBit = 0x00000004,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		D3d11ImageKmtBit = 0x00000008,
 	}
 
@@ -752,12 +936,16 @@ namespace SharpVk
 	public enum FenceCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Signaled = 1 << 0,
 	}
 
@@ -776,64 +964,94 @@ namespace SharpVk
 	public enum FormatFeatureFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Format can be used for sampled images (SAMPLED_IMAGE and COMBINED_IMAGE_SAMPLER descriptor types)
+		/// </para>
+		/// </summary>
 		SampledImage = 1 << 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Format can be used for storage images (STORAGE_IMAGE descriptor type)
+		/// </para>
+		/// </summary>
 		StorageImage = 1 << 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Format supports atomic operations in case it is used for storage images
+		/// </para>
+		/// </summary>
 		StorageImageAtomic = 1 << 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Format can be used for uniform texel buffers (TBOs)
+		/// </para>
+		/// </summary>
 		UniformTexelBuffer = 1 << 3,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Format can be used for storage texel buffers (IBOs)
+		/// </para>
+		/// </summary>
 		StorageTexelBuffer = 1 << 4,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Format supports atomic operations in case it is used for storage texel buffers
+		/// </para>
+		/// </summary>
 		StorageTexelBufferAtomic = 1 << 5,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Format can be used for vertex buffers (VBOs)
+		/// </para>
+		/// </summary>
 		VertexBuffer = 1 << 6,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Format can be used for color attachment images
+		/// </para>
+		/// </summary>
 		ColorAttachment = 1 << 7,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Format supports blending in case it is used for color attachment images
+		/// </para>
+		/// </summary>
 		ColorAttachmentBlend = 1 << 8,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Format can be used for depth/stencil attachment images
+		/// </para>
+		/// </summary>
 		DepthStencilAttachment = 1 << 9,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Format can be used as the source image of blits with vkCmdBlitImage
+		/// </para>
+		/// </summary>
 		BlitSource = 1 << 10,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Format can be used as the destination image of blits with vkCmdBlitImage
+		/// </para>
+		/// </summary>
 		BlitDestination = 1 << 11,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Format can be filtered with VK_FILTER_LINEAR when being sampled
+		/// </para>
+		/// </summary>
 		SampledImageFilterLinear = 1 << 12,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		SampledImageFilterCubicBitImg = 13,
 	}
 
@@ -849,8 +1067,10 @@ namespace SharpVk
 	public enum FramebufferCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -869,24 +1089,34 @@ namespace SharpVk
 	public enum ImageAspectFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Color = 1 << 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Depth = 1 << 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Stencil = 1 << 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Metadata = 1 << 3,
 	}
 
@@ -911,28 +1141,40 @@ namespace SharpVk
 	public enum ImageCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Image should support sparse backing
+		/// </para>
+		/// </summary>
 		SparseBinding = 1 << 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Image should support sparse backing with partial residency
+		/// </para>
+		/// </summary>
 		SparseResidency = 1 << 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Image should support constent data access to physical memory ranges mapped into multiple locations of sparse images
+		/// </para>
+		/// </summary>
 		SparseAliased = 1 << 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Allows image views to have different format than the base image
+		/// </para>
+		/// </summary>
 		MutableFormat = 1 << 3,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Allows creating image views with cube type from the created image
+		/// </para>
+		/// </summary>
 		CubeCompatible = 1 << 4,
 	}
 
@@ -951,40 +1193,58 @@ namespace SharpVk
 	public enum ImageUsageFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Can be used as a source of transfer operations
+		/// </para>
+		/// </summary>
 		TransferSource = 1 << 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Can be used as a destination of transfer operations
+		/// </para>
+		/// </summary>
 		TransferDestination = 1 << 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Can be sampled from (SAMPLED_IMAGE and COMBINED_IMAGE_SAMPLER descriptor types)
+		/// </para>
+		/// </summary>
 		Sampled = 1 << 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Can be used as storage image (STORAGE_IMAGE descriptor type)
+		/// </para>
+		/// </summary>
 		Storage = 1 << 3,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Can be used as framebuffer color attachment
+		/// </para>
+		/// </summary>
 		ColorAttachment = 1 << 4,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Can be used as framebuffer depth/stencil attachment
+		/// </para>
+		/// </summary>
 		DepthStencilAttachment = 1 << 5,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Image data not needed outside of rendering
+		/// </para>
+		/// </summary>
 		TransientAttachment = 1 << 6,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Can be used as framebuffer input attachment
+		/// </para>
+		/// </summary>
 		InputAttachment = 1 << 7,
 	}
 
@@ -1000,8 +1260,10 @@ namespace SharpVk
 	public enum ImageViewCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -1017,8 +1279,10 @@ namespace SharpVk
 	public enum InstanceCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -1037,12 +1301,16 @@ namespace SharpVk
 	public enum MemoryHeapFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// If set, heap represents device memory
+		/// </para>
+		/// </summary>
 		DeviceLocal = 1 << 0,
 	}
 
@@ -1058,8 +1326,10 @@ namespace SharpVk
 	public enum MemoryMapFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -1078,28 +1348,40 @@ namespace SharpVk
 	public enum MemoryPropertyFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// If otherwise stated, then allocate memory on device
+		/// </para>
+		/// </summary>
 		DeviceLocal = 1 << 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Memory is mappable by host
+		/// </para>
+		/// </summary>
 		HostVisible = 1 << 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Memory will have i/o coherency. If not set, application may need to use vkFlushMappedMemoryRanges and vkInvalidateMappedMemoryRanges to flush/invalidate host cache
+		/// </para>
+		/// </summary>
 		HostCoherent = 1 << 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Memory will be cached by the host
+		/// </para>
+		/// </summary>
 		HostCached = 1 << 3,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Memory may be allocated by the driver when it is required
+		/// </para>
+		/// </summary>
 		LazilyAllocated = 1 << 4,
 	}
 
@@ -1112,8 +1394,10 @@ namespace SharpVk
 	public enum MirSurfaceCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -1129,8 +1413,10 @@ namespace SharpVk
 	public enum PipelineCacheCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -1146,8 +1432,10 @@ namespace SharpVk
 	public enum PipelineColorBlendStateCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -1166,20 +1454,28 @@ namespace SharpVk
 	public enum PipelineCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		DisableOptimization = 1 << 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		AllowDerivatives = 1 << 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Derivative = 1 << 2,
 	}
 
@@ -1195,8 +1491,10 @@ namespace SharpVk
 	public enum PipelineDepthStencilStateCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -1212,8 +1510,10 @@ namespace SharpVk
 	public enum PipelineDynamicStateCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -1229,8 +1529,10 @@ namespace SharpVk
 	public enum PipelineInputAssemblyStateCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -1246,8 +1548,10 @@ namespace SharpVk
 	public enum PipelineLayoutCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -1263,8 +1567,10 @@ namespace SharpVk
 	public enum PipelineMultisampleStateCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -1280,8 +1586,10 @@ namespace SharpVk
 	public enum PipelineRasterizationStateCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -1297,8 +1605,10 @@ namespace SharpVk
 	public enum PipelineShaderStageCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -1320,76 +1630,112 @@ namespace SharpVk
 	public enum PipelineStageFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Before subsequent commands are processed
+		/// </para>
+		/// </summary>
 		TopOfPipe = 1 << 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Draw/DispatchIndirect command fetch
+		/// </para>
+		/// </summary>
 		DrawIndirect = 1 << 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Vertex/index fetch
+		/// </para>
+		/// </summary>
 		VertexInput = 1 << 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Vertex shading
+		/// </para>
+		/// </summary>
 		VertexShader = 1 << 3,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Tessellation control shading
+		/// </para>
+		/// </summary>
 		TessellationControlShader = 1 << 4,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Tessellation evaluation shading
+		/// </para>
+		/// </summary>
 		TessellationEvaluationShader = 1 << 5,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Geometry shading
+		/// </para>
+		/// </summary>
 		GeometryShader = 1 << 6,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Fragment shading
+		/// </para>
+		/// </summary>
 		FragmentShader = 1 << 7,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Early fragment (depth and stencil) tests
+		/// </para>
+		/// </summary>
 		EarlyFragmentTests = 1 << 8,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Late fragment (depth and stencil) tests
+		/// </para>
+		/// </summary>
 		LateFragmentTests = 1 << 9,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Color attachment writes
+		/// </para>
+		/// </summary>
 		ColorAttachmentOutput = 1 << 10,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Compute shading
+		/// </para>
+		/// </summary>
 		ComputeShader = 1 << 11,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Transfer/copy operations
+		/// </para>
+		/// </summary>
 		Transfer = 1 << 12,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// After previous commands have completed
+		/// </para>
+		/// </summary>
 		BottomOfPipe = 1 << 13,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Indicates host (CPU) is a source/sink of the dependency
+		/// </para>
+		/// </summary>
 		Host = 1 << 14,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// All stages of the graphics pipeline
+		/// </para>
+		/// </summary>
 		AllGraphics = 1 << 15,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// All stages supported on the queue
+		/// </para>
+		/// </summary>
 		AllCommands = 1 << 16,
 	}
 
@@ -1405,8 +1751,10 @@ namespace SharpVk
 	public enum PipelineTessellationStateCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -1422,8 +1770,10 @@ namespace SharpVk
 	public enum PipelineVertexInputStateCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -1439,8 +1789,10 @@ namespace SharpVk
 	public enum PipelineViewportStateCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -1459,12 +1811,16 @@ namespace SharpVk
 	public enum QueryControlFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Require precise results to be collected by the query
+		/// </para>
+		/// </summary>
 		Precise = 1 << 0,
 	}
 
@@ -1495,52 +1851,76 @@ namespace SharpVk
 	public enum QueryPipelineStatisticFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Optional
+		/// </para>
+		/// </summary>
 		InputAssemblyVertices = 1 << 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Optional
+		/// </para>
+		/// </summary>
 		InputAssemblyPrimitives = 1 << 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Optional
+		/// </para>
+		/// </summary>
 		VertexShaderInvocations = 1 << 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Optional
+		/// </para>
+		/// </summary>
 		GeometryShaderInvocations = 1 << 3,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Optional
+		/// </para>
+		/// </summary>
 		GeometryShaderPrimitives = 1 << 4,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Optional
+		/// </para>
+		/// </summary>
 		ClippingInvocations = 1 << 5,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Optional
+		/// </para>
+		/// </summary>
 		ClippingPrimitives = 1 << 6,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Optional
+		/// </para>
+		/// </summary>
 		FragmentShaderInvocations = 1 << 7,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Optional
+		/// </para>
+		/// </summary>
 		TessellationControlShaderPatches = 1 << 8,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Optional
+		/// </para>
+		/// </summary>
 		TessellationEvaluationShaderInvocations = 1 << 9,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Optional
+		/// </para>
+		/// </summary>
 		ComputeShaderInvocations = 1 << 10,
 	}
 
@@ -1556,8 +1936,10 @@ namespace SharpVk
 	public enum QueryPoolCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -1576,24 +1958,34 @@ namespace SharpVk
 	public enum QueryResultFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Results of the queries are written to the destination buffer as 64-bit values
+		/// </para>
+		/// </summary>
 		QueryResult64 = 1 << 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Results of the queries are waited on before proceeding with the result copy
+		/// </para>
+		/// </summary>
 		Wait = 1 << 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Besides the results of the query, the availability of the results is also written
+		/// </para>
+		/// </summary>
 		WithAvailability = 1 << 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Copy the partial results of the query even if the final results are not available
+		/// </para>
+		/// </summary>
 		Partial = 1 << 3,
 	}
 
@@ -1612,24 +2004,34 @@ namespace SharpVk
 	public enum QueueFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Queue supports graphics operations
+		/// </para>
+		/// </summary>
 		Graphics = 1 << 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Queue supports compute operations
+		/// </para>
+		/// </summary>
 		Compute = 1 << 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Queue supports transfer operations
+		/// </para>
+		/// </summary>
 		Transfer = 1 << 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Queue supports sparse resource memory management operations
+		/// </para>
+		/// </summary>
 		SparseBinding = 1 << 3,
 	}
 
@@ -1645,8 +2047,10 @@ namespace SharpVk
 	public enum RenderPassCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -1665,36 +2069,52 @@ namespace SharpVk
 	public enum SampleCountFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Sample count 1 supported
+		/// </para>
+		/// </summary>
 		SampleCount1 = 1 << 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Sample count 2 supported
+		/// </para>
+		/// </summary>
 		SampleCount2 = 1 << 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Sample count 4 supported
+		/// </para>
+		/// </summary>
 		SampleCount4 = 1 << 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Sample count 8 supported
+		/// </para>
+		/// </summary>
 		SampleCount8 = 1 << 3,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Sample count 16 supported
+		/// </para>
+		/// </summary>
 		SampleCount16 = 1 << 4,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Sample count 32 supported
+		/// </para>
+		/// </summary>
 		SampleCount32 = 1 << 5,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Sample count 64 supported
+		/// </para>
+		/// </summary>
 		SampleCount64 = 1 << 6,
 	}
 
@@ -1710,8 +2130,10 @@ namespace SharpVk
 	public enum SamplerCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -1727,8 +2149,10 @@ namespace SharpVk
 	public enum SemaphoreCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -1744,8 +2168,10 @@ namespace SharpVk
 	public enum ShaderModuleCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -1764,40 +2190,58 @@ namespace SharpVk
 	public enum ShaderStageFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Vertex = 1 << 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		TessellationControl = 1 << 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		TessellationEvaluation = 1 << 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Geometry = 1 << 3,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Fragment = 1 << 4,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Compute = 1 << 5,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		AllGraphics = 0x0000001F,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		All = 0x7FFFFFFF,
 	}
 
@@ -1816,20 +2260,28 @@ namespace SharpVk
 	public enum SparseImageFormatFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Image uses a single miptail region for all array layers
+		/// </para>
+		/// </summary>
 		SingleMiptail = 1 << 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Image requires mip level dimensions to be an integer multiple of the sparse image block dimensions for non-miptail levels.
+		/// </para>
+		/// </summary>
 		AlignedMipSize = 1 << 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Image uses a non-standard sparse image block dimensions
+		/// </para>
+		/// </summary>
 		NonstandardBlockSize = 1 << 2,
 	}
 
@@ -1848,12 +2300,16 @@ namespace SharpVk
 	public enum SparseMemoryBindFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Operation binds resource metadata to memory
+		/// </para>
+		/// </summary>
 		Metadata = 1 << 0,
 	}
 
@@ -1872,20 +2328,28 @@ namespace SharpVk
 	public enum StencilFaceFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Front face
+		/// </para>
+		/// </summary>
 		Front = 1 << 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Back face
+		/// </para>
+		/// </summary>
 		Back = 1 << 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Front and back faces
+		/// </para>
+		/// </summary>
 		FrontAndBack = 0x00000003,
 	}
 
@@ -1901,8 +2365,10 @@ namespace SharpVk
 	public enum SubpassDescriptionFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -1915,44 +2381,64 @@ namespace SharpVk
 	public enum SurfaceTransformFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Identity = 1 << 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Rotate90 = 1 << 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Rotate180 = 1 << 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Rotate270 = 1 << 3,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		HorizontalMirror = 1 << 4,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		HorizontalMirrorRotate90 = 1 << 5,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		HorizontalMirrorRotate180 = 1 << 6,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		HorizontalMirrorRotate270 = 1 << 7,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Inherit = 1 << 8,
 	}
 
@@ -1965,8 +2451,10 @@ namespace SharpVk
 	public enum SwapchainCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -1979,8 +2467,10 @@ namespace SharpVk
 	public enum WaylandSurfaceCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -1993,8 +2483,10 @@ namespace SharpVk
 	public enum Win32SurfaceCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -2007,8 +2499,10 @@ namespace SharpVk
 	public enum XcbSurfaceCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -2021,8 +2515,10 @@ namespace SharpVk
 	public enum XlibSurfaceCreateFlags
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	}
 
@@ -2040,16 +2536,22 @@ namespace SharpVk
 	public enum AttachmentLoadOp
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Load = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Clear = 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		DontCare = 2,
 	}
 
@@ -2067,12 +2569,16 @@ namespace SharpVk
 	public enum AttachmentStoreOp
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Store = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		DontCare = 1,
 	}
 
@@ -2096,80 +2602,118 @@ namespace SharpVk
 	public enum BlendFactor
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Zero = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		One = 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		SourceColor = 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		OneMinusSourceColor = 3,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		DestinationColor = 4,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		OneMinusDestinationColor = 5,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		SourceAlpha = 6,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		OneMinusSourceAlpha = 7,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		DestinationAlpha = 8,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		OneMinusDestinationAlpha = 9,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		ConstantColor = 10,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		OneMinusConstantColor = 11,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		ConstantAlpha = 12,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		OneMinusConstantAlpha = 13,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		SourceAlphaSaturate = 14,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Src1Color = 15,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		OneMinusSrc1Color = 16,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Src1Alpha = 17,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		OneMinusSrc1Alpha = 18,
 	}
 
@@ -2217,24 +2761,34 @@ namespace SharpVk
 	public enum BlendOp
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Add = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Subtract = 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		ReverseSubtract = 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Min = 3,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Max = 4,
 	}
 
@@ -2252,28 +2806,40 @@ namespace SharpVk
 	public enum BorderColor
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		FloatTransparentBlack = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		IntTransparentBlack = 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		FloatOpaqueBlack = 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		IntOpaqueBlack = 3,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		FloatOpaqueWhite = 4,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		IntOpaqueWhite = 5,
 	}
 
@@ -2285,8 +2851,10 @@ namespace SharpVk
 	public enum ColorSpace
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		SrgbNonlinear = 0,
 	}
 
@@ -2304,12 +2872,16 @@ namespace SharpVk
 	public enum CommandBufferLevel
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Primary = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Secondary = 1,
 	}
 
@@ -2324,36 +2896,52 @@ namespace SharpVk
 	public enum CompareOp
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Never = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Less = 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Equal = 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		LessOrEqual = 3,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Greater = 4,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		NotEqual = 5,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		GreaterOrEqual = 6,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Always = 7,
 	}
 
@@ -2371,32 +2959,46 @@ namespace SharpVk
 	public enum ComponentSwizzle
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Identity = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Zero = 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		One = 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R = 3,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		G = 4,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		B = 5,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		A = 6,
 	}
 
@@ -2408,12 +3010,16 @@ namespace SharpVk
 	public enum DebugReportError
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		None = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		CallbackRef = 1,
 	}
 
@@ -2425,120 +3031,178 @@ namespace SharpVk
 	public enum DebugReportObjectType
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Unknown = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Instance = 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		PhysicalDevice = 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Device = 3,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Queue = 4,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Semaphore = 5,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		CommandBuffer = 6,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Fence = 7,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		DeviceMemory = 8,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Buffer = 9,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Image = 10,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Event = 11,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		QueryPool = 12,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		BufferView = 13,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		ImageView = 14,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		ShaderModule = 15,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		PipelineCache = 16,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		PipelineLayout = 17,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		RenderPass = 18,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Pipeline = 19,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		DescriptorSetLayout = 20,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Sampler = 21,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		DescriptorPool = 22,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		DescriptorSet = 23,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Framebuffer = 24,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		CommandPool = 25,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		SurfaceKhr = 26,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		SwapchainKhr = 27,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		DebugReport = 28,
 	}
 
@@ -2559,48 +3223,70 @@ namespace SharpVk
 	public enum DescriptorType
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Sampler = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		CombinedImageSampler = 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		SampledImage = 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		StorageImage = 3,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		UniformTexelBuffer = 4,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		StorageTexelBuffer = 5,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		UniformBuffer = 6,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		StorageBuffer = 7,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		UniformBufferDynamic = 8,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		StorageBufferDynamic = 9,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		InputAttachment = 10,
 	}
 
@@ -2615,40 +3301,58 @@ namespace SharpVk
 	public enum DynamicState
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Viewport = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Scissor = 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		LineWidth = 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		DepthBias = 3,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		BlendConstants = 4,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		DepthBounds = 5,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		StencilCompareMask = 6,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		StencilWriteMask = 7,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		StencilReference = 8,
 	}
 
@@ -2666,16 +3370,22 @@ namespace SharpVk
 	public enum Filter
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Nearest = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Linear = 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		CubicImg = 1000015000,
 	}
 
@@ -3242,776 +3952,1162 @@ namespace SharpVk
 	public enum Format
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Undefined = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R4g4UnormPack8 = 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R4g4b4a4UnormPack16 = 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		B4g4r4a4UnormPack16 = 3,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R5g6b5UnormPack16 = 4,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		B5g6r5UnormPack16 = 5,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R5g5b5a1UnormPack16 = 6,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		B5g5r5a1UnormPack16 = 7,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		A1r5g5b5UnormPack16 = 8,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R8Unorm = 9,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R8Snorm = 10,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R8Uscaled = 11,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R8Sscaled = 12,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R8Uint = 13,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R8Sint = 14,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R8Srgb = 15,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R8g8Unorm = 16,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R8g8Snorm = 17,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R8g8Uscaled = 18,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R8g8Sscaled = 19,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R8g8Uint = 20,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R8g8Sint = 21,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R8g8Srgb = 22,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R8g8b8Unorm = 23,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R8g8b8Snorm = 24,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R8g8b8Uscaled = 25,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R8g8b8Sscaled = 26,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R8g8b8Uint = 27,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R8g8b8Sint = 28,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R8g8b8Srgb = 29,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		B8g8r8Unorm = 30,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		B8g8r8Snorm = 31,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		B8g8r8Uscaled = 32,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		B8g8r8Sscaled = 33,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		B8g8r8Uint = 34,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		B8g8r8Sint = 35,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		B8g8r8Srgb = 36,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R8g8b8a8Unorm = 37,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R8g8b8a8Snorm = 38,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R8g8b8a8Uscaled = 39,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R8g8b8a8Sscaled = 40,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R8g8b8a8Uint = 41,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R8g8b8a8Sint = 42,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R8g8b8a8Srgb = 43,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		B8g8r8a8Unorm = 44,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		B8g8r8a8Snorm = 45,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		B8g8r8a8Uscaled = 46,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		B8g8r8a8Sscaled = 47,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		B8g8r8a8Uint = 48,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		B8g8r8a8Sint = 49,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		B8g8r8a8Srgb = 50,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		A8b8g8r8UnormPack32 = 51,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		A8b8g8r8SnormPack32 = 52,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		A8b8g8r8UscaledPack32 = 53,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		A8b8g8r8SscaledPack32 = 54,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		A8b8g8r8UintPack32 = 55,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		A8b8g8r8SintPack32 = 56,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		A8b8g8r8SrgbPack32 = 57,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		A2r10g10b10UnormPack32 = 58,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		A2r10g10b10SnormPack32 = 59,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		A2r10g10b10UscaledPack32 = 60,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		A2r10g10b10SscaledPack32 = 61,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		A2r10g10b10UintPack32 = 62,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		A2r10g10b10SintPack32 = 63,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		A2b10g10r10UnormPack32 = 64,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		A2b10g10r10SnormPack32 = 65,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		A2b10g10r10UscaledPack32 = 66,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		A2b10g10r10SscaledPack32 = 67,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		A2b10g10r10UintPack32 = 68,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		A2b10g10r10SintPack32 = 69,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R16Unorm = 70,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R16Snorm = 71,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R16Uscaled = 72,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R16Sscaled = 73,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R16Uint = 74,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R16Sint = 75,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R16Sfloat = 76,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R16g16Unorm = 77,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R16g16Snorm = 78,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R16g16Uscaled = 79,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R16g16Sscaled = 80,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R16g16Uint = 81,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R16g16Sint = 82,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R16g16Sfloat = 83,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R16g16b16Unorm = 84,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R16g16b16Snorm = 85,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R16g16b16Uscaled = 86,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R16g16b16Sscaled = 87,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R16g16b16Uint = 88,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R16g16b16Sint = 89,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R16g16b16Sfloat = 90,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R16g16b16a16Unorm = 91,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R16g16b16a16Snorm = 92,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R16g16b16a16Uscaled = 93,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R16g16b16a16Sscaled = 94,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R16g16b16a16Uint = 95,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R16g16b16a16Sint = 96,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R16g16b16a16Sfloat = 97,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R32Uint = 98,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R32Sint = 99,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R32Sfloat = 100,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R32g32Uint = 101,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R32g32Sint = 102,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R32g32Sfloat = 103,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R32g32b32Uint = 104,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R32g32b32Sint = 105,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R32g32b32Sfloat = 106,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R32g32b32a32Uint = 107,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R32g32b32a32Sint = 108,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R32g32b32a32Sfloat = 109,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R64Uint = 110,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R64Sint = 111,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R64Sfloat = 112,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R64g64Uint = 113,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R64g64Sint = 114,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R64g64Sfloat = 115,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R64g64b64Uint = 116,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R64g64b64Sint = 117,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R64g64b64Sfloat = 118,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R64g64b64a64Uint = 119,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R64g64b64a64Sint = 120,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		R64g64b64a64Sfloat = 121,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		B10g11r11UfloatPack32 = 122,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		E5b9g9r9UfloatPack32 = 123,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		D16Unorm = 124,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		X8D24UnormPack32 = 125,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		D32Sfloat = 126,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		S8Uint = 127,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		D16UnormS8Uint = 128,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		D24UnormS8Uint = 129,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		D32SfloatS8Uint = 130,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Bc1RgbUnormBlock = 131,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Bc1RgbSrgbBlock = 132,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Bc1RgbaUnormBlock = 133,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Bc1RgbaSrgbBlock = 134,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Bc2UnormBlock = 135,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Bc2SrgbBlock = 136,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Bc3UnormBlock = 137,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Bc3SrgbBlock = 138,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Bc4UnormBlock = 139,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Bc4SnormBlock = 140,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Bc5UnormBlock = 141,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Bc5SnormBlock = 142,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Bc6hUfloatBlock = 143,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Bc6hSfloatBlock = 144,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Bc7UnormBlock = 145,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Bc7SrgbBlock = 146,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Etc2R8g8b8UnormBlock = 147,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Etc2R8g8b8SrgbBlock = 148,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Etc2R8g8b8a1UnormBlock = 149,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Etc2R8g8b8a1SrgbBlock = 150,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Etc2R8g8b8a8UnormBlock = 151,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Etc2R8g8b8a8SrgbBlock = 152,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		EacR11UnormBlock = 153,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		EacR11SnormBlock = 154,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		EacR11g11UnormBlock = 155,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		EacR11g11SnormBlock = 156,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Astc4x4UnormBlock = 157,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Astc4x4SrgbBlock = 158,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Astc5x4UnormBlock = 159,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Astc5x4SrgbBlock = 160,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Astc5x5UnormBlock = 161,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Astc5x5SrgbBlock = 162,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Astc6x5UnormBlock = 163,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Astc6x5SrgbBlock = 164,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Astc6x6UnormBlock = 165,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Astc6x6SrgbBlock = 166,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Astc8x5UnormBlock = 167,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Astc8x5SrgbBlock = 168,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Astc8x6UnormBlock = 169,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Astc8x6SrgbBlock = 170,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Astc8x8UnormBlock = 171,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Astc8x8SrgbBlock = 172,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Astc10x5UnormBlock = 173,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Astc10x5SrgbBlock = 174,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Astc10x6UnormBlock = 175,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Astc10x6SrgbBlock = 176,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Astc10x8UnormBlock = 177,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Astc10x8SrgbBlock = 178,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Astc10x10UnormBlock = 179,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Astc10x10SrgbBlock = 180,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Astc12x10UnormBlock = 181,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Astc12x10SrgbBlock = 182,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Astc12x12UnormBlock = 183,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Astc12x12SrgbBlock = 184,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Pvrtc12bppUnormBlockImg = 1000054000,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Pvrtc14bppUnormBlockImg = 1000054001,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Pvrtc22bppUnormBlockImg = 1000054002,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Pvrtc24bppUnormBlockImg = 1000054003,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Pvrtc12bppSrgbBlockImg = 1000054004,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Pvrtc14bppSrgbBlockImg = 1000054005,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Pvrtc22bppSrgbBlockImg = 1000054006,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Pvrtc24bppSrgbBlockImg = 1000054007,
 	}
 
@@ -4035,12 +5131,16 @@ namespace SharpVk
 	public enum FrontFace
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		CounterClockwise = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Clockwise = 1,
 	}
 
@@ -4064,44 +5164,64 @@ namespace SharpVk
 	public enum ImageLayout
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Implicit layout an image is when its contents are undefined due to various reasons (e.g. right after creation)
+		/// </para>
+		/// </summary>
 		Undefined = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// General layout when image can be used for any kind of access
+		/// </para>
+		/// </summary>
 		General = 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Optimal layout when image is only used for color attachment read/write
+		/// </para>
+		/// </summary>
 		ColorAttachmentOptimal = 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Optimal layout when image is only used for depth/stencil attachment read/write
+		/// </para>
+		/// </summary>
 		DepthStencilAttachmentOptimal = 3,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Optimal layout when image is used for read only depth/stencil attachment and shader access
+		/// </para>
+		/// </summary>
 		DepthStencilReadOnlyOptimal = 4,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Optimal layout when image is used for read only shader access
+		/// </para>
+		/// </summary>
 		ShaderReadOnlyOptimal = 5,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Optimal layout when image is used only as source of transfer operations
+		/// </para>
+		/// </summary>
 		TransferSourceOptimal = 6,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Optimal layout when image is used only as destination of transfer operations
+		/// </para>
+		/// </summary>
 		TransferDestinationOptimal = 7,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Initial layout used when the data is populated by the CPU
+		/// </para>
+		/// </summary>
 		Preinitialized = 8,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		PresentSource = 1000001002,
 	}
 
@@ -4119,12 +5239,16 @@ namespace SharpVk
 	public enum ImageTiling
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Optimal = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Linear = 1,
 	}
 
@@ -4142,16 +5266,22 @@ namespace SharpVk
 	public enum ImageType
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Image1d = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Image2d = 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Image3d = 2,
 	}
 
@@ -4166,32 +5296,46 @@ namespace SharpVk
 	public enum ImageViewType
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		ImageView1d = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		ImageView2d = 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		ImageView3d = 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Cube = 3,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		ImageView1dArray = 4,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		ImageView2dArray = 5,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		CubeArray = 6,
 	}
 
@@ -4209,12 +5353,16 @@ namespace SharpVk
 	public enum IndexType
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Uint16 = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Uint32 = 1,
 	}
 
@@ -4241,68 +5389,100 @@ namespace SharpVk
 	public enum LogicOp
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Clear = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		And = 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		AndReverse = 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Copy = 3,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		AndInverted = 4,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		NoOp = 5,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Xor = 6,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Or = 7,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Nor = 8,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Equivalent = 9,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Invert = 10,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		OrReverse = 11,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		CopyInverted = 12,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		OrInverted = 13,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Nand = 14,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Set = 15,
 	}
 
@@ -4320,24 +5500,34 @@ namespace SharpVk
 	public enum PhysicalDeviceType
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Other = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		IntegratedGpu = 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		DiscreteGpu = 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		VirtualGpu = 3,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Cpu = 4,
 	}
 
@@ -4355,12 +5545,16 @@ namespace SharpVk
 	public enum PipelineBindPoint
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Graphics = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Compute = 1,
 	}
 
@@ -4375,8 +5569,10 @@ namespace SharpVk
 	public enum PipelineCacheHeaderVersion
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		One = 1,
 	}
 
@@ -4394,16 +5590,22 @@ namespace SharpVk
 	public enum PolygonMode
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Fill = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Line = 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Point = 2,
 	}
 
@@ -4415,20 +5617,28 @@ namespace SharpVk
 	public enum PresentMode
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Immediate = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Mailbox = 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Fifo = 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		FifoRelaxed = 3,
 	}
 
@@ -4440,48 +5650,70 @@ namespace SharpVk
 	public enum PrimitiveTopology
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		PointList = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		LineList = 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		LineStrip = 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		TriangleList = 3,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		TriangleStrip = 4,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		TriangleFan = 5,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		LineListWithAdjacency = 6,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		LineStripWithAdjacency = 7,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		TriangleListWithAdjacency = 8,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		TriangleStripWithAdjacency = 9,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		PatchList = 10,
 	}
 
@@ -4499,16 +5731,22 @@ namespace SharpVk
 	public enum QueryType
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Occlusion = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Optional
+		/// </para>
+		/// </summary>
 		PipelineStatistics = 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Timestamp = 2,
 	}
 
@@ -4520,12 +5758,16 @@ namespace SharpVk
 	public enum RasterizationOrder
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Strict = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Relaxed = 1,
 	}
 
@@ -4558,104 +5800,154 @@ namespace SharpVk
 	public enum Result
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Command completed successfully
+		/// </para>
+		/// </summary>
 		Success = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// A fence or query has not yet completed
+		/// </para>
+		/// </summary>
 		NotReady = 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// A wait operation has not completed in the specified time
+		/// </para>
+		/// </summary>
 		Timeout = 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// An event is signaled
+		/// </para>
+		/// </summary>
 		EventSet = 3,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// An event is unsignaled
+		/// </para>
+		/// </summary>
 		EventReset = 4,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// A return array was too small for the result
+		/// </para>
+		/// </summary>
 		Incomplete = 5,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// A host memory allocation has failed
+		/// </para>
+		/// </summary>
 		ErrorOutOfHostMemory = -1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// A device memory allocation has failed
+		/// </para>
+		/// </summary>
 		ErrorOutOfDeviceMemory = -2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Initialization of a object has failed
+		/// </para>
+		/// </summary>
 		ErrorInitializationFailed = -3,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// The logical device has been lost. See &lt;&lt;devsandqueues-lost-device&gt;&gt;
+		/// </para>
+		/// </summary>
 		ErrorDeviceLost = -4,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Mapping of a memory object has failed
+		/// </para>
+		/// </summary>
 		ErrorMemoryMapFailed = -5,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Layer specified does not exist
+		/// </para>
+		/// </summary>
 		ErrorLayerNotPresent = -6,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Extension specified does not exist
+		/// </para>
+		/// </summary>
 		ErrorExtensionNotPresent = -7,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Requested feature is not available on this device
+		/// </para>
+		/// </summary>
 		ErrorFeatureNotPresent = -8,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Unable to find a Vulkan driver
+		/// </para>
+		/// </summary>
 		ErrorIncompatibleDriver = -9,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Too many objects of the type have already been created
+		/// </para>
+		/// </summary>
 		ErrorTooManyObjects = -10,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Requested format is not supported on this device
+		/// </para>
+		/// </summary>
 		ErrorFormatNotSupported = -11,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// A requested pool allocation has failed due to fragmentation of the pool's memory
+		/// </para>
+		/// </summary>
 		ErrorFragmentedPool = -12,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		ErrorSurfaceLost = -1000000000,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		ErrorNativeWindowInUse = -1000000001,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Suboptimal = 1000001003,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		ErrorOutOfDate = -1000001004,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		ErrorIncompatibleDisplay = -1000003001,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		ErrorValidationFailed = -1000011001,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		ErrorInvalidShader = -1000012000,
 	}
 
@@ -4673,24 +5965,34 @@ namespace SharpVk
 	public enum SamplerAddressMode
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Repeat = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		MirroredRepeat = 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		ClampToEdge = 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		ClampToBorder = 3,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		MirrorClampToEdge = 4,
 	}
 
@@ -4708,12 +6010,16 @@ namespace SharpVk
 	public enum SamplerMipmapMode
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Choose nearest mip level
+		/// </para>
+		/// </summary>
 		Nearest = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// Linear filter between mip levels
+		/// </para>
+		/// </summary>
 		Linear = 1,
 	}
 
@@ -4749,12 +6055,16 @@ namespace SharpVk
 	public enum SharingMode
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Exclusive = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Concurrent = 1,
 	}
 
@@ -4784,36 +6094,52 @@ namespace SharpVk
 	public enum StencilOp
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Keep = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Zero = 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Replace = 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		IncrementAndClamp = 3,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		DecrementAndClamp = 4,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Invert = 5,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		IncrementAndWrap = 6,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		DecrementAndWrap = 7,
 	}
 
@@ -4825,300 +6151,448 @@ namespace SharpVk
 	public enum StructureType
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		ApplicationInfo = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		InstanceCreateInfo = 1,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		DeviceQueueCreateInfo = 2,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		DeviceCreateInfo = 3,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		SubmitInfo = 4,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		MemoryAllocateInfo = 5,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		MappedMemoryRange = 6,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		BindSparseInfo = 7,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		FenceCreateInfo = 8,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		SemaphoreCreateInfo = 9,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		EventCreateInfo = 10,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		QueryPoolCreateInfo = 11,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		BufferCreateInfo = 12,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		BufferViewCreateInfo = 13,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		ImageCreateInfo = 14,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		ImageViewCreateInfo = 15,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		ShaderModuleCreateInfo = 16,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		PipelineCacheCreateInfo = 17,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		PipelineShaderStageCreateInfo = 18,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		PipelineVertexInputStateCreateInfo = 19,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		PipelineInputAssemblyStateCreateInfo = 20,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		PipelineTessellationStateCreateInfo = 21,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		PipelineViewportStateCreateInfo = 22,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		PipelineRasterizationStateCreateInfo = 23,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		PipelineMultisampleStateCreateInfo = 24,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		PipelineDepthStencilStateCreateInfo = 25,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		PipelineColorBlendStateCreateInfo = 26,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		PipelineDynamicStateCreateInfo = 27,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		GraphicsPipelineCreateInfo = 28,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		ComputePipelineCreateInfo = 29,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		PipelineLayoutCreateInfo = 30,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		SamplerCreateInfo = 31,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		DescriptorSetLayoutCreateInfo = 32,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		DescriptorPoolCreateInfo = 33,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		DescriptorSetAllocateInfo = 34,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		WriteDescriptorSet = 35,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		CopyDescriptorSet = 36,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		FramebufferCreateInfo = 37,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		RenderPassCreateInfo = 38,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		CommandPoolCreateInfo = 39,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		CommandBufferAllocateInfo = 40,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		CommandBufferInheritanceInfo = 41,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		CommandBufferBeginInfo = 42,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		RenderPassBeginInfo = 43,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		BufferMemoryBarrier = 44,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		ImageMemoryBarrier = 45,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		MemoryBarrier = 46,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		LoaderInstanceCreateInfo = 47,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		LoaderDeviceCreateInfo = 48,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		SwapchainCreateInfo = 1000001000,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		PresentInfo = 1000001001,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		DisplayModeCreateInfo = 1000002000,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		DisplaySurfaceCreateInfo = 1000002001,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		DisplayPresentInfo = 1000003000,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		XlibSurfaceCreateInfo = 1000004000,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		XcbSurfaceCreateInfo = 1000005000,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		WaylandSurfaceCreateInfo = 1000006000,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		MirSurfaceCreateInfo = 1000007000,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		AndroidSurfaceCreateInfo = 1000008000,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Win32SurfaceCreateInfo = 1000009000,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		DebugReportCallbackCreateInfo = 1000011000,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		DebugReportValidationFlags = 1000011002,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		PipelineRasterizationStateRasterizationOrder = 1000018000,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		DebugMarkerObjectNameInfo = 1000022000,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		DebugMarkerObjectTagInfo = 1000022001,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		DebugMarkerMarkerInfo = 1000022002,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		DedicatedAllocationImageCreateInfo = 1000026000,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		DedicatedAllocationBufferCreateInfo = 1000026001,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		DedicatedAllocationMemoryAllocateInfo = 1000026002,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		ExternalMemoryImageCreateInfo = 1000056000,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		ExportMemoryAllocateInfo = 1000056001,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		ImportMemoryWin32HandleInfo = 1000057000,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		ExportMemoryWin32HandleInfo = 1000057001,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Win32KeyedMutexAcquireReleaseInfo = 1000058000,
 	}
 
@@ -5136,12 +6610,16 @@ namespace SharpVk
 	public enum SubpassContents
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Inline = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		SecondaryCommandBuffers = 1,
 	}
 
@@ -5159,12 +6637,16 @@ namespace SharpVk
 	public enum VertexInputRate
 	{
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Vertex = 0,
 	    /// <summary>
-	    /// -
-	    /// </summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		Instance = 1,
 	}
 }

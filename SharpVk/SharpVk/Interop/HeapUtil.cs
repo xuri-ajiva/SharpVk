@@ -223,6 +223,15 @@ namespace SharpVk.Interop
             return pointer;
         }
 
+        internal static ulong* MarshalTo(ulong[] value)
+        {
+            ulong* pointer = (ulong*)Allocate<ulong>(value.Length).ToPointer();
+
+            MarshalTo(value, value.Length, pointer);
+
+            return pointer;
+        }
+
         internal static void* MarshalTo<T>(IEnumerable<T> value, int length)
             where T : struct
         {
@@ -265,6 +274,15 @@ namespace SharpVk.Interop
         internal static void MarshalTo(uint[] value, int length, uint* pointer)
         {
             //Marshal.Copy doesn't support uints for some reason...
+            for (int index = 0; index < length; index++)
+            {
+                pointer[index] = value[index];
+            }
+        }
+
+        internal static void MarshalTo(ulong[] value, int length, ulong* pointer)
+        {
+            //Marshal.Copy doesn't support ulongs for some reason...
             for (int index = 0; index < length; index++)
             {
                 pointer[index] = value[index];

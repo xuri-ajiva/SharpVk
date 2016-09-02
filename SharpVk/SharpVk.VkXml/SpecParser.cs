@@ -15,6 +15,17 @@ namespace SharpVk.VkXml
     {
         private static readonly string[] knownExtensions = new[] { "khr", "ext", "nv", "amd" };
 
+        //HACK The VK_NV_win32_keyed_mutex extension is not properly
+        // documented, so hardcode these values till the spec is fixed
+        private static readonly Dictionary<string, string> missingLenMappings = new Dictionary<string, string>
+        {
+            { "VkWin32KeyedMutexAcquireReleaseInfoNV.AcquireSyncs", "acquireCount" },
+            { "VkWin32KeyedMutexAcquireReleaseInfoNV.AcquireKeys", "acquireCount" },
+            { "VkWin32KeyedMutexAcquireReleaseInfoNV.AcquireTimeoutMilliseconds", "acquireCount" },
+            { "VkWin32KeyedMutexAcquireReleaseInfoNV.ReleaseSyncs", "releaseCount" },
+            { "VkWin32KeyedMutexAcquireReleaseInfoNV.ReleaseKeys", "releaseCount" }
+        };
+
         private static readonly Parser<string> firstPart = from head in Parse.Letter
                                                            from tail in Parse.Lower.Many()
                                                            select new string(new[] { head }.Concat(tail).ToArray()).ToLower();
@@ -254,6 +265,21 @@ namespace SharpVk.VkXml
                                                     ? "Vk" + string.Join("", typeNameParts.Select(CapitaliseFirst))
                                                     : null;
 
+                    string values = vkMember.Attribute("values")?.Value;
+
+                    if (vkName == "sType" && values == null)
+                    {
+                        //HACK VkDebugReportLayerFlagsEXT doesn't specify a
+                        // fixed value for the sType field, so it must be
+                        // scraped from the following comment.
+
+                        if (vkMember.NextNode != null)
+                        {
+                            // Split on spaces and skip "Must" & "be"
+                            values = ((XComment)vkMember.NextNode).Value.Trim().Split(' ')[2];
+                        }
+                    }
+
                     newType.Members.Add(new ParsedMember
                     {
                         VkName = vkName,
@@ -265,7 +291,8 @@ namespace SharpVk.VkXml
                         PointerType = pointerType,
                         NameParts = memberNameParts,
                         Extension = extension,
-                        Dimensions = dimensions
+                        Dimensions = dimensions,
+                        Values = values
                     });
                 }
 
@@ -296,7 +323,7 @@ namespace SharpVk.VkXml
                     string fieldName = vkField.Attribute("name").Value;
                     bool isBitmask = true;
                     string value = vkField.Attribute("bitpos")?.Value;
-                    string comment = vkField.Attribute("comment")?.Value;
+                    string comment = NormaliseComment(vkField.Attribute("comment")?.Value);
 
                     if (value == null)
                     {
@@ -595,16 +622,32 @@ namespace SharpVk.VkXml
             {
                 var lenResult = lenParser.TryParse(vkMember.Attribute("len").Value);
 
-                if (lenResult.WasSuccessful)
+                if (!lenResult.WasSuccessful)
                 {
-                    dimensions = lenResult.Value.ToArray();
+                    throw new Exception($"Could not parse len {vkMember.Attribute("len").Value} for {name}.{memberName}");
                 }
-                else
+
+                dimensions = lenResult.Value.ToArray();
+            }
+            else
+            {
+                string key = $"{name}.{memberName}";
+
+                string lenMember;
+
+                if (missingLenMappings.TryGetValue(key, out lenMember))
                 {
-                    dimensions = new[] { new ParsedLen { Type = LenType.Expression } };
-                    //HACK Placeholder warning till I get round to
-                    //parsing LaTeX Maths statements
-                    Console.WriteLine("Could not parse len {0} for {2}.{1}", vkMember.Attribute("len").Value, memberName, name);
+                    dimensions = new[]
+                    {
+                        new ParsedLen
+                        {
+                            Type = LenType.Expression,
+                            Value = new ParsedExpressionToken
+                            {
+                                Value = lenMember
+                            }
+                        }
+                    };
                 }
             }
 
@@ -952,6 +995,7 @@ namespace SharpVk.VkXml
         public class ParsedMember
             : ParsedPointerElement
         {
+            public string Values;
         }
 
         public class ParsedCommand
