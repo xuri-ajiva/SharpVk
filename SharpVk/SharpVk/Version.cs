@@ -69,12 +69,12 @@
         }
 
         /// <summary>
-        /// Implicit conversion of a Version number to an encoded UInt32.
+        /// Explicit conversion of a Version number to an encoded UInt32.
         /// </summary>
         /// <param name="size">
         /// The version number value to encode.
         /// </param>
-        public static implicit operator uint(Version size)
+        public static explicit operator uint(Version size)
         {
             return size.value;
         }

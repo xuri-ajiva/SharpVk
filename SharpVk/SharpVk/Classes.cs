@@ -164,10 +164,10 @@ namespace SharpVk
             var result = new Interop.ApplicationInfo();
 			result.SType = StructureType.ApplicationInfo;
 			result.ApplicationName = Interop.HeapUtil.MarshalTo(this.ApplicationName);
+			result.ApplicationVersion = (uint)this.ApplicationVersion;
 			result.EngineName = Interop.HeapUtil.MarshalTo(this.EngineName);
-			result.ApplicationVersion = this.ApplicationVersion;
-			result.EngineVersion = this.EngineVersion;
-			result.ApiVersion = this.ApiVersion;
+			result.EngineVersion = (uint)this.EngineVersion;
+			result.ApiVersion = (uint)this.ApiVersion;
 
             return result;
         }
@@ -3502,9 +3502,9 @@ namespace SharpVk
             var result = new LayerProperties();
 
 			result.LayerName = System.Text.Encoding.UTF8.GetString(Interop.HeapUtil.MarshalFrom(value->LayerName, (int)Constants.MaxExtensionNameSize, true));
-			result.Description = System.Text.Encoding.UTF8.GetString(Interop.HeapUtil.MarshalFrom(value->Description, (int)Constants.MaxDescriptionSize, true));
 			result.SpecVersion = value->SpecVersion;
 			result.ImplementationVersion = value->ImplementationVersion;
+			result.Description = System.Text.Encoding.UTF8.GetString(Interop.HeapUtil.MarshalFrom(value->Description, (int)Constants.MaxDescriptionSize, true));
 
 			return result;
 		}
@@ -5125,11 +5125,11 @@ namespace SharpVk
 		{
             var result = new PhysicalDeviceProperties();
 
+			result.ApiVersion = value->ApiVersion;
+			result.DriverVersion = value->DriverVersion;
 			result.DeviceName = System.Text.Encoding.UTF8.GetString(Interop.HeapUtil.MarshalFrom(value->DeviceName, (int)Constants.MaxPhysicalDeviceNameSize, true));
 			result.PipelineCacheUUID = new Guid(Interop.HeapUtil.MarshalFrom(value->PipelineCacheUUID, (int)Constants.UuidSize));
 			result.Limits = PhysicalDeviceLimits.MarshalFrom(&value->Limits);
-			result.ApiVersion = value->ApiVersion;
-			result.DriverVersion = value->DriverVersion;
 			result.VendorID = value->VendorID;
 			result.DeviceID = value->DeviceID;
 			result.DeviceType = value->DeviceType;

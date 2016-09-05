@@ -1017,16 +1017,18 @@ namespace SharpVk.VkXml
                             }
                         }
                     }
+                    else if(memberDesc.Name.EndsWith("Version") && memberDesc.PublicTypeName == "uint")
+                    {
+                        memberDesc.PublicTypeName = "Version";
+                        newClass.MarshalToStatements.Add($"result.{memberName} = (uint)this.{memberName};");
+                        newClass.MarshalFromStatements.Add($"result.{memberName} = value->{memberName};");
+                    }
                     else
                     {
                         memberDesc.IsSimpleMarshal = true;
                     }
 
-                    if (memberDesc.Name.EndsWith("Version") && memberDesc.PublicTypeName == "uint")
-                    {
-                        memberDesc.PublicTypeName = "Version";
-                    }
-                    else if (memberDesc.PublicTypeName == "DeviceSize")
+                    if (memberDesc.PublicTypeName == "DeviceSize")
                     {
                         memberDesc.PublicTypeName = "ulong";
                     }
@@ -1319,24 +1321,35 @@ namespace SharpVk.VkXml
             foreach (var constant in spec.Constants.Values)
             {
                 Type type;
+                string explicitType = null;
+                string value = constant.Value;
+                bool isStaticReadonly = false;
 
-                if (char.IsLetter(constant.Value[0]))
+                if(value.StartsWith("VK_MAKE_VERSION"))
+                {
+                    type = null;
+                    explicitType = "Version";
+                    isStaticReadonly = true;
+                    value = "new Version" + value.Substring(15);
+                }
+                else if (char.IsLetter(value[0]))
                 {
                     // Looks like some extension enums are used for type name
                     // mapping - not sure what this is supposed to do yet, so
                     // skip them for now.
+                    Console.WriteLine($"Skipping constant {constant.VkName} with value {value}");
                     continue;
                 }
-                else if (constant.Value.StartsWith("\""))
+                else if (value.StartsWith("\""))
                 {
                     type = typeof(string);
                 }
                 else
                 {
-                    string typeSuffix = new string(constant.Value.Reverse()
-                                                                    .TakeWhile(char.IsLetter)
-                                                                    .Reverse()
-                                                                    .ToArray());
+                    string typeSuffix = new string(value.Reverse()
+                                                        .TakeWhile(char.IsLetter)
+                                                        .Reverse()
+                                                        .ToArray());
 
                     switch (typeSuffix.ToLower())
                     {
@@ -1357,8 +1370,10 @@ namespace SharpVk.VkXml
                 {
                     Name = GetNameForElement(constant),
                     Type = type,
+                    ExplicitType = explicitType,
                     SubGroupName = constant.ConstantSubGroup == null ? null : JoinNameParts(constant.ConstantSubGroup),
-                    Value = constant.Value
+                    IsStaticReadonly = isStaticReadonly,
+                    Value = value
                 });
             }
         }

@@ -20,6 +20,9 @@ var types = generator.Generate(parser.Run());
 var subGroups = types.Constants.Select(x => x.SubGroupName).Distinct();
 
 #>
+using System.Linq;
+using System.Reflection;
+
 namespace SharpVk
 {
 <#
@@ -38,12 +41,37 @@ foreach(var subGroup in subGroups)
 	    /// <summary>
 	    /// -
 	    /// </summary>
-		public const <#=GetTypeName(constant.Type)#> <#=constant.Name#> = <#=constant.Value#>;
+		public <#if(constant.IsStaticReadonly) {#>static readonly<#} else {#>const<#}#> <#=constant.ExplicitType ?? GetTypeName(constant.Type)#> <#=constant.Name#> = <#=constant.Value#>;
+<#
+	}
+
+	if(subGroup == null)
+	{
+#>
+        /// <summary>
+        /// The version of the SharpVk bindings.
+        /// </summary>
+        public static readonly Version SharpVkVersion = ExtractBindingVersion();
+
+        private static Version ExtractBindingVersion()
+        {
+            var versionAttribute = typeof(Version).Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>();
+            string versionString = versionAttribute.InformationalVersion;
+
+            int firstDecimalIndex = versionString.IndexOf('.');
+            int secondDecimalIndex = versionString.IndexOf('.', firstDecimalIndex + 1);
+            int terminatorIndex = versionString.Skip(secondDecimalIndex + 1).TakeWhile(char.IsDigit).Count() + secondDecimalIndex + 1;
+
+            int major = int.Parse(versionString.Substring(0, firstDecimalIndex));
+            int minor = int.Parse(versionString.Substring(firstDecimalIndex + 1, (secondDecimalIndex - firstDecimalIndex) - 1));
+            int patch = int.Parse(versionString.Substring(secondDecimalIndex + 1, (terminatorIndex - secondDecimalIndex) - 1));
+
+            return new Version(major, minor, patch);
+        }
 <#
 	}
 #>
 	}
-
 <#
 }
 #>

@@ -139,6 +139,18 @@ namespace SharpVk.VkXml
                 set;
             }
 
+            public string ExplicitType
+            {
+                get;
+                set;
+            }
+
+            public bool IsStaticReadonly
+            {
+                get;
+                set;
+            }
+
             public string Value
             {
                 get;

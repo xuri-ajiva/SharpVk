@@ -168,9 +168,11 @@ namespace SharpVk.VkXml
                 bool isReturnedOnly = returnedOnly != null
                                         ? bool.Parse(returnedOnly)
                                         : false;
-                string type = category == TypeCategory.handle
-                                ? vkType.Element("type").Value
-                                : null;
+                string type = vkType.Element("type")?.Value;
+                if (type == "VK_MAKE_VERSION")
+                {
+                    type += vkType.Element("type").NextNode.ToString();
+                }
 
                 string extension;
 
@@ -419,7 +421,21 @@ namespace SharpVk.VkXml
 
             var filteredSpec = FilterRequiredElement(typeXml, enumXml, commandXml, vkFeature, vkExtensions);
 
-            var documentedCategories = new[] { TypeCategory.handle, TypeCategory.@struct, TypeCategory.@enum, TypeCategory.bitmask };
+            foreach (var defineType in typeXml.Values.Where(x => x.Category == TypeCategory.define && x.VkName.StartsWith("VK_API_VERSION_")))
+            {
+                IEnumerable<string> fieldNameParts = GetEnumFieldNameParts(null, defineType.VkName);
+
+                filteredSpec.Constants.Add(defineType.VkName, new ParsedEnumField
+                {
+                    VkName = defineType.VkName,
+                    NameParts = fieldNameParts.ToArray(),
+                    IsBitmask = false,
+                    Value = defineType.Type,
+                    Comment = null
+                });
+            }
+
+            var documentedCategories = new[] { TypeCategory.handle, TypeCategory.@struct, TypeCategory.@enum, TypeCategory.bitmask, TypeCategory.union };
 
             IEnumerable<ParsedElement> documentedElements = filteredSpec.Types.Values.Where(x => documentedCategories.Contains(x.Category) && x.Extension == null);
 
