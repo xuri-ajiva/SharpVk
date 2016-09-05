@@ -3,26 +3,51 @@ using System.Linq;
 
 namespace SharpVk.Spirv
 {
+    /// <summary>
+    /// Represents a single line of a SPIR-V shader file.
+    /// </summary>
     public class SpirvStatement
     {
+        /// <summary>
+        /// Create a new SPIR-V statement with the specified opcode &amp;
+        /// operand arguments.
+        /// </summary>
+        /// <param name="op">
+        /// The opcode for this statement.
+        /// </param>
+        /// <param name="operands">
+        /// The arguments for any operands of the specified opcode.
+        /// </param>
         public SpirvStatement(Op op, params object[] operands)
         {
             this.Op = op;
             this.Operands = operands;
         }
 
+        /// <summary>
+        /// The Opcode for this statement.
+        /// </summary>
         public Op Op
         {
             get;
             private set;
         }
 
+        /// <summary>
+        /// The operands arguments for this statement.
+        /// </summary>
         public object[] Operands
         {
             get;
             private set;
         }
 
+        /// <summary>
+        /// Returns a string representation of this statement.
+        /// </summary>
+        /// <returns>
+        /// A string representation of this statement.
+        /// </returns>
         public override string ToString()
         {
             return this.Op + this.Operands.Select(x => " " + FormatOperand(x)).Aggregate("", (x, y) => x + y);
@@ -40,6 +65,16 @@ namespace SharpVk.Spirv
             }
         }
 
+        /// <summary>
+        /// Determines whether the specified object is equal (by value) to this
+        /// instance.
+        /// </summary>
+        /// <param name="obj">
+        /// The object to which to compare.
+        /// </param>
+        /// <returns>
+        /// True if the instances are equal by value; else false.
+        /// </returns>
         public override bool Equals(object obj)
         {
             var other = obj as SpirvStatement;
@@ -62,6 +97,12 @@ namespace SharpVk.Spirv
             return false;
         }
 
+        /// <summary>
+        /// Returns a hashcode for the value of this instance.
+        /// </summary>
+        /// <returns>
+        /// A 32-bit signed integer hash value.
+        /// </returns>
         public override int GetHashCode()
         {
             if (!this.Operands.Any())
@@ -76,6 +117,18 @@ namespace SharpVk.Spirv
             }
         }
 
+        /// <summary>
+        /// Determines whether the specified objects are equal (by value).
+        /// </summary>
+        /// <param name="left">
+        /// The first value to compare.
+        /// </param>
+        /// <param name="right">
+        /// The second value to compare.
+        /// </param>
+        /// <returns>
+        /// True if the instances are equal by value; else false.
+        /// </returns>
         public static bool operator ==(SpirvStatement left, SpirvStatement right)
         {
             if (object.ReferenceEquals(left, null))
@@ -88,6 +141,19 @@ namespace SharpVk.Spirv
             }
         }
 
+
+        /// <summary>
+        /// Determines whether the specified objects are not equal (by value).
+        /// </summary>
+        /// <param name="left">
+        /// The first value to compare.
+        /// </param>
+        /// <param name="right">
+        /// The second value to compare.
+        /// </param>
+        /// <returns>
+        /// True if the instances are not equal by value; else false.
+        /// </returns>
         public static bool operator !=(SpirvStatement left, SpirvStatement right)
         {
             return !(left == right);

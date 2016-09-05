@@ -76,7 +76,7 @@ foreach(var instruction in model.Instructions)
 				{
 					Kind = OperandKind.<#=operand.Kind#>,
 					Quantifier = Quantifier.<#= operand.Quantifier == "*" ? "Multiple" : operand.Quantifier == "?" ? "Optional" : "None" #>,
-					Name = "<#= operand.Name?.Replace("\n", "") ?? ""#>"
+					Name = "<#= (operand.Name ?? "").Replace("\n", "") #>"
 				},
 <#
 	}
@@ -126,8 +126,17 @@ foreach(var instruction in model.Instructions)
 	/// </summary>
 	public enum Quantifier
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		None,
+		/// <summary>
+		/// -
+		/// </summary>
 		Optional,
+		/// <summary>
+		/// -
+		/// </summary>
 		Multiple
 	}
 	

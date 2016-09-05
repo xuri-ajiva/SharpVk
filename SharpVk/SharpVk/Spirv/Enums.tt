@@ -26,6 +26,16 @@ foreach(var enumeration in model.Spv.Enum)
 	public enum <#=enumeration.Name#>
 	{
 <#
+	if(enumeration.Type == "Bit" )
+    {
+#>
+		/// <summary>
+		/// -
+		/// </summary>
+		None = 0,
+<#
+    }
+
 	foreach(var value in enumeration.Values)
 	{
 #>

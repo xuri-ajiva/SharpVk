@@ -25,20 +25,32 @@ using System.Linq;
 
 namespace SharpVk.Spirv
 {
+    /// <summary>
+    /// Represents the metadata for a SharpVk.Spirv.Op value.
+    /// </summary>
 	public struct OpCode
 	{
+		/// <summary>
+		/// The SharpVk.Spirv.Op value described by this instance.
+		/// </summary>
 		public Op Op
 		{
 			get;
 			private set;
 		}
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public IEnumerable<Operand> Operands
 		{
 			get;
 			private set;
 		}
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
         public static readonly Dictionary<Op, OpCode> Lookup;
 
         static OpCode()
@@ -49,6 +61,9 @@ namespace SharpVk.Spirv
                             .ToDictionary(x => x.Op);
         }
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpNop = new OpCode
 		{
 			Op = Op.OpNop,
@@ -57,6 +72,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpUndef = new OpCode
 		{
 			Op = Op.OpUndef,
@@ -77,6 +95,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpSourceContinued = new OpCode
 		{
 			Op = Op.OpSourceContinued,
@@ -91,6 +112,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpSource = new OpCode
 		{
 			Op = Op.OpSource,
@@ -123,6 +147,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpSourceExtension = new OpCode
 		{
 			Op = Op.OpSourceExtension,
@@ -137,6 +164,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpName = new OpCode
 		{
 			Op = Op.OpName,
@@ -157,6 +187,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpMemberName = new OpCode
 		{
 			Op = Op.OpMemberName,
@@ -183,6 +216,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpString = new OpCode
 		{
 			Op = Op.OpString,
@@ -203,6 +239,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpLine = new OpCode
 		{
 			Op = Op.OpLine,
@@ -229,6 +268,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpExtension = new OpCode
 		{
 			Op = Op.OpExtension,
@@ -243,6 +285,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpExtInstImport = new OpCode
 		{
 			Op = Op.OpExtInstImport,
@@ -263,6 +308,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpExtInst = new OpCode
 		{
 			Op = Op.OpExtInst,
@@ -301,6 +349,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpMemoryModel = new OpCode
 		{
 			Op = Op.OpMemoryModel,
@@ -321,6 +372,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpEntryPoint = new OpCode
 		{
 			Op = Op.OpEntryPoint,
@@ -353,6 +407,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpExecutionMode = new OpCode
 		{
 			Op = Op.OpExecutionMode,
@@ -373,6 +430,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpCapability = new OpCode
 		{
 			Op = Op.OpCapability,
@@ -387,6 +447,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpTypeVoid = new OpCode
 		{
 			Op = Op.OpTypeVoid,
@@ -401,6 +464,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpTypeBool = new OpCode
 		{
 			Op = Op.OpTypeBool,
@@ -415,6 +481,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpTypeInt = new OpCode
 		{
 			Op = Op.OpTypeInt,
@@ -441,6 +510,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpTypeFloat = new OpCode
 		{
 			Op = Op.OpTypeFloat,
@@ -461,6 +533,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpTypeVector = new OpCode
 		{
 			Op = Op.OpTypeVector,
@@ -487,6 +562,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpTypeMatrix = new OpCode
 		{
 			Op = Op.OpTypeMatrix,
@@ -513,6 +591,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpTypeImage = new OpCode
 		{
 			Op = Op.OpTypeImage,
@@ -575,6 +656,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpTypeSampler = new OpCode
 		{
 			Op = Op.OpTypeSampler,
@@ -589,6 +673,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpTypeSampledImage = new OpCode
 		{
 			Op = Op.OpTypeSampledImage,
@@ -609,6 +696,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpTypeArray = new OpCode
 		{
 			Op = Op.OpTypeArray,
@@ -635,6 +725,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpTypeRuntimeArray = new OpCode
 		{
 			Op = Op.OpTypeRuntimeArray,
@@ -655,6 +748,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpTypeStruct = new OpCode
 		{
 			Op = Op.OpTypeStruct,
@@ -675,6 +771,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpTypeOpaque = new OpCode
 		{
 			Op = Op.OpTypeOpaque,
@@ -695,6 +794,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpTypePointer = new OpCode
 		{
 			Op = Op.OpTypePointer,
@@ -721,6 +823,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpTypeFunction = new OpCode
 		{
 			Op = Op.OpTypeFunction,
@@ -747,6 +852,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpTypeEvent = new OpCode
 		{
 			Op = Op.OpTypeEvent,
@@ -761,6 +869,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpTypeDeviceEvent = new OpCode
 		{
 			Op = Op.OpTypeDeviceEvent,
@@ -775,6 +886,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpTypeReserveId = new OpCode
 		{
 			Op = Op.OpTypeReserveId,
@@ -789,6 +903,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpTypeQueue = new OpCode
 		{
 			Op = Op.OpTypeQueue,
@@ -803,6 +920,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpTypePipe = new OpCode
 		{
 			Op = Op.OpTypePipe,
@@ -823,6 +943,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpTypeForwardPointer = new OpCode
 		{
 			Op = Op.OpTypeForwardPointer,
@@ -843,6 +966,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpConstantTrue = new OpCode
 		{
 			Op = Op.OpConstantTrue,
@@ -863,6 +989,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpConstantFalse = new OpCode
 		{
 			Op = Op.OpConstantFalse,
@@ -883,6 +1012,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpConstant = new OpCode
 		{
 			Op = Op.OpConstant,
@@ -909,6 +1041,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpConstantComposite = new OpCode
 		{
 			Op = Op.OpConstantComposite,
@@ -935,6 +1070,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpConstantSampler = new OpCode
 		{
 			Op = Op.OpConstantSampler,
@@ -973,6 +1111,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpConstantNull = new OpCode
 		{
 			Op = Op.OpConstantNull,
@@ -993,6 +1134,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpSpecConstantTrue = new OpCode
 		{
 			Op = Op.OpSpecConstantTrue,
@@ -1013,6 +1157,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpSpecConstantFalse = new OpCode
 		{
 			Op = Op.OpSpecConstantFalse,
@@ -1033,6 +1180,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpSpecConstant = new OpCode
 		{
 			Op = Op.OpSpecConstant,
@@ -1059,6 +1209,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpSpecConstantComposite = new OpCode
 		{
 			Op = Op.OpSpecConstantComposite,
@@ -1085,6 +1238,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpSpecConstantOp = new OpCode
 		{
 			Op = Op.OpSpecConstantOp,
@@ -1111,6 +1267,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpFunction = new OpCode
 		{
 			Op = Op.OpFunction,
@@ -1143,6 +1302,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpFunctionParameter = new OpCode
 		{
 			Op = Op.OpFunctionParameter,
@@ -1163,6 +1325,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpFunctionEnd = new OpCode
 		{
 			Op = Op.OpFunctionEnd,
@@ -1171,6 +1336,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpFunctionCall = new OpCode
 		{
 			Op = Op.OpFunctionCall,
@@ -1203,6 +1371,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpVariable = new OpCode
 		{
 			Op = Op.OpVariable,
@@ -1235,6 +1406,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageTexelPointer = new OpCode
 		{
 			Op = Op.OpImageTexelPointer,
@@ -1273,6 +1447,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpLoad = new OpCode
 		{
 			Op = Op.OpLoad,
@@ -1305,6 +1482,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpStore = new OpCode
 		{
 			Op = Op.OpStore,
@@ -1331,6 +1511,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpCopyMemory = new OpCode
 		{
 			Op = Op.OpCopyMemory,
@@ -1357,6 +1540,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpCopyMemorySized = new OpCode
 		{
 			Op = Op.OpCopyMemorySized,
@@ -1389,6 +1575,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpAccessChain = new OpCode
 		{
 			Op = Op.OpAccessChain,
@@ -1421,6 +1610,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpInBoundsAccessChain = new OpCode
 		{
 			Op = Op.OpInBoundsAccessChain,
@@ -1453,6 +1645,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpPtrAccessChain = new OpCode
 		{
 			Op = Op.OpPtrAccessChain,
@@ -1491,6 +1686,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpArrayLength = new OpCode
 		{
 			Op = Op.OpArrayLength,
@@ -1523,6 +1721,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpGenericPtrMemSemantics = new OpCode
 		{
 			Op = Op.OpGenericPtrMemSemantics,
@@ -1549,6 +1750,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpInBoundsPtrAccessChain = new OpCode
 		{
 			Op = Op.OpInBoundsPtrAccessChain,
@@ -1587,6 +1791,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpDecorate = new OpCode
 		{
 			Op = Op.OpDecorate,
@@ -1607,6 +1814,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpMemberDecorate = new OpCode
 		{
 			Op = Op.OpMemberDecorate,
@@ -1633,6 +1843,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpDecorationGroup = new OpCode
 		{
 			Op = Op.OpDecorationGroup,
@@ -1647,6 +1860,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpGroupDecorate = new OpCode
 		{
 			Op = Op.OpGroupDecorate,
@@ -1667,6 +1883,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpGroupMemberDecorate = new OpCode
 		{
 			Op = Op.OpGroupMemberDecorate,
@@ -1687,6 +1906,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpVectorExtractDynamic = new OpCode
 		{
 			Op = Op.OpVectorExtractDynamic,
@@ -1719,6 +1941,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpVectorInsertDynamic = new OpCode
 		{
 			Op = Op.OpVectorInsertDynamic,
@@ -1757,6 +1982,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpVectorShuffle = new OpCode
 		{
 			Op = Op.OpVectorShuffle,
@@ -1795,6 +2023,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpCompositeConstruct = new OpCode
 		{
 			Op = Op.OpCompositeConstruct,
@@ -1821,6 +2052,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpCompositeExtract = new OpCode
 		{
 			Op = Op.OpCompositeExtract,
@@ -1853,6 +2087,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpCompositeInsert = new OpCode
 		{
 			Op = Op.OpCompositeInsert,
@@ -1891,6 +2128,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpCopyObject = new OpCode
 		{
 			Op = Op.OpCopyObject,
@@ -1917,6 +2157,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpTranspose = new OpCode
 		{
 			Op = Op.OpTranspose,
@@ -1943,6 +2186,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpSampledImage = new OpCode
 		{
 			Op = Op.OpSampledImage,
@@ -1975,6 +2221,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageSampleImplicitLod = new OpCode
 		{
 			Op = Op.OpImageSampleImplicitLod,
@@ -2013,6 +2262,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageSampleExplicitLod = new OpCode
 		{
 			Op = Op.OpImageSampleExplicitLod,
@@ -2051,6 +2303,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageSampleDrefImplicitLod = new OpCode
 		{
 			Op = Op.OpImageSampleDrefImplicitLod,
@@ -2095,6 +2350,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageSampleDrefExplicitLod = new OpCode
 		{
 			Op = Op.OpImageSampleDrefExplicitLod,
@@ -2139,6 +2397,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageSampleProjImplicitLod = new OpCode
 		{
 			Op = Op.OpImageSampleProjImplicitLod,
@@ -2177,6 +2438,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageSampleProjExplicitLod = new OpCode
 		{
 			Op = Op.OpImageSampleProjExplicitLod,
@@ -2215,6 +2479,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageSampleProjDrefImplicitLod = new OpCode
 		{
 			Op = Op.OpImageSampleProjDrefImplicitLod,
@@ -2259,6 +2526,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageSampleProjDrefExplicitLod = new OpCode
 		{
 			Op = Op.OpImageSampleProjDrefExplicitLod,
@@ -2303,6 +2573,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageFetch = new OpCode
 		{
 			Op = Op.OpImageFetch,
@@ -2341,6 +2614,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageGather = new OpCode
 		{
 			Op = Op.OpImageGather,
@@ -2385,6 +2661,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageDrefGather = new OpCode
 		{
 			Op = Op.OpImageDrefGather,
@@ -2429,6 +2708,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageRead = new OpCode
 		{
 			Op = Op.OpImageRead,
@@ -2467,6 +2749,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageWrite = new OpCode
 		{
 			Op = Op.OpImageWrite,
@@ -2499,6 +2784,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImage = new OpCode
 		{
 			Op = Op.OpImage,
@@ -2525,6 +2813,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageQueryFormat = new OpCode
 		{
 			Op = Op.OpImageQueryFormat,
@@ -2551,6 +2842,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageQueryOrder = new OpCode
 		{
 			Op = Op.OpImageQueryOrder,
@@ -2577,6 +2871,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageQuerySizeLod = new OpCode
 		{
 			Op = Op.OpImageQuerySizeLod,
@@ -2609,6 +2906,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageQuerySize = new OpCode
 		{
 			Op = Op.OpImageQuerySize,
@@ -2635,6 +2935,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageQueryLod = new OpCode
 		{
 			Op = Op.OpImageQueryLod,
@@ -2667,6 +2970,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageQueryLevels = new OpCode
 		{
 			Op = Op.OpImageQueryLevels,
@@ -2693,6 +2999,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageQuerySamples = new OpCode
 		{
 			Op = Op.OpImageQuerySamples,
@@ -2719,6 +3028,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpConvertFToU = new OpCode
 		{
 			Op = Op.OpConvertFToU,
@@ -2745,6 +3057,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpConvertFToS = new OpCode
 		{
 			Op = Op.OpConvertFToS,
@@ -2771,6 +3086,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpConvertSToF = new OpCode
 		{
 			Op = Op.OpConvertSToF,
@@ -2797,6 +3115,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpConvertUToF = new OpCode
 		{
 			Op = Op.OpConvertUToF,
@@ -2823,6 +3144,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpUConvert = new OpCode
 		{
 			Op = Op.OpUConvert,
@@ -2849,6 +3173,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpSConvert = new OpCode
 		{
 			Op = Op.OpSConvert,
@@ -2875,6 +3202,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpFConvert = new OpCode
 		{
 			Op = Op.OpFConvert,
@@ -2901,6 +3231,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpQuantizeToF16 = new OpCode
 		{
 			Op = Op.OpQuantizeToF16,
@@ -2927,6 +3260,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpConvertPtrToU = new OpCode
 		{
 			Op = Op.OpConvertPtrToU,
@@ -2953,6 +3289,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpSatConvertSToU = new OpCode
 		{
 			Op = Op.OpSatConvertSToU,
@@ -2979,6 +3318,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpSatConvertUToS = new OpCode
 		{
 			Op = Op.OpSatConvertUToS,
@@ -3005,6 +3347,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpConvertUToPtr = new OpCode
 		{
 			Op = Op.OpConvertUToPtr,
@@ -3031,6 +3376,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpPtrCastToGeneric = new OpCode
 		{
 			Op = Op.OpPtrCastToGeneric,
@@ -3057,6 +3405,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpGenericCastToPtr = new OpCode
 		{
 			Op = Op.OpGenericCastToPtr,
@@ -3083,6 +3434,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpGenericCastToPtrExplicit = new OpCode
 		{
 			Op = Op.OpGenericCastToPtrExplicit,
@@ -3115,6 +3469,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpBitcast = new OpCode
 		{
 			Op = Op.OpBitcast,
@@ -3141,6 +3498,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpSNegate = new OpCode
 		{
 			Op = Op.OpSNegate,
@@ -3167,6 +3527,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpFNegate = new OpCode
 		{
 			Op = Op.OpFNegate,
@@ -3193,6 +3556,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpIAdd = new OpCode
 		{
 			Op = Op.OpIAdd,
@@ -3225,6 +3591,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpFAdd = new OpCode
 		{
 			Op = Op.OpFAdd,
@@ -3257,6 +3626,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpISub = new OpCode
 		{
 			Op = Op.OpISub,
@@ -3289,6 +3661,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpFSub = new OpCode
 		{
 			Op = Op.OpFSub,
@@ -3321,6 +3696,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpIMul = new OpCode
 		{
 			Op = Op.OpIMul,
@@ -3353,6 +3731,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpFMul = new OpCode
 		{
 			Op = Op.OpFMul,
@@ -3385,6 +3766,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpUDiv = new OpCode
 		{
 			Op = Op.OpUDiv,
@@ -3417,6 +3801,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpSDiv = new OpCode
 		{
 			Op = Op.OpSDiv,
@@ -3449,6 +3836,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpFDiv = new OpCode
 		{
 			Op = Op.OpFDiv,
@@ -3481,6 +3871,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpUMod = new OpCode
 		{
 			Op = Op.OpUMod,
@@ -3513,6 +3906,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpSRem = new OpCode
 		{
 			Op = Op.OpSRem,
@@ -3545,6 +3941,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpSMod = new OpCode
 		{
 			Op = Op.OpSMod,
@@ -3577,6 +3976,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpFRem = new OpCode
 		{
 			Op = Op.OpFRem,
@@ -3609,6 +4011,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpFMod = new OpCode
 		{
 			Op = Op.OpFMod,
@@ -3641,6 +4046,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpVectorTimesScalar = new OpCode
 		{
 			Op = Op.OpVectorTimesScalar,
@@ -3673,6 +4081,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpMatrixTimesScalar = new OpCode
 		{
 			Op = Op.OpMatrixTimesScalar,
@@ -3705,6 +4116,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpVectorTimesMatrix = new OpCode
 		{
 			Op = Op.OpVectorTimesMatrix,
@@ -3737,6 +4151,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpMatrixTimesVector = new OpCode
 		{
 			Op = Op.OpMatrixTimesVector,
@@ -3769,6 +4186,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpMatrixTimesMatrix = new OpCode
 		{
 			Op = Op.OpMatrixTimesMatrix,
@@ -3801,6 +4221,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpOuterProduct = new OpCode
 		{
 			Op = Op.OpOuterProduct,
@@ -3833,6 +4256,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpDot = new OpCode
 		{
 			Op = Op.OpDot,
@@ -3865,6 +4291,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpIAddCarry = new OpCode
 		{
 			Op = Op.OpIAddCarry,
@@ -3897,6 +4326,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpISubBorrow = new OpCode
 		{
 			Op = Op.OpISubBorrow,
@@ -3929,6 +4361,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpUMulExtended = new OpCode
 		{
 			Op = Op.OpUMulExtended,
@@ -3961,6 +4396,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpSMulExtended = new OpCode
 		{
 			Op = Op.OpSMulExtended,
@@ -3993,6 +4431,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpAny = new OpCode
 		{
 			Op = Op.OpAny,
@@ -4019,6 +4460,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpAll = new OpCode
 		{
 			Op = Op.OpAll,
@@ -4045,6 +4489,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpIsNan = new OpCode
 		{
 			Op = Op.OpIsNan,
@@ -4071,6 +4518,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpIsInf = new OpCode
 		{
 			Op = Op.OpIsInf,
@@ -4097,6 +4547,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpIsFinite = new OpCode
 		{
 			Op = Op.OpIsFinite,
@@ -4123,6 +4576,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpIsNormal = new OpCode
 		{
 			Op = Op.OpIsNormal,
@@ -4149,6 +4605,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpSignBitSet = new OpCode
 		{
 			Op = Op.OpSignBitSet,
@@ -4175,6 +4634,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpLessOrGreater = new OpCode
 		{
 			Op = Op.OpLessOrGreater,
@@ -4207,6 +4669,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpOrdered = new OpCode
 		{
 			Op = Op.OpOrdered,
@@ -4239,6 +4704,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpUnordered = new OpCode
 		{
 			Op = Op.OpUnordered,
@@ -4271,6 +4739,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpLogicalEqual = new OpCode
 		{
 			Op = Op.OpLogicalEqual,
@@ -4303,6 +4774,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpLogicalNotEqual = new OpCode
 		{
 			Op = Op.OpLogicalNotEqual,
@@ -4335,6 +4809,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpLogicalOr = new OpCode
 		{
 			Op = Op.OpLogicalOr,
@@ -4367,6 +4844,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpLogicalAnd = new OpCode
 		{
 			Op = Op.OpLogicalAnd,
@@ -4399,6 +4879,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpLogicalNot = new OpCode
 		{
 			Op = Op.OpLogicalNot,
@@ -4425,6 +4908,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpSelect = new OpCode
 		{
 			Op = Op.OpSelect,
@@ -4463,6 +4949,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpIEqual = new OpCode
 		{
 			Op = Op.OpIEqual,
@@ -4495,6 +4984,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpINotEqual = new OpCode
 		{
 			Op = Op.OpINotEqual,
@@ -4527,6 +5019,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpUGreaterThan = new OpCode
 		{
 			Op = Op.OpUGreaterThan,
@@ -4559,6 +5054,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpSGreaterThan = new OpCode
 		{
 			Op = Op.OpSGreaterThan,
@@ -4591,6 +5089,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpUGreaterThanEqual = new OpCode
 		{
 			Op = Op.OpUGreaterThanEqual,
@@ -4623,6 +5124,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpSGreaterThanEqual = new OpCode
 		{
 			Op = Op.OpSGreaterThanEqual,
@@ -4655,6 +5159,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpULessThan = new OpCode
 		{
 			Op = Op.OpULessThan,
@@ -4687,6 +5194,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpSLessThan = new OpCode
 		{
 			Op = Op.OpSLessThan,
@@ -4719,6 +5229,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpULessThanEqual = new OpCode
 		{
 			Op = Op.OpULessThanEqual,
@@ -4751,6 +5264,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpSLessThanEqual = new OpCode
 		{
 			Op = Op.OpSLessThanEqual,
@@ -4783,6 +5299,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpFOrdEqual = new OpCode
 		{
 			Op = Op.OpFOrdEqual,
@@ -4815,6 +5334,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpFUnordEqual = new OpCode
 		{
 			Op = Op.OpFUnordEqual,
@@ -4847,6 +5369,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpFOrdNotEqual = new OpCode
 		{
 			Op = Op.OpFOrdNotEqual,
@@ -4879,6 +5404,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpFUnordNotEqual = new OpCode
 		{
 			Op = Op.OpFUnordNotEqual,
@@ -4911,6 +5439,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpFOrdLessThan = new OpCode
 		{
 			Op = Op.OpFOrdLessThan,
@@ -4943,6 +5474,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpFUnordLessThan = new OpCode
 		{
 			Op = Op.OpFUnordLessThan,
@@ -4975,6 +5509,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpFOrdGreaterThan = new OpCode
 		{
 			Op = Op.OpFOrdGreaterThan,
@@ -5007,6 +5544,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpFUnordGreaterThan = new OpCode
 		{
 			Op = Op.OpFUnordGreaterThan,
@@ -5039,6 +5579,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpFOrdLessThanEqual = new OpCode
 		{
 			Op = Op.OpFOrdLessThanEqual,
@@ -5071,6 +5614,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpFUnordLessThanEqual = new OpCode
 		{
 			Op = Op.OpFUnordLessThanEqual,
@@ -5103,6 +5649,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpFOrdGreaterThanEqual = new OpCode
 		{
 			Op = Op.OpFOrdGreaterThanEqual,
@@ -5135,6 +5684,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpFUnordGreaterThanEqual = new OpCode
 		{
 			Op = Op.OpFUnordGreaterThanEqual,
@@ -5167,6 +5719,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpShiftRightLogical = new OpCode
 		{
 			Op = Op.OpShiftRightLogical,
@@ -5199,6 +5754,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpShiftRightArithmetic = new OpCode
 		{
 			Op = Op.OpShiftRightArithmetic,
@@ -5231,6 +5789,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpShiftLeftLogical = new OpCode
 		{
 			Op = Op.OpShiftLeftLogical,
@@ -5263,6 +5824,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpBitwiseOr = new OpCode
 		{
 			Op = Op.OpBitwiseOr,
@@ -5295,6 +5859,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpBitwiseXor = new OpCode
 		{
 			Op = Op.OpBitwiseXor,
@@ -5327,6 +5894,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpBitwiseAnd = new OpCode
 		{
 			Op = Op.OpBitwiseAnd,
@@ -5359,6 +5929,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpNot = new OpCode
 		{
 			Op = Op.OpNot,
@@ -5385,6 +5958,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpBitFieldInsert = new OpCode
 		{
 			Op = Op.OpBitFieldInsert,
@@ -5429,6 +6005,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpBitFieldSExtract = new OpCode
 		{
 			Op = Op.OpBitFieldSExtract,
@@ -5467,6 +6046,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpBitFieldUExtract = new OpCode
 		{
 			Op = Op.OpBitFieldUExtract,
@@ -5505,6 +6087,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpBitReverse = new OpCode
 		{
 			Op = Op.OpBitReverse,
@@ -5531,6 +6116,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpBitCount = new OpCode
 		{
 			Op = Op.OpBitCount,
@@ -5557,6 +6145,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpDPdx = new OpCode
 		{
 			Op = Op.OpDPdx,
@@ -5583,6 +6174,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpDPdy = new OpCode
 		{
 			Op = Op.OpDPdy,
@@ -5609,6 +6203,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpFwidth = new OpCode
 		{
 			Op = Op.OpFwidth,
@@ -5635,6 +6232,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpDPdxFine = new OpCode
 		{
 			Op = Op.OpDPdxFine,
@@ -5661,6 +6261,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpDPdyFine = new OpCode
 		{
 			Op = Op.OpDPdyFine,
@@ -5687,6 +6290,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpFwidthFine = new OpCode
 		{
 			Op = Op.OpFwidthFine,
@@ -5713,6 +6319,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpDPdxCoarse = new OpCode
 		{
 			Op = Op.OpDPdxCoarse,
@@ -5739,6 +6348,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpDPdyCoarse = new OpCode
 		{
 			Op = Op.OpDPdyCoarse,
@@ -5765,6 +6377,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpFwidthCoarse = new OpCode
 		{
 			Op = Op.OpFwidthCoarse,
@@ -5791,6 +6406,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpEmitVertex = new OpCode
 		{
 			Op = Op.OpEmitVertex,
@@ -5799,6 +6417,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpEndPrimitive = new OpCode
 		{
 			Op = Op.OpEndPrimitive,
@@ -5807,6 +6428,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpEmitStreamVertex = new OpCode
 		{
 			Op = Op.OpEmitStreamVertex,
@@ -5821,6 +6445,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpEndStreamPrimitive = new OpCode
 		{
 			Op = Op.OpEndStreamPrimitive,
@@ -5835,6 +6462,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpControlBarrier = new OpCode
 		{
 			Op = Op.OpControlBarrier,
@@ -5861,6 +6491,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpMemoryBarrier = new OpCode
 		{
 			Op = Op.OpMemoryBarrier,
@@ -5881,6 +6514,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpAtomicLoad = new OpCode
 		{
 			Op = Op.OpAtomicLoad,
@@ -5919,6 +6555,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpAtomicStore = new OpCode
 		{
 			Op = Op.OpAtomicStore,
@@ -5951,6 +6590,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpAtomicExchange = new OpCode
 		{
 			Op = Op.OpAtomicExchange,
@@ -5995,6 +6637,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpAtomicCompareExchange = new OpCode
 		{
 			Op = Op.OpAtomicCompareExchange,
@@ -6051,6 +6696,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpAtomicCompareExchangeWeak = new OpCode
 		{
 			Op = Op.OpAtomicCompareExchangeWeak,
@@ -6107,6 +6755,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpAtomicIIncrement = new OpCode
 		{
 			Op = Op.OpAtomicIIncrement,
@@ -6145,6 +6796,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpAtomicIDecrement = new OpCode
 		{
 			Op = Op.OpAtomicIDecrement,
@@ -6183,6 +6837,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpAtomicIAdd = new OpCode
 		{
 			Op = Op.OpAtomicIAdd,
@@ -6227,6 +6884,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpAtomicISub = new OpCode
 		{
 			Op = Op.OpAtomicISub,
@@ -6271,6 +6931,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpAtomicSMin = new OpCode
 		{
 			Op = Op.OpAtomicSMin,
@@ -6315,6 +6978,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpAtomicUMin = new OpCode
 		{
 			Op = Op.OpAtomicUMin,
@@ -6359,6 +7025,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpAtomicSMax = new OpCode
 		{
 			Op = Op.OpAtomicSMax,
@@ -6403,6 +7072,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpAtomicUMax = new OpCode
 		{
 			Op = Op.OpAtomicUMax,
@@ -6447,6 +7119,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpAtomicAnd = new OpCode
 		{
 			Op = Op.OpAtomicAnd,
@@ -6491,6 +7166,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpAtomicOr = new OpCode
 		{
 			Op = Op.OpAtomicOr,
@@ -6535,6 +7213,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpAtomicXor = new OpCode
 		{
 			Op = Op.OpAtomicXor,
@@ -6579,6 +7260,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpPhi = new OpCode
 		{
 			Op = Op.OpPhi,
@@ -6605,6 +7289,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpLoopMerge = new OpCode
 		{
 			Op = Op.OpLoopMerge,
@@ -6631,6 +7318,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpSelectionMerge = new OpCode
 		{
 			Op = Op.OpSelectionMerge,
@@ -6651,6 +7341,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpLabel = new OpCode
 		{
 			Op = Op.OpLabel,
@@ -6665,6 +7358,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpBranch = new OpCode
 		{
 			Op = Op.OpBranch,
@@ -6679,6 +7375,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpBranchConditional = new OpCode
 		{
 			Op = Op.OpBranchConditional,
@@ -6711,6 +7410,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpSwitch = new OpCode
 		{
 			Op = Op.OpSwitch,
@@ -6737,6 +7439,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpKill = new OpCode
 		{
 			Op = Op.OpKill,
@@ -6745,6 +7450,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpReturn = new OpCode
 		{
 			Op = Op.OpReturn,
@@ -6753,6 +7461,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpReturnValue = new OpCode
 		{
 			Op = Op.OpReturnValue,
@@ -6767,6 +7478,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpUnreachable = new OpCode
 		{
 			Op = Op.OpUnreachable,
@@ -6775,6 +7489,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpLifetimeStart = new OpCode
 		{
 			Op = Op.OpLifetimeStart,
@@ -6795,6 +7512,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpLifetimeStop = new OpCode
 		{
 			Op = Op.OpLifetimeStop,
@@ -6815,6 +7535,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpGroupAsyncCopy = new OpCode
 		{
 			Op = Op.OpGroupAsyncCopy,
@@ -6871,6 +7594,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpGroupWaitEvents = new OpCode
 		{
 			Op = Op.OpGroupWaitEvents,
@@ -6897,6 +7623,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpGroupAll = new OpCode
 		{
 			Op = Op.OpGroupAll,
@@ -6929,6 +7658,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpGroupAny = new OpCode
 		{
 			Op = Op.OpGroupAny,
@@ -6961,6 +7693,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpGroupBroadcast = new OpCode
 		{
 			Op = Op.OpGroupBroadcast,
@@ -6999,6 +7734,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpGroupIAdd = new OpCode
 		{
 			Op = Op.OpGroupIAdd,
@@ -7037,6 +7775,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpGroupFAdd = new OpCode
 		{
 			Op = Op.OpGroupFAdd,
@@ -7075,6 +7816,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpGroupFMin = new OpCode
 		{
 			Op = Op.OpGroupFMin,
@@ -7113,6 +7857,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpGroupUMin = new OpCode
 		{
 			Op = Op.OpGroupUMin,
@@ -7151,6 +7898,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpGroupSMin = new OpCode
 		{
 			Op = Op.OpGroupSMin,
@@ -7189,6 +7939,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpGroupFMax = new OpCode
 		{
 			Op = Op.OpGroupFMax,
@@ -7227,6 +7980,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpGroupUMax = new OpCode
 		{
 			Op = Op.OpGroupUMax,
@@ -7265,6 +8021,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpGroupSMax = new OpCode
 		{
 			Op = Op.OpGroupSMax,
@@ -7303,6 +8062,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpReadPipe = new OpCode
 		{
 			Op = Op.OpReadPipe,
@@ -7347,6 +8109,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpWritePipe = new OpCode
 		{
 			Op = Op.OpWritePipe,
@@ -7391,6 +8156,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpReservedReadPipe = new OpCode
 		{
 			Op = Op.OpReservedReadPipe,
@@ -7447,6 +8215,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpReservedWritePipe = new OpCode
 		{
 			Op = Op.OpReservedWritePipe,
@@ -7503,6 +8274,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpReserveReadPipePackets = new OpCode
 		{
 			Op = Op.OpReserveReadPipePackets,
@@ -7547,6 +8321,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpReserveWritePipePackets = new OpCode
 		{
 			Op = Op.OpReserveWritePipePackets,
@@ -7591,6 +8368,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpCommitReadPipe = new OpCode
 		{
 			Op = Op.OpCommitReadPipe,
@@ -7623,6 +8403,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpCommitWritePipe = new OpCode
 		{
 			Op = Op.OpCommitWritePipe,
@@ -7655,6 +8438,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpIsValidReserveId = new OpCode
 		{
 			Op = Op.OpIsValidReserveId,
@@ -7681,6 +8467,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpGetNumPipePackets = new OpCode
 		{
 			Op = Op.OpGetNumPipePackets,
@@ -7719,6 +8508,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpGetMaxPipePackets = new OpCode
 		{
 			Op = Op.OpGetMaxPipePackets,
@@ -7757,6 +8549,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpGroupReserveReadPipePackets = new OpCode
 		{
 			Op = Op.OpGroupReserveReadPipePackets,
@@ -7807,6 +8602,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpGroupReserveWritePipePackets = new OpCode
 		{
 			Op = Op.OpGroupReserveWritePipePackets,
@@ -7857,6 +8655,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpGroupCommitReadPipe = new OpCode
 		{
 			Op = Op.OpGroupCommitReadPipe,
@@ -7895,6 +8696,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpGroupCommitWritePipe = new OpCode
 		{
 			Op = Op.OpGroupCommitWritePipe,
@@ -7933,6 +8737,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpEnqueueMarker = new OpCode
 		{
 			Op = Op.OpEnqueueMarker,
@@ -7977,6 +8784,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpEnqueueKernel = new OpCode
 		{
 			Op = Op.OpEnqueueKernel,
@@ -8063,6 +8873,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpGetKernelNDrangeSubGroupCount = new OpCode
 		{
 			Op = Op.OpGetKernelNDrangeSubGroupCount,
@@ -8113,6 +8926,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpGetKernelNDrangeMaxSubGroupSize = new OpCode
 		{
 			Op = Op.OpGetKernelNDrangeMaxSubGroupSize,
@@ -8163,6 +8979,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpGetKernelWorkGroupSize = new OpCode
 		{
 			Op = Op.OpGetKernelWorkGroupSize,
@@ -8207,6 +9026,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpGetKernelPreferredWorkGroupSizeMultiple = new OpCode
 		{
 			Op = Op.OpGetKernelPreferredWorkGroupSizeMultiple,
@@ -8251,6 +9073,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpRetainEvent = new OpCode
 		{
 			Op = Op.OpRetainEvent,
@@ -8265,6 +9090,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpReleaseEvent = new OpCode
 		{
 			Op = Op.OpReleaseEvent,
@@ -8279,6 +9107,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpCreateUserEvent = new OpCode
 		{
 			Op = Op.OpCreateUserEvent,
@@ -8299,6 +9130,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpIsValidEvent = new OpCode
 		{
 			Op = Op.OpIsValidEvent,
@@ -8325,6 +9159,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpSetUserEventStatus = new OpCode
 		{
 			Op = Op.OpSetUserEventStatus,
@@ -8345,6 +9182,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpCaptureEventProfilingInfo = new OpCode
 		{
 			Op = Op.OpCaptureEventProfilingInfo,
@@ -8371,6 +9211,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpGetDefaultQueue = new OpCode
 		{
 			Op = Op.OpGetDefaultQueue,
@@ -8391,6 +9234,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpBuildNDRange = new OpCode
 		{
 			Op = Op.OpBuildNDRange,
@@ -8429,6 +9275,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageSparseSampleImplicitLod = new OpCode
 		{
 			Op = Op.OpImageSparseSampleImplicitLod,
@@ -8467,6 +9316,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageSparseSampleExplicitLod = new OpCode
 		{
 			Op = Op.OpImageSparseSampleExplicitLod,
@@ -8505,6 +9357,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageSparseSampleDrefImplicitLod = new OpCode
 		{
 			Op = Op.OpImageSparseSampleDrefImplicitLod,
@@ -8549,6 +9404,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageSparseSampleDrefExplicitLod = new OpCode
 		{
 			Op = Op.OpImageSparseSampleDrefExplicitLod,
@@ -8593,6 +9451,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageSparseSampleProjImplicitLod = new OpCode
 		{
 			Op = Op.OpImageSparseSampleProjImplicitLod,
@@ -8631,6 +9492,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageSparseSampleProjExplicitLod = new OpCode
 		{
 			Op = Op.OpImageSparseSampleProjExplicitLod,
@@ -8669,6 +9533,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageSparseSampleProjDrefImplicitLod = new OpCode
 		{
 			Op = Op.OpImageSparseSampleProjDrefImplicitLod,
@@ -8713,6 +9580,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageSparseSampleProjDrefExplicitLod = new OpCode
 		{
 			Op = Op.OpImageSparseSampleProjDrefExplicitLod,
@@ -8757,6 +9627,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageSparseFetch = new OpCode
 		{
 			Op = Op.OpImageSparseFetch,
@@ -8795,6 +9668,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageSparseGather = new OpCode
 		{
 			Op = Op.OpImageSparseGather,
@@ -8839,6 +9715,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageSparseDrefGather = new OpCode
 		{
 			Op = Op.OpImageSparseDrefGather,
@@ -8883,6 +9762,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageSparseTexelsResident = new OpCode
 		{
 			Op = Op.OpImageSparseTexelsResident,
@@ -8909,6 +9791,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpNoLine = new OpCode
 		{
 			Op = Op.OpNoLine,
@@ -8917,6 +9802,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpAtomicFlagTestAndSet = new OpCode
 		{
 			Op = Op.OpAtomicFlagTestAndSet,
@@ -8955,6 +9843,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpAtomicFlagClear = new OpCode
 		{
 			Op = Op.OpAtomicFlagClear,
@@ -8981,6 +9872,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpImageSparseRead = new OpCode
 		{
 			Op = Op.OpImageSparseRead,
@@ -9019,6 +9913,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpSizeOf = new OpCode
 		{
 			Op = Op.OpSizeOf,
@@ -9045,6 +9942,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpTypePipeStorage = new OpCode
 		{
 			Op = Op.OpTypePipeStorage,
@@ -9059,6 +9959,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpConstantPipeStorage = new OpCode
 		{
 			Op = Op.OpConstantPipeStorage,
@@ -9097,6 +10000,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpCreatePipeFromPipeStorage = new OpCode
 		{
 			Op = Op.OpCreatePipeFromPipeStorage,
@@ -9123,6 +10029,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpGetKernelLocalSizeForSubgroupCount = new OpCode
 		{
 			Op = Op.OpGetKernelLocalSizeForSubgroupCount,
@@ -9173,6 +10082,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpGetKernelMaxNumSubgroups = new OpCode
 		{
 			Op = Op.OpGetKernelMaxNumSubgroups,
@@ -9217,6 +10129,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpTypeNamedBarrier = new OpCode
 		{
 			Op = Op.OpTypeNamedBarrier,
@@ -9231,6 +10146,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpNamedBarrierInitialize = new OpCode
 		{
 			Op = Op.OpNamedBarrierInitialize,
@@ -9257,6 +10175,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpMemoryNamedBarrier = new OpCode
 		{
 			Op = Op.OpMemoryNamedBarrier,
@@ -9283,6 +10204,9 @@ namespace SharpVk.Spirv
 			}
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode OpModuleProcessed = new OpCode
 		{
 			Op = Op.OpModuleProcessed,
@@ -9297,205 +10221,361 @@ namespace SharpVk.Spirv
 			}
 		};
 	}
-
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct Operand
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public OperandKind Kind
 		{
 			get;
 			internal set;
 		}
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		public Quantifier Quantifier
 		{
 			get;
 			internal set;
 		}
 		
+		/// <summary>
+		/// -
+		/// </summary>
 		public string Name
 		{
 			get;
 			internal set;
 		}
 	}
-
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public enum Quantifier
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		None,
+		/// <summary>
+		/// -
+		/// </summary>
 		Optional,
+		/// <summary>
+		/// -
+		/// </summary>
 		Multiple
 	}
-
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public class OperandKind
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind ImageOperands = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind FPFastMathMode = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind SelectionControl = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind LoopControl = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind FunctionControl = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind MemorySemantics = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind MemoryAccess = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind KernelProfilingInfo = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind SourceLanguage = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind ExecutionModel = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind AddressingModel = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind MemoryModel = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind ExecutionMode = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind StorageClass = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind Dim = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind SamplerAddressingMode = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind SamplerFilterMode = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind ImageFormat = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind ImageChannelOrder = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind ImageChannelDataType = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind FPRoundingMode = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind LinkageType = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind AccessQualifier = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind FunctionParameterAttribute = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind Decoration = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind BuiltIn = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind Scope = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind GroupOperation = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind KernelEnqueueFlags = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind Capability = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind IdResultType = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind IdResult = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind IdMemorySemantics = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind IdScope = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind IdRef = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind LiteralInteger = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind LiteralString = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind LiteralContextDependentNumber = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind LiteralExtInstInteger = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind LiteralSpecConstantOpInteger = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind PairLiteralIntegerIdRef = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind PairIdRefLiteralInteger = new OperandKind
 		{
 		};
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind PairIdRefIdRef = new OperandKind
 		{
 		};
