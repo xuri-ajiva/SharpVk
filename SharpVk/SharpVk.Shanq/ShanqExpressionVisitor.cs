@@ -1,12 +1,12 @@
-﻿using System;
-using System.Linq.Expressions;
+﻿using GlmSharp;
+using Remotion.Linq.Clauses.Expressions;
+using SharpVk.Spirv;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Reflection;
-using GlmSharp;
-using SharpVk.Spirv;
-using System.Collections;
-using Remotion.Linq.Clauses.Expressions;
 
 namespace SharpVk.Shanq
 {
@@ -52,6 +52,41 @@ namespace SharpVk.Shanq
             }
         }
 
+        [NodeType(ExpressionType.Add)]
+        private ResultId VisitAdd(BinaryExpression expression)
+        {
+            ResultId floatTypeId = this.Visit(Expression.Constant(typeof(float)));
+            ResultId resultTypeId = this.Visit(Expression.Constant(expression.Left.Type));
+
+            ResultId left = this.Visit(expression.Left);
+            ResultId right = this.Visit(expression.Right);
+            ResultId result = this.file.GetNextResultId();
+            
+            this.file.AddFunctionStatement(result, Op.OpFAdd, resultTypeId, left, right);
+
+            return result;
+        }
+
+
+        [NodeType(ExpressionType.Divide)]
+        private ResultId VisitDivide(BinaryExpression expression)
+        {
+            ResultId constantOne = this.Visit(Expression.Constant(1f));
+            ResultId floatTypeId = this.Visit(Expression.Constant(typeof(float)));
+            ResultId resultTypeId = this.Visit(Expression.Constant(expression.Left.Type));
+
+            ResultId left = this.Visit(expression.Left);
+            ResultId right = this.Visit(expression.Right);
+
+            ResultId factorId = this.file.GetNextResultId();
+            ResultId result = this.file.GetNextResultId();
+
+            this.file.AddFunctionStatement(factorId, Op.OpFDiv, floatTypeId, constantOne, right);
+            this.file.AddFunctionStatement(result, Op.OpVectorTimesScalar, resultTypeId, left, factorId);
+
+            return result;
+        }
+
         [NodeType(ExpressionType.MemberAccess)]
         private ResultId VisitMemberAccess(MemberExpression expression)
         {
@@ -77,7 +112,25 @@ namespace SharpVk.Shanq
                 {
                     var fieldInfo = (FieldInfo)expression.Member;
 
-                    int fieldIndex = Array.IndexOf(targetType.GetFields(), fieldInfo);
+                    int fieldIndex;
+
+                    switch(fieldInfo.Name)
+                    {
+                        case "x":
+                            fieldIndex = 0;
+                            break;
+                        case "y":
+                            fieldIndex = 1;
+                            break;
+                        case "z":
+                            fieldIndex = 2;
+                            break;
+                        case "w":
+                            fieldIndex = 3;
+                            break;
+                        default:
+                            throw new Exception($"Unsupported field: {fieldInfo.Name}");
+                    }
 
                     ResultId targetId = this.Visit(expression.Expression);
 

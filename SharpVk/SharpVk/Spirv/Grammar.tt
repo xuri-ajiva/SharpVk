@@ -19,20 +19,32 @@ using System.Linq;
 
 namespace SharpVk.Spirv
 {
+    /// <summary>
+    /// Represents the metadata for a SharpVk.Spirv.Op value.
+    /// </summary>
 	public struct OpCode
 	{
+		/// <summary>
+		/// The SharpVk.Spirv.Op value described by this instance.
+		/// </summary>
 		public Op Op
 		{
 			get;
 			private set;
 		}
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public IEnumerable<Operand> Operands
 		{
 			get;
 			private set;
 		}
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
         public static readonly Dictionary<Op, OpCode> Lookup;
 
         static OpCode()
@@ -47,6 +59,9 @@ foreach(var instruction in model.Instructions)
 {
 #>
 
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OpCode <#=instruction.OpName#> = new OpCode
 		{
 			Op = Op.<#=instruction.OpName#>,
@@ -72,41 +87,62 @@ foreach(var instruction in model.Instructions)
 }
 #>
 	}
-
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct Operand
 	{
+		/// <summary>
+		/// -
+		/// </summary>
 		public OperandKind Kind
 		{
 			get;
 			internal set;
 		}
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		public Quantifier Quantifier
 		{
 			get;
 			internal set;
 		}
 		
+		/// <summary>
+		/// -
+		/// </summary>
 		public string Name
 		{
 			get;
 			internal set;
 		}
 	}
-
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public enum Quantifier
 	{
 		None,
 		Optional,
 		Multiple
 	}
-
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public class OperandKind
 	{
 <#
 foreach(var operandKind in model.Operand_Kinds)
 {
 #>
+		/// <summary>
+		/// -
+		/// </summary>
 		public static readonly OperandKind <#=operandKind.Kind#> = new OperandKind
 		{
 		};

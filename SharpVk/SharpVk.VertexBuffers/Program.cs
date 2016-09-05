@@ -443,27 +443,12 @@ namespace SharpVk.VertexBuffers
                 CodeSize = (UIntPtr)codeSize
             });
 
-            var fragShaderStream = new MemoryStream();
-
-            ShanqShader<FragmentInput>.CreateFragment(fragShaderStream,
-                                                        fragmentInput => from input in fragmentInput
-                                                                         select new FragmentOutput
-                                                                         {
-                                                                             Colour = new vec4(input.Colour, 1f)
-                                                                         });
-
-            int fragShaderLength = (int)fragShaderStream.Length;
-
-            var fragShaderBytes = fragShaderStream.GetBuffer().Take(fragShaderLength + (fragShaderLength % 4)).ToArray();
-
-            var fragShaderData = LoadShaderData(fragShaderBytes, out codeSize);
-            codeSize = fragShaderLength;
-
-            var fragShader = device.CreateShaderModule(new ShaderModuleCreateInfo
-            {
-                Code = fragShaderData,
-                CodeSize = (UIntPtr)codeSize
-            });
+            var fragShader = ShanqShader<FragmentInput>.CreateFragmentModule(this.device,
+                                                                                fragmentInput => from input in fragmentInput
+                                                                                                 select new FragmentOutput
+                                                                                                 {
+                                                                                                     Colour = new vec4(input.Colour, 1)
+                                                                                                 });
 
             var bindingDescription = Vertex.GetBindingDescription();
             var attributeDescriptions = Vertex.GetAttributeDescriptions();

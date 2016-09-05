@@ -1,4 +1,4 @@
-﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
 <#@ assembly name="System.Core" #>
 <#@ assembly name="System.Xml" #>
 <#@ assembly name="System.Xml.Linq" #>
@@ -20,12 +20,19 @@ namespace SharpVk.Spirv
 foreach(var enumeration in model.Spv.Enum)
 {
 #>
+    /// <summary>
+    /// -
+    /// </summary>
 	public enum <#=enumeration.Name#>
 	{
 <#
 	foreach(var value in enumeration.Values)
 	{
-#>		<#=value.Key#> = <#=enumeration.Type == "Bit" ? "1 << " : ""#><#=value.Value#>,
+#>
+		/// <summary>
+		/// -
+		/// </summary>
+		<#=value.Key#> = <#=enumeration.Type == "Bit" ? "1 << " : ""#><#=value.Value#>,
 <#
 	}
 #>	}
