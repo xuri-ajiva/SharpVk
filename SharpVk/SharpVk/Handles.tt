@@ -28,7 +28,9 @@ foreach(var handle in types.Handles)
 	foreach(var line in handle.Comment)
     {
 #>
+	/// <para>
     /// <#=line#>
+	/// </para>
 <#
 	}
 #>
@@ -112,7 +114,9 @@ foreach(var handle in types.Handles)
 		foreach(var line in method.Comment)
 		{
 #>
+		/// <para>
 		/// <#=line#>
+		/// </para>
 <#
         }
 #>

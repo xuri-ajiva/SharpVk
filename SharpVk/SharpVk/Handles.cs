@@ -25,8 +25,12 @@ using System;
 namespace SharpVk
 {
     /// <summary>
+	/// <para>
     /// Opaque handle to a buffer object
+	/// </para>
+	/// <para>
     /// Buffers represent linear arrays of data which are used for various purposes by binding them to a graphics or compute pipeline via descriptor sets or via certain commands, or by directly specifying them as parameters to certain commands.
+	/// </para>
     /// </summary>
 	public class Buffer
 		: IDisposable
@@ -51,7 +55,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Bind device memory to a buffer object
+		/// </para>
 		/// </summary>
 		public void BindMemory(DeviceMemory memory, DeviceSize memoryOffset)
 		{
@@ -73,7 +79,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Returns the memory requirements for specified Vulkan object.
+		/// </para>
 		/// </summary>
 		public MemoryRequirements GetMemoryRequirements()
 		{
@@ -92,7 +100,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Destroy a buffer object
+		/// </para>
 		/// </summary>
 		public void Destroy()
 		{
@@ -124,9 +134,15 @@ namespace SharpVk
 	}
 
     /// <summary>
+	/// <para>
     /// Opaque handle to a buffer view object
+	/// </para>
+	/// <para>
     /// A _buffer view_ represents a contiguous range of a buffer and a specific format to be used to interpret the data. Buffer views are used to enable shaders to access buffer contents interpreted as formatted data. In order to create a valid buffer view, the buffer must: have been created with at least one of the following usage flags:
+	/// </para>
+	/// <para>
     /// * ename:VK_BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT * ename:VK_BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT
+	/// </para>
     /// </summary>
 	public class BufferView
 		: IDisposable
@@ -151,7 +167,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Destroy a buffer view object
+		/// </para>
 		/// </summary>
 		public void Destroy()
 		{
@@ -183,8 +201,12 @@ namespace SharpVk
 	}
 
     /// <summary>
+	/// <para>
     /// Opaque handle to a command buffer object
+	/// </para>
+	/// <para>
     /// Command buffers are objects used to record commands which can: be subsequently submitted to a device queue for execution. There are two levels of command buffers - _primary command buffers_, which can: execute secondary command buffers, and which are submitted to queues, and _secondary command buffers_, which can: be executed by primary command buffers, and which are not directly submitted to queues.
+	/// </para>
     /// </summary>
 	public class CommandBuffer
 	{
@@ -208,7 +230,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Start recording a command buffer
+		/// </para>
 		/// </summary>
 		public void Begin(CommandBufferBeginInfo beginInfo)
 		{
@@ -231,8 +255,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Finish recording a command buffer
+		/// </para>
+		/// <para>
 		/// If there was an error during recording, the application will be notified by an unsuccessful return code returned by fname:vkEndCommandBuffer. If the application wishes to further use the command buffer, the command buffer must: be reset.
+		/// </para>
 		/// </summary>
 		public void End()
 		{
@@ -253,7 +281,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Reset a command buffer.
+		/// </para>
 		/// </summary>
 		public void Reset(CommandBufferResetFlags flags)
 		{
@@ -274,8 +304,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Bind a pipeline object to a command buffer.
+		/// </para>
+		/// <para>
 		/// Once bound, a pipeline binding affects subsequent graphics or compute commands in the command buffer until a different pipeline is bound to the bind point. The pipeline bound to ename:VK_PIPELINE_BIND_POINT_COMPUTE controls the behavior of flink:vkCmdDispatch and flink:vkCmdDispatchIndirect. The pipeline bound to ename:VK_PIPELINE_BIND_POINT_GRAPHICS controls the behavior of flink:vkCmdDraw, flink:vkCmdDrawIndexed, flink:vkCmdDrawIndirect, and flink:vkCmdDrawIndexedIndirect. No other commands are affected by the pipeline state.
+		/// </para>
 		/// </summary>
 		public void BindPipeline(PipelineBindPoint pipelineBindPoint, Pipeline pipeline)
 		{
@@ -291,8 +325,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Set the viewport on a command buffer.
+		/// </para>
+		/// <para>
 		/// The viewport parameters taken from element latexmath:[$i$] of pname:pViewports replace the current state for the viewport index latexmath:[$\mathit{firstViewport}+i$], for latexmath:[$i$] in latexmath:[$[0, viewportCount)$].
+		/// </para>
 		/// </summary>
 		public void SetViewport(uint firstViewport, Viewport[] viewports)
 		{
@@ -308,9 +346,15 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Set the dynamic scissor rectangles on a command buffer.
+		/// </para>
+		/// <para>
 		/// The scissor rectangles taken from element latexmath:[$i$] of pname:pScissors replace the current state for the scissor index latexmath:[$\mathit{firstScissor}+i$], for latexmath:[$i$] in latexmath:[$[0, scissorCount)$].
+		/// </para>
+		/// <para>
 		/// Each scissor rectangle is described by a slink:VkRect2D structure, with the pname:offset.x and pname:offset.y values determining the upper left corner of the scissor rectangle, and the pname:extent.width and pname:extent.height values determining the size in pixels.
+		/// </para>
 		/// </summary>
 		public void SetScissor(uint firstScissor, Rect2D[] scissors)
 		{
@@ -326,7 +370,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Set the dynamic line width state.
+		/// </para>
 		/// </summary>
 		public void SetLineWidth(float lineWidth)
 		{
@@ -341,22 +387,54 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Set the depth bias dynamic state.
+		/// </para>
+		/// <para>
 		/// The depth values of all fragments generated by the rasterization of a polygon can: be offset by a single value that is computed for that polygon. This behavior is controlled by the pname:depthBiasEnable, pname:depthBiasConstantFactor, pname:depthBiasClamp, and pname:depthBiasSlopeFactor members of slink:VkPipelineRasterizationStateCreateInfo, or by the corresponding parameters to the fname:vkCmdSetDepthBias command if depth bias state is dynamic.
+		/// </para>
+		/// <para>
 		/// If pname:depthBiasEnable is ename:VK_FALSE, no depth bias is applied and the fragment's depth values are unchanged.
+		/// </para>
+		/// <para>
 		/// pname:depthBiasSlopeFactor scales the maximum depth slope of the polygon, and pname:depthBiasConstantFactor scales an implementation-dependent constant that relates to the usable resolution of the depth buffer. The resulting values are summed to produce the depth bias value which is then clamped to a minimum or maximum value specified by pname:depthBiasClamp. pname:depthBiasSlopeFactor, pname:depthBiasConstantFactor, and pname:depthBiasClamp can: each be positive, negative, or zero.
+		/// </para>
+		/// <para>
 		/// The maximum depth slope latexmath:[$m$] of a triangle is
+		/// </para>
+		/// <para>
 		/// [latexmath] ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \begin{equation} m = \sqrt{ \left({\partial z_f \over \partial x_f}\right)^2 +  \left({\partial z_f \over  \partial y_f}\right)^2} \end{equation} ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		/// </para>
+		/// <para>
 		/// where latexmath:[$(x_f, y_f, z_f)$] is a point on the triangle. latexmath:[$m$] may: be approximated as
+		/// </para>
+		/// <para>
 		/// [latexmath] ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \begin{equation} m = \max( \left |{\partial z_f \over \partial x_f} \right |, \left |{\partial z_f \over \partial y_f} \right | ). \end{equation} ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		/// </para>
+		/// <para>
 		/// The minimum resolvable difference latexmath:[$r$] is an implementation-dependent parameter that depends on the depth buffer representation. It is the smallest difference in framebuffer coordinate latexmath:[$z$] values that is guaranteed to remain distinct throughout polygon rasterization and in the depth buffer. All pairs of fragments generated by the rasterization of two polygons with otherwise identical vertices, but latexmath:[$z_f$] values that differ by $r$, will have distinct depth values.
+		/// </para>
+		/// <para>
 		/// For fixed-point depth buffer representations, latexmath:[$r$] is constant throughout the range of the entire depth buffer. For floating-point depth buffers, there is no single minimum resolvable difference. In this case, the minimum resolvable difference for a given polygon is dependent on the maximum exponent, latexmath:[$e$], in the range of latexmath:[$z$] values spanned by the primitive. If latexmath:[$n$] is the number of bits in the floating-point mantissa, the minimum resolvable difference, latexmath:[$r$], for the given primitive is defined as
+		/// </para>
+		/// <para>
 		/// [latexmath] ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \begin{equation} r = 2^{e - n} \end{equation} ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		/// </para>
+		/// <para>
 		/// If no depth buffer is present, latexmath:[$r$] is undefined.
+		/// </para>
+		/// <para>
 		/// The bias value latexmath:[$o$] for a polygon is
+		/// </para>
+		/// <para>
 		/// [latexmath] ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \begin{equation} o = \begin{cases} m \times depthBiasSlopeFactor + r \times depthBiasConstantFactor  &amp; depthBiasClamp = 0\ or\ NaN \\ \min(m \times depthBiasSlopeFactor + r \times depthBiasConstantFactor, depthBiasClamp)                   &amp; depthBiasClamp &gt; 0  \\ \max(m \times depthBiasSlopeFactor + r \times depthBiasConstantFactor, depthBiasClamp)                   &amp; depthBiasClamp &lt; 0  \\ \end{cases} \end{equation} ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		/// </para>
+		/// <para>
 		/// latexmath:[$m$] is computed as described above. If the depth buffer uses a fixed-point representation, latexmath:[$m$] is a function of depth values in the range latexmath:[$[0,1\]$], and latexmath:[$o$] is applied to depth values in the same range.
+		/// </para>
+		/// <para>
 		/// For fixed-point depth buffers, fragment depth values are always limited to the range latexmath:[$[0,1\]$] by clamping after depth bias addition is performed. Fragment depth values are clamped even when the depth buffer uses a floating-point representation.
+		/// </para>
 		/// </summary>
 		public void SetDepthBias(float depthBiasConstantFactor, float depthBiasClamp, float depthBiasSlopeFactor)
 		{
@@ -371,7 +449,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Set the values of blend constants.
+		/// </para>
 		/// </summary>
 		public void SetBlendConstants(float blendConstants)
 		{
@@ -386,7 +466,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Set the depth bounds test values for a command buffer.
+		/// </para>
 		/// </summary>
 		public void SetDepthBounds(float minDepthBounds, float maxDepthBounds)
 		{
@@ -401,7 +483,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Set the stencil compare mask dynamic state.
+		/// </para>
 		/// </summary>
 		public void SetStencilCompareMask(StencilFaceFlags faceMask, uint compareMask)
 		{
@@ -416,7 +500,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Set the stencil write mask dynamic state.
+		/// </para>
 		/// </summary>
 		public void SetStencilWriteMask(StencilFaceFlags faceMask, uint writeMask)
 		{
@@ -431,7 +517,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Set the stencil reference dynamic state.
+		/// </para>
 		/// </summary>
 		public void SetStencilReference(StencilFaceFlags faceMask, uint reference)
 		{
@@ -446,14 +534,30 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Binds descriptor sets to a command buffer.
+		/// </para>
+		/// <para>
 		/// fname:vkCmdBindDescriptorSets causes the sets numbered [pname:firstSet.. pname:firstSet+pname:descriptorSetCount-1] to use the bindings stored in pname:pDescriptorSets[0..pname:descriptorSetCount-1] for subsequent rendering commands (either compute or graphics, according to the pname:pipelineBindPoint). Any bindings that were previously applied via these sets are no longer valid.
+		/// </para>
+		/// <para>
 		/// Once bound, a descriptor set affects rendering of subsequent graphics or compute commands in the command buffer until a different set is bound to the same set number, or else until the set is disturbed as described in &lt;&lt;descriptorsets-compatibility, Pipeline Layout Compatibility&gt;&gt;.
+		/// </para>
+		/// <para>
 		/// A compatible descriptor set must: be bound for all set numbers that any shaders in a pipeline access, at the time that a draw or dispatch command is recorded to execute using that pipeline. However, if none of the shaders in a pipeline statically use any bindings with a particular set number, then no descriptor set need be bound for that set number, even if the pipeline layout includes a non-trivial descriptor set layout for that set number.
+		/// </para>
+		/// <para>
 		/// If any of the sets being bound include dynamic uniform or storage buffers, then pname:pDynamicOffsets includes one element for each array element in each dynamic descriptor type binding in each set. Values are taken from pname:pDynamicOffsets in an order such that all entries for set N come before set N+1; within a set, entries are ordered by the binding numbers in the descriptor set layouts; and within a binding array, elements are in order. pname:dynamicOffsetCount must: equal the total number of dynamic descriptors in the sets being bound.
+		/// </para>
+		/// <para>
 		/// The effective offset used for dynamic uniform and storage buffer bindings is the sum of the relative offset taken from pname:pDynamicOffsets, and the base address of the buffer plus base offset in the descriptor set. The length of the dynamic uniform and storage buffer bindings is the buffer range as specified in the descriptor set.
+		/// </para>
+		/// <para>
 		/// Each of the pname:pDescriptorSets must: be compatible with the pipeline layout specified by pname:layout. The layout used to program the bindings must: also be compatible with the pipeline used in subsequent graphics or compute commands, as defined in the &lt;&lt;descriptorsets-compatibility, Pipeline Layout Compatibility&gt;&gt; section.
+		/// </para>
+		/// <para>
 		/// The descriptor set contents bound by a call to fname:vkCmdBindDescriptorSets may: be consumed during host execution of the command, or during shader execution of the resulting draws, or any time in between. Thus, the contents mustnot: be altered (overwritten by an update command, or freed) between when the command is recorded and when the command completes executing on the queue. The contents of pname:pDynamicOffsets are consumed immediately during execution of fname:vkCmdBindDescriptorSets. Once all pending uses have completed, it is legal to update and reuse a descriptor set.
+		/// </para>
 		/// </summary>
 		public void BindDescriptorSets(PipelineBindPoint pipelineBindPoint, PipelineLayout layout, uint firstSet, DescriptorSet[] descriptorSets, uint[] dynamicOffsets)
 		{
@@ -483,7 +587,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Bind an index buffer to a command buffer.
+		/// </para>
 		/// </summary>
 		public void BindIndexBuffer(Buffer buffer, DeviceSize offset, IndexType indexType)
 		{
@@ -499,8 +605,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Bind vertex buffers to a command buffer
+		/// </para>
+		/// <para>
 		/// The values taken from elements latexmath:[$i$] of pname:pBuffers and pname:pOffsets replace the current state for the vertex input binding latexmath:[$\mathit{firstBinding}+i$], for latexmath:[$i$] in latexmath:[$[0, bindingCount)$]. The vertex input binding is updated to start at the offset indicated by pname:pOffsets[i] from the start of the buffer pname:pBuffers[i]. All vertex input attributes that use each of these bindings will use these updated addresses in their address calculations for subsequent draw commands.
+		/// </para>
 		/// </summary>
 		public void BindVertexBuffers(uint firstBinding, Buffer[] buffers, DeviceSize[] offsets)
 		{
@@ -529,8 +639,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Draw primitives.
+		/// </para>
+		/// <para>
 		/// When the command is executed, primitives are assembled using the current primitive topology and pname:vertexCount consecutive vertex indices with the first code:vertexIndex value equal to pname:firstVertex. The primitives are drawn pname:instanceCount times with code:instanceIndex starting with pname:firstInstance and increasing sequentially for each instance. The assembled primitives execute the currently bound graphics pipeline.
+		/// </para>
 		/// </summary>
 		public void Draw(uint vertexCount, uint instanceCount, uint firstVertex, uint firstInstance)
 		{
@@ -545,10 +659,18 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Issue an indexed draw into a command buffer.
+		/// </para>
+		/// <para>
 		/// When the command is executed, primitives are assembled using the current primitive topology and pname:indexCount vertices whose indices are retrieved from the index buffer. The index buffer is treated as an array of tightly packed unsigned integers of size defined by the flink:vkCmdBindIndexBuffer::pname:indexType parameter with which the buffer was bound.
+		/// </para>
+		/// <para>
 		/// The first vertex index is at an offset of pname:firstIndex * code:indexSize + pname:offset within the currently bound index buffer, where pname:offset is the offset specified by fname:vkCmdBindIndexBuffer and code:indexSize is the byte size of the type specified by pname:indexType. Subsequent index values are retrieved from consecutive locations in the index buffer. Indices are first compared to the primitive restart value, then zero extended to 32 bits (if the code:indexType is ename:VK_INDEX_TYPE_UINT16) and have pname:vertexOffset added to them, before being supplied as the code:vertexIndex value.
+		/// </para>
+		/// <para>
 		/// The primitives are drawn pname:instanceCount times with code:instanceIndex starting with pname:firstInstance and increasing sequentially for each instance. The assembled primitives execute the currently bound graphics pipeline.
+		/// </para>
 		/// </summary>
 		public void DrawIndexed(uint indexCount, uint instanceCount, uint firstIndex, int vertexOffset, uint firstInstance)
 		{
@@ -563,8 +685,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Issue an indirect draw into a command buffer.
+		/// </para>
+		/// <para>
 		/// fname:vkCmdDrawIndirect behaves similarly to flink:vkCmdDraw except that the parameters are read by the device from a buffer during execution. pname:drawCount draws are executed by the command, with parameters taken from pname:buffer starting at pname:offset and increasing by pname:stride bytes for each successive draw. The parameters of each draw are encoded in an array of slink:VkDrawIndirectCommand structures. If pname:drawCount is less than or equal to one, pname:stride is ignored.
+		/// </para>
 		/// </summary>
 		public void DrawIndirect(Buffer buffer, DeviceSize offset, uint drawCount, uint stride)
 		{
@@ -580,8 +706,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Perform an indexed indirect draw.
+		/// </para>
+		/// <para>
 		/// fname:vkCmdDrawIndexedIndirect behaves similarly to flink:vkCmdDrawIndirect except that the parameters are read by the device from a buffer during execution. pname:drawCount draws are executed by the command, with parameters taken from pname:buffer starting at pname:offset and increasing by pname:stride bytes for each successive draw. The parameters of each draw are encoded in an array of slink:VkDrawIndexedIndirectCommand structures. If pname:drawCount is less than or equal to one, pname:stride is ignored.
+		/// </para>
 		/// </summary>
 		public void DrawIndexedIndirect(Buffer buffer, DeviceSize offset, uint drawCount, uint stride)
 		{
@@ -597,8 +727,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Dispatch compute work items.
+		/// </para>
+		/// <para>
 		/// When the command is executed, a global workgroup consisting of latexmath:[$x \times y \times z$] local workgroups is assembled.
+		/// </para>
 		/// </summary>
 		public void Dispatch(uint x, uint y, uint z)
 		{
@@ -613,8 +747,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Dispatch compute work items using indirect parameters.
+		/// </para>
+		/// <para>
 		/// fname:vkCmdDispatchIndirect behaves similarly to flink:vkCmdDispatch except that the parameters are read by the device from a buffer during execution. The parameters of the dispatch are encoded in a slink:VkDispatchIndirectCommand structure taken from pname:buffer starting at pname:offset.
+		/// </para>
 		/// </summary>
 		public void DispatchIndirect(Buffer buffer, DeviceSize offset)
 		{
@@ -630,8 +768,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Copy data between buffer regions.
+		/// </para>
+		/// <para>
 		/// Each region in pname:pRegions is copied from the source buffer to the same region of the destination buffer. pname:srcBuffer and pname:dstBuffer can: be the same buffer or alias the same memory, but the result is undefined if the copy regions overlap in memory.
+		/// </para>
 		/// </summary>
 		public void CopyBuffer(Buffer sourceBuffer, Buffer destinationBuffer, BufferCopy[] regions)
 		{
@@ -649,14 +791,30 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Copy data between images.
+		/// </para>
+		/// <para>
 		/// Each region in pname:pRegions is copied from the source image to the same region of the destination image. pname:srcImage and pname:dstImage can: be the same image or alias the same memory.
+		/// </para>
+		/// <para>
 		/// Copies are done layer by layer starting with pname:baseArrayLayer member of pname:srcSubresource for the source and pname:dstSubresource for the destination. pname:layerCount layers are copied to the destination image.
+		/// </para>
+		/// <para>
 		/// The formats of pname:srcImage and pname:dstImage must: be compatible. Formats are considered compatible if their texel size in bytes is the same between both formats. For example, ename:VK_FORMAT_R8G8B8A8_UNORM is compatible with ename:VK_FORMAT_R32_UINT because both texels are 4 bytes in size. Depth/stencil formats must: match exactly.
+		/// </para>
+		/// <para>
 		/// fname:vkCmdCopyImage allows copying between size-compatible compressed and uncompressed internal formats. Formats are size-compatible if the texel size of the uncompressed format is equal to the compressed texel block size in bytes of the compressed format. Such a copy does not perform on-the-fly compression or decompression. When copying from an uncompressed format to a compressed format, each texel of uncompressed data of the source image is copied as a raw value to the corresponding compressed texel block of the destination image. When copying from a compressed format to an uncompressed format, each compressed texel block of the source image is copied as a raw value to the corresponding texel of uncompressed data in the destination image. Thus, for example, it is legal to copy between a 128-bit uncompressed format and a compressed format which has a 128-bit sized compressed texel block representing 4x4 texels (using 8 bits per texel), or between a 64-bit uncompressed format and a compressed format which has a 64-bit sized compressed texel block representing 4x4 texels (using 4 bits per texel).
+		/// </para>
+		/// <para>
 		/// When copying between compressed and uncompressed formats the pname:extent members represent the texel dimensions of the source image and not the destination. When copying from a compressed image to an uncompressed image the image texel dimensions written to the uncompressed image will be source extent divided by the compressed texel block dimensions. When copying from an uncompressed image to a compressed image the image texel dimensions written to the compressed image will be the source extent multiplied by the compressed texel block dimensions. In both cases the number of bytes read and the number of bytes written will be identical.
+		/// </para>
+		/// <para>
 		/// Copying to or from block-compressed images is typically done in multiples of the compressed texel block. For this reason the pname:extent must: be a multiple of the compressed texel block dimension. There is one exception to this rule which is required: to handle compressed images created with dimensions that are not a multiple of the compressed texel block dimensions. If the pname:srcImage is compressed and if pname:extent.width is not a multiple of the compressed texel block width then (pname:extent.width + pname:srcOffset.x) must: equal the image subresource width, if pname:extent.height is not a multiple of the compressed texel block height then (pname:extent.height + pname:srcOffset.y) must: equal the image subresource height and if pname:extent.depth is not a multiple of the compressed texel block depth then (pname:extent.depth + pname:srcOffset.z) must: equal the image subresource depth. Similarly, if the pname:dstImage is compressed and if pname:extent.width is not a multiple of the compressed texel block width then (pname:extent.width + pname:dstOffset.x) must: equal the image subresource width, if pname:extent.height is not a multiple of the compressed texel block height then (pname:extent.height + pname:dstOffset.y) must: equal the image subresource height and if pname:extent.depth is not a multiple of the compressed texel block depth then (pname:extent.depth + pname:dstOffset.z) must: equal the image subresource depth. This allows the last compressed texel block of the image in each non-multiple dimension to be included as a source or destination of the copy.
+		/// </para>
+		/// <para>
 		/// fname:vkCmdCopyImage can: be used to copy image data between multisample images, but both images must: have the same number of samples.
+		/// </para>
 		/// </summary>
 		public void CopyImage(Image sourceImage, ImageLayout sourceImageLayout, Image destinationImage, ImageLayout destinationImageLayout, ImageCopy[] regions)
 		{
@@ -674,17 +832,39 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Copy regions of an image, potentially performing format conversion,
+		/// </para>
+		/// <para>
 		/// fname:vkCmdBlitImage mustnot: be used for multisampled source or destination images. Use flink:vkCmdResolveImage for this purpose.
+		/// </para>
+		/// <para>
 		/// As the sizes of the source and destination extents can: differ in any dimension, texels in the source extent are scaled and filtered to the destination extent. Scaling occurs via the following operations:
+		/// </para>
+		/// <para>
 		/// * For each destination texel, the integer coordinate of that texel is converted to an unnormalized texture coordinate, using the effective inverse of the equations described in &lt;&lt;textures-unnormalized-to-integer, unnormalized to integer conversion&gt;&gt;: [latexmath] ++++++++++++++++++++++++ \begin{align*} u_{base} &amp; = i + \frac{1}{2}\\ v_{base} &amp; = j + \frac{1}{2}\\ w_{base} &amp; = k + \frac{1}{2}\\ \end{align*} ++++++++++++++++++++++++ * These base coordinates are then offset by the first destination offset: [latexmath] ++++++++++++++++++++++++ \begin{align*} u_{offset} &amp; = u_{base} - x_{dst_0}\\ v_{offset} &amp; = v_{base} - y_{dst_0}\\ w_{offset} &amp; = w_{base} - z_{dst_0}\\ a_{offset} &amp; = a - baseArrayCount_{dst} \end{align*} ++++++++++++++++++++++++ * The scale is determined from the source and destination regions, and applied to the offset coordinates: [latexmath] ++++++++++++++++++++++++ \begin{align*} scale_u &amp; = \frac{x_{src_1} - x_{src_0}}{x_{dst_1} - x_{dst_0}}\\ scale_v &amp; = \frac{y_{src_1} - y_{src_0}}{y_{dst_1} - y_{dst_0}}\\ scale_w &amp; = \frac{z_{src_1} - z_{src_0}}{z_{dst_1} - z_{dst_0}}\\ \\ u_{scaled} &amp; = u_{offset} * scale_u\\ v_{scaled} &amp; = v_{offset} * scale_v\\ w_{scaled} &amp; = w_{offset} * scale_w \end{align*} ++++++++++++++++++++++++ * Finally the source offset is added to the scaled coordinates, to determine the final unnormalized coordinates used to sample from pname:srcImage: [latexmath] ++++++++++++++++++++++++ \begin{align*} u &amp; = u_{scaled} + x_{src_0}\\ v &amp; = v_{scaled} + y_{src_0}\\ w &amp; = w_{scaled} + z_{src_0}\\ q &amp; = mipLevel\\ a &amp; = a_{offset} + baseArrayCount_{src} \end{align*} ++++++++++++++++++++++++
+		/// </para>
+		/// <para>
 		/// These coordinates are used to sample from the source image, as described in &lt;&lt;textures, Image Operations chapter&gt;&gt;, with the filter mode equal to that of pname:filter, a mipmap mode of ename:VK_SAMPLER_MIPMAP_MODE_NEAREST and an address mode of ename:VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_EDGE. Implementations must: clamp at the edge of the source image, and may: additionally clamp to the edge of the source region.
+		/// </para>
+		/// <para>
 		/// [NOTE] .Note ==== Due to allowable rounding errors in the generation of the source texture coordinates, it is not always possible to guarantee exactly which source texels will be sampled for a given blit. As rounding errors are implementation dependent, the exact results of a blitting operation are also implementation dependent. ====
+		/// </para>
+		/// <para>
 		/// Blits are done layer by layer starting with the pname:baseArrayLayer member of pname:srcSubresource for the source and pname:dstSubresource for the destination. pname:layerCount layers are blitted to the destination image.
+		/// </para>
+		/// <para>
 		/// 3D textures are blitted slice by slice. Slices in the source region bounded by pname:srcOffsets[0].z and pname:srcOffsets[1].z are copied to slices in the destination region bounded by pname:dstOffsets[0].z and pname:dstOffsets[1].z. For each destination slice, a source z coordinate is linearly interpolated between pname:srcOffsets[0].z and pname:srcOffsets[1].z. If the pname:filter parameter is ename:VK_FILTER_LINEAR then the value sampled from the source image is taken by doing linear filtering using the interpolated z coordinate. If pname:filter parameter is ename:VK_FILTER_NEAREST then value sampled from the source image is taken from the single nearest slice (with undefined rounding mode).
+		/// </para>
+		/// <para>
 		/// The following filtering and conversion rules apply:
+		/// </para>
+		/// <para>
 		/// * Integer formats can: only be converted to other integer formats with the same signedness. * No format conversion is supported between depth/stencil images - the formats must: match. * Format conversions on unorm, snorm, unscaled and packed float formats of the copied aspect of the image are performed by first converting the pixels to float values. * In case of sRGB source format, nonlinear RGB values are converted to linear representation prior to filtering. * After filtering, the float values are first clamped and then cast to the destination image format. In case of sRGB destination format, linear RGB values are converted to nonlinear representation before writing the pixel to the image.
+		/// </para>
+		/// <para>
 		/// Signed and unsigned integers are converted by first clamping to the representable range of the destination format, then casting the value.
+		/// </para>
 		/// </summary>
 		public void BlitImage(Image sourceImage, ImageLayout sourceImageLayout, Image destinationImage, ImageLayout destinationImageLayout, ImageBlit[] regions, Filter filter)
 		{
@@ -714,8 +894,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Copy data from a buffer into an image.
+		/// </para>
+		/// <para>
 		/// Each region in pname:pRegions is copied from the specified region of the source buffer to the specified region of the destination image.
+		/// </para>
 		/// </summary>
 		public void CopyBufferToImage(Buffer sourceBuffer, Image destinationImage, ImageLayout destinationImageLayout, BufferImageCopy[] regions)
 		{
@@ -733,8 +917,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Copy image data into a buffer.
+		/// </para>
+		/// <para>
 		/// Each region in pname:pRegions is copied from the specified region of the source image to the specified region of the destination buffer.
+		/// </para>
 		/// </summary>
 		public void CopyImageToBuffer(Image sourceImage, ImageLayout sourceImageLayout, Buffer destinationBuffer, BufferImageCopy[] regions)
 		{
@@ -752,10 +940,18 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Update a buffer's contents from host memory.
+		/// </para>
+		/// <para>
 		/// pname:dataSize must: be less than or equal to 65536 bytes. For larger updates, applications can: use buffer to buffer &lt;&lt;copies-buffers,copies&gt;&gt;.
+		/// </para>
+		/// <para>
 		/// The source data is copied from the user pointer to the command buffer when the command is called.
+		/// </para>
+		/// <para>
 		/// fname:vkCmdUpdateBuffer is only allowed outside of a render pass. This command is treated as ``transfer'' operation, for the purposes of synchronization barriers. The ename:VK_BUFFER_USAGE_TRANSFER_DST_BIT must: be specified in pname:usage of slink:VkBufferCreateInfo in order for the buffer to be compatible with fname:vkCmdUpdateBuffer.
+		/// </para>
 		/// </summary>
 		public void UpdateBuffer(Buffer destinationBuffer, DeviceSize destinationOffset, byte[] data)
 		{
@@ -772,8 +968,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Fill a region of a buffer with a fixed value.
+		/// </para>
+		/// <para>
 		/// fname:vkCmdFillBuffer is treated as ``transfer'' operation for the purposes of synchronization barriers. The ename:VK_BUFFER_USAGE_TRANSFER_DST_BIT must: be specified in pname:usage of sname:VkBufferCreateInfo in order for the buffer to be compatible with fname:vkCmdFillBuffer.
+		/// </para>
 		/// </summary>
 		public void FillBuffer(Buffer destinationBuffer, DeviceSize destinationOffset, DeviceSize size, uint data)
 		{
@@ -789,8 +989,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Clear regions of a color image.
+		/// </para>
+		/// <para>
 		/// Each specified range in pname:pRanges is cleared to the value specified by pname:pColor.
+		/// </para>
 		/// </summary>
 		public void ClearColorImage(Image image, ImageLayout imageLayout, ClearColorValue color, ImageSubresourceRange[] ranges)
 		{
@@ -807,7 +1011,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Fill regions of a combined depth-stencil image.
+		/// </para>
 		/// </summary>
 		public void ClearDepthStencilImage(Image image, ImageLayout imageLayout, ClearDepthStencilValue depthStencil, ImageSubresourceRange[] ranges)
 		{
@@ -824,8 +1030,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Clear regions within currently bound framebuffer attachments.
+		/// </para>
+		/// <para>
 		/// fname:vkCmdClearAttachments can: clear multiple regions of each attachment used in the current subpass of a render pass instance. This command must: be called only inside a render pass instance, and implicitly selects the images to clear based on the current framebuffer attachments and the command parameters.
+		/// </para>
 		/// </summary>
 		public void ClearAttachments(ClearAttachment[] attachments, ClearRect[] rects)
 		{
@@ -842,10 +1052,18 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Resolve regions of an image.
+		/// </para>
+		/// <para>
 		/// During the resolve the samples corresponding to each pixel location in the source are converted to a single sample before being written to the destination. If the source formats are floating-point or normalized types, the sample values for each pixel are resolved in an implementation-dependent manner. If the source formats are integer types, a single sample's value is selected for each pixel.
+		/// </para>
+		/// <para>
 		/// pname:srcOffset and pname:dstOffset select the initial x, y, and z offsets in texels of the sub-regions of the source and destination image data. pname:extent is the size in texels of the source image to resolve in pname:width, pname:height and pname:depth. 1D images use only pname:x and pname:width. 2D images use pname:x, pname:y, pname:width and pname:height. 3D images use pname:x, pname:y, pname:z, pname:width, pname:height and pname:depth.
+		/// </para>
+		/// <para>
 		/// Resolves are done layer by layer starting with pname:baseArrayLayer member of pname:srcSubresource for the source and pname:dstSubresource for the destination. pname:layerCount layers are resolved to the destination image.
+		/// </para>
 		/// </summary>
 		public void ResolveImage(Image sourceImage, ImageLayout sourceImageLayout, Image destinationImage, ImageLayout destinationImageLayout, ImageResolve[] regions)
 		{
@@ -863,7 +1081,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Set an event object to signaled state.
+		/// </para>
 		/// </summary>
 		public void SetEvent(Event @event, PipelineStageFlags stageMask)
 		{
@@ -879,7 +1099,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Reset an event object to non-signaled state.
+		/// </para>
 		/// </summary>
 		public void ResetEvent(Event @event, PipelineStageFlags stageMask)
 		{
@@ -895,12 +1117,24 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Wait for one or more events and insert a set of memory
+		/// </para>
+		/// <para>
 		/// fname:vkCmdWaitEvents waits for events set by either fname:vkSetEvent or fname:vkCmdSetEvent to become signaled. Logically, it has three phases:
+		/// </para>
+		/// <para>
 		/// . Wait at the pipeline stages specified by pname:dstStageMask (see &lt;&lt;synchronization-pipeline-stage-flags&gt;&gt;) until the pname:eventCount event objects specified by pname:pEvents become signaled. Implementations may: wait for each event object to become signaled in sequence (starting with the first event object in pname:pEvents, and ending with the last), or wait for all of the event objects to become signaled at the same time. . Execute the memory barriers specified by pname:pMemoryBarriers, pname:pBufferMemoryBarriers and pname:pImageMemoryBarriers (see &lt;&lt;synchronization-memory-barriers&gt;&gt;). . Resume execution of pipeline stages specified by pname:dstStageMask
+		/// </para>
+		/// <para>
 		/// Implementations may: not execute commands in a pipelined manner, so fname:vkCmdWaitEvents may: not observe the results of a subsequent fname:vkCmdSetEvent or fname:vkCmdResetEvent command, even if the stages in pname:dstStageMask occur after the stages in pname:srcStageMask.
+		/// </para>
+		/// <para>
 		/// Commands that update the state of events in different pipeline stages may: execute out of order, unless the ordering is enforced by execution dependencies.
+		/// </para>
+		/// <para>
 		/// [NOTE] .Note ==== Applications should: be careful to avoid race conditions when using events. For example, an event should: only be reset if no fname:vkCmdWaitEvents command is executing that waits upon that event. ====
+		/// </para>
 		/// </summary>
 		public void WaitEvents(Event[] events, PipelineStageFlags sourceStageMask, PipelineStageFlags destinationStageMask, MemoryBarrier[] memoryBarriers, BufferMemoryBarrier[] bufferMemoryBarriers, ImageMemoryBarrier[] imageMemoryBarriers)
 		{
@@ -967,9 +1201,15 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Insert a set of execution and memory barriers.
+		/// </para>
+		/// <para>
 		/// Each element of the pname:pMemoryBarriers, pname:pBufferMemoryBarriers and pname:pImageMemoryBarriers arrays specifies two halves of a memory dependency, as defined above. Specifics of each type of memory barrier and the memory access types are defined further in &lt;&lt;synchronization-memory-barriers,Memory Barriers&gt;&gt;.
+		/// </para>
+		/// <para>
 		/// If fname:vkCmdPipelineBarrier is called outside a render pass instance, then the first set of commands is all prior commands submitted to the queue and recorded in the command buffer and the second set of commands is all subsequent commands recorded in the command buffer and submitted to the queue. If fname:vkCmdPipelineBarrier is called inside a render pass instance, then the first set of commands is all prior commands in the same subpass and the second set of commands is all subsequent commands in the same subpass.
+		/// </para>
 		/// </summary>
 		public void PipelineBarrier(PipelineStageFlags sourceStageMask, PipelineStageFlags destinationStageMask, DependencyFlags dependencyFlags, MemoryBarrier[] memoryBarriers, BufferMemoryBarrier[] bufferMemoryBarriers, ImageMemoryBarrier[] imageMemoryBarriers)
 		{
@@ -1023,9 +1263,15 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Begin a query.
+		/// </para>
+		/// <para>
 		/// If the pname:queryType of the pool is ename:VK_QUERY_TYPE_OCCLUSION and pname:flags contains ename:VK_QUERY_CONTROL_PRECISE_BIT, an implementation must: return a result that matches the actual number of samples passed. This is described in more detail in &lt;&lt;queries-occlusion,Occlusion Queries&gt;&gt;.
+		/// </para>
+		/// <para>
 		/// After beginning a query, that query is considered _active_ within the command buffer it was called in until that same query is ended. Queries active in a primary command buffer when secondary command buffers are executed are considered active for those secondary command buffers.
+		/// </para>
 		/// </summary>
 		public void BeginQuery(QueryPool queryPool, uint query, QueryControlFlags flags)
 		{
@@ -1041,9 +1287,15 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Ends a query.
+		/// </para>
+		/// <para>
 		/// As queries operate asynchronously, ending a query does not immediately set the query's status to available. A query is considered _finished_ when the final results of the query are ready to be retrieved by flink:vkGetQueryPoolResults and flink:vkCmdCopyQueryPoolResults, and this is when the query's status is set to available.
+		/// </para>
+		/// <para>
 		/// Once a query is ended the query must: finish in finite time, unless the state of the query is changed using other commands, e.g. by issuing a reset of the query.
+		/// </para>
 		/// </summary>
 		public void EndQuery(QueryPool queryPool, uint query)
 		{
@@ -1059,8 +1311,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Reset queries in a query pool.
+		/// </para>
+		/// <para>
 		/// When executed on a queue, this command sets the status of query indices latexmath:[$firstQuery,firstQuery+queryCount-1$] to unavailable.
+		/// </para>
 		/// </summary>
 		public void ResetQueryPool(QueryPool queryPool, uint firstQuery, uint queryCount)
 		{
@@ -1076,11 +1332,21 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Write a device timestamp into a query object.
+		/// </para>
+		/// <para>
 		/// fname:vkCmdWriteTimestamp latches the value of the timer when all previous commands have completed executing as far as the specified pipeline stage, and writes the timestamp value to memory. When the timestamp value is written, the availability status of the query is set to available.
+		/// </para>
+		/// <para>
 		/// [NOTE] .Note ==== If an implementation is unable to detect completion and latch the timer at any specific stage of the pipeline, it may: instead do so at any logically later stage. ====
+		/// </para>
+		/// <para>
 		/// flink:vkCmdCopyQueryPoolResults can: then be called to copy the timestamp value from the query pool into buffer memory, with ordering and synchronization behavior equivalent to how other queries operate. Timestamp values can: also be retrieved from the query pool using flink:vkGetQueryPoolResults. As with other queries, the query must: be reset using flink:vkCmdResetQueryPool before requesting the timestamp value be written to it.
+		/// </para>
+		/// <para>
 		/// While fname:vkCmdWriteTimestamp can: be called inside or outside of a render pass instance, flink:vkCmdCopyQueryPoolResults must: only be called outside of a render pass instance.
+		/// </para>
 		/// </summary>
 		public void WriteTimestamp(PipelineStageFlags pipelineStage, QueryPool queryPool, uint query)
 		{
@@ -1096,16 +1362,36 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Copy the results of queries in a query pool to a buffer object.
+		/// </para>
+		/// <para>
 		/// fname:vkCmdCopyQueryPoolResults is guaranteed to see the effect of previous uses of fname:vkCmdResetQueryPool in the same queue, without any additional synchronization. Thus, the results will always reflect the most recent use of the query.
+		/// </para>
+		/// <para>
 		/// pname:flags has the same possible values described above for the pname:flags parameter of flink:vkGetQueryPoolResults, but the different style of execution causes some subtle behavioral differences. Because fname:vkCmdCopyQueryPoolResults executes in order with respect to other query commands, there is less ambiguity about which use of a query is being requested.
+		/// </para>
+		/// <para>
 		/// If no bits are set in pname:flags, results for all requested queries in the available state are written as 32-bit unsigned integer values, and nothing is written for queries in the unavailable state.
+		/// </para>
+		/// <para>
 		/// If ename:VK_QUERY_RESULT_64_BIT is set, the results are written as an array of 64-bit unsigned integer values as described for flink:vkGetQueryPoolResults.
+		/// </para>
+		/// <para>
 		/// If ename:VK_QUERY_RESULT_WAIT_BIT is set, the implementation will wait for each query's status to be in the available state before retrieving the numerical results for that query. This is guaranteed to reflect the most recent use of the query on the same queue, assuming that the query is not being simultaneously used by other queues. If the query does not become available in a finite amount of time (e.g. due to not issuing a query since the last reset), a ename:VK_ERROR_DEVICE_LOST error may: occur.
+		/// </para>
+		/// <para>
 		/// Similarly, if ename:VK_QUERY_RESULT_WITH_AVAILABILITY_BIT is set and ename:VK_QUERY_RESULT_WAIT_BIT is not set, the availability is guaranteed to reflect the most recent use of the query on the same queue, assuming that the query is not being simultaneously used by other queues. As with fname:vkGetQueryPoolResults, implementations must: guarantee that if they return a non-zero availability value, then the numerical results are valid.
+		/// </para>
+		/// <para>
 		/// If ename:VK_QUERY_RESULT_PARTIAL_BIT is set, ename:VK_QUERY_RESULT_WAIT_BIT is not set, and the query's status is unavailable, an intermediate result value between zero and the final result value is written for that query.
+		/// </para>
+		/// <para>
 		/// ename:VK_QUERY_RESULT_PARTIAL_BIT mustnot: be used if the pool's pname:queryType is ename:VK_QUERY_TYPE_TIMESTAMP.
+		/// </para>
+		/// <para>
 		/// fname:vkCmdCopyQueryPoolResults is considered to be a transfer operation, and its writes to buffer memory must: be synchronized using ename:VK_PIPELINE_STAGE_TRANSFER_BIT and ename:VK_ACCESS_TRANSFER_WRITE_BIT before using the results.
+		/// </para>
 		/// </summary>
 		public void CopyQueryPoolResults(QueryPool queryPool, uint firstQuery, uint queryCount, Buffer destinationBuffer, DeviceSize destinationOffset, DeviceSize stride, QueryResultFlags flags)
 		{
@@ -1122,7 +1408,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Update the values of push constants.
+		/// </para>
 		/// </summary>
 		public void PushConstants(PipelineLayout layout, ShaderStageFlags stageFlags, uint offset, byte[] values)
 		{
@@ -1139,8 +1427,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Begin a new render pass.
+		/// </para>
+		/// <para>
 		/// After beginning a render pass instance, the command buffer is ready to record the commands for the first subpass of that render pass.
+		/// </para>
 		/// </summary>
 		public void BeginRenderPass(RenderPassBeginInfo renderPassBegin, SubpassContents contents)
 		{
@@ -1157,10 +1449,18 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Transition to the next subpass of a render pass.
+		/// </para>
+		/// <para>
 		/// The subpass index for a render pass begins at zero when fname:vkCmdBeginRenderPass is recorded, and increments each time fname:vkCmdNextSubpass is recorded.
+		/// </para>
+		/// <para>
 		/// Moving to the next subpass automatically performs any multisample resolve operations in the subpass being ended. End-of-subpass multisample resolves are treated as color attachment writes for the purposes of synchronization. That is, they are considered to execute in the ename:VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT pipeline stage and their writes are synchronized with ename:VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT. Synchronization between rendering within a subpass and any resolve operations at the end of the subpass occurs automatically, without need for explicit dependencies or pipeline barriers. However, if the resolve attachment is also used in a different subpass, an explicit dependency is needed.
+		/// </para>
+		/// <para>
 		/// After transitioning to the next subpass, the application can: record the commands for that subpass.
+		/// </para>
 		/// </summary>
 		public void NextSubpass(SubpassContents contents)
 		{
@@ -1175,8 +1475,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// End the current render pass.
+		/// </para>
+		/// <para>
 		/// Ending a render pass instance performs any multisample resolve operations on the final subpass.
+		/// </para>
 		/// </summary>
 		public void EndRenderPass()
 		{
@@ -1191,8 +1495,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Execute a secondary command buffer from a primary command buffer.
+		/// </para>
+		/// <para>
 		/// Once fname:vkCmdExecuteCommands has been called, any prior executions of the secondary command buffers specified by pname:pCommandBuffers in any other primary command buffer become invalidated, unless those secondary command buffers were recorded with ename:VK_COMMAND_BUFFER_USAGE_SIMULTANEOUS_USE_BIT.
+		/// </para>
 		/// </summary>
 		public void ExecuteCommands(CommandBuffer[] commandBuffers)
 		{
@@ -1220,7 +1528,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public void DebugMarkerBegin(DebugMarkerMarkerInfo markerInfo)
 		{
@@ -1237,7 +1547,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public void DebugMarkerEnd()
 		{
@@ -1252,7 +1564,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public void DebugMarkerInsert(DebugMarkerMarkerInfo markerInfo)
 		{
@@ -1269,7 +1583,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public void DrawIndirectCount(Buffer buffer, DeviceSize offset, Buffer countBuffer, DeviceSize countBufferOffset, uint maxDrawCount, uint stride)
 		{
@@ -1286,7 +1602,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public void DrawIndexedIndirectCount(Buffer buffer, DeviceSize offset, Buffer countBuffer, DeviceSize countBufferOffset, uint maxDrawCount, uint stride)
 		{
@@ -1309,8 +1627,12 @@ namespace SharpVk
 	}
 
     /// <summary>
+	/// <para>
     /// Opaque handle to a command pool object
+	/// </para>
+	/// <para>
     /// Command pools are opaque objects that command buffer memory is allocated from, and which allow the implementation to amortize the cost of resource creation across multiple command buffers. Command pools are application-synchronized, meaning that a command pool mustnot: be used concurrently in multiple threads. That includes use via recording commands on any command buffers allocated from the pool, as well as operations that allocate, free, and reset command buffers or the pool itself.
+	/// </para>
     /// </summary>
 	public class CommandPool
 		: IDisposable
@@ -1335,8 +1657,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Destroy a command pool object
+		/// </para>
+		/// <para>
 		/// When a pool is destroyed, all command buffers allocated from the pool are implicitly freed and become invalid. Command buffers allocated from a given pool do not need to be freed before destroying that command pool.
+		/// </para>
 		/// </summary>
 		public void Destroy()
 		{
@@ -1353,8 +1679,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Reset a command pool.
+		/// </para>
+		/// <para>
 		/// Resetting a command pool recycles all of the resources from all of the command buffers allocated from the command pool back to the command pool. All command buffers that have been allocated from the command pool are put in the initial state.
+		/// </para>
 		/// </summary>
 		public void Reset(CommandPoolResetFlags flags)
 		{
@@ -1375,7 +1705,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Free command buffers.
+		/// </para>
 		/// </summary>
 		public void FreeCommandBuffers(CommandBuffer[] commandBuffers)
 		{
@@ -1418,7 +1750,9 @@ namespace SharpVk
 	}
 
     /// <summary>
+	/// <para>
     /// -
+	/// </para>
     /// </summary>
 	public class DebugReportCallback
 		: IDisposable
@@ -1443,7 +1777,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public void Destroy()
 		{
@@ -1475,8 +1811,12 @@ namespace SharpVk
 	}
 
     /// <summary>
+	/// <para>
     /// Opaque handle to a descriptor pool object
+	/// </para>
+	/// <para>
     /// A _descriptor pool_ maintains a pool of descriptors, from which descriptor sets are allocated. Descriptor pools are externally synchronized, meaning that the application mustnot: allocate and/or free descriptor sets from the same pool in multiple threads simultaneously.
+	/// </para>
     /// </summary>
 	public class DescriptorPool
 		: IDisposable
@@ -1501,8 +1841,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Destroy a descriptor pool object
+		/// </para>
+		/// <para>
 		/// When a pool is destroyed, all descriptor sets allocated from the pool are implicitly freed and become invalid. Descriptor sets allocated from a given pool do not need to be freed before destroying that descriptor pool.
+		/// </para>
 		/// </summary>
 		public void Destroy()
 		{
@@ -1519,8 +1863,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Resets a descriptor pool object.
+		/// </para>
+		/// <para>
 		/// Resetting a descriptor pool recycles all of the resources from all of the descriptor sets allocated from the descriptor pool back to the descriptor pool, and the descriptor sets are implicitly freed.
+		/// </para>
 		/// </summary>
 		public void Reset(DescriptorPoolResetFlags flags)
 		{
@@ -1541,8 +1889,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Free one or more descriptor sets
+		/// </para>
+		/// <para>
 		/// After a successful call to fname:vkFreeDescriptorSets, all descriptor sets in pname:pDescriptorSets are invalid.
+		/// </para>
 		/// </summary>
 		public void FreeDescriptorSets(DescriptorSet[] descriptorSets)
 		{
@@ -1591,7 +1943,9 @@ namespace SharpVk
 	}
 
     /// <summary>
+	/// <para>
     /// Opaque handle to a descriptor set object
+	/// </para>
     /// </summary>
 	public class DescriptorSet
 	{
@@ -1621,8 +1975,12 @@ namespace SharpVk
 	}
 
     /// <summary>
+	/// <para>
     /// Opaque handle to a descriptor set layout object
+	/// </para>
+	/// <para>
     /// A descriptor set layout object is defined by an array of zero or more descriptor bindings. Each individual descriptor binding is specified by a descriptor type, a count (array size) of the number of descriptors in the binding, a set of shader stages that can: access the binding, and (if using immutable samplers) an array of sampler descriptors.
+	/// </para>
     /// </summary>
 	public class DescriptorSetLayout
 		: IDisposable
@@ -1647,7 +2005,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Destroy a descriptor set layout object
+		/// </para>
 		/// </summary>
 		public void Destroy()
 		{
@@ -1679,7 +2039,9 @@ namespace SharpVk
 	}
 
     /// <summary>
+	/// <para>
     /// Opaque handle to a device object
+	/// </para>
     /// </summary>
 	public class Device
 		: IDisposable
@@ -1704,10 +2066,18 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Return a function pointer for a command
+		/// </para>
+		/// <para>
 		/// The returned function pointer is of type tlink:PFN_vkVoidFunction, and must be cast to the type of the command being queried.
+		/// </para>
+		/// <para>
 		/// .vkGetDeviceProcAddr behavior [width="80%",options="header",align="center"] |===== | pname:device | pname:pName | return value | NULL | * | undefined | invalid device | * | undefined | device | NULL | undefined | device | core Vulkan command^1^ | fp | device | enabled extension commands^1^ | fp | device | * (any pname:pName not covered above) | NULL |=====
+		/// </para>
+		/// <para>
 		/// 1:: The returned function pointer must: only be called with a dispatchable object (the first parameter) that is pname:device or a child of pname:device. e.g. sname:VkDevice, sname:VkQueue, or sname:VkCommandBuffer.
+		/// </para>
 		/// </summary>
 		public IntPtr GetProcAddr(string name)
 		{
@@ -1727,9 +2097,15 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Destroy a logical device.
+		/// </para>
+		/// <para>
 		/// To ensure that no work is active on the device, flink:vkDeviceWaitIdle can: be used to gate the destruction of the device. Prior to destroying a device, an application is responsible for destroying/freeing any Vulkan objects that were created using that device as the first parameter of the corresponding ftext:vkCreate* or ftext:vkAllocate* command.
+		/// </para>
+		/// <para>
 		/// [NOTE] .Note ==== The lifetime of each of these objects is bound by the lifetime of the sname:VkDevice object. Therefore, to avoid resource leaks, it is critical that an application explicitly free all of these resources prior to calling fname:vkDestroyDevice. ====
+		/// </para>
 		/// </summary>
 		public void Destroy()
 		{
@@ -1746,7 +2122,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Get a queue handle from a device.
+		/// </para>
 		/// </summary>
 		public Queue GetQueue(uint queueFamilyIndex, uint queueIndex)
 		{
@@ -1767,8 +2145,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Wait for a device to become idle.
+		/// </para>
+		/// <para>
 		/// fname:vkDeviceWaitIdle is equivalent to calling fname:vkQueueWaitIdle for all queues owned by pname:device.
+		/// </para>
 		/// </summary>
 		public void WaitIdle()
 		{
@@ -1789,11 +2171,21 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Allocate GPU memory.
+		/// </para>
+		/// <para>
 		/// Allocations returned by fname:vkAllocateMemory are guaranteed to meet any alignment requirement by the implementation. For example, if an implementation requires 128 byte alignment for images and 64 byte alignment for buffers, the device memory returned through this mechanism would be 128-byte aligned. This ensures that applications can: correctly suballocate objects of different types (with potentially different alignment requirements) in the same memory object.
+		/// </para>
+		/// <para>
 		/// When memory is allocated, its contents are undefined.
+		/// </para>
+		/// <para>
 		/// There is an implementation-dependent maximum number of memory allocations which can: be simultaneously created on a device. This is specified by the &lt;&lt;features-limits-maxMemoryAllocationCount,pname:maxMemoryAllocationCount&gt;&gt; member of the sname:VkPhysicalDeviceLimits structure. If pname:maxMemoryAllocationCount is exceeded, fname:vkAllocateMemory will return ename:VK_ERROR_TOO_MANY_OBJECTS.
+		/// </para>
+		/// <para>
 		/// [NOTE] .Note ==== Some platforms may: have a limit on the maximum size of a single allocation. For example, certain systems may: fail to create allocations with a size greater than or equal to 4GB. Such a limit is implementation-dependent, and if such a failure occurs then the error ename:VK_ERROR_OUT_OF_DEVICE_MEMORY should: be returned. ====
+		/// </para>
 		/// </summary>
 		public DeviceMemory AllocateMemory(MemoryAllocateInfo allocateInfo)
 		{
@@ -1824,10 +2216,18 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Free GPU memory
+		/// </para>
+		/// <para>
 		/// Before freeing a memory object, an application must: ensure the memory object is no longer in use by the device--for example by command buffers queued for execution. The memory can: remain bound to images or buffers at the time the memory object is freed, but any further use of them (on host or device) for anything other than destroying those objects will result in undefined behavior. If there are still any bound images or buffers, the memory may: not be immediately released by the implementation, but must: be released by the time all bound images and buffers have been destroyed. Once memory is released, it is returned to the heap from which it was allocated.
+		/// </para>
+		/// <para>
 		/// How memory objects are bound to Images and Buffers is described in detail in the &lt;&lt;resources-association, Resource Memory Association&gt;&gt; section.
+		/// </para>
+		/// <para>
 		/// If a memory object is mapped at the time it is freed, it is implicitly unmapped.
+		/// </para>
 		/// </summary>
 		public void FreeMemory(DeviceMemory memory)
 		{
@@ -1845,8 +2245,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Flush mapped memory ranges.
+		/// </para>
+		/// <para>
 		/// fname:vkFlushMappedMemoryRanges must: be used to guarantee that host writes to non-coherent memory are visible to the device. It must: be called after the host writes to non-coherent memory have completed and before command buffers that will read or write any of those memory locations are submitted to a queue.
+		/// </para>
 		/// </summary>
 		public void FlushMappedMemoryRanges(MappedMemoryRange[] memoryRanges)
 		{
@@ -1880,8 +2284,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Invalidate ranges of mapped memory objects.
+		/// </para>
+		/// <para>
 		/// fname:vkInvalidateMappedMemoryRanges must: be used to guarantee that device writes to non-coherent memory are visible to the host. It must: be called after command buffers that execute and flush (via memory barriers) the device writes have completed, and before the host will read or write any of those locations. If a range of non-coherent memory is written by the host and then invalidated without first being flushed, its contents are undefined.
+		/// </para>
 		/// </summary>
 		public void InvalidateMappedMemoryRanges(MappedMemoryRange[] memoryRanges)
 		{
@@ -1915,8 +2323,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Create a new fence object.
+		/// </para>
+		/// <para>
 		/// To create a new fence object, use the command
+		/// </para>
 		/// </summary>
 		public Fence CreateFence(FenceCreateInfo createInfo)
 		{
@@ -1947,8 +2359,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Resets one or more fence objects.
+		/// </para>
+		/// <para>
 		/// If a fence is already in the unsignaled state, then resetting it has no effect.
+		/// </para>
 		/// </summary>
 		public void ResetFences(Fence[] fences)
 		{
@@ -1982,11 +2398,21 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Wait for one or more fences to become signaled.
+		/// </para>
+		/// <para>
 		/// If the condition is satisfied when fname:vkWaitForFences is called, then fname:vkWaitForFences returns immediately. If the condition is not satisfied at the time fname:vkWaitForFences is called, then fname:vkWaitForFences will block and wait up to pname:timeout nanoseconds for the condition to become satisfied.
+		/// </para>
+		/// <para>
 		/// If pname:timeout is zero, then fname:vkWaitForFences does not wait, but simply returns the current state of the fences. ename:VK_TIMEOUT will be returned in this case if the condition is not satisfied, even though no actual wait was performed.
+		/// </para>
+		/// <para>
 		/// If the specified timeout period expires before the condition is satisfied, fname:vkWaitForFences returns ename:VK_TIMEOUT. If the condition is satisfied before pname:timeout nanoseconds has expired, fname:vkWaitForFences returns ename:VK_SUCCESS.
+		/// </para>
+		/// <para>
 		/// fname:vkWaitForFences defines the second half of a memory dependency with the host, for each fence being waited on. The memory dependency defined by signaling a fence and waiting on the host does not guarantee that the results of memory accesses will be visible to the host, or that the memory is available. To provide that guarantee, the application must: insert a memory barrier between the device writes and the end of the submission that will signal the fence, with pname:dstAccessMask having the ename:VK_ACCESS_HOST_READ_BIT bit set, with pname:dstStageMask having the ename:VK_PIPELINE_STAGE_HOST_BIT bit set, and with the appropriate pname:srcStageMask and pname:srcAccessMask members set to guarantee completion of the writes. If the memory was allocated without the ename:VK_MEMORY_PROPERTY_HOST_COHERENT_BIT set, then fname:vkInvalidateMappedMemoryRanges must: be called after the fence is signaled in order to ensure the writes are visible to the host, as described in &lt;&lt;memory-device-hostaccess,Host Access to Device Memory Objects&gt;&gt;.
+		/// </para>
 		/// </summary>
 		public void WaitForFences(Fence[] fences, Bool32 waitAll, ulong timeout)
 		{
@@ -2020,8 +2446,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Create a new queue semaphore object.
+		/// </para>
+		/// <para>
 		/// To create a new semaphore object, use the command
+		/// </para>
 		/// </summary>
 		public Semaphore CreateSemaphore(SemaphoreCreateInfo createInfo)
 		{
@@ -2052,8 +2482,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Create a new event object.
+		/// </para>
+		/// <para>
 		/// When created, the event object is in the unsignaled state.
+		/// </para>
 		/// </summary>
 		public Event CreateEvent(EventCreateInfo createInfo)
 		{
@@ -2084,7 +2518,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Create a new query pool object.
+		/// </para>
 		/// </summary>
 		public QueryPool CreateQueryPool(QueryPoolCreateInfo createInfo)
 		{
@@ -2115,7 +2551,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Create a new buffer object.
+		/// </para>
 		/// </summary>
 		public Buffer CreateBuffer(BufferCreateInfo createInfo)
 		{
@@ -2146,7 +2584,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Create a new buffer view object.
+		/// </para>
 		/// </summary>
 		public BufferView CreateBufferView(BufferViewCreateInfo createInfo)
 		{
@@ -2177,7 +2617,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Create a new image object.
+		/// </para>
 		/// </summary>
 		public Image CreateImage(ImageCreateInfo createInfo)
 		{
@@ -2208,8 +2650,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Create an image view from an existing image.
+		/// </para>
+		/// <para>
 		/// Some of the image creation parameters are inherited by the view. The remaining parameters are contained in the pname:pCreateInfo.
+		/// </para>
 		/// </summary>
 		public ImageView CreateImageView(ImageViewCreateInfo createInfo)
 		{
@@ -2240,9 +2686,15 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Creates a new shader module object.
+		/// </para>
+		/// <para>
 		/// Once a shader module has been created, any entry points it contains can: be used in pipeline shader stages as described in &lt;&lt;pipelines-compute,Compute Pipelines&gt;&gt; and &lt;&lt;pipelines-graphics,Graphics Pipelines&gt;&gt;.
+		/// </para>
+		/// <para>
 		/// ifdef::VK_NV_glsl_shader[] If the shader stage fails to compile ename:VK_ERROR_INVALID_SHADER_NV will be generated and the compile log will be reported back to the application by pname:VK_EXT_debug_report if enabled. endif::VK_NV_glsl_shader[]
+		/// </para>
 		/// </summary>
 		public ShaderModule CreateShaderModule(ShaderModuleCreateInfo createInfo)
 		{
@@ -2273,10 +2725,18 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Creates a new pipeline cache
+		/// </para>
+		/// <para>
 		/// [NOTE] .Note ==== Applications can: track and manage the total host memory size of a pipeline cache object using the pname:pAllocator.  Applications can: limit the amount of data retrieved from a pipeline cache object in fname:vkGetPipelineCacheData. Implementations shouldnot: internally limit the total number of entries added to a pipeline cache object or the total host memory consumed. ====
+		/// </para>
+		/// <para>
 		/// Once created, a pipeline cache can: be passed to the fname:vkCreateGraphicsPipelines and fname:vkCreateComputePipelines commands. If the pipeline cache passed into these commands is not dlink:VK_NULL_HANDLE, the implementation will query it for possible reuse opportunities and update it with new content. The use of the pipeline cache object in these commands is internally synchronized, and the same pipeline cache object can: be used in multiple threads simultaneously.
+		/// </para>
+		/// <para>
 		/// [NOTE] .Note ==== Implementations should: make every effort to limit any critical sections to the actual accesses to the cache, which is expected to be significantly shorter than the duration of the fname:vkCreateGraphicsPipelines and fname:vkCreateComputePipelines commands. ====
+		/// </para>
 		/// </summary>
 		public PipelineCache CreatePipelineCache(PipelineCacheCreateInfo createInfo)
 		{
@@ -2307,8 +2767,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Create graphics pipelines.
+		/// </para>
+		/// <para>
 		/// The slink:VkGraphicsPipelineCreateInfo structure includes an array of shader create info structures containing all the desired active shader stages, as well as creation info to define all relevant fixed-function stages, and a pipeline layout.
+		/// </para>
 		/// </summary>
 		public Pipeline[] CreateGraphicsPipelines(PipelineCache pipelineCache, GraphicsPipelineCreateInfo[] createInfos)
 		{
@@ -2355,7 +2819,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Creates a new compute pipeline object.
+		/// </para>
 		/// </summary>
 		public Pipeline[] CreateComputePipelines(PipelineCache pipelineCache, ComputePipelineCreateInfo[] createInfos)
 		{
@@ -2402,7 +2868,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Creates a new pipeline layout object.
+		/// </para>
 		/// </summary>
 		public PipelineLayout CreatePipelineLayout(PipelineLayoutCreateInfo createInfo)
 		{
@@ -2433,7 +2901,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Create a new sampler object
+		/// </para>
 		/// </summary>
 		public Sampler CreateSampler(SamplerCreateInfo createInfo)
 		{
@@ -2464,7 +2934,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Create a new descriptor set layout.
+		/// </para>
 		/// </summary>
 		public DescriptorSetLayout CreateDescriptorSetLayout(DescriptorSetLayoutCreateInfo createInfo)
 		{
@@ -2495,9 +2967,15 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Creates a descriptor pool object.
+		/// </para>
+		/// <para>
 		/// pname:pAllocator controls host memory allocation as described in the &lt;&lt;memory-allocation, Memory Allocation&gt;&gt; chapter.
+		/// </para>
+		/// <para>
 		/// The created descriptor pool is returned in pname:pDescriptorPool.
+		/// </para>
 		/// </summary>
 		public DescriptorPool CreateDescriptorPool(DescriptorPoolCreateInfo createInfo)
 		{
@@ -2528,12 +3006,24 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Allocate one or more descriptor sets.
+		/// </para>
+		/// <para>
 		/// The allocated descriptor sets are returned in pname:pDescriptorSets.
+		/// </para>
+		/// <para>
 		/// When a descriptor set is allocated, the initial state is largely uninitialized and all descriptors are undefined. However, the descriptor set can: be bound in a command buffer without causing errors or exceptions. All entries that are statically used by a pipeline in a drawing or dispatching command must: have been populated before the descriptor set is bound for use by that command. Entries that are not statically used by a pipeline can: have uninitialized descriptors or descriptors of resources that have been destroyed, and executing a draw or dispatch with such a descriptor set bound does not cause undefined behavior. This means applications need not populate unused entries with dummy descriptors.
+		/// </para>
+		/// <para>
 		/// If an allocation fails due to fragmentation, an indeterminate error is returned with an unspecified error code. Any returned error other than ename:VK_ERROR_FRAGMENTED_POOL does not imply its usual meaning: applications should: assume that the allocation failed due to fragmentation, and create a new descriptor pool.
+		/// </para>
+		/// <para>
 		/// [NOTE] .Note ==== Applications should check for a negative return value when allocating new descriptor sets, assume that any error effectively means ename:VK_ERROR_FRAGMENTED_POOL, and try to create a new descriptor pool. If ename:VK_ERROR_FRAGMENTED_POOL is the actual return value, it adds certainty to that decision.
+		/// </para>
+		/// <para>
 		/// The reason for this is that ename:VK_ERROR_FRAGMENTED_POOL was only added in a later revision of the 1.0 specification, and so drivers may: return other errors if they were written against earlier revisions. To ensure full compatibility with earlier patch revisions, these other errors are allowed. ====
+		/// </para>
 		/// </summary>
 		public DescriptorSet[] AllocateDescriptorSets(DescriptorSetAllocateInfo allocateInfo)
 		{
@@ -2566,10 +3056,18 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Update the contents of a descriptor set object.
+		/// </para>
+		/// <para>
 		/// The operations described by pname:pDescriptorWrites are performed first, followed by the operations described by pname:pDescriptorCopies. Within each array, the operations are performed in the order they appear in the array.
+		/// </para>
+		/// <para>
 		/// Each element in the pname:pDescriptorWrites array describes an operation updating the descriptor set using descriptors for resources specified in the structure.
+		/// </para>
+		/// <para>
 		/// Each element in the pname:pDescriptorCopies array is a slink:VkCopyDescriptorSet structure describing an operation copying descriptors between sets.
+		/// </para>
 		/// </summary>
 		public void UpdateDescriptorSets(WriteDescriptorSet[] descriptorWrites, CopyDescriptorSet[] descriptorCopies)
 		{
@@ -2610,7 +3108,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Create a new framebuffer object.
+		/// </para>
 		/// </summary>
 		public Framebuffer CreateFramebuffer(FramebufferCreateInfo createInfo)
 		{
@@ -2641,7 +3141,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Create a new render pass object.
+		/// </para>
 		/// </summary>
 		public RenderPass CreateRenderPass(RenderPassCreateInfo createInfo)
 		{
@@ -2672,7 +3174,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Create a new command pool object.
+		/// </para>
 		/// </summary>
 		public CommandPool CreateCommandPool(CommandPoolCreateInfo createInfo)
 		{
@@ -2703,7 +3207,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Allocate command buffers from an existing command pool
+		/// </para>
 		/// </summary>
 		public CommandBuffer[] AllocateCommandBuffers(CommandBufferAllocateInfo allocateInfo)
 		{
@@ -2736,7 +3242,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public Swapchain CreateSwapchain(SwapchainCreateInfo createInfo)
 		{
@@ -2767,7 +3275,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public Swapchain[] CreateSharedSwapchains(SwapchainCreateInfo[] createInfos)
 		{
@@ -2813,7 +3323,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public void DebugMarkerSetObjectTag(DebugMarkerObjectTagInfo tagInfo)
 		{
@@ -2836,7 +3348,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public void DebugMarkerSetObjectName(DebugMarkerObjectNameInfo nameInfo)
 		{
@@ -2874,8 +3388,12 @@ namespace SharpVk
 	}
 
     /// <summary>
+	/// <para>
     /// Opaque handle to a device memory object
+	/// </para>
+	/// <para>
     /// A Vulkan device operates on data in device memory via memory objects that are represented in the API by a sname:VkDeviceMemory handle.
+	/// </para>
     /// </summary>
 	public class DeviceMemory
 	{
@@ -2899,11 +3417,21 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Map a memory object into application address space.
+		/// </para>
+		/// <para>
 		/// It is an application error to call fname:vkMapMemory on a memory object that is already mapped.
+		/// </para>
+		/// <para>
 		/// fname:vkMapMemory does not check whether the device memory is currently in use before returning the host-accessible pointer. The application must: guarantee that any previously submitted command that writes to this range has completed before the host reads from or writes to that range, and that any previously submitted command that reads from that range has completed before the host writes to that region (see &lt;&lt;synchronization-fences-devicewrites, here&gt;&gt; for details on fulfilling such a guarantee). If the device memory was allocated without the ename:VK_MEMORY_PROPERTY_HOST_COHERENT_BIT set, these guarantees must: be made for an extended range: the application must: round down the start of the range to the nearest multiple of sname:VkPhysicalDeviceLimits::pname:nonCoherentAtomSize, and round the end of the range up to the nearest multiple of sname:VkPhysicalDeviceLimits::pname:nonCoherentAtomSize.
+		/// </para>
+		/// <para>
 		/// While a range of device memory is mapped for host access, the application is responsible for synchronizing both device and host access to that memory range.
+		/// </para>
+		/// <para>
 		/// [NOTE] .Note ==== It is important for the application developer to become meticulously familiar with all of the mechanisms described in the chapter on &lt;&lt;synchronization, Synchronization and Cache Control&gt;&gt; as they are crucial to maintaining memory access ordering. ====
+		/// </para>
 		/// </summary>
 		public void MapMemory(DeviceSize offset, DeviceSize size, MemoryMapFlags flags, ref IntPtr ppData)
 		{
@@ -2926,7 +3454,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Unmap a previously mapped memory object.
+		/// </para>
 		/// </summary>
 		public void UnmapMemory()
 		{
@@ -2941,9 +3471,15 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Query the current commitment for a VkDeviceMemory
+		/// </para>
+		/// <para>
 		/// The implementation may: update the commitment at any time, and the value returned by this query may: be out of date.
+		/// </para>
+		/// <para>
 		/// The implementation guarantees to allocate any committed memory from the heapIndex indicated by the memory type that the memory object was created with.
+		/// </para>
 		/// </summary>
 		public DeviceSize GetCommitment()
 		{
@@ -2962,7 +3498,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public IntPtr GetMemoryWin32Handle(ExternalMemoryHandleTypeFlags handleType)
 		{
@@ -2993,7 +3531,9 @@ namespace SharpVk
 	}
 
     /// <summary>
+	/// <para>
     /// -
+	/// </para>
     /// </summary>
 	public class Display
 	{
@@ -3023,7 +3563,9 @@ namespace SharpVk
 	}
 
     /// <summary>
+	/// <para>
     /// -
+	/// </para>
     /// </summary>
 	public class DisplayMode
 	{
@@ -3047,7 +3589,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public DisplayPlaneCapabilities GetDisplayPlaneCapabilities(uint planeIndex)
 		{
@@ -3078,8 +3622,12 @@ namespace SharpVk
 	}
 
     /// <summary>
+	/// <para>
     /// Opaque handle to a event object
+	/// </para>
+	/// <para>
     /// Events represent a fine-grained synchronization primitive that can: be used to gauge progress through a sequence of commands executed on a queue by Vulkan. An event is initially in the unsignaled state. It can: be signaled by a device, using commands inserted into the command buffer, or by the host. It can: also be reset to the unsignaled state by a device or the host. The host can: query the state of an event. A device can: wait for one or more events to become signaled.
+	/// </para>
     /// </summary>
 	public class Event
 		: IDisposable
@@ -3104,7 +3652,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Destroy an event object
+		/// </para>
 		/// </summary>
 		public void Destroy()
 		{
@@ -3121,10 +3671,18 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Retrieve the status of an event object.
+		/// </para>
+		/// <para>
 		/// Upon success, fname:vkGetEventStatus returns the state of the event object with the following return codes:
+		/// </para>
+		/// <para>
 		/// .Event Object Status Codes [width="80%",options="header"] |===== | Status | Meaning | ename:VK_EVENT_SET | The event specified by pname:event is signaled. | ename:VK_EVENT_RESET | The event specified by pname:event is unsignaled. |=====
+		/// </para>
+		/// <para>
 		/// The state of an event can: be updated by the host. The state of the event is immediately changed, and subsequent calls to fname:vkGetEventStatus will return the new state. If an event is already in the requested state, then updating it to the same state has no effect.
+		/// </para>
 		/// </summary>
 		public void GetStatus()
 		{
@@ -3145,7 +3703,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Set an event to signaled state.
+		/// </para>
 		/// </summary>
 		public void Set()
 		{
@@ -3166,7 +3726,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Reset an event to non-signaled state.
+		/// </para>
 		/// </summary>
 		public void Reset()
 		{
@@ -3202,9 +3764,15 @@ namespace SharpVk
 	}
 
     /// <summary>
+	/// <para>
     /// Opaque handle to a fence object
+	/// </para>
+	/// <para>
     /// Fences can: be used by the host to determine completion of execution of _queue operations_.
+	/// </para>
+	/// <para>
     /// A fence's status is always either _signaled_ or _unsignaled_. The host can: poll the status of a single fence, or wait for any or all of a group of fences to become signaled.
+	/// </para>
     /// </summary>
 	public class Fence
 		: IDisposable
@@ -3229,7 +3797,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Destroy a fence object
+		/// </para>
 		/// </summary>
 		public void Destroy()
 		{
@@ -3246,10 +3816,18 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Return the status of a fence.
+		/// </para>
+		/// <para>
 		/// To query the status of a fence from the host, use the command
+		/// </para>
+		/// <para>
 		/// Upon success, fname:vkGetFenceStatus returns the status of the fence, which is one of:
+		/// </para>
+		/// <para>
 		/// * ename:VK_SUCCESS indicates that the fence is signaled. * ename:VK_NOT_READY indicates that the fence is unsignaled.
+		/// </para>
 		/// </summary>
 		public void GetStatus()
 		{
@@ -3285,8 +3863,12 @@ namespace SharpVk
 	}
 
     /// <summary>
+	/// <para>
     /// Opaque handle to a framebuffer object
+	/// </para>
+	/// <para>
     /// Render passes operate in conjunction with _framebuffers_. Framebuffers represent a collection of specific memory attachments that a render pass instance uses.
+	/// </para>
     /// </summary>
 	public class Framebuffer
 		: IDisposable
@@ -3311,7 +3893,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Destroy a framebuffer object
+		/// </para>
 		/// </summary>
 		public void Destroy()
 		{
@@ -3343,8 +3927,12 @@ namespace SharpVk
 	}
 
     /// <summary>
+	/// <para>
     /// Opaque handle to a image object
+	/// </para>
+	/// <para>
     /// Images represent multidimensional - up to 3 - arrays of data which can: be used for various purposes (e.g. attachments, textures), by binding them to a graphics or compute pipeline via descriptor sets, or by directly specifying them as parameters to certain commands.
+	/// </para>
     /// </summary>
 	public class Image
 		: IDisposable
@@ -3369,7 +3957,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Bind device memory to an image object
+		/// </para>
 		/// </summary>
 		public void BindMemory(DeviceMemory memory, DeviceSize memoryOffset)
 		{
@@ -3391,7 +3981,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Returns the memory requirements for specified Vulkan object.
+		/// </para>
 		/// </summary>
 		public MemoryRequirements GetMemoryRequirements()
 		{
@@ -3410,10 +4002,18 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Query the memory requirements for a sparse image.
+		/// </para>
+		/// <para>
 		/// If pname:pSparseMemoryRequirements is `NULL`, then the number of sparse memory requirements available is returned in pname:pSparseMemoryRequirementCount. Otherwise, pname:pSparseMemoryRequirementCount must: point to a variable set by the user to the number of elements in the pname:pSparseMemoryRequirements array, and on return the variable is overwritten with the number of structures actually written to pname:pSparseMemoryRequirements. If pname:pSparseMemoryRequirementCount is less than the number of sparse memory requirements available, at most pname:pSparseMemoryRequirementCount structures will be written.
+		/// </para>
+		/// <para>
 		/// If the image was not created with ename:VK_IMAGE_CREATE_SPARSE_RESIDENCY_BIT then pname:pSparseMemoryRequirementCount will be set to zero and pname:pSparseMemoryRequirements will not be written to.
+		/// </para>
+		/// <para>
 		/// [NOTE] .Note ==== It is legal for an implementation to report a larger value in sname:VkMemoryRequirements::pname:size than would be obtained by adding together memory sizes for all sname:VkSparseImageMemoryRequirements returned by fname:vkGetImageSparseMemoryRequirements. This may: occur when the hardware requires unused padding in the address range describing the resource. ====
+		/// </para>
 		/// </summary>
 		public SparseImageMemoryRequirements[] GetSparseMemoryRequirements()
 		{
@@ -3442,7 +4042,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Destroy an image object
+		/// </para>
 		/// </summary>
 		public void Destroy()
 		{
@@ -3459,8 +4061,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Retrieve information about an image subresource.
+		/// </para>
+		/// <para>
 		/// flink:vkGetImageSubresourceLayout is invariant for the lifetime of a single image.
+		/// </para>
 		/// </summary>
 		public SubresourceLayout GetSubresourceLayout(ImageSubresource subresource)
 		{
@@ -3494,8 +4100,12 @@ namespace SharpVk
 	}
 
     /// <summary>
+	/// <para>
     /// Opaque handle to a image view object
+	/// </para>
+	/// <para>
     /// Image objects are not directly accessed by pipeline shaders for reading or writing image data. Instead, _image views_ representing contiguous ranges of the image subresources and containing additional metadata are used for that purpose. Views must: be created on images of compatible types, and must: represent a valid subset of image subresources.
+	/// </para>
     /// </summary>
 	public class ImageView
 		: IDisposable
@@ -3520,7 +4130,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Destroy an image view object
+		/// </para>
 		/// </summary>
 		public void Destroy()
 		{
@@ -3552,8 +4164,12 @@ namespace SharpVk
 	}
 
     /// <summary>
+	/// <para>
     /// Opaque handle to a instance object
+	/// </para>
+	/// <para>
     /// There is no global state in Vulkan and all per-application state is stored in a sname:VkInstance object. Creating a sname:VkInstance object initializes the Vulkan library and allows the application to pass information about itself to the implementation.
+	/// </para>
     /// </summary>
 	public class Instance
 		: IDisposable
@@ -3578,8 +4194,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Create a new Vulkan instance
+		/// </para>
+		/// <para>
 		/// fname:vkCreateInstance creates the instance, then enables and initializes global layers and extensions requested by the application. If an extension is provided by a layer, both the layer and extension must: be specified at fname:vkCreateInstance time. If a specified layer cannot be found, no sname:VkInstance will be created and the function will return ename:VK_ERROR_LAYER_NOT_PRESENT. Likewise, if a specified extension cannot be found the call will return ename:VK_ERROR_EXTENSION_NOT_PRESENT.
+		/// </para>
 		/// </summary>
 		public static Instance Create(InstanceCreateInfo createInfo, AllocationCallbacks? allocator = null)
 		{
@@ -3610,7 +4230,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Destroy an instance of Vulkan.
+		/// </para>
 		/// </summary>
 		public void Destroy()
 		{
@@ -3627,8 +4249,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Enumerates the physical devices accessible to a Vulkan instance.
+		/// </para>
+		/// <para>
 		/// If pname:pPhysicalDevices is `NULL`, then the number of physical devices available is returned in pname:pPhysicalDeviceCount. Otherwise, pname:pPhysicalDeviceCount must: point to a variable set by the user to the number of elements in the pname:pPhysicalDevices array, and on return the variable is overwritten with the number of structures actually written to pname:pPhysicalDevices. If pname:pPhysicalDeviceCount is less than the number of physical devices available, at most pname:pPhysicalDeviceCount structures will be written. If pname:pPhysicalDeviceCount is smaller than the number of physical devices available, ename:VK_INCOMPLETE will be returned instead of ename:VK_SUCCESS, to indicate that not all the available physical devices were returned.
+		/// </para>
 		/// </summary>
 		public PhysicalDevice[] EnumeratePhysicalDevices()
 		{
@@ -3667,15 +4293,33 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Return a function pointer for a command
+		/// </para>
+		/// <para>
 		/// fname:vkGetInstanceProcAddr itself is obtained in a platform- and loader- specific manner. Typically, the loader library will export this command as a function symbol, so applications can: link against the loader library, or load it dynamically and look up the symbol using platform-specific APIs. Loaders are encouraged to export function symbols for all other core Vulkan commands as well; if this is done, then applications that use only the core Vulkan commands have no need to use fname:vkGetInstanceProcAddr.
+		/// </para>
+		/// <para>
 		/// The table below defines the various use cases for fname:vkGetInstanceProcAddr and expected return value ("fp" is function pointer) for each case.
+		/// </para>
+		/// <para>
 		/// The returned function pointer is of type tlink:PFN_vkVoidFunction, and must be cast to the type of the command being queried.
+		/// </para>
+		/// <para>
 		/// .vkGetInstanceProcAddr behavior [width="80%",options="header",align="center"] |===== | pname:instance | pname:pName | return value | * | NULL | undefined | invalid instance | * | undefined | NULL | flink:vkEnumerateInstanceExtensionProperties | fp | NULL | flink:vkEnumerateInstanceLayerProperties | fp | NULL | flink:vkCreateInstance | fp | NULL | * (any pname:pName not covered above) | NULL | instance | core Vulkan command | fp^1^ | instance | enabled instance extension commands for pname:instance | fp^1^ | instance | available device extension commands for pname:instance | fp^1,2^ | instance | * (any pname:pName not covered above) | NULL |=====
+		/// </para>
+		/// <para>
 		/// 1:: The returned function pointer must: only be called with a dispatchable object (the first parameter) that is pname:instance or a child of pname:instance. e.g. sname:VkInstance, sname:VkPhysicalDevice, sname:VkDevice, sname:VkQueue, or sname:VkCommandBuffer.
+		/// </para>
+		/// <para>
 		/// 2:: An ``available extension'' is an extension function supported by any of the loader, driver or layer.
+		/// </para>
+		/// <para>
 		/// ifdef::editing-notes[] [NOTE] .editing-note ==== (Jon, Bug 14886 / Gitlab issue 4) The WSI group tentatively agreed that the WSI extensions were special, and should get static entry points in link libraries and prototypes in +vulkan.h+, while future extensions would have to be dynamically loaded. If this decision is upheld by the group as a whole, it would probably be encoded in the previous paragraph, in the WSI extensions branch of the Specification.
+		/// </para>
+		/// <para>
 		/// However, this decision has not been fully signed off on by the entire Vulkan WG yet AFAIK. Note that implementations typically will not support many of the WSI extensions, so ``static entry points'' do not relieve apps of the neccessity of runtime enabling and testing of each extension before using it. ==== endif::editing-notes[]
+		/// </para>
 		/// </summary>
 		public IntPtr GetProcAddr(string name)
 		{
@@ -3695,9 +4339,15 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Returns up to requested number of global extension properties.
+		/// </para>
+		/// <para>
 		/// When pname:pLayerName parameter is NULL, only extensions provided by the Vulkan implementation or by implicitly enabled layers are returned. When pname:pLayerName is the name of a layer, the instance extensions provided by that layer are returned.
+		/// </para>
+		/// <para>
 		/// If pname:pProperties is `NULL`, then the number of extensions properties available is returned in pname:pPropertyCount. Otherwise, pname:pPropertyCount must: point to a variable set by the user to the number of elements in the pname:pProperties array, and on return the variable is overwritten with the number of structures actually written to pname:pProperties. If pname:pPropertyCount is less than the number of extension properties available, at most pname:pPropertyCount structures will be written. If pname:pPropertyCount is smaller than the number of extensions available, ename:VK_INCOMPLETE will be returned instead of ename:VK_SUCCESS, to indicate that not all the available properties were returned.
+		/// </para>
 		/// </summary>
 		public static ExtensionProperties[] EnumerateExtensionProperties(string layerName)
 		{
@@ -3737,8 +4387,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Returns up to requested number of global layer properties.
+		/// </para>
+		/// <para>
 		/// If pname:pProperties is `NULL`, then the number of layer properties available is returned in pname:pPropertyCount. Otherwise, pname:pPropertyCount must: point to a variable set by the user to the number of elements in the pname:pProperties array, and on return the variable is overwritten with the number of structures actually written to pname:pProperties. If pname:pPropertyCount is less than the number of layer properties available, at most pname:pPropertyCount structures will be written. If pname:pPropertyCount is smaller than the number of layers available, ename:VK_INCOMPLETE will be returned instead of ename:VK_SUCCESS, to indicate that not all the available layer properties were returned.
+		/// </para>
 		/// </summary>
 		public static LayerProperties[] EnumerateLayerProperties()
 		{
@@ -3777,7 +4431,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public Surface CreateDisplayPlaneSurface(DisplaySurfaceCreateInfo createInfo)
 		{
@@ -3808,7 +4464,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public Surface CreateXlibSurface(XlibSurfaceCreateInfo createInfo)
 		{
@@ -3839,7 +4497,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public Surface CreateXcbSurface(XcbSurfaceCreateInfo createInfo)
 		{
@@ -3870,7 +4530,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public Surface CreateWaylandSurface(WaylandSurfaceCreateInfo createInfo)
 		{
@@ -3901,7 +4563,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public Surface CreateMirSurface(MirSurfaceCreateInfo createInfo)
 		{
@@ -3932,7 +4596,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public Surface CreateAndroidSurface(AndroidSurfaceCreateInfo createInfo)
 		{
@@ -3963,7 +4629,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public Surface CreateWin32Surface(Win32SurfaceCreateInfo createInfo)
 		{
@@ -3994,7 +4662,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public DebugReportCallback CreateDebugReportCallback(DebugReportCallbackCreateInfo createInfo)
 		{
@@ -4025,7 +4695,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public void DebugReportMessage(DebugReportFlags flags, DebugReportObjectType objectType, ulong @object, UIntPtr location, int messageCode, char layerPrefix, char message)
 		{
@@ -4055,8 +4727,12 @@ namespace SharpVk
 	}
 
     /// <summary>
+	/// <para>
     /// Opaque handle to a physical device object
+	/// </para>
+	/// <para>
     /// Vulkan separates the concept of _physical_ and _logical_ devices. A physical device usually represents a single device in a system (perhaps made up of several individual hardware devices working together), of which there are a finite number. A logical device represents an application's view of the device.
+	/// </para>
     /// </summary>
 	public class PhysicalDevice
 	{
@@ -4080,7 +4756,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Reports capabilities of a physical device.
+		/// </para>
 		/// </summary>
 		public PhysicalDeviceFeatures GetFeatures()
 		{
@@ -4099,7 +4777,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Lists physical device's format capabilities.
+		/// </para>
 		/// </summary>
 		public FormatProperties GetFormatProperties(Format format)
 		{
@@ -4118,10 +4798,18 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Lists physical device's image format capabilities.
+		/// </para>
+		/// <para>
 		/// The pname:format, pname:type, pname:tiling, pname:usage, and pname:flags parameters correspond to parameters that would be consumed by flink:vkCreateImage.
+		/// </para>
+		/// <para>
 		/// If pname:format is not a supported image format, or if the combination of pname:format, pname:type, pname:tiling, pname:usage, and pname:flags is not supported for images, then fname:vkGetPhysicalDeviceImageFormatProperties returns ename:VK_ERROR_FORMAT_NOT_SUPPORTED.
+		/// </para>
+		/// <para>
 		/// The limitations on an image format that are reported by fname:vkGetPhysicalDeviceImageFormatProperties have the following property: if code:usage1 and code:usage2 of type elink:VkImageUsageFlags are such that the bits set in code:usage1 are a subset of the bits set in code:usage2, and code:flags1 and code:flags2 of type elink:VkImageCreateFlags are such that the bits set in code:flags1 are a subset of the bits set in code:flags2, then the limitations for code:usage1 and code:flags1 must: be no more strict than the limitations for code:usage2 and code:flags2, for all values of pname:format, pname:type, and pname:tiling.
+		/// </para>
 		/// </summary>
 		public ImageFormatProperties GetImageFormatProperties(Format format, ImageType type, ImageTiling tiling, ImageUsageFlags usage, ImageCreateFlags flags)
 		{
@@ -4146,7 +4834,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Returns properties of a physical device.
+		/// </para>
 		/// </summary>
 		public PhysicalDeviceProperties GetProperties()
 		{
@@ -4167,8 +4857,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Reports properties of the queues of the specified physical device.
+		/// </para>
+		/// <para>
 		/// If pname:pQueueFamilyProperties is `NULL`, then the number of queue families available is returned in pname:pQueueFamilyPropertyCount. Otherwise, pname:pQueueFamilyPropertyCount must: point to a variable set by the user to the number of elements in the pname:pQueueFamilyProperties array, and on return the variable is overwritten with the number of structures actually written to pname:pQueueFamilyProperties. If pname:pQueueFamilyPropertyCount is less than the number of queue families available, at most pname:pQueueFamilyPropertyCount structures will be written.
+		/// </para>
 		/// </summary>
 		public QueueFamilyProperties[] GetQueueFamilyProperties()
 		{
@@ -4197,7 +4891,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Reports memory information for the specified physical device.
+		/// </para>
 		/// </summary>
 		public PhysicalDeviceMemoryProperties GetMemoryProperties()
 		{
@@ -4218,8 +4914,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Create a new device instance.
+		/// </para>
+		/// <para>
 		/// Multiple logical devices can: be created from the same physical device. Logical device creation may: fail due to lack of device-specific resources (in addition to the other errors). If that occurs, fname:vkCreateDevice will return ename:VK_ERROR_TOO_MANY_OBJECTS.
+		/// </para>
 		/// </summary>
 		public Device CreateDevice(DeviceCreateInfo createInfo)
 		{
@@ -4250,8 +4950,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Returns properties of available physical device extensions.
+		/// </para>
+		/// <para>
 		/// When pname:pLayerName parameter is NULL, only extensions provided by the Vulkan implementation or by implicitly enabled layers are returned. When pname:pLayerName is the name of a layer, the device extensions provided by that layer are returned.
+		/// </para>
 		/// </summary>
 		public ExtensionProperties[] EnumerateDeviceExtensionProperties(string layerName)
 		{
@@ -4291,9 +4995,15 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Returns properties of available physical device layers.
+		/// </para>
+		/// <para>
 		/// If pname:pProperties is `NULL`, then the number of layer properties available is returned in pname:pPropertyCount. Otherwise, pname:pPropertyCount must: point to a variable set by the user to the number of elements in the pname:pProperties array, and on return the variable is overwritten with the number of structures actually written to pname:pProperties. If pname:pPropertyCount is less than the number of layer properties available, at most pname:pPropertyCount structures will be written. If pname:pPropertyCount is smaller than the number of layers available, ename:VK_INCOMPLETE will be returned instead of ename:VK_SUCCESS, to indicate that not all the available layer properties were returned.
+		/// </para>
+		/// <para>
 		/// The list of layers enumerated by fname:vkEnumerateDeviceLayerProperties must: be exactly the sequence of layers enabled for the instance. The members of sname:VkLayerProperties for each enumerated layer must: be the same as the properties when the layer was enumerated by fname:vkEnumerateInstanceLayerProperties.
+		/// </para>
 		/// </summary>
 		public LayerProperties[] EnumerateDeviceLayerProperties()
 		{
@@ -4332,12 +5042,24 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Retrieve properties of an image format applied to sparse images.
+		/// </para>
+		/// <para>
 		/// fname:vkGetPhysicalDeviceSparseImageFormatProperties returns an array of slink:VkSparseImageFormatProperties. Each element will describe properties for one set of image aspects that are bound simultaneously in the image. This is usually one element for each aspect in the image, but for interleaved depth/stencil images there is only one element describing the combined aspects.
+		/// </para>
+		/// <para>
 		/// If pname:pProperties is `NULL`, then the number of sparse format properties available is returned in pname:pPropertyCount. Otherwise, pname:pPropertyCount must: point to a variable set by the user to the number of elements in the pname:pProperties array, and on return the variable is overwritten with the number of structures actually written to pname:pProperties. If pname:pPropertyCount is less than the number of sparse format properties available, at most pname:pPropertyCount structures will be written.
+		/// </para>
+		/// <para>
 		/// If ename:VK_IMAGE_CREATE_SPARSE_RESIDENCY_BIT is not supported for the given arguments, pname:pPropertyCount will be set to zero upon return, and no data will be written to pname:pProperties.
+		/// </para>
+		/// <para>
 		/// Multiple aspects are returned for depth/stencil images that are implemented as separate planes by the implementation. The depth and stencil data planes each have unique sname:VkSparseImageFormatProperties data.
+		/// </para>
+		/// <para>
 		/// Depth/stencil images with depth and stencil data interleaved into a single plane will return a single sname:VkSparseImageFormatProperties structure with the pname:aspectMask set to ename:VK_IMAGE_ASPECT_DEPTH_BIT | ename:VK_IMAGE_ASPECT_STENCIL_BIT.
+		/// </para>
 		/// </summary>
 		public SparseImageFormatProperties[] GetSparseImageFormatProperties(Format format, ImageType type, SampleCountFlags samples, ImageUsageFlags usage, ImageTiling tiling)
 		{
@@ -4366,7 +5088,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public Bool32 GetSurfaceSupport(uint queueFamilyIndex, Surface surface)
 		{
@@ -4392,7 +5116,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public SurfaceCapabilities GetSurfaceCapabilities(Surface surface)
 		{
@@ -4418,7 +5144,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public SurfaceFormat[] GetSurfaceFormats(Surface surface)
 		{
@@ -4458,7 +5186,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public PresentMode[] GetSurfacePresentModes(Surface surface)
 		{
@@ -4498,7 +5228,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public DisplayProperties[] GetDisplayProperties()
 		{
@@ -4537,7 +5269,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public DisplayPlaneProperties[] GetDisplayPlaneProperties()
 		{
@@ -4576,7 +5310,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public Display[] GetDisplayPlaneSupportedDisplays(uint planeIndex)
 		{
@@ -4615,7 +5351,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public DisplayModeProperties[] GetDisplayModeProperties(Display display)
 		{
@@ -4655,7 +5393,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public DisplayMode CreateDisplayMode(Display display, DisplayModeCreateInfo createInfo)
 		{
@@ -4687,7 +5427,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public bool GetXlibPresentationSupport(uint queueFamilyIndex, IntPtr dpy, IntPtr visualID)
 		{
@@ -4706,7 +5448,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public bool GetXcbPresentationSupport(uint queueFamilyIndex, IntPtr connection, IntPtr visual_id)
 		{
@@ -4725,7 +5469,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public bool GetWaylandPresentationSupport(uint queueFamilyIndex, IntPtr display)
 		{
@@ -4744,7 +5490,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public bool GetMirPresentationSupport(uint queueFamilyIndex, IntPtr connection)
 		{
@@ -4763,7 +5511,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public bool GetWin32PresentationSupport(uint queueFamilyIndex)
 		{
@@ -4782,7 +5532,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public ExternalImageFormatProperties GetExternalImageFormatProperties(Format format, ImageType type, ImageTiling tiling, ImageUsageFlags usage, ImageCreateFlags flags, ExternalMemoryHandleTypeFlags externalHandleType)
 		{
@@ -4813,7 +5565,9 @@ namespace SharpVk
 	}
 
     /// <summary>
+	/// <para>
     /// Opaque handle to a pipeline object
+	/// </para>
     /// </summary>
 	public class Pipeline
 		: IDisposable
@@ -4838,7 +5592,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Destroy a pipeline object
+		/// </para>
 		/// </summary>
 		public void Destroy()
 		{
@@ -4870,8 +5626,12 @@ namespace SharpVk
 	}
 
     /// <summary>
+	/// <para>
     /// Opaque handle to a pipeline cache object
+	/// </para>
+	/// <para>
     /// Pipeline cache objects allow the result of pipeline construction to be reused between pipelines and between runs of an application. Reuse between pipelines is achieved by passing the same pipeline cache object when creating multiple related pipelines. Reuse across runs of an application is achieved by retrieving pipeline cache contents in one run of an application, saving the contents, and using them to preinitialize a pipeline cache on a subsequent run. The contents of the pipeline cache objects are managed by the implementation. Applications can: manage the host memory consumed by a pipeline cache object and control the amount of data retrieved from a pipeline cache object.
+	/// </para>
     /// </summary>
 	public class PipelineCache
 		: IDisposable
@@ -4896,7 +5656,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Destroy a pipeline cache object
+		/// </para>
 		/// </summary>
 		public void Destroy()
 		{
@@ -4913,15 +5675,33 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Get the data store from a pipeline cache
+		/// </para>
+		/// <para>
 		/// If pname:pData is `NULL`, then the maximum size of the data that can: be retrieved from the pipeline cache, in bytes, is returned in pname:pDataSize. Otherwise, pname:pDataSize must: point to a variable set by the user to the size of the buffer, in bytes, pointed to by pname:pData, and on return the variable is overwritten with the amount of data actually written to pname:pData.
+		/// </para>
+		/// <para>
 		/// If pname:pDataSize is less than the maximum size that can: be retrieved by the pipeline cache, at most pname:pDataSize bytes will be written to pname:pData, and fname:vkGetPipelineCacheData will return ename:VK_INCOMPLETE. Any data written to pname:pData is valid and can: be provided as the pname:pInitialData member of the sname:VkPipelineCacheCreateInfo structure passed to fname:vkCreatePipelineCache.
+		/// </para>
+		/// <para>
 		/// Applications can: store the data retrieved from the pipeline cache, and use these data, possibly in a future run of the application, to populate new pipeline cache objects. The results of pipeline compiles, however, may: depend on the vendor ID, device ID, driver version, and other details of the device. To enable applications to detect when previously retrieved data is incompatible with the device, the initial bytes written to pname:pData must: be a header consisting of the following members:
+		/// </para>
+		/// <para>
 		/// .Layout for pipeline cache header version ename:VK_PIPELINE_CACHE_HEADER_VERSION_ONE [width="85%",cols="8%,21%,71%",options="header"] |===== | Offset | Size | Meaning | 0 | 4                    | length in bytes of the entire pipeline cache header written as a stream of bytes, with the least significant byte first | 4 | 4                    | a elink:VkPipelineCacheHeaderVersion value written as a stream of bytes, with the least significant byte first | 8 | 4                    | a vendor ID equal to sname:VkPhysicalDeviceProperties::pname:vendorID written as a stream of bytes, with the least significant byte first | 12 | 4                    | a device ID equal to sname:VkPhysicalDeviceProperties::pname:deviceID written as a stream of bytes, with the least significant byte first | 16 | ename:VK_UUID_SIZE   | a pipeline cache ID equal to sname:VkPhysicalDeviceProperties::pname:pipelineCacheUUID |=====
+		/// </para>
+		/// <para>
 		/// The first four bytes encode the length of the entire pipeline header, in bytes. This value includes all fields in the header including the pipeline cache version field and the size of the length field.
+		/// </para>
+		/// <para>
 		/// The next four bytes encode the pipeline cache version. This field is interpreted as a elink:VkPipelineCacheHeaderVersion value, and must: have one of the following values:
+		/// </para>
+		/// <para>
 		/// A consumer of the pipeline cache should use the cache version to interpret the remainder of the cache header.
+		/// </para>
+		/// <para>
 		/// If pname:pDataSize is less than what is necessary to store this header, nothing will be written to pname:pData and zero will be written to pname:pDataSize.
+		/// </para>
 		/// </summary>
 		public byte[] GetData()
 		{
@@ -4960,8 +5740,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Combine the data stores of pipeline caches.
+		/// </para>
+		/// <para>
 		/// [NOTE] .Note ==== The details of the merge operation are implementation dependent, but implementations should: merge the contents of the specified pipelines and prune duplicate entries. ====
+		/// </para>
 		/// </summary>
 		public void MergePipelineCaches(PipelineCache[] sourceCaches)
 		{
@@ -5010,8 +5794,12 @@ namespace SharpVk
 	}
 
     /// <summary>
+	/// <para>
     /// Opaque handle to a pipeline layout object
+	/// </para>
+	/// <para>
     /// Access to descriptor sets from a pipeline is accomplished through a _pipeline layout_. Zero or more descriptor set layouts and zero or more push constant ranges are combined to form a pipeline layout object which describes the complete set of resources that can: be accessed by a pipeline. The pipeline layout represents a sequence of descriptor sets with each having a specific layout. This sequence of layouts is used to determine the interface between shader stages and shader resources. Each pipeline is created using a pipeline layout.
+	/// </para>
     /// </summary>
 	public class PipelineLayout
 		: IDisposable
@@ -5036,7 +5824,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Destroy a pipeline layout object
+		/// </para>
 		/// </summary>
 		public void Destroy()
 		{
@@ -5068,8 +5858,12 @@ namespace SharpVk
 	}
 
     /// <summary>
+	/// <para>
     /// Opaque handle to a query pool object
+	/// </para>
+	/// <para>
     /// Queries are managed using _query pool_ objects. Each query pool is a collection of a specific number of queries of a particular type.
+	/// </para>
     /// </summary>
 	public class QueryPool
 		: IDisposable
@@ -5094,7 +5888,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Destroy a query pool object
+		/// </para>
 		/// </summary>
 		public void Destroy()
 		{
@@ -5111,19 +5907,45 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Copy results of queries in a query pool to a host memory region.
+		/// </para>
+		/// <para>
 		/// If no bits are set in pname:flags, and all requested queries are in the available state, results are written as an array of 32-bit unsigned integer values. The behavior when not all queries are available, is described &lt;&lt;queries-wait-bit-not-set, below&gt;&gt;.
+		/// </para>
+		/// <para>
 		/// If ename:VK_QUERY_RESULT_64_BIT is not set and the result overflows a 32-bit value, the value may: either wrap or saturate. Similarly, if ename:VK_QUERY_RESULT_64_BIT is set and the result overflows a 64-bit value, the value may: either wrap or saturate.
+		/// </para>
+		/// <para>
 		/// If ename:VK_QUERY_RESULT_WAIT_BIT is set, Vulkan will wait for each query to be in the available state before retrieving the numerical results for that query. In this case, fname:vkGetQueryPoolResults is guaranteed to succeed and return ename:VK_SUCCESS if the queries become available in a finite time (i.e. if they have been issued and not reset). If queries will never finish (e.g. due to being reset but not issued), then fname:vkGetQueryPoolResults may: not return in finite time.
+		/// </para>
+		/// <para>
 		/// If ename:VK_QUERY_RESULT_WAIT_BIT and ename:VK_QUERY_RESULT_PARTIAL_BIT are both not set then no result values are written to pname:pData for queries that are in the unavailable state at the time of the call, and fname:vkGetQueryPoolResults returns ename:VK_NOT_READY. However, availability state is still written to pname:pData for those queries if ename:VK_QUERY_RESULT_WITH_AVAILABILITY_BIT is set.
+		/// </para>
+		/// <para>
 		/// [NOTE] .Note ==== Applications must: take care to ensure that use of the ename:VK_QUERY_RESULT_WAIT_BIT bit has the desired effect.
+		/// </para>
+		/// <para>
 		/// For example, if a query has been used previously and a command buffer records the commands fname:vkCmdResetQueryPool, fname:vkCmdBeginQuery, and fname:vkCmdEndQuery for that query, then the query will remain in the available state until the fname:vkCmdResetQueryPool command executes on a queue. Applications can: use fences or events to ensure that an query has already been reset before checking for its results or availability status. Otherwise, a stale value could be returned from a previous use of the query.
+		/// </para>
+		/// <para>
 		/// The above also applies when ename:VK_QUERY_RESULT_WAIT_BIT is used in combination with ename:VK_QUERY_RESULT_WITH_AVAILABILITY_BIT. In this case, the returned availability status may: reflect the result of a previous use of the query unless the fname:vkCmdResetQueryPool command has been executed since the last use of the query. ====
+		/// </para>
+		/// <para>
 		/// [NOTE] .Note ==== Applications can: double-buffer query pool usage, with a pool per frame, and reset queries at the end of the frame in which they are read. ====
+		/// </para>
+		/// <para>
 		/// If ename:VK_QUERY_RESULT_PARTIAL_BIT is set, ename:VK_QUERY_RESULT_WAIT_BIT is not set, and the query's status is unavailable, an intermediate result value between zero and the final result value is written to pname:pData for that query.
+		/// </para>
+		/// <para>
 		/// ename:VK_QUERY_RESULT_PARTIAL_BIT mustnot: be used if the pool's pname:queryType is ename:VK_QUERY_TYPE_TIMESTAMP.
+		/// </para>
+		/// <para>
 		/// If ename:VK_QUERY_RESULT_WITH_AVAILABILITY_BIT is set, the final integer value written for each query is non-zero if the query's status was available or zero if the status was unavailable. When ename:VK_QUERY_RESULT_WITH_AVAILABILITY_BIT is used, implementations must: guarantee that if they return a non-zero availability value then the numerical results must: be valid, assuming the results are not reset by a subsequent command.
+		/// </para>
+		/// <para>
 		/// [NOTE] .Note ==== Satisfying this guarantee may: require careful ordering by the application, e.g. to read the availability status before reading the results. ====
+		/// </para>
 		/// </summary>
 		public void GetResults(uint firstQuery, uint queryCount, byte[] data, DeviceSize stride, QueryResultFlags flags)
 		{
@@ -5160,8 +5982,12 @@ namespace SharpVk
 	}
 
     /// <summary>
+	/// <para>
     /// Opaque handle to a queue object
+	/// </para>
+	/// <para>
     /// Creating a logical device also creates the queues associated with that device. The queues to create are described by a set of slink:VkDeviceQueueCreateInfo structures that are passed to flink:vkCreateDevice in pname:pQueueCreateInfos.
+	/// </para>
     /// </summary>
 	public class Queue
 	{
@@ -5185,11 +6011,21 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Submits a sequence of semaphores or command buffers to a queue.
+		/// </para>
+		/// <para>
 		/// [NOTE] .Note ==== Submission can be a high overhead operation, and applications should: attempt to batch work together into as few calls to fname:vkQueueSubmit as possible. ====
+		/// </para>
+		/// <para>
 		/// fname:vkQueueSubmit is a &lt;&lt;devsandqueues-submission,queue submission command&gt;&gt;, with each batch defined by an element of pname:pSubmits as an instance of the slink:VkSubmitInfo structure.
+		/// </para>
+		/// <para>
 		/// Fence and semaphore operations submitted with flink:vkQueueSubmit have additional ordering constraints compared to other submission commands, with dependencies involving previous and subsequent queue operations. Information about these additional constraints can be found in the &lt;&lt;synchronization-semaphores, semaphore&gt;&gt; and &lt;&lt;synchronization-semaphores, fence&gt;&gt; sections of &lt;&lt;synchronization, the synchronization chapter&gt;&gt;.
+		/// </para>
+		/// <para>
 		/// Details on the interaction of pname:pWaitDstStageMask with synchronization are described in the &lt;&lt;synchronization-semaphores-waiting, semaphore wait operation&gt;&gt; section of &lt;&lt;synchronization, the synchronization chapter&gt;&gt;.
+		/// </para>
 		/// </summary>
 		public void Submit(SubmitInfo[] submits, Fence fence)
 		{
@@ -5224,8 +6060,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Wait for a queue to become idle.
+		/// </para>
+		/// <para>
 		/// fname:vkQueueWaitIdle is equivalent to submitting a fence to a queue and waiting with an infinite timeout for that fence to signal.
+		/// </para>
 		/// </summary>
 		public void WaitIdle()
 		{
@@ -5246,11 +6086,21 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Bind device memory to a sparse resource object.
+		/// </para>
+		/// <para>
 		/// fname:vkQueueBindSparse is a &lt;&lt;devsandqueues-submission,queue submission command&gt;&gt;, with each batch defined by an element of pname:pBindInfo as an instance of the slink:VkBindSparseInfo structure.
+		/// </para>
+		/// <para>
 		/// Within a batch, a given range of a resource must: not be bound more than once. Across batches, if a range is to be bound to one allocation and offset and then to another allocation and offset, then the application must: guarantee (usually using semaphores) that the binding operations are executed in the correct order, as well as to order binding operations against the execution of command buffer submissions.
+		/// </para>
+		/// <para>
 		/// As no operation to flink:vkQueueBindSparse causes any pipeline stage to access memory, synchronization primitives used in this command effectively only define execution dependencies.
+		/// </para>
+		/// <para>
 		/// Additional information about fence and semaphore operation is described in &lt;&lt;synchronization, the synchronization chapter&gt;&gt;.
+		/// </para>
 		/// </summary>
 		public void BindSparse(BindSparseInfo[] bindInfo, Fence fence)
 		{
@@ -5285,7 +6135,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public void Present(PresentInfo presentInfo)
 		{
@@ -5314,8 +6166,12 @@ namespace SharpVk
 	}
 
     /// <summary>
+	/// <para>
     /// Opaque handle to a render pass object
+	/// </para>
+	/// <para>
     /// A _render pass_ represents a collection of attachments, subpasses, and dependencies between the subpasses, and describes how the attachments are used over the course of the subpasses. The use of a render pass in a command buffer is a  _render pass instance_.
+	/// </para>
     /// </summary>
 	public class RenderPass
 		: IDisposable
@@ -5340,7 +6196,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Destroy a render pass object
+		/// </para>
 		/// </summary>
 		public void Destroy()
 		{
@@ -5357,10 +6215,18 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Returns the granularity for optimal render area.
+		/// </para>
+		/// <para>
 		/// The conditions leading to an optimal pname:renderArea are:
+		/// </para>
+		/// <para>
 		/// * the pname:offset.x member in pname:renderArea is a multiple of the pname:width member of the returned slink:VkExtent2D (the horizontal granularity). * the pname:offset.y member in pname:renderArea is a multiple of the pname:height of the returned slink:VkExtent2D (the vertical granularity). * either the pname:offset.width member in pname:renderArea is a multiple of the horizontal granularity or pname:offset.x+pname:offset.width is equal to the pname:width of the pname:framebuffer in the slink:VkRenderPassBeginInfo. * either the pname:offset.height member in pname:renderArea is a multiple of the vertical granularity or pname:offset.y+pname:offset.height is equal to the pname:height of the pname:framebuffer in the slink:VkRenderPassBeginInfo.
+		/// </para>
+		/// <para>
 		/// Subpass dependencies are not affected by the render area, and apply to the entire image subresources attached to the framebuffer. Similarly, pipeline barriers are valid even if their effect extends outside the render area.
+		/// </para>
 		/// </summary>
 		public Extent2D GetRenderAreaGranularity()
 		{
@@ -5394,8 +6260,12 @@ namespace SharpVk
 	}
 
     /// <summary>
+	/// <para>
     /// Opaque handle to a sampler object
+	/// </para>
+	/// <para>
     /// sname:VkSampler objects represent the state of an image sampler which is used by the implementation to read image data and apply filtering and other transformations for the shader.
+	/// </para>
     /// </summary>
 	public class Sampler
 		: IDisposable
@@ -5420,7 +6290,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Destroy a sampler object
+		/// </para>
 		/// </summary>
 		public void Destroy()
 		{
@@ -5452,8 +6324,12 @@ namespace SharpVk
 	}
 
     /// <summary>
+	/// <para>
     /// Opaque handle to a semaphore object
+	/// </para>
+	/// <para>
     /// Semaphores are used to coordinate queue operations both within a queue and between different queues. A semaphore's status is always either _signaled_ or _unsignaled_.
+	/// </para>
     /// </summary>
 	public class Semaphore
 		: IDisposable
@@ -5478,7 +6354,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Destroy a semaphore object
+		/// </para>
 		/// </summary>
 		public void Destroy()
 		{
@@ -5510,8 +6388,12 @@ namespace SharpVk
 	}
 
     /// <summary>
+	/// <para>
     /// Opaque handle to a shader module object
+	/// </para>
+	/// <para>
     /// _Shader modules_ contain _shader code_ and one or more entry points. Shaders are selected from a shader module by specifying an entry point as part of &lt;&lt;pipelines,pipeline&gt;&gt; creation. The stages of a pipeline can: use shaders that come from different modules. The shader code defining a shader module must: be in the SPIR-V format, as described by the &lt;&lt;spirvenv,Vulkan Environment for SPIR-V&gt;&gt; appendix.
+	/// </para>
     /// </summary>
 	public class ShaderModule
 		: IDisposable
@@ -5536,8 +6418,12 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// Destroy a shader module module
+		/// </para>
+		/// <para>
 		/// A shader module can: be destroyed while pipelines created using its shaders are still in use.
+		/// </para>
 		/// </summary>
 		public void Destroy()
 		{
@@ -5569,7 +6455,9 @@ namespace SharpVk
 	}
 
     /// <summary>
+	/// <para>
     /// -
+	/// </para>
     /// </summary>
 	public class Surface
 		: IDisposable
@@ -5594,7 +6482,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public void Destroy()
 		{
@@ -5626,7 +6516,9 @@ namespace SharpVk
 	}
 
     /// <summary>
+	/// <para>
     /// -
+	/// </para>
     /// </summary>
 	public class Swapchain
 		: IDisposable
@@ -5653,7 +6545,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public void Destroy()
 		{
@@ -5670,7 +6564,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public Image[] GetImages()
 		{
@@ -5709,7 +6605,9 @@ namespace SharpVk
 		}
 
 		/// <summary>
+		/// <para>
 		/// -
+		/// </para>
 		/// </summary>
 		public uint AcquireNextImage(ulong timeout, Semaphore semaphore, Fence fence)
 		{
