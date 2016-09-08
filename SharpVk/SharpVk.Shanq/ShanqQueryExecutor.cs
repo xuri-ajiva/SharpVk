@@ -41,33 +41,62 @@ namespace SharpVk.Shanq
             file.AddFunctionStatement(entryPointerLabelId, Op.OpLabel);
 
             var fieldMapping = new Dictionary<FieldInfo, ResultId>();
+            var builtinList = new Dictionary<FieldInfo, Tuple<ResultId, int>>();
+
+            bool hasBuiltInOutput = false;
 
             var resultType = typeof(T);
 
             foreach (var field in resultType.GetFields())
             {
-                var pointerType = typeof(OutputPointer<>).MakeGenericType(field.FieldType);
-                ResultId outputPointerId = expressionVisitor.Visit(Expression.Constant(pointerType));
-                ResultId outputVariableId = file.GetNextResultId();
+                if (field.GetCustomAttribute<LocationAttribute>() != null)
+                {
+                    var pointerType = typeof(OutputPointer<>).MakeGenericType(field.FieldType);
+                    ResultId outputPointerId = expressionVisitor.Visit(Expression.Constant(pointerType));
+                    ResultId outputVariableId = file.GetNextResultId();
 
-                file.AddGlobalStatement(outputVariableId, Op.OpVariable, outputPointerId, StorageClass.Output);
+                    file.AddGlobalStatement(outputVariableId, Op.OpVariable, outputPointerId, StorageClass.Output);
 
-                fieldMapping.Add(field, outputVariableId);
+                    fieldMapping.Add(field, outputVariableId);
+                }
+
+                hasBuiltInOutput |= field.GetCustomAttribute<BuiltInAttribute>() != null;
             }
 
             var inputType = queryModel.MainFromClause.ItemType;
 
             foreach (var field in inputType.GetFields())
             {
-                var pointerType = typeof(InputPointer<>).MakeGenericType(field.FieldType);
-                ResultId inputPointerId = expressionVisitor.Visit(Expression.Constant(pointerType));
-                ResultId inputVariableId = file.GetNextResultId();
+                if (field.GetCustomAttribute<LocationAttribute>() != null)
+                {
+                    var pointerType = typeof(InputPointer<>).MakeGenericType(field.FieldType);
+                    ResultId inputPointerId = expressionVisitor.Visit(Expression.Constant(pointerType));
+                    ResultId inputVariableId = file.GetNextResultId();
 
-                file.AddGlobalStatement(inputVariableId, Op.OpVariable, inputPointerId, StorageClass.Input);
+                    file.AddGlobalStatement(inputVariableId, Op.OpVariable, inputPointerId, StorageClass.Input);
 
-                fieldMapping.Add(field, inputVariableId);
+                    fieldMapping.Add(field, inputVariableId);
 
-                expressionVisitor.AddInputMapping(field, inputVariableId);
+                    expressionVisitor.AddInputMapping(field, inputVariableId);
+                }
+            }
+
+            if (hasBuiltInOutput)
+            {
+                var builtInFields = resultType.GetFields().Select(x => new { Field = x, BuiltIn = x.GetCustomAttribute<BuiltInAttribute>()?.BuiltIn })
+                                                            .Where(x => x.BuiltIn != null);
+
+                var structureType = GetTupleType(builtInFields.Count()).MakeGenericType(builtInFields.Select(x => x.Field.FieldType).ToArray());
+
+                var structurePointerType = typeof(OutputPointer<>).MakeGenericType(structureType);
+                ResultId structurePointerId = expressionVisitor.Visit(Expression.Constant(structurePointerType));
+                
+                file.AddAnnotationStatement(Op.OpDecorate, structurePointerId, Decoration.Block);
+
+                foreach (var field in builtInFields.Select((x, y) => new { Index = y, Value = x.BuiltIn.Value }))
+                {
+                    file.AddAnnotationStatement(Op.OpMemberDecorate, structurePointerId, field.Index, Decoration.BuiltIn, field.Value);
+                }
             }
 
             file.AddHeaderStatement(Op.OpEntryPoint, new object[] { this.model, entryPointerFunctionId, "main" }.Concat(fieldMapping.Select(x => x.Value).Distinct().Cast<object>()).ToArray());
@@ -79,14 +108,7 @@ namespace SharpVk.Shanq
                 {
                     var attribute = mapping.Key.GetCustomAttribute<LocationAttribute>();
 
-                    file.AddHeaderStatement(Op.OpDecorate, mapping.Value, Decoration.Location, attribute.LocationIndex);
-                }
-
-                if (mapping.Key.GetCustomAttribute<BuiltInAttribute>() != null)
-                {
-                    var attribute = mapping.Key.GetCustomAttribute<BuiltInAttribute>();
-
-                    file.AddHeaderStatement(Op.OpDecorate, mapping.Value, Decoration.BuiltIn, attribute.BuiltIn);
+                    file.AddAnnotationStatement(Op.OpDecorate, mapping.Value, Decoration.Location, attribute.LocationIndex);
                 }
             }
 
@@ -113,7 +135,12 @@ namespace SharpVk.Shanq
 
                         ResultId valueId = expressionVisitor.Visit(fieldValue);
 
-                        file.AddFunctionStatement(Op.OpStore, fieldMapping[(FieldInfo)binding.Member], valueId);
+                        var field = (FieldInfo)binding.Member;
+
+                        if (fieldMapping.ContainsKey(field))
+                        {
+                            file.AddFunctionStatement(Op.OpStore, fieldMapping[field], valueId);
+                        }
                     }
                     break;
                 default:
@@ -135,6 +162,31 @@ namespace SharpVk.Shanq
             }
 
             return Enumerable.Empty<T>();
+        }
+
+        private static Type GetTupleType(int count)
+        {
+            switch (count)
+            {
+                case 1:
+                    return typeof(Tuple<>);
+                case 2:
+                    return typeof(Tuple<,>);
+                case 3:
+                    return typeof(Tuple<,,>);
+                case 4:
+                    return typeof(Tuple<,,,>);
+                case 5:
+                    return typeof(Tuple<,,,,>);
+                case 6:
+                    return typeof(Tuple<,,,,,>);
+                case 7:
+                    return typeof(Tuple<,,,,,,>);
+                case 8:
+                    return typeof(Tuple<,,,,,,,>);
+                default:
+                    throw new NotSupportedException();
+            }
         }
 
         public T ExecuteScalar<T>(QueryModel queryModel)

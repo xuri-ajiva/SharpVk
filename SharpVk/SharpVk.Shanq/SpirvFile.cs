@@ -35,6 +35,25 @@ namespace SharpVk.Shanq
             });
         }
 
+        public void AddAnnotationStatement(Op op, params object[] operands)
+        {
+            this.AddAnnotationStatement(null, op, operands);
+        }
+
+        public void AddAnnotationStatement(ResultId? resultId, Op op, params object[] operands)
+        {
+            this.AddAnnotationStatement(resultId, new SpirvStatement(op, operands));
+        }
+
+        public void AddAnnotationStatement(ResultId? resultId, SpirvStatement statement)
+        {
+            this.GetEntryList(1).Add(new StatementEntry
+            {
+                ResultId = resultId,
+                Statement = statement
+            });
+        }
+
         public void AddGlobalStatement(Op op, params object[] operands)
         {
             this.AddGlobalStatement(null, op, operands);
@@ -47,7 +66,7 @@ namespace SharpVk.Shanq
 
         public void AddGlobalStatement(ResultId? resultId, SpirvStatement statement)
         {
-            this.GetEntryList(1).Add(new StatementEntry
+            this.GetEntryList(2).Add(new StatementEntry
             {
                 ResultId = resultId,
                 Statement = statement
@@ -66,7 +85,7 @@ namespace SharpVk.Shanq
 
         public void AddFunctionStatement(ResultId? resultId, SpirvStatement statement)
         {
-            this.GetEntryList(2).Add(new StatementEntry
+            this.GetEntryList(3).Add(new StatementEntry
             {
                 ResultId = resultId,
                 Statement = statement

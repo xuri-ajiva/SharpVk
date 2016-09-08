@@ -3,7 +3,6 @@
 namespace SharpVk.Shanq
 {
     public abstract class Pointer<T>
-        where T : struct
     {
         public Pointer(T value)
         {
@@ -19,7 +18,6 @@ namespace SharpVk.Shanq
 
     public class OutputPointer<T>
         : Pointer<T>
-        where T : struct
     {
         public OutputPointer(T value)
             : base(value)
@@ -31,7 +29,6 @@ namespace SharpVk.Shanq
 
     public class InputPointer<T>
         : Pointer<T>
-        where T : struct
     {
         public InputPointer(T value)
             : base(value)

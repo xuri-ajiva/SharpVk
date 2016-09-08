@@ -238,16 +238,28 @@ namespace SharpVk.Shanq
 
                     statement = new SpirvStatement(Op.OpTypeFunction, returnTypeId);
                 }
-                else if (value.IsGenericType && value.BaseType.GetGenericTypeDefinition() == typeof(Pointer<>))
+                else if (value.BaseType.IsGenericType && value.BaseType.GetGenericTypeDefinition() == typeof(Pointer<>))
                 {
                     StorageClass storage = (StorageClass)value.GetProperty("Storage").GetValue(null);
                     ResultId typeId = this.Visit(Expression.Constant(value.GetGenericArguments()[0]));
 
                     statement = new SpirvStatement(Op.OpTypePointer, storage, typeId);
                 }
+                else if (IsTupleType(value))
+                {
+                    var fieldTypes = value.GetGenericArguments();
+
+                    var fieldTypeIds = fieldTypes.Select(x => (object)this.Visit(Expression.Constant(x))).ToArray();
+
+                    statement = new SpirvStatement(Op.OpTypeStruct, fieldTypeIds);
+                }
                 else if (value == typeof(float))
                 {
                     statement = new SpirvStatement(Op.OpTypeFloat, 32);
+                }
+                else if (value == typeof(int))
+                {
+                    statement = new SpirvStatement(Op.OpTypeInt, 32, 1);
                 }
                 else if (value == typeof(void))
                 {
@@ -276,6 +288,13 @@ namespace SharpVk.Shanq
             }
 
             return resultId;
+        }
+
+        private bool IsTupleType(Type value)
+        {
+            Type tupleInterface = typeof(Tuple).Assembly.GetType("System.ITuple");
+
+            return value.GetInterfaces().Contains(tupleInterface);
         }
 
         private static Type GetVectorElementType(Type value)
