@@ -59,6 +59,21 @@ namespace SharpVk.VkXml
             private set;
         } = new List<VkCommand>();
 
+        public List<VkDelegate> Delegates
+        {
+            get;
+            private set;
+        } = new List<VkDelegate>();
+
+        public class VkDelegate
+        {
+            public string Name
+            {
+                get;
+                set;
+            }
+        }
+
         public class VkClass
         {
             public string Name

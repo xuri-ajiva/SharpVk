@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
@@ -42,7 +44,7 @@ namespace SharpVk.Interop
 
         internal static IntPtr Allocate<T>(int count = 1)
         {
-            int size = Marshal.SizeOf<T>();
+            int size = SizeOfCache<T>.SizeOf;
 
             IntPtr pointer = Marshal.AllocHGlobal(size * count);
 
@@ -53,7 +55,7 @@ namespace SharpVk.Interop
 
         internal static IntPtr AllocateAndClear<T>()
         {
-            int size = Marshal.SizeOf<T>();
+            int size = SizeOfCache<T>.SizeOf;
 
             IntPtr pointer = Allocate<T>();
 
@@ -72,7 +74,7 @@ namespace SharpVk.Interop
         {
             IntPtr pointer = Allocate<T>();
 
-            Marshal.StructureToPtr(value, pointer, false);
+            WriteGenericToPtr(pointer, value);
 
             return pointer;
         }
@@ -235,7 +237,7 @@ namespace SharpVk.Interop
         internal static void* MarshalTo<T>(IEnumerable<T> value, int length)
             where T : struct
         {
-            int size = Marshal.SizeOf<T>();
+            int size = SizeOfCache<T>.SizeOf;
 
             T[] valueArray = value.ToArray();
 
@@ -305,6 +307,43 @@ namespace SharpVk.Interop
             for (int index = 0; index < length; index++)
             {
                 pointer[index] = MarshalTo(value[index]);
+            }
+        }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static void WriteGenericToPtr<T>(IntPtr dest, T value)
+            where T : struct
+        {
+            int size = SizeOfCache<T>.SizeOf;
+
+            void* pointer = dest.ToPointer();
+
+            TypedReference valueReference = __makeref(value);
+            void* valuePointer = (*((IntPtr*)&valueReference)).ToPointer();
+
+            System.Buffer.MemoryCopy(valuePointer, pointer, size, size);
+        }
+
+        public static int SizeOf<T>(T obj)
+        {
+            return SizeOfCache<T>.SizeOf;
+        }
+
+        private static class SizeOfCache<T>
+        {
+            public static readonly int SizeOf;
+
+            static SizeOfCache()
+            {
+                var dm = new DynamicMethod("func", typeof(int),
+                                           Type.EmptyTypes, typeof(HeapUtil));
+
+                ILGenerator il = dm.GetILGenerator();
+                il.Emit(OpCodes.Sizeof, typeof(T));
+                il.Emit(OpCodes.Ret);
+
+                var func = (Func<int>)dm.CreateDelegate(typeof(Func<int>));
+                SizeOf = func();
             }
         }
     }

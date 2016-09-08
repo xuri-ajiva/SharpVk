@@ -58,6 +58,8 @@ namespace SharpVk.VkXml
 
             var enumLookup = GenerateEnumerations(spec, typeData, result);
 
+            GenerateDelegates(typeData, result);
+
             GenerateUnions(typeData, result);
 
             GenerateNonInteropStructs(typeData, result);
@@ -69,6 +71,17 @@ namespace SharpVk.VkXml
             GenerateCommands(spec, typeData, handleLookup, classLookup, result);
 
             return result;
+        }
+
+        private void GenerateDelegates(Dictionary<string, TypeDesc> typeData, TypeSet result)
+        {
+            foreach (var delegateType in typeData.Values.Where(x => x.Data.Category == TypeCategory.funcpointer))
+            {
+                result.Delegates.Add(new TypeSet.VkDelegate
+                {
+                    Name = delegateType.Name
+                });
+            }
         }
 
         private static void GenerateCommands(SpecParser.ParsedSpec spec, Dictionary<string, TypeDesc> typeData, Dictionary<string, TypeSet.VkHandle> handleLookup, Dictionary<string, TypeSet.VkClass> classLookup, TypeSet result)
@@ -492,11 +505,12 @@ namespace SharpVk.VkXml
                                     newMethod.MarshalToStatements.Add($"Interop.{paramType.Name}* {marshalledName};");
                                     newMethod.MarshalToStatements.Add($"if ({paramName} != null)");
                                     newMethod.MarshalToStatements.Add("{");
-                                    newMethod.MarshalToStatements.Add($"    {marshalledName} = (Interop.{paramType.Name}*)Interop.HeapUtil.Allocate<Interop.{paramType.Name}>({paramName}.Length);");
+                                    newMethod.MarshalToStatements.Add($"    Interop.{paramType.Name}* arrayPointer = stackalloc Interop.{paramType.Name}[{paramName}.Length];");
                                     newMethod.MarshalToStatements.Add($"    for (int index = 0; index < {paramName}.Length; index++)");
                                     newMethod.MarshalToStatements.Add("    {");
-                                    newMethod.MarshalToStatements.Add($"        {marshalledName}[index] = {paramName}[index].Pack();");
+                                    newMethod.MarshalToStatements.Add($"        arrayPointer[index] = {paramName}[index].Pack();");
                                     newMethod.MarshalToStatements.Add("    }");
+                                    newMethod.MarshalToStatements.Add($"    {marshalledName} = arrayPointer;");
                                     newMethod.MarshalToStatements.Add("}");
                                     newMethod.MarshalToStatements.Add($"else");
                                     newMethod.MarshalToStatements.Add("{");
@@ -623,12 +637,13 @@ namespace SharpVk.VkXml
                     parameterIndex++;
                 }
 
-                if (command.Type == "PFN_vkVoidFunction")
-                {
-                    newMethod.ReturnTypeName = "IntPtr";
-                    newMethod.IsPassthroughResult = true;
-                }
-                else if (command.Type == "VkBool32")
+                //if (command.Type == "PFN_vkVoidFunction")
+                //{
+                //    newMethod.ReturnTypeName = "IntPtr";
+                //    newMethod.IsPassthroughResult = true;
+                //}
+                //else
+                if (command.Type == "VkBool32")
                 {
                     newMethod.ReturnTypeName = "bool";
                     newMethod.IsPassthroughResult = true;
@@ -876,19 +891,13 @@ namespace SharpVk.VkXml
                             }
                         }
                     }
-                    else if (member.VkName == "pNext"
-                                || memberType.Data.Category == TypeCategory.funcpointer)
+                    else if (member.VkName == "pNext")
                     {
                         // These fields are not to be exposed to the public API
                         // as they are either not supported or have pre-defined
                         // values
 
                         memberDesc.IsInteropOnly = true;
-
-                        if (member.VkName == "sType")
-                        {
-                            newClass.MarshalToStatements.Add(string.Format("result.SType = StructureType.{0};", type.Name));
-                        }
                     }
                     else if (isPointer && memberDesc.PublicTypeName == "void")
                     {
@@ -1017,11 +1026,16 @@ namespace SharpVk.VkXml
                             }
                         }
                     }
-                    else if(memberDesc.Name.EndsWith("Version") && memberDesc.PublicTypeName == "uint")
+                    else if (memberDesc.Name.EndsWith("Version") && memberDesc.PublicTypeName == "uint")
                     {
                         memberDesc.PublicTypeName = "Version";
                         newClass.MarshalToStatements.Add($"result.{memberName} = (uint)this.{memberName};");
                         newClass.MarshalFromStatements.Add($"result.{memberName} = value->{memberName};");
+                    }
+                    else if(memberType.Data.Category == TypeCategory.funcpointer)
+                    {
+                        memberDesc.InteropTypeName = "IntPtr";
+                        newClass.MarshalToStatements.Add($"result.{memberName} = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.{memberName});");
                     }
                     else
                     {
@@ -1154,7 +1168,7 @@ namespace SharpVk.VkXml
                         type.Name = primitiveTypes[type.Data.VkName];
                         break;
                     case TypeCategory.funcpointer:
-                        type.Name = "IntPtr";
+                        type.Name += "Delegate";
                         break;
                 }
             }
@@ -1325,7 +1339,7 @@ namespace SharpVk.VkXml
                 string value = constant.Value;
                 bool isStaticReadonly = false;
 
-                if(value.StartsWith("VK_MAKE_VERSION"))
+                if (value.StartsWith("VK_MAKE_VERSION"))
                 {
                     type = null;
                     explicitType = "Version";

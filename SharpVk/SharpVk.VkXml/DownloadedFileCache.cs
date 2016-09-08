@@ -1,11 +1,13 @@
 ﻿using System;
 using System.IO;
-using System.Net;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace SharpVk.VkXml
 {
     public class DownloadedFileCache
     {
+        private readonly HttpClient client;
         private readonly string tempFilePath;
         private readonly Uri fileUrl;
 
@@ -13,6 +15,7 @@ namespace SharpVk.VkXml
         {
             this.tempFilePath = tempFilePath;
             this.fileUrl = new Uri(fileUrl);
+            this.client = new HttpClient();
 
             if (!Directory.Exists(this.tempFilePath))
             {
@@ -20,7 +23,7 @@ namespace SharpVk.VkXml
             }
         }
 
-        public string GetFileLocation()
+        public async Task<string> GetFileLocation()
         {
             string fileName = Path.GetFileName(this.fileUrl.AbsolutePath);
 
@@ -28,20 +31,17 @@ namespace SharpVk.VkXml
 
             if (!File.Exists(tempFile) || File.GetLastWriteTimeUtc(tempFile) + TimeSpan.FromDays(1) < DateTime.UtcNow)
             {
-                try
+                Directory.CreateDirectory(Path.GetDirectoryName(tempFile));
+
+                using (var fileResponse = this.client.GetAsync(this.fileUrl).Result)
                 {
-                    Directory.CreateDirectory(Path.GetDirectoryName(tempFile));
-
-                    var fileRequest = WebRequest.Create(this.fileUrl);
-
-                    using (var fileResponse = fileRequest.GetResponse())
-                    using (var tempFileStream = File.OpenWrite(tempFile))
+                    if (fileResponse.IsSuccessStatusCode)
                     {
-                        fileResponse.GetResponseStream().CopyTo(tempFileStream);
+                        using (var tempFileStream = File.OpenWrite(tempFile))
+                        {
+                            await fileResponse.Content.CopyToAsync(tempFileStream);
+                        }
                     }
-                }
-                catch
-                {
                 }
             }
 

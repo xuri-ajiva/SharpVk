@@ -176,7 +176,7 @@ namespace SharpVk.VkXml
 
                 string extension;
 
-                string[] nameParts = GetNameParts(name, out extension);
+                string[] nameParts = GetNameParts(category == TypeCategory.funcpointer ? name.Substring(4) : name, out extension);
 
                 // VkDisplayModeKHR has two parents defined, but associated
                 // handle should cover the requirements for the second
@@ -241,7 +241,6 @@ namespace SharpVk.VkXml
                         }
                     }
 
-                    // Capture member name without array suffix
                     string vkName = memberName;
 
                     int pointerCount = pointerType.GetPointerCount();
@@ -255,6 +254,7 @@ namespace SharpVk.VkXml
 
                     ParsedLen[] dimensions = GetDimensions(name, vkMember, memberName);
 
+                    // Capture member name without array suffix
                     string memberExtension;
 
                     string[] memberNameParts = GetNameParts(memberName, out memberExtension, false);
@@ -296,6 +296,30 @@ namespace SharpVk.VkXml
                         Dimensions = dimensions,
                         Values = values
                     });
+                }
+
+                // Special parsing is required for funcpointer parameters
+                if (category == TypeCategory.funcpointer)
+                {
+                    var functionTail = vkType.Element("name").NodesAfterSelf();
+
+                    foreach (var typeElement in functionTail.Where(x => x.NodeType == XmlNodeType.Element).Cast<XElement>())
+                    {
+                        string pre = ((XText)typeElement.PreviousNode).Value.Split(',').Last().Trim('(', ')', ';').TrimStart();
+                        string post = ((XText)typeElement.NextNode).Value.Split(',').First().Trim('(', ')', ';').TrimEnd();
+
+                        string paramName = new string(post.Reverse().TakeWhile(char.IsLetterOrDigit).Reverse().ToArray());
+                        string typeString = pre + "@" + (post.Substring(0, post.Length - paramName.Length).Trim());
+                        string paramType = typeElement.Value;
+                        PointerType pointerType = MapTypeString(typeString);
+
+                        newType.Members.Add(new ParsedMember
+                        {
+                            VkName = paramName,
+                            Type = paramType,
+                            PointerType = pointerType
+                        });
+                    }
                 }
 
                 typeXml.Add(name, newType);
@@ -508,9 +532,14 @@ namespace SharpVk.VkXml
             return filteredSpec;
         }
 
-        private void ApplyDocumentation(ParsedElement element)
+        private async Task ApplyDocumentation(ParsedElement element)
         {
-            var sections = GetDocumentationSections(element.VkName);
+            var sections = await GetDocumentationSections(element.VkName);
+
+            if (sections == null)
+            {
+                return;
+            }
 
             var commentParagraphs = new List<string>();
 
@@ -567,13 +596,20 @@ namespace SharpVk.VkXml
             return nameSummary.Substring(nameSummary.IndexOf(" ") + 3);
         }
 
-        private Dictionary<string, List<string>> GetDocumentationSections(string fileName)
+        private async Task<Dictionary<string, List<string>>> GetDocumentationSections(string fileName)
         {
             string manPath = "https://raw.githubusercontent.com/KhronosGroup/Vulkan-Docs/1.0/doc/specs/vulkan/man/";
 
             var docFile = new DownloadedFileCache(this.tempFilePath, $"{manPath}{fileName}.txt");
 
-            var docLines = File.ReadAllLines(docFile.GetFileLocation());
+            string fileLocation = await docFile.GetFileLocation();
+
+            if (!File.Exists(fileLocation))
+            {
+                return null;
+            }
+
+            var docLines = File.ReadAllLines(fileLocation);
 
             var sectionHeaders = new Dictionary<int, string>();
 
@@ -945,6 +981,11 @@ namespace SharpVk.VkXml
                 }
             }).Aggregate(string.Concat).Trim();
 
+            return MapTypeString(typeString);
+        }
+
+        private static PointerType MapTypeString(string typeString)
+        {
             switch (typeString)
             {
                 case "@":
@@ -952,7 +993,7 @@ namespace SharpVk.VkXml
                 case "const @":
                 case "struct @*":
                     // struct {type}* is a syntactic quirk of C structs with no
-                    // typedef; treat them like regular pointers.
+                    // typedef; treat them like regular const pointers.
                     return PointerType.ConstValue;
                 case "@*":
                     return PointerType.Pointer;
