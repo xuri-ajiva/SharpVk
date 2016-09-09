@@ -273,7 +273,7 @@ namespace SharpVk.Shanq
             else
             {
                 ResultId typeOperand = this.Visit(Expression.Constant(expression.Type));
-                statement = new SpirvStatement(Op.OpConstant, typeOperand, (float)expression.Value);
+                statement = new SpirvStatement(Op.OpConstant, typeOperand, expression.Value);
             }
 
             ResultId resultId;

@@ -41,7 +41,7 @@ namespace SharpVk.Shanq
             file.AddFunctionStatement(entryPointerLabelId, Op.OpLabel);
 
             var fieldMapping = new Dictionary<FieldInfo, ResultId>();
-            var builtinList = new Dictionary<FieldInfo, Tuple<ResultId, int>>();
+            var builtinList = new Dictionary<FieldInfo, Tuple<ResultId, ResultId, int>>();
 
             bool hasBuiltInOutput = false;
 
@@ -81,25 +81,34 @@ namespace SharpVk.Shanq
                 }
             }
 
+            var entryPointParameters = fieldMapping.Select(x => x.Value).Distinct().ToList();
+
             if (hasBuiltInOutput)
             {
                 var builtInFields = resultType.GetFields().Select(x => new { Field = x, BuiltIn = x.GetCustomAttribute<BuiltInAttribute>()?.BuiltIn })
                                                             .Where(x => x.BuiltIn != null);
 
                 var structureType = GetTupleType(builtInFields.Count()).MakeGenericType(builtInFields.Select(x => x.Field.FieldType).ToArray());
+                ResultId structureTypeId = expressionVisitor.Visit(Expression.Constant(structureType)); ;
 
                 var structurePointerType = typeof(OutputPointer<>).MakeGenericType(structureType);
                 ResultId structurePointerId = expressionVisitor.Visit(Expression.Constant(structurePointerType));
-                
-                file.AddAnnotationStatement(Op.OpDecorate, structurePointerId, Decoration.Block);
+                ResultId outputVariableId = file.GetNextResultId();
 
-                foreach (var field in builtInFields.Select((x, y) => new { Index = y, Value = x.BuiltIn.Value }))
+                file.AddGlobalStatement(outputVariableId, Op.OpVariable, structurePointerId, StorageClass.Output);
+
+                file.AddAnnotationStatement(Op.OpDecorate, structureTypeId, Decoration.Block);
+
+                foreach (var field in builtInFields.Select((x, y) => new { Index = y, Field = x.Field, Value = x.BuiltIn.Value }))
                 {
-                    file.AddAnnotationStatement(Op.OpMemberDecorate, structurePointerId, field.Index, Decoration.BuiltIn, field.Value);
+                    file.AddAnnotationStatement(Op.OpMemberDecorate, structureTypeId, field.Index, Decoration.BuiltIn, field.Value);
+                    builtinList.Add(field.Field, Tuple.Create(structurePointerId, outputVariableId, field.Index));
                 }
+
+                entryPointParameters.Add(outputVariableId);
             }
 
-            file.AddHeaderStatement(Op.OpEntryPoint, new object[] { this.model, entryPointerFunctionId, "main" }.Concat(fieldMapping.Select(x => x.Value).Distinct().Cast<object>()).ToArray());
+            file.AddHeaderStatement(Op.OpEntryPoint, new object[] { this.model, entryPointerFunctionId, "main" }.Concat(entryPointParameters.Cast<object>()).ToArray());
             file.AddHeaderStatement(Op.OpExecutionMode, entryPointerFunctionId, ExecutionMode.OriginUpperLeft);
 
             foreach (var mapping in fieldMapping)
@@ -140,6 +149,17 @@ namespace SharpVk.Shanq
                         if (fieldMapping.ContainsKey(field))
                         {
                             file.AddFunctionStatement(Op.OpStore, fieldMapping[field], valueId);
+                        }
+                        else if(builtinList.ContainsKey(field))
+                        {
+                            ResultId constantIndex = expressionVisitor.Visit(Expression.Constant(builtinList[field].Item3));
+                            ResultId fieldId = file.GetNextResultId();
+
+                            var fieldPointerType = typeof(OutputPointer<>).MakeGenericType(field.FieldType);
+                            ResultId fieldPointerTypeId = expressionVisitor.Visit(Expression.Constant(fieldPointerType));
+
+                            file.AddFunctionStatement(fieldId, Op.OpAccessChain, fieldPointerTypeId, builtinList[field].Item2, constantIndex);
+                            file.AddFunctionStatement(Op.OpStore, fieldId, valueId);
                         }
                     }
                     break;

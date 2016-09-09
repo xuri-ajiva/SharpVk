@@ -417,25 +417,25 @@ namespace SharpVk.VertexBuffers
         {
             int codeSize;
 
-            //var vertShaderStream = new MemoryStream();
+            var vertShaderStream = new MemoryStream();
 
-            //ShanqShader<Vertex>.Create(ExecutionModel.Vertex,
-            //                            vertShaderStream,
-            //                            vertexInput => from input in vertexInput
-            //                                           select new VertexOutput
-            //                                           {
-            //                                               Colour = input.Colour,
-            //                                               Position = new vec4(input.Position, 0, 1)
-            //                                           });
+            ShanqShader<Vertex>.Create(ExecutionModel.Vertex,
+                                        vertShaderStream,
+                                        vertexInput => from input in vertexInput
+                                                       select new VertexOutput
+                                                       {
+                                                           Colour = input.Colour,
+                                                           Position = new vec4(input.Position, 0, 1)
+                                                       });
 
-            //int vertShaderLength = (int)vertShaderStream.Length;
+            int vertShaderLength = (int)vertShaderStream.Length;
 
-            //var vertShaderBytes = vertShaderStream.GetBuffer().Take(vertShaderLength + (vertShaderLength % 4)).ToArray();
+            var vertShaderBytes = vertShaderStream.GetBuffer().Take(vertShaderLength + (vertShaderLength % 4)).ToArray();
 
-            //var vertShaderData = LoadShaderData(vertShaderBytes, out codeSize);
-            //codeSize = vertShaderLength;
+            var vertShaderData = LoadShaderData(vertShaderBytes, out codeSize);
+            codeSize = vertShaderLength;
 
-            var vertShaderData = LoadShaderData(".\\Shaders\\vert.spv", out codeSize);
+            //var vertShaderData = LoadShaderData(".\\Shaders\\vert.spv", out codeSize);
 
             var vertShader = device.CreateShaderModule(new ShaderModuleCreateInfo
             {
