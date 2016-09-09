@@ -380,6 +380,15 @@ namespace SharpVk.HelloTriangle
                             SourceAccessMask = AccessFlags.MemoryRead,
                             DestinationStageMask = PipelineStageFlags.ColorAttachmentOutput,
                             DestinationAccessMask = AccessFlags.ColorAttachmentRead | AccessFlags.ColorAttachmentWrite
+                        },
+                        new SubpassDependency
+                        {
+                            SourceSubpass = 0,
+                            DestinationSubpass = Constants.SubpassExternal,
+                            SourceStageMask = PipelineStageFlags.BottomOfPipe,
+                            SourceAccessMask = AccessFlags.MemoryRead,
+                            DestinationStageMask = PipelineStageFlags.ColorAttachmentOutput,
+                            DestinationAccessMask = AccessFlags.ColorAttachmentRead | AccessFlags.ColorAttachmentWrite
                         }
                     }
             });
