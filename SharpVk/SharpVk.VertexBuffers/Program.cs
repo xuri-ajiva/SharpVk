@@ -213,7 +213,7 @@ namespace SharpVk.VertexBuffers
         {
             uint nextImage = this.swapChain.AcquireNextImage(uint.MaxValue, this.imageAvailableSemaphore, null);
 
-            graphicsQueue.Submit(new SubmitInfo[]
+            this.graphicsQueue.Submit(new SubmitInfo[]
             {
                 new SubmitInfo
                 {
@@ -224,7 +224,7 @@ namespace SharpVk.VertexBuffers
                 }
             }, null);
 
-            graphicsQueue.Present(new PresentInfo
+            this.presentQueue.Present(new PresentInfo
             {
                 ImageIndices = new uint[] { nextImage },
                 Results = new Result[1],
@@ -309,7 +309,7 @@ namespace SharpVk.VertexBuffers
                 Surface = surface,
                 Flags = SwapchainCreateFlags.None,
                 PresentMode = this.ChooseSwapPresentMode(swapChainSupport.PresentModes),
-                MinImageCount = 2,
+                MinImageCount = imageCount,
                 ImageExtent = extent,
                 ImageUsage = ImageUsageFlags.ColorAttachment,
                 PreTransform = swapChainSupport.Capabilities.CurrentTransform,
