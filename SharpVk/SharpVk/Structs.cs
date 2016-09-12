@@ -184,16 +184,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying an attachment description
-	/// </para>
-	/// <para>
-    /// If the attachment uses a color format, then pname:loadOp and pname:storeOp are used, and pname:stencilLoadOp and pname:stencilStoreOp are ignored. If the format has depth and/or stencil components, pname:loadOp and pname:storeOp apply only to the depth data, while pname:stencilLoadOp and pname:stencilStoreOp define how the stencil data is handled.
-	/// </para>
-	/// <para>
-    /// During a render pass instance, input/color attachments with color formats that have a component size of 8, 16, or 32 bits must: be represented in the attachment's format throughout the instance. Attachments with other floating- or fixed-point color formats, or with depth components may: be represented in a format with a precision higher than the attachment format, but must: be represented with the same range. When such a component is loaded via the pname:loadOp, it will be converted into an implementation-dependent format used by the render pass. Such components must: be converted from the render pass format, to the format of the attachment, before they are stored or resolved at the end of a render pass instance via pname:storeOp. Conversions occur as described in &lt;&lt;fundamentals-numerics,Numeric Representation and Computation&gt;&gt; and &lt;&lt;fundamentals-fixedconv, Fixed-Point Data Conversions&gt;&gt;.
-	/// </para>
-	/// <para>
-    /// If pname:flags includes ename:VK_ATTACHMENT_DESCRIPTION_MAY_ALIAS_BIT, then the attachment is treated as if it shares physical memory with another attachment in the same render pass. This information limits the ability of the implementation to reorder certain operations (like layout transitions and the pname:loadOp) such that it is not improperly reordered against other uses of the same physical memory via a different attachment. This is described in more detail below.
+    /// Structure specifying an attachment description.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -201,63 +192,63 @@ namespace SharpVk
 	{
 	   /// <summary>
 		/// <para>
-		/// pname:flags is a bitmask describing additional properties of the attachment. Bits which can: be set include: + -- // refBegin VkAttachmentDescriptionFlagBits - Bitmask specifying additional properties of an attachment include::../api/enums/VkAttachmentDescriptionFlagBits.txt[] --
+		/// pname:flags is a bitmask describing additional properties of the attachment. Bits which can: be set include: + --
 		/// </para>
 		/// </summary>
 		public AttachmentDescriptionFlags Flags;
 
 	   /// <summary>
 		/// <para>
-		/// pname:format is a elink:VkFormat value specifying the format of the image that will be used for the attachment.
+		/// -
 		/// </para>
 		/// </summary>
 		public Format Format;
 
 	   /// <summary>
 		/// <para>
-		/// pname:samples is the number of samples of the image as defined in elink:VkSampleCountFlagBits.
+		/// -
 		/// </para>
 		/// </summary>
 		public SampleCountFlags Samples;
 
 	   /// <summary>
 		/// <para>
-		/// pname:loadOp specifies how the contents of color and depth components of the attachment are treated at the beginning of the subpass where it is first used: + -- // refBegin VkAttachmentLoadOp - specify how contents of an attachment are treated at the beginning of a subpass include::../api/enums/VkAttachmentLoadOp.txt[] --
+		/// -
 		/// </para>
 		/// </summary>
 		public AttachmentLoadOp LoadOp;
 
 	   /// <summary>
 		/// <para>
-		/// pname:storeOp specifies how the contents of color and depth components of the attachment are treated at the end of the subpass where it is last used: + -- // refBegin VkAttachmentStoreOp - specify how contents of an attachment are treated at the end of a subpass include::../api/enums/VkAttachmentStoreOp.txt[] --
+		/// -
 		/// </para>
 		/// </summary>
 		public AttachmentStoreOp StoreOp;
 
 	   /// <summary>
 		/// <para>
-		/// pname:stencilLoadOp specifies how the contents of stencil components of the attachment are treated at the beginning of the subpass where it is first used, and must: be one of the same values allowed for pname:loadOp above.
+		/// -
 		/// </para>
 		/// </summary>
 		public AttachmentLoadOp StencilLoadOp;
 
 	   /// <summary>
 		/// <para>
-		/// pname:stencilStoreOp specifies how the contents of stencil components of the attachment are treated at the end of the last subpass where it is used, and must: be one of the same values allowed for pname:storeOp above.
+		/// -
 		/// </para>
 		/// </summary>
 		public AttachmentStoreOp StencilStoreOp;
 
 	   /// <summary>
 		/// <para>
-		/// pname:initialLayout is the layout the attachment image subresource will be in when a render pass instance begins.
+		/// -
 		/// </para>
 		/// </summary>
 		public ImageLayout InitialLayout;
 
 	   /// <summary>
 		/// <para>
-		/// pname:finalLayout is the layout the attachment image subresource will be transitioned to when a render pass instance ends. During a render pass instance, an attachment can: use a different layout in each subpass, if desired.
+		/// -
 		/// </para>
 		/// </summary>
 		public ImageLayout FinalLayout;
@@ -288,7 +279,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying an attachment reference
+    /// Structure specifying an attachment reference.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -327,7 +318,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying a buffer copy operation
+    /// Structure specifying a buffer copy operation.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -374,22 +365,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying a buffer image copy operation
-	/// </para>
-	/// <para>
-    /// When copying to or from a depth or stencil aspect, the data in buffer memory uses a layout that is a (mostly) tightly packed representation of the depth or stencil data. Specifically:
-	/// </para>
-	/// <para>
-    /// * data copied to or from the stencil aspect of any depth/stencil format is tightly packed with one ename:VK_FORMAT_S8_UINT value per texel. * data copied to or from the depth aspect of a ename:VK_FORMAT_D16_UNORM or ename:VK_FORMAT_D16_UNORM_S8_UINT format is tightly packed with one ename:VK_FORMAT_D16_UNORM value per texel. * data copied to or from the depth aspect of a ename:VK_FORMAT_D32_SFLOAT or ename:VK_FORMAT_D32_SFLOAT_S8_UINT format is tightly packed with one ename:VK_FORMAT_D32_SFLOAT value per texel. * data copied to or from the depth aspect of a ename:VK_FORMAT_X8_D24_UNORM_PACK32 or ename:VK_FORMAT_D24_UNORM_S8_UINT format is packed with one 32-bit word per texel with the D24 value in the LSBs of the word, and undefined values in the eight MSBs.
-	/// </para>
-	/// <para>
-    /// [NOTE] .Note ==== To copy both the depth and stencil aspects of a depth/stencil format, two entries in pname:pRegions can: be used, where one specifies the depth aspect in pname:imageSubresource, and the other specifies the stencil aspect. ====
-	/// </para>
-	/// <para>
-    /// Because depth or stencil aspect buffer to image copies may: require format conversions on some implementations, they are not supported on queues that do not support graphics.
-	/// </para>
-	/// <para>
-    /// Copies are done layer by layer starting with image layer pname:baseArrayLayer member of pname:imageSubresource. pname:layerCount layers are copied from the source image or to the destination image.
+    /// Structure specifying a buffer image copy operation.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -460,16 +436,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying a clear attachment
-	/// </para>
-	/// <para>
-    /// No memory barriers are needed between fname:vkCmdClearAttachments and preceding or subsequent draw or attachment clear commands in the same subpass.
-	/// </para>
-	/// <para>
-    /// The fname:vkCmdClearAttachments command is not affected by the bound pipeline state.
-	/// </para>
-	/// <para>
-    /// Attachments can: also be cleared at the beginning of a render pass instance by setting pname:loadOp (or pname:stencilLoadOp) of slink:VkAttachmentDescription to ename:VK_ATTACHMENT_LOAD_OP_CLEAR, as described for flink:vkCreateRenderPass.
+    /// Structure specifying a clear attachment.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -516,7 +483,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying a clear depth stencil value
+    /// Structure specifying a clear depth stencil value.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -555,10 +522,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying a clear rectangle
-	/// </para>
-	/// <para>
-    /// The layers latexmath:[$[baseArrayLayer, baseArrayLayer+layerCount)$] counting from the base layer of the attachment image view are cleared.
+    /// Structure specifying a clear rectangle.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -605,19 +569,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying a color component mapping
-	/// </para>
-	/// <para>
-    /// Each of pname:r, pname:g, pname:b, and pname:a is one of the values:
-	/// </para>
-	/// <para>
-    /// * ename:VK_COMPONENT_SWIZZLE_IDENTITY: the component is set to the identity swizzle. * ename:VK_COMPONENT_SWIZZLE_ZERO: the component is set to zero. * ename:VK_COMPONENT_SWIZZLE_ONE: the component is set to either 1 or 1.0 depending on whether the type of the image view format is integer or floating-point respectively, as determined by the &lt;&lt;features-formats-definition,Format Definition&gt;&gt; section for each elink:VkFormat. * ename:VK_COMPONENT_SWIZZLE_R: the component is set to the value of the R component of the image. * ename:VK_COMPONENT_SWIZZLE_G: the component is set to the value of the G component of the image. * ename:VK_COMPONENT_SWIZZLE_B: the component is set to the value of the B component of the image. * ename:VK_COMPONENT_SWIZZLE_A: the component is set to the value of the A component of the image.
-	/// </para>
-	/// <para>
-    /// Setting the identity swizzle on a component is equivalent to setting the identity mapping on that component. That is:
-	/// </para>
-	/// <para>
-    /// .Component Mappings Equivalent To ename:VK_COMPONENT_SWIZZLE_IDENTITY [options="header"] |==== | Component          | Identity Mapping | pname:components.r | ename:VK_COMPONENT_SWIZZLE_R | pname:components.g | ename:VK_COMPONENT_SWIZZLE_G | pname:components.b | ename:VK_COMPONENT_SWIZZLE_B | pname:components.a | ename:VK_COMPONENT_SWIZZLE_A |====
+    /// Structure specifying a color component mapping.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -672,7 +624,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying descriptor pool size
+    /// Structure specifying descriptor pool size.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -711,10 +663,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying a dispatch indirect command
-	/// </para>
-	/// <para>
-    /// The members of sname:VkDispatchIndirectCommand structure have the same meaning as the similarly named parameters of flink:vkCmdDispatch.
+    /// Structure specifying a dispatch indirect command.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -761,7 +710,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// -
+    /// Structure describing display parameters associated with a display mode.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -769,14 +718,14 @@ namespace SharpVk
 	{
 	   /// <summary>
 		/// <para>
-		/// -
+		/// pname:visibleRegion is the 2D extents of the visible region.
 		/// </para>
 		/// </summary>
 		public Extent2D VisibleRegion;
 
 	   /// <summary>
 		/// <para>
-		/// -
+		/// pname:refreshRate is a basetype:uint32_t that is the number of times the display is refreshed each second multiplied by 1000.
 		/// </para>
 		/// </summary>
 		public uint RefreshRate;
@@ -800,7 +749,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// -
+    /// Structure describing capabilities of a mode and plane combination.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -808,42 +757,42 @@ namespace SharpVk
 	{
 	   /// <summary>
 		/// <para>
-		/// -
+		/// pname:supportedAlpha is a bitmask of elink:VkDisplayPlaneAlphaFlagBitsKHR describing the supported alpha blending modes.
 		/// </para>
 		/// </summary>
 		public DisplayPlaneAlphaFlags SupportedAlpha;
 
 	   /// <summary>
 		/// <para>
-		/// -
+		/// pname:minSrcPosition is the minimum source rectangle offset supported by this plane using the specified mode.
 		/// </para>
 		/// </summary>
 		public Offset2D MinSourcePosition;
 
 	   /// <summary>
 		/// <para>
-		/// -
+		/// pname:maxSrcPosition is the maximum source rectangle offset supported by this plane using the specified mode. The pname:x and pname:y components of pname:maxSrcPosition must: each be greater than or equal to the pname:x and pname:y components of pname:minSrcPosition, respectively.
 		/// </para>
 		/// </summary>
 		public Offset2D MaxSourcePosition;
 
 	   /// <summary>
 		/// <para>
-		/// -
+		/// pname:minSrcExtent is the minimum source rectangle size supported by this plane using the specified mode.
 		/// </para>
 		/// </summary>
 		public Extent2D MinSourceExtent;
 
 	   /// <summary>
 		/// <para>
-		/// -
+		/// pname:maxSrcExtent is the maximum source rectangle size supported by this plane using the specified mode.
 		/// </para>
 		/// </summary>
 		public Extent2D MaxSourceExtent;
 
 	   /// <summary>
 		/// <para>
-		/// -
+		/// pname:minDstPosition, pname:maxDstPosition, pname:minDstExtent, pname:maxDstExtent all have similar semantics to their corresponding "Src" equivalents, but apply to the output region within the mode rather than the input region within the source image. Unlike the "Src" offsets, pname:minDstPosition and pname:maxDstPosition may: contain negative values.
 		/// </para>
 		/// </summary>
 		public Offset2D MinDestinationPosition;
@@ -895,10 +844,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying a draw indexed indirect command
-	/// </para>
-	/// <para>
-    /// The members of sname:VkDrawIndexedIndirectCommand have the same meaning as the similarly named parameters of flink:vkCmdDrawIndexed.
+    /// Structure specifying a draw indexed indirect command.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -961,10 +907,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying a draw indirect command
-	/// </para>
-	/// <para>
-    /// The members of sname:VkDrawIndirectCommand have the same meaning as the similarly named parameters of flink:vkCmdDraw.
+    /// Structure specifying a draw indirect command.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -1019,7 +962,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying a two-dimensional extent
+    /// Structure specifying a two-dimensional extent.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -1058,7 +1001,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying a three-dimensional extent
+    /// Structure specifying a three-dimensional extent.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -1105,7 +1048,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// -
+    /// Structure specifying external image format properties.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -1113,28 +1056,28 @@ namespace SharpVk
 	{
 	   /// <summary>
 		/// <para>
-		/// -
+		/// pname:imageFormatProperties will be filled in as when calling flink:vkGetPhysicalDeviceImageFormatProperties, but the values returned may: vary depending on the external handle type requested.
 		/// </para>
 		/// </summary>
 		public ImageFormatProperties ImageFormatProperties;
 
 	   /// <summary>
 		/// <para>
-		/// -
+		/// pname:externalMemoryFeatures is a bitmask of elink:VkExternalMemoryFeatureFlagBitsNV indicating properties of the external memory handle type (flink:vkGetPhysicalDeviceExternalImageFormatPropertiesNV::pname:externalHandleType) being queried, or 0 if the external memory handle type is 0.
 		/// </para>
 		/// </summary>
 		public ExternalMemoryFeatureFlags ExternalMemoryFeatures;
 
 	   /// <summary>
 		/// <para>
-		/// -
+		/// pname:exportFromImportedHandleTypes is a bitmask of elink:VkExternalMemoryHandleTypeFlagBitsNV containing a bit set for every external handle type that may: be used to create memory from which the handles of the type specified in flink:vkGetPhysicalDeviceExternalImageFormatPropertiesNV::pname:externalHandleType can: be exported, or 0 if the external memory handle type is 0.
 		/// </para>
 		/// </summary>
 		public ExternalMemoryHandleTypeFlags ExportFromImportedHandleTypes;
 
 	   /// <summary>
 		/// <para>
-		/// -
+		/// pname:compatibleHandleTypes is a bitmask of elink:VkExternalMemoryHandleTypeFlagBitsNV containing a bit set for every external handle type that may: be specified simultaneously with the handle type specified by flink:vkGetPhysicalDeviceExternalImageFormatPropertiesNV::pname:externalHandleType when calling flink:vkAllocateMemory, or 0 if the external memory handle type is 0. pname:compatibleHandleTypes will always contain flink:vkGetPhysicalDeviceExternalImageFormatPropertiesNV::pname:externalHandleType
 		/// </para>
 		/// </summary>
 		public ExternalMemoryHandleTypeFlags CompatibleHandleTypes;
@@ -1160,67 +1103,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying image format properties
-	/// </para>
-	/// <para>
-    /// Supported features are described as a set of elink:VkFormatFeatureFlagBits:
-	/// </para>
-	/// <para>
-    /// The pname:linearTilingFeatures and pname:optimalTilingFeatures members of the sname:VkFormatProperties structure describe what features are supported by ename:VK_IMAGE_TILING_LINEAR and ename:VK_IMAGE_TILING_OPTIMAL images, respectively.
-	/// </para>
-	/// <para>
-    /// The following bits may: be set in pname:linearTilingFeatures and pname:optimalTilingFeatures, indicating they are supported by images or image views created with the queried flink:vkGetPhysicalDeviceFormatProperties::pname:format:
-	/// </para>
-	/// <para>
-    /// ename:VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT:: sname:VkImageView can: be sampled from. See &lt;&lt;descriptorsets-sampledimage, sampled images&gt;&gt; section.
-	/// </para>
-	/// <para>
-    /// ename:VK_FORMAT_FEATURE_STORAGE_IMAGE_BIT:: sname:VkImageView can: be used as storage image. See &lt;&lt;descriptorsets-storageimage, storage images&gt;&gt; section.
-	/// </para>
-	/// <para>
-    /// ename:VK_FORMAT_FEATURE_STORAGE_IMAGE_ATOMIC_BIT:: sname:VkImageView can: be used as storage image that supports atomic operations.
-	/// </para>
-	/// <para>
-    /// ename:VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BIT:: sname:VkImageView can: be used as a framebuffer color attachment and as an input attachment.
-	/// </para>
-	/// <para>
-    /// ename:VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BLEND_BIT:: sname:VkImageView can: be used as a framebuffer color attachment that supports blending and as an input attachment.
-	/// </para>
-	/// <para>
-    /// ename:VK_FORMAT_FEATURE_DEPTH_STENCIL_ATTACHMENT_BIT:: sname:VkImageView can: be used as a framebuffer depth/stencil attachment and as an input attachment.
-	/// </para>
-	/// <para>
-    /// ename:VK_FORMAT_FEATURE_BLIT_SRC_BIT:: sname:VkImage can: be used as pname:srcImage for the fname:vkCmdBlitImage command.
-	/// </para>
-	/// <para>
-    /// ename:VK_FORMAT_FEATURE_BLIT_DST_BIT:: sname:VkImage can: be used as pname:dstImage for the fname:vkCmdBlitImage command.
-	/// </para>
-	/// <para>
-    /// ename:VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT:: If ename:VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT is also set, sname:VkImageView can: be used with a sampler that has either of pname:magFilter or pname:minFilter set to ename:VK_FILTER_LINEAR, or pname:mipmapMode set to ename:VK_SAMPLER_MIPMAP_MODE_LINEAR. If ename:VK_FORMAT_FEATURE_BLIT_SRC_BIT is also set, sname:VkImage can be used as the pname:srcImage to flink:vkCmdBlitImage with a pname:filter of ename:VK_FILTER_LINEAR. This bit must: only be exposed for formats that also support the ename:VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT or ename:VK_FORMAT_FEATURE_BLIT_SRC_BIT. + If the format being queried is a depth/stencil format, this bit only indicates that the depth aspect (not the stencil aspect) of an image of this format supports linear filtering, and that linear filtering of the depth aspect is supported whether depth compare is enabled in the sampler or not. If this bit is not present, linear filtering with depth compare disabled is unsupported and linear filtering with depth compare enabled is supported, but may: compute the filtered value in an implementation-dependent manner which differs from the normal rules of linear filtering. The resulting value must: be in the range latexmath:[$[0,1\]$] and should: be proportional to, or a weighted average of, the number of comparison passes or failures.
-	/// </para>
-	/// <para>
-    /// ifdef::VK_IMG_filter_cubic[] include::../chapters/VK_IMG_filter_cubic/filter_cubic_sampled_bit_description.txt[] endif::VK_IMG_filter_cubic[]
-	/// </para>
-	/// <para>
-    /// The following features may: appear in pname:bufferFeatures, indicating they are supported by buffers or buffer views created with the queried flink:vkGetPhysicalDeviceFormatProperties::pname:format:
-	/// </para>
-	/// <para>
-    /// ename:VK_FORMAT_FEATURE_UNIFORM_TEXEL_BUFFER_BIT:: Format can: be used to create a sname:VkBufferView that can: be bound to a ename:VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER descriptor.
-	/// </para>
-	/// <para>
-    /// ename:VK_FORMAT_FEATURE_STORAGE_TEXEL_BUFFER_BIT:: Format can: be used to create a sname:VkBufferView that can: be bound to a ename:VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER descriptor.
-	/// </para>
-	/// <para>
-    /// ename:VK_FORMAT_FEATURE_STORAGE_TEXEL_BUFFER_ATOMIC_BIT:: Atomic operations are supported on ename:VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER with this format.
-	/// </para>
-	/// <para>
-    /// ename:VK_FORMAT_FEATURE_VERTEX_BUFFER_BIT:: Format can: be used as a vertex attribute format (sname:VkVertexInputAttributeDescription::pname:format).
-	/// </para>
-	/// <para>
-    /// [NOTE] .Note ==== If no format feature flags are supported, then the only possible use would be image transfers - which alone are not useful. As such, if no format feature flags are supported, the format itself is not supported, and images of that format cannot be created. ====
-	/// </para>
-	/// <para>
-    /// If pname:format is a block-compression format, then buffers mustnot: support any features for the format.
+    /// Structure specifying image format properties.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -1267,7 +1150,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying an image copy operation
+    /// Structure specifying an image copy operation.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -1330,13 +1213,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying a image format properties
-	/// </para>
-	/// <para>
-    /// [NOTE] .Note ==== There is no mechanism to query the size of an image before creating it, to compare that size against pname:maxResourceSize. If an application attempts to create an image that exceeds this limit, the creation will fail or the image will be invalid. While the advertised limit must: be at least 2^31^, it may: not be possible to create an image that approaches that size, particularly for ename:VK_IMAGE_TYPE_1D. ====
-	/// </para>
-	/// <para>
-    /// If the combination of parameters to fname:vkGetPhysicalDeviceImageFormatProperties is not supported by the implementation for use in flink:vkCreateImage, then all members of sname:VkImageFormatProperties will be filled with zero.
+    /// Structure specifying a image format properties.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -1399,7 +1276,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying an image resolve operation
+    /// Structure specifying an image resolve operation.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -1462,7 +1339,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying a image subresource
+    /// Structure specifying a image subresource.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -1509,7 +1386,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying a image subresource layers
+    /// Structure specifying a image subresource layers.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -1564,25 +1441,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying a image subresource range
-	/// </para>
-	/// <para>
-    /// The number of mip-map levels and array layers must: be a subset of the image subresources in the image. If an application wants to use all mip-levels or layers in an image after the pname:baseMipLevel or pname:baseArrayLayer, it can: set pname:levelCount and pname:layerCount to the special values ename:VK_REMAINING_MIP_LEVELS and ename:VK_REMAINING_ARRAY_LAYERS without knowing the exact number of mip-levels or layers.
-	/// </para>
-	/// <para>
-    /// For cube and cube array image views, the layers of the image view starting at pname:baseArrayLayer correspond to faces in the order +X, -X, +Y, -Y, +Z, -Z. For cube arrays, each set of six sequential layers is a single cube, so the number of cube maps in a cube map array view is _pname:layerCount / 6_, and image array layer _pname:baseArrayLayer + i_ is face index _i mod 6_ of cube _i / 6_. If the number of layers in the view, whether set explicitly in pname:layerCount or implied by ename:VK_REMAINING_ARRAY_LAYERS, is not a multiple of 6, behavior when indexing the last cube is undefined.
-	/// </para>
-	/// <para>
-    /// pname:aspectMask is a bitmask indicating the format being used. Bits which may: be set include:
-	/// </para>
-	/// <para>
-    /// The mask must: be only ename:VK_IMAGE_ASPECT_COLOR_BIT, ename:VK_IMAGE_ASPECT_DEPTH_BIT or ename:VK_IMAGE_ASPECT_STENCIL_BIT if pname:format is a color, depth-only or stencil-only format, respectively. If using a depth/stencil format with both depth and stencil components, pname:aspectMask must: include at least one of ename:VK_IMAGE_ASPECT_DEPTH_BIT and ename:VK_IMAGE_ASPECT_STENCIL_BIT, and can: include both.
-	/// </para>
-	/// <para>
-    /// When using an imageView of a depth/stencil image to populate a descriptor set (e.g. for sampling in the shader, or for use as an input attachment), the pname:aspectMask must: only include one bit and selects whether the imageView is used for depth reads (i.e. using a floating-point sampler or input attachment in the shader) or stencil reads (i.e. using an unsigned integer sampler or input attachment in the shader). When an imageView of a depth/stencil image is used as a depth/stencil framebuffer attachment, the pname:aspectMask is ignored and both depth and stencil image subresources are used.
-	/// </para>
-	/// <para>
-    /// The pname:components member is of type slink:VkComponentMapping, and describes a remapping from components of the image to components of the vector returned by shader image instructions. This remapping must: be identity for storage image descriptors, input attachment descriptors, and framebuffer attachments.
+    /// Structure specifying a image subresource range.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -1645,7 +1504,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying a memory heap
+    /// Structure specifying a memory heap.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -1660,7 +1519,7 @@ namespace SharpVk
 
 	   /// <summary>
 		/// <para>
-		/// pname:flags is a bitmask of attribute flags for the heap. The bits specified in pname:flags are: + -- // refBegin VkMemoryHeapFlagBits - Bitmask specifying attribute flags for a heap include::../api/enums/VkMemoryHeapFlagBits.txt[] --
+		/// pname:flags is a bitmask of attribute flags for the heap. The bits specified in pname:flags are: + --
 		/// </para>
 		/// </summary>
 		public MemoryHeapFlags Flags;
@@ -1684,7 +1543,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying memory requirements
+    /// Structure specifying memory requirements.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -1731,7 +1590,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying memory type
+    /// Structure specifying memory type.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -1739,7 +1598,7 @@ namespace SharpVk
 	{
 	   /// <summary>
 		/// <para>
-		/// pname:propertyFlags is a bitmask of properties for this memory type. The bits specified in pname:propertyFlags are: + -- // refBegin VkMemoryPropertyFlagBits - Bitmask specifying properties for a memory type include::../api/enums/VkMemoryPropertyFlagBits.txt[] --
+		/// pname:propertyFlags is a bitmask of properties for this memory type. The bits specified in pname:propertyFlags are: + --
 		/// </para>
 		/// </summary>
 		public MemoryPropertyFlags PropertyFlags;
@@ -1770,7 +1629,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying a two-dimensional offset
+    /// Structure specifying a two-dimensional offset.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -1809,7 +1668,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying a three-dimensional offset
+    /// Structure specifying a three-dimensional offset.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -1857,9 +1716,6 @@ namespace SharpVk
     /// <summary>
 	/// <para>
     /// Structure describing the fine-grained features that can be supported by an implementation.
-	/// </para>
-	/// <para>
-    /// *  pname:robustBufferAccess indicates that accesses to buffers are bounds-checked against the range of the buffer descriptor (as determined by sname:VkDescriptorBufferInfo::pname:range, sname:VkBufferViewCreateInfo::pname:range, or the size of the buffer). Out of bounds accesses mustnot: cause application termination, and the effects of shader loads, stores, and atomics must: conform to an implementation-dependent behavior as described below. ** A buffer access is considered to be out of bounds if any of the following are true: *** The pointer was formed by code:OpImageTexelPointer and the coordinate is less than zero or greater than or equal to the number of whole elements in the bound range. *** The pointer was not formed by code:OpImageTexelPointer and the object pointed to is not wholly contained within the bound range. + -- [NOTE] .Note ==== If a SPIR-V code:OpLoad instruction loads a structure and the tail end of the structure is out of bounds, then all members of the structure are considered out of bounds even if the members at the end are not statically used. ==== -- + *** If any buffer access in a given SPIR-V block is determined to be out of bounds, then any other access of the same type (load, store, or atomic) in the same SPIR-V block that accesses an address less than 16 bytes away from the out of bounds address may: also be considered out of bounds. ** Out-of-bounds buffer loads will return any of the following values: *** Values from anywhere within the memory range(s) bound to the buffer (possibly including bytes of memory past the end of the buffer, up to the end of the bound range). *** Zero values, or (0,0,0,x) vectors for vector reads where x is a valid value represented in the type of the vector components and may: be any of: **** 0, 1, or the maximum representable positive integer value, for signed or unsigned integer components **** 0.0 or 1.0, for floating-point components ** Out-of-bounds writes may: modify values within the memory range(s) bound to the buffer, but mustnot: modify any other memory. ** Out-of-bounds atomics may: modify values within the memory range(s) bound to the buffer, but mustnot: modify any other memory, and return an undefined value. ** Vertex input attributes are considered out of bounds if the address of the attribute plus the size of the attribute is greater than the size of the bound buffer. Further, if any vertex input attribute using a specific vertex input binding is out of bounds, then all vertex input attributes using that vertex input binding for that vertex shader invocation are considered out of bounds. *** If a vertex input attribute is out of bounds, it will be assigned one of the following values: **** Values from anywhere within the memory range(s) bound to the buffer, converted according to the format of the attribute. **** Zero values, format converted according to the format of the attribute. **** Zero values, or (0,0,0,x) vectors, as described above. ** If pname:robustBufferAccess is not enabled, out of bounds accesses may: corrupt any memory within the process and cause undefined behaviour up to and including application termination. *  pname:fullDrawIndexUint32 indicates the full 32-bit range of indices is supported for indexed draw calls when using a elink:VkIndexType of ename:VK_INDEX_TYPE_UINT32. pname:maxDrawIndexedIndexValue is the maximum index value that may: be used (aside from the primitive restart index, which is always 2^32^-1 when the elink:VkIndexType is ename:VK_INDEX_TYPE_UINT32). If this feature is supported, pname:maxDrawIndexedIndexValue must: be 2^32^-1; otherwise it must: be no smaller than 2^24^-1. See &lt;&lt;features-limits-maxDrawIndexedIndexValue,maxDrawIndexedIndexValue&gt;&gt;. *  pname:imageCubeArray indicates whether image views with a elink:VkImageViewType of ename:VK_IMAGE_VIEW_TYPE_CUBE_ARRAY can: be created, and that the corresponding code:SampledCubeArray and code:ImageCubeArray SPIR-V capabilities can: be used in shader code. *  pname:independentBlend indicates whether the sname:VkPipelineColorBlendAttachmentState settings are controlled independently per-attachment. If this feature is not enabled, the sname:VkPipelineColorBlendAttachmentState settings for all color attachments must: be identical. Otherwise, a different sname:VkPipelineColorBlendAttachmentState can: be provided for each bound color attachment. *  pname:geometryShader indicates whether geometry shaders are supported. If this feature is not enabled, the ename:VK_SHADER_STAGE_GEOMETRY_BIT and ename:VK_PIPELINE_STAGE_GEOMETRY_SHADER_BIT enum values mustnot: be used. This also indicates whether shader modules can: declare the code:Geometry capability. *  pname:tessellationShader indicates whether tessellation control and evaluation shaders are supported. If this feature is not enabled, the ename:VK_SHADER_STAGE_TESSELLATION_CONTROL_BIT, ename:VK_SHADER_STAGE_TESSELLATION_EVALUATION_BIT, ename:VK_PIPELINE_STAGE_TESSELLATION_CONTROL_SHADER_BIT, ename:VK_PIPELINE_STAGE_TESSELLATION_EVALUATION_SHADER_BIT, and ename:VK_STRUCTURE_TYPE_PIPELINE_TESSELLATION_STATE_CREATE_INFO enum values mustnot: be used. This also indicates whether shader modules can: declare the code:Tessellation capability. *  pname:sampleRateShading indicates whether per-sample shading and multisample interpolation are supported. If this feature is not enabled, the pname:sampleShadingEnable member of the sname:VkPipelineMultisampleStateCreateInfo structure must: be set to ename:VK_FALSE and the pname:minSampleShading member is ignored. This also indicates whether shader modules can: declare the code:SampleRateShading capability. *  pname:dualSrcBlend indicates whether blend operations which take two sources are supported. If this feature is not enabled, the ename:VK_BLEND_FACTOR_SRC1_COLOR, ename:VK_BLEND_FACTOR_ONE_MINUS_SRC1_COLOR, ename:VK_BLEND_FACTOR_SRC1_ALPHA, and ename:VK_BLEND_FACTOR_ONE_MINUS_SRC1_ALPHA enum values mustnot: be used as source or destination blending factors. See &lt;&lt;framebuffer-dsb&gt;&gt;. *  pname:logicOp indicates whether logic operations are supported. If this feature is not enabled, the pname:logicOpEnable member of the sname:VkPipelineColorBlendStateCreateInfo structure must: be set to ename:VK_FALSE, and the pname:logicOp member is ignored. *  pname:multiDrawIndirect indicates whether multiple draw indirect is supported. If this feature is not enabled, the pname:drawCount parameter to the fname:vkCmdDrawIndirect and fname:vkCmdDrawIndexedIndirect commands must: be 0 or 1. The pname:maxDrawIndirectCount member of the sname:VkPhysicalDeviceLimits structure must: also be 1 if this feature is not supported. See &lt;&lt;features-limits-maxDrawIndirectCount,maxDrawIndirectCount&gt;&gt;. * pname:drawIndirectFirstInstance indicates whether indirect draw calls support the pname:firstInstance parameter. If this feature is not enabled, the pname:firstInstance member of all sname:VkDrawIndirectCommand and sname:VkDrawIndexedIndirectCommand structures that are provided to the fname:vkCmdDrawIndirect and fname:vkCmdDrawIndexedIndirect commands must: be 0. *  pname:depthClamp indicates whether depth clamping is supported. If this feature is not enabled, the pname:depthClampEnable member of the sname:VkPipelineRasterizationStateCreateInfo structure must: be set to ename:VK_FALSE. Otherwise, setting pname:depthClampEnable to ename:VK_TRUE will enable depth clamping. *  pname:depthBiasClamp indicates whether depth bias clamping is supported. If this feature is not enabled, the pname:depthBiasClamp member of the sname:VkPipelineRasterizationStateCreateInfo structure must: be set to 0.0 unless the ename:VK_DYNAMIC_STATE_DEPTH_BIAS dynamic state is enabled, and the pname:depthBiasClamp parameter to fname:vkCmdSetDepthBias must: be set to 0.0. *  pname:fillModeNonSolid indicates whether point and wireframe fill modes are supported. If this feature is not enabled, the ename:VK_POLYGON_MODE_POINT and ename:VK_POLYGON_MODE_LINE enum values mustnot: be used. *  pname:depthBounds indicates whether depth bounds tests are supported. If this feature is not enabled, the pname:depthBoundsTestEnable member of the sname:VkPipelineDepthStencilStateCreateInfo structure must: be set to ename:VK_FALSE. When pname:depthBoundsTestEnable is set to ename:VK_FALSE, the pname:minDepthBounds and pname:maxDepthBounds members of the sname:VkPipelineDepthStencilStateCreateInfo structure are ignored. *  pname:wideLines indicates whether lines with width other than 1.0 are supported. If this feature is not enabled, the pname:lineWidth member of the sname:VkPipelineRasterizationStateCreateInfo structure must: be set to 1.0 unless the ename:VK_DYNAMIC_STATE_LINE_WIDTH dynamic state is enabled, and the pname:lineWidth parameter to fname:vkCmdSetLineWidth must: be set to 1.0. When this feature is supported, the range and granularity of supported line widths are indicated by the pname:lineWidthRange and pname:lineWidthGranularity members of the sname:VkPhysicalDeviceLimits structure, respectively. *  pname:largePoints indicates whether points with size greater than 1.0 are supported. If this feature is not enabled, only a point size of 1.0 written by a shader is supported. The range and granularity of supported point sizes are indicated by the pname:pointSizeRange and pname:pointSizeGranularity members of the sname:VkPhysicalDeviceLimits structure, respectively. *  pname:alphaToOne indicates whether the implementation is able to replace the alpha value of the color fragment output from the fragment shader with the maximum representable alpha value for fixed-point colors or 1.0 for floating-point colors. If this feature is not enabled, then the pname:alphaToOneEnable member of the sname:VkPipelineMultisampleStateCreateInfo structure must: be set to ename:VK_FALSE. Otherwise setting pname:alphaToOneEnable to ename:VK_TRUE will enable alpha-to-one behaviour. *  pname:multiViewport indicates whether more than one viewport is supported. If this feature is not enabled, the pname:viewportCount and pname:scissorCount members of the sname:VkPipelineViewportStateCreateInfo structure must: be set to 1. Similarly, the pname:viewportCount parameter to the fname:vkCmdSetViewport command and the pname:scissorCount parameter to the fname:vkCmdSetScissor command must: be 1, and the pname:firstViewport parameter to the fname:vkCmdSetViewport command and the pname:firstScissor parameter to the fname:vkCmdSetScissor command must: be 0. *  pname:samplerAnisotropy indicates whether anisotropic filtering is supported. If this feature is not enabled, the pname:maxAnisotropy member of the sname:VkSamplerCreateInfo structure must: be 1.0. * pname:textureCompressionETC2 indicates whether the ETC2 and EAC compressed texture formats are supported. If this feature is not enabled, the following formats mustnot: be used to create images: + -- * ename:VK_FORMAT_ETC2_R8G8B8_UNORM_BLOCK * ename:VK_FORMAT_ETC2_R8G8B8_SRGB_BLOCK * ename:VK_FORMAT_ETC2_R8G8B8A1_UNORM_BLOCK * ename:VK_FORMAT_ETC2_R8G8B8A1_SRGB_BLOCK * ename:VK_FORMAT_ETC2_R8G8B8A8_UNORM_BLOCK * ename:VK_FORMAT_ETC2_R8G8B8A8_SRGB_BLOCK * ename:VK_FORMAT_EAC_R11_UNORM_BLOCK * ename:VK_FORMAT_EAC_R11_SNORM_BLOCK * ename:VK_FORMAT_EAC_R11G11_UNORM_BLOCK * ename:VK_FORMAT_EAC_R11G11_SNORM_BLOCK -- + flink:vkGetPhysicalDeviceFormatProperties is used to check for the supported properties of individual formats. + * pname:textureCompressionASTC_LDR indicates whether the ASTC LDR compressed texture formats are supported. If this feature is not enabled, the following formats mustnot: be used to create images: + -- * ename:VK_FORMAT_ASTC_4x4_UNORM_BLOCK * ename:VK_FORMAT_ASTC_4x4_SRGB_BLOCK * ename:VK_FORMAT_ASTC_5x4_UNORM_BLOCK * ename:VK_FORMAT_ASTC_5x4_SRGB_BLOCK * ename:VK_FORMAT_ASTC_5x5_UNORM_BLOCK * ename:VK_FORMAT_ASTC_5x5_SRGB_BLOCK * ename:VK_FORMAT_ASTC_6x5_UNORM_BLOCK * ename:VK_FORMAT_ASTC_6x5_SRGB_BLOCK * ename:VK_FORMAT_ASTC_6x6_UNORM_BLOCK * ename:VK_FORMAT_ASTC_6x6_SRGB_BLOCK * ename:VK_FORMAT_ASTC_8x5_UNORM_BLOCK * ename:VK_FORMAT_ASTC_8x5_SRGB_BLOCK * ename:VK_FORMAT_ASTC_8x6_UNORM_BLOCK * ename:VK_FORMAT_ASTC_8x6_SRGB_BLOCK * ename:VK_FORMAT_ASTC_8x8_UNORM_BLOCK * ename:VK_FORMAT_ASTC_8x8_SRGB_BLOCK * ename:VK_FORMAT_ASTC_10x5_UNORM_BLOCK * ename:VK_FORMAT_ASTC_10x5_SRGB_BLOCK * ename:VK_FORMAT_ASTC_10x6_UNORM_BLOCK * ename:VK_FORMAT_ASTC_10x6_SRGB_BLOCK * ename:VK_FORMAT_ASTC_10x8_UNORM_BLOCK * ename:VK_FORMAT_ASTC_10x8_SRGB_BLOCK * ename:VK_FORMAT_ASTC_10x10_UNORM_BLOCK * ename:VK_FORMAT_ASTC_10x10_SRGB_BLOCK * ename:VK_FORMAT_ASTC_12x10_UNORM_BLOCK * ename:VK_FORMAT_ASTC_12x10_SRGB_BLOCK * ename:VK_FORMAT_ASTC_12x12_UNORM_BLOCK * ename:VK_FORMAT_ASTC_12x12_SRGB_BLOCK -- + flink:vkGetPhysicalDeviceFormatProperties is used to check for the supported properties of individual formats. + *  pname:textureCompressionBC indicates whether the BC compressed texture formats are supported. If this feature is not enabled, the following formats mustnot: be used to create images: + -- * ename:VK_FORMAT_BC1_RGB_UNORM_BLOCK * ename:VK_FORMAT_BC1_RGB_SRGB_BLOCK * ename:VK_FORMAT_BC1_RGBA_UNORM_BLOCK * ename:VK_FORMAT_BC1_RGBA_SRGB_BLOCK * ename:VK_FORMAT_BC2_UNORM_BLOCK * ename:VK_FORMAT_BC2_SRGB_BLOCK * ename:VK_FORMAT_BC3_UNORM_BLOCK * ename:VK_FORMAT_BC3_SRGB_BLOCK * ename:VK_FORMAT_BC4_UNORM_BLOCK * ename:VK_FORMAT_BC4_SNORM_BLOCK * ename:VK_FORMAT_BC5_UNORM_BLOCK * ename:VK_FORMAT_BC5_SNORM_BLOCK * ename:VK_FORMAT_BC6H_UFLOAT_BLOCK * ename:VK_FORMAT_BC6H_SFLOAT_BLOCK * ename:VK_FORMAT_BC7_UNORM_BLOCK * ename:VK_FORMAT_BC7_SRGB_BLOCK -- + flink:vkGetPhysicalDeviceFormatProperties is used to check for the supported properties of individual formats. + *  pname:occlusionQueryPrecise indicates whether occlusion queries returning actual sample counts are supported. Occlusion queries are created in a sname:VkQueryPool by specifying the pname:queryType of ename:VK_QUERY_TYPE_OCCLUSION in the sname:VkQueryPoolCreateInfo structure which is passed to fname:vkCreateQueryPool. If this feature is enabled, queries of this type can: enable ename:VK_QUERY_CONTROL_PRECISE_BIT in the pname:flags parameter to fname:vkCmdBeginQuery. If this feature is not supported, the implementation supports only boolean occlusion queries. When any samples are passed, boolean queries will return a non-zero result value, otherwise a result value of zero is returned. When this feature is enabled and ename:VK_QUERY_CONTROL_PRECISE_BIT is set, occlusion queries will report the actual number of samples passed. * pname:pipelineStatisticsQuery indicates whether the pipeline statistics queries are supported. If this feature is not enabled, queries of type ename:VK_QUERY_TYPE_PIPELINE_STATISTICS cannot: be created, and none of the elink:VkQueryPipelineStatisticFlagBits bits can: be set in the pname:pipelineStatistics member of the sname:VkQueryPoolCreateInfo structure. * pname:vertexPipelineStoresAndAtomics indicates whether storage buffers and images support stores and atomic operations in the vertex, tessellation, and geometry shader stages. If this feature is not enabled, all storage image, storage texel buffers, and storage buffer variables used by these stages in shader modules must: be decorated with the code:NonWriteable decoration (or the code:readonly memory qualifier in GLSL). * pname:fragmentStoresAndAtomics indicates whether storage buffers and images support stores and atomic operations in the fragment shader stage. If this feature is not enabled, all storage image, storage texel buffers, and storage buffer variables used by the fragment stage in shader modules must: be decorated with the code:NonWriteable decoration (or the code:readonly memory qualifier in GLSL). * pname:shaderTessellationAndGeometryPointSize indicates whether the code:PointSize built-in decoration is available in the tessellation control, tessellation evaluation, and geometry shader stages. If this feature is not enabled, members decorated with the code:PointSize built-in decoration mustnot: be read from or written to and all points written from a tessellation or geometry shader will have a size of 1.0. This also indicates whether shader modules can: declare the code:TessellationPointSize capability for tessellation control and evaluation shaders, or if the shader modules can: declare the code:GeometryPointSize capability for geometry shaders. An implementation supporting this feature must: also support one or both of the &lt;&lt;features-features-tessellationShader,pname:tessellationShader&gt;&gt; or &lt;&lt;features-features-geometryShader,pname:geometryShader&gt;&gt; features. * pname:shaderImageGatherExtended indicates whether the extended set of image gather instructions are available in shader code. If this feature is not enabled, the code:OpImage*code:Gather instructions do not support the code:Offset and code:ConstOffsets operands. This also indicates whether shader modules can: declare the code:ImageGatherExtended capability. * pname:shaderStorageImageExtendedFormats indicates whether the extended storage image formats are available in shader code. If this feature is not enabled, the formats requiring the code:StorageImageExtendedFormats capability are not supported for storage images. This also indicates whether shader modules can: declare the code:StorageImageExtendedFormats capability. * pname:shaderStorageImageMultisample indicates whether multisampled storage images are supported. If this feature is not enabled, images that are created with a pname:usage that includes ename:VK_IMAGE_USAGE_STORAGE_BIT must: be created with pname:samples equal to ename:VK_SAMPLE_COUNT_1_BIT. This also indicates whether shader modules can: declare the code:StorageImageMultisample capability. * pname:shaderStorageImageReadWithoutFormat indicates whether storage images require a format qualifier to be specified when reading from storage images. If this feature is not enabled, the code:OpImageRead instruction mustnot: have an code:OpTypeImage of code:Unknown. This also indicates whether shader modules can: declare the code:StorageImageReadWithoutFormat capability. * pname:shaderStorageImageWriteWithoutFormat indicates whether storage images require a format qualifier to be specified when writing to storage images. If this feature is not enabled, the code:OpImageWrite instruction mustnot: have an code:OpTypeImage of code:Unknown. This also indicates whether shader modules can: declare the code:StorageImageWriteWithoutFormat capability. * pname:shaderUniformBufferArrayDynamicIndexing indicates whether arrays of uniform buffers can: be indexed by dynamically uniform integer expressions in shader code. If this feature is not enabled, resources with a descriptor type of ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER or ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC must: be indexed only by constant integral expressions when aggregated into arrays in shader code. This also indicates whether shader modules can: declare the code:UniformBufferArrayDynamicIndexing capability. * pname:shaderSampledImageArrayDynamicIndexing indicates whether arrays of samplers or sampled images can: be indexed by dynamically uniform integer expressions in shader code. If this feature is not enabled, resources with a descriptor type of ename:VK_DESCRIPTOR_TYPE_SAMPLER, ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, or ename:VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE must: be indexed only by constant integral expressions when aggregated into arrays in shader code. This also indicates whether shader modules can: declare the code:SampledImageArrayDynamicIndexing capability. * pname:shaderStorageBufferArrayDynamicIndexing indicates whether arrays of storage buffers can: be indexed by dynamically uniform integer expressions in shader code. If this feature is not enabled, resources with a descriptor type of ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER or ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC must: be indexed only by constant integral expressions when aggregated into arrays in shader code. This also indicates whether shader modules can: declare the code:StorageBufferArrayDynamicIndexing capability. * pname:shaderStorageImageArrayDynamicIndexing indicates whether arrays of storage images can: be indexed by dynamically uniform integer expressions in shader code. If this feature is not enabled, resources with a descriptor type of ename:VK_DESCRIPTOR_TYPE_STORAGE_IMAGE must: be indexed only by constant integral expressions when aggregated into arrays in shader code. This also indicates whether shader modules can: declare the code:StorageImageArrayDynamicIndexing capability. *  pname:shaderClipDistance indicates whether clip distances are supported in shader code. If this feature is not enabled, any members decorated with the code:ClipDistance built-in decoration mustnot: be read from or written to in shader modules. This also indicates whether shader modules can: declare the code:ClipDistance capability. *  pname:shaderCullDistance indicates whether cull distances are supported in shader code. If this feature is not enabled, any members decorated with the code:CullDistance built-in decoration mustnot: be read from or written to in shader modules. This also indicates whether shader modules can: declare the code:CullDistance capability. *  pname:shaderFloat64 indicates whether 64-bit floats (doubles) are supported in shader code. If this feature is not enabled, 64-bit floating-point types mustnot: be used in shader code. This also indicates whether shader modules can: declare the code:Float64 capability. *  pname:shaderInt64 indicates whether 64-bit integers (signed and unsigned) are supported in shader code. If this feature is not enabled, 64-bit integer types mustnot: be used in shader code. This also indicates whether shader modules can: declare the code:Int64 capability. *  pname:shaderInt16 indicates whether 16-bit integers (signed and unsigned) are supported in shader code. If this feature is not enabled, 16-bit integer types mustnot: be used in shader code. This also indicates whether shader modules can: declare the code:Int16 capability. * pname:shaderResourceResidency indicates whether image operations that return resource residency information are supported in shader code. If this feature is not enabled, the code:OpImageSparse* instructions mustnot: be used in shader code. This also indicates whether shader modules can: declare the code:SparseResidency capability. The feature requires at least one of the ptext:sparseResidency* features to be supported. *  pname:shaderResourceMinLod indicates whether image operations that specify the minimum resource level-of-detail (LOD) are supported in shader code. If this feature is not enabled, the code:MinLod image operand mustnot: be used in shader code. This also indicates whether shader modules can: declare the code:MinLod capability. *  pname:sparseBinding indicates whether resource memory can: be managed at opaque sparse block level instead of at the object level. If this feature is not enabled, resource memory must: be bound only on a per-object basis using the fname:vkBindBufferMemory and fname:vkBindImageMemory commands. In this case, buffers and images mustnot: be created with ename:VK_BUFFER_CREATE_SPARSE_BINDING_BIT and ename:VK_IMAGE_CREATE_SPARSE_BINDING_BIT set in the pname:flags member of the sname:VkBufferCreateInfo and sname:VkImageCreateInfo structures, respectively. Otherwise resource memory can: be managed as described in &lt;&lt;sparsememory-sparseresourcefeatures,Sparse Resource Features&gt;&gt;. *  pname:sparseResidencyBuffer indicates whether the device can: access partially resident buffers. If this feature is not enabled, buffers mustnot: be created with ename:VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT set in the pname:flags member of the sname:VkBufferCreateInfo structure. * pname:sparseResidencyImage2D indicates whether the device can: access partially resident 2D images with 1 sample per pixel. If this feature is not enabled, images with an pname:imageType of ename:VK_IMAGE_TYPE_2D and pname:samples set to ename:VK_SAMPLE_COUNT_1_BIT mustnot: be created with ename:VK_IMAGE_CREATE_SPARSE_RESIDENCY_BIT set in the pname:flags member of the sname:VkImageCreateInfo structure. * pname:sparseResidencyImage3D indicates whether the device can: access partially resident 3D images. If this feature is not enabled, images with an pname:imageType of ename:VK_IMAGE_TYPE_3D mustnot: be created with ename:VK_IMAGE_CREATE_SPARSE_RESIDENCY_BIT set in the pname:flags member of the sname:VkImageCreateInfo structure. * pname:sparseResidency2Samples indicates whether the physical device can: access partially resident 2D images with 2 samples per pixel. If this feature is not enabled, images with an pname:imageType of ename:VK_IMAGE_TYPE_2D and pname:samples set to ename:VK_SAMPLE_COUNT_2_BIT mustnot: be created with ename:VK_IMAGE_CREATE_SPARSE_RESIDENCY_BIT set in the pname:flags member of the sname:VkImageCreateInfo structure. * pname:sparseResidency4Samples indicates whether the physical device can: access partially resident 2D images with 4 samples per pixel. If this feature is not enabled, images with an pname:imageType of ename:VK_IMAGE_TYPE_2D and pname:samples set to ename:VK_SAMPLE_COUNT_4_BIT mustnot: be created with ename:VK_IMAGE_CREATE_SPARSE_RESIDENCY_BIT set in the pname:flags member of the sname:VkImageCreateInfo structure. * pname:sparseResidency8Samples indicates whether the physical device can: access partially resident 2D images with 8 samples per pixel. If this feature is not enabled, images with an pname:imageType of ename:VK_IMAGE_TYPE_2D and pname:samples set to ename:VK_SAMPLE_COUNT_8_BIT mustnot: be created with ename:VK_IMAGE_CREATE_SPARSE_RESIDENCY_BIT set in the pname:flags member of the sname:VkImageCreateInfo structure. * pname:sparseResidency16Samples indicates whether the physical device can: access partially resident 2D images with 16 samples per pixel. If this feature is not enabled, images with an pname:imageType of ename:VK_IMAGE_TYPE_2D and pname:samples set to ename:VK_SAMPLE_COUNT_16_BIT mustnot: be created with ename:VK_IMAGE_CREATE_SPARSE_RESIDENCY_BIT set in the pname:flags member of the sname:VkImageCreateInfo structure. * pname:sparseResidencyAliased indicates whether the physical device can: correctly access data aliased into multiple locations. If this feature is not enabled, the ename:VK_BUFFER_CREATE_SPARSE_ALIASED_BIT and ename:VK_IMAGE_CREATE_SPARSE_ALIASED_BIT enum values mustnot: be used in pname:flags members of the sname:VkBufferCreateInfo and sname:VkImageCreateInfo structures, respectively. * pname:variableMultisampleRate indicates whether all pipelines that will be bound to a command buffer during a subpass with no attachments must: have the same value for sname:VkPipelineMultisampleStateCreateInfo::pname:rasterizationSamples. If set to ename:VK_TRUE, the implementation supports variable multisample rates in a subpass with no attachments. If set to ename:VK_FALSE, then all pipelines bound in such a subpass must: have the same multisample rate. This has no effect in situations where a subpass uses any attachments. *  pname:inheritedQueries indicates whether a secondary command buffer may: be executed while a query is active.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -2322,7 +2178,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying physical device sparse memory properties
+    /// Structure specifying physical device sparse memory properties.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -2385,7 +2241,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying a pipeline color blend attachment state
+    /// Structure specifying a pipeline color blend attachment state.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -2472,7 +2328,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying a push constant range
+    /// Structure specifying a push constant range.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -2520,42 +2376,6 @@ namespace SharpVk
     /// <summary>
 	/// <para>
     /// Structure providing information about a queue family.
-	/// </para>
-	/// <para>
-    /// The bits specified in pname:queueFlags are:
-	/// </para>
-	/// <para>
-    /// * if ename:VK_QUEUE_GRAPHICS_BIT is set, then the queues in this queue family support graphics operations. * if ename:VK_QUEUE_COMPUTE_BIT is set, then the queues in this queue family support compute operations. * if ename:VK_QUEUE_TRANSFER_BIT is set, then the queues in this queue family support transfer operations. * if ename:VK_QUEUE_SPARSE_BINDING_BIT is set, then the queues in this queue family support sparse memory management operations (see &lt;&lt;sparsememory,Sparse Resources&gt;&gt;). If any of the sparse resource features are enabled, then at least one queue family must: support this bit.
-	/// </para>
-	/// <para>
-    /// If an implementation exposes any queue family that supports graphics operations, at least one queue family of at least one physical device exposed by the implementation must: support both graphics and compute operations.
-	/// </para>
-	/// <para>
-    /// [NOTE] .Note ==== All commands that are allowed on a queue that supports transfer operations are also allowed on a queue that supports either graphics or compute operations thus if the capabilities of a queue family include ename:VK_QUEUE_GRAPHICS_BIT or ename:VK_QUEUE_COMPUTE_BIT then reporting the ename:VK_QUEUE_TRANSFER_BIT capability separately for that queue family is optional:. ====
-	/// </para>
-	/// <para>
-    /// For further details see &lt;&lt;devsandqueues-queues,Queues&gt;&gt;.
-	/// </para>
-	/// <para>
-    /// The value returned in pname:minImageTransferGranularity has a unit of compressed texel blocks for images having a block-compressed format, and a unit of texels otherwise.
-	/// </para>
-	/// <para>
-    /// Possible values of pname:minImageTransferGranularity are:
-	/// </para>
-	/// <para>
-    /// * latexmath:[$(0,0,0)$] which indicates that only whole mip levels must: be transferred using the image transfer operations on the corresponding queues. In this case, the following restrictions apply to all offset and extent parameters of image transfer operations:
-	/// </para>
-	/// <para>
-    /// ** The pname:x, pname:y, and pname:z members of a slink:VkOffset3D parameter must: always be zero. ** The pname:width, pname:height, and pname:depth members of a slink:VkExtent3D parameter must: always match the width, height, and depth of the image subresource corresponding to the parameter, respectively.
-	/// </para>
-	/// <para>
-    /// * latexmath:[$(Ax, Ay, Az)$] where latexmath:[$Ax$], latexmath:[$Ay$], and latexmath:[$Az$] are all integer powers of two. In this case the following restrictions apply to all image transfer operations:
-	/// </para>
-	/// <para>
-    /// ** pname:x, pname:y, and pname:z of a slink:VkOffset3D parameter must: be integer multiples of latexmath:[$Ax$], latexmath:[$Ay$], and latexmath:[$Az$], respectively. ** pname:width of a slink:VkExtent3D parameter must: be an integer multiple of latexmath:[$Ax$], or else latexmath:[$(x + width)$] must: equal the width of the image subresource corresponding to the parameter. ** pname:height of a slink:VkExtent3D parameter must: be an integer multiple of latexmath:[$Ay$], or else latexmath:[$(y + height)$] must: equal the height of the image subresource corresponding to the parameter. ** pname:depth of a slink:VkExtent3D parameter must: be an integer multiple of latexmath:[$Az$], or else latexmath:[$(z + depth)$] must: equal the depth of the image subresource corresponding to the parameter. ** If the format of the image corresponding to the parameters is one of the block-compressed formats then for the purposes of the above calculations the granularity must: be scaled up by the compressed texel block dimensions.
-	/// </para>
-	/// <para>
-    /// Queues supporting graphics and/or compute operations must: report latexmath:[$(1,1,1)$] in pname:minImageTransferGranularity, meaning that there are no additional restrictions on the granularity of image transfer operations for these queues. Other queues supporting image transfer operations are only required: to support whole mip level transfers, thus pname:minImageTransferGranularity for queues belonging to such queue families may: be latexmath:[$(0,0,0)$].
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -2610,10 +2430,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying a two-dimensional subregion
-	/// </para>
-	/// <para>
-    /// Rectangles are used to describe a specified rectangular region of pixels within an image or framebuffer. Rectangles include both an offset and an extent of the same dimensionality, as described above. Two-dimensional rectangles are defined by the structure
+    /// Structure specifying a two-dimensional subregion.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -2652,7 +2469,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying sparse image format properties
+    /// Structure specifying sparse image format properties.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -2674,7 +2491,7 @@ namespace SharpVk
 
 	   /// <summary>
 		/// <para>
-		/// pname:flags is a bitmask specifying additional information about the sparse resource. Bits which can: be set include: + -- // refBegin VkSparseImageFormatFlagBits - Bitmask specifying additional information about a sparse image resource include::../api/enums/VkSparseImageFormatFlagBits.txt[] --
+		/// pname:flags is a bitmask specifying additional information about the sparse resource. Bits which can: be set include: + --
 		/// </para>
 		/// </summary>
 		public SparseImageFormatFlags Flags;
@@ -2699,7 +2516,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying sparse image memory requirements
+    /// Structure specifying sparse image memory requirements.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -2707,7 +2524,7 @@ namespace SharpVk
 	{
 	   /// <summary>
 		/// <para>
-		/// pname:formatProperties.flags is a bitmask of elink:VkSparseImageFormatFlagBits:
+		/// -
 		/// </para>
 		/// </summary>
 		public SparseImageFormatProperties FormatProperties;
@@ -2762,10 +2579,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying a specialization map entry
-	/// </para>
-	/// <para>
-    /// If a pname:constantID value is not a specialization constant ID used in the shader, that map entry does not affect the behavior of the pipeline.
+    /// Structure specifying a specialization map entry.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -2812,7 +2626,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying stencil operation state
+    /// Structure specifying stencil operation state.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -2891,25 +2705,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying a subpass dependency
-	/// </para>
-	/// <para>
-    /// Each subpass dependency defines an execution and memory dependency between two sets of commands, with the second set depending on the first set. When pname:srcSubpass does not equal pname:dstSubpass then the first set of commands is:
-	/// </para>
-	/// <para>
-    /// * All commands in the subpass indicated by pname:srcSubpass, if pname:srcSubpass is not ename:VK_SUBPASS_EXTERNAL. * All commands before the render pass instance, if pname:srcSubpass is ename:VK_SUBPASS_EXTERNAL.
-	/// </para>
-	/// <para>
-    /// While the corresponding second set of commands is:
-	/// </para>
-	/// <para>
-    /// * All commands in the subpass indicated by pname:dstSubpass, if pname:dstSubpass is not ename:VK_SUBPASS_EXTERNAL. * All commands after the render pass instance, if pname:dstSubpass is ename:VK_SUBPASS_EXTERNAL.
-	/// </para>
-	/// <para>
-    /// When pname:srcSubpass equals pname:dstSubpass then the first set consists of commands in the subpass before a call to flink:vkCmdPipelineBarrier and the second set consists of commands in the subpass following that same call as described in the &lt;&lt;synchronization-pipeline-barriers-subpass-self-dependencies, Subpass Self-dependency&gt;&gt; section.
-	/// </para>
-	/// <para>
-    /// The pname:srcStageMask, pname:dstStageMask, pname:srcAccessMask, pname:dstAccessMask, and pname:dependencyFlags parameters of the dependency are interpreted the same way as for other dependencies, as described in &lt;&lt;synchronization, Synchronization and Cache Control&gt;&gt;.
+    /// Structure specifying a subpass dependency.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -2931,7 +2727,7 @@ namespace SharpVk
 
 	   /// <summary>
 		/// <para>
-		/// pname:srcStageMask, pname:dstStageMask, pname:srcAccessMask, pname:dstAccessMask, and pname:dependencyFlags describe an &lt;&lt;synchronization-execution-and-memory-dependencies,execution and memory dependency&gt;&gt; between subpasses. The bits that can: be included in pname:dependencyFlags are: + -- // refBegin VkDependencyFlagBits - Bitmask specifying dependencies between subpasses include::../api/enums/VkDependencyFlagBits.txt[] --
+		/// pname:srcStageMask, pname:dstStageMask, pname:srcAccessMask, pname:dstAccessMask, and pname:dependencyFlags describe an &lt;&lt;synchronization-execution-and-memory-dependencies,execution and memory dependency&gt;&gt; between subpasses. The bits that can: be included in pname:dependencyFlags are: + --
 		/// </para>
 		/// </summary>
 		public PipelineStageFlags SourceStageMask;
@@ -2988,25 +2784,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying subresource layout
-	/// </para>
-	/// <para>
-    /// For images created with linear tiling, pname:rowPitch, pname:arrayPitch and pname:depthPitch describe the layout of the image subresource in linear memory. For uncompressed formats, pname:rowPitch is the number of bytes between texels with the same x coordinate in adjacent rows (y coordinates differ by one). pname:arrayPitch is the number of bytes between texels with the same x and y coordinate in adjacent array layers of the image (array layer values differ by one). pname:depthPitch is the number of bytes between texels with the same x and y coordinate in adjacent slices of a 3D image (z coordinates differ by one). Expressed as an addressing formula, the starting byte of a texel in the image subresource has address:
-	/// </para>
-	/// <para>
-    /// [source,c] --------------------------------------------------- // (x,y,z,layer) are in texel coordinates address(x,y,z,layer) = layer*arrayPitch + z*depthPitch + y*rowPitch + x*texelSize + offset ---------------------------------------------------
-	/// </para>
-	/// <para>
-    /// For compressed formats, the pname:rowPitch is the number of bytes between compressed texel blocks in adjacent rows. pname:arrayPitch is the number of bytes between compressed texel blocks in adjacent array layers. pname:depthPitch is the number of bytes between compressed texel blocks in adjacent slices of a 3D image.
-	/// </para>
-	/// <para>
-    /// [source,c] --------------------------------------------------- // (x,y,z,layer) are in compressed texel block coordinates address(x,y,z,layer) = layer*arrayPitch + z*depthPitch + y*rowPitch + x*compressedTexelBlockByteSize + offset; ---------------------------------------------------
-	/// </para>
-	/// <para>
-    /// pname:arrayPitch is undefined for images that were not created as arrays. pname:depthPitch is defined only for 3D images.
-	/// </para>
-	/// <para>
-    /// For color formats, the pname:aspectMask member of sname:VkImageSubresource must: be ename:VK_IMAGE_ASPECT_COLOR_BIT. For depth/stencil formats, pname:aspectMask must: be either ename:VK_IMAGE_ASPECT_DEPTH_BIT or ename:VK_IMAGE_ASPECT_STENCIL_BIT. On implementations that store depth and stencil aspects separately, querying each of these image subresource layouts will return a different pname:offset and pname:size representing the region of memory used for that aspect. On implementations that store depth and stencil aspects interleaved, the same pname:offset and pname:size are returned and represent the interleaved memory allocation.
+    /// Structure specifying subresource layout.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -3069,7 +2847,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// -
+    /// Structure describing capabilities of a surface.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -3077,70 +2855,70 @@ namespace SharpVk
 	{
 	   /// <summary>
 		/// <para>
-		/// -
+		/// pname:minImageCount is the minimum number of images the specified device supports for a swapchain created for the surface.
 		/// </para>
 		/// </summary>
 		public uint MinImageCount;
 
 	   /// <summary>
 		/// <para>
-		/// -
+		/// pname:maxImageCount is the maximum number of images the specified device supports for a swapchain created for the surface.  A value of `0` means that there is no limit on the number of images, though there may: be limits related to the total amount of memory used by swapchain images.
 		/// </para>
 		/// </summary>
 		public uint MaxImageCount;
 
 	   /// <summary>
 		/// <para>
-		/// -
+		/// pname:currentExtent is the current width and height of the surface, or the special value latexmath:[$(0xFFFFFFFF, 0xFFFFFFFF)$] indicating that the surface size will be determined by the extent of a swapchain targeting the surface.
 		/// </para>
 		/// </summary>
 		public Extent2D CurrentExtent;
 
 	   /// <summary>
 		/// <para>
-		/// -
+		/// pname:minImageExtent contains the smallest valid swapchain extent for the surface on the specified device.
 		/// </para>
 		/// </summary>
 		public Extent2D MinImageExtent;
 
 	   /// <summary>
 		/// <para>
-		/// -
+		/// pname:maxImageExtent contains the largest valid swapchain extent for the surface on the specified device.
 		/// </para>
 		/// </summary>
 		public Extent2D MaxImageExtent;
 
 	   /// <summary>
 		/// <para>
-		/// -
+		/// pname:maxImageArrayLayers is the maximum number of layers swapchain images can: have for a swapchain created for this device and surface.
 		/// </para>
 		/// </summary>
 		public uint MaxImageArrayLayers;
 
 	   /// <summary>
 		/// <para>
-		/// -
+		/// pname:supportedTransforms is a bitmask of elink:VkSurfaceTransformFlagBitsKHR, describing the presentation transforms supported for the surface on the specified device.
 		/// </para>
 		/// </summary>
 		public SurfaceTransformFlags SupportedTransforms;
 
 	   /// <summary>
 		/// <para>
-		/// -
+		/// pname:currentTransform is a bitmask of elink:VkSurfaceTransformFlagBitsKHR, describing the surface's current transform relative to the presentation engine's natural orientation.
 		/// </para>
 		/// </summary>
 		public SurfaceTransformFlags CurrentTransform;
 
 	   /// <summary>
 		/// <para>
-		/// -
+		/// pname:supportedCompositeAlpha is a bitmask of elink:VkCompositeAlphaFlagBitsKHR, representing the alpha compositing modes supported by the presentation engine for the surface on the specified device.  Opaque composition can: be achieved in any alpha compositing mode by either using a swapchain image format that has no alpha component, or by ensuring that all pixels in the swapchain images have an alpha value of 1.0.
 		/// </para>
 		/// </summary>
 		public CompositeAlphaFlags SupportedCompositeAlpha;
 
 	   /// <summary>
 		/// <para>
-		/// -
+		/// pname:supportedUsageFlags is a bitmask of elink:VkImageUsageFlagBits representing the ways the application can: use the presentable images of a swapchain created for the surface on the specified device. ename:VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT must: be included in the set but implementations may: support additional usages.
 		/// </para>
 		/// </summary>
 		public ImageUsageFlags SupportedUsageFlags;
@@ -3172,7 +2950,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// -
+    /// Structure describing a supported swapchain format-color space pair.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -3180,14 +2958,14 @@ namespace SharpVk
 	{
 	   /// <summary>
 		/// <para>
-		/// -
+		/// pname:format is a ename:VkFormat that is compatible with the specified surface.
 		/// </para>
 		/// </summary>
 		public Format Format;
 
 	   /// <summary>
 		/// <para>
-		/// -
+		/// pname:colorSpace is a presentation ename:VkColorSpaceKHR that is compatible with the surface.
 		/// </para>
 		/// </summary>
 		public ColorSpace ColorSpace;
@@ -3211,7 +2989,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying vertex input attribute description
+    /// Structure specifying vertex input attribute description.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -3266,7 +3044,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying vertex input binding description
+    /// Structure specifying vertex input binding description.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -3288,7 +3066,7 @@ namespace SharpVk
 
 	   /// <summary>
 		/// <para>
-		/// pname:inputRate specifies whether vertex attribute addressing is a function of the vertex index or of the instance index. Possible values include: + -- // refBegin VkVertexInputRate - specify rate at which vertex attributes are pulled from buffers include::../api/enums/VkVertexInputRate.txt[] --
+		/// pname:inputRate specifies whether vertex attribute addressing is a function of the vertex index or of the instance index. Possible values include: + --
 		/// </para>
 		/// </summary>
 		public VertexInputRate InputRate;
@@ -3313,22 +3091,7 @@ namespace SharpVk
 
     /// <summary>
 	/// <para>
-    /// Structure specifying a viewport
-	/// </para>
-	/// <para>
-    /// The framebuffer depth coordinate latexmath:[$z_f$] may: be represented using either a fixed-point or floating-point representation. However, a floating-point representation must: be used if the depth/stencil attachment has a floating-point depth component. If an latexmath:[$m$]-bit fixed-point representation is used, we assume that it represents each value latexmath:[$\frac{k}{2^m - 1}$], where latexmath:[$k \in \{ 0,1, \ldots, 2^m-1 \}$], as latexmath:[$k$] (e.g. 1.0 is represented in binary as a string of all ones).
-	/// </para>
-	/// <para>
-    /// The viewport parameters shown in the above equations are found from these values as
-	/// </para>
-	/// <para>
-    /// [latexmath] ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \begin{align*} o_x &amp; = x + \frac{width}{2} \\ o_y &amp; = y + \frac{height}{2} \\ o_z &amp; = minDepth \\ p_x &amp; = width \\ p_y &amp; = height \\ p_z &amp; = maxDepth - minDepth. \end{align*} ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-	/// </para>
-	/// <para>
-    /// The width and height of the &lt;&lt;features-limits-maxViewportDimensions, implementation-dependent maximum viewport dimensions&gt;&gt; must: be greater than or equal to the width and height of the largest image which can: be created and attached to a framebuffer.
-	/// </para>
-	/// <para>
-    /// The floating-point viewport bounds are represented with an &lt;&lt;features-limits-viewportSubPixelBits,implementation-dependent precision&gt;&gt;.
+    /// Structure specifying a viewport.
 	/// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]

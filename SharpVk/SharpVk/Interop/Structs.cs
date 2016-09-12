@@ -610,26 +610,6 @@ namespace SharpVk.Interop
 	/// -
 	/// </summary>
     [StructLayout(LayoutKind.Sequential)]
-	public unsafe struct DebugReportLayerFlags
-	{
-		/// <summary>
-		/// -
-		/// </summary>
-		public StructureType SType;
-		/// <summary>
-		/// -
-		/// </summary>
-		public void* Next;
-		/// <summary>
-		/// -
-		/// </summary>
-		public ulong EnabledValidationFlags;
-	}
-
-	/// <summary>
-	/// -
-	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
 	public unsafe struct DedicatedAllocationBufferCreateInfo
 	{
 		/// <summary>

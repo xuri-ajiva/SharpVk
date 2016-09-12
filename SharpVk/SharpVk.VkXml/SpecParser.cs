@@ -435,15 +435,75 @@ namespace SharpVk.VkXml
                 });
             }
 
-            var documentedCategories = new[] { TypeCategory.handle, TypeCategory.@struct, TypeCategory.@enum, TypeCategory.bitmask, TypeCategory.union };
+            var vkDocsXmlCache = new DownloadedFileCache(this.tempFilePath, "https://raw.githubusercontent.com/FacticiusVir/SharpVk-Docs/master/Docs/vkDocs.xml");
 
-            IEnumerable<ParsedElement> documentedElements = filteredSpec.Types.Values.Where(x => documentedCategories.Contains(x.Category) && x.Extension == null);
+            var vkDocsXml = XDocument.Load(vkDocsXmlCache.GetFileLocation());
 
-            documentedElements = documentedElements.Concat(filteredSpec.Commands.Values.Where(x => x.Extension == null));
+            foreach (var vkDocType in vkDocsXml.Element("docs").Element("types").Elements("type"))
+            {
+                string typeName = vkDocType.Attribute("name").Value;
 
-            documentedElements = documentedElements.Concat(filteredSpec.Enumerations.Values.Where(x => x.Extension == null));
+                ParsedElement parsedElement = null;
 
-            Parallel.ForEach(documentedElements, this.ApplyDocumentation);
+                if (filteredSpec.Enumerations.ContainsKey(typeName))
+                {
+                    parsedElement = filteredSpec.Enumerations[typeName];
+                }
+                else if (filteredSpec.Types.ContainsKey(typeName))
+                {
+                    parsedElement = filteredSpec.Types[typeName];
+                }
+
+                if (parsedElement != null)
+                {
+                    var comment = new List<string> { vkDocType.Attribute("summary").Value };
+
+                    var specification = vkDocType.Element("specification");
+
+                    comment.AddRange(specification.Elements("para").Select(x => x.Value));
+
+                    parsedElement.Comment = comment.Select(this.NormaliseComment).ToList();
+
+                    IEnumerable<ParsedElement> members = null;
+
+                    var parsedType = parsedElement as ParsedType;
+                    var parsedEnum = parsedElement as ParsedEnum;
+
+                    if (parsedType != null)
+                    {
+                        members = parsedType.Members;
+                    }
+                    else if (parsedEnum != null)
+                    {
+                        members = parsedEnum.Fields.Values;
+                    }
+
+                    if (members != null)
+                    {
+                        foreach (var vkDocMember in vkDocType.Element("members").Elements("member"))
+                        {
+                            string memberName = vkDocMember.Attribute("name").Value;
+                            string memberSummary = NormaliseComment(vkDocMember.Value);
+
+                            var member = members.FirstOrDefault(x => x.VkName == memberName);
+
+                            if (member != null)
+                            {
+                                member.Comment = new List<string> { memberSummary };
+                            }
+                        }
+                    }
+                }
+            }
+
+            foreach (var vkDocCommand in vkDocsXml.Element("docs").Element("commands").Elements("command"))
+            {
+                string commandName = vkDocCommand.Attribute("name").Value;
+
+                var parsedCommand = filteredSpec.Commands[commandName];
+
+                parsedCommand.Comment = new List<string> { vkDocCommand.Attribute("summary").Value };
+            }
 
             return filteredSpec;
         }
