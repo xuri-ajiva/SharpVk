@@ -109,7 +109,10 @@ namespace SharpVk.Shanq
             }
 
             file.AddHeaderStatement(Op.OpEntryPoint, new object[] { this.model, entryPointerFunctionId, "main" }.Concat(entryPointParameters.Cast<object>()).ToArray());
-            file.AddHeaderStatement(Op.OpExecutionMode, entryPointerFunctionId, ExecutionMode.OriginUpperLeft);
+            if (this.model == ExecutionModel.Fragment)
+            {
+                file.AddHeaderStatement(Op.OpExecutionMode, entryPointerFunctionId, ExecutionMode.OriginUpperLeft);
+            }
 
             foreach (var mapping in fieldMapping)
             {

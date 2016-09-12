@@ -13,9 +13,7 @@ namespace SharpVk.Shanq
     {
         public static void CreateFragment<TOutput>(Stream outputStream, Func<IQueryable<TInput>, IQueryable<TOutput>> shaderFunction)
         {
-            var queryable = new ShanqQueryable<TInput>(QueryParser.CreateDefault(), new ShanqQueryExecutor(ExecutionModel.Fragment, outputStream));
-
-            shaderFunction(queryable).ToArray();
+            Create(ExecutionModel.Fragment, outputStream, shaderFunction);
         }
 
         public static void Create<TOutput>(ExecutionModel model, Stream outputStream, Func<IQueryable<TInput>, IQueryable<TOutput>> shaderFunction)
@@ -25,22 +23,32 @@ namespace SharpVk.Shanq
             shaderFunction(queryable).ToArray();
         }
 
+        public static ShaderModule CreateVertexModule<TOutput>(Device device, Func<IQueryable<TInput>, IQueryable<TOutput>> shaderFunction)
+        {
+            return CreateModule(device, ExecutionModel.Vertex, shaderFunction);
+        }
+
         public static ShaderModule CreateFragmentModule<TOutput>(Device device, Func<IQueryable<TInput>, IQueryable<TOutput>> shaderFunction)
         {
-            var fragShaderStream = new MemoryStream();
+            return CreateModule(device, ExecutionModel.Fragment, shaderFunction);
+        }
 
-            CreateFragment(fragShaderStream, shaderFunction);
+        private static ShaderModule CreateModule<TOutput>(Device device, ExecutionModel model, Func<IQueryable<TInput>, IQueryable<TOutput>> shaderFunction)
+        {
+            var shaderStream = new MemoryStream();
 
-            int fragShaderLength = (int)fragShaderStream.Length;
+            Create(model, shaderStream, shaderFunction);
 
-            var fragShaderBytes = fragShaderStream.GetBuffer();
+            int shaderLength = (int)shaderStream.Length;
 
-            var fragShaderData = LoadShaderData(fragShaderBytes, fragShaderLength);
+            var shaderBytes = shaderStream.GetBuffer();
+
+            var shaderData = LoadShaderData(shaderBytes, shaderLength);
 
             return device.CreateShaderModule(new ShaderModuleCreateInfo
             {
-                Code = fragShaderData,
-                CodeSize = (UIntPtr)fragShaderLength
+                Code = shaderData,
+                CodeSize = (UIntPtr)shaderLength
             });
         }
 
