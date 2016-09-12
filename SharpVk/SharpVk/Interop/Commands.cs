@@ -93,13 +93,13 @@ namespace SharpVk.Interop
 		/// -
 		/// </summary>
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-		public static extern IntPtr vkGetInstanceProcAddr(Instance instance, char* name);
+		public static extern VoidFunctionDelegate vkGetInstanceProcAddr(Instance instance, char* name);
 
 		/// <summary>
 		/// -
 		/// </summary>
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-		public static extern IntPtr vkGetDeviceProcAddr(Device device, char* name);
+		public static extern VoidFunctionDelegate vkGetDeviceProcAddr(Device device, char* name);
 
 		/// <summary>
 		/// -
@@ -333,7 +333,7 @@ namespace SharpVk.Interop
 		/// -
 		/// </summary>
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-		public static extern Result vkGetQueryPoolResults(Device device, QueryPool queryPool, uint firstQuery, uint queryCount, UIntPtr dataSize, void* data, DeviceSize stride, QueryResultFlags flags);
+		public static extern Result vkGetQueryPoolResults(Device device, QueryPool queryPool, uint firstQuery, uint queryCount, Size dataSize, void* data, DeviceSize stride, QueryResultFlags flags);
 
 		/// <summary>
 		/// -
@@ -417,7 +417,7 @@ namespace SharpVk.Interop
 		/// -
 		/// </summary>
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-		public static extern Result vkGetPipelineCacheData(Device device, PipelineCache pipelineCache, UIntPtr* dataSize, void* data);
+		public static extern Result vkGetPipelineCacheData(Device device, PipelineCache pipelineCache, Size* dataSize, void* data);
 
 		/// <summary>
 		/// -
@@ -1047,7 +1047,7 @@ namespace SharpVk.Interop
 		/// -
 		/// </summary>
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-		public static extern void vkDebugReportMessageEXT(Instance instance, DebugReportFlags flags, DebugReportObjectType objectType, ulong @object, UIntPtr location, int messageCode, char* layerPrefix, char* message);
+		public static extern void vkDebugReportMessageEXT(Instance instance, DebugReportFlags flags, DebugReportObjectType objectType, ulong @object, Size location, int messageCode, char* layerPrefix, char* message);
 
 		/// <summary>
 		/// -

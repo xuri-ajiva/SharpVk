@@ -4399,6 +4399,21 @@ namespace SharpVk
 
     /// <summary>
     /// <para>
+    /// Allocation type.
+    /// </para>
+    /// </summary>
+	public enum InternalAllocationType
+	{
+	    /// <summary>
+		/// <para>
+		/// ename:VK_INTERNAL_ALLOCATION_TYPE_EXECUTABLE - The allocation is intended for execution by the host.
+		/// </para>
+		/// </summary>
+		Executable = 0,
+	}
+
+    /// <summary>
+    /// <para>
     /// Framebuffer logical operations.
     /// </para>
     /// </summary>
@@ -5529,6 +5544,45 @@ namespace SharpVk
 		/// </para>
 		/// </summary>
 		SecondaryCommandBuffers = 1,
+	}
+
+    /// <summary>
+    /// <para>
+    /// Allocation scope.
+    /// </para>
+    /// </summary>
+	public enum SystemAllocationScope
+	{
+	    /// <summary>
+		/// <para>
+		/// ename:VK_SYSTEM_ALLOCATION_SCOPE_COMMAND - The allocation is scoped to the duration of the Vulkan command.
+		/// </para>
+		/// </summary>
+		Command = 0,
+	    /// <summary>
+		/// <para>
+		/// ename:VK_SYSTEM_ALLOCATION_SCOPE_OBJECT - The allocation is scoped to the lifetime of the Vulkan object that is being created or used.
+		/// </para>
+		/// </summary>
+		Object = 1,
+	    /// <summary>
+		/// <para>
+		/// ename:VK_SYSTEM_ALLOCATION_SCOPE_CACHE - The allocation is scoped to the lifetime of a sname:VkPipelineCache object.
+		/// </para>
+		/// </summary>
+		Cache = 2,
+	    /// <summary>
+		/// <para>
+		/// ename:VK_SYSTEM_ALLOCATION_SCOPE_DEVICE - The allocation is scoped to the lifetime of the Vulkan device.
+		/// </para>
+		/// </summary>
+		Device = 3,
+	    /// <summary>
+		/// <para>
+		/// ename:VK_SYSTEM_ALLOCATION_SCOPE_INSTANCE - The allocation is scoped to the lifetime of the Vulkan instance.
+		/// </para>
+		/// </summary>
+		Instance = 4,
 	}
 
     /// <summary>

@@ -571,7 +571,7 @@ namespace SharpVk.Interop
 		/// <summary>
 		/// -
 		/// </summary>
-		public UIntPtr TagSize;
+		public Size TagSize;
 		/// <summary>
 		/// -
 		/// </summary>
@@ -1975,7 +1975,7 @@ namespace SharpVk.Interop
 		/// <summary>
 		/// -
 		/// </summary>
-		public UIntPtr MinMemoryMapAlignment;
+		public Size MinMemoryMapAlignment;
 		/// <summary>
 		/// -
 		/// </summary>
@@ -2407,7 +2407,7 @@ namespace SharpVk.Interop
 		/// <summary>
 		/// -
 		/// </summary>
-		public UIntPtr InitialDataSize;
+		public Size InitialDataSize;
 		/// <summary>
 		/// -
 		/// </summary>
@@ -3131,7 +3131,7 @@ namespace SharpVk.Interop
 		/// <summary>
 		/// -
 		/// </summary>
-		public UIntPtr CodeSize;
+		public Size CodeSize;
 		/// <summary>
 		/// -
 		/// </summary>
@@ -3275,7 +3275,7 @@ namespace SharpVk.Interop
 		/// <summary>
 		/// -
 		/// </summary>
-		public UIntPtr DataSize;
+		public Size DataSize;
 		/// <summary>
 		/// -
 		/// </summary>

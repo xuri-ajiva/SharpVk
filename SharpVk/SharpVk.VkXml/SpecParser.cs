@@ -168,11 +168,25 @@ namespace SharpVk.VkXml
                 bool isReturnedOnly = returnedOnly != null
                                         ? bool.Parse(returnedOnly)
                                         : false;
+                bool isTypePointer = false;
                 string type = vkType.Element("type")?.Value;
                 if (type == "VK_MAKE_VERSION")
                 {
                     type += vkType.Element("type").NextNode.ToString();
                 }
+
+                if (category == TypeCategory.funcpointer)
+                {
+                    type = ((XText)vkType.Nodes().First()).Value.Split(' ')[1];
+
+                    if(type.EndsWith("*"))
+                    {
+                        type = type.TrimEnd('*');
+
+                        isTypePointer = true;
+                    }
+                }
+
 
                 string extension;
 
@@ -195,7 +209,8 @@ namespace SharpVk.VkXml
                     IsReturnedOnly = isReturnedOnly,
                     NameParts = nameParts,
                     Extension = extension,
-                    Type = type
+                    Type = type,
+                    IsTypePointer = isTypePointer
                 };
 
                 foreach (var vkMember in vkType.Elements("member"))
@@ -313,11 +328,17 @@ namespace SharpVk.VkXml
                         string paramType = typeElement.Value;
                         PointerType pointerType = MapTypeString(typeString);
 
+                        string paramExtension;
+
+                        string[] paramNameParts = GetNameParts(paramName, out paramExtension, false);
+
                         newType.Members.Add(new ParsedMember
                         {
                             VkName = paramName,
                             Type = paramType,
-                            PointerType = pointerType
+                            PointerType = pointerType,
+                            NameParts = paramNameParts,
+                            Extension = paramExtension
                         });
                     }
                 }
@@ -1093,6 +1114,7 @@ namespace SharpVk.VkXml
             public string Requires;
             public string Parent;
             public bool IsReturnedOnly;
+            public bool IsTypePointer;
             public readonly List<ParsedMember> Members = new List<ParsedMember>();
         }
 

@@ -161,6 +161,62 @@ namespace SharpVk
 			return this.value.ToString();
 		}
 	}
+	
+	/// <summary>
+	/// -
+	/// </summary>
+	public struct Size
+	{
+		private UIntPtr value;
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		public static implicit operator Size(int value)
+		{
+			return new Size { value = (UIntPtr)value };
+        }
+
+        /// <summary>
+        /// -
+        /// </summary>
+        public static implicit operator Size(uint value)
+        {
+            return new Size { value = (UIntPtr)value };
+        }
+
+        /// <summary>
+        /// -
+        /// </summary>
+        public static implicit operator Size(ulong value)
+		{
+			return new Size { value = (UIntPtr)value };
+        }
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        public static explicit operator uint(Size size)
+        {
+            return size.value.ToUInt32();
+        }
+
+        /// <summary>
+        /// -
+        /// </summary>
+        public static explicit operator ulong(Size size)
+		{
+			return size.value.ToUInt64();
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		public override string ToString()
+		{
+			return this.value.ToString();
+		}
+	}
 
 	public partial struct ComponentMapping
 	{
@@ -2604,7 +2660,7 @@ namespace SharpVk
 		/// pname:size is the byte size of the specialization constant value within the supplied data buffer.
 		/// </para>
 		/// </summary>
-		public UIntPtr Size;
+		public Size Size;
 
 		/// <summary>
 		/// -

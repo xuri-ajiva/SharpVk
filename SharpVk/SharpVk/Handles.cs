@@ -486,11 +486,12 @@ namespace SharpVk
 				Interop.DescriptorSet* marshalledDescriptorSets;
 				if (descriptorSets != null)
 				{
-				    marshalledDescriptorSets = (Interop.DescriptorSet*)Interop.HeapUtil.Allocate<Interop.DescriptorSet>(descriptorSets.Length);
+				    Interop.DescriptorSet* arrayPointer = stackalloc Interop.DescriptorSet[descriptorSets.Length];
 				    for (int index = 0; index < descriptorSets.Length; index++)
 				    {
-				        marshalledDescriptorSets[index] = descriptorSets[index].Pack();
+				        arrayPointer[index] = descriptorSets[index].Pack();
 				    }
+				    marshalledDescriptorSets = arrayPointer;
 				}
 				else
 				{
@@ -535,11 +536,12 @@ namespace SharpVk
 				Interop.Buffer* marshalledBuffers;
 				if (buffers != null)
 				{
-				    marshalledBuffers = (Interop.Buffer*)Interop.HeapUtil.Allocate<Interop.Buffer>(buffers.Length);
+				    Interop.Buffer* arrayPointer = stackalloc Interop.Buffer[buffers.Length];
 				    for (int index = 0; index < buffers.Length; index++)
 				    {
-				        marshalledBuffers[index] = buffers[index].Pack();
+				        arrayPointer[index] = buffers[index].Pack();
 				    }
+				    marshalledBuffers = arrayPointer;
 				}
 				else
 				{
@@ -713,11 +715,12 @@ namespace SharpVk
 				Interop.ImageBlit* marshalledRegions;
 				if (regions != null)
 				{
-				    marshalledRegions = (Interop.ImageBlit*)Interop.HeapUtil.Allocate<Interop.ImageBlit>(regions.Length);
+				    Interop.ImageBlit* arrayPointer = stackalloc Interop.ImageBlit[regions.Length];
 				    for (int index = 0; index < regions.Length; index++)
 				    {
-				        marshalledRegions[index] = regions[index].Pack();
+				        arrayPointer[index] = regions[index].Pack();
 				    }
+				    marshalledRegions = arrayPointer;
 				}
 				else
 				{
@@ -933,11 +936,12 @@ namespace SharpVk
 				Interop.Event* marshalledEvents;
 				if (events != null)
 				{
-				    marshalledEvents = (Interop.Event*)Interop.HeapUtil.Allocate<Interop.Event>(events.Length);
+				    Interop.Event* arrayPointer = stackalloc Interop.Event[events.Length];
 				    for (int index = 0; index < events.Length; index++)
 				    {
-				        marshalledEvents[index] = events[index].Pack();
+				        arrayPointer[index] = events[index].Pack();
 				    }
+				    marshalledEvents = arrayPointer;
 				}
 				else
 				{
@@ -946,11 +950,12 @@ namespace SharpVk
 				Interop.MemoryBarrier* marshalledMemoryBarriers;
 				if (memoryBarriers != null)
 				{
-				    marshalledMemoryBarriers = (Interop.MemoryBarrier*)Interop.HeapUtil.Allocate<Interop.MemoryBarrier>(memoryBarriers.Length);
+				    Interop.MemoryBarrier* arrayPointer = stackalloc Interop.MemoryBarrier[memoryBarriers.Length];
 				    for (int index = 0; index < memoryBarriers.Length; index++)
 				    {
-				        marshalledMemoryBarriers[index] = memoryBarriers[index].Pack();
+				        arrayPointer[index] = memoryBarriers[index].Pack();
 				    }
+				    marshalledMemoryBarriers = arrayPointer;
 				}
 				else
 				{
@@ -959,11 +964,12 @@ namespace SharpVk
 				Interop.BufferMemoryBarrier* marshalledBufferMemoryBarriers;
 				if (bufferMemoryBarriers != null)
 				{
-				    marshalledBufferMemoryBarriers = (Interop.BufferMemoryBarrier*)Interop.HeapUtil.Allocate<Interop.BufferMemoryBarrier>(bufferMemoryBarriers.Length);
+				    Interop.BufferMemoryBarrier* arrayPointer = stackalloc Interop.BufferMemoryBarrier[bufferMemoryBarriers.Length];
 				    for (int index = 0; index < bufferMemoryBarriers.Length; index++)
 				    {
-				        marshalledBufferMemoryBarriers[index] = bufferMemoryBarriers[index].Pack();
+				        arrayPointer[index] = bufferMemoryBarriers[index].Pack();
 				    }
+				    marshalledBufferMemoryBarriers = arrayPointer;
 				}
 				else
 				{
@@ -972,11 +978,12 @@ namespace SharpVk
 				Interop.ImageMemoryBarrier* marshalledImageMemoryBarriers;
 				if (imageMemoryBarriers != null)
 				{
-				    marshalledImageMemoryBarriers = (Interop.ImageMemoryBarrier*)Interop.HeapUtil.Allocate<Interop.ImageMemoryBarrier>(imageMemoryBarriers.Length);
+				    Interop.ImageMemoryBarrier* arrayPointer = stackalloc Interop.ImageMemoryBarrier[imageMemoryBarriers.Length];
 				    for (int index = 0; index < imageMemoryBarriers.Length; index++)
 				    {
-				        marshalledImageMemoryBarriers[index] = imageMemoryBarriers[index].Pack();
+				        arrayPointer[index] = imageMemoryBarriers[index].Pack();
 				    }
+				    marshalledImageMemoryBarriers = arrayPointer;
 				}
 				else
 				{
@@ -1002,11 +1009,12 @@ namespace SharpVk
 				Interop.MemoryBarrier* marshalledMemoryBarriers;
 				if (memoryBarriers != null)
 				{
-				    marshalledMemoryBarriers = (Interop.MemoryBarrier*)Interop.HeapUtil.Allocate<Interop.MemoryBarrier>(memoryBarriers.Length);
+				    Interop.MemoryBarrier* arrayPointer = stackalloc Interop.MemoryBarrier[memoryBarriers.Length];
 				    for (int index = 0; index < memoryBarriers.Length; index++)
 				    {
-				        marshalledMemoryBarriers[index] = memoryBarriers[index].Pack();
+				        arrayPointer[index] = memoryBarriers[index].Pack();
 				    }
+				    marshalledMemoryBarriers = arrayPointer;
 				}
 				else
 				{
@@ -1015,11 +1023,12 @@ namespace SharpVk
 				Interop.BufferMemoryBarrier* marshalledBufferMemoryBarriers;
 				if (bufferMemoryBarriers != null)
 				{
-				    marshalledBufferMemoryBarriers = (Interop.BufferMemoryBarrier*)Interop.HeapUtil.Allocate<Interop.BufferMemoryBarrier>(bufferMemoryBarriers.Length);
+				    Interop.BufferMemoryBarrier* arrayPointer = stackalloc Interop.BufferMemoryBarrier[bufferMemoryBarriers.Length];
 				    for (int index = 0; index < bufferMemoryBarriers.Length; index++)
 				    {
-				        marshalledBufferMemoryBarriers[index] = bufferMemoryBarriers[index].Pack();
+				        arrayPointer[index] = bufferMemoryBarriers[index].Pack();
 				    }
+				    marshalledBufferMemoryBarriers = arrayPointer;
 				}
 				else
 				{
@@ -1028,11 +1037,12 @@ namespace SharpVk
 				Interop.ImageMemoryBarrier* marshalledImageMemoryBarriers;
 				if (imageMemoryBarriers != null)
 				{
-				    marshalledImageMemoryBarriers = (Interop.ImageMemoryBarrier*)Interop.HeapUtil.Allocate<Interop.ImageMemoryBarrier>(imageMemoryBarriers.Length);
+				    Interop.ImageMemoryBarrier* arrayPointer = stackalloc Interop.ImageMemoryBarrier[imageMemoryBarriers.Length];
 				    for (int index = 0; index < imageMemoryBarriers.Length; index++)
 				    {
-				        marshalledImageMemoryBarriers[index] = imageMemoryBarriers[index].Pack();
+				        arrayPointer[index] = imageMemoryBarriers[index].Pack();
 				    }
+				    marshalledImageMemoryBarriers = arrayPointer;
 				}
 				else
 				{
@@ -1221,11 +1231,12 @@ namespace SharpVk
 				Interop.CommandBuffer* marshalledCommandBuffers;
 				if (commandBuffers != null)
 				{
-				    marshalledCommandBuffers = (Interop.CommandBuffer*)Interop.HeapUtil.Allocate<Interop.CommandBuffer>(commandBuffers.Length);
+				    Interop.CommandBuffer* arrayPointer = stackalloc Interop.CommandBuffer[commandBuffers.Length];
 				    for (int index = 0; index < commandBuffers.Length; index++)
 				    {
-				        marshalledCommandBuffers[index] = commandBuffers[index].Pack();
+				        arrayPointer[index] = commandBuffers[index].Pack();
 				    }
+				    marshalledCommandBuffers = arrayPointer;
 				}
 				else
 				{
@@ -1422,11 +1433,12 @@ namespace SharpVk
 				Interop.CommandBuffer* marshalledCommandBuffers;
 				if (commandBuffers != null)
 				{
-				    marshalledCommandBuffers = (Interop.CommandBuffer*)Interop.HeapUtil.Allocate<Interop.CommandBuffer>(commandBuffers.Length);
+				    Interop.CommandBuffer* arrayPointer = stackalloc Interop.CommandBuffer[commandBuffers.Length];
 				    for (int index = 0; index < commandBuffers.Length; index++)
 				    {
-				        marshalledCommandBuffers[index] = commandBuffers[index].Pack();
+				        arrayPointer[index] = commandBuffers[index].Pack();
 				    }
+				    marshalledCommandBuffers = arrayPointer;
 				}
 				else
 				{
@@ -1602,11 +1614,12 @@ namespace SharpVk
 				Interop.DescriptorSet* marshalledDescriptorSets;
 				if (descriptorSets != null)
 				{
-				    marshalledDescriptorSets = (Interop.DescriptorSet*)Interop.HeapUtil.Allocate<Interop.DescriptorSet>(descriptorSets.Length);
+				    Interop.DescriptorSet* arrayPointer = stackalloc Interop.DescriptorSet[descriptorSets.Length];
 				    for (int index = 0; index < descriptorSets.Length; index++)
 				    {
-				        marshalledDescriptorSets[index] = descriptorSets[index].Pack();
+				        arrayPointer[index] = descriptorSets[index].Pack();
 				    }
+				    marshalledDescriptorSets = arrayPointer;
 				}
 				else
 				{
@@ -1767,11 +1780,11 @@ namespace SharpVk
 		/// Return a function pointer for a command.
 		/// </para>
 		/// </summary>
-		public IntPtr GetProcAddr(string name)
+		public VoidFunctionDelegate GetProcAddr(string name)
 		{
 			unsafe
 			{
-				IntPtr result = default(IntPtr);
+				VoidFunctionDelegate result = default(VoidFunctionDelegate);
 
 				char* marshalledName = Interop.HeapUtil.MarshalTo(name);
 				result = Interop.Commands.vkGetDeviceProcAddr(this.handle, marshalledName);
@@ -1916,11 +1929,12 @@ namespace SharpVk
 				Interop.MappedMemoryRange* marshalledMemoryRanges;
 				if (memoryRanges != null)
 				{
-				    marshalledMemoryRanges = (Interop.MappedMemoryRange*)Interop.HeapUtil.Allocate<Interop.MappedMemoryRange>(memoryRanges.Length);
+				    Interop.MappedMemoryRange* arrayPointer = stackalloc Interop.MappedMemoryRange[memoryRanges.Length];
 				    for (int index = 0; index < memoryRanges.Length; index++)
 				    {
-				        marshalledMemoryRanges[index] = memoryRanges[index].Pack();
+				        arrayPointer[index] = memoryRanges[index].Pack();
 				    }
+				    marshalledMemoryRanges = arrayPointer;
 				}
 				else
 				{
@@ -1952,11 +1966,12 @@ namespace SharpVk
 				Interop.MappedMemoryRange* marshalledMemoryRanges;
 				if (memoryRanges != null)
 				{
-				    marshalledMemoryRanges = (Interop.MappedMemoryRange*)Interop.HeapUtil.Allocate<Interop.MappedMemoryRange>(memoryRanges.Length);
+				    Interop.MappedMemoryRange* arrayPointer = stackalloc Interop.MappedMemoryRange[memoryRanges.Length];
 				    for (int index = 0; index < memoryRanges.Length; index++)
 				    {
-				        marshalledMemoryRanges[index] = memoryRanges[index].Pack();
+				        arrayPointer[index] = memoryRanges[index].Pack();
 				    }
+				    marshalledMemoryRanges = arrayPointer;
 				}
 				else
 				{
@@ -2021,11 +2036,12 @@ namespace SharpVk
 				Interop.Fence* marshalledFences;
 				if (fences != null)
 				{
-				    marshalledFences = (Interop.Fence*)Interop.HeapUtil.Allocate<Interop.Fence>(fences.Length);
+				    Interop.Fence* arrayPointer = stackalloc Interop.Fence[fences.Length];
 				    for (int index = 0; index < fences.Length; index++)
 				    {
-				        marshalledFences[index] = fences[index].Pack();
+				        arrayPointer[index] = fences[index].Pack();
 				    }
+				    marshalledFences = arrayPointer;
 				}
 				else
 				{
@@ -2057,11 +2073,12 @@ namespace SharpVk
 				Interop.Fence* marshalledFences;
 				if (fences != null)
 				{
-				    marshalledFences = (Interop.Fence*)Interop.HeapUtil.Allocate<Interop.Fence>(fences.Length);
+				    Interop.Fence* arrayPointer = stackalloc Interop.Fence[fences.Length];
 				    for (int index = 0; index < fences.Length; index++)
 				    {
-				        marshalledFences[index] = fences[index].Pack();
+				        arrayPointer[index] = fences[index].Pack();
 				    }
+				    marshalledFences = arrayPointer;
 				}
 				else
 				{
@@ -2393,11 +2410,12 @@ namespace SharpVk
 				Interop.GraphicsPipelineCreateInfo* marshalledCreateInfos;
 				if (createInfos != null)
 				{
-				    marshalledCreateInfos = (Interop.GraphicsPipelineCreateInfo*)Interop.HeapUtil.Allocate<Interop.GraphicsPipelineCreateInfo>(createInfos.Length);
+				    Interop.GraphicsPipelineCreateInfo* arrayPointer = stackalloc Interop.GraphicsPipelineCreateInfo[createInfos.Length];
 				    for (int index = 0; index < createInfos.Length; index++)
 				    {
-				        marshalledCreateInfos[index] = createInfos[index].Pack();
+				        arrayPointer[index] = createInfos[index].Pack();
 				    }
+				    marshalledCreateInfos = arrayPointer;
 				}
 				else
 				{
@@ -2442,11 +2460,12 @@ namespace SharpVk
 				Interop.ComputePipelineCreateInfo* marshalledCreateInfos;
 				if (createInfos != null)
 				{
-				    marshalledCreateInfos = (Interop.ComputePipelineCreateInfo*)Interop.HeapUtil.Allocate<Interop.ComputePipelineCreateInfo>(createInfos.Length);
+				    Interop.ComputePipelineCreateInfo* arrayPointer = stackalloc Interop.ComputePipelineCreateInfo[createInfos.Length];
 				    for (int index = 0; index < createInfos.Length; index++)
 				    {
-				        marshalledCreateInfos[index] = createInfos[index].Pack();
+				        arrayPointer[index] = createInfos[index].Pack();
 				    }
+				    marshalledCreateInfos = arrayPointer;
 				}
 				else
 				{
@@ -2653,11 +2672,12 @@ namespace SharpVk
 				Interop.WriteDescriptorSet* marshalledDescriptorWrites;
 				if (descriptorWrites != null)
 				{
-				    marshalledDescriptorWrites = (Interop.WriteDescriptorSet*)Interop.HeapUtil.Allocate<Interop.WriteDescriptorSet>(descriptorWrites.Length);
+				    Interop.WriteDescriptorSet* arrayPointer = stackalloc Interop.WriteDescriptorSet[descriptorWrites.Length];
 				    for (int index = 0; index < descriptorWrites.Length; index++)
 				    {
-				        marshalledDescriptorWrites[index] = descriptorWrites[index].Pack();
+				        arrayPointer[index] = descriptorWrites[index].Pack();
 				    }
+				    marshalledDescriptorWrites = arrayPointer;
 				}
 				else
 				{
@@ -2666,11 +2686,12 @@ namespace SharpVk
 				Interop.CopyDescriptorSet* marshalledDescriptorCopies;
 				if (descriptorCopies != null)
 				{
-				    marshalledDescriptorCopies = (Interop.CopyDescriptorSet*)Interop.HeapUtil.Allocate<Interop.CopyDescriptorSet>(descriptorCopies.Length);
+				    Interop.CopyDescriptorSet* arrayPointer = stackalloc Interop.CopyDescriptorSet[descriptorCopies.Length];
 				    for (int index = 0; index < descriptorCopies.Length; index++)
 				    {
-				        marshalledDescriptorCopies[index] = descriptorCopies[index].Pack();
+				        arrayPointer[index] = descriptorCopies[index].Pack();
 				    }
+				    marshalledDescriptorCopies = arrayPointer;
 				}
 				else
 				{
@@ -2867,11 +2888,12 @@ namespace SharpVk
 				Interop.SwapchainCreateInfo* marshalledCreateInfos;
 				if (createInfos != null)
 				{
-				    marshalledCreateInfos = (Interop.SwapchainCreateInfo*)Interop.HeapUtil.Allocate<Interop.SwapchainCreateInfo>(createInfos.Length);
+				    Interop.SwapchainCreateInfo* arrayPointer = stackalloc Interop.SwapchainCreateInfo[createInfos.Length];
 				    for (int index = 0; index < createInfos.Length; index++)
 				    {
-				        marshalledCreateInfos[index] = createInfos[index].Pack();
+				        arrayPointer[index] = createInfos[index].Pack();
 				    }
+				    marshalledCreateInfos = arrayPointer;
 				}
 				else
 				{
@@ -3820,11 +3842,11 @@ namespace SharpVk
 		/// Return a function pointer for a command.
 		/// </para>
 		/// </summary>
-		public IntPtr GetProcAddr(string name)
+		public VoidFunctionDelegate GetProcAddr(string name)
 		{
 			unsafe
 			{
-				IntPtr result = default(IntPtr);
+				VoidFunctionDelegate result = default(VoidFunctionDelegate);
 
 				char* marshalledName = Interop.HeapUtil.MarshalTo(name);
 				result = Interop.Commands.vkGetInstanceProcAddr(this.handle, marshalledName);
@@ -4189,7 +4211,7 @@ namespace SharpVk
 		/// -
 		/// </para>
 		/// </summary>
-		public void DebugReportMessage(DebugReportFlags flags, DebugReportObjectType objectType, ulong @object, UIntPtr location, int messageCode, char layerPrefix, char message)
+		public void DebugReportMessage(DebugReportFlags flags, DebugReportObjectType objectType, ulong @object, Size location, int messageCode, char layerPrefix, char message)
 		{
 			unsafe
 			{
@@ -5138,7 +5160,7 @@ namespace SharpVk
 
 				Result commandResult;
 
-				UIntPtr dataSize;
+				Size dataSize;
 				byte* marshalledData = null;
 				commandResult = Interop.Commands.vkGetPipelineCacheData(this.parent.handle, this.handle, &dataSize, null);
 
@@ -5180,11 +5202,12 @@ namespace SharpVk
 				Interop.PipelineCache* marshalledSourceCaches;
 				if (sourceCaches != null)
 				{
-				    marshalledSourceCaches = (Interop.PipelineCache*)Interop.HeapUtil.Allocate<Interop.PipelineCache>(sourceCaches.Length);
+				    Interop.PipelineCache* arrayPointer = stackalloc Interop.PipelineCache[sourceCaches.Length];
 				    for (int index = 0; index < sourceCaches.Length; index++)
 				    {
-				        marshalledSourceCaches[index] = sourceCaches[index].Pack();
+				        arrayPointer[index] = sourceCaches[index].Pack();
 				    }
+				    marshalledSourceCaches = arrayPointer;
 				}
 				else
 				{
@@ -5342,7 +5365,7 @@ namespace SharpVk
 				Result commandResult;
 
 				fixed(byte* marshalledData = data)
-				commandResult = Interop.Commands.vkGetQueryPoolResults(this.parent.handle, this.handle, firstQuery, queryCount, (UIntPtr)data.Length, marshalledData, stride, flags);
+				commandResult = Interop.Commands.vkGetQueryPoolResults(this.parent.handle, this.handle, firstQuery, queryCount, (Size)data.Length, marshalledData, stride, flags);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -5412,11 +5435,12 @@ namespace SharpVk
 				Interop.SubmitInfo* marshalledSubmits;
 				if (submits != null)
 				{
-				    marshalledSubmits = (Interop.SubmitInfo*)Interop.HeapUtil.Allocate<Interop.SubmitInfo>(submits.Length);
+				    Interop.SubmitInfo* arrayPointer = stackalloc Interop.SubmitInfo[submits.Length];
 				    for (int index = 0; index < submits.Length; index++)
 				    {
-				        marshalledSubmits[index] = submits[index].Pack();
+				        arrayPointer[index] = submits[index].Pack();
 				    }
+				    marshalledSubmits = arrayPointer;
 				}
 				else
 				{
@@ -5472,11 +5496,12 @@ namespace SharpVk
 				Interop.BindSparseInfo* marshalledBindInfo;
 				if (bindInfo != null)
 				{
-				    marshalledBindInfo = (Interop.BindSparseInfo*)Interop.HeapUtil.Allocate<Interop.BindSparseInfo>(bindInfo.Length);
+				    Interop.BindSparseInfo* arrayPointer = stackalloc Interop.BindSparseInfo[bindInfo.Length];
 				    for (int index = 0; index < bindInfo.Length; index++)
 				    {
-				        marshalledBindInfo[index] = bindInfo[index].Pack();
+				        arrayPointer[index] = bindInfo[index].Pack();
 				    }
+				    marshalledBindInfo = arrayPointer;
 				}
 				else
 				{

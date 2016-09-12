@@ -25,10 +25,19 @@ namespace SharpVk
 foreach(var delegateType in types.Delegates)
 {
 #>
-	/// <summary>
-	/// -
-	/// </summary>
-	public delegate void <#=delegateType.Name#>();
+    /// <summary>
+<#
+	foreach(var line in delegateType.Comment)
+    {
+#>
+    /// <para>
+    /// <#=line#>
+    /// </para>
+<#
+	}
+#>
+    /// </summary>
+	public delegate <#=delegateType.ReturnTypeName#> <#=delegateType.Name#>(<# bool isFirst = true; foreach(var param in delegateType.Parameters) { if(isFirst) { isFirst = false; } else { #>, <#  } #><#=param.TypeName#> <#=param.Name#><# } #>);
 <#
 }
 #>

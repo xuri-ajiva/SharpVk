@@ -18,7 +18,7 @@ namespace SharpVk.VkXml
             {"DWORD", "uint"},
             {"uint64_t", "ulong"},
             {"int32_t", "int"},
-            {"size_t", "UIntPtr"},
+            {"size_t", "Size"},
             {"HINSTANCE", "IntPtr" },
             {"HWND", "IntPtr" },
             {"HANDLE", "IntPtr" },
@@ -77,10 +77,61 @@ namespace SharpVk.VkXml
         {
             foreach (var delegateType in typeData.Values.Where(x => x.Data.Category == TypeCategory.funcpointer))
             {
-                result.Delegates.Add(new TypeSet.VkDelegate
+                string returnType = typeData[delegateType.Data.Type].Name;
+
+                if (delegateType.Data.IsTypePointer)
                 {
-                    Name = delegateType.Name
-                });
+                    returnType = "IntPtr";
+                }
+
+                var newDelegate = new TypeSet.VkCommand
+                {
+                    Name = delegateType.Name,
+                    Comment = delegateType.Data.Comment ?? new List<string> { "-" },
+                    ReturnTypeName = returnType
+                };
+
+                foreach (var member in delegateType.Data.Members)
+                {
+                    var nameParts = member.NameParts.AsEnumerable();
+
+                    if (member.PointerType.IsPointer() && nameParts.First() == "p")
+                    {
+                        nameParts = nameParts.Skip(1);
+                    }
+
+                    string paramName = JoinNameParts(nameParts, true);
+
+                    if (keywords.Contains(paramName))
+                    {
+                        paramName = "@" + paramName;
+                    }
+
+                    var paramType = typeData[member.Type];
+
+                    string paramTypeName = paramType.Name;
+
+                    if (member.PointerType.IsPointer())
+                    {
+                        switch(paramTypeName)
+                        {
+                            case "void":
+                                paramTypeName = "IntPtr";
+                                break;
+                            case "char":
+                                paramTypeName = "string";
+                                break;
+                        }
+                    }
+
+                    newDelegate.Parameters.Add(new TypeSet.VkCommandParameter
+                    {
+                        Name = paramName,
+                        TypeName = paramTypeName
+                    });
+                }
+
+                result.Delegates.Add(newDelegate);
             }
         }
 
@@ -637,12 +688,12 @@ namespace SharpVk.VkXml
                     parameterIndex++;
                 }
 
-                //if (command.Type == "PFN_vkVoidFunction")
-                //{
-                //    newMethod.ReturnTypeName = "IntPtr";
-                //    newMethod.IsPassthroughResult = true;
-                //}
-                //else
+                if (command.Type.StartsWith("PFN"))
+                {
+                    newMethod.ReturnTypeName = typeData[command.Type].Name;
+                    newMethod.IsPassthroughResult = true;
+                }
+                else
                 if (command.Type == "VkBool32")
                 {
                     newMethod.ReturnTypeName = "bool";
@@ -1032,7 +1083,7 @@ namespace SharpVk.VkXml
                         newClass.MarshalToStatements.Add($"result.{memberName} = (uint)this.{memberName};");
                         newClass.MarshalFromStatements.Add($"result.{memberName} = value->{memberName};");
                     }
-                    else if(memberType.Data.Category == TypeCategory.funcpointer)
+                    else if (memberType.Data.Category == TypeCategory.funcpointer)
                     {
                         memberDesc.InteropTypeName = "IntPtr";
                         newClass.MarshalToStatements.Add($"result.{memberName} = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.{memberName});");

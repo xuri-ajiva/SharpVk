@@ -76,10 +76,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SharpVk.VkXml\SharpVk.VkXml.csproj">
-      <Project>{bba0786e-cb48-43a7-af46-6dd9e3482fd2}</Project>
-      <Name>SharpVk.VkXml</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SharpVk\SharpVk.csproj">
       <Project>{a0abab94-7022-4e2d-a13c-e7bad69dd9d3}</Project>
       <Name>SharpVk</Name>

@@ -42,11 +42,66 @@ namespace SharpVk
 			get;
 			set;
 		}
+	    /// <summary>
+		/// <para>
+		/// pname:pfnAllocation is a pointer to an application-defined memory allocation function of type tlink:PFN_vkAllocationFunction.
+		/// </para>
+		/// </summary>
+		public AllocationFunctionDelegate PfnAllocation
+		{
+			get;
+			set;
+		}
+	    /// <summary>
+		/// <para>
+		/// pname:pfnReallocation is a pointer to an application-defined memory reallocation function of type tlink:PFN_vkReallocationFunction.
+		/// </para>
+		/// </summary>
+		public ReallocationFunctionDelegate PfnReallocation
+		{
+			get;
+			set;
+		}
+	    /// <summary>
+		/// <para>
+		/// pname:pfnFree is a pointer to an application-defined memory free function of type tlink:PFN_vkFreeFunction.
+		/// </para>
+		/// </summary>
+		public FreeFunctionDelegate PfnFree
+		{
+			get;
+			set;
+		}
+	    /// <summary>
+		/// <para>
+		/// pname:pfnInternalAllocation is a pointer to an application-defined function that is called by the implementation when the implementation makes internal allocations, and it is of type tlink:PFN_vkInternalAllocationNotification.
+		/// </para>
+		/// </summary>
+		public InternalAllocationNotificationDelegate PfnInternalAllocation
+		{
+			get;
+			set;
+		}
+	    /// <summary>
+		/// <para>
+		/// pname:pfnInternalFree is a pointer to an application-defined function that is called by the implementation when the implementation frees internal allocations, and it is of type tlink:PFN_vkInternalFreeNotification.
+		/// </para>
+		/// </summary>
+		public InternalFreeNotificationDelegate PfnInternalFree
+		{
+			get;
+			set;
+		}
 
         internal unsafe Interop.AllocationCallbacks Pack()
         {
             var result = new Interop.AllocationCallbacks();
 			result.UserData = this.UserData.ToPointer();
+			result.PfnAllocation = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.PfnAllocation);
+			result.PfnReallocation = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.PfnReallocation);
+			result.PfnFree = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.PfnFree);
+			result.PfnInternalAllocation = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.PfnInternalAllocation);
+			result.PfnInternalFree = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.PfnInternalFree);
 
             return result;
         }
@@ -1147,7 +1202,7 @@ namespace SharpVk
             var result = new Interop.DebugMarkerObjectTagInfo();
 			result.SType = StructureType.DebugMarkerObjectTagInfo;
 			result.Tag = this.Tag == null ? null : Interop.HeapUtil.MarshalTo(this.Tag);
-			result.TagSize = (UIntPtr)(this.Tag?.Length ?? 0);
+			result.TagSize = (Size)(this.Tag?.Length ?? 0);
 			result.ObjectType = this.ObjectType;
 			result.Object = this.Object;
 			result.TagName = this.TagName;
@@ -1183,6 +1238,16 @@ namespace SharpVk
 		/// -
 		/// </para>
 		/// </summary>
+		public DebugReportCallbackDelegate PfnCallback
+		{
+			get;
+			set;
+		}
+	    /// <summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
 		public IntPtr UserData
 		{
 			get;
@@ -1193,6 +1258,7 @@ namespace SharpVk
         {
             var result = new Interop.DebugReportCallbackCreateInfo();
 			result.SType = StructureType.DebugReportCallbackCreateInfo;
+			result.PfnCallback = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.PfnCallback);
 			result.UserData = this.UserData.ToPointer();
 			result.Flags = this.Flags;
 
@@ -4257,7 +4323,7 @@ namespace SharpVk
 		/// [[features-limits-minMemoryMapAlignment]] pname:minMemoryMapAlignment is the minimum required alignment, in bytes, of host visible memory allocations within the host address space. When mapping a memory allocation with flink:vkMapMemory, subtracting pname:offset bytes from the returned pointer will always produce an integer multiple of this limit. See &lt;&lt;memory-device-hostaccess&gt;&gt;.
 		/// </para>
 		/// </summary>
-		public UIntPtr MinMemoryMapAlignment
+		public Size MinMemoryMapAlignment
 		{
 			get;
 			set;
@@ -4983,7 +5049,7 @@ namespace SharpVk
             var result = new Interop.PipelineCacheCreateInfo();
 			result.SType = StructureType.PipelineCacheCreateInfo;
 			result.InitialData = this.InitialData == null ? null : Interop.HeapUtil.MarshalTo(this.InitialData);
-			result.InitialDataSize = (UIntPtr)(this.InitialData?.Length ?? 0);
+			result.InitialDataSize = (Size)(this.InitialData?.Length ?? 0);
 			result.Flags = this.Flags;
 
             return result;
@@ -6612,7 +6678,7 @@ namespace SharpVk
 		/// pname:codeSize is the size, in bytes, of the code pointed to by pname:pCode.
 		/// </para>
 		/// </summary>
-		public UIntPtr CodeSize
+		public Size CodeSize
 		{
 			get;
 			set;
@@ -7032,7 +7098,7 @@ namespace SharpVk
 			}
 			result.Data = this.Data == null ? null : Interop.HeapUtil.MarshalTo(this.Data);
 			result.MapEntryCount = (uint)(this.MapEntries?.Length ?? 0);
-			result.DataSize = (UIntPtr)(this.Data?.Length ?? 0);
+			result.DataSize = (Size)(this.Data?.Length ?? 0);
 
             return result;
         }
