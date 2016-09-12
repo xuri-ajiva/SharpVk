@@ -461,7 +461,7 @@ namespace SharpVk.VkXml
 
             var vkDocsXmlCache = new DownloadedFileCache(this.tempFilePath, "https://raw.githubusercontent.com/FacticiusVir/SharpVk-Docs/master/Docs/vkDocs.xml");
 
-            var vkDocsXml = XDocument.Load(vkDocsXmlCache.GetFileLocation());
+            var vkDocsXml = XDocument.Load(vkDocsXmlCache.GetFileLocation().Result);
 
             foreach (var vkDocType in vkDocsXml.Element("docs").Element("types").Elements("type"))
             {
