@@ -48,7 +48,7 @@ namespace SharpVk.Shanq
             return device.CreateShaderModule(new ShaderModuleCreateInfo
             {
                 Code = shaderData,
-                CodeSize = (UIntPtr)shaderLength
+                CodeSize = shaderLength
             });
         }
 

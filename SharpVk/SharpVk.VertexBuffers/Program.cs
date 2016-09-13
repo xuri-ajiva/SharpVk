@@ -25,7 +25,6 @@ using SharpVk.Shanq;
 using SharpVk.Spirv;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -87,7 +86,7 @@ namespace SharpVk.VertexBuffers
             this.window = new Form
             {
                 Text = "Vulkan",
-                ClientSize = new Size(SurfaceWidth, SurfaceHeight)
+                ClientSize = new System.Drawing.Size(SurfaceWidth, SurfaceHeight)
             };
 
             this.window.ClientSizeChanged += (x, y) => this.RecreateSwapChain();
