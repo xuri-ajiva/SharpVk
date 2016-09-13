@@ -47,7 +47,7 @@ namespace SharpVk
 		/// pname:pfnAllocation is a pointer to an application-defined memory allocation function of type tlink:PFN_vkAllocationFunction.
 		/// </para>
 		/// </summary>
-		public AllocationFunctionDelegate PfnAllocation
+		public Interop.AllocationFunctionDelegate PfnAllocation
 		{
 			get;
 			set;
@@ -57,7 +57,7 @@ namespace SharpVk
 		/// pname:pfnReallocation is a pointer to an application-defined memory reallocation function of type tlink:PFN_vkReallocationFunction.
 		/// </para>
 		/// </summary>
-		public ReallocationFunctionDelegate PfnReallocation
+		public Interop.ReallocationFunctionDelegate PfnReallocation
 		{
 			get;
 			set;
@@ -67,7 +67,7 @@ namespace SharpVk
 		/// pname:pfnFree is a pointer to an application-defined memory free function of type tlink:PFN_vkFreeFunction.
 		/// </para>
 		/// </summary>
-		public FreeFunctionDelegate PfnFree
+		public Interop.FreeFunctionDelegate PfnFree
 		{
 			get;
 			set;
@@ -77,7 +77,7 @@ namespace SharpVk
 		/// pname:pfnInternalAllocation is a pointer to an application-defined function that is called by the implementation when the implementation makes internal allocations, and it is of type tlink:PFN_vkInternalAllocationNotification.
 		/// </para>
 		/// </summary>
-		public InternalAllocationNotificationDelegate PfnInternalAllocation
+		public Interop.InternalAllocationNotificationDelegate PfnInternalAllocation
 		{
 			get;
 			set;
@@ -87,7 +87,7 @@ namespace SharpVk
 		/// pname:pfnInternalFree is a pointer to an application-defined function that is called by the implementation when the implementation frees internal allocations, and it is of type tlink:PFN_vkInternalFreeNotification.
 		/// </para>
 		/// </summary>
-		public InternalFreeNotificationDelegate PfnInternalFree
+		public Interop.InternalFreeNotificationDelegate PfnInternalFree
 		{
 			get;
 			set;
@@ -1238,7 +1238,7 @@ namespace SharpVk
 		/// -
 		/// </para>
 		/// </summary>
-		public DebugReportCallbackDelegate PfnCallback
+		public Interop.DebugReportCallbackDelegate PfnCallback
 		{
 			get;
 			set;

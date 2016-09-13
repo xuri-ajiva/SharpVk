@@ -68,7 +68,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Delegates.cs">
+    <Compile Include="CommandCache.cs" />
+    <Compile Include="Interop\Delegates.cs">
       <DependentUpon>Delegates.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -128,7 +129,7 @@
     <Compile Include="Version.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Delegates.tt">
+    <Content Include="Interop\Delegates.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Delegates.cs</LastGenOutput>
     </Content>

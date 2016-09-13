@@ -1,6 +1,7 @@
 ﻿using Sprache;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -790,7 +791,7 @@ namespace SharpVk.VkXml
         private static ParsedSpec FilterRequiredElement(Dictionary<string, ParsedType> typeXml, Dictionary<string, ParsedEnum> enumXml, Dictionary<string, ParsedCommand> commandXml, XElement vkFeature, IEnumerable<XElement> extensions)
         {
             var requiredTypes = new List<string>();
-            var requiredCommand = new List<string>();
+            var requiredCommand = new Dictionary<string, string>();
             var requiredConstant = new List<string>();
 
             var constants = enumXml["API Constants"];
@@ -800,7 +801,7 @@ namespace SharpVk.VkXml
                 switch (requirement.Name.LocalName)
                 {
                     case "command":
-                        requiredCommand.Add(requirement.Attribute("name").Value);
+                        requiredCommand.Add(requirement.Attribute("name").Value, "");
                         break;
                     case "enum":
                         requiredConstant.Add(requirement.Attribute("name").Value);
@@ -819,6 +820,7 @@ namespace SharpVk.VkXml
             {
                 string extensionName = extension.Attribute("name").Value;
                 int extensionNumber = int.Parse(extension.Attribute("number").Value);
+                string extensionType = extension.Attribute("type")?.Value;
 
                 var extensionNameParts = GetEnumFieldNameParts(null, extensionName).ToArray();
 
@@ -827,7 +829,7 @@ namespace SharpVk.VkXml
                     switch (requirement.Name.LocalName)
                     {
                         case "command":
-                            requiredCommand.Add(requirement.Attribute("name").Value);
+                            requiredCommand.Add(requirement.Attribute("name").Value, extensionType ?? "instance");
                             break;
                         case "enum":
                             string vkName = requirement.Attribute("name").Value;
@@ -889,11 +891,13 @@ namespace SharpVk.VkXml
                 }
             }
 
-            foreach (var commandName in requiredCommand.Distinct())
+            foreach (var commandNameAndType in requiredCommand.Distinct())
             {
-                var command = commandXml[commandName];
+                var command = commandXml[commandNameAndType.Key];
 
-                result.Commands.Add(commandName, command);
+                command.ExtensionType = commandNameAndType.Value;
+
+                result.Commands.Add(commandNameAndType.Key, command);
 
                 requiredTypes.Add(command.Type);
 
@@ -1141,6 +1145,7 @@ namespace SharpVk.VkXml
             : ParsedElement
         {
             public string Verb;
+            public string ExtensionType;
             public readonly List<ParsedParam> Params = new List<ParsedParam>();
         }
 

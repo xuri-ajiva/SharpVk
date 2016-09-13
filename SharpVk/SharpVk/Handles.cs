@@ -37,6 +37,8 @@ namespace SharpVk
 	{
 		internal readonly Interop.Buffer handle;
 
+		internal readonly CommandCache commandCache;
+
 		private readonly Device parent;
 
 		internal AllocationCallbacks? Allocator
@@ -48,10 +50,11 @@ namespace SharpVk
 		}
 
 
-		internal Buffer(Interop.Buffer handle, Device parent)
+		internal Buffer(Interop.Buffer handle, Device parent, CommandCache commandCache)
 		{
 			this.handle = handle;
 			this.parent = parent;
+			this.commandCache = commandCache;
 		}
 
 		/// <summary>
@@ -63,6 +66,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Result commandResult;
 
 				Interop.DeviceMemory marshalledMemory = memory.Pack();
@@ -87,6 +91,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				MemoryRequirements result = default(MemoryRequirements);
 
 				Interop.Commands.vkGetBufferMemoryRequirements(this.parent.handle, this.handle, &result);
@@ -108,6 +113,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
 				Interop.Commands.vkDestroyBuffer(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
@@ -149,6 +155,8 @@ namespace SharpVk
 	{
 		internal readonly Interop.BufferView handle;
 
+		internal readonly CommandCache commandCache;
+
 		private readonly Device parent;
 
 		internal AllocationCallbacks? Allocator
@@ -160,10 +168,11 @@ namespace SharpVk
 		}
 
 
-		internal BufferView(Interop.BufferView handle, Device parent)
+		internal BufferView(Interop.BufferView handle, Device parent, CommandCache commandCache)
 		{
 			this.handle = handle;
 			this.parent = parent;
+			this.commandCache = commandCache;
 		}
 
 		/// <summary>
@@ -175,6 +184,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
 				Interop.Commands.vkDestroyBufferView(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
@@ -212,6 +222,8 @@ namespace SharpVk
 	{
 		internal readonly Interop.CommandBuffer handle;
 
+		internal readonly CommandCache commandCache;
+
 		private readonly CommandPool parent;
 
 		internal AllocationCallbacks? Allocator
@@ -223,10 +235,11 @@ namespace SharpVk
 		}
 
 
-		internal CommandBuffer(Interop.CommandBuffer handle, CommandPool parent)
+		internal CommandBuffer(Interop.CommandBuffer handle, CommandPool parent, CommandCache commandCache)
 		{
 			this.handle = handle;
 			this.parent = parent;
+			this.commandCache = commandCache;
 		}
 
 		/// <summary>
@@ -238,6 +251,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Result commandResult;
 
 				Interop.CommandBufferBeginInfo marshalledBeginInfo;
@@ -263,6 +277,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Result commandResult;
 
 				commandResult = Interop.Commands.vkEndCommandBuffer(this.handle);
@@ -286,6 +301,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Result commandResult;
 
 				commandResult = Interop.Commands.vkResetCommandBuffer(this.handle, flags);
@@ -309,6 +325,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.Pipeline marshalledPipeline = pipeline.Pack();
 				Interop.Commands.vkCmdBindPipeline(this.handle, pipelineBindPoint, marshalledPipeline);
 
@@ -327,6 +344,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				fixed(Viewport* marshalledViewports = viewports)
 				Interop.Commands.vkCmdSetViewport(this.handle, firstViewport, (uint)viewports.Length, marshalledViewports);
 
@@ -345,6 +363,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				fixed(Rect2D* marshalledScissors = scissors)
 				Interop.Commands.vkCmdSetScissor(this.handle, firstScissor, (uint)scissors.Length, marshalledScissors);
 
@@ -363,6 +382,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.Commands.vkCmdSetLineWidth(this.handle, lineWidth);
 
 
@@ -380,6 +400,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.Commands.vkCmdSetDepthBias(this.handle, depthBiasConstantFactor, depthBiasClamp, depthBiasSlopeFactor);
 
 
@@ -397,6 +418,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.Commands.vkCmdSetBlendConstants(this.handle, blendConstants);
 
 
@@ -414,6 +436,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.Commands.vkCmdSetDepthBounds(this.handle, minDepthBounds, maxDepthBounds);
 
 
@@ -431,6 +454,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.Commands.vkCmdSetStencilCompareMask(this.handle, faceMask, compareMask);
 
 
@@ -448,6 +472,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.Commands.vkCmdSetStencilWriteMask(this.handle, faceMask, writeMask);
 
 
@@ -465,6 +490,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.Commands.vkCmdSetStencilReference(this.handle, faceMask, reference);
 
 
@@ -482,6 +508,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.PipelineLayout marshalledLayout = layout.Pack();
 				Interop.DescriptorSet* marshalledDescriptorSets;
 				if (descriptorSets != null)
@@ -515,6 +542,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.Buffer marshalledBuffer = buffer.Pack();
 				Interop.Commands.vkCmdBindIndexBuffer(this.handle, marshalledBuffer, offset, indexType);
 
@@ -533,6 +561,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.Buffer* marshalledBuffers;
 				if (buffers != null)
 				{
@@ -565,6 +594,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.Commands.vkCmdDraw(this.handle, vertexCount, instanceCount, firstVertex, firstInstance);
 
 
@@ -582,6 +612,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.Commands.vkCmdDrawIndexed(this.handle, indexCount, instanceCount, firstIndex, vertexOffset, firstInstance);
 
 
@@ -599,6 +630,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.Buffer marshalledBuffer = buffer.Pack();
 				Interop.Commands.vkCmdDrawIndirect(this.handle, marshalledBuffer, offset, drawCount, stride);
 
@@ -617,6 +649,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.Buffer marshalledBuffer = buffer.Pack();
 				Interop.Commands.vkCmdDrawIndexedIndirect(this.handle, marshalledBuffer, offset, drawCount, stride);
 
@@ -635,6 +668,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.Commands.vkCmdDispatch(this.handle, x, y, z);
 
 
@@ -652,6 +686,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.Buffer marshalledBuffer = buffer.Pack();
 				Interop.Commands.vkCmdDispatchIndirect(this.handle, marshalledBuffer, offset);
 
@@ -670,6 +705,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.Buffer marshalledSourceBuffer = sourceBuffer.Pack();
 				Interop.Buffer marshalledDestinationBuffer = destinationBuffer.Pack();
 				fixed(BufferCopy* marshalledRegions = regions)
@@ -690,6 +726,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.Image marshalledSourceImage = sourceImage.Pack();
 				Interop.Image marshalledDestinationImage = destinationImage.Pack();
 				fixed(ImageCopy* marshalledRegions = regions)
@@ -710,6 +747,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.Image marshalledSourceImage = sourceImage.Pack();
 				Interop.Image marshalledDestinationImage = destinationImage.Pack();
 				Interop.ImageBlit* marshalledRegions;
@@ -743,6 +781,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.Buffer marshalledSourceBuffer = sourceBuffer.Pack();
 				Interop.Image marshalledDestinationImage = destinationImage.Pack();
 				fixed(BufferImageCopy* marshalledRegions = regions)
@@ -763,6 +802,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.Image marshalledSourceImage = sourceImage.Pack();
 				Interop.Buffer marshalledDestinationBuffer = destinationBuffer.Pack();
 				fixed(BufferImageCopy* marshalledRegions = regions)
@@ -783,6 +823,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.Buffer marshalledDestinationBuffer = destinationBuffer.Pack();
 				fixed(byte* marshalledData = data)
 				Interop.Commands.vkCmdUpdateBuffer(this.handle, marshalledDestinationBuffer, destinationOffset, (DeviceSize)data.Length, marshalledData);
@@ -802,6 +843,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.Buffer marshalledDestinationBuffer = destinationBuffer.Pack();
 				Interop.Commands.vkCmdFillBuffer(this.handle, marshalledDestinationBuffer, destinationOffset, size, data);
 
@@ -820,6 +862,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.Image marshalledImage = image.Pack();
 				fixed(ImageSubresourceRange* marshalledRanges = ranges)
 				Interop.Commands.vkCmdClearColorImage(this.handle, marshalledImage, imageLayout, &color, (uint)ranges.Length, marshalledRanges);
@@ -839,6 +882,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.Image marshalledImage = image.Pack();
 				fixed(ImageSubresourceRange* marshalledRanges = ranges)
 				Interop.Commands.vkCmdClearDepthStencilImage(this.handle, marshalledImage, imageLayout, &depthStencil, (uint)ranges.Length, marshalledRanges);
@@ -858,6 +902,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				fixed(ClearAttachment* marshalledAttachments = attachments)
 				fixed(ClearRect* marshalledRects = rects)
 				Interop.Commands.vkCmdClearAttachments(this.handle, (uint)attachments.Length, marshalledAttachments, (uint)rects.Length, marshalledRects);
@@ -877,6 +922,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.Image marshalledSourceImage = sourceImage.Pack();
 				Interop.Image marshalledDestinationImage = destinationImage.Pack();
 				fixed(ImageResolve* marshalledRegions = regions)
@@ -897,6 +943,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.Event marshalledEvent = @event.Pack();
 				Interop.Commands.vkCmdSetEvent(this.handle, marshalledEvent, stageMask);
 
@@ -915,6 +962,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.Event marshalledEvent = @event.Pack();
 				Interop.Commands.vkCmdResetEvent(this.handle, marshalledEvent, stageMask);
 
@@ -933,6 +981,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.Event* marshalledEvents;
 				if (events != null)
 				{
@@ -1006,6 +1055,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.MemoryBarrier* marshalledMemoryBarriers;
 				if (memoryBarriers != null)
 				{
@@ -1065,6 +1115,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.QueryPool marshalledQueryPool = queryPool.Pack();
 				Interop.Commands.vkCmdBeginQuery(this.handle, marshalledQueryPool, query, flags);
 
@@ -1083,6 +1134,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.QueryPool marshalledQueryPool = queryPool.Pack();
 				Interop.Commands.vkCmdEndQuery(this.handle, marshalledQueryPool, query);
 
@@ -1101,6 +1153,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.QueryPool marshalledQueryPool = queryPool.Pack();
 				Interop.Commands.vkCmdResetQueryPool(this.handle, marshalledQueryPool, firstQuery, queryCount);
 
@@ -1119,6 +1172,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.QueryPool marshalledQueryPool = queryPool.Pack();
 				Interop.Commands.vkCmdWriteTimestamp(this.handle, pipelineStage, marshalledQueryPool, query);
 
@@ -1137,6 +1191,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.QueryPool marshalledQueryPool = queryPool.Pack();
 				Interop.Buffer marshalledDestinationBuffer = destinationBuffer.Pack();
 				Interop.Commands.vkCmdCopyQueryPoolResults(this.handle, marshalledQueryPool, firstQuery, queryCount, marshalledDestinationBuffer, destinationOffset, stride, flags);
@@ -1156,6 +1211,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.PipelineLayout marshalledLayout = layout.Pack();
 				fixed(byte* marshalledValues = values)
 				Interop.Commands.vkCmdPushConstants(this.handle, marshalledLayout, stageFlags, offset, (uint)values.Length, marshalledValues);
@@ -1175,6 +1231,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.RenderPassBeginInfo marshalledRenderPassBegin;
 				marshalledRenderPassBegin = renderPassBegin.Pack();
 				Interop.Commands.vkCmdBeginRenderPass(this.handle, &marshalledRenderPassBegin, contents);
@@ -1194,6 +1251,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.Commands.vkCmdNextSubpass(this.handle, contents);
 
 
@@ -1211,6 +1269,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.Commands.vkCmdEndRenderPass(this.handle);
 
 
@@ -1228,6 +1287,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.CommandBuffer* marshalledCommandBuffers;
 				if (commandBuffers != null)
 				{
@@ -1259,9 +1319,11 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkCmdDebugMarkerBeginEXT>("vkCmdDebugMarkerBeginEXT", "device");
+
 				Interop.DebugMarkerMarkerInfo marshalledMarkerInfo;
 				marshalledMarkerInfo = markerInfo.Pack();
-				Interop.Commands.vkCmdDebugMarkerBeginEXT(this.handle, &marshalledMarkerInfo);
+				commandDelegate(this.handle, &marshalledMarkerInfo);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -1278,7 +1340,9 @@ namespace SharpVk
 		{
 			unsafe
 			{
-				Interop.Commands.vkCmdDebugMarkerEndEXT(this.handle);
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkCmdDebugMarkerEndEXT>("vkCmdDebugMarkerEndEXT", "device");
+
+				commandDelegate(this.handle);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -1295,9 +1359,11 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkCmdDebugMarkerInsertEXT>("vkCmdDebugMarkerInsertEXT", "device");
+
 				Interop.DebugMarkerMarkerInfo marshalledMarkerInfo;
 				marshalledMarkerInfo = markerInfo.Pack();
-				Interop.Commands.vkCmdDebugMarkerInsertEXT(this.handle, &marshalledMarkerInfo);
+				commandDelegate(this.handle, &marshalledMarkerInfo);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -1314,9 +1380,11 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkCmdDrawIndirectCountAMD>("vkCmdDrawIndirectCountAMD", "device");
+
 				Interop.Buffer marshalledBuffer = buffer.Pack();
 				Interop.Buffer marshalledCountBuffer = countBuffer.Pack();
-				Interop.Commands.vkCmdDrawIndirectCountAMD(this.handle, marshalledBuffer, offset, marshalledCountBuffer, countBufferOffset, maxDrawCount, stride);
+				commandDelegate(this.handle, marshalledBuffer, offset, marshalledCountBuffer, countBufferOffset, maxDrawCount, stride);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -1333,9 +1401,11 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkCmdDrawIndexedIndirectCountAMD>("vkCmdDrawIndexedIndirectCountAMD", "device");
+
 				Interop.Buffer marshalledBuffer = buffer.Pack();
 				Interop.Buffer marshalledCountBuffer = countBuffer.Pack();
-				Interop.Commands.vkCmdDrawIndexedIndirectCountAMD(this.handle, marshalledBuffer, offset, marshalledCountBuffer, countBufferOffset, maxDrawCount, stride);
+				commandDelegate(this.handle, marshalledBuffer, offset, marshalledCountBuffer, countBufferOffset, maxDrawCount, stride);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -1362,6 +1432,8 @@ namespace SharpVk
 	{
 		internal readonly Interop.CommandPool handle;
 
+		internal readonly CommandCache commandCache;
+
 		private readonly Device parent;
 
 		internal AllocationCallbacks? Allocator
@@ -1373,10 +1445,11 @@ namespace SharpVk
 		}
 
 
-		internal CommandPool(Interop.CommandPool handle, Device parent)
+		internal CommandPool(Interop.CommandPool handle, Device parent, CommandCache commandCache)
 		{
 			this.handle = handle;
 			this.parent = parent;
+			this.commandCache = commandCache;
 		}
 
 		/// <summary>
@@ -1388,6 +1461,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
 				Interop.Commands.vkDestroyCommandPool(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
@@ -1407,6 +1481,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Result commandResult;
 
 				commandResult = Interop.Commands.vkResetCommandPool(this.parent.handle, this.handle, flags);
@@ -1430,6 +1505,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.CommandBuffer* marshalledCommandBuffers;
 				if (commandBuffers != null)
 				{
@@ -1477,6 +1553,8 @@ namespace SharpVk
 	{
 		internal readonly Interop.DebugReportCallback handle;
 
+		internal readonly CommandCache commandCache;
+
 		private readonly Instance parent;
 
 		internal AllocationCallbacks? Allocator
@@ -1488,10 +1566,11 @@ namespace SharpVk
 		}
 
 
-		internal DebugReportCallback(Interop.DebugReportCallback handle, Instance parent)
+		internal DebugReportCallback(Interop.DebugReportCallback handle, Instance parent, CommandCache commandCache)
 		{
 			this.handle = handle;
 			this.parent = parent;
+			this.commandCache = commandCache;
 		}
 
 		/// <summary>
@@ -1503,9 +1582,11 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkDestroyDebugReportCallbackEXT>("vkDestroyDebugReportCallbackEXT", "instance");
+
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
-				Interop.Commands.vkDestroyDebugReportCallbackEXT(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
+				commandDelegate(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -1541,6 +1622,8 @@ namespace SharpVk
 	{
 		internal readonly Interop.DescriptorPool handle;
 
+		internal readonly CommandCache commandCache;
+
 		private readonly Device parent;
 
 		internal AllocationCallbacks? Allocator
@@ -1552,10 +1635,11 @@ namespace SharpVk
 		}
 
 
-		internal DescriptorPool(Interop.DescriptorPool handle, Device parent)
+		internal DescriptorPool(Interop.DescriptorPool handle, Device parent, CommandCache commandCache)
 		{
 			this.handle = handle;
 			this.parent = parent;
+			this.commandCache = commandCache;
 		}
 
 		/// <summary>
@@ -1567,6 +1651,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
 				Interop.Commands.vkDestroyDescriptorPool(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
@@ -1586,6 +1671,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Result commandResult;
 
 				commandResult = Interop.Commands.vkResetDescriptorPool(this.parent.handle, this.handle, flags);
@@ -1609,6 +1695,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Result commandResult;
 
 				Interop.DescriptorSet* marshalledDescriptorSets;
@@ -1661,6 +1748,8 @@ namespace SharpVk
 	{
 		internal readonly Interop.DescriptorSet handle;
 
+		internal readonly CommandCache commandCache;
+
 		private readonly DescriptorPool parent;
 
 		internal AllocationCallbacks? Allocator
@@ -1672,10 +1761,11 @@ namespace SharpVk
 		}
 
 
-		internal DescriptorSet(Interop.DescriptorSet handle, DescriptorPool parent)
+		internal DescriptorSet(Interop.DescriptorSet handle, DescriptorPool parent, CommandCache commandCache)
 		{
 			this.handle = handle;
 			this.parent = parent;
+			this.commandCache = commandCache;
 		}
 
 		internal Interop.DescriptorSet Pack()
@@ -1697,6 +1787,8 @@ namespace SharpVk
 	{
 		internal readonly Interop.DescriptorSetLayout handle;
 
+		internal readonly CommandCache commandCache;
+
 		private readonly Device parent;
 
 		internal AllocationCallbacks? Allocator
@@ -1708,10 +1800,11 @@ namespace SharpVk
 		}
 
 
-		internal DescriptorSetLayout(Interop.DescriptorSetLayout handle, Device parent)
+		internal DescriptorSetLayout(Interop.DescriptorSetLayout handle, Device parent, CommandCache commandCache)
 		{
 			this.handle = handle;
 			this.parent = parent;
+			this.commandCache = commandCache;
 		}
 
 		/// <summary>
@@ -1723,6 +1816,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
 				Interop.Commands.vkDestroyDescriptorSetLayout(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
@@ -1754,9 +1848,11 @@ namespace SharpVk
 	/// </para>
     /// </summary>
 	public class Device
-		: IDisposable
+		: IDisposable, IProcLookup
 	{
 		internal readonly Interop.Device handle;
+
+		internal readonly CommandCache commandCache;
 
 		private readonly PhysicalDevice parent;
 
@@ -1773,6 +1869,7 @@ namespace SharpVk
 		{
 			this.handle = handle;
 			this.parent = parent;
+			this.commandCache = new CommandCache(this, "device", parent.commandCache);
 		}
 
 		/// <summary>
@@ -1780,11 +1877,12 @@ namespace SharpVk
 		/// Return a function pointer for a command.
 		/// </para>
 		/// </summary>
-		public VoidFunctionDelegate GetProcAddr(string name)
+		public IntPtr GetProcAddr(string name)
 		{
 			unsafe
 			{
-				VoidFunctionDelegate result = default(VoidFunctionDelegate);
+
+				IntPtr result = default(IntPtr);
 
 				char* marshalledName = Interop.HeapUtil.MarshalTo(name);
 				result = Interop.Commands.vkGetDeviceProcAddr(this.handle, marshalledName);
@@ -1806,6 +1904,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
 				Interop.Commands.vkDestroyDevice(this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
@@ -1825,12 +1924,13 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Queue result = default(Queue);
 
 				Interop.Queue marshalledQueue;
 				Interop.Commands.vkGetDeviceQueue(this.handle, queueFamilyIndex, queueIndex, &marshalledQueue);
 
-				result = new Queue(marshalledQueue, this);
+				result = new Queue(marshalledQueue, this, this.commandCache);
 
 				Interop.HeapUtil.FreeLog();
 
@@ -1848,6 +1948,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Result commandResult;
 
 				commandResult = Interop.Commands.vkDeviceWaitIdle(this.handle);
@@ -1871,6 +1972,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				DeviceMemory result = default(DeviceMemory);
 
 				Result commandResult;
@@ -1886,7 +1988,7 @@ namespace SharpVk
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				result = new DeviceMemory(marshalledMemory, this);
+				result = new DeviceMemory(marshalledMemory, this, this.commandCache);
 
 				Interop.HeapUtil.FreeLog();
 
@@ -1904,6 +2006,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.DeviceMemory marshalledMemory = memory?.Pack() ?? Interop.DeviceMemory.Null;
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
@@ -1924,6 +2027,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Result commandResult;
 
 				Interop.MappedMemoryRange* marshalledMemoryRanges;
@@ -1961,6 +2065,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Result commandResult;
 
 				Interop.MappedMemoryRange* marshalledMemoryRanges;
@@ -1998,6 +2103,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Fence result = default(Fence);
 
 				Result commandResult;
@@ -2013,7 +2119,7 @@ namespace SharpVk
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				result = new Fence(marshalledFence, this);
+				result = new Fence(marshalledFence, this, this.commandCache);
 
 				Interop.HeapUtil.FreeLog();
 
@@ -2031,6 +2137,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Result commandResult;
 
 				Interop.Fence* marshalledFences;
@@ -2068,6 +2175,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Result commandResult;
 
 				Interop.Fence* marshalledFences;
@@ -2105,6 +2213,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Semaphore result = default(Semaphore);
 
 				Result commandResult;
@@ -2120,7 +2229,7 @@ namespace SharpVk
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				result = new Semaphore(marshalledSemaphore, this);
+				result = new Semaphore(marshalledSemaphore, this, this.commandCache);
 
 				Interop.HeapUtil.FreeLog();
 
@@ -2138,6 +2247,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Event result = default(Event);
 
 				Result commandResult;
@@ -2153,7 +2263,7 @@ namespace SharpVk
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				result = new Event(marshalledEvent, this);
+				result = new Event(marshalledEvent, this, this.commandCache);
 
 				Interop.HeapUtil.FreeLog();
 
@@ -2171,6 +2281,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				QueryPool result = default(QueryPool);
 
 				Result commandResult;
@@ -2186,7 +2297,7 @@ namespace SharpVk
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				result = new QueryPool(marshalledQueryPool, this);
+				result = new QueryPool(marshalledQueryPool, this, this.commandCache);
 
 				Interop.HeapUtil.FreeLog();
 
@@ -2204,6 +2315,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Buffer result = default(Buffer);
 
 				Result commandResult;
@@ -2219,7 +2331,7 @@ namespace SharpVk
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				result = new Buffer(marshalledBuffer, this);
+				result = new Buffer(marshalledBuffer, this, this.commandCache);
 
 				Interop.HeapUtil.FreeLog();
 
@@ -2237,6 +2349,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				BufferView result = default(BufferView);
 
 				Result commandResult;
@@ -2252,7 +2365,7 @@ namespace SharpVk
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				result = new BufferView(marshalledView, this);
+				result = new BufferView(marshalledView, this, this.commandCache);
 
 				Interop.HeapUtil.FreeLog();
 
@@ -2270,6 +2383,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Image result = default(Image);
 
 				Result commandResult;
@@ -2285,7 +2399,7 @@ namespace SharpVk
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				result = new Image(marshalledImage, this);
+				result = new Image(marshalledImage, this, this.commandCache);
 
 				Interop.HeapUtil.FreeLog();
 
@@ -2303,6 +2417,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				ImageView result = default(ImageView);
 
 				Result commandResult;
@@ -2318,7 +2433,7 @@ namespace SharpVk
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				result = new ImageView(marshalledView, this);
+				result = new ImageView(marshalledView, this, this.commandCache);
 
 				Interop.HeapUtil.FreeLog();
 
@@ -2336,6 +2451,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				ShaderModule result = default(ShaderModule);
 
 				Result commandResult;
@@ -2351,7 +2467,7 @@ namespace SharpVk
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				result = new ShaderModule(marshalledShaderModule, this);
+				result = new ShaderModule(marshalledShaderModule, this, this.commandCache);
 
 				Interop.HeapUtil.FreeLog();
 
@@ -2369,6 +2485,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				PipelineCache result = default(PipelineCache);
 
 				Result commandResult;
@@ -2384,7 +2501,7 @@ namespace SharpVk
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				result = new PipelineCache(marshalledPipelineCache, this);
+				result = new PipelineCache(marshalledPipelineCache, this, this.commandCache);
 
 				Interop.HeapUtil.FreeLog();
 
@@ -2402,6 +2519,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Pipeline[] result = default(Pipeline[]);
 
 				Result commandResult;
@@ -2433,7 +2551,7 @@ namespace SharpVk
 				result = new Pipeline[(uint)createInfos.Length];
 				for(int index = 0; index < (uint)createInfos.Length; index++)
 				{
-					result[index] = new Pipeline(marshalledPipelines[index], this);
+					result[index] = new Pipeline(marshalledPipelines[index], this, this.commandCache);
 				}
 
 				Interop.HeapUtil.FreeLog();
@@ -2452,6 +2570,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Pipeline[] result = default(Pipeline[]);
 
 				Result commandResult;
@@ -2483,7 +2602,7 @@ namespace SharpVk
 				result = new Pipeline[(uint)createInfos.Length];
 				for(int index = 0; index < (uint)createInfos.Length; index++)
 				{
-					result[index] = new Pipeline(marshalledPipelines[index], this);
+					result[index] = new Pipeline(marshalledPipelines[index], this, this.commandCache);
 				}
 
 				Interop.HeapUtil.FreeLog();
@@ -2502,6 +2621,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				PipelineLayout result = default(PipelineLayout);
 
 				Result commandResult;
@@ -2517,7 +2637,7 @@ namespace SharpVk
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				result = new PipelineLayout(marshalledPipelineLayout, this);
+				result = new PipelineLayout(marshalledPipelineLayout, this, this.commandCache);
 
 				Interop.HeapUtil.FreeLog();
 
@@ -2535,6 +2655,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Sampler result = default(Sampler);
 
 				Result commandResult;
@@ -2550,7 +2671,7 @@ namespace SharpVk
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				result = new Sampler(marshalledSampler, this);
+				result = new Sampler(marshalledSampler, this, this.commandCache);
 
 				Interop.HeapUtil.FreeLog();
 
@@ -2568,6 +2689,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				DescriptorSetLayout result = default(DescriptorSetLayout);
 
 				Result commandResult;
@@ -2583,7 +2705,7 @@ namespace SharpVk
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				result = new DescriptorSetLayout(marshalledSetLayout, this);
+				result = new DescriptorSetLayout(marshalledSetLayout, this, this.commandCache);
 
 				Interop.HeapUtil.FreeLog();
 
@@ -2601,6 +2723,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				DescriptorPool result = default(DescriptorPool);
 
 				Result commandResult;
@@ -2616,7 +2739,7 @@ namespace SharpVk
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				result = new DescriptorPool(marshalledDescriptorPool, this);
+				result = new DescriptorPool(marshalledDescriptorPool, this, this.commandCache);
 
 				Interop.HeapUtil.FreeLog();
 
@@ -2634,6 +2757,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				DescriptorSet[] result = default(DescriptorSet[]);
 
 				Result commandResult;
@@ -2650,7 +2774,7 @@ namespace SharpVk
 				result = new DescriptorSet[(uint)allocateInfo.SetLayouts.Length];
 				for(int index = 0; index < (uint)allocateInfo.SetLayouts.Length; index++)
 				{
-					result[index] = new DescriptorSet(marshalledDescriptorSets[index], allocateInfo.DescriptorPool);
+					result[index] = new DescriptorSet(marshalledDescriptorSets[index], allocateInfo.DescriptorPool, this.commandCache);
 				}
 
 				Interop.HeapUtil.FreeLog();
@@ -2669,6 +2793,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.WriteDescriptorSet* marshalledDescriptorWrites;
 				if (descriptorWrites != null)
 				{
@@ -2714,6 +2839,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Framebuffer result = default(Framebuffer);
 
 				Result commandResult;
@@ -2729,7 +2855,7 @@ namespace SharpVk
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				result = new Framebuffer(marshalledFramebuffer, this);
+				result = new Framebuffer(marshalledFramebuffer, this, this.commandCache);
 
 				Interop.HeapUtil.FreeLog();
 
@@ -2747,6 +2873,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				RenderPass result = default(RenderPass);
 
 				Result commandResult;
@@ -2762,7 +2889,7 @@ namespace SharpVk
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				result = new RenderPass(marshalledRenderPass, this);
+				result = new RenderPass(marshalledRenderPass, this, this.commandCache);
 
 				Interop.HeapUtil.FreeLog();
 
@@ -2780,6 +2907,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				CommandPool result = default(CommandPool);
 
 				Result commandResult;
@@ -2795,7 +2923,7 @@ namespace SharpVk
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				result = new CommandPool(marshalledCommandPool, this);
+				result = new CommandPool(marshalledCommandPool, this, this.commandCache);
 
 				Interop.HeapUtil.FreeLog();
 
@@ -2813,6 +2941,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				CommandBuffer[] result = default(CommandBuffer[]);
 
 				Result commandResult;
@@ -2829,7 +2958,7 @@ namespace SharpVk
 				result = new CommandBuffer[(uint)allocateInfo.CommandBufferCount];
 				for(int index = 0; index < (uint)allocateInfo.CommandBufferCount; index++)
 				{
-					result[index] = new CommandBuffer(marshalledCommandBuffers[index], allocateInfo.CommandPool);
+					result[index] = new CommandBuffer(marshalledCommandBuffers[index], allocateInfo.CommandPool, this.commandCache);
 				}
 
 				Interop.HeapUtil.FreeLog();
@@ -2848,6 +2977,8 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkCreateSwapchainKHR>("vkCreateSwapchainKHR", "device");
+
 				Swapchain result = default(Swapchain);
 
 				Result commandResult;
@@ -2857,13 +2988,13 @@ namespace SharpVk
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
 				Interop.Swapchain marshalledSwapchain;
-				commandResult = Interop.Commands.vkCreateSwapchainKHR(this.handle, &marshalledCreateInfo, this.parent.Allocator == null ? null : &marshalledAllocator, &marshalledSwapchain);
+				commandResult = commandDelegate(this.handle, &marshalledCreateInfo, this.parent.Allocator == null ? null : &marshalledAllocator, &marshalledSwapchain);
 
 				if (SharpVkException.IsError(commandResult))
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				result = new Swapchain(marshalledSwapchain, createInfo.Surface, this);
+				result = new Swapchain(marshalledSwapchain, createInfo.Surface, this, this.commandCache);
 
 				Interop.HeapUtil.FreeLog();
 
@@ -2881,6 +3012,8 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkCreateSharedSwapchainsKHR>("vkCreateSharedSwapchainsKHR", "device");
+
 				Swapchain[] result = default(Swapchain[]);
 
 				Result commandResult;
@@ -2902,7 +3035,7 @@ namespace SharpVk
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
 				Interop.Swapchain* marshalledSwapchains = (Interop.Swapchain*)Interop.HeapUtil.Allocate<Interop.Swapchain>(createInfos.Length);
-				commandResult = Interop.Commands.vkCreateSharedSwapchainsKHR(this.handle, (uint)createInfos.Length, marshalledCreateInfos, this.parent.Allocator == null ? null : &marshalledAllocator, marshalledSwapchains);
+				commandResult = commandDelegate(this.handle, (uint)createInfos.Length, marshalledCreateInfos, this.parent.Allocator == null ? null : &marshalledAllocator, marshalledSwapchains);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -2911,7 +3044,7 @@ namespace SharpVk
 				result = new Swapchain[(uint)createInfos.Length];
 				for(int index = 0; index < (uint)createInfos.Length; index++)
 				{
-					result[index] = new Swapchain(marshalledSwapchains[index], createInfos[index].Surface, this);
+					result[index] = new Swapchain(marshalledSwapchains[index], createInfos[index].Surface, this, this.commandCache);
 				}
 
 				Interop.HeapUtil.FreeLog();
@@ -2930,11 +3063,13 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkDebugMarkerSetObjectTagEXT>("vkDebugMarkerSetObjectTagEXT", "device");
+
 				Result commandResult;
 
 				Interop.DebugMarkerObjectTagInfo marshalledTagInfo;
 				marshalledTagInfo = tagInfo.Pack();
-				commandResult = Interop.Commands.vkDebugMarkerSetObjectTagEXT(this.handle, &marshalledTagInfo);
+				commandResult = commandDelegate(this.handle, &marshalledTagInfo);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -2955,11 +3090,13 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkDebugMarkerSetObjectNameEXT>("vkDebugMarkerSetObjectNameEXT", "device");
+
 				Result commandResult;
 
 				Interop.DebugMarkerObjectNameInfo marshalledNameInfo;
 				marshalledNameInfo = nameInfo.Pack();
-				commandResult = Interop.Commands.vkDebugMarkerSetObjectNameEXT(this.handle, &marshalledNameInfo);
+				commandResult = commandDelegate(this.handle, &marshalledNameInfo);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -2998,6 +3135,8 @@ namespace SharpVk
 	{
 		internal readonly Interop.DeviceMemory handle;
 
+		internal readonly CommandCache commandCache;
+
 		private readonly Device parent;
 
 		internal AllocationCallbacks? Allocator
@@ -3009,10 +3148,11 @@ namespace SharpVk
 		}
 
 
-		internal DeviceMemory(Interop.DeviceMemory handle, Device parent)
+		internal DeviceMemory(Interop.DeviceMemory handle, Device parent, CommandCache commandCache)
 		{
 			this.handle = handle;
 			this.parent = parent;
+			this.commandCache = commandCache;
 		}
 
 		/// <summary>
@@ -3024,6 +3164,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Result commandResult;
 
 				void* marshalledPpData;
@@ -3049,6 +3190,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.Commands.vkUnmapMemory(this.parent.handle, this.handle);
 
 
@@ -3066,6 +3208,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				DeviceSize result = default(DeviceSize);
 
 				Interop.Commands.vkGetDeviceMemoryCommitment(this.parent.handle, this.handle, &result);
@@ -3087,11 +3230,13 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetMemoryWin32HandleNV>("vkGetMemoryWin32HandleNV", "device");
+
 				IntPtr result = default(IntPtr);
 
 				Result commandResult;
 
-				commandResult = Interop.Commands.vkGetMemoryWin32HandleNV(this.parent.handle, this.handle, handleType, &result);
+				commandResult = commandDelegate(this.parent.handle, this.handle, handleType, &result);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -3120,6 +3265,8 @@ namespace SharpVk
 	{
 		internal readonly Interop.Display handle;
 
+		internal readonly CommandCache commandCache;
+
 		private AllocationCallbacks? allocator;
 
 		internal AllocationCallbacks? Allocator
@@ -3130,11 +3277,11 @@ namespace SharpVk
 			}
 		}
 
-		internal Display(Interop.Display handle, AllocationCallbacks? allocator)
+		internal Display(Interop.Display handle, AllocationCallbacks? allocator, CommandCache commandCache)
 		{
 			this.handle = handle;
-
 			this.allocator = allocator;
+			this.commandCache = commandCache;
 		}
 
 		internal Interop.Display Pack()
@@ -3152,6 +3299,8 @@ namespace SharpVk
 	{
 		internal readonly Interop.DisplayMode handle;
 
+		internal readonly CommandCache commandCache;
+
 		private readonly PhysicalDevice parent;
 
 		internal AllocationCallbacks? Allocator
@@ -3163,10 +3312,11 @@ namespace SharpVk
 		}
 
 
-		internal DisplayMode(Interop.DisplayMode handle, PhysicalDevice parent)
+		internal DisplayMode(Interop.DisplayMode handle, PhysicalDevice parent, CommandCache commandCache)
 		{
 			this.handle = handle;
 			this.parent = parent;
+			this.commandCache = commandCache;
 		}
 
 		/// <summary>
@@ -3178,11 +3328,13 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetDisplayPlaneCapabilitiesKHR>("vkGetDisplayPlaneCapabilitiesKHR", "instance");
+
 				DisplayPlaneCapabilities result = default(DisplayPlaneCapabilities);
 
 				Result commandResult;
 
-				commandResult = Interop.Commands.vkGetDisplayPlaneCapabilitiesKHR(this.parent.handle, this.handle, planeIndex, &result);
+				commandResult = commandDelegate(this.parent.handle, this.handle, planeIndex, &result);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -3215,6 +3367,8 @@ namespace SharpVk
 	{
 		internal readonly Interop.Event handle;
 
+		internal readonly CommandCache commandCache;
+
 		private readonly Device parent;
 
 		internal AllocationCallbacks? Allocator
@@ -3226,10 +3380,11 @@ namespace SharpVk
 		}
 
 
-		internal Event(Interop.Event handle, Device parent)
+		internal Event(Interop.Event handle, Device parent, CommandCache commandCache)
 		{
 			this.handle = handle;
 			this.parent = parent;
+			this.commandCache = commandCache;
 		}
 
 		/// <summary>
@@ -3241,6 +3396,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
 				Interop.Commands.vkDestroyEvent(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
@@ -3260,6 +3416,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Result commandResult;
 
 				commandResult = Interop.Commands.vkGetEventStatus(this.parent.handle, this.handle);
@@ -3283,6 +3440,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Result commandResult;
 
 				commandResult = Interop.Commands.vkSetEvent(this.parent.handle, this.handle);
@@ -3306,6 +3464,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Result commandResult;
 
 				commandResult = Interop.Commands.vkResetEvent(this.parent.handle, this.handle);
@@ -3351,6 +3510,8 @@ namespace SharpVk
 	{
 		internal readonly Interop.Fence handle;
 
+		internal readonly CommandCache commandCache;
+
 		private readonly Device parent;
 
 		internal AllocationCallbacks? Allocator
@@ -3362,10 +3523,11 @@ namespace SharpVk
 		}
 
 
-		internal Fence(Interop.Fence handle, Device parent)
+		internal Fence(Interop.Fence handle, Device parent, CommandCache commandCache)
 		{
 			this.handle = handle;
 			this.parent = parent;
+			this.commandCache = commandCache;
 		}
 
 		/// <summary>
@@ -3377,6 +3539,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
 				Interop.Commands.vkDestroyFence(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
@@ -3396,6 +3559,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Result commandResult;
 
 				commandResult = Interop.Commands.vkGetFenceStatus(this.parent.handle, this.handle);
@@ -3438,6 +3602,8 @@ namespace SharpVk
 	{
 		internal readonly Interop.Framebuffer handle;
 
+		internal readonly CommandCache commandCache;
+
 		private readonly Device parent;
 
 		internal AllocationCallbacks? Allocator
@@ -3449,10 +3615,11 @@ namespace SharpVk
 		}
 
 
-		internal Framebuffer(Interop.Framebuffer handle, Device parent)
+		internal Framebuffer(Interop.Framebuffer handle, Device parent, CommandCache commandCache)
 		{
 			this.handle = handle;
 			this.parent = parent;
+			this.commandCache = commandCache;
 		}
 
 		/// <summary>
@@ -3464,6 +3631,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
 				Interop.Commands.vkDestroyFramebuffer(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
@@ -3502,6 +3670,8 @@ namespace SharpVk
 	{
 		internal readonly Interop.Image handle;
 
+		internal readonly CommandCache commandCache;
+
 		private readonly Device parent;
 
 		internal AllocationCallbacks? Allocator
@@ -3513,10 +3683,11 @@ namespace SharpVk
 		}
 
 
-		internal Image(Interop.Image handle, Device parent)
+		internal Image(Interop.Image handle, Device parent, CommandCache commandCache)
 		{
 			this.handle = handle;
 			this.parent = parent;
+			this.commandCache = commandCache;
 		}
 
 		/// <summary>
@@ -3528,6 +3699,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Result commandResult;
 
 				Interop.DeviceMemory marshalledMemory = memory.Pack();
@@ -3552,6 +3724,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				MemoryRequirements result = default(MemoryRequirements);
 
 				Interop.Commands.vkGetImageMemoryRequirements(this.parent.handle, this.handle, &result);
@@ -3573,6 +3746,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				SparseImageMemoryRequirements[] result = default(SparseImageMemoryRequirements[]);
 
 				uint sparseMemoryRequirementCount;
@@ -3604,6 +3778,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
 				Interop.Commands.vkDestroyImage(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
@@ -3623,6 +3798,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				SubresourceLayout result = default(SubresourceLayout);
 
 				Interop.Commands.vkGetImageSubresourceLayout(this.parent.handle, this.handle, &subresource, &result);
@@ -3663,6 +3839,8 @@ namespace SharpVk
 	{
 		internal readonly Interop.ImageView handle;
 
+		internal readonly CommandCache commandCache;
+
 		private readonly Device parent;
 
 		internal AllocationCallbacks? Allocator
@@ -3674,10 +3852,11 @@ namespace SharpVk
 		}
 
 
-		internal ImageView(Interop.ImageView handle, Device parent)
+		internal ImageView(Interop.ImageView handle, Device parent, CommandCache commandCache)
 		{
 			this.handle = handle;
 			this.parent = parent;
+			this.commandCache = commandCache;
 		}
 
 		/// <summary>
@@ -3689,6 +3868,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
 				Interop.Commands.vkDestroyImageView(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
@@ -3723,9 +3903,11 @@ namespace SharpVk
 	/// </para>
     /// </summary>
 	public class Instance
-		: IDisposable
+		: IDisposable, IProcLookup
 	{
 		internal readonly Interop.Instance handle;
+
+		internal readonly CommandCache commandCache;
 
 		private AllocationCallbacks? allocator;
 
@@ -3740,8 +3922,8 @@ namespace SharpVk
 		internal Instance(Interop.Instance handle, AllocationCallbacks? allocator)
 		{
 			this.handle = handle;
-
 			this.allocator = allocator;
+			this.commandCache = new CommandCache(this, "instance", null);
 		}
 
 		/// <summary>
@@ -3753,6 +3935,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Instance result = default(Instance);
 
 				Result commandResult;
@@ -3786,6 +3969,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.allocator != null) marshalledAllocator = this.allocator.Value.Pack();
 				Interop.Commands.vkDestroyInstance(this.handle, this.allocator == null ? null : &marshalledAllocator);
@@ -3805,6 +3989,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				PhysicalDevice[] result = default(PhysicalDevice[]);
 
 				Result commandResult;
@@ -3827,7 +4012,7 @@ namespace SharpVk
 				result = new PhysicalDevice[(uint)physicalDeviceCount];
 				for(int index = 0; index < (uint)physicalDeviceCount; index++)
 				{
-					result[index] = new PhysicalDevice(marshalledPhysicalDevices[index], this);
+					result[index] = new PhysicalDevice(marshalledPhysicalDevices[index], this, this.commandCache);
 				}
 
 				Interop.HeapUtil.FreeLog();
@@ -3842,11 +4027,12 @@ namespace SharpVk
 		/// Return a function pointer for a command.
 		/// </para>
 		/// </summary>
-		public VoidFunctionDelegate GetProcAddr(string name)
+		public IntPtr GetProcAddr(string name)
 		{
 			unsafe
 			{
-				VoidFunctionDelegate result = default(VoidFunctionDelegate);
+
+				IntPtr result = default(IntPtr);
 
 				char* marshalledName = Interop.HeapUtil.MarshalTo(name);
 				result = Interop.Commands.vkGetInstanceProcAddr(this.handle, marshalledName);
@@ -3868,6 +4054,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				ExtensionProperties[] result = default(ExtensionProperties[]);
 
 				Result commandResult;
@@ -3910,6 +4097,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				LayerProperties[] result = default(LayerProperties[]);
 
 				Result commandResult;
@@ -3951,6 +4139,8 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkCreateDisplayPlaneSurfaceKHR>("vkCreateDisplayPlaneSurfaceKHR", "instance");
+
 				Surface result = default(Surface);
 
 				Result commandResult;
@@ -3960,13 +4150,13 @@ namespace SharpVk
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.allocator != null) marshalledAllocator = this.allocator.Value.Pack();
 				Interop.Surface marshalledSurface;
-				commandResult = Interop.Commands.vkCreateDisplayPlaneSurfaceKHR(this.handle, &marshalledCreateInfo, this.allocator == null ? null : &marshalledAllocator, &marshalledSurface);
+				commandResult = commandDelegate(this.handle, &marshalledCreateInfo, this.allocator == null ? null : &marshalledAllocator, &marshalledSurface);
 
 				if (SharpVkException.IsError(commandResult))
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				result = new Surface(marshalledSurface, this);
+				result = new Surface(marshalledSurface, this, this.commandCache);
 
 				Interop.HeapUtil.FreeLog();
 
@@ -3984,6 +4174,8 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkCreateXlibSurfaceKHR>("vkCreateXlibSurfaceKHR", "instance");
+
 				Surface result = default(Surface);
 
 				Result commandResult;
@@ -3993,13 +4185,13 @@ namespace SharpVk
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.allocator != null) marshalledAllocator = this.allocator.Value.Pack();
 				Interop.Surface marshalledSurface;
-				commandResult = Interop.Commands.vkCreateXlibSurfaceKHR(this.handle, &marshalledCreateInfo, this.allocator == null ? null : &marshalledAllocator, &marshalledSurface);
+				commandResult = commandDelegate(this.handle, &marshalledCreateInfo, this.allocator == null ? null : &marshalledAllocator, &marshalledSurface);
 
 				if (SharpVkException.IsError(commandResult))
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				result = new Surface(marshalledSurface, this);
+				result = new Surface(marshalledSurface, this, this.commandCache);
 
 				Interop.HeapUtil.FreeLog();
 
@@ -4017,6 +4209,8 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkCreateXcbSurfaceKHR>("vkCreateXcbSurfaceKHR", "instance");
+
 				Surface result = default(Surface);
 
 				Result commandResult;
@@ -4026,13 +4220,13 @@ namespace SharpVk
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.allocator != null) marshalledAllocator = this.allocator.Value.Pack();
 				Interop.Surface marshalledSurface;
-				commandResult = Interop.Commands.vkCreateXcbSurfaceKHR(this.handle, &marshalledCreateInfo, this.allocator == null ? null : &marshalledAllocator, &marshalledSurface);
+				commandResult = commandDelegate(this.handle, &marshalledCreateInfo, this.allocator == null ? null : &marshalledAllocator, &marshalledSurface);
 
 				if (SharpVkException.IsError(commandResult))
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				result = new Surface(marshalledSurface, this);
+				result = new Surface(marshalledSurface, this, this.commandCache);
 
 				Interop.HeapUtil.FreeLog();
 
@@ -4050,6 +4244,8 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkCreateWaylandSurfaceKHR>("vkCreateWaylandSurfaceKHR", "instance");
+
 				Surface result = default(Surface);
 
 				Result commandResult;
@@ -4059,13 +4255,13 @@ namespace SharpVk
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.allocator != null) marshalledAllocator = this.allocator.Value.Pack();
 				Interop.Surface marshalledSurface;
-				commandResult = Interop.Commands.vkCreateWaylandSurfaceKHR(this.handle, &marshalledCreateInfo, this.allocator == null ? null : &marshalledAllocator, &marshalledSurface);
+				commandResult = commandDelegate(this.handle, &marshalledCreateInfo, this.allocator == null ? null : &marshalledAllocator, &marshalledSurface);
 
 				if (SharpVkException.IsError(commandResult))
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				result = new Surface(marshalledSurface, this);
+				result = new Surface(marshalledSurface, this, this.commandCache);
 
 				Interop.HeapUtil.FreeLog();
 
@@ -4083,6 +4279,8 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkCreateMirSurfaceKHR>("vkCreateMirSurfaceKHR", "instance");
+
 				Surface result = default(Surface);
 
 				Result commandResult;
@@ -4092,13 +4290,13 @@ namespace SharpVk
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.allocator != null) marshalledAllocator = this.allocator.Value.Pack();
 				Interop.Surface marshalledSurface;
-				commandResult = Interop.Commands.vkCreateMirSurfaceKHR(this.handle, &marshalledCreateInfo, this.allocator == null ? null : &marshalledAllocator, &marshalledSurface);
+				commandResult = commandDelegate(this.handle, &marshalledCreateInfo, this.allocator == null ? null : &marshalledAllocator, &marshalledSurface);
 
 				if (SharpVkException.IsError(commandResult))
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				result = new Surface(marshalledSurface, this);
+				result = new Surface(marshalledSurface, this, this.commandCache);
 
 				Interop.HeapUtil.FreeLog();
 
@@ -4116,6 +4314,8 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkCreateAndroidSurfaceKHR>("vkCreateAndroidSurfaceKHR", "instance");
+
 				Surface result = default(Surface);
 
 				Result commandResult;
@@ -4125,13 +4325,13 @@ namespace SharpVk
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.allocator != null) marshalledAllocator = this.allocator.Value.Pack();
 				Interop.Surface marshalledSurface;
-				commandResult = Interop.Commands.vkCreateAndroidSurfaceKHR(this.handle, &marshalledCreateInfo, this.allocator == null ? null : &marshalledAllocator, &marshalledSurface);
+				commandResult = commandDelegate(this.handle, &marshalledCreateInfo, this.allocator == null ? null : &marshalledAllocator, &marshalledSurface);
 
 				if (SharpVkException.IsError(commandResult))
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				result = new Surface(marshalledSurface, this);
+				result = new Surface(marshalledSurface, this, this.commandCache);
 
 				Interop.HeapUtil.FreeLog();
 
@@ -4149,6 +4349,8 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkCreateWin32SurfaceKHR>("vkCreateWin32SurfaceKHR", "instance");
+
 				Surface result = default(Surface);
 
 				Result commandResult;
@@ -4158,13 +4360,13 @@ namespace SharpVk
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.allocator != null) marshalledAllocator = this.allocator.Value.Pack();
 				Interop.Surface marshalledSurface;
-				commandResult = Interop.Commands.vkCreateWin32SurfaceKHR(this.handle, &marshalledCreateInfo, this.allocator == null ? null : &marshalledAllocator, &marshalledSurface);
+				commandResult = commandDelegate(this.handle, &marshalledCreateInfo, this.allocator == null ? null : &marshalledAllocator, &marshalledSurface);
 
 				if (SharpVkException.IsError(commandResult))
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				result = new Surface(marshalledSurface, this);
+				result = new Surface(marshalledSurface, this, this.commandCache);
 
 				Interop.HeapUtil.FreeLog();
 
@@ -4182,6 +4384,8 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkCreateDebugReportCallbackEXT>("vkCreateDebugReportCallbackEXT", "instance");
+
 				DebugReportCallback result = default(DebugReportCallback);
 
 				Result commandResult;
@@ -4191,13 +4395,13 @@ namespace SharpVk
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.allocator != null) marshalledAllocator = this.allocator.Value.Pack();
 				Interop.DebugReportCallback marshalledCallback;
-				commandResult = Interop.Commands.vkCreateDebugReportCallbackEXT(this.handle, &marshalledCreateInfo, this.allocator == null ? null : &marshalledAllocator, &marshalledCallback);
+				commandResult = commandDelegate(this.handle, &marshalledCreateInfo, this.allocator == null ? null : &marshalledAllocator, &marshalledCallback);
 
 				if (SharpVkException.IsError(commandResult))
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				result = new DebugReportCallback(marshalledCallback, this);
+				result = new DebugReportCallback(marshalledCallback, this, this.commandCache);
 
 				Interop.HeapUtil.FreeLog();
 
@@ -4215,7 +4419,9 @@ namespace SharpVk
 		{
 			unsafe
 			{
-				Interop.Commands.vkDebugReportMessageEXT(this.handle, flags, objectType, @object, location, messageCode, &layerPrefix, &message);
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkDebugReportMessageEXT>("vkDebugReportMessageEXT", "instance");
+
+				commandDelegate(this.handle, flags, objectType, @object, location, messageCode, &layerPrefix, &message);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -4250,6 +4456,8 @@ namespace SharpVk
 	{
 		internal readonly Interop.PhysicalDevice handle;
 
+		internal readonly CommandCache commandCache;
+
 		private readonly Instance parent;
 
 		internal AllocationCallbacks? Allocator
@@ -4261,10 +4469,11 @@ namespace SharpVk
 		}
 
 
-		internal PhysicalDevice(Interop.PhysicalDevice handle, Instance parent)
+		internal PhysicalDevice(Interop.PhysicalDevice handle, Instance parent, CommandCache commandCache)
 		{
 			this.handle = handle;
 			this.parent = parent;
+			this.commandCache = commandCache;
 		}
 
 		/// <summary>
@@ -4276,6 +4485,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				PhysicalDeviceFeatures result = default(PhysicalDeviceFeatures);
 
 				Interop.Commands.vkGetPhysicalDeviceFeatures(this.handle, &result);
@@ -4297,6 +4507,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				FormatProperties result = default(FormatProperties);
 
 				Interop.Commands.vkGetPhysicalDeviceFormatProperties(this.handle, format, &result);
@@ -4318,6 +4529,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				ImageFormatProperties result = default(ImageFormatProperties);
 
 				Result commandResult;
@@ -4345,6 +4557,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				PhysicalDeviceProperties result = default(PhysicalDeviceProperties);
 
 				Interop.PhysicalDeviceProperties marshalledProperties;
@@ -4368,6 +4581,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				QueueFamilyProperties[] result = default(QueueFamilyProperties[]);
 
 				uint queueFamilyPropertyCount;
@@ -4399,6 +4613,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				PhysicalDeviceMemoryProperties result = default(PhysicalDeviceMemoryProperties);
 
 				Interop.PhysicalDeviceMemoryProperties marshalledMemoryProperties;
@@ -4422,6 +4637,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Device result = default(Device);
 
 				Result commandResult;
@@ -4455,6 +4671,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				ExtensionProperties[] result = default(ExtensionProperties[]);
 
 				Result commandResult;
@@ -4497,6 +4714,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				LayerProperties[] result = default(LayerProperties[]);
 
 				Result commandResult;
@@ -4538,6 +4756,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				SparseImageFormatProperties[] result = default(SparseImageFormatProperties[]);
 
 				uint propertyCount;
@@ -4569,12 +4788,14 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetPhysicalDeviceSurfaceSupportKHR>("vkGetPhysicalDeviceSurfaceSupportKHR", "instance");
+
 				Bool32 result = default(Bool32);
 
 				Result commandResult;
 
 				Interop.Surface marshalledSurface = surface.Pack();
-				commandResult = Interop.Commands.vkGetPhysicalDeviceSurfaceSupportKHR(this.handle, queueFamilyIndex, marshalledSurface, &result);
+				commandResult = commandDelegate(this.handle, queueFamilyIndex, marshalledSurface, &result);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -4597,12 +4818,14 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetPhysicalDeviceSurfaceCapabilitiesKHR>("vkGetPhysicalDeviceSurfaceCapabilitiesKHR", "instance");
+
 				SurfaceCapabilities result = default(SurfaceCapabilities);
 
 				Result commandResult;
 
 				Interop.Surface marshalledSurface = surface.Pack();
-				commandResult = Interop.Commands.vkGetPhysicalDeviceSurfaceCapabilitiesKHR(this.handle, marshalledSurface, &result);
+				commandResult = commandDelegate(this.handle, marshalledSurface, &result);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -4625,6 +4848,8 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetPhysicalDeviceSurfaceFormatsKHR>("vkGetPhysicalDeviceSurfaceFormatsKHR", "instance");
+
 				SurfaceFormat[] result = default(SurfaceFormat[]);
 
 				Result commandResult;
@@ -4632,14 +4857,14 @@ namespace SharpVk
 				Interop.Surface marshalledSurface = surface.Pack();
 				uint surfaceFormatCount;
 				SurfaceFormat* marshalledSurfaceFormats = null;
-				commandResult = Interop.Commands.vkGetPhysicalDeviceSurfaceFormatsKHR(this.handle, marshalledSurface, &surfaceFormatCount, null);
+				commandResult = commandDelegate(this.handle, marshalledSurface, &surfaceFormatCount, null);
 
 				if (SharpVkException.IsError(commandResult))
 				{
 					throw SharpVkException.Create(commandResult);
 				}
 				marshalledSurfaceFormats = (SurfaceFormat*)Interop.HeapUtil.Allocate<SurfaceFormat>((uint)surfaceFormatCount);
-				commandResult = Interop.Commands.vkGetPhysicalDeviceSurfaceFormatsKHR(this.handle, marshalledSurface, &surfaceFormatCount, marshalledSurfaceFormats);
+				commandResult = commandDelegate(this.handle, marshalledSurface, &surfaceFormatCount, marshalledSurfaceFormats);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -4667,6 +4892,8 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetPhysicalDeviceSurfacePresentModesKHR>("vkGetPhysicalDeviceSurfacePresentModesKHR", "instance");
+
 				PresentMode[] result = default(PresentMode[]);
 
 				Result commandResult;
@@ -4674,14 +4901,14 @@ namespace SharpVk
 				Interop.Surface marshalledSurface = surface.Pack();
 				uint presentModeCount;
 				PresentMode* marshalledPresentModes = null;
-				commandResult = Interop.Commands.vkGetPhysicalDeviceSurfacePresentModesKHR(this.handle, marshalledSurface, &presentModeCount, null);
+				commandResult = commandDelegate(this.handle, marshalledSurface, &presentModeCount, null);
 
 				if (SharpVkException.IsError(commandResult))
 				{
 					throw SharpVkException.Create(commandResult);
 				}
 				marshalledPresentModes = (PresentMode*)Interop.HeapUtil.Allocate<int>((uint)presentModeCount);
-				commandResult = Interop.Commands.vkGetPhysicalDeviceSurfacePresentModesKHR(this.handle, marshalledSurface, &presentModeCount, marshalledPresentModes);
+				commandResult = commandDelegate(this.handle, marshalledSurface, &presentModeCount, marshalledPresentModes);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -4709,20 +4936,22 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetPhysicalDeviceDisplayPropertiesKHR>("vkGetPhysicalDeviceDisplayPropertiesKHR", "instance");
+
 				DisplayProperties[] result = default(DisplayProperties[]);
 
 				Result commandResult;
 
 				uint propertyCount;
 				Interop.DisplayProperties* marshalledProperties = null;
-				commandResult = Interop.Commands.vkGetPhysicalDeviceDisplayPropertiesKHR(this.handle, &propertyCount, null);
+				commandResult = commandDelegate(this.handle, &propertyCount, null);
 
 				if (SharpVkException.IsError(commandResult))
 				{
 					throw SharpVkException.Create(commandResult);
 				}
 				marshalledProperties = (Interop.DisplayProperties*)Interop.HeapUtil.Allocate<Interop.DisplayProperties>((uint)propertyCount);
-				commandResult = Interop.Commands.vkGetPhysicalDeviceDisplayPropertiesKHR(this.handle, &propertyCount, marshalledProperties);
+				commandResult = commandDelegate(this.handle, &propertyCount, marshalledProperties);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -4750,20 +4979,22 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetPhysicalDeviceDisplayPlanePropertiesKHR>("vkGetPhysicalDeviceDisplayPlanePropertiesKHR", "instance");
+
 				DisplayPlaneProperties[] result = default(DisplayPlaneProperties[]);
 
 				Result commandResult;
 
 				uint propertyCount;
 				Interop.DisplayPlaneProperties* marshalledProperties = null;
-				commandResult = Interop.Commands.vkGetPhysicalDeviceDisplayPlanePropertiesKHR(this.handle, &propertyCount, null);
+				commandResult = commandDelegate(this.handle, &propertyCount, null);
 
 				if (SharpVkException.IsError(commandResult))
 				{
 					throw SharpVkException.Create(commandResult);
 				}
 				marshalledProperties = (Interop.DisplayPlaneProperties*)Interop.HeapUtil.Allocate<Interop.DisplayPlaneProperties>((uint)propertyCount);
-				commandResult = Interop.Commands.vkGetPhysicalDeviceDisplayPlanePropertiesKHR(this.handle, &propertyCount, marshalledProperties);
+				commandResult = commandDelegate(this.handle, &propertyCount, marshalledProperties);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -4791,20 +5022,22 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetDisplayPlaneSupportedDisplaysKHR>("vkGetDisplayPlaneSupportedDisplaysKHR", "instance");
+
 				Display[] result = default(Display[]);
 
 				Result commandResult;
 
 				uint displayCount;
 				Interop.Display* marshalledDisplays = null;
-				commandResult = Interop.Commands.vkGetDisplayPlaneSupportedDisplaysKHR(this.handle, planeIndex, &displayCount, null);
+				commandResult = commandDelegate(this.handle, planeIndex, &displayCount, null);
 
 				if (SharpVkException.IsError(commandResult))
 				{
 					throw SharpVkException.Create(commandResult);
 				}
 				marshalledDisplays = (Interop.Display*)Interop.HeapUtil.Allocate<Interop.Display>((uint)displayCount);
-				commandResult = Interop.Commands.vkGetDisplayPlaneSupportedDisplaysKHR(this.handle, planeIndex, &displayCount, marshalledDisplays);
+				commandResult = commandDelegate(this.handle, planeIndex, &displayCount, marshalledDisplays);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -4813,7 +5046,7 @@ namespace SharpVk
 				result = new Display[(uint)displayCount];
 				for(int index = 0; index < (uint)displayCount; index++)
 				{
-					result[index] = new Display(marshalledDisplays[index], this.Allocator);
+					result[index] = new Display(marshalledDisplays[index], this.Allocator, this.commandCache);
 				}
 
 				Interop.HeapUtil.FreeLog();
@@ -4832,6 +5065,8 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetDisplayModePropertiesKHR>("vkGetDisplayModePropertiesKHR", "instance");
+
 				DisplayModeProperties[] result = default(DisplayModeProperties[]);
 
 				Result commandResult;
@@ -4839,14 +5074,14 @@ namespace SharpVk
 				Interop.Display marshalledDisplay = display.Pack();
 				uint propertyCount;
 				Interop.DisplayModeProperties* marshalledProperties = null;
-				commandResult = Interop.Commands.vkGetDisplayModePropertiesKHR(this.handle, marshalledDisplay, &propertyCount, null);
+				commandResult = commandDelegate(this.handle, marshalledDisplay, &propertyCount, null);
 
 				if (SharpVkException.IsError(commandResult))
 				{
 					throw SharpVkException.Create(commandResult);
 				}
 				marshalledProperties = (Interop.DisplayModeProperties*)Interop.HeapUtil.Allocate<Interop.DisplayModeProperties>((uint)propertyCount);
-				commandResult = Interop.Commands.vkGetDisplayModePropertiesKHR(this.handle, marshalledDisplay, &propertyCount, marshalledProperties);
+				commandResult = commandDelegate(this.handle, marshalledDisplay, &propertyCount, marshalledProperties);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -4874,6 +5109,8 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkCreateDisplayModeKHR>("vkCreateDisplayModeKHR", "instance");
+
 				DisplayMode result = default(DisplayMode);
 
 				Result commandResult;
@@ -4884,13 +5121,13 @@ namespace SharpVk
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
 				Interop.DisplayMode marshalledMode;
-				commandResult = Interop.Commands.vkCreateDisplayModeKHR(this.handle, marshalledDisplay, &marshalledCreateInfo, this.parent.Allocator == null ? null : &marshalledAllocator, &marshalledMode);
+				commandResult = commandDelegate(this.handle, marshalledDisplay, &marshalledCreateInfo, this.parent.Allocator == null ? null : &marshalledAllocator, &marshalledMode);
 
 				if (SharpVkException.IsError(commandResult))
 				{
 					throw SharpVkException.Create(commandResult);
 				}
-				result = new DisplayMode(marshalledMode, this);
+				result = new DisplayMode(marshalledMode, this, this.commandCache);
 
 				Interop.HeapUtil.FreeLog();
 
@@ -4908,9 +5145,11 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetPhysicalDeviceXlibPresentationSupportKHR>("vkGetPhysicalDeviceXlibPresentationSupportKHR", "instance");
+
 				bool result = default(bool);
 
-				result = Interop.Commands.vkGetPhysicalDeviceXlibPresentationSupportKHR(this.handle, queueFamilyIndex, &dpy, visualID);
+				result = commandDelegate(this.handle, queueFamilyIndex, &dpy, visualID);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -4929,9 +5168,11 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetPhysicalDeviceXcbPresentationSupportKHR>("vkGetPhysicalDeviceXcbPresentationSupportKHR", "instance");
+
 				bool result = default(bool);
 
-				result = Interop.Commands.vkGetPhysicalDeviceXcbPresentationSupportKHR(this.handle, queueFamilyIndex, &connection, visual_id);
+				result = commandDelegate(this.handle, queueFamilyIndex, &connection, visual_id);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -4950,9 +5191,11 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetPhysicalDeviceWaylandPresentationSupportKHR>("vkGetPhysicalDeviceWaylandPresentationSupportKHR", "instance");
+
 				bool result = default(bool);
 
-				result = Interop.Commands.vkGetPhysicalDeviceWaylandPresentationSupportKHR(this.handle, queueFamilyIndex, display);
+				result = commandDelegate(this.handle, queueFamilyIndex, display);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -4971,9 +5214,11 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetPhysicalDeviceMirPresentationSupportKHR>("vkGetPhysicalDeviceMirPresentationSupportKHR", "instance");
+
 				bool result = default(bool);
 
-				result = Interop.Commands.vkGetPhysicalDeviceMirPresentationSupportKHR(this.handle, queueFamilyIndex, &connection);
+				result = commandDelegate(this.handle, queueFamilyIndex, &connection);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -4992,9 +5237,11 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetPhysicalDeviceWin32PresentationSupportKHR>("vkGetPhysicalDeviceWin32PresentationSupportKHR", "instance");
+
 				bool result = default(bool);
 
-				result = Interop.Commands.vkGetPhysicalDeviceWin32PresentationSupportKHR(this.handle, queueFamilyIndex);
+				result = commandDelegate(this.handle, queueFamilyIndex);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -5013,11 +5260,13 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetPhysicalDeviceExternalImageFormatPropertiesNV>("vkGetPhysicalDeviceExternalImageFormatPropertiesNV", "instance");
+
 				ExternalImageFormatProperties result = default(ExternalImageFormatProperties);
 
 				Result commandResult;
 
-				commandResult = Interop.Commands.vkGetPhysicalDeviceExternalImageFormatPropertiesNV(this.handle, format, type, tiling, usage, flags, externalHandleType, &result);
+				commandResult = commandDelegate(this.handle, format, type, tiling, usage, flags, externalHandleType, &result);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -5047,6 +5296,8 @@ namespace SharpVk
 	{
 		internal readonly Interop.Pipeline handle;
 
+		internal readonly CommandCache commandCache;
+
 		private readonly Device parent;
 
 		internal AllocationCallbacks? Allocator
@@ -5058,10 +5309,11 @@ namespace SharpVk
 		}
 
 
-		internal Pipeline(Interop.Pipeline handle, Device parent)
+		internal Pipeline(Interop.Pipeline handle, Device parent, CommandCache commandCache)
 		{
 			this.handle = handle;
 			this.parent = parent;
+			this.commandCache = commandCache;
 		}
 
 		/// <summary>
@@ -5073,6 +5325,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
 				Interop.Commands.vkDestroyPipeline(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
@@ -5111,6 +5364,8 @@ namespace SharpVk
 	{
 		internal readonly Interop.PipelineCache handle;
 
+		internal readonly CommandCache commandCache;
+
 		private readonly Device parent;
 
 		internal AllocationCallbacks? Allocator
@@ -5122,10 +5377,11 @@ namespace SharpVk
 		}
 
 
-		internal PipelineCache(Interop.PipelineCache handle, Device parent)
+		internal PipelineCache(Interop.PipelineCache handle, Device parent, CommandCache commandCache)
 		{
 			this.handle = handle;
 			this.parent = parent;
+			this.commandCache = commandCache;
 		}
 
 		/// <summary>
@@ -5137,6 +5393,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
 				Interop.Commands.vkDestroyPipelineCache(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
@@ -5156,6 +5413,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				byte[] result = default(byte[]);
 
 				Result commandResult;
@@ -5197,6 +5455,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Result commandResult;
 
 				Interop.PipelineCache* marshalledSourceCaches;
@@ -5253,6 +5512,8 @@ namespace SharpVk
 	{
 		internal readonly Interop.PipelineLayout handle;
 
+		internal readonly CommandCache commandCache;
+
 		private readonly Device parent;
 
 		internal AllocationCallbacks? Allocator
@@ -5264,10 +5525,11 @@ namespace SharpVk
 		}
 
 
-		internal PipelineLayout(Interop.PipelineLayout handle, Device parent)
+		internal PipelineLayout(Interop.PipelineLayout handle, Device parent, CommandCache commandCache)
 		{
 			this.handle = handle;
 			this.parent = parent;
+			this.commandCache = commandCache;
 		}
 
 		/// <summary>
@@ -5279,6 +5541,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
 				Interop.Commands.vkDestroyPipelineLayout(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
@@ -5317,6 +5580,8 @@ namespace SharpVk
 	{
 		internal readonly Interop.QueryPool handle;
 
+		internal readonly CommandCache commandCache;
+
 		private readonly Device parent;
 
 		internal AllocationCallbacks? Allocator
@@ -5328,10 +5593,11 @@ namespace SharpVk
 		}
 
 
-		internal QueryPool(Interop.QueryPool handle, Device parent)
+		internal QueryPool(Interop.QueryPool handle, Device parent, CommandCache commandCache)
 		{
 			this.handle = handle;
 			this.parent = parent;
+			this.commandCache = commandCache;
 		}
 
 		/// <summary>
@@ -5343,6 +5609,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
 				Interop.Commands.vkDestroyQueryPool(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
@@ -5362,6 +5629,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Result commandResult;
 
 				fixed(byte* marshalledData = data)
@@ -5404,6 +5672,8 @@ namespace SharpVk
 	{
 		internal readonly Interop.Queue handle;
 
+		internal readonly CommandCache commandCache;
+
 		private readonly Device parent;
 
 		internal AllocationCallbacks? Allocator
@@ -5415,10 +5685,11 @@ namespace SharpVk
 		}
 
 
-		internal Queue(Interop.Queue handle, Device parent)
+		internal Queue(Interop.Queue handle, Device parent, CommandCache commandCache)
 		{
 			this.handle = handle;
 			this.parent = parent;
+			this.commandCache = commandCache;
 		}
 
 		/// <summary>
@@ -5430,6 +5701,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Result commandResult;
 
 				Interop.SubmitInfo* marshalledSubmits;
@@ -5468,6 +5740,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Result commandResult;
 
 				commandResult = Interop.Commands.vkQueueWaitIdle(this.handle);
@@ -5491,6 +5764,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Result commandResult;
 
 				Interop.BindSparseInfo* marshalledBindInfo;
@@ -5529,11 +5803,13 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkQueuePresentKHR>("vkQueuePresentKHR", "device");
+
 				Result commandResult;
 
 				Interop.PresentInfo marshalledPresentInfo;
 				marshalledPresentInfo = presentInfo.Pack();
-				commandResult = Interop.Commands.vkQueuePresentKHR(this.handle, &marshalledPresentInfo);
+				commandResult = commandDelegate(this.handle, &marshalledPresentInfo);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -5564,6 +5840,8 @@ namespace SharpVk
 	{
 		internal readonly Interop.RenderPass handle;
 
+		internal readonly CommandCache commandCache;
+
 		private readonly Device parent;
 
 		internal AllocationCallbacks? Allocator
@@ -5575,10 +5853,11 @@ namespace SharpVk
 		}
 
 
-		internal RenderPass(Interop.RenderPass handle, Device parent)
+		internal RenderPass(Interop.RenderPass handle, Device parent, CommandCache commandCache)
 		{
 			this.handle = handle;
 			this.parent = parent;
+			this.commandCache = commandCache;
 		}
 
 		/// <summary>
@@ -5590,6 +5869,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
 				Interop.Commands.vkDestroyRenderPass(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
@@ -5609,6 +5889,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Extent2D result = default(Extent2D);
 
 				Interop.Commands.vkGetRenderAreaGranularity(this.parent.handle, this.handle, &result);
@@ -5649,6 +5930,8 @@ namespace SharpVk
 	{
 		internal readonly Interop.Sampler handle;
 
+		internal readonly CommandCache commandCache;
+
 		private readonly Device parent;
 
 		internal AllocationCallbacks? Allocator
@@ -5660,10 +5943,11 @@ namespace SharpVk
 		}
 
 
-		internal Sampler(Interop.Sampler handle, Device parent)
+		internal Sampler(Interop.Sampler handle, Device parent, CommandCache commandCache)
 		{
 			this.handle = handle;
 			this.parent = parent;
+			this.commandCache = commandCache;
 		}
 
 		/// <summary>
@@ -5675,6 +5959,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
 				Interop.Commands.vkDestroySampler(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
@@ -5713,6 +5998,8 @@ namespace SharpVk
 	{
 		internal readonly Interop.Semaphore handle;
 
+		internal readonly CommandCache commandCache;
+
 		private readonly Device parent;
 
 		internal AllocationCallbacks? Allocator
@@ -5724,10 +6011,11 @@ namespace SharpVk
 		}
 
 
-		internal Semaphore(Interop.Semaphore handle, Device parent)
+		internal Semaphore(Interop.Semaphore handle, Device parent, CommandCache commandCache)
 		{
 			this.handle = handle;
 			this.parent = parent;
+			this.commandCache = commandCache;
 		}
 
 		/// <summary>
@@ -5739,6 +6027,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
 				Interop.Commands.vkDestroySemaphore(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
@@ -5777,6 +6066,8 @@ namespace SharpVk
 	{
 		internal readonly Interop.ShaderModule handle;
 
+		internal readonly CommandCache commandCache;
+
 		private readonly Device parent;
 
 		internal AllocationCallbacks? Allocator
@@ -5788,10 +6079,11 @@ namespace SharpVk
 		}
 
 
-		internal ShaderModule(Interop.ShaderModule handle, Device parent)
+		internal ShaderModule(Interop.ShaderModule handle, Device parent, CommandCache commandCache)
 		{
 			this.handle = handle;
 			this.parent = parent;
+			this.commandCache = commandCache;
 		}
 
 		/// <summary>
@@ -5803,6 +6095,7 @@ namespace SharpVk
 		{
 			unsafe
 			{
+
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
 				Interop.Commands.vkDestroyShaderModule(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
@@ -5838,6 +6131,8 @@ namespace SharpVk
 	{
 		internal readonly Interop.Surface handle;
 
+		internal readonly CommandCache commandCache;
+
 		private readonly Instance parent;
 
 		internal AllocationCallbacks? Allocator
@@ -5849,10 +6144,11 @@ namespace SharpVk
 		}
 
 
-		internal Surface(Interop.Surface handle, Instance parent)
+		internal Surface(Interop.Surface handle, Instance parent, CommandCache commandCache)
 		{
 			this.handle = handle;
 			this.parent = parent;
+			this.commandCache = commandCache;
 		}
 
 		/// <summary>
@@ -5864,9 +6160,11 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkDestroySurfaceKHR>("vkDestroySurfaceKHR", "instance");
+
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
-				Interop.Commands.vkDestroySurfaceKHR(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
+				commandDelegate(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -5899,6 +6197,8 @@ namespace SharpVk
 	{
 		internal readonly Interop.Swapchain handle;
 
+		internal readonly CommandCache commandCache;
+
 		private readonly Surface parent;
 
 		internal AllocationCallbacks? Allocator
@@ -5911,11 +6211,12 @@ namespace SharpVk
 
 		private readonly Device associated;
 
-		internal Swapchain(Interop.Swapchain handle, Surface parent, Device associated)
+		internal Swapchain(Interop.Swapchain handle, Surface parent, Device associated, CommandCache commandCache)
 		{
 			this.handle = handle;
 			this.parent = parent;
 			this.associated = associated;
+			this.commandCache = commandCache;
 		}
 
 		/// <summary>
@@ -5927,9 +6228,11 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkDestroySwapchainKHR>("vkDestroySwapchainKHR", "device");
+
 				Interop.AllocationCallbacks marshalledAllocator;
 				if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
-				Interop.Commands.vkDestroySwapchainKHR(this.associated.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
+				commandDelegate(this.associated.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
 
 
 				Interop.HeapUtil.FreeLog();
@@ -5946,20 +6249,22 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetSwapchainImagesKHR>("vkGetSwapchainImagesKHR", "device");
+
 				Image[] result = default(Image[]);
 
 				Result commandResult;
 
 				uint swapchainImageCount;
 				Interop.Image* marshalledSwapchainImages = null;
-				commandResult = Interop.Commands.vkGetSwapchainImagesKHR(this.associated.handle, this.handle, &swapchainImageCount, null);
+				commandResult = commandDelegate(this.associated.handle, this.handle, &swapchainImageCount, null);
 
 				if (SharpVkException.IsError(commandResult))
 				{
 					throw SharpVkException.Create(commandResult);
 				}
 				marshalledSwapchainImages = (Interop.Image*)Interop.HeapUtil.Allocate<Interop.Image>((uint)swapchainImageCount);
-				commandResult = Interop.Commands.vkGetSwapchainImagesKHR(this.associated.handle, this.handle, &swapchainImageCount, marshalledSwapchainImages);
+				commandResult = commandDelegate(this.associated.handle, this.handle, &swapchainImageCount, marshalledSwapchainImages);
 
 				if (SharpVkException.IsError(commandResult))
 				{
@@ -5968,7 +6273,7 @@ namespace SharpVk
 				result = new Image[(uint)swapchainImageCount];
 				for(int index = 0; index < (uint)swapchainImageCount; index++)
 				{
-					result[index] = new Image(marshalledSwapchainImages[index], this.associated);
+					result[index] = new Image(marshalledSwapchainImages[index], this.associated, this.commandCache);
 				}
 
 				Interop.HeapUtil.FreeLog();
@@ -5987,13 +6292,15 @@ namespace SharpVk
 		{
 			unsafe
 			{
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkAcquireNextImageKHR>("vkAcquireNextImageKHR", "device");
+
 				uint result = default(uint);
 
 				Result commandResult;
 
 				Interop.Semaphore marshalledSemaphore = semaphore?.Pack() ?? Interop.Semaphore.Null;
 				Interop.Fence marshalledFence = fence?.Pack() ?? Interop.Fence.Null;
-				commandResult = Interop.Commands.vkAcquireNextImageKHR(this.associated.handle, this.handle, timeout, marshalledSemaphore, marshalledFence, &result);
+				commandResult = commandDelegate(this.associated.handle, this.handle, timeout, marshalledSemaphore, marshalledFence, &result);
 
 				if (SharpVkException.IsError(commandResult))
 				{

@@ -331,6 +331,20 @@ namespace SharpVk.VkXml
                 set;
             }
 
+            public string ProcCacheType
+            {
+                get;
+                set;
+            }
+
+            public bool IsProcLookup
+            {
+                get
+                {
+                    return !string.IsNullOrEmpty(this.ProcCacheType);
+                }
+            }
+
             public List<VkHandleMethod> Methods
             {
                 get;
@@ -386,6 +400,26 @@ namespace SharpVk.VkXml
             {
                 get;
                 set;
+            }
+
+            public string CacheLookupName
+            {
+                get;
+                set;
+            }
+
+            public string CacheLookupType
+            {
+                get;
+                set;
+            }
+
+            public bool ShouldGetFromCache
+            {
+                get
+                {
+                    return !string.IsNullOrEmpty(this.CacheLookupName);
+                }
             }
 
             public List<VkMethodParam> Parameters

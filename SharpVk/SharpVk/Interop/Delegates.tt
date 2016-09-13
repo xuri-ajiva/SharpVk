@@ -9,8 +9,8 @@
 <#@ import namespace="System.Xml.Linq" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
-<#@ include file=".\License.tt" #>
-<#@ include file=".\Vk.ttinclude" #>
+<#@ include file="..\License.tt" #>
+<#@ include file="..\Vk.ttinclude" #>
 <#
 	var parser = GetParser();
 	var generator = new TypeGenerator();
@@ -19,7 +19,7 @@
 #>
 using System;
 
-namespace SharpVk
+namespace SharpVk.Interop
 {
 <#
 foreach(var delegateType in types.Delegates)
@@ -37,7 +37,7 @@ foreach(var delegateType in types.Delegates)
 	}
 #>
     /// </summary>
-	public delegate <#=delegateType.ReturnTypeName#> <#=delegateType.Name#>(<# bool isFirst = true; foreach(var param in delegateType.Parameters) { if(isFirst) { isFirst = false; } else { #>, <#  } #><#=param.TypeName#> <#=param.Name#><# } #>);
+	public unsafe delegate <#=delegateType.ReturnTypeName#> <#=delegateType.Name#>(<# bool isFirst = true; foreach(var param in delegateType.Parameters) { if(isFirst) { isFirst = false; } else { #>, <#  } #><#=param.TypeName#> <#=param.Name#><# } #>);
 <#
 }
 #>

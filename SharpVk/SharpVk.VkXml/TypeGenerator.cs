@@ -58,7 +58,7 @@ namespace SharpVk.VkXml
 
             var enumLookup = GenerateEnumerations(spec, typeData, result);
 
-            GenerateDelegates(typeData, result);
+            GenerateDelegates(spec, typeData, result);
 
             GenerateUnions(typeData, result);
 
@@ -73,7 +73,7 @@ namespace SharpVk.VkXml
             return result;
         }
 
-        private void GenerateDelegates(Dictionary<string, TypeDesc> typeData, TypeSet result)
+        private void GenerateDelegates(SpecParser.ParsedSpec spec, Dictionary<string, TypeDesc> typeData, TypeSet result)
         {
             foreach (var delegateType in typeData.Values.Where(x => x.Data.Category == TypeCategory.funcpointer))
             {
@@ -113,7 +113,7 @@ namespace SharpVk.VkXml
 
                     if (member.PointerType.IsPointer())
                     {
-                        switch(paramTypeName)
+                        switch (paramTypeName)
                         {
                             case "void":
                                 paramTypeName = "IntPtr";
@@ -144,6 +144,7 @@ namespace SharpVk.VkXml
                 var newCommand = new TypeSet.VkCommand
                 {
                     Name = commandName,
+                    Comment = new List<string> { "-" },
                     ReturnTypeName = typeData[command.Type].Name
                 };
 
@@ -235,7 +236,9 @@ namespace SharpVk.VkXml
                     Name = JoinNameParts(methodNameParts),
                     Comment = command.Comment ?? new List<string> { "-" },
                     ReturnTypeName = "void",
-                    CommandName = commandName
+                    CommandName = commandName,
+                    CacheLookupName = string.IsNullOrEmpty(command.ExtensionType) ? "" : command.VkName,
+                    CacheLookupType = command.ExtensionType
                 };
 
                 if (!handleParams.Any())
@@ -404,7 +407,7 @@ namespace SharpVk.VkXml
                                             parentArgument = ", this.Allocator";
                                         }
 
-                                        newMethod.MarshalFromStatements.Add($"\tresult[index] = new {paramTypeName}({marshalledName}[index]{parentArgument});");
+                                        newMethod.MarshalFromStatements.Add($"\tresult[index] = new {paramTypeName}({marshalledName}[index]{parentArgument}, this.commandCache);");
                                     }
                                     else
                                     {
@@ -422,6 +425,12 @@ namespace SharpVk.VkXml
                                 if (paramType.Data.Category == TypeCategory.handle)
                                 {
                                     string parentArgument = "";
+                                    string commandCacheArgument = ", this.commandCache";
+
+                                    if (handleLookup[paramType.Data.VkName].IsProcLookup)
+                                    {
+                                        commandCacheArgument = "";
+                                    }
 
                                     if (paramType.Data.Parent != null)
                                     {
@@ -494,7 +503,7 @@ namespace SharpVk.VkXml
 
                                         newMethod.MarshalFromStatements.Add(string.Format("for(int index = 0; index < (uint){0}; index++)", lenExpression));
                                         newMethod.MarshalFromStatements.Add("{");
-                                        newMethod.MarshalFromStatements.Add($"\tresult[index] = new {paramType.Name}({marshalledName}[index]{parentArgument});");
+                                        newMethod.MarshalFromStatements.Add($"\tresult[index] = new {paramType.Name}({marshalledName}[index]{parentArgument}{commandCacheArgument});");
                                         newMethod.MarshalFromStatements.Add("}");
                                     }
                                     else
@@ -502,7 +511,7 @@ namespace SharpVk.VkXml
                                         argumentName = "&" + marshalledName;
 
                                         newMethod.MarshalToStatements.Add(string.Format("Interop.{0} {1};", paramType.Name, marshalledName));
-                                        newMethod.MarshalFromStatements.Add(string.Format("result = new {0}({1}{2});", paramType.Name, marshalledName, parentArgument));
+                                        newMethod.MarshalFromStatements.Add($"result = new {paramType.Name}({marshalledName}{parentArgument}{commandCacheArgument});");
                                     }
                                 }
                                 else if (paramType.RequiresInterop)
@@ -690,11 +699,13 @@ namespace SharpVk.VkXml
 
                 if (command.Type.StartsWith("PFN"))
                 {
-                    newMethod.ReturnTypeName = typeData[command.Type].Name;
+                    //HACK Expose the interop delegates until proper marshalling is implemented
+                    //newMethod.ReturnTypeName = "Interop." + typeData[command.Type].Name;
+                    newMethod.ReturnTypeName = "IntPtr";
+                    newCommand.ReturnTypeName = "IntPtr";
                     newMethod.IsPassthroughResult = true;
                 }
-                else
-                if (command.Type == "VkBool32")
+                else if (command.Type == "VkBool32")
                 {
                     newMethod.ReturnTypeName = "bool";
                     newMethod.IsPassthroughResult = true;
@@ -703,6 +714,8 @@ namespace SharpVk.VkXml
                 newMethod.HasVkResult = command.Type == "VkResult";
 
                 result.Commands.Add(newCommand);
+
+                result.Delegates.Add(newCommand);
 
                 handle.Methods.Add(newMethod);
             }
@@ -758,6 +771,12 @@ namespace SharpVk.VkXml
                     var handle = handleLookup[command.Params.AsEnumerable().Reverse().Skip(1).First().Type];
 
                     handle.IsDisposable = true;
+                }
+                else if (command.Verb == "get" && command.NameParts.ElementAt(2) == "proc" && command.NameParts.ElementAt(3) == "addr")
+                {
+                    var handle = handleLookup[command.Params.First().Type];
+
+                    handle.ProcCacheType = command.NameParts.ElementAt(1);
                 }
             }
 
@@ -1086,6 +1105,8 @@ namespace SharpVk.VkXml
                     else if (memberType.Data.Category == TypeCategory.funcpointer)
                     {
                         memberDesc.InteropTypeName = "IntPtr";
+                        //HACK Expose the interop delegates until proper marshalling is implemented
+                        memberDesc.PublicTypeName = "Interop." + memberDesc.PublicTypeName;
                         newClass.MarshalToStatements.Add($"result.{memberName} = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.{memberName});");
                     }
                     else

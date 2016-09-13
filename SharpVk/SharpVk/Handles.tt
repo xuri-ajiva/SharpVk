@@ -22,6 +22,17 @@ var types = generator.Generate(parser.Run());
 
 foreach(var handle in types.Handles)
 {
+	var interfaces = new List<string>();
+
+	if(handle.IsDisposable)
+    {
+		interfaces.Add("IDisposable");
+    }
+	
+	if(handle.IsProcLookup)
+    {
+		interfaces.Add("IProcLookup");
+    }
 #>
     /// <summary>
 <#
@@ -36,13 +47,33 @@ foreach(var handle in types.Handles)
 #>
     /// </summary>
 	public class <#=handle.Name#>
-<#if(handle.IsDisposable)#>
-		: IDisposable
-<#;#>
+<#
+	if(interfaces.Any())
+	{
+#>
+		: <#= string.Join(", ", interfaces) #>
+<#
+    }
+#>
 	{
 		internal readonly Interop.<#=handle.Name#> handle;
 
+		internal readonly CommandCache commandCache;
+
 <#
+	string commandCacheParam = "";
+	string parentCache = handle.ParentHandle == null
+							? "null"
+							: "parent.commandCache";
+
+	string commandCacheAssignment = $"new CommandCache(this, \"{handle.ProcCacheType}\", {parentCache})";
+
+	if(!handle.IsProcLookup)
+    {
+		commandCacheParam = ", CommandCache commandCache";
+		commandCacheAssignment = "commandCache";
+    }
+
 	if(handle.ParentHandle != null)
     {
 #>
@@ -62,11 +93,12 @@ foreach(var handle in types.Handles)
 #>
 		private readonly <#=handle.AssociatedHandle#> associated;
 
-		internal <#=handle.Name#>(Interop.<#=handle.Name#> handle, <#=handle.ParentHandle#> parent, <#=handle.AssociatedHandle#> associated)
+		internal <#=handle.Name#>(Interop.<#=handle.Name#> handle, <#=handle.ParentHandle#> parent, <#=handle.AssociatedHandle#> associated<#=commandCacheParam#>)
 		{
 			this.handle = handle;
 			this.parent = parent;
 			this.associated = associated;
+			this.commandCache = <#=commandCacheAssignment#>;
 		}
 <#
         }
@@ -74,10 +106,11 @@ foreach(var handle in types.Handles)
         {
 #>
 
-		internal <#=handle.Name#>(Interop.<#=handle.Name#> handle, <#=handle.ParentHandle#> parent)
+		internal <#=handle.Name#>(Interop.<#=handle.Name#> handle, <#=handle.ParentHandle#> parent<#=commandCacheParam#>)
 		{
 			this.handle = handle;
 			this.parent = parent;
+			this.commandCache = <#=commandCacheAssignment#>;
 		}
 <#
         }
@@ -95,11 +128,11 @@ foreach(var handle in types.Handles)
 			}
 		}
 
-		internal <#=handle.Name#>(Interop.<#=handle.Name#> handle, AllocationCallbacks? allocator)
+		internal <#=handle.Name#>(Interop.<#=handle.Name#> handle, AllocationCallbacks? allocator<#=commandCacheParam#>)
 		{
 			this.handle = handle;
-
 			this.allocator = allocator;
+			this.commandCache = <#=commandCacheAssignment#>;
 		}
 <#
     }
@@ -143,6 +176,17 @@ foreach(var handle in types.Handles)
 			unsafe
 			{
 <#
+		string invocation = $"Interop.Commands.{method.CommandName}";
+		if(method.ShouldGetFromCache)
+        {
+#>
+				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.<#=method.CacheLookupName#>>("<#=method.CacheLookupName#>", "<#=method.CacheLookupType#>");
+<#
+			invocation = "commandDelegate";
+        }
+#>
+
+<#
 		if(method.ReturnTypeName != "void")
 		{
 #>				<#=method.ReturnTypeName#> result = default(<#=method.ReturnTypeName#>);
@@ -169,7 +213,7 @@ foreach(var handle in types.Handles)
 		if(method.IsDoubleInvoke)
 		{
 #>
-				<#if(method.HasVkResult){#>commandResult = <#}#>Interop.Commands.<#=method.CommandName#>(<#
+				<#if(method.HasVkResult){#>commandResult = <#}#><#=invocation#>(<#
 			isFirst = true;
 
 			foreach(var param in method.Parameters)
@@ -209,7 +253,7 @@ foreach(var handle in types.Handles)
 <#
 		}
 #>
-				<#if(method.HasVkResult){#>commandResult = <#}#><#if(method.IsPassthroughResult){#>result = <#}#>Interop.Commands.<#=method.CommandName#>(<#
+				<#if(method.HasVkResult){#>commandResult = <#}#><#if(method.IsPassthroughResult){#>result = <#}#><#=invocation#>(<#
 		isFirst = true;
 
 		foreach(var param in method.Parameters)

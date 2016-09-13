@@ -93,13 +93,13 @@ namespace SharpVk.Interop
 		/// -
 		/// </summary>
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-		public static extern VoidFunctionDelegate vkGetInstanceProcAddr(Instance instance, char* name);
+		public static extern IntPtr vkGetInstanceProcAddr(Instance instance, char* name);
 
 		/// <summary>
 		/// -
 		/// </summary>
 		[DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-		public static extern VoidFunctionDelegate vkGetDeviceProcAddr(Device device, char* name);
+		public static extern IntPtr vkGetDeviceProcAddr(Device device, char* name);
 
 		/// <summary>
 		/// -
