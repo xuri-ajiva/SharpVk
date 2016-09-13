@@ -2,7 +2,10 @@
 C#/.NET Bindings for the Vulkan API & SPIR-V
 
 ## Shanq
-Linq to SPIR-V shader generation
+Linq to SPIR-V shader generation - early alpha now available
+
+## Samples
+Sample code is now maintained in a separate repo: https://github.com/FacticiusVir/SharpVk-Samples
 
 ----------
 
@@ -12,3 +15,4 @@ TODO.md has a complete list of API commands that have been tested and shown work
 [![Build status](https://ci.appveyor.com/api/projects/status/6i4r9ghsx4r62nkt?svg=true)](https://ci.appveyor.com/project/FacticiusVir/sharpvk)
 
 [![NuGet Release](https://img.shields.io/nuget/v/SharpVk.svg)](https://www.nuget.org/packages/SharpVk)
+[![NuGet Pre-Release](https://img.shields.io/nuget/vpre/SharpVk.svg)](https://www.nuget.org/packages/SharpVk)
