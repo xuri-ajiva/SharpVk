@@ -29,6 +29,12 @@ namespace SharpVk
 	/// <para>
     /// Structure specifying a clear color value.
 	/// </para>
+	/// <para>
+    /// The four array elements of the clear color map to R, G, B, and A components of image formats, in order.
+	/// </para>
+	/// <para>
+    /// If the image has more than one sample, the same value is written to all samples for any pixels being cleared.
+	/// </para>
     /// </summary>
 	[StructLayout(LayoutKind.Explicit)]
 	public struct ClearColorValue
@@ -95,6 +101,9 @@ namespace SharpVk
     /// <summary>
 	/// <para>
     /// Structure specifying a clear value.
+	/// </para>
+	/// <para>
+    /// This union is used where part of the API requires either color or depth/stencil clear values, depending on the attachment, and defines the initial clear values in the slink:VkRenderPassBeginInfo structure.
 	/// </para>
     /// </summary>
 	[StructLayout(LayoutKind.Explicit)]

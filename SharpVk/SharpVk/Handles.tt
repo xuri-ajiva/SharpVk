@@ -175,12 +175,14 @@ foreach(var handle in types.Handles)
 		{
 			unsafe
 			{
+				try
+				{
 <#
 		string invocation = $"Interop.Commands.{method.CommandName}";
 		if(method.ShouldGetFromCache)
         {
 #>
-				var commandDelegate = this.commandCache.GetCommandDelegate<Interop.<#=method.CacheLookupName#>>("<#=method.CacheLookupName#>", "<#=method.CacheLookupType#>");
+					var commandDelegate = this.commandCache.GetCommandDelegate<Interop.<#=method.CacheLookupName#>>("<#=method.CacheLookupName#>", "<#=method.CacheLookupType#>");
 <#
 			invocation = "commandDelegate";
         }
@@ -189,14 +191,14 @@ foreach(var handle in types.Handles)
 <#
 		if(method.ReturnTypeName != "void")
 		{
-#>				<#=method.ReturnTypeName#> result = default(<#=method.ReturnTypeName#>);
+#>					<#=method.ReturnTypeName#> result = default(<#=method.ReturnTypeName#>);
 
 <#
 		}
 
 		if(method.HasVkResult)
         {
-#>				Result commandResult;
+#>					Result commandResult;
 
 <#
         }
@@ -204,7 +206,7 @@ foreach(var handle in types.Handles)
 <#
 		foreach(var statement in method.MarshalToStatements)
 		{
-#>				<#=statement#>
+#>					<#=statement#>
 <#
 		}
 
@@ -213,7 +215,7 @@ foreach(var handle in types.Handles)
 		if(method.IsDoubleInvoke)
 		{
 #>
-				<#if(method.HasVkResult){#>commandResult = <#}#><#=invocation#>(<#
+					<#if(method.HasVkResult){#>commandResult = <#}#><#=invocation#>(<#
 			isFirst = true;
 
 			foreach(var param in method.Parameters)
@@ -233,27 +235,27 @@ foreach(var handle in types.Handles)
 <#
 			if(method.HasVkResult)
 			{
-#>				if (SharpVkException.IsError(commandResult))
-				{
-					throw SharpVkException.Create(commandResult);
-				}
+#>					if (SharpVkException.IsError(commandResult))
+					{
+						throw SharpVkException.Create(commandResult);
+					}
 <#
 			}
 		}
 
 		foreach(var statement in method.MarshalMidStatements)
 		{
-#>				<#=statement#>
+#>					<#=statement#>
 <#
 		}
 
 		foreach(var fixedParam in method.Parameters.Where(x => !string.IsNullOrEmpty(x.FixedName)))
 		{
-#>				fixed(<#=fixedParam.FixedType#> <#=fixedParam.FixedName#> = <#=fixedParam.Name#>)
+#>					fixed(<#=fixedParam.FixedType#> <#=fixedParam.FixedName#> = <#=fixedParam.Name#>)
 <#
 		}
 #>
-				<#if(method.HasVkResult){#>commandResult = <#}#><#if(method.IsPassthroughResult){#>result = <#}#><#=invocation#>(<#
+					<#if(method.HasVkResult){#>commandResult = <#}#><#if(method.IsPassthroughResult){#>result = <#}#><#=invocation#>(<#
 		isFirst = true;
 
 		foreach(var param in method.Parameters)
@@ -273,31 +275,31 @@ foreach(var handle in types.Handles)
 <#
 		if(method.HasVkResult)
 		{
-#>				if (SharpVkException.IsError(commandResult))
-				{
-					throw SharpVkException.Create(commandResult);
-				}
+#>					if (SharpVkException.IsError(commandResult))
+					{
+						throw SharpVkException.Create(commandResult);
+					}
 <#
 		}
 
 		foreach(var statement in method.MarshalFromStatements)
 		{
-#>				<#=statement#>
+#>					<#=statement#>
 <#
 		}
-#>
 
-				Interop.HeapUtil.FreeLog();
-
-<#
 		if(method.ReturnTypeName != "void")
 		{
 #>
-
-				return result;
+					return result;
 <#
 		}
 #>
+				}
+				finally
+				{
+					Interop.HeapUtil.FreeLog();
+				}
 			}
 		}
 <#
