@@ -21,6 +21,8 @@
 //SOFTWARE.
 
 using GlmSharp;
+using SharpVk.Shanq;
+using SharpVk.Spirv;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -404,13 +406,13 @@ namespace SharpVk.HelloTriangle
                 CodeSize = codeSize
             });
 
-            var fragShaderData = LoadShaderData(@".\Shaders\frag.spv", out codeSize);
 
-            var fragShader = device.CreateShaderModule(new ShaderModuleCreateInfo
-            {
-                Code = fragShaderData,
-                CodeSize = codeSize
-            });
+            var fragShader = ShanqShader<FragmentInput>.CreateFragmentModule(this.device,
+                                                                                fragmentInput => from input in fragmentInput
+                                                                                                 select new FragmentOutput
+                                                                                                 {
+                                                                                                     Colour = new vec4(input.Colour, 1)
+                                                                                                 });
 
             this.pipelineLayout = device.CreatePipelineLayout(new PipelineLayoutCreateInfo());
 
@@ -710,6 +712,33 @@ namespace SharpVk.HelloTriangle
             public SurfaceCapabilities Capabilities;
             public SurfaceFormat[] Formats;
             public PresentMode[] PresentModes;
+        }
+
+        private struct VertexInput
+        {
+            [BuiltIn(BuiltIn.VertexIndex)]
+            public uint VertexIndex;
+        }
+
+        private struct VertexOutput
+        {
+            [Location(0)]
+            public vec3 Colour;
+
+            [BuiltIn(BuiltIn.Position)]
+            public vec4 Position;
+        }
+
+        private struct FragmentInput
+        {
+            [Location(0)]
+            public vec3 Colour;
+        }
+
+        private struct FragmentOutput
+        {
+            [Location(0)]
+            public vec4 Colour;
         }
     }
 }

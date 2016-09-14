@@ -52,37 +52,93 @@ namespace SharpVk.Shanq
             }
         }
 
+        [NodeType(ExpressionType.Negate)]
+        private ResultId VisitNegate(UnaryExpression expression)
+        {
+            if (GetElementType(expression.Type) != typeof(float))
+            {
+                throw new NotSupportedException();
+            }
+
+            return VisitUnary(expression, Op.OpFNegate);
+        }
+
         [NodeType(ExpressionType.Add)]
         private ResultId VisitAdd(BinaryExpression expression)
         {
-            ResultId floatTypeId = this.Visit(Expression.Constant(typeof(float)));
-            ResultId resultTypeId = this.Visit(Expression.Constant(expression.Left.Type));
+            Op additionOp = SelectByType(expression.Type, Op.OpFAdd, Op.OpIAdd);
 
-            ResultId left = this.Visit(expression.Left);
-            ResultId right = this.Visit(expression.Right);
-            ResultId result = this.file.GetNextResultId();
-            
-            this.file.AddFunctionStatement(result, Op.OpFAdd, resultTypeId, left, right);
-
-            return result;
+            return VisitBinary(expression, additionOp);
         }
 
+        [NodeType(ExpressionType.Subtract)]
+        private ResultId VisitSubtract(BinaryExpression expression)
+        {
+            Op subtractionOp = SelectByType(expression.Type, Op.OpFSub, Op.OpISub);
+
+            return VisitBinary(expression, subtractionOp);
+        }
+
+        [NodeType(ExpressionType.Multiply)]
+        private ResultId VisitMultiply(BinaryExpression expression)
+        {
+            Op multiplicationOp;
+
+            if (IsVectorType(expression.Left.Type) && !IsVectorType(expression.Right.Type))
+            {
+                if (!IsFloatingPoint(GetVectorElementType(expression.Left.Type))
+                        || !IsFloatingPoint(expression.Right.Type))
+                {
+                    throw new NotSupportedException();
+                }
+
+                multiplicationOp = Op.OpVectorTimesScalar;
+            }
+            else
+            {
+                multiplicationOp = SelectByType(expression.Type, Op.OpFMul, Op.OpIMul);
+            }
+
+            return VisitBinary(expression, multiplicationOp);
+        }
+
+        [NodeType(ExpressionType.Modulo)]
+        private ResultId VisitModulo(BinaryExpression expression)
+        {
+            Op moduloOp = SelectByType(expression.Type, Op.OpFMod, Op.OpSMod, Op.OpUMod);
+
+            return VisitBinary(expression, moduloOp);
+        }
 
         [NodeType(ExpressionType.Divide)]
         private ResultId VisitDivide(BinaryExpression expression)
         {
-            ResultId constantOne = this.Visit(Expression.Constant(1f));
-            ResultId floatTypeId = this.Visit(Expression.Constant(typeof(float)));
-            ResultId resultTypeId = this.Visit(Expression.Constant(expression.Left.Type));
+            Op divisionOp = SelectByType(expression.Type, Op.OpFDiv, Op.OpSDiv, Op.OpUDiv);
+
+            return VisitBinary(expression, divisionOp);
+        }
+
+        private ResultId VisitUnary(UnaryExpression expression, Op unaryOp)
+        {
+            ResultId resultTypeId = this.Visit(Expression.Constant(expression.Method.ReturnType));
+
+            ResultId operand = this.Visit(expression.Operand);
+            ResultId result = this.file.GetNextResultId();
+
+            this.file.AddFunctionStatement(result, unaryOp, resultTypeId, operand);
+
+            return result;
+        }
+
+        private ResultId VisitBinary(BinaryExpression expression, Op binaryOp)
+        {
+            ResultId resultTypeId = this.Visit(Expression.Constant(expression.Method.ReturnType));
 
             ResultId left = this.Visit(expression.Left);
             ResultId right = this.Visit(expression.Right);
-
-            ResultId factorId = this.file.GetNextResultId();
             ResultId result = this.file.GetNextResultId();
 
-            this.file.AddFunctionStatement(factorId, Op.OpFDiv, floatTypeId, constantOne, right);
-            this.file.AddFunctionStatement(result, Op.OpVectorTimesScalar, resultTypeId, left, factorId);
+            this.file.AddFunctionStatement(result, binaryOp, resultTypeId, left, right);
 
             return result;
         }
@@ -114,7 +170,7 @@ namespace SharpVk.Shanq
 
                     int fieldIndex;
 
-                    switch(fieldInfo.Name)
+                    switch (fieldInfo.Name)
                     {
                         case "x":
                             fieldIndex = 0;
@@ -290,11 +346,80 @@ namespace SharpVk.Shanq
             return resultId;
         }
 
+        private static Op SelectByType(Type type, Op floatingPointOp, Op integerOp)
+        {
+            return SelectByType(type, floatingPointOp, integerOp, integerOp);
+        }
+
+        private static Op SelectByType(Type type, Op floatingPointOp, Op signedIntegerOp, Op unsignedIntegerOp)
+        {
+            type = GetElementType(type);
+
+            if (IsFloatingPoint(type))
+            {
+                return floatingPointOp;
+            }
+            else if (IsSignedInteger(type))
+            {
+                return signedIntegerOp;
+            }
+            else if (IsUnsignedInteger(type))
+            {
+                return unsignedIntegerOp;
+            }
+            else
+            {
+                throw new NotSupportedException();
+            }
+        }
+
+        private static bool IsFloatingPoint(Type type)
+        {
+            return type == typeof(float) || type == typeof(double);
+        }
+
+        private static bool IsInteger(Type type)
+        {
+            return IsSignedInteger(type) || IsUnsignedInteger(type);
+        }
+
+        private static bool IsSignedInteger(Type type)
+        {
+            return type == typeof(sbyte)
+                    || type == typeof(short)
+                    || type == typeof(int)
+                    || type == typeof(long);
+        }
+
+        private static bool IsUnsignedInteger(Type type)
+        {
+            return type == typeof(byte)
+                    || type == typeof(ushort)
+                    || type == typeof(uint)
+                    || type == typeof(ulong);
+        }
+
         private bool IsTupleType(Type value)
         {
             Type tupleInterface = typeof(Tuple).Assembly.GetType("System.ITuple");
 
             return value.GetInterfaces().Contains(tupleInterface);
+        }
+
+        private static Type GetElementType(Type type)
+        {
+            if (type.IsPrimitive)
+            {
+                return type;
+            }
+            else if (IsVectorType(type))
+            {
+                return GetVectorElementType(type);
+            }
+            else
+            {
+                throw new NotSupportedException();
+            }
         }
 
         private static Type GetVectorElementType(Type value)
@@ -310,7 +435,7 @@ namespace SharpVk.Shanq
                                 .Count();
         }
 
-        private bool IsVectorType(Type type)
+        private static bool IsVectorType(Type type)
         {
             return type.Assembly == typeof(vec3).Assembly
                 && type.Name.Contains("vec");
