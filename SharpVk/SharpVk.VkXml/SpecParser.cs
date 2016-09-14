@@ -508,6 +508,10 @@ namespace SharpVk.VkXml
 
                     comment.AddRange(specification.Elements("para").Select(x => x.Value));
 
+                    var description = vkDocType.Element("description");
+
+                    comment.AddRange(description.Elements("para").Select(x => x.Value));
+
                     parsedElement.Comment = comment.Select(this.NormaliseComment).ToList();
 
                     IEnumerable<ParsedElement> members = null;
