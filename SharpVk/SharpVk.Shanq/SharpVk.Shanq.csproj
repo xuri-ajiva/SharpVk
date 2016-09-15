@@ -39,6 +39,10 @@
       <HintPath>..\packages\Remotion.Linq.2.1.1\lib\net45\Remotion.Linq.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SharpVk, Version=0.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpVk.0.3.0\lib\net46\SharpVk.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Core" />
@@ -61,12 +65,6 @@
     <Compile Include="ShanqQueryExecutor.cs" />
     <Compile Include="ShanqShader.cs" />
     <Compile Include="SpirvFile.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SharpVk\SharpVk.csproj">
-      <Project>{a0abab94-7022-4e2d-a13c-e7bad69dd9d3}</Project>
-      <Name>SharpVk</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
