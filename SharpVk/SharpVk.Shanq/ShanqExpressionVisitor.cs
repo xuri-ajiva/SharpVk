@@ -87,12 +87,39 @@ namespace SharpVk.Shanq
             if (IsVectorType(expression.Left.Type) && !IsVectorType(expression.Right.Type))
             {
                 if (!IsFloatingPoint(GetVectorElementType(expression.Left.Type))
-                        || !IsFloatingPoint(expression.Right.Type))
+                        || !IsFloatingPoint(GetElementType(expression.Right.Type)))
                 {
                     throw new NotSupportedException();
                 }
 
-                multiplicationOp = Op.OpVectorTimesScalar;
+                if (IsMatrixType(expression.Right.Type))
+                {
+                    multiplicationOp = Op.OpVectorTimesMatrix;
+                }
+                else
+                {
+                    multiplicationOp = Op.OpVectorTimesScalar;
+                }
+            }
+            else if (IsMatrixType(expression.Left.Type))
+            {
+                if (!IsFloatingPoint(GetElementType(expression.Right.Type)))
+                {
+                    throw new NotSupportedException();
+                }
+
+                if (IsVectorType(expression.Right.Type))
+                {
+                    multiplicationOp = Op.OpMatrixTimesVector;
+                }
+                else if(IsMatrixType(expression.Right.Type))
+                {
+                    multiplicationOp = Op.OpMatrixTimesMatrix;
+                }
+                else
+                {
+                    multiplicationOp = Op.OpMatrixTimesScalar;
+                }
             }
             else
             {
@@ -416,6 +443,10 @@ namespace SharpVk.Shanq
             {
                 return GetVectorElementType(type);
             }
+            else if (IsMatrixType(type))
+            {
+                return typeof(float);
+            }
             else
             {
                 throw new NotSupportedException();
@@ -439,6 +470,12 @@ namespace SharpVk.Shanq
         {
             return type.Assembly == typeof(vec3).Assembly
                 && type.Name.Contains("vec");
+        }
+
+        private static bool IsMatrixType(Type type)
+        {
+            return type.Assembly == typeof(mat4).Assembly
+                && type.Name.Contains("mat");
         }
 
         private class NodeTypeAttribute
