@@ -83,7 +83,7 @@ namespace SharpVk
 		/// </para>
 		/// </summary>
 		[FieldOffset(0)]
-		public uvec4 Uint32;
+		public uvec4 UInt32;
 		
 		/// <summary>
 		/// Implicit convertion of uvec4 to ClearColorValue.
@@ -92,7 +92,7 @@ namespace SharpVk
         {
             return new ClearColorValue
             {
-                Uint32 = value
+                UInt32 = value
             };
         }
 

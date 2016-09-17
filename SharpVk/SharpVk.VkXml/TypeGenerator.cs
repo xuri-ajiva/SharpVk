@@ -1538,12 +1538,79 @@ namespace SharpVk.VkXml
             }
         }
 
-        private static string JoinNameParts(IEnumerable<string> parts, bool camelCase = false)
+        private static string JoinNameParts(IEnumerable<string> parts, bool isCamelCase = false)
         {
             return parts.Select(ExpandAbbreviations)
-                        .Select((x, y) => (camelCase && y == 0) ? x : CapitaliseFirst(x))
+                        .Select((value, index) => CapitaliseNamePart(value, index, isCamelCase))
                         .Aggregate(new StringBuilder(), (builder, value) => builder.Append(value))
                         .ToString();
+        }
+
+        private static string CapitaliseNamePart(string value, int index, bool isCamelCase)
+        {
+            if (IsComponentSet(value))
+            {
+                value = value.ToUpper();
+            }
+            else
+            {
+                value = GetSpecialCasing(value);
+            }
+
+            return (isCamelCase && index == 0) ? LowerCaseFirst(value) : CapitaliseFirst(value);
+        }
+
+        private static bool IsComponentSet(string value)
+        {
+            var componentLetters = new[] { 'r', 'g', 'b', 'a', 'x' };
+
+            if (!componentLetters.Contains(value[0]) || value.Length < 2)
+            {
+                return false;
+            }
+
+            bool lastCharacterWasComponent = true;
+
+            for (int index = 1; index < value.Length; index++)
+            {
+                if (char.IsDigit(value[index]))
+                {
+                    lastCharacterWasComponent = false;
+                }
+                else if (componentLetters.Contains(value[index]) && !lastCharacterWasComponent)
+                {
+                    lastCharacterWasComponent = true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            return !lastCharacterWasComponent;
+        }
+
+        private static string GetSpecialCasing(string value)
+        {
+            switch(value)
+            {
+                case "unorm":
+                    return "UNorm";
+                case "snorm":
+                    return "SNorm";
+                case "uscaled":
+                    return "UScaled";
+                case "sscaled":
+                    return "SScaled";
+                case "uint":
+                    return "UInt";
+                case "sint":
+                    return "SInt";
+                case "sfloat":
+                    return "SFloat";
+            }
+
+            return value;
         }
 
         private static string ExpandAbbreviations(string value)
@@ -1556,9 +1623,22 @@ namespace SharpVk.VkXml
                     return "destination";
                 case "cmd":
                     return "command";
+                case "proc":
+                    return "procedure";
+                case "addr":
+                    return "address";
                 default:
                     return value;
             }
+        }
+
+        private static string LowerCaseFirst(string value)
+        {
+            var charArray = value.ToCharArray();
+
+            charArray[0] = char.ToLower(charArray[0]);
+
+            return new string(charArray);
         }
 
         private static string CapitaliseFirst(string value)

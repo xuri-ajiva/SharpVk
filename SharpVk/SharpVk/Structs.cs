@@ -1867,7 +1867,7 @@ namespace SharpVk
 		/// -
 		/// </para>
 		/// </summary>
-		public Bool32 FullDrawIndexUint32;
+		public Bool32 FullDrawIndexUInt32;
 
 	   /// <summary>
 		/// <para>
@@ -2250,7 +2250,7 @@ namespace SharpVk
             builder.AppendLine("PhysicalDeviceFeatures");
             builder.AppendLine("{");
             builder.AppendLine($"RobustBufferAccess: {this.RobustBufferAccess}");
-            builder.AppendLine($"FullDrawIndexUint32: {this.FullDrawIndexUint32}");
+            builder.AppendLine($"FullDrawIndexUInt32: {this.FullDrawIndexUInt32}");
             builder.AppendLine($"ImageCubeArray: {this.ImageCubeArray}");
             builder.AppendLine($"IndependentBlend: {this.IndependentBlend}");
             builder.AppendLine($"GeometryShader: {this.GeometryShader}");

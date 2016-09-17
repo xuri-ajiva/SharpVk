@@ -50,7 +50,7 @@ namespace SharpVk
                 }
             }
 
-            T commandDelegate = Marshal.GetDelegateForFunctionPointer<T>(this.host.GetProcAddr(name));
+            T commandDelegate = Marshal.GetDelegateForFunctionPointer<T>(this.host.GetProcedureAddress(name));
 
             lock (this.commands)
             {
@@ -78,6 +78,6 @@ namespace SharpVk
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        IntPtr GetProcAddr(string name);
+        IntPtr GetProcedureAddress(string name);
     }
 }

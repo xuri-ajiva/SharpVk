@@ -680,14 +680,14 @@ namespace SharpVk.VertexBuffers
             {
                 return new SurfaceFormat
                 {
-                    Format = Format.B8g8r8a8Unorm,
+                    Format = Format.B8G8R8A8Unorm,
                     ColorSpace = ColorSpace.SrgbNonlinear
                 };
             }
 
             foreach (var format in availableFormats)
             {
-                if (format.Format == Format.B8g8r8a8Unorm && format.ColorSpace == ColorSpace.SrgbNonlinear)
+                if (format.Format == Format.B8G8R8A8Unorm && format.ColorSpace == ColorSpace.SrgbNonlinear)
                 {
                     return format;
                 }
@@ -856,14 +856,14 @@ namespace SharpVk.VertexBuffers
                     {
                         Binding = 0,
                         Location = 0,
-                        Format = Format.R32g32Sfloat,
+                        Format = Format.R32G32Sfloat,
                         Offset = (uint)Marshal.OffsetOf<Vertex>("Position")
                     },
                     new VertexInputAttributeDescription
                     {
                         Binding = 0,
                         Location = 1,
-                        Format = Format.R32g32b32Sfloat,
+                        Format = Format.R32G32B32Sfloat,
                         Offset = (uint)Marshal.OffsetOf<Vertex>("Colour")
                     }
                 };

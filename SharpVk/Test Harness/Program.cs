@@ -637,14 +637,14 @@ namespace SharpVk.HelloTriangle
             {
                 return new SurfaceFormat
                 {
-                    Format = Format.B8g8r8a8Unorm,
+                    Format = Format.B8G8R8A8Unorm,
                     ColorSpace = ColorSpace.SrgbNonlinear
                 };
             }
 
             foreach (var format in availableFormats)
             {
-                if (format.Format == Format.B8g8r8a8Unorm && format.ColorSpace == ColorSpace.SrgbNonlinear)
+                if (format.Format == Format.B8G8R8A8Unorm && format.ColorSpace == ColorSpace.SrgbNonlinear)
                 {
                     return format;
                 }

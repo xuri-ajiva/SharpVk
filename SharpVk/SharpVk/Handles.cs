@@ -2132,7 +2132,7 @@ namespace SharpVk
 		/// Return a function pointer for a command.
 		/// </para>
 		/// </summary>
-		public IntPtr GetProcAddr(string name)
+		public IntPtr GetProcedureAddress(string name)
 		{
 			unsafe
 			{
@@ -4476,7 +4476,7 @@ namespace SharpVk
 		/// Return a function pointer for a command.
 		/// </para>
 		/// </summary>
-		public IntPtr GetProcAddr(string name)
+		public IntPtr GetProcedureAddress(string name)
 		{
 			unsafe
 			{
