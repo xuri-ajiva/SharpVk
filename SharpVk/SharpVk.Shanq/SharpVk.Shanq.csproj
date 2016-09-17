@@ -68,6 +68,12 @@
     </None>
     <None Include="SharpVk.Shanq.nuspec" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SharpVk\SharpVk.csproj">
+      <Project>{a0abab94-7022-4e2d-a13c-e7bad69dd9d3}</Project>
+      <Name>SharpVk</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
