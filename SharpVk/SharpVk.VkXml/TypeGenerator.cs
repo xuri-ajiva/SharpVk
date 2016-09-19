@@ -1479,7 +1479,8 @@ namespace SharpVk.VkXml
                 {
                     Name = JoinNameParts(error.NameParts.Skip(1)) + "Exception",
                     Type = typeof(int),
-                    Value = $"{enumName}.{errorFieldName}"
+                    Value = $"{enumName}.{errorFieldName}",
+                    Comment = error.Comment ?? new List<string> { "-" }
                 });
             }
         }
@@ -1592,7 +1593,7 @@ namespace SharpVk.VkXml
 
         private static string GetSpecialCasing(string value)
         {
-            switch(value)
+            switch (value)
             {
                 case "unorm":
                     return "UNorm";

@@ -27,6 +27,17 @@ namespace SharpVk
 		: Exception
 	{
 		/// <summary>
+        /// Creates a new instance of the <see cref="SharpVk.SharpVkException"/> class .
+        /// </summary>
+        /// <param name="message">
+        /// The message that describes the error.
+        /// </param>
+        protected SharpVkException(string message)
+            : base(message)
+        {
+        }
+
+		/// <summary>
 		/// Returns a value indicating whether the given Vulkan result code
 		/// represents an error.
 		/// </summary>
@@ -78,6 +89,7 @@ foreach(var exception in types.Exceptions)
 		private Result resultCode;
 
 		internal UnknownSharpVkException(Result resultCode)
+			: base($"An unknown exception as been thrown by the Vulkan API: {resultCode}")
 		{
 			this.resultCode = resultCode;
 		}
@@ -91,12 +103,23 @@ foreach(var exception in types.Exceptions)
 <#
 foreach(var exception in types.Exceptions)
 {
+	string exceptionMessage = string.Join(" ", exception.Comment);
+
+	if (exceptionMessage == "-")
+	{
+		exceptionMessage = exception.Name;
+	}
 #>	/// <summary>
 	/// -
 	/// </summary>
 	public class <#=exception.Name#>
 		: SharpVkException
-	{
+	{	
+		internal <#=exception.Name#>()
+			: base("<#=exceptionMessage#>")
+		{
+		}
+
 		/// <summary>
 		/// The Vulkan result code represented by this exception.
 		/// </summary>

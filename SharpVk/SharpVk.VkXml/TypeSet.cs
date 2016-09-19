@@ -183,6 +183,12 @@ namespace SharpVk.VkXml
                 get;
                 set;
             }
+
+            public List<string> Comment
+            {
+                get;
+                set;
+            }
         }
 
         public class VkEnumeration
