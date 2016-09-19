@@ -1604,6 +1604,10 @@ namespace SharpVk.VkXml
                     return "SScaled";
                 case "uint":
                     return "UInt";
+                case "uint16":
+                    return "UInt16";
+                case "uint32":
+                    return "UInt32";
                 case "sint":
                     return "SInt";
                 case "sfloat":

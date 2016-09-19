@@ -89,6 +89,7 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="MemUtil.cs" />
     <Compile Include="Spirv\Grammar.cs">
       <DependentUpon>Grammar.tt</DependentUpon>
       <AutoGen>True</AutoGen>

@@ -322,6 +322,20 @@ namespace SharpVk
     /// <summary>
     /// -
     /// </summary>
+	public static class AmdNegativeViewportHeight
+	{
+	    /// <summary>
+	    /// -
+	    /// </summary>
+		public const uint ExtensionNegativeViewportHeightSpecVersion = 0;
+	    /// <summary>
+	    /// -
+	    /// </summary>
+		public const string ExtensionNegativeViewportHeightExtensionName = "VK_AMD_negative_viewport_height";
+	}
+    /// <summary>
+    /// -
+    /// </summary>
 	public static class ImgFormatPvrtc
 	{
 	    /// <summary>
@@ -388,6 +402,20 @@ namespace SharpVk
 	    /// -
 	    /// </summary>
 		public const string ExtensionName = "VK_NV_win32_keyed_mutex";
+	}
+    /// <summary>
+    /// -
+    /// </summary>
+	public static class ExtValidationFlags
+	{
+	    /// <summary>
+	    /// -
+	    /// </summary>
+		public const uint SpecVersion = 1;
+	    /// <summary>
+	    /// -
+	    /// </summary>
+		public const string ExtensionName = "VK_EXT_validation_flags";
 	}
     /// <summary>
     /// -

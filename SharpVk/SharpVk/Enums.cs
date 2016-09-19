@@ -39,7 +39,7 @@ namespace SharpVk
     /// Certain memory access types are only supported on queues that support a particular set of operations. The following table lists, for each access flag, which queue capability flag must: be supported by the queue. When multiple flags are enumerated in the second column of the table it means that the access type is supported on the queue if it supports any of the listed capability flags. For further details on queue capabilities see &lt;&lt;devsandqueues-physical-device-enumeration,Physical Device Enumeration&gt;&gt; and &lt;&lt;devsandqueues-queues,Queues&gt;&gt;.
     /// </para>
     /// <para>
-    /// .Supported access flags [width="100%",cols="67%,33%",options="header",align="center"] |======================================== |Access flag                                                  | Required queue capability flag |ename:VK_ACCESS_INDIRECT_COMMAND_READ_BIT                    | ename:VK_QUEUE_GRAPHICS_BIT or ename:VK_QUEUE_COMPUTE_BIT |ename:VK_ACCESS_INDEX_READ_BIT                               | ename:VK_QUEUE_GRAPHICS_BIT |ename:VK_ACCESS_VERTEX_ATTRIBUTE_READ_BIT                    | ename:VK_QUEUE_GRAPHICS_BIT |ename:VK_ACCESS_UNIFORM_READ_BIT                             | ename:VK_QUEUE_GRAPHICS_BIT or ename:VK_QUEUE_COMPUTE_BIT |ename:VK_ACCESS_INPUT_ATTACHMENT_READ_BIT                    | ename:VK_QUEUE_GRAPHICS_BIT |ename:VK_ACCESS_SHADER_READ_BIT                              | ename:VK_QUEUE_GRAPHICS_BIT or ename:VK_QUEUE_COMPUTE_BIT |ename:VK_ACCESS_SHADER_WRITE_BIT                             | ename:VK_QUEUE_GRAPHICS_BIT or ename:VK_QUEUE_COMPUTE_BIT |ename:VK_ACCESS_COLOR_ATTACHMENT_READ_BIT                    | ename:VK_QUEUE_GRAPHICS_BIT |ename:VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT                   | ename:VK_QUEUE_GRAPHICS_BIT |ename:VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_READ_BIT            | ename:VK_QUEUE_GRAPHICS_BIT |ename:VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT           | ename:VK_QUEUE_GRAPHICS_BIT |ename:VK_ACCESS_TRANSFER_READ_BIT                            | ename:VK_QUEUE_GRAPHICS_BIT, ename:VK_QUEUE_COMPUTE_BIT or ename:VK_QUEUE_TRANSFER_BIT |ename:VK_ACCESS_TRANSFER_WRITE_BIT                           | ename:VK_QUEUE_GRAPHICS_BIT, ename:VK_QUEUE_COMPUTE_BIT or ename:VK_QUEUE_TRANSFER_BIT |ename:VK_ACCESS_HOST_READ_BIT                                | None |ename:VK_ACCESS_HOST_WRITE_BIT                               | None |ename:VK_ACCESS_MEMORY_READ_BIT                              | None |ename:VK_ACCESS_MEMORY_WRITE_BIT                             | None |========================================
+    /// .Supported access flags [width="100%",cols="67%,33%",options="header",align="center"] |==== |Access flag                                                  | Required queue capability flag |ename:VK_ACCESS_INDIRECT_COMMAND_READ_BIT                    | ename:VK_QUEUE_GRAPHICS_BIT or ename:VK_QUEUE_COMPUTE_BIT |ename:VK_ACCESS_INDEX_READ_BIT                               | ename:VK_QUEUE_GRAPHICS_BIT |ename:VK_ACCESS_VERTEX_ATTRIBUTE_READ_BIT                    | ename:VK_QUEUE_GRAPHICS_BIT |ename:VK_ACCESS_UNIFORM_READ_BIT                             | ename:VK_QUEUE_GRAPHICS_BIT or ename:VK_QUEUE_COMPUTE_BIT |ename:VK_ACCESS_INPUT_ATTACHMENT_READ_BIT                    | ename:VK_QUEUE_GRAPHICS_BIT |ename:VK_ACCESS_SHADER_READ_BIT                              | ename:VK_QUEUE_GRAPHICS_BIT or ename:VK_QUEUE_COMPUTE_BIT |ename:VK_ACCESS_SHADER_WRITE_BIT                             | ename:VK_QUEUE_GRAPHICS_BIT or ename:VK_QUEUE_COMPUTE_BIT |ename:VK_ACCESS_COLOR_ATTACHMENT_READ_BIT                    | ename:VK_QUEUE_GRAPHICS_BIT |ename:VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT                   | ename:VK_QUEUE_GRAPHICS_BIT |ename:VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_READ_BIT            | ename:VK_QUEUE_GRAPHICS_BIT |ename:VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT           | ename:VK_QUEUE_GRAPHICS_BIT |ename:VK_ACCESS_TRANSFER_READ_BIT                            | ename:VK_QUEUE_GRAPHICS_BIT, ename:VK_QUEUE_COMPUTE_BIT or ename:VK_QUEUE_TRANSFER_BIT |ename:VK_ACCESS_TRANSFER_WRITE_BIT                           | ename:VK_QUEUE_GRAPHICS_BIT, ename:VK_QUEUE_COMPUTE_BIT or ename:VK_QUEUE_TRANSFER_BIT |ename:VK_ACCESS_HOST_READ_BIT                                | None |ename:VK_ACCESS_HOST_WRITE_BIT                               | None |ename:VK_ACCESS_MEMORY_READ_BIT                              | None |ename:VK_ACCESS_MEMORY_WRITE_BIT                             | None |====
     /// </para>
     /// </summary>
 	[Flags]
@@ -198,12 +198,6 @@ namespace SharpVk
     /// Bitmask specifying additional parameters of a buffer.
     /// </para>
     /// <para>
-    /// These bits have the following meanings:
-    /// </para>
-    /// <para>
-    /// * ename:VK_BUFFER_CREATE_SPARSE_BINDING_BIT indicates that the buffer will be backed using sparse memory binding. * ename:VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT indicates that the buffer can: be partially backed using sparse memory binding. Buffers created with this flag must: also be created with the ename:VK_BUFFER_CREATE_SPARSE_BINDING_BIT flag. * ename:VK_BUFFER_CREATE_SPARSE_ALIASED_BIT indicates that the buffer will be backed using sparse memory binding with memory ranges that might also simultaneously be backing another buffer (or another portion of the same buffer). Buffers created with this flag must: also be created with the ename:VK_BUFFER_CREATE_SPARSE_BINDING_BIT flag.
-    /// </para>
-    /// <para>
     /// See &lt;&lt;sparsememory-sparseresourcefeatures,Sparse Resource Features&gt;&gt; and &lt;&lt;features-features,Physical Device Features&gt;&gt; for details of the sparse memory features supported on a device.
     /// </para>
     /// </summary>
@@ -218,19 +212,19 @@ namespace SharpVk
 		None = 0,
 	    /// <summary>
 		/// <para>
-		/// Buffer should support sparse backing
+		/// ename:VK_BUFFER_CREATE_SPARSE_BINDING_BIT indicates that the buffer will be backed using sparse memory binding.
 		/// </para>
 		/// </summary>
 		SparseBinding = 1 << 0,
 	    /// <summary>
 		/// <para>
-		/// Buffer should support sparse backing with partial residency
+		/// ename:VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT indicates that the buffer can: be partially backed using sparse memory binding. Buffers created with this flag must: also be created with the ename:VK_BUFFER_CREATE_SPARSE_BINDING_BIT flag.
 		/// </para>
 		/// </summary>
 		SparseResidency = 1 << 1,
 	    /// <summary>
 		/// <para>
-		/// Buffer should support constent data access to physical memory ranges mapped into multiple locations of sparse buffers
+		/// ename:VK_BUFFER_CREATE_SPARSE_ALIASED_BIT indicates that the buffer will be backed using sparse memory binding with memory ranges that might also simultaneously be backing another buffer (or another portion of the same buffer). Buffers created with this flag must: also be created with the ename:VK_BUFFER_CREATE_SPARSE_BINDING_BIT flag.
 		/// </para>
 		/// </summary>
 		SparseAliased = 1 << 2,
@@ -484,12 +478,6 @@ namespace SharpVk
     /// <para>
     /// Alpha compositing modes supported on a device.
     /// </para>
-    /// <para>
-    /// These values are described as follows:
-    /// </para>
-    /// <para>
-    /// * ename:VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR: The alpha channel, if it exists, of the images is ignored in the compositing process.  Instead, the image is treated as if it has a constant alpha of 1.0. * ename:VK_COMPOSITE_ALPHA_PRE_MULTIPLIED_BIT_KHR: The alpha channel, if it exists, of the images is respected in the compositing process. The non-alpha channels of the image are expected to already be multiplied by the alpha channel by the application. * ename:VK_COMPOSITE_ALPHA_POST_MULTIPLIED_BIT_KHR: The alpha channel, if it exists, of the images is respected in the compositing process. The non-alpha channels of the image are not expected to already be multiplied by the alpha channel by the application; instead, the compositor will multiply the non-alpha channels of the image by the alpha channel during compositing. * ename:VK_COMPOSITE_ALPHA_INHERIT_BIT_KHR: The way in which the presentation engine treats the alpha channel in the images is unknown to the Vulkan API. Instead, the application is responsible for setting the composite alpha blending mode using native window system commands. If the application does not set the blending mode using native window system commands, then a platform-specific default will be used.
-    /// </para>
     /// </summary>
 	[Flags]
 	public enum CompositeAlphaFlags
@@ -502,25 +490,25 @@ namespace SharpVk
 		None = 0,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR: The alpha channel, if it exists, of the images is ignored in the compositing process.  Instead, the image is treated as if it has a constant alpha of 1.0.
 		/// </para>
 		/// </summary>
 		Opaque = 1 << 0,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_COMPOSITE_ALPHA_PRE_MULTIPLIED_BIT_KHR: The alpha channel, if it exists, of the images is respected in the compositing process. The non-alpha channels of the image are expected to already be multiplied by the alpha channel by the application.
 		/// </para>
 		/// </summary>
 		PreMultiplied = 1 << 1,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_COMPOSITE_ALPHA_POST_MULTIPLIED_BIT_KHR: The alpha channel, if it exists, of the images is respected in the compositing process. The non-alpha channels of the image are not expected to already be multiplied by the alpha channel by the application; instead, the compositor will multiply the non-alpha channels of the image by the alpha channel during compositing.
 		/// </para>
 		/// </summary>
 		PostMultiplied = 1 << 2,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_COMPOSITE_ALPHA_INHERIT_BIT_KHR: The way in which the presentation engine treats the alpha channel in the images is unknown to the Vulkan API. Instead, the application is responsible for setting the composite alpha blending mode using native window system commands. If the application does not set the blending mode using native window system commands, then a platform-specific default will be used.
 		/// </para>
 		/// </summary>
 		Inherit = 1 << 3,
@@ -767,12 +755,6 @@ namespace SharpVk
     /// <para>
     /// Alpha blending type.
     /// </para>
-    /// <para>
-    /// These values are described as follows:
-    /// </para>
-    /// <para>
-    /// * ename:VK_DISPLAY_PLANE_ALPHA_OPAQUE_BIT_KHR: The source image will be treated as opaque. * ename:VK_DISPLAY_PLANE_ALPHA_GLOBAL_BIT_KHR: A global alpha value must: be specified that will be applied to all pixels in the source image. * ename:VK_DISPLAY_PLANE_ALPHA_PER_PIXEL_BIT_KHR: The alpha value will be determined by the alpha channel of the source image's pixels. If the source format contains no alpha values, no blending will be applied. The source alpha values are not premultiplied into the source image's other color channels. * ename:VK_DISPLAY_PLANE_ALPHA_PER_PIXEL_PREMULTIPLIED_BIT_KHR: This is equivalent to ename:VK_DISPLAY_PLANE_ALPHA_PER_PIXEL_BIT_KHR except the source alpha values are assumed to be premultiplied into the source image's other color channels.
-    /// </para>
     /// </summary>
 	[Flags]
 	public enum DisplayPlaneAlphaFlags
@@ -785,25 +767,25 @@ namespace SharpVk
 		None = 0,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DISPLAY_PLANE_ALPHA_OPAQUE_BIT_KHR: The source image will be treated as opaque.
 		/// </para>
 		/// </summary>
 		Opaque = 1 << 0,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DISPLAY_PLANE_ALPHA_GLOBAL_BIT_KHR: A global alpha value must: be specified that will be applied to all pixels in the source image.
 		/// </para>
 		/// </summary>
 		Global = 1 << 1,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DISPLAY_PLANE_ALPHA_PER_PIXEL_BIT_KHR: The alpha value will be determined by the alpha channel of the source image's pixels. If the source format contains no alpha values, no blending will be applied. The source alpha values are not premultiplied into the source image's other color channels.
 		/// </para>
 		/// </summary>
 		PerPixel = 1 << 2,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DISPLAY_PLANE_ALPHA_PER_PIXEL_PREMULTIPLIED_BIT_KHR: This is equivalent to ename:VK_DISPLAY_PLANE_ALPHA_PER_PIXEL_BIT_KHR except the source alpha values are assumed to be premultiplied into the source image's other color channels.
 		/// </para>
 		/// </summary>
 		PerPixelPremultiplied = 1 << 3,
@@ -1164,12 +1146,6 @@ namespace SharpVk
     /// Bitmask specifying additional parameters of an image.
     /// </para>
     /// <para>
-    /// These bits have the following meanings:
-    /// </para>
-    /// <para>
-    /// * ename:VK_IMAGE_CREATE_SPARSE_BINDING_BIT indicates that the image will be backed using sparse memory binding. * ename:VK_IMAGE_CREATE_SPARSE_RESIDENCY_BIT indicates that the image can: be partially backed using sparse memory binding. Images created with this flag must: also be created with the ename:VK_IMAGE_CREATE_SPARSE_BINDING_BIT flag. * ename:VK_IMAGE_CREATE_SPARSE_ALIASED_BIT indicates that the image will be backed using sparse memory binding with memory ranges that might also simultaneously be backing another image (or another portion of the same image). Images created with this flag must: also be created with the ename:VK_IMAGE_CREATE_SPARSE_BINDING_BIT flag * ename:VK_IMAGE_CREATE_MUTABLE_FORMAT_BIT indicates that the image can: be used to create a sname:VkImageView with a different format from the image. * ename:VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT indicates that the image can: be used to create a sname:VkImageView of type ename:VK_IMAGE_VIEW_TYPE_CUBE or ename:VK_IMAGE_VIEW_TYPE_CUBE_ARRAY.
-    /// </para>
-    /// <para>
     /// If any of the bits ename:VK_IMAGE_CREATE_SPARSE_BINDING_BIT, ename:VK_IMAGE_CREATE_SPARSE_RESIDENCY_BIT, or ename:VK_IMAGE_CREATE_SPARSE_ALIASED_BIT are set, ename:VK_IMAGE_USAGE_TRANSIENT_ATTACHMENT_BIT must: not also be set.
     /// </para>
     /// <para>
@@ -1187,31 +1163,31 @@ namespace SharpVk
 		None = 0,
 	    /// <summary>
 		/// <para>
-		/// Image should support sparse backing
+		/// ename:VK_IMAGE_CREATE_SPARSE_BINDING_BIT indicates that the image will be backed using sparse memory binding.
 		/// </para>
 		/// </summary>
 		SparseBinding = 1 << 0,
 	    /// <summary>
 		/// <para>
-		/// Image should support sparse backing with partial residency
+		/// ename:VK_IMAGE_CREATE_SPARSE_RESIDENCY_BIT indicates that the image can: be partially backed using sparse memory binding. Images created with this flag must: also be created with the ename:VK_IMAGE_CREATE_SPARSE_BINDING_BIT flag.
 		/// </para>
 		/// </summary>
 		SparseResidency = 1 << 1,
 	    /// <summary>
 		/// <para>
-		/// Image should support constent data access to physical memory ranges mapped into multiple locations of sparse images
+		/// ename:VK_IMAGE_CREATE_SPARSE_ALIASED_BIT indicates that the image will be backed using sparse memory binding with memory ranges that might also simultaneously be backing another image (or another portion of the same image). Images created with this flag must: also be created with the ename:VK_IMAGE_CREATE_SPARSE_BINDING_BIT flag
 		/// </para>
 		/// </summary>
 		SparseAliased = 1 << 2,
 	    /// <summary>
 		/// <para>
-		/// Allows image views to have different format than the base image
+		/// ename:VK_IMAGE_CREATE_MUTABLE_FORMAT_BIT indicates that the image can: be used to create a sname:VkImageView with a different format from the image.
 		/// </para>
 		/// </summary>
 		MutableFormat = 1 << 3,
 	    /// <summary>
 		/// <para>
-		/// Allows creating image views with cube type from the created image
+		/// ename:VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT indicates that the image can: be used to create a sname:VkImageView of type ename:VK_IMAGE_VIEW_TYPE_CUBE or ename:VK_IMAGE_VIEW_TYPE_CUBE_ARRAY.
 		/// </para>
 		/// </summary>
 		CubeCompatible = 1 << 4,
@@ -1220,12 +1196,6 @@ namespace SharpVk
     /// <summary>
     /// <para>
     /// Bitmask specifying intended usage of an image.
-    /// </para>
-    /// <para>
-    /// These bits have the following meanings:
-    /// </para>
-    /// <para>
-    /// * ename:VK_IMAGE_USAGE_TRANSFER_SRC_BIT indicates that the image can: be used as the source of a transfer command. * ename:VK_IMAGE_USAGE_TRANSFER_DST_BIT indicates that the image can: be used as the destination of a transfer command. * ename:VK_IMAGE_USAGE_SAMPLED_BIT indicates that the image can: be used to create a sname:VkImageView suitable for occupying a sname:VkDescriptorSet slot either of type ename:VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE or ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, and be sampled by a shader. * ename:VK_IMAGE_USAGE_STORAGE_BIT indicates that the image can: be used to create a sname:VkImageView suitable for occupying a sname:VkDescriptorSet slot of type ename:VK_DESCRIPTOR_TYPE_STORAGE_IMAGE. * ename:VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT indicates that the image can: be used to create a sname:VkImageView suitable for use as a color or resolve attachment in a sname:VkFramebuffer. * ename:VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT indicates that the image can: be used to create a sname:VkImageView suitable for use as a depth/stencil attachment in a sname:VkFramebuffer. * ename:VK_IMAGE_USAGE_TRANSIENT_ATTACHMENT_BIT indicates that the memory bound to this image will have been allocated with the ename:VK_MEMORY_PROPERTY_LAZILY_ALLOCATED_BIT (see &lt;&lt;memory&gt;&gt; for more detail). This bit can: be set for any image that can: be used to create a sname:VkImageView suitable for use as a color, resolve, depth/stencil, or input attachment. * ename:VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT indicates that the image can: be used to create a sname:VkImageView suitable for occupying sname:VkDescriptorSet slot of type ename:VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT; be read from a shader as an input attachment; and be used as an input attachment in a framebuffer.
     /// </para>
     /// </summary>
 	[Flags]
@@ -1239,49 +1209,49 @@ namespace SharpVk
 		None = 0,
 	    /// <summary>
 		/// <para>
-		/// Can be used as a source of transfer operations
+		/// ename:VK_IMAGE_USAGE_TRANSFER_SRC_BIT indicates that the image can: be used as the source of a transfer command.
 		/// </para>
 		/// </summary>
 		TransferSource = 1 << 0,
 	    /// <summary>
 		/// <para>
-		/// Can be used as a destination of transfer operations
+		/// ename:VK_IMAGE_USAGE_TRANSFER_DST_BIT indicates that the image can: be used as the destination of a transfer command.
 		/// </para>
 		/// </summary>
 		TransferDestination = 1 << 1,
 	    /// <summary>
 		/// <para>
-		/// Can be sampled from (SAMPLED_IMAGE and COMBINED_IMAGE_SAMPLER descriptor types)
+		/// ename:VK_IMAGE_USAGE_SAMPLED_BIT indicates that the image can: be used to create a sname:VkImageView suitable for occupying a sname:VkDescriptorSet slot either of type ename:VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE or ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, and be sampled by a shader.
 		/// </para>
 		/// </summary>
 		Sampled = 1 << 2,
 	    /// <summary>
 		/// <para>
-		/// Can be used as storage image (STORAGE_IMAGE descriptor type)
+		/// ename:VK_IMAGE_USAGE_STORAGE_BIT indicates that the image can: be used to create a sname:VkImageView suitable for occupying a sname:VkDescriptorSet slot of type ename:VK_DESCRIPTOR_TYPE_STORAGE_IMAGE.
 		/// </para>
 		/// </summary>
 		Storage = 1 << 3,
 	    /// <summary>
 		/// <para>
-		/// Can be used as framebuffer color attachment
+		/// ename:VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT indicates that the image can: be used to create a sname:VkImageView suitable for use as a color or resolve attachment in a sname:VkFramebuffer.
 		/// </para>
 		/// </summary>
 		ColorAttachment = 1 << 4,
 	    /// <summary>
 		/// <para>
-		/// Can be used as framebuffer depth/stencil attachment
+		/// ename:VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT indicates that the image can: be used to create a sname:VkImageView suitable for use as a depth/stencil attachment in a sname:VkFramebuffer.
 		/// </para>
 		/// </summary>
 		DepthStencilAttachment = 1 << 5,
 	    /// <summary>
 		/// <para>
-		/// Image data not needed outside of rendering
+		/// ename:VK_IMAGE_USAGE_TRANSIENT_ATTACHMENT_BIT indicates that the memory bound to this image will have been allocated with the ename:VK_MEMORY_PROPERTY_LAZILY_ALLOCATED_BIT (see &lt;&lt;memory&gt;&gt; for more detail). This bit can: be set for any image that can: be used to create a sname:VkImageView suitable for use as a color, resolve, depth/stencil, or input attachment.
 		/// </para>
 		/// </summary>
 		TransientAttachment = 1 << 6,
 	    /// <summary>
 		/// <para>
-		/// Can be used as framebuffer input attachment
+		/// ename:VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT indicates that the image can: be used to create a sname:VkImageView suitable for occupying sname:VkDescriptorSet slot of type ename:VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT; be read from a shader as an input attachment; and be used as an input attachment in a framebuffer.
 		/// </para>
 		/// </summary>
 		InputAttachment = 1 << 7,
@@ -1611,12 +1581,6 @@ namespace SharpVk
     /// Bitmask specifying pipeline stages.
     /// </para>
     /// <para>
-    /// The meaning of each bit is:
-    /// </para>
-    /// <para>
-    /// * ename:VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT: Stage of the pipeline where commands are initially received by the queue. * ename:VK_PIPELINE_STAGE_DRAW_INDIRECT_BIT: Stage of the pipeline where Draw/DispatchIndirect data structures are consumed. * ename:VK_PIPELINE_STAGE_VERTEX_INPUT_BIT: Stage of the pipeline where vertex and index buffers are consumed. * ename:VK_PIPELINE_STAGE_VERTEX_SHADER_BIT: Vertex shader stage. * ename:VK_PIPELINE_STAGE_TESSELLATION_CONTROL_SHADER_BIT: Tessellation control shader stage. * ename:VK_PIPELINE_STAGE_TESSELLATION_EVALUATION_SHADER_BIT: Tessellation evaluation shader stage. * ename:VK_PIPELINE_STAGE_GEOMETRY_SHADER_BIT: Geometry shader stage. * ename:VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT: Fragment shader stage. * ename:VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT: Stage of the pipeline where early fragment tests (depth and stencil tests before fragment shading) are performed. * ename:VK_PIPELINE_STAGE_LATE_FRAGMENT_TESTS_BIT: Stage of the pipeline where late fragment tests (depth and stencil tests after fragment shading) are performed. * ename:VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT: Stage of the pipeline after blending where the final color values are output from the pipeline. This stage also includes resolve operations that occur at the end of a subpass. Note that this does not necessarily indicate that the values have been committed to memory. * [[synchronization-transfer]]ename:VK_PIPELINE_STAGE_TRANSFER_BIT: Execution of copy commands. This includes the operations resulting from all transfer commands. The set of transfer commands comprises fname:vkCmdCopyBuffer, fname:vkCmdCopyImage, fname:vkCmdBlitImage, fname:vkCmdCopyBufferToImage, fname:vkCmdCopyImageToBuffer, fname:vkCmdUpdateBuffer, fname:vkCmdFillBuffer, fname:vkCmdClearColorImage, fname:vkCmdClearDepthStencilImage, fname:vkCmdResolveImage, and fname:vkCmdCopyQueryPoolResults. * ename:VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT: Execution of a compute shader. * ename:VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT: Final stage in the pipeline where commands complete execution. * ename:VK_PIPELINE_STAGE_HOST_BIT: A pseudo-stage indicating execution on the host of reads/writes of device memory. * ename:VK_PIPELINE_STAGE_ALL_GRAPHICS_BIT: Execution of all graphics pipeline stages. * ename:VK_PIPELINE_STAGE_ALL_COMMANDS_BIT: Execution of all stages supported on the queue.
-    /// </para>
-    /// <para>
     /// [NOTE] .Note ==== The ename:VK_PIPELINE_STAGE_ALL_COMMANDS_BIT and ename:VK_PIPELINE_STAGE_ALL_GRAPHICS_BIT differ from ename:VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT in that they correspond to all (or all graphics) stages, rather than to a specific stage at the end of the pipeline. An execution dependency with only ename:VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT in pname:dstStageMask will not delay subsequent commands, while including either of the other two bits will. Similarly, when defining a memory dependency, if the stage mask(s) refer to all stages, then the indicated access types from all stages will be made available and/or visible, but using only ename:VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT would not make any accesses available and/or visible because this stage does not access memory. The ename:VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT is useful for accomplishing memory barriers and layout transitions when the next accesses will be done in a different queue or by a presentation engine; in these cases subsequent commands in the same queue do not need to wait, but the barrier or transition must: complete before semaphores associated with the batch signal. ====
     /// </para>
     /// </summary>
@@ -1631,103 +1595,103 @@ namespace SharpVk
 		None = 0,
 	    /// <summary>
 		/// <para>
-		/// Before subsequent commands are processed
+		/// ename:VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT: Stage of the pipeline where commands are initially received by the queue.
 		/// </para>
 		/// </summary>
 		TopOfPipe = 1 << 0,
 	    /// <summary>
 		/// <para>
-		/// Draw/DispatchIndirect command fetch
+		/// ename:VK_PIPELINE_STAGE_DRAW_INDIRECT_BIT: Stage of the pipeline where Draw/DispatchIndirect data structures are consumed.
 		/// </para>
 		/// </summary>
 		DrawIndirect = 1 << 1,
 	    /// <summary>
 		/// <para>
-		/// Vertex/index fetch
+		/// ename:VK_PIPELINE_STAGE_VERTEX_INPUT_BIT: Stage of the pipeline where vertex and index buffers are consumed.
 		/// </para>
 		/// </summary>
 		VertexInput = 1 << 2,
 	    /// <summary>
 		/// <para>
-		/// Vertex shading
+		/// ename:VK_PIPELINE_STAGE_VERTEX_SHADER_BIT: Vertex shader stage.
 		/// </para>
 		/// </summary>
 		VertexShader = 1 << 3,
 	    /// <summary>
 		/// <para>
-		/// Tessellation control shading
+		/// ename:VK_PIPELINE_STAGE_TESSELLATION_CONTROL_SHADER_BIT: Tessellation control shader stage.
 		/// </para>
 		/// </summary>
 		TessellationControlShader = 1 << 4,
 	    /// <summary>
 		/// <para>
-		/// Tessellation evaluation shading
+		/// ename:VK_PIPELINE_STAGE_TESSELLATION_EVALUATION_SHADER_BIT: Tessellation evaluation shader stage.
 		/// </para>
 		/// </summary>
 		TessellationEvaluationShader = 1 << 5,
 	    /// <summary>
 		/// <para>
-		/// Geometry shading
+		/// ename:VK_PIPELINE_STAGE_GEOMETRY_SHADER_BIT: Geometry shader stage.
 		/// </para>
 		/// </summary>
 		GeometryShader = 1 << 6,
 	    /// <summary>
 		/// <para>
-		/// Fragment shading
+		/// ename:VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT: Fragment shader stage.
 		/// </para>
 		/// </summary>
 		FragmentShader = 1 << 7,
 	    /// <summary>
 		/// <para>
-		/// Early fragment (depth and stencil) tests
+		/// ename:VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT: Stage of the pipeline where early fragment tests (depth and stencil tests before fragment shading) are performed.
 		/// </para>
 		/// </summary>
 		EarlyFragmentTests = 1 << 8,
 	    /// <summary>
 		/// <para>
-		/// Late fragment (depth and stencil) tests
+		/// ename:VK_PIPELINE_STAGE_LATE_FRAGMENT_TESTS_BIT: Stage of the pipeline where late fragment tests (depth and stencil tests after fragment shading) are performed.
 		/// </para>
 		/// </summary>
 		LateFragmentTests = 1 << 9,
 	    /// <summary>
 		/// <para>
-		/// Color attachment writes
+		/// ename:VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT: Stage of the pipeline after blending where the final color values are output from the pipeline. This stage also includes resolve operations that occur at the end of a subpass. Note that this does not necessarily indicate that the values have been committed to memory.
 		/// </para>
 		/// </summary>
 		ColorAttachmentOutput = 1 << 10,
 	    /// <summary>
 		/// <para>
-		/// Compute shading
+		/// ename:VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT: Execution of a compute shader.
 		/// </para>
 		/// </summary>
 		ComputeShader = 1 << 11,
 	    /// <summary>
 		/// <para>
-		/// Transfer/copy operations
+		/// ename:VK_PIPELINE_STAGE_TRANSFER_BIT: Execution of copy commands. This includes the operations resulting from all transfer commands. The set of transfer commands comprises fname:vkCmdCopyBuffer, fname:vkCmdCopyImage, fname:vkCmdBlitImage, fname:vkCmdCopyBufferToImage, fname:vkCmdCopyImageToBuffer, fname:vkCmdUpdateBuffer, fname:vkCmdFillBuffer, fname:vkCmdClearColorImage, fname:vkCmdClearDepthStencilImage, fname:vkCmdResolveImage, and fname:vkCmdCopyQueryPoolResults.
 		/// </para>
 		/// </summary>
 		Transfer = 1 << 12,
 	    /// <summary>
 		/// <para>
-		/// After previous commands have completed
+		/// ename:VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT: Final stage in the pipeline where commands complete execution.
 		/// </para>
 		/// </summary>
 		BottomOfPipe = 1 << 13,
 	    /// <summary>
 		/// <para>
-		/// Indicates host (CPU) is a source/sink of the dependency
+		/// ename:VK_PIPELINE_STAGE_HOST_BIT: A pseudo-stage indicating execution on the host of reads/writes of device memory.
 		/// </para>
 		/// </summary>
 		Host = 1 << 14,
 	    /// <summary>
 		/// <para>
-		/// All stages of the graphics pipeline
+		/// ename:VK_PIPELINE_STAGE_ALL_GRAPHICS_BIT: Execution of all graphics pipeline stages.
 		/// </para>
 		/// </summary>
 		AllGraphics = 1 << 15,
 	    /// <summary>
 		/// <para>
-		/// All stages supported on the queue
+		/// ename:VK_PIPELINE_STAGE_ALL_COMMANDS_BIT: Execution of all stages supported on the queue.
 		/// </para>
 		/// </summary>
 		AllCommands = 1 << 16,
@@ -1789,7 +1753,7 @@ namespace SharpVk
     /// If the pname:queryType of the pool is ename:VK_QUERY_TYPE_OCCLUSION and pname:flags contains ename:VK_QUERY_CONTROL_PRECISE_BIT, an implementation must: return a result that matches the actual number of samples passed. This is described in more detail in &lt;&lt;queries-occlusion,Occlusion Queries&gt;&gt;.
     /// </para>
     /// <para>
-    /// [[queries-operation-active]] After beginning a query, that query is considered _active_ within the command buffer it was called in until that same query is ended. Queries active in a primary command buffer when secondary command buffers are executed are considered active for those secondary command buffers.
+    /// After beginning a query, that query is considered _active_ within the command buffer it was called in until that same query is ended. Queries active in a primary command buffer when secondary command buffers are executed are considered active for those secondary command buffers.
     /// </para>
     /// </summary>
 	[Flags]
@@ -1939,7 +1903,7 @@ namespace SharpVk
     /// If ename:VK_QUERY_RESULT_WAIT_BIT is set, Vulkan will wait for each query to be in the available state before retrieving the numerical results for that query. In this case, fname:vkGetQueryPoolResults is guaranteed to succeed and return ename:VK_SUCCESS if the queries become available in a finite time (i.e. if they have been issued and not reset). If queries will never finish (e.g. due to being reset but not issued), then fname:vkGetQueryPoolResults may: not return in finite time.
     /// </para>
     /// <para>
-    /// [[queries-wait-bit-not-set]] If ename:VK_QUERY_RESULT_WAIT_BIT and ename:VK_QUERY_RESULT_PARTIAL_BIT are both not set then no result values are written to pname:pData for queries that are in the unavailable state at the time of the call, and fname:vkGetQueryPoolResults returns ename:VK_NOT_READY. However, availability state is still written to pname:pData for those queries if ename:VK_QUERY_RESULT_WITH_AVAILABILITY_BIT is set.
+    /// If ename:VK_QUERY_RESULT_WAIT_BIT and ename:VK_QUERY_RESULT_PARTIAL_BIT are both not set then no result values are written to pname:pData for queries that are in the unavailable state at the time of the call, and fname:vkGetQueryPoolResults returns ename:VK_NOT_READY. However, availability state is still written to pname:pData for those queries if ename:VK_QUERY_RESULT_WITH_AVAILABILITY_BIT is set.
     /// </para>
     /// <para>
     /// [NOTE] .Note ==== Applications must: take care to ensure that use of the ename:VK_QUERY_RESULT_WAIT_BIT bit has the desired effect.
@@ -2382,12 +2346,6 @@ namespace SharpVk
     /// <para>
     /// Presentation transforms supported on a device.
     /// </para>
-    /// <para>
-    /// These values are described as follows:
-    /// </para>
-    /// <para>
-    /// * ename:VK_SURFACE_TRANSFORM_IDENTITY_BIT_KHR: The image content is presented without being transformed. * ename:VK_SURFACE_TRANSFORM_ROTATE_90_BIT_KHR: The image content is rotated 90 degrees clockwise. * ename:VK_SURFACE_TRANSFORM_ROTATE_180_BIT_KHR: The image content is rotated 180 degrees clockwise. * ename:VK_SURFACE_TRANSFORM_ROTATE_270_BIT_KHR: The image content is rotated 270 degrees clockwise. * ename:VK_SURFACE_TRANSFORM_HORIZONTAL_MIRROR_BIT_KHR: The image content is mirrored horizontally. * ename:VK_SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_90_BIT_KHR: The image content is mirrored horizontally, then rotated 90 degrees clockwise. * ename:VK_SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_180_BIT_KHR: The image content is mirrored horizontally, then rotated 180 degrees clockwise. * ename:VK_SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_270_BIT_KHR: The image content is mirrored horizontally, then rotated 270 degrees clockwise. * ename:VK_SURFACE_TRANSFORM_INHERIT_BIT_KHR: The presentation transform is not specified, and is instead determined by platform-specific considerations and mechanisms outside Vulkan.
-    /// </para>
     /// </summary>
 	[Flags]
 	public enum SurfaceTransformFlags
@@ -2400,55 +2358,55 @@ namespace SharpVk
 		None = 0,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_SURFACE_TRANSFORM_IDENTITY_BIT_KHR: The image content is presented without being transformed.
 		/// </para>
 		/// </summary>
 		Identity = 1 << 0,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_SURFACE_TRANSFORM_ROTATE_90_BIT_KHR: The image content is rotated 90 degrees clockwise.
 		/// </para>
 		/// </summary>
 		Rotate90 = 1 << 1,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_SURFACE_TRANSFORM_ROTATE_180_BIT_KHR: The image content is rotated 180 degrees clockwise.
 		/// </para>
 		/// </summary>
 		Rotate180 = 1 << 2,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_SURFACE_TRANSFORM_ROTATE_270_BIT_KHR: The image content is rotated 270 degrees clockwise.
 		/// </para>
 		/// </summary>
 		Rotate270 = 1 << 3,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_SURFACE_TRANSFORM_HORIZONTAL_MIRROR_BIT_KHR: The image content is mirrored horizontally.
 		/// </para>
 		/// </summary>
 		HorizontalMirror = 1 << 4,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_90_BIT_KHR: The image content is mirrored horizontally, then rotated 90 degrees clockwise.
 		/// </para>
 		/// </summary>
 		HorizontalMirrorRotate90 = 1 << 5,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_180_BIT_KHR: The image content is mirrored horizontally, then rotated 180 degrees clockwise.
 		/// </para>
 		/// </summary>
 		HorizontalMirrorRotate180 = 1 << 6,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_SURFACE_TRANSFORM_HORIZONTAL_MIRROR_ROTATE_270_BIT_KHR: The image content is mirrored horizontally, then rotated 270 degrees clockwise.
 		/// </para>
 		/// </summary>
 		HorizontalMirrorRotate270 = 1 << 7,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_SURFACE_TRANSFORM_INHERIT_BIT_KHR: The presentation transform is not specified, and is instead determined by platform-specific considerations and mechanisms outside Vulkan.
 		/// </para>
 		/// </summary>
 		Inherit = 1 << 8,
@@ -2569,10 +2527,10 @@ namespace SharpVk
     /// If the attachment uses a color format, then pname:loadOp and pname:storeOp are used, and pname:stencilLoadOp and pname:stencilStoreOp are ignored. If the format has depth and/or stencil components, pname:loadOp and pname:storeOp apply only to the depth data, while pname:stencilLoadOp and pname:stencilStoreOp define how the stencil data is handled.
     /// </para>
     /// <para>
-    /// [[renderpass-precision]] During a render pass instance, input/color attachments with color formats that have a component size of 8, 16, or 32 bits must: be represented in the attachment's format throughout the instance. Attachments with other floating- or fixed-point color formats, or with depth components may: be represented in a format with a precision higher than the attachment format, but must: be represented with the same range. When such a component is loaded via the pname:loadOp, it will be converted into an implementation-dependent format used by the render pass. Such components must: be converted from the render pass format, to the format of the attachment, before they are stored or resolved at the end of a render pass instance via pname:storeOp. Conversions occur as described in &lt;&lt;fundamentals-numerics,Numeric Representation and Computation&gt;&gt; and &lt;&lt;fundamentals-fixedconv, Fixed-Point Data Conversions&gt;&gt;.
+    /// During a render pass instance, input/color attachments with color formats that have a component size of 8, 16, or 32 bits must: be represented in the attachment's format throughout the instance. Attachments with other floating- or fixed-point color formats, or with depth components may: be represented in a format with a precision higher than the attachment format, but must: be represented with the same range. When such a component is loaded via the pname:loadOp, it will be converted into an implementation-dependent format used by the render pass. Such components must: be converted from the render pass format, to the format of the attachment, before they are stored or resolved at the end of a render pass instance via pname:storeOp. Conversions occur as described in &lt;&lt;fundamentals-numerics,Numeric Representation and Computation&gt;&gt; and &lt;&lt;fundamentals-fixedconv, Fixed-Point Data Conversions&gt;&gt;.
     /// </para>
     /// <para>
-    /// [[renderpass-aliasing]] If pname:flags includes ename:VK_ATTACHMENT_DESCRIPTION_MAY_ALIAS_BIT, then the attachment is treated as if it shares physical memory with another attachment in the same render pass. This information limits the ability of the implementation to reorder certain operations (like layout transitions and the pname:loadOp) such that it is not improperly reordered against other uses of the same physical memory via a different attachment. This is described in more detail below.
+    /// If pname:flags includes ename:VK_ATTACHMENT_DESCRIPTION_MAY_ALIAS_BIT, then the attachment is treated as if it shares physical memory with another attachment in the same render pass. This information limits the ability of the implementation to reorder certain operations (like layout transitions and the pname:loadOp) such that it is not improperly reordered against other uses of the same physical memory via a different attachment. This is described in more detail below.
     /// </para>
     /// </summary>
 	public enum AttachmentStoreOp
@@ -2599,13 +2557,13 @@ namespace SharpVk
     /// The semantics of each enum value is described in the table below:
     /// </para>
     /// <para>
-    /// .Blend Factors [width="100%",options="header",align="center",cols="59%,28%,13%"] |======================================== |VkBlendFactor                                  | RGB Blend Factors (latexmath:[$S_r,S_g,S_b$]) or (latexmath:[$D_r,D_g,D_b$]) | Alpha Blend Factor (latexmath:[$S_a$] or latexmath:[$D_a$]) |ename:VK_BLEND_FACTOR_ZERO                     | latexmath:[$(0,0,0)$]                           | latexmath:[$0$] |ename:VK_BLEND_FACTOR_ONE                      | latexmath:[$(1,1,1)$]                           | latexmath:[$1$] |ename:VK_BLEND_FACTOR_SRC_COLOR                | latexmath:[$(R_{s0},G_{s0},B_{s0})$]            | latexmath:[$A_{s0}$] |ename:VK_BLEND_FACTOR_ONE_MINUS_SRC_COLOR      | latexmath:[$(1-R_{s0},1-G_{s0},1-B_{s0})$]      | latexmath:[$1-A_{s0}$] |ename:VK_BLEND_FACTOR_DST_COLOR                | latexmath:[$(R_d,G_d,B_d)$]                     | latexmath:[$A_d$] |ename:VK_BLEND_FACTOR_ONE_MINUS_DST_COLOR      | latexmath:[$(1-R_d,1-G_d,1-B_d)$]               | latexmath:[$1-A_d$] |ename:VK_BLEND_FACTOR_SRC_ALPHA                | latexmath:[$(A_{s0},A_{s0},A_{s0})$]            | latexmath:[$A_{s0}$] |ename:VK_BLEND_FACTOR_ONE_MINUS_SRC_ALPHA      | latexmath:[$(1-A_{s0},1-A_{s0},1-A_{s0})$]      | latexmath:[$1-A_{s0}$] |ename:VK_BLEND_FACTOR_DST_ALPHA                | latexmath:[$(A_d,A_d,A_d)$]                     | latexmath:[$A_d$] |ename:VK_BLEND_FACTOR_ONE_MINUS_DST_ALPHA      | latexmath:[$(1-A_d,1-A_d,1-A_d)$]               | latexmath:[$1-A_d$] |ename:VK_BLEND_FACTOR_CONSTANT_COLOR           | latexmath:[$(R_c,G_c,B_c)$]                     | latexmath:[$A_c$] |ename:VK_BLEND_FACTOR_ONE_MINUS_CONSTANT_COLOR | latexmath:[$(1-R_c,1-G_c,1-B_c)$]               | latexmath:[$1-A_c$] |ename:VK_BLEND_FACTOR_CONSTANT_ALPHA           | latexmath:[$(A_c,A_c,A_c)$]                     | latexmath:[$A_c$] |ename:VK_BLEND_FACTOR_ONE_MINUS_CONSTANT_ALPHA | latexmath:[$(1-A_c,1-A_c,1-A_c)$]               | latexmath:[$1-A_c$] |ename:VK_BLEND_FACTOR_SRC_ALPHA_SATURATE       | latexmath:[$(f,f,f); f=\min(A_{s0},1-A_d)$]     | latexmath:[$1$] |ename:VK_BLEND_FACTOR_SRC1_COLOR               | latexmath:[$(R_{s1},G_{s1},B_{s1})$]            | latexmath:[$A_{s1}$] |ename:VK_BLEND_FACTOR_ONE_MINUS_SRC1_COLOR     | latexmath:[$(1-R_{s1},1-G_{s1},1-B_{s1})$]      | latexmath:[$1-A_{s1}$] |ename:VK_BLEND_FACTOR_SRC1_ALPHA               | latexmath:[$(A_{s1},A_{s1},A_{s1})$]            | latexmath:[$A_{s1}$] |ename:VK_BLEND_FACTOR_ONE_MINUS_SRC1_ALPHA     | latexmath:[$(1-A_{s1},1-A_{s1},1-A_{s1})$]      | latexmath:[$1-A_{s1}$] |========================================
+    /// .Blend Factors [width="100%",options="header",align="center",cols="59%,28%,13%"] |==== |VkBlendFactor                                  | RGB Blend Factors (latexmath:[$S_r,S_g,S_b$]) or (latexmath:[$D_r,D_g,D_b$]) | Alpha Blend Factor (latexmath:[$S_a$] or latexmath:[$D_a$]) |ename:VK_BLEND_FACTOR_ZERO                     | latexmath:[$(0,0,0)$]                           | latexmath:[$0$] |ename:VK_BLEND_FACTOR_ONE                      | latexmath:[$(1,1,1)$]                           | latexmath:[$1$] |ename:VK_BLEND_FACTOR_SRC_COLOR                | latexmath:[$(R_{s0},G_{s0},B_{s0})$]            | latexmath:[$A_{s0}$] |ename:VK_BLEND_FACTOR_ONE_MINUS_SRC_COLOR      | latexmath:[$(1-R_{s0},1-G_{s0},1-B_{s0})$]      | latexmath:[$1-A_{s0}$] |ename:VK_BLEND_FACTOR_DST_COLOR                | latexmath:[$(R_d,G_d,B_d)$]                     | latexmath:[$A_d$] |ename:VK_BLEND_FACTOR_ONE_MINUS_DST_COLOR      | latexmath:[$(1-R_d,1-G_d,1-B_d)$]               | latexmath:[$1-A_d$] |ename:VK_BLEND_FACTOR_SRC_ALPHA                | latexmath:[$(A_{s0},A_{s0},A_{s0})$]            | latexmath:[$A_{s0}$] |ename:VK_BLEND_FACTOR_ONE_MINUS_SRC_ALPHA      | latexmath:[$(1-A_{s0},1-A_{s0},1-A_{s0})$]      | latexmath:[$1-A_{s0}$] |ename:VK_BLEND_FACTOR_DST_ALPHA                | latexmath:[$(A_d,A_d,A_d)$]                     | latexmath:[$A_d$] |ename:VK_BLEND_FACTOR_ONE_MINUS_DST_ALPHA      | latexmath:[$(1-A_d,1-A_d,1-A_d)$]               | latexmath:[$1-A_d$] |ename:VK_BLEND_FACTOR_CONSTANT_COLOR           | latexmath:[$(R_c,G_c,B_c)$]                     | latexmath:[$A_c$] |ename:VK_BLEND_FACTOR_ONE_MINUS_CONSTANT_COLOR | latexmath:[$(1-R_c,1-G_c,1-B_c)$]               | latexmath:[$1-A_c$] |ename:VK_BLEND_FACTOR_CONSTANT_ALPHA           | latexmath:[$(A_c,A_c,A_c)$]                     | latexmath:[$A_c$] |ename:VK_BLEND_FACTOR_ONE_MINUS_CONSTANT_ALPHA | latexmath:[$(1-A_c,1-A_c,1-A_c)$]               | latexmath:[$1-A_c$] |ename:VK_BLEND_FACTOR_SRC_ALPHA_SATURATE       | latexmath:[$(f,f,f); f=\min(A_{s0},1-A_d)$]     | latexmath:[$1$] |ename:VK_BLEND_FACTOR_SRC1_COLOR               | latexmath:[$(R_{s1},G_{s1},B_{s1})$]            | latexmath:[$A_{s1}$] |ename:VK_BLEND_FACTOR_ONE_MINUS_SRC1_COLOR     | latexmath:[$(1-R_{s1},1-G_{s1},1-B_{s1})$]      | latexmath:[$1-A_{s1}$] |ename:VK_BLEND_FACTOR_SRC1_ALPHA               | latexmath:[$(A_{s1},A_{s1},A_{s1})$]            | latexmath:[$A_{s1}$] |ename:VK_BLEND_FACTOR_ONE_MINUS_SRC1_ALPHA     | latexmath:[$(1-A_{s1},1-A_{s1},1-A_{s1})$]      | latexmath:[$1-A_{s1}$] |====
     /// </para>
     /// <para>
     /// In this table, the following conventions are used:
     /// </para>
     /// <para>
-    /// - latexmath:[$R_{s0},G_{s0},B_{s0}$] and latexmath:[$A_{s0}$] represent the first source color R, G, B, and A components, respectively, for the fragment output location corresponding to the color attachment being blended. - latexmath:[$R_{s1},G_{s1},B_{s1}$] and latexmath:[$A_{s1}$] represent the second source color R, G, B, and A components, respectively, used in dual source blending modes, for the fragment output location corresponding to the color attachment being blended. - latexmath:[$R_d,G_d,B_d$] and latexmath:[$A_d$] represent the R, G, B, and A components of the destination color. That is, the color currently in the corresponding color attachment for this fragment/sample. - latexmath:[$R_c,G_c,B_c$] and latexmath:[$A_c$] represent the blend constant R, G, B, and A components, respectively.
+    /// * latexmath:[$R_{s0},G_{s0},B_{s0}$] and latexmath:[$A_{s0}$] represent the first source color R, G, B, and A components, respectively, for the fragment output location corresponding to the color attachment being blended. * latexmath:[$R_{s1},G_{s1},B_{s1}$] and latexmath:[$A_{s1}$] represent the second source color R, G, B, and A components, respectively, used in dual source blending modes, for the fragment output location corresponding to the color attachment being blended. * latexmath:[$R_d,G_d,B_d$] and latexmath:[$A_d$] represent the R, G, B, and A components of the destination color. That is, the color currently in the corresponding color attachment for this fragment/sample. * latexmath:[$R_c,G_c,B_c$] and latexmath:[$A_c$] represent the blend constant R, G, B, and A components, respectively.
     /// </para>
     /// </summary>
 	public enum BlendFactor
@@ -2737,7 +2695,7 @@ namespace SharpVk
     /// The semantics of each enum value is described in the table below:
     /// </para>
     /// <para>
-    /// .Blend Operations [width="100%",cols="45%,30%,25%",options="header",align="center"] |========================================== |VkBlendOp                                   | RGB Components                    | Alpha Component
+    /// .Blend Operations [width="100%",cols="45%,30%,25%",options="header",align="center"] |==== |VkBlendOp                                   | RGB Components                    | Alpha Component
     /// </para>
     /// <para>
     /// |ename:VK_BLEND_OP_ADD | latexmath:[$R=R_{s0}\times S_r+R_d\times D_r$] + latexmath:[$G=G_{s0}\times S_g+G_d\times D_g$] + latexmath:[$B=B_{s0}\times S_b+B_d\times D_b$] | latexmath:[$A=A_{s0}\times S_a+A_d\times D_a$]
@@ -2752,13 +2710,13 @@ namespace SharpVk
     /// |ename:VK_BLEND_OP_MIN | latexmath:[$R=\min(R_{s0},R_d)$] + latexmath:[$G=\min(G_{s0},G_d)$] + latexmath:[$B=\min(B_{s0},B_d)$] | latexmath:[$A=\min(A_{s0},A_d)$]
     /// </para>
     /// <para>
-    /// |ename:VK_BLEND_OP_MAX | latexmath:[$R=\max(R_{s0},R_d)$] + latexmath:[$G=\max(G_{s0},G_d)$] + latexmath:[$B=\max(B_{s0},B_d)$] | latexmath:[$A=\max(A_{s0},A_d)$] |==========================================
+    /// |ename:VK_BLEND_OP_MAX | latexmath:[$R=\max(R_{s0},R_d)$] + latexmath:[$G=\max(G_{s0},G_d)$] + latexmath:[$B=\max(B_{s0},B_d)$] | latexmath:[$A=\max(A_{s0},A_d)$] |====
     /// </para>
     /// <para>
     /// In this table, the following conventions are used:
     /// </para>
     /// <para>
-    /// - latexmath:[$R_{s0},G_{s0},B_{s0}$] and latexmath:[$A_{s0}$] represent the first source color R, G, B, and A components, respectively. - latexmath:[$R_d,G_d,B_d$] and latexmath:[$A_d$] represent the R, G, B, and A components of the destination color. That is, the color currently in the corresponding color attachment for this fragment/sample. - latexmath:[$S_r,S_g,S_b$] and latexmath:[$S_a$] represent the source blend factor R, G, B, and A components, respectively. - latexmath:[$D_r,D_g,D_b$] and latexmath:[$D_a$] represent the destination blend factor R, G, B, and A components, respectively.
+    /// * latexmath:[$R_{s0},G_{s0},B_{s0}$] and latexmath:[$A_{s0}$] represent the first source color R, G, B, and A components, respectively. * latexmath:[$R_d,G_d,B_d$] and latexmath:[$A_d$] represent the R, G, B, and A components of the destination color. That is, the color currently in the corresponding color attachment for this fragment/sample. * latexmath:[$S_r,S_g,S_b$] and latexmath:[$S_a$] represent the source blend factor R, G, B, and A components, respectively. * latexmath:[$D_r,D_g,D_b$] and latexmath:[$D_a$] represent the destination blend factor R, G, B, and A components, respectively.
     /// </para>
     /// <para>
     /// The blending operation produces a new set of values latexmath:[$R, G, B$] and latexmath:[$A$], which are written to the framebuffer attachment. If blending is not enabled for this attachment, then latexmath:[$R, G, B$] and latexmath:[$A$] are assigned latexmath:[$R_{s0},G_{s0},B_{s0}$] and latexmath:[$A_{s0}$], respectively.
@@ -2965,7 +2923,7 @@ namespace SharpVk
     /// Setting the identity swizzle on a component is equivalent to setting the identity mapping on that component. That is:
     /// </para>
     /// <para>
-    /// [[resources-image-views-identity-mappings]] .Component Mappings Equivalent To ename:VK_COMPONENT_SWIZZLE_IDENTITY [options="header"] |==== | Component          | Identity Mapping | pname:components.r | ename:VK_COMPONENT_SWIZZLE_R | pname:components.g | ename:VK_COMPONENT_SWIZZLE_G | pname:components.b | ename:VK_COMPONENT_SWIZZLE_B | pname:components.a | ename:VK_COMPONENT_SWIZZLE_A |====
+    /// .Component Mappings Equivalent To ename:VK_COMPONENT_SWIZZLE_IDENTITY [options="header"] |==== | Component          | Identity Mapping | pname:components.r | ename:VK_COMPONENT_SWIZZLE_R | pname:components.g | ename:VK_COMPONENT_SWIZZLE_G | pname:components.b | ename:VK_COMPONENT_SWIZZLE_B | pname:components.a | ename:VK_COMPONENT_SWIZZLE_A |====
     /// </para>
     /// </summary>
 	public enum ComponentSwizzle
@@ -3401,1111 +3359,1111 @@ namespace SharpVk
 	{
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_UNDEFINED::     The format is not specified.
+		/// ename:VK_FORMAT_UNDEFINED:: The format is not specified.
 		/// </para>
 		/// </summary>
 		Undefined = 0,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R4G4_UNORM_PACK8::     A two-component, 8-bit packed unsigned normalized format that has     a 4-bit R component in bits 4..7, and     a 4-bit G component in bits 0..3.
+		/// ename:VK_FORMAT_R4G4_UNORM_PACK8:: A two-component, 8-bit packed unsigned normalized format that has a 4-bit R component in bits 4..7, and a 4-bit G component in bits 0..3.
 		/// </para>
 		/// </summary>
 		R4G4UNormPack8 = 1,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R4G4B4A4_UNORM_PACK16::     A four-component, 16-bit packed unsigned normalized format that has     a 4-bit R component in bits 12..15,     a 4-bit G component in bits 8..11,     a 4-bit B component in bits 4..7, and     a 4-bit A component in bits 0..3.
+		/// ename:VK_FORMAT_R4G4B4A4_UNORM_PACK16:: A four-component, 16-bit packed unsigned normalized format that has a 4-bit R component in bits 12..15, a 4-bit G component in bits 8..11, a 4-bit B component in bits 4..7, and a 4-bit A component in bits 0..3.
 		/// </para>
 		/// </summary>
 		R4G4B4A4UNormPack16 = 2,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_B4G4R4A4_UNORM_PACK16::     A four-component, 16-bit packed unsigned normalized format that has     a 4-bit B component in bits 12..15,     a 4-bit G component in bits 8..11,     a 4-bit R component in bits 4..7, and     a 4-bit A component in bits 0..3.
+		/// ename:VK_FORMAT_B4G4R4A4_UNORM_PACK16:: A four-component, 16-bit packed unsigned normalized format that has a 4-bit B component in bits 12..15, a 4-bit G component in bits 8..11, a 4-bit R component in bits 4..7, and a 4-bit A component in bits 0..3.
 		/// </para>
 		/// </summary>
 		B4G4R4A4UNormPack16 = 3,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R5G6B5_UNORM_PACK16::     A three-component, 16-bit packed unsigned normalized format that has     a 5-bit R component in bits 11..15,     a 6-bit G component in bits 5..10, and     a 5-bit B component in bits 0..4.
+		/// ename:VK_FORMAT_R5G6B5_UNORM_PACK16:: A three-component, 16-bit packed unsigned normalized format that has a 5-bit R component in bits 11..15, a 6-bit G component in bits 5..10, and a 5-bit B component in bits 0..4.
 		/// </para>
 		/// </summary>
 		R5G6B5UNormPack16 = 4,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_B5G6R5_UNORM_PACK16::     A three-component, 16-bit packed unsigned normalized format that has     a 5-bit B component in bits 11..15,     a 6-bit G component in bits 5..10, and     a 5-bit R component in bits 0..4.
+		/// ename:VK_FORMAT_B5G6R5_UNORM_PACK16:: A three-component, 16-bit packed unsigned normalized format that has a 5-bit B component in bits 11..15, a 6-bit G component in bits 5..10, and a 5-bit R component in bits 0..4.
 		/// </para>
 		/// </summary>
 		B5G6R5UNormPack16 = 5,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R5G5B5A1_UNORM_PACK16::     A four-component, 16-bit packed unsigned normalized format that has     a 5-bit R component in bits 11..15,     a 5-bit G component in bits 6..10,     a 5-bit B component in bits 1..5, and     a 1-bit A component in bit 0.
+		/// ename:VK_FORMAT_R5G5B5A1_UNORM_PACK16:: A four-component, 16-bit packed unsigned normalized format that has a 5-bit R component in bits 11..15, a 5-bit G component in bits 6..10, a 5-bit B component in bits 1..5, and a 1-bit A component in bit 0.
 		/// </para>
 		/// </summary>
 		R5G5B5A1UNormPack16 = 6,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_B5G5R5A1_UNORM_PACK16::     A four-component, 16-bit packed unsigned normalized format that has     a 5-bit B component in bits 11..15,     a 5-bit G component in bits 6..10,     a 5-bit R component in bits 1..5, and     a 1-bit A component in bit 0.
+		/// ename:VK_FORMAT_B5G5R5A1_UNORM_PACK16:: A four-component, 16-bit packed unsigned normalized format that has a 5-bit B component in bits 11..15, a 5-bit G component in bits 6..10, a 5-bit R component in bits 1..5, and a 1-bit A component in bit 0.
 		/// </para>
 		/// </summary>
 		B5G5R5A1UNormPack16 = 7,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_A1R5G5B5_UNORM_PACK16::     A four-component, 16-bit packed unsigned normalized format that has     a 1-bit A component in bit 15,     a 5-bit R component in bits 10..14,     a 5-bit G component in bits 5..9, and     a 5-bit B component in bits 0..4.
+		/// ename:VK_FORMAT_A1R5G5B5_UNORM_PACK16:: A four-component, 16-bit packed unsigned normalized format that has a 1-bit A component in bit 15, a 5-bit R component in bits 10..14, a 5-bit G component in bits 5..9, and a 5-bit B component in bits 0..4.
 		/// </para>
 		/// </summary>
 		A1R5G5B5UNormPack16 = 8,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R8_UNORM::     A one-component, 8-bit unsigned normalized format that has     a single 8-bit R component.
+		/// ename:VK_FORMAT_R8_UNORM:: A one-component, 8-bit unsigned normalized format that has a single 8-bit R component.
 		/// </para>
 		/// </summary>
 		R8UNorm = 9,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R8_SNORM::     A one-component, 8-bit signed normalized format that has     a single 8-bit R component.
+		/// ename:VK_FORMAT_R8_SNORM:: A one-component, 8-bit signed normalized format that has a single 8-bit R component.
 		/// </para>
 		/// </summary>
 		R8SNorm = 10,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R8_USCALED::     A one-component, 8-bit unsigned scaled integer format that has     a single 8-bit R component.
+		/// ename:VK_FORMAT_R8_USCALED:: A one-component, 8-bit unsigned scaled integer format that has a single 8-bit R component.
 		/// </para>
 		/// </summary>
 		R8UScaled = 11,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R8_SSCALED::     A one-component, 8-bit signed scaled integer format that has     a single 8-bit R component.
+		/// ename:VK_FORMAT_R8_SSCALED:: A one-component, 8-bit signed scaled integer format that has a single 8-bit R component.
 		/// </para>
 		/// </summary>
 		R8SScaled = 12,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R8_UINT::     A one-component, 8-bit unsigned integer format that has     a single 8-bit R component.
+		/// ename:VK_FORMAT_R8_UINT:: A one-component, 8-bit unsigned integer format that has a single 8-bit R component.
 		/// </para>
 		/// </summary>
 		R8UInt = 13,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R8_SINT::     A one-component, 8-bit signed integer format that has     a single 8-bit R component.
+		/// ename:VK_FORMAT_R8_SINT:: A one-component, 8-bit signed integer format that has a single 8-bit R component.
 		/// </para>
 		/// </summary>
 		R8SInt = 14,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R8_SRGB::     A one-component, 8-bit unsigned normalized format that has     a single 8-bit R component stored with sRGB nonlinear encoding.
+		/// ename:VK_FORMAT_R8_SRGB:: A one-component, 8-bit unsigned normalized format that has a single 8-bit R component stored with sRGB nonlinear encoding.
 		/// </para>
 		/// </summary>
 		R8Srgb = 15,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R8G8_UNORM::     A two-component, 16-bit unsigned normalized format that has     an 8-bit R component in byte 0, and     an 8-bit G component in byte 1.
+		/// ename:VK_FORMAT_R8G8_UNORM:: A two-component, 16-bit unsigned normalized format that has an 8-bit R component in byte 0, and an 8-bit G component in byte 1.
 		/// </para>
 		/// </summary>
 		R8G8UNorm = 16,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R8G8_SNORM::     A two-component, 16-bit signed normalized format that has     an 8-bit R component in byte 0, and     an 8-bit G component in byte 1.
+		/// ename:VK_FORMAT_R8G8_SNORM:: A two-component, 16-bit signed normalized format that has an 8-bit R component in byte 0, and an 8-bit G component in byte 1.
 		/// </para>
 		/// </summary>
 		R8G8SNorm = 17,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R8G8_USCALED::     A two-component, 16-bit unsigned scaled integer format that has     an 8-bit R component in byte 0, and     an 8-bit G component in byte 1.
+		/// ename:VK_FORMAT_R8G8_USCALED:: A two-component, 16-bit unsigned scaled integer format that has an 8-bit R component in byte 0, and an 8-bit G component in byte 1.
 		/// </para>
 		/// </summary>
 		R8G8UScaled = 18,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R8G8_SSCALED::     A two-component, 16-bit signed scaled integer format that has     an 8-bit R component in byte 0, and     an 8-bit G component in byte 1.
+		/// ename:VK_FORMAT_R8G8_SSCALED:: A two-component, 16-bit signed scaled integer format that has an 8-bit R component in byte 0, and an 8-bit G component in byte 1.
 		/// </para>
 		/// </summary>
 		R8G8SScaled = 19,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R8G8_UINT::     A two-component, 16-bit unsigned integer format that has     an 8-bit R component in byte 0, and     an 8-bit G component in byte 1.
+		/// ename:VK_FORMAT_R8G8_UINT:: A two-component, 16-bit unsigned integer format that has an 8-bit R component in byte 0, and an 8-bit G component in byte 1.
 		/// </para>
 		/// </summary>
 		R8G8UInt = 20,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R8G8_SINT::     A two-component, 16-bit signed integer format that has     an 8-bit R component in byte 0, and     an 8-bit G component in byte 1.
+		/// ename:VK_FORMAT_R8G8_SINT:: A two-component, 16-bit signed integer format that has an 8-bit R component in byte 0, and an 8-bit G component in byte 1.
 		/// </para>
 		/// </summary>
 		R8G8SInt = 21,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R8G8_SRGB::     A two-component, 16-bit unsigned normalized format that has     an 8-bit R component stored with sRGB nonlinear encoding in byte 0, and     an 8-bit G component stored with sRGB nonlinear encoding in byte 1.
+		/// ename:VK_FORMAT_R8G8_SRGB:: A two-component, 16-bit unsigned normalized format that has an 8-bit R component stored with sRGB nonlinear encoding in byte 0, and an 8-bit G component stored with sRGB nonlinear encoding in byte 1.
 		/// </para>
 		/// </summary>
 		R8G8Srgb = 22,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R8G8B8_UNORM::     A three-component, 24-bit unsigned normalized format that has     an 8-bit R component in byte 0,     an 8-bit G component in byte 1, and     an 8-bit B component in byte 2.
+		/// ename:VK_FORMAT_R8G8B8_UNORM:: A three-component, 24-bit unsigned normalized format that has an 8-bit R component in byte 0, an 8-bit G component in byte 1, and an 8-bit B component in byte 2.
 		/// </para>
 		/// </summary>
 		R8G8B8UNorm = 23,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R8G8B8_SNORM::     A three-component, 24-bit signed normalized format that has     an 8-bit R component in byte 0,     an 8-bit G component in byte 1, and     an 8-bit B component in byte 2.
+		/// ename:VK_FORMAT_R8G8B8_SNORM:: A three-component, 24-bit signed normalized format that has an 8-bit R component in byte 0, an 8-bit G component in byte 1, and an 8-bit B component in byte 2.
 		/// </para>
 		/// </summary>
 		R8G8B8SNorm = 24,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R8G8B8_USCALED::     A three-component, 24-bit unsigned scaled format that has     an 8-bit R component in byte 0,     an 8-bit G component in byte 1, and     an 8-bit B component in byte 2.
+		/// ename:VK_FORMAT_R8G8B8_USCALED:: A three-component, 24-bit unsigned scaled format that has an 8-bit R component in byte 0, an 8-bit G component in byte 1, and an 8-bit B component in byte 2.
 		/// </para>
 		/// </summary>
 		R8G8B8UScaled = 25,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R8G8B8_SSCALED::     A three-component, 24-bit signed scaled format that has     an 8-bit R component in byte 0,     an 8-bit G component in byte 1, and     an 8-bit B component in byte 2.
+		/// ename:VK_FORMAT_R8G8B8_SSCALED:: A three-component, 24-bit signed scaled format that has an 8-bit R component in byte 0, an 8-bit G component in byte 1, and an 8-bit B component in byte 2.
 		/// </para>
 		/// </summary>
 		R8G8B8SScaled = 26,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R8G8B8_UINT::     A three-component, 24-bit unsigned integer format that has     an 8-bit R component in byte 0,     an 8-bit G component in byte 1, and     an 8-bit B component in byte 2.
+		/// ename:VK_FORMAT_R8G8B8_UINT:: A three-component, 24-bit unsigned integer format that has an 8-bit R component in byte 0, an 8-bit G component in byte 1, and an 8-bit B component in byte 2.
 		/// </para>
 		/// </summary>
 		R8G8B8UInt = 27,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R8G8B8_SINT::     A three-component, 24-bit signed integer format that has     an 8-bit R component in byte 0,     an 8-bit G component in byte 1, and     an 8-bit B component in byte 2.
+		/// ename:VK_FORMAT_R8G8B8_SINT:: A three-component, 24-bit signed integer format that has an 8-bit R component in byte 0, an 8-bit G component in byte 1, and an 8-bit B component in byte 2.
 		/// </para>
 		/// </summary>
 		R8G8B8SInt = 28,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R8G8B8_SRGB::     A three-component, 24-bit unsigned normalized format that has     an 8-bit R component stored with sRGB nonlinear encoding in byte 0,     an 8-bit G component stored with sRGB nonlinear encoding in byte 1, and     an 8-bit B component stored with sRGB nonlinear encoding in byte 2.
+		/// ename:VK_FORMAT_R8G8B8_SRGB:: A three-component, 24-bit unsigned normalized format that has an 8-bit R component stored with sRGB nonlinear encoding in byte 0, an 8-bit G component stored with sRGB nonlinear encoding in byte 1, and an 8-bit B component stored with sRGB nonlinear encoding in byte 2.
 		/// </para>
 		/// </summary>
 		R8G8B8Srgb = 29,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_B8G8R8_UNORM::     A three-component, 24-bit unsigned normalized format that has     an 8-bit B component in byte 0,     an 8-bit G component in byte 1, and     an 8-bit R component in byte 2.
+		/// ename:VK_FORMAT_B8G8R8_UNORM:: A three-component, 24-bit unsigned normalized format that has an 8-bit B component in byte 0, an 8-bit G component in byte 1, and an 8-bit R component in byte 2.
 		/// </para>
 		/// </summary>
 		B8G8R8UNorm = 30,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_B8G8R8_SNORM::     A three-component, 24-bit signed normalized format that has     an 8-bit B component in byte 0,     an 8-bit G component in byte 1, and     an 8-bit R component in byte 2.
+		/// ename:VK_FORMAT_B8G8R8_SNORM:: A three-component, 24-bit signed normalized format that has an 8-bit B component in byte 0, an 8-bit G component in byte 1, and an 8-bit R component in byte 2.
 		/// </para>
 		/// </summary>
 		B8G8R8SNorm = 31,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_B8G8R8_USCALED::     A three-component, 24-bit unsigned scaled format that has     an 8-bit B component in byte 0,     an 8-bit G component in byte 1, and     an 8-bit R component in byte 2.
+		/// ename:VK_FORMAT_B8G8R8_USCALED:: A three-component, 24-bit unsigned scaled format that has an 8-bit B component in byte 0, an 8-bit G component in byte 1, and an 8-bit R component in byte 2.
 		/// </para>
 		/// </summary>
 		B8G8R8UScaled = 32,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_B8G8R8_SSCALED::     A three-component, 24-bit signed scaled format that has     an 8-bit B component in byte 0,     an 8-bit G component in byte 1, and     an 8-bit R component in byte 2.
+		/// ename:VK_FORMAT_B8G8R8_SSCALED:: A three-component, 24-bit signed scaled format that has an 8-bit B component in byte 0, an 8-bit G component in byte 1, and an 8-bit R component in byte 2.
 		/// </para>
 		/// </summary>
 		B8G8R8SScaled = 33,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_B8G8R8_UINT::     A three-component, 24-bit unsigned integer format that has     an 8-bit B component in byte 0,     an 8-bit G component in byte 1, and     an 8-bit R component in byte 2.
+		/// ename:VK_FORMAT_B8G8R8_UINT:: A three-component, 24-bit unsigned integer format that has an 8-bit B component in byte 0, an 8-bit G component in byte 1, and an 8-bit R component in byte 2.
 		/// </para>
 		/// </summary>
 		B8G8R8UInt = 34,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_B8G8R8_SINT::     A three-component, 24-bit signed integer format that has     an 8-bit B component in byte 0,     an 8-bit G component in byte 1, and     an 8-bit R component in byte 2.
+		/// ename:VK_FORMAT_B8G8R8_SINT:: A three-component, 24-bit signed integer format that has an 8-bit B component in byte 0, an 8-bit G component in byte 1, and an 8-bit R component in byte 2.
 		/// </para>
 		/// </summary>
 		B8G8R8SInt = 35,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_B8G8R8_SRGB::     A three-component, 24-bit unsigned normalized format that has     an 8-bit B component stored with sRGB nonlinear encoding in byte 0,     an 8-bit G component stored with sRGB nonlinear encoding in byte 1, and     an 8-bit R component stored with sRGB nonlinear encoding in byte 2.
+		/// ename:VK_FORMAT_B8G8R8_SRGB:: A three-component, 24-bit unsigned normalized format that has an 8-bit B component stored with sRGB nonlinear encoding in byte 0, an 8-bit G component stored with sRGB nonlinear encoding in byte 1, and an 8-bit R component stored with sRGB nonlinear encoding in byte 2.
 		/// </para>
 		/// </summary>
 		B8G8R8Srgb = 36,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R8G8B8A8_UNORM::     A four-component, 32-bit unsigned normalized format that has     an 8-bit R component in byte 0,     an 8-bit G component in byte 1,     an 8-bit B component in byte 2, and     an 8-bit A component in byte 3.
+		/// ename:VK_FORMAT_R8G8B8A8_UNORM:: A four-component, 32-bit unsigned normalized format that has an 8-bit R component in byte 0, an 8-bit G component in byte 1, an 8-bit B component in byte 2, and an 8-bit A component in byte 3.
 		/// </para>
 		/// </summary>
 		R8G8B8A8UNorm = 37,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R8G8B8A8_SNORM::     A four-component, 32-bit signed normalized format that has     an 8-bit R component in byte 0,     an 8-bit G component in byte 1,     an 8-bit B component in byte 2, and     an 8-bit A component in byte 3.
+		/// ename:VK_FORMAT_R8G8B8A8_SNORM:: A four-component, 32-bit signed normalized format that has an 8-bit R component in byte 0, an 8-bit G component in byte 1, an 8-bit B component in byte 2, and an 8-bit A component in byte 3.
 		/// </para>
 		/// </summary>
 		R8G8B8A8SNorm = 38,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R8G8B8A8_USCALED::     A four-component, 32-bit unsigned scaled format that has     an 8-bit R component in byte 0,     an 8-bit G component in byte 1,     an 8-bit B component in byte 2, and     an 8-bit A component in byte 3.
+		/// ename:VK_FORMAT_R8G8B8A8_USCALED:: A four-component, 32-bit unsigned scaled format that has an 8-bit R component in byte 0, an 8-bit G component in byte 1, an 8-bit B component in byte 2, and an 8-bit A component in byte 3.
 		/// </para>
 		/// </summary>
 		R8G8B8A8UScaled = 39,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R8G8B8A8_SSCALED::     A four-component, 32-bit signed scaled format that has     an 8-bit R component in byte 0,     an 8-bit G component in byte 1,     an 8-bit B component in byte 2, and     an 8-bit A component in byte 3.
+		/// ename:VK_FORMAT_R8G8B8A8_SSCALED:: A four-component, 32-bit signed scaled format that has an 8-bit R component in byte 0, an 8-bit G component in byte 1, an 8-bit B component in byte 2, and an 8-bit A component in byte 3.
 		/// </para>
 		/// </summary>
 		R8G8B8A8SScaled = 40,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R8G8B8A8_UINT::     A four-component, 32-bit unsigned integer format that has     an 8-bit R component in byte 0,     an 8-bit G component in byte 1,     an 8-bit B component in byte 2, and     an 8-bit A component in byte 3.
+		/// ename:VK_FORMAT_R8G8B8A8_UINT:: A four-component, 32-bit unsigned integer format that has an 8-bit R component in byte 0, an 8-bit G component in byte 1, an 8-bit B component in byte 2, and an 8-bit A component in byte 3.
 		/// </para>
 		/// </summary>
 		R8G8B8A8UInt = 41,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R8G8B8A8_SINT::     A four-component, 32-bit signed integer format that has     an 8-bit R component in byte 0,     an 8-bit G component in byte 1,     an 8-bit B component in byte 2, and     an 8-bit A component in byte 3.
+		/// ename:VK_FORMAT_R8G8B8A8_SINT:: A four-component, 32-bit signed integer format that has an 8-bit R component in byte 0, an 8-bit G component in byte 1, an 8-bit B component in byte 2, and an 8-bit A component in byte 3.
 		/// </para>
 		/// </summary>
 		R8G8B8A8SInt = 42,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R8G8B8A8_SRGB::     A four-component, 32-bit unsigned normalized format that has     an 8-bit R component stored with sRGB nonlinear encoding in byte 0,     an 8-bit G component stored with sRGB nonlinear encoding in byte 1,     an 8-bit B component stored with sRGB nonlinear encoding in byte 2, and     an 8-bit A component in byte 3.
+		/// ename:VK_FORMAT_R8G8B8A8_SRGB:: A four-component, 32-bit unsigned normalized format that has an 8-bit R component stored with sRGB nonlinear encoding in byte 0, an 8-bit G component stored with sRGB nonlinear encoding in byte 1, an 8-bit B component stored with sRGB nonlinear encoding in byte 2, and an 8-bit A component in byte 3.
 		/// </para>
 		/// </summary>
 		R8G8B8A8Srgb = 43,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_B8G8R8A8_UNORM::     A four-component, 32-bit unsigned normalized format that has     an 8-bit B component in byte 0,     an 8-bit G component in byte 1,     an 8-bit R component in byte 2, and     an 8-bit A component in byte 3.
+		/// ename:VK_FORMAT_B8G8R8A8_UNORM:: A four-component, 32-bit unsigned normalized format that has an 8-bit B component in byte 0, an 8-bit G component in byte 1, an 8-bit R component in byte 2, and an 8-bit A component in byte 3.
 		/// </para>
 		/// </summary>
 		B8G8R8A8UNorm = 44,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_B8G8R8A8_SNORM::     A four-component, 32-bit signed normalized format that has     an 8-bit B component in byte 0,     an 8-bit G component in byte 1,     an 8-bit R component in byte 2, and     an 8-bit A component in byte 3.
+		/// ename:VK_FORMAT_B8G8R8A8_SNORM:: A four-component, 32-bit signed normalized format that has an 8-bit B component in byte 0, an 8-bit G component in byte 1, an 8-bit R component in byte 2, and an 8-bit A component in byte 3.
 		/// </para>
 		/// </summary>
 		B8G8R8A8SNorm = 45,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_B8G8R8A8_USCALED::     A four-component, 32-bit unsigned scaled format that has     an 8-bit B component in byte 0,     an 8-bit G component in byte 1,     an 8-bit R component in byte 2, and     an 8-bit A component in byte 3.
+		/// ename:VK_FORMAT_B8G8R8A8_USCALED:: A four-component, 32-bit unsigned scaled format that has an 8-bit B component in byte 0, an 8-bit G component in byte 1, an 8-bit R component in byte 2, and an 8-bit A component in byte 3.
 		/// </para>
 		/// </summary>
 		B8G8R8A8UScaled = 46,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_B8G8R8A8_SSCALED::     A four-component, 32-bit signed scaled format that has     an 8-bit B component in byte 0,     an 8-bit G component in byte 1,     an 8-bit R component in byte 2, and     an 8-bit A component in byte 3.
+		/// ename:VK_FORMAT_B8G8R8A8_SSCALED:: A four-component, 32-bit signed scaled format that has an 8-bit B component in byte 0, an 8-bit G component in byte 1, an 8-bit R component in byte 2, and an 8-bit A component in byte 3.
 		/// </para>
 		/// </summary>
 		B8G8R8A8SScaled = 47,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_B8G8R8A8_UINT::     A four-component, 32-bit unsigned integer format that has     an 8-bit B component in byte 0,     an 8-bit G component in byte 1,     an 8-bit R component in byte 2, and     an 8-bit A component in byte 3.
+		/// ename:VK_FORMAT_B8G8R8A8_UINT:: A four-component, 32-bit unsigned integer format that has an 8-bit B component in byte 0, an 8-bit G component in byte 1, an 8-bit R component in byte 2, and an 8-bit A component in byte 3.
 		/// </para>
 		/// </summary>
 		B8G8R8A8UInt = 48,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_B8G8R8A8_SINT::     A four-component, 32-bit signed integer format that has     an 8-bit B component in byte 0,     an 8-bit G component in byte 1,     an 8-bit R component in byte 2, and     an 8-bit A component in byte 3.
+		/// ename:VK_FORMAT_B8G8R8A8_SINT:: A four-component, 32-bit signed integer format that has an 8-bit B component in byte 0, an 8-bit G component in byte 1, an 8-bit R component in byte 2, and an 8-bit A component in byte 3.
 		/// </para>
 		/// </summary>
 		B8G8R8A8SInt = 49,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_B8G8R8A8_SRGB::     A four-component, 32-bit unsigned normalized format that has     an 8-bit B component stored with sRGB nonlinear encoding in byte 0,     an 8-bit G component stored with sRGB nonlinear encoding in byte 1,     an 8-bit R component stored with sRGB nonlinear encoding in byte 2, and     an 8-bit A component in byte 3.
+		/// ename:VK_FORMAT_B8G8R8A8_SRGB:: A four-component, 32-bit unsigned normalized format that has an 8-bit B component stored with sRGB nonlinear encoding in byte 0, an 8-bit G component stored with sRGB nonlinear encoding in byte 1, an 8-bit R component stored with sRGB nonlinear encoding in byte 2, and an 8-bit A component in byte 3.
 		/// </para>
 		/// </summary>
 		B8G8R8A8Srgb = 50,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_A8B8G8R8_UNORM_PACK32::     A four-component, 32-bit packed unsigned normalized format that has     an 8-bit A component in bits 24..31,     an 8-bit B component in bits 16..23,     an 8-bit G component in bits 8..15, and     an 8-bit R component in bits 0..7.
+		/// ename:VK_FORMAT_A8B8G8R8_UNORM_PACK32:: A four-component, 32-bit packed unsigned normalized format that has an 8-bit A component in bits 24..31, an 8-bit B component in bits 16..23, an 8-bit G component in bits 8..15, and an 8-bit R component in bits 0..7.
 		/// </para>
 		/// </summary>
 		A8B8G8R8UNormPack32 = 51,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_A8B8G8R8_SNORM_PACK32::     A four-component, 32-bit packed signed normalized format that has     an 8-bit A component in bits 24..31,     an 8-bit B component in bits 16..23,     an 8-bit G component in bits 8..15, and     an 8-bit R component in bits 0..7.
+		/// ename:VK_FORMAT_A8B8G8R8_SNORM_PACK32:: A four-component, 32-bit packed signed normalized format that has an 8-bit A component in bits 24..31, an 8-bit B component in bits 16..23, an 8-bit G component in bits 8..15, and an 8-bit R component in bits 0..7.
 		/// </para>
 		/// </summary>
 		A8B8G8R8SNormPack32 = 52,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_A8B8G8R8_USCALED_PACK32::     A four-component, 32-bit packed unsigned scaled integer format that has     an 8-bit A component in bits 24..31,     an 8-bit B component in bits 16..23,     an 8-bit G component in bits 8..15, and     an 8-bit R component in bits 0..7.
+		/// ename:VK_FORMAT_A8B8G8R8_USCALED_PACK32:: A four-component, 32-bit packed unsigned scaled integer format that has an 8-bit A component in bits 24..31, an 8-bit B component in bits 16..23, an 8-bit G component in bits 8..15, and an 8-bit R component in bits 0..7.
 		/// </para>
 		/// </summary>
 		A8B8G8R8UScaledPack32 = 53,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_A8B8G8R8_SSCALED_PACK32::     A four-component, 32-bit packed signed scaled integer format that has     an 8-bit A component in bits 24..31,     an 8-bit B component in bits 16..23,     an 8-bit G component in bits 8..15, and     an 8-bit R component in bits 0..7.
+		/// ename:VK_FORMAT_A8B8G8R8_SSCALED_PACK32:: A four-component, 32-bit packed signed scaled integer format that has an 8-bit A component in bits 24..31, an 8-bit B component in bits 16..23, an 8-bit G component in bits 8..15, and an 8-bit R component in bits 0..7.
 		/// </para>
 		/// </summary>
 		A8B8G8R8SScaledPack32 = 54,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_A8B8G8R8_UINT_PACK32::     A four-component, 32-bit packed unsigned integer format that has     an 8-bit A component in bits 24..31,     an 8-bit B component in bits 16..23,     an 8-bit G component in bits 8..15, and     an 8-bit R component in bits 0..7.
+		/// ename:VK_FORMAT_A8B8G8R8_UINT_PACK32:: A four-component, 32-bit packed unsigned integer format that has an 8-bit A component in bits 24..31, an 8-bit B component in bits 16..23, an 8-bit G component in bits 8..15, and an 8-bit R component in bits 0..7.
 		/// </para>
 		/// </summary>
 		A8B8G8R8UIntPack32 = 55,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_A8B8G8R8_SINT_PACK32::     A four-component, 32-bit packed signed integer format that has     an 8-bit A component in bits 24..31,     an 8-bit B component in bits 16..23,     an 8-bit G component in bits 8..15, and     an 8-bit R component in bits 0..7.
+		/// ename:VK_FORMAT_A8B8G8R8_SINT_PACK32:: A four-component, 32-bit packed signed integer format that has an 8-bit A component in bits 24..31, an 8-bit B component in bits 16..23, an 8-bit G component in bits 8..15, and an 8-bit R component in bits 0..7.
 		/// </para>
 		/// </summary>
 		A8B8G8R8SIntPack32 = 56,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_A8B8G8R8_SRGB_PACK32::     A four-component, 32-bit packed unsigned normalized format that has     an 8-bit A component in bits 24..31,     an 8-bit B component stored with sRGB nonlinear encoding in bits 16..23,     an 8-bit G component stored with sRGB nonlinear encoding in bits 8..15, and     an 8-bit R component stored with sRGB nonlinear encoding in bits     0..7.
+		/// ename:VK_FORMAT_A8B8G8R8_SRGB_PACK32:: A four-component, 32-bit packed unsigned normalized format that has an 8-bit A component in bits 24..31, an 8-bit B component stored with sRGB nonlinear encoding in bits 16..23, an 8-bit G component stored with sRGB nonlinear encoding in bits 8..15, and an 8-bit R component stored with sRGB nonlinear encoding in bits 0..7.
 		/// </para>
 		/// </summary>
 		A8B8G8R8SrgbPack32 = 57,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_A2R10G10B10_UNORM_PACK32::     A four-component, 32-bit packed unsigned normalized format that has     a 2-bit A component in bits 30..31,     a 10-bit R component in bits 20..29,     a 10-bit G component in bits 10..19, and     a 10-bit B component in bits 0..9.
+		/// ename:VK_FORMAT_A2R10G10B10_UNORM_PACK32:: A four-component, 32-bit packed unsigned normalized format that has a 2-bit A component in bits 30..31, a 10-bit R component in bits 20..29, a 10-bit G component in bits 10..19, and a 10-bit B component in bits 0..9.
 		/// </para>
 		/// </summary>
 		A2R10G10B10UNormPack32 = 58,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_A2R10G10B10_SNORM_PACK32::     A four-component, 32-bit packed signed normalized format that has     a 2-bit A component in bits 30..31,     a 10-bit R component in bits 20..29,     a 10-bit G component in bits 10..19, and     a 10-bit B component in bits 0..9.
+		/// ename:VK_FORMAT_A2R10G10B10_SNORM_PACK32:: A four-component, 32-bit packed signed normalized format that has a 2-bit A component in bits 30..31, a 10-bit R component in bits 20..29, a 10-bit G component in bits 10..19, and a 10-bit B component in bits 0..9.
 		/// </para>
 		/// </summary>
 		A2R10G10B10SNormPack32 = 59,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_A2R10G10B10_USCALED_PACK32::     A four-component, 32-bit packed unsigned scaled integer format that has     a 2-bit A component in bits 30..31,     a 10-bit R component in bits 20..29,     a 10-bit G component in bits 10..19, and     a 10-bit B component in bits 0..9.
+		/// ename:VK_FORMAT_A2R10G10B10_USCALED_PACK32:: A four-component, 32-bit packed unsigned scaled integer format that has a 2-bit A component in bits 30..31, a 10-bit R component in bits 20..29, a 10-bit G component in bits 10..19, and a 10-bit B component in bits 0..9.
 		/// </para>
 		/// </summary>
 		A2R10G10B10UScaledPack32 = 60,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_A2R10G10B10_SSCALED_PACK32::     A four-component, 32-bit packed signed scaled integer format that has     a 2-bit A component in bits 30..31,     a 10-bit R component in bits 20..29,     a 10-bit G component in bits 10..19, and     a 10-bit B component in bits 0..9.
+		/// ename:VK_FORMAT_A2R10G10B10_SSCALED_PACK32:: A four-component, 32-bit packed signed scaled integer format that has a 2-bit A component in bits 30..31, a 10-bit R component in bits 20..29, a 10-bit G component in bits 10..19, and a 10-bit B component in bits 0..9.
 		/// </para>
 		/// </summary>
 		A2R10G10B10SScaledPack32 = 61,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_A2R10G10B10_UINT_PACK32::     A four-component, 32-bit packed unsigned integer format that has     a 2-bit A component in bits 30..31,     a 10-bit R component in bits 20..29,     a 10-bit G component in bits 10..19, and     a 10-bit B component in bits 0..9.
+		/// ename:VK_FORMAT_A2R10G10B10_UINT_PACK32:: A four-component, 32-bit packed unsigned integer format that has a 2-bit A component in bits 30..31, a 10-bit R component in bits 20..29, a 10-bit G component in bits 10..19, and a 10-bit B component in bits 0..9.
 		/// </para>
 		/// </summary>
 		A2R10G10B10UIntPack32 = 62,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_A2R10G10B10_SINT_PACK32::     A four-component, 32-bit packed signed integer format that has     a 2-bit A component in bits 30..31,     a 10-bit R component in bits 20..29,     a 10-bit G component in bits 10..19, and     a 10-bit B component in bits 0..9.
+		/// ename:VK_FORMAT_A2R10G10B10_SINT_PACK32:: A four-component, 32-bit packed signed integer format that has a 2-bit A component in bits 30..31, a 10-bit R component in bits 20..29, a 10-bit G component in bits 10..19, and a 10-bit B component in bits 0..9.
 		/// </para>
 		/// </summary>
 		A2R10G10B10SIntPack32 = 63,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_A2B10G10R10_UNORM_PACK32::     A four-component, 32-bit packed unsigned normalized format that has     a 2-bit A component in bits 30..31,     a 10-bit B component in bits 20..29,     a 10-bit G component in bits 10..19, and     a 10-bit R component in bits 0..9.
+		/// ename:VK_FORMAT_A2B10G10R10_UNORM_PACK32:: A four-component, 32-bit packed unsigned normalized format that has a 2-bit A component in bits 30..31, a 10-bit B component in bits 20..29, a 10-bit G component in bits 10..19, and a 10-bit R component in bits 0..9.
 		/// </para>
 		/// </summary>
 		A2B10G10R10UNormPack32 = 64,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_A2B10G10R10_SNORM_PACK32::     A four-component, 32-bit packed signed normalized format that has     a 2-bit A component in bits 30..31,     a 10-bit B component in bits 20..29,     a 10-bit G component in bits 10..19, and     a 10-bit R component in bits 0..9.
+		/// ename:VK_FORMAT_A2B10G10R10_SNORM_PACK32:: A four-component, 32-bit packed signed normalized format that has a 2-bit A component in bits 30..31, a 10-bit B component in bits 20..29, a 10-bit G component in bits 10..19, and a 10-bit R component in bits 0..9.
 		/// </para>
 		/// </summary>
 		A2B10G10R10SNormPack32 = 65,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_A2B10G10R10_USCALED_PACK32::     A four-component, 32-bit packed unsigned scaled integer format that has     a 2-bit A component in bits 30..31,     a 10-bit B component in bits 20..29,     a 10-bit G component in bits 10..19, and     a 10-bit R component in bits 0..9.
+		/// ename:VK_FORMAT_A2B10G10R10_USCALED_PACK32:: A four-component, 32-bit packed unsigned scaled integer format that has a 2-bit A component in bits 30..31, a 10-bit B component in bits 20..29, a 10-bit G component in bits 10..19, and a 10-bit R component in bits 0..9.
 		/// </para>
 		/// </summary>
 		A2B10G10R10UScaledPack32 = 66,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_A2B10G10R10_SSCALED_PACK32::     A four-component, 32-bit packed signed scaled integer format that has     a 2-bit A component in bits 30..31,     a 10-bit B component in bits 20..29,     a 10-bit G component in bits 10..19, and     a 10-bit R component in bits 0..9.
+		/// ename:VK_FORMAT_A2B10G10R10_SSCALED_PACK32:: A four-component, 32-bit packed signed scaled integer format that has a 2-bit A component in bits 30..31, a 10-bit B component in bits 20..29, a 10-bit G component in bits 10..19, and a 10-bit R component in bits 0..9.
 		/// </para>
 		/// </summary>
 		A2B10G10R10SScaledPack32 = 67,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_A2B10G10R10_UINT_PACK32::     A four-component, 32-bit packed unsigned integer format that has     a 2-bit A component in bits 30..31,     a 10-bit B component in bits 20..29,     a 10-bit G component in bits 10..19, and     a 10-bit R component in bits 0..9.
+		/// ename:VK_FORMAT_A2B10G10R10_UINT_PACK32:: A four-component, 32-bit packed unsigned integer format that has a 2-bit A component in bits 30..31, a 10-bit B component in bits 20..29, a 10-bit G component in bits 10..19, and a 10-bit R component in bits 0..9.
 		/// </para>
 		/// </summary>
 		A2B10G10R10UIntPack32 = 68,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_A2B10G10R10_SINT_PACK32::     A four-component, 32-bit packed signed integer format that has     a 2-bit A component in bits 30..31,     a 10-bit B component in bits 20..29,     a 10-bit G component in bits 10..19, and     a 10-bit R component in bits 0..9.
+		/// ename:VK_FORMAT_A2B10G10R10_SINT_PACK32:: A four-component, 32-bit packed signed integer format that has a 2-bit A component in bits 30..31, a 10-bit B component in bits 20..29, a 10-bit G component in bits 10..19, and a 10-bit R component in bits 0..9.
 		/// </para>
 		/// </summary>
 		A2B10G10R10SIntPack32 = 69,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R16_UNORM::     A one-component, 16-bit unsigned normalized format that has     a single 16-bit R component.
+		/// ename:VK_FORMAT_R16_UNORM:: A one-component, 16-bit unsigned normalized format that has a single 16-bit R component.
 		/// </para>
 		/// </summary>
 		R16UNorm = 70,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R16_SNORM::     A one-component, 16-bit signed normalized format that has     a single 16-bit R component.
+		/// ename:VK_FORMAT_R16_SNORM:: A one-component, 16-bit signed normalized format that has a single 16-bit R component.
 		/// </para>
 		/// </summary>
 		R16SNorm = 71,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R16_USCALED::     A one-component, 16-bit unsigned scaled integer format that has     a single 16-bit R component.
+		/// ename:VK_FORMAT_R16_USCALED:: A one-component, 16-bit unsigned scaled integer format that has a single 16-bit R component.
 		/// </para>
 		/// </summary>
 		R16UScaled = 72,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R16_SSCALED::     A one-component, 16-bit signed scaled integer format that has     a single 16-bit R component.
+		/// ename:VK_FORMAT_R16_SSCALED:: A one-component, 16-bit signed scaled integer format that has a single 16-bit R component.
 		/// </para>
 		/// </summary>
 		R16SScaled = 73,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R16_UINT::     A one-component, 16-bit unsigned integer format that has     a single 16-bit R component.
+		/// ename:VK_FORMAT_R16_UINT:: A one-component, 16-bit unsigned integer format that has a single 16-bit R component.
 		/// </para>
 		/// </summary>
 		R16UInt = 74,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R16_SINT::     A one-component, 16-bit signed integer format that has     a single 16-bit R component.
+		/// ename:VK_FORMAT_R16_SINT:: A one-component, 16-bit signed integer format that has a single 16-bit R component.
 		/// </para>
 		/// </summary>
 		R16SInt = 75,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R16_SFLOAT::     A one-component, 16-bit signed floating-point format that has     a single 16-bit R component.
+		/// ename:VK_FORMAT_R16_SFLOAT:: A one-component, 16-bit signed floating-point format that has a single 16-bit R component.
 		/// </para>
 		/// </summary>
 		R16SFloat = 76,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R16G16_UNORM::     A two-component, 32-bit unsigned normalized format that has     a 16-bit R component in bytes 0..1, and     a 16-bit G component in bytes 2..3.
+		/// ename:VK_FORMAT_R16G16_UNORM:: A two-component, 32-bit unsigned normalized format that has a 16-bit R component in bytes 0..1, and a 16-bit G component in bytes 2..3.
 		/// </para>
 		/// </summary>
 		R16G16UNorm = 77,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R16G16_SNORM::     A two-component, 32-bit signed normalized format that has     a 16-bit R component in bytes 0..1, and     a 16-bit G component in bytes 2..3.
+		/// ename:VK_FORMAT_R16G16_SNORM:: A two-component, 32-bit signed normalized format that has a 16-bit R component in bytes 0..1, and a 16-bit G component in bytes 2..3.
 		/// </para>
 		/// </summary>
 		R16G16SNorm = 78,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R16G16_USCALED::     A two-component, 32-bit unsigned scaled integer format that has     a 16-bit R component in bytes 0..1, and     a 16-bit G component in bytes 2..3.
+		/// ename:VK_FORMAT_R16G16_USCALED:: A two-component, 32-bit unsigned scaled integer format that has a 16-bit R component in bytes 0..1, and a 16-bit G component in bytes 2..3.
 		/// </para>
 		/// </summary>
 		R16G16UScaled = 79,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R16G16_SSCALED::     A two-component, 32-bit signed scaled integer format that has     a 16-bit R component in bytes 0..1, and     a 16-bit G component in bytes 2..3.
+		/// ename:VK_FORMAT_R16G16_SSCALED:: A two-component, 32-bit signed scaled integer format that has a 16-bit R component in bytes 0..1, and a 16-bit G component in bytes 2..3.
 		/// </para>
 		/// </summary>
 		R16G16SScaled = 80,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R16G16_UINT::     A two-component, 32-bit unsigned integer format that has     a 16-bit R component in bytes 0..1, and     a 16-bit G component in bytes 2..3.
+		/// ename:VK_FORMAT_R16G16_UINT:: A two-component, 32-bit unsigned integer format that has a 16-bit R component in bytes 0..1, and a 16-bit G component in bytes 2..3.
 		/// </para>
 		/// </summary>
 		R16G16UInt = 81,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R16G16_SINT::     A two-component, 32-bit signed integer format that has     a 16-bit R component in bytes 0..1, and     a 16-bit G component in bytes 2..3.
+		/// ename:VK_FORMAT_R16G16_SINT:: A two-component, 32-bit signed integer format that has a 16-bit R component in bytes 0..1, and a 16-bit G component in bytes 2..3.
 		/// </para>
 		/// </summary>
 		R16G16SInt = 82,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R16G16_SFLOAT::     A two-component, 32-bit signed floating-point format that has     a 16-bit R component in bytes 0..1, and     a 16-bit G component in bytes 2..3.
+		/// ename:VK_FORMAT_R16G16_SFLOAT:: A two-component, 32-bit signed floating-point format that has a 16-bit R component in bytes 0..1, and a 16-bit G component in bytes 2..3.
 		/// </para>
 		/// </summary>
 		R16G16SFloat = 83,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R16G16B16_UNORM::     A three-component, 48-bit unsigned normalized format that has     a 16-bit R component in bytes 0..1,     a 16-bit G component in bytes 2..3, and     a 16-bit B component in bytes 4..5.
+		/// ename:VK_FORMAT_R16G16B16_UNORM:: A three-component, 48-bit unsigned normalized format that has a 16-bit R component in bytes 0..1, a 16-bit G component in bytes 2..3, and a 16-bit B component in bytes 4..5.
 		/// </para>
 		/// </summary>
 		R16G16B16UNorm = 84,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R16G16B16_SNORM::     A three-component, 48-bit signed normalized format that has     a 16-bit R component in bytes 0..1,     a 16-bit G component in bytes 2..3, and     a 16-bit B component in bytes 4..5.
+		/// ename:VK_FORMAT_R16G16B16_SNORM:: A three-component, 48-bit signed normalized format that has a 16-bit R component in bytes 0..1, a 16-bit G component in bytes 2..3, and a 16-bit B component in bytes 4..5.
 		/// </para>
 		/// </summary>
 		R16G16B16SNorm = 85,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R16G16B16_USCALED::     A three-component, 48-bit unsigned scaled integer format that has     a 16-bit R component in bytes 0..1,     a 16-bit G component in bytes 2..3, and     a 16-bit B component in bytes 4..5.
+		/// ename:VK_FORMAT_R16G16B16_USCALED:: A three-component, 48-bit unsigned scaled integer format that has a 16-bit R component in bytes 0..1, a 16-bit G component in bytes 2..3, and a 16-bit B component in bytes 4..5.
 		/// </para>
 		/// </summary>
 		R16G16B16UScaled = 86,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R16G16B16_SSCALED::     A three-component, 48-bit signed scaled integer format that has     a 16-bit R component in bytes 0..1,     a 16-bit G component in bytes 2..3, and     a 16-bit B component in bytes 4..5.
+		/// ename:VK_FORMAT_R16G16B16_SSCALED:: A three-component, 48-bit signed scaled integer format that has a 16-bit R component in bytes 0..1, a 16-bit G component in bytes 2..3, and a 16-bit B component in bytes 4..5.
 		/// </para>
 		/// </summary>
 		R16G16B16SScaled = 87,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R16G16B16_UINT::     A three-component, 48-bit unsigned integer format that has     a 16-bit R component in bytes 0..1,     a 16-bit G component in bytes 2..3, and     a 16-bit B component in bytes 4..5.
+		/// ename:VK_FORMAT_R16G16B16_UINT:: A three-component, 48-bit unsigned integer format that has a 16-bit R component in bytes 0..1, a 16-bit G component in bytes 2..3, and a 16-bit B component in bytes 4..5.
 		/// </para>
 		/// </summary>
 		R16G16B16UInt = 88,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R16G16B16_SINT::     A three-component, 48-bit signed integer format that has     a 16-bit R component in bytes 0..1,     a 16-bit G component in bytes 2..3, and     a 16-bit B component in bytes 4..5.
+		/// ename:VK_FORMAT_R16G16B16_SINT:: A three-component, 48-bit signed integer format that has a 16-bit R component in bytes 0..1, a 16-bit G component in bytes 2..3, and a 16-bit B component in bytes 4..5.
 		/// </para>
 		/// </summary>
 		R16G16B16SInt = 89,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R16G16B16_SFLOAT::     A three-component, 48-bit signed floating-point format that has     a 16-bit R component in bytes 0..1,     a 16-bit G component in bytes 2..3, and     a 16-bit B component in bytes 4..5.
+		/// ename:VK_FORMAT_R16G16B16_SFLOAT:: A three-component, 48-bit signed floating-point format that has a 16-bit R component in bytes 0..1, a 16-bit G component in bytes 2..3, and a 16-bit B component in bytes 4..5.
 		/// </para>
 		/// </summary>
 		R16G16B16SFloat = 90,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R16G16B16A16_UNORM::     A four-component, 64-bit unsigned normalized format that has     a 16-bit R component in bytes 0..1,     a 16-bit G component in bytes 2..3,     a 16-bit B component in bytes 4..5, and     a 16-bit A component in bytes 6..7.
+		/// ename:VK_FORMAT_R16G16B16A16_UNORM:: A four-component, 64-bit unsigned normalized format that has a 16-bit R component in bytes 0..1, a 16-bit G component in bytes 2..3, a 16-bit B component in bytes 4..5, and a 16-bit A component in bytes 6..7.
 		/// </para>
 		/// </summary>
 		R16G16B16A16UNorm = 91,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R16G16B16A16_SNORM::     A four-component, 64-bit signed normalized format that has     a 16-bit R component in bytes 0..1,     a 16-bit G component in bytes 2..3,     a 16-bit B component in bytes 4..5, and     a 16-bit A component in bytes 6..7.
+		/// ename:VK_FORMAT_R16G16B16A16_SNORM:: A four-component, 64-bit signed normalized format that has a 16-bit R component in bytes 0..1, a 16-bit G component in bytes 2..3, a 16-bit B component in bytes 4..5, and a 16-bit A component in bytes 6..7.
 		/// </para>
 		/// </summary>
 		R16G16B16A16SNorm = 92,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R16G16B16A16_USCALED::     A four-component, 64-bit unsigned scaled integer format that has     a 16-bit R component in bytes 0..1,     a 16-bit G component in bytes 2..3,     a 16-bit B component in bytes 4..5, and     a 16-bit A component in bytes 6..7.
+		/// ename:VK_FORMAT_R16G16B16A16_USCALED:: A four-component, 64-bit unsigned scaled integer format that has a 16-bit R component in bytes 0..1, a 16-bit G component in bytes 2..3, a 16-bit B component in bytes 4..5, and a 16-bit A component in bytes 6..7.
 		/// </para>
 		/// </summary>
 		R16G16B16A16UScaled = 93,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R16G16B16A16_SSCALED::     A four-component, 64-bit signed scaled integer format that has     a 16-bit R component in bytes 0..1,     a 16-bit G component in bytes 2..3,     a 16-bit B component in bytes 4..5, and     a 16-bit A component in bytes 6..7.
+		/// ename:VK_FORMAT_R16G16B16A16_SSCALED:: A four-component, 64-bit signed scaled integer format that has a 16-bit R component in bytes 0..1, a 16-bit G component in bytes 2..3, a 16-bit B component in bytes 4..5, and a 16-bit A component in bytes 6..7.
 		/// </para>
 		/// </summary>
 		R16G16B16A16SScaled = 94,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R16G16B16A16_UINT::     A four-component, 64-bit unsigned integer format that has     a 16-bit R component in bytes 0..1,     a 16-bit G component in bytes 2..3,     a 16-bit B component in bytes 4..5, and     a 16-bit A component in bytes 6..7.
+		/// ename:VK_FORMAT_R16G16B16A16_UINT:: A four-component, 64-bit unsigned integer format that has a 16-bit R component in bytes 0..1, a 16-bit G component in bytes 2..3, a 16-bit B component in bytes 4..5, and a 16-bit A component in bytes 6..7.
 		/// </para>
 		/// </summary>
 		R16G16B16A16UInt = 95,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R16G16B16A16_SINT::     A four-component, 64-bit signed integer format that has     a 16-bit R component in bytes 0..1,     a 16-bit G component in bytes 2..3,     a 16-bit B component in bytes 4..5, and     a 16-bit A component in bytes 6..7.
+		/// ename:VK_FORMAT_R16G16B16A16_SINT:: A four-component, 64-bit signed integer format that has a 16-bit R component in bytes 0..1, a 16-bit G component in bytes 2..3, a 16-bit B component in bytes 4..5, and a 16-bit A component in bytes 6..7.
 		/// </para>
 		/// </summary>
 		R16G16B16A16SInt = 96,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R16G16B16A16_SFLOAT::     A four-component, 64-bit signed floating-point format that has     a 16-bit R component in bytes 0..1,     a 16-bit G component in bytes 2..3,     a 16-bit B component in bytes 4..5, and     a 16-bit A component in bytes 6..7.
+		/// ename:VK_FORMAT_R16G16B16A16_SFLOAT:: A four-component, 64-bit signed floating-point format that has a 16-bit R component in bytes 0..1, a 16-bit G component in bytes 2..3, a 16-bit B component in bytes 4..5, and a 16-bit A component in bytes 6..7.
 		/// </para>
 		/// </summary>
 		R16G16B16A16SFloat = 97,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R32_UINT::     A one-component, 32-bit unsigned integer format that has     a single 32-bit R component.
+		/// ename:VK_FORMAT_R32_UINT:: A one-component, 32-bit unsigned integer format that has a single 32-bit R component.
 		/// </para>
 		/// </summary>
 		R32UInt = 98,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R32_SINT::     A one-component, 32-bit signed integer format that has     a single 32-bit R component.
+		/// ename:VK_FORMAT_R32_SINT:: A one-component, 32-bit signed integer format that has a single 32-bit R component.
 		/// </para>
 		/// </summary>
 		R32SInt = 99,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R32_SFLOAT::     A one-component, 32-bit signed floating-point format that has     a single 32-bit R component.
+		/// ename:VK_FORMAT_R32_SFLOAT:: A one-component, 32-bit signed floating-point format that has a single 32-bit R component.
 		/// </para>
 		/// </summary>
 		R32SFloat = 100,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R32G32_UINT::     A two-component, 64-bit unsigned integer format that has     a 32-bit R component in bytes 0..3, and     a 32-bit G component in bytes 4..7.
+		/// ename:VK_FORMAT_R32G32_UINT:: A two-component, 64-bit unsigned integer format that has a 32-bit R component in bytes 0..3, and a 32-bit G component in bytes 4..7.
 		/// </para>
 		/// </summary>
 		R32G32UInt = 101,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R32G32_SINT::     A two-component, 64-bit signed integer format that has     a 32-bit R component in bytes 0..3, and     a 32-bit G component in bytes 4..7.
+		/// ename:VK_FORMAT_R32G32_SINT:: A two-component, 64-bit signed integer format that has a 32-bit R component in bytes 0..3, and a 32-bit G component in bytes 4..7.
 		/// </para>
 		/// </summary>
 		R32G32SInt = 102,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R32G32_SFLOAT::     A two-component, 64-bit signed floating-point format that has     a 32-bit R component in bytes 0..3, and     a 32-bit G component in bytes 4..7.
+		/// ename:VK_FORMAT_R32G32_SFLOAT:: A two-component, 64-bit signed floating-point format that has a 32-bit R component in bytes 0..3, and a 32-bit G component in bytes 4..7.
 		/// </para>
 		/// </summary>
 		R32G32SFloat = 103,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R32G32B32_UINT::     A three-component, 96-bit unsigned integer format that has     a 32-bit R component in bytes 0..3,     a 32-bit G component in bytes 4..7, and     a 32-bit B component in bytes 8..11.
+		/// ename:VK_FORMAT_R32G32B32_UINT:: A three-component, 96-bit unsigned integer format that has a 32-bit R component in bytes 0..3, a 32-bit G component in bytes 4..7, and a 32-bit B component in bytes 8..11.
 		/// </para>
 		/// </summary>
 		R32G32B32UInt = 104,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R32G32B32_SINT::     A three-component, 96-bit signed integer format that has     a 32-bit R component in bytes 0..3,     a 32-bit G component in bytes 4..7, and     a 32-bit B component in bytes 8..11.
+		/// ename:VK_FORMAT_R32G32B32_SINT:: A three-component, 96-bit signed integer format that has a 32-bit R component in bytes 0..3, a 32-bit G component in bytes 4..7, and a 32-bit B component in bytes 8..11.
 		/// </para>
 		/// </summary>
 		R32G32B32SInt = 105,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R32G32B32_SFLOAT::     A three-component, 96-bit signed floating-point format that has     a 32-bit R component in bytes 0..3,     a 32-bit G component in bytes 4..7, and     a 32-bit B component in bytes 8..11.
+		/// ename:VK_FORMAT_R32G32B32_SFLOAT:: A three-component, 96-bit signed floating-point format that has a 32-bit R component in bytes 0..3, a 32-bit G component in bytes 4..7, and a 32-bit B component in bytes 8..11.
 		/// </para>
 		/// </summary>
 		R32G32B32SFloat = 106,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R32G32B32A32_UINT::     A four-component, 128-bit unsigned integer format that has     a 32-bit R component in bytes 0..3,     a 32-bit G component in bytes 4..7,     a 32-bit B component in bytes 8..11, and     a 32-bit A component in bytes 12..15.
+		/// ename:VK_FORMAT_R32G32B32A32_UINT:: A four-component, 128-bit unsigned integer format that has a 32-bit R component in bytes 0..3, a 32-bit G component in bytes 4..7, a 32-bit B component in bytes 8..11, and a 32-bit A component in bytes 12..15.
 		/// </para>
 		/// </summary>
 		R32G32B32A32UInt = 107,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R32G32B32A32_SINT::     A four-component, 128-bit signed integer format that has     a 32-bit R component in bytes 0..3,     a 32-bit G component in bytes 4..7,     a 32-bit B component in bytes 8..11, and     a 32-bit A component in bytes 12..15.
+		/// ename:VK_FORMAT_R32G32B32A32_SINT:: A four-component, 128-bit signed integer format that has a 32-bit R component in bytes 0..3, a 32-bit G component in bytes 4..7, a 32-bit B component in bytes 8..11, and a 32-bit A component in bytes 12..15.
 		/// </para>
 		/// </summary>
 		R32G32B32A32SInt = 108,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R32G32B32A32_SFLOAT::     A four-component, 128-bit signed floating-point format that has     a 32-bit R component in bytes 0..3,     a 32-bit G component in bytes 4..7,     a 32-bit B component in bytes 8..11, and     a 32-bit A component in bytes 12..15.
+		/// ename:VK_FORMAT_R32G32B32A32_SFLOAT:: A four-component, 128-bit signed floating-point format that has a 32-bit R component in bytes 0..3, a 32-bit G component in bytes 4..7, a 32-bit B component in bytes 8..11, and a 32-bit A component in bytes 12..15.
 		/// </para>
 		/// </summary>
 		R32G32B32A32SFloat = 109,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R64_UINT::     A one-component, 64-bit unsigned integer format that has     a single 64-bit R component.
+		/// ename:VK_FORMAT_R64_UINT:: A one-component, 64-bit unsigned integer format that has a single 64-bit R component.
 		/// </para>
 		/// </summary>
 		R64UInt = 110,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R64_SINT::     A one-component, 64-bit signed integer format that has     a single 64-bit R component.
+		/// ename:VK_FORMAT_R64_SINT:: A one-component, 64-bit signed integer format that has a single 64-bit R component.
 		/// </para>
 		/// </summary>
 		R64SInt = 111,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R64_SFLOAT::     A one-component, 64-bit signed floating-point format that has     a single 64-bit R component.
+		/// ename:VK_FORMAT_R64_SFLOAT:: A one-component, 64-bit signed floating-point format that has a single 64-bit R component.
 		/// </para>
 		/// </summary>
 		R64SFloat = 112,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R64G64_UINT::     A two-component, 128-bit unsigned integer format that has     a 64-bit R component in bytes 0..7, and     a 64-bit G component in bytes 8..15.
+		/// ename:VK_FORMAT_R64G64_UINT:: A two-component, 128-bit unsigned integer format that has a 64-bit R component in bytes 0..7, and a 64-bit G component in bytes 8..15.
 		/// </para>
 		/// </summary>
 		R64G64UInt = 113,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R64G64_SINT::     A two-component, 128-bit signed integer format that has     a 64-bit R component in bytes 0..7, and     a 64-bit G component in bytes 8..15.
+		/// ename:VK_FORMAT_R64G64_SINT:: A two-component, 128-bit signed integer format that has a 64-bit R component in bytes 0..7, and a 64-bit G component in bytes 8..15.
 		/// </para>
 		/// </summary>
 		R64G64SInt = 114,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R64G64_SFLOAT::     A two-component, 128-bit signed floating-point format that has     a 64-bit R component in bytes 0..7, and     a 64-bit G component in bytes 8..15.
+		/// ename:VK_FORMAT_R64G64_SFLOAT:: A two-component, 128-bit signed floating-point format that has a 64-bit R component in bytes 0..7, and a 64-bit G component in bytes 8..15.
 		/// </para>
 		/// </summary>
 		R64G64SFloat = 115,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R64G64B64_UINT::     A three-component, 192-bit unsigned integer format that has     a 64-bit R component in bytes 0..7,     a 64-bit G component in bytes 8..15, and     a 64-bit B component in bytes 16..23.
+		/// ename:VK_FORMAT_R64G64B64_UINT:: A three-component, 192-bit unsigned integer format that has a 64-bit R component in bytes 0..7, a 64-bit G component in bytes 8..15, and a 64-bit B component in bytes 16..23.
 		/// </para>
 		/// </summary>
 		R64G64B64UInt = 116,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R64G64B64_SINT::     A three-component, 192-bit signed integer format that has     a 64-bit R component in bytes 0..7,     a 64-bit G component in bytes 8..15, and     a 64-bit B component in bytes 16..23.
+		/// ename:VK_FORMAT_R64G64B64_SINT:: A three-component, 192-bit signed integer format that has a 64-bit R component in bytes 0..7, a 64-bit G component in bytes 8..15, and a 64-bit B component in bytes 16..23.
 		/// </para>
 		/// </summary>
 		R64G64B64SInt = 117,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R64G64B64_SFLOAT::     A three-component, 192-bit signed floating-point format that has     a 64-bit R component in bytes 0..7,     a 64-bit G component in bytes 8..15, and     a 64-bit B component in bytes 16..23.
+		/// ename:VK_FORMAT_R64G64B64_SFLOAT:: A three-component, 192-bit signed floating-point format that has a 64-bit R component in bytes 0..7, a 64-bit G component in bytes 8..15, and a 64-bit B component in bytes 16..23.
 		/// </para>
 		/// </summary>
 		R64G64B64SFloat = 118,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R64G64B64A64_UINT::     A four-component, 256-bit unsigned integer format that has     a 64-bit R component in bytes 0..7,     a 64-bit G component in bytes 8..15,     a 64-bit B component in bytes 16..23, and     a 64-bit A component in bytes 24..31.
+		/// ename:VK_FORMAT_R64G64B64A64_UINT:: A four-component, 256-bit unsigned integer format that has a 64-bit R component in bytes 0..7, a 64-bit G component in bytes 8..15, a 64-bit B component in bytes 16..23, and a 64-bit A component in bytes 24..31.
 		/// </para>
 		/// </summary>
 		R64G64B64A64UInt = 119,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R64G64B64A64_SINT::     A four-component, 256-bit signed integer format that has     a 64-bit R component in bytes 0..7,     a 64-bit G component in bytes 8..15,     a 64-bit B component in bytes 16..23, and     a 64-bit A component in bytes 24..31.
+		/// ename:VK_FORMAT_R64G64B64A64_SINT:: A four-component, 256-bit signed integer format that has a 64-bit R component in bytes 0..7, a 64-bit G component in bytes 8..15, a 64-bit B component in bytes 16..23, and a 64-bit A component in bytes 24..31.
 		/// </para>
 		/// </summary>
 		R64G64B64A64SInt = 120,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_R64G64B64A64_SFLOAT::     A four-component, 256-bit signed floating-point format that has     a 64-bit R component in bytes 0..7,     a 64-bit G component in bytes 8..15,     a 64-bit B component in bytes 16..23, and     a 64-bit A component in bytes 24..31.
+		/// ename:VK_FORMAT_R64G64B64A64_SFLOAT:: A four-component, 256-bit signed floating-point format that has a 64-bit R component in bytes 0..7, a 64-bit G component in bytes 8..15, a 64-bit B component in bytes 16..23, and a 64-bit A component in bytes 24..31.
 		/// </para>
 		/// </summary>
 		R64G64B64A64SFloat = 121,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_B10G11R11_UFLOAT_PACK32::     A three-component, 32-bit packed unsigned floating-point format that has     a 10-bit B component in bits 22..31,     an 11-bit G component in bits 11..21,     an 11-bit R component in bits 0..10.     See &lt;&lt;fundamentals-fp10&gt;&gt; and &lt;&lt;fundamentals-fp11&gt;&gt;.
+		/// ename:VK_FORMAT_B10G11R11_UFLOAT_PACK32:: A three-component, 32-bit packed unsigned floating-point format that has a 10-bit B component in bits 22..31, an 11-bit G component in bits 11..21, an 11-bit R component in bits 0..10. See &lt;&lt;fundamentals-fp10&gt;&gt; and &lt;&lt;fundamentals-fp11&gt;&gt;.
 		/// </para>
 		/// </summary>
 		B10G11R11UfloatPack32 = 122,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_E5B9G9R9_UFLOAT_PACK32::     A three-component, 32-bit packed unsigned floating-point format that has     a 5-bit shared exponent in bits 27..31,     a 9-bit B component mantissa in bits 18..26,     a 9-bit G component mantissa in bits 9..17, and     a 9-bit R component mantissa in bits 0..8.
+		/// ename:VK_FORMAT_E5B9G9R9_UFLOAT_PACK32:: A three-component, 32-bit packed unsigned floating-point format that has a 5-bit shared exponent in bits 27..31, a 9-bit B component mantissa in bits 18..26, a 9-bit G component mantissa in bits 9..17, and a 9-bit R component mantissa in bits 0..8.
 		/// </para>
 		/// </summary>
 		E5b9g9r9UfloatPack32 = 123,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_D16_UNORM::     A one-component, 16-bit unsigned normalized format that has a     single 16-bit depth component.
+		/// ename:VK_FORMAT_D16_UNORM:: A one-component, 16-bit unsigned normalized format that has a single 16-bit depth component.
 		/// </para>
 		/// </summary>
 		D16UNorm = 124,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_X8_D24_UNORM_PACK32::     A two-component, 32-bit format that has 24 unsigned normalized bits in     the depth component and, optionally:, 8 bits that are unused.
+		/// ename:VK_FORMAT_X8_D24_UNORM_PACK32:: A two-component, 32-bit format that has 24 unsigned normalized bits in the depth component and, optionally:, 8 bits that are unused.
 		/// </para>
 		/// </summary>
 		X8D24UNormPack32 = 125,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_D32_SFLOAT::     A one-component, 32-bit signed floating-point format that has 32-bits in     the depth component.
+		/// ename:VK_FORMAT_D32_SFLOAT:: A one-component, 32-bit signed floating-point format that has 32-bits in the depth component.
 		/// </para>
 		/// </summary>
 		D32SFloat = 126,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_S8_UINT::     A one-component, 8-bit unsigned integer format that has 8-bits in the     stencil component.
+		/// ename:VK_FORMAT_S8_UINT:: A one-component, 8-bit unsigned integer format that has 8-bits in the stencil component.
 		/// </para>
 		/// </summary>
 		S8UInt = 127,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_D16_UNORM_S8_UINT::     A two-component, 24-bit format that has 16 unsigned normalized bits in     the depth component and 8 unsigned integer bits in the stencil     component.
+		/// ename:VK_FORMAT_D16_UNORM_S8_UINT:: A two-component, 24-bit format that has 16 unsigned normalized bits in the depth component and 8 unsigned integer bits in the stencil component.
 		/// </para>
 		/// </summary>
 		D16UNormS8UInt = 128,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_D24_UNORM_S8_UINT::     A two-component, 32-bit packed format that has     8 unsigned integer bits in the stencil component, and     24 unsigned normalized bits in the depth component.
+		/// ename:VK_FORMAT_D24_UNORM_S8_UINT:: A two-component, 32-bit packed format that has 8 unsigned integer bits in the stencil component, and 24 unsigned normalized bits in the depth component.
 		/// </para>
 		/// </summary>
 		D24UNormS8UInt = 129,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_D32_SFLOAT_S8_UINT::     A two-component format that has 32 signed float bits in the depth     component and 8 unsigned integer bits in the stencil component. There     are optionally: 24-bits that are unused.
+		/// ename:VK_FORMAT_D32_SFLOAT_S8_UINT:: A two-component format that has 32 signed float bits in the depth component and 8 unsigned integer bits in the stencil component. There are optionally: 24-bits that are unused.
 		/// </para>
 		/// </summary>
 		D32SFloatS8UInt = 130,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_BC1_RGB_UNORM_BLOCK::     A three-component, block-compressed format where each 64-bit compressed     texel block encodes a 4x4 rectangle of unsigned normalized RGB texel data.     This format has no alpha and is considered opaque.
+		/// ename:VK_FORMAT_BC1_RGB_UNORM_BLOCK:: A three-component, block-compressed format where each 64-bit compressed texel block encodes a 4x4 rectangle of unsigned normalized RGB texel data. This format has no alpha and is considered opaque.
 		/// </para>
 		/// </summary>
 		Bc1RgbUNormBlock = 131,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_BC1_RGB_SRGB_BLOCK::     A three-component, block-compressed format where each 64-bit compressed     texel block encodes a 4x4 rectangle of unsigned normalized RGB texel data     with sRGB nonlinear encoding. This format has no alpha and is considered     opaque.
+		/// ename:VK_FORMAT_BC1_RGB_SRGB_BLOCK:: A three-component, block-compressed format where each 64-bit compressed texel block encodes a 4x4 rectangle of unsigned normalized RGB texel data with sRGB nonlinear encoding. This format has no alpha and is considered opaque.
 		/// </para>
 		/// </summary>
 		Bc1RgbSrgbBlock = 132,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_BC1_RGBA_UNORM_BLOCK::     A four-component, block-compressed format where each 64-bit compressed     texel block encodes a 4x4 rectangle of unsigned normalized RGB texel data,     and provides 1 bit of alpha.
+		/// ename:VK_FORMAT_BC1_RGBA_UNORM_BLOCK:: A four-component, block-compressed format where each 64-bit compressed texel block encodes a 4x4 rectangle of unsigned normalized RGB texel data, and provides 1 bit of alpha.
 		/// </para>
 		/// </summary>
 		Bc1RgbaUNormBlock = 133,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_BC1_RGBA_SRGB_BLOCK::     A four-component, block-compressed format where each 64-bit compressed     texel block encodes a 4x4 rectangle of unsigned normalized RGB texel data     with sRGB nonlinear encoding, and provides 1 bit of alpha.
+		/// ename:VK_FORMAT_BC1_RGBA_SRGB_BLOCK:: A four-component, block-compressed format where each 64-bit compressed texel block encodes a 4x4 rectangle of unsigned normalized RGB texel data with sRGB nonlinear encoding, and provides 1 bit of alpha.
 		/// </para>
 		/// </summary>
 		Bc1RgbaSrgbBlock = 134,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_BC2_UNORM_BLOCK::     A four-component, block-compressed format where each 128-bit compressed     texel block encodes a 4x4 rectangle of unsigned normalized RGBA texel data     with the first 64 bits encoding alpha values followed by 64 bits encoding     RGB values.
+		/// ename:VK_FORMAT_BC2_UNORM_BLOCK:: A four-component, block-compressed format where each 128-bit compressed texel block encodes a 4x4 rectangle of unsigned normalized RGBA texel data with the first 64 bits encoding alpha values followed by 64 bits encoding RGB values.
 		/// </para>
 		/// </summary>
 		Bc2UNormBlock = 135,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_BC2_SRGB_BLOCK::     A four-component, block-compressed format where each 128-bit compressed     texel block encodes a 4x4 rectangle of unsigned normalized RGBA texel data     with the first 64 bits encoding alpha values followed by 64 bits encoding     RGB values with sRGB nonlinear encoding.
+		/// ename:VK_FORMAT_BC2_SRGB_BLOCK:: A four-component, block-compressed format where each 128-bit compressed texel block encodes a 4x4 rectangle of unsigned normalized RGBA texel data with the first 64 bits encoding alpha values followed by 64 bits encoding RGB values with sRGB nonlinear encoding.
 		/// </para>
 		/// </summary>
 		Bc2SrgbBlock = 136,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_BC3_UNORM_BLOCK::     A four-component, block-compressed format where each 128-bit compressed     texel block encodes a 4x4 rectangle of unsigned normalized RGBA texel data     with the first 64 bits encoding alpha values followed by 64 bits encoding     RGB values.
+		/// ename:VK_FORMAT_BC3_UNORM_BLOCK:: A four-component, block-compressed format where each 128-bit compressed texel block encodes a 4x4 rectangle of unsigned normalized RGBA texel data with the first 64 bits encoding alpha values followed by 64 bits encoding RGB values.
 		/// </para>
 		/// </summary>
 		Bc3UNormBlock = 137,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_BC3_SRGB_BLOCK::     A four-component, block-compressed format where each 128-bit compressed     texel block encodes a 4x4 rectangle of unsigned normalized RGBA texel data     with the first 64 bits encoding alpha values followed by 64 bits encoding     RGB values with sRGB nonlinear encoding.
+		/// ename:VK_FORMAT_BC3_SRGB_BLOCK:: A four-component, block-compressed format where each 128-bit compressed texel block encodes a 4x4 rectangle of unsigned normalized RGBA texel data with the first 64 bits encoding alpha values followed by 64 bits encoding RGB values with sRGB nonlinear encoding.
 		/// </para>
 		/// </summary>
 		Bc3SrgbBlock = 138,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_BC4_UNORM_BLOCK::     A one-component, block-compressed format where each 64-bit compressed     texel block encodes a 4x4 rectangle of unsigned normalized red texel data.
+		/// ename:VK_FORMAT_BC4_UNORM_BLOCK:: A one-component, block-compressed format where each 64-bit compressed texel block encodes a 4x4 rectangle of unsigned normalized red texel data.
 		/// </para>
 		/// </summary>
 		Bc4UNormBlock = 139,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_BC4_SNORM_BLOCK::     A one-component, block-compressed format where each 64-bit compressed     texel block encodes a 4x4 rectangle of signed normalized red texel data.
+		/// ename:VK_FORMAT_BC4_SNORM_BLOCK:: A one-component, block-compressed format where each 64-bit compressed texel block encodes a 4x4 rectangle of signed normalized red texel data.
 		/// </para>
 		/// </summary>
 		Bc4SNormBlock = 140,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_BC5_UNORM_BLOCK::     A two-component, block-compressed format where each 128-bit compressed     texel block encodes a 4x4 rectangle of unsigned normalized RG texel data     with the first 64 bits encoding red values followed by 64 bits encoding     green values.
+		/// ename:VK_FORMAT_BC5_UNORM_BLOCK:: A two-component, block-compressed format where each 128-bit compressed texel block encodes a 4x4 rectangle of unsigned normalized RG texel data with the first 64 bits encoding red values followed by 64 bits encoding green values.
 		/// </para>
 		/// </summary>
 		Bc5UNormBlock = 141,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_BC5_SNORM_BLOCK::     A two-component, block-compressed format where each 128-bit compressed     texel block encodes a 4x4 rectangle of signed normalized RG texel data     with the first 64 bits encoding red values followed by 64 bits encoding     green values.
+		/// ename:VK_FORMAT_BC5_SNORM_BLOCK:: A two-component, block-compressed format where each 128-bit compressed texel block encodes a 4x4 rectangle of signed normalized RG texel data with the first 64 bits encoding red values followed by 64 bits encoding green values.
 		/// </para>
 		/// </summary>
 		Bc5SNormBlock = 142,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_BC6H_UFLOAT_BLOCK::     A three-component, block-compressed format where each 128-bit compressed     texel block encodes a 4x4 rectangle of unsigned floating-point RGB texel     data.
+		/// ename:VK_FORMAT_BC6H_UFLOAT_BLOCK:: A three-component, block-compressed format where each 128-bit compressed texel block encodes a 4x4 rectangle of unsigned floating-point RGB texel data.
 		/// </para>
 		/// </summary>
 		Bc6hUfloatBlock = 143,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_BC6H_SFLOAT_BLOCK::     A three-component, block-compressed format where each 128-bit compressed     texel block encodes a 4x4 rectangle of signed floating-point RGB texel     data.
+		/// ename:VK_FORMAT_BC6H_SFLOAT_BLOCK:: A three-component, block-compressed format where each 128-bit compressed texel block encodes a 4x4 rectangle of signed floating-point RGB texel data.
 		/// </para>
 		/// </summary>
 		Bc6hSFloatBlock = 144,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_BC7_UNORM_BLOCK::     A four-component, block-compressed format where each 128-bit compressed     texel block encodes a 4x4 rectangle of unsigned normalized RGBA texel     data.
+		/// ename:VK_FORMAT_BC7_UNORM_BLOCK:: A four-component, block-compressed format where each 128-bit compressed texel block encodes a 4x4 rectangle of unsigned normalized RGBA texel data.
 		/// </para>
 		/// </summary>
 		Bc7UNormBlock = 145,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_BC7_SRGB_BLOCK::     A four-component, block-compressed format where each 128-bit compressed     texel block encodes a 4x4 rectangle of unsigned normalized RGBA texel     data with sRGB nonlinear encoding applied to the RGB components.
+		/// ename:VK_FORMAT_BC7_SRGB_BLOCK:: A four-component, block-compressed format where each 128-bit compressed texel block encodes a 4x4 rectangle of unsigned normalized RGBA texel data with sRGB nonlinear encoding applied to the RGB components.
 		/// </para>
 		/// </summary>
 		Bc7SrgbBlock = 146,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ETC2_R8G8B8_UNORM_BLOCK::     A three-component, ETC2 compressed format where each 64-bit compressed     texel block encodes a 4x4 rectangle of unsigned normalized RGB texel data.     This format has no alpha and is considered opaque.
+		/// ename:VK_FORMAT_ETC2_R8G8B8_UNORM_BLOCK:: A three-component, ETC2 compressed format where each 64-bit compressed texel block encodes a 4x4 rectangle of unsigned normalized RGB texel data. This format has no alpha and is considered opaque.
 		/// </para>
 		/// </summary>
 		Etc2R8G8B8UNormBlock = 147,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ETC2_R8G8B8_SRGB_BLOCK::     A three-component, ETC2 compressed format where each 64-bit compressed     texel block encodes a 4x4 rectangle of unsigned normalized RGB texel data     with sRGB nonlinear encoding. This format has no alpha and is considered     opaque.
+		/// ename:VK_FORMAT_ETC2_R8G8B8_SRGB_BLOCK:: A three-component, ETC2 compressed format where each 64-bit compressed texel block encodes a 4x4 rectangle of unsigned normalized RGB texel data with sRGB nonlinear encoding. This format has no alpha and is considered opaque.
 		/// </para>
 		/// </summary>
 		Etc2R8G8B8SrgbBlock = 148,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ETC2_R8G8B8A1_UNORM_BLOCK::     A four-component, ETC2 compressed format where each 64-bit compressed     texel block encodes a 4x4 rectangle of unsigned normalized RGB texel data,     and provides 1 bit of alpha.
+		/// ename:VK_FORMAT_ETC2_R8G8B8A1_UNORM_BLOCK:: A four-component, ETC2 compressed format where each 64-bit compressed texel block encodes a 4x4 rectangle of unsigned normalized RGB texel data, and provides 1 bit of alpha.
 		/// </para>
 		/// </summary>
 		Etc2R8G8B8A1UNormBlock = 149,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ETC2_R8G8B8A1_SRGB_BLOCK::     A four-component, ETC2 compressed format where each 64-bit compressed     texel block encodes a 4x4 rectangle of unsigned normalized RGB texel data     with sRGB nonlinear encoding, and provides 1 bit of alpha.
+		/// ename:VK_FORMAT_ETC2_R8G8B8A1_SRGB_BLOCK:: A four-component, ETC2 compressed format where each 64-bit compressed texel block encodes a 4x4 rectangle of unsigned normalized RGB texel data with sRGB nonlinear encoding, and provides 1 bit of alpha.
 		/// </para>
 		/// </summary>
 		Etc2R8G8B8A1SrgbBlock = 150,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ETC2_R8G8B8A8_UNORM_BLOCK::     A four-component, ETC2 compressed format where each 128-bit compressed     texel block encodes a 4x4 rectangle of unsigned normalized RGBA texel data     with the first 64 bits encoding alpha values followed by 64 bits encoding     RGB values.
+		/// ename:VK_FORMAT_ETC2_R8G8B8A8_UNORM_BLOCK:: A four-component, ETC2 compressed format where each 128-bit compressed texel block encodes a 4x4 rectangle of unsigned normalized RGBA texel data with the first 64 bits encoding alpha values followed by 64 bits encoding RGB values.
 		/// </para>
 		/// </summary>
 		Etc2R8G8B8A8UNormBlock = 151,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ETC2_R8G8B8A8_SRGB_BLOCK::     A four-component, ETC2 compressed format where each 64-bit compressed     texel block encodes a 4x4 rectangle of unsigned normalized RGBA texel data     with the first 64 bits encoding alpha values followed by 64 bits encoding     RGB values with sRGB nonlinear encoding applied.
+		/// ename:VK_FORMAT_ETC2_R8G8B8A8_SRGB_BLOCK:: A four-component, ETC2 compressed format where each 64-bit compressed texel block encodes a 4x4 rectangle of unsigned normalized RGBA texel data with the first 64 bits encoding alpha values followed by 64 bits encoding RGB values with sRGB nonlinear encoding applied.
 		/// </para>
 		/// </summary>
 		Etc2R8G8B8A8SrgbBlock = 152,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_EAC_R11_UNORM_BLOCK::     A one-component, ETC2 compressed format where each 64-bit compressed     texel block encodes a 4x4 rectangle of unsigned normalized red texel data.
+		/// ename:VK_FORMAT_EAC_R11_UNORM_BLOCK:: A one-component, ETC2 compressed format where each 64-bit compressed texel block encodes a 4x4 rectangle of unsigned normalized red texel data.
 		/// </para>
 		/// </summary>
 		EacR11UNormBlock = 153,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_EAC_R11_SNORM_BLOCK::     A one-component, ETC2 compressed format where each 64-bit compressed     texel block encodes a 4x4 rectangle of signed normalized red texel data.
+		/// ename:VK_FORMAT_EAC_R11_SNORM_BLOCK:: A one-component, ETC2 compressed format where each 64-bit compressed texel block encodes a 4x4 rectangle of signed normalized red texel data.
 		/// </para>
 		/// </summary>
 		EacR11SNormBlock = 154,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_EAC_R11G11_UNORM_BLOCK::     A two-component, ETC2 compressed format where each 128-bit compressed     texel block encodes a 4x4 rectangle of unsigned normalized RG texel data     with the first 64 bits encoding red values followed by 64 bits encoding     green values.
+		/// ename:VK_FORMAT_EAC_R11G11_UNORM_BLOCK:: A two-component, ETC2 compressed format where each 128-bit compressed texel block encodes a 4x4 rectangle of unsigned normalized RG texel data with the first 64 bits encoding red values followed by 64 bits encoding green values.
 		/// </para>
 		/// </summary>
 		EacR11G11UNormBlock = 155,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_EAC_R11G11_SNORM_BLOCK::     A two-component, ETC2 compressed format where each 128-bit compressed     texel block encodes a 4x4 rectangle of signed normalized RG texel data     with the first 64 bits encoding red values followed by 64 bits encoding     green values.
+		/// ename:VK_FORMAT_EAC_R11G11_SNORM_BLOCK:: A two-component, ETC2 compressed format where each 128-bit compressed texel block encodes a 4x4 rectangle of signed normalized RG texel data with the first 64 bits encoding red values followed by 64 bits encoding green values.
 		/// </para>
 		/// </summary>
 		EacR11G11SNormBlock = 156,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ASTC_4x4_UNORM_BLOCK::     A four-component, ASTC compressed format where each 128-bit compressed     texel block encodes a 4x4 rectangle of unsigned normalized RGBA texel data.
+		/// ename:VK_FORMAT_ASTC_4x4_UNORM_BLOCK:: A four-component, ASTC compressed format where each 128-bit compressed texel block encodes a 4x4 rectangle of unsigned normalized RGBA texel data.
 		/// </para>
 		/// </summary>
 		Astc4x4UNormBlock = 157,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ASTC_4x4_SRGB_BLOCK::     A four-component, ASTC compressed format where each 128-bit compressed     texel block encodes a 4x4 rectangle of unsigned normalized RGBA texel data     with sRGB nonlinear encoding applied to the RGB components.
+		/// ename:VK_FORMAT_ASTC_4x4_SRGB_BLOCK:: A four-component, ASTC compressed format where each 128-bit compressed texel block encodes a 4x4 rectangle of unsigned normalized RGBA texel data with sRGB nonlinear encoding applied to the RGB components.
 		/// </para>
 		/// </summary>
 		Astc4x4SrgbBlock = 158,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ASTC_5x4_UNORM_BLOCK::     A four-component, ASTC compressed format where each 128-bit compressed     texel block encodes a 5x4 rectangle of unsigned normalized RGBA texel data.
+		/// ename:VK_FORMAT_ASTC_5x4_UNORM_BLOCK:: A four-component, ASTC compressed format where each 128-bit compressed texel block encodes a 5x4 rectangle of unsigned normalized RGBA texel data.
 		/// </para>
 		/// </summary>
 		Astc5x4UNormBlock = 159,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ASTC_5x4_SRGB_BLOCK::     A four-component, ASTC compressed format where each 128-bit compressed     texel block encodes a 5x4 rectangle of unsigned normalized RGBA texel data     with sRGB nonlinear encoding applied to the RGB components.
+		/// ename:VK_FORMAT_ASTC_5x4_SRGB_BLOCK:: A four-component, ASTC compressed format where each 128-bit compressed texel block encodes a 5x4 rectangle of unsigned normalized RGBA texel data with sRGB nonlinear encoding applied to the RGB components.
 		/// </para>
 		/// </summary>
 		Astc5x4SrgbBlock = 160,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ASTC_5x5_UNORM_BLOCK::     A four-component, ASTC compressed format where each 128-bit compressed     texel block encodes a 5x5 rectangle of unsigned normalized RGBA texel data.
+		/// ename:VK_FORMAT_ASTC_5x5_UNORM_BLOCK:: A four-component, ASTC compressed format where each 128-bit compressed texel block encodes a 5x5 rectangle of unsigned normalized RGBA texel data.
 		/// </para>
 		/// </summary>
 		Astc5x5UNormBlock = 161,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ASTC_5x5_SRGB_BLOCK::     A four-component, ASTC compressed format where each 128-bit compressed     texel block encodes a 5x5 rectangle of unsigned normalized RGBA texel data     with sRGB nonlinear encoding applied to the RGB components.
+		/// ename:VK_FORMAT_ASTC_5x5_SRGB_BLOCK:: A four-component, ASTC compressed format where each 128-bit compressed texel block encodes a 5x5 rectangle of unsigned normalized RGBA texel data with sRGB nonlinear encoding applied to the RGB components.
 		/// </para>
 		/// </summary>
 		Astc5x5SrgbBlock = 162,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ASTC_6x5_UNORM_BLOCK::     A four-component, ASTC compressed format where each 128-bit compressed     texel block encodes a 6x5 rectangle of unsigned normalized RGBA texel data.
+		/// ename:VK_FORMAT_ASTC_6x5_UNORM_BLOCK:: A four-component, ASTC compressed format where each 128-bit compressed texel block encodes a 6x5 rectangle of unsigned normalized RGBA texel data.
 		/// </para>
 		/// </summary>
 		Astc6x5UNormBlock = 163,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ASTC_6x5_SRGB_BLOCK::     A four-component, ASTC compressed format where each 128-bit compressed     texel block encodes a 6x5 rectangle of unsigned normalized RGBA texel data     with sRGB nonlinear encoding applied to the RGB components.
+		/// ename:VK_FORMAT_ASTC_6x5_SRGB_BLOCK:: A four-component, ASTC compressed format where each 128-bit compressed texel block encodes a 6x5 rectangle of unsigned normalized RGBA texel data with sRGB nonlinear encoding applied to the RGB components.
 		/// </para>
 		/// </summary>
 		Astc6x5SrgbBlock = 164,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ASTC_6x6_UNORM_BLOCK::     A four-component, ASTC compressed format where each 128-bit compressed     texel block encodes a 6x6 rectangle of unsigned normalized RGBA texel data.
+		/// ename:VK_FORMAT_ASTC_6x6_UNORM_BLOCK:: A four-component, ASTC compressed format where each 128-bit compressed texel block encodes a 6x6 rectangle of unsigned normalized RGBA texel data.
 		/// </para>
 		/// </summary>
 		Astc6x6UNormBlock = 165,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ASTC_6x6_SRGB_BLOCK::     A four-component, ASTC compressed format where each 128-bit compressed     texel block encodes a 6x6 rectangle of unsigned normalized RGBA texel data     with sRGB nonlinear encoding applied to the RGB components.
+		/// ename:VK_FORMAT_ASTC_6x6_SRGB_BLOCK:: A four-component, ASTC compressed format where each 128-bit compressed texel block encodes a 6x6 rectangle of unsigned normalized RGBA texel data with sRGB nonlinear encoding applied to the RGB components.
 		/// </para>
 		/// </summary>
 		Astc6x6SrgbBlock = 166,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ASTC_8x5_UNORM_BLOCK::     A four-component, ASTC compressed format where each 128-bit compressed     texel block encodes an 8x5 rectangle of unsigned normalized RGBA texel data.
+		/// ename:VK_FORMAT_ASTC_8x5_UNORM_BLOCK:: A four-component, ASTC compressed format where each 128-bit compressed texel block encodes an 8x5 rectangle of unsigned normalized RGBA texel data.
 		/// </para>
 		/// </summary>
 		Astc8x5UNormBlock = 167,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ASTC_8x5_SRGB_BLOCK::     A four-component, ASTC compressed format where each 128-bit compressed     texel block encodes an 8x5 rectangle of unsigned normalized RGBA texel data     with sRGB nonlinear encoding applied to the RGB components.
+		/// ename:VK_FORMAT_ASTC_8x5_SRGB_BLOCK:: A four-component, ASTC compressed format where each 128-bit compressed texel block encodes an 8x5 rectangle of unsigned normalized RGBA texel data with sRGB nonlinear encoding applied to the RGB components.
 		/// </para>
 		/// </summary>
 		Astc8x5SrgbBlock = 168,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ASTC_8x6_UNORM_BLOCK::     A four-component, ASTC compressed format where each 128-bit compressed     texel block encodes an 8x6 rectangle of unsigned normalized RGBA texel data.
+		/// ename:VK_FORMAT_ASTC_8x6_UNORM_BLOCK:: A four-component, ASTC compressed format where each 128-bit compressed texel block encodes an 8x6 rectangle of unsigned normalized RGBA texel data.
 		/// </para>
 		/// </summary>
 		Astc8x6UNormBlock = 169,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ASTC_8x6_SRGB_BLOCK::     A four-component, ASTC compressed format where each 128-bit compressed     texel block encodes an 8x6 rectangle of unsigned normalized RGBA texel data     with sRGB nonlinear encoding applied to the RGB components.
+		/// ename:VK_FORMAT_ASTC_8x6_SRGB_BLOCK:: A four-component, ASTC compressed format where each 128-bit compressed texel block encodes an 8x6 rectangle of unsigned normalized RGBA texel data with sRGB nonlinear encoding applied to the RGB components.
 		/// </para>
 		/// </summary>
 		Astc8x6SrgbBlock = 170,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ASTC_8x8_UNORM_BLOCK::     A four-component, ASTC compressed format where each 128-bit compressed     texel block encodes an 8x8 rectangle of unsigned normalized RGBA texel data.
+		/// ename:VK_FORMAT_ASTC_8x8_UNORM_BLOCK:: A four-component, ASTC compressed format where each 128-bit compressed texel block encodes an 8x8 rectangle of unsigned normalized RGBA texel data.
 		/// </para>
 		/// </summary>
 		Astc8x8UNormBlock = 171,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ASTC_8x8_SRGB_BLOCK::     A four-component, ASTC compressed format where each 128-bit compressed     texel block encodes an 8x8 rectangle of unsigned normalized RGBA texel data     with sRGB nonlinear encoding applied to the RGB components.
+		/// ename:VK_FORMAT_ASTC_8x8_SRGB_BLOCK:: A four-component, ASTC compressed format where each 128-bit compressed texel block encodes an 8x8 rectangle of unsigned normalized RGBA texel data with sRGB nonlinear encoding applied to the RGB components.
 		/// </para>
 		/// </summary>
 		Astc8x8SrgbBlock = 172,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ASTC_10x5_UNORM_BLOCK::     A four-component, ASTC compressed format where each 128-bit compressed     texel block encodes a 10x5 rectangle of unsigned normalized RGBA texel     data.
+		/// ename:VK_FORMAT_ASTC_10x5_UNORM_BLOCK:: A four-component, ASTC compressed format where each 128-bit compressed texel block encodes a 10x5 rectangle of unsigned normalized RGBA texel data.
 		/// </para>
 		/// </summary>
 		Astc10x5UNormBlock = 173,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ASTC_10x5_SRGB_BLOCK::     A four-component, ASTC compressed format where each 128-bit compressed     texel block encodes a 10x5 rectangle of unsigned normalized RGBA texel data     with sRGB nonlinear encoding applied to the RGB components.
+		/// ename:VK_FORMAT_ASTC_10x5_SRGB_BLOCK:: A four-component, ASTC compressed format where each 128-bit compressed texel block encodes a 10x5 rectangle of unsigned normalized RGBA texel data with sRGB nonlinear encoding applied to the RGB components.
 		/// </para>
 		/// </summary>
 		Astc10x5SrgbBlock = 174,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ASTC_10x6_UNORM_BLOCK::     A four-component, ASTC compressed format where each 128-bit compressed     texel block encodes a 10x6 rectangle of unsigned normalized RGBA texel     data.
+		/// ename:VK_FORMAT_ASTC_10x6_UNORM_BLOCK:: A four-component, ASTC compressed format where each 128-bit compressed texel block encodes a 10x6 rectangle of unsigned normalized RGBA texel data.
 		/// </para>
 		/// </summary>
 		Astc10x6UNormBlock = 175,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ASTC_10x6_SRGB_BLOCK::     A four-component, ASTC compressed format where each 128-bit compressed     texel block encodes a 10x6 rectangle of unsigned normalized RGBA texel data     with sRGB nonlinear encoding applied to the RGB components.
+		/// ename:VK_FORMAT_ASTC_10x6_SRGB_BLOCK:: A four-component, ASTC compressed format where each 128-bit compressed texel block encodes a 10x6 rectangle of unsigned normalized RGBA texel data with sRGB nonlinear encoding applied to the RGB components.
 		/// </para>
 		/// </summary>
 		Astc10x6SrgbBlock = 176,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ASTC_10x8_UNORM_BLOCK::     A four-component, ASTC compressed format where each 128-bit compressed     texel block encodes a 10x8 rectangle of unsigned normalized RGBA texel     data.
+		/// ename:VK_FORMAT_ASTC_10x8_UNORM_BLOCK:: A four-component, ASTC compressed format where each 128-bit compressed texel block encodes a 10x8 rectangle of unsigned normalized RGBA texel data.
 		/// </para>
 		/// </summary>
 		Astc10x8UNormBlock = 177,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ASTC_10x8_SRGB_BLOCK::     A four-component, ASTC compressed format where each 128-bit compressed     texel block encodes a 10x8 rectangle of unsigned normalized RGBA texel data     with sRGB nonlinear encoding applied to the RGB components.
+		/// ename:VK_FORMAT_ASTC_10x8_SRGB_BLOCK:: A four-component, ASTC compressed format where each 128-bit compressed texel block encodes a 10x8 rectangle of unsigned normalized RGBA texel data with sRGB nonlinear encoding applied to the RGB components.
 		/// </para>
 		/// </summary>
 		Astc10x8SrgbBlock = 178,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ASTC_10x10_UNORM_BLOCK::     A four-component, ASTC compressed format where each 128-bit compressed     texel block encodes a 10x10 rectangle of unsigned normalized RGBA texel     data.
+		/// ename:VK_FORMAT_ASTC_10x10_UNORM_BLOCK:: A four-component, ASTC compressed format where each 128-bit compressed texel block encodes a 10x10 rectangle of unsigned normalized RGBA texel data.
 		/// </para>
 		/// </summary>
 		Astc10x10UNormBlock = 179,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ASTC_10x10_SRGB_BLOCK::     A four-component, ASTC compressed format where each 128-bit compressed     texel block encodes a 10x10 rectangle of unsigned normalized RGBA texel     data with sRGB nonlinear encoding applied to the RGB components.
+		/// ename:VK_FORMAT_ASTC_10x10_SRGB_BLOCK:: A four-component, ASTC compressed format where each 128-bit compressed texel block encodes a 10x10 rectangle of unsigned normalized RGBA texel data with sRGB nonlinear encoding applied to the RGB components.
 		/// </para>
 		/// </summary>
 		Astc10x10SrgbBlock = 180,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ASTC_12x10_UNORM_BLOCK::     A four-component, ASTC compressed format where each 128-bit compressed     texel block encodes a 12x10 rectangle of unsigned normalized RGBA texel     data.
+		/// ename:VK_FORMAT_ASTC_12x10_UNORM_BLOCK:: A four-component, ASTC compressed format where each 128-bit compressed texel block encodes a 12x10 rectangle of unsigned normalized RGBA texel data.
 		/// </para>
 		/// </summary>
 		Astc12x10UNormBlock = 181,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ASTC_12x10_SRGB_BLOCK::     A four-component, ASTC compressed format where each 128-bit compressed     texel block encodes a 12x10 rectangle of unsigned normalized RGBA texel     data with sRGB nonlinear encoding applied to the RGB components.
+		/// ename:VK_FORMAT_ASTC_12x10_SRGB_BLOCK:: A four-component, ASTC compressed format where each 128-bit compressed texel block encodes a 12x10 rectangle of unsigned normalized RGBA texel data with sRGB nonlinear encoding applied to the RGB components.
 		/// </para>
 		/// </summary>
 		Astc12x10SrgbBlock = 182,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ASTC_12x12_UNORM_BLOCK::     A four-component, ASTC compressed format where each 128-bit compressed     texel block encodes a 12x12 rectangle of unsigned normalized RGBA texel     data.
+		/// ename:VK_FORMAT_ASTC_12x12_UNORM_BLOCK:: A four-component, ASTC compressed format where each 128-bit compressed texel block encodes a 12x12 rectangle of unsigned normalized RGBA texel data.
 		/// </para>
 		/// </summary>
 		Astc12x12UNormBlock = 183,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_FORMAT_ASTC_12x12_SRGB_BLOCK::     A four-component, ASTC compressed format where each 128-bit compressed     texel block encodes a 12x12 rectangle of unsigned normalized RGBA texel     data with sRGB nonlinear encoding applied to the RGB components.
+		/// ename:VK_FORMAT_ASTC_12x12_SRGB_BLOCK:: A four-component, ASTC compressed format where each 128-bit compressed texel block encodes a 12x12 rectangle of unsigned normalized RGBA texel data with sRGB nonlinear encoding applied to the RGB components.
 		/// </para>
 		/// </summary>
 		Astc12x12SrgbBlock = 184,
@@ -4597,12 +4555,6 @@ namespace SharpVk
     /// Layout of image and image subresources.
     /// </para>
     /// <para>
-    /// The type(s) of device access supported by each layout are:
-    /// </para>
-    /// <para>
-    /// * ename:VK_IMAGE_LAYOUT_UNDEFINED: Supports no device access. This layout must: only be used as the pname:initialLayout member of sname:VkImageCreateInfo or sname:VkAttachmentDescription, or as the pname:oldLayout in an image transition. When transitioning out of this layout, the contents of the memory are not guaranteed to be preserved. * ename:VK_IMAGE_LAYOUT_PREINITIALIZED: Supports no device access. This layout must: only be used as the pname:initialLayout member of sname:VkImageCreateInfo or sname:VkAttachmentDescription, or as the pname:oldLayout in an image transition. When transitioning out of this layout, the contents of the memory are preserved. This layout is intended to be used as the initial layout for an image whose contents are written by the host, and hence the data can: be written to memory immediately, without first executing a layout transition. Currently, ename:VK_IMAGE_LAYOUT_PREINITIALIZED is only useful with ename:VK_IMAGE_TILING_LINEAR images because there is not a standard layout defined for ename:VK_IMAGE_TILING_OPTIMAL images. * ename:VK_IMAGE_LAYOUT_GENERAL: Supports all types of device access. * ename:VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL: must: only be used as a color or resolve attachment in a sname:VkFramebuffer. This layout is valid only for image subresources of images created with the ename:VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT usage bit enabled. * ename:VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL: must: only be used as a depth/stencil attachment in a sname:VkFramebuffer. This layout is valid only for image subresources of images created with the ename:VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT usage bit enabled. * ename:VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL: must: only be used as a read-only depth/stencil attachment in a sname:VkFramebuffer and/or as a read-only image in a shader (which can: be read as a sampled image, combined image/sampler and/or input attachment). This layout is valid only for image subresources of images created with the ename:VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT usage bit enabled. * ename:VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL: must: only be used as a read-only image in a shader (which can: be read as a sampled image, combined image/sampler and/or input attachment). This layout is valid only for image subresources of images created with the ename:VK_IMAGE_USAGE_SAMPLED_BIT or ename:VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT usage bit enabled. * ename:VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL: must: only be used as a source image of a transfer command (see the definition of &lt;&lt;synchronization-transfer,ename:VK_PIPELINE_STAGE_TRANSFER_BIT&gt;&gt;). This layout is valid only for image subresources of images created with the ename:VK_IMAGE_USAGE_TRANSFER_SRC_BIT usage bit enabled. * ename:VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL: must: only be used as a destination image of a transfer command. This layout is valid only for image subresources of images created with the ename:VK_IMAGE_USAGE_TRANSFER_DST_BIT usage bit enabled. ifdef::VK_KHR_swapchain[] include::VK_KHR_swapchain/VkImageLayout_swapchain.txt[] endif::VK_KHR_swapchain[]
-    /// </para>
-    /// <para>
     /// For each mechanism of accessing an image in the API, there is a parameter or structure member that controls the image layout used to access the image. For transfer commands, this is a parameter to the command (see &lt;&lt;clears&gt;&gt; and &lt;&lt;copies&gt;&gt;). For use as a framebuffer attachment, this is a member in the substructures of the sname:VkRenderPassCreateInfo (see &lt;&lt;renderpass,Render Pass&gt;&gt;). For use in a descriptor set, this is a member in the sname:VkDescriptorImageInfo structure (see &lt;&lt;descriptorsets-updates&gt;&gt;). At the time that any command buffer command accessing an image executes on any queue, the layouts of the image subresources that are accessed must: all match the layout specified via the API controlling those accesses.
     /// </para>
     /// <para>
@@ -4613,61 +4565,61 @@ namespace SharpVk
 	{
 	    /// <summary>
 		/// <para>
-		/// Implicit layout an image is when its contents are undefined due to various reasons (e.g. right after creation)
+		/// ename:VK_IMAGE_LAYOUT_UNDEFINED: Supports no device access. This layout must: only be used as the pname:initialLayout member of sname:VkImageCreateInfo or sname:VkAttachmentDescription, or as the pname:oldLayout in an image transition. When transitioning out of this layout, the contents of the memory are not guaranteed to be preserved.
 		/// </para>
 		/// </summary>
 		Undefined = 0,
 	    /// <summary>
 		/// <para>
-		/// General layout when image can be used for any kind of access
+		/// ename:VK_IMAGE_LAYOUT_GENERAL: Supports all types of device access.
 		/// </para>
 		/// </summary>
 		General = 1,
 	    /// <summary>
 		/// <para>
-		/// Optimal layout when image is only used for color attachment read/write
+		/// ename:VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL: must: only be used as a color or resolve attachment in a sname:VkFramebuffer. This layout is valid only for image subresources of images created with the ename:VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT usage bit enabled.
 		/// </para>
 		/// </summary>
 		ColorAttachmentOptimal = 2,
 	    /// <summary>
 		/// <para>
-		/// Optimal layout when image is only used for depth/stencil attachment read/write
+		/// ename:VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL: must: only be used as a depth/stencil attachment in a sname:VkFramebuffer. This layout is valid only for image subresources of images created with the ename:VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT usage bit enabled.
 		/// </para>
 		/// </summary>
 		DepthStencilAttachmentOptimal = 3,
 	    /// <summary>
 		/// <para>
-		/// Optimal layout when image is used for read only depth/stencil attachment and shader access
+		/// ename:VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL: must: only be used as a read-only depth/stencil attachment in a sname:VkFramebuffer and/or as a read-only image in a shader (which can: be read as a sampled image, combined image/sampler and/or input attachment). This layout is valid only for image subresources of images created with the ename:VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT usage bit enabled.
 		/// </para>
 		/// </summary>
 		DepthStencilReadOnlyOptimal = 4,
 	    /// <summary>
 		/// <para>
-		/// Optimal layout when image is used for read only shader access
+		/// ename:VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL: must: only be used as a read-only image in a shader (which can: be read as a sampled image, combined image/sampler and/or input attachment). This layout is valid only for image subresources of images created with the ename:VK_IMAGE_USAGE_SAMPLED_BIT or ename:VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT usage bit enabled.
 		/// </para>
 		/// </summary>
 		ShaderReadOnlyOptimal = 5,
 	    /// <summary>
 		/// <para>
-		/// Optimal layout when image is used only as source of transfer operations
+		/// ename:VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL: must: only be used as a source image of a transfer command (see the definition of &lt;&lt;synchronization-transfer,ename:VK_PIPELINE_STAGE_TRANSFER_BIT&gt;&gt;). This layout is valid only for image subresources of images created with the ename:VK_IMAGE_USAGE_TRANSFER_SRC_BIT usage bit enabled.
 		/// </para>
 		/// </summary>
 		TransferSourceOptimal = 6,
 	    /// <summary>
 		/// <para>
-		/// Optimal layout when image is used only as destination of transfer operations
+		/// ename:VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL: must: only be used as a destination image of a transfer command. This layout is valid only for image subresources of images created with the ename:VK_IMAGE_USAGE_TRANSFER_DST_BIT usage bit enabled. ifdef::VK_KHR_swapchain[]
 		/// </para>
 		/// </summary>
 		TransferDestinationOptimal = 7,
 	    /// <summary>
 		/// <para>
-		/// Initial layout used when the data is populated by the CPU
+		/// ename:VK_IMAGE_LAYOUT_PREINITIALIZED: Supports no device access. This layout must: only be used as the pname:initialLayout member of sname:VkImageCreateInfo or sname:VkAttachmentDescription, or as the pname:oldLayout in an image transition. When transitioning out of this layout, the contents of the memory are preserved. This layout is intended to be used as the initial layout for an image whose contents are written by the host, and hence the data can: be written to memory immediately, without first executing a layout transition. Currently, ename:VK_IMAGE_LAYOUT_PREINITIALIZED is only useful with ename:VK_IMAGE_TILING_LINEAR images because there is not a standard layout defined for ename:VK_IMAGE_TILING_OPTIMAL images.
 		/// </para>
 		/// </summary>
 		Preinitialized = 8,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_IMAGE_LAYOUT_PRESENT_SRC_KHR: must: only be used for presenting a swapchain image for display. A swapchain's image must: be transitioned to this layout before calling flink:vkQueuePresentKHR, and must: be transitioned away from this layout after calling flink:vkAcquireNextImageKHR. endif::VK_KHR_swapchain[]
 		/// </para>
 		/// </summary>
 		PresentSource = 1000001002,
@@ -4793,13 +4745,13 @@ namespace SharpVk
 		/// -
 		/// </para>
 		/// </summary>
-		Uint16 = 0,
+		UInt16 = 0,
 	    /// <summary>
 		/// <para>
 		/// -
 		/// </para>
 		/// </summary>
-		Uint32 = 1,
+		UInt32 = 1,
 	}
 
     /// <summary>
@@ -4831,7 +4783,7 @@ namespace SharpVk
     /// * latexmath:[$\lnot$] is bitwise invert, * latexmath:[$\land$] is bitwise and, * latexmath:[$\lor$] is bitwise or, * latexmath:[$\oplus$] is bitwise exclusive or, * latexmath:[$s$] is the fragment's latexmath:[$R_{s0}, G_{s0}, B_{s0}$] or latexmath:[$A_{s0}$] component value for the fragment output corresponding to the color attachment being updated, and * latexmath:[$d$] is the color attachment's latexmath:[$R, G, B$] or latexmath:[$A$] component value:
     /// </para>
     /// <para>
-    /// .Logical Operations [width="75%",options="header",align="center"] |========================================== |Mode                            | Operation |ename:VK_LOGIC_OP_CLEAR         | latexmath:[$0$] |ename:VK_LOGIC_OP_AND           | latexmath:[$s \land d$] |ename:VK_LOGIC_OP_AND_REVERSE   | latexmath:[$s \land \lnot d$] |ename:VK_LOGIC_OP_COPY          | latexmath:[$s$] |ename:VK_LOGIC_OP_AND_INVERTED  | latexmath:[$\lnot s \land d$] |ename:VK_LOGIC_OP_NO_OP         | latexmath:[$d$] |ename:VK_LOGIC_OP_XOR           | latexmath:[$s \oplus d$] |ename:VK_LOGIC_OP_OR            | latexmath:[$s \lor d$] |ename:VK_LOGIC_OP_NOR           | latexmath:[$\lnot (s \lor d)$] |ename:VK_LOGIC_OP_EQUIVALENT    | latexmath:[$\lnot (s \oplus d)$] |ename:VK_LOGIC_OP_INVERT        | latexmath:[$\lnot d$] |ename:VK_LOGIC_OP_OR_REVERSE    | latexmath:[$s \lor \lnot d$] |ename:VK_LOGIC_OP_COPY_INVERTED | latexmath:[$\lnot s$] |ename:VK_LOGIC_OP_OR_INVERTED   | latexmath:[$\lnot s \lor d$] |ename:VK_LOGIC_OP_NAND          | latexmath:[$\lnot (s \land d)$] |ename:VK_LOGIC_OP_SET           | all 1s |==========================================
+    /// .Logical Operations [width="75%",options="header",align="center"] |==== |Mode                            | Operation |ename:VK_LOGIC_OP_CLEAR         | latexmath:[$0$] |ename:VK_LOGIC_OP_AND           | latexmath:[$s \land d$] |ename:VK_LOGIC_OP_AND_REVERSE   | latexmath:[$s \land \lnot d$] |ename:VK_LOGIC_OP_COPY          | latexmath:[$s$] |ename:VK_LOGIC_OP_AND_INVERTED  | latexmath:[$\lnot s \land d$] |ename:VK_LOGIC_OP_NO_OP         | latexmath:[$d$] |ename:VK_LOGIC_OP_XOR           | latexmath:[$s \oplus d$] |ename:VK_LOGIC_OP_OR            | latexmath:[$s \lor d$] |ename:VK_LOGIC_OP_NOR           | latexmath:[$\lnot (s \lor d)$] |ename:VK_LOGIC_OP_EQUIVALENT    | latexmath:[$\lnot (s \oplus d)$] |ename:VK_LOGIC_OP_INVERT        | latexmath:[$\lnot d$] |ename:VK_LOGIC_OP_OR_REVERSE    | latexmath:[$s \lor \lnot d$] |ename:VK_LOGIC_OP_COPY_INVERTED | latexmath:[$\lnot s$] |ename:VK_LOGIC_OP_OR_INVERTED   | latexmath:[$\lnot s \lor d$] |ename:VK_LOGIC_OP_NAND          | latexmath:[$\lnot (s \land d)$] |ename:VK_LOGIC_OP_SET           | all 1s |====
     /// </para>
     /// <para>
     /// The result of the logical operation is then written to the color attachment as controlled by the component write mask, described in &lt;&lt;framebuffer-blendoperations,Blend Operations&gt;&gt;.
@@ -5224,10 +5176,10 @@ namespace SharpVk
     /// * Successful completion codes are returned when a command needs to communicate success or status information. All successful completion codes are non-negative values. * Run time error codes are returned when a command needs to communicate a failure that could only be detected at run time. All run time error codes are negative values.
     /// </para>
     /// <para>
-    /// [[fundamentals-successcodes]] .Success codes * ename:VK_SUCCESS Command successfully completed * ename:VK_NOT_READY A fence or query has not yet completed * ename:VK_TIMEOUT A wait operation has not completed in the specified time * ename:VK_EVENT_SET An event is signaled * ename:VK_EVENT_RESET An event is unsignaled * ename:VK_INCOMPLETE A return array was too small for the result ifdef::VK_KHR_swapchain[] include::VK_KHR_swapchain/VkResultSuccessDescriptions_swapchain.txt[] endif::VK_KHR_swapchain[]
+    /// .Success Codes * ename:VK_SUCCESS Command successfully completed * ename:VK_NOT_READY A fence or query has not yet completed * ename:VK_TIMEOUT A wait operation has not completed in the specified time * ename:VK_EVENT_SET An event is signaled * ename:VK_EVENT_RESET An event is unsignaled * ename:VK_INCOMPLETE A return array was too small for the result ifdef::VK_KHR_swapchain[] * ename:VK_SUBOPTIMAL_KHR A swapchain no longer matches the surface properties exactly, but can: still be used to present to the surface successfully. endif::VK_KHR_swapchain[]
     /// </para>
     /// <para>
-    /// [[fundamentals-errorcodes]] .Error codes * ename:VK_ERROR_OUT_OF_HOST_MEMORY A host memory allocation has failed. * ename:VK_ERROR_OUT_OF_DEVICE_MEMORY A device memory allocation has failed. * ename:VK_ERROR_INITIALIZATION_FAILED Initialization of an object could not be completed for implementation-specific reasons. * ename:VK_ERROR_DEVICE_LOST The logical or physical device has been lost. See &lt;&lt;devsandqueues-lost-device,Lost Device&gt;&gt; * ename:VK_ERROR_MEMORY_MAP_FAILED Mapping of a memory object has failed. * ename:VK_ERROR_LAYER_NOT_PRESENT A requested layer is not present or could not be loaded. * ename:VK_ERROR_EXTENSION_NOT_PRESENT A requested extension is not supported. * ename:VK_ERROR_FEATURE_NOT_PRESENT A requested feature is not supported. * ename:VK_ERROR_INCOMPATIBLE_DRIVER The requested version of Vulkan is not supported by the driver or is otherwise incompatible for implementation-specific reasons. * ename:VK_ERROR_TOO_MANY_OBJECTS Too many objects of the type have already been created. * ename:VK_ERROR_FORMAT_NOT_SUPPORTED A requested format is not supported on this device. * ename:VK_ERROR_FRAGMENTED_POOL A requested pool allocation has failed due to fragmentation of the pool's memory. ifdef::VK_KHR_surface[] include::VK_KHR_surface/VkResultErrorDescriptions_surface.txt[] endif::VK_KHR_surface[] ifdef::VK_KHR_swapchain[] include::VK_KHR_swapchain/VkResultErrorDescriptions_swapchain.txt[] endif::VK_KHR_swapchain[] ifdef::VK_KHR_display_swapchain[] include::VK_KHR_display_swapchain/VkResultErrorDescriptions_display_swapchain.txt[] endif::VK_KHR_display_swapchain[] ifdef::VK_NV_glsl_shader[] * ename:VK_ERROR_INVALID_SHADER_NV One or more shaders failed to compile or link. More details are reported back to the application via pname:VK_EXT_debug_report if enabled. endif::VK_NV_glsl_shader[]
+    /// .Error codes * ename:VK_ERROR_OUT_OF_HOST_MEMORY A host memory allocation has failed. * ename:VK_ERROR_OUT_OF_DEVICE_MEMORY A device memory allocation has failed. * ename:VK_ERROR_INITIALIZATION_FAILED Initialization of an object could not be completed for implementation-specific reasons. * ename:VK_ERROR_DEVICE_LOST The logical or physical device has been lost. See &lt;&lt;devsandqueues-lost-device,Lost Device&gt;&gt; * ename:VK_ERROR_MEMORY_MAP_FAILED Mapping of a memory object has failed. * ename:VK_ERROR_LAYER_NOT_PRESENT A requested layer is not present or could not be loaded. * ename:VK_ERROR_EXTENSION_NOT_PRESENT A requested extension is not supported. * ename:VK_ERROR_FEATURE_NOT_PRESENT A requested feature is not supported. * ename:VK_ERROR_INCOMPATIBLE_DRIVER The requested version of Vulkan is not supported by the driver or is otherwise incompatible for implementation-specific reasons. * ename:VK_ERROR_TOO_MANY_OBJECTS Too many objects of the type have already been created. * ename:VK_ERROR_FORMAT_NOT_SUPPORTED A requested format is not supported on this device. * ename:VK_ERROR_FRAGMENTED_POOL A requested pool allocation has failed due to fragmentation of the pool's memory. ifdef::VK_KHR_surface[] * ename:VK_ERROR_SURFACE_LOST_KHR A surface is no longer available. * ename:VK_ERROR_NATIVE_WINDOW_IN_USE_KHR The requested window is already connected to a VkSurfaceKHR, or to some other non-Vulkan API. endif::VK_KHR_surface[] ifdef::VK_KHR_swapchain[] * ename:VK_ERROR_OUT_OF_DATE_KHR A surface has changed in such a way that it is no longer compatible with the swapchain, and further presentation requests using the swapchain will fail. Applications must: query the new surface properties and recreate their swapchain if they wish to continue presenting to the surface. endif::VK_KHR_swapchain[] ifdef::VK_KHR_display_swapchain[] * ename:VK_ERROR_INCOMPATIBLE_DISPLAY_KHR The display used by a swapchain does not use the same presentable image layout, or is incompatible in a way that prevents sharing an image. endif::VK_KHR_display_swapchain[] ifdef::VK_NV_glsl_shader[] * ename:VK_ERROR_INVALID_SHADER_NV One or more shaders failed to compile or link. More details are reported back to the application via pname:VK_EXT_debug_report if enabled. endif::VK_NV_glsl_shader[]
     /// </para>
     /// <para>
     /// If a command returns a run time error, it will leave any result pointers unmodified, unless other behavior is explicitly defined in the specification.
@@ -5398,12 +5350,6 @@ namespace SharpVk
     /// Specify behavior of sampling with texture coordinates outside an image.
     /// </para>
     /// <para>
-    /// These values control the behavior of sampling with coordinates outside the range latexmath:[$[0,1\]$] for the respective u, v, or w coordinate as defined in the &lt;&lt;textures-wrapping-operation, Wrapping Operation&gt;&gt; section.
-    /// </para>
-    /// <para>
-    /// * ename:VK_SAMPLER_ADDRESS_MODE_REPEAT indicates that the repeat wrap mode will be used. * ename:VK_SAMPLER_ADDRESS_MODE_MIRRORED_REPEAT indicates that the mirrored repeat wrap mode will be used. * ename:VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_EDGE indicates that the clamp to edge wrap mode will be used. * ename:VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_BORDER indicates that the clamp to border wrap mode will be used. * ename:VK_SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE indicates that the mirror clamp to edge wrap mode will be used. This is only valid if the +VK_KHR_mirror_clamp_to_edge+ extension is enabled.
-    /// </para>
-    /// <para>
     /// The maximum number of sampler objects which can: be simultaneously created on a device is implementation-dependent and specified by the &lt;&lt;features-limits-maxSamplerAllocationCount,pname:maxSamplerAllocationCount&gt;&gt; member of the sname:VkPhysicalDeviceLimits structure. If pname:maxSamplerAllocationCount is exceeded, fname:vkCreateSampler will return ename:VK_ERROR_TOO_MANY_OBJECTS.
     /// </para>
     /// <para>
@@ -5414,31 +5360,31 @@ namespace SharpVk
 	{
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_SAMPLER_ADDRESS_MODE_REPEAT indicates that the repeat wrap mode will be used.
 		/// </para>
 		/// </summary>
 		Repeat = 0,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_SAMPLER_ADDRESS_MODE_MIRRORED_REPEAT indicates that the mirrored repeat wrap mode will be used.
 		/// </para>
 		/// </summary>
 		MirroredRepeat = 1,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_EDGE indicates that the clamp to edge wrap mode will be used.
 		/// </para>
 		/// </summary>
 		ClampToEdge = 2,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_BORDER indicates that the clamp to border wrap mode will be used.
 		/// </para>
 		/// </summary>
 		ClampToBorder = 3,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE indicates that the mirror clamp to edge wrap mode will be used. This is only valid if the +VK_KHR_mirror_clamp_to_edge+ extension is enabled.
 		/// </para>
 		/// </summary>
 		MirrorClampToEdge = 4,
@@ -5476,7 +5422,7 @@ namespace SharpVk
     /// Ranges of buffers and image subresources of image objects created using ename:VK_SHARING_MODE_EXCLUSIVE must: only be accessed by queues in the same queue family at any given time. In order for a different queue family to be able to interpret the memory contents of a range or image subresource, the application must: transfer exclusive ownership of the range or image subresource between the source and destination queue families with the following sequence of operations:
     /// </para>
     /// <para>
-    /// 1. Release exclusive ownership from the source queue family to the destination queue family. 2. Use semaphores to ensure proper execution control for the ownership transfer. 3. Acquire exclusive ownership for the destination queue family from the source queue family.
+    /// . Release exclusive ownership from the source queue family to the destination queue family. . Use semaphores to ensure proper execution control for the ownership transfer. . Acquire exclusive ownership for the destination queue family from the source queue family.
     /// </para>
     /// <para>
     /// To release exclusive ownership of a range of a buffer or image subresource of an image object, the application must: execute a buffer or image memory barrier, respectively (see slink:VkBufferMemoryBarrier and slink:VkImageMemoryBarrier) on a queue from the source queue family. The pname:srcQueueFamilyIndex parameter of the barrier must: be set to the source queue family index, and the pname:dstQueueFamilyIndex parameter to the destination queue family index.
@@ -5512,12 +5458,6 @@ namespace SharpVk
     /// Stencil comparison function.
     /// </para>
     /// <para>
-    /// The possible values are:
-    /// </para>
-    /// <para>
-    /// * ename:VK_STENCIL_OP_KEEP keeps the current value. * ename:VK_STENCIL_OP_ZERO sets the value to 0. * ename:VK_STENCIL_OP_REPLACE sets the value to pname:reference. * ename:VK_STENCIL_OP_INCREMENT_AND_CLAMP increments the current value and clamps to the maximum representable unsigned value. * ename:VK_STENCIL_OP_DECREMENT_AND_CLAMP decrements the current value and clamps to 0. * ename:VK_STENCIL_OP_INVERT bitwise-inverts the current value. * ename:VK_STENCIL_OP_INCREMENT_AND_WRAP increments the current value and wraps to 0 when the maximum value would have been exceeded. * ename:VK_STENCIL_OP_DECREMENT_AND_WRAP decrements the current value and wraps to the maximum possible value when the value would go below 0.
-    /// </para>
-    /// <para>
     /// For purposes of increment and decrement, the stencil bits are considered as an unsigned integer.
     /// </para>
     /// <para>
@@ -5534,49 +5474,49 @@ namespace SharpVk
 	{
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_STENCIL_OP_KEEP keeps the current value.
 		/// </para>
 		/// </summary>
 		Keep = 0,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_STENCIL_OP_ZERO sets the value to 0.
 		/// </para>
 		/// </summary>
 		Zero = 1,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_STENCIL_OP_REPLACE sets the value to pname:reference.
 		/// </para>
 		/// </summary>
 		Replace = 2,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_STENCIL_OP_INCREMENT_AND_CLAMP increments the current value and clamps to the maximum representable unsigned value.
 		/// </para>
 		/// </summary>
 		IncrementAndClamp = 3,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_STENCIL_OP_DECREMENT_AND_CLAMP decrements the current value and clamps to 0.
 		/// </para>
 		/// </summary>
 		DecrementAndClamp = 4,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_STENCIL_OP_INVERT bitwise-inverts the current value.
 		/// </para>
 		/// </summary>
 		Invert = 5,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_STENCIL_OP_INCREMENT_AND_WRAP increments the current value and wraps to 0 when the maximum value would have been exceeded.
 		/// </para>
 		/// </summary>
 		IncrementAndWrap = 6,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_STENCIL_OP_DECREMENT_AND_WRAP decrements the current value and wraps to the maximum possible value when the value would go below 0.
 		/// </para>
 		/// </summary>
 		DecrementAndWrap = 7,
@@ -6027,6 +5967,12 @@ namespace SharpVk
 		/// </para>
 		/// </summary>
 		Win32KeyedMutexAcquireReleaseInfo = 1000058000,
+	    /// <summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
+		ValidationFlags = 1000061000,
 	}
 
     /// <summary>
@@ -6099,6 +6045,21 @@ namespace SharpVk
 		/// </para>
 		/// </summary>
 		Instance = 4,
+	}
+
+    /// <summary>
+    /// <para>
+    /// Specify validation checks to disable.
+    /// </para>
+    /// </summary>
+	public enum ValidationCheck
+	{
+	    /// <summary>
+		/// <para>
+		/// -
+		/// </para>
+		/// </summary>
+		All = 0,
 	}
 
     /// <summary>

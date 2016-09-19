@@ -44,9 +44,9 @@ namespace SharpVk.Interop
 
         internal static IntPtr Allocate<T>(int count = 1)
         {
-            int size = SizeOfCache<T>.SizeOf;
+            uint size = MemUtil.SizeOf<T>();
 
-            IntPtr pointer = Marshal.AllocHGlobal(size * count);
+            IntPtr pointer = Marshal.AllocHGlobal((int)size * count);
 
             ThreadLog.StructAllocations.Add(pointer);
 
@@ -55,7 +55,7 @@ namespace SharpVk.Interop
 
         internal static IntPtr AllocateAndClear<T>()
         {
-            int size = SizeOfCache<T>.SizeOf;
+            uint size = MemUtil.SizeOf<T>();
 
             IntPtr pointer = Allocate<T>();
 
@@ -74,7 +74,7 @@ namespace SharpVk.Interop
         {
             IntPtr pointer = Allocate<T>();
 
-            WriteGenericToPtr(pointer, value);
+            MemUtil.WriteToPtr(pointer, value);
 
             return pointer;
         }
@@ -237,7 +237,7 @@ namespace SharpVk.Interop
         internal static void* MarshalTo<T>(IEnumerable<T> value, int length)
             where T : struct
         {
-            int size = SizeOfCache<T>.SizeOf;
+            uint size = MemUtil.SizeOf<T>();
 
             T[] valueArray = value.ToArray();
 
@@ -245,7 +245,7 @@ namespace SharpVk.Interop
 
             for (int index = 0; index < length; index++)
             {
-                Marshal.StructureToPtr(valueArray[index], pointer + (size * index), false);
+                Marshal.StructureToPtr(valueArray[index], pointer + ((int)size * index), false);
             }
 
             return pointer.ToPointer();
@@ -307,43 +307,6 @@ namespace SharpVk.Interop
             for (int index = 0; index < length; index++)
             {
                 pointer[index] = MarshalTo(value[index]);
-            }
-        }
-
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static void WriteGenericToPtr<T>(IntPtr dest, T value)
-            where T : struct
-        {
-            int size = SizeOfCache<T>.SizeOf;
-
-            void* pointer = dest.ToPointer();
-
-            TypedReference valueReference = __makeref(value);
-            void* valuePointer = (*((IntPtr*)&valueReference)).ToPointer();
-
-            System.Buffer.MemoryCopy(valuePointer, pointer, size, size);
-        }
-
-        public static int SizeOf<T>(T obj)
-        {
-            return SizeOfCache<T>.SizeOf;
-        }
-
-        private static class SizeOfCache<T>
-        {
-            public static readonly int SizeOf;
-
-            static SizeOfCache()
-            {
-                var dm = new DynamicMethod("func", typeof(int),
-                                           Type.EmptyTypes, typeof(HeapUtil));
-
-                ILGenerator il = dm.GetILGenerator();
-                il.Emit(OpCodes.Sizeof, typeof(T));
-                il.Emit(OpCodes.Ret);
-
-                var func = (Func<int>)dm.CreateDelegate(typeof(Func<int>));
-                SizeOf = func();
             }
         }
     }

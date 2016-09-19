@@ -2594,7 +2594,7 @@ namespace SharpVk
     /// [NOTE] .Note ==== This restriction means that the render pass has full knowledge of all uses of all of the attachments, so that the implementation is able to make correct decisions about when and how to perform layout transitions, when to overlap execution of subpasses, etc. ====
     /// </para>
     /// <para>
-    /// [[renderpass-noattachments]] It is legal for a subpass to use no color or depth/stencil attachments, and rather use shader side effects such as image stores and atomics to produce an output. In this case, the subpass continues to use the pname:width, pname:height, and pname:layers of the framebuffer to define the dimensions of the rendering area, and the pname:rasterizationSamples from each pipeline's slink:VkPipelineMultisampleStateCreateInfo to define the number of samples used in rasterization; however, if slink:VkPhysicalDeviceFeatures::pname:variableMultisampleRate is code:VK_FALSE, then all pipelines to be bound with a given zero-attachment subpass must: have the same value for slink:VkPipelineMultisampleStateCreateInfo::pname:rasterizationSamples.
+    /// It is legal for a subpass to use no color or depth/stencil attachments, and rather use shader side effects such as image stores and atomics to produce an output. In this case, the subpass continues to use the pname:width, pname:height, and pname:layers of the framebuffer to define the dimensions of the rendering area, and the pname:rasterizationSamples from each pipeline's slink:VkPipelineMultisampleStateCreateInfo to define the number of samples used in rasterization; however, if slink:VkPhysicalDeviceFeatures::pname:variableMultisampleRate is code:VK_FALSE, then all pipelines to be bound with a given zero-attachment subpass must: have the same value for slink:VkPipelineMultisampleStateCreateInfo::pname:rasterizationSamples.
     /// </para>
     /// </summary>
 	public struct FramebufferCreateInfo
@@ -3279,7 +3279,7 @@ namespace SharpVk
     /// If pname:image was created with the ename:VK_IMAGE_CREATE_MUTABLE_FORMAT_BIT flag, pname:format can: be different from the image's format, but if they are not equal they must: be _compatible_. Image format compatibility is defined in the &lt;&lt;features-formats-compatibility-classes,Format Compatibility Classes&gt;&gt; section.
     /// </para>
     /// <para>
-    /// [[resources-image-views-compatibility]] .Image and image view parameter compatibility requirements [cols="20%h,35%,45%",options="header"] |======================================== | Dim, Arrayed, MS | Image parameters | View parameters | 1D, 0, 0 | imageType = ename:VK_IMAGE_TYPE_1D + width &gt;= 1 + height = 1 + depth = 1 + arrayLayers &gt;= 1 + samples = 1 | viewType = ename:VK_VIEW_TYPE_1D + baseArrayLayer &gt;= 0 + layerCount = 1 | 1D, 1, 0 | imageType = ename:VK_IMAGE_TYPE_1D + width &gt;= 1 + height = 1 + depth = 1 + arrayLayers &gt;= 1 + samples = 1 | viewType = ename:VK_VIEW_TYPE_1D_ARRAY + baseArrayLayer &gt;= 0 + layerCount &gt;= 1 | 2D, 0, 0 | imageType = ename:VK_IMAGE_TYPE_2D + width &gt;= 1 + height &gt;= 1 + depth = 1 + arrayLayers &gt;= 1 + samples = 1 | viewType = ename:VK_VIEW_TYPE_2D + baseArrayLayer &gt;= 0 + layerCount = 1 | 2D, 1, 0 | imageType = ename:VK_IMAGE_TYPE_2D + width &gt;= 1 + height &gt;= 1 + depth = 1 + arrayLayers &gt;= 1 + samples = 1 | viewType = ename:VK_VIEW_TYPE_2D_ARRAY + baseArrayLayer &gt;= 0 + layerCount &gt;= 1 | 2D, 0, 1 | imageType = ename:VK_IMAGE_TYPE_2D + width &gt;= 1 + height &gt;= 1 + depth = 1 + arrayLayers &gt;= 1 + samples &gt; 1 | viewType = ename:VK_VIEW_TYPE_2D + baseArrayLayer &gt;= 0 + layerCount = 1 | 2D, 1, 1 | imageType = ename:VK_IMAGE_TYPE_2D + width &gt;= 1 + height &gt;= 1 + depth = 1 + arrayLayers &gt;= 1 + samples &gt; 1 | viewType = ename:VK_VIEW_TYPE_2D_ARRAY + baseArrayLayer &gt;= 0 + layerCount &gt;= 1 | CUBE, 0, 0 | imageType = ename:VK_IMAGE_TYPE_2D + width &gt;= 1 + height = width + depth = 1 + arrayLayers &gt;= 6 + samples = 1 + flags include ename:VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT | viewType = ename:VK_VIEW_TYPE_CUBE + baseArrayLayer &gt;= 0 + layerCount = 6 | CUBE, 1, 0 | imageType = ename:VK_IMAGE_TYPE_2D + width &gt;= 1 + height = width + depth = 1 + N &gt;= 1 + arrayLayers &gt;= latexmath:[$6 \times N$] + samples = 1 + flags include ename:VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT | viewType = ename:VK_VIEW_TYPE_CUBE_ARRAY + baseArrayLayer &gt;= 0 + N &gt;= 1 + layerCount = latexmath:[$6 \times N$] | 3D, 0, 0 | imageType = ename:VK_IMAGE_TYPE_3D + width &gt;= 1 + height &gt;= 1 + depth &gt;= 1 + arrayLayers = 1 + samples = 1 | viewType = ename:VK_VIEW_TYPE_3D + baseArrayLayer = 0 + layerCount = 1 |========================================
+    /// .Image and image view parameter compatibility requirements [cols="20%h,35%,45%",options="header"] |==== | Dim, Arrayed, MS | Image parameters | View parameters | 1D, 0, 0 | imageType = ename:VK_IMAGE_TYPE_1D + width &gt;= 1 + height = 1 + depth = 1 + arrayLayers &gt;= 1 + samples = 1 | viewType = ename:VK_VIEW_TYPE_1D + baseArrayLayer &gt;= 0 + layerCount = 1 | 1D, 1, 0 | imageType = ename:VK_IMAGE_TYPE_1D + width &gt;= 1 + height = 1 + depth = 1 + arrayLayers &gt;= 1 + samples = 1 | viewType = ename:VK_VIEW_TYPE_1D_ARRAY + baseArrayLayer &gt;= 0 + layerCount &gt;= 1 | 2D, 0, 0 | imageType = ename:VK_IMAGE_TYPE_2D + width &gt;= 1 + height &gt;= 1 + depth = 1 + arrayLayers &gt;= 1 + samples = 1 | viewType = ename:VK_VIEW_TYPE_2D + baseArrayLayer &gt;= 0 + layerCount = 1 | 2D, 1, 0 | imageType = ename:VK_IMAGE_TYPE_2D + width &gt;= 1 + height &gt;= 1 + depth = 1 + arrayLayers &gt;= 1 + samples = 1 | viewType = ename:VK_VIEW_TYPE_2D_ARRAY + baseArrayLayer &gt;= 0 + layerCount &gt;= 1 | 2D, 0, 1 | imageType = ename:VK_IMAGE_TYPE_2D + width &gt;= 1 + height &gt;= 1 + depth = 1 + arrayLayers &gt;= 1 + samples &gt; 1 | viewType = ename:VK_VIEW_TYPE_2D + baseArrayLayer &gt;= 0 + layerCount = 1 | 2D, 1, 1 | imageType = ename:VK_IMAGE_TYPE_2D + width &gt;= 1 + height &gt;= 1 + depth = 1 + arrayLayers &gt;= 1 + samples &gt; 1 | viewType = ename:VK_VIEW_TYPE_2D_ARRAY + baseArrayLayer &gt;= 0 + layerCount &gt;= 1 | CUBE, 0, 0 | imageType = ename:VK_IMAGE_TYPE_2D + width &gt;= 1 + height = width + depth = 1 + arrayLayers &gt;= 6 + samples = 1 + flags include ename:VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT | viewType = ename:VK_VIEW_TYPE_CUBE + baseArrayLayer &gt;= 0 + layerCount = 6 | CUBE, 1, 0 | imageType = ename:VK_IMAGE_TYPE_2D + width &gt;= 1 + height = width + depth = 1 + N &gt;= 1 + arrayLayers &gt;= latexmath:[$6 \times N$] + samples = 1 + flags include ename:VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT | viewType = ename:VK_VIEW_TYPE_CUBE_ARRAY + baseArrayLayer &gt;= 0 + N &gt;= 1 + layerCount = latexmath:[$6 \times N$] | 3D, 0, 0 | imageType = ename:VK_IMAGE_TYPE_3D + width &gt;= 1 + height &gt;= 1 + depth &gt;= 1 + arrayLayers = 1 + samples = 1 | viewType = ename:VK_VIEW_TYPE_3D + baseArrayLayer = 0 + layerCount = 1 |====
     /// </para>
     /// </summary>
 	public struct ImageViewCreateInfo
@@ -3752,7 +3752,7 @@ namespace SharpVk
 
     /// <summary>
     /// <para>
-    /// Structure.
+    /// Structure reporting implementation-dependent physical device limits.
     /// </para>
     /// <para>
     /// // End of list
@@ -3765,7 +3765,7 @@ namespace SharpVk
 	{
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxImageDimension1D]] pname:maxImageDimension1D is the maximum dimension (pname:width) of an image created with an pname:imageType of ename:VK_IMAGE_TYPE_1D.
+		/// pname:maxImageDimension1D is the maximum dimension (pname:width) of an image created with an pname:imageType of ename:VK_IMAGE_TYPE_1D.
 		/// </para>
 		/// </summary>
 		public uint MaxImageDimension1D
@@ -3775,7 +3775,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxImageDimension2D]] pname:maxImageDimension2D is the maximum dimension (pname:width or pname:height) of an image created with an pname:imageType of ename:VK_IMAGE_TYPE_2D and without ename:VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT set in pname:flags.
+		/// pname:maxImageDimension2D is the maximum dimension (pname:width or pname:height) of an image created with an pname:imageType of ename:VK_IMAGE_TYPE_2D and without ename:VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT set in pname:flags.
 		/// </para>
 		/// </summary>
 		public uint MaxImageDimension2D
@@ -3785,7 +3785,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxImageDimension3D]] pname:maxImageDimension3D is the maximum dimension (pname:width, pname:height, or pname:depth) of an image created with an pname:imageType of ename:VK_IMAGE_TYPE_3D.
+		/// pname:maxImageDimension3D is the maximum dimension (pname:width, pname:height, or pname:depth) of an image created with an pname:imageType of ename:VK_IMAGE_TYPE_3D.
 		/// </para>
 		/// </summary>
 		public uint MaxImageDimension3D
@@ -3795,7 +3795,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxImageDimensionCube]] pname:maxImageDimensionCube is the maximum dimension (pname:width or pname:height) of an image created with an pname:imageType of ename:VK_IMAGE_TYPE_2D and with ename:VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT set in pname:flags.
+		/// pname:maxImageDimensionCube is the maximum dimension (pname:width or pname:height) of an image created with an pname:imageType of ename:VK_IMAGE_TYPE_2D and with ename:VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT set in pname:flags.
 		/// </para>
 		/// </summary>
 		public uint MaxImageDimensionCube
@@ -3805,7 +3805,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxImageArrayLayers]] pname:maxImageArrayLayers is the maximum number of layers (pname:arrayLayers) for an image.
+		/// pname:maxImageArrayLayers is the maximum number of layers (pname:arrayLayers) for an image.
 		/// </para>
 		/// </summary>
 		public uint MaxImageArrayLayers
@@ -3815,7 +3815,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxTexelBufferElements]] pname:maxTexelBufferElements is the maximum number of addressable texels for a buffer view created on a buffer which was created with the ename:VK_BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT or ename:VK_BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT set in the pname:usage member of the sname:VkBufferCreateInfo structure.
+		/// pname:maxTexelBufferElements is the maximum number of addressable texels for a buffer view created on a buffer which was created with the ename:VK_BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT or ename:VK_BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT set in the pname:usage member of the sname:VkBufferCreateInfo structure.
 		/// </para>
 		/// </summary>
 		public uint MaxTexelBufferElements
@@ -3825,7 +3825,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxUniformBufferRange]] pname:maxUniformBufferRange is the maximum value that can: be specified in the pname:range member of any slink:VkDescriptorBufferInfo structures passed to a call to flink:vkUpdateDescriptorSets for descriptors of type ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER or ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC.
+		/// pname:maxUniformBufferRange is the maximum value that can: be specified in the pname:range member of any slink:VkDescriptorBufferInfo structures passed to a call to flink:vkUpdateDescriptorSets for descriptors of type ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER or ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC.
 		/// </para>
 		/// </summary>
 		public uint MaxUniformBufferRange
@@ -3835,7 +3835,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxStorageBufferRange]] pname:maxStorageBufferRange is the maximum value that can: be specified in the pname:range member of any slink:VkDescriptorBufferInfo structures passed to a call to flink:vkUpdateDescriptorSets for descriptors of type ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER or ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC.
+		/// pname:maxStorageBufferRange is the maximum value that can: be specified in the pname:range member of any slink:VkDescriptorBufferInfo structures passed to a call to flink:vkUpdateDescriptorSets for descriptors of type ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER or ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC.
 		/// </para>
 		/// </summary>
 		public uint MaxStorageBufferRange
@@ -3845,7 +3845,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxPushConstantsSize]] pname:maxPushConstantsSize is the maximum size, in bytes, of the pool of push constant memory. For each of the push constant ranges indicated by the pname:pPushConstantRanges member of the sname:VkPipelineLayoutCreateInfo structure, pname:offset + pname:size must: be less than or equal to this limit.
+		/// pname:maxPushConstantsSize is the maximum size, in bytes, of the pool of push constant memory. For each of the push constant ranges indicated by the pname:pPushConstantRanges member of the sname:VkPipelineLayoutCreateInfo structure, pname:offset + pname:size must: be less than or equal to this limit.
 		/// </para>
 		/// </summary>
 		public uint MaxPushConstantsSize
@@ -3855,7 +3855,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxMemoryAllocationCount]] pname:maxMemoryAllocationCount is the maximum number of device memory allocations, as created by flink:vkAllocateMemory, which can: simultaneously exist.
+		///  pname:maxMemoryAllocationCount is the maximum number of device memory allocations, as created by flink:vkAllocateMemory, which can: simultaneously exist.
 		/// </para>
 		/// </summary>
 		public uint MaxMemoryAllocationCount
@@ -3865,7 +3865,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxSamplerAllocationCount]] pname:maxSamplerAllocationCount is the maximum number of sampler objects, as created by flink:vkCreateSampler, which can: simultaneously exist on a device.
+		///  pname:maxSamplerAllocationCount is the maximum number of sampler objects, as created by flink:vkCreateSampler, which can: simultaneously exist on a device.
 		/// </para>
 		/// </summary>
 		public uint MaxSamplerAllocationCount
@@ -3875,7 +3875,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-bufferImageGranularity]] pname:bufferImageGranularity is the granularity, in bytes, at which buffer or linear image resources, and optimal image resources can: be bound to adjacent offsets in the same sname:VkDeviceMemory object without aliasing. See &lt;&lt;resources-bufferimagegranularity,Buffer-Image Granularity&gt;&gt; for more details.
+		/// pname:bufferImageGranularity is the granularity, in bytes, at which buffer or linear image resources, and optimal image resources can: be bound to adjacent offsets in the same sname:VkDeviceMemory object without aliasing. See &lt;&lt;resources-bufferimagegranularity,Buffer-Image Granularity&gt;&gt; for more details.
 		/// </para>
 		/// </summary>
 		public ulong BufferImageGranularity
@@ -3885,7 +3885,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-sparseAddressSpaceSize]] pname:sparseAddressSpaceSize is the total amount of address space available, in bytes, for sparse memory resources. This is an upper bound on the sum of the size of all sparse resources, regardless of whether any memory is bound to them.
+		/// pname:sparseAddressSpaceSize is the total amount of address space available, in bytes, for sparse memory resources. This is an upper bound on the sum of the size of all sparse resources, regardless of whether any memory is bound to them.
 		/// </para>
 		/// </summary>
 		public ulong SparseAddressSpaceSize
@@ -3895,7 +3895,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxBoundDescriptorSets]] pname:maxBoundDescriptorSets is the maximum number of descriptor sets that can: be simultaneously used by a pipeline. All code:DescriptorSet decorations in shader modules must: have a value less than pname:maxBoundDescriptorSets. See &lt;&lt;descriptorsets-sets&gt;&gt;.
+		/// pname:maxBoundDescriptorSets is the maximum number of descriptor sets that can: be simultaneously used by a pipeline. All code:DescriptorSet decorations in shader modules must: have a value less than pname:maxBoundDescriptorSets. See &lt;&lt;descriptorsets-sets&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public uint MaxBoundDescriptorSets
@@ -3905,7 +3905,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxPerStageDescriptorSamplers]] pname:maxPerStageDescriptorSamplers is the maximum number of samplers that can: be accessible to a single shader stage in a pipeline layout. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_SAMPLER or ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER count against this limit. A descriptor is accessible to a shader stage when the pname:stageFlags member of the sname:VkDescriptorSetLayoutBinding structure has the bit for that shader stage set. See &lt;&lt;descriptorsets-sampler&gt;&gt; and &lt;&lt;descriptorsets-combinedimagesampler&gt;&gt;.
+		///  pname:maxPerStageDescriptorSamplers is the maximum number of samplers that can: be accessible to a single shader stage in a pipeline layout. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_SAMPLER or ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER count against this limit. A descriptor is accessible to a shader stage when the pname:stageFlags member of the sname:VkDescriptorSetLayoutBinding structure has the bit for that shader stage set. See &lt;&lt;descriptorsets-sampler&gt;&gt; and &lt;&lt;descriptorsets-combinedimagesampler&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public uint MaxPerStageDescriptorSamplers
@@ -3915,7 +3915,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxPerStageDescriptorUniformBuffers]] pname:maxPerStageDescriptorUniformBuffers is the maximum number of uniform buffers that can: be accessible to a single shader stage in a pipeline layout. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER or ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC count against this limit. A descriptor is accessible to a shader stage when the pname:stageFlags member of the sname:VkDescriptorSetLayoutBinding structure has the bit for that shader stage set. See &lt;&lt;descriptorsets-uniformbuffer&gt;&gt; and &lt;&lt;descriptorsets-uniformbufferdynamic&gt;&gt;.
+		///  pname:maxPerStageDescriptorUniformBuffers is the maximum number of uniform buffers that can: be accessible to a single shader stage in a pipeline layout. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER or ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC count against this limit. A descriptor is accessible to a shader stage when the pname:stageFlags member of the sname:VkDescriptorSetLayoutBinding structure has the bit for that shader stage set. See &lt;&lt;descriptorsets-uniformbuffer&gt;&gt; and &lt;&lt;descriptorsets-uniformbufferdynamic&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public uint MaxPerStageDescriptorUniformBuffers
@@ -3925,7 +3925,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxPerStageDescriptorStorageBuffers]] pname:maxPerStageDescriptorStorageBuffers is the maximum number of storage buffers that can: be accessible to a single shader stage in a pipeline layout. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER or ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC count against this limit. A descriptor is accessible to a pipeline shader stage when the pname:stageFlags member of the sname:VkDescriptorSetLayoutBinding structure has the bit for that shader stage set. See &lt;&lt;descriptorsets-storagebuffer&gt;&gt; and &lt;&lt;descriptorsets-storagebufferdynamic&gt;&gt;.
+		///  pname:maxPerStageDescriptorStorageBuffers is the maximum number of storage buffers that can: be accessible to a single shader stage in a pipeline layout. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER or ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC count against this limit. A descriptor is accessible to a pipeline shader stage when the pname:stageFlags member of the sname:VkDescriptorSetLayoutBinding structure has the bit for that shader stage set. See &lt;&lt;descriptorsets-storagebuffer&gt;&gt; and &lt;&lt;descriptorsets-storagebufferdynamic&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public uint MaxPerStageDescriptorStorageBuffers
@@ -3935,7 +3935,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxPerStageDescriptorSampledImages]] pname:maxPerStageDescriptorSampledImages is the maximum number of sampled images that can: be accessible to a single shader stage in a pipeline layout. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, ename:VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE, or ename:VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER count against this limit. A descriptor is accessible to a pipeline shader stage when the pname:stageFlags member of the sname:VkDescriptorSetLayoutBinding structure has the bit for that shader stage set. See &lt;&lt;descriptorsets-combinedimagesampler&gt;&gt;, &lt;&lt;descriptorsets-sampledimage&gt;&gt;, and &lt;&lt;descriptorsets-uniformtexelbuffer&gt;&gt;.
+		///  pname:maxPerStageDescriptorSampledImages is the maximum number of sampled images that can: be accessible to a single shader stage in a pipeline layout. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, ename:VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE, or ename:VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER count against this limit. A descriptor is accessible to a pipeline shader stage when the pname:stageFlags member of the sname:VkDescriptorSetLayoutBinding structure has the bit for that shader stage set. See &lt;&lt;descriptorsets-combinedimagesampler&gt;&gt;, &lt;&lt;descriptorsets-sampledimage&gt;&gt;, and &lt;&lt;descriptorsets-uniformtexelbuffer&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public uint MaxPerStageDescriptorSampledImages
@@ -3945,7 +3945,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxPerStageDescriptorStorageImages]] pname:maxPerStageDescriptorStorageImages is the maximum number of storage images that can: be accessible to a single shader stage in a pipeline layout. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_STORAGE_IMAGE, or ename:VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER count against this limit. A descriptor is accessible to a pipeline shader stage when the pname:stageFlags member of the sname:VkDescriptorSetLayoutBinding structure has the bit for that shader stage set. See &lt;&lt;descriptorsets-storageimage&gt;&gt;, and &lt;&lt;descriptorsets-storagetexelbuffer&gt;&gt;.
+		///  pname:maxPerStageDescriptorStorageImages is the maximum number of storage images that can: be accessible to a single shader stage in a pipeline layout. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_STORAGE_IMAGE, or ename:VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER count against this limit. A descriptor is accessible to a pipeline shader stage when the pname:stageFlags member of the sname:VkDescriptorSetLayoutBinding structure has the bit for that shader stage set. See &lt;&lt;descriptorsets-storageimage&gt;&gt;, and &lt;&lt;descriptorsets-storagetexelbuffer&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public uint MaxPerStageDescriptorStorageImages
@@ -3955,7 +3955,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxPerStageDescriptorInputAttachments]] pname:maxPerStageDescriptorInputAttachments is the maximum number of input attachments that can: be accessible to a single shader stage in a pipeline layout. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT count against this limit. A descriptor is accessible to a pipeline shader stage when the pname:stageFlags member of the sname:VkDescriptorSetLayoutBinding structure has the bit for that shader stage set. These are only supported for the fragment stage. See &lt;&lt;descriptorsets-inputattachment&gt;&gt;.
+		///  pname:maxPerStageDescriptorInputAttachments is the maximum number of input attachments that can: be accessible to a single shader stage in a pipeline layout. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT count against this limit. A descriptor is accessible to a pipeline shader stage when the pname:stageFlags member of the sname:VkDescriptorSetLayoutBinding structure has the bit for that shader stage set. These are only supported for the fragment stage. See &lt;&lt;descriptorsets-inputattachment&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public uint MaxPerStageDescriptorInputAttachments
@@ -3965,7 +3965,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxPerStageResources]] pname:maxPerStageResources is the maximum number of resources that can: be accessible to a single shader stage in a pipeline layout. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, ename:VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE, ename:VK_DESCRIPTOR_TYPE_STORAGE_IMAGE, ename:VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER, ename:VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER, ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER, ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC, ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC, or ename:VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT count against this limit. For the fragment shader stage the framebuffer color attachments also count against this limit.
+		/// pname:maxPerStageResources is the maximum number of resources that can: be accessible to a single shader stage in a pipeline layout. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, ename:VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE, ename:VK_DESCRIPTOR_TYPE_STORAGE_IMAGE, ename:VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER, ename:VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER, ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER, ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC, ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC, or ename:VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT count against this limit. For the fragment shader stage the framebuffer color attachments also count against this limit.
 		/// </para>
 		/// </summary>
 		public uint MaxPerStageResources
@@ -3975,7 +3975,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxDescriptorSetSamplers]] pname:maxDescriptorSetSamplers is the maximum number of samplers that can: be included in descriptor bindings in a pipeline layout across all pipeline shader stages and descriptor set numbers. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_SAMPLER or ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER count against this limit. See &lt;&lt;descriptorsets-sampler&gt;&gt; and &lt;&lt;descriptorsets-combinedimagesampler&gt;&gt;.
+		///  pname:maxDescriptorSetSamplers is the maximum number of samplers that can: be included in descriptor bindings in a pipeline layout across all pipeline shader stages and descriptor set numbers. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_SAMPLER or ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER count against this limit. See &lt;&lt;descriptorsets-sampler&gt;&gt; and &lt;&lt;descriptorsets-combinedimagesampler&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public uint MaxDescriptorSetSamplers
@@ -3985,7 +3985,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxDescriptorSetUniformBuffers]] pname:maxDescriptorSetUniformBuffers is the maximum number of uniform buffers that can: be included in descriptor bindings in a pipeline layout across all pipeline shader stages and descriptor set numbers. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER or ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC count against this limit. See &lt;&lt;descriptorsets-uniformbuffer&gt;&gt; and &lt;&lt;descriptorsets-uniformbufferdynamic&gt;&gt;.
+		///  pname:maxDescriptorSetUniformBuffers is the maximum number of uniform buffers that can: be included in descriptor bindings in a pipeline layout across all pipeline shader stages and descriptor set numbers. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER or ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC count against this limit. See &lt;&lt;descriptorsets-uniformbuffer&gt;&gt; and &lt;&lt;descriptorsets-uniformbufferdynamic&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public uint MaxDescriptorSetUniformBuffers
@@ -3995,7 +3995,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxDescriptorSetUniformBuffersDynamic]] pname:maxDescriptorSetUniformBuffersDynamic is the maximum number of dynamic uniform buffers that can: be included in descriptor bindings in a pipeline layout across all pipeline shader stages and descriptor set numbers. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC count against this limit. See &lt;&lt;descriptorsets-uniformbufferdynamic&gt;&gt;.
+		///  pname:maxDescriptorSetUniformBuffersDynamic is the maximum number of dynamic uniform buffers that can: be included in descriptor bindings in a pipeline layout across all pipeline shader stages and descriptor set numbers. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC count against this limit. See &lt;&lt;descriptorsets-uniformbufferdynamic&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public uint MaxDescriptorSetUniformBuffersDynamic
@@ -4005,7 +4005,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxDescriptorSetStorageBuffers]] pname:maxDescriptorSetStorageBuffers is the maximum number of storage buffers that can: be included in descriptor bindings in a pipeline layout across all pipeline shader stages and descriptor set numbers. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER or ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC count against this limit. See &lt;&lt;descriptorsets-storagebuffer&gt;&gt; and &lt;&lt;descriptorsets-storagebufferdynamic&gt;&gt;.
+		///  pname:maxDescriptorSetStorageBuffers is the maximum number of storage buffers that can: be included in descriptor bindings in a pipeline layout across all pipeline shader stages and descriptor set numbers. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER or ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC count against this limit. See &lt;&lt;descriptorsets-storagebuffer&gt;&gt; and &lt;&lt;descriptorsets-storagebufferdynamic&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public uint MaxDescriptorSetStorageBuffers
@@ -4015,7 +4015,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxDescriptorSetStorageBuffersDynamic]] pname:maxDescriptorSetStorageBuffersDynamic is the maximum number of dynamic storage buffers that can: be included in descriptor bindings in a pipeline layout across all pipeline shader stages and descriptor set numbers. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC count against this limit. See &lt;&lt;descriptorsets-storagebufferdynamic&gt;&gt;.
+		///  pname:maxDescriptorSetStorageBuffersDynamic is the maximum number of dynamic storage buffers that can: be included in descriptor bindings in a pipeline layout across all pipeline shader stages and descriptor set numbers. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC count against this limit. See &lt;&lt;descriptorsets-storagebufferdynamic&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public uint MaxDescriptorSetStorageBuffersDynamic
@@ -4025,7 +4025,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxDescriptorSetSampledImages]] pname:maxDescriptorSetSampledImages is the maximum number of sampled images that can: be included in descriptor bindings in a pipeline layout across all pipeline shader stages and descriptor set numbers. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, ename:VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE, or ename:VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER count against this limit. See &lt;&lt;descriptorsets-combinedimagesampler&gt;&gt;, &lt;&lt;descriptorsets-sampledimage&gt;&gt;, and &lt;&lt;descriptorsets-uniformtexelbuffer&gt;&gt;.
+		///  pname:maxDescriptorSetSampledImages is the maximum number of sampled images that can: be included in descriptor bindings in a pipeline layout across all pipeline shader stages and descriptor set numbers. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, ename:VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE, or ename:VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER count against this limit. See &lt;&lt;descriptorsets-combinedimagesampler&gt;&gt;, &lt;&lt;descriptorsets-sampledimage&gt;&gt;, and &lt;&lt;descriptorsets-uniformtexelbuffer&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public uint MaxDescriptorSetSampledImages
@@ -4035,7 +4035,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxDescriptorSetStorageImages]] pname:maxDescriptorSetStorageImages is the maximum number of storage images that can: be included in descriptor bindings in a pipeline layout across all pipeline shader stages and descriptor set numbers. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_STORAGE_IMAGE, or ename:VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER count against this limit. See &lt;&lt;descriptorsets-storageimage&gt;&gt;, and &lt;&lt;descriptorsets-storagetexelbuffer&gt;&gt;.
+		///  pname:maxDescriptorSetStorageImages is the maximum number of storage images that can: be included in descriptor bindings in a pipeline layout across all pipeline shader stages and descriptor set numbers. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_STORAGE_IMAGE, or ename:VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER count against this limit. See &lt;&lt;descriptorsets-storageimage&gt;&gt;, and &lt;&lt;descriptorsets-storagetexelbuffer&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public uint MaxDescriptorSetStorageImages
@@ -4045,7 +4045,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxDescriptorSetInputAttachments]] pname:maxDescriptorSetInputAttachments is the maximum number of input attachments that can: be included in descriptor bindings in a pipeline layout across all pipeline shader stages and descriptor set numbers. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT count against this limit. See &lt;&lt;descriptorsets-inputattachment&gt;&gt;.
+		///  pname:maxDescriptorSetInputAttachments is the maximum number of input attachments that can: be included in descriptor bindings in a pipeline layout across all pipeline shader stages and descriptor set numbers. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT count against this limit. See &lt;&lt;descriptorsets-inputattachment&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public uint MaxDescriptorSetInputAttachments
@@ -4055,7 +4055,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxVertexInputAttributes]] pname:maxVertexInputAttributes is the maximum number of vertex input attributes that can: be specified for a graphics pipeline. These are described in the array of sname:VkVertexInputAttributeDescription structures that are provided at graphics pipeline creation time via the pname:pVertexAttributeDescriptions member of the sname:VkPipelineVertexInputStateCreateInfo structure. See &lt;&lt;fxvertex-attrib&gt;&gt; and &lt;&lt;fxvertex-input&gt;&gt;.
+		///  pname:maxVertexInputAttributes is the maximum number of vertex input attributes that can: be specified for a graphics pipeline. These are described in the array of sname:VkVertexInputAttributeDescription structures that are provided at graphics pipeline creation time via the pname:pVertexAttributeDescriptions member of the sname:VkPipelineVertexInputStateCreateInfo structure. See &lt;&lt;fxvertex-attrib&gt;&gt; and &lt;&lt;fxvertex-input&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public uint MaxVertexInputAttributes
@@ -4065,7 +4065,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxVertexInputBindings]] pname:maxVertexInputBindings is the maximum number of vertex buffers that can: be specified for providing vertex attributes to a graphics pipeline. These are described in the array of sname:VkVertexInputBindingDescription structures that are provided at graphics pipeline creation time via the pname:pVertexBindingDescriptions member of the sname:VkPipelineVertexInputStateCreateInfo structure. The pname:binding member of sname:VkVertexInputBindingDescription must: be less than this limit. See &lt;&lt;fxvertex-input&gt;&gt;.
+		///  pname:maxVertexInputBindings is the maximum number of vertex buffers that can: be specified for providing vertex attributes to a graphics pipeline. These are described in the array of sname:VkVertexInputBindingDescription structures that are provided at graphics pipeline creation time via the pname:pVertexBindingDescriptions member of the sname:VkPipelineVertexInputStateCreateInfo structure. The pname:binding member of sname:VkVertexInputBindingDescription must: be less than this limit. See &lt;&lt;fxvertex-input&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public uint MaxVertexInputBindings
@@ -4075,7 +4075,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxVertexInputAttributeOffset]] pname:maxVertexInputAttributeOffset is the maximum vertex input attribute offset that can: be added to the vertex input binding stride. The pname:offset member of the sname:VkVertexInputAttributeDescription structure must: be less than or equal to this limit. See &lt;&lt;fxvertex-input&gt;&gt;.
+		///  pname:maxVertexInputAttributeOffset is the maximum vertex input attribute offset that can: be added to the vertex input binding stride. The pname:offset member of the sname:VkVertexInputAttributeDescription structure must: be less than or equal to this limit. See &lt;&lt;fxvertex-input&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public uint MaxVertexInputAttributeOffset
@@ -4085,7 +4085,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxVertexInputBindingStride]] pname:maxVertexInputBindingStride is the maximum vertex input binding stride that can: be specified in a vertex input binding. The pname:stride member of the sname:VkVertexInputBindingDescription structure must: be less than or equal to this limit. See &lt;&lt;fxvertex-input&gt;&gt;.
+		///  pname:maxVertexInputBindingStride is the maximum vertex input binding stride that can: be specified in a vertex input binding. The pname:stride member of the sname:VkVertexInputBindingDescription structure must: be less than or equal to this limit. See &lt;&lt;fxvertex-input&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public uint MaxVertexInputBindingStride
@@ -4095,7 +4095,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxVertexOutputComponents]] pname:maxVertexOutputComponents is the maximum number of components of output variables which can: be output by a vertex shader. See &lt;&lt;shaders-vertex&gt;&gt;.
+		///  pname:maxVertexOutputComponents is the maximum number of components of output variables which can: be output by a vertex shader. See &lt;&lt;shaders-vertex&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public uint MaxVertexOutputComponents
@@ -4105,7 +4105,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxTessellationGenerationLevel]] pname:maxTessellationGenerationLevel is the maximum tessellation generation level supported by the fixed-function tessellation primitive generator. See &lt;&lt;tessellation&gt;&gt;.
+		///  pname:maxTessellationGenerationLevel is the maximum tessellation generation level supported by the fixed-function tessellation primitive generator. See &lt;&lt;tessellation&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public uint MaxTessellationGenerationLevel
@@ -4115,7 +4115,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxTessellationPatchSize]] pname:maxTessellationPatchSize is the maximum patch size, in vertices, of patches that can: be processed by the tessellation control shader and tessellation primitive generator. The pname:patchControlPoints member of the sname:VkPipelineTessellationStateCreateInfo structure specified at pipeline creation time and the value provided in the code:OutputVertices execution mode of shader modules must: be less than or equal to this limit. See &lt;&lt;tessellation&gt;&gt;.
+		///  pname:maxTessellationPatchSize is the maximum patch size, in vertices, of patches that can: be processed by the tessellation control shader and tessellation primitive generator. The pname:patchControlPoints member of the sname:VkPipelineTessellationStateCreateInfo structure specified at pipeline creation time and the value provided in the code:OutputVertices execution mode of shader modules must: be less than or equal to this limit. See &lt;&lt;tessellation&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public uint MaxTessellationPatchSize
@@ -4125,7 +4125,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxTessellationControlPerVertexInputComponents]] pname:maxTessellationControlPerVertexInputComponents is the maximum number of components of input variables which can: be provided as per-vertex inputs to the tessellation control shader stage.
+		///  pname:maxTessellationControlPerVertexInputComponents is the maximum number of components of input variables which can: be provided as per-vertex inputs to the tessellation control shader stage.
 		/// </para>
 		/// </summary>
 		public uint MaxTessellationControlPerVertexInputComponents
@@ -4135,7 +4135,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxTessellationControlPerVertexOutputComponents]] pname:maxTessellationControlPerVertexOutputComponents is the maximum number of components of per-vertex output variables which can: be output from the tessellation control shader stage.
+		///  pname:maxTessellationControlPerVertexOutputComponents is the maximum number of components of per-vertex output variables which can: be output from the tessellation control shader stage.
 		/// </para>
 		/// </summary>
 		public uint MaxTessellationControlPerVertexOutputComponents
@@ -4145,7 +4145,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxTessellationControlPerPatchOutputComponents]] pname:maxTessellationControlPerPatchOutputComponents is the maximum number of components of per-patch output variables which can: be output from the tessellation control shader stage.
+		///  pname:maxTessellationControlPerPatchOutputComponents is the maximum number of components of per-patch output variables which can: be output from the tessellation control shader stage.
 		/// </para>
 		/// </summary>
 		public uint MaxTessellationControlPerPatchOutputComponents
@@ -4155,7 +4155,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxTessellationControlTotalOutputComponents]] pname:maxTessellationControlTotalOutputComponents is the maximum total number of components of per-vertex and per-patch output variables which can: be output from the tessellation control shader stage.
+		///  pname:maxTessellationControlTotalOutputComponents is the maximum total number of components of per-vertex and per-patch output variables which can: be output from the tessellation control shader stage.
 		/// </para>
 		/// </summary>
 		public uint MaxTessellationControlTotalOutputComponents
@@ -4165,7 +4165,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxTessellationEvaluationInputComponents]] pname:maxTessellationEvaluationInputComponents is the maximum number of components of input variables which can: be provided as per-vertex inputs to the tessellation evaluation shader stage.
+		///  pname:maxTessellationEvaluationInputComponents is the maximum number of components of input variables which can: be provided as per-vertex inputs to the tessellation evaluation shader stage.
 		/// </para>
 		/// </summary>
 		public uint MaxTessellationEvaluationInputComponents
@@ -4175,7 +4175,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxTessellationEvaluationOutputComponents]] pname:maxTessellationEvaluationOutputComponents is the maximum number of components of per-vertex output variables which can: be output from the tessellation evaluation shader stage.
+		///  pname:maxTessellationEvaluationOutputComponents is the maximum number of components of per-vertex output variables which can: be output from the tessellation evaluation shader stage.
 		/// </para>
 		/// </summary>
 		public uint MaxTessellationEvaluationOutputComponents
@@ -4185,7 +4185,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxGeometryShaderInvocations]] pname:maxGeometryShaderInvocations is the maximum invocation count supported for instanced geometry shaders. The value provided in the code:Invocations execution mode of shader modules must: be less than or equal to this limit. See &lt;&lt;geometry&gt;&gt;.
+		///  pname:maxGeometryShaderInvocations is the maximum invocation count supported for instanced geometry shaders. The value provided in the code:Invocations execution mode of shader modules must: be less than or equal to this limit. See &lt;&lt;geometry&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public uint MaxGeometryShaderInvocations
@@ -4195,7 +4195,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxGeometryInputComponents]] pname:maxGeometryInputComponents is the maximum number of components of input variables which can: be provided as inputs to the geometry shader stage.
+		///  pname:maxGeometryInputComponents is the maximum number of components of input variables which can: be provided as inputs to the geometry shader stage.
 		/// </para>
 		/// </summary>
 		public uint MaxGeometryInputComponents
@@ -4205,7 +4205,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxGeometryOutputComponents]] pname:maxGeometryOutputComponents is the maximum number of components of output variables which can: be output from the geometry shader stage.
+		///  pname:maxGeometryOutputComponents is the maximum number of components of output variables which can: be output from the geometry shader stage.
 		/// </para>
 		/// </summary>
 		public uint MaxGeometryOutputComponents
@@ -4215,7 +4215,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxGeometryOutputVertices]] pname:maxGeometryOutputVertices is the maximum number of vertices which can: be emitted by any geometry shader.
+		///  pname:maxGeometryOutputVertices is the maximum number of vertices which can: be emitted by any geometry shader.
 		/// </para>
 		/// </summary>
 		public uint MaxGeometryOutputVertices
@@ -4225,7 +4225,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxGeometryTotalOutputComponents]] pname:maxGeometryTotalOutputComponents is the maximum total number of components of output, across all emitted vertices, which can: be output from the geometry shader stage.
+		///  pname:maxGeometryTotalOutputComponents is the maximum total number of components of output, across all emitted vertices, which can: be output from the geometry shader stage.
 		/// </para>
 		/// </summary>
 		public uint MaxGeometryTotalOutputComponents
@@ -4235,7 +4235,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxFragmentInputComponents]] pname:maxFragmentInputComponents is the maximum number of components of input variables which can: be provided as inputs to the fragment shader stage.
+		///  pname:maxFragmentInputComponents is the maximum number of components of input variables which can: be provided as inputs to the fragment shader stage.
 		/// </para>
 		/// </summary>
 		public uint MaxFragmentInputComponents
@@ -4245,7 +4245,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxFragmentOutputAttachments]] pname:maxFragmentOutputAttachments is the maximum number of output attachments which can: be written to by the fragment shader stage.
+		///  pname:maxFragmentOutputAttachments is the maximum number of output attachments which can: be written to by the fragment shader stage.
 		/// </para>
 		/// </summary>
 		public uint MaxFragmentOutputAttachments
@@ -4255,7 +4255,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxFragmentDualSrcAttachments]] pname:maxFragmentDualSrcAttachments is the maximum number of output attachments which can: be written to by the fragment shader stage when blending is enabled and one of the dual source blend modes is in use. See &lt;&lt;framebuffer-dsb&gt;&gt; and &lt;&lt;features-features-dualSrcBlend,dualSrcBlend&gt;&gt;.
+		///  pname:maxFragmentDualSrcAttachments is the maximum number of output attachments which can: be written to by the fragment shader stage when blending is enabled and one of the dual source blend modes is in use. See &lt;&lt;framebuffer-dsb&gt;&gt; and &lt;&lt;features-features-dualSrcBlend,dualSrcBlend&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public uint MaxFragmentDualSourceAttachments
@@ -4265,7 +4265,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxFragmentCombinedOutputResources]] pname:maxFragmentCombinedOutputResources is the total number of storage buffers, storage images, and output buffers which can: be used in the fragment shader stage.
+		///  pname:maxFragmentCombinedOutputResources is the total number of storage buffers, storage images, and output buffers which can: be used in the fragment shader stage.
 		/// </para>
 		/// </summary>
 		public uint MaxFragmentCombinedOutputResources
@@ -4275,7 +4275,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxComputeSharedMemorySize]] pname:maxComputeSharedMemorySize is the maximum total storage size, in bytes, of all variables declared with the code:WorkgroupLocal storage class in shader modules (or with the code:shared storage qualifier in GLSL) in the compute shader stage.
+		///  pname:maxComputeSharedMemorySize is the maximum total storage size, in bytes, of all variables declared with the code:WorkgroupLocal storage class in shader modules (or with the code:shared storage qualifier in GLSL) in the compute shader stage.
 		/// </para>
 		/// </summary>
 		public uint MaxComputeSharedMemorySize
@@ -4285,7 +4285,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxComputeWorkGroupCount]] pname:maxComputeWorkGroupCount[3] is the maximum number of local workgroups that can: be dispatched by a single dispatch command. These three values represent the maximum number of local workgroups for the X, Y, and Z dimensions, respectively. The pname:x, pname:y, and pname:z parameters to the flink:vkCmdDispatch command, or members of the slink:VkDispatchIndirectCommand structure must: be less than or equal to the corresponding limit. See &lt;&lt;dispatch&gt;&gt;.
+		///  pname:maxComputeWorkGroupCount[3] is the maximum number of local workgroups that can: be dispatched by a single dispatch command. These three values represent the maximum number of local workgroups for the X, Y, and Z dimensions, respectively. The pname:x, pname:y, and pname:z parameters to the flink:vkCmdDispatch command, or members of the slink:VkDispatchIndirectCommand structure must: be less than or equal to the corresponding limit. See &lt;&lt;dispatch&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public uint[] MaxComputeWorkGroupCount
@@ -4295,7 +4295,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxComputeWorkGroupInvocations]] pname:maxComputeWorkGroupInvocations is the maximum total number of compute shader invocations in a single local workgroup. The product of the X, Y, and Z sizes as specified by the code:LocalSize execution mode in shader modules and by the object decorated by the code:WorkgroupSize decoration must: be less than or equal to this limit.
+		///  pname:maxComputeWorkGroupInvocations is the maximum total number of compute shader invocations in a single local workgroup. The product of the X, Y, and Z sizes as specified by the code:LocalSize execution mode in shader modules and by the object decorated by the code:WorkgroupSize decoration must: be less than or equal to this limit.
 		/// </para>
 		/// </summary>
 		public uint MaxComputeWorkGroupInvocations
@@ -4305,7 +4305,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxComputeWorkGroupSize]] pname:maxComputeWorkGroupSize[3] is the maximum size of a local compute workgroup, per dimension. These three values represent the maximum local workgroup size in the X, Y, and Z dimensions, respectively. The pname:x, pname:y, and pname:z sizes specified by the code:LocalSize execution mode and by the object decorated by the code:WorkgroupSize decoration in shader modules must: be less than or equal to the corresponding limit.
+		///  pname:maxComputeWorkGroupSize[3] is the maximum size of a local compute workgroup, per dimension. These three values represent the maximum local workgroup size in the X, Y, and Z dimensions, respectively. The pname:x, pname:y, and pname:z sizes specified by the code:LocalSize execution mode and by the object decorated by the code:WorkgroupSize decoration in shader modules must: be less than or equal to the corresponding limit.
 		/// </para>
 		/// </summary>
 		public uint[] MaxComputeWorkGroupSize
@@ -4315,7 +4315,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-subPixelPrecisionBits]] pname:subPixelPrecisionBits is the number of bits of subpixel precision in framebuffer coordinates latexmath:[$x_f$] and latexmath:[$y_f$]. See &lt;&lt;primsrast&gt;&gt;.
+		/// pname:subPixelPrecisionBits is the number of bits of subpixel precision in framebuffer coordinates latexmath:[$x_f$] and latexmath:[$y_f$]. See &lt;&lt;primsrast&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public uint SubPixelPrecisionBits
@@ -4325,7 +4325,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-subTexelPrecisionBits]] pname:subTexelPrecisionBits is the number of bits of precision in the division along an axis of an image used for minification and magnification filters. latexmath:[$2^\mathit{subTexelPrecisionBits}$] is the actual number of divisions along each axis of the image represented. The filtering hardware will snap to these locations when computing the filtered results.
+		/// pname:subTexelPrecisionBits is the number of bits of precision in the division along an axis of an image used for minification and magnification filters. latexmath:[$2^\mathit{subTexelPrecisionBits}$] is the actual number of divisions along each axis of the image represented. The filtering hardware will snap to these locations when computing the filtered results.
 		/// </para>
 		/// </summary>
 		public uint SubTexelPrecisionBits
@@ -4335,7 +4335,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-mipmapPrecisionBits]] pname:mipmapPrecisionBits is the number of bits of division that the LOD calculation for mipmap fetching get snapped to when determining the contribution from each mip level to the mip filtered results. latexmath:[$2^\mathit{mipmapPrecisionBits}$] is the actual number of divisions. + -- [NOTE] .Note ==== For example, if this value is 2 bits then when linearly filtering between two levels, each level could: contribute: 0%, 33%, 66%, or 100% (this is just an example and the amount of contribution should: be covered by different equations in the spec). ==== -- +
+		/// pname:mipmapPrecisionBits is the number of bits of division that the LOD calculation for mipmap fetching get snapped to when determining the contribution from each mip level to the mip filtered results. latexmath:[$2^\mathit{mipmapPrecisionBits}$] is the actual number of divisions. + -- [NOTE] .Note ==== For example, if this value is 2 bits then when linearly filtering between two levels, each level could: contribute: 0%, 33%, 66%, or 100% (this is just an example and the amount of contribution should: be covered by different equations in the spec). ==== -- +
 		/// </para>
 		/// </summary>
 		public uint MipmapPrecisionBits
@@ -4345,7 +4345,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxDrawIndexedIndexValue]] pname:maxDrawIndexedIndexValue is the maximum index value that can: be used for indexed draw calls when using 32-bit indices. This excludes the primitive restart index value of 0xFFFFFFFF. See &lt;&lt;features-features-fullDrawIndexUint32,fullDrawIndexUint32&gt;&gt;.
+		///  pname:maxDrawIndexedIndexValue is the maximum index value that can: be used for indexed draw calls when using 32-bit indices. This excludes the primitive restart index value of 0xFFFFFFFF. See &lt;&lt;features-features-fullDrawIndexUint32,fullDrawIndexUint32&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public uint MaxDrawIndexedIndexValue
@@ -4355,7 +4355,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxDrawIndirectCount]] pname:maxDrawIndirectCount is the maximum draw count that is supported for indirect draw calls. See &lt;&lt;features-features-multiDrawIndirect,multiDrawIndirect&gt;&gt;.
+		/// pname:maxDrawIndirectCount is the maximum draw count that is supported for indirect draw calls. See &lt;&lt;features-features-multiDrawIndirect,multiDrawIndirect&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public uint MaxDrawIndirectCount
@@ -4365,7 +4365,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxSamplerLodBias]] pname:maxSamplerLodBias is the maximum absolute sampler level of detail bias. The sum of the pname:mipLodBias member of the sname:VkSamplerCreateInfo structure and the code:Bias operand of image sampling operations in shader modules (or 0 if no code:Bias operand is provided to an image sampling operation) are clamped to the range latexmath:[$[-\mathit{maxSamplerLodBias},+\mathit{maxSamplerLodBias}\]$]. See &lt;&lt;samplers-mipLodBias&gt;&gt;.
+		/// pname:maxSamplerLodBias is the maximum absolute sampler level of detail bias. The sum of the pname:mipLodBias member of the sname:VkSamplerCreateInfo structure and the code:Bias operand of image sampling operations in shader modules (or 0 if no code:Bias operand is provided to an image sampling operation) are clamped to the range latexmath:[$[-\mathit{maxSamplerLodBias},+\mathit{maxSamplerLodBias}\]$]. See &lt;&lt;samplers-mipLodBias&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public float MaxSamplerLodBias
@@ -4375,7 +4375,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxSamplerAnisotropy]] pname:maxSamplerAnisotropy is the maximum degree of sampler anisotropy. The maximum degree of anisotropic filtering used for an image sampling operation is the minimum of the pname:maxAnisotropy member of the sname:VkSamplerCreateInfo structure and this limit. See &lt;&lt;samplers-maxAnisotropy&gt;&gt;.
+		/// pname:maxSamplerAnisotropy is the maximum degree of sampler anisotropy. The maximum degree of anisotropic filtering used for an image sampling operation is the minimum of the pname:maxAnisotropy member of the sname:VkSamplerCreateInfo structure and this limit. See &lt;&lt;samplers-maxAnisotropy&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public float MaxSamplerAnisotropy
@@ -4385,7 +4385,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxViewports]] pname:maxViewports is the maximum number of active viewports. The pname:viewportCount member of the sname:VkPipelineViewportStateCreateInfo structure that is provided at pipeline creation must: be less than or equal to this limit.
+		/// pname:maxViewports is the maximum number of active viewports. The pname:viewportCount member of the sname:VkPipelineViewportStateCreateInfo structure that is provided at pipeline creation must: be less than or equal to this limit.
 		/// </para>
 		/// </summary>
 		public uint MaxViewports
@@ -4395,7 +4395,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxViewportDimensions]] pname:maxViewportDimensions[2] are the maximum viewport dimensions in the X (width) and Y (height) dimensions, respectively. The maximum viewport dimensions must: be greater than or equal to the largest image which can: be created and used as a framebuffer attachment. See &lt;&lt;vertexpostproc-viewport,Controlling the Viewport&gt;&gt;.
+		/// pname:maxViewportDimensions[2] are the maximum viewport dimensions in the X (width) and Y (height) dimensions, respectively. The maximum viewport dimensions must: be greater than or equal to the largest image which can: be created and used as a framebuffer attachment. See &lt;&lt;vertexpostproc-viewport,Controlling the Viewport&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public uint[] MaxViewportDimensions
@@ -4405,7 +4405,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-viewportboundsrange]] pname:viewportBoundsRange[2] is the latexmath:[$[\mathit{minimum},\mathit{maximum}\]$] range that the corners of a viewport must: be contained in. This range must: be at least latexmath:[$[- 2 \times \mathit{maxViewportDimensions}, 2 \times \mathit{maxViewportDimensions} - 1\]$]. See &lt;&lt;vertexpostproc-viewport,Controlling the Viewport&gt;&gt;. + -- [NOTE] .Note ==== The intent of the pname:viewportBoundsRange limit is to allow a maximum sized viewport to be arbitrarily shifted relative to the output target as long as at least some portion intersects. This would give a bounds limit of latexmath:[$[- \mathit{maxViewportDimensions}+1, 2 \times \mathit{maxViewportDimensions} -1\]$] which would allow all possible non-empty-set intersections of the output target and the viewport. Since these numbers are typically powers of two, picking the signed number range using the smallest possible number of bits ends up with the specified range. ==== --
+		/// pname:viewportBoundsRange[2] is the latexmath:[$[\mathit{minimum},\mathit{maximum}\]$] range that the corners of a viewport must: be contained in. This range must: be at least + --  latexmath:[$[-2 \times \mathit{maxViewportDimensions}, 2 \times \mathit{maxViewportDimensions} - 1\]$].  See &lt;&lt;vertexpostproc-viewport,Controlling the Viewport&gt;&gt;.  // latexmath:[$[-2 \times size, 2 \times size - 1\]$] // // where latexmath:[$size$] is the value of pname:maxViewPortDimensions for X // and Y, respectively. See &lt;&lt;vertexpostproc-viewport,Controlling the // Viewport&gt;&gt;.  [NOTE] .Note ==== The intent of the pname:viewportBoundsRange limit is to allow a maximum sized viewport to be arbitrarily shifted relative to the output target as long as at least some portion intersects. This would give a bounds limit of latexmath:[$[- \mathit{maxViewportDimensions}+1, 2 \times \mathit{maxViewportDimensions} -1\]$], which would allow all possible non-empty-set intersections of the output target and the viewport. Since these numbers are typically powers of two, picking the signed number range using the smallest possible number of bits ends up with the specified range. ==== --
 		/// </para>
 		/// </summary>
 		public float[] ViewportBoundsRange
@@ -4415,7 +4415,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-viewportSubPixelBits]] pname:viewportSubPixelBits is the number of bits of subpixel precision for viewport bounds. The subpixel precision that floating-point viewport bounds are interpreted at is given by this limit.
+		/// pname:viewportSubPixelBits is the number of bits of subpixel precision for viewport bounds. The subpixel precision that floating-point viewport bounds are interpreted at is given by this limit.
 		/// </para>
 		/// </summary>
 		public uint ViewportSubPixelBits
@@ -4425,7 +4425,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-minMemoryMapAlignment]] pname:minMemoryMapAlignment is the minimum required alignment, in bytes, of host visible memory allocations within the host address space. When mapping a memory allocation with flink:vkMapMemory, subtracting pname:offset bytes from the returned pointer will always produce an integer multiple of this limit. See &lt;&lt;memory-device-hostaccess&gt;&gt;.
+		/// pname:minMemoryMapAlignment is the minimum required alignment, in bytes, of host visible memory allocations within the host address space. When mapping a memory allocation with flink:vkMapMemory, subtracting pname:offset bytes from the returned pointer will always produce an integer multiple of this limit. See &lt;&lt;memory-device-hostaccess&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public Size MinMemoryMapAlignment
@@ -4435,7 +4435,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-minTexelBufferOffsetAlignment]] pname:minTexelBufferOffsetAlignment is the minimum required alignment, in bytes, for the pname:offset member of the sname:VkBufferViewCreateInfo structure for texel buffers. When a buffer view is created for a buffer which was created with ename:VK_BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT or ename:VK_BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT set in the pname:usage member of the sname:VkBufferCreateInfo structure, the pname:offset must: be an integer multiple of this limit.
+		///  pname:minTexelBufferOffsetAlignment is the minimum required alignment, in bytes, for the pname:offset member of the sname:VkBufferViewCreateInfo structure for texel buffers. When a buffer view is created for a buffer which was created with ename:VK_BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT or ename:VK_BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT set in the pname:usage member of the sname:VkBufferCreateInfo structure, the pname:offset must: be an integer multiple of this limit.
 		/// </para>
 		/// </summary>
 		public ulong MinTexelBufferOffsetAlignment
@@ -4445,7 +4445,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-minUniformBufferOffsetAlignment]] pname:minUniformBufferOffsetAlignment is the minimum required alignment, in bytes, for the pname:offset member of the sname:VkDescriptorBufferInfo structure for uniform buffers. When a descriptor of type ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER or ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC is updated, the pname:offset must: be an integer multiple of this limit. Similarly, dynamic offsets for uniform buffers must: be multiples of this limit.
+		///  pname:minUniformBufferOffsetAlignment is the minimum required alignment, in bytes, for the pname:offset member of the sname:VkDescriptorBufferInfo structure for uniform buffers. When a descriptor of type ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER or ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC is updated, the pname:offset must: be an integer multiple of this limit. Similarly, dynamic offsets for uniform buffers must: be multiples of this limit.
 		/// </para>
 		/// </summary>
 		public ulong MinUniformBufferOffsetAlignment
@@ -4455,7 +4455,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-minStorageBufferOffsetAlignment]] pname:minStorageBufferOffsetAlignment is the minimum required alignment, in bytes, for the pname:offset member of the sname:VkDescriptorBufferInfo structure for storage buffers. When a descriptor of type ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER or ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC is updated, the pname:offset must: be an integer multiple of this limit. Similarly, dynamic offsets for storage buffers must: be multiples of this limit.
+		///  pname:minStorageBufferOffsetAlignment is the minimum required alignment, in bytes, for the pname:offset member of the sname:VkDescriptorBufferInfo structure for storage buffers. When a descriptor of type ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER or ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC is updated, the pname:offset must: be an integer multiple of this limit. Similarly, dynamic offsets for storage buffers must: be multiples of this limit.
 		/// </para>
 		/// </summary>
 		public ulong MinStorageBufferOffsetAlignment
@@ -4465,7 +4465,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-minTexelOffset]] pname:minTexelOffset is the minimum offset value for the code:ConstOffset image operand of any of the code:OpImageSample* or code:OpImageFetch* image instructions.
+		/// pname:minTexelOffset is the minimum offset value for the code:ConstOffset image operand of any of the code:OpImageSample* or code:OpImageFetch* image instructions.
 		/// </para>
 		/// </summary>
 		public int MinTexelOffset
@@ -4475,7 +4475,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxTexelOffset]] pname:maxTexelOffset is the maximum offset value for the code:ConstOffset image operand of any of the code:OpImageSample* or code:OpImageFetch* image instructions.
+		/// pname:maxTexelOffset is the maximum offset value for the code:ConstOffset image operand of any of the code:OpImageSample* or code:OpImageFetch* image instructions.
 		/// </para>
 		/// </summary>
 		public uint MaxTexelOffset
@@ -4485,7 +4485,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-minTexelGatherOffset]] pname:minTexelGatherOffset is the minimum offset value for the code:Offset or code:ConstOffsets image operands of any of the code:OpImage*code:Gather image instructions.
+		/// pname:minTexelGatherOffset is the minimum offset value for the code:Offset or code:ConstOffsets image operands of any of the code:OpImage*code:Gather image instructions.
 		/// </para>
 		/// </summary>
 		public int MinTexelGatherOffset
@@ -4495,7 +4495,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxTexelGatherOffset]] pname:maxTexelGatherOffset is the maximum offset value for the code:Offset or code:ConstOffsets image operands of any of the code:OpImage*code:Gather image instructions.
+		/// pname:maxTexelGatherOffset is the maximum offset value for the code:Offset or code:ConstOffsets image operands of any of the code:OpImage*code:Gather image instructions.
 		/// </para>
 		/// </summary>
 		public uint MaxTexelGatherOffset
@@ -4505,7 +4505,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-minInterpolationOffset]] pname:minInterpolationOffset is the minimum negative offset value for the code:offset operand of the code:InterpolateAtOffset extended instruction.
+		/// pname:minInterpolationOffset is the minimum negative offset value for the code:offset operand of the code:InterpolateAtOffset extended instruction.
 		/// </para>
 		/// </summary>
 		public float MinInterpolationOffset
@@ -4515,7 +4515,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxInterpolationOffset]] pname:maxInterpolationOffset is the maximum positive offset value for the code:offset operand of the code:InterpolateAtOffset extended instruction.
+		/// pname:maxInterpolationOffset is the maximum positive offset value for the code:offset operand of the code:InterpolateAtOffset extended instruction.
 		/// </para>
 		/// </summary>
 		public float MaxInterpolationOffset
@@ -4525,7 +4525,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-subPixelInterpolationOffsetBits]] pname:subPixelInterpolationOffsetBits is the number of subpixel fractional bits that the code:x and code:y offsets to the code:InterpolateAtOffset extended instruction may: be rounded to as fixed-point values.
+		///  pname:subPixelInterpolationOffsetBits is the number of subpixel fractional bits that the code:x and code:y offsets to the code:InterpolateAtOffset extended instruction may: be rounded to as fixed-point values.
 		/// </para>
 		/// </summary>
 		public uint SubPixelInterpolationOffsetBits
@@ -4535,7 +4535,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxFramebufferWidth]] pname:maxFramebufferWidth is the maximum width for a framebuffer. The pname:width member of the sname:VkFramebufferCreateInfo structure must: be less than or equal to this limit.
+		/// pname:maxFramebufferWidth is the maximum width for a framebuffer. The pname:width member of the sname:VkFramebufferCreateInfo structure must: be less than or equal to this limit.
 		/// </para>
 		/// </summary>
 		public uint MaxFramebufferWidth
@@ -4545,7 +4545,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxFramebufferHeight]] pname:maxFramebufferHeight is the maximum height for a framebuffer. The pname:height member of the sname:VkFramebufferCreateInfo structure must: be less than or equal to this limit.
+		/// pname:maxFramebufferHeight is the maximum height for a framebuffer. The pname:height member of the sname:VkFramebufferCreateInfo structure must: be less than or equal to this limit.
 		/// </para>
 		/// </summary>
 		public uint MaxFramebufferHeight
@@ -4555,7 +4555,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxFramebufferLayers]] pname:maxFramebufferLayers is the maximum layer count for a layered framebuffer. The pname:layers member of the sname:VkFramebufferCreateInfo structure must: be less than or equal to this limit.
+		/// pname:maxFramebufferLayers is the maximum layer count for a layered framebuffer. The pname:layers member of the sname:VkFramebufferCreateInfo structure must: be less than or equal to this limit.
 		/// </para>
 		/// </summary>
 		public uint MaxFramebufferLayers
@@ -4565,7 +4565,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-framebufferColorSampleCounts]] pname:framebufferColorSampleCounts is a bitmask^1^ of elink:VkSampleCountFlagBits bits indicating the color sample counts that are supported for all framebuffer color attachments.
+		///  pname:framebufferColorSampleCounts is a bitmask^1^ of elink:VkSampleCountFlagBits bits indicating the color sample counts that are supported for all framebuffer color attachments.
 		/// </para>
 		/// </summary>
 		public SampleCountFlags FramebufferColorSampleCounts
@@ -4575,7 +4575,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-framebufferDepthSampleCounts]] pname:framebufferDepthSampleCounts is a bitmask^1^ of elink:VkSampleCountFlagBits bits indicating the supported depth sample counts for all framebuffer depth/stencil attachments, when the format includes a depth component.
+		///  pname:framebufferDepthSampleCounts is a bitmask^1^ of elink:VkSampleCountFlagBits bits indicating the supported depth sample counts for all framebuffer depth/stencil attachments, when the format includes a depth component.
 		/// </para>
 		/// </summary>
 		public SampleCountFlags FramebufferDepthSampleCounts
@@ -4605,7 +4605,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxColorAttachments]] pname:maxColorAttachments is the maximum number of color attachments that can: be used by a subpass in a render pass. The pname:colorAttachmentCount member of the sname:VkSubpassDescription structure must: be less than or equal to this limit.
+		/// pname:maxColorAttachments is the maximum number of color attachments that can: be used by a subpass in a render pass. The pname:colorAttachmentCount member of the sname:VkSubpassDescription structure must: be less than or equal to this limit.
 		/// </para>
 		/// </summary>
 		public uint MaxColorAttachments
@@ -4615,7 +4615,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-sampledImageColorSampleCounts]] pname:sampledImageColorSampleCounts is a bitmask^1^ of elink:VkSampleCountFlagBits bits indicating the sample counts supported for all 2D images created with ename:VK_IMAGE_TILING_OPTIMAL, pname:usage containing ename:VK_IMAGE_USAGE_SAMPLED_BIT, and a non-integer color format.
+		///  pname:sampledImageColorSampleCounts is a bitmask^1^ of elink:VkSampleCountFlagBits bits indicating the sample counts supported for all 2D images created with ename:VK_IMAGE_TILING_OPTIMAL, pname:usage containing ename:VK_IMAGE_USAGE_SAMPLED_BIT, and a non-integer color format.
 		/// </para>
 		/// </summary>
 		public SampleCountFlags SampledImageColorSampleCounts
@@ -4625,7 +4625,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-sampledImageIntegerSampleCounts]] pname:sampledImageIntegerSampleCounts is a bitmask^1^ of elink:VkSampleCountFlagBits bits indicating the sample counts supported for all 2D images created with ename:VK_IMAGE_TILING_OPTIMAL, pname:usage containing ename:VK_IMAGE_USAGE_SAMPLED_BIT, and an integer color format.
+		///  pname:sampledImageIntegerSampleCounts is a bitmask^1^ of elink:VkSampleCountFlagBits bits indicating the sample counts supported for all 2D images created with ename:VK_IMAGE_TILING_OPTIMAL, pname:usage containing ename:VK_IMAGE_USAGE_SAMPLED_BIT, and an integer color format.
 		/// </para>
 		/// </summary>
 		public SampleCountFlags SampledImageIntegerSampleCounts
@@ -4635,7 +4635,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-sampledImageDepthSampleCounts]] pname:sampledImageDepthSampleCounts is a bitmask^1^ of elink:VkSampleCountFlagBits bits indicating the sample counts supported for all 2D images created with ename:VK_IMAGE_TILING_OPTIMAL, pname:usage containing ename:VK_IMAGE_USAGE_SAMPLED_BIT, and a depth format.
+		///  pname:sampledImageDepthSampleCounts is a bitmask^1^ of elink:VkSampleCountFlagBits bits indicating the sample counts supported for all 2D images created with ename:VK_IMAGE_TILING_OPTIMAL, pname:usage containing ename:VK_IMAGE_USAGE_SAMPLED_BIT, and a depth format.
 		/// </para>
 		/// </summary>
 		public SampleCountFlags SampledImageDepthSampleCounts
@@ -4645,7 +4645,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-sampledImageStencilSampleCounts]] pname:sampledImageStencilSampleCounts is a bitmask^1^ of elink:VkSampleCountFlagBits bits indicating the sample supported for all 2D images created with ename:VK_IMAGE_TILING_OPTIMAL, pname:usage containing ename:VK_IMAGE_USAGE_SAMPLED_BIT, and a stencil format.
+		///  pname:sampledImageStencilSampleCounts is a bitmask^1^ of elink:VkSampleCountFlagBits bits indicating the sample supported for all 2D images created with ename:VK_IMAGE_TILING_OPTIMAL, pname:usage containing ename:VK_IMAGE_USAGE_SAMPLED_BIT, and a stencil format.
 		/// </para>
 		/// </summary>
 		public SampleCountFlags SampledImageStencilSampleCounts
@@ -4655,7 +4655,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-storageImageSampleCounts]] pname:storageImageSampleCounts is a bitmask^1^ of elink:VkSampleCountFlagBits bits indicating the sample counts supported for all 2D images created with ename:VK_IMAGE_TILING_OPTIMAL, and pname:usage containing ename:VK_IMAGE_USAGE_STORAGE_BIT.
+		///  pname:storageImageSampleCounts is a bitmask^1^ of elink:VkSampleCountFlagBits bits indicating the sample counts supported for all 2D images created with ename:VK_IMAGE_TILING_OPTIMAL, and pname:usage containing ename:VK_IMAGE_USAGE_STORAGE_BIT.
 		/// </para>
 		/// </summary>
 		public SampleCountFlags StorageImageSampleCounts
@@ -4665,7 +4665,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxSampleMaskWords]] pname:maxSampleMaskWords is the maximum number of array elements of a variable decorated with the code:SampleMask built-in decoration.
+		/// pname:maxSampleMaskWords is the maximum number of array elements of a variable decorated with the code:SampleMask built-in decoration.
 		/// </para>
 		/// </summary>
 		public uint MaxSampleMaskWords
@@ -4675,7 +4675,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-timestampComputeAndGraphics]] pname:timestampComputeAndGraphics indicates support for timestamps on all graphics and compute queues. If this limit is set to ename:VK_TRUE, all queues that advertise the ename:VK_QUEUE_GRAPHICS_BIT or ename:VK_QUEUE_COMPUTE_BIT in the sname:VkQueueFamilyProperties::pname:queueFlags support sname:VkQueueFamilyProperties::pname:timestampValidBits of at least 36. See &lt;&lt;queries-timestamps, Timestamp Queries&gt;&gt;.
+		///  pname:timestampComputeAndGraphics indicates support for timestamps on all graphics and compute queues. If this limit is set to ename:VK_TRUE, all queues that advertise the ename:VK_QUEUE_GRAPHICS_BIT or ename:VK_QUEUE_COMPUTE_BIT in the sname:VkQueueFamilyProperties::pname:queueFlags support sname:VkQueueFamilyProperties::pname:timestampValidBits of at least 36. See &lt;&lt;queries-timestamps, Timestamp Queries&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public Bool32 TimestampComputeAndGraphics
@@ -4685,7 +4685,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-timestampPeriod]] pname:timestampPeriod is the number of nanoseconds required for a timestamp query to be incremented by 1. See &lt;&lt;queries-timestamps, Timestamp Queries&gt;&gt;.
+		/// pname:timestampPeriod is the number of nanoseconds required for a timestamp query to be incremented by 1. See &lt;&lt;queries-timestamps, Timestamp Queries&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public float TimestampPeriod
@@ -4695,7 +4695,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxClipDistances]] pname:maxClipDistances is the maximum number of clip distances that can: be used in a single shader stage. The size of any array declared with the code:ClipDistance built-in decoration in a shader module must: be less than or equal to this limit.
+		/// pname:maxClipDistances is the maximum number of clip distances that can: be used in a single shader stage. The size of any array declared with the code:ClipDistance built-in decoration in a shader module must: be less than or equal to this limit.
 		/// </para>
 		/// </summary>
 		public uint MaxClipDistances
@@ -4705,7 +4705,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxCullDistances]] pname:maxCullDistances is the maximum number of cull distances that can: be used in a single shader stage. The size of any array declared with the code:CullDistance built-in decoration in a shader module must: be less than or equal to this limit.
+		/// pname:maxCullDistances is the maximum number of cull distances that can: be used in a single shader stage. The size of any array declared with the code:CullDistance built-in decoration in a shader module must: be less than or equal to this limit.
 		/// </para>
 		/// </summary>
 		public uint MaxCullDistances
@@ -4715,7 +4715,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-maxCombinedClipAndCullDistances]] pname:maxCombinedClipAndCullDistances is the maximum combined number of clip and cull distances that can: be used in a single shader stage. The sum of the sizes of any pair of arrays declared with the code:ClipDistance and code:CullDistance built-in decoration used by a single shader stage in a shader module must: be less than or equal to this limit.
+		///  pname:maxCombinedClipAndCullDistances is the maximum combined number of clip and cull distances that can: be used in a single shader stage. The sum of the sizes of any pair of arrays declared with the code:ClipDistance and code:CullDistance built-in decoration used by a single shader stage in a shader module must: be less than or equal to this limit.
 		/// </para>
 		/// </summary>
 		public uint MaxCombinedClipAndCullDistances
@@ -4725,7 +4725,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-discreteQueuePriorities]] pname:discreteQueuePriorities is the number of discrete priorities that can: be assigned to a queue based on the value of each member of sname:VkDeviceQueueCreateInfo::pname:pQueuePriorities. This must: be at least 2, and levels must: be spread evenly over the range, with at least one level at 1.0, and another at 0.0. See &lt;&lt;devsandqueues-priority&gt;&gt;.
+		///  pname:discreteQueuePriorities is the number of discrete priorities that can: be assigned to a queue based on the value of each member of sname:VkDeviceQueueCreateInfo::pname:pQueuePriorities. This must: be at least 2, and levels must: be spread evenly over the range, with at least one level at 1.0, and another at 0.0. See &lt;&lt;devsandqueues-priority&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public uint DiscreteQueuePriorities
@@ -4735,7 +4735,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-pointSizeRange]] pname:pointSizeRange[2] is the range latexmath:[$[\mathit{minimum},\mathit{maximum}\]$] of supported sizes for points. Values written to variables decorated with the code:PointSize built-in decoration are clamped to this range.
+		/// pname:pointSizeRange[2] is the range latexmath:[$[\mathit{minimum},\mathit{maximum}\]$] of supported sizes for points. Values written to variables decorated with the code:PointSize built-in decoration are clamped to this range.
 		/// </para>
 		/// </summary>
 		public float[] PointSizeRange
@@ -4745,7 +4745,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-lineWidthRange]] pname:lineWidthRange[2] is the range latexmath:[$[\mathit{minimum},\mathit{maximum}\]$] of supported widths for lines. Values specified by the pname:lineWidth member of the sname:VkPipelineRasterizationStateCreateInfo or the pname:lineWidth parameter to fname:vkCmdSetLineWidth are clamped to this range.
+		/// pname:lineWidthRange[2] is the range latexmath:[$[\mathit{minimum},\mathit{maximum}\]$] of supported widths for lines. Values specified by the pname:lineWidth member of the sname:VkPipelineRasterizationStateCreateInfo or the pname:lineWidth parameter to fname:vkCmdSetLineWidth are clamped to this range.
 		/// </para>
 		/// </summary>
 		public float[] LineWidthRange
@@ -4755,7 +4755,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-pointSizeGranularity]] pname:pointSizeGranularity is the granularity of supported point sizes. Not all point sizes in the range defined by pname:pointSizeRange are supported. This limit specifies the granularity (or increment) between successive supported point sizes.
+		/// pname:pointSizeGranularity is the granularity of supported point sizes. Not all point sizes in the range defined by pname:pointSizeRange are supported. This limit specifies the granularity (or increment) between successive supported point sizes.
 		/// </para>
 		/// </summary>
 		public float PointSizeGranularity
@@ -4765,7 +4765,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-lineWidthGranularity]] pname:lineWidthGranularity is the granularity of supported line widths. Not all line widths in the range defined by pname:lineWidthRange are supported. This limit specifies the granularity (or increment) between successive supported line widths.
+		/// pname:lineWidthGranularity is the granularity of supported line widths. Not all line widths in the range defined by pname:lineWidthRange are supported. This limit specifies the granularity (or increment) between successive supported line widths.
 		/// </para>
 		/// </summary>
 		public float LineWidthGranularity
@@ -4775,7 +4775,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-strictLines]] pname:strictLines indicates whether lines are rasterized according to the preferred method of rasterization. If set to ename:VK_FALSE, lines may: be rasterized under a relaxed set of rules. If set to ename:VK_TRUE, lines are rasterized as per the strict definition. See &lt;&lt;primsrast-lines-basic,Basic Line Segment Rasterization&gt;&gt;.
+		/// pname:strictLines indicates whether lines are rasterized according to the preferred method of rasterization. If set to ename:VK_FALSE, lines may: be rasterized under a relaxed set of rules. If set to ename:VK_TRUE, lines are rasterized as per the strict definition. See &lt;&lt;primsrast-lines-basic,Basic Line Segment Rasterization&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public Bool32 StrictLines
@@ -4785,7 +4785,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-standardSampleLocations]] pname:standardSampleLocations indicates whether rasterization uses the standard sample locations as documented in &lt;&lt;primsrast-multisampling,Multisampling&gt;&gt;. If set to ename:VK_TRUE, the implementation uses the documented sample locations. If set to ename:VK_FALSE, the implementation may: use different sample locations.
+		///  pname:standardSampleLocations indicates whether rasterization uses the standard sample locations as documented in &lt;&lt;primsrast-multisampling,Multisampling&gt;&gt;. If set to ename:VK_TRUE, the implementation uses the documented sample locations. If set to ename:VK_FALSE, the implementation may: use different sample locations.
 		/// </para>
 		/// </summary>
 		public Bool32 StandardSampleLocations
@@ -4795,7 +4795,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-optimalBufferCopyOffsetAlignment]] pname:optimalBufferCopyOffsetAlignment is the optimal buffer offset alignment in bytes for fname:vkCmdCopyBufferToImage and fname:vkCmdCopyImageToBuffer. The per texel alignment requirements are still enforced, this is just an additional alignment recommendation for optimal performance and power.
+		///  pname:optimalBufferCopyOffsetAlignment is the optimal buffer offset alignment in bytes for fname:vkCmdCopyBufferToImage and fname:vkCmdCopyImageToBuffer. The per texel alignment requirements are still enforced, this is just an additional alignment recommendation for optimal performance and power.
 		/// </para>
 		/// </summary>
 		public ulong OptimalBufferCopyOffsetAlignment
@@ -4805,7 +4805,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-optimalBufferCopyRowPitchAlignment]] pname:optimalBufferCopyRowPitchAlignment is the optimal buffer row pitch alignment in bytes for fname:vkCmdCopyBufferToImage and fname:vkCmdCopyImageToBuffer. Row pitch is the number of bytes between texels with the same X coordinate in adjacent rows (Y coordinates differ by one). The per texel alignment requirements are still enforced, this is just an additional alignment recommendation for optimal performance and power.
+		///  pname:optimalBufferCopyRowPitchAlignment is the optimal buffer row pitch alignment in bytes for fname:vkCmdCopyBufferToImage and fname:vkCmdCopyImageToBuffer. Row pitch is the number of bytes between texels with the same X coordinate in adjacent rows (Y coordinates differ by one). The per texel alignment requirements are still enforced, this is just an additional alignment recommendation for optimal performance and power.
 		/// </para>
 		/// </summary>
 		public ulong OptimalBufferCopyRowPitchAlignment
@@ -4815,7 +4815,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// [[features-limits-nonCoherentAtomSize]] pname:nonCoherentAtomSize is the size and alignment in bytes that bounds concurrent access to &lt;&lt;memory-device-hostaccess, host-mapped device memory&gt;&gt;.
+		///  pname:nonCoherentAtomSize is the size and alignment in bytes that bounds concurrent access to &lt;&lt;memory-device-hostaccess, host-mapped device memory&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public ulong NonCoherentAtomSize
@@ -7741,6 +7741,53 @@ namespace SharpVk
 		internal unsafe Interop.SwapchainCreateInfo* MarshalTo()
         {
             return (Interop.SwapchainCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		}
+	}
+
+    /// <summary>
+    /// <para>
+    /// Specify validation checks to disable for a Vulkan instance.
+    /// </para>
+    /// </summary>
+	public struct ValidationFlags
+	{
+	    /// <summary>
+		/// <para>
+		/// pname:pDisabledValidationChecks is a pointer to an array of values specifying the validation checks to be disabled. Checks which may: be specified include: + --
+		/// </para>
+		/// </summary>
+		public ValidationCheck[] DisabledValidationChecks
+		{
+			get;
+			set;
+		}
+
+        internal unsafe Interop.ValidationFlags Pack()
+        {
+            var result = new Interop.ValidationFlags();
+			result.SType = StructureType.ValidationFlags;
+			
+			//DisabledValidationChecks
+			if (this.DisabledValidationChecks != null)
+			{
+			    result.DisabledValidationChecks = (ValidationCheck*)Interop.HeapUtil.Allocate<int>(this.DisabledValidationChecks.Length).ToPointer();
+			    for (int index = 0; index < this.DisabledValidationChecks.Length; index++)
+			    {
+			        result.DisabledValidationChecks[index] = this.DisabledValidationChecks[index];
+			    }
+			}
+			else
+			{
+			    result.DisabledValidationChecks = null;
+			}
+			result.DisabledValidationCheckCount = (uint)(this.DisabledValidationChecks?.Length ?? 0);
+
+            return result;
+        }
+
+		internal unsafe Interop.ValidationFlags* MarshalTo()
+        {
+            return (Interop.ValidationFlags*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
