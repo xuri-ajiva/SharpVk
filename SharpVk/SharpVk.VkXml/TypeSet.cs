@@ -286,7 +286,7 @@ namespace SharpVk.VkXml
                 set;
             }
 
-            public bool RequiresCleanup
+            public int FixedSize
             {
                 get;
                 set;

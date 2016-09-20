@@ -1181,14 +1181,18 @@ namespace SharpVk.VkXml
 
                 foreach (var member in type.Data.Members)
                 {
+                    string name = JoinNameParts(member.NameParts, true);
+                    var comment = member.Comment ?? new List<string> { "-" };
+                    string typeName = typeData[GetMemberTypeName(member)].Name;
+
                     switch (member.FixedLength.Type)
                     {
                         case SpecParser.FixedLengthType.None:
                             newStruct.Members.Add(new TypeSet.VkStructMember
                             {
-                                Name = JoinNameParts(member.NameParts),
-                                Comment = member.Comment ?? new List<string> { "-" },
-                                TypeName = typeData[GetMemberTypeName(member)].Name,
+                                Name = name,
+                                Comment = comment,
+                                TypeName = typeName,
                                 FieldOffset = "0"
                             });
                             break;
@@ -1196,30 +1200,14 @@ namespace SharpVk.VkXml
                             throw new NotSupportedException("Fixed-length arrays with named lengths are not currently supported in Unions.");
                         case SpecParser.FixedLengthType.IntegerLiteral:
                             int length = int.Parse(member.FixedLength.Value);
-                            var nameParts = member.NameParts;
-                            string typeName = typeData[GetMemberTypeName(member)].Name;
-
-                            switch (typeName)
-                            {
-                                case "float":
-                                    typeName = "vec" + length;
-                                    break;
-                                case "int":
-                                    typeName = "ivec" + length;
-                                    break;
-                                case "uint":
-                                    typeName = "uvec" + length;
-                                    break;
-                                default:
-                                    throw new NotSupportedException();
-                            }
 
                             newStruct.Members.Add(new TypeSet.VkStructMember
                             {
-                                Name = JoinNameParts(nameParts),
-                                Comment = member.Comment ?? new List<string> { "-" },
+                                Name = name,
+                                Comment = comment,
                                 TypeName = typeName,
-                                FieldOffset = "0"
+                                FieldOffset = "0",
+                                FixedSize = length
                             });
 
                             break;

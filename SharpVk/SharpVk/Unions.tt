@@ -17,7 +17,7 @@
 
 	var types = generator.Generate(parser.Run());
 #>
-using GlmSharp;
+using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
@@ -39,29 +39,51 @@ namespace SharpVk
 #>
     /// </summary>
 	[StructLayout(LayoutKind.Explicit)]
-	public struct <#=structType.Name#>
+	public unsafe partial struct <#=structType.Name#>
 	{
 <#
 		foreach(var member in structType.Members)
         {
-#>
-	   /// <summary>
-<#
-			foreach(var line in member.Comment)
+			if(member.FixedSize > 0)
 			{
+#>
+		[FieldOffset(<#=member.FieldOffset#>)]
+		private fixed <#=member.TypeName#> <#=member.Name#>[<#=member.FixedSize#>];
+		
+		/// <summary>
+		/// Implicit conversion of <#=member.TypeName#>[] to <#=structType.Name#>.
+		/// </summary>
+        /// <param name="<#=member.Name#>">
+<#
+				foreach(var line in member.Comment)
+				{
 #>
 		/// <para>
 		/// <#=line#>
 		/// </para>
 <#
-			}
+				}
 #>
-		/// </summary>
+        /// </param>
+        public static implicit operator <#=structType.Name#>(<#=member.TypeName#>[] <#=member.Name#>)
+        {
+            var result = new <#=structType.Name#>();
+
+            MemUtil.WriteToPtr(new IntPtr(result.<#=member.Name#>), <#=member.Name#>, 0, <#=member.FixedSize#>);
+
+            return result;
+        }
+
+<#
+			}
+			else
+			{
+#>
 		[FieldOffset(<#=member.FieldOffset#>)]
-		public <#=member.TypeName#> <#=member.Name#>;
+		private <#=member.TypeName#> <#=member.Name#>;
 		
 		/// <summary>
-		/// Implicit convertion of <#=member.TypeName#> to <#=structType.Name#>.
+		/// Implicit converion of <#=member.TypeName#> to <#=structType.Name#>.
 		/// </summary>
         public static implicit operator <#=structType.Name#>(<#=member.TypeName#> value)
         {
@@ -72,6 +94,7 @@ namespace SharpVk
         }
 
 <#
+			}
         }
 #>
 	}
