@@ -60,6 +60,7 @@ namespace SharpVk
         private Image[] swapChainImages;
         private ImageView[] swapChainImageViews;
         private RenderPass renderPass;
+        private DescriptorSetLayout descriptorSetLayout;
         private PipelineLayout pipelineLayout;
         private Pipeline pipeline;
         private Framebuffer[] frameBuffers;
@@ -69,10 +70,17 @@ namespace SharpVk
         private DeviceMemory vertexBufferMemory;
         private Buffer indexBuffer;
         private DeviceMemory indexBufferMemory;
+        private Buffer uniformStagingBuffer;
+        private DeviceMemory uniformStagingBufferMemory;
+        private Buffer uniformBuffer;
+        private DeviceMemory uniformBufferMemory;
+        private DescriptorPool descriptorPool;
+        private DescriptorSet descriptorSet;
         private CommandBuffer[] commandBuffers;
         private Semaphore imageAvailableSemaphore;
         private Semaphore renderFinishedSemaphore;
 
+        private long initialTimestamp;
         private Format swapChainFormat;
         private Extent2D swapChainExtent;
 
@@ -109,11 +117,15 @@ namespace SharpVk
             this.CreateSwapChain();
             this.CreateImageViews();
             this.CreateRenderPass();
+            this.CreateDescriptorSetLayout();
             this.CreateGraphicsPipeline();
             this.CreateFrameBuffers();
             this.CreateCommandPools();
             this.CreateVertexBuffers();
             this.CreateIndexBuffer();
+            this.CreateUniformBuffer();
+            this.CreateDescriptorPool();
+            this.CreateDescriptorSet();
             this.CreateCommandBuffers();
             this.CreateSemaphores();
         }
@@ -122,10 +134,13 @@ namespace SharpVk
         {
             this.window.Show();
 
+            this.initialTimestamp = Stopwatch.GetTimestamp();
+
             while (!this.window.IsDisposed)
             {
+                this.UpdateUniformBuffer();
                 this.DrawFrame();
-
+                
                 Application.DoEvents();
             }
         }
@@ -219,6 +234,33 @@ namespace SharpVk
             this.instance = null;
         }
 
+        private void UpdateUniformBuffer()
+        {
+            long currentTimestamp = Stopwatch.GetTimestamp();
+
+            float totalTime = (currentTimestamp - this.initialTimestamp) / (float)Stopwatch.Frequency;
+
+            UniformBufferObject ubo = new UniformBufferObject
+            {
+                Model = mat4.Rotate((float)Math.Sin(totalTime) * (float)Math.PI, vec3.UnitZ),
+                View = mat4.LookAt(new vec3(1), vec3.Zero, vec3.UnitZ),
+                Proj = mat4.Perspective((float)Math.PI / 4f, this.swapChainExtent.Width / (float)this.swapChainExtent.Height, 0.1f, 10)
+            };
+
+            ubo.Proj[1,1] *= -1;
+
+            uint uboSize = MemUtil.SizeOf<UniformBufferObject>();
+
+            IntPtr memoryBuffer = IntPtr.Zero;
+            this.uniformStagingBufferMemory.MapMemory(0, uboSize, MemoryMapFlags.None, ref memoryBuffer);
+
+            MemUtil.WriteToPtr(memoryBuffer, ubo);
+
+            this.uniformStagingBufferMemory.UnmapMemory();
+
+            this.CopyBuffer(this.uniformStagingBuffer, this.uniformBuffer, uboSize);
+        }
+
         private void DrawFrame()
         {
             uint nextImage = this.swapChain.AcquireNextImage(uint.MaxValue, this.imageAvailableSemaphore, null);
@@ -227,8 +269,8 @@ namespace SharpVk
             {
                 new SubmitInfo
                 {
-                    CommandBuffers = new CommandBuffer[] { this.commandBuffers[nextImage] },
-                    SignalSemaphores = new[] { this.renderFinishedSemaphore },
+                    CommandBuffers = new [] { this.commandBuffers[nextImage] },
+                    SignalSemaphores = new [] { this.renderFinishedSemaphore },
                     WaitDestinationStageMask = new [] { PipelineStageFlags.ColorAttachmentOutput },
                     WaitSemaphores = new [] { this.imageAvailableSemaphore }
                 }
@@ -247,10 +289,11 @@ namespace SharpVk
         {
             var enabledLayers = new List<string>();
 
-            //if (Instance.EnumerateLayerProperties().Any(x => x.LayerName == "VK_LAYER_LUNARG_standard_validation"))
-            //{
-            //    enabledLayers.Add("VK_LAYER_LUNARG_standard_validation");
-            //}
+            if (Instance.EnumerateLayerProperties().Any(x => x.LayerName == "VK_LAYER_LUNARG_standard_validation"))
+            {
+                //enabledLayers.Add("VK_LAYER_LUNARG_standard_validation");
+                //enabledLayers.Add("VK_LAYER_LUNARG_api_dump");
+            }
 
             this.instance = Instance.Create(new InstanceCreateInfo
             {
@@ -314,7 +357,8 @@ namespace SharpVk
                                                     QueueFamilyIndex = index,
                                                     QueuePriorities = new[] { 1f }
                                                 }).ToArray(),
-                EnabledExtensionNames = new[] { KhrSwapchain.ExtensionName }
+                EnabledExtensionNames = new[] { KhrSwapchain.ExtensionName },
+                EnabledLayerNames = new[] { "VK_LAYER_LUNARG_core_validation" }
             });
 
             this.graphicsQueue = this.device.GetQueue(queueFamilies.GraphicsFamily.Value, 0);
@@ -447,15 +491,33 @@ namespace SharpVk
             });
         }
 
+        private void CreateDescriptorSetLayout()
+        {
+            this.descriptorSetLayout = device.CreateDescriptorSetLayout(new DescriptorSetLayoutCreateInfo
+            {
+                Bindings = new []
+                {
+                    new DescriptorSetLayoutBinding
+                    {
+                        Binding = 0,
+                        DescriptorType = DescriptorType.UniformBuffer,
+                        StageFlags = ShaderStageFlags.Vertex,
+                        DescriptorCount = 1
+                    }
+                }
+            });
+        }
+
         private void CreateGraphicsPipeline()
         {
-            var vertShader = ShanqShader<Vertex>.CreateVertexModule(this.device,
-                                                                        vertexInput => from input in vertexInput
-                                                                                       select new VertexOutput
-                                                                                       {
-                                                                                           Colour = input.Colour,
-                                                                                           Position = new vec4(input.Position, 0, 1)
-                                                                                       });
+            int codeSize;
+            var vertShaderData = LoadShaderData(@".\Shaders\vert.spv", out codeSize);
+
+            var vertShader = device.CreateShaderModule(new ShaderModuleCreateInfo
+            {
+                Code = vertShaderData,
+                CodeSize = codeSize
+            });
 
             var fragShader = ShanqShader<FragmentInput>.CreateFragmentModule(this.device,
                                                                                 fragmentInput => from input in fragmentInput
@@ -467,7 +529,13 @@ namespace SharpVk
             var bindingDescription = Vertex.GetBindingDescription();
             var attributeDescriptions = Vertex.GetAttributeDescriptions();
 
-            this.pipelineLayout = device.CreatePipelineLayout(new PipelineLayoutCreateInfo());
+            this.pipelineLayout = device.CreatePipelineLayout(new PipelineLayoutCreateInfo()
+            {
+                SetLayouts = new[]
+                {
+                    this.descriptorSetLayout
+                }
+            });
 
             this.pipeline = device.CreateGraphicsPipelines(null, new[]
             {
@@ -516,7 +584,7 @@ namespace SharpVk
                             PolygonMode = PolygonMode.Fill,
                             LineWidth = 1,
                             CullMode = CullModeFlags.Back,
-                            FrontFace = FrontFace.Clockwise,
+                            FrontFace = FrontFace.CounterClockwise,
                             DepthBiasEnable = false
                         },
                         MultisampleState = new PipelineMultisampleStateCreateInfo
@@ -641,6 +709,62 @@ namespace SharpVk
             this.device.FreeMemory(stagingBufferMemory);
         }
 
+        private void CreateUniformBuffer()
+        {
+            uint bufferSize = MemUtil.SizeOf<UniformBufferObject>();
+
+            this.CreateBuffer(bufferSize,  BufferUsageFlags.TransferSource, MemoryPropertyFlags.HostVisible | MemoryPropertyFlags.HostCoherent, out this.uniformStagingBuffer, out this.uniformStagingBufferMemory);
+            this.CreateBuffer(bufferSize, BufferUsageFlags.TransferDestination | BufferUsageFlags.UniformBuffer, MemoryPropertyFlags.DeviceLocal, out this.uniformBuffer, out this.uniformBufferMemory);
+        }
+
+        private void CreateDescriptorPool()
+        {
+            this.descriptorPool = device.CreateDescriptorPool(new DescriptorPoolCreateInfo
+            {
+                PoolSizes = new[]
+                {
+                    new DescriptorPoolSize
+                    {
+                        DescriptorCount = 1,
+                        Type = DescriptorType.UniformBuffer
+                    }
+                },
+                MaxSets = 1
+            });
+        }
+
+        private void CreateDescriptorSet()
+        {
+            this.descriptorSet = this.device.AllocateDescriptorSets(new DescriptorSetAllocateInfo
+            {
+                DescriptorPool = this.descriptorPool,
+                SetLayouts = new []
+                {
+                    this.descriptorSetLayout
+                }
+            }).Single();
+
+            this.device.UpdateDescriptorSets(new[]
+            {
+                new WriteDescriptorSet
+                {
+                    BufferInfo = new []
+                    {
+                        new DescriptorBufferInfo
+                        {
+                            Buffer = this.uniformBuffer,
+                            Offset = 0,
+                            Range = MemUtil.SizeOf<UniformBufferObject>()
+                        }
+                    },
+                    DestinationSet = this.descriptorSet,
+                    DestinationBinding = 0,
+                    DestinationArrayElement = 0,
+                    DescriptorType = DescriptorType.UniformBuffer
+                }
+            }, null);
+        }
+
         private void CreateCommandBuffers()
         {
             this.commandPool.Reset(CommandPoolResetFlags.ReleaseResources);
@@ -681,6 +805,8 @@ namespace SharpVk
                 commandBuffer.BindVertexBuffers(0, new[] { this.vertexBuffer }, new DeviceSize[] { 0 });
 
                 commandBuffer.BindIndexBuffer(this.indexBuffer, 0, IndexType.UInt16);
+
+                commandBuffer.BindDescriptorSets(PipelineBindPoint.Graphics, this.pipelineLayout, 0, new[] { this.descriptorSet }, null);
 
                 commandBuffer.DrawIndexed((uint)this.indices.Length, 1, 0, 0, 0);
 
@@ -926,6 +1052,13 @@ namespace SharpVk
             [Location(0)]
             public vec4 Colour;
         }
+
+        private struct UniformBufferObject
+        {
+            public mat4 Model;
+            public mat4 View;
+            public mat4 Proj;
+        };
 
         private struct Vertex
         {

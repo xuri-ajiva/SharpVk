@@ -1677,6 +1677,16 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
+		/// pname:descriptorCount is the number of descriptors contained in the binding, accessed in a shader as an array. If pname:descriptorCount is zero this binding entry is reserved and the resource must: not be accessed from any stage via this binding within any pipeline using the set layout.
+		/// </para>
+		/// </summary>
+		public uint DescriptorCount
+		{
+			get;
+			set;
+		}
+	    /// <summary>
+		/// <para>
 		/// pname:stageFlags member is a bitmask of elink:VkShaderStageFlagBits specifying which pipeline shader stages can: access a resource for this binding. ename:VK_SHADER_STAGE_ALL is a shorthand specifying that all defined shader stages, including any additional stages defined by extensions, can: access the resource. + -- If a shader stage is not included in pname:stageFlags, then a resource must: not be accessed from that stage via this binding within any pipeline using the set layout. There are no limitations on what combinations of stages can: be used by a descriptor binding, and in particular a binding can: be used by both graphics stages and the compute stage. --
 		/// </para>
 		/// </summary>
@@ -1715,9 +1725,10 @@ namespace SharpVk
 			{
 			    result.ImmutableSamplers = null;
 			}
-			result.DescriptorCount = (uint)(this.ImmutableSamplers?.Length ?? 0);
+			result.DescriptorCount = (uint)(this.ImmutableSamplers?.Length ?? (int)this.DescriptorCount);
 			result.Binding = this.Binding;
 			result.DescriptorType = this.DescriptorType;
+			result.DescriptorCount = this.DescriptorCount;
 			result.StageFlags = this.StageFlags;
 
             return result;
@@ -8156,7 +8167,7 @@ namespace SharpVk
 			{
 			    result.TexelBufferView = null;
 			}
-			result.DescriptorCount = (uint)(this.TexelBufferView?.Length ?? 0);
+			result.DescriptorCount = (uint)(this.ImageInfo?.Length ?? this.BufferInfo?.Length ?? this.TexelBufferView?.Length ?? 0);
 			result.DestinationBinding = this.DestinationBinding;
 			result.DestinationArrayElement = this.DestinationArrayElement;
 			result.DescriptorType = this.DescriptorType;

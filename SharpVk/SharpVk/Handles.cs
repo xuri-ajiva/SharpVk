@@ -379,7 +379,7 @@ namespace SharpVk
 				{
 
 					fixed(Viewport* marshalledViewports = viewports)
-					Interop.Commands.vkCmdSetViewport(this.handle, firstViewport, (uint)viewports.Length, marshalledViewports);
+					Interop.Commands.vkCmdSetViewport(this.handle, firstViewport, (uint)(viewports?.Length ?? 0), marshalledViewports);
 
 				}
 				finally
@@ -402,7 +402,7 @@ namespace SharpVk
 				{
 
 					fixed(Rect2D* marshalledScissors = scissors)
-					Interop.Commands.vkCmdSetScissor(this.handle, firstScissor, (uint)scissors.Length, marshalledScissors);
+					Interop.Commands.vkCmdSetScissor(this.handle, firstScissor, (uint)(scissors?.Length ?? 0), marshalledScissors);
 
 				}
 				finally
@@ -594,7 +594,7 @@ namespace SharpVk
 					    marshalledDescriptorSets = null;
 					}
 					fixed(uint* marshalledDynamicOffsets = dynamicOffsets)
-					Interop.Commands.vkCmdBindDescriptorSets(this.handle, pipelineBindPoint, marshalledLayout, firstSet, (uint)descriptorSets.Length, marshalledDescriptorSets, (uint)dynamicOffsets.Length, marshalledDynamicOffsets);
+					Interop.Commands.vkCmdBindDescriptorSets(this.handle, pipelineBindPoint, marshalledLayout, firstSet, (uint)(descriptorSets?.Length ?? 0), marshalledDescriptorSets, (uint)(dynamicOffsets?.Length ?? 0), marshalledDynamicOffsets);
 
 				}
 				finally
@@ -654,7 +654,7 @@ namespace SharpVk
 					    marshalledBuffers = null;
 					}
 					fixed(DeviceSize* marshalledOffsets = offsets)
-					Interop.Commands.vkCmdBindVertexBuffers(this.handle, firstBinding, (uint)offsets.Length, marshalledBuffers, marshalledOffsets);
+					Interop.Commands.vkCmdBindVertexBuffers(this.handle, firstBinding, (uint)(offsets?.Length ?? 0), marshalledBuffers, marshalledOffsets);
 
 				}
 				finally
@@ -814,7 +814,7 @@ namespace SharpVk
 					Interop.Buffer marshalledSourceBuffer = sourceBuffer.Pack();
 					Interop.Buffer marshalledDestinationBuffer = destinationBuffer.Pack();
 					fixed(BufferCopy* marshalledRegions = regions)
-					Interop.Commands.vkCmdCopyBuffer(this.handle, marshalledSourceBuffer, marshalledDestinationBuffer, (uint)regions.Length, marshalledRegions);
+					Interop.Commands.vkCmdCopyBuffer(this.handle, marshalledSourceBuffer, marshalledDestinationBuffer, (uint)(regions?.Length ?? 0), marshalledRegions);
 
 				}
 				finally
@@ -839,7 +839,7 @@ namespace SharpVk
 					Interop.Image marshalledSourceImage = sourceImage.Pack();
 					Interop.Image marshalledDestinationImage = destinationImage.Pack();
 					fixed(ImageCopy* marshalledRegions = regions)
-					Interop.Commands.vkCmdCopyImage(this.handle, marshalledSourceImage, sourceImageLayout, marshalledDestinationImage, destinationImageLayout, (uint)regions.Length, marshalledRegions);
+					Interop.Commands.vkCmdCopyImage(this.handle, marshalledSourceImage, sourceImageLayout, marshalledDestinationImage, destinationImageLayout, (uint)(regions?.Length ?? 0), marshalledRegions);
 
 				}
 				finally
@@ -877,7 +877,7 @@ namespace SharpVk
 					{
 					    marshalledRegions = null;
 					}
-					Interop.Commands.vkCmdBlitImage(this.handle, marshalledSourceImage, sourceImageLayout, marshalledDestinationImage, destinationImageLayout, (uint)regions.Length, marshalledRegions, filter);
+					Interop.Commands.vkCmdBlitImage(this.handle, marshalledSourceImage, sourceImageLayout, marshalledDestinationImage, destinationImageLayout, (uint)(regions?.Length ?? 0), marshalledRegions, filter);
 
 				}
 				finally
@@ -902,7 +902,7 @@ namespace SharpVk
 					Interop.Buffer marshalledSourceBuffer = sourceBuffer.Pack();
 					Interop.Image marshalledDestinationImage = destinationImage.Pack();
 					fixed(BufferImageCopy* marshalledRegions = regions)
-					Interop.Commands.vkCmdCopyBufferToImage(this.handle, marshalledSourceBuffer, marshalledDestinationImage, destinationImageLayout, (uint)regions.Length, marshalledRegions);
+					Interop.Commands.vkCmdCopyBufferToImage(this.handle, marshalledSourceBuffer, marshalledDestinationImage, destinationImageLayout, (uint)(regions?.Length ?? 0), marshalledRegions);
 
 				}
 				finally
@@ -927,7 +927,7 @@ namespace SharpVk
 					Interop.Image marshalledSourceImage = sourceImage.Pack();
 					Interop.Buffer marshalledDestinationBuffer = destinationBuffer.Pack();
 					fixed(BufferImageCopy* marshalledRegions = regions)
-					Interop.Commands.vkCmdCopyImageToBuffer(this.handle, marshalledSourceImage, sourceImageLayout, marshalledDestinationBuffer, (uint)regions.Length, marshalledRegions);
+					Interop.Commands.vkCmdCopyImageToBuffer(this.handle, marshalledSourceImage, sourceImageLayout, marshalledDestinationBuffer, (uint)(regions?.Length ?? 0), marshalledRegions);
 
 				}
 				finally
@@ -951,7 +951,7 @@ namespace SharpVk
 
 					Interop.Buffer marshalledDestinationBuffer = destinationBuffer.Pack();
 					fixed(byte* marshalledData = data)
-					Interop.Commands.vkCmdUpdateBuffer(this.handle, marshalledDestinationBuffer, destinationOffset, (DeviceSize)data.Length, marshalledData);
+					Interop.Commands.vkCmdUpdateBuffer(this.handle, marshalledDestinationBuffer, destinationOffset, (DeviceSize)(data?.Length ?? 0), marshalledData);
 
 				}
 				finally
@@ -998,7 +998,7 @@ namespace SharpVk
 
 					Interop.Image marshalledImage = image.Pack();
 					fixed(ImageSubresourceRange* marshalledRanges = ranges)
-					Interop.Commands.vkCmdClearColorImage(this.handle, marshalledImage, imageLayout, &color, (uint)ranges.Length, marshalledRanges);
+					Interop.Commands.vkCmdClearColorImage(this.handle, marshalledImage, imageLayout, &color, (uint)(ranges?.Length ?? 0), marshalledRanges);
 
 				}
 				finally
@@ -1022,7 +1022,7 @@ namespace SharpVk
 
 					Interop.Image marshalledImage = image.Pack();
 					fixed(ImageSubresourceRange* marshalledRanges = ranges)
-					Interop.Commands.vkCmdClearDepthStencilImage(this.handle, marshalledImage, imageLayout, &depthStencil, (uint)ranges.Length, marshalledRanges);
+					Interop.Commands.vkCmdClearDepthStencilImage(this.handle, marshalledImage, imageLayout, &depthStencil, (uint)(ranges?.Length ?? 0), marshalledRanges);
 
 				}
 				finally
@@ -1046,7 +1046,7 @@ namespace SharpVk
 
 					fixed(ClearAttachment* marshalledAttachments = attachments)
 					fixed(ClearRect* marshalledRects = rects)
-					Interop.Commands.vkCmdClearAttachments(this.handle, (uint)attachments.Length, marshalledAttachments, (uint)rects.Length, marshalledRects);
+					Interop.Commands.vkCmdClearAttachments(this.handle, (uint)(attachments?.Length ?? 0), marshalledAttachments, (uint)(rects?.Length ?? 0), marshalledRects);
 
 				}
 				finally
@@ -1071,7 +1071,7 @@ namespace SharpVk
 					Interop.Image marshalledSourceImage = sourceImage.Pack();
 					Interop.Image marshalledDestinationImage = destinationImage.Pack();
 					fixed(ImageResolve* marshalledRegions = regions)
-					Interop.Commands.vkCmdResolveImage(this.handle, marshalledSourceImage, sourceImageLayout, marshalledDestinationImage, destinationImageLayout, (uint)regions.Length, marshalledRegions);
+					Interop.Commands.vkCmdResolveImage(this.handle, marshalledSourceImage, sourceImageLayout, marshalledDestinationImage, destinationImageLayout, (uint)(regions?.Length ?? 0), marshalledRegions);
 
 				}
 				finally
@@ -1195,7 +1195,7 @@ namespace SharpVk
 					{
 					    marshalledImageMemoryBarriers = null;
 					}
-					Interop.Commands.vkCmdWaitEvents(this.handle, (uint)events.Length, marshalledEvents, sourceStageMask, destinationStageMask, (uint)memoryBarriers.Length, marshalledMemoryBarriers, (uint)bufferMemoryBarriers.Length, marshalledBufferMemoryBarriers, (uint)imageMemoryBarriers.Length, marshalledImageMemoryBarriers);
+					Interop.Commands.vkCmdWaitEvents(this.handle, (uint)(events?.Length ?? 0), marshalledEvents, sourceStageMask, destinationStageMask, (uint)(memoryBarriers?.Length ?? 0), marshalledMemoryBarriers, (uint)(bufferMemoryBarriers?.Length ?? 0), marshalledBufferMemoryBarriers, (uint)(imageMemoryBarriers?.Length ?? 0), marshalledImageMemoryBarriers);
 
 				}
 				finally
@@ -1259,7 +1259,7 @@ namespace SharpVk
 					{
 					    marshalledImageMemoryBarriers = null;
 					}
-					Interop.Commands.vkCmdPipelineBarrier(this.handle, sourceStageMask, destinationStageMask, dependencyFlags, (uint)memoryBarriers.Length, marshalledMemoryBarriers, (uint)bufferMemoryBarriers.Length, marshalledBufferMemoryBarriers, (uint)imageMemoryBarriers.Length, marshalledImageMemoryBarriers);
+					Interop.Commands.vkCmdPipelineBarrier(this.handle, sourceStageMask, destinationStageMask, dependencyFlags, (uint)(memoryBarriers?.Length ?? 0), marshalledMemoryBarriers, (uint)(bufferMemoryBarriers?.Length ?? 0), marshalledBufferMemoryBarriers, (uint)(imageMemoryBarriers?.Length ?? 0), marshalledImageMemoryBarriers);
 
 				}
 				finally
@@ -1399,7 +1399,7 @@ namespace SharpVk
 
 					Interop.PipelineLayout marshalledLayout = layout.Pack();
 					fixed(byte* marshalledValues = values)
-					Interop.Commands.vkCmdPushConstants(this.handle, marshalledLayout, stageFlags, offset, (uint)values.Length, marshalledValues);
+					Interop.Commands.vkCmdPushConstants(this.handle, marshalledLayout, stageFlags, offset, (uint)(values?.Length ?? 0), marshalledValues);
 
 				}
 				finally
@@ -1503,7 +1503,7 @@ namespace SharpVk
 					{
 					    marshalledCommandBuffers = null;
 					}
-					Interop.Commands.vkCmdExecuteCommands(this.handle, (uint)commandBuffers.Length, marshalledCommandBuffers);
+					Interop.Commands.vkCmdExecuteCommands(this.handle, (uint)(commandBuffers?.Length ?? 0), marshalledCommandBuffers);
 
 				}
 				finally
@@ -1753,7 +1753,7 @@ namespace SharpVk
 					{
 					    marshalledCommandBuffers = null;
 					}
-					Interop.Commands.vkFreeCommandBuffers(this.parent.handle, this.handle, (uint)commandBuffers.Length, marshalledCommandBuffers);
+					Interop.Commands.vkFreeCommandBuffers(this.parent.handle, this.handle, (uint)(commandBuffers?.Length ?? 0), marshalledCommandBuffers);
 
 				}
 				finally
@@ -1961,7 +1961,7 @@ namespace SharpVk
 					{
 					    marshalledDescriptorSets = null;
 					}
-					commandResult = Interop.Commands.vkFreeDescriptorSets(this.parent.handle, this.handle, (uint)descriptorSets.Length, marshalledDescriptorSets);
+					commandResult = Interop.Commands.vkFreeDescriptorSets(this.parent.handle, this.handle, (uint)(descriptorSets?.Length ?? 0), marshalledDescriptorSets);
 
 					if (SharpVkException.IsError(commandResult))
 					{
@@ -2322,7 +2322,7 @@ namespace SharpVk
 					{
 					    marshalledMemoryRanges = null;
 					}
-					commandResult = Interop.Commands.vkFlushMappedMemoryRanges(this.handle, (uint)memoryRanges.Length, marshalledMemoryRanges);
+					commandResult = Interop.Commands.vkFlushMappedMemoryRanges(this.handle, (uint)(memoryRanges?.Length ?? 0), marshalledMemoryRanges);
 
 					if (SharpVkException.IsError(commandResult))
 					{
@@ -2364,7 +2364,7 @@ namespace SharpVk
 					{
 					    marshalledMemoryRanges = null;
 					}
-					commandResult = Interop.Commands.vkInvalidateMappedMemoryRanges(this.handle, (uint)memoryRanges.Length, marshalledMemoryRanges);
+					commandResult = Interop.Commands.vkInvalidateMappedMemoryRanges(this.handle, (uint)(memoryRanges?.Length ?? 0), marshalledMemoryRanges);
 
 					if (SharpVkException.IsError(commandResult))
 					{
@@ -2443,7 +2443,7 @@ namespace SharpVk
 					{
 					    marshalledFences = null;
 					}
-					commandResult = Interop.Commands.vkResetFences(this.handle, (uint)fences.Length, marshalledFences);
+					commandResult = Interop.Commands.vkResetFences(this.handle, (uint)(fences?.Length ?? 0), marshalledFences);
 
 					if (SharpVkException.IsError(commandResult))
 					{
@@ -2485,7 +2485,7 @@ namespace SharpVk
 					{
 					    marshalledFences = null;
 					}
-					commandResult = Interop.Commands.vkWaitForFences(this.handle, (uint)fences.Length, marshalledFences, waitAll, timeout);
+					commandResult = Interop.Commands.vkWaitForFences(this.handle, (uint)(fences?.Length ?? 0), marshalledFences, waitAll, timeout);
 
 					if (SharpVkException.IsError(commandResult))
 					{
@@ -2866,7 +2866,7 @@ namespace SharpVk
 					Interop.AllocationCallbacks marshalledAllocator;
 					if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
 					Interop.Pipeline* marshalledPipelines = (Interop.Pipeline*)Interop.HeapUtil.Allocate<Interop.Pipeline>(createInfos.Length);
-					commandResult = Interop.Commands.vkCreateGraphicsPipelines(this.handle, marshalledPipelineCache, (uint)createInfos.Length, marshalledCreateInfos, this.parent.Allocator == null ? null : &marshalledAllocator, marshalledPipelines);
+					commandResult = Interop.Commands.vkCreateGraphicsPipelines(this.handle, marshalledPipelineCache, (uint)(createInfos?.Length ?? 0), marshalledCreateInfos, this.parent.Allocator == null ? null : &marshalledAllocator, marshalledPipelines);
 
 					if (SharpVkException.IsError(commandResult))
 					{
@@ -2920,7 +2920,7 @@ namespace SharpVk
 					Interop.AllocationCallbacks marshalledAllocator;
 					if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
 					Interop.Pipeline* marshalledPipelines = (Interop.Pipeline*)Interop.HeapUtil.Allocate<Interop.Pipeline>(createInfos.Length);
-					commandResult = Interop.Commands.vkCreateComputePipelines(this.handle, marshalledPipelineCache, (uint)createInfos.Length, marshalledCreateInfos, this.parent.Allocator == null ? null : &marshalledAllocator, marshalledPipelines);
+					commandResult = Interop.Commands.vkCreateComputePipelines(this.handle, marshalledPipelineCache, (uint)(createInfos?.Length ?? 0), marshalledCreateInfos, this.parent.Allocator == null ? null : &marshalledAllocator, marshalledPipelines);
 
 					if (SharpVkException.IsError(commandResult))
 					{
@@ -3167,7 +3167,7 @@ namespace SharpVk
 					{
 					    marshalledDescriptorCopies = null;
 					}
-					Interop.Commands.vkUpdateDescriptorSets(this.handle, (uint)descriptorWrites.Length, marshalledDescriptorWrites, (uint)descriptorCopies.Length, marshalledDescriptorCopies);
+					Interop.Commands.vkUpdateDescriptorSets(this.handle, (uint)(descriptorWrites?.Length ?? 0), marshalledDescriptorWrites, (uint)(descriptorCopies?.Length ?? 0), marshalledDescriptorCopies);
 
 				}
 				finally
@@ -3399,7 +3399,7 @@ namespace SharpVk
 					Interop.AllocationCallbacks marshalledAllocator;
 					if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
 					Interop.Swapchain* marshalledSwapchains = (Interop.Swapchain*)Interop.HeapUtil.Allocate<Interop.Swapchain>(createInfos.Length);
-					commandResult = commandDelegate(this.handle, (uint)createInfos.Length, marshalledCreateInfos, this.parent.Allocator == null ? null : &marshalledAllocator, marshalledSwapchains);
+					commandResult = commandDelegate(this.handle, (uint)(createInfos?.Length ?? 0), marshalledCreateInfos, this.parent.Allocator == null ? null : &marshalledAllocator, marshalledSwapchains);
 
 					if (SharpVkException.IsError(commandResult))
 					{
@@ -6046,7 +6046,7 @@ namespace SharpVk
 					{
 					    marshalledSourceCaches = null;
 					}
-					commandResult = Interop.Commands.vkMergePipelineCaches(this.parent.handle, this.handle, (uint)sourceCaches.Length, marshalledSourceCaches);
+					commandResult = Interop.Commands.vkMergePipelineCaches(this.parent.handle, this.handle, (uint)(sourceCaches?.Length ?? 0), marshalledSourceCaches);
 
 					if (SharpVkException.IsError(commandResult))
 					{
@@ -6219,7 +6219,7 @@ namespace SharpVk
 					Result commandResult;
 
 					fixed(byte* marshalledData = data)
-					commandResult = Interop.Commands.vkGetQueryPoolResults(this.parent.handle, this.handle, firstQuery, queryCount, (Size)data.Length, marshalledData, stride, flags);
+					commandResult = Interop.Commands.vkGetQueryPoolResults(this.parent.handle, this.handle, firstQuery, queryCount, (Size)(data?.Length ?? 0), marshalledData, stride, flags);
 
 					if (SharpVkException.IsError(commandResult))
 					{
@@ -6309,7 +6309,7 @@ namespace SharpVk
 					    marshalledSubmits = null;
 					}
 					Interop.Fence marshalledFence = fence?.Pack() ?? Interop.Fence.Null;
-					commandResult = Interop.Commands.vkQueueSubmit(this.handle, (uint)submits.Length, marshalledSubmits, marshalledFence);
+					commandResult = Interop.Commands.vkQueueSubmit(this.handle, (uint)(submits?.Length ?? 0), marshalledSubmits, marshalledFence);
 
 					if (SharpVkException.IsError(commandResult))
 					{
@@ -6380,7 +6380,7 @@ namespace SharpVk
 					    marshalledBindInfo = null;
 					}
 					Interop.Fence marshalledFence = fence?.Pack() ?? Interop.Fence.Null;
-					commandResult = Interop.Commands.vkQueueBindSparse(this.handle, (uint)bindInfo.Length, marshalledBindInfo, marshalledFence);
+					commandResult = Interop.Commands.vkQueueBindSparse(this.handle, (uint)(bindInfo?.Length ?? 0), marshalledBindInfo, marshalledFence);
 
 					if (SharpVkException.IsError(commandResult))
 					{

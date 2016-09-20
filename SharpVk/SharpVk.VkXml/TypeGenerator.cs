@@ -538,7 +538,7 @@ namespace SharpVk.VkXml
 
                             newMethod.Parameters.Add(new TypeSet.VkMethodParam
                             {
-                                ArgumentName = $"({paramType.Name}){mapping}.Length"
+                                ArgumentName = $"({paramType.Name})({mapping}?.Length ?? 0)"
                             });
                         }
                         else if (parameter.Dimensions?.Length > 0)
@@ -1141,9 +1141,28 @@ namespace SharpVk.VkXml
 
                 foreach (var memberName in lenMembers.Keys)
                 {
-                    members[memberName].IsInteropOnly = true;
+                    //HACK VkDescriptorSetLayoutBinding.descriptorCount is a
+                    // special case, as the value can be non-zero when the
+                    // only referencing array member (pImmutableSamplers) is
+                    // null.
 
-                    newClass.MarshalToStatements.Add($"result.{memberNameLookup[memberName]} = ({members[memberName].InteropTypeName})({lenMembers[memberName]});");
+                    if (type.Data.VkName == "VkDescriptorSetLayoutBinding" && memberName == "descriptorCount")
+                    {
+                        newClass.MarshalToStatements.Add($"result.{memberNameLookup[memberName]} = (uint)(this.ImmutableSamplers?.Length ?? (int)this.{memberNameLookup[memberName]});");
+                    }
+                    //HACK Map VkWriteDescriptorSet to access length of any non-null array field
+                    else if (type.Data.VkName == "VkWriteDescriptorSet" && memberName == "descriptorCount")
+                    {
+                        members[memberName].IsInteropOnly = true;
+
+                        newClass.MarshalToStatements.Add($"result.{memberNameLookup[memberName]} = (uint)(this.ImageInfo?.Length ?? this.BufferInfo?.Length ?? this.TexelBufferView?.Length ?? 0);");
+                    }
+                    else
+                    {
+                        members[memberName].IsInteropOnly = true;
+
+                        newClass.MarshalToStatements.Add($"result.{memberNameLookup[memberName]} = ({members[memberName].InteropTypeName})({lenMembers[memberName]});");
+                    }
                 }
 
                 foreach (var member in members.Values.Where(x => !x.IsInteropOnly))
@@ -1601,6 +1620,8 @@ namespace SharpVk.VkXml
                     return "SInt";
                 case "sfloat":
                     return "SFloat";
+                case "d3d11":
+                    return "D3D11";
             }
 
             return value;
