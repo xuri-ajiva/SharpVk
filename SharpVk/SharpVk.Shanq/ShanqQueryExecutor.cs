@@ -1,4 +1,5 @@
 ﻿using Remotion.Linq;
+using Remotion.Linq.Clauses;
 using SharpVk.Spirv;
 using System;
 using System.Collections.Generic;
@@ -63,9 +64,14 @@ namespace SharpVk.Shanq
                 hasBuiltInOutput |= field.GetCustomAttribute<BuiltInAttribute>() != null;
             }
 
-            var inputType = queryModel.MainFromClause.ItemType;
+            var inputTypes = new List<Type> { queryModel.MainFromClause.ItemType };
 
-            foreach (var field in inputType.GetFields())
+            foreach(var clause in queryModel.BodyClauses.OfType<AdditionalFromClause>())
+            {
+                inputTypes.Add(clause.ItemType);
+            }
+
+            foreach (var field in inputTypes.SelectMany(type => type.GetFields()))
             {
                 if (field.GetCustomAttribute<LocationAttribute>() != null)
                 {
@@ -153,7 +159,7 @@ namespace SharpVk.Shanq
                         {
                             file.AddFunctionStatement(Op.OpStore, fieldMapping[field], valueId);
                         }
-                        else if(builtinList.ContainsKey(field))
+                        else if (builtinList.ContainsKey(field))
                         {
                             ResultId constantIndex = expressionVisitor.Visit(Expression.Constant(builtinList[field].Item3));
                             ResultId fieldId = file.GetNextResultId();

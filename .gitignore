@@ -237,3 +237,6 @@ _Pvt_Extensions
 
 # Include contents of Lib folder
 !libs/*
+
+#Ignore local testing code
+Test/

@@ -140,7 +140,7 @@ namespace SharpVk
             {
                 this.UpdateUniformBuffer();
                 this.DrawFrame();
-                
+
                 Application.DoEvents();
             }
         }
@@ -191,6 +191,28 @@ namespace SharpVk
             this.imageAvailableSemaphore.Dispose();
             this.imageAvailableSemaphore = null;
 
+            this.descriptorPool.Dispose();
+            this.descriptorPool = null;
+            this.descriptorSet = null;
+
+            this.device.FreeMemory(this.uniformBufferMemory);
+            this.uniformBufferMemory = null;
+
+            this.uniformBuffer.Dispose();
+            this.uniformBuffer = null;
+
+            this.device.FreeMemory(this.uniformStagingBufferMemory);
+            this.uniformStagingBufferMemory = null;
+
+            this.uniformStagingBuffer.Dispose();
+            this.uniformStagingBuffer = null;
+
+            this.device.FreeMemory(this.indexBufferMemory);
+            this.indexBufferMemory = null;
+
+            this.indexBuffer.Dispose();
+            this.indexBuffer = null;
+
             this.device.FreeMemory(this.vertexBufferMemory);
             this.vertexBufferMemory = null;
 
@@ -199,6 +221,7 @@ namespace SharpVk
 
             this.commandPool.Dispose();
             this.commandPool = null;
+            this.commandBuffers = null;
 
             foreach (var frameBuffer in this.frameBuffers)
             {
@@ -217,6 +240,9 @@ namespace SharpVk
                 imageView.Dispose();
             }
             this.swapChainImageViews = null;
+
+            this.descriptorSetLayout.Dispose();
+            this.descriptorSetLayout = null;
 
             this.renderPass.Dispose();
             this.renderPass = null;
@@ -247,7 +273,7 @@ namespace SharpVk
                 Proj = mat4.Perspective((float)Math.PI / 4f, this.swapChainExtent.Width / (float)this.swapChainExtent.Height, 0.1f, 10)
             };
 
-            ubo.Proj[1,1] *= -1;
+            ubo.Proj[1, 1] *= -1;
 
             uint uboSize = MemUtil.SizeOf<UniformBufferObject>();
 
@@ -495,7 +521,7 @@ namespace SharpVk
         {
             this.descriptorSetLayout = device.CreateDescriptorSetLayout(new DescriptorSetLayoutCreateInfo
             {
-                Bindings = new []
+                Bindings = new[]
                 {
                     new DescriptorSetLayoutBinding
                     {
@@ -519,12 +545,12 @@ namespace SharpVk
                 CodeSize = codeSize
             });
 
-            var fragShader = ShanqShader<FragmentInput>.CreateFragmentModule(this.device,
-                                                                                fragmentInput => from input in fragmentInput
-                                                                                                 select new FragmentOutput
-                                                                                                 {
-                                                                                                     Colour = new vec4(input.Colour, 1)
-                                                                                                 });
+            var fragShader = ShanqShader.CreateFragmentModule(this.device,
+                                                                shanq => from input in shanq.GetInput<FragmentInput>()
+                                                                         select new FragmentOutput
+                                                                         {
+                                                                             Colour = new vec4(input.Colour, 1)
+                                                                         });
 
             var bindingDescription = Vertex.GetBindingDescription();
             var attributeDescriptions = Vertex.GetAttributeDescriptions();
@@ -713,7 +739,7 @@ namespace SharpVk
         {
             uint bufferSize = MemUtil.SizeOf<UniformBufferObject>();
 
-            this.CreateBuffer(bufferSize,  BufferUsageFlags.TransferSource, MemoryPropertyFlags.HostVisible | MemoryPropertyFlags.HostCoherent, out this.uniformStagingBuffer, out this.uniformStagingBufferMemory);
+            this.CreateBuffer(bufferSize, BufferUsageFlags.TransferSource, MemoryPropertyFlags.HostVisible | MemoryPropertyFlags.HostCoherent, out this.uniformStagingBuffer, out this.uniformStagingBufferMemory);
             this.CreateBuffer(bufferSize, BufferUsageFlags.TransferDestination | BufferUsageFlags.UniformBuffer, MemoryPropertyFlags.DeviceLocal, out this.uniformBuffer, out this.uniformBufferMemory);
         }
 
@@ -738,7 +764,7 @@ namespace SharpVk
             this.descriptorSet = this.device.AllocateDescriptorSets(new DescriptorSetAllocateInfo
             {
                 DescriptorPool = this.descriptorPool,
-                SetLayouts = new []
+                SetLayouts = new[]
                 {
                     this.descriptorSetLayout
                 }
