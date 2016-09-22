@@ -18,6 +18,7 @@ namespace SharpVk.Generator
             var fileGenerator = new FileGenerator(".\\Generated");
 
             new InteropCommandsGenerator().Run(types, fileGenerator);
+            new InteropHandleGenerator().Run(types, fileGenerator);
 
             Console.WriteLine("Done");
             Console.ReadLine();

@@ -33,20 +33,27 @@ namespace SharpVk.VkXml
             {
                 Directory.CreateDirectory(Path.GetDirectoryName(tempFile));
 
-                using (var fileResponse = this.client.GetAsync(this.fileUrl).Result)
+                try
                 {
-                    if (fileResponse.IsSuccessStatusCode)
+                    using (var fileResponse = this.client.GetAsync(this.fileUrl).Result)
                     {
-                        if (File.Exists(tempFile))
+                        if (fileResponse.IsSuccessStatusCode)
                         {
-                            File.Delete(tempFile);
-                        }
+                            if (File.Exists(tempFile))
+                            {
+                                File.Delete(tempFile);
+                            }
 
-                        using (var tempFileStream = File.OpenWrite(tempFile))
-                        {
-                            await fileResponse.Content.CopyToAsync(tempFileStream);
+                            using (var tempFileStream = File.OpenWrite(tempFile))
+                            {
+                                await fileResponse.Content.CopyToAsync(tempFileStream);
+                            }
                         }
                     }
+                }
+                catch
+                {
+
                 }
             }
 

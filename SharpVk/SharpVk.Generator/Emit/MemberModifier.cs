@@ -6,6 +6,7 @@ namespace SharpVk.Generator.Emit
     public enum MemberModifier
     {
         None = 0,
-        Static = 1 << 0
+        Static = 1 << 0,
+        Const = 2 << 0
     }
 }

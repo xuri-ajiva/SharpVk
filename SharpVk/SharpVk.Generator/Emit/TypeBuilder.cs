@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Text;
 
 namespace SharpVk.Generator.Emit
 {
@@ -14,11 +15,11 @@ namespace SharpVk.Generator.Emit
         {
         }
 
-        public void EmitField(string type, string name, AccessModifier accessModifier = AccessModifier.Private)
+        public void EmitField(string type, string name, AccessModifier accessModifier = AccessModifier.Private, MemberModifier methodModifers = MemberModifier.None)
         {
             this.EmitMemberSpacing();
 
-            this.writer.WriteLine($"{accessModifier.Emit()} {type} {name};");
+            this.writer.WriteLine($"{accessModifier.Emit()} {RenderMemberModifiers(methodModifers)}{type} {name};");
         }
 
         public void EmitMethod(string returnType,
@@ -38,7 +39,7 @@ namespace SharpVk.Generator.Emit
                 }
             }
 
-            this.writer.Write($"{accessModifier.Emit()} {returnType} {name}()");
+            this.writer.Write($"{accessModifier.Emit()} {RenderMemberModifiers(methodModifers)}{returnType} {name}()");
 
             if (methodBody == null)
             {
@@ -55,9 +56,25 @@ namespace SharpVk.Generator.Emit
             }
         }
 
+        private string RenderMemberModifiers(MemberModifier modifiers)
+        {
+            var builder = new StringBuilder();
+
+            if (modifiers.HasFlag(MemberModifier.Const))
+            {
+                builder.Append("const ");
+            }
+            else if (modifiers.HasFlag(MemberModifier.Static))
+            {
+                builder.Append("static ");
+            }
+
+            return builder.ToString();
+        }
+
         private void EmitMemberSpacing()
         {
-            if(!this.hasFirstMember)
+            if (!this.hasFirstMember)
             {
                 this.writer.WriteLine();
             }

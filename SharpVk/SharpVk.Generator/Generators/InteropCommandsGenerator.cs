@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using SharpVk.VkXml;
 using System.Linq;
+using System;
 using SharpVk.Generator.Emit;
 
 namespace SharpVk.Generator.Generators
@@ -27,6 +28,22 @@ namespace SharpVk.Generator.Generators
             }
         }
 
+        public override string Name
+        {
+            get
+            {
+                return "Commands";
+            }
+        }
+
+        public override string Modifiers
+        {
+            get
+            {
+                return "static unsafe";
+            }
+        }
+
         public InteropCommandsClassGenerator(TypeSet types)
         {
             this.types = types;
@@ -34,9 +51,13 @@ namespace SharpVk.Generator.Generators
 
         public override void Run(TypeBuilder builder)
         {
-            foreach (var type in this.types.Commands)
+            //writer.WriteLine(@"public const string VulkanDll = ""vulkan-1.dll"";");
+
+            builder.EmitField("string", "VulkanDll", AccessModifier.Public, MemberModifier.Const);
+
+            foreach (var command in this.types.Commands)
             {
-                builder.EmitMethod("void", type.Name, null, null, AccessModifier.Public, MemberModifier.Static, new[] { "DllImport" });
+                builder.EmitMethod("void", command.Name, null, null, AccessModifier.Public, MemberModifier.Static, new[] { "DllImport(VulkanDll)" });
             }
         }
     }

@@ -14,6 +14,24 @@ namespace SharpVk.Generator.Generators
             }
         }
 
+        public abstract string Name
+        {
+            get;
+        }
+
+        public abstract string Modifiers
+        {
+            get;
+        }
+
+        public virtual bool IsStruct
+        {
+            get
+            {
+                return false;
+            }
+        }
+        
         public abstract void Run(TypeBuilder builder);
     }
 }
