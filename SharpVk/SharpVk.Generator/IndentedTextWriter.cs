@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
+﻿using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace SharpVk.Generator
 {
     public class IndentedTextWriter
         : TextWriter
     {
-        private readonly StreamWriter baseWriter;
+        private readonly TextWriter baseWriter;
         private int indent;
         private bool beginningOfLine;
 
-        public IndentedTextWriter(StreamWriter baseWriter)
+        public IndentedTextWriter(TextWriter baseWriter)
             : base(baseWriter.FormatProvider)
         {
             this.baseWriter = baseWriter;
@@ -46,6 +43,11 @@ namespace SharpVk.Generator
             {
                 this.beginningOfLine = true;
             }
+        }
+
+        public IndentedTextWriter GetSubWriter()
+        {
+            return new IndentedTextWriter(this);
         }
 
         public override Encoding Encoding

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using SharpVk.Generator.Emit;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SharpVk.Generator.Generators
@@ -13,6 +14,6 @@ namespace SharpVk.Generator.Generators
             }
         }
 
-        public abstract void Run(IndentedTextWriter writer);
+        public abstract void Run(TypeBuilder builder);
     }
 }

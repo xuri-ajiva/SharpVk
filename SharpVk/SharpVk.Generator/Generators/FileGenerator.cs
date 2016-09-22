@@ -1,4 +1,5 @@
-﻿using SharpVk.VkXml;
+﻿using SharpVk.Generator.Emit;
+using SharpVk.VkXml;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -30,7 +31,7 @@ namespace SharpVk.Generator.Generators
             {
                 var indentedWriter = new IndentedTextWriter(generatedFile);
 
-                foreach(var requirement in classGenerators.SelectMany(x=>x.RequiredNamespaces).Distinct())
+                foreach (var requirement in classGenerators.SelectMany(x => x.RequiredNamespaces).Distinct())
                 {
                     indentedWriter.WriteLine($"using {requirement};");
                 }
@@ -38,9 +39,13 @@ namespace SharpVk.Generator.Generators
                 indentedWriter.WriteLine($"namespace SharpVk.{outputFolder}");
                 indentedWriter.WriteLine("{");
                 indentedWriter.IncreaseIndent();
-                foreach(var classGenerator in classGenerators)
+                indentedWriter.WriteLine("public class Temp");
+                foreach (var classGenerator in classGenerators)
                 {
-                    classGenerator.Run(indentedWriter);
+                    using (var builder = new TypeBuilder(indentedWriter.GetSubWriter()))
+                    {
+                        classGenerator.Run(builder);
+                    }
                 }
                 indentedWriter.DecreaseIndent();
                 indentedWriter.WriteLine("}");

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using SharpVk.VkXml;
 using System.Linq;
+using SharpVk.Generator.Emit;
 
 namespace SharpVk.Generator.Generators
 {
@@ -31,22 +32,12 @@ namespace SharpVk.Generator.Generators
             this.types = types;
         }
 
-        public override void Run(IndentedTextWriter writer)
+        public override void Run(TypeBuilder builder)
         {
-            writer.WriteLine("public static class Commands");
-            writer.WriteLine("{");
-            writer.IncreaseIndent();
             foreach (var type in this.types.Commands)
             {
-                writer.WriteLine("[DllImport]");
-                writer.WriteLine($"public static void {type.Name}();");
-                if (type != this.types.Commands.Last())
-                {
-                    writer.WriteLine();
-                }
+                builder.EmitMethod("void", type.Name, null, null, AccessModifier.Public, MemberModifier.Static, new[] { "DllImport" });
             }
-            writer.DecreaseIndent();
-            writer.WriteLine("}");
         }
     }
 }

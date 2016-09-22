@@ -43,6 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Emit\AccessModifier.cs" />
+    <Compile Include="Emit\BlockEmitter.cs" />
+    <Compile Include="Emit\CodeBlockEmitter.cs" />
+    <Compile Include="Emit\FileBuilder.cs" />
+    <Compile Include="Emit\MemberModifier.cs" />
+    <Compile Include="Emit\ParameterEmitter.cs" />
+    <Compile Include="Emit\TypeBuilder.cs" />
     <Compile Include="Generators\ClassGenerator.cs" />
     <Compile Include="Generators\FileGenerator.cs" />
     <Compile Include="Generators\InteropCommandsGenerator.cs" />
