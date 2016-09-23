@@ -1,6 +1,9 @@
-﻿namespace SharpVk.Generator.Generators
+﻿using SharpVk.VkXml;
+
+namespace SharpVk.Generator.Generators
 {
-    public class ModelGenerator
+    public abstract class ModelGenerator
     {
+        public abstract void Run(TypeSet types, FileGenerator fileGenerator);
     }
 }

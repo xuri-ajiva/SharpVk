@@ -1,15 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using SharpVk.Generator.Emit;
 using SharpVk.VkXml;
+using System.Collections.Generic;
 using System.Linq;
-using System;
-using SharpVk.Generator.Emit;
+
+using static SharpVk.Generator.Emit.ExpressionBuilder;
 
 namespace SharpVk.Generator.Generators
 {
     public class InteropHandleGenerator
         : ModelGenerator
     {
-        public void Run(TypeSet types, FileGenerator fileGenerator)
+        public override void Run(TypeSet types, FileGenerator fileGenerator)
         {
             fileGenerator.Run("Interop", "Handles", types.Handles.Select(x => new InteropHandleClassGenerator(x)));
         }
@@ -35,15 +36,7 @@ namespace SharpVk.Generator.Generators
                 return this.handle.Name;
             }
         }
-
-        public override string Modifiers
-        {
-            get
-            {
-                return "";
-            }
-        }
-
+        
         public override bool IsStruct
         {
             get
@@ -59,31 +52,21 @@ namespace SharpVk.Generator.Generators
 
         public override void Run(TypeBuilder builder)
         {
+            const string handleFieldName = "handle";
+
             string internalHandleType = this.handle.IsDispatch
                                             ? "IntPtr"
                                             : "ulong";
 
-            //writer.WriteLine($"internal {internalHandleType} handle;");
-            //writer.WriteLine();
-            //writer.WriteLine("/// <summary>");
-            //writer.WriteLine($"/// Returns a value representing a null {this.handle.Name} handle.");
-            //writer.WriteLine("/// </summary>");
-            //writer.WriteLine($"public static {this.handle.Name} Null");
-            //writer.WriteLine("{");
-            //writer.IncreaseIndent();
-            //writer.WriteLine("get");
-            //writer.WriteLine("{");
-            //writer.IncreaseIndent();
-            //writer.WriteLine($"return new {this.handle.Name}");
-            //writer.WriteLine("{");
-            //writer.IncreaseIndent();
-            //writer.WriteLine($"handle = default({internalHandleType})");
-            //writer.DecreaseIndent();
-            //writer.WriteLine("};");
-            //writer.DecreaseIndent();
-            //writer.WriteLine("}");
-            //writer.DecreaseIndent();
-            //writer.WriteLine("}");
+            builder.EmitField(internalHandleType, handleFieldName, AccessModifier.Internal);
+
+            builder.EmitProperty(this.handle.Name, "Null", AccessModifier.Public, MemberModifier.Static, getBuilder =>
+            {
+                getBuilder.EmitReturn(MemberInit(this.handle.Name, member =>
+                    {
+                        member.EmitMember(handleFieldName, Default(internalHandleType));
+                    }));
+            });
         }
     }
 }

@@ -4,12 +4,16 @@ using System.Linq;
 using System;
 using SharpVk.Generator.Emit;
 
+using static SharpVk.Generator.Emit.AccessModifier;
+using static SharpVk.Generator.Emit.MemberModifier;
+using System.Linq.Expressions;
+
 namespace SharpVk.Generator.Generators
 {
     public class InteropCommandsGenerator
         : ModelGenerator
     {
-        public void Run(TypeSet types, FileGenerator fileGenerator)
+        public override void Run(TypeSet types, FileGenerator fileGenerator)
         {
             fileGenerator.Run("Interop", "Commands", new[] { new InteropCommandsClassGenerator(types) });
         }
@@ -36,13 +40,7 @@ namespace SharpVk.Generator.Generators
             }
         }
 
-        public override string Modifiers
-        {
-            get
-            {
-                return "static unsafe";
-            }
-        }
+        public override IEnumerable<string> Modifiers => new[] { "static", "unsafe" };
 
         public InteropCommandsClassGenerator(TypeSet types)
         {
@@ -51,13 +49,17 @@ namespace SharpVk.Generator.Generators
 
         public override void Run(TypeBuilder builder)
         {
-            //writer.WriteLine(@"public const string VulkanDll = ""vulkan-1.dll"";");
-
-            builder.EmitField("string", "VulkanDll", AccessModifier.Public, MemberModifier.Const);
+            builder.EmitField("string", "VulkanDll", Public, Const, expr => expr.EmitLiteral("vulkan-1.dll"));
 
             foreach (var command in this.types.Commands)
             {
-                builder.EmitMethod("void", command.Name, null, null, AccessModifier.Public, MemberModifier.Static, new[] { "DllImport(VulkanDll)" });
+                builder.EmitMethod("void", command.Name, null, paramsBuilder =>
+                    {
+                        foreach(var param in command.Parameters)
+                        {
+                            paramsBuilder.EmitParam(param.TypeName, param.Name);
+                        }
+                    }, Public, Static, new[] { "DllImport(VulkanDll)" });
             }
         }
     }

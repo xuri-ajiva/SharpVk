@@ -56,7 +56,7 @@ namespace SharpVk.Generator.Generators
                 indentedWriter.WriteLine("// This file was automatically generated and should not be editted directly.");
                 indentedWriter.WriteLine();
 
-                foreach (var requirement in classGenerators.SelectMany(x => x.RequiredNamespaces).Distinct())
+                foreach (var requirement in classGenerators.SelectMany(x => x.RequiredNamespaces).Distinct().OrderBy(x => x))
                 {
                     indentedWriter.WriteLine($"using {requirement};");
                 }
@@ -79,13 +79,18 @@ namespace SharpVk.Generator.Generators
                         isFirstClass = false;
                     }
 
+                    foreach (var attributeName in classGenerator.Attributes)
+                    {
+                        indentedWriter.WriteLine($"[{attributeName}]");
+                    }
+
                     string typeDeclaration = classGenerator.IsStruct
                                                 ? "struct"
                                                 : "class";
 
-                    if (!string.IsNullOrEmpty(classGenerator.Modifiers))
+                    if (classGenerator.Modifiers != null && classGenerator.Modifiers.Any())
                     {
-                        typeDeclaration = classGenerator.Modifiers + " " + typeDeclaration;
+                        typeDeclaration = string.Join(" ", classGenerator.Modifiers) + " " + typeDeclaration;
                     }
 
                     indentedWriter.WriteLine($"public {typeDeclaration} {classGenerator.Name}");

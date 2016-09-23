@@ -2,12 +2,12 @@
 
 namespace SharpVk.Generator.Emit
 {
-    public class BlockEmitter
+    public class BlockBuilder
         : IDisposable
     {
         protected readonly IndentedTextWriter writer;
 
-        public BlockEmitter(IndentedTextWriter writer)
+        public BlockBuilder(IndentedTextWriter writer)
         {
             this.writer = writer;
             this.writer.WriteLine("{");

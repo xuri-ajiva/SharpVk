@@ -2,6 +2,8 @@
 using SharpVk.VkXml;
 using System;
 
+using static System.Linq.Expressions.Expression;
+
 namespace SharpVk.Generator
 {
     class Program
@@ -17,8 +19,15 @@ namespace SharpVk.Generator
 
             var fileGenerator = new FileGenerator(".\\Generated");
 
-            new InteropCommandsGenerator().Run(types, fileGenerator);
-            new InteropHandleGenerator().Run(types, fileGenerator);
+            foreach (var modelGenerator in new ModelGenerator[]
+            {
+                new InteropCommandsGenerator(),
+                new InteropHandleGenerator(),
+                new InteropStructGenerator()
+            })
+            {
+                modelGenerator.Run(types, fileGenerator);
+            }
 
             Console.WriteLine("Done");
             Console.ReadLine();

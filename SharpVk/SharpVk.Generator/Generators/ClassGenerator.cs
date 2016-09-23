@@ -19,18 +19,11 @@ namespace SharpVk.Generator.Generators
             get;
         }
 
-        public abstract string Modifiers
-        {
-            get;
-        }
+        public virtual IEnumerable<string> Modifiers => new string[] { };
 
-        public virtual bool IsStruct
-        {
-            get
-            {
-                return false;
-            }
-        }
+        public virtual IEnumerable<string> Attributes => new string[] { };
+
+        public virtual bool IsStruct => false;
         
         public abstract void Run(TypeBuilder builder);
     }
