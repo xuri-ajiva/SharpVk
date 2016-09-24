@@ -20,7 +20,7 @@ namespace SharpVk.Generator.Generators
     }
 
     public class InteropCommandsClassGenerator
-        : ClassGenerator
+        : TypeGenerator
     {
         private readonly TypeSet types;
 
@@ -53,13 +53,13 @@ namespace SharpVk.Generator.Generators
 
             foreach (var command in this.types.Commands)
             {
-                builder.EmitMethod("void", command.Name, null, paramsBuilder =>
+                builder.EmitMethod(command.ReturnTypeName, command.Name, null, paramsBuilder =>
                     {
                         foreach(var param in command.Parameters)
                         {
                             paramsBuilder.EmitParam(param.TypeName, param.Name);
                         }
-                    }, Public, Static, new[] { "DllImport(VulkanDll)" });
+                    }, Public, Static | Extern, new[] { "DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)" });
             }
         }
     }

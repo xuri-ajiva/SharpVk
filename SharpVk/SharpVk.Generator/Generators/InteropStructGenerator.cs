@@ -3,6 +3,8 @@ using SharpVk.VkXml;
 using System.Collections.Generic;
 using System.Linq;
 
+using static SharpVk.Generator.Emit.AccessModifier;
+
 namespace SharpVk.Generator.Generators
 {
     public class InteropStructGenerator
@@ -15,7 +17,7 @@ namespace SharpVk.Generator.Generators
     }
 
     public class InteropStructClassGenerator
-        : ClassGenerator
+        : TypeGenerator
     {
         private readonly TypeSet.VkStruct @struct;
 
@@ -42,9 +44,9 @@ namespace SharpVk.Generator.Generators
 
         public override void Run(TypeBuilder builder)
         {
-            foreach(var member in this.@struct.Members)
+            foreach (var member in this.@struct.Members)
             {
-                builder.EmitField(member.TypeName, member.Name, AccessModifier.Public);
+                builder.EmitField(member.TypeName, member.Name, member.IsPrivate ? Private : Public);
             }
         }
     }

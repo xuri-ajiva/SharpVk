@@ -23,6 +23,7 @@ namespace SharpVk.Generator.Emit
                                 Action<ExpressionBuilder> initialiser = null)
         {
             this.EmitMemberSpacing();
+            this.EmitMemberComment();
 
             this.writer.Write($"{accessModifier.Emit()} {RenderMemberModifiers(methodModifers)}{type} {name}");
             if (initialiser != null)
@@ -33,6 +34,13 @@ namespace SharpVk.Generator.Emit
             this.writer.WriteLine("; ");
         }
 
+        private void EmitMemberComment()
+        {
+            this.writer.WriteLine("/// <summary>");
+            this.writer.WriteLine("/// -");
+            this.writer.WriteLine("/// </summary>");
+        }
+
         public void EmitMethod(string returnType,
                                 string name, Action<CodeBlockBuilder> methodBody,
                                 Action<ParameterBuilder> parameters,
@@ -41,6 +49,7 @@ namespace SharpVk.Generator.Emit
                                 IEnumerable<string> attributes = null)
         {
             this.EmitMemberSpacing();
+            this.EmitMemberComment();
 
             if (attributes != null)
             {
@@ -79,18 +88,29 @@ namespace SharpVk.Generator.Emit
                                     Action<CodeBlockBuilder> setter = null)
         {
             this.EmitMemberSpacing();
+            this.EmitMemberComment();
 
             this.writer.WriteLine($"{accessModifier.Emit()} {RenderMemberModifiers(methodModifers)}{type} {name}");
             this.writer.WriteLine("{");
             this.writer.IncreaseIndent();
-            if (getter != null)
+
+            if ((getter ?? setter) != null)
             {
-                this.writer.WriteLine("get");
-                using (var getBuilder = new CodeBlockBuilder(this.writer))
+                if (getter != null)
                 {
-                    getter(getBuilder);
+                    this.writer.WriteLine("get");
+                    using (var getBuilder = new CodeBlockBuilder(this.writer))
+                    {
+                        getter(getBuilder);
+                    }
                 }
             }
+            else
+            {
+                this.writer.WriteLine("get;");
+                this.writer.WriteLine("set;");
+            }
+
             this.writer.DecreaseIndent();
             this.writer.WriteLine("}");
         }
@@ -99,13 +119,12 @@ namespace SharpVk.Generator.Emit
         {
             var builder = new StringBuilder();
 
-            if (modifiers.HasFlag(MemberModifier.Const))
+            foreach(MemberModifier value in Enum.GetValues(typeof(MemberModifier)))
             {
-                builder.Append("const ");
-            }
-            else if (modifiers.HasFlag(MemberModifier.Static))
-            {
-                builder.Append("static ");
+                if(value != MemberModifier.None && modifiers.HasFlag(value))
+                {
+                    builder.Append(value.ToString().ToLowerInvariant() + " ");
+                }
             }
 
             return builder.ToString();

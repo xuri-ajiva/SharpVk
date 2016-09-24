@@ -65,7 +65,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes.cs" />
     <Compile Include="CommandCache.cs" />
+    <Compile Include="Interop\Commands.cs" />
     <Compile Include="Interop\Delegates.cs">
       <DependentUpon>Delegates.tt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -86,6 +88,8 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Interop\Handles.cs" />
+    <Compile Include="Interop\Structs.cs" />
     <Compile Include="MemUtil.cs" />
     <Compile Include="Spirv\Grammar.cs">
       <DependentUpon>Grammar.tt</DependentUpon>
@@ -110,32 +114,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Classes.cs">
-      <DependentUpon>Classes.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Interop\Handles.cs">
-      <DependentUpon>Handles.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="Handles.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Handles.tt</DependentUpon>
     </Compile>
     <Compile Include="Interop\HeapUtil.cs" />
-    <Compile Include="Interop\Structs.cs">
-      <DependentUpon>Structs.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Interop\Commands.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Commands.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Version.cs" />
   </ItemGroup>
@@ -173,25 +157,9 @@
       <LastGenOutput>Structs.cs</LastGenOutput>
     </Content>
     <Content Include="License.tt" />
-    <Content Include="Classes.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Classes.cs</LastGenOutput>
-    </Content>
-    <Content Include="Interop\Handles.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Handles.cs</LastGenOutput>
-    </Content>
     <Content Include="Handles.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Handles.cs</LastGenOutput>
-    </Content>
-    <Content Include="Interop\Structs.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Structs.cs</LastGenOutput>
-    </Content>
-    <Content Include="Interop\Commands.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Commands.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

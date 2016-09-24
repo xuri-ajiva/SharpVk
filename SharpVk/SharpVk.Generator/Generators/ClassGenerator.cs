@@ -1,30 +1,95 @@
 ﻿using SharpVk.Generator.Emit;
+using SharpVk.VkXml;
 using System.Collections.Generic;
 using System.Linq;
 
+using static SharpVk.Generator.Emit.AccessModifier;
+using static SharpVk.Generator.Emit.ExpressionBuilder;
+using static SharpVk.Generator.Emit.MemberModifier;
+
 namespace SharpVk.Generator.Generators
 {
-    public abstract class ClassGenerator
+    public class ClassGenerator
+        : ModelGenerator
     {
-        public virtual IEnumerable<string> RequiredNamespaces
+        public override void Run(TypeSet types, FileGenerator fileGenerator)
+        {
+            fileGenerator.Run(null, "Classes", types.Classes.Select(x => new ClassTypeGenerator(x)));
+        }
+    }
+
+    public class ClassTypeGenerator
+        : TypeGenerator
+    {
+        private readonly TypeSet.VkClass @class;
+
+        public override IEnumerable<string> RequiredNamespaces
         {
             get
             {
-                return Enumerable.Empty<string>();
+                return new[] { "System" };
             }
         }
 
-        public abstract string Name
+        public override string Name => this.@class.Name;
+
+        public override bool IsStruct => true;
+
+        public ClassTypeGenerator(TypeSet.VkClass @class)
         {
-            get;
+            this.@class = @class;
         }
 
-        public virtual IEnumerable<string> Modifiers => new string[] { };
+        public override void Run(TypeBuilder builder)
+        {
+            foreach (var member in this.@class.Properties)
+            {
+                builder.EmitProperty(member.TypeName, member.Name, Public);
+            }
 
-        public virtual IEnumerable<string> Attributes => new string[] { };
+            string interopTypeName = $"Interop.{this.@class.Name}";
+            string interopPointerName = interopTypeName + "*";
 
-        public virtual bool IsStruct => false;
-        
-        public abstract void Run(TypeBuilder builder);
+            if (!this.@class.IsOutput)
+            {
+                builder.EmitMethod(interopTypeName, "Pack", body =>
+                {
+                    const string resultVariableName = "result";
+
+                    body.EmitVariableDeclaration(interopTypeName, resultVariableName, Default(interopTypeName));
+
+                    foreach(var statement in this.@class.MarshalToStatements)
+                    {
+                        body.EmitStatement(statement);
+                    }
+
+                    body.EmitReturn(Variable(resultVariableName));
+                }, null, Internal, Unsafe);
+
+                builder.EmitMethod(interopPointerName, "MarshalTo", body =>
+                  {
+                      body.EmitReturn(Cast(interopPointerName, Call(StaticCall("Interop.HeapUtil", "AllocateAndMarshal", Call(This, "Pack")), "ToPointer")));
+                  }, null, Internal, Unsafe);
+            }
+            else
+            {
+                builder.EmitMethod(this.@class.Name, "MarshalFrom", body =>
+                {
+                    const string resultVariableName = "result";
+
+                    body.EmitVariableDeclaration(this.@class.Name, resultVariableName, New(this.@class.Name));
+
+                    foreach (var statement in this.@class.MarshalFromStatements)
+                    {
+                        body.EmitStatement(statement);
+                    }
+
+                    body.EmitReturn(Variable(resultVariableName));
+                }, parameters =>
+                {
+                    parameters.EmitParam(interopPointerName, "value");
+                }, Internal, Static | Unsafe);
+            }
+        }
     }
 }

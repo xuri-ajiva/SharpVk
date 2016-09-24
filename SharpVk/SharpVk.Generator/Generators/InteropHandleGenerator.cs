@@ -17,7 +17,7 @@ namespace SharpVk.Generator.Generators
     }
 
     public class InteropHandleClassGenerator
-        : ClassGenerator
+        : TypeGenerator
     {
         private readonly TypeSet.VkHandle handle;
 

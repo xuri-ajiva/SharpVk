@@ -1,24 +1,26 @@
-﻿//The MIT License (MIT)
+// The MIT License (MIT)
 //
-//Copyright (c) Andrew Armstrong/FacticiusVir 2016
+// Copyright (c) Andrew Armstrong/FacticiusVir 2016
 //
-//Permission is hereby granted, free of charge, to any person obtaining a copy
-//of this software and associated documentation files (the "Software"), to deal
-//in the Software without restriction, including without limitation the rights
-//to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//copies of the Software, and to permit persons to whom the Software is
-//furnished to do so, subject to the following conditions:
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
 //
-//The above copyright notice and this permission notice shall be included in all
-//copies or substantial portions of the Software.
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
 //
-//THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-//SOFTWARE.
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
+// This file was automatically generated and should not be editted directly.
 
 using System;
 
@@ -35,83 +37,81 @@ namespace SharpVk
     /// </summary>
 	public struct AllocationCallbacks
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:pUserData is a value to be interpreted by the implementation of the callbacks. When any of the callbacks in sname:VkAllocationCallbacks are called, the Vulkan implementation will pass this value as the first parameter to the callback. This value can: vary each time an allocator is passed into a command, even when the same object takes an allocator in multiple commands.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public IntPtr UserData
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pfnAllocation is a pointer to an application-defined memory allocation function of type tlink:PFN_vkAllocationFunction.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Interop.AllocationFunctionDelegate PfnAllocation
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pfnReallocation is a pointer to an application-defined memory reallocation function of type tlink:PFN_vkReallocationFunction.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Interop.ReallocationFunctionDelegate PfnReallocation
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pfnFree is a pointer to an application-defined memory free function of type tlink:PFN_vkFreeFunction.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Interop.FreeFunctionDelegate PfnFree
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pfnInternalAllocation is a pointer to an application-defined function that is called by the implementation when the implementation makes internal allocations, and it is of type tlink:PFN_vkInternalAllocationNotification.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Interop.InternalAllocationNotificationDelegate PfnInternalAllocation
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pfnInternalFree is a pointer to an application-defined function that is called by the implementation when the implementation frees internal allocations, and it is of type tlink:PFN_vkInternalFreeNotification.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Interop.InternalFreeNotificationDelegate PfnInternalFree
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.AllocationCallbacks Pack()
-        {
-            var result = new Interop.AllocationCallbacks();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.AllocationCallbacks Pack()
+		{
+			Interop.AllocationCallbacks result = default(Interop.AllocationCallbacks);
 			result.UserData = this.UserData.ToPointer();
 			result.PfnAllocation = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.PfnAllocation);
 			result.PfnReallocation = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.PfnReallocation);
 			result.PfnFree = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.PfnFree);
 			result.PfnInternalAllocation = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.PfnInternalAllocation);
 			result.PfnInternalFree = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.PfnInternalFree);
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.AllocationCallbacks* MarshalTo()
-        {
-            return (Interop.AllocationCallbacks*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.AllocationCallbacks*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -125,40 +125,42 @@ namespace SharpVk
     /// </summary>
 	public struct AndroidSurfaceCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public AndroidSurfaceCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:window is a pointer to the code:ANativeWindow to associate the surface with.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public IntPtr Window
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.AndroidSurfaceCreateInfo Pack()
-        {
-            var result = new Interop.AndroidSurfaceCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.AndroidSurfaceCreateInfo Pack()
+		{
+			Interop.AndroidSurfaceCreateInfo result = default(Interop.AndroidSurfaceCreateInfo);
 			result.SType = StructureType.AndroidSurfaceCreateInfo;
 			result.Window = (IntPtr*)Interop.HeapUtil.AllocateAndMarshal(this.Window);
 			result.Flags = this.Flags;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.AndroidSurfaceCreateInfo* MarshalTo()
-        {
-            return (Interop.AndroidSurfaceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.AndroidSurfaceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -172,137 +174,131 @@ namespace SharpVk
     /// </summary>
 	public struct ApplicationInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:pApplicationName is a pointer to a null-terminated UTF-8 string containing the name of the application.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public string ApplicationName
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:applicationVersion is an unsigned integer variable containing the developer-supplied version number of the application.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Version ApplicationVersion
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pEngineName is a pointer to a null-terminated UTF-8 string containing the name of the engine (if any) used to create the application.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public string EngineName
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:engineVersion is an unsigned integer variable containing the developer-supplied version number of the engine used to create the application.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Version EngineVersion
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:apiVersion is the version of the Vulkan API against which the application expects to run, encoded as described in the &lt;&lt;fundamentals-versionnum,API Version Numbers and Semantics&gt;&gt; section. If pname:apiVersion is 0 the implementation must: ignore it, otherwise if the implementation does not support the requested pname:apiVersion it must: return ename:VK_ERROR_INCOMPATIBLE_DRIVER. The patch version number specified in pname:apiVersion is ignored when creating an instance object. Only the major and minor versions of the instance must: match those requested in pname:apiVersion.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Version ApiVersion
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.ApplicationInfo Pack()
-        {
-            var result = new Interop.ApplicationInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.ApplicationInfo Pack()
+		{
+			Interop.ApplicationInfo result = default(Interop.ApplicationInfo);
 			result.SType = StructureType.ApplicationInfo;
 			result.ApplicationName = Interop.HeapUtil.MarshalTo(this.ApplicationName);
 			result.ApplicationVersion = (uint)this.ApplicationVersion;
 			result.EngineName = Interop.HeapUtil.MarshalTo(this.EngineName);
 			result.EngineVersion = (uint)this.EngineVersion;
 			result.ApiVersion = (uint)this.ApiVersion;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.ApplicationInfo* MarshalTo()
-        {
-            return (Interop.ApplicationInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.ApplicationInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure specifying a sparse binding operation.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct BindSparseInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:pWaitSemaphores is a pointer to an array of semaphores upon which to wait on before the sparse binding operations for this batch begin execution. If semaphores to wait on are provided, they define a &lt;&lt;synchronization-semaphores-waiting, semaphore wait operation&gt;&gt;.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public Semaphore[] WaitSemaphores
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pBufferBinds is a pointer to an array of slink:VkSparseBufferMemoryBindInfo structures.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public SparseBufferMemoryBindInfo[] BufferBinds
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pImageOpaqueBinds is a pointer to an array of slink:VkSparseImageOpaqueMemoryBindInfo structures, indicating opaque sparse image bindings to perform.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public SparseImageOpaqueMemoryBindInfo[] ImageOpaqueBinds
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pImageBinds is a pointer to an array of slink:VkSparseImageMemoryBindInfo structures, indicating sparse image bindings to perform.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public SparseImageMemoryBindInfo[] ImageBinds
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pSignalSemaphores is a pointer to an array of semaphores which will be signaled when the sparse binding operations for this batch have completed execution. If semaphores to be signaled are provided, they define a &lt;&lt;synchronization-semaphores-signaling, semaphore signal operation&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Semaphore[] SignalSemaphores
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.BindSparseInfo Pack()
-        {
-            var result = new Interop.BindSparseInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.BindSparseInfo Pack()
+		{
+			Interop.BindSparseInfo result = default(Interop.BindSparseInfo);
 			result.SType = StructureType.BindSparseInfo;
 			
 			//WaitSemaphores
@@ -389,80 +385,74 @@ namespace SharpVk
 			result.ImageOpaqueBindCount = (uint)(this.ImageOpaqueBinds?.Length ?? 0);
 			result.ImageBindCount = (uint)(this.ImageBinds?.Length ?? 0);
 			result.SignalSemaphoreCount = (uint)(this.SignalSemaphores?.Length ?? 0);
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.BindSparseInfo* MarshalTo()
-        {
-            return (Interop.BindSparseInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.BindSparseInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure specifying the parameters of a newly created buffer object.
-    /// </para>
-    /// <para>
-    /// Bits which can: be set in pname:usage are:
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct BufferCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is a bitmask describing additional parameters of the buffer. See elink:VkBufferCreateFlagBits below for a description of the supported bits.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public BufferCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:size is the size in bytes of the buffer to be created.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ulong Size
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:usage is a bitmask describing the allowed usages of the buffer. See elink:VkBufferUsageFlagBits below for a description of the supported bits.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public BufferUsageFlags Usage
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:sharingMode is the sharing mode of the buffer when it will be accessed by multiple queue families, see elink:VkSharingMode in the &lt;&lt;resources-sharing,Resource Sharing&gt;&gt; section below for supported values.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public SharingMode SharingMode
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pQueueFamilyIndices is a list of queue families that will access this buffer (ignored if pname:sharingMode is not ename:VK_SHARING_MODE_CONCURRENT).
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint[] QueueFamilyIndices
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.BufferCreateInfo Pack()
-        {
-            var result = new Interop.BufferCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.BufferCreateInfo Pack()
+		{
+			Interop.BufferCreateInfo result = default(Interop.BufferCreateInfo);
 			result.SType = StructureType.BufferCreateInfo;
 			result.QueueFamilyIndices = this.QueueFamilyIndices == null ? null : Interop.HeapUtil.MarshalTo(this.QueueFamilyIndices);
 			result.QueueFamilyIndexCount = (uint)(this.QueueFamilyIndices?.Length ?? 0);
@@ -470,13 +460,15 @@ namespace SharpVk
 			result.Size = this.Size;
 			result.Usage = this.Usage;
 			result.SharingMode = this.SharingMode;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.BufferCreateInfo* MarshalTo()
-        {
-            return (Interop.BufferCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.BufferCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -490,80 +482,75 @@ namespace SharpVk
     /// </summary>
 	public struct BufferMemoryBarrier
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:srcAccessMask is a bitmask of the classes of memory accesses performed by the first set of commands that will participate in the dependency.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public AccessFlags SourceAccessMask
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:dstAccessMask is a bitmask of the classes of memory accesses performed by the second set of commands that will participate in the dependency.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public AccessFlags DestinationAccessMask
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:srcQueueFamilyIndex is the queue family that is relinquishing ownership of the range of pname:buffer to another queue, or ename:VK_QUEUE_FAMILY_IGNORED if there is no transfer of ownership.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint SourceQueueFamilyIndex
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:dstQueueFamilyIndex is the queue family that is acquiring ownership of the range of pname:buffer from another queue, or ename:VK_QUEUE_FAMILY_IGNORED if there is no transfer of ownership.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint DestinationQueueFamilyIndex
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:buffer is a handle to the buffer whose backing memory is affected by the barrier.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Buffer Buffer
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:offset is an offset in bytes into the backing memory for pname:buffer; this is relative to the base offset as bound to the buffer (see flink:vkBindBufferMemory).
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ulong Offset
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:size is a size in bytes of the affected area of backing memory for pname:buffer, or ename:VK_WHOLE_SIZE to use the range from pname:offset to the end of the buffer.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ulong Size
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.BufferMemoryBarrier Pack()
-        {
-            var result = new Interop.BufferMemoryBarrier();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.BufferMemoryBarrier Pack()
+		{
+			Interop.BufferMemoryBarrier result = default(Interop.BufferMemoryBarrier);
 			result.SType = StructureType.BufferMemoryBarrier;
 			result.Buffer = this.Buffer?.Pack() ?? Interop.Buffer.Null;
 			result.SourceAccessMask = this.SourceAccessMask;
@@ -572,13 +559,15 @@ namespace SharpVk
 			result.DestinationQueueFamilyIndex = this.DestinationQueueFamilyIndex;
 			result.Offset = this.Offset;
 			result.Size = this.Size;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.BufferMemoryBarrier* MarshalTo()
-        {
-            return (Interop.BufferMemoryBarrier*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.BufferMemoryBarrier*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -592,172 +581,170 @@ namespace SharpVk
     /// </summary>
 	public struct BufferViewCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public BufferViewCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:buffer is a sname:VkBuffer on which the view will be created.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Buffer Buffer
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:format is a elink:VkFormat describing the format of the data elements in the buffer.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Format Format
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:offset is an offset in bytes from the base address of the buffer. Accesses to the buffer view from shaders use addressing that is relative to this starting offset.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ulong Offset
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:range is a size in bytes of the buffer view. If pname:range is equal to ename:VK_WHOLE_SIZE, the range from pname:offset to the end of the buffer is used. If ename:VK_WHOLE_SIZE is used and the remaining size of the buffer is not a multiple of the element size of pname:format, then the nearest smaller multiple is used.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ulong Range
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.BufferViewCreateInfo Pack()
-        {
-            var result = new Interop.BufferViewCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.BufferViewCreateInfo Pack()
+		{
+			Interop.BufferViewCreateInfo result = default(Interop.BufferViewCreateInfo);
 			result.SType = StructureType.BufferViewCreateInfo;
 			result.Buffer = this.Buffer?.Pack() ?? Interop.Buffer.Null;
 			result.Flags = this.Flags;
 			result.Format = this.Format;
 			result.Offset = this.Offset;
 			result.Range = this.Range;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.BufferViewCreateInfo* MarshalTo()
-        {
-            return (Interop.BufferViewCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.BufferViewCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure specifying the allocation parameters for command buffer object.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct CommandBufferAllocateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:commandPool is the name of the command pool that the command buffers allocate their memory from.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public CommandPool CommandPool
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:level determines whether the command buffers are primary or secondary command buffers. Possible values include: + --
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public CommandBufferLevel Level
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public uint CommandBufferCount
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.CommandBufferAllocateInfo Pack()
-        {
-            var result = new Interop.CommandBufferAllocateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.CommandBufferAllocateInfo Pack()
+		{
+			Interop.CommandBufferAllocateInfo result = default(Interop.CommandBufferAllocateInfo);
 			result.SType = StructureType.CommandBufferAllocateInfo;
 			result.CommandPool = this.CommandPool?.Pack() ?? Interop.CommandPool.Null;
 			result.Level = this.Level;
 			result.CommandBufferCount = this.CommandBufferCount;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.CommandBufferAllocateInfo* MarshalTo()
-        {
-            return (Interop.CommandBufferAllocateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.CommandBufferAllocateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure specifying a command buffer begin operation.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct CommandBufferBeginInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is a bitmask indicating usage behavior for the command buffer. Bits which can: be set include: + --
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public CommandBufferUsageFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public CommandBufferInheritanceInfo? InheritanceInfo
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.CommandBufferBeginInfo Pack()
-        {
-            var result = new Interop.CommandBufferBeginInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.CommandBufferBeginInfo Pack()
+		{
+			Interop.CommandBufferBeginInfo result = default(Interop.CommandBufferBeginInfo);
 			result.SType = StructureType.CommandBufferBeginInfo;
 			result.InheritanceInfo = this.InheritanceInfo == null ? null : this.InheritanceInfo.Value.MarshalTo();
 			result.Flags = this.Flags;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.CommandBufferBeginInfo* MarshalTo()
-        {
-            return (Interop.CommandBufferBeginInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.CommandBufferBeginInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -771,40 +758,35 @@ namespace SharpVk
     /// </summary>
 	public struct CommandBufferInheritanceInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:renderPass is a sname:VkRenderPass object defining which render passes the sname:VkCommandBuffer will be &lt;&lt;renderpass-compatibility, compatible&gt;&gt; with and can: be executed within. If the sname:VkCommandBuffer will not be executed within a render pass instance, pname:renderPass is ignored.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public RenderPass RenderPass
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:subpass is the index of the subpass within pname:renderPass that the sname:VkCommandBuffer will be executed within. If the sname:VkCommandBuffer will not be executed within a render pass instance, pname:subpass is ignored.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint Subpass
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:framebuffer optionally refers to the sname:VkFramebuffer object that the sname:VkCommandBuffer will be rendering to if it is executed within a render pass instance. It can: be dlink:VK_NULL_HANDLE if the framebuffer is not known, or if the sname:VkCommandBuffer will not be executed within a render pass instance. + [NOTE] .Note ==== Specifying the exact framebuffer that the secondary command buffer will be executed with may: result in better performance at command buffer execution time. ====
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Framebuffer Framebuffer
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:occlusionQueryEnable indicates whether the command buffer can: be executed while an occlusion query is active in the primary command buffer. If this is ename:VK_TRUE, then this command buffer can: be executed whether the primary command buffer has an occlusion query active or not. If this is ename:VK_FALSE, then the primary command buffer must: not have an occlusion query active.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Bool32 OcclusionQueryEnable
 		{
@@ -821,20 +803,22 @@ namespace SharpVk
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pipelineStatistics indicates the set of pipeline statistics that can: be counted by an active query in the primary command buffer when this secondary command buffer is executed. If this value includes a given bit, then this command buffer can: be executed whether the primary command buffer has a pipeline statistics query active that includes this bit or not. If this value excludes a given bit, then the active pipeline statistics query must: not be from a query pool that counts that statistic.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public QueryPipelineStatisticFlags PipelineStatistics
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.CommandBufferInheritanceInfo Pack()
-        {
-            var result = new Interop.CommandBufferInheritanceInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.CommandBufferInheritanceInfo Pack()
+		{
+			Interop.CommandBufferInheritanceInfo result = default(Interop.CommandBufferInheritanceInfo);
 			result.SType = StructureType.CommandBufferInheritanceInfo;
 			result.RenderPass = this.RenderPass?.Pack() ?? Interop.RenderPass.Null;
 			result.Framebuffer = this.Framebuffer?.Pack() ?? Interop.Framebuffer.Null;
@@ -842,57 +826,59 @@ namespace SharpVk
 			result.OcclusionQueryEnable = this.OcclusionQueryEnable;
 			result.QueryFlags = this.QueryFlags;
 			result.PipelineStatistics = this.PipelineStatistics;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.CommandBufferInheritanceInfo* MarshalTo()
-        {
-            return (Interop.CommandBufferInheritanceInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.CommandBufferInheritanceInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure specifying parameters of a newly created command pool.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct CommandPoolCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is a bitmask indicating usage behavior for the pool and command buffers allocated from it. Bits which can: be set include: + --
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public CommandPoolCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public uint QueueFamilyIndex
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.CommandPoolCreateInfo Pack()
-        {
-            var result = new Interop.CommandPoolCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.CommandPoolCreateInfo Pack()
+		{
+			Interop.CommandPoolCreateInfo result = default(Interop.CommandPoolCreateInfo);
 			result.SType = StructureType.CommandPoolCreateInfo;
 			result.Flags = this.Flags;
 			result.QueueFamilyIndex = this.QueueFamilyIndex;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.CommandPoolCreateInfo* MarshalTo()
-        {
-            return (Interop.CommandPoolCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.CommandPoolCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -912,73 +898,72 @@ namespace SharpVk
     /// </summary>
 	public struct ComputePipelineCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags provides options for pipeline creation, and is of type elink:VkPipelineCreateFlagBits.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public PipelineCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:stage is a slink:VkPipelineShaderStageCreateInfo describing the compute shader.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public PipelineShaderStageCreateInfo Stage
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:layout is the description of binding locations used by both the pipeline and descriptor sets used with the pipeline.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public PipelineLayout Layout
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:basePipelineHandle is a pipeline to derive from
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Pipeline BasePipelineHandle
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:basePipelineIndex is an index into the pname:pCreateInfos parameter to use as a pipeline to derive from
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public int BasePipelineIndex
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.ComputePipelineCreateInfo Pack()
-        {
-            var result = new Interop.ComputePipelineCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.ComputePipelineCreateInfo Pack()
+		{
+			Interop.ComputePipelineCreateInfo result = default(Interop.ComputePipelineCreateInfo);
 			result.SType = StructureType.ComputePipelineCreateInfo;
 			result.Stage = this.Stage.Pack();
 			result.Layout = this.Layout?.Pack() ?? Interop.PipelineLayout.Null;
 			result.BasePipelineHandle = this.BasePipelineHandle?.Pack() ?? Interop.Pipeline.Null;
 			result.Flags = this.Flags;
 			result.BasePipelineIndex = this.BasePipelineIndex;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.ComputePipelineCreateInfo* MarshalTo()
-        {
-            return (Interop.ComputePipelineCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.ComputePipelineCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -992,80 +977,75 @@ namespace SharpVk
     /// </summary>
 	public struct CopyDescriptorSet
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:srcSet, pname:srcBinding, and pname:srcArrayElement are the source set, binding, and array element, respectively.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public DescriptorSet SourceSet
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public uint SourceBinding
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public uint SourceArrayElement
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:dstSet, pname:dstBinding, and pname:dstArrayElement are the destination set, binding, and array element, respectively.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public DescriptorSet DestinationSet
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public uint DestinationBinding
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public uint DestinationArrayElement
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:descriptorCount is the number of descriptors to copy from the source to destination. If pname:descriptorCount is greater than the number of remaining array elements in the source or destination binding, those affect consecutive bindings in a manner similar to slink:VkWriteDescriptorSet above.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint DescriptorCount
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.CopyDescriptorSet Pack()
-        {
-            var result = new Interop.CopyDescriptorSet();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.CopyDescriptorSet Pack()
+		{
+			Interop.CopyDescriptorSet result = default(Interop.CopyDescriptorSet);
 			result.SType = StructureType.CopyDescriptorSet;
 			result.SourceSet = this.SourceSet?.Pack() ?? Interop.DescriptorSet.Null;
 			result.DestinationSet = this.DestinationSet?.Pack() ?? Interop.DescriptorSet.Null;
@@ -1074,239 +1054,231 @@ namespace SharpVk
 			result.DestinationBinding = this.DestinationBinding;
 			result.DestinationArrayElement = this.DestinationArrayElement;
 			result.DescriptorCount = this.DescriptorCount;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.CopyDescriptorSet* MarshalTo()
-        {
-            return (Interop.CopyDescriptorSet*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.CopyDescriptorSet*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Specify parameters of a command buffer marker region.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct DebugMarkerMarkerInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:pMarkerName is a pointer to a null-terminated UTF-8 string that contains the name of the marker.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public string MarkerName
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:color is an optional RGBA color value that can be associated with the marker. A particular implementation may: choose to ignore this color value. The values contain RGBA values in order, in the range 0.0 to 1.0. If all elements in pname:color are set to 0.0 then it is ignored.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public float[] Color
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.DebugMarkerMarkerInfo Pack()
-        {
-            var result = new Interop.DebugMarkerMarkerInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.DebugMarkerMarkerInfo Pack()
+		{
+			Interop.DebugMarkerMarkerInfo result = default(Interop.DebugMarkerMarkerInfo);
 			result.SType = StructureType.DebugMarkerMarkerInfo;
 			result.MarkerName = Interop.HeapUtil.MarshalTo(this.MarkerName);
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.DebugMarkerMarkerInfo* MarshalTo()
-        {
-            return (Interop.DebugMarkerMarkerInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.DebugMarkerMarkerInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Specify parameters of a name to give to an object.
-    /// </para>
-    /// <para>
-    /// Applications may: change the name associated with an object simply by calling fname:vkDebugMarkerSetObjectNameEXT again with a new string. To remove a previously set name, pname:pName should: be set to an empty string.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct DebugMarkerObjectNameInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:objectType is a elink:VkDebugReportObjectTypeEXT specifying the type of the object to be named.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public DebugReportObjectType ObjectType
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:object is the object to be named.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ulong Object
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pObjectName is a null-terminated UTF-8 string specifying the name to apply to pname:object.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public string ObjectName
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.DebugMarkerObjectNameInfo Pack()
-        {
-            var result = new Interop.DebugMarkerObjectNameInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.DebugMarkerObjectNameInfo Pack()
+		{
+			Interop.DebugMarkerObjectNameInfo result = default(Interop.DebugMarkerObjectNameInfo);
 			result.SType = StructureType.DebugMarkerObjectNameInfo;
 			result.ObjectName = Interop.HeapUtil.MarshalTo(this.ObjectName);
 			result.ObjectType = this.ObjectType;
 			result.Object = this.Object;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.DebugMarkerObjectNameInfo* MarshalTo()
-        {
-            return (Interop.DebugMarkerObjectNameInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.DebugMarkerObjectNameInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Specify parameters of a tag to attach to an object.
-    /// </para>
-    /// <para>
-    /// The pname:tagName parameter gives a name or identifier to the type of data being tagged. This can be used by debugging layers to easily filter for only data that can be used by that implementation.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct DebugMarkerObjectTagInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:objectType is a elink:VkDebugReportObjectTypeEXT specifying the type of the object to be named.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public DebugReportObjectType ObjectType
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:object is the object to be tagged.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ulong Object
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:tagName is a numerical identifier of the tag.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ulong TagName
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pTag is an array of pname:tagSize bytes containing the data to be associated with the object.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public byte[] Tag
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.DebugMarkerObjectTagInfo Pack()
-        {
-            var result = new Interop.DebugMarkerObjectTagInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.DebugMarkerObjectTagInfo Pack()
+		{
+			Interop.DebugMarkerObjectTagInfo result = default(Interop.DebugMarkerObjectTagInfo);
 			result.SType = StructureType.DebugMarkerObjectTagInfo;
 			result.Tag = this.Tag == null ? null : Interop.HeapUtil.MarshalTo(this.Tag);
 			result.TagSize = (Size)(this.Tag?.Length ?? 0);
 			result.ObjectType = this.ObjectType;
 			result.Object = this.Object;
 			result.TagName = this.TagName;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.DebugMarkerObjectTagInfo* MarshalTo()
-        {
-            return (Interop.DebugMarkerObjectTagInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.DebugMarkerObjectTagInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure specifying parameters of a newly created debug report callback.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct DebugReportCallbackCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags indicate which event(s) will cause this callback to be called. Flags are interpreted as bitmasks and multiple may be set. Bits which can: be set include: + --
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public DebugReportFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public Interop.DebugReportCallbackDelegate PfnCallback
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public IntPtr UserData
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.DebugReportCallbackCreateInfo Pack()
-        {
-            var result = new Interop.DebugReportCallbackCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.DebugReportCallbackCreateInfo Pack()
+		{
+			Interop.DebugReportCallbackCreateInfo result = default(Interop.DebugReportCallbackCreateInfo);
 			result.SType = StructureType.DebugReportCallbackCreateInfo;
 			result.PfnCallback = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.PfnCallback);
 			result.UserData = this.UserData.ToPointer();
 			result.Flags = this.Flags;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.DebugReportCallbackCreateInfo* MarshalTo()
-        {
-            return (Interop.DebugReportCallbackCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.DebugReportCallbackCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -1323,29 +1295,32 @@ namespace SharpVk
     /// </summary>
 	public struct DedicatedAllocationBufferCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:dedicatedAllocation indicates whether the buffer will have a dedicated allocation bound to it.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public Bool32 DedicatedAllocation
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.DedicatedAllocationBufferCreateInfo Pack()
-        {
-            var result = new Interop.DedicatedAllocationBufferCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.DedicatedAllocationBufferCreateInfo Pack()
+		{
+			Interop.DedicatedAllocationBufferCreateInfo result = default(Interop.DedicatedAllocationBufferCreateInfo);
 			result.SType = StructureType.DedicatedAllocationBufferCreateInfo;
 			result.DedicatedAllocation = this.DedicatedAllocation;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.DedicatedAllocationBufferCreateInfo* MarshalTo()
-        {
-            return (Interop.DedicatedAllocationBufferCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.DedicatedAllocationBufferCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -1365,29 +1340,32 @@ namespace SharpVk
     /// </summary>
 	public struct DedicatedAllocationImageCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:dedicatedAllocation indicates whether the image will have a dedicated allocation bound to it.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public Bool32 DedicatedAllocation
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.DedicatedAllocationImageCreateInfo Pack()
-        {
-            var result = new Interop.DedicatedAllocationImageCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.DedicatedAllocationImageCreateInfo Pack()
+		{
+			Interop.DedicatedAllocationImageCreateInfo result = default(Interop.DedicatedAllocationImageCreateInfo);
 			result.SType = StructureType.DedicatedAllocationImageCreateInfo;
 			result.DedicatedAllocation = this.DedicatedAllocation;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.DedicatedAllocationImageCreateInfo* MarshalTo()
-        {
-            return (Interop.DedicatedAllocationImageCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.DedicatedAllocationImageCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -1404,40 +1382,42 @@ namespace SharpVk
     /// </summary>
 	public struct DedicatedAllocationMemoryAllocateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:image is sname:VK_NULL_HANDLE or a handle of an image which this memory will be bound to.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public Image Image
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:buffer is sname:VK_NULL_HANDLE or a handle of a buffer which this memory will be bound to.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Buffer Buffer
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.DedicatedAllocationMemoryAllocateInfo Pack()
-        {
-            var result = new Interop.DedicatedAllocationMemoryAllocateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.DedicatedAllocationMemoryAllocateInfo Pack()
+		{
+			Interop.DedicatedAllocationMemoryAllocateInfo result = default(Interop.DedicatedAllocationMemoryAllocateInfo);
 			result.SType = StructureType.DedicatedAllocationMemoryAllocateInfo;
 			result.Image = this.Image?.Pack() ?? Interop.Image.Null;
 			result.Buffer = this.Buffer?.Pack() ?? Interop.Buffer.Null;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.DedicatedAllocationMemoryAllocateInfo* MarshalTo()
-        {
-            return (Interop.DedicatedAllocationMemoryAllocateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.DedicatedAllocationMemoryAllocateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -1451,151 +1431,145 @@ namespace SharpVk
     /// </summary>
 	public struct DescriptorBufferInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:buffer is the buffer resource.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public Buffer Buffer
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:offset is the offset in bytes from the start of pname:buffer. Access to buffer memory via this descriptor uses addressing that is relative to this starting offset.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ulong Offset
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:range is the size in bytes that is used for this descriptor update, or ename:VK_WHOLE_SIZE to use the range from pname:offset to the end of the buffer. + -- [NOTE] .Note ==== When using ename:VK_WHOLE_SIZE, the effective range must: not be larger than the maximum range for the descriptor type (&lt;&lt;features-limits-maxUniformBufferRange, maxUniformBufferRange&gt;&gt; or &lt;&lt;features-limits-maxStorageBufferRange, maxStorageBufferRange&gt;&gt;). This means that ename:VK_WHOLE_SIZE is not typically useful in the common case where uniform buffer descriptors are suballocated from a buffer that is much larger than pname:maxUniformBufferRange. ==== -- + For ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC and ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC descriptor types, pname:offset is the base offset from which the dynamic offset is applied and pname:range is the static size used for all dynamic offsets.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ulong Range
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.DescriptorBufferInfo Pack()
-        {
-            var result = new Interop.DescriptorBufferInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.DescriptorBufferInfo Pack()
+		{
+			Interop.DescriptorBufferInfo result = default(Interop.DescriptorBufferInfo);
 			result.Buffer = this.Buffer?.Pack() ?? Interop.Buffer.Null;
 			result.Offset = this.Offset;
 			result.Range = this.Range;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.DescriptorBufferInfo* MarshalTo()
-        {
-            return (Interop.DescriptorBufferInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.DescriptorBufferInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure specifying descriptor image info.
-    /// </para>
-    /// <para>
-    /// Members of sname:VkDescriptorImageInfo that are not used in an update (as described above) are ignored.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct DescriptorImageInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:sampler is a sampler handle, and is used in descriptor updates for types ename:VK_DESCRIPTOR_TYPE_SAMPLER and ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER if the binding being updated does not use immutable samplers.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public Sampler Sampler
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:imageView is an image view handle, and is used in descriptor updates for types ename:VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE, ename:VK_DESCRIPTOR_TYPE_STORAGE_IMAGE, ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, and ename:VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ImageView ImageView
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:imageLayout is the layout that the image will be in at the time this descriptor is accessed. pname:imageLayout is used in descriptor updates for types ename:VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE, ename:VK_DESCRIPTOR_TYPE_STORAGE_IMAGE, ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, and ename:VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ImageLayout ImageLayout
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.DescriptorImageInfo Pack()
-        {
-            var result = new Interop.DescriptorImageInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.DescriptorImageInfo Pack()
+		{
+			Interop.DescriptorImageInfo result = default(Interop.DescriptorImageInfo);
 			result.Sampler = this.Sampler?.Pack() ?? Interop.Sampler.Null;
 			result.ImageView = this.ImageView?.Pack() ?? Interop.ImageView.Null;
 			result.ImageLayout = this.ImageLayout;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.DescriptorImageInfo* MarshalTo()
-        {
-            return (Interop.DescriptorImageInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.DescriptorImageInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure specifying parameters of a newly created descriptor pool.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct DescriptorPoolCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags specifies certain supported operations on the pool. Bits which can: be set include: + --
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public DescriptorPoolCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public uint MaxSets
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public DescriptorPoolSize[] PoolSizes
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.DescriptorPoolCreateInfo Pack()
-        {
-            var result = new Interop.DescriptorPoolCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.DescriptorPoolCreateInfo Pack()
+		{
+			Interop.DescriptorPoolCreateInfo result = default(Interop.DescriptorPoolCreateInfo);
 			result.SType = StructureType.DescriptorPoolCreateInfo;
 			
 			//PoolSizes
@@ -1614,13 +1588,15 @@ namespace SharpVk
 			result.PoolSizeCount = (uint)(this.PoolSizes?.Length ?? 0);
 			result.Flags = this.Flags;
 			result.MaxSets = this.MaxSets;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.DescriptorPoolCreateInfo* MarshalTo()
-        {
-            return (Interop.DescriptorPoolCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.DescriptorPoolCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -1634,30 +1610,30 @@ namespace SharpVk
     /// </summary>
 	public struct DescriptorSetAllocateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:descriptorPool is the pool which the sets will be allocated from.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public DescriptorPool DescriptorPool
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pSetLayouts is an array of descriptor set layouts, with each member specifying how the corresponding descriptor set is allocated.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public DescriptorSetLayout[] SetLayouts
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.DescriptorSetAllocateInfo Pack()
-        {
-            var result = new Interop.DescriptorSetAllocateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.DescriptorSetAllocateInfo Pack()
+		{
+			Interop.DescriptorSetAllocateInfo result = default(Interop.DescriptorSetAllocateInfo);
 			result.SType = StructureType.DescriptorSetAllocateInfo;
 			result.DescriptorPool = this.DescriptorPool?.Pack() ?? Interop.DescriptorPool.Null;
 			
@@ -1677,13 +1653,15 @@ namespace SharpVk
 			    result.SetLayouts = null;
 			}
 			result.DescriptorSetCount = (uint)(this.SetLayouts?.Length ?? 0);
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.DescriptorSetAllocateInfo* MarshalTo()
-        {
-            return (Interop.DescriptorSetAllocateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.DescriptorSetAllocateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -1703,60 +1681,57 @@ namespace SharpVk
     /// </summary>
 	public struct DescriptorSetLayoutBinding
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:binding is the binding number of this entry and corresponds to a resource of the same binding number in the shader stages.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint Binding
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:descriptorType is a elink:VkDescriptorType specifying which type of resource descriptors are used for this binding.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public DescriptorType DescriptorType
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:descriptorCount is the number of descriptors contained in the binding, accessed in a shader as an array. If pname:descriptorCount is zero this binding entry is reserved and the resource must: not be accessed from any stage via this binding within any pipeline using the set layout.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint DescriptorCount
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:stageFlags member is a bitmask of elink:VkShaderStageFlagBits specifying which pipeline shader stages can: access a resource for this binding. ename:VK_SHADER_STAGE_ALL is a shorthand specifying that all defined shader stages, including any additional stages defined by extensions, can: access the resource. + -- If a shader stage is not included in pname:stageFlags, then a resource must: not be accessed from that stage via this binding within any pipeline using the set layout. There are no limitations on what combinations of stages can: be used by a descriptor binding, and in particular a binding can: be used by both graphics stages and the compute stage. --
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ShaderStageFlags StageFlags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pImmutableSamplers affects initialization of samplers. If pname:descriptorType specifies a ename:VK_DESCRIPTOR_TYPE_SAMPLER or ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER type descriptor, then pname:pImmutableSamplers can: be used to initialize a set of _immutable samplers_. Immutable samplers are permanently bound into the set layout; later binding a sampler into an immutable sampler slot in a descriptor set is not allowed. If pname:pImmutableSamplers is not `NULL`, then it is considered to be a pointer to an array of sampler handles that will be consumed by the set layout and used for the corresponding binding. If pname:pImmutableSamplers is `NULL`, then the sampler slots are dynamic and sampler handles must: be bound into descriptor sets using this layout. If pname:descriptorType is not one of these descriptor types, then pname:pImmutableSamplers is ignored.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Sampler[] ImmutableSamplers
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.DescriptorSetLayoutBinding Pack()
-        {
-            var result = new Interop.DescriptorSetLayoutBinding();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.DescriptorSetLayoutBinding Pack()
+		{
+			Interop.DescriptorSetLayoutBinding result = default(Interop.DescriptorSetLayoutBinding);
 			
 			//ImmutableSamplers
 			if (this.ImmutableSamplers != null)
@@ -1778,47 +1753,47 @@ namespace SharpVk
 			result.DescriptorType = this.DescriptorType;
 			result.DescriptorCount = this.DescriptorCount;
 			result.StageFlags = this.StageFlags;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.DescriptorSetLayoutBinding* MarshalTo()
-        {
-            return (Interop.DescriptorSetLayoutBinding*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.DescriptorSetLayoutBinding*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure specifying parameters of a newly created descriptor set layout.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct DescriptorSetLayoutCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public DescriptorSetLayoutCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pBindings is a pointer to an array of slink:VkDescriptorSetLayoutBinding structures.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public DescriptorSetLayoutBinding[] Bindings
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.DescriptorSetLayoutCreateInfo Pack()
-        {
-            var result = new Interop.DescriptorSetLayoutCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.DescriptorSetLayoutCreateInfo Pack()
+		{
+			Interop.DescriptorSetLayoutCreateInfo result = default(Interop.DescriptorSetLayoutCreateInfo);
 			result.SType = StructureType.DescriptorSetLayoutCreateInfo;
 			
 			//Bindings
@@ -1838,13 +1813,15 @@ namespace SharpVk
 			}
 			result.BindingCount = (uint)(this.Bindings?.Length ?? 0);
 			result.Flags = this.Flags;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.DescriptorSetLayoutCreateInfo* MarshalTo()
-        {
-            return (Interop.DescriptorSetLayoutCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.DescriptorSetLayoutCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -1858,60 +1835,57 @@ namespace SharpVk
     /// </summary>
 	public struct DeviceCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public DeviceCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pQueueCreateInfos is a pointer to an array of slink:VkDeviceQueueCreateInfo structures describing the queues that are requested to be created along with the logical device. Refer to the &lt;&lt;devsandqueues-queue-creation,Queue Creation&gt;&gt; section below for further details.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public DeviceQueueCreateInfo[] QueueCreateInfos
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:ppEnabledLayerNames is deprecated and ignored. See &lt;&lt;extended-functionality-device-layer-deprecation,Device Layer Deprecation&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public string[] EnabledLayerNames
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:ppEnabledExtensionNames is a pointer to an array of pname:enabledExtensionCount null-terminated UTF-8 strings containing the names of extensions to enable for the created device. See the &lt;&lt;extended-functionality-extensions,Extensions&gt;&gt; section for further details.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public string[] EnabledExtensionNames
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pEnabledFeatures is `NULL` or a pointer to a slink:VkPhysicalDeviceFeatures structure that contains boolean indicators of all the features to be enabled. Refer to the &lt;&lt;features-features,Features&gt;&gt; section for further details.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public PhysicalDeviceFeatures EnabledFeatures
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.DeviceCreateInfo Pack()
-        {
-            var result = new Interop.DeviceCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.DeviceCreateInfo Pack()
+		{
+			Interop.DeviceCreateInfo result = default(Interop.DeviceCreateInfo);
 			result.SType = StructureType.DeviceCreateInfo;
 			
 			//QueueCreateInfos
@@ -1936,13 +1910,15 @@ namespace SharpVk
 			result.EnabledLayerCount = (uint)(this.EnabledLayerNames?.Length ?? 0);
 			result.EnabledExtensionCount = (uint)(this.EnabledExtensionNames?.Length ?? 0);
 			result.Flags = this.Flags;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.DeviceCreateInfo* MarshalTo()
-        {
-            return (Interop.DeviceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.DeviceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -1956,52 +1932,53 @@ namespace SharpVk
     /// </summary>
 	public struct DeviceQueueCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public DeviceQueueCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:queueFamilyIndex is an unsigned integer indicating the index of the queue family to create on this device. This index corresponds to the index of an element of the pname:pQueueFamilyProperties array that was returned by fname:vkGetPhysicalDeviceQueueFamilyProperties.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint QueueFamilyIndex
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pQueuePriorities is an array of pname:queueCount normalized floating point values, specifying priorities of work that will be submitted to each created queue. See &lt;&lt;devsandqueues-priority,Queue Priority&gt;&gt; for more information.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public float[] QueuePriorities
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.DeviceQueueCreateInfo Pack()
-        {
-            var result = new Interop.DeviceQueueCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.DeviceQueueCreateInfo Pack()
+		{
+			Interop.DeviceQueueCreateInfo result = default(Interop.DeviceQueueCreateInfo);
 			result.SType = StructureType.DeviceQueueCreateInfo;
 			result.QueuePriorities = this.QueuePriorities == null ? null : Interop.HeapUtil.MarshalTo(this.QueuePriorities);
 			result.QueueCount = (uint)(this.QueuePriorities?.Length ?? 0);
 			result.Flags = this.Flags;
 			result.QueueFamilyIndex = this.QueueFamilyIndex;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.DeviceQueueCreateInfo* MarshalTo()
-        {
-            return (Interop.DeviceQueueCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.DeviceQueueCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -2015,125 +1992,109 @@ namespace SharpVk
     /// </summary>
 	public struct DisplayModeCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use, and must: be zero.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public DisplayModeCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:parameters is a sname:VkDisplayModeParametersKHR structure describing the display parameters to use in creating the new mode. If the parameters are not compatible with the specified display, the implementation must: return ename:VK_ERROR_INITIALIZATION_FAILED.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public DisplayModeParameters Parameters
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.DisplayModeCreateInfo Pack()
-        {
-            var result = new Interop.DisplayModeCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.DisplayModeCreateInfo Pack()
+		{
+			Interop.DisplayModeCreateInfo result = default(Interop.DisplayModeCreateInfo);
 			result.SType = StructureType.DisplayModeCreateInfo;
 			result.Flags = this.Flags;
 			result.Parameters = this.Parameters;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.DisplayModeCreateInfo* MarshalTo()
-        {
-            return (Interop.DisplayModeCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.DisplayModeCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure describing display mode properties.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct DisplayModeProperties
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:displayMode is a handle to the display mode described in this structure. This handle will be valid for the lifetime of the Vulkan instance.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public DisplayMode DisplayMode
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:parameters is a sname:VkDisplayModeParametersKHR structure describing the display parameters associated with pname:displayMode.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public DisplayModeParameters Parameters
 		{
 			get;
 			set;
 		}
-
-		internal unsafe DisplayModeProperties Unpack(Interop.DisplayModeProperties value)
-		{
-			return MarshalFrom(&value);
-		}
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal static unsafe DisplayModeProperties MarshalFrom(Interop.DisplayModeProperties* value)
 		{
-            var result = new DisplayModeProperties();
-
+			DisplayModeProperties result = new DisplayModeProperties();
 			result.Parameters = value->Parameters;
-
 			return result;
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure describing display plane properties.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct DisplayPlaneProperties
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:currentDisplay is the handle of the display the plane is currently associated with. If the plane is not currently attached to any displays, this will be sname:VK_NULL_HANDLE.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public Display CurrentDisplay
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:currentStackIndex is the current z-order of the plane. This will be between 0 and the value returned by fname:vkGetPhysicalDeviceDisplayPlanePropertiesKHR() in pname:pPropertyCount.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint CurrentStackIndex
 		{
 			get;
 			set;
 		}
-
-		internal unsafe DisplayPlaneProperties Unpack(Interop.DisplayPlaneProperties value)
-		{
-			return MarshalFrom(&value);
-		}
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal static unsafe DisplayPlaneProperties MarshalFrom(Interop.DisplayPlaneProperties* value)
 		{
-            var result = new DisplayPlaneProperties();
-
+			DisplayPlaneProperties result = new DisplayPlaneProperties();
 			result.CurrentStackIndex = value->CurrentStackIndex;
-
 			return result;
 		}
 	}
@@ -2151,157 +2112,135 @@ namespace SharpVk
     /// </summary>
 	public struct DisplayPresentInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:srcRect is a rectangular region of pixels to present. It must: be a subset of the image being presented. If sname:VkDisplayPresentInfoKHR is not specified, this region will be assumed to be the entire presentable image.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public Rect2D SourceRect
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:dstRect is a rectangular region within the visible region of the swapchain's display mode. If sname:VkDisplayPresentInfoKHR is not specified, this region will be assumed to be the entire visible region of the visible region of the swapchain's mode. If the specified rectangle is a subset of the display mode's visible region, content from display planes below the swapchain's plane will be visible outside the rectangle. If there are no planes below the swapchain's, the area outside the specified rectangle will be black. If portions of the specified rectangle are outside of the display's visible region, pixels mapping only to those portions of the rectangle will be discarded.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Rect2D DestinationRect
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:persistent: If this is ename:VK_TRUE, the display engine will enable buffered mode on displays that support it. This allows the display engine to stop sending content to the display until a new image is presented. The display will instead maintain a copy of the last presented image. This allows less power to be used, but may: increase presentation latency. If sname:VkDisplayPresentInfoKHR is not specified, persistent mode will not be used.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Bool32 Persistent
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.DisplayPresentInfo Pack()
-        {
-            var result = new Interop.DisplayPresentInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.DisplayPresentInfo Pack()
+		{
+			Interop.DisplayPresentInfo result = default(Interop.DisplayPresentInfo);
 			result.SType = StructureType.DisplayPresentInfo;
 			result.SourceRect = this.SourceRect;
 			result.DestinationRect = this.DestinationRect;
 			result.Persistent = this.Persistent;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.DisplayPresentInfo* MarshalTo()
-        {
-            return (Interop.DisplayPresentInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.DisplayPresentInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure describing an available display device.
-    /// </para>
-    /// <para>
-    /// [NOTE] .Note ==== For devices which have no natural value to return here, implementations should: return the maximum resolution supported. ====
-    /// </para>
-    /// <para>
-    /// * pname:supportedTransforms tells which transforms are supported by this display. This will contain one or more of the bits from sname:VkSurfaceTransformFlagsKHR. * pname:planeReorderPossible tells whether the planes on this display can: have their z order changed. If this is ename:VK_TRUE, the application can: re-arrange the planes on this display in any order relative to each other. * pname:persistentContent tells whether the display supports self-refresh/internal buffering. If this is true, the application can: submit persistent present operations on swapchains created against this display.
-    /// </para>
-    /// <para>
-    /// [NOTE] .Note ==== Persistent presents may: have higher latency, and may: use less power when the screen content is updated infrequently, or when only a portion of the screen needs to be updated in most frames. ====
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct DisplayProperties
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:display is a handle that is used to refer to the display described here. This handle will be valid for the lifetime of the Vulkan instance.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public Display Display
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:displayName is a pointer to a NULL-terminated string containing the name of the display. Generally, this will be the name provided by the display's EDID. It can: be `NULL` if no suitable name is available.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public string DisplayName
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:physicalDimensions describes the physical width and height of the visible portion of the display, in millimeters.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Extent2D PhysicalDimensions
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:physicalResolution describes the physical, native, or preferred resolution of the display.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Extent2D PhysicalResolution
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public SurfaceTransformFlags SupportedTransforms
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public Bool32 PlaneReorderPossible
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public Bool32 PersistentContent
 		{
 			get;
 			set;
 		}
-
-		internal unsafe DisplayProperties Unpack(Interop.DisplayProperties value)
-		{
-			return MarshalFrom(&value);
-		}
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal static unsafe DisplayProperties MarshalFrom(Interop.DisplayProperties* value)
 		{
-            var result = new DisplayProperties();
-
+			DisplayProperties result = new DisplayProperties();
 			result.DisplayName = Interop.HeapUtil.MarshalFrom(value->DisplayName);
 			result.PhysicalDimensions = value->PhysicalDimensions;
 			result.PhysicalResolution = value->PhysicalResolution;
 			result.SupportedTransforms = value->SupportedTransforms;
 			result.PlaneReorderPossible = value->PlaneReorderPossible;
 			result.PersistentContent = value->PersistentContent;
-
 			return result;
 		}
 	}
@@ -2319,90 +2258,84 @@ namespace SharpVk
     /// </summary>
 	public struct DisplaySurfaceCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use, and must: be zero.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public DisplaySurfaceCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:displayMode is the mode to use when displaying this surface.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public DisplayMode DisplayMode
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:planeIndex is the plane on which this surface appears.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint PlaneIndex
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:planeStackIndex is the z-order of the plane.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint PlaneStackIndex
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:transform is the transform to apply to the images as part of the scanout operation.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public SurfaceTransformFlags Transform
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:globalAlpha is the global alpha value. This value is ignored if pname:alphaMode is not ename:VK_DISPLAY_PLANE_ALPHA_GLOBAL_BIT_KHR.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public float GlobalAlpha
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:alphaMode is the type of alpha blending to use.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public DisplayPlaneAlphaFlags AlphaMode
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public Extent2D ImageExtent
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.DisplaySurfaceCreateInfo Pack()
-        {
-            var result = new Interop.DisplaySurfaceCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.DisplaySurfaceCreateInfo Pack()
+		{
+			Interop.DisplaySurfaceCreateInfo result = default(Interop.DisplaySurfaceCreateInfo);
 			result.SType = StructureType.DisplaySurfaceCreateInfo;
 			result.DisplayMode = this.DisplayMode?.Pack() ?? Interop.DisplayMode.Null;
 			result.Flags = this.Flags;
@@ -2412,248 +2345,230 @@ namespace SharpVk
 			result.GlobalAlpha = this.GlobalAlpha;
 			result.AlphaMode = this.AlphaMode;
 			result.ImageExtent = this.ImageExtent;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.DisplaySurfaceCreateInfo* MarshalTo()
-        {
-            return (Interop.DisplaySurfaceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.DisplaySurfaceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure specifying parameters of a newly created event.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct EventCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public EventCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.EventCreateInfo Pack()
-        {
-            var result = new Interop.EventCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.EventCreateInfo Pack()
+		{
+			Interop.EventCreateInfo result = default(Interop.EventCreateInfo);
 			result.SType = StructureType.EventCreateInfo;
 			result.Flags = this.Flags;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.EventCreateInfo* MarshalTo()
-        {
-            return (Interop.EventCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.EventCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// -
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct ExportMemoryAllocateInfo
 	{
-	    /// <summary>
-		/// <para>
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public ExternalMemoryHandleTypeFlags HandleTypes
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.ExportMemoryAllocateInfo Pack()
-        {
-            var result = new Interop.ExportMemoryAllocateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.ExportMemoryAllocateInfo Pack()
+		{
+			Interop.ExportMemoryAllocateInfo result = default(Interop.ExportMemoryAllocateInfo);
 			result.SType = StructureType.ExportMemoryAllocateInfo;
 			result.HandleTypes = this.HandleTypes;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.ExportMemoryAllocateInfo* MarshalTo()
-        {
-            return (Interop.ExportMemoryAllocateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.ExportMemoryAllocateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Specify security attributes and access rights for Win32 memory handles.
-    /// </para>
-    /// <para>
-    /// When slink:VkExportMemoryAllocateInfoNV::pname:handleTypes includes ename:VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT_NV, add a sname:VkExportMemoryWin32HandleInfoNV to the pname:pNext chain of the slink:VkExportMemoryAllocateInfoNV structure to specify security attributes and access rights for the memory object's external handle.
-    /// </para>
-    /// <para>
-    /// If this structure is not present, or if pname:pAttributes is set to `NULL`, default security descriptor values will be used, and child processes created by the application will not inherit the handle, as described in the MSDN documentation for ``Synchronization Object Security and Access Rights''[1]. Further, if the structure is not present, the access rights will be
-    /// </para>
-    /// <para>
-    /// code:DXGI_SHARED_RESOURCE_READ | code:DXGI_SHARED_RESOURCE_WRITE
-    /// </para>
-    /// <para>
-    /// [1] https://msdn.microsoft.com/en-us/library/windows/desktop/ms686670.aspx
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct ExportMemoryWin32HandleInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:pAttributes is a pointer to a Windows code:SECURITY_ATTRIBUTES structure specifying security attributes of the handle.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public SECURITY_ATTRIBUTES Attributes
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:dwAccess is a code:DWORD specifying access rights of the handle.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint DwAccess
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.ExportMemoryWin32HandleInfo Pack()
-        {
-            var result = new Interop.ExportMemoryWin32HandleInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.ExportMemoryWin32HandleInfo Pack()
+		{
+			Interop.ExportMemoryWin32HandleInfo result = default(Interop.ExportMemoryWin32HandleInfo);
 			result.SType = StructureType.ExportMemoryWin32HandleInfo;
 			result.Attributes = (SECURITY_ATTRIBUTES*)Interop.HeapUtil.AllocateAndMarshal(this.Attributes);
 			result.DwAccess = this.DwAccess;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.ExportMemoryWin32HandleInfo* MarshalTo()
-        {
-            return (Interop.ExportMemoryWin32HandleInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.ExportMemoryWin32HandleInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure specifying a extension properties.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct ExtensionProperties
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:extensionName is a null-terminated string specifying the name of the extension.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public string ExtensionName
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:specVersion is the version of this extension. It is an integer, incremented with backward compatible changes.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Version SpecVersion
 		{
 			get;
 			set;
 		}
-
-		internal unsafe ExtensionProperties Unpack(Interop.ExtensionProperties value)
-		{
-			return MarshalFrom(&value);
-		}
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal static unsafe ExtensionProperties MarshalFrom(Interop.ExtensionProperties* value)
 		{
-            var result = new ExtensionProperties();
-
+			ExtensionProperties result = new ExtensionProperties();
 			result.ExtensionName = System.Text.Encoding.UTF8.GetString(Interop.HeapUtil.MarshalFrom(value->ExtensionName, (int)Constants.MaxExtensionNameSize, true));
 			result.SpecVersion = value->SpecVersion;
-
 			return result;
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Specify that an image may be backed by external memory.
-    /// </para>
-    /// <para>
-    /// If the pname:pNext list includes a sname:VkExternalMemoryImageCreateInfoNV structure, then that structure defines a set of external memory handle types that may: be used as backing store for the image.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct ExternalMemoryImageCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:handleTypes is a bitmask of elink:VkExternalMemoryHandleTypeFlagBitsNV specifying one or more external memory handle types. The types must: all be compatible with each other and the other image creation parameters, as reported by flink:vkGetPhysicalDeviceExternalImageFormatPropertiesNV.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public ExternalMemoryHandleTypeFlags HandleTypes
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.ExternalMemoryImageCreateInfo Pack()
-        {
-            var result = new Interop.ExternalMemoryImageCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.ExternalMemoryImageCreateInfo Pack()
+		{
+			Interop.ExternalMemoryImageCreateInfo result = default(Interop.ExternalMemoryImageCreateInfo);
 			result.SType = StructureType.ExternalMemoryImageCreateInfo;
 			result.HandleTypes = this.HandleTypes;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.ExternalMemoryImageCreateInfo* MarshalTo()
-        {
-            return (Interop.ExternalMemoryImageCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.ExternalMemoryImageCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure specifying parameters of a newly created fence.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct FenceCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags defines the initial state and behavior of the fence. Bits which can: be set include: + --
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public FenceCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.FenceCreateInfo Pack()
-        {
-            var result = new Interop.FenceCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.FenceCreateInfo Pack()
+		{
+			Interop.FenceCreateInfo result = default(Interop.FenceCreateInfo);
 			result.SType = StructureType.FenceCreateInfo;
 			result.Flags = this.Flags;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.FenceCreateInfo* MarshalTo()
-        {
-            return (Interop.FenceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.FenceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -2676,70 +2591,66 @@ namespace SharpVk
     /// </summary>
 	public struct FramebufferCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public FramebufferCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:renderPass is a render pass that defines what render passes the framebuffer will be compatible with. See &lt;&lt;renderpass-compatibility,Render Pass Compatibility&gt;&gt; for details.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public RenderPass RenderPass
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pAttachments is an array of sname:VkImageView handles, each of which will be used as the corresponding attachment in a render pass instance.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ImageView[] Attachments
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:width, pname:height and pname:layers define the dimensions of the framebuffer.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint Width
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public uint Height
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public uint Layers
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.FramebufferCreateInfo Pack()
-        {
-            var result = new Interop.FramebufferCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.FramebufferCreateInfo Pack()
+		{
+			Interop.FramebufferCreateInfo result = default(Interop.FramebufferCreateInfo);
 			result.SType = StructureType.FramebufferCreateInfo;
 			result.RenderPass = this.RenderPass?.Pack() ?? Interop.RenderPass.Null;
 			
@@ -2763,196 +2674,173 @@ namespace SharpVk
 			result.Width = this.Width;
 			result.Height = this.Height;
 			result.Layers = this.Layers;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.FramebufferCreateInfo* MarshalTo()
-        {
-            return (Interop.FramebufferCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.FramebufferCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure specifying parameters of a newly created graphics pipeline.
-    /// </para>
-    /// <para>
-    /// The parameters pname:basePipelineHandle and pname:basePipelineIndex are described in more detail in &lt;&lt;pipelines-pipeline-derivatives,Pipeline Derivatives&gt;&gt;.
-    /// </para>
-    /// <para>
-    /// pname:pStages points to an array of slink:VkPipelineShaderStageCreateInfo structures, which were previously described in &lt;&lt;pipelines-compute,Compute Pipelines&gt;&gt;.
-    /// </para>
-    /// <para>
-    /// Bits which can: be set in pname:flags are:
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct GraphicsPipelineCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is a bitmask of elink:VkPipelineCreateFlagBits controlling how the pipeline will be generated, as described below.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public PipelineCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pStages is an array of size pname:stageCount structures of type slink:VkPipelineShaderStageCreateInfo describing the set of the shader stages to be included in the graphics pipeline.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public PipelineShaderStageCreateInfo[] Stages
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pVertexInputState is a pointer to an instance of the slink:VkPipelineVertexInputStateCreateInfo structure.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public PipelineVertexInputStateCreateInfo? VertexInputState
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pInputAssemblyState is a pointer to an instance of the slink:VkPipelineInputAssemblyStateCreateInfo structure which determines input assembly behavior, as described in &lt;&lt;drawing, Drawing Commands&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public PipelineInputAssemblyStateCreateInfo? InputAssemblyState
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pTessellationState is a pointer to an instance of the slink:VkPipelineTessellationStateCreateInfo structure, or `NULL` if the pipeline does not include a tessellation control shader stage and tessellation evaluation shader stage.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public PipelineTessellationStateCreateInfo? TessellationState
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pViewportState is a pointer to an instance of the slink:VkPipelineViewportStateCreateInfo structure, or `NULL` if the pipeline has rasterization disabled.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public PipelineViewportStateCreateInfo? ViewportState
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pRasterizationState is a pointer to an instance of the slink:VkPipelineRasterizationStateCreateInfo structure.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public PipelineRasterizationStateCreateInfo? RasterizationState
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pMultisampleState is a pointer to an instance of the slink:VkPipelineMultisampleStateCreateInfo, or `NULL` if the pipeline has rasterization disabled.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public PipelineMultisampleStateCreateInfo? MultisampleState
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pDepthStencilState is a pointer to an instance of the slink:VkPipelineDepthStencilStateCreateInfo structure, or `NULL` if the pipeline has rasterization disabled or if the subpass of the render pass the pipeline is created against does not use a depth/stencil attachment.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public PipelineDepthStencilStateCreateInfo? DepthStencilState
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pColorBlendState is a pointer to an instance of the slink:VkPipelineColorBlendStateCreateInfo structure, or `NULL` if the pipeline has rasterization disabled or if the subpass of the render pass the pipeline is created against does not use any color attachments.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public PipelineColorBlendStateCreateInfo? ColorBlendState
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pDynamicState is a pointer to slink:VkPipelineDynamicStateCreateInfo and is used to indicate which properties of the pipeline state object are dynamic and can: be changed independently of the pipeline state. This can: be `NULL`, which means no state in the pipeline is considered dynamic.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public PipelineDynamicStateCreateInfo? DynamicState
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:layout is the description of binding locations used by both the pipeline and descriptor sets used with the pipeline.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public PipelineLayout Layout
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:renderPass is a handle to a render pass object describing the environment in which the pipeline will be used; the pipeline can: be used with an instance of any render pass compatible with the one provided. See &lt;&lt;renderpass-compatibility,Render Pass Compatibility&gt;&gt; for more information.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public RenderPass RenderPass
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:subpass is the index of the subpass in pname:renderPass where this pipeline will be used.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint Subpass
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:basePipelineHandle is a pipeline to derive from.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Pipeline BasePipelineHandle
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:basePipelineIndex is an index into the pname:pCreateInfos parameter to use as a pipeline to derive from.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public int BasePipelineIndex
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.GraphicsPipelineCreateInfo Pack()
-        {
-            var result = new Interop.GraphicsPipelineCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.GraphicsPipelineCreateInfo Pack()
+		{
+			Interop.GraphicsPipelineCreateInfo result = default(Interop.GraphicsPipelineCreateInfo);
 			result.SType = StructureType.GraphicsPipelineCreateInfo;
 			
 			//Stages
@@ -2986,13 +2874,15 @@ namespace SharpVk
 			result.Flags = this.Flags;
 			result.Subpass = this.Subpass;
 			result.BasePipelineIndex = this.BasePipelineIndex;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.GraphicsPipelineCreateInfo* MarshalTo()
-        {
-            return (Interop.GraphicsPipelineCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.GraphicsPipelineCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -3009,59 +2899,59 @@ namespace SharpVk
     /// </summary>
 	public struct ImageBlit
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:srcSubresource is the subresource to blit from.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public ImageSubresourceLayers SourceSubresource
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:srcOffsets is an array of two slink:VkOffset3D structures specifying the bounds of the source region within pname:srcSubresource.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Offset3D[] SourceOffsets
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:dstSubresource is the subresource to blit into.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ImageSubresourceLayers DestinationSubresource
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:dstOffsets is an array of two slink:VkOffset3D structures specifying the bounds of the destination region within pname:dstSubresource.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Offset3D[] DestinationOffsets
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.ImageBlit Pack()
-        {
-            var result = new Interop.ImageBlit();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.ImageBlit Pack()
+		{
+			Interop.ImageBlit result = default(Interop.ImageBlit);
 			result.SourceSubresource = this.SourceSubresource;
 			result.DestinationSubresource = this.DestinationSubresource;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.ImageBlit* MarshalTo()
-        {
-            return (Interop.ImageBlit*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.ImageBlit*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -3087,130 +2977,120 @@ namespace SharpVk
     /// </summary>
 	public struct ImageCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is a bitmask describing additional parameters of the image. See elink:VkImageCreateFlagBits below for a description of the supported bits.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public ImageCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:imageType is a elink:VkImageType specifying the basic dimensionality of the image, as described below. Layers in array textures do not count as a dimension for the purposes of the image type.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ImageType ImageType
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:format is a elink:VkFormat describing the format and type of the data elements that will be contained in the image.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Format Format
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:extent is a slink:VkExtent3D describing the number of data elements in each dimension of the base level.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Extent3D Extent
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:mipLevels describes the number of levels of detail available for minified sampling of the image.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MipLevels
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:arrayLayers is the number of layers in the image.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint ArrayLayers
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:samples is the number of sub-data element samples in the image as defined in elink:VkSampleCountFlagBits. See &lt;&lt;primsrast-multisampling,Multisampling&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public SampleCountFlags Samples
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:tiling is a elink:VkImageTiling specifying the tiling arrangement of the data elements in memory, as described below.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ImageTiling Tiling
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:usage is a bitmask describing the intended usage of the image. See elink:VkImageUsageFlagBits below for a description of the supported bits.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ImageUsageFlags Usage
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:sharingMode is the sharing mode of the image when it will be accessed by multiple queue families, and must: be one of the values described for elink:VkSharingMode in the &lt;&lt;resources-sharing,Resource Sharing&gt;&gt; section below.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public SharingMode SharingMode
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pQueueFamilyIndices is a list of queue families that will access this image (ignored if pname:sharingMode is not ename:VK_SHARING_MODE_CONCURRENT).
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint[] QueueFamilyIndices
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:initialLayout selects the initial elink:VkImageLayout state of all image subresources of the image. See &lt;&lt;resources-image-layouts,Image Layouts&gt;&gt;. pname:initialLayout must: be ename:VK_IMAGE_LAYOUT_UNDEFINED or ename:VK_IMAGE_LAYOUT_PREINITIALIZED.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ImageLayout InitialLayout
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.ImageCreateInfo Pack()
-        {
-            var result = new Interop.ImageCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.ImageCreateInfo Pack()
+		{
+			Interop.ImageCreateInfo result = default(Interop.ImageCreateInfo);
 			result.SType = StructureType.ImageCreateInfo;
 			result.QueueFamilyIndices = this.QueueFamilyIndices == null ? null : Interop.HeapUtil.MarshalTo(this.QueueFamilyIndices);
 			result.QueueFamilyIndexCount = (uint)(this.QueueFamilyIndices?.Length ?? 0);
@@ -3225,13 +3105,15 @@ namespace SharpVk
 			result.Usage = this.Usage;
 			result.SharingMode = this.SharingMode;
 			result.InitialLayout = this.InitialLayout;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.ImageCreateInfo* MarshalTo()
-        {
-            return (Interop.ImageCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.ImageCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -3254,90 +3136,84 @@ namespace SharpVk
     /// </summary>
 	public struct ImageMemoryBarrier
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:srcAccessMask is a bitmask of the classes of memory accesses performed by the first set of commands that will participate in the dependency.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public AccessFlags SourceAccessMask
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:dstAccessMask is a bitmask of the classes of memory accesses performed by the second set of commands that will participate in the dependency.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public AccessFlags DestinationAccessMask
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:oldLayout describes the current layout of the image subresource(s).
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ImageLayout OldLayout
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:newLayout describes the new layout of the image subresource(s).
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ImageLayout NewLayout
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:srcQueueFamilyIndex is the queue family that is relinquishing ownership of the image subresource(s) to another queue, or ename:VK_QUEUE_FAMILY_IGNORED if there is no transfer of ownership).
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint SourceQueueFamilyIndex
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:dstQueueFamilyIndex is the queue family that is acquiring ownership of the image subresource(s) from another queue, or ename:VK_QUEUE_FAMILY_IGNORED if there is no transfer of ownership).
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint DestinationQueueFamilyIndex
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:image is a handle to the image whose backing memory is affected by the barrier.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Image Image
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:subresourceRange describes an area of the backing memory for pname:image (see &lt;&lt;resources-image-views&gt;&gt; for the description of sname:VkImageSubresourceRange), as well as the set of image subresources whose image layouts are modified.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ImageSubresourceRange SubresourceRange
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.ImageMemoryBarrier Pack()
-        {
-            var result = new Interop.ImageMemoryBarrier();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.ImageMemoryBarrier Pack()
+		{
+			Interop.ImageMemoryBarrier result = default(Interop.ImageMemoryBarrier);
 			result.SType = StructureType.ImageMemoryBarrier;
 			result.Image = this.Image?.Pack() ?? Interop.Image.Null;
 			result.SourceAccessMask = this.SourceAccessMask;
@@ -3347,13 +3223,15 @@ namespace SharpVk
 			result.SourceQueueFamilyIndex = this.SourceQueueFamilyIndex;
 			result.DestinationQueueFamilyIndex = this.DestinationQueueFamilyIndex;
 			result.SubresourceRange = this.SubresourceRange;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.ImageMemoryBarrier* MarshalTo()
-        {
-            return (Interop.ImageMemoryBarrier*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.ImageMemoryBarrier*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -3373,70 +3251,66 @@ namespace SharpVk
     /// </summary>
 	public struct ImageViewCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public ImageViewCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:image is a sname:VkImage on which the view will be created.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Image Image
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:viewType is the type of the image view.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ImageViewType ViewType
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:format is a elink:VkFormat describing the format and type used to interpret data elements in the image.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Format Format
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:components specifies a remapping of color components (or of depth or stencil components after they have been converted into color components). See slink:VkComponentMapping.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ComponentMapping Components
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:subresourceRange is a slink:VkImageSubresourceRange selecting the set of mipmap levels and array layers to be accessible to the view.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ImageSubresourceRange SubresourceRange
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.ImageViewCreateInfo Pack()
-        {
-            var result = new Interop.ImageViewCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.ImageViewCreateInfo Pack()
+		{
+			Interop.ImageViewCreateInfo result = default(Interop.ImageViewCreateInfo);
 			result.SType = StructureType.ImageViewCreateInfo;
 			result.Image = this.Image?.Pack() ?? Interop.Image.Null;
 			result.Flags = this.Flags;
@@ -3444,114 +3318,109 @@ namespace SharpVk
 			result.Format = this.Format;
 			result.Components = this.Components;
 			result.SubresourceRange = this.SubresourceRange;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.ImageViewCreateInfo* MarshalTo()
-        {
-            return (Interop.ImageViewCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.ImageViewCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Import Win32 memory created on the same physical device.
-    /// </para>
-    /// <para>
-    /// To import memory created on the same physical device but outside of the current Vulkan instance, add a slink:VkImportMemoryWin32HandleInfoNV structure to the pname:pNext chain of the slink:VkMemoryAllocateInfo structure, specifying a handle to and the type of the memory.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct ImportMemoryWin32HandleInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:handleType is 0 or a flag specifying the type of memory handle in pname:handle. Flags which may: be specified are: + --
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public ExternalMemoryHandleTypeFlags HandleType
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public IntPtr Handle
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.ImportMemoryWin32HandleInfo Pack()
-        {
-            var result = new Interop.ImportMemoryWin32HandleInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.ImportMemoryWin32HandleInfo Pack()
+		{
+			Interop.ImportMemoryWin32HandleInfo result = default(Interop.ImportMemoryWin32HandleInfo);
 			result.SType = StructureType.ImportMemoryWin32HandleInfo;
 			result.HandleType = this.HandleType;
 			result.Handle = this.Handle;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.ImportMemoryWin32HandleInfo* MarshalTo()
-        {
-            return (Interop.ImportMemoryWin32HandleInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.ImportMemoryWin32HandleInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure specifying parameters of a newly created instance.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct InstanceCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public InstanceCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pApplicationInfo is `NULL` or a pointer to an instance of sname:VkApplicationInfo. If not `NULL`, this information helps implementations recognize behavior inherent to classes of applications. slink:VkApplicationInfo is defined in detail below.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ApplicationInfo? ApplicationInfo
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:ppEnabledLayerNames is a pointer to an array of pname:enabledLayerCount null-terminated UTF-8 strings containing the names of layers to enable for the created instance. See the &lt;&lt;extended-functionality-layers,Layers&gt;&gt; section for further details.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public string[] EnabledLayerNames
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:ppEnabledExtensionNames is a pointer to an array of pname:enabledExtensionCount null-terminated UTF-8 strings containing the names of extensions to enable.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public string[] EnabledExtensionNames
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.InstanceCreateInfo Pack()
-        {
-            var result = new Interop.InstanceCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.InstanceCreateInfo Pack()
+		{
+			Interop.InstanceCreateInfo result = default(Interop.InstanceCreateInfo);
 			result.SType = StructureType.InstanceCreateInfo;
 			result.ApplicationInfo = this.ApplicationInfo == null ? null : this.ApplicationInfo.Value.MarshalTo();
 			result.EnabledLayerNames = this.EnabledLayerNames == null ? null : Interop.HeapUtil.MarshalTo(this.EnabledLayerNames);
@@ -3559,78 +3428,69 @@ namespace SharpVk
 			result.EnabledLayerCount = (uint)(this.EnabledLayerNames?.Length ?? 0);
 			result.EnabledExtensionCount = (uint)(this.EnabledExtensionNames?.Length ?? 0);
 			result.Flags = this.Flags;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.InstanceCreateInfo* MarshalTo()
-        {
-            return (Interop.InstanceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.InstanceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure specifying layer properties.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct LayerProperties
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:layerName is a null-terminated UTF-8 string specifying the name of the layer. Use this name in the pname:ppEnabledLayerNames array passed in the slink:VkInstanceCreateInfo structure to enable this layer for an instance.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public string LayerName
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:specVersion is the Vulkan version the layer was written to, encoded as described in the &lt;&lt;fundamentals-versionnum,API Version Numbers and Semantics&gt;&gt; section.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Version SpecVersion
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:implementationVersion is the version of this layer. It is an integer, increasing with backward compatible changes.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Version ImplementationVersion
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:description is a null-terminated UTF-8 string providing additional details that can: be used by the application to identify the layer.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public string Description
 		{
 			get;
 			set;
 		}
-
-		internal unsafe LayerProperties Unpack(Interop.LayerProperties value)
-		{
-			return MarshalFrom(&value);
-		}
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal static unsafe LayerProperties MarshalFrom(Interop.LayerProperties* value)
 		{
-            var result = new LayerProperties();
-
+			LayerProperties result = new LayerProperties();
 			result.LayerName = System.Text.Encoding.UTF8.GetString(Interop.HeapUtil.MarshalFrom(value->LayerName, (int)Constants.MaxExtensionNameSize, true));
 			result.SpecVersion = value->SpecVersion;
 			result.ImplementationVersion = value->ImplementationVersion;
 			result.Description = System.Text.Encoding.UTF8.GetString(Interop.HeapUtil.MarshalFrom(value->Description, (int)Constants.MaxDescriptionSize, true));
-
 			return result;
 		}
 	}
@@ -3645,51 +3505,52 @@ namespace SharpVk
     /// </summary>
 	public struct MappedMemoryRange
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:memory is the memory object to which this range belongs.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public DeviceMemory Memory
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:offset is the zero-based byte offset from the beginning of the memory object.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ulong Offset
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:size is either the size of range, or ename:VK_WHOLE_SIZE to affect the range from pname:offset to the end of the current mapping of the allocation.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ulong Size
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.MappedMemoryRange Pack()
-        {
-            var result = new Interop.MappedMemoryRange();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.MappedMemoryRange Pack()
+		{
+			Interop.MappedMemoryRange result = default(Interop.MappedMemoryRange);
 			result.SType = StructureType.MappedMemoryRange;
 			result.Memory = this.Memory?.Pack() ?? Interop.DeviceMemory.Null;
 			result.Offset = this.Offset;
 			result.Size = this.Size;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.MappedMemoryRange* MarshalTo()
-        {
-            return (Interop.MappedMemoryRange*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.MappedMemoryRange*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -3703,699 +3564,636 @@ namespace SharpVk
     /// </summary>
 	public struct MemoryAllocateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:allocationSize is the size of the allocation in bytes
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public ulong AllocationSize
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:memoryTypeIndex is the memory type index, which selects the properties of the memory to be allocated, as well as the heap the memory will come from.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MemoryTypeIndex
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.MemoryAllocateInfo Pack()
-        {
-            var result = new Interop.MemoryAllocateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.MemoryAllocateInfo Pack()
+		{
+			Interop.MemoryAllocateInfo result = default(Interop.MemoryAllocateInfo);
 			result.SType = StructureType.MemoryAllocateInfo;
 			result.AllocationSize = this.AllocationSize;
 			result.MemoryTypeIndex = this.MemoryTypeIndex;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.MemoryAllocateInfo* MarshalTo()
-        {
-            return (Interop.MemoryAllocateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.MemoryAllocateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure specifying a memory barrier.
-    /// </para>
-    /// <para>
-    /// pname:srcAccessMask and pname:dstAccessMask, along with pname:srcStageMask and pname:dstStageMask from flink:vkCmdPipelineBarrier, define the two halves of a memory dependency and an execution dependency. Memory accesses using the set of access types in pname:srcAccessMask performed in pipeline stages in pname:srcStageMask by the first set of commands must: complete and be available to later commands. The side effects of the first set of commands will be visible to memory accesses using the set of access types in pname:dstAccessMask performed in pipeline stages in pname:dstStageMask by the second set of commands. If the barrier is by-region, these requirements only apply to invocations within the same framebuffer-space region, for pipeline stages that perform framebuffer-space work. The execution dependency guarantees that execution of work by the destination stages of the second set of commands will not begin until execution of work by the source stages of the first set of commands has completed.
-    /// </para>
-    /// <para>
-    /// A common type of memory dependency is to avoid a read-after-write hazard. In this case, the source access mask and stages will include writes from a particular stage, and the destination access mask and stages will indicate how those writes will be read in subsequent commands. However, barriers can: also express write-after-read dependencies and write-after-write dependencies, and are even useful to express read-after-read dependencies across an image layout change.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct MemoryBarrier
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:srcAccessMask is a bitmask of the classes of memory accesses performed by the first set of commands that will participate in the dependency.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public AccessFlags SourceAccessMask
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:dstAccessMask is a bitmask of the classes of memory accesses performed by the second set of commands that will participate in the dependency.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public AccessFlags DestinationAccessMask
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.MemoryBarrier Pack()
-        {
-            var result = new Interop.MemoryBarrier();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.MemoryBarrier Pack()
+		{
+			Interop.MemoryBarrier result = default(Interop.MemoryBarrier);
 			result.SType = StructureType.MemoryBarrier;
 			result.SourceAccessMask = this.SourceAccessMask;
 			result.DestinationAccessMask = this.DestinationAccessMask;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.MemoryBarrier* MarshalTo()
-        {
-            return (Interop.MemoryBarrier*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.MemoryBarrier*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure specifying parameters of a newly created Mir surface object.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct MirSurfaceCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public MirSurfaceCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:connection and pname:surface are pointers to the code:MirConnection and code:MirSurface for the window to associate the surface with.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public IntPtr Connection
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public IntPtr MirSurface
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.MirSurfaceCreateInfo Pack()
-        {
-            var result = new Interop.MirSurfaceCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.MirSurfaceCreateInfo Pack()
+		{
+			Interop.MirSurfaceCreateInfo result = default(Interop.MirSurfaceCreateInfo);
 			result.SType = StructureType.MirSurfaceCreateInfo;
 			result.Connection = (IntPtr*)Interop.HeapUtil.AllocateAndMarshal(this.Connection);
 			result.MirSurface = (IntPtr*)Interop.HeapUtil.AllocateAndMarshal(this.MirSurface);
 			result.Flags = this.Flags;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.MirSurfaceCreateInfo* MarshalTo()
-        {
-            return (Interop.MirSurfaceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.MirSurfaceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure reporting implementation-dependent physical device limits.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct PhysicalDeviceLimits
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:maxImageDimension1D is the maximum dimension (pname:width) of an image created with an pname:imageType of ename:VK_IMAGE_TYPE_1D.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxImageDimension1D
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:maxImageDimension2D is the maximum dimension (pname:width or pname:height) of an image created with an pname:imageType of ename:VK_IMAGE_TYPE_2D and without ename:VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT set in pname:flags.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxImageDimension2D
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:maxImageDimension3D is the maximum dimension (pname:width, pname:height, or pname:depth) of an image created with an pname:imageType of ename:VK_IMAGE_TYPE_3D.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxImageDimension3D
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:maxImageDimensionCube is the maximum dimension (pname:width or pname:height) of an image created with an pname:imageType of ename:VK_IMAGE_TYPE_2D and with ename:VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT set in pname:flags.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxImageDimensionCube
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:maxImageArrayLayers is the maximum number of layers (pname:arrayLayers) for an image.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxImageArrayLayers
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:maxTexelBufferElements is the maximum number of addressable texels for a buffer view created on a buffer which was created with the ename:VK_BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT or ename:VK_BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT set in the pname:usage member of the sname:VkBufferCreateInfo structure.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxTexelBufferElements
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:maxUniformBufferRange is the maximum value that can: be specified in the pname:range member of any slink:VkDescriptorBufferInfo structures passed to a call to flink:vkUpdateDescriptorSets for descriptors of type ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER or ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxUniformBufferRange
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:maxStorageBufferRange is the maximum value that can: be specified in the pname:range member of any slink:VkDescriptorBufferInfo structures passed to a call to flink:vkUpdateDescriptorSets for descriptors of type ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER or ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxStorageBufferRange
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:maxPushConstantsSize is the maximum size, in bytes, of the pool of push constant memory. For each of the push constant ranges indicated by the pname:pPushConstantRanges member of the sname:VkPipelineLayoutCreateInfo structure, pname:offset + pname:size must: be less than or equal to this limit.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxPushConstantsSize
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxMemoryAllocationCount is the maximum number of device memory allocations, as created by flink:vkAllocateMemory, which can: simultaneously exist.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxMemoryAllocationCount
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxSamplerAllocationCount is the maximum number of sampler objects, as created by flink:vkCreateSampler, which can: simultaneously exist on a device.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxSamplerAllocationCount
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:bufferImageGranularity is the granularity, in bytes, at which buffer or linear image resources, and optimal image resources can: be bound to adjacent offsets in the same sname:VkDeviceMemory object without aliasing. See &lt;&lt;resources-bufferimagegranularity,Buffer-Image Granularity&gt;&gt; for more details.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ulong BufferImageGranularity
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:sparseAddressSpaceSize is the total amount of address space available, in bytes, for sparse memory resources. This is an upper bound on the sum of the size of all sparse resources, regardless of whether any memory is bound to them.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ulong SparseAddressSpaceSize
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:maxBoundDescriptorSets is the maximum number of descriptor sets that can: be simultaneously used by a pipeline. All code:DescriptorSet decorations in shader modules must: have a value less than pname:maxBoundDescriptorSets. See &lt;&lt;descriptorsets-sets&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxBoundDescriptorSets
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxPerStageDescriptorSamplers is the maximum number of samplers that can: be accessible to a single shader stage in a pipeline layout. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_SAMPLER or ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER count against this limit. A descriptor is accessible to a shader stage when the pname:stageFlags member of the sname:VkDescriptorSetLayoutBinding structure has the bit for that shader stage set. See &lt;&lt;descriptorsets-sampler&gt;&gt; and &lt;&lt;descriptorsets-combinedimagesampler&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxPerStageDescriptorSamplers
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxPerStageDescriptorUniformBuffers is the maximum number of uniform buffers that can: be accessible to a single shader stage in a pipeline layout. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER or ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC count against this limit. A descriptor is accessible to a shader stage when the pname:stageFlags member of the sname:VkDescriptorSetLayoutBinding structure has the bit for that shader stage set. See &lt;&lt;descriptorsets-uniformbuffer&gt;&gt; and &lt;&lt;descriptorsets-uniformbufferdynamic&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxPerStageDescriptorUniformBuffers
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxPerStageDescriptorStorageBuffers is the maximum number of storage buffers that can: be accessible to a single shader stage in a pipeline layout. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER or ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC count against this limit. A descriptor is accessible to a pipeline shader stage when the pname:stageFlags member of the sname:VkDescriptorSetLayoutBinding structure has the bit for that shader stage set. See &lt;&lt;descriptorsets-storagebuffer&gt;&gt; and &lt;&lt;descriptorsets-storagebufferdynamic&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxPerStageDescriptorStorageBuffers
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxPerStageDescriptorSampledImages is the maximum number of sampled images that can: be accessible to a single shader stage in a pipeline layout. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, ename:VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE, or ename:VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER count against this limit. A descriptor is accessible to a pipeline shader stage when the pname:stageFlags member of the sname:VkDescriptorSetLayoutBinding structure has the bit for that shader stage set. See &lt;&lt;descriptorsets-combinedimagesampler&gt;&gt;, &lt;&lt;descriptorsets-sampledimage&gt;&gt;, and &lt;&lt;descriptorsets-uniformtexelbuffer&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxPerStageDescriptorSampledImages
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxPerStageDescriptorStorageImages is the maximum number of storage images that can: be accessible to a single shader stage in a pipeline layout. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_STORAGE_IMAGE, or ename:VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER count against this limit. A descriptor is accessible to a pipeline shader stage when the pname:stageFlags member of the sname:VkDescriptorSetLayoutBinding structure has the bit for that shader stage set. See &lt;&lt;descriptorsets-storageimage&gt;&gt;, and &lt;&lt;descriptorsets-storagetexelbuffer&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxPerStageDescriptorStorageImages
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxPerStageDescriptorInputAttachments is the maximum number of input attachments that can: be accessible to a single shader stage in a pipeline layout. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT count against this limit. A descriptor is accessible to a pipeline shader stage when the pname:stageFlags member of the sname:VkDescriptorSetLayoutBinding structure has the bit for that shader stage set. These are only supported for the fragment stage. See &lt;&lt;descriptorsets-inputattachment&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxPerStageDescriptorInputAttachments
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:maxPerStageResources is the maximum number of resources that can: be accessible to a single shader stage in a pipeline layout. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, ename:VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE, ename:VK_DESCRIPTOR_TYPE_STORAGE_IMAGE, ename:VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER, ename:VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER, ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER, ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER, ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC, ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC, or ename:VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT count against this limit. For the fragment shader stage the framebuffer color attachments also count against this limit.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxPerStageResources
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxDescriptorSetSamplers is the maximum number of samplers that can: be included in descriptor bindings in a pipeline layout across all pipeline shader stages and descriptor set numbers. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_SAMPLER or ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER count against this limit. See &lt;&lt;descriptorsets-sampler&gt;&gt; and &lt;&lt;descriptorsets-combinedimagesampler&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxDescriptorSetSamplers
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxDescriptorSetUniformBuffers is the maximum number of uniform buffers that can: be included in descriptor bindings in a pipeline layout across all pipeline shader stages and descriptor set numbers. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER or ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC count against this limit. See &lt;&lt;descriptorsets-uniformbuffer&gt;&gt; and &lt;&lt;descriptorsets-uniformbufferdynamic&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxDescriptorSetUniformBuffers
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxDescriptorSetUniformBuffersDynamic is the maximum number of dynamic uniform buffers that can: be included in descriptor bindings in a pipeline layout across all pipeline shader stages and descriptor set numbers. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC count against this limit. See &lt;&lt;descriptorsets-uniformbufferdynamic&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxDescriptorSetUniformBuffersDynamic
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxDescriptorSetStorageBuffers is the maximum number of storage buffers that can: be included in descriptor bindings in a pipeline layout across all pipeline shader stages and descriptor set numbers. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER or ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC count against this limit. See &lt;&lt;descriptorsets-storagebuffer&gt;&gt; and &lt;&lt;descriptorsets-storagebufferdynamic&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxDescriptorSetStorageBuffers
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxDescriptorSetStorageBuffersDynamic is the maximum number of dynamic storage buffers that can: be included in descriptor bindings in a pipeline layout across all pipeline shader stages and descriptor set numbers. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC count against this limit. See &lt;&lt;descriptorsets-storagebufferdynamic&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxDescriptorSetStorageBuffersDynamic
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxDescriptorSetSampledImages is the maximum number of sampled images that can: be included in descriptor bindings in a pipeline layout across all pipeline shader stages and descriptor set numbers. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, ename:VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE, or ename:VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER count against this limit. See &lt;&lt;descriptorsets-combinedimagesampler&gt;&gt;, &lt;&lt;descriptorsets-sampledimage&gt;&gt;, and &lt;&lt;descriptorsets-uniformtexelbuffer&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxDescriptorSetSampledImages
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxDescriptorSetStorageImages is the maximum number of storage images that can: be included in descriptor bindings in a pipeline layout across all pipeline shader stages and descriptor set numbers. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_STORAGE_IMAGE, or ename:VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER count against this limit. See &lt;&lt;descriptorsets-storageimage&gt;&gt;, and &lt;&lt;descriptorsets-storagetexelbuffer&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxDescriptorSetStorageImages
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxDescriptorSetInputAttachments is the maximum number of input attachments that can: be included in descriptor bindings in a pipeline layout across all pipeline shader stages and descriptor set numbers. Descriptors with a type of ename:VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT count against this limit. See &lt;&lt;descriptorsets-inputattachment&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxDescriptorSetInputAttachments
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxVertexInputAttributes is the maximum number of vertex input attributes that can: be specified for a graphics pipeline. These are described in the array of sname:VkVertexInputAttributeDescription structures that are provided at graphics pipeline creation time via the pname:pVertexAttributeDescriptions member of the sname:VkPipelineVertexInputStateCreateInfo structure. See &lt;&lt;fxvertex-attrib&gt;&gt; and &lt;&lt;fxvertex-input&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxVertexInputAttributes
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:maxVertexInputBindings is the maximum number of vertex buffers that can: be specified for providing vertex attributes to a graphics pipeline. These are described in the array of sname:VkVertexInputBindingDescription structures that are provided at graphics pipeline creation time via the pname:pVertexBindingDescriptions member of the sname:VkPipelineVertexInputStateCreateInfo structure. The pname:binding member of sname:VkVertexInputBindingDescription must: be less than this limit. See &lt;&lt;fxvertex-input&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxVertexInputBindings
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxVertexInputAttributeOffset is the maximum vertex input attribute offset that can: be added to the vertex input binding stride. The pname:offset member of the sname:VkVertexInputAttributeDescription structure must: be less than or equal to this limit. See &lt;&lt;fxvertex-input&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxVertexInputAttributeOffset
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxVertexInputBindingStride is the maximum vertex input binding stride that can: be specified in a vertex input binding. The pname:stride member of the sname:VkVertexInputBindingDescription structure must: be less than or equal to this limit. See &lt;&lt;fxvertex-input&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxVertexInputBindingStride
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxVertexOutputComponents is the maximum number of components of output variables which can: be output by a vertex shader. See &lt;&lt;shaders-vertex&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxVertexOutputComponents
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxTessellationGenerationLevel is the maximum tessellation generation level supported by the fixed-function tessellation primitive generator. See &lt;&lt;tessellation&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxTessellationGenerationLevel
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxTessellationPatchSize is the maximum patch size, in vertices, of patches that can: be processed by the tessellation control shader and tessellation primitive generator. The pname:patchControlPoints member of the sname:VkPipelineTessellationStateCreateInfo structure specified at pipeline creation time and the value provided in the code:OutputVertices execution mode of shader modules must: be less than or equal to this limit. See &lt;&lt;tessellation&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxTessellationPatchSize
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxTessellationControlPerVertexInputComponents is the maximum number of components of input variables which can: be provided as per-vertex inputs to the tessellation control shader stage.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxTessellationControlPerVertexInputComponents
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxTessellationControlPerVertexOutputComponents is the maximum number of components of per-vertex output variables which can: be output from the tessellation control shader stage.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxTessellationControlPerVertexOutputComponents
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxTessellationControlPerPatchOutputComponents is the maximum number of components of per-patch output variables which can: be output from the tessellation control shader stage.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxTessellationControlPerPatchOutputComponents
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxTessellationControlTotalOutputComponents is the maximum total number of components of per-vertex and per-patch output variables which can: be output from the tessellation control shader stage.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxTessellationControlTotalOutputComponents
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxTessellationEvaluationInputComponents is the maximum number of components of input variables which can: be provided as per-vertex inputs to the tessellation evaluation shader stage.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxTessellationEvaluationInputComponents
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxTessellationEvaluationOutputComponents is the maximum number of components of per-vertex output variables which can: be output from the tessellation evaluation shader stage.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxTessellationEvaluationOutputComponents
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxGeometryShaderInvocations is the maximum invocation count supported for instanced geometry shaders. The value provided in the code:Invocations execution mode of shader modules must: be less than or equal to this limit. See &lt;&lt;geometry&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxGeometryShaderInvocations
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxGeometryInputComponents is the maximum number of components of input variables which can: be provided as inputs to the geometry shader stage.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxGeometryInputComponents
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxGeometryOutputComponents is the maximum number of components of output variables which can: be output from the geometry shader stage.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxGeometryOutputComponents
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxGeometryOutputVertices is the maximum number of vertices which can: be emitted by any geometry shader.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxGeometryOutputVertices
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxGeometryTotalOutputComponents is the maximum total number of components of output, across all emitted vertices, which can: be output from the geometry shader stage.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxGeometryTotalOutputComponents
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxFragmentInputComponents is the maximum number of components of input variables which can: be provided as inputs to the fragment shader stage.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxFragmentInputComponents
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxFragmentOutputAttachments is the maximum number of output attachments which can: be written to by the fragment shader stage.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxFragmentOutputAttachments
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxFragmentDualSrcAttachments is the maximum number of output attachments which can: be written to by the fragment shader stage when blending is enabled and one of the dual source blend modes is in use. See &lt;&lt;framebuffer-dsb&gt;&gt; and &lt;&lt;features-features-dualSrcBlend,dualSrcBlend&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxFragmentDualSourceAttachments
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxFragmentCombinedOutputResources is the total number of storage buffers, storage images, and output buffers which can: be used in the fragment shader stage.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxFragmentCombinedOutputResources
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxComputeSharedMemorySize is the maximum total storage size, in bytes, of all variables declared with the code:WorkgroupLocal storage class in shader modules (or with the code:shared storage qualifier in GLSL) in the compute shader stage.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxComputeSharedMemorySize
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxComputeWorkGroupCount[3] is the maximum number of local workgroups that can: be dispatched by a single dispatch command. These three values represent the maximum number of local workgroups for the X, Y, and Z dimensions, respectively. The pname:x, pname:y, and pname:z parameters to the flink:vkCmdDispatch command, or members of the slink:VkDispatchIndirectCommand structure must: be less than or equal to the corresponding limit. See &lt;&lt;dispatch&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint[] MaxComputeWorkGroupCount
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxComputeWorkGroupInvocations is the maximum total number of compute shader invocations in a single local workgroup. The product of the X, Y, and Z sizes as specified by the code:LocalSize execution mode in shader modules and by the object decorated by the code:WorkgroupSize decoration must: be less than or equal to this limit.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxComputeWorkGroupInvocations
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxComputeWorkGroupSize[3] is the maximum size of a local compute workgroup, per dimension. These three values represent the maximum local workgroup size in the X, Y, and Z dimensions, respectively. The pname:x, pname:y, and pname:z sizes specified by the code:LocalSize execution mode and by the object decorated by the code:WorkgroupSize decoration in shader modules must: be less than or equal to the corresponding limit.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint[] MaxComputeWorkGroupSize
 		{
@@ -4432,20 +4230,18 @@ namespace SharpVk
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxDrawIndexedIndexValue is the maximum index value that can: be used for indexed draw calls when using 32-bit indices. This excludes the primitive restart index value of 0xFFFFFFFF. See &lt;&lt;features-features-fullDrawIndexUint32,fullDrawIndexUint32&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxDrawIndexedIndexValue
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:maxDrawIndirectCount is the maximum draw count that is supported for indirect draw calls. See &lt;&lt;features-features-multiDrawIndirect,multiDrawIndirect&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxDrawIndirectCount
 		{
@@ -4462,30 +4258,27 @@ namespace SharpVk
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:maxSamplerAnisotropy is the maximum degree of sampler anisotropy. The maximum degree of anisotropic filtering used for an image sampling operation is the minimum of the pname:maxAnisotropy member of the sname:VkSamplerCreateInfo structure and this limit. See &lt;&lt;samplers-maxAnisotropy&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public float MaxSamplerAnisotropy
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:maxViewports is the maximum number of active viewports. The pname:viewportCount member of the sname:VkPipelineViewportStateCreateInfo structure that is provided at pipeline creation must: be less than or equal to this limit.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxViewports
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:maxViewportDimensions[2] are the maximum viewport dimensions in the X (width) and Y (height) dimensions, respectively. The maximum viewport dimensions must: be greater than or equal to the largest image which can: be created and used as a framebuffer attachment. See &lt;&lt;vertexpostproc-viewport,Controlling the Viewport&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint[] MaxViewportDimensions
 		{
@@ -4502,320 +4295,288 @@ namespace SharpVk
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:viewportSubPixelBits is the number of bits of subpixel precision for viewport bounds. The subpixel precision that floating-point viewport bounds are interpreted at is given by this limit.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint ViewportSubPixelBits
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:minMemoryMapAlignment is the minimum required: alignment, in bytes, of host visible memory allocations within the host address space. When mapping a memory allocation with flink:vkMapMemory, subtracting pname:offset bytes from the returned pointer will always produce an integer multiple of this limit. See &lt;&lt;memory-device-hostaccess&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Size MinMemoryMapAlignment
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:minTexelBufferOffsetAlignment is the minimum required: alignment, in bytes, for the pname:offset member of the sname:VkBufferViewCreateInfo structure for texel buffers. When a buffer view is created for a buffer which was created with ename:VK_BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT or ename:VK_BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT set in the pname:usage member of the sname:VkBufferCreateInfo structure, the pname:offset must: be an integer multiple of this limit.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ulong MinTexelBufferOffsetAlignment
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:minUniformBufferOffsetAlignment is the minimum required: alignment, in bytes, for the pname:offset member of the sname:VkDescriptorBufferInfo structure for uniform buffers. When a descriptor of type ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER or ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC is updated, the pname:offset must: be an integer multiple of this limit. Similarly, dynamic offsets for uniform buffers must: be multiples of this limit.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ulong MinUniformBufferOffsetAlignment
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:minStorageBufferOffsetAlignment is the minimum required: alignment, in bytes, for the pname:offset member of the sname:VkDescriptorBufferInfo structure for storage buffers. When a descriptor of type ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER or ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC is updated, the pname:offset must: be an integer multiple of this limit. Similarly, dynamic offsets for storage buffers must: be multiples of this limit.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ulong MinStorageBufferOffsetAlignment
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:minTexelOffset is the minimum offset value for the code:ConstOffset image operand of any of the code:OpImageSample* or code:OpImageFetch* image instructions.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public int MinTexelOffset
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:maxTexelOffset is the maximum offset value for the code:ConstOffset image operand of any of the code:OpImageSample* or code:OpImageFetch* image instructions.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxTexelOffset
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:minTexelGatherOffset is the minimum offset value for the code:Offset or code:ConstOffsets image operands of any of the code:OpImage*code:Gather image instructions.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public int MinTexelGatherOffset
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:maxTexelGatherOffset is the maximum offset value for the code:Offset or code:ConstOffsets image operands of any of the code:OpImage*code:Gather image instructions.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxTexelGatherOffset
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:minInterpolationOffset is the minimum negative offset value for the code:offset operand of the code:InterpolateAtOffset extended instruction.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public float MinInterpolationOffset
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:maxInterpolationOffset is the maximum positive offset value for the code:offset operand of the code:InterpolateAtOffset extended instruction.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public float MaxInterpolationOffset
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:subPixelInterpolationOffsetBits is the number of subpixel fractional bits that the code:x and code:y offsets to the code:InterpolateAtOffset extended instruction may: be rounded to as fixed-point values.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint SubPixelInterpolationOffsetBits
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:maxFramebufferWidth is the maximum width for a framebuffer. The pname:width member of the sname:VkFramebufferCreateInfo structure must: be less than or equal to this limit.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxFramebufferWidth
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:maxFramebufferHeight is the maximum height for a framebuffer. The pname:height member of the sname:VkFramebufferCreateInfo structure must: be less than or equal to this limit.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxFramebufferHeight
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:maxFramebufferLayers is the maximum layer count for a layered framebuffer. The pname:layers member of the sname:VkFramebufferCreateInfo structure must: be less than or equal to this limit.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxFramebufferLayers
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:framebufferColorSampleCounts is a bitmask^1^ of elink:VkSampleCountFlagBits bits indicating the color sample counts that are supported for all framebuffer color attachments.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public SampleCountFlags FramebufferColorSampleCounts
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:framebufferDepthSampleCounts is a bitmask^1^ of elink:VkSampleCountFlagBits bits indicating the supported depth sample counts for all framebuffer depth/stencil attachments, when the format includes a depth component.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public SampleCountFlags FramebufferDepthSampleCounts
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:framebufferStencilSampleCounts is a bitmask^1^ of elink:VkSampleCountFlagBits bits indicating the supported stencil sample counts for all framebuffer depth/stencil attachments, when the format includes a stencil component.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public SampleCountFlags FramebufferStencilSampleCounts
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:framebufferNoAttachmentsSampleCounts is a bitmask^1^ of elink:VkSampleCountFlagBits bits indicating the supported sample counts for a framebuffer with no attachments.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public SampleCountFlags FramebufferNoAttachmentsSampleCounts
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:maxColorAttachments is the maximum number of color attachments that can: be used by a subpass in a render pass. The pname:colorAttachmentCount member of the sname:VkSubpassDescription structure must: be less than or equal to this limit.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxColorAttachments
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:sampledImageColorSampleCounts is a bitmask^1^ of elink:VkSampleCountFlagBits bits indicating the sample counts supported for all 2D images created with ename:VK_IMAGE_TILING_OPTIMAL, pname:usage containing ename:VK_IMAGE_USAGE_SAMPLED_BIT, and a non-integer color format.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public SampleCountFlags SampledImageColorSampleCounts
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:sampledImageIntegerSampleCounts is a bitmask^1^ of elink:VkSampleCountFlagBits bits indicating the sample counts supported for all 2D images created with ename:VK_IMAGE_TILING_OPTIMAL, pname:usage containing ename:VK_IMAGE_USAGE_SAMPLED_BIT, and an integer color format.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public SampleCountFlags SampledImageIntegerSampleCounts
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:sampledImageDepthSampleCounts is a bitmask^1^ of elink:VkSampleCountFlagBits bits indicating the sample counts supported for all 2D images created with ename:VK_IMAGE_TILING_OPTIMAL, pname:usage containing ename:VK_IMAGE_USAGE_SAMPLED_BIT, and a depth format.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public SampleCountFlags SampledImageDepthSampleCounts
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:sampledImageStencilSampleCounts is a bitmask^1^ of elink:VkSampleCountFlagBits bits indicating the sample supported for all 2D images created with ename:VK_IMAGE_TILING_OPTIMAL, pname:usage containing ename:VK_IMAGE_USAGE_SAMPLED_BIT, and a stencil format.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public SampleCountFlags SampledImageStencilSampleCounts
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:storageImageSampleCounts is a bitmask^1^ of elink:VkSampleCountFlagBits bits indicating the sample counts supported for all 2D images created with ename:VK_IMAGE_TILING_OPTIMAL, and pname:usage containing ename:VK_IMAGE_USAGE_STORAGE_BIT.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public SampleCountFlags StorageImageSampleCounts
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:maxSampleMaskWords is the maximum number of array elements of a variable decorated with the code:SampleMask built-in decoration.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxSampleMaskWords
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:timestampComputeAndGraphics indicates support for timestamps on all graphics and compute queues. If this limit is set to ename:VK_TRUE, all queues that advertise the ename:VK_QUEUE_GRAPHICS_BIT or ename:VK_QUEUE_COMPUTE_BIT in the sname:VkQueueFamilyProperties::pname:queueFlags support sname:VkQueueFamilyProperties::pname:timestampValidBits of at least 36. See &lt;&lt;queries-timestamps, Timestamp Queries&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Bool32 TimestampComputeAndGraphics
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:timestampPeriod is the number of nanoseconds required: for a timestamp query to be incremented by 1. See &lt;&lt;queries-timestamps, Timestamp Queries&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public float TimestampPeriod
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:maxClipDistances is the maximum number of clip distances that can: be used in a single shader stage. The size of any array declared with the code:ClipDistance built-in decoration in a shader module must: be less than or equal to this limit.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxClipDistances
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:maxCullDistances is the maximum number of cull distances that can: be used in a single shader stage. The size of any array declared with the code:CullDistance built-in decoration in a shader module must: be less than or equal to this limit.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxCullDistances
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:maxCombinedClipAndCullDistances is the maximum combined number of clip and cull distances that can: be used in a single shader stage. The sum of the sizes of any pair of arrays declared with the code:ClipDistance and code:CullDistance built-in decoration used by a single shader stage in a shader module must: be less than or equal to this limit.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MaxCombinedClipAndCullDistances
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:discreteQueuePriorities is the number of discrete priorities that can: be assigned to a queue based on the value of each member of sname:VkDeviceQueueCreateInfo::pname:pQueuePriorities. This must: be at least 2, and levels must: be spread evenly over the range, with at least one level at 1.0, and another at 0.0. See &lt;&lt;devsandqueues-priority&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint DiscreteQueuePriorities
 		{
@@ -4842,86 +4603,76 @@ namespace SharpVk
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pointSizeGranularity is the granularity of supported point sizes. Not all point sizes in the range defined by pname:pointSizeRange are supported. This limit specifies the granularity (or increment) between successive supported point sizes.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public float PointSizeGranularity
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:lineWidthGranularity is the granularity of supported line widths. Not all line widths in the range defined by pname:lineWidthRange are supported. This limit specifies the granularity (or increment) between successive supported line widths.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public float LineWidthGranularity
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:strictLines indicates whether lines are rasterized according to the preferred method of rasterization. If set to ename:VK_FALSE, lines may: be rasterized under a relaxed set of rules. If set to ename:VK_TRUE, lines are rasterized as per the strict definition. See &lt;&lt;primsrast-lines-basic,Basic Line Segment Rasterization&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Bool32 StrictLines
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:standardSampleLocations indicates whether rasterization uses the standard sample locations as documented in &lt;&lt;primsrast-multisampling,Multisampling&gt;&gt;. If set to ename:VK_TRUE, the implementation uses the documented sample locations. If set to ename:VK_FALSE, the implementation may: use different sample locations.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Bool32 StandardSampleLocations
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:optimalBufferCopyOffsetAlignment is the optimal buffer offset alignment in bytes for fname:vkCmdCopyBufferToImage and fname:vkCmdCopyImageToBuffer. The per texel alignment requirements are still enforced, this is just an additional alignment recommendation for optimal performance and power.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ulong OptimalBufferCopyOffsetAlignment
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		///  pname:optimalBufferCopyRowPitchAlignment is the optimal buffer row pitch alignment in bytes for fname:vkCmdCopyBufferToImage and fname:vkCmdCopyImageToBuffer. Row pitch is the number of bytes between texels with the same X coordinate in adjacent rows (Y coordinates differ by one). The per texel alignment requirements are still enforced, this is just an additional alignment recommendation for optimal performance and power.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ulong OptimalBufferCopyRowPitchAlignment
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:nonCoherentAtomSize is the size and alignment in bytes that bounds concurrent access to &lt;&lt;memory-device-hostaccess, host-mapped device memory&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ulong NonCoherentAtomSize
 		{
 			get;
 			set;
 		}
-
-		internal unsafe PhysicalDeviceLimits Unpack(Interop.PhysicalDeviceLimits value)
-		{
-			return MarshalFrom(&value);
-		}
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal static unsafe PhysicalDeviceLimits MarshalFrom(Interop.PhysicalDeviceLimits* value)
 		{
-            var result = new PhysicalDeviceLimits();
-
+			PhysicalDeviceLimits result = new PhysicalDeviceLimits();
 			result.MaxComputeWorkGroupCount = Interop.HeapUtil.MarshalFrom(value->MaxComputeWorkGroupCount, 3);
 			result.MaxComputeWorkGroupSize = Interop.HeapUtil.MarshalFrom(value->MaxComputeWorkGroupSize, 3);
 			result.MaxViewportDimensions = Interop.HeapUtil.MarshalFrom(value->MaxViewportDimensions, 2);
@@ -5028,7 +4779,6 @@ namespace SharpVk
 			result.OptimalBufferCopyOffsetAlignment = value->OptimalBufferCopyOffsetAlignment;
 			result.OptimalBufferCopyRowPitchAlignment = value->OptimalBufferCopyRowPitchAlignment;
 			result.NonCoherentAtomSize = value->NonCoherentAtomSize;
-
 			return result;
 		}
 	}
@@ -5076,36 +4826,30 @@ namespace SharpVk
     /// </summary>
 	public struct PhysicalDeviceMemoryProperties
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:memoryTypes is an array of slink:VkMemoryType structures describing the _memory types_ that can: be used to access memory allocated from the heaps specified by pname:memoryHeaps.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public MemoryType[] MemoryTypes
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:memoryHeaps is an array of slink:VkMemoryHeap structures describing the _memory heaps_ from which memory can: be allocated.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public MemoryHeap[] MemoryHeaps
 		{
 			get;
 			set;
 		}
-
-		internal unsafe PhysicalDeviceMemoryProperties Unpack(Interop.PhysicalDeviceMemoryProperties value)
-		{
-			return MarshalFrom(&value);
-		}
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal static unsafe PhysicalDeviceMemoryProperties MarshalFrom(Interop.PhysicalDeviceMemoryProperties* value)
 		{
-            var result = new PhysicalDeviceMemoryProperties();
-
+			PhysicalDeviceMemoryProperties result = new PhysicalDeviceMemoryProperties();
 			result.MemoryTypes = new MemoryType[value->MemoryTypeCount];
 			MemoryType* MemoryTypesPointer = &value->MemoryTypes;
 			for (int index = 0; index < value->MemoryTypeCount; index++)
@@ -5120,124 +4864,102 @@ namespace SharpVk
 			    result.MemoryHeaps[index] = *MemoryHeapsPointer;
 			    MemoryHeapsPointer++;
 			}
-
 			return result;
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure specifying physical device properties.
-    /// </para>
-    /// <para>
-    /// The pname:vendorID and pname:deviceID fields are provided to allow applications to adapt to device characteristics that are not adequately exposed by other Vulkan queries. These may: include performance profiles, hardware errata, or other characteristics. In PCI-based implementations, the low sixteen bits of pname:vendorID and pname:deviceID must: contain (respectively) the PCI vendor and device IDs associated with the hardware device, and the remaining bits must: be set to zero. In non-PCI implementations, the choice of what values to return may: be dictated by operating system or platform policies. It is otherwise at the discretion of the implementer, subject to the following constraints and guidelines:
-    /// </para>
-    /// <para>
-    /// * For purposes of physical device identification, the _vendor_ of a physical device is the entity responsible for the most salient characteristics of the hardware represented by the physical device handle. In the case of a discrete GPU, this should: be the GPU chipset vendor. In the case of a GPU or other accelerator integrated into a system-on-chip (SoC), this should: be the supplier of the silicon IP used to create the GPU or other accelerator. * If the vendor of the physical device has a valid PCI vendor ID issued by https://pcisig.com/[PCI-SIG], that ID should: be used to construct pname:vendorID as described above for PCI-based implementations. Implementations that do not return a PCI vendor ID in pname:vendorID must: return a valid Khronos vendor ID, obtained as described in the &lt;&lt;vulkan-styleguide,Vulkan Documentation and Extensions&gt;&gt; document in the section ``Registering a Vendor ID with Khronos''. Khronos vendor IDs are allocated starting at 0x10000, to distinguish them from the PCI vendor ID namespace. * The vendor of the physical device is responsible for selecting pname:deviceID. The value selected should: uniquely identify both the device version and any major configuration options (for example, core count in the case of multicore devices). The same device ID should: be used for all physical implementations of that device version and configuration. For example, all uses of a specific silicon IP GPU version and configuration should: use the same device ID, even if those uses occur in different SoCs.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct PhysicalDeviceProperties
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:apiVersion is the version of Vulkan supported by the device, encoded as described in the &lt;&lt;fundamentals-versionnum,API Version Numbers and Semantics&gt;&gt; section.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public Version ApiVersion
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:driverVersion is the vendor-specified version of the driver.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Version DriverVersion
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:vendorID is a unique identifier for the _vendor_ (see below) of the physical device.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint VendorID
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:deviceID is a unique identifier for the physical device among devices available from the vendor.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint DeviceID
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:deviceType is a elink:VkPhysicalDeviceType specifying the type of device.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public PhysicalDeviceType DeviceType
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:deviceName is a null-terminated UTF-8 string containing the name of the device.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public string DeviceName
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pipelineCacheUUID is an array of size ename:VK_UUID_SIZE, containing 8-bit values that represent a universally unique identifier for the device.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Guid PipelineCacheUUID
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:limits is the slink:VkPhysicalDeviceLimits structure which specifies device-specific limits of the physical device. See &lt;&lt;features-limits,Limits&gt;&gt; for details.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public PhysicalDeviceLimits Limits
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:sparseProperties is the slink:VkPhysicalDeviceSparseProperties structure which specifies various sparse related properties of the physical device. See &lt;&lt;sparsememory-physicalprops,Sparse Properties&gt;&gt; for details.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public PhysicalDeviceSparseProperties SparseProperties
 		{
 			get;
 			set;
 		}
-
-		internal unsafe PhysicalDeviceProperties Unpack(Interop.PhysicalDeviceProperties value)
-		{
-			return MarshalFrom(&value);
-		}
-
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal static unsafe PhysicalDeviceProperties MarshalFrom(Interop.PhysicalDeviceProperties* value)
 		{
-            var result = new PhysicalDeviceProperties();
-
+			PhysicalDeviceProperties result = new PhysicalDeviceProperties();
 			result.ApiVersion = value->ApiVersion;
 			result.DriverVersion = value->DriverVersion;
 			result.DeviceName = System.Text.Encoding.UTF8.GetString(Interop.HeapUtil.MarshalFrom(value->DeviceName, (int)Constants.MaxPhysicalDeviceNameSize, true));
@@ -5247,7 +4969,6 @@ namespace SharpVk
 			result.DeviceID = value->DeviceID;
 			result.DeviceType = value->DeviceType;
 			result.SparseProperties = value->SparseProperties;
-
 			return result;
 		}
 	}
@@ -5262,41 +4983,43 @@ namespace SharpVk
     /// </summary>
 	public struct PipelineCacheCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public PipelineCacheCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pInitialData is a pointer to previously retrieved pipeline cache data. If the pipeline cache data is incompatible (as defined below) with the device, the pipeline cache will be initially empty. If pname:initialDataSize is zero, pname:pInitialData is ignored.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public byte[] InitialData
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.PipelineCacheCreateInfo Pack()
-        {
-            var result = new Interop.PipelineCacheCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.PipelineCacheCreateInfo Pack()
+		{
+			Interop.PipelineCacheCreateInfo result = default(Interop.PipelineCacheCreateInfo);
 			result.SType = StructureType.PipelineCacheCreateInfo;
 			result.InitialData = this.InitialData == null ? null : Interop.HeapUtil.MarshalTo(this.InitialData);
 			result.InitialDataSize = (Size)(this.InitialData?.Length ?? 0);
 			result.Flags = this.Flags;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.PipelineCacheCreateInfo* MarshalTo()
-        {
-            return (Interop.PipelineCacheCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.PipelineCacheCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -5313,60 +5036,57 @@ namespace SharpVk
     /// </summary>
 	public struct PipelineColorBlendStateCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public PipelineColorBlendStateCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:logicOpEnable controls whether to apply &lt;&lt;framebuffer-logicop, Logical Operations&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Bool32 LogicOpEnable
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:logicOp selects which logical operation to apply.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public LogicOp LogicOp
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pAttachments: is a pointer to array of per target attachment states.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public PipelineColorBlendAttachmentState[] Attachments
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:blendConstants is an array of four values used as the R, G, B, and A components of the blend constant that are used in blending, depending on the &lt;&lt;framebuffer-blendfactors,blend factor&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public float[] BlendConstants
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.PipelineColorBlendStateCreateInfo Pack()
-        {
-            var result = new Interop.PipelineColorBlendStateCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.PipelineColorBlendStateCreateInfo Pack()
+		{
+			Interop.PipelineColorBlendStateCreateInfo result = default(Interop.PipelineColorBlendStateCreateInfo);
 			result.SType = StructureType.PipelineColorBlendStateCreateInfo;
 			
 			//Attachments
@@ -5386,13 +5106,15 @@ namespace SharpVk
 			result.Flags = this.Flags;
 			result.LogicOpEnable = this.LogicOpEnable;
 			result.LogicOp = this.LogicOp;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.PipelineColorBlendStateCreateInfo* MarshalTo()
-        {
-            return (Interop.PipelineColorBlendStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.PipelineColorBlendStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -5406,110 +5128,102 @@ namespace SharpVk
     /// </summary>
 	public struct PipelineDepthStencilStateCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public PipelineDepthStencilStateCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:depthTestEnable controls whether &lt;&lt;fragops-depth,depth testing&gt;&gt; is enabled.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Bool32 DepthTestEnable
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:depthWriteEnable controls whether &lt;&lt;fragops-depth-write,depth writes&gt;&gt; are enabled.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Bool32 DepthWriteEnable
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:depthCompareOp is the comparison operator used in the &lt;&lt;fragops-depth,depth test&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public CompareOp DepthCompareOp
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:depthBoundsTestEnable controls whether &lt;&lt;fragops-dbt,depth bounds testing&gt;&gt; is enabled.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Bool32 DepthBoundsTestEnable
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:stencilTestEnable controls whether &lt;&lt;fragops-stencil,stencil testing&gt;&gt; is enabled.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Bool32 StencilTestEnable
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:front and pname:back control the parameters of the &lt;&lt;fragops-stencil,stencil test&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public StencilOpState Front
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public StencilOpState Back
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:minDepthBounds and pname:maxDepthBounds define the range of values used in the &lt;&lt;fragops-dbt,depth bounds test&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public float MinDepthBounds
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public float MaxDepthBounds
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.PipelineDepthStencilStateCreateInfo Pack()
-        {
-            var result = new Interop.PipelineDepthStencilStateCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.PipelineDepthStencilStateCreateInfo Pack()
+		{
+			Interop.PipelineDepthStencilStateCreateInfo result = default(Interop.PipelineDepthStencilStateCreateInfo);
 			result.SType = StructureType.PipelineDepthStencilStateCreateInfo;
 			result.Flags = this.Flags;
 			result.DepthTestEnable = this.DepthTestEnable;
@@ -5521,47 +5235,47 @@ namespace SharpVk
 			result.Back = this.Back;
 			result.MinDepthBounds = this.MinDepthBounds;
 			result.MaxDepthBounds = this.MaxDepthBounds;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.PipelineDepthStencilStateCreateInfo* MarshalTo()
-        {
-            return (Interop.PipelineDepthStencilStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.PipelineDepthStencilStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure specifying parameters of a newly created pipeline dynamic state.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct PipelineDynamicStateCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public PipelineDynamicStateCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pDynamicStates is an array of elink:VkDynamicState enums which indicate which pieces of pipeline state will use the values from dynamic state commands rather than from the pipeline state creation info.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public DynamicState[] DynamicStates
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.PipelineDynamicStateCreateInfo Pack()
-        {
-            var result = new Interop.PipelineDynamicStateCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.PipelineDynamicStateCreateInfo Pack()
+		{
+			Interop.PipelineDynamicStateCreateInfo result = default(Interop.PipelineDynamicStateCreateInfo);
 			result.SType = StructureType.PipelineDynamicStateCreateInfo;
 			
 			//DynamicStates
@@ -5579,13 +5293,15 @@ namespace SharpVk
 			}
 			result.DynamicStateCount = (uint)(this.DynamicStates?.Length ?? 0);
 			result.Flags = this.Flags;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.PipelineDynamicStateCreateInfo* MarshalTo()
-        {
-            return (Interop.PipelineDynamicStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.PipelineDynamicStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -5602,51 +5318,52 @@ namespace SharpVk
     /// </summary>
 	public struct PipelineInputAssemblyStateCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public PipelineInputAssemblyStateCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:topology is a elink:VkPrimitiveTopology defining the primitive topology, as described below.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public PrimitiveTopology Topology
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:primitiveRestartEnable controls whether a special vertex index value is treated as restarting the assembly of primitives. This enable only applies to indexed draws (flink:vkCmdDrawIndexed and flink:vkCmdDrawIndexedIndirect), and the special index value is either 0xFFFFFFFF when the pname:indexType parameter of fname:vkCmdBindIndexBuffer is equal to ename:VK_INDEX_TYPE_UINT32, or 0xFFFF when pname:indexType is equal to ename:VK_INDEX_TYPE_UINT16. Primitive restart is not allowed for ``list'' topologies.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Bool32 PrimitiveRestartEnable
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.PipelineInputAssemblyStateCreateInfo Pack()
-        {
-            var result = new Interop.PipelineInputAssemblyStateCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.PipelineInputAssemblyStateCreateInfo Pack()
+		{
+			Interop.PipelineInputAssemblyStateCreateInfo result = default(Interop.PipelineInputAssemblyStateCreateInfo);
 			result.SType = StructureType.PipelineInputAssemblyStateCreateInfo;
 			result.Flags = this.Flags;
 			result.Topology = this.Topology;
 			result.PrimitiveRestartEnable = this.PrimitiveRestartEnable;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.PipelineInputAssemblyStateCreateInfo* MarshalTo()
-        {
-            return (Interop.PipelineInputAssemblyStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.PipelineInputAssemblyStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -5660,40 +5377,39 @@ namespace SharpVk
     /// </summary>
 	public struct PipelineLayoutCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public PipelineLayoutCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pSetLayouts is a pointer to an array of sname:VkDescriptorSetLayout objects.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public DescriptorSetLayout[] SetLayouts
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pPushConstantRanges is a pointer to an array of sname:VkPushConstantRange structures defining a set of push constant ranges for use in a single pipeline layout. In addition to descriptor set layouts, a pipeline layout also describes how many push constants can: be accessed by each stage of the pipeline. + [NOTE] .Note ==== Push constants represent a high speed path to modify constant data in pipelines that is expected to outperform memory-backed resource updates. ====
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public PushConstantRange[] PushConstantRanges
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.PipelineLayoutCreateInfo Pack()
-        {
-            var result = new Interop.PipelineLayoutCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.PipelineLayoutCreateInfo Pack()
+		{
+			Interop.PipelineLayoutCreateInfo result = default(Interop.PipelineLayoutCreateInfo);
 			result.SType = StructureType.PipelineLayoutCreateInfo;
 			
 			//SetLayouts
@@ -5728,13 +5444,15 @@ namespace SharpVk
 			result.SetLayoutCount = (uint)(this.SetLayouts?.Length ?? 0);
 			result.PushConstantRangeCount = (uint)(this.PushConstantRanges?.Length ?? 0);
 			result.Flags = this.Flags;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.PipelineLayoutCreateInfo* MarshalTo()
-        {
-            return (Interop.PipelineLayoutCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.PipelineLayoutCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -5748,80 +5466,75 @@ namespace SharpVk
     /// </summary>
 	public struct PipelineMultisampleStateCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public PipelineMultisampleStateCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:rasterizationSamples is a elink:VkSampleCountFlagBits specifying the number of samples per pixel used in rasterization.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public SampleCountFlags RasterizationSamples
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:sampleShadingEnable specifies that fragment shading executes per-sample if ename:VK_TRUE, or per-fragment if ename:VK_FALSE, as described in &lt;&lt;primsrast-sampleshading,Sample Shading&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Bool32 SampleShadingEnable
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:minSampleShading is the minimum fraction of sample shading, as described in &lt;&lt;primsrast-sampleshading,Sample Shading&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public float MinSampleShading
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pSampleMask is a bitmask of static coverage information that is ANDed with the coverage information generated during rasterization, as described in &lt;&lt;fragops-samplemask,Sample Mask&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public SampleMask[] SampleMask
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:alphaToCoverageEnable controls whether a temporary coverage value is generated based on the alpha component of the fragment's first color output as specified in the &lt;&lt;fragops-covg,Multisample Coverage&gt;&gt; section.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Bool32 AlphaToCoverageEnable
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:alphaToOneEnable controls whether the alpha component of the fragment's first color output is replaced with one as described in &lt;&lt;fragops-covg,Multisample Coverage&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Bool32 AlphaToOneEnable
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.PipelineMultisampleStateCreateInfo Pack()
-        {
-            var result = new Interop.PipelineMultisampleStateCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.PipelineMultisampleStateCreateInfo Pack()
+		{
+			Interop.PipelineMultisampleStateCreateInfo result = default(Interop.PipelineMultisampleStateCreateInfo);
 			result.SType = StructureType.PipelineMultisampleStateCreateInfo;
 			
 			//SampleMask
@@ -5844,13 +5557,15 @@ namespace SharpVk
 			result.MinSampleShading = this.MinSampleShading;
 			result.AlphaToCoverageEnable = this.AlphaToCoverageEnable;
 			result.AlphaToOneEnable = this.AlphaToOneEnable;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.PipelineMultisampleStateCreateInfo* MarshalTo()
-        {
-            return (Interop.PipelineMultisampleStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.PipelineMultisampleStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -5867,120 +5582,111 @@ namespace SharpVk
     /// </summary>
 	public struct PipelineRasterizationStateCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public PipelineRasterizationStateCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:depthClampEnable controls whether to clamp the fragment's depth values instead of clipping primitives to the z planes of the frustum, as described in &lt;&lt;vertexpostproc-clipping,Primitive Clipping&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Bool32 DepthClampEnable
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:rasterizerDiscardEnable controls whether primitives are discarded immediately before the rasterization stage.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Bool32 RasterizerDiscardEnable
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:polygonMode is the triangle rendering mode. See elink:VkPolygonMode.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public PolygonMode PolygonMode
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:cullMode is the triangle facing direction used for primitive culling. See elink:VkCullModeFlagBits.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public CullModeFlags CullMode
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:frontFace is the front-facing triangle orientation to be used for culling. See elink:VkFrontFace.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public FrontFace FrontFace
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:depthBiasEnable controls whether to bias fragment depth values.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Bool32 DepthBiasEnable
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:depthBiasConstantFactor is a scalar factor controlling the constant depth value added to each fragment.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public float DepthBiasConstantFactor
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:depthBiasClamp is the maximum (or minimum) depth bias of a fragment.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public float DepthBiasClamp
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:depthBiasSlopeFactor is a scalar factor applied to a fragment's slope in depth bias calculations.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public float DepthBiasSlopeFactor
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:lineWidth is the width of rasterized line segments.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public float LineWidth
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.PipelineRasterizationStateCreateInfo Pack()
-        {
-            var result = new Interop.PipelineRasterizationStateCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.PipelineRasterizationStateCreateInfo Pack()
+		{
+			Interop.PipelineRasterizationStateCreateInfo result = default(Interop.PipelineRasterizationStateCreateInfo);
 			result.SType = StructureType.PipelineRasterizationStateCreateInfo;
 			result.Flags = this.Flags;
 			result.DepthClampEnable = this.DepthClampEnable;
@@ -5993,123 +5699,123 @@ namespace SharpVk
 			result.DepthBiasClamp = this.DepthBiasClamp;
 			result.DepthBiasSlopeFactor = this.DepthBiasSlopeFactor;
 			result.LineWidth = this.LineWidth;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.PipelineRasterizationStateCreateInfo* MarshalTo()
-        {
-            return (Interop.PipelineRasterizationStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.PipelineRasterizationStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// -
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct PipelineRasterizationStateRasterizationOrder
 	{
-	    /// <summary>
-		/// <para>
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public RasterizationOrder RasterizationOrder
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.PipelineRasterizationStateRasterizationOrder Pack()
-        {
-            var result = new Interop.PipelineRasterizationStateRasterizationOrder();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.PipelineRasterizationStateRasterizationOrder Pack()
+		{
+			Interop.PipelineRasterizationStateRasterizationOrder result = default(Interop.PipelineRasterizationStateRasterizationOrder);
 			result.SType = StructureType.PipelineRasterizationStateRasterizationOrder;
 			result.RasterizationOrder = this.RasterizationOrder;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.PipelineRasterizationStateRasterizationOrder* MarshalTo()
-        {
-            return (Interop.PipelineRasterizationStateRasterizationOrder*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.PipelineRasterizationStateRasterizationOrder*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure specifying parameters of a newly created pipeline shader stage.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct PipelineShaderStageCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public PipelineShaderStageCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:stage names a single pipeline stage. Bits which can: be set include: + --
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ShaderStageFlags Stage
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public ShaderModule Module
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public string Name
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public SpecializationInfo? SpecializationInfo
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.PipelineShaderStageCreateInfo Pack()
-        {
-            var result = new Interop.PipelineShaderStageCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.PipelineShaderStageCreateInfo Pack()
+		{
+			Interop.PipelineShaderStageCreateInfo result = default(Interop.PipelineShaderStageCreateInfo);
 			result.SType = StructureType.PipelineShaderStageCreateInfo;
 			result.Module = this.Module?.Pack() ?? Interop.ShaderModule.Null;
 			result.Name = Interop.HeapUtil.MarshalTo(this.Name);
 			result.SpecializationInfo = this.SpecializationInfo == null ? null : this.SpecializationInfo.Value.MarshalTo();
 			result.Flags = this.Flags;
 			result.Stage = this.Stage;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.PipelineShaderStageCreateInfo* MarshalTo()
-        {
-            return (Interop.PipelineShaderStageCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.PipelineShaderStageCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -6123,40 +5829,42 @@ namespace SharpVk
     /// </summary>
 	public struct PipelineTessellationStateCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public PipelineTessellationStateCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:patchControlPoints number of control points per patch.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint PatchControlPoints
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.PipelineTessellationStateCreateInfo Pack()
-        {
-            var result = new Interop.PipelineTessellationStateCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.PipelineTessellationStateCreateInfo Pack()
+		{
+			Interop.PipelineTessellationStateCreateInfo result = default(Interop.PipelineTessellationStateCreateInfo);
 			result.SType = StructureType.PipelineTessellationStateCreateInfo;
 			result.Flags = this.Flags;
 			result.PatchControlPoints = this.PatchControlPoints;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.PipelineTessellationStateCreateInfo* MarshalTo()
-        {
-            return (Interop.PipelineTessellationStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.PipelineTessellationStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -6170,40 +5878,39 @@ namespace SharpVk
     /// </summary>
 	public struct PipelineVertexInputStateCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public PipelineVertexInputStateCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pVertexBindingDescriptions is a pointer to an array of sname:VkVertexInputBindingDescription structures.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public VertexInputBindingDescription[] VertexBindingDescriptions
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pVertexAttributeDescriptions is a pointer to an array of sname:VkVertexInputAttributeDescription structures.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public VertexInputAttributeDescription[] VertexAttributeDescriptions
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.PipelineVertexInputStateCreateInfo Pack()
-        {
-            var result = new Interop.PipelineVertexInputStateCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.PipelineVertexInputStateCreateInfo Pack()
+		{
+			Interop.PipelineVertexInputStateCreateInfo result = default(Interop.PipelineVertexInputStateCreateInfo);
 			result.SType = StructureType.PipelineVertexInputStateCreateInfo;
 			
 			//VertexBindingDescriptions
@@ -6236,13 +5943,15 @@ namespace SharpVk
 			result.VertexBindingDescriptionCount = (uint)(this.VertexBindingDescriptions?.Length ?? 0);
 			result.VertexAttributeDescriptionCount = (uint)(this.VertexAttributeDescriptions?.Length ?? 0);
 			result.Flags = this.Flags;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.PipelineVertexInputStateCreateInfo* MarshalTo()
-        {
-            return (Interop.PipelineVertexInputStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.PipelineVertexInputStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -6256,40 +5965,39 @@ namespace SharpVk
     /// </summary>
 	public struct PipelineViewportStateCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public PipelineViewportStateCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pViewports is a pointer to an array of slink:VkViewport structures, defining the viewport transforms. If the viewport state is dynamic, this member is ignored.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Viewport[] Viewports
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pScissors is a pointer to an array of sname:VkRect2D structures which define the rectangular bounds of the scissor for the corresponding viewport. If the scissor state is dynamic, this member is ignored.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Rect2D[] Scissors
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.PipelineViewportStateCreateInfo Pack()
-        {
-            var result = new Interop.PipelineViewportStateCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.PipelineViewportStateCreateInfo Pack()
+		{
+			Interop.PipelineViewportStateCreateInfo result = default(Interop.PipelineViewportStateCreateInfo);
 			result.SType = StructureType.PipelineViewportStateCreateInfo;
 			
 			//Viewports
@@ -6322,13 +6030,15 @@ namespace SharpVk
 			result.ViewportCount = (uint)(this.Viewports?.Length ?? 0);
 			result.ScissorCount = (uint)(this.Scissors?.Length ?? 0);
 			result.Flags = this.Flags;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.PipelineViewportStateCreateInfo* MarshalTo()
-        {
-            return (Interop.PipelineViewportStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.PipelineViewportStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -6342,50 +6052,48 @@ namespace SharpVk
     /// </summary>
 	public struct PresentInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:pWaitSemaphores, if not code:VK_NULL_HANDLE, is an array of sname:VkSemaphore objects with pname:waitSemaphoreCount entries, and specifies the semaphores to wait for before issuing the present request.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public Semaphore[] WaitSemaphores
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pSwapchains is an array of sname:VkSwapchainKHR objects with pname:swapchainCount entries. A given swapchain must: not appear in this list more than once.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Swapchain[] Swapchains
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pImageIndices is an array of indices into the array of each swapchain's presentable images, with pname:swapchainCount entries. Each entry in this array identifies the image to present on the corresponding entry in the pname:pSwapchains array.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint[] ImageIndices
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pResults is an array of ename:VkResult typed elements with pname:swapchainCount entries. Applications that do not need per-swapchain results can: use `NULL` for pname:pResults. If non-`NULL`, each entry in pname:pResults will be set to the ename:VkResult for presenting the swapchain corresponding to the same index in pname:pSwapchains.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Result[] Results
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.PresentInfo Pack()
-        {
-            var result = new Interop.PresentInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.PresentInfo Pack()
+		{
+			Interop.PresentInfo result = default(Interop.PresentInfo);
 			result.SType = StructureType.PresentInfo;
 			
 			//WaitSemaphores
@@ -6436,79 +6144,79 @@ namespace SharpVk
 			}
 			result.WaitSemaphoreCount = (uint)(this.WaitSemaphores?.Length ?? 0);
 			result.SwapchainCount = (uint)(this.ImageIndices?.Length ?? 0);
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.PresentInfo* MarshalTo()
-        {
-            return (Interop.PresentInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.PresentInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure specifying parameters of a newly created query pool.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct QueryPoolCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public QueryPoolCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:queryType is the type of queries managed by the pool, and must: be one of the values + --
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public QueryType QueryType
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public uint QueryCount
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public QueryPipelineStatisticFlags PipelineStatistics
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.QueryPoolCreateInfo Pack()
-        {
-            var result = new Interop.QueryPoolCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.QueryPoolCreateInfo Pack()
+		{
+			Interop.QueryPoolCreateInfo result = default(Interop.QueryPoolCreateInfo);
 			result.SType = StructureType.QueryPoolCreateInfo;
 			result.Flags = this.Flags;
 			result.QueryType = this.QueryType;
 			result.QueryCount = this.QueryCount;
 			result.PipelineStatistics = this.PipelineStatistics;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.QueryPoolCreateInfo* MarshalTo()
-        {
-            return (Interop.QueryPoolCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.QueryPoolCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -6528,50 +6236,48 @@ namespace SharpVk
     /// </summary>
 	public struct RenderPassBeginInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:renderPass is the render pass to begin an instance of.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public RenderPass RenderPass
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:framebuffer is the framebuffer containing the attachments that are used with the render pass.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Framebuffer Framebuffer
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:renderArea is the render area that is affected by the render pass instance, and is described in more detail below.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Rect2D RenderArea
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pClearValues is an array of slink:VkClearValue structures that contains clear values for each attachment, if the attachment uses a pname:loadOp value of ename:VK_ATTACHMENT_LOAD_OP_CLEAR or if the attachment has a depth/stencil format and uses a pname:stencilLoadOp value of ename:VK_ATTACHMENT_LOAD_OP_CLEAR. The array is indexed by attachment number. Only elements corresponding to cleared attachments are used. Other elements of pname:pClearValues are ignored.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ClearValue[] ClearValues
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.RenderPassBeginInfo Pack()
-        {
-            var result = new Interop.RenderPassBeginInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.RenderPassBeginInfo Pack()
+		{
+			Interop.RenderPassBeginInfo result = default(Interop.RenderPassBeginInfo);
 			result.SType = StructureType.RenderPassBeginInfo;
 			result.RenderPass = this.RenderPass?.Pack() ?? Interop.RenderPass.Null;
 			result.Framebuffer = this.Framebuffer?.Pack() ?? Interop.Framebuffer.Null;
@@ -6592,13 +6298,15 @@ namespace SharpVk
 			}
 			result.ClearValueCount = (uint)(this.ClearValues?.Length ?? 0);
 			result.RenderArea = this.RenderArea;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.RenderPassBeginInfo* MarshalTo()
-        {
-            return (Interop.RenderPassBeginInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.RenderPassBeginInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -6612,50 +6320,48 @@ namespace SharpVk
     /// </summary>
 	public struct RenderPassCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public RenderPassCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pAttachments points to an array of pname:attachmentCount number of slink:VkAttachmentDescription structures describing properties of the attachments, or `NULL` if pname:attachmentCount is zero.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public AttachmentDescription[] Attachments
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pSubpasses points to an array of pname:subpassCount number of slink:VkSubpassDescription structures describing properties of the subpasses.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public SubpassDescription[] Subpasses
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pDependencies points to an array of pname:dependencyCount number of slink:VkSubpassDependency structures describing dependencies between pairs of subpasses, or `NULL` if pname:dependencyCount is zero.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public SubpassDependency[] Dependencies
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.RenderPassCreateInfo Pack()
-        {
-            var result = new Interop.RenderPassCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.RenderPassCreateInfo Pack()
+		{
+			Interop.RenderPassCreateInfo result = default(Interop.RenderPassCreateInfo);
 			result.SType = StructureType.RenderPassCreateInfo;
 			
 			//Attachments
@@ -6705,187 +6411,173 @@ namespace SharpVk
 			result.SubpassCount = (uint)(this.Subpasses?.Length ?? 0);
 			result.DependencyCount = (uint)(this.Dependencies?.Length ?? 0);
 			result.Flags = this.Flags;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.RenderPassCreateInfo* MarshalTo()
-        {
-            return (Interop.RenderPassCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.RenderPassCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure specifying parameters of a newly created sampler.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct SamplerCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public SamplerCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:magFilter is the magnification filter to apply to lookups, and is of type: + --
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Filter MagFilter
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public Filter MinFilter
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public SamplerMipmapMode MipmapMode
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public SamplerAddressMode AddressModeU
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public SamplerAddressMode AddressModeV
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public SamplerAddressMode AddressModeW
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public float MipLodBias
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public Bool32 AnisotropyEnable
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public float MaxAnisotropy
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public Bool32 CompareEnable
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public CompareOp CompareOp
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public float MinLod
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public float MaxLod
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public BorderColor BorderColor
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public Bool32 UnnormalizedCoordinates
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.SamplerCreateInfo Pack()
-        {
-            var result = new Interop.SamplerCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.SamplerCreateInfo Pack()
+		{
+			Interop.SamplerCreateInfo result = default(Interop.SamplerCreateInfo);
 			result.SType = StructureType.SamplerCreateInfo;
 			result.Flags = this.Flags;
 			result.MagFilter = this.MagFilter;
@@ -6903,46 +6595,49 @@ namespace SharpVk
 			result.MaxLod = this.MaxLod;
 			result.BorderColor = this.BorderColor;
 			result.UnnormalizedCoordinates = this.UnnormalizedCoordinates;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.SamplerCreateInfo* MarshalTo()
-        {
-            return (Interop.SamplerCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.SamplerCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure specifying parameters of a newly created semaphore.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct SemaphoreCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public SemaphoreCreateFlags Flags
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.SemaphoreCreateInfo Pack()
-        {
-            var result = new Interop.SemaphoreCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.SemaphoreCreateInfo Pack()
+		{
+			Interop.SemaphoreCreateInfo result = default(Interop.SemaphoreCreateInfo);
 			result.SType = StructureType.SemaphoreCreateInfo;
 			result.Flags = this.Flags;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.SemaphoreCreateInfo* MarshalTo()
-        {
-            return (Interop.SemaphoreCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.SemaphoreCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -6956,85 +6651,84 @@ namespace SharpVk
     /// </summary>
 	public struct ShaderModuleCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public ShaderModuleCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:codeSize is the size, in bytes, of the code pointed to by pname:pCode.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Size CodeSize
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pCode points to code that is used to create the shader module. The type and format of the code is determined from the content of the memory addressed by pname:pCode.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint[] Code
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.ShaderModuleCreateInfo Pack()
-        {
-            var result = new Interop.ShaderModuleCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.ShaderModuleCreateInfo Pack()
+		{
+			Interop.ShaderModuleCreateInfo result = default(Interop.ShaderModuleCreateInfo);
 			result.SType = StructureType.ShaderModuleCreateInfo;
 			result.Code = this.Code == null ? null : Interop.HeapUtil.MarshalTo(this.Code);
 			result.Flags = this.Flags;
 			result.CodeSize = this.CodeSize;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.ShaderModuleCreateInfo* MarshalTo()
-        {
-            return (Interop.ShaderModuleCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.ShaderModuleCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure specifying a sparse buffer memory bind operation.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct SparseBufferMemoryBindInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:buffer is the sname:VkBuffer object to be bound.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public Buffer Buffer
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pBinds is a pointer to array of sname:VkSparseMemoryBind structures.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public SparseMemoryBind[] Binds
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.SparseBufferMemoryBindInfo Pack()
-        {
-            var result = new Interop.SparseBufferMemoryBindInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.SparseBufferMemoryBindInfo Pack()
+		{
+			Interop.SparseBufferMemoryBindInfo result = default(Interop.SparseBufferMemoryBindInfo);
 			result.Buffer = this.Buffer?.Pack() ?? Interop.Buffer.Null;
 			
 			//Binds
@@ -7053,13 +6747,15 @@ namespace SharpVk
 			    result.Binds = null;
 			}
 			result.BindCount = (uint)(this.Binds?.Length ?? 0);
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.SparseBufferMemoryBindInfo* MarshalTo()
-        {
-            return (Interop.SparseBufferMemoryBindInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.SparseBufferMemoryBindInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -7073,20 +6769,17 @@ namespace SharpVk
     /// </summary>
 	public struct SparseImageMemoryBind
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:subresource is the aspectMask and region of interest in the image.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public ImageSubresource Subresource
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:offset are the coordinates of the first texel within the image subresource to bind.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Offset3D Offset
 		{
@@ -7103,87 +6796,87 @@ namespace SharpVk
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:memory is the sname:VkDeviceMemory object that the sparse image blocks of the image are bound to. If pname:memory is dlink:VK_NULL_HANDLE, the sparse image blocks are unbound.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public DeviceMemory Memory
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:memoryOffset is an offset into sname:VkDeviceMemory object. If pname:memory is dlink:VK_NULL_HANDLE, this value is ignored.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ulong MemoryOffset
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:flags are sparse memory binding flags.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public SparseMemoryBindFlags Flags
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.SparseImageMemoryBind Pack()
-        {
-            var result = new Interop.SparseImageMemoryBind();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.SparseImageMemoryBind Pack()
+		{
+			Interop.SparseImageMemoryBind result = default(Interop.SparseImageMemoryBind);
 			result.Memory = this.Memory?.Pack() ?? Interop.DeviceMemory.Null;
 			result.Subresource = this.Subresource;
 			result.Offset = this.Offset;
 			result.Extent = this.Extent;
 			result.MemoryOffset = this.MemoryOffset;
 			result.Flags = this.Flags;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.SparseImageMemoryBind* MarshalTo()
-        {
-            return (Interop.SparseImageMemoryBind*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.SparseImageMemoryBind*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure specifying sparse image memory bind info.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct SparseImageMemoryBindInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:image is the sname:VkImage object to be bound
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public Image Image
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pBinds is a pointer to array of sname:VkSparseImageMemoryBind structures
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public SparseImageMemoryBind[] Binds
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.SparseImageMemoryBindInfo Pack()
-        {
-            var result = new Interop.SparseImageMemoryBindInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.SparseImageMemoryBindInfo Pack()
+		{
+			Interop.SparseImageMemoryBindInfo result = default(Interop.SparseImageMemoryBindInfo);
 			result.Image = this.Image?.Pack() ?? Interop.Image.Null;
 			
 			//Binds
@@ -7202,13 +6895,15 @@ namespace SharpVk
 			    result.Binds = null;
 			}
 			result.BindCount = (uint)(this.Binds?.Length ?? 0);
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.SparseImageMemoryBindInfo* MarshalTo()
-        {
-            return (Interop.SparseImageMemoryBindInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.SparseImageMemoryBindInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -7222,30 +6917,30 @@ namespace SharpVk
     /// </summary>
 	public struct SparseImageOpaqueMemoryBindInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:image is the sname:VkImage object to be bound.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public Image Image
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pBinds is a pointer to array of sname:VkSparseMemoryBind structures.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public SparseMemoryBind[] Binds
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.SparseImageOpaqueMemoryBindInfo Pack()
-        {
-            var result = new Interop.SparseImageOpaqueMemoryBindInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.SparseImageOpaqueMemoryBindInfo Pack()
+		{
+			Interop.SparseImageOpaqueMemoryBindInfo result = default(Interop.SparseImageOpaqueMemoryBindInfo);
 			result.Image = this.Image?.Pack() ?? Interop.Image.Null;
 			
 			//Binds
@@ -7264,89 +6959,88 @@ namespace SharpVk
 			    result.Binds = null;
 			}
 			result.BindCount = (uint)(this.Binds?.Length ?? 0);
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.SparseImageOpaqueMemoryBindInfo* MarshalTo()
-        {
-            return (Interop.SparseImageOpaqueMemoryBindInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.SparseImageOpaqueMemoryBindInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure specifying a sparse memory bind operation.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct SparseMemoryBind
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:resourceOffset is the offset into the resource.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public ulong ResourceOffset
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:size is the size of the memory region to be bound.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ulong Size
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:memory is the sname:VkDeviceMemory object that the range of the resource is bound to. If pname:memory is dlink:VK_NULL_HANDLE, the range is unbound.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public DeviceMemory Memory
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:memoryOffset is the offset into the sname:VkDeviceMemory object to bind the resource range to. If pname:memory is dlink:VK_NULL_HANDLE, this value is ignored.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ulong MemoryOffset
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:flags is a bitmask specifying usage of the binding operation. Bits which can: be set include: + --
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public SparseMemoryBindFlags Flags
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.SparseMemoryBind Pack()
-        {
-            var result = new Interop.SparseMemoryBind();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.SparseMemoryBind Pack()
+		{
+			Interop.SparseMemoryBind result = default(Interop.SparseMemoryBind);
 			result.Memory = this.Memory?.Pack() ?? Interop.DeviceMemory.Null;
 			result.ResourceOffset = this.ResourceOffset;
 			result.Size = this.Size;
 			result.MemoryOffset = this.MemoryOffset;
 			result.Flags = this.Flags;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.SparseMemoryBind* MarshalTo()
-        {
-            return (Interop.SparseMemoryBind*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.SparseMemoryBind*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -7363,30 +7057,30 @@ namespace SharpVk
     /// </summary>
 	public struct SpecializationInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:pMapEntries is a pointer to an array of sname:VkSpecializationMapEntry which maps constant IDs to offsets in pname:pData.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public SpecializationMapEntry[] MapEntries
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pData contains the actual constant values to specialize with.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public byte[] Data
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.SpecializationInfo Pack()
-        {
-            var result = new Interop.SpecializationInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.SpecializationInfo Pack()
+		{
+			Interop.SpecializationInfo result = default(Interop.SpecializationInfo);
 			
 			//MapEntries
 			if (this.MapEntries != null)
@@ -7404,13 +7098,15 @@ namespace SharpVk
 			result.Data = this.Data == null ? null : Interop.HeapUtil.MarshalTo(this.Data);
 			result.MapEntryCount = (uint)(this.MapEntries?.Length ?? 0);
 			result.DataSize = (Size)(this.Data?.Length ?? 0);
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.SpecializationInfo* MarshalTo()
-        {
-            return (Interop.SpecializationInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.SpecializationInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -7424,50 +7120,48 @@ namespace SharpVk
     /// </summary>
 	public struct SubmitInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:pWaitSemaphores is a pointer to an array of semaphores upon which to wait before the command buffers for this batch begin execution. If semaphores to wait on are provided, they define a &lt;&lt;synchronization-semaphores-waiting, semaphore wait operation&gt;&gt;.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public Semaphore[] WaitSemaphores
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pWaitDstStageMask is a pointer to an array of pipeline stages at which each corresponding semaphore wait will occur.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public PipelineStageFlags[] WaitDestinationStageMask
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pCommandBuffers is a pointer to an array of command buffers to execute in the batch. The command buffers submitted in a batch begin execution in the order they appear in pname:pCommandBuffers, but may: complete out of order.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public CommandBuffer[] CommandBuffers
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pSignalSemaphores is a pointer to an array of semaphores which will be signaled when the command buffers for this batch have completed execution. If semaphores to be signaled are provided, they define a &lt;&lt;synchronization-semaphores-signaling, semaphore signal operation&gt;&gt;.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Semaphore[] SignalSemaphores
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.SubmitInfo Pack()
-        {
-            var result = new Interop.SubmitInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.SubmitInfo Pack()
+		{
+			Interop.SubmitInfo result = default(Interop.SubmitInfo);
 			result.SType = StructureType.SubmitInfo;
 			
 			//WaitSemaphores
@@ -7534,13 +7228,15 @@ namespace SharpVk
 			result.WaitSemaphoreCount = (uint)(this.WaitDestinationStageMask?.Length ?? 0);
 			result.CommandBufferCount = (uint)(this.CommandBuffers?.Length ?? 0);
 			result.SignalSemaphoreCount = (uint)(this.SignalSemaphores?.Length ?? 0);
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.SubmitInfo* MarshalTo()
-        {
-            return (Interop.SubmitInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.SubmitInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -7563,80 +7259,75 @@ namespace SharpVk
     /// </summary>
 	public struct SubpassDescription
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public SubpassDescriptionFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pipelineBindPoint is a elink:VkPipelineBindPoint value specifying whether this is a compute or graphics subpass. Currently, only graphics subpasses are supported.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public PipelineBindPoint PipelineBindPoint
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pInputAttachments is an array of slink:VkAttachmentReference structures (defined below) that lists which of the render pass's attachments can: be read in the shader during the subpass, and what layout each attachment will be in during the subpass. Each element of the array corresponds to an input attachment unit number in the shader, i.e. if the shader declares an input variable `layout(input_attachment_index=X, set=Y, binding=Z)` then it uses the attachment provided in pname:pInputAttachments[X]. Input attachments must: also be bound to the pipeline with a descriptor set, with the input attachment descriptor written in the location (set=Y, binding=Z).
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public AttachmentReference[] InputAttachments
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pColorAttachments is an array of pname:colorAttachmentCount slink:VkAttachmentReference structures that lists which of the render pass's attachments will be used as color attachments in the subpass, and what layout each attachment will be in during the subpass. Each element of the array corresponds to a fragment shader output location, i.e. if the shader declared an output variable `layout(location=X)` then it uses the attachment provided in pname:pColorAttachments[X].
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public AttachmentReference[] ColorAttachments
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pResolveAttachments is `NULL` or an array of pname:colorAttachmentCount slink:VkAttachmentReference structures that lists which of the render pass's attachments are resolved to at the end of the subpass, and what layout each attachment will be in during the resolve. If pname:pResolveAttachments is not `NULL`, each of its elements corresponds to a color attachment (the element in pname:pColorAttachments at the same index). At the end of each subpass, the subpass's color attachments are resolved to corresponding resolve attachments, unless the resolve attachment index is ename:VK_ATTACHMENT_UNUSED or pname:pResolveAttachments is `NULL`. If the first use of an attachment in a render pass is as a resolve attachment, then the pname:loadOp is effectively ignored as the resolve is guaranteed to overwrite all pixels in the render area.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public AttachmentReference[] ResolveAttachments
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pDepthStencilAttachment is a pointer to a slink:VkAttachmentReference specifying which attachment will be used for depth/stencil data and the layout it will be in during the subpass. Setting the attachment index to ename:VK_ATTACHMENT_UNUSED or leaving this pointer as `NULL` indicates that no depth/stencil attachment will be used in the subpass.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public AttachmentReference DepthStencilAttachment
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pPreserveAttachments is an array of pname:preserveAttachmentCount render pass attachment indices describing the attachments that are not used by a subpass, but whose contents must: be preserved throughout the subpass.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint[] PreserveAttachments
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.SubpassDescription Pack()
-        {
-            var result = new Interop.SubpassDescription();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.SubpassDescription Pack()
+		{
+			Interop.SubpassDescription result = default(Interop.SubpassDescription);
 			
 			//InputAttachments
 			if (this.InputAttachments != null)
@@ -7686,13 +7377,15 @@ namespace SharpVk
 			result.PreserveAttachmentCount = (uint)(this.PreserveAttachments?.Length ?? 0);
 			result.Flags = this.Flags;
 			result.PipelineBindPoint = this.PipelineBindPoint;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.SubpassDescription* MarshalTo()
-        {
-            return (Interop.SubpassDescription*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.SubpassDescription*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -7712,160 +7405,147 @@ namespace SharpVk
     /// </summary>
 	public struct SwapchainCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use, and must: be zero.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public SwapchainCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:surface is the surface that the swapchain will present images to.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Surface Surface
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:minImageCount is the minimum number of presentable images that the application needs. The platform will either create the swapchain with at least that many images, or will fail to create the swapchain.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint MinImageCount
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:imageFormat is a slink:VkFormat that is valid for swapchains on the specified surface.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Format ImageFormat
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:imageColorSpace is a slink:VkColorSpaceKHR that is valid for swapchains on the specified surface.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ColorSpace ImageColorSpace
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:imageExtent is the size (in pixels) of the swapchain. Behavior is platform-dependent when the image extent does not match the surface's pname:currentExtent as returned by fname:vkGetPhysicalDeviceSurfaceCapabilitiesKHR.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Extent2D ImageExtent
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:imageArrayLayers is the number of views in a multiview/stereo surface. For non-stereoscopic-3D applications, this value is 1.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint ImageArrayLayers
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:imageUsage is a bitmask of elink:VkImageUsageFlagBits, indicating how the application will use the swapchain's presentable images.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public ImageUsageFlags ImageUsage
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:imageSharingMode is the sharing mode used for the images of the swapchain.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public SharingMode ImageSharingMode
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pQueueFamilyIndices is an array of queue family indices having access to the images of the swapchain in case pname:imageSharingMode is ename:VK_SHARING_MODE_CONCURRENT.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint[] QueueFamilyIndices
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:preTransform is a bitmask of elink:VkSurfaceTransformFlagBitsKHR, describing the transform, relative to the presentation engine's natural orientation, applied to the image content prior to presentation. If it does not match the pname:currentTransform value returned by fname:vkGetPhysicalDeviceSurfaceCapabilitiesKHR, the presentation engine will transform the image content as part of the presentation operation.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public SurfaceTransformFlags PreTransform
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:compositeAlpha is a bitmask of elink:VkCompositeAlphaFlagBitsKHR, indicating the alpha compositing mode to use when this surface is composited together with other surfaces on certain window systems.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public CompositeAlphaFlags CompositeAlpha
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:presentMode is the presentation mode the swapchain will use. A swapchain's present mode determines how incoming present requests will be processed and queued internally.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public PresentMode PresentMode
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:clipped indicates whether the Vulkan implementation is allowed to discard rendering operations that affect regions of the surface which are not visible.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public Bool32 Clipped
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public Swapchain OldSwapchain
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.SwapchainCreateInfo Pack()
-        {
-            var result = new Interop.SwapchainCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.SwapchainCreateInfo Pack()
+		{
+			Interop.SwapchainCreateInfo result = default(Interop.SwapchainCreateInfo);
 			result.SType = StructureType.SwapchainCreateInfo;
 			result.Surface = this.Surface?.Pack() ?? Interop.Surface.Null;
 			result.QueueFamilyIndices = this.QueueFamilyIndices == null ? null : Interop.HeapUtil.MarshalTo(this.QueueFamilyIndices);
@@ -7883,37 +7563,38 @@ namespace SharpVk
 			result.CompositeAlpha = this.CompositeAlpha;
 			result.PresentMode = this.PresentMode;
 			result.Clipped = this.Clipped;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.SwapchainCreateInfo* MarshalTo()
-        {
-            return (Interop.SwapchainCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.SwapchainCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Specify validation checks to disable for a Vulkan instance.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct ValidationFlags
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:pDisabledValidationChecks is a pointer to an array of values specifying the validation checks to be disabled. Checks which may: be specified include: + --
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public ValidationCheck[] DisabledValidationChecks
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.ValidationFlags Pack()
-        {
-            var result = new Interop.ValidationFlags();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.ValidationFlags Pack()
+		{
+			Interop.ValidationFlags result = default(Interop.ValidationFlags);
 			result.SType = StructureType.ValidationFlags;
 			
 			//DisabledValidationChecks
@@ -7930,141 +7611,128 @@ namespace SharpVk
 			    result.DisabledValidationChecks = null;
 			}
 			result.DisabledValidationCheckCount = (uint)(this.DisabledValidationChecks?.Length ?? 0);
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.ValidationFlags* MarshalTo()
-        {
-            return (Interop.ValidationFlags*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.ValidationFlags*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure specifying parameters of a newly created Wayland surface object.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct WaylandSurfaceCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public WaylandSurfaceCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:display and pname:surface are pointers to the Wayland code:wl_display and code:wl_surface to associate the surface with.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public IntPtr Display
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public IntPtr Surface
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.WaylandSurfaceCreateInfo Pack()
-        {
-            var result = new Interop.WaylandSurfaceCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.WaylandSurfaceCreateInfo Pack()
+		{
+			Interop.WaylandSurfaceCreateInfo result = default(Interop.WaylandSurfaceCreateInfo);
 			result.SType = StructureType.WaylandSurfaceCreateInfo;
 			result.Flags = this.Flags;
 			result.Display = this.Display;
 			result.Surface = this.Surface;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.WaylandSurfaceCreateInfo* MarshalTo()
-        {
-            return (Interop.WaylandSurfaceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.WaylandSurfaceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Use Windows keyex mutex mechanism to synchronize work.
-    /// </para>
-    /// <para>
-    /// When submitting work that operates on memory imported from a Direct3D 11 resource to a queue, the keyed mutex mechanism may: be used in addition to Vulkan semaphores to synchronize the work. Keyed mutexes are a property of a properly created shareable Direct3D 11 resource. They can: only be used if the imported resource was created with the etext:D3D11_RESOURCE_MISC_SHARED_KEYEDMUTEX flag.
-    /// </para>
-    /// <para>
-    /// To acquire keyed mutexes before submitted work and/or release them after, add a slink:VkWin32KeyedMutexAcquireReleaseInfoNV structure to the pname:pNext chain of the slink:VkSubmitInfo structure.
-    /// </para>
-    /// <para>
-    /// * pname:acquireCount is the number of entries in the pname:pAcquireSyncs, pname:pAcquireKeys, and pname:pAcquireTimeoutMilliseconds arrays. * pname:pAcquireSyncs is a pointer to an array of slink:VkDeviceMemory objects which were imported from Direct3D 11 resources. * pname:pAcquireKeys is a pointer to an array of mutex key values to wait for prior to beginning the submitted work. Entries refer to the keyed mutex associated with the corresponding entries in pname:pAcquireSyncs. * pname:pAcquireTimeoutMilliseconds is an array of timeout values, in millisecond units, for each acquire specified in pname:pAcquireKeys. * pname:releaseCount is the number of entries in the pname:pReleaseSyncs and pname:pReleaseKeys arrays. * pname:pReleaseSyncs is a pointer to an array of slink:VkDeviceMemory objects which were imported from Direct3D 11 resources. * pname:pReleaseKeys is a pointer to an array of mutex key values to set when the submitted work has completed. Entries refer to the keyed mutex associated with the corresponding entries in pname:pReleaseSyncs.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct Win32KeyedMutexAcquireReleaseInfo
 	{
-	    /// <summary>
-		/// <para>
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public DeviceMemory[] AcquireSyncs
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public ulong[] AcquireKeys
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public uint[] AcquireTimeoutMilliseconds
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public DeviceMemory[] ReleaseSyncs
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public ulong[] ReleaseKeys
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.Win32KeyedMutexAcquireReleaseInfo Pack()
-        {
-            var result = new Interop.Win32KeyedMutexAcquireReleaseInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.Win32KeyedMutexAcquireReleaseInfo Pack()
+		{
+			Interop.Win32KeyedMutexAcquireReleaseInfo result = default(Interop.Win32KeyedMutexAcquireReleaseInfo);
 			result.SType = StructureType.Win32KeyedMutexAcquireReleaseInfo;
 			
 			//AcquireSyncs
@@ -8103,68 +7771,69 @@ namespace SharpVk
 			result.ReleaseKeys = this.ReleaseKeys == null ? null : Interop.HeapUtil.MarshalTo(this.ReleaseKeys);
 			result.AcquireCount = (uint)(this.AcquireTimeoutMilliseconds?.Length ?? 0);
 			result.ReleaseCount = (uint)(this.ReleaseKeys?.Length ?? 0);
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.Win32KeyedMutexAcquireReleaseInfo* MarshalTo()
-        {
-            return (Interop.Win32KeyedMutexAcquireReleaseInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.Win32KeyedMutexAcquireReleaseInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure specifying parameters of a newly created Win32 surface object.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct Win32SurfaceCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public Win32SurfaceCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:hinstance and pname:hwnd are the Win32 code:HINSTANCE and code:HWND for the window to associate the surface with.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public IntPtr Hinstance
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
+		
+		/// <summary>
 		/// -
-		/// </para>
 		/// </summary>
 		public IntPtr Hwnd
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.Win32SurfaceCreateInfo Pack()
-        {
-            var result = new Interop.Win32SurfaceCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.Win32SurfaceCreateInfo Pack()
+		{
+			Interop.Win32SurfaceCreateInfo result = default(Interop.Win32SurfaceCreateInfo);
 			result.SType = StructureType.Win32SurfaceCreateInfo;
 			result.Flags = this.Flags;
 			result.Hinstance = this.Hinstance;
 			result.Hwnd = this.Hwnd;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.Win32SurfaceCreateInfo* MarshalTo()
-        {
-            return (Interop.Win32SurfaceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.Win32SurfaceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 
@@ -8184,80 +7853,75 @@ namespace SharpVk
     /// </summary>
 	public struct WriteDescriptorSet
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:dstSet is the destination descriptor set to update.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public DescriptorSet DestinationSet
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:dstBinding is the descriptor binding within that set.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint DestinationBinding
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:dstArrayElement is the starting element in that array.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public uint DestinationArrayElement
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:descriptorType is a elink:VkDescriptorType specifying the type of each descriptor in pname:pImageInfo, pname:pBufferInfo, or pname:pTexelBufferView, as described below. It must: be the same type as that specified in sname:VkDescriptorSetLayoutBinding for pname:dstSet at pname:dstBinding. The type of the descriptor also controls which array the descriptors are taken from.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public DescriptorType DescriptorType
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pImageInfo points to an array of slink:VkDescriptorImageInfo structures or is ignored, as described below.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public DescriptorImageInfo[] ImageInfo
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pBufferInfo points to an array of slink:VkDescriptorBufferInfo structures or is ignored, as described below.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public DescriptorBufferInfo[] BufferInfo
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:pTexelBufferView points to an array of slink:VkBufferView handles as described in the &lt;&lt;resources-buffer-views,Buffer Views&gt;&gt; section or is ignored, as described below.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public BufferView[] TexelBufferView
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.WriteDescriptorSet Pack()
-        {
-            var result = new Interop.WriteDescriptorSet();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.WriteDescriptorSet Pack()
+		{
+			Interop.WriteDescriptorSet result = default(Interop.WriteDescriptorSet);
 			result.SType = StructureType.WriteDescriptorSet;
 			result.DestinationSet = this.DestinationSet?.Pack() ?? Interop.DescriptorSet.Null;
 			
@@ -8312,123 +7976,123 @@ namespace SharpVk
 			result.DestinationBinding = this.DestinationBinding;
 			result.DestinationArrayElement = this.DestinationArrayElement;
 			result.DescriptorType = this.DescriptorType;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.WriteDescriptorSet* MarshalTo()
-        {
-            return (Interop.WriteDescriptorSet*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.WriteDescriptorSet*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure specifying parameters of a newly created Xcb surface object.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct XcbSurfaceCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public XcbSurfaceCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:connection is a pointer to an code:xcb_connection_t to the X server.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public IntPtr Connection
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:window is the code:xcb_window_t for the X11 window to associate the surface with.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public IntPtr Window
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.XcbSurfaceCreateInfo Pack()
-        {
-            var result = new Interop.XcbSurfaceCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.XcbSurfaceCreateInfo Pack()
+		{
+			Interop.XcbSurfaceCreateInfo result = default(Interop.XcbSurfaceCreateInfo);
 			result.SType = StructureType.XcbSurfaceCreateInfo;
 			result.Connection = (IntPtr*)Interop.HeapUtil.AllocateAndMarshal(this.Connection);
 			result.Flags = this.Flags;
 			result.Window = this.Window;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.XcbSurfaceCreateInfo* MarshalTo()
-        {
-            return (Interop.XcbSurfaceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.XcbSurfaceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
-
-    /// <summary>
-    /// <para>
-    /// Structure specifying parameters of a newly created Xlib surface object.
-    /// </para>
-    /// </summary>
+	
+	/// <summary>
+	/// -
+	/// </summary>
 	public struct XlibSurfaceCreateInfo
 	{
-	    /// <summary>
-		/// <para>
-		/// pname:flags is reserved for future use.
-		/// </para>
+		/// <summary>
+		/// -
 		/// </summary>
 		public XlibSurfaceCreateFlags Flags
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:dpy is a pointer to an Xlib code:Display connection to the X server.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public IntPtr Dpy
 		{
 			get;
 			set;
 		}
-	    /// <summary>
-		/// <para>
-		/// pname:window is an Xlib code:Window to associate the surface with.
-		/// </para>
+		
+		/// <summary>
+		/// -
 		/// </summary>
 		public IntPtr Window
 		{
 			get;
 			set;
 		}
-
-        internal unsafe Interop.XlibSurfaceCreateInfo Pack()
-        {
-            var result = new Interop.XlibSurfaceCreateInfo();
+		
+		/// <summary>
+		/// -
+		/// </summary>
+		internal unsafe Interop.XlibSurfaceCreateInfo Pack()
+		{
+			Interop.XlibSurfaceCreateInfo result = default(Interop.XlibSurfaceCreateInfo);
 			result.SType = StructureType.XlibSurfaceCreateInfo;
 			result.Dpy = (IntPtr*)Interop.HeapUtil.AllocateAndMarshal(this.Dpy);
 			result.Flags = this.Flags;
 			result.Window = this.Window;
-
-            return result;
-        }
-
+			return result;
+		}
+		
+		/// <summary>
+		/// -
+		/// </summary>
 		internal unsafe Interop.XlibSurfaceCreateInfo* MarshalTo()
-        {
-            return (Interop.XlibSurfaceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+		{
+			return (Interop.XlibSurfaceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
 		}
 	}
 }

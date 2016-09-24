@@ -1,11 +1,8 @@
 ﻿using SharpVk.Generator.Emit;
-using SharpVk.VkXml;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SharpVk.Generator.Generators
 {
@@ -18,9 +15,11 @@ namespace SharpVk.Generator.Generators
             this.basePath = basePath;
         }
 
-        public void Run(string outputFolder, string filename, IEnumerable<ClassGenerator> classGenerators)
+        public void Run(string subNamespace, string filename, IEnumerable<TypeGenerator> classGenerators)
         {
-            string outputPath = Path.Combine(this.basePath, outputFolder);
+            string outputPath = !string.IsNullOrEmpty(subNamespace)
+                                    ? Path.Combine(this.basePath, subNamespace)
+                                    : this.basePath;
 
             if (!Directory.Exists(outputPath))
             {
@@ -62,7 +61,12 @@ namespace SharpVk.Generator.Generators
                 }
 
                 indentedWriter.WriteLine();
-                indentedWriter.WriteLine($"namespace SharpVk.{outputFolder}");
+                indentedWriter.Write("namespace SharpVk");
+                if (!string.IsNullOrEmpty(subNamespace))
+                {
+                    indentedWriter.Write($".{subNamespace}");
+                }
+                indentedWriter.WriteLine();
                 indentedWriter.WriteLine("{");
                 indentedWriter.IncreaseIndent();
 
@@ -79,6 +83,9 @@ namespace SharpVk.Generator.Generators
                         isFirstClass = false;
                     }
 
+                    indentedWriter.WriteLine("/// <summary>");
+                    indentedWriter.WriteLine("/// -");
+                    indentedWriter.WriteLine("/// </summary>");
                     foreach (var attributeName in classGenerator.Attributes)
                     {
                         indentedWriter.WriteLine($"[{attributeName}]");

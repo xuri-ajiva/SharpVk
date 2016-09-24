@@ -52,8 +52,9 @@
     <Compile Include="Emit\MemberModifier.cs" />
     <Compile Include="Emit\ParameterBuilder.cs" />
     <Compile Include="Emit\TypeBuilder.cs" />
-    <Compile Include="Generators\ClassGenerator.cs" />
+    <Compile Include="Generators\TypeGenerator.cs" />
     <Compile Include="Generators\FileGenerator.cs" />
+    <Compile Include="Generators\ClassGenerator.cs" />
     <Compile Include="Generators\InteropStructGenerator.cs" />
     <Compile Include="Generators\InteropHandleGenerator.cs" />
     <Compile Include="Generators\InteropCommandsGenerator.cs" />

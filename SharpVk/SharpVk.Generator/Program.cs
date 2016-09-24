@@ -1,8 +1,5 @@
 ﻿using SharpVk.Generator.Generators;
 using SharpVk.VkXml;
-using System;
-
-using static System.Linq.Expressions.Expression;
 
 namespace SharpVk.Generator
 {
@@ -13,24 +10,22 @@ namespace SharpVk.Generator
             var xmlCache = new VkXmlCache(".\\VkTemplates");
 
             var parser = new SpecParser(xmlCache, ".\\VkTemplates");
-            var generator = new TypeGenerator();
+            var generator = new VkXml.TypeGenerator();
 
             var types = generator.Generate(parser.Run());
 
-            var fileGenerator = new FileGenerator(".\\Generated");
+            var fileGenerator = new FileGenerator("..\\..\\..\\SharpVk");
 
             foreach (var modelGenerator in new ModelGenerator[]
             {
                 new InteropCommandsGenerator(),
                 new InteropHandleGenerator(),
-                new InteropStructGenerator()
+                new InteropStructGenerator(),
+                new ClassGenerator()
             })
             {
                 modelGenerator.Run(types, fileGenerator);
             }
-
-            Console.WriteLine("Done");
-            Console.ReadLine();
         }
     }
 }

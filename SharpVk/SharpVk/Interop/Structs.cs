@@ -1,3684 +1,4323 @@
-﻿//The MIT License (MIT)
+// The MIT License (MIT)
 //
-//Copyright (c) Andrew Armstrong/FacticiusVir 2016
+// Copyright (c) Andrew Armstrong/FacticiusVir 2016
 //
-//Permission is hereby granted, free of charge, to any person obtaining a copy
-//of this software and associated documentation files (the "Software"), to deal
-//in the Software without restriction, including without limitation the rights
-//to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//copies of the Software, and to permit persons to whom the Software is
-//furnished to do so, subject to the following conditions:
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
 //
-//The above copyright notice and this permission notice shall be included in all
-//copies or substantial portions of the Software.
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
 //
-//THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-//SOFTWARE.
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
+// This file was automatically generated and should not be editted directly.
 
 using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Interop
 {
-
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct AllocationCallbacks
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* UserData;
+		public void* UserData; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public IntPtr PfnAllocation;
+		public IntPtr PfnAllocation; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public IntPtr PfnReallocation;
+		public IntPtr PfnReallocation; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public IntPtr PfnFree;
+		public IntPtr PfnFree; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public IntPtr PfnInternalAllocation;
+		public IntPtr PfnInternalAllocation; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public IntPtr PfnInternalFree;
+		public IntPtr PfnInternalFree; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct AndroidSurfaceCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public AndroidSurfaceCreateFlags Flags;
+		public AndroidSurfaceCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public IntPtr* Window;
+		public IntPtr* Window; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct ApplicationInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public char* ApplicationName;
+		public char* ApplicationName; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint ApplicationVersion;
+		public uint ApplicationVersion; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public char* EngineName;
+		public char* EngineName; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint EngineVersion;
+		public uint EngineVersion; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint ApiVersion;
+		public uint ApiVersion; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct BindSparseInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint WaitSemaphoreCount;
+		public uint WaitSemaphoreCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Semaphore* WaitSemaphores;
+		public Semaphore* WaitSemaphores; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint BufferBindCount;
+		public uint BufferBindCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SparseBufferMemoryBindInfo* BufferBinds;
+		public SparseBufferMemoryBindInfo* BufferBinds; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint ImageOpaqueBindCount;
+		public uint ImageOpaqueBindCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SparseImageOpaqueMemoryBindInfo* ImageOpaqueBinds;
+		public SparseImageOpaqueMemoryBindInfo* ImageOpaqueBinds; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint ImageBindCount;
+		public uint ImageBindCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SparseImageMemoryBindInfo* ImageBinds;
+		public SparseImageMemoryBindInfo* ImageBinds; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint SignalSemaphoreCount;
+		public uint SignalSemaphoreCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Semaphore* SignalSemaphores;
+		public Semaphore* SignalSemaphores; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct BufferCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public BufferCreateFlags Flags;
+		public BufferCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DeviceSize Size;
+		public DeviceSize Size; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public BufferUsageFlags Usage;
+		public BufferUsageFlags Usage; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SharingMode SharingMode;
+		public SharingMode SharingMode; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint QueueFamilyIndexCount;
+		public uint QueueFamilyIndexCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint* QueueFamilyIndices;
+		public uint* QueueFamilyIndices; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct BufferMemoryBarrier
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public AccessFlags SourceAccessMask;
+		public AccessFlags SourceAccessMask; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public AccessFlags DestinationAccessMask;
+		public AccessFlags DestinationAccessMask; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint SourceQueueFamilyIndex;
+		public uint SourceQueueFamilyIndex; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint DestinationQueueFamilyIndex;
+		public uint DestinationQueueFamilyIndex; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Buffer Buffer;
+		public Buffer Buffer; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DeviceSize Offset;
+		public DeviceSize Offset; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DeviceSize Size;
+		public DeviceSize Size; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct BufferViewCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public BufferViewCreateFlags Flags;
+		public BufferViewCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Buffer Buffer;
+		public Buffer Buffer; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Format Format;
+		public Format Format; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DeviceSize Offset;
+		public DeviceSize Offset; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DeviceSize Range;
+		public DeviceSize Range; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct CommandBufferAllocateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public CommandPool CommandPool;
+		public CommandPool CommandPool; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public CommandBufferLevel Level;
+		public CommandBufferLevel Level; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint CommandBufferCount;
+		public uint CommandBufferCount; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct CommandBufferBeginInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public CommandBufferUsageFlags Flags;
+		public CommandBufferUsageFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public CommandBufferInheritanceInfo* InheritanceInfo;
+		public CommandBufferInheritanceInfo* InheritanceInfo; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct CommandBufferInheritanceInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public RenderPass RenderPass;
+		public RenderPass RenderPass; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint Subpass;
+		public uint Subpass; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Framebuffer Framebuffer;
+		public Framebuffer Framebuffer; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Bool32 OcclusionQueryEnable;
+		public Bool32 OcclusionQueryEnable; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public QueryControlFlags QueryFlags;
+		public QueryControlFlags QueryFlags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public QueryPipelineStatisticFlags PipelineStatistics;
+		public QueryPipelineStatisticFlags PipelineStatistics; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct CommandPoolCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public CommandPoolCreateFlags Flags;
+		public CommandPoolCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint QueueFamilyIndex;
+		public uint QueueFamilyIndex; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct ComputePipelineCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PipelineCreateFlags Flags;
+		public PipelineCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PipelineShaderStageCreateInfo Stage;
+		public PipelineShaderStageCreateInfo Stage; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PipelineLayout Layout;
+		public PipelineLayout Layout; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Pipeline BasePipelineHandle;
+		public Pipeline BasePipelineHandle; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public int BasePipelineIndex;
+		public int BasePipelineIndex; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct CopyDescriptorSet
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DescriptorSet SourceSet;
+		public DescriptorSet SourceSet; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint SourceBinding;
+		public uint SourceBinding; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint SourceArrayElement;
+		public uint SourceArrayElement; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DescriptorSet DestinationSet;
+		public DescriptorSet DestinationSet; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint DestinationBinding;
+		public uint DestinationBinding; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint DestinationArrayElement;
+		public uint DestinationArrayElement; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint DescriptorCount;
+		public uint DescriptorCount; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct DebugMarkerMarkerInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public char* MarkerName;
+		public char* MarkerName; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public fixed float Color[4];
+		public fixed float Color[4]; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct DebugMarkerObjectNameInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DebugReportObjectType ObjectType;
+		public DebugReportObjectType ObjectType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public ulong Object;
+		public ulong Object; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public char* ObjectName;
+		public char* ObjectName; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct DebugMarkerObjectTagInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DebugReportObjectType ObjectType;
+		public DebugReportObjectType ObjectType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public ulong Object;
+		public ulong Object; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public ulong TagName;
+		public ulong TagName; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Size TagSize;
+		public Size TagSize; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Tag;
+		public void* Tag; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct DebugReportCallbackCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DebugReportFlags Flags;
+		public DebugReportFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public IntPtr PfnCallback;
+		public IntPtr PfnCallback; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* UserData;
+		public void* UserData; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct DedicatedAllocationBufferCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Bool32 DedicatedAllocation;
+		public Bool32 DedicatedAllocation; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct DedicatedAllocationImageCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Bool32 DedicatedAllocation;
+		public Bool32 DedicatedAllocation; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct DedicatedAllocationMemoryAllocateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Image Image;
+		public Image Image; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Buffer Buffer;
+		public Buffer Buffer; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct DescriptorBufferInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public Buffer Buffer;
+		public Buffer Buffer; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DeviceSize Offset;
+		public DeviceSize Offset; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DeviceSize Range;
+		public DeviceSize Range; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct DescriptorImageInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public Sampler Sampler;
+		public Sampler Sampler; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public ImageView ImageView;
+		public ImageView ImageView; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public ImageLayout ImageLayout;
+		public ImageLayout ImageLayout; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct DescriptorPoolCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DescriptorPoolCreateFlags Flags;
+		public DescriptorPoolCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxSets;
+		public uint MaxSets; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint PoolSizeCount;
+		public uint PoolSizeCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DescriptorPoolSize* PoolSizes;
+		public DescriptorPoolSize* PoolSizes; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct DescriptorSetAllocateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DescriptorPool DescriptorPool;
+		public DescriptorPool DescriptorPool; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint DescriptorSetCount;
+		public uint DescriptorSetCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DescriptorSetLayout* SetLayouts;
+		public DescriptorSetLayout* SetLayouts; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct DescriptorSetLayoutBinding
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint Binding;
+		public uint Binding; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DescriptorType DescriptorType;
+		public DescriptorType DescriptorType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint DescriptorCount;
+		public uint DescriptorCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public ShaderStageFlags StageFlags;
+		public ShaderStageFlags StageFlags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Sampler* ImmutableSamplers;
+		public Sampler* ImmutableSamplers; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct DescriptorSetLayoutCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DescriptorSetLayoutCreateFlags Flags;
+		public DescriptorSetLayoutCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint BindingCount;
+		public uint BindingCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DescriptorSetLayoutBinding* Bindings;
+		public DescriptorSetLayoutBinding* Bindings; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct DeviceCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DeviceCreateFlags Flags;
+		public DeviceCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint QueueCreateInfoCount;
+		public uint QueueCreateInfoCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DeviceQueueCreateInfo* QueueCreateInfos;
+		public DeviceQueueCreateInfo* QueueCreateInfos; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint EnabledLayerCount;
+		public uint EnabledLayerCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public char** EnabledLayerNames;
+		public char** EnabledLayerNames; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint EnabledExtensionCount;
+		public uint EnabledExtensionCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public char** EnabledExtensionNames;
+		public char** EnabledExtensionNames; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PhysicalDeviceFeatures* EnabledFeatures;
+		public PhysicalDeviceFeatures* EnabledFeatures; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct DeviceQueueCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DeviceQueueCreateFlags Flags;
+		public DeviceQueueCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint QueueFamilyIndex;
+		public uint QueueFamilyIndex; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint QueueCount;
+		public uint QueueCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public float* QueuePriorities;
+		public float* QueuePriorities; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct DisplayModeCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DisplayModeCreateFlags Flags;
+		public DisplayModeCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DisplayModeParameters Parameters;
+		public DisplayModeParameters Parameters; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct DisplayModeProperties
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public DisplayMode DisplayMode;
+		public DisplayMode DisplayMode; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DisplayModeParameters Parameters;
+		public DisplayModeParameters Parameters; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct DisplayPlaneProperties
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public Display CurrentDisplay;
+		public Display CurrentDisplay; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint CurrentStackIndex;
+		public uint CurrentStackIndex; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct DisplayPresentInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Rect2D SourceRect;
+		public Rect2D SourceRect; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Rect2D DestinationRect;
+		public Rect2D DestinationRect; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Bool32 Persistent;
+		public Bool32 Persistent; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct DisplayProperties
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public Display Display;
+		public Display Display; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public char* DisplayName;
+		public char* DisplayName; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Extent2D PhysicalDimensions;
+		public Extent2D PhysicalDimensions; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Extent2D PhysicalResolution;
+		public Extent2D PhysicalResolution; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SurfaceTransformFlags SupportedTransforms;
+		public SurfaceTransformFlags SupportedTransforms; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Bool32 PlaneReorderPossible;
+		public Bool32 PlaneReorderPossible; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Bool32 PersistentContent;
+		public Bool32 PersistentContent; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct DisplaySurfaceCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DisplaySurfaceCreateFlags Flags;
+		public DisplaySurfaceCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DisplayMode DisplayMode;
+		public DisplayMode DisplayMode; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint PlaneIndex;
+		public uint PlaneIndex; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint PlaneStackIndex;
+		public uint PlaneStackIndex; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SurfaceTransformFlags Transform;
+		public SurfaceTransformFlags Transform; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public float GlobalAlpha;
+		public float GlobalAlpha; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DisplayPlaneAlphaFlags AlphaMode;
+		public DisplayPlaneAlphaFlags AlphaMode; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Extent2D ImageExtent;
+		public Extent2D ImageExtent; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct EventCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public EventCreateFlags Flags;
+		public EventCreateFlags Flags; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct ExportMemoryAllocateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public ExternalMemoryHandleTypeFlags HandleTypes;
+		public ExternalMemoryHandleTypeFlags HandleTypes; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct ExportMemoryWin32HandleInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SECURITY_ATTRIBUTES* Attributes;
+		public SECURITY_ATTRIBUTES* Attributes; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint DwAccess;
+		public uint DwAccess; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct ExtensionProperties
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public fixed byte ExtensionName[(int)Constants.MaxExtensionNameSize];
+		public fixed byte ExtensionName[(int)Constants.MaxExtensionNameSize]; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint SpecVersion;
+		public uint SpecVersion; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct ExternalMemoryImageCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public ExternalMemoryHandleTypeFlags HandleTypes;
+		public ExternalMemoryHandleTypeFlags HandleTypes; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct FenceCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public FenceCreateFlags Flags;
+		public FenceCreateFlags Flags; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct FramebufferCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public FramebufferCreateFlags Flags;
+		public FramebufferCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public RenderPass RenderPass;
+		public RenderPass RenderPass; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint AttachmentCount;
+		public uint AttachmentCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public ImageView* Attachments;
+		public ImageView* Attachments; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint Width;
+		public uint Width; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint Height;
+		public uint Height; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint Layers;
+		public uint Layers; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct GraphicsPipelineCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PipelineCreateFlags Flags;
+		public PipelineCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint StageCount;
+		public uint StageCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PipelineShaderStageCreateInfo* Stages;
+		public PipelineShaderStageCreateInfo* Stages; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PipelineVertexInputStateCreateInfo* VertexInputState;
+		public PipelineVertexInputStateCreateInfo* VertexInputState; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PipelineInputAssemblyStateCreateInfo* InputAssemblyState;
+		public PipelineInputAssemblyStateCreateInfo* InputAssemblyState; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PipelineTessellationStateCreateInfo* TessellationState;
+		public PipelineTessellationStateCreateInfo* TessellationState; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PipelineViewportStateCreateInfo* ViewportState;
+		public PipelineViewportStateCreateInfo* ViewportState; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PipelineRasterizationStateCreateInfo* RasterizationState;
+		public PipelineRasterizationStateCreateInfo* RasterizationState; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PipelineMultisampleStateCreateInfo* MultisampleState;
+		public PipelineMultisampleStateCreateInfo* MultisampleState; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PipelineDepthStencilStateCreateInfo* DepthStencilState;
+		public PipelineDepthStencilStateCreateInfo* DepthStencilState; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PipelineColorBlendStateCreateInfo* ColorBlendState;
+		public PipelineColorBlendStateCreateInfo* ColorBlendState; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PipelineDynamicStateCreateInfo* DynamicState;
+		public PipelineDynamicStateCreateInfo* DynamicState; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PipelineLayout Layout;
+		public PipelineLayout Layout; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public RenderPass RenderPass;
+		public RenderPass RenderPass; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint Subpass;
+		public uint Subpass; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Pipeline BasePipelineHandle;
+		public Pipeline BasePipelineHandle; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public int BasePipelineIndex;
+		public int BasePipelineIndex; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct ImageBlit
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public ImageSubresourceLayers SourceSubresource;
+		public ImageSubresourceLayers SourceSubresource; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Offset3D SourceOffsets;
+		public Offset3D SourceOffsets; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private Offset3D SourceOffsets_1;
+		private Offset3D SourceOffsets_1; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public ImageSubresourceLayers DestinationSubresource;
+		public ImageSubresourceLayers DestinationSubresource; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Offset3D DestinationOffsets;
+		public Offset3D DestinationOffsets; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private Offset3D DestinationOffsets_1;
+		private Offset3D DestinationOffsets_1; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct ImageCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public ImageCreateFlags Flags;
+		public ImageCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public ImageType ImageType;
+		public ImageType ImageType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Format Format;
+		public Format Format; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Extent3D Extent;
+		public Extent3D Extent; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MipLevels;
+		public uint MipLevels; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint ArrayLayers;
+		public uint ArrayLayers; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SampleCountFlags Samples;
+		public SampleCountFlags Samples; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public ImageTiling Tiling;
+		public ImageTiling Tiling; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public ImageUsageFlags Usage;
+		public ImageUsageFlags Usage; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SharingMode SharingMode;
+		public SharingMode SharingMode; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint QueueFamilyIndexCount;
+		public uint QueueFamilyIndexCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint* QueueFamilyIndices;
+		public uint* QueueFamilyIndices; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public ImageLayout InitialLayout;
+		public ImageLayout InitialLayout; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct ImageMemoryBarrier
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public AccessFlags SourceAccessMask;
+		public AccessFlags SourceAccessMask; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public AccessFlags DestinationAccessMask;
+		public AccessFlags DestinationAccessMask; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public ImageLayout OldLayout;
+		public ImageLayout OldLayout; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public ImageLayout NewLayout;
+		public ImageLayout NewLayout; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint SourceQueueFamilyIndex;
+		public uint SourceQueueFamilyIndex; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint DestinationQueueFamilyIndex;
+		public uint DestinationQueueFamilyIndex; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Image Image;
+		public Image Image; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public ImageSubresourceRange SubresourceRange;
+		public ImageSubresourceRange SubresourceRange; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct ImageViewCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public ImageViewCreateFlags Flags;
+		public ImageViewCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Image Image;
+		public Image Image; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public ImageViewType ViewType;
+		public ImageViewType ViewType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Format Format;
+		public Format Format; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public ComponentMapping Components;
+		public ComponentMapping Components; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public ImageSubresourceRange SubresourceRange;
+		public ImageSubresourceRange SubresourceRange; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct ImportMemoryWin32HandleInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public ExternalMemoryHandleTypeFlags HandleType;
+		public ExternalMemoryHandleTypeFlags HandleType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public IntPtr Handle;
+		public IntPtr Handle; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct InstanceCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public InstanceCreateFlags Flags;
+		public InstanceCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public ApplicationInfo* ApplicationInfo;
+		public ApplicationInfo* ApplicationInfo; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint EnabledLayerCount;
+		public uint EnabledLayerCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public char** EnabledLayerNames;
+		public char** EnabledLayerNames; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint EnabledExtensionCount;
+		public uint EnabledExtensionCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public char** EnabledExtensionNames;
+		public char** EnabledExtensionNames; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct LayerProperties
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public fixed byte LayerName[(int)Constants.MaxExtensionNameSize];
+		public fixed byte LayerName[(int)Constants.MaxExtensionNameSize]; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint SpecVersion;
+		public uint SpecVersion; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint ImplementationVersion;
+		public uint ImplementationVersion; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public fixed byte Description[(int)Constants.MaxDescriptionSize];
+		public fixed byte Description[(int)Constants.MaxDescriptionSize]; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct MappedMemoryRange
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DeviceMemory Memory;
+		public DeviceMemory Memory; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DeviceSize Offset;
+		public DeviceSize Offset; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DeviceSize Size;
+		public DeviceSize Size; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct MemoryAllocateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DeviceSize AllocationSize;
+		public DeviceSize AllocationSize; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MemoryTypeIndex;
+		public uint MemoryTypeIndex; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct MemoryBarrier
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public AccessFlags SourceAccessMask;
+		public AccessFlags SourceAccessMask; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public AccessFlags DestinationAccessMask;
+		public AccessFlags DestinationAccessMask; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct MirSurfaceCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public MirSurfaceCreateFlags Flags;
+		public MirSurfaceCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public IntPtr* Connection;
+		public IntPtr* Connection; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public IntPtr* MirSurface;
+		public IntPtr* MirSurface; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct PhysicalDeviceLimits
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxImageDimension1D;
+		public uint MaxImageDimension1D; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxImageDimension2D;
+		public uint MaxImageDimension2D; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxImageDimension3D;
+		public uint MaxImageDimension3D; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxImageDimensionCube;
+		public uint MaxImageDimensionCube; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxImageArrayLayers;
+		public uint MaxImageArrayLayers; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxTexelBufferElements;
+		public uint MaxTexelBufferElements; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxUniformBufferRange;
+		public uint MaxUniformBufferRange; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxStorageBufferRange;
+		public uint MaxStorageBufferRange; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxPushConstantsSize;
+		public uint MaxPushConstantsSize; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxMemoryAllocationCount;
+		public uint MaxMemoryAllocationCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxSamplerAllocationCount;
+		public uint MaxSamplerAllocationCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DeviceSize BufferImageGranularity;
+		public DeviceSize BufferImageGranularity; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DeviceSize SparseAddressSpaceSize;
+		public DeviceSize SparseAddressSpaceSize; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxBoundDescriptorSets;
+		public uint MaxBoundDescriptorSets; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxPerStageDescriptorSamplers;
+		public uint MaxPerStageDescriptorSamplers; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxPerStageDescriptorUniformBuffers;
+		public uint MaxPerStageDescriptorUniformBuffers; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxPerStageDescriptorStorageBuffers;
+		public uint MaxPerStageDescriptorStorageBuffers; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxPerStageDescriptorSampledImages;
+		public uint MaxPerStageDescriptorSampledImages; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxPerStageDescriptorStorageImages;
+		public uint MaxPerStageDescriptorStorageImages; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxPerStageDescriptorInputAttachments;
+		public uint MaxPerStageDescriptorInputAttachments; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxPerStageResources;
+		public uint MaxPerStageResources; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxDescriptorSetSamplers;
+		public uint MaxDescriptorSetSamplers; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxDescriptorSetUniformBuffers;
+		public uint MaxDescriptorSetUniformBuffers; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxDescriptorSetUniformBuffersDynamic;
+		public uint MaxDescriptorSetUniformBuffersDynamic; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxDescriptorSetStorageBuffers;
+		public uint MaxDescriptorSetStorageBuffers; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxDescriptorSetStorageBuffersDynamic;
+		public uint MaxDescriptorSetStorageBuffersDynamic; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxDescriptorSetSampledImages;
+		public uint MaxDescriptorSetSampledImages; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxDescriptorSetStorageImages;
+		public uint MaxDescriptorSetStorageImages; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxDescriptorSetInputAttachments;
+		public uint MaxDescriptorSetInputAttachments; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxVertexInputAttributes;
+		public uint MaxVertexInputAttributes; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxVertexInputBindings;
+		public uint MaxVertexInputBindings; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxVertexInputAttributeOffset;
+		public uint MaxVertexInputAttributeOffset; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxVertexInputBindingStride;
+		public uint MaxVertexInputBindingStride; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxVertexOutputComponents;
+		public uint MaxVertexOutputComponents; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxTessellationGenerationLevel;
+		public uint MaxTessellationGenerationLevel; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxTessellationPatchSize;
+		public uint MaxTessellationPatchSize; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxTessellationControlPerVertexInputComponents;
+		public uint MaxTessellationControlPerVertexInputComponents; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxTessellationControlPerVertexOutputComponents;
+		public uint MaxTessellationControlPerVertexOutputComponents; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxTessellationControlPerPatchOutputComponents;
+		public uint MaxTessellationControlPerPatchOutputComponents; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxTessellationControlTotalOutputComponents;
+		public uint MaxTessellationControlTotalOutputComponents; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxTessellationEvaluationInputComponents;
+		public uint MaxTessellationEvaluationInputComponents; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxTessellationEvaluationOutputComponents;
+		public uint MaxTessellationEvaluationOutputComponents; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxGeometryShaderInvocations;
+		public uint MaxGeometryShaderInvocations; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxGeometryInputComponents;
+		public uint MaxGeometryInputComponents; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxGeometryOutputComponents;
+		public uint MaxGeometryOutputComponents; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxGeometryOutputVertices;
+		public uint MaxGeometryOutputVertices; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxGeometryTotalOutputComponents;
+		public uint MaxGeometryTotalOutputComponents; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxFragmentInputComponents;
+		public uint MaxFragmentInputComponents; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxFragmentOutputAttachments;
+		public uint MaxFragmentOutputAttachments; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxFragmentDualSourceAttachments;
+		public uint MaxFragmentDualSourceAttachments; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxFragmentCombinedOutputResources;
+		public uint MaxFragmentCombinedOutputResources; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxComputeSharedMemorySize;
+		public uint MaxComputeSharedMemorySize; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public fixed uint MaxComputeWorkGroupCount[3];
+		public fixed uint MaxComputeWorkGroupCount[3]; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxComputeWorkGroupInvocations;
+		public uint MaxComputeWorkGroupInvocations; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public fixed uint MaxComputeWorkGroupSize[3];
+		public fixed uint MaxComputeWorkGroupSize[3]; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint SubPixelPrecisionBits;
+		public uint SubPixelPrecisionBits; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint SubTexelPrecisionBits;
+		public uint SubTexelPrecisionBits; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MipmapPrecisionBits;
+		public uint MipmapPrecisionBits; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxDrawIndexedIndexValue;
+		public uint MaxDrawIndexedIndexValue; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxDrawIndirectCount;
+		public uint MaxDrawIndirectCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public float MaxSamplerLodBias;
+		public float MaxSamplerLodBias; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public float MaxSamplerAnisotropy;
+		public float MaxSamplerAnisotropy; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxViewports;
+		public uint MaxViewports; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public fixed uint MaxViewportDimensions[2];
+		public fixed uint MaxViewportDimensions[2]; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public fixed float ViewportBoundsRange[2];
+		public fixed float ViewportBoundsRange[2]; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint ViewportSubPixelBits;
+		public uint ViewportSubPixelBits; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Size MinMemoryMapAlignment;
+		public Size MinMemoryMapAlignment; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DeviceSize MinTexelBufferOffsetAlignment;
+		public DeviceSize MinTexelBufferOffsetAlignment; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DeviceSize MinUniformBufferOffsetAlignment;
+		public DeviceSize MinUniformBufferOffsetAlignment; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DeviceSize MinStorageBufferOffsetAlignment;
+		public DeviceSize MinStorageBufferOffsetAlignment; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public int MinTexelOffset;
+		public int MinTexelOffset; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxTexelOffset;
+		public uint MaxTexelOffset; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public int MinTexelGatherOffset;
+		public int MinTexelGatherOffset; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxTexelGatherOffset;
+		public uint MaxTexelGatherOffset; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public float MinInterpolationOffset;
+		public float MinInterpolationOffset; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public float MaxInterpolationOffset;
+		public float MaxInterpolationOffset; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint SubPixelInterpolationOffsetBits;
+		public uint SubPixelInterpolationOffsetBits; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxFramebufferWidth;
+		public uint MaxFramebufferWidth; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxFramebufferHeight;
+		public uint MaxFramebufferHeight; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxFramebufferLayers;
+		public uint MaxFramebufferLayers; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SampleCountFlags FramebufferColorSampleCounts;
+		public SampleCountFlags FramebufferColorSampleCounts; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SampleCountFlags FramebufferDepthSampleCounts;
+		public SampleCountFlags FramebufferDepthSampleCounts; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SampleCountFlags FramebufferStencilSampleCounts;
+		public SampleCountFlags FramebufferStencilSampleCounts; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SampleCountFlags FramebufferNoAttachmentsSampleCounts;
+		public SampleCountFlags FramebufferNoAttachmentsSampleCounts; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxColorAttachments;
+		public uint MaxColorAttachments; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SampleCountFlags SampledImageColorSampleCounts;
+		public SampleCountFlags SampledImageColorSampleCounts; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SampleCountFlags SampledImageIntegerSampleCounts;
+		public SampleCountFlags SampledImageIntegerSampleCounts; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SampleCountFlags SampledImageDepthSampleCounts;
+		public SampleCountFlags SampledImageDepthSampleCounts; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SampleCountFlags SampledImageStencilSampleCounts;
+		public SampleCountFlags SampledImageStencilSampleCounts; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SampleCountFlags StorageImageSampleCounts;
+		public SampleCountFlags StorageImageSampleCounts; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxSampleMaskWords;
+		public uint MaxSampleMaskWords; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Bool32 TimestampComputeAndGraphics;
+		public Bool32 TimestampComputeAndGraphics; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public float TimestampPeriod;
+		public float TimestampPeriod; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxClipDistances;
+		public uint MaxClipDistances; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxCullDistances;
+		public uint MaxCullDistances; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MaxCombinedClipAndCullDistances;
+		public uint MaxCombinedClipAndCullDistances; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint DiscreteQueuePriorities;
+		public uint DiscreteQueuePriorities; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public fixed float PointSizeRange[2];
+		public fixed float PointSizeRange[2]; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public fixed float LineWidthRange[2];
+		public fixed float LineWidthRange[2]; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public float PointSizeGranularity;
+		public float PointSizeGranularity; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public float LineWidthGranularity;
+		public float LineWidthGranularity; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Bool32 StrictLines;
+		public Bool32 StrictLines; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Bool32 StandardSampleLocations;
+		public Bool32 StandardSampleLocations; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DeviceSize OptimalBufferCopyOffsetAlignment;
+		public DeviceSize OptimalBufferCopyOffsetAlignment; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DeviceSize OptimalBufferCopyRowPitchAlignment;
+		public DeviceSize OptimalBufferCopyRowPitchAlignment; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DeviceSize NonCoherentAtomSize;
+		public DeviceSize NonCoherentAtomSize; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct PhysicalDeviceMemoryProperties
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MemoryTypeCount;
+		public uint MemoryTypeCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public MemoryType MemoryTypes;
+		public MemoryType MemoryTypes; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryType MemoryTypes_1;
+		private MemoryType MemoryTypes_1; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryType MemoryTypes_2;
+		private MemoryType MemoryTypes_2; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryType MemoryTypes_3;
+		private MemoryType MemoryTypes_3; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryType MemoryTypes_4;
+		private MemoryType MemoryTypes_4; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryType MemoryTypes_5;
+		private MemoryType MemoryTypes_5; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryType MemoryTypes_6;
+		private MemoryType MemoryTypes_6; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryType MemoryTypes_7;
+		private MemoryType MemoryTypes_7; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryType MemoryTypes_8;
+		private MemoryType MemoryTypes_8; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryType MemoryTypes_9;
+		private MemoryType MemoryTypes_9; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryType MemoryTypes_10;
+		private MemoryType MemoryTypes_10; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryType MemoryTypes_11;
+		private MemoryType MemoryTypes_11; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryType MemoryTypes_12;
+		private MemoryType MemoryTypes_12; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryType MemoryTypes_13;
+		private MemoryType MemoryTypes_13; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryType MemoryTypes_14;
+		private MemoryType MemoryTypes_14; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryType MemoryTypes_15;
+		private MemoryType MemoryTypes_15; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryType MemoryTypes_16;
+		private MemoryType MemoryTypes_16; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryType MemoryTypes_17;
+		private MemoryType MemoryTypes_17; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryType MemoryTypes_18;
+		private MemoryType MemoryTypes_18; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryType MemoryTypes_19;
+		private MemoryType MemoryTypes_19; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryType MemoryTypes_20;
+		private MemoryType MemoryTypes_20; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryType MemoryTypes_21;
+		private MemoryType MemoryTypes_21; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryType MemoryTypes_22;
+		private MemoryType MemoryTypes_22; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryType MemoryTypes_23;
+		private MemoryType MemoryTypes_23; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryType MemoryTypes_24;
+		private MemoryType MemoryTypes_24; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryType MemoryTypes_25;
+		private MemoryType MemoryTypes_25; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryType MemoryTypes_26;
+		private MemoryType MemoryTypes_26; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryType MemoryTypes_27;
+		private MemoryType MemoryTypes_27; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryType MemoryTypes_28;
+		private MemoryType MemoryTypes_28; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryType MemoryTypes_29;
+		private MemoryType MemoryTypes_29; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryType MemoryTypes_30;
+		private MemoryType MemoryTypes_30; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryType MemoryTypes_31;
+		private MemoryType MemoryTypes_31; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MemoryHeapCount;
+		public uint MemoryHeapCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public MemoryHeap MemoryHeaps;
+		public MemoryHeap MemoryHeaps; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryHeap MemoryHeaps_1;
+		private MemoryHeap MemoryHeaps_1; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryHeap MemoryHeaps_2;
+		private MemoryHeap MemoryHeaps_2; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryHeap MemoryHeaps_3;
+		private MemoryHeap MemoryHeaps_3; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryHeap MemoryHeaps_4;
+		private MemoryHeap MemoryHeaps_4; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryHeap MemoryHeaps_5;
+		private MemoryHeap MemoryHeaps_5; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryHeap MemoryHeaps_6;
+		private MemoryHeap MemoryHeaps_6; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryHeap MemoryHeaps_7;
+		private MemoryHeap MemoryHeaps_7; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryHeap MemoryHeaps_8;
+		private MemoryHeap MemoryHeaps_8; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryHeap MemoryHeaps_9;
+		private MemoryHeap MemoryHeaps_9; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryHeap MemoryHeaps_10;
+		private MemoryHeap MemoryHeaps_10; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryHeap MemoryHeaps_11;
+		private MemoryHeap MemoryHeaps_11; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryHeap MemoryHeaps_12;
+		private MemoryHeap MemoryHeaps_12; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryHeap MemoryHeaps_13;
+		private MemoryHeap MemoryHeaps_13; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryHeap MemoryHeaps_14;
+		private MemoryHeap MemoryHeaps_14; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		private MemoryHeap MemoryHeaps_15;
+		private MemoryHeap MemoryHeaps_15; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct PhysicalDeviceProperties
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint ApiVersion;
+		public uint ApiVersion; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint DriverVersion;
+		public uint DriverVersion; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint VendorID;
+		public uint VendorID; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint DeviceID;
+		public uint DeviceID; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PhysicalDeviceType DeviceType;
+		public PhysicalDeviceType DeviceType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public fixed byte DeviceName[(int)Constants.MaxPhysicalDeviceNameSize];
+		public fixed byte DeviceName[(int)Constants.MaxPhysicalDeviceNameSize]; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public fixed byte PipelineCacheUUID[(int)Constants.UuidSize];
+		public fixed byte PipelineCacheUUID[(int)Constants.UuidSize]; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PhysicalDeviceLimits Limits;
+		public PhysicalDeviceLimits Limits; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PhysicalDeviceSparseProperties SparseProperties;
+		public PhysicalDeviceSparseProperties SparseProperties; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct PipelineCacheCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PipelineCacheCreateFlags Flags;
+		public PipelineCacheCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Size InitialDataSize;
+		public Size InitialDataSize; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* InitialData;
+		public void* InitialData; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct PipelineColorBlendStateCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PipelineColorBlendStateCreateFlags Flags;
+		public PipelineColorBlendStateCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Bool32 LogicOpEnable;
+		public Bool32 LogicOpEnable; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public LogicOp LogicOp;
+		public LogicOp LogicOp; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint AttachmentCount;
+		public uint AttachmentCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PipelineColorBlendAttachmentState* Attachments;
+		public PipelineColorBlendAttachmentState* Attachments; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public fixed float BlendConstants[4];
+		public fixed float BlendConstants[4]; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct PipelineDepthStencilStateCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PipelineDepthStencilStateCreateFlags Flags;
+		public PipelineDepthStencilStateCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Bool32 DepthTestEnable;
+		public Bool32 DepthTestEnable; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Bool32 DepthWriteEnable;
+		public Bool32 DepthWriteEnable; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public CompareOp DepthCompareOp;
+		public CompareOp DepthCompareOp; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Bool32 DepthBoundsTestEnable;
+		public Bool32 DepthBoundsTestEnable; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Bool32 StencilTestEnable;
+		public Bool32 StencilTestEnable; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public StencilOpState Front;
+		public StencilOpState Front; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public StencilOpState Back;
+		public StencilOpState Back; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public float MinDepthBounds;
+		public float MinDepthBounds; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public float MaxDepthBounds;
+		public float MaxDepthBounds; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct PipelineDynamicStateCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PipelineDynamicStateCreateFlags Flags;
+		public PipelineDynamicStateCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint DynamicStateCount;
+		public uint DynamicStateCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DynamicState* DynamicStates;
+		public DynamicState* DynamicStates; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct PipelineInputAssemblyStateCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PipelineInputAssemblyStateCreateFlags Flags;
+		public PipelineInputAssemblyStateCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PrimitiveTopology Topology;
+		public PrimitiveTopology Topology; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Bool32 PrimitiveRestartEnable;
+		public Bool32 PrimitiveRestartEnable; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct PipelineLayoutCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PipelineLayoutCreateFlags Flags;
+		public PipelineLayoutCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint SetLayoutCount;
+		public uint SetLayoutCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DescriptorSetLayout* SetLayouts;
+		public DescriptorSetLayout* SetLayouts; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint PushConstantRangeCount;
+		public uint PushConstantRangeCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PushConstantRange* PushConstantRanges;
+		public PushConstantRange* PushConstantRanges; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct PipelineMultisampleStateCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PipelineMultisampleStateCreateFlags Flags;
+		public PipelineMultisampleStateCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SampleCountFlags RasterizationSamples;
+		public SampleCountFlags RasterizationSamples; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Bool32 SampleShadingEnable;
+		public Bool32 SampleShadingEnable; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public float MinSampleShading;
+		public float MinSampleShading; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SampleMask* SampleMask;
+		public SampleMask* SampleMask; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Bool32 AlphaToCoverageEnable;
+		public Bool32 AlphaToCoverageEnable; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Bool32 AlphaToOneEnable;
+		public Bool32 AlphaToOneEnable; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct PipelineRasterizationStateCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PipelineRasterizationStateCreateFlags Flags;
+		public PipelineRasterizationStateCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Bool32 DepthClampEnable;
+		public Bool32 DepthClampEnable; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Bool32 RasterizerDiscardEnable;
+		public Bool32 RasterizerDiscardEnable; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PolygonMode PolygonMode;
+		public PolygonMode PolygonMode; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public CullModeFlags CullMode;
+		public CullModeFlags CullMode; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public FrontFace FrontFace;
+		public FrontFace FrontFace; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Bool32 DepthBiasEnable;
+		public Bool32 DepthBiasEnable; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public float DepthBiasConstantFactor;
+		public float DepthBiasConstantFactor; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public float DepthBiasClamp;
+		public float DepthBiasClamp; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public float DepthBiasSlopeFactor;
+		public float DepthBiasSlopeFactor; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public float LineWidth;
+		public float LineWidth; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct PipelineRasterizationStateRasterizationOrder
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public RasterizationOrder RasterizationOrder;
+		public RasterizationOrder RasterizationOrder; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct PipelineShaderStageCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PipelineShaderStageCreateFlags Flags;
+		public PipelineShaderStageCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public ShaderStageFlags Stage;
+		public ShaderStageFlags Stage; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public ShaderModule Module;
+		public ShaderModule Module; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public char* Name;
+		public char* Name; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SpecializationInfo* SpecializationInfo;
+		public SpecializationInfo* SpecializationInfo; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct PipelineTessellationStateCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PipelineTessellationStateCreateFlags Flags;
+		public PipelineTessellationStateCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint PatchControlPoints;
+		public uint PatchControlPoints; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct PipelineVertexInputStateCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PipelineVertexInputStateCreateFlags Flags;
+		public PipelineVertexInputStateCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint VertexBindingDescriptionCount;
+		public uint VertexBindingDescriptionCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public VertexInputBindingDescription* VertexBindingDescriptions;
+		public VertexInputBindingDescription* VertexBindingDescriptions; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint VertexAttributeDescriptionCount;
+		public uint VertexAttributeDescriptionCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public VertexInputAttributeDescription* VertexAttributeDescriptions;
+		public VertexInputAttributeDescription* VertexAttributeDescriptions; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct PipelineViewportStateCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PipelineViewportStateCreateFlags Flags;
+		public PipelineViewportStateCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint ViewportCount;
+		public uint ViewportCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Viewport* Viewports;
+		public Viewport* Viewports; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint ScissorCount;
+		public uint ScissorCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Rect2D* Scissors;
+		public Rect2D* Scissors; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct PresentInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint WaitSemaphoreCount;
+		public uint WaitSemaphoreCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Semaphore* WaitSemaphores;
+		public Semaphore* WaitSemaphores; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint SwapchainCount;
+		public uint SwapchainCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Swapchain* Swapchains;
+		public Swapchain* Swapchains; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint* ImageIndices;
+		public uint* ImageIndices; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Result* Results;
+		public Result* Results; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct QueryPoolCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public QueryPoolCreateFlags Flags;
+		public QueryPoolCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public QueryType QueryType;
+		public QueryType QueryType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint QueryCount;
+		public uint QueryCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public QueryPipelineStatisticFlags PipelineStatistics;
+		public QueryPipelineStatisticFlags PipelineStatistics; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct RenderPassBeginInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public RenderPass RenderPass;
+		public RenderPass RenderPass; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Framebuffer Framebuffer;
+		public Framebuffer Framebuffer; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Rect2D RenderArea;
+		public Rect2D RenderArea; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint ClearValueCount;
+		public uint ClearValueCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public ClearValue* ClearValues;
+		public ClearValue* ClearValues; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct RenderPassCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public RenderPassCreateFlags Flags;
+		public RenderPassCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint AttachmentCount;
+		public uint AttachmentCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public AttachmentDescription* Attachments;
+		public AttachmentDescription* Attachments; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint SubpassCount;
+		public uint SubpassCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SubpassDescription* Subpasses;
+		public SubpassDescription* Subpasses; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint DependencyCount;
+		public uint DependencyCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SubpassDependency* Dependencies;
+		public SubpassDependency* Dependencies; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct SamplerCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SamplerCreateFlags Flags;
+		public SamplerCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Filter MagFilter;
+		public Filter MagFilter; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Filter MinFilter;
+		public Filter MinFilter; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SamplerMipmapMode MipmapMode;
+		public SamplerMipmapMode MipmapMode; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SamplerAddressMode AddressModeU;
+		public SamplerAddressMode AddressModeU; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SamplerAddressMode AddressModeV;
+		public SamplerAddressMode AddressModeV; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SamplerAddressMode AddressModeW;
+		public SamplerAddressMode AddressModeW; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public float MipLodBias;
+		public float MipLodBias; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Bool32 AnisotropyEnable;
+		public Bool32 AnisotropyEnable; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public float MaxAnisotropy;
+		public float MaxAnisotropy; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Bool32 CompareEnable;
+		public Bool32 CompareEnable; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public CompareOp CompareOp;
+		public CompareOp CompareOp; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public float MinLod;
+		public float MinLod; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public float MaxLod;
+		public float MaxLod; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public BorderColor BorderColor;
+		public BorderColor BorderColor; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Bool32 UnnormalizedCoordinates;
+		public Bool32 UnnormalizedCoordinates; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct SemaphoreCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SemaphoreCreateFlags Flags;
+		public SemaphoreCreateFlags Flags; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct ShaderModuleCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public ShaderModuleCreateFlags Flags;
+		public ShaderModuleCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Size CodeSize;
+		public Size CodeSize; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint* Code;
+		public uint* Code; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct SparseBufferMemoryBindInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public Buffer Buffer;
+		public Buffer Buffer; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint BindCount;
+		public uint BindCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SparseMemoryBind* Binds;
+		public SparseMemoryBind* Binds; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct SparseImageMemoryBind
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public ImageSubresource Subresource;
+		public ImageSubresource Subresource; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Offset3D Offset;
+		public Offset3D Offset; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Extent3D Extent;
+		public Extent3D Extent; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DeviceMemory Memory;
+		public DeviceMemory Memory; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DeviceSize MemoryOffset;
+		public DeviceSize MemoryOffset; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SparseMemoryBindFlags Flags;
+		public SparseMemoryBindFlags Flags; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct SparseImageMemoryBindInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public Image Image;
+		public Image Image; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint BindCount;
+		public uint BindCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SparseImageMemoryBind* Binds;
+		public SparseImageMemoryBind* Binds; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct SparseImageOpaqueMemoryBindInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public Image Image;
+		public Image Image; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint BindCount;
+		public uint BindCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SparseMemoryBind* Binds;
+		public SparseMemoryBind* Binds; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct SparseMemoryBind
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public DeviceSize ResourceOffset;
+		public DeviceSize ResourceOffset; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DeviceSize Size;
+		public DeviceSize Size; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DeviceMemory Memory;
+		public DeviceMemory Memory; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DeviceSize MemoryOffset;
+		public DeviceSize MemoryOffset; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SparseMemoryBindFlags Flags;
+		public SparseMemoryBindFlags Flags; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct SpecializationInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MapEntryCount;
+		public uint MapEntryCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SpecializationMapEntry* MapEntries;
+		public SpecializationMapEntry* MapEntries; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Size DataSize;
+		public Size DataSize; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Data;
+		public void* Data; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct SubmitInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint WaitSemaphoreCount;
+		public uint WaitSemaphoreCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Semaphore* WaitSemaphores;
+		public Semaphore* WaitSemaphores; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PipelineStageFlags* WaitDestinationStageMask;
+		public PipelineStageFlags* WaitDestinationStageMask; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint CommandBufferCount;
+		public uint CommandBufferCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public CommandBuffer* CommandBuffers;
+		public CommandBuffer* CommandBuffers; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint SignalSemaphoreCount;
+		public uint SignalSemaphoreCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Semaphore* SignalSemaphores;
+		public Semaphore* SignalSemaphores; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct SubpassDescription
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public SubpassDescriptionFlags Flags;
+		public SubpassDescriptionFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PipelineBindPoint PipelineBindPoint;
+		public PipelineBindPoint PipelineBindPoint; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint InputAttachmentCount;
+		public uint InputAttachmentCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public AttachmentReference* InputAttachments;
+		public AttachmentReference* InputAttachments; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint ColorAttachmentCount;
+		public uint ColorAttachmentCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public AttachmentReference* ColorAttachments;
+		public AttachmentReference* ColorAttachments; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public AttachmentReference* ResolveAttachments;
+		public AttachmentReference* ResolveAttachments; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public AttachmentReference* DepthStencilAttachment;
+		public AttachmentReference* DepthStencilAttachment; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint PreserveAttachmentCount;
+		public uint PreserveAttachmentCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint* PreserveAttachments;
+		public uint* PreserveAttachments; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct SwapchainCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SwapchainCreateFlags Flags;
+		public SwapchainCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Surface Surface;
+		public Surface Surface; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint MinImageCount;
+		public uint MinImageCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Format ImageFormat;
+		public Format ImageFormat; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public ColorSpace ImageColorSpace;
+		public ColorSpace ImageColorSpace; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Extent2D ImageExtent;
+		public Extent2D ImageExtent; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint ImageArrayLayers;
+		public uint ImageArrayLayers; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public ImageUsageFlags ImageUsage;
+		public ImageUsageFlags ImageUsage; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SharingMode ImageSharingMode;
+		public SharingMode ImageSharingMode; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint QueueFamilyIndexCount;
+		public uint QueueFamilyIndexCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint* QueueFamilyIndices;
+		public uint* QueueFamilyIndices; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public SurfaceTransformFlags PreTransform;
+		public SurfaceTransformFlags PreTransform; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public CompositeAlphaFlags CompositeAlpha;
+		public CompositeAlphaFlags CompositeAlpha; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public PresentMode PresentMode;
+		public PresentMode PresentMode; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Bool32 Clipped;
+		public Bool32 Clipped; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Swapchain OldSwapchain;
+		public Swapchain OldSwapchain; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct ValidationFlags
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint DisabledValidationCheckCount;
+		public uint DisabledValidationCheckCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public ValidationCheck* DisabledValidationChecks;
+		public ValidationCheck* DisabledValidationChecks; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct WaylandSurfaceCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public WaylandSurfaceCreateFlags Flags;
+		public WaylandSurfaceCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public IntPtr Display;
+		public IntPtr Display; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public IntPtr Surface;
+		public IntPtr Surface; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct Win32KeyedMutexAcquireReleaseInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint AcquireCount;
+		public uint AcquireCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DeviceMemory* AcquireSyncs;
+		public DeviceMemory* AcquireSyncs; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public ulong* AcquireKeys;
+		public ulong* AcquireKeys; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint* AcquireTimeoutMilliseconds;
+		public uint* AcquireTimeoutMilliseconds; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint ReleaseCount;
+		public uint ReleaseCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DeviceMemory* ReleaseSyncs;
+		public DeviceMemory* ReleaseSyncs; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public ulong* ReleaseKeys;
+		public ulong* ReleaseKeys; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct Win32SurfaceCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public Win32SurfaceCreateFlags Flags;
+		public Win32SurfaceCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public IntPtr Hinstance;
+		public IntPtr Hinstance; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public IntPtr Hwnd;
+		public IntPtr Hwnd; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct WriteDescriptorSet
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DescriptorSet DestinationSet;
+		public DescriptorSet DestinationSet; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint DestinationBinding;
+		public uint DestinationBinding; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint DestinationArrayElement;
+		public uint DestinationArrayElement; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public uint DescriptorCount;
+		public uint DescriptorCount; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DescriptorType DescriptorType;
+		public DescriptorType DescriptorType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DescriptorImageInfo* ImageInfo;
+		public DescriptorImageInfo* ImageInfo; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public DescriptorBufferInfo* BufferInfo;
+		public DescriptorBufferInfo* BufferInfo; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public BufferView* TexelBufferView;
+		public BufferView* TexelBufferView; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct XcbSurfaceCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public XcbSurfaceCreateFlags Flags;
+		public XcbSurfaceCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public IntPtr* Connection;
+		public IntPtr* Connection; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public IntPtr Window;
+		public IntPtr Window; 
 	}
-
+	
 	/// <summary>
 	/// -
 	/// </summary>
-    [StructLayout(LayoutKind.Sequential)]
+	[StructLayout(LayoutKind.Sequential)]
 	public unsafe struct XlibSurfaceCreateInfo
 	{
 		/// <summary>
 		/// -
 		/// </summary>
-		public StructureType SType;
+		public StructureType SType; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public void* Next;
+		public void* Next; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public XlibSurfaceCreateFlags Flags;
+		public XlibSurfaceCreateFlags Flags; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public IntPtr* Dpy;
+		public IntPtr* Dpy; 
+		
 		/// <summary>
 		/// -
 		/// </summary>
-		public IntPtr Window;
+		public IntPtr Window; 
 	}
 }
