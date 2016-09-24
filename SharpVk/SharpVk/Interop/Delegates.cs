@@ -47,7 +47,16 @@ namespace SharpVk.Interop
 	public unsafe delegate IntPtr AllocationFunctionDelegate(IntPtr userData, Size size, Size alignment, SystemAllocationScope allocationScope);
     /// <summary>
     /// <para>
-    /// -
+    /// Application-defined debug report callback function.
+    /// </para>
+    /// <para>
+    /// The callback returns a basetype:VkBool32 that indicates to the calling layer if the Vulkan call should: be aborted or not. Applications should: always return ename:VK_FALSE so that they see the same behavior with and without validation layers enabled.
+    /// </para>
+    /// <para>
+    /// If the application returns ename:VK_TRUE from its callback and the Vulkan call being aborted returns a elink:VkResult, the layer will return ename:VK_ERROR_VALIDATION_FAILED_EXT.
+    /// </para>
+    /// <para>
+    /// [NOTE] .Note ==== The primary expected use of ename:VK_ERROR_VALIDATION_FAILED_EXT is for validation layer testing. It is not expected that an application would see this error code during normal use of the validation layers. ====
     /// </para>
     /// </summary>
 	public unsafe delegate Bool32 DebugReportCallbackDelegate(DebugReportFlags flags, DebugReportObjectType objectType, ulong @object, Size location, int messageCode, string layerPrefix, string message, IntPtr userData);

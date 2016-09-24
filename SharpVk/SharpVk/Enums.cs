@@ -490,7 +490,7 @@ namespace SharpVk
 		None = 0,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR: The alpha channel, if it exists, of the images is ignored in the compositing process.  Instead, the image is treated as if it has a constant alpha of 1.0.
+		/// ename:VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR: The alpha channel, if it exists, of the images is ignored in the compositing process. Instead, the image is treated as if it has a constant alpha of 1.0.
 		/// </para>
 		/// </summary>
 		Opaque = 1 << 0,
@@ -553,7 +553,13 @@ namespace SharpVk
 
     /// <summary>
     /// <para>
-    /// -
+    /// Bitmask specifying events which cause a debug report callback.
+    /// </para>
+    /// <para>
+    /// * pname:pfnCallback is the application callback function to call. * pname:pUserData is user data to be passed to the callback. --
+    /// </para>
+    /// <para>
+    /// For each sname:VkDebugReportCallbackEXT that is created the flags determine when that function is called. A callback will be made for issues that match any bit set in its flags. The callback will come directly from the component that detected the event, unless some other layer intercepts the calls for its own purposes (filter them in different way, log to system error log, etc.) An application may receive multiple callbacks if multiple sname:VkDebugReportCallbackEXT objects were created. A callback will always be executed in the same thread as the originating Vulkan call. A callback may be called from multiple threads simultaneously (if the application is making Vulkan calls from multiple threads).
     /// </para>
     /// </summary>
 	[Flags]
@@ -567,31 +573,31 @@ namespace SharpVk
 		None = 0,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_INFORMATION_BIT_EXT indicates an informational message such as resource details that may be handy when debugging an application.
 		/// </para>
 		/// </summary>
 		Information = 1 << 0,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_WARNING_BIT_EXT indicates an unexpected use. E.g. Not destroying objects prior to destroying the containing object or potential inconsistencies between descriptor set layout and the layout in the corresponding shader, etc.
 		/// </para>
 		/// </summary>
 		Warning = 1 << 1,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_PERFORMANCE_WARNING_BIT_EXT indicates a potentially non-optimal use of Vulkan. E.g. using flink:vkCmdClearColorImage when a RenderPass load_op would have worked.
 		/// </para>
 		/// </summary>
 		PerformanceWarning = 1 << 2,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_ERROR_BIT_EXT indicates an error that may cause undefined results, including an application crash.
 		/// </para>
 		/// </summary>
 		Error = 1 << 3,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_DEBUG_BIT_EXT indicates diagnostic information from the loader and layers.
 		/// </para>
 		/// </summary>
 		Debug = 1 << 4,
@@ -888,13 +894,13 @@ namespace SharpVk
 		/// -
 		/// </para>
 		/// </summary>
-		D3d11Image = 1 << 2,
+		D3D11Image = 1 << 2,
 	    /// <summary>
 		/// <para>
 		/// -
 		/// </para>
 		/// </summary>
-		D3d11ImageKmt = 1 << 3,
+		D3D11ImageKmt = 1 << 3,
 	}
 
     /// <summary>
@@ -2821,10 +2827,10 @@ namespace SharpVk
     /// Supported color space of the presentation engine.
     /// </para>
     /// <para>
-    /// [NOTE] .Note ==== If pname:pSurfaceFormats includes just one entry, whose value for pname:format is ename:VK_FORMAT_UNDEFINED, pname:surface has no preferred format.  In this case, the application can use any valid ename:VkFormat value. ====
+    /// [NOTE] .Note ==== If pname:pSurfaceFormats includes just one entry, whose value for pname:format is ename:VK_FORMAT_UNDEFINED, pname:surface has no preferred format. In this case, the application can: use any valid ename:VkFormat value. ====
     /// </para>
     /// <para>
-    /// [NOTE] .Note ==== In the initial release of the VK_KHR_surface and VK_KHR_swapchain extensions, the token ename:VK_COLORSPACE_SRGB_NONLINEAR_KHR was used. Starting in the May 13, 2016 updates to the extension branches, matching release 1.0.13 of the core API specification, ename:VK_COLOR_SPACE_SRGB_NONLINEAR_KHR is used instead for consistency with Vulkan naming rules. The older enum is still available for backwards compatibility. ====
+    /// [NOTE] .Note ==== In the initial release of the +VK_KHR_surface+ and +VK_KHR_swapchain+ extensions, the token ename:VK_COLORSPACE_SRGB_NONLINEAR_KHR was used. Starting in the May 13, 2016 updates to the extension branches, matching release 1.0.13 of the core API specification, ename:VK_COLOR_SPACE_SRGB_NONLINEAR_KHR is used instead for consistency with Vulkan naming rules. The older enum is still available for backwards compatibility. ====
     /// </para>
     /// </summary>
 	public enum ColorSpace
@@ -2974,7 +2980,10 @@ namespace SharpVk
 
     /// <summary>
     /// <para>
-    /// -
+    /// Unknown VK_EXT_debug_report enumeration type.
+    /// </para>
+    /// <para>
+    /// [NOTE] .Note ==== The +VK_EXT_debug_report+ extension defines the elink:VkDebugReportErrorEXT enumerant type, but does not currently explain what the enumeration is used for. It is included here for completeness. ====
     /// </para>
     /// </summary>
 	public enum DebugReportError
@@ -2995,182 +3004,191 @@ namespace SharpVk
 
     /// <summary>
     /// <para>
-    /// -
+    /// Specify the type of an object handle.
+    /// </para>
+    /// <para>
+    /// === Command Buffer Markers
+    /// </para>
+    /// <para>
+    /// Typical Vulkan applications will submit many command buffers in each frame, with each command buffer containing a large number of individual commands. Being able to logically annotate regions of command buffers that belong together as well as hierarchically subdivide the frame is important to a developer's ability to navigate the commands viewed holistically.
+    /// </para>
+    /// <para>
+    /// The marker commands fname:vkCmdDebugMarkerBeginEXT and fname:vkCmdDebugMarkerEndEXT define regions of a series of commands that are grouped together, and they can be nested to create a hierarchy. The fname:vkCmdDebugMarkerInsertEXT command allows insertion of a single label within a command buffer.
     /// </para>
     /// </summary>
 	public enum DebugReportObjectType
 	{
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_OBJECT_TYPE_UNKNOWN_EXT is an unknown object.
 		/// </para>
 		/// </summary>
 		Unknown = 0,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_OBJECT_TYPE_INSTANCE_EXT is a sname:VkInstance.
 		/// </para>
 		/// </summary>
 		Instance = 1,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_OBJECT_TYPE_PHYSICAL_DEVICE_EXT is a sname:VkPhysicalDevice.
 		/// </para>
 		/// </summary>
 		PhysicalDevice = 2,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_OBJECT_TYPE_DEVICE_EXT is a sname:VkDevice.
 		/// </para>
 		/// </summary>
 		Device = 3,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_OBJECT_TYPE_QUEUE_EXT is a sname:VkQueue.
 		/// </para>
 		/// </summary>
 		Queue = 4,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_OBJECT_TYPE_SEMAPHORE_EXT is a sname:VkSemaphore.
 		/// </para>
 		/// </summary>
 		Semaphore = 5,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_OBJECT_TYPE_COMMAND_BUFFER_EXT is a sname:VkCommandBuffer.
 		/// </para>
 		/// </summary>
 		CommandBuffer = 6,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_OBJECT_TYPE_FENCE_EXT is a sname:VkFence.
 		/// </para>
 		/// </summary>
 		Fence = 7,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_OBJECT_TYPE_DEVICE_MEMORY_EXT is a sname:VkDeviceMemory.
 		/// </para>
 		/// </summary>
 		DeviceMemory = 8,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_OBJECT_TYPE_BUFFER_EXT is a sname:VkBuffer.
 		/// </para>
 		/// </summary>
 		Buffer = 9,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_OBJECT_TYPE_IMAGE_EXT is a sname:VkImage.
 		/// </para>
 		/// </summary>
 		Image = 10,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_OBJECT_TYPE_EVENT_EXT is a sname:VkEvent.
 		/// </para>
 		/// </summary>
 		Event = 11,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_OBJECT_TYPE_QUERY_POOL_EXT is a sname:VkQueryPool.
 		/// </para>
 		/// </summary>
 		QueryPool = 12,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_OBJECT_TYPE_BUFFER_VIEW_EXT is a sname:VkBufferView.
 		/// </para>
 		/// </summary>
 		BufferView = 13,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_OBJECT_TYPE_IMAGE_VIEW_EXT is a sname:VkImageView.
 		/// </para>
 		/// </summary>
 		ImageView = 14,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_OBJECT_TYPE_SHADER_MODULE_EXT is a sname:VkShaderModule.
 		/// </para>
 		/// </summary>
 		ShaderModule = 15,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_OBJECT_TYPE_PIPELINE_CACHE_EXT is a sname:VkPipelineCache.
 		/// </para>
 		/// </summary>
 		PipelineCache = 16,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_OBJECT_TYPE_PIPELINE_LAYOUT_EXT is a sname:VkPipelineLayout.
 		/// </para>
 		/// </summary>
 		PipelineLayout = 17,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_OBJECT_TYPE_RENDER_PASS_EXT is a sname:VkRenderPass.
 		/// </para>
 		/// </summary>
 		RenderPass = 18,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_OBJECT_TYPE_PIPELINE_EXT is a sname:VkPipeline.
 		/// </para>
 		/// </summary>
 		Pipeline = 19,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_SET_LAYOUT_EXT is a sname:VkDescriptorSetLayout.
 		/// </para>
 		/// </summary>
 		DescriptorSetLayout = 20,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_OBJECT_TYPE_SAMPLER_EXT is a sname:VkSampler.
 		/// </para>
 		/// </summary>
 		Sampler = 21,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_POOL_EXT is a sname:VkDescriptorPool.
 		/// </para>
 		/// </summary>
 		DescriptorPool = 22,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_SET_EXT is a sname:VkDescriptorSet.
 		/// </para>
 		/// </summary>
 		DescriptorSet = 23,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_OBJECT_TYPE_FRAMEBUFFER_EXT is a sname:VkFramebuffer.
 		/// </para>
 		/// </summary>
 		Framebuffer = 24,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_OBJECT_TYPE_COMMAND_POOL_EXT is a sname:VkCommandPool.
 		/// </para>
 		/// </summary>
 		CommandPool = 25,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_OBJECT_TYPE_SURFACE_KHR_EXT is a sname:VkSurfaceKHR.
 		/// </para>
 		/// </summary>
 		SurfaceKhr = 26,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_OBJECT_TYPE_SWAPCHAIN_KHR_EXT is a sname:VkSwapchainKHR.
 		/// </para>
 		/// </summary>
 		SwapchainKhr = 27,
 	    /// <summary>
 		/// <para>
-		/// -
+		/// ename:VK_DEBUG_REPORT_OBJECT_TYPE_DEBUG_REPORT_EXT is a sname:VkDebugReportCallbackEXT.
 		/// </para>
 		/// </summary>
 		DebugReport = 28,
@@ -5179,7 +5197,7 @@ namespace SharpVk
     /// .Success Codes * ename:VK_SUCCESS Command successfully completed * ename:VK_NOT_READY A fence or query has not yet completed * ename:VK_TIMEOUT A wait operation has not completed in the specified time * ename:VK_EVENT_SET An event is signaled * ename:VK_EVENT_RESET An event is unsignaled * ename:VK_INCOMPLETE A return array was too small for the result ifdef::VK_KHR_swapchain[] * ename:VK_SUBOPTIMAL_KHR A swapchain no longer matches the surface properties exactly, but can: still be used to present to the surface successfully. endif::VK_KHR_swapchain[]
     /// </para>
     /// <para>
-    /// .Error codes * ename:VK_ERROR_OUT_OF_HOST_MEMORY A host memory allocation has failed. * ename:VK_ERROR_OUT_OF_DEVICE_MEMORY A device memory allocation has failed. * ename:VK_ERROR_INITIALIZATION_FAILED Initialization of an object could not be completed for implementation-specific reasons. * ename:VK_ERROR_DEVICE_LOST The logical or physical device has been lost. See &lt;&lt;devsandqueues-lost-device,Lost Device&gt;&gt; * ename:VK_ERROR_MEMORY_MAP_FAILED Mapping of a memory object has failed. * ename:VK_ERROR_LAYER_NOT_PRESENT A requested layer is not present or could not be loaded. * ename:VK_ERROR_EXTENSION_NOT_PRESENT A requested extension is not supported. * ename:VK_ERROR_FEATURE_NOT_PRESENT A requested feature is not supported. * ename:VK_ERROR_INCOMPATIBLE_DRIVER The requested version of Vulkan is not supported by the driver or is otherwise incompatible for implementation-specific reasons. * ename:VK_ERROR_TOO_MANY_OBJECTS Too many objects of the type have already been created. * ename:VK_ERROR_FORMAT_NOT_SUPPORTED A requested format is not supported on this device. * ename:VK_ERROR_FRAGMENTED_POOL A requested pool allocation has failed due to fragmentation of the pool's memory. ifdef::VK_KHR_surface[] * ename:VK_ERROR_SURFACE_LOST_KHR A surface is no longer available. * ename:VK_ERROR_NATIVE_WINDOW_IN_USE_KHR The requested window is already connected to a VkSurfaceKHR, or to some other non-Vulkan API. endif::VK_KHR_surface[] ifdef::VK_KHR_swapchain[] * ename:VK_ERROR_OUT_OF_DATE_KHR A surface has changed in such a way that it is no longer compatible with the swapchain, and further presentation requests using the swapchain will fail. Applications must: query the new surface properties and recreate their swapchain if they wish to continue presenting to the surface. endif::VK_KHR_swapchain[] ifdef::VK_KHR_display_swapchain[] * ename:VK_ERROR_INCOMPATIBLE_DISPLAY_KHR The display used by a swapchain does not use the same presentable image layout, or is incompatible in a way that prevents sharing an image. endif::VK_KHR_display_swapchain[] ifdef::VK_NV_glsl_shader[] * ename:VK_ERROR_INVALID_SHADER_NV One or more shaders failed to compile or link. More details are reported back to the application via pname:VK_EXT_debug_report if enabled. endif::VK_NV_glsl_shader[]
+    /// .Error codes * ename:VK_ERROR_OUT_OF_HOST_MEMORY A host memory allocation has failed. * ename:VK_ERROR_OUT_OF_DEVICE_MEMORY A device memory allocation has failed. * ename:VK_ERROR_INITIALIZATION_FAILED Initialization of an object could not be completed for implementation-specific reasons. * ename:VK_ERROR_DEVICE_LOST The logical or physical device has been lost. See &lt;&lt;devsandqueues-lost-device,Lost Device&gt;&gt; * ename:VK_ERROR_MEMORY_MAP_FAILED Mapping of a memory object has failed. * ename:VK_ERROR_LAYER_NOT_PRESENT A requested layer is not present or could not be loaded. * ename:VK_ERROR_EXTENSION_NOT_PRESENT A requested extension is not supported. * ename:VK_ERROR_FEATURE_NOT_PRESENT A requested feature is not supported. * ename:VK_ERROR_INCOMPATIBLE_DRIVER The requested version of Vulkan is not supported by the driver or is otherwise incompatible for implementation-specific reasons. * ename:VK_ERROR_TOO_MANY_OBJECTS Too many objects of the type have already been created. * ename:VK_ERROR_FORMAT_NOT_SUPPORTED A requested format is not supported on this device. * ename:VK_ERROR_FRAGMENTED_POOL A requested pool allocation has failed due to fragmentation of the pool's memory. ifdef::VK_KHR_surface[] * ename:VK_ERROR_SURFACE_LOST_KHR A surface is no longer available. * ename:VK_ERROR_NATIVE_WINDOW_IN_USE_KHR The requested window is already connected to a VkSurfaceKHR, or to some other non-Vulkan API. endif::VK_KHR_surface[] ifdef::VK_KHR_swapchain[] * ename:VK_ERROR_OUT_OF_DATE_KHR A surface has changed in such a way that it is no longer compatible with the swapchain, and further presentation requests using the swapchain will fail. Applications must: query the new surface properties and recreate their swapchain if they wish to continue presenting to the surface. endif::VK_KHR_swapchain[] ifdef::VK_KHR_display_swapchain[] * ename:VK_ERROR_INCOMPATIBLE_DISPLAY_KHR The display used by a swapchain does not use the same presentable image layout, or is incompatible in a way that prevents sharing an image. endif::VK_KHR_display_swapchain[] ifdef::VK_NV_glsl_shader[] * ename:VK_ERROR_INVALID_SHADER_NV One or more shaders failed to compile or link. More details are reported back to the application via +VK_EXT_debug_report+ if enabled. endif::VK_NV_glsl_shader[]
     /// </para>
     /// <para>
     /// If a command returns a run time error, it will leave any result pointers unmodified, unless other behavior is explicitly defined in the specification.
@@ -5428,7 +5446,7 @@ namespace SharpVk
     /// To release exclusive ownership of a range of a buffer or image subresource of an image object, the application must: execute a buffer or image memory barrier, respectively (see slink:VkBufferMemoryBarrier and slink:VkImageMemoryBarrier) on a queue from the source queue family. The pname:srcQueueFamilyIndex parameter of the barrier must: be set to the source queue family index, and the pname:dstQueueFamilyIndex parameter to the destination queue family index.
     /// </para>
     /// <para>
-    /// To acquire exclusive ownership, the application must: execute the same buffer or image memory barrier on a queue from the destination queue family.
+    /// To acquire exclusive ownership, the application must: execute the same buffer or image memory barrier (i.e. an identically defined instance of the slink:VkBufferMemoryBarrier or slink:VkImageMemoryBarrier structure that was used for the exclusive ownership release) on a queue from the destination queue family.
     /// </para>
     /// <para>
     /// Upon creation, resources using ename:VK_SHARING_MODE_EXCLUSIVE are not owned by any queue family. A buffer or image memory barrier is not required to acquire ownership when no queue family owns the resource - it is implicitly acquired upon first use within a queue. However, images still require a &lt;&lt;resources-image-layouts,layout transition&gt;&gt; from ename:VK_IMAGE_LAYOUT_UNDEFINED or ename:VK_IMAGE_LAYOUT_PREINITIALIZED before being used on the first queue. This layout transition can: either be accomplished by an image memory barrier or by use in a render pass instance.

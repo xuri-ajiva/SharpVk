@@ -531,7 +531,7 @@ namespace SharpVk
 
 	   /// <summary>
 		/// <para>
-		/// pname:colorAttachment is only meaningful if ename:VK_IMAGE_ASPECT_COLOR_BIT is set in pname:aspectMask, in which case it is an index to the pname:pColorAttachments array in the slink:VkSubpassDescription structure of the current subpass which selects the color attachment to clear. If pname:colorAttachment is ename:VK_ATTACHMENT_UNUSED or is greater than or equal to sname:VkSubpassDescription::pname:colorAttachmentCount, then the clear has no effect.
+		/// pname:colorAttachment is only meaningful if ename:VK_IMAGE_ASPECT_COLOR_BIT is set in pname:aspectMask, in which case it is an index to the pname:pColorAttachments array in the slink:VkSubpassDescription structure of the current subpass which selects the color attachment to clear. If pname:colorAttachment is ename:VK_ATTACHMENT_UNUSED then the clear has no effect.
 		/// </para>
 		/// </summary>
 		public uint ColorAttachment;
@@ -817,7 +817,7 @@ namespace SharpVk
 
 	   /// <summary>
 		/// <para>
-		/// pname:refreshRate is a basetype:uint32_t that is the number of times the display is refreshed each second multiplied by 1000.
+		/// pname:refreshRate is a code:uint32_t that is the number of times the display is refreshed each second multiplied by 1000.
 		/// </para>
 		/// </summary>
 		public uint RefreshRate;
@@ -3023,7 +3023,7 @@ namespace SharpVk
 
 	   /// <summary>
 		/// <para>
-		/// pname:maxImageCount is the maximum number of images the specified device supports for a swapchain created for the surface.  A value of `0` means that there is no limit on the number of images, though there may: be limits related to the total amount of memory used by swapchain images.
+		/// pname:maxImageCount is the maximum number of images the specified device supports for a swapchain created for the surface. A value of 0 means that there is no limit on the number of images, though there may: be limits related to the total amount of memory used by swapchain images.
 		/// </para>
 		/// </summary>
 		public uint MaxImageCount;
@@ -3072,7 +3072,7 @@ namespace SharpVk
 
 	   /// <summary>
 		/// <para>
-		/// pname:supportedCompositeAlpha is a bitmask of elink:VkCompositeAlphaFlagBitsKHR, representing the alpha compositing modes supported by the presentation engine for the surface on the specified device.  Opaque composition can: be achieved in any alpha compositing mode by either using a swapchain image format that has no alpha component, or by ensuring that all pixels in the swapchain images have an alpha value of 1.0.
+		/// pname:supportedCompositeAlpha is a bitmask of elink:VkCompositeAlphaFlagBitsKHR, representing the alpha compositing modes supported by the presentation engine for the surface on the specified device. Opaque composition can: be achieved in any alpha compositing mode by either using a swapchain image format that has no alpha component, or by ensuring that all pixels in the swapchain images have an alpha value of 1.0.
 		/// </para>
 		/// </summary>
 		public CompositeAlphaFlags SupportedCompositeAlpha;

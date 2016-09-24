@@ -1515,7 +1515,7 @@ namespace SharpVk
 
 		/// <summary>
 		/// <para>
-		/// -
+		/// Open a command buffer marker region.
 		/// </para>
 		/// </summary>
 		public void DebugMarkerBegin(DebugMarkerMarkerInfo markerInfo)
@@ -1540,7 +1540,7 @@ namespace SharpVk
 
 		/// <summary>
 		/// <para>
-		/// -
+		/// Close a command buffer marker region.
 		/// </para>
 		/// </summary>
 		public void DebugMarkerEnd()
@@ -1563,7 +1563,7 @@ namespace SharpVk
 
 		/// <summary>
 		/// <para>
-		/// -
+		/// Insert a marker label into a command buffer.
 		/// </para>
 		/// </summary>
 		public void DebugMarkerInsert(DebugMarkerMarkerInfo markerInfo)
@@ -1810,7 +1810,7 @@ namespace SharpVk
 
 		/// <summary>
 		/// <para>
-		/// -
+		/// Destroy a debug report callback object.
 		/// </para>
 		/// </summary>
 		public void Destroy()
@@ -3421,7 +3421,7 @@ namespace SharpVk
 
 		/// <summary>
 		/// <para>
-		/// -
+		/// Attach arbitrary data to an object.
 		/// </para>
 		/// </summary>
 		public void DebugMarkerSetObjectTag(DebugMarkerObjectTagInfo tagInfo)
@@ -3452,7 +3452,7 @@ namespace SharpVk
 
 		/// <summary>
 		/// <para>
-		/// -
+		/// Give a user-friendly name to an object.
 		/// </para>
 		/// </summary>
 		public void DebugMarkerSetObjectName(DebugMarkerObjectNameInfo nameInfo)
@@ -4856,7 +4856,7 @@ namespace SharpVk
 
 		/// <summary>
 		/// <para>
-		/// -
+		/// Create a debug report callback object.
 		/// </para>
 		/// </summary>
 		public DebugReportCallback CreateDebugReportCallback(DebugReportCallbackCreateInfo createInfo)
@@ -6436,7 +6436,7 @@ namespace SharpVk
     /// Opaque handle to a render pass object.
 	/// </para>
 	/// <para>
-    /// A _render pass_ represents a collection of attachments, subpasses, and dependencies between the subpasses, and describes how the attachments are used over the course of the subpasses. The use of a render pass in a command buffer is a  _render pass instance_.
+    /// A _render pass_ represents a collection of attachments, subpasses, and dependencies between the subpasses, and describes how the attachments are used over the course of the subpasses. The use of a render pass in a command buffer is a _render pass instance_.
 	/// </para>
     /// </summary>
 	public class RenderPass

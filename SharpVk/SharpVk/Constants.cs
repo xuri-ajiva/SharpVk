@@ -313,11 +313,11 @@ namespace SharpVk
 	    /// <summary>
 	    /// -
 	    /// </summary>
-		public const uint ExtensionDrawIndirectCountSpecVersion = 1;
+		public const uint SpecVersion = 1;
 	    /// <summary>
 	    /// -
 	    /// </summary>
-		public const string ExtensionDrawIndirectCountExtensionName = "VK_AMD_draw_indirect_count";
+		public const string ExtensionName = "VK_AMD_draw_indirect_count";
 	}
     /// <summary>
     /// -
@@ -332,6 +332,34 @@ namespace SharpVk
 	    /// -
 	    /// </summary>
 		public const string ExtensionNegativeViewportHeightExtensionName = "VK_AMD_negative_viewport_height";
+	}
+    /// <summary>
+    /// -
+    /// </summary>
+	public static class AmdGpuShaderHalfFloat
+	{
+	    /// <summary>
+	    /// -
+	    /// </summary>
+		public const uint SpecVersion = 1;
+	    /// <summary>
+	    /// -
+	    /// </summary>
+		public const string ExtensionName = "VK_AMD_gpu_shader_half_float";
+	}
+    /// <summary>
+    /// -
+    /// </summary>
+	public static class AmdShaderBallot
+	{
+	    /// <summary>
+	    /// -
+	    /// </summary>
+		public const uint ExtensionShaderBallotSpecVersion = 0;
+	    /// <summary>
+	    /// -
+	    /// </summary>
+		public const string ExtensionShaderBallotExtensionName = "VK_AMD_shader_ballot";
 	}
     /// <summary>
     /// -

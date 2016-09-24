@@ -20,11 +20,11 @@ namespace SharpVk.VkXml
         // documented, so hardcode these values till the spec is fixed
         private static readonly Dictionary<string, string> missingLenMappings = new Dictionary<string, string>
         {
-            { "VkWin32KeyedMutexAcquireReleaseInfoNV.AcquireSyncs", "acquireCount" },
-            { "VkWin32KeyedMutexAcquireReleaseInfoNV.AcquireKeys", "acquireCount" },
-            { "VkWin32KeyedMutexAcquireReleaseInfoNV.AcquireTimeoutMilliseconds", "acquireCount" },
-            { "VkWin32KeyedMutexAcquireReleaseInfoNV.ReleaseSyncs", "releaseCount" },
-            { "VkWin32KeyedMutexAcquireReleaseInfoNV.ReleaseKeys", "releaseCount" }
+            //{ "VkWin32KeyedMutexAcquireReleaseInfoNV.AcquireSyncs", "acquireCount" },
+            //{ "VkWin32KeyedMutexAcquireReleaseInfoNV.AcquireKeys", "acquireCount" },
+            //{ "VkWin32KeyedMutexAcquireReleaseInfoNV.AcquireTimeoutMilliseconds", "acquireCount" },
+            //{ "VkWin32KeyedMutexAcquireReleaseInfoNV.ReleaseSyncs", "releaseCount" },
+            //{ "VkWin32KeyedMutexAcquireReleaseInfoNV.ReleaseKeys", "releaseCount" }
         };
 
         private static readonly Parser<string> firstPart = from head in Parse.Letter
@@ -72,7 +72,7 @@ namespace SharpVk.VkXml
         private static readonly Parser<ParsedExpressionToken> lenTokenParser = Parse.Letter.AtLeastOnce().Text().Select(x => new ParsedExpressionToken { Value = x });
 
         private static readonly Parser<ParsedExpressionReference> lenDereferenceParser = from left in lenTokenParser
-                                                                                         from op in Parse.String("->")
+                                                                                         from op in Parse.String("::")
                                                                                          from right in lenTokenParser
                                                                                          select new ParsedExpressionReference
                                                                                          {

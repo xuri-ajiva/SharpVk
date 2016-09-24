@@ -131,7 +131,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// pname:window is a pointer to the ANativeWindow to associate the surface with.
+		/// pname:window is a pointer to the code:ANativeWindow to associate the surface with.
 		/// </para>
 		/// </summary>
 		public IntPtr Window
@@ -1062,14 +1062,14 @@ namespace SharpVk
 
     /// <summary>
     /// <para>
-    /// -
+    /// Specify parameters of a command buffer marker region.
     /// </para>
     /// </summary>
 	public struct DebugMarkerMarkerInfo
 	{
 	    /// <summary>
 		/// <para>
-		/// -
+		/// pname:pMarkerName is a pointer to a null-terminated UTF-8 string that contains the name of the marker.
 		/// </para>
 		/// </summary>
 		public string MarkerName
@@ -1079,7 +1079,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// -
+		/// pname:color is an optional RGBA color value that can be associated with the marker. A particular implementation may: choose to ignore this color value. The values contain RGBA values in order, in the range 0.0 to 1.0. If all elements in pname:color are set to 0.0 then it is ignored.
 		/// </para>
 		/// </summary>
 		public float[] Color
@@ -1105,14 +1105,17 @@ namespace SharpVk
 
     /// <summary>
     /// <para>
-    /// -
+    /// Specify parameters of a name to give to an object.
+    /// </para>
+    /// <para>
+    /// Applications may: change the name associated with an object simply by calling fname:vkDebugMarkerSetObjectNameEXT again with a new string. To remove a previously set name, pname:pName should: be set to an empty string.
     /// </para>
     /// </summary>
 	public struct DebugMarkerObjectNameInfo
 	{
 	    /// <summary>
 		/// <para>
-		/// -
+		/// pname:objectType is a elink:VkDebugReportObjectTypeEXT specifying the type of the object to be named.
 		/// </para>
 		/// </summary>
 		public DebugReportObjectType ObjectType
@@ -1122,7 +1125,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// -
+		/// pname:object is the object to be named.
 		/// </para>
 		/// </summary>
 		public ulong Object
@@ -1132,7 +1135,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// -
+		/// pname:pObjectName is a null-terminated UTF-8 string specifying the name to apply to pname:object.
 		/// </para>
 		/// </summary>
 		public string ObjectName
@@ -1160,14 +1163,17 @@ namespace SharpVk
 
     /// <summary>
     /// <para>
-    /// -
+    /// Specify parameters of a tag to attach to an object.
+    /// </para>
+    /// <para>
+    /// The pname:tagName parameter gives a name or identifier to the type of data being tagged. This can be used by debugging layers to easily filter for only data that can be used by that implementation.
     /// </para>
     /// </summary>
 	public struct DebugMarkerObjectTagInfo
 	{
 	    /// <summary>
 		/// <para>
-		/// -
+		/// pname:objectType is a elink:VkDebugReportObjectTypeEXT specifying the type of the object to be named.
 		/// </para>
 		/// </summary>
 		public DebugReportObjectType ObjectType
@@ -1177,7 +1183,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// -
+		/// pname:object is the object to be tagged.
 		/// </para>
 		/// </summary>
 		public ulong Object
@@ -1187,7 +1193,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// -
+		/// pname:tagName is a numerical identifier of the tag.
 		/// </para>
 		/// </summary>
 		public ulong TagName
@@ -1197,7 +1203,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// -
+		/// pname:pTag is an array of pname:tagSize bytes containing the data to be associated with the object.
 		/// </para>
 		/// </summary>
 		public byte[] Tag
@@ -1227,14 +1233,14 @@ namespace SharpVk
 
     /// <summary>
     /// <para>
-    /// -
+    /// Structure specifying parameters of a newly created debug report callback.
     /// </para>
     /// </summary>
 	public struct DebugReportCallbackCreateInfo
 	{
 	    /// <summary>
 		/// <para>
-		/// -
+		/// pname:flags indicate which event(s) will cause this callback to be called. Flags are interpreted as bitmasks and multiple may be set. Bits which can: be set include: + --
 		/// </para>
 		/// </summary>
 		public DebugReportFlags Flags
@@ -2004,7 +2010,7 @@ namespace SharpVk
 	{
 	    /// <summary>
 		/// <para>
-		/// pname:displayMode is a handle to the display mode described in this structure.  This handle will be valid for the lifetime of the Vulkan instance.
+		/// pname:displayMode is a handle to the display mode described in this structure. This handle will be valid for the lifetime of the Vulkan instance.
 		/// </para>
 		/// </summary>
 		public DisplayMode DisplayMode
@@ -2251,7 +2257,7 @@ namespace SharpVk
     /// Structure specifying parameters of a newly created display plane surface object.
     /// </para>
     /// <para>
-    /// [NOTE] .Note ==== Creating a display surface must: not modify the state of the displays, planes, or other resources it names.  For example, it must: not apply the specified mode to be set on the associated display.  Application of display configuration occurs as a side effect of presenting to a display surface. ====
+    /// [NOTE] .Note ==== Creating a display surface must: not modify the state of the displays, planes, or other resources it names. For example, it must: not apply the specified mode to be set on the associated display. Application of display configuration occurs as a side effect of presenting to a display surface. ====
     /// </para>
     /// </summary>
 	public struct DisplaySurfaceCreateInfo
@@ -2308,7 +2314,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// pname:globalAlpha is the global alpha value.  This value is ignored if pname:alphaMode is not ename:VK_DISPLAY_PLANE_ALPHA_GLOBAL_BIT_KHR.
+		/// pname:globalAlpha is the global alpha value. This value is ignored if pname:alphaMode is not ename:VK_DISPLAY_PLANE_ALPHA_GLOBAL_BIT_KHR.
 		/// </para>
 		/// </summary>
 		public float GlobalAlpha
@@ -2433,10 +2439,10 @@ namespace SharpVk
     /// When slink:VkExportMemoryAllocateInfoNV::pname:handleTypes includes ename:VK_EXTERNAL_MEMORY_HANDLE_TYPE_OPAQUE_WIN32_BIT_NV, add a sname:VkExportMemoryWin32HandleInfoNV to the pname:pNext chain of the slink:VkExportMemoryAllocateInfoNV structure to specify security attributes and access rights for the memory object's external handle.
     /// </para>
     /// <para>
-    /// If this structure is not present, or if pname:pAttributes is set to `NULL`, default security descriptor values will be used, and child processes created by the application will not inherit the handle, as described in the MSDN documentation for "Synchronization Object Security and Access Rights"[1].  Further, if the structure is not present, the access rights will be
+    /// If this structure is not present, or if pname:pAttributes is set to `NULL`, default security descriptor values will be used, and child processes created by the application will not inherit the handle, as described in the MSDN documentation for ``Synchronization Object Security and Access Rights''[1]. Further, if the structure is not present, the access rights will be
     /// </para>
     /// <para>
-    /// etext:DXGI_SHARED_RESOURCE_READ | etext:DXGI_SHARED_RESOURCE_WRITE
+    /// code:DXGI_SHARED_RESOURCE_READ | code:DXGI_SHARED_RESOURCE_WRITE
     /// </para>
     /// <para>
     /// [1] https://msdn.microsoft.com/en-us/library/windows/desktop/ms686670.aspx
@@ -2446,7 +2452,7 @@ namespace SharpVk
 	{
 	    /// <summary>
 		/// <para>
-		/// pname:pAttributes is a pointer to a Windows sname:SECURITY_ATTRIBUTES structure specifying security attributes of the handle.
+		/// pname:pAttributes is a pointer to a Windows code:SECURITY_ATTRIBUTES structure specifying security attributes of the handle.
 		/// </para>
 		/// </summary>
 		public SECURITY_ATTRIBUTES Attributes
@@ -2456,7 +2462,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// pname:dwAccess is a basetype:DWORD specifying access rights of the handle.
+		/// pname:dwAccess is a code:DWORD specifying access rights of the handle.
 		/// </para>
 		/// </summary>
 		public uint DwAccess
@@ -3290,7 +3296,7 @@ namespace SharpVk
     /// If pname:image was created with the ename:VK_IMAGE_CREATE_MUTABLE_FORMAT_BIT flag, pname:format can: be different from the image's format, but if they are not equal they must: be _compatible_. Image format compatibility is defined in the &lt;&lt;features-formats-compatibility-classes,Format Compatibility Classes&gt;&gt; section.
     /// </para>
     /// <para>
-    /// .Image and image view parameter compatibility requirements [cols="20%h,35%,45%",options="header"] |==== | Dim, Arrayed, MS | Image parameters | View parameters | 1D, 0, 0 | imageType = ename:VK_IMAGE_TYPE_1D + width &gt;= 1 + height = 1 + depth = 1 + arrayLayers &gt;= 1 + samples = 1 | viewType = ename:VK_VIEW_TYPE_1D + baseArrayLayer &gt;= 0 + layerCount = 1 | 1D, 1, 0 | imageType = ename:VK_IMAGE_TYPE_1D + width &gt;= 1 + height = 1 + depth = 1 + arrayLayers &gt;= 1 + samples = 1 | viewType = ename:VK_VIEW_TYPE_1D_ARRAY + baseArrayLayer &gt;= 0 + layerCount &gt;= 1 | 2D, 0, 0 | imageType = ename:VK_IMAGE_TYPE_2D + width &gt;= 1 + height &gt;= 1 + depth = 1 + arrayLayers &gt;= 1 + samples = 1 | viewType = ename:VK_VIEW_TYPE_2D + baseArrayLayer &gt;= 0 + layerCount = 1 | 2D, 1, 0 | imageType = ename:VK_IMAGE_TYPE_2D + width &gt;= 1 + height &gt;= 1 + depth = 1 + arrayLayers &gt;= 1 + samples = 1 | viewType = ename:VK_VIEW_TYPE_2D_ARRAY + baseArrayLayer &gt;= 0 + layerCount &gt;= 1 | 2D, 0, 1 | imageType = ename:VK_IMAGE_TYPE_2D + width &gt;= 1 + height &gt;= 1 + depth = 1 + arrayLayers &gt;= 1 + samples &gt; 1 | viewType = ename:VK_VIEW_TYPE_2D + baseArrayLayer &gt;= 0 + layerCount = 1 | 2D, 1, 1 | imageType = ename:VK_IMAGE_TYPE_2D + width &gt;= 1 + height &gt;= 1 + depth = 1 + arrayLayers &gt;= 1 + samples &gt; 1 | viewType = ename:VK_VIEW_TYPE_2D_ARRAY + baseArrayLayer &gt;= 0 + layerCount &gt;= 1 | CUBE, 0, 0 | imageType = ename:VK_IMAGE_TYPE_2D + width &gt;= 1 + height = width + depth = 1 + arrayLayers &gt;= 6 + samples = 1 + flags include ename:VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT | viewType = ename:VK_VIEW_TYPE_CUBE + baseArrayLayer &gt;= 0 + layerCount = 6 | CUBE, 1, 0 | imageType = ename:VK_IMAGE_TYPE_2D + width &gt;= 1 + height = width + depth = 1 + N &gt;= 1 + arrayLayers &gt;= latexmath:[$6 \times N$] + samples = 1 + flags include ename:VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT | viewType = ename:VK_VIEW_TYPE_CUBE_ARRAY + baseArrayLayer &gt;= 0 + N &gt;= 1 + layerCount = latexmath:[$6 \times N$] | 3D, 0, 0 | imageType = ename:VK_IMAGE_TYPE_3D + width &gt;= 1 + height &gt;= 1 + depth &gt;= 1 + arrayLayers = 1 + samples = 1 | viewType = ename:VK_VIEW_TYPE_3D + baseArrayLayer = 0 + layerCount = 1 |====
+    /// .Image and image view parameter compatibility requirements [cols="15%h,35%,50%",options="header"] |==== | Dim, Arrayed, MS | Image parameters | View parameters | | pname:imageType = ci.pname:imageType + pname:width = ci.pname:extent.width + pname:height = ci.pname:extent.height + pname:depth = ci.pname:extent.depth + pname:arrayLayers = ci.pname:arrayLayers + pname:samples = ci.pname:samples + where ci is the slink:VkImageCreateInfo used to create pname:image. | pname:baseArrayLayer and pname:layerCount are members of the pname:subresourceRange member. | 1D, 0, 0 | pname:imageType = ename:VK_IMAGE_TYPE_1D + pname:width {geq} 1 + pname:height = 1 + pname:depth = 1 + pname:arrayLayers {geq} 1 + pname:samples = 1 | pname:viewType = ename:VK_VIEW_TYPE_1D + pname:baseArrayLayer {geq} 0 + pname:layerCount = 1 | 1D, 1, 0 | pname:imageType = ename:VK_IMAGE_TYPE_1D + pname:width {geq} 1 + pname:height = 1 + pname:depth = 1 + pname:arrayLayers {geq} 1 + pname:samples = 1 | pname:viewType = ename:VK_VIEW_TYPE_1D_ARRAY + pname:baseArrayLayer {geq} 0 + pname:layerCount {geq} 1 | 2D, 0, 0 | pname:imageType = ename:VK_IMAGE_TYPE_2D + pname:width {geq} 1 + pname:height {geq} 1 + pname:depth = 1 + pname:arrayLayers {geq} 1 + pname:samples = 1 | pname:viewType = ename:VK_VIEW_TYPE_2D + pname:baseArrayLayer {geq} 0 + pname:layerCount = 1 | 2D, 1, 0 | pname:imageType = ename:VK_IMAGE_TYPE_2D + pname:width {geq} 1 + pname:height {geq} 1 + pname:depth = 1 + pname:arrayLayers {geq} 1 + pname:samples = 1 | pname:viewType = ename:VK_VIEW_TYPE_2D_ARRAY + pname:baseArrayLayer {geq} 0 + pname:layerCount {geq} 1 | 2D, 0, 1 | pname:imageType = ename:VK_IMAGE_TYPE_2D + pname:width {geq} 1 + pname:height {geq} 1 + pname:depth = 1 + pname:arrayLayers {geq} 1 + pname:samples &gt; 1 | pname:viewType = ename:VK_VIEW_TYPE_2D + pname:baseArrayLayer {geq} 0 + pname:layerCount = 1 | 2D, 1, 1 | pname:imageType = ename:VK_IMAGE_TYPE_2D + pname:width {geq} 1 + pname:height {geq} 1 + pname:depth = 1 + pname:arrayLayers {geq} 1 + pname:samples &gt; 1 | pname:viewType = ename:VK_VIEW_TYPE_2D_ARRAY + pname:baseArrayLayer {geq} 0 + pname:layerCount {geq} 1 | CUBE, 0, 0 | pname:imageType = ename:VK_IMAGE_TYPE_2D + pname:width {geq} 1 + pname:height = pname:width + pname:depth = 1 + pname:arrayLayers {geq} 6 + pname:samples = 1 + pname:flags includes ename:VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT | pname:viewType = ename:VK_VIEW_TYPE_CUBE + pname:baseArrayLayer {geq} 0 + pname:layerCount = 6 | CUBE, 1, 0 | pname:imageType = ename:VK_IMAGE_TYPE_2D + pname:width {geq} 1 + pname:height = width + pname:depth = 1 + _N_ {geq} 1 + pname:arrayLayers {geq} 6 {times} _N_ + pname:samples = 1 + pname:flags includes ename:VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT | pname:viewType = ename:VK_VIEW_TYPE_CUBE_ARRAY + pname:baseArrayLayer {geq} 0 + pname:layerCount = 6 {times} _N_, _N_ {geq} 1 | 3D, 0, 0 | pname:imageType = ename:VK_IMAGE_TYPE_3D + pname:width {geq} 1 + pname:height {geq} 1 + pname:depth {geq} 1 + pname:arrayLayers = 1 + pname:samples = 1 | pname:viewType = ename:VK_VIEW_TYPE_3D + pname:baseArrayLayer = 0 + pname:layerCount = 1 |====
     /// </para>
     /// </summary>
 	public struct ImageViewCreateInfo
@@ -3725,7 +3731,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// pname:connection and pname:surface are pointers to the MirConnection and MirSurface for the window to associate the surface with.
+		/// pname:connection and pname:surface are pointers to the code:MirConnection and code:MirSurface for the window to associate the surface with.
 		/// </para>
 		/// </summary>
 		public IntPtr Connection
@@ -3764,12 +3770,6 @@ namespace SharpVk
     /// <summary>
     /// <para>
     /// Structure reporting implementation-dependent physical device limits.
-    /// </para>
-    /// <para>
-    /// // End of list
-    /// </para>
-    /// <para>
-    /// 1:: For all bitmasks of type elink:VkSampleCountFlags above, possible values include: + --
     /// </para>
     /// </summary>
 	public struct PhysicalDeviceLimits
@@ -4076,7 +4076,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		///  pname:maxVertexInputBindings is the maximum number of vertex buffers that can: be specified for providing vertex attributes to a graphics pipeline. These are described in the array of sname:VkVertexInputBindingDescription structures that are provided at graphics pipeline creation time via the pname:pVertexBindingDescriptions member of the sname:VkPipelineVertexInputStateCreateInfo structure. The pname:binding member of sname:VkVertexInputBindingDescription must: be less than this limit. See &lt;&lt;fxvertex-input&gt;&gt;.
+		/// pname:maxVertexInputBindings is the maximum number of vertex buffers that can: be specified for providing vertex attributes to a graphics pipeline. These are described in the array of sname:VkVertexInputBindingDescription structures that are provided at graphics pipeline creation time via the pname:pVertexBindingDescriptions member of the sname:VkPipelineVertexInputStateCreateInfo structure. The pname:binding member of sname:VkVertexInputBindingDescription must: be less than this limit. See &lt;&lt;fxvertex-input&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public uint MaxVertexInputBindings
@@ -4416,7 +4416,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// pname:viewportBoundsRange[2] is the latexmath:[$[\mathit{minimum},\mathit{maximum}\]$] range that the corners of a viewport must: be contained in. This range must: be at least + --  latexmath:[$[-2 \times \mathit{maxViewportDimensions}, 2 \times \mathit{maxViewportDimensions} - 1\]$].  See &lt;&lt;vertexpostproc-viewport,Controlling the Viewport&gt;&gt;.  // latexmath:[$[-2 \times size, 2 \times size - 1\]$] // // where latexmath:[$size$] is the value of pname:maxViewPortDimensions for X // and Y, respectively. See &lt;&lt;vertexpostproc-viewport,Controlling the // Viewport&gt;&gt;.  [NOTE] .Note ==== The intent of the pname:viewportBoundsRange limit is to allow a maximum sized viewport to be arbitrarily shifted relative to the output target as long as at least some portion intersects. This would give a bounds limit of latexmath:[$[- \mathit{maxViewportDimensions}+1, 2 \times \mathit{maxViewportDimensions} -1\]$], which would allow all possible non-empty-set intersections of the output target and the viewport. Since these numbers are typically powers of two, picking the signed number range using the smallest possible number of bits ends up with the specified range. ==== --
+		/// pname:viewportBoundsRange[2] is the latexmath:[$[\mathit{minimum},\mathit{maximum}\]$] range that the corners of a viewport must: be contained in. This range must: be at least + -- latexmath:[$[-2 \times \mathit{size}, 2 \times \mathit{size} - 1\]$], where latexmath:[$\mathit{size} = \max(\mathit{maxViewportDimensions}[0\], \mathit{maxViewportDimensions}[1\]) $]. See &lt;&lt;vertexpostproc-viewport,Controlling the Viewport&gt;&gt;.  [NOTE] .Note ==== The intent of the pname:viewportBoundsRange limit is to allow a maximum sized viewport to be arbitrarily shifted relative to the output target as long as at least some portion intersects. This would give a bounds limit of latexmath:[$[-\mathit{size}+1, 2 \times \mathit{size} - 1\]$] which would allow all possible non-empty-set intersections of the output target and the viewport. Since these numbers are typically powers of two, picking the signed number range using the smallest possible number of bits ends up with the specified range. ==== --
 		/// </para>
 		/// </summary>
 		public float[] ViewportBoundsRange
@@ -4436,7 +4436,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// pname:minMemoryMapAlignment is the minimum required alignment, in bytes, of host visible memory allocations within the host address space. When mapping a memory allocation with flink:vkMapMemory, subtracting pname:offset bytes from the returned pointer will always produce an integer multiple of this limit. See &lt;&lt;memory-device-hostaccess&gt;&gt;.
+		/// pname:minMemoryMapAlignment is the minimum required: alignment, in bytes, of host visible memory allocations within the host address space. When mapping a memory allocation with flink:vkMapMemory, subtracting pname:offset bytes from the returned pointer will always produce an integer multiple of this limit. See &lt;&lt;memory-device-hostaccess&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public Size MinMemoryMapAlignment
@@ -4446,7 +4446,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		///  pname:minTexelBufferOffsetAlignment is the minimum required alignment, in bytes, for the pname:offset member of the sname:VkBufferViewCreateInfo structure for texel buffers. When a buffer view is created for a buffer which was created with ename:VK_BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT or ename:VK_BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT set in the pname:usage member of the sname:VkBufferCreateInfo structure, the pname:offset must: be an integer multiple of this limit.
+		///  pname:minTexelBufferOffsetAlignment is the minimum required: alignment, in bytes, for the pname:offset member of the sname:VkBufferViewCreateInfo structure for texel buffers. When a buffer view is created for a buffer which was created with ename:VK_BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT or ename:VK_BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT set in the pname:usage member of the sname:VkBufferCreateInfo structure, the pname:offset must: be an integer multiple of this limit.
 		/// </para>
 		/// </summary>
 		public ulong MinTexelBufferOffsetAlignment
@@ -4456,7 +4456,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		///  pname:minUniformBufferOffsetAlignment is the minimum required alignment, in bytes, for the pname:offset member of the sname:VkDescriptorBufferInfo structure for uniform buffers. When a descriptor of type ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER or ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC is updated, the pname:offset must: be an integer multiple of this limit. Similarly, dynamic offsets for uniform buffers must: be multiples of this limit.
+		///  pname:minUniformBufferOffsetAlignment is the minimum required: alignment, in bytes, for the pname:offset member of the sname:VkDescriptorBufferInfo structure for uniform buffers. When a descriptor of type ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER or ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC is updated, the pname:offset must: be an integer multiple of this limit. Similarly, dynamic offsets for uniform buffers must: be multiples of this limit.
 		/// </para>
 		/// </summary>
 		public ulong MinUniformBufferOffsetAlignment
@@ -4466,7 +4466,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		///  pname:minStorageBufferOffsetAlignment is the minimum required alignment, in bytes, for the pname:offset member of the sname:VkDescriptorBufferInfo structure for storage buffers. When a descriptor of type ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER or ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC is updated, the pname:offset must: be an integer multiple of this limit. Similarly, dynamic offsets for storage buffers must: be multiples of this limit.
+		///  pname:minStorageBufferOffsetAlignment is the minimum required: alignment, in bytes, for the pname:offset member of the sname:VkDescriptorBufferInfo structure for storage buffers. When a descriptor of type ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER or ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC is updated, the pname:offset must: be an integer multiple of this limit. Similarly, dynamic offsets for storage buffers must: be multiples of this limit.
 		/// </para>
 		/// </summary>
 		public ulong MinStorageBufferOffsetAlignment
@@ -4696,7 +4696,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// pname:timestampPeriod is the number of nanoseconds required for a timestamp query to be incremented by 1. See &lt;&lt;queries-timestamps, Timestamp Queries&gt;&gt;.
+		/// pname:timestampPeriod is the number of nanoseconds required: for a timestamp query to be incremented by 1. See &lt;&lt;queries-timestamps, Timestamp Queries&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public float TimestampPeriod
@@ -4826,7 +4826,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		///  pname:nonCoherentAtomSize is the size and alignment in bytes that bounds concurrent access to &lt;&lt;memory-device-hostaccess, host-mapped device memory&gt;&gt;.
+		/// pname:nonCoherentAtomSize is the size and alignment in bytes that bounds concurrent access to &lt;&lt;memory-device-hostaccess, host-mapped device memory&gt;&gt;.
 		/// </para>
 		/// </summary>
 		public ulong NonCoherentAtomSize
@@ -6243,7 +6243,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// pname:pSwapchains is an array of sname:VkSwapchainKHR objects with pname:swapchainCount entries.  A given swapchain must: not appear in this list more than once.
+		/// pname:pSwapchains is an array of sname:VkSwapchainKHR objects with pname:swapchainCount entries. A given swapchain must: not appear in this list more than once.
 		/// </para>
 		/// </summary>
 		public Swapchain[] Swapchains
@@ -6253,7 +6253,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// pname:pImageIndices is an array of indices into the array of each swapchain's presentable images, with pname:swapchainCount entries.  Each entry in this array identifies the image to present on the corresponding entry in the pname:pSwapchains array.
+		/// pname:pImageIndices is an array of indices into the array of each swapchain's presentable images, with pname:swapchainCount entries. Each entry in this array identifies the image to present on the corresponding entry in the pname:pSwapchains array.
 		/// </para>
 		/// </summary>
 		public uint[] ImageIndices
@@ -6263,7 +6263,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// pname:pResults is an array of ename:VkResult typed elements with pname:swapchainCount entries. Applications that don't need per-swapchain results can: use `NULL` for pname:pResults. If non-`NULL`, each entry in pname:pResults will be set to the ename:VkResult for presenting the swapchain corresponding to the same index in pname:pSwapchains.
+		/// pname:pResults is an array of ename:VkResult typed elements with pname:swapchainCount entries. Applications that do not need per-swapchain results can: use `NULL` for pname:pResults. If non-`NULL`, each entry in pname:pResults will be set to the ename:VkResult for presenting the swapchain corresponding to the same index in pname:pSwapchains.
 		/// </para>
 		/// </summary>
 		public Result[] Results
@@ -7569,7 +7569,7 @@ namespace SharpVk
     /// [NOTE] .Note ==== Applications should: set this value to ename:VK_TRUE if they do not expect to read back the content of presentable images before presenting them or after reacquiring them and if their pixel shaders do not have any side effects that require them to run for all pixels in the presentable image. ====
     /// </para>
     /// <para>
-    /// * pname:oldSwapchain, if not code:VK_NULL_HANDLE, specifies the swapchain that will be replaced by the new swapchain being created.  The new swapchain will be a descendant of pname:oldSwapchain.  Further, any descendants of the new swapchain will also be descendants of pname:oldSwapchain.  Upon calling fname:vkCreateSwapchainKHR with a pname:oldSwapchain that is not code:VK_NULL_HANDLE, any images not acquired by the application may: be freed by the implementation, which may: occur even if creation of the new swapchain fails. The application must: destroy the old swapchain to free all memory associated with the old swapchain. The application must: wait for the completion of any outstanding rendering to images it currently has acquired at the time the swapchain is destroyed. The application can: continue to present any images it acquired and has not yet presented using the old swapchain, as long as it has not entered a state that causes it to return ename:VK_ERROR_OUT_OF_DATE_KHR. However, the application cannot: acquire any more images from the old swapchain regardless of whether or not creation of the new swapchain succeeds.
+    /// * pname:oldSwapchain, if not code:VK_NULL_HANDLE, specifies the swapchain that will be replaced by the new swapchain being created. The new swapchain will be a descendant of pname:oldSwapchain. Further, any descendants of the new swapchain will also be descendants of pname:oldSwapchain. Upon calling fname:vkCreateSwapchainKHR with a pname:oldSwapchain that is not code:VK_NULL_HANDLE, any images not acquired by the application may: be freed by the implementation, which may: occur even if creation of the new swapchain fails. The application must: destroy the old swapchain to free all memory associated with the old swapchain. The application must: wait for the completion of any outstanding rendering to images it currently has acquired at the time the swapchain is destroyed. The application can: continue to present any images it acquired and has not yet presented using the old swapchain, as long as it has not entered a state that causes it to return ename:VK_ERROR_OUT_OF_DATE_KHR. However, the application cannot: acquire any more images from the old swapchain regardless of whether or not creation of the new swapchain succeeds.
     /// </para>
     /// </summary>
 	public struct SwapchainCreateInfo
@@ -7706,7 +7706,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// pname:clipped indicates whether the Vulkan implementation is allowed to discard rendering operations that affect regions of the surface which aren't visible.
+		/// pname:clipped indicates whether the Vulkan implementation is allowed to discard rendering operations that affect regions of the surface which are not visible.
 		/// </para>
 		/// </summary>
 		public Bool32 Clipped
@@ -7862,7 +7862,7 @@ namespace SharpVk
     /// Use Windows keyex mutex mechanism to synchronize work.
     /// </para>
     /// <para>
-    /// When submitting work that operates on memory imported from a Direct3D 11 resource to a queue, the keyed mutex mechanism may: be used in addition to Vulkan semaphores to synchronize the work.  Keyed mutexes are a property of a properly created shareable Direct3D 11 resource. They can: only be used if the imported resource was created with the etext:D3D11_RESOURCE_MISC_SHARED_KEYEDMUTEX flag.
+    /// When submitting work that operates on memory imported from a Direct3D 11 resource to a queue, the keyed mutex mechanism may: be used in addition to Vulkan semaphores to synchronize the work. Keyed mutexes are a property of a properly created shareable Direct3D 11 resource. They can: only be used if the imported resource was created with the etext:D3D11_RESOURCE_MISC_SHARED_KEYEDMUTEX flag.
     /// </para>
     /// <para>
     /// To acquire keyed mutexes before submitted work and/or release them after, add a slink:VkWin32KeyedMutexAcquireReleaseInfoNV structure to the pname:pNext chain of the slink:VkSubmitInfo structure.
@@ -8200,7 +8200,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// pname:connection is a pointer to an sname:xcb_connection_t to the X server.
+		/// pname:connection is a pointer to an code:xcb_connection_t to the X server.
 		/// </para>
 		/// </summary>
 		public IntPtr Connection
@@ -8210,7 +8210,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// pname:window is the sname:xcb_window_t for the X11 window to associate the surface with.
+		/// pname:window is the code:xcb_window_t for the X11 window to associate the surface with.
 		/// </para>
 		/// </summary>
 		public IntPtr Window
@@ -8255,7 +8255,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// pname:dpy is a pointer to an Xlib Display connection to the X server.
+		/// pname:dpy is a pointer to an Xlib code:Display connection to the X server.
 		/// </para>
 		/// </summary>
 		public IntPtr Dpy
@@ -8265,7 +8265,7 @@ namespace SharpVk
 		}
 	    /// <summary>
 		/// <para>
-		/// pname:window is an Xlib Window to associate the surface with.
+		/// pname:window is an Xlib code:Window to associate the surface with.
 		/// </para>
 		/// </summary>
 		public IntPtr Window
