@@ -20,10 +20,14 @@ namespace SharpVk.Generator.Emit
                                 string name,
                                 AccessModifier accessModifier = AccessModifier.Private,
                                 MemberModifier methodModifers = MemberModifier.None,
-                                Action<ExpressionBuilder> initialiser = null)
+                                Action<ExpressionBuilder> initialiser = null,
+                                IEnumerable<string> summary = null,
+                                Action<DocBuilder> docs = null,
+                                IEnumerable<string> attributes = null)
         {
             this.EmitMemberSpacing();
-            this.EmitMemberComment();
+
+            this.EmitMemberComments(accessModifier, summary, docs);
 
             this.writer.Write($"{accessModifier.Emit()} {RenderMemberModifiers(methodModifers)}{type} {name}");
             if (initialiser != null)
@@ -34,22 +38,19 @@ namespace SharpVk.Generator.Emit
             this.writer.WriteLine("; ");
         }
 
-        private void EmitMemberComment()
-        {
-            this.writer.WriteLine("/// <summary>");
-            this.writer.WriteLine("/// -");
-            this.writer.WriteLine("/// </summary>");
-        }
-
         public void EmitMethod(string returnType,
-                                string name, Action<CodeBlockBuilder> methodBody,
+                                string name,
+                                Action<CodeBlockBuilder> methodBody,
                                 Action<ParameterBuilder> parameters,
                                 AccessModifier accessModifier = AccessModifier.Private,
                                 MemberModifier methodModifers = MemberModifier.None,
+                                IEnumerable<string> summary = null,
+                                Action<DocBuilder> docs = null,
                                 IEnumerable<string> attributes = null)
         {
             this.EmitMemberSpacing();
-            this.EmitMemberComment();
+
+            this.EmitMemberComments(accessModifier, summary, docs);
 
             if (attributes != null)
             {
@@ -85,10 +86,13 @@ namespace SharpVk.Generator.Emit
                                     AccessModifier accessModifier = AccessModifier.Private,
                                     MemberModifier methodModifers = MemberModifier.None,
                                     Action<CodeBlockBuilder> getter = null,
-                                    Action<CodeBlockBuilder> setter = null)
+                                    Action<CodeBlockBuilder> setter = null,
+                                    IEnumerable<string> summary = null,
+                                    Action<DocBuilder> docs = null)
         {
             this.EmitMemberSpacing();
-            this.EmitMemberComment();
+
+            this.EmitMemberComments(accessModifier, summary, docs);
 
             this.writer.WriteLine($"{accessModifier.Emit()} {RenderMemberModifiers(methodModifers)}{type} {name}");
             this.writer.WriteLine("{");
@@ -113,6 +117,16 @@ namespace SharpVk.Generator.Emit
 
             this.writer.DecreaseIndent();
             this.writer.WriteLine("}");
+        }
+
+        private void EmitMemberComments(AccessModifier accessModifier, IEnumerable<string> summary, Action<DocBuilder> docs)
+        {
+            if (accessModifier == AccessModifier.Public || summary != null || docs != null)
+            {
+                var docBuilder = new DocBuilder(this.writer.GetSubWriter(), summary);
+
+                docs?.Invoke(docBuilder);
+            }
         }
 
         private string RenderMemberModifiers(MemberModifier modifiers)

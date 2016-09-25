@@ -57,5 +57,11 @@ namespace SharpVk.Generator
                 return this.baseWriter.Encoding;
             }
         }
+
+        public override void Close()
+        {
+            this.baseWriter.Close();
+            base.Close();
+        }
     }
 }

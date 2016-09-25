@@ -45,19 +45,22 @@
   <ItemGroup>
     <Compile Include="Emit\AccessModifier.cs" />
     <Compile Include="Emit\BlockBuilder.cs" />
+    <Compile Include="Emit\BuilderFactory.cs" />
     <Compile Include="Emit\CodeBlockBuilder.cs" />
+    <Compile Include="Emit\DocBuilder.cs" />
     <Compile Include="Emit\ExpressionBuilder.cs" />
     <Compile Include="Emit\FileBuilder.cs" />
     <Compile Include="Emit\MemberInitBuilder.cs" />
     <Compile Include="Emit\MemberModifier.cs" />
+    <Compile Include="Emit\NamespaceBuilder.cs" />
     <Compile Include="Emit\ParameterBuilder.cs" />
     <Compile Include="Emit\TypeBuilder.cs" />
-    <Compile Include="Generators\TypeGenerator.cs" />
+    <Compile Include="Emit\TypeKind.cs" />
+    <Compile Include="Emit\TypeModifier.cs" />
     <Compile Include="Generators\FileGenerator.cs" />
-    <Compile Include="Generators\ClassGenerator.cs" />
-    <Compile Include="Generators\InteropStructGenerator.cs" />
-    <Compile Include="Generators\InteropHandleGenerator.cs" />
-    <Compile Include="Generators\InteropCommandsGenerator.cs" />
+    <Compile Include="Generators\VkClassGenerator.cs" />
+    <Compile Include="Generators\VkHandleGenerator.cs" />
+    <Compile Include="Generators\VkCommandsGenerator.cs" />
     <Compile Include="Generators\ModelGenerator.cs" />
     <Compile Include="IndentedTextWriter.cs" />
     <Compile Include="Program.cs" />

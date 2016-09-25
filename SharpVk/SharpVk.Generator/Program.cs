@@ -18,10 +18,9 @@ namespace SharpVk.Generator
 
             foreach (var modelGenerator in new ModelGenerator[]
             {
-                new InteropCommandsGenerator(),
-                new InteropHandleGenerator(),
-                new InteropStructGenerator(),
-                new ClassGenerator()
+                new VkCommandsGenerator(),
+                new VkHandleGenerator(),
+                new VkClassGenerator()
             })
             {
                 modelGenerator.Run(types, fileGenerator);
