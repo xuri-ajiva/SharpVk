@@ -9,6 +9,7 @@ namespace SharpVk.Generator.Emit
         Static = 1 << 0,
         Const = 1 << 1,
         Extern = 1 << 2,
-        Unsafe = 1 << 3
+        Readonly = 1 << 3,
+        Unsafe = 1 << 4
     }
 }

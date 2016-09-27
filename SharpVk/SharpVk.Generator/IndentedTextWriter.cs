@@ -29,11 +29,28 @@ namespace SharpVk.Generator
             this.indent--;
         }
 
+        public int IndentCharacters
+        {
+            get
+            {
+                int result = this.indent * 4;
+
+                var baseIndentWriter = this.baseWriter as IndentedTextWriter;
+
+                if(baseIndentWriter != null)
+                {
+                    result += baseIndentWriter.IndentCharacters;
+                }
+
+                return result;
+            }
+        }
+
         public override void Write(char value)
         {
             if (this.beginningOfLine)
             {
-                this.baseWriter.Write(Enumerable.Repeat('\t', indent).ToArray());
+                this.baseWriter.Write(Enumerable.Repeat(' ', indent * 4).ToArray());
                 this.beginningOfLine = false;
             }
 

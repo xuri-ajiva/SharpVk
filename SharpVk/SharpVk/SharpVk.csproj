@@ -67,6 +67,8 @@
   <ItemGroup>
     <Compile Include="Classes.cs" />
     <Compile Include="CommandCache.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Enums.cs" />
     <Compile Include="Interop\Commands.cs" />
     <Compile Include="Interop\Delegates.cs">
       <DependentUpon>Delegates.tt</DependentUpon>
@@ -75,16 +77,6 @@
     </Compile>
     <Compile Include="Exceptions.cs">
       <DependentUpon>Exceptions.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Constants.cs">
-      <DependentUpon>Constants.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Enums.cs">
-      <DependentUpon>Enums.tt</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
@@ -131,14 +123,6 @@
     <Content Include="Exceptions.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Exceptions.cs</LastGenOutput>
-    </Content>
-    <Content Include="Constants.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Constants.cs</LastGenOutput>
-    </Content>
-    <Content Include="Enums.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Enums.cs</LastGenOutput>
     </Content>
     <Content Include="Spirv\Grammar.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

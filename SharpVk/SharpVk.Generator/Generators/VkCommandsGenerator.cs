@@ -29,7 +29,7 @@ namespace SharpVk.Generator.Generators
                                 {
                                     paramsBuilder.EmitParam(param.TypeName, param.Name);
                                 }
-                            }, Public, Static | Extern, new[] { "DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)" });
+                            }, Public, Static | Extern, attributes: new[] { "DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)" });
                         }
                     }, Public, TypeModifier.Static | TypeModifier.Unsafe);
                 });

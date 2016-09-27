@@ -10,7 +10,7 @@ namespace SharpVk.Generator
             var xmlCache = new VkXmlCache(".\\VkTemplates");
 
             var parser = new SpecParser(xmlCache, ".\\VkTemplates");
-            var generator = new VkXml.TypeGenerator();
+            var generator = new TypeGenerator();
 
             var types = generator.Generate(parser.Run());
 
@@ -20,6 +20,8 @@ namespace SharpVk.Generator
             {
                 new VkCommandsGenerator(),
                 new VkHandleGenerator(),
+                new VkEnumGenerator(),
+                new VkConstantGenerator(),
                 new VkClassGenerator()
             })
             {

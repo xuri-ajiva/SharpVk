@@ -1,4 +1,7 @@
-﻿namespace SharpVk
+﻿using System.Linq;
+using System.Reflection;
+
+namespace SharpVk
 {
     /// <summary>
     /// Represents a Semantic Version number encoded as a UInt32
@@ -56,7 +59,7 @@
                 return (int)(value) & 0xfff;
             }
         }
-        
+
         /// <summary>
         /// Implicit conversion of a UInt32 value to a decoded Version number.
         /// </summary>
@@ -88,6 +91,22 @@
         public override string ToString()
         {
             return $"{this.Major}.{this.Minor}.{this.Patch}";
+        }
+
+        internal static Version ExtractBindingVersion()
+        {
+            var versionAttribute = typeof(Version).Assembly.GetCustomAttribute<AssemblyInformationalVersionAttribute>();
+            string versionString = versionAttribute.InformationalVersion;
+
+            int firstDecimalIndex = versionString.IndexOf('.');
+            int secondDecimalIndex = versionString.IndexOf('.', firstDecimalIndex + 1);
+            int terminatorIndex = versionString.Skip(secondDecimalIndex + 1).TakeWhile(char.IsDigit).Count() + secondDecimalIndex + 1;
+
+            int major = int.Parse(versionString.Substring(0, firstDecimalIndex));
+            int minor = int.Parse(versionString.Substring(firstDecimalIndex + 1, (secondDecimalIndex - firstDecimalIndex) - 1));
+            int patch = int.Parse(versionString.Substring(secondDecimalIndex + 1, (terminatorIndex - secondDecimalIndex) - 1));
+
+            return new Version(major, minor, patch);
         }
     }
 }

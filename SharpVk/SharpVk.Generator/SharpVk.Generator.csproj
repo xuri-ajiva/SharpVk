@@ -48,6 +48,7 @@
     <Compile Include="Emit\BuilderFactory.cs" />
     <Compile Include="Emit\CodeBlockBuilder.cs" />
     <Compile Include="Emit\DocBuilder.cs" />
+    <Compile Include="Emit\EnumBuilder.cs" />
     <Compile Include="Emit\ExpressionBuilder.cs" />
     <Compile Include="Emit\FileBuilder.cs" />
     <Compile Include="Emit\MemberInitBuilder.cs" />
@@ -59,6 +60,8 @@
     <Compile Include="Emit\TypeModifier.cs" />
     <Compile Include="Generators\FileGenerator.cs" />
     <Compile Include="Generators\VkClassGenerator.cs" />
+    <Compile Include="Generators\VkConstantGenerator.cs" />
+    <Compile Include="Generators\VkEnumGenerator.cs" />
     <Compile Include="Generators\VkHandleGenerator.cs" />
     <Compile Include="Generators\VkCommandsGenerator.cs" />
     <Compile Include="Generators\ModelGenerator.cs" />

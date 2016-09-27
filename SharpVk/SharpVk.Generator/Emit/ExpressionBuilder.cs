@@ -12,6 +12,11 @@ namespace SharpVk.Generator.Emit
             this.writer = writer;
         }
 
+        public void EmitAsIs(string expression)
+        {
+            this.writer.Write(expression);
+        }
+
         public void EmitLiteral(string literal)
         {
             this.writer.Write('"');
@@ -105,6 +110,11 @@ namespace SharpVk.Generator.Emit
         private ExpressionBuilder GetSubBuilder()
         {
             return new ExpressionBuilder(this.writer.GetSubWriter());
+        }
+
+        public static Action<ExpressionBuilder> AsIs(string expression)
+        {
+            return builder => builder.EmitAsIs(expression);
         }
 
         public static Action<ExpressionBuilder> MemberInit(string name, Action<MemberInitBuilder> members)

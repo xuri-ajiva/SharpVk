@@ -24,6 +24,33 @@ namespace SharpVk.Generator.Emit
                                 Action<DocBuilder> docs = null,
                                 IEnumerable<string> attributes = null)
         {
+            this.EmitTypePreamble(summary, docs, attributes);
+
+            this.writer.WriteLine($"{accessModifier.Emit()} {RenderTypeModifiers(modifiers)}{kind.ToString().ToLowerInvariant()} {name}");
+            using (var builder = new TypeBuilder(this.writer.GetSubWriter()))
+            {
+                @type(builder);
+            }
+        }
+
+        public void EmitEnum(string name,
+                                Action<EnumBuilder> @enum,
+                                AccessModifier accessModifier = AccessModifier.Internal,
+                                IEnumerable<string> summary = null,
+                                Action<DocBuilder> docs = null,
+                                IEnumerable<string> attributes = null)
+        {
+            this.EmitTypePreamble(summary, docs, attributes);
+
+            this.writer.WriteLine($"{accessModifier.Emit()} enum {name}");
+            using (var builder = new EnumBuilder(this.writer.GetSubWriter()))
+            {
+                @enum(builder);
+            }
+        }
+
+        private void EmitTypePreamble(IEnumerable<string> summary, Action<DocBuilder> docs, IEnumerable<string> attributes)
+        {
             if (this.hasFirstElement)
             {
                 this.writer.WriteLine();
@@ -44,15 +71,9 @@ namespace SharpVk.Generator.Emit
                     this.writer.WriteLine($"[{attributeName}]");
                 }
             }
-
-            this.writer.WriteLine($"{accessModifier.Emit()} {RenderMemberModifiers(modifiers)}{kind.ToString().ToLowerInvariant()} {name}");
-            using (var builder = new TypeBuilder(this.writer.GetSubWriter()))
-            {
-                @type(builder);
-            }
         }
 
-        private string RenderMemberModifiers(TypeModifier modifiers)
+        private string RenderTypeModifiers(TypeModifier modifiers)
         {
             var builder = new StringBuilder();
 
