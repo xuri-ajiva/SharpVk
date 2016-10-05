@@ -9,11 +9,14 @@ namespace SharpVk.Generator.Emit
     public class TypeBuilder
         : BlockBuilder
     {
+        private readonly string name;
+
         private bool hasFirstMember = false;
 
-        public TypeBuilder(IndentedTextWriter writer)
+        public TypeBuilder(IndentedTextWriter writer, string name)
             : base(writer)
         {
+            this.name = name;
         }
 
         public void EmitField(string type,
@@ -36,6 +39,47 @@ namespace SharpVk.Generator.Emit
                 initialiser(new ExpressionBuilder(this.writer.GetSubWriter()));
             }
             this.writer.WriteLine("; ");
+        }
+
+        public void EmitConstructor(Action<CodeBlockBuilder> methodBody,
+                                    Action<ParameterBuilder> parameters,
+                                    AccessModifier accessModifier = AccessModifier.Private,
+                                    MemberModifier methodModifers = MemberModifier.None,
+                                    IEnumerable<string> summary = null,
+                                    Action<DocBuilder> docs = null,
+                                    IEnumerable<string> attributes = null)
+        {
+            this.EmitMemberSpacing();
+
+            this.EmitMemberComments(accessModifier, summary, docs);
+
+            if (attributes != null)
+            {
+                foreach (var attributeName in attributes)
+                {
+                    this.writer.WriteLine($"[{attributeName}]");
+                }
+            }
+
+            string parameterList = parameters != null
+                                    ? ParameterBuilder.Apply(parameters)
+                                    : "";
+
+            this.writer.Write($"{accessModifier.Emit()} {RenderMemberModifiers(methodModifers)}{this.name}({parameterList})");
+
+            if (methodBody == null)
+            {
+                this.writer.WriteLine(";");
+            }
+            else
+            {
+                this.writer.WriteLine();
+
+                using (var bodyEmitter = new CodeBlockBuilder(this.writer.GetSubWriter()))
+                {
+                    methodBody(bodyEmitter);
+                }
+            }
         }
 
         public void EmitMethod(string returnType,

@@ -14,7 +14,7 @@ namespace SharpVk.VkXml
         {
             this.tempFilePath = tempFilePath;
 
-            if(!Directory.Exists(this.tempFilePath))
+            if (!Directory.Exists(this.tempFilePath))
             {
                 Directory.CreateDirectory(this.tempFilePath);
             }
@@ -33,9 +33,16 @@ namespace SharpVk.VkXml
                     var vkXmlRequest = WebRequest.Create("https://raw.githubusercontent.com/KhronosGroup/Vulkan-Docs/1.0/src/spec/vk.xml");
 
                     using (var vkXmlResponse = vkXmlRequest.GetResponse())
-                    using (var fileStream = File.OpenWrite(tempFile))
                     {
-                        vkXmlResponse.GetResponseStream().CopyTo(fileStream);
+                        if (File.Exists(tempFile))
+                        {
+                            File.Delete(tempFile);
+                        }
+
+                        using (var fileStream = File.OpenWrite(tempFile))
+                        {
+                            vkXmlResponse.GetResponseStream().CopyTo(fileStream);
+                        }
                     }
                 }
                 catch

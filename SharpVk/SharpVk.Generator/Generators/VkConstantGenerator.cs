@@ -30,7 +30,7 @@ namespace SharpVk.Generator.Generators
                         namespaceBuilder.EmitType(TypeKind.Class, subGroup, typeBuilder =>
                         {
                             EmitConstantSubGroup(typeBuilder, types.Constants.Where(x => x.SubGroupName == subGroup));
-                        }, Public, TypeModifier.Static);
+                        }, Public, modifiers: TypeModifier.Static);
                     }
 
                     namespaceBuilder.EmitType(TypeKind.Class, "Constants", typeBuilder =>
@@ -38,7 +38,7 @@ namespace SharpVk.Generator.Generators
                         EmitConstantSubGroup(typeBuilder, types.Constants.Where(x => x.SubGroupName == null));
 
                         typeBuilder.EmitField("Version", "SharpVkVersion", Public, Static | Readonly, StaticCall("Version", "ExtractBindingVersion"));
-                    }, Public, TypeModifier.Static);
+                    }, Public, modifiers: TypeModifier.Static);
                 });
             });
         }

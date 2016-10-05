@@ -77,6 +77,17 @@ namespace SharpVk.Generator.Emit
             this.writer.Write(")");
         }
 
+        public void EmitDelegateCall(Action<ExpressionBuilder> @delegate, params Action<ExpressionBuilder>[] arguments)
+        {
+            @delegate(this.GetSubBuilder());
+
+            this.writer.Write("(");
+
+            this.EmitArguments(arguments);
+
+            this.writer.Write(")");
+        }
+
         public void EmitCall(Action<ExpressionBuilder> target, string method, params Action<ExpressionBuilder>[] arguments)
         {
             target(this.GetSubBuilder());
@@ -86,6 +97,13 @@ namespace SharpVk.Generator.Emit
             this.EmitArguments(arguments);
 
             this.writer.Write(")");
+        }
+
+        public void EmitMember(Action<ExpressionBuilder> target, string method)
+        {
+            target(this.GetSubBuilder());
+
+            this.writer.Write($".{method}");
         }
 
         private void EmitArguments(IEnumerable<Action<ExpressionBuilder>>arguments)
@@ -115,6 +133,11 @@ namespace SharpVk.Generator.Emit
         public static Action<ExpressionBuilder> AsIs(string expression)
         {
             return builder => builder.EmitAsIs(expression);
+        }
+
+        public static Action<ExpressionBuilder> Literal(string literal)
+        {
+            return builder => builder.EmitLiteral(literal);
         }
 
         public static Action<ExpressionBuilder> MemberInit(string name, Action<MemberInitBuilder> members)
@@ -163,9 +186,19 @@ namespace SharpVk.Generator.Emit
             return builder => builder.EmitStaticCall(type, method, arguments);
         }
 
+        public static Action<ExpressionBuilder> DelegateCall(Action<ExpressionBuilder> @delegate, params Action<ExpressionBuilder>[] arguments)
+        {
+            return builder => builder.EmitDelegateCall(@delegate, arguments);
+        }
+
         public static Action<ExpressionBuilder> Call(Action<ExpressionBuilder> target, string method, params Action<ExpressionBuilder>[] arguments)
         {
             return builder => builder.EmitCall(target, method, arguments);
+        }
+
+        public static Action<ExpressionBuilder> Member(Action<ExpressionBuilder> target, string method)
+        {
+            return builder => builder.EmitMember(target, method);
         }
     }
 }

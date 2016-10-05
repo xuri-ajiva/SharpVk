@@ -31,7 +31,7 @@ namespace SharpVk.Generator.Generators
                                 }
                             }, Public, Static | Extern, attributes: new[] { "DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)" });
                         }
-                    }, Public, TypeModifier.Static | TypeModifier.Unsafe);
+                    }, Public, modifiers: TypeModifier.Static | TypeModifier.Unsafe);
                 });
             });
         }

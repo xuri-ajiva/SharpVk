@@ -27,7 +27,7 @@ namespace SharpVk.Generator.Generators
                             {
                                 typeBuilder.EmitField(member.TypeName, member.Name, member.IsPrivate ? Private : Public);
                             }
-                        }, Public, TypeModifier.Unsafe, attributes: new[] { "StructLayout(LayoutKind.Sequential)" });
+                        }, Public, modifiers: TypeModifier.Unsafe, attributes: new[] { "StructLayout(LayoutKind.Sequential)" });
                     }
                 });
             });

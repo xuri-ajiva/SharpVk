@@ -19,6 +19,7 @@ namespace SharpVk.Generator.Emit
                                 string name,
                                 Action<TypeBuilder> @type,
                                 AccessModifier accessModifier = AccessModifier.Internal,
+                                IEnumerable<string> baseTypes = null,
                                 TypeModifier modifiers = TypeModifier.None,
                                 IEnumerable<string> summary = null,
                                 Action<DocBuilder> docs = null,
@@ -27,7 +28,15 @@ namespace SharpVk.Generator.Emit
             this.EmitTypePreamble(summary, docs, attributes);
 
             this.writer.WriteLine($"{accessModifier.Emit()} {RenderTypeModifiers(modifiers)}{kind.ToString().ToLowerInvariant()} {name}");
-            using (var builder = new TypeBuilder(this.writer.GetSubWriter()))
+
+            if (baseTypes != null && baseTypes.Any())
+            {
+                this.writer.IncreaseIndent();
+                this.writer.WriteLine($": {string.Join(", ", baseTypes)}");
+                this.writer.DecreaseIndent();
+            }
+
+            using (var builder = new TypeBuilder(this.writer.GetSubWriter(), name))
             {
                 @type(builder);
             }
