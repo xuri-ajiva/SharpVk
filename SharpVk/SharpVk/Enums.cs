@@ -200,6 +200,9 @@ namespace SharpVk
     /// <para>
     /// See &lt;&lt;sparsememory-sparseresourcefeatures,Sparse Resource Features&gt;&gt; and &lt;&lt;features-features,Physical Device Features&gt;&gt; for details of the sparse memory features supported on a device.
     /// </para>
+    /// <para>
+    /// .Valid Usage **** * pname:size must: be greater than `0` * If pname:sharingMode is ename:VK_SHARING_MODE_CONCURRENT, pname:pQueueFamilyIndices must: be a pointer to an array of pname:queueFamilyIndexCount basetype:uint32_t values * If pname:sharingMode is ename:VK_SHARING_MODE_CONCURRENT, pname:queueFamilyIndexCount must: be greater than `1` * If the &lt;&lt;features-features-sparseBinding,sparse bindings&gt;&gt; feature is not enabled, pname:flags must: not contain ename:VK_BUFFER_CREATE_SPARSE_BINDING_BIT * If the &lt;&lt;features-features-sparseResidencyBuffer,sparse buffer residency&gt;&gt; feature is not enabled, pname:flags must: not contain ename:VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT * If the &lt;&lt;features-features-sparseResidencyAliased,sparse aliased residency&gt;&gt; feature is not enabled, pname:flags must: not contain ename:VK_BUFFER_CREATE_SPARSE_ALIASED_BIT * If pname:flags contains ename:VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT or ename:VK_BUFFER_CREATE_SPARSE_ALIASED_BIT, it must: also contain ename:VK_BUFFER_CREATE_SPARSE_BINDING_BIT ****
+    /// </para>
     /// </summary>
 	[Flags]
 	public enum BufferCreateFlags
@@ -327,7 +330,7 @@ namespace SharpVk
     /// Bitmask controlling which components are written to the framebuffer.
     /// </para>
     /// <para>
-    /// If ename:VK_COLOR_COMPONENT_R_BIT is set, then the latexmath:[$R$] value is written to color attachment for the appropriate sample, otherwise the value in memory is unmodified. The ename:VK_COLOR_COMPONENT_G_BIT, ename:VK_COLOR_COMPONENT_B_BIT, and ename:VK_COLOR_COMPONENT_A_BIT bits similarly control writing of the latexmath:[$G, B,$] and latexmath:[$A$] values. The pname:colorWriteMask is applied regardless of whether blending is enabled.
+    /// If ename:VK_COLOR_COMPONENT_R_BIT is set, then the [eq]#R# value is written to color attachment for the appropriate sample, otherwise the value in memory is unmodified. The ename:VK_COLOR_COMPONENT_G_BIT, ename:VK_COLOR_COMPONENT_B_BIT, and ename:VK_COLOR_COMPONENT_A_BIT bits similarly control writing of the [eq]#G, B,# and [eq]#A# values. The pname:colorWriteMask is applied regardless of whether blending is enabled.
     /// </para>
     /// </summary>
 	[Flags]
@@ -369,6 +372,9 @@ namespace SharpVk
     /// <para>
     /// Bitmask controlling behavior of a command buffer reset.
     /// </para>
+    /// <para>
+    /// .Valid Usage **** * pname:commandBuffer must: not currently be pending execution * pname:commandBuffer must: have been allocated from a pool that was created with the ename:VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT ****
+    /// </para>
     /// </summary>
 	[Flags]
 	public enum CommandBufferResetFlags
@@ -390,6 +396,9 @@ namespace SharpVk
     /// <summary>
     /// <para>
     /// Bitmask specifying usage behavior for command buffer.
+    /// </para>
+    /// <para>
+    /// .Valid Usage **** * If pname:flags contains ename:VK_COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT, the pname:renderPass member of pname:pInheritanceInfo must: be a valid sname:VkRenderPass * If pname:flags contains ename:VK_COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT, the pname:subpass member of pname:pInheritanceInfo must: be a valid subpass index within the pname:renderPass member of pname:pInheritanceInfo * If pname:flags contains ename:VK_COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT, the pname:framebuffer member of pname:pInheritanceInfo must: be either dlink:VK_NULL_HANDLE, or a valid sname:VkFramebuffer that is compatible with the pname:renderPass member of pname:pInheritanceInfo ****
     /// </para>
     /// </summary>
 	[Flags]
@@ -425,6 +434,9 @@ namespace SharpVk
     /// <para>
     /// Bitmask specifying usage behavior for a command pool.
     /// </para>
+    /// <para>
+    /// .Valid Usage **** * pname:queueFamilyIndex must: be the index of a queue family available in the calling command's pname:device parameter ****
+    /// </para>
     /// </summary>
 	[Flags]
 	public enum CommandPoolCreateFlags
@@ -455,6 +467,9 @@ namespace SharpVk
     /// </para>
     /// <para>
     /// Resetting a command pool recycles all of the resources from all of the command buffers allocated from the command pool back to the command pool. All command buffers that have been allocated from the command pool are put in the initial state.
+    /// </para>
+    /// <para>
+    /// .Valid Usage **** * All sname:VkCommandBuffer objects allocated from pname:commandPool must: not currently be pending execution ****
     /// </para>
     /// </summary>
 	[Flags]
@@ -625,6 +640,9 @@ namespace SharpVk
     /// <para>
     /// The pname:srcStageMask, pname:dstStageMask, pname:srcAccessMask, pname:dstAccessMask, and pname:dependencyFlags parameters of the dependency are interpreted the same way as for other dependencies, as described in &lt;&lt;synchronization, Synchronization and Cache Control&gt;&gt;.
     /// </para>
+    /// <para>
+    /// .Valid Usage **** * If the &lt;&lt;features-features-geometryShader,geometry shaders&gt;&gt; feature is not enabled, pname:srcStageMask must: not contain ename:VK_PIPELINE_STAGE_GEOMETRY_SHADER_BIT * If the &lt;&lt;features-features-geometryShader,geometry shaders&gt;&gt; feature is not enabled, pname:dstStageMask must: not contain ename:VK_PIPELINE_STAGE_GEOMETRY_SHADER_BIT * If the &lt;&lt;features-features-tessellationShader,tessellation shaders&gt;&gt; feature is not enabled, pname:srcStageMask must: not contain ename:VK_PIPELINE_STAGE_TESSELLATION_CONTROL_SHADER_BIT or ename:VK_PIPELINE_STAGE_TESSELLATION_EVALUATION_SHADER_BIT * If the &lt;&lt;features-features-tessellationShader,tessellation shaders&gt;&gt; feature is not enabled, pname:dstStageMask must: not contain ename:VK_PIPELINE_STAGE_TESSELLATION_CONTROL_SHADER_BIT or ename:VK_PIPELINE_STAGE_TESSELLATION_EVALUATION_SHADER_BIT * pname:srcSubpass must: be less than or equal to pname:dstSubpass, unless one of them is ename:VK_SUBPASS_EXTERNAL, to avoid cyclic dependencies and ensure a valid execution order * pname:srcSubpass and pname:dstSubpass must: not both be equal to ename:VK_SUBPASS_EXTERNAL * If pname:srcSubpass is equal to pname:dstSubpass, pname:srcStageMask and pname:dstStageMask must: only contain one of ename:VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT, ename:VK_PIPELINE_STAGE_DRAW_INDIRECT_BIT, ename:VK_PIPELINE_STAGE_VERTEX_INPUT_BIT, ename:VK_PIPELINE_STAGE_VERTEX_SHADER_BIT, ename:VK_PIPELINE_STAGE_TESSELLATION_CONTROL_SHADER_BIT, ename:VK_PIPELINE_STAGE_TESSELLATION_EVALUATION_SHADER_BIT, ename:VK_PIPELINE_STAGE_GEOMETRY_SHADER_BIT, ename:VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT, ename:VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT, ename:VK_PIPELINE_STAGE_LATE_FRAGMENT_TESTS_BIT, ename:VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT, ename:VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT, or ename:VK_PIPELINE_STAGE_ALL_GRAPHICS_BIT * If pname:srcSubpass is equal to pname:dstSubpass, the highest bit value included in pname:srcStageMask must: be less than or equal to the lowest bit value in pname:dstStageMask ****
+    /// </para>
     /// </summary>
 	[Flags]
 	public enum DependencyFlags
@@ -658,6 +676,9 @@ namespace SharpVk
     /// </para>
     /// <para>
     /// If an allocation failure occurs due to fragmentation, an application can: create an additional descriptor pool to perform further descriptor set allocations.
+    /// </para>
+    /// <para>
+    /// .Valid Usage **** * pname:maxSets must: be greater than `0` ****
     /// </para>
     /// </summary>
 	[Flags]
@@ -960,7 +981,7 @@ namespace SharpVk
     /// ename:VK_FORMAT_FEATURE_BLIT_DST_BIT:: sname:VkImage can: be used as pname:dstImage for the fname:vkCmdBlitImage command.
     /// </para>
     /// <para>
-    /// ename:VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT:: If ename:VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT is also set, sname:VkImageView can: be used with a sampler that has either of pname:magFilter or pname:minFilter set to ename:VK_FILTER_LINEAR, or pname:mipmapMode set to ename:VK_SAMPLER_MIPMAP_MODE_LINEAR. If ename:VK_FORMAT_FEATURE_BLIT_SRC_BIT is also set, sname:VkImage can be used as the pname:srcImage to flink:vkCmdBlitImage with a pname:filter of ename:VK_FILTER_LINEAR. This bit must: only be exposed for formats that also support the ename:VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT or ename:VK_FORMAT_FEATURE_BLIT_SRC_BIT. + If the format being queried is a depth/stencil format, this bit only indicates that the depth aspect (not the stencil aspect) of an image of this format supports linear filtering, and that linear filtering of the depth aspect is supported whether depth compare is enabled in the sampler or not. If this bit is not present, linear filtering with depth compare disabled is unsupported and linear filtering with depth compare enabled is supported, but may: compute the filtered value in an implementation-dependent manner which differs from the normal rules of linear filtering. The resulting value must: be in the range latexmath:[$[0,1\]$] and should: be proportional to, or a weighted average of, the number of comparison passes or failures.
+    /// ename:VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT:: If ename:VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT is also set, sname:VkImageView can: be used with a sampler that has either of pname:magFilter or pname:minFilter set to ename:VK_FILTER_LINEAR, or pname:mipmapMode set to ename:VK_SAMPLER_MIPMAP_MODE_LINEAR. If ename:VK_FORMAT_FEATURE_BLIT_SRC_BIT is also set, sname:VkImage can be used as the pname:srcImage to flink:vkCmdBlitImage with a pname:filter of ename:VK_FILTER_LINEAR. This bit must: only be exposed for formats that also support the ename:VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT or ename:VK_FORMAT_FEATURE_BLIT_SRC_BIT. + If the format being queried is a depth/stencil format, this bit only indicates that the depth aspect (not the stencil aspect) of an image of this format supports linear filtering, and that linear filtering of the depth aspect is supported whether depth compare is enabled in the sampler or not. If this bit is not present, linear filtering with depth compare disabled is unsupported and linear filtering with depth compare enabled is supported, but may: compute the filtered value in an implementation-dependent manner which differs from the normal rules of linear filtering. The resulting value must: be in the range [eq]#[0,1]# and should: be proportional to, or a weighted average of, the number of comparison passes or failures.
     /// </para>
     /// <para>
     /// ifdef::VK_IMG_filter_cubic[] include::VK_IMG_filter_cubic/filter_cubic_sampled_bit_description.txt[] endif::VK_IMG_filter_cubic[]
@@ -1110,6 +1131,9 @@ namespace SharpVk
     /// </para>
     /// <para>
     /// The pname:components member is of type slink:VkComponentMapping, and describes a remapping from components of the image to components of the vector returned by shader image instructions. This remapping must: be identity for storage image descriptors, input attachment descriptors, and framebuffer attachments.
+    /// </para>
+    /// <para>
+    /// .Valid Usage **** * If pname:levelCount is not ename:VK_REMAINING_MIP_LEVELS, [eq]#(pname:baseMipLevel + pname:levelCount)# must: be less than or equal to the pname:mipLevels specified in slink:VkImageCreateInfo when the image was created * If pname:layerCount is not ename:VK_REMAINING_ARRAY_LAYERS, [eq]#(pname:baseArrayLayer + pname:layerCount)# must: be less than or equal to the pname:arrayLayers specified in slink:VkImageCreateInfo when the image was created ****
     /// </para>
     /// </summary>
 	[Flags]
@@ -1440,6 +1464,9 @@ namespace SharpVk
     /// <para>
     /// ifdef::VK_NV_glsl_shader[] If any shader stage fails to compile, ifdef::VK_EXT_debug_report[] the compile log will be reported back to the application, and endif::VK_EXT_debug_report[] ename:VK_ERROR_INVALID_SHADER_NV will be generated. endif::VK_NV_glsl_shader[]
     /// </para>
+    /// <para>
+    /// .Valid Usage **** * If pname:flags contains the ename:VK_PIPELINE_CREATE_DERIVATIVE_BIT flag, and pname:basePipelineIndex is not `-1`, pname:basePipelineHandle must: be dlink:VK_NULL_HANDLE * If pname:flags contains the ename:VK_PIPELINE_CREATE_DERIVATIVE_BIT flag, and pname:basePipelineIndex is not `-1`, it must: be a valid index into the calling command's pname:pCreateInfos parameter * If pname:flags contains the ename:VK_PIPELINE_CREATE_DERIVATIVE_BIT flag, and pname:basePipelineHandle is not dlink:VK_NULL_HANDLE, pname:basePipelineIndex must: be `-1` * If pname:flags contains the ename:VK_PIPELINE_CREATE_DERIVATIVE_BIT flag, and pname:basePipelineHandle is not dlink:VK_NULL_HANDLE, pname:basePipelineHandle must: be a valid sname:VkPipeline handle * If pname:flags contains the ename:VK_PIPELINE_CREATE_DERIVATIVE_BIT flag, and pname:basePipelineHandle is not dlink:VK_NULL_HANDLE, it must: be a valid handle to a graphics sname:VkPipeline * The pname:stage member of each element of pname:pStages must: be unique * The pname:stage member of one element of pname:pStages must: be ename:VK_SHADER_STAGE_VERTEX_BIT * The pname:stage member of any given element of pname:pStages must: not be ename:VK_SHADER_STAGE_COMPUTE_BIT * If pname:pStages includes a tessellation control shader stage, it must: include a tessellation evaluation shader stage * If pname:pStages includes a tessellation evaluation shader stage, it must: include a tessellation control shader stage * If pname:pStages includes a tessellation control shader stage and a tessellation evaluation shader stage, pname:pTessellationState must: not be `NULL` * If pname:pStages includes tessellation shader stages, the shader code of at least one stage must: contain an code:OpExecutionMode instruction that specifies the type of subdivision in the pipeline * If pname:pStages includes tessellation shader stages, and the shader code of both stages contain an code:OpExecutionMode instruction that specifies the type of subdivision in the pipeline, they must: both specify the same subdivision mode * If pname:pStages includes tessellation shader stages, the shader code of at least one stage must: contain an code:OpExecutionMode instruction that specifies the output patch size in the pipeline * If pname:pStages includes tessellation shader stages, and the shader code of both contain an code:OpExecutionMode instruction that specifies the out patch size in the pipeline, they must: both specify the same patch size * If pname:pStages includes tessellation shader stages, the pname:topology member of pname:pInputAssembly must: be ename:VK_PRIMITIVE_TOPOLOGY_PATCH_LIST * If the pname:topology member of pname:pInputAssembly is ename:VK_PRIMITIVE_TOPOLOGY_PATCH_LIST, pname:pStages must: include tessellation shader stages * If pname:pStages includes a geometry shader stage, and does not include any tessellation shader stages, its shader code must: contain an code:OpExecutionMode instruction that specifies an input primitive type that is &lt;&lt;shaders-geometry-execution, compatible&gt;&gt; with the primitive topology specified in pname:pInputAssembly * If pname:pStages includes a geometry shader stage, and also includes tessellation shader stages, its shader code must: contain an code:OpExecutionMode instruction that specifies an input primitive type that is &lt;&lt;shaders-geometry-execution, compatible&gt;&gt; with the primitive topology that is output by the tessellation stages * If pname:pStages includes a fragment shader stage and a geometry shader stage, and the fragment shader code reads from an input variable that is decorated with code:PrimitiveID, then the geometry shader code must: write to a matching output variable, decorated with code:PrimitiveID, in all execution paths * If pname:pStages includes a fragment shader stage, its shader code must: not read from any input attachment that is defined as ename:VK_ATTACHMENT_UNUSED in pname:subpass * The shader code for the entry points identified by pname:pStages, and the rest of the state identified by this structure must: adhere to the pipeline linking rules described in the &lt;&lt;interfaces,Shader Interfaces&gt;&gt; chapter * If pname:subpass uses a depth/stencil attachment in pname:renderpass that has a layout of ename:VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL in the sname:VkAttachmentReference defined by pname:subpass, and pname:pDepthStencilState is not `NULL`, the pname:depthWriteEnable member of pname:pDepthStencilState must: be ename:VK_FALSE * If pname:subpass uses a depth/stencil attachment in pname:renderpass that has a layout of ename:VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL in the sname:VkAttachmentReference defined by pname:subpass, and pname:pDepthStencilState is not `NULL`, the pname:failOp, pname:passOp and pname:depthFailOp members of each of the pname:front and pname:back members of pname:pDepthStencilState must: be ename:VK_STENCIL_OP_KEEP * If pname:pColorBlendState is not `NULL`, the pname:blendEnable member of each element of the pname:pAttachment member of pname:pColorBlendState must: be ename:VK_FALSE if the pname:format of the attachment referred to in pname:subpass of pname:renderPass does not support color blend operations, as specified by the ename:VK_FORMAT_FEATURE_COLOR_ATTACHMENT_BLEND_BIT flag in sname:VkFormatProperties::pname:linearTilingFeatures or sname:VkFormatProperties::pname:optimalTilingFeatures returned by fname:vkGetPhysicalDeviceFormatProperties * If pname:pColorBlendState is not `NULL`, The pname:attachmentCount member of pname:pColorBlendState must: be equal to the pname:colorAttachmentCount used to create pname:subpass * If no element of the pname:pDynamicStates member of pname:pDynamicState is ename:VK_DYNAMIC_STATE_VIEWPORT, the pname:pViewports member of pname:pViewportState must: be a pointer to an array of pname:pViewportState::pname:viewportCount sname:VkViewport structures * If no element of the pname:pDynamicStates member of pname:pDynamicState is ename:VK_DYNAMIC_STATE_SCISSOR, the pname:pScissors member of pname:pViewportState must: be a pointer to an array of pname:pViewportState::pname:scissorCount sname:VkRect2D structures * If the wide lines feature is not enabled, and no element of the pname:pDynamicStates member of pname:pDynamicState is ename:VK_DYNAMIC_STATE_LINE_WIDTH, the pname:lineWidth member of pname:pRasterizationState must: be `1.0` * If the pname:rasterizerDiscardEnable member of pname:pRasterizationState is ename:VK_FALSE, pname:pViewportState must: be a pointer to a valid sname:VkPipelineViewportStateCreateInfo structure * If the pname:rasterizerDiscardEnable member of pname:pRasterizationState is ename:VK_FALSE, pname:pMultisampleState must: be a pointer to a valid sname:VkPipelineMultisampleStateCreateInfo structure * If the pname:rasterizerDiscardEnable member of pname:pRasterizationState is ename:VK_FALSE, and pname:subpass uses a depth/stencil attachment, pname:pDepthStencilState must: be a pointer to a valid sname:VkPipelineDepthStencilStateCreateInfo structure * If the pname:rasterizerDiscardEnable member of pname:pRasterizationState is ename:VK_FALSE, and pname:subpass uses color attachments, pname:pColorBlendState must: be a pointer to a valid sname:VkPipelineColorBlendStateCreateInfo structure * If the depth bias clamping feature is not enabled, no element of the pname:pDynamicStates member of pname:pDynamicState is ename:VK_DYNAMIC_STATE_DEPTH_BIAS, and the pname:depthBiasEnable member of pname:pDepthStencil is ename:VK_TRUE, the pname:depthBiasClamp member of pname:pDepthStencil must: be `0.0` * If no element of the pname:pDynamicStates member of pname:pDynamicState is ename:VK_DYNAMIC_STATE_DEPTH_BOUNDS, and the pname:depthBoundsTestEnable member of pname:pDepthStencil is ename:VK_TRUE, the pname:minDepthBounds and pname:maxDepthBounds members of pname:pDepthStencil must: be between `0.0` and `1.0`, inclusive * pname:layout must: be &lt;&lt;descriptorsets-pipelinelayout-consistency,consistent&gt;&gt; with all shaders specified in pname:pStages * If pname:subpass uses color and/or depth/stencil attachments, then the pname:rasterizationSamples member of pname:pMultisampleState must: be the same as the sample count for those subpass attachments * If pname:subpass does not use any color and/or depth/stencil attachments, then the pname:rasterizationSamples member of pname:pMultisampleState must: follow the rules for a &lt;&lt;renderpass-noattachments, zero-attachment subpass&gt;&gt; * pname:subpass must: be a valid subpass within pname:renderpass ****
+    /// </para>
     /// </summary>
 	[Flags]
 	public enum PipelineCreateFlags
@@ -1761,6 +1788,9 @@ namespace SharpVk
     /// <para>
     /// After beginning a query, that query is considered _active_ within the command buffer it was called in until that same query is ended. Queries active in a primary command buffer when secondary command buffers are executed are considered active for those secondary command buffers.
     /// </para>
+    /// <para>
+    /// .Valid Usage **** * The query identified by pname:queryPool and pname:query must: currently not be &lt;&lt;queries-operation-active,active&gt;&gt; * The query identified by pname:queryPool and pname:query must: be unavailable * If the &lt;&lt;features-features-occlusionQueryPrecise,precise occlusion queries&gt;&gt; feature is not enabled, or the pname:queryType used to create pname:queryPool was not ename:VK_QUERY_TYPE_OCCLUSION, pname:flags must: not contain ename:VK_QUERY_CONTROL_PRECISE_BIT * pname:queryPool must: have been created with a pname:queryType that differs from that of any other queries that have been made &lt;&lt;queries-operation-active,active&gt;&gt;, and are currently still active within pname:commandBuffer * pname:query must: be less than the number of queries in pname:queryPool * If the pname:queryType used to create pname:queryPool was ename:VK_QUERY_TYPE_OCCLUSION, the sname:VkCommandPool that pname:commandBuffer was allocated from must: support graphics operations * If the pname:queryType used to create pname:queryPool was ename:VK_QUERY_TYPE_PIPELINE_STATISTICS and any of the pname:pipelineStatistics indicate graphics operations, the sname:VkCommandPool that pname:commandBuffer was allocated from must: support graphics operations * If the pname:queryType used to create pname:queryPool was ename:VK_QUERY_TYPE_PIPELINE_STATISTICS and any of the pname:pipelineStatistics indicate compute operations, the sname:VkCommandPool that pname:commandBuffer was allocated from must: support compute operations ****
+    /// </para>
     /// </summary>
 	[Flags]
 	public enum QueryControlFlags
@@ -1935,6 +1965,9 @@ namespace SharpVk
     /// <para>
     /// [NOTE] .Note ==== Satisfying this guarantee may: require careful ordering by the application, e.g. to read the availability status before reading the results. ====
     /// </para>
+    /// <para>
+    /// .Valid Usage **** * pname:firstQuery must: be less than the number of queries in pname:queryPool * If ename:VK_QUERY_RESULT_64_BIT is not set in pname:flags then pname:pData and pname:stride must: be multiples of `4` * If ename:VK_QUERY_RESULT_64_BIT is set in pname:flags then pname:pData and pname:stride must: be multiples of `8` * The sum of pname:firstQuery and pname:queryCount must: be less than or equal to the number of queries in pname:queryPool * pname:dataSize must: be large enough to contain the result of each query, as described &lt;&lt;queries-operation-memorylayout,here&gt;&gt; * If the pname:queryType used to create pname:queryPool was ename:VK_QUERY_TYPE_TIMESTAMP, pname:flags must: not contain ename:VK_QUERY_RESULT_PARTIAL_BIT ****
+    /// </para>
     /// </summary>
 	[Flags]
 	public enum QueryResultFlags
@@ -1991,19 +2024,19 @@ namespace SharpVk
     /// Possible values of pname:minImageTransferGranularity are:
     /// </para>
     /// <para>
-    /// * latexmath:[$(0,0,0)$] which indicates that only whole mip levels must: be transferred using the image transfer operations on the corresponding queues. In this case, the following restrictions apply to all offset and extent parameters of image transfer operations:
+    /// * [eq]#(0,0,0)# which indicates that only whole mip levels must: be transferred using the image transfer operations on the corresponding queues. In this case, the following restrictions apply to all offset and extent parameters of image transfer operations:
     /// </para>
     /// <para>
     /// ** The pname:x, pname:y, and pname:z members of a slink:VkOffset3D parameter must: always be zero. ** The pname:width, pname:height, and pname:depth members of a slink:VkExtent3D parameter must: always match the width, height, and depth of the image subresource corresponding to the parameter, respectively.
     /// </para>
     /// <para>
-    /// * latexmath:[$(Ax, Ay, Az)$] where latexmath:[$Ax$], latexmath:[$Ay$], and latexmath:[$Az$] are all integer powers of two. In this case the following restrictions apply to all image transfer operations:
+    /// * [eq]#(A~x~, A~y~, A~z~)# where [eq]#A~x~#, [eq]#A~y~#, and [eq]#A~z~# are all integer powers of two. In this case the following restrictions apply to all image transfer operations:
     /// </para>
     /// <para>
-    /// ** pname:x, pname:y, and pname:z of a slink:VkOffset3D parameter must: be integer multiples of latexmath:[$Ax$], latexmath:[$Ay$], and latexmath:[$Az$], respectively. ** pname:width of a slink:VkExtent3D parameter must: be an integer multiple of latexmath:[$Ax$], or else latexmath:[$(x + width)$] must: equal the width of the image subresource corresponding to the parameter. ** pname:height of a slink:VkExtent3D parameter must: be an integer multiple of latexmath:[$Ay$], or else latexmath:[$(y + height)$] must: equal the height of the image subresource corresponding to the parameter. ** pname:depth of a slink:VkExtent3D parameter must: be an integer multiple of latexmath:[$Az$], or else latexmath:[$(z + depth)$] must: equal the depth of the image subresource corresponding to the parameter. ** If the format of the image corresponding to the parameters is one of the block-compressed formats then for the purposes of the above calculations the granularity must: be scaled up by the compressed texel block dimensions.
+    /// ** pname:x, pname:y, and pname:z of a slink:VkOffset3D parameter must: be integer multiples of [eq]#A~x~#, [eq]#A~y~#, and [eq]#A~z~#, respectively. ** pname:width of a slink:VkExtent3D parameter must: be an integer multiple of [eq]#A~x~#, or else [eq]#pname:x + pname:width# must: equal the width of the image subresource corresponding to the parameter. ** pname:height of a slink:VkExtent3D parameter must: be an integer multiple of [eq]#A~y~#, or else [eq]#pname:y + pname:height# must: equal the height of the image subresource corresponding to the parameter. ** pname:depth of a slink:VkExtent3D parameter must: be an integer multiple of [eq]#A~z~#, or else [eq]#pname:z + pname:depth# must: equal the depth of the image subresource corresponding to the parameter. ** If the format of the image corresponding to the parameters is one of the block-compressed formats then for the purposes of the above calculations the granularity must: be scaled up by the compressed texel block dimensions.
     /// </para>
     /// <para>
-    /// Queues supporting graphics and/or compute operations must: report latexmath:[$(1,1,1)$] in pname:minImageTransferGranularity, meaning that there are no additional restrictions on the granularity of image transfer operations for these queues. Other queues supporting image transfer operations are only required: to support whole mip level transfers, thus pname:minImageTransferGranularity for queues belonging to such queue families may: be latexmath:[$(0,0,0)$].
+    /// Queues supporting graphics and/or compute operations must: report [eq]#(1,1,1)# in pname:minImageTransferGranularity, meaning that there are no additional restrictions on the granularity of image transfer operations for these queues. Other queues supporting image transfer operations are only required: to support whole mip level transfers, thus pname:minImageTransferGranularity for queues belonging to such queue families may: be [eq]#(0,0,0)#.
     /// </para>
     /// </summary>
 	[Flags]
@@ -2167,6 +2200,9 @@ namespace SharpVk
     /// <para>
     /// Bitmask specifying a pipeline stage.
     /// </para>
+    /// <para>
+    /// .Valid Usage **** * If the &lt;&lt;features-features-geometryShader,geometry shaders&gt;&gt; feature is not enabled, pname:stage must: not be ename:VK_SHADER_STAGE_GEOMETRY_BIT * If the &lt;&lt;features-features-tessellationShader,tessellation shaders&gt;&gt; feature is not enabled, pname:stage must: not be ename:VK_SHADER_STAGE_TESSELLATION_CONTROL_BIT or ename:VK_SHADER_STAGE_TESSELLATION_EVALUATION_BIT * pname:stage must: not be ename:VK_SHADER_STAGE_ALL_GRAPHICS, or ename:VK_SHADER_STAGE_ALL * pname:pName must: be the name of an code:OpEntryPoint in pname:module with an execution model that matches pname:stage * If the identified entry point includes any variable in its interface that is declared with the code:ClipDistance code:BuiltIn decoration, that variable must: not have an array size greater than sname:VkPhysicalDeviceLimits::pname:maxClipDistances * If the identified entry point includes any variable in its interface that is declared with the code:CullDistance code:BuiltIn decoration, that variable must: not have an array size greater than sname:VkPhysicalDeviceLimits::pname:maxCullDistances * If the identified entry point includes any variables in its interface that are declared with the code:ClipDistance or code:CullDistance code:BuiltIn decoration, those variables must: not have array sizes which sum to more than sname:VkPhysicalDeviceLimits::pname:maxCombinedClipAndCullDistances * If the identified entry point includes any variable in its interface that is declared with the code:SampleMask code:BuiltIn decoration, that variable must: not have an array size greater than sname:VkPhysicalDeviceLimits::pname:maxSampleMaskWords * If pname:stage is ename:VK_SHADER_STAGE_VERTEX_BIT, the identified entry point must: not include any input variable in its interface that is decorated with code:CullDistance * If pname:stage is ename:VK_SHADER_STAGE_TESSELLATION_CONTROL_BIT or ename:VK_SHADER_STAGE_TESSELLATION_EVALUATION_BIT, and the identified entry point has an code:OpExecutionMode instruction that specifies a patch size with code:OutputVertices, the patch size must: be greater than `0` and less than or equal to sname:VkPhysicalDeviceLimits::pname:maxTessellationPatchSize * If pname:stage is ename:VK_SHADER_STAGE_GEOMETRY_BIT, the identified entry point must: have an code:OpExecutionMode instruction that specifies a maximum output vertex count that is greater than `0` and less than or equal to sname:VkPhysicalDeviceLimits::pname:maxGeometryOutputVertices * If pname:stage is ename:VK_SHADER_STAGE_GEOMETRY_BIT, the identified entry point must: have an code:OpExecutionMode instruction that specifies an invocation count that is greater than `0` and less than or equal to sname:VkPhysicalDeviceLimits::pname:maxGeometryShaderInvocations * If pname:stage is ename:VK_SHADER_STAGE_GEOMETRY_BIT, and the identified entry point writes to code:Layer for any primitive, it must: write the same value to code:Layer for all vertices of a given primitive * If pname:stage is ename:VK_SHADER_STAGE_GEOMETRY_BIT, and the identified entry point writes to code:ViewportIndex for any primitive, it must: write the same value to code:ViewportIndex for all vertices of a given primitive * If pname:stage is ename:VK_SHADER_STAGE_FRAGMENT_BIT, the identified entry point must: not include any output variables in its interface decorated with code:CullDistance * If pname:stage is ename:VK_SHADER_STAGE_FRAGMENT_BIT, and the identified entry point writes to code:FragDepth in any execution path, it must: write to code:FragDepth in all execution paths ****
+    /// </para>
     /// </summary>
 	[Flags]
 	public enum ShaderStageFlags
@@ -2266,19 +2302,22 @@ namespace SharpVk
     /// Bitmask specifying usage of a sparse memory binding operation.
     /// </para>
     /// <para>
-    /// The _binding range_ latexmath:[$[\mathit{resourceOffset}, \mathit{resourceOffset} + \mathit{size})$] has different constraints based on pname:flags. If pname:flags contains ename:VK_SPARSE_MEMORY_BIND_METADATA_BIT, the binding range must: be within the mip tail region of the metadata aspect. This metadata region is defined by:
+    /// The _binding range_ [eq]#[pname:resourceOffset, pname:resourceOffset {plus} pname:size)# has different constraints based on pname:flags. If pname:flags contains ename:VK_SPARSE_MEMORY_BIND_METADATA_BIT, the binding range must: be within the mip tail region of the metadata aspect. This metadata region is defined by:
     /// </para>
     /// <para>
-    /// [latexmath] ++++++++++++++++++++++++++ \begin{align*} \mathit{metadataRegion} = [&amp; \mathit{imageMipTailOffset} + \mathit{imageMipTailStride} \times n,\\ &amp;\mathit{imageMipTailOffset} + \mathit{imageMipTailStride} \times n + \mathit{imageMipTailSize}) \end{align*} ++++++++++++++++++++++++++
+    /// :: [eq]#metadataRegion = [base, base + pname:imageMipTailSize)# :: [eq]#base = pname:imageMipTailOffset + pname:imageMipTailStride {times} n#
     /// </para>
     /// <para>
-    /// Where pname:imageMipTailOffset, pname:imageMipTailSize, and pname:imageMipTailStride values are from the slink:VkSparseImageMemoryRequirements that correspond to the metadata aspect of the image. The term latexmath:[$n$] is a valid array layer index for the image.
+    /// and pname:imageMipTailOffset, pname:imageMipTailSize, and pname:imageMipTailStride values are from the slink:VkSparseImageMemoryRequirements corresponding to the metadata aspect of the image, and [eq]#n# is a valid array layer index for the image,
     /// </para>
     /// <para>
     /// pname:imageMipTailStride is considered to be zero for aspects where sname:VkSparseImageMemoryRequirements::pname:formatProperties.flags contains ename:VK_SPARSE_IMAGE_FORMAT_SINGLE_MIPTAIL_BIT.
     /// </para>
     /// <para>
-    /// If pname:flags does not contain ename:VK_SPARSE_MEMORY_BIND_METADATA_BIT, the binding range must: be within the range latexmath:[$[0, {\mathit{VkMemoryRequirements}::\mathit{size}})$].
+    /// If pname:flags does not contain ename:VK_SPARSE_MEMORY_BIND_METADATA_BIT, the binding range must: be within the range [eq]#[0,slink:VkMemoryRequirements::pname:size)#.
+    /// </para>
+    /// <para>
+    /// .Valid Usage **** * If pname:memory is not dlink:VK_NULL_HANDLE, pname:memory and pname:memoryOffset must: match the memory requirements of the resource, as described in section &lt;&lt;resources-association&gt;&gt; * If pname:memory is not dlink:VK_NULL_HANDLE, pname:memory must: not have been created with a memory type that reports ename:VK_MEMORY_PROPERTY_LAZILY_ALLOCATED_BIT bit set * pname:size must: be greater than `0` * pname:resourceOffset must: be less than the size of the resource * pname:size must: be less than or equal to the size of the resource minus pname:resourceOffset * pname:memoryOffset must: be less than the size of pname:memory * pname:size must: be less than or equal to the size of pname:memory minus pname:memoryOffset ****
     /// </para>
     /// </summary>
 	[Flags]
@@ -2301,6 +2340,9 @@ namespace SharpVk
     /// <summary>
     /// <para>
     /// Bitmask specifying sets of stencil state for which to update the compare mask.
+    /// </para>
+    /// <para>
+    /// .Valid Usage **** * The currently bound graphics pipeline must: have been created with the ename:VK_DYNAMIC_STATE_STENCIL_COMPARE_MASK dynamic state enabled ****
     /// </para>
     /// </summary>
 	[Flags]
@@ -2538,6 +2580,9 @@ namespace SharpVk
     /// <para>
     /// If pname:flags includes ename:VK_ATTACHMENT_DESCRIPTION_MAY_ALIAS_BIT, then the attachment is treated as if it shares physical memory with another attachment in the same render pass. This information limits the ability of the implementation to reorder certain operations (like layout transitions and the pname:loadOp) such that it is not improperly reordered against other uses of the same physical memory via a different attachment. This is described in more detail below.
     /// </para>
+    /// <para>
+    /// .Valid Usage **** * pname:finalLayout must: not be ename:VK_IMAGE_LAYOUT_UNDEFINED or ename:VK_IMAGE_LAYOUT_PREINITIALIZED ****
+    /// </para>
     /// </summary>
 	public enum AttachmentStoreOp
 	{
@@ -2563,13 +2608,13 @@ namespace SharpVk
     /// The semantics of each enum value is described in the table below:
     /// </para>
     /// <para>
-    /// .Blend Factors [width="100%",options="header",align="center",cols="59%,28%,13%"] |==== |VkBlendFactor                                  | RGB Blend Factors (latexmath:[$S_r,S_g,S_b$]) or (latexmath:[$D_r,D_g,D_b$]) | Alpha Blend Factor (latexmath:[$S_a$] or latexmath:[$D_a$]) |ename:VK_BLEND_FACTOR_ZERO                     | latexmath:[$(0,0,0)$]                           | latexmath:[$0$] |ename:VK_BLEND_FACTOR_ONE                      | latexmath:[$(1,1,1)$]                           | latexmath:[$1$] |ename:VK_BLEND_FACTOR_SRC_COLOR                | latexmath:[$(R_{s0},G_{s0},B_{s0})$]            | latexmath:[$A_{s0}$] |ename:VK_BLEND_FACTOR_ONE_MINUS_SRC_COLOR      | latexmath:[$(1-R_{s0},1-G_{s0},1-B_{s0})$]      | latexmath:[$1-A_{s0}$] |ename:VK_BLEND_FACTOR_DST_COLOR                | latexmath:[$(R_d,G_d,B_d)$]                     | latexmath:[$A_d$] |ename:VK_BLEND_FACTOR_ONE_MINUS_DST_COLOR      | latexmath:[$(1-R_d,1-G_d,1-B_d)$]               | latexmath:[$1-A_d$] |ename:VK_BLEND_FACTOR_SRC_ALPHA                | latexmath:[$(A_{s0},A_{s0},A_{s0})$]            | latexmath:[$A_{s0}$] |ename:VK_BLEND_FACTOR_ONE_MINUS_SRC_ALPHA      | latexmath:[$(1-A_{s0},1-A_{s0},1-A_{s0})$]      | latexmath:[$1-A_{s0}$] |ename:VK_BLEND_FACTOR_DST_ALPHA                | latexmath:[$(A_d,A_d,A_d)$]                     | latexmath:[$A_d$] |ename:VK_BLEND_FACTOR_ONE_MINUS_DST_ALPHA      | latexmath:[$(1-A_d,1-A_d,1-A_d)$]               | latexmath:[$1-A_d$] |ename:VK_BLEND_FACTOR_CONSTANT_COLOR           | latexmath:[$(R_c,G_c,B_c)$]                     | latexmath:[$A_c$] |ename:VK_BLEND_FACTOR_ONE_MINUS_CONSTANT_COLOR | latexmath:[$(1-R_c,1-G_c,1-B_c)$]               | latexmath:[$1-A_c$] |ename:VK_BLEND_FACTOR_CONSTANT_ALPHA           | latexmath:[$(A_c,A_c,A_c)$]                     | latexmath:[$A_c$] |ename:VK_BLEND_FACTOR_ONE_MINUS_CONSTANT_ALPHA | latexmath:[$(1-A_c,1-A_c,1-A_c)$]               | latexmath:[$1-A_c$] |ename:VK_BLEND_FACTOR_SRC_ALPHA_SATURATE       | latexmath:[$(f,f,f); f=\min(A_{s0},1-A_d)$]     | latexmath:[$1$] |ename:VK_BLEND_FACTOR_SRC1_COLOR               | latexmath:[$(R_{s1},G_{s1},B_{s1})$]            | latexmath:[$A_{s1}$] |ename:VK_BLEND_FACTOR_ONE_MINUS_SRC1_COLOR     | latexmath:[$(1-R_{s1},1-G_{s1},1-B_{s1})$]      | latexmath:[$1-A_{s1}$] |ename:VK_BLEND_FACTOR_SRC1_ALPHA               | latexmath:[$(A_{s1},A_{s1},A_{s1})$]            | latexmath:[$A_{s1}$] |ename:VK_BLEND_FACTOR_ONE_MINUS_SRC1_ALPHA     | latexmath:[$(1-A_{s1},1-A_{s1},1-A_{s1})$]      | latexmath:[$1-A_{s1}$] |====
+    /// .Blend Factors [width="100%",options="header",align="center",cols="59%,28%,13%"] |==== |VkBlendFactor                                  | RGB Blend Factors [eq]#(S~r~,S~g~,S~b~)# or [eq]#(D~r~,D~g~,D~b~)# | Alpha Blend Factor ([eq]#S~a~# or [eq]#D~a~#) |ename:VK_BLEND_FACTOR_ZERO                     | [eq]#(0,0,0)#                              | [eq]#0# |ename:VK_BLEND_FACTOR_ONE                      | [eq]#(1,1,1)#                              | [eq]#1# |ename:VK_BLEND_FACTOR_SRC_COLOR                | [eq]#(R~s0~,G~s0~,B~s0~)#                  | [eq]#A~s0~# |ename:VK_BLEND_FACTOR_ONE_MINUS_SRC_COLOR      | [eq]#(1-R~s0~,1-G~s0~,1-B~s0~)#            | [eq]#1-A~s0~# |ename:VK_BLEND_FACTOR_DST_COLOR                | [eq]#(R~d~,G~d~,B~d~)#                     | [eq]#A~d~# |ename:VK_BLEND_FACTOR_ONE_MINUS_DST_COLOR      | [eq]#(1-R~d~,1-G~d~,1-B~d~)#               | [eq]#1-A~d~# |ename:VK_BLEND_FACTOR_SRC_ALPHA                | [eq]#(A~s0~,A~s0~,A~s0~)#                  | [eq]#A~s0~# |ename:VK_BLEND_FACTOR_ONE_MINUS_SRC_ALPHA      | [eq]#(1-A~s0~,1-A~s0~,1-A~s0~)#            | [eq]#1-A~s0~# |ename:VK_BLEND_FACTOR_DST_ALPHA                | [eq]#(A~d~,A~d~,A~d~)#                     | [eq]#A~d~# |ename:VK_BLEND_FACTOR_ONE_MINUS_DST_ALPHA      | [eq]#(1-A~d~,1-A~d~,1-A~d~)#               | [eq]#1-A~d~# |ename:VK_BLEND_FACTOR_CONSTANT_COLOR           | [eq]#(R~c~,G~c~,B~c~)#                     | [eq]#A~c~# |ename:VK_BLEND_FACTOR_ONE_MINUS_CONSTANT_COLOR | [eq]#(1-R~c~,1-G~c~,1-B~c~)#               | [eq]#1-A~c~# |ename:VK_BLEND_FACTOR_CONSTANT_ALPHA           | [eq]#(A~c~,A~c~,A~c~)#                     | [eq]#A~c~# |ename:VK_BLEND_FACTOR_ONE_MINUS_CONSTANT_ALPHA | [eq]#(1-A~c~,1-A~c~,1-A~c~)#               | [eq]#1-A~c~# |ename:VK_BLEND_FACTOR_SRC_ALPHA_SATURATE       | [eq]#(f,f,f)#; [eq]#f = min(A~s0~,1-A~d~)# | [eq]#1# |ename:VK_BLEND_FACTOR_SRC1_COLOR               | [eq]#(R~s1~,G~s1~,B~s1~)#                  | [eq]#A~s1~# |ename:VK_BLEND_FACTOR_ONE_MINUS_SRC1_COLOR     | [eq]#(1-R~s1~,1-G~s1~,1-B~s1~)#            | [eq]#1-A~s1~# |ename:VK_BLEND_FACTOR_SRC1_ALPHA               | [eq]#(A~s1~,A~s1~,A~s1~)#                  | [eq]#A~s1~# |ename:VK_BLEND_FACTOR_ONE_MINUS_SRC1_ALPHA     | [eq]#(1-A~s1~,1-A~s1~,1-A~s1~)#            | [eq]#1-A~s1~# |====
     /// </para>
     /// <para>
     /// In this table, the following conventions are used:
     /// </para>
     /// <para>
-    /// * latexmath:[$R_{s0},G_{s0},B_{s0}$] and latexmath:[$A_{s0}$] represent the first source color R, G, B, and A components, respectively, for the fragment output location corresponding to the color attachment being blended. * latexmath:[$R_{s1},G_{s1},B_{s1}$] and latexmath:[$A_{s1}$] represent the second source color R, G, B, and A components, respectively, used in dual source blending modes, for the fragment output location corresponding to the color attachment being blended. * latexmath:[$R_d,G_d,B_d$] and latexmath:[$A_d$] represent the R, G, B, and A components of the destination color. That is, the color currently in the corresponding color attachment for this fragment/sample. * latexmath:[$R_c,G_c,B_c$] and latexmath:[$A_c$] represent the blend constant R, G, B, and A components, respectively.
+    /// * [eq]#R~s0~,G~s0~,B~s0~# and [eq]#A~s0~# represent the first source color R, G, B, and A components, respectively, for the fragment output location corresponding to the color attachment being blended. * [eq]#R~s1~,G~s1~,B~s1~# and [eq]#A~s1~# represent the second source color R, G, B, and A components, respectively, used in dual source blending modes, for the fragment output location corresponding to the color attachment being blended. * [eq]#R~d~,G~d~,B~d~# and [eq]#A~d~# represent the R, G, B, and A components of the destination color. That is, the color currently in the corresponding color attachment for this fragment/sample. * [eq]#R~c~,G~c~,B~c~# and [eq]#A~c~# represent the blend constant R, G, B, and A components, respectively.
     /// </para>
     /// </summary>
 	public enum BlendFactor
@@ -2704,31 +2749,31 @@ namespace SharpVk
     /// .Blend Operations [width="100%",cols="45%,30%,25%",options="header",align="center"] |==== |VkBlendOp                                   | RGB Components                    | Alpha Component
     /// </para>
     /// <para>
-    /// |ename:VK_BLEND_OP_ADD | latexmath:[$R=R_{s0}\times S_r+R_d\times D_r$] + latexmath:[$G=G_{s0}\times S_g+G_d\times D_g$] + latexmath:[$B=B_{s0}\times S_b+B_d\times D_b$] | latexmath:[$A=A_{s0}\times S_a+A_d\times D_a$]
+    /// |ename:VK_BLEND_OP_ADD | [eq]#R = R~s0~ {times} S~r~ + R~d~ {times} D~r~# + [eq]#G = G~s0~ {times} S~g~ + G~d~ {times} D~g~# + [eq]#B = B~s0~ {times} S~b~ + B~d~ {times} D~b~# | [eq]#A = A~s0~ {times} S~a~ + A~d~ {times} D~a~#
     /// </para>
     /// <para>
-    /// |ename:VK_BLEND_OP_SUBTRACT | latexmath:[$R=R_{s0}\times S_r-R_d\times D_r$] + latexmath:[$G=G_{s0}\times S_g-G_d\times D_g$] + latexmath:[$B=B_{s0}\times S_b-B_d\times D_b$] | latexmath:[$A=A_{s0}\times S_a-A_d\times D_a$]
+    /// |ename:VK_BLEND_OP_SUBTRACT | [eq]#R = R~s0~ {times} S~r~ - R~d~ {times} D~r~# + [eq]#G = G~s0~ {times} S~g~ - G~d~ {times} D~g~# + [eq]#B = B~s0~ {times} S~b~ - B~d~ {times} D~b~# | [eq]#A = A~s0~ {times} S~a~ - A~d~ {times} D~a~#
     /// </para>
     /// <para>
-    /// |ename:VK_BLEND_OP_REVERSE_SUBTRACT | latexmath:[$R=R_d\times D_r-R_{s0}\times S_r$] + latexmath:[$G=G_d\times D_g-G_{s0}\times S_g$] + latexmath:[$B=B_d\times D_b-B_{s0}\times S_b$] | latexmath:[$A=A_d\times D_a-A_{s0}\times S_a$]
+    /// |ename:VK_BLEND_OP_REVERSE_SUBTRACT | [eq]#R = R~d~ {times} D~r~ - R~s0~ {times} S~r~# + [eq]#G = G~d~ {times} D~g~ - G~s0~ {times} S~g~# + [eq]#B = B~d~ {times} D~b~ - B~s0~ {times} S~b~# | [eq]#A = A~d~ {times} D~a~ - A~s0~ {times} S~a~#
     /// </para>
     /// <para>
-    /// |ename:VK_BLEND_OP_MIN | latexmath:[$R=\min(R_{s0},R_d)$] + latexmath:[$G=\min(G_{s0},G_d)$] + latexmath:[$B=\min(B_{s0},B_d)$] | latexmath:[$A=\min(A_{s0},A_d)$]
+    /// |ename:VK_BLEND_OP_MIN | [eq]#R = min(R~s0~,R~d~)# + [eq]#G = min(G~s0~,G~d~)# + [eq]#B = min(B~s0~,B~d~)# | [eq]#A = min(A~s0~,A~d~)#
     /// </para>
     /// <para>
-    /// |ename:VK_BLEND_OP_MAX | latexmath:[$R=\max(R_{s0},R_d)$] + latexmath:[$G=\max(G_{s0},G_d)$] + latexmath:[$B=\max(B_{s0},B_d)$] | latexmath:[$A=\max(A_{s0},A_d)$] |====
+    /// |ename:VK_BLEND_OP_MAX | [eq]#R = max(R~s0~,R~d~)# + [eq]#G = max(G~s0~,G~d~)# + [eq]#B = max(B~s0~,B~d~)# | [eq]#A = max(A~s0~,A~d~)# |====
     /// </para>
     /// <para>
     /// In this table, the following conventions are used:
     /// </para>
     /// <para>
-    /// * latexmath:[$R_{s0},G_{s0},B_{s0}$] and latexmath:[$A_{s0}$] represent the first source color R, G, B, and A components, respectively. * latexmath:[$R_d,G_d,B_d$] and latexmath:[$A_d$] represent the R, G, B, and A components of the destination color. That is, the color currently in the corresponding color attachment for this fragment/sample. * latexmath:[$S_r,S_g,S_b$] and latexmath:[$S_a$] represent the source blend factor R, G, B, and A components, respectively. * latexmath:[$D_r,D_g,D_b$] and latexmath:[$D_a$] represent the destination blend factor R, G, B, and A components, respectively.
+    /// * [eq]#R~s0~, G~s0~, B~s0~# and [eq]#A~s0~# represent the first source color R, G, B, and A components, respectively. * [eq]#R~d~, G~d~, B~d~# and [eq]#A~d~# represent the R, G, B, and A components of the destination color. That is, the color currently in the corresponding color attachment for this fragment/sample. * [eq]#S~r~, S~g~, S~b~# and [eq]#S~a~# represent the source blend factor R, G, B, and A components, respectively. * [eq]#D~r~, D~g~, D~b~# and [eq]#D~a~# represent the destination blend factor R, G, B, and A components, respectively.
     /// </para>
     /// <para>
-    /// The blending operation produces a new set of values latexmath:[$R, G, B$] and latexmath:[$A$], which are written to the framebuffer attachment. If blending is not enabled for this attachment, then latexmath:[$R, G, B$] and latexmath:[$A$] are assigned latexmath:[$R_{s0},G_{s0},B_{s0}$] and latexmath:[$A_{s0}$], respectively.
+    /// The blending operation produces a new set of values [eq]#R, G, B# and [eq]#A#, which are written to the framebuffer attachment. If blending is not enabled for this attachment, then [eq]#R, G, B# and [eq]#A# are assigned [eq]#R~s0~, G~s0~, B~s0~# and [eq]#A~s0~#, respectively.
     /// </para>
     /// <para>
-    /// If the color attachment is fixed-point, the components of the source and destination values and blend factors are each clamped to latexmath:[$[0,1\]$] or latexmath:[$[-1,1\]$] respectively for an unsigned normalized or signed normalized color attachment prior to evaluating the blend operations. If the color attachment is floating-point, no clamping occurs.
+    /// If the color attachment is fixed-point, the components of the source and destination values and blend factors are each clamped to [eq]#[0,1]# or [eq]#[-1,1]# respectively for an unsigned normalized or signed normalized color attachment prior to evaluating the blend operations. If the color attachment is floating-point, no clamping occurs.
     /// </para>
     /// </summary>
 	public enum BlendOp
@@ -2776,7 +2821,7 @@ namespace SharpVk
     /// There are no Vulkan filter modes that directly correspond to OpenGL minification filters of code:GL_LINEAR or code:GL_NEAREST, but they can: be emulated using ename:VK_SAMPLER_MIPMAP_MODE_NEAREST, pname:minLod = 0, and pname:maxLod = 0.25, and using pname:minFilter = ename:VK_FILTER_LINEAR or pname:minFilter = ename:VK_FILTER_NEAREST, respectively.
     /// </para>
     /// <para>
-    /// Note that using a pname:maxLod of zero would cause &lt;&lt;textures-texel-filtering,magnification&gt;&gt; to always be performed, and the pname:magFilter to always be used. This is valid, just not an exact match for OpenGL behavior. Clamping the maximum LOD to 0.25 allows the latexmath:[$\lambda$] value to be non-zero and minification to be performed, while still always rounding down to the base level. If the pname:minFilter and pname:magFilter are equal, then using a pname:maxLod of zero also works. ==================
+    /// Note that using a pname:maxLod of zero would cause &lt;&lt;textures-texel-filtering,magnification&gt;&gt; to always be performed, and the pname:magFilter to always be used. This is valid, just not an exact match for OpenGL behavior. Clamping the maximum LOD to 0.25 allows the [eq]#{lambda}# value to be non-zero and minification to be performed, while still always rounding down to the base level. If the pname:minFilter and pname:magFilter are equal, then using a pname:maxLod of zero also works. ==================
     /// </para>
     /// <para>
     /// pname:addressModeU, pname:addressModeV, and pname:addressModeW must: each have one of the following values:
@@ -2847,6 +2892,9 @@ namespace SharpVk
     /// <para>
     /// Structure specifying a command buffer level.
     /// </para>
+    /// <para>
+    /// .Valid Usage **** * pname:commandBufferCount must: be greater than `0` ****
+    /// </para>
     /// </summary>
 	public enum CommandBufferLevel
 	{
@@ -2879,37 +2927,37 @@ namespace SharpVk
 		Never = 0,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_COMPARE_OP_LESS: the test passes when latexmath:[$R \lt S$].
+		/// ename:VK_COMPARE_OP_LESS: the test passes when [eq]#R &lt; S#.
 		/// </para>
 		/// </summary>
 		Less = 1,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_COMPARE_OP_EQUAL: the test passes when latexmath:[$R = S$].
+		/// ename:VK_COMPARE_OP_EQUAL: the test passes when [eq]#R = S#.
 		/// </para>
 		/// </summary>
 		Equal = 2,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_COMPARE_OP_LESS_OR_EQUAL: the test passes when latexmath:[$R \leq S$].
+		/// ename:VK_COMPARE_OP_LESS_OR_EQUAL: the test passes when [eq]#R {leq} S#.
 		/// </para>
 		/// </summary>
 		LessOrEqual = 3,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_COMPARE_OP_GREATER: the test passes when latexmath:[$R \gt S$].
+		/// ename:VK_COMPARE_OP_GREATER: the test passes when [eq]#R &gt; S#.
 		/// </para>
 		/// </summary>
 		Greater = 4,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_COMPARE_OP_NOT_EQUAL: the test passes when latexmath:[$R \neq S$].
+		/// ename:VK_COMPARE_OP_NOT_EQUAL: the test passes when [eq]#R {neq} S#.
 		/// </para>
 		/// </summary>
 		NotEqual = 5,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_COMPARE_OP_GREATER_OR_EQUAL: the test passes when latexmath:[$R \geq S$].
+		/// ename:VK_COMPARE_OP_GREATER_OR_EQUAL: the test passes when [eq]#R {geq} S#.
 		/// </para>
 		/// </summary>
 		GreaterOrEqual = 6,
@@ -4546,7 +4594,7 @@ namespace SharpVk
     /// [latexmath] ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \[ a = -{1 \over 2}\sum_{i=0}^{n-1} x_f^i y_f^{i \oplus 1} - x_f^{i \oplus 1} y_f^i \] ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     /// </para>
     /// <para>
-    /// where latexmath:[$x_f^i$] and latexmath:[$y_f^i$] are the latexmath:[$x$] and latexmath:[$y$] framebuffer coordinates of the latexmath:[$i$]th vertex of the latexmath:[$n$]-vertex polygon (vertices are numbered starting at zero for the purposes of this computation) and latexmath:[$i \oplus 1$] is latexmath:[$(i + 1)~ \textrm{mod}~ n$].
+    /// where latexmath:[$x_f^i$] and latexmath:[$y_f^i$] are the [eq]#x# and [eq]#y# framebuffer coordinates of the [eq]##i##th vertex of the [eq]#n#-vertex polygon (vertices are numbered starting at zero for the purposes of this computation) and [eq]#i {oplus} 1# is [eq]#(i + 1) mod n#.
     /// </para>
     /// <para>
     /// If pname:frontFace is set to ename:VK_FRONT_FACE_COUNTER_CLOCKWISE, a triangle with positive area is considered front-facing. If it is set to ename:VK_FRONT_FACE_CLOCKWISE, a triangle with negative area is considered front-facing. Any triangle which is not front-facing is back-facing, including zero-area triangles.
@@ -4607,7 +4655,7 @@ namespace SharpVk
 		DepthStencilAttachmentOptimal = 3,
 	    /// <summary>
 		/// <para>
-		/// ename:VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL: must: only be used as a read-only depth/stencil attachment in a sname:VkFramebuffer and/or as a read-only image in a shader (which can: be read as a sampled image, combined image/sampler and/or input attachment). This layout is valid only for image subresources of images created with the ename:VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT usage bit enabled.
+		/// ename:VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL: must: only be used as a read-only depth/stencil attachment in a sname:VkFramebuffer and/or as a read-only image in a shader (which can: be read as a sampled image, combined image/sampler and/or input attachment). This layout is valid only for image subresources of images created with the ename:VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT usage bit enabled. Only image subresources of images created with ename:VK_IMAGE_USAGE_SAMPLED_BIT can: be used as sampled image or combined image/sampler in a shader. Similarly, only image subresources of images created with ename:VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT can: be used as input attachments.
 		/// </para>
 		/// </summary>
 		DepthStencilReadOnlyOptimal = 4,
@@ -4755,6 +4803,9 @@ namespace SharpVk
     /// <para>
     /// Type of index buffer indices.
     /// </para>
+    /// <para>
+    /// .Valid Usage **** * pname:offset must: be less than the size of pname:buffer * The sum of pname:offset and the address of the range of sname:VkDeviceMemory object that is backing pname:buffer, must: be a multiple of the type indicated by pname:indexType * pname:buffer must: have been created with the ename:VK_BUFFER_USAGE_INDEX_BUFFER_BIT flag ****
+    /// </para>
     /// </summary>
 	public enum IndexType
 	{
@@ -4798,10 +4849,10 @@ namespace SharpVk
     /// The logical operations supported by Vulkan are summarized in the following table in which
     /// </para>
     /// <para>
-    /// * latexmath:[$\lnot$] is bitwise invert, * latexmath:[$\land$] is bitwise and, * latexmath:[$\lor$] is bitwise or, * latexmath:[$\oplus$] is bitwise exclusive or, * latexmath:[$s$] is the fragment's latexmath:[$R_{s0}, G_{s0}, B_{s0}$] or latexmath:[$A_{s0}$] component value for the fragment output corresponding to the color attachment being updated, and * latexmath:[$d$] is the color attachment's latexmath:[$R, G, B$] or latexmath:[$A$] component value:
+    /// * [eq]#{lnot}# is bitwise invert, * [eq]#{land}# is bitwise and, * [eq]#{lor}# is bitwise or, * [eq]#{oplus}# is bitwise exclusive or, * [eq]#s# is the fragment's [eq]#R~s0~, G~s0~, B~s0~# or [eq]#A~s0~# component value for the fragment output corresponding to the color attachment being updated, and * [eq]#d# is the color attachment's [eq]#R, G, B# or [eq]#A# component value:
     /// </para>
     /// <para>
-    /// .Logical Operations [width="75%",options="header",align="center"] |==== |Mode                            | Operation |ename:VK_LOGIC_OP_CLEAR         | latexmath:[$0$] |ename:VK_LOGIC_OP_AND           | latexmath:[$s \land d$] |ename:VK_LOGIC_OP_AND_REVERSE   | latexmath:[$s \land \lnot d$] |ename:VK_LOGIC_OP_COPY          | latexmath:[$s$] |ename:VK_LOGIC_OP_AND_INVERTED  | latexmath:[$\lnot s \land d$] |ename:VK_LOGIC_OP_NO_OP         | latexmath:[$d$] |ename:VK_LOGIC_OP_XOR           | latexmath:[$s \oplus d$] |ename:VK_LOGIC_OP_OR            | latexmath:[$s \lor d$] |ename:VK_LOGIC_OP_NOR           | latexmath:[$\lnot (s \lor d)$] |ename:VK_LOGIC_OP_EQUIVALENT    | latexmath:[$\lnot (s \oplus d)$] |ename:VK_LOGIC_OP_INVERT        | latexmath:[$\lnot d$] |ename:VK_LOGIC_OP_OR_REVERSE    | latexmath:[$s \lor \lnot d$] |ename:VK_LOGIC_OP_COPY_INVERTED | latexmath:[$\lnot s$] |ename:VK_LOGIC_OP_OR_INVERTED   | latexmath:[$\lnot s \lor d$] |ename:VK_LOGIC_OP_NAND          | latexmath:[$\lnot (s \land d)$] |ename:VK_LOGIC_OP_SET           | all 1s |====
+    /// .Logical Operations [width="75%",options="header",align="center"] |==== |Mode                            | Operation |ename:VK_LOGIC_OP_CLEAR         | [eq]#0# |ename:VK_LOGIC_OP_AND           | [eq]#s {land} d# |ename:VK_LOGIC_OP_AND_REVERSE   | [eq]#s {land} {lnot} d# |ename:VK_LOGIC_OP_COPY          | [eq]#s# |ename:VK_LOGIC_OP_AND_INVERTED  | [eq]#{lnot} s {land} d# |ename:VK_LOGIC_OP_NO_OP         | [eq]#d# |ename:VK_LOGIC_OP_XOR           | [eq]#s {oplus} d# |ename:VK_LOGIC_OP_OR            | [eq]#s {lor} d# |ename:VK_LOGIC_OP_NOR           | [eq]#{lnot} (s {lor} d)# |ename:VK_LOGIC_OP_EQUIVALENT    | [eq]#{lnot} (s {oplus} d)# |ename:VK_LOGIC_OP_INVERT        | [eq]#{lnot} d# |ename:VK_LOGIC_OP_OR_REVERSE    | [eq]#s {lor} {lnot} d# |ename:VK_LOGIC_OP_COPY_INVERTED | [eq]#{lnot} s# |ename:VK_LOGIC_OP_OR_INVERTED   | [eq]#{lnot} s {lor} d# |ename:VK_LOGIC_OP_NAND          | [eq]#{lnot} (s {land} d)# |ename:VK_LOGIC_OP_SET           | all 1s |====
     /// </para>
     /// <para>
     /// The result of the logical operation is then written to the color attachment as controlled by the component write mask, described in &lt;&lt;framebuffer-blendoperations,Blend Operations&gt;&gt;.
@@ -4955,6 +5006,9 @@ namespace SharpVk
     /// </para>
     /// <para>
     /// Once bound, a pipeline binding affects subsequent graphics or compute commands in the command buffer until a different pipeline is bound to the bind point. The pipeline bound to ename:VK_PIPELINE_BIND_POINT_COMPUTE controls the behavior of flink:vkCmdDispatch and flink:vkCmdDispatchIndirect. The pipeline bound to ename:VK_PIPELINE_BIND_POINT_GRAPHICS controls the behavior of flink:vkCmdDraw, flink:vkCmdDrawIndexed, flink:vkCmdDrawIndirect, and flink:vkCmdDrawIndexedIndirect. No other commands are affected by the pipeline state.
+    /// </para>
+    /// <para>
+    /// .Valid Usage **** * If pname:pipelineBindPoint is ename:VK_PIPELINE_BIND_POINT_COMPUTE, the sname:VkCommandPool that pname:commandBuffer was allocated from must: support compute operations * If pname:pipelineBindPoint is ename:VK_PIPELINE_BIND_POINT_GRAPHICS, the sname:VkCommandPool that pname:commandBuffer was allocated from must: support graphics operations * If pname:pipelineBindPoint is ename:VK_PIPELINE_BIND_POINT_COMPUTE, pname:pipeline must: be a compute pipeline * If pname:pipelineBindPoint is ename:VK_PIPELINE_BIND_POINT_GRAPHICS, pname:pipeline must: be a graphics pipeline * If the &lt;&lt;features-features-variableMultisampleRate,variable multisample rate&gt;&gt; feature is not supported, pname:pipeline is a graphics pipeline, the current subpass has no attachments, and this is not the first call to this function with a graphics pipeline after transitioning to the current subpass, then the sample count specified by this pipeline must: match that set in the previous pipeline ****
     /// </para>
     /// </summary>
 	public enum PipelineBindPoint
@@ -5138,6 +5192,9 @@ namespace SharpVk
     /// <summary>
     /// <para>
     /// Specify the type of queries managed by a query pool.
+    /// </para>
+    /// <para>
+    /// .Valid Usage **** * If the &lt;&lt;features-features-pipelineStatisticsQuery,pipeline statistics queries&gt;&gt; feature is not enabled, pname:queryType must: not be ename:VK_QUERY_TYPE_PIPELINE_STATISTICS * If pname:queryType is ename:VK_QUERY_TYPE_PIPELINE_STATISTICS, pname:pipelineStatistics must: be a valid combination of elink:VkQueryPipelineStatisticFlagBits values ****
     /// </para>
     /// </summary>
 	public enum QueryType
@@ -5373,6 +5430,9 @@ namespace SharpVk
     /// <para>
     /// Since sname:VkSampler is a non-dispatchable handle type, implementations may: return the same handle for sampler state vectors that are identical. In such cases, all such objects would only count once against the pname:maxSamplerAllocationCount limit.
     /// </para>
+    /// <para>
+    /// .Valid Usage **** * The absolute value of pname:mipLodBias must: be less than or equal to sname:VkPhysicalDeviceLimits::pname:maxSamplerLodBias * If the &lt;&lt;features-features-samplerAnisotropy,anisotropic sampling&gt;&gt; feature is not enabled, pname:anisotropyEnable must: be ename:VK_FALSE * If pname:anisotropyEnable is ename:VK_TRUE, pname:maxAnisotropy must: be between `1.0` and sname:VkPhysicalDeviceLimits::pname:maxSamplerAnisotropy, inclusive * If pname:unnormalizedCoordinates is ename:VK_TRUE, pname:minFilter and pname:magFilter must: be equal * If pname:unnormalizedCoordinates is ename:VK_TRUE, pname:mipmapMode must: be ename:VK_SAMPLER_MIPMAP_MODE_NEAREST * If pname:unnormalizedCoordinates is ename:VK_TRUE, pname:minLod and pname:maxLod must: be zero * If pname:unnormalizedCoordinates is ename:VK_TRUE, pname:addressModeU and pname:addressModeV must: each be either ename:VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_EDGE or ename:VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_BORDER * If pname:unnormalizedCoordinates is ename:VK_TRUE, pname:anisotropyEnable must: be ename:VK_FALSE * If pname:unnormalizedCoordinates is ename:VK_TRUE, pname:compareEnable must: be ename:VK_FALSE * If any of pname:addressModeU, pname:addressModeV or pname:addressModeW are ename:VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_BORDER, pname:borderColor must: be a valid elink:VkBorderColor value * If the +VK_KHR_sampler_mirror_clamp_to_edge+ extension is not enabled, pname:addressModeU, pname:addressModeV and pname:addressModeW must: not be ename:VK_SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE * If pname:compareEnable is ename:VK_TRUE, pname:compareOp must: be a valid elink:VkCompareOp value ifdef::VK_IMG_filter_cubic[] * If either pname:magFilter or pname:minFilter is ename:VK_FILTER_CUBIC_IMG, pname:anisotropyEnable must: be ename:VK_FALSE endif::VK_IMG_filter_cubic[] ****
+    /// </para>
     /// </summary>
 	public enum SamplerAddressMode
 	{
@@ -5485,7 +5545,7 @@ namespace SharpVk
     /// If the stencil test passes, the pname:writeMask member of the slink:VkStencilOpState structures controls how the updated stencil value is written to the stencil framebuffer attachment.
     /// </para>
     /// <para>
-    /// The least significant latexmath:[$s$] bits of pname:writeMask, where latexmath:[$s$] is the number of bits in the stencil framebuffer attachment, specify an integer mask. Where a latexmath:[$1$] appears in this mask, the corresponding bit in the stencil value in the depth/stencil attachment is written; where a latexmath:[$0$] appears, the bit is not written. The pname:writeMask value uses either the front-facing or back-facing state based on the facing-ness of the fragment. Fragments generated by front-facing primitives use the front mask and fragments generated by back-facing primitives use the back mask.
+    /// The least significant [eq]#s# bits of pname:writeMask, where [eq]#s# is the number of bits in the stencil framebuffer attachment, specify an integer mask. Where a [eq]#1# appears in this mask, the corresponding bit in the stencil value in the depth/stencil attachment is written; where a [eq]#0# appears, the bit is not written. The pname:writeMask value uses either the front-facing or back-facing state based on the facing-ness of the fragment. Fragments generated by front-facing primitives use the front mask and fragments generated by back-facing primitives use the back mask.
     /// </para>
     /// </summary>
 	public enum StencilOp
@@ -6000,6 +6060,9 @@ namespace SharpVk
     /// <para>
     /// After beginning a render pass instance, the command buffer is ready to record the commands for the first subpass of that render pass.
     /// </para>
+    /// <para>
+    /// .Valid Usage **** * If any of the pname:initialLayout or pname:finalLayout member of the sname:VkAttachmentDescription structures or the pname:layout member of the sname:VkAttachmentReference structures specified when creating the render pass specified in the pname:renderPass member of pname:pRenderPassBegin is ename:VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL then the corresponding attachment image subresource of the framebuffer specified in the pname:framebuffer member of pname:pRenderPassBegin must: have been created with ename:VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT set * If any of the pname:initialLayout or pname:finalLayout member of the sname:VkAttachmentDescription structures or the pname:layout member of the sname:VkAttachmentReference structures specified when creating the render pass specified in the pname:renderPass member of pname:pRenderPassBegin is ename:VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL or ename:VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL then the corresponding attachment image subresource of the framebuffer specified in the pname:framebuffer member of pname:pRenderPassBegin must: have been created with ename:VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT set * If any of the pname:initialLayout or pname:finalLayout member of the sname:VkAttachmentDescription structures or the pname:layout member of the sname:VkAttachmentReference structures specified when creating the render pass specified in the pname:renderPass member of pname:pRenderPassBegin is ename:VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL then the corresponding attachment image subresource of the framebuffer specified in the pname:framebuffer member of pname:pRenderPassBegin must: have been created with ename:VK_IMAGE_USAGE_SAMPLED_BIT or ename:VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT set * If any of the pname:initialLayout or pname:finalLayout member of the sname:VkAttachmentDescription structures or the pname:layout member of the sname:VkAttachmentReference structures specified when creating the render pass specified in the pname:renderPass member of pname:pRenderPassBegin is ename:VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL then the corresponding attachment image subresource of the framebuffer specified in the pname:framebuffer member of pname:pRenderPassBegin must: have been created with ename:VK_IMAGE_USAGE_TRANSFER_SRC_BIT set * If any of the pname:initialLayout or pname:finalLayout member of the sname:VkAttachmentDescription structures or the pname:layout member of the sname:VkAttachmentReference structures specified when creating the render pass specified in the pname:renderPass member of pname:pRenderPassBegin is ename:VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL then the corresponding attachment image subresource of the framebuffer specified in the pname:framebuffer member of pname:pRenderPassBegin must: have been created with ename:VK_IMAGE_USAGE_TRANSFER_DST_BIT set * If any of the pname:initialLayout members of the sname:VkAttachmentDescription structures specified when creating the render pass specified in the pname:renderPass member of pname:pRenderPassBegin is not ename:VK_IMAGE_LAYOUT_UNDEFINED, then each such pname:initialLayout must: be equal to the current layout of the corresponding attachment image subresource of the framebuffer specified in the pname:framebuffer member of pname:pRenderPassBegin ****
+    /// </para>
     /// </summary>
 	public enum SubpassContents
 	{
@@ -6022,13 +6085,13 @@ namespace SharpVk
     /// Allocation scope.
     /// </para>
     /// <para>
-    /// Most Vulkan commands operate on a single object, or there is a sole object that is being created or manipulated. When an allocation uses a scope of ename:VK_SYSTEM_ALLOCATION_SCOPE_OBJECT or ename:VK_SYSTEM_ALLOCATION_SCOPE_CACHE, the allocation is scoped to the object being created or manipulated.
+    /// Most Vulkan commands operate on a single object, or there is a sole object that is being created or manipulated. When an allocation uses an allocation scope of ename:VK_SYSTEM_ALLOCATION_SCOPE_OBJECT or ename:VK_SYSTEM_ALLOCATION_SCOPE_CACHE, the allocation is scoped to the object being created or manipulated.
     /// </para>
     /// <para>
-    /// When an implementation requires host memory, it will make callbacks to the application using the most specific allocator and scope available:
+    /// When an implementation requires host memory, it will make callbacks to the application using the most specific allocator and allocation scope available:
     /// </para>
     /// <para>
-    /// * If an allocation is scoped to the duration of a command, the allocator will use the ename:VK_SYSTEM_ALLOCATION_SCOPE_COMMAND scope. The most specific allocator available is used: if the object being created or manipulated has an allocator, that object's allocator will be used, else if the parent sname:VkDevice has an allocator it will be used, else if the parent sname:VkInstance has an allocator it will be used. Else, * If an allocation is associated with an object of type sname:VkPipelineCache, the allocator will use the ename:VK_SYSTEM_ALLOCATION_SCOPE_CACHE scope. The most specific allocator available is used (pipeline cache, else device, else instance). Else, * If an allocation is scoped to the lifetime of an object, that object is being created or manipulated by the command, and that object's type is not sname:VkDevice or sname:VkInstance, the allocator will use a scope of ename:VK_SYSTEM_ALLOCATION_SCOPE_OBJECT. The most specific allocator available is used (object, else device, else instance). Else, * If an allocation is scoped to the lifetime of a device, the allocator will use scope of ename:VK_SYSTEM_ALLOCATION_SCOPE_DEVICE. The most specific allocator available is used (device, else instance). Else, * If the allocation is scoped to the lifetime of an instance and the instance has an allocator, its allocator will be used with a scope of ename:VK_SYSTEM_ALLOCATION_SCOPE_INSTANCE. * Otherwise an implementation will allocate memory through an alternative mechanism that is unspecified.
+    /// * If an allocation is scoped to the duration of a command, the allocator will use the ename:VK_SYSTEM_ALLOCATION_SCOPE_COMMAND allocation scope. The most specific allocator available is used: if the object being created or manipulated has an allocator, that object's allocator will be used, else if the parent sname:VkDevice has an allocator it will be used, else if the parent sname:VkInstance has an allocator it will be used. Else, * If an allocation is associated with an object of type sname:VkPipelineCache, the allocator will use the ename:VK_SYSTEM_ALLOCATION_SCOPE_CACHE allocation scope. The most specific allocator available is used (pipeline cache, else device, else instance). Else, * If an allocation is scoped to the lifetime of an object, that object is being created or manipulated by the command, and that object's type is not sname:VkDevice or sname:VkInstance, the allocator will use an allocation scope of ename:VK_SYSTEM_ALLOCATION_SCOPE_OBJECT. The most specific allocator available is used (object, else device, else instance). Else, * If an allocation is scoped to the lifetime of a device, the allocator will use an allocation scope of ename VK_SYSTEM_ALLOCATION_SCOPE_DEVICE. The most specific allocator available is used (device, else instance). Else, * If the allocation is scoped to the lifetime of an instance and the instance has an allocator, its allocator will be used with an allocation scope of ename:VK_SYSTEM_ALLOCATION_SCOPE_INSTANCE. * Otherwise an implementation will allocate memory through an alternative mechanism that is unspecified.
     /// </para>
     /// </summary>
 	public enum SystemAllocationScope
@@ -6083,6 +6146,9 @@ namespace SharpVk
     /// <summary>
     /// <para>
     /// Specify rate at which vertex attributes are pulled from buffers.
+    /// </para>
+    /// <para>
+    /// .Valid Usage **** * pname:binding must: be less than sname:VkPhysicalDeviceLimits::pname:maxVertexInputBindings * pname:stride must: be less than or equal to sname:VkPhysicalDeviceLimits::pname:maxVertexInputBindingStride ****
     /// </para>
     /// </summary>
 	public enum VertexInputRate

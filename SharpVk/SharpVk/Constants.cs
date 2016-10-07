@@ -327,11 +327,11 @@ namespace SharpVk
 	    /// <summary>
 	    /// -
 	    /// </summary>
-		public const uint ExtensionNegativeViewportHeightSpecVersion = 0;
+		public const uint SpecVersion = 0;
 	    /// <summary>
 	    /// -
 	    /// </summary>
-		public const string ExtensionNegativeViewportHeightExtensionName = "VK_AMD_negative_viewport_height";
+		public const string ExtensionName = "VK_AMD_negative_viewport_height";
 	}
     /// <summary>
     /// -
@@ -355,11 +355,11 @@ namespace SharpVk
 	    /// <summary>
 	    /// -
 	    /// </summary>
-		public const uint ExtensionShaderBallotSpecVersion = 0;
+		public const uint SpecVersion = 0;
 	    /// <summary>
 	    /// -
 	    /// </summary>
-		public const string ExtensionShaderBallotExtensionName = "VK_AMD_shader_ballot";
+		public const string ExtensionName = "VK_AMD_shader_ballot";
 	}
     /// <summary>
     /// -

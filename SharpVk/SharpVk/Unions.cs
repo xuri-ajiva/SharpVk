@@ -47,7 +47,7 @@ namespace SharpVk
 		/// </summary>
         /// <param name="float32">
 		/// <para>
-		/// pname:float32 are the color clear values when the format of the image or attachment is floating point, unorm, snorm, uscaled, packed float, or sRGB. Floating point values are automatically converted to the format of the image, with the clear value being treated as linear if the image is sRGB.
+		/// pname:float32 are the color clear values when the format of the image or attachment is one of the formats in the &lt;&lt;features-formats-numericformat, Interpretation of Numeric Format&gt;&gt; table other than signed integer (etext:SINT) or unsigned integer (etext:UINT). Floating point values are automatically converted to the format of the image, with the clear value being treated as linear if the image is sRGB.
 		/// </para>
         /// </param>
         public static implicit operator ClearColorValue(float[] float32)
@@ -67,7 +67,7 @@ namespace SharpVk
 		/// </summary>
         /// <param name="int32">
 		/// <para>
-		/// pname:int32 are the color clear values when the format of the image or attachment is signed integer. Signed integer values are converted to the format of the image by casting to the smaller type (with negative 32-bit values mapping to negative values in the smaller type). If the integer clear value is not representable in the target type (e.g. would overflow in conversion to that type), the clear value is undefined.
+		/// pname:int32 are the color clear values when the format of the image or attachment is signed integer (etext:SINT). Signed integer values are converted to the format of the image by casting to the smaller type (with negative 32-bit values mapping to negative values in the smaller type). If the integer clear value is not representable in the target type (e.g. would overflow in conversion to that type), the clear value is undefined.
 		/// </para>
         /// </param>
         public static implicit operator ClearColorValue(int[] int32)
@@ -87,7 +87,7 @@ namespace SharpVk
 		/// </summary>
         /// <param name="uInt32">
 		/// <para>
-		/// pname:uint32 are the color clear values when the format of the image or attachment is unsigned integer. Unsigned integer values are converted to the format of the image by casting to the integer type with fewer bits.
+		/// pname:uint32 are the color clear values when the format of the image or attachment is unsigned integer (etext:UINT). Unsigned integer values are converted to the format of the image by casting to the integer type with fewer bits.
 		/// </para>
         /// </param>
         public static implicit operator ClearColorValue(uint[] uInt32)

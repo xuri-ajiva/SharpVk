@@ -89,7 +89,7 @@ namespace SharpVk.Interop
     /// Application-defined memory reallocation function.
     /// </para>
     /// <para>
-    /// pname:pfnReallocation must: return an allocation with enough space for pname:size bytes, and the contents of the original allocation from bytes zero to latexmath:[$\min(\textrm{original size, new size})-1$] must: be preserved in the returned allocation. If pname:size is larger than the old size, the contents of the additional space are undefined. If satisfying these requirements involves creating a new allocation, then the old allocation should: be freed.
+    /// pname:pfnReallocation must: return an allocation with enough space for pname:size bytes, and the contents of the original allocation from bytes zero to [eq]#min(original size, new size) - 1# must: be preserved in the returned allocation. If pname:size is larger than the old size, the contents of the additional space are undefined. If satisfying these requirements involves creating a new allocation, then the old allocation should: be freed.
     /// </para>
     /// <para>
     /// If pname:pOriginal is `NULL`, then pname:pfnReallocation must: behave equivalently to a call to tlink:PFN_vkAllocationFunction with the same parameter values (without pname:pOriginal).
