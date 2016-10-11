@@ -38,13 +38,13 @@ namespace SharpVk.Generator.Generators
 
                 fileBuilder.EmitNamespace("SharpVk", namespaceBuilder =>
                 {
-                    foreach(var @class in types.Classes)
+                    foreach (var @class in types.Classes)
                     {
                         namespaceBuilder.EmitType(TypeKind.Struct, @class.Name, builder =>
                         {
                             foreach (var member in @class.Properties)
                             {
-                                builder.EmitProperty(member.TypeName, member.Name, Public, summary: member.Comment);
+                                builder.EmitProperty(member.TypeName, member.Name, Public, getter: Public, setter: Public, summary: member.Comment);
                             }
 
                             string interopTypeName = $"Interop.{@class.Name}";

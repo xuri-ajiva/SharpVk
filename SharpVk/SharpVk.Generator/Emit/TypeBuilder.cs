@@ -45,6 +45,7 @@ namespace SharpVk.Generator.Emit
                                     Action<ParameterBuilder> parameters,
                                     AccessModifier accessModifier = AccessModifier.Private,
                                     MemberModifier methodModifers = MemberModifier.None,
+                                    IEnumerable<Action<ExpressionBuilder>> baseArguments = null,
                                     IEnumerable<string> summary = null,
                                     Action<DocBuilder> docs = null,
                                     IEnumerable<string> attributes = null)
@@ -65,20 +66,20 @@ namespace SharpVk.Generator.Emit
                                     ? ParameterBuilder.Apply(parameters)
                                     : "";
 
-            this.writer.Write($"{accessModifier.Emit()} {RenderMemberModifiers(methodModifers)}{this.name}({parameterList})");
+            this.writer.WriteLine($"{accessModifier.Emit()} {RenderMemberModifiers(methodModifers)}{this.name}({parameterList})");
 
-            if (methodBody == null)
+            if (baseArguments != null)
             {
-                this.writer.WriteLine(";");
+                this.writer.IncreaseIndent();
+                this.writer.Write(": base(");
+                ExpressionBuilder.EmitArguments(this.writer, baseArguments);
+                this.writer.WriteLine(")");
+                this.writer.DecreaseIndent();
             }
-            else
-            {
-                this.writer.WriteLine();
 
-                using (var bodyEmitter = new CodeBlockBuilder(this.writer.GetSubWriter()))
-                {
-                    methodBody(bodyEmitter);
-                }
+            using (var bodyEmitter = new CodeBlockBuilder(this.writer.GetSubWriter()))
+            {
+                methodBody(bodyEmitter);
             }
         }
 
@@ -129,6 +130,45 @@ namespace SharpVk.Generator.Emit
                                     string name,
                                     AccessModifier accessModifier = AccessModifier.Private,
                                     MemberModifier methodModifers = MemberModifier.None,
+                                    AccessModifier? getter = null,
+                                    AccessModifier? setter = null,
+                                    IEnumerable<string> summary = null,
+                                    Action<DocBuilder> docs = null)
+        {
+            this.EmitMemberSpacing();
+
+            this.EmitMemberComments(accessModifier, summary, docs);
+
+            this.writer.WriteLine($"{accessModifier.Emit()} {RenderMemberModifiers(methodModifers)}{type} {name}");
+            this.writer.WriteLine("{");
+            this.writer.IncreaseIndent();
+
+            if (getter != null)
+            {
+                if (getter.Value != accessModifier)
+                {
+                    this.writer.Write(accessModifier.Emit() + " ");
+                }
+                this.writer.WriteLine("get;");
+            }
+
+            if (setter != null)
+            {
+                if (getter.Value != accessModifier)
+                {
+                    this.writer.Write(accessModifier.Emit() + " ");
+                }
+                this.writer.WriteLine("set;");
+            }
+
+            this.writer.DecreaseIndent();
+            this.writer.WriteLine("}");
+        }
+
+        public void EmitProperty(string type,
+                                    string name,
+                                    AccessModifier accessModifier = AccessModifier.Private,
+                                    MemberModifier methodModifers = MemberModifier.None,
                                     Action<CodeBlockBuilder> getter = null,
                                     Action<CodeBlockBuilder> setter = null,
                                     IEnumerable<string> summary = null,
@@ -142,25 +182,43 @@ namespace SharpVk.Generator.Emit
             this.writer.WriteLine("{");
             this.writer.IncreaseIndent();
 
-            if ((getter ?? setter) != null)
+            if (getter != null)
             {
-                if (getter != null)
+                this.writer.WriteLine("get");
+                using (var getBuilder = new CodeBlockBuilder(this.writer))
                 {
-                    this.writer.WriteLine("get");
-                    using (var getBuilder = new CodeBlockBuilder(this.writer))
-                    {
-                        getter(getBuilder);
-                    }
+                    getter(getBuilder);
                 }
             }
-            else
+
+            if (setter != null)
             {
-                this.writer.WriteLine("get;");
-                this.writer.WriteLine("set;");
+                this.writer.WriteLine("set");
+                using (var setBuilder = new CodeBlockBuilder(this.writer))
+                {
+                    setter(setBuilder);
+                }
             }
 
             this.writer.DecreaseIndent();
             this.writer.WriteLine("}");
+        }
+
+        public void EmitProperty(string type,
+                                    string name,
+                                    Action<ExpressionBuilder> getter,
+                                    AccessModifier accessModifier = AccessModifier.Private,
+                                    MemberModifier methodModifers = MemberModifier.None,
+                                    IEnumerable<string> summary = null,
+                                    Action<DocBuilder> docs = null)
+        {
+            this.EmitMemberSpacing();
+
+            this.EmitMemberComments(accessModifier, summary, docs);
+
+            this.writer.Write($"{accessModifier.Emit()} {RenderMemberModifiers(methodModifers)}{type} {name} => ");
+            getter(new ExpressionBuilder(this.writer.GetSubWriter()));
+            this.writer.WriteLine(";");
         }
 
         private void EmitMemberComments(AccessModifier accessModifier, IEnumerable<string> summary, Action<DocBuilder> docs)
@@ -177,9 +235,9 @@ namespace SharpVk.Generator.Emit
         {
             var builder = new StringBuilder();
 
-            foreach(MemberModifier value in Enum.GetValues(typeof(MemberModifier)))
+            foreach (MemberModifier value in Enum.GetValues(typeof(MemberModifier)))
             {
-                if(value != MemberModifier.None && modifiers.HasFlag(value))
+                if (value != MemberModifier.None && modifiers.HasFlag(value))
                 {
                     builder.Append(value.ToString().ToLowerInvariant() + " ");
                 }

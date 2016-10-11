@@ -7,6 +7,7 @@ namespace SharpVk.Generator.Emit
     {
         None = 0,
         Static = 1 << 0,
-        Unsafe = 1 << 1
+        Abstract = 1 << 1,
+        Unsafe = 1 << 2
     }
 }

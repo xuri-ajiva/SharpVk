@@ -2959,7 +2959,7 @@ namespace SharpVk.Spirv
 				{
 					Kind = OperandKind.IdRef,
 					Quantifier = Quantifier.None,
-					Name = "'Image'"
+					Name = "'Sampled Image'"
 				},
 				new Operand
 				{
@@ -10217,6 +10217,64 @@ namespace SharpVk.Spirv
 					Kind = OperandKind.LiteralString,
 					Quantifier = Quantifier.None,
 					Name = "'Process'"
+				},
+			}
+		};
+
+		/// <summary>
+		/// -
+		/// </summary>
+		public static readonly OpCode OpSubgroupBallotKHR = new OpCode
+		{
+			Op = Op.OpSubgroupBallotKHR,
+			Operands = new Operand[]
+			{
+				new Operand
+				{
+					Kind = OperandKind.IdResultType,
+					Quantifier = Quantifier.None,
+					Name = ""
+				},
+				new Operand
+				{
+					Kind = OperandKind.IdResult,
+					Quantifier = Quantifier.None,
+					Name = ""
+				},
+				new Operand
+				{
+					Kind = OperandKind.IdRef,
+					Quantifier = Quantifier.None,
+					Name = "'Predicate'"
+				},
+			}
+		};
+
+		/// <summary>
+		/// -
+		/// </summary>
+		public static readonly OpCode OpSubgroupFirstInvocationKHR = new OpCode
+		{
+			Op = Op.OpSubgroupFirstInvocationKHR,
+			Operands = new Operand[]
+			{
+				new Operand
+				{
+					Kind = OperandKind.IdResultType,
+					Quantifier = Quantifier.None,
+					Name = ""
+				},
+				new Operand
+				{
+					Kind = OperandKind.IdResult,
+					Quantifier = Quantifier.None,
+					Name = ""
+				},
+				new Operand
+				{
+					Kind = OperandKind.IdRef,
+					Quantifier = Quantifier.None,
+					Name = "'Value'"
 				},
 			}
 		};

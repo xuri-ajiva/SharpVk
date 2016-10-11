@@ -24,6 +24,11 @@ namespace SharpVk.Generator.Emit
             this.writer.Write('"');
         }
 
+        public void EmitLiteral(int literal)
+        {
+            this.writer.Write(literal);
+        }
+
         public void EmitMemberInit(string name, Action<MemberInitBuilder> members)
         {
             this.writer.WriteLine($"new {name}");
@@ -99,30 +104,32 @@ namespace SharpVk.Generator.Emit
             this.writer.Write(")");
         }
 
-        public void EmitMember(Action<ExpressionBuilder> target, string method)
+        public void EmitMember(Action<ExpressionBuilder> target, string member)
         {
             target(this.GetSubBuilder());
 
-            this.writer.Write($".{method}");
+            this.writer.Write($".{member}");
         }
 
-        private void EmitArguments(IEnumerable<Action<ExpressionBuilder>>arguments)
+        public void EmitLessThan(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)
         {
-            bool isFirstArgument = true;
+            left(this.GetSubBuilder());
 
-            foreach (var argument in arguments)
-            {
-                if (isFirstArgument)
-                {
-                    isFirstArgument = false;
-                }
-                else
-                {
-                    this.writer.Write(", ");
-                }
+            this.writer.Write(" < ");
 
-                argument(this.GetSubBuilder());
-            }
+            right(this.GetSubBuilder());
+        }
+
+        public void EmitNot(Action<ExpressionBuilder> target)
+        {
+            this.writer.Write("!");
+
+            target(this.GetSubBuilder());
+        }
+
+        private void EmitArguments(IEnumerable<Action<ExpressionBuilder>> arguments)
+        {
+            EmitArguments(this.writer, arguments);
         }
 
         private ExpressionBuilder GetSubBuilder()
@@ -135,7 +142,31 @@ namespace SharpVk.Generator.Emit
             return builder => builder.EmitAsIs(expression);
         }
 
+        public static void EmitArguments(IndentedTextWriter writer, IEnumerable<Action<ExpressionBuilder>> arguments)
+        {
+            bool isFirstArgument = true;
+
+            foreach (var argument in arguments)
+            {
+                if (isFirstArgument)
+                {
+                    isFirstArgument = false;
+                }
+                else
+                {
+                    writer.Write(", ");
+                }
+
+                argument(new ExpressionBuilder(writer.GetSubWriter()));
+            }
+        }
+
         public static Action<ExpressionBuilder> Literal(string literal)
+        {
+            return builder => builder.EmitLiteral(literal);
+        }
+
+        public static Action<ExpressionBuilder> Literal(int literal)
         {
             return builder => builder.EmitLiteral(literal);
         }
@@ -196,9 +227,19 @@ namespace SharpVk.Generator.Emit
             return builder => builder.EmitCall(target, method, arguments);
         }
 
-        public static Action<ExpressionBuilder> Member(Action<ExpressionBuilder> target, string method)
+        public static Action<ExpressionBuilder> Member(Action<ExpressionBuilder> target, string member)
         {
-            return builder => builder.EmitMember(target, method);
+            return builder => builder.EmitMember(target, member);
+        }
+
+        public static Action<ExpressionBuilder> LessThan(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)
+        {
+            return builder => builder.EmitLessThan(left, right);
+        }
+
+        public static Action<ExpressionBuilder> Not(Action<ExpressionBuilder> target)
+        {
+            return builder => builder.EmitNot(target);
         }
     }
 }

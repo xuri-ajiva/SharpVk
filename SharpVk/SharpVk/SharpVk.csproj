@@ -11,6 +11,7 @@
     <AssemblyName>SharpVk</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -69,17 +70,10 @@
     <Compile Include="CommandCache.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="Exceptions.cs" />
+    <Compile Include="Handles.cs" />
     <Compile Include="Interop\Commands.cs" />
-    <Compile Include="Interop\Delegates.cs">
-      <DependentUpon>Delegates.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Exceptions.cs">
-      <DependentUpon>Exceptions.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
+    <Compile Include="Interop\Delegates.cs" />
     <Compile Include="Interop\Handles.cs" />
     <Compile Include="Interop\Structs.cs" />
     <Compile Include="MemUtil.cs" />
@@ -106,24 +100,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="Handles.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Handles.tt</DependentUpon>
-    </Compile>
     <Compile Include="Interop\HeapUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Version.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Interop\Delegates.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Delegates.cs</LastGenOutput>
-    </Content>
-    <Content Include="Exceptions.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Exceptions.cs</LastGenOutput>
-    </Content>
     <Content Include="Spirv\Grammar.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Grammar.cs</LastGenOutput>
@@ -141,10 +122,6 @@
       <LastGenOutput>Structs.cs</LastGenOutput>
     </Content>
     <Content Include="License.tt" />
-    <Content Include="Handles.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Handles.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

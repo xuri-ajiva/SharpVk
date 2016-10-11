@@ -5,8 +5,8 @@ namespace SharpVk.Generator.Emit
     public class CodeBlockBuilder
         : BlockBuilder
     {
-        public CodeBlockBuilder(IndentedTextWriter writer)
-            : base(writer)
+        public CodeBlockBuilder(IndentedTextWriter writer, bool hasBraces = true)
+            : base(writer, hasBraces)
         {
         }
 
@@ -102,6 +102,17 @@ namespace SharpVk.Generator.Emit
             using (var blockBuilder = new CodeBlockBuilder(this.writer.GetSubWriter()))
             {
                 finallyBlock(blockBuilder);
+            }
+        }
+
+        public void EmitSwitchBlock(Action<ExpressionBuilder> target, Action<SwitchCaseBuilder> caseBuilder)
+        {
+            this.writer.Write("switch (");
+            target(this.GetExpressionBuilder());
+            this.writer.WriteLine(")");
+            using (var switchBlockBuilder = new SwitchCaseBuilder(this.writer.GetSubWriter()))
+            {
+                caseBuilder(switchBlockBuilder);
             }
         }
 

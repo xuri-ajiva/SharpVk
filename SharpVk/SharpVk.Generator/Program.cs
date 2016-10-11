@@ -20,7 +20,9 @@ namespace SharpVk.Generator
             {
                 new VkCommandsGenerator(),
                 new VkHandleGenerator(),
+                new VkDelegateGenerator(),
                 new VkEnumGenerator(),
+                new VkExceptionGenerator(),
                 new VkConstantGenerator(),
                 new VkClassGenerator()
             })

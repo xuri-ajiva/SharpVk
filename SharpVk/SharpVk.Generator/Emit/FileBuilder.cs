@@ -29,7 +29,7 @@ namespace SharpVk.Generator.Emit
 
             foreach (var line in comment.Split('\n'))
             {
-                this.fileWriter.WriteLine("// " + line);
+                this.fileWriter.WriteLine("// " + line.Trim());
             }
         }
 

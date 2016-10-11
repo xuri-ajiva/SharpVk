@@ -42,6 +42,24 @@ namespace SharpVk.Generator.Emit
             }
         }
 
+        public void EmitDelegate(string type,
+                                    string name,
+                                    AccessModifier accessModifier = AccessModifier.Internal,
+                                    TypeModifier modifiers = TypeModifier.None,
+                                    Action<ParameterBuilder> parameters = null,
+                                    IEnumerable<string> summary = null,
+                                    Action<DocBuilder> docs = null,
+                                    IEnumerable<string> attributes = null)
+        {
+            this.EmitTypePreamble(summary, docs, attributes);
+
+            string parameterList = parameters != null
+                                    ? ParameterBuilder.Apply(parameters)
+                                    : "";
+
+            this.writer.WriteLine($"{accessModifier.Emit()} {RenderTypeModifiers(modifiers)}delegate {type} {name}({parameterList});");
+        }
+
         public void EmitEnum(string name,
                                 Action<EnumBuilder> @enum,
                                 AccessModifier accessModifier = AccessModifier.Internal,

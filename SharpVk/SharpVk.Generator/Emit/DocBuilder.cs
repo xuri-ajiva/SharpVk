@@ -92,5 +92,12 @@ namespace SharpVk.Generator.Emit
                 }
             }
         }
+
+        public void EmitParam(string paramName, string description)
+        {
+            this.writer.WriteLine($"/// <param name=\"{paramName}\">");
+            this.EmitParagraph(description);
+            this.writer.WriteLine("/// </param>");
+        }
     }
 }

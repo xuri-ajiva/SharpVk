@@ -1233,6 +1233,38 @@ namespace SharpVk.Spirv
 		/// -
 		/// </summary>
 		InstanceIndex = 43,
+		/// <summary>
+		/// -
+		/// </summary>
+		SubgroupEqMaskKHR = 4416,
+		/// <summary>
+		/// -
+		/// </summary>
+		SubgroupGeMaskKHR = 4417,
+		/// <summary>
+		/// -
+		/// </summary>
+		SubgroupGtMaskKHR = 4418,
+		/// <summary>
+		/// -
+		/// </summary>
+		SubgroupLeMaskKHR = 4419,
+		/// <summary>
+		/// -
+		/// </summary>
+		SubgroupLtMaskKHR = 4420,
+		/// <summary>
+		/// -
+		/// </summary>
+		BaseVertex = 4424,
+		/// <summary>
+		/// -
+		/// </summary>
+		BaseInstance = 4425,
+		/// <summary>
+		/// -
+		/// </summary>
+		DrawIndex = 4426,
 	}
     /// <summary>
     /// -
@@ -1693,6 +1725,14 @@ namespace SharpVk.Spirv
 		/// -
 		/// </summary>
 		PipeStorage = 60,
+		/// <summary>
+		/// -
+		/// </summary>
+		SubgroupBallotKHR = 4423,
+		/// <summary>
+		/// -
+		/// </summary>
+		DrawParameters = 4427,
 	}
     /// <summary>
     /// -
@@ -2915,5 +2955,13 @@ namespace SharpVk.Spirv
 		/// -
 		/// </summary>
 		OpModuleProcessed = 330,
+		/// <summary>
+		/// -
+		/// </summary>
+		OpSubgroupBallotKHR = 4421,
+		/// <summary>
+		/// -
+		/// </summary>
+		OpSubgroupFirstInvocationKHR = 4422,
 	}
 }
