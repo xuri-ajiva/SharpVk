@@ -131,6 +131,11 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// The interop handle for this Buffer.
+        /// </summary>
+        public Interop.Buffer RawHandle => this.handle;
+        
+        /// <summary>
         /// Releases the unmanaged resources associated with this instance and
         /// destroys the underlying Vulkan handle.
         /// </summary>
@@ -204,6 +209,11 @@ namespace SharpVk
         {
             return this.handle;
         }
+        
+        /// <summary>
+        /// The interop handle for this BufferView.
+        /// </summary>
+        public Interop.BufferView RawHandle => this.handle;
         
         /// <summary>
         /// Releases the unmanaged resources associated with this instance and
@@ -1425,6 +1435,11 @@ namespace SharpVk
         {
             return this.handle;
         }
+        
+        /// <summary>
+        /// The interop handle for this CommandBuffer.
+        /// </summary>
+        public Interop.CommandBuffer RawHandle => this.handle;
     }
     
     /// <summary>
@@ -1547,6 +1562,11 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// The interop handle for this CommandPool.
+        /// </summary>
+        public Interop.CommandPool RawHandle => this.handle;
+        
+        /// <summary>
         /// Releases the unmanaged resources associated with this instance and
         /// destroys the underlying Vulkan handle.
         /// </summary>
@@ -1608,6 +1628,11 @@ namespace SharpVk
         {
             return this.handle;
         }
+        
+        /// <summary>
+        /// The interop handle for this DebugReportCallback.
+        /// </summary>
+        public Interop.DebugReportCallback RawHandle => this.handle;
         
         /// <summary>
         /// Releases the unmanaged resources associated with this instance and
@@ -1741,6 +1766,11 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// The interop handle for this DescriptorPool.
+        /// </summary>
+        public Interop.DescriptorPool RawHandle => this.handle;
+        
+        /// <summary>
         /// Releases the unmanaged resources associated with this instance and
         /// destroys the underlying Vulkan handle.
         /// </summary>
@@ -1780,6 +1810,11 @@ namespace SharpVk
         {
             return this.handle;
         }
+        
+        /// <summary>
+        /// The interop handle for this DescriptorSet.
+        /// </summary>
+        public Interop.DescriptorSet RawHandle => this.handle;
     }
     
     /// <summary>
@@ -1842,6 +1877,11 @@ namespace SharpVk
         {
             return this.handle;
         }
+        
+        /// <summary>
+        /// The interop handle for this DescriptorSetLayout.
+        /// </summary>
+        public Interop.DescriptorSetLayout RawHandle => this.handle;
         
         /// <summary>
         /// Releases the unmanaged resources associated with this instance and
@@ -3039,6 +3079,11 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// The interop handle for this Device.
+        /// </summary>
+        public Interop.Device RawHandle => this.handle;
+        
+        /// <summary>
         /// Releases the unmanaged resources associated with this instance and
         /// destroys the underlying Vulkan handle.
         /// </summary>
@@ -3173,6 +3218,11 @@ namespace SharpVk
         {
             return this.handle;
         }
+        
+        /// <summary>
+        /// The interop handle for this DeviceMemory.
+        /// </summary>
+        public Interop.DeviceMemory RawHandle => this.handle;
     }
     
     /// <summary>
@@ -3205,6 +3255,11 @@ namespace SharpVk
         {
             return this.handle;
         }
+        
+        /// <summary>
+        /// The interop handle for this Display.
+        /// </summary>
+        public Interop.Display RawHandle => this.handle;
     }
     
     /// <summary>
@@ -3263,6 +3318,11 @@ namespace SharpVk
         {
             return this.handle;
         }
+        
+        /// <summary>
+        /// The interop handle for this DisplayMode.
+        /// </summary>
+        public Interop.DisplayMode RawHandle => this.handle;
     }
     
     /// <summary>
@@ -3398,6 +3458,11 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// The interop handle for this Event.
+        /// </summary>
+        public Interop.Event RawHandle => this.handle;
+        
+        /// <summary>
         /// Releases the unmanaged resources associated with this instance and
         /// destroys the underlying Vulkan handle.
         /// </summary>
@@ -3494,6 +3559,11 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// The interop handle for this Fence.
+        /// </summary>
+        public Interop.Fence RawHandle => this.handle;
+        
+        /// <summary>
         /// Releases the unmanaged resources associated with this instance and
         /// destroys the underlying Vulkan handle.
         /// </summary>
@@ -3561,6 +3631,11 @@ namespace SharpVk
         {
             return this.handle;
         }
+        
+        /// <summary>
+        /// The interop handle for this Framebuffer.
+        /// </summary>
+        public Interop.Framebuffer RawHandle => this.handle;
         
         /// <summary>
         /// Releases the unmanaged resources associated with this instance and
@@ -3726,6 +3801,11 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// The interop handle for this Image.
+        /// </summary>
+        public Interop.Image RawHandle => this.handle;
+        
+        /// <summary>
         /// Releases the unmanaged resources associated with this instance and
         /// destroys the underlying Vulkan handle.
         /// </summary>
@@ -3795,6 +3875,11 @@ namespace SharpVk
         {
             return this.handle;
         }
+        
+        /// <summary>
+        /// The interop handle for this ImageView.
+        /// </summary>
+        public Interop.ImageView RawHandle => this.handle;
         
         /// <summary>
         /// Releases the unmanaged resources associated with this instance and
@@ -4310,6 +4395,11 @@ namespace SharpVk
         {
             return this.handle;
         }
+        
+        /// <summary>
+        /// The interop handle for this Instance.
+        /// </summary>
+        public Interop.Instance RawHandle => this.handle;
         
         /// <summary>
         /// Releases the unmanaged resources associated with this instance and
@@ -5091,6 +5181,11 @@ namespace SharpVk
         {
             return this.handle;
         }
+        
+        /// <summary>
+        /// The interop handle for this PhysicalDevice.
+        /// </summary>
+        public Interop.PhysicalDevice RawHandle => this.handle;
     }
     
     /// <summary>
@@ -5144,6 +5239,11 @@ namespace SharpVk
         {
             return this.handle;
         }
+        
+        /// <summary>
+        /// The interop handle for this Pipeline.
+        /// </summary>
+        public Interop.Pipeline RawHandle => this.handle;
         
         /// <summary>
         /// Releases the unmanaged resources associated with this instance and
@@ -5297,6 +5397,11 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// The interop handle for this PipelineCache.
+        /// </summary>
+        public Interop.PipelineCache RawHandle => this.handle;
+        
+        /// <summary>
         /// Releases the unmanaged resources associated with this instance and
         /// destroys the underlying Vulkan handle.
         /// </summary>
@@ -5369,6 +5474,11 @@ namespace SharpVk
         {
             return this.handle;
         }
+        
+        /// <summary>
+        /// The interop handle for this PipelineLayout.
+        /// </summary>
+        public Interop.PipelineLayout RawHandle => this.handle;
         
         /// <summary>
         /// Releases the unmanaged resources associated with this instance and
@@ -5461,6 +5571,11 @@ namespace SharpVk
         {
             return this.handle;
         }
+        
+        /// <summary>
+        /// The interop handle for this QueryPool.
+        /// </summary>
+        public Interop.QueryPool RawHandle => this.handle;
         
         /// <summary>
         /// Releases the unmanaged resources associated with this instance and
@@ -5635,6 +5750,11 @@ namespace SharpVk
         {
             return this.handle;
         }
+        
+        /// <summary>
+        /// The interop handle for this Queue.
+        /// </summary>
+        public Interop.Queue RawHandle => this.handle;
     }
     
     /// <summary>
@@ -5718,6 +5838,11 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// The interop handle for this RenderPass.
+        /// </summary>
+        public Interop.RenderPass RawHandle => this.handle;
+        
+        /// <summary>
         /// Releases the unmanaged resources associated with this instance and
         /// destroys the underlying Vulkan handle.
         /// </summary>
@@ -5787,6 +5912,11 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// The interop handle for this Sampler.
+        /// </summary>
+        public Interop.Sampler RawHandle => this.handle;
+        
+        /// <summary>
         /// Releases the unmanaged resources associated with this instance and
         /// destroys the underlying Vulkan handle.
         /// </summary>
@@ -5854,6 +5984,11 @@ namespace SharpVk
         {
             return this.handle;
         }
+        
+        /// <summary>
+        /// The interop handle for this Semaphore.
+        /// </summary>
+        public Interop.Semaphore RawHandle => this.handle;
         
         /// <summary>
         /// Releases the unmanaged resources associated with this instance and
@@ -5929,6 +6064,11 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// The interop handle for this ShaderModule.
+        /// </summary>
+        public Interop.ShaderModule RawHandle => this.handle;
+        
+        /// <summary>
         /// Releases the unmanaged resources associated with this instance and
         /// destroys the underlying Vulkan handle.
         /// </summary>
@@ -5990,6 +6130,11 @@ namespace SharpVk
         {
             return this.handle;
         }
+        
+        /// <summary>
+        /// The interop handle for this Surface.
+        /// </summary>
+        public Interop.Surface RawHandle => this.handle;
         
         /// <summary>
         /// Releases the unmanaged resources associated with this instance and
@@ -6123,6 +6268,11 @@ namespace SharpVk
         {
             return this.handle;
         }
+        
+        /// <summary>
+        /// The interop handle for this Swapchain.
+        /// </summary>
+        public Interop.Swapchain RawHandle => this.handle;
         
         /// <summary>
         /// Releases the unmanaged resources associated with this instance and

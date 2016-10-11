@@ -26,7 +26,7 @@ namespace SharpVk.Generator.Generators
                             const string handleFieldName = "handle";
 
                             string internalHandleType = handle.IsDispatch
-                                                            ? "IntPtr"
+                                                            ? "UIntPtr"
                                                             : "ulong";
 
                             typeBuilder.EmitField(internalHandleType, handleFieldName, Internal);
@@ -37,8 +37,20 @@ namespace SharpVk.Generator.Generators
                                 {
                                     member.EmitMember(handleFieldName, Default(internalHandleType));
                                 }));
-                            });
-                        }, Public);
+                            }, summary: new[] { $"A read-only property that returns a null {handle.Name} handle." });
+
+                            typeBuilder.EmitMethod("ulong", "ToUInt64", methodbody =>
+                            {
+                                if (handle.IsDispatch)
+                                {
+                                    methodbody.EmitReturn(Call(Member(This, "handle"), "ToUInt64"));
+                                }
+                                else
+                                {
+                                    methodbody.EmitReturn(Member(This, "handle"));
+                                }
+                            }, null, Public, summary: new[] { "Returns the marshalled value of this handle as an unsigned 64-bit integer." });
+                        }, Public, summary: handle.Comment);
                     }
                 });
             });
@@ -95,7 +107,7 @@ namespace SharpVk.Generator.Generators
                                 if (handle.AssociatedHandle != null)
                                 {
                                     typeBuilder.EmitField(handle.AssociatedHandle, "associated", methodModifers: MemberModifier.Readonly);
-                                    
+
                                     parameters.Add(x => x.EmitParam(handle.AssociatedHandle, "associated"));
 
                                     ctorStatements.Add(x => x.EmitAssignment(Member(This, "associated"), Variable("associated")));
@@ -230,6 +242,12 @@ namespace SharpVk.Generator.Generators
                             {
                                 body.EmitReturn(Member(This, "handle"));
                             }, null, Internal);
+
+                            typeBuilder.EmitProperty(interopTypeName,
+                                                        "RawHandle",
+                                                        Member(This, "handle"),
+                                                        Public,
+                                                        summary: new[] { $"The interop handle for this {handle.Name}." });
 
                             if (handle.IsDisposable)
                             {
