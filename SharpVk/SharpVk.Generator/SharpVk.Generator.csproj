@@ -60,7 +60,9 @@
     <Compile Include="Emit\TypeKind.cs" />
     <Compile Include="Emit\TypeModifier.cs" />
     <Compile Include="Generators\FileGenerator.cs" />
-    <Compile Include="Generators\VkClassGenerator.cs" />
+    <Compile Include="Generators\VkStructsGenerator.cs" />
+    <Compile Include="Generators\VkUnionsGenerator.cs" />
+    <Compile Include="Generators\VkInteropStructsGenerator.cs" />
     <Compile Include="Generators\VkConstantGenerator.cs" />
     <Compile Include="Generators\VkDelegateGenerator.cs" />
     <Compile Include="Generators\VkExceptionGenerator.cs" />

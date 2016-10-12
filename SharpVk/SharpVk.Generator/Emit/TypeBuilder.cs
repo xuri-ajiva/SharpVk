@@ -24,6 +24,7 @@ namespace SharpVk.Generator.Emit
                                 AccessModifier accessModifier = AccessModifier.Private,
                                 MemberModifier methodModifers = MemberModifier.None,
                                 Action<ExpressionBuilder> initialiser = null,
+                                int? fixedLength = null,
                                 IEnumerable<string> summary = null,
                                 Action<DocBuilder> docs = null,
                                 IEnumerable<string> attributes = null)
@@ -32,7 +33,17 @@ namespace SharpVk.Generator.Emit
 
             this.EmitMemberComments(accessModifier, summary, docs);
 
-            this.writer.Write($"{accessModifier.Emit()} {RenderMemberModifiers(methodModifers)}{type} {name}");
+            if (attributes != null)
+            {
+                foreach (var attributeName in attributes)
+                {
+                    this.writer.WriteLine($"[{attributeName}]");
+                }
+            }
+
+            string fixedLengthSuffix = fixedLength.HasValue ? $"[{fixedLength.Value}]" : "";
+
+            this.writer.Write($"{accessModifier.Emit()} {RenderMemberModifiers(methodModifers)}{type} {name}{fixedLengthSuffix}");
             if (initialiser != null)
             {
                 writer.Write(" = ");

@@ -90,18 +90,11 @@
     <Compile Include="Spirv\ISpirvSink.cs" />
     <Compile Include="Spirv\ResultId.cs" />
     <Compile Include="Spirv\SpirvStatement.cs" />
-    <Compile Include="Unions.cs">
-      <DependentUpon>Unions.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Structs.cs">
-      <DependentUpon>Structs.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
+    <Compile Include="Structs.cs" />
+    <Compile Include="Structs.Partial.cs" />
     <Compile Include="Interop\HeapUtil.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Unions.cs" />
     <Compile Include="Version.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -112,14 +105,6 @@
     <Content Include="Spirv\Enums.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Enums.cs</LastGenOutput>
-    </Content>
-    <Content Include="Unions.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Unions.cs</LastGenOutput>
-    </Content>
-    <Content Include="Structs.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Structs.cs</LastGenOutput>
     </Content>
     <Content Include="License.tt" />
   </ItemGroup>

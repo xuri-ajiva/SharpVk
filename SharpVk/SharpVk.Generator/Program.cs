@@ -22,9 +22,11 @@ namespace SharpVk.Generator
                 new VkHandleGenerator(),
                 new VkDelegateGenerator(),
                 new VkEnumGenerator(),
+                new VkStructsGenerator(),
+                new VkUnionsGenerator(),
                 new VkExceptionGenerator(),
                 new VkConstantGenerator(),
-                new VkClassGenerator()
+                new VkInteropStructsGenerator()
             })
             {
                 modelGenerator.Run(types, fileGenerator);

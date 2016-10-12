@@ -317,8 +317,7 @@ namespace SharpVk
 
             if (Instance.EnumerateLayerProperties().Any(x => x.LayerName == "VK_LAYER_LUNARG_standard_validation"))
             {
-                //enabledLayers.Add("VK_LAYER_LUNARG_standard_validation");
-                //enabledLayers.Add("VK_LAYER_LUNARG_api_dump");
+                enabledLayers.Add("VK_LAYER_LUNARG_standard_validation");
             }
 
             this.instance = Instance.Create(new InstanceCreateInfo
@@ -342,7 +341,7 @@ namespace SharpVk
 
             this.instance.CreateDebugReportCallback(new DebugReportCallbackCreateInfo
             {
-                Flags = DebugReportFlags.Error | DebugReportFlags.Warning | DebugReportFlags.Information | DebugReportFlags.Debug,
+                Flags = DebugReportFlags.Error | DebugReportFlags.Warning | DebugReportFlags.PerformanceWarning,
                 PfnCallback = DebugReportDelegate
             });
         }
@@ -384,7 +383,7 @@ namespace SharpVk
                                                     QueuePriorities = new[] { 1f }
                                                 }).ToArray(),
                 EnabledExtensionNames = new[] { KhrSwapchain.ExtensionName },
-                EnabledLayerNames = new[] { "VK_LAYER_LUNARG_core_validation" }
+                EnabledLayerNames = null
             });
 
             this.graphicsQueue = this.device.GetQueue(queueFamilies.GraphicsFamily.Value, 0);

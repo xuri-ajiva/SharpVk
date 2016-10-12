@@ -17,6 +17,14 @@ namespace SharpVk.Generator.Emit
             this.writer.Write(expression);
         }
 
+        public void EmitLiteral(char prefix, string literal)
+        {
+            this.writer.Write(prefix);
+            this.writer.Write('"');
+            this.writer.Write(literal);
+            this.writer.Write('"');
+        }
+
         public void EmitLiteral(string literal)
         {
             this.writer.Write('"');
@@ -159,6 +167,11 @@ namespace SharpVk.Generator.Emit
 
                 argument(new ExpressionBuilder(writer.GetSubWriter()));
             }
+        }
+
+        public static Action<ExpressionBuilder> Literal(char prefix, string literal)
+        {
+            return builder => builder.EmitLiteral(prefix, literal);
         }
 
         public static Action<ExpressionBuilder> Literal(string literal)
