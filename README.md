@@ -9,8 +9,7 @@ Sample code is now maintained in a separate repo: https://github.com/FacticiusVi
 
 ----------
 
-Note that this project is still under active development and testing; all core functions of the API and WSI extensions are present but not all are fully tested. Breaking changes may be made as the bindings move towards v1.
-TODO.md has a complete list of API commands that have been tested and shown working.
+Note that this project is still under active development and testing; all core functions of the core API and WSI extensions are present, and [this issue](https://github.com/FacticiusVir/SharpVk/issues/22) has a complete list of commands that have been tested and shown working. Please be aware that breaking changes may be made to the public API as the bindings move towards v1.
 
 Rolling builds: [![Build status](https://ci.appveyor.com/api/projects/status/6i4r9ghsx4r62nkt?svg=true)](https://ci.appveyor.com/project/FacticiusVir/sharpvk)
 
