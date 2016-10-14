@@ -6302,14 +6302,14 @@ namespace SharpVk
     /// allocation has failed due to fragmentation of the pool's memory.
     /// ifdef::VK_KHR_surface[] * ename:VK_ERROR_SURFACE_LOST_KHR A surface is
     /// no longer available. * ename:VK_ERROR_NATIVE_WINDOW_IN_USE_KHR The
-    /// requested window is already connected to a VkSurfaceKHR, or to some
-    /// other non-Vulkan API. endif::VK_KHR_surface[] ifdef::VK_KHR_swapchain[]
-    /// * ename:VK_ERROR_OUT_OF_DATE_KHR A surface has changed in such a way
-    /// that it is no longer compatible with the swapchain, and further
-    /// presentation requests using the swapchain will fail. Applications must:
-    /// query the new surface properties and recreate their swapchain if they
-    /// wish to continue presenting to the surface. endif::VK_KHR_swapchain[]
-    /// ifdef::VK_KHR_display_swapchain[] *
+    /// requested window is already in use by Vulkan or another API in a manner
+    /// which prevents it from being used again. endif::VK_KHR_surface[]
+    /// ifdef::VK_KHR_swapchain[] * ename:VK_ERROR_OUT_OF_DATE_KHR A surface
+    /// has changed in such a way that it is no longer compatible with the
+    /// swapchain, and further presentation requests using the swapchain will
+    /// fail. Applications must: query the new surface properties and recreate
+    /// their swapchain if they wish to continue presenting to the surface.
+    /// endif::VK_KHR_swapchain[] ifdef::VK_KHR_display_swapchain[] *
     /// ename:VK_ERROR_INCOMPATIBLE_DISPLAY_KHR The display used by a swapchain
     /// does not use the same presentable image layout, or is incompatible in a
     /// way that prevents sharing an image. endif::VK_KHR_display_swapchain[]

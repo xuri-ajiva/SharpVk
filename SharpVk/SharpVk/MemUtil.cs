@@ -74,17 +74,20 @@ namespace SharpVk
         public unsafe static void WriteToPtr<T>(IntPtr dest, T[] value, int startIndex, int count)
             where T : struct
         {
-            uint size = SizeOf<T>() * (uint)value.Length;
+            if (count > 0)
+            {
+                uint size = SizeOf<T>() * (uint)value.Length;
 
-            void* pointer = dest.ToPointer();
+                void* pointer = dest.ToPointer();
 
-            var handle = GCHandle.Alloc(value, GCHandleType.Pinned);
+                var handle = GCHandle.Alloc(value, GCHandleType.Pinned);
 
-            byte* handlePointer = (byte*)handle.AddrOfPinnedObject().ToPointer();
+                byte* handlePointer = (byte*)handle.AddrOfPinnedObject().ToPointer();
 
-            System.Buffer.MemoryCopy(handlePointer + (int)(size * startIndex), pointer, size * count, size * count);
+                System.Buffer.MemoryCopy(handlePointer + (int)(size * startIndex), pointer, size * count, size * count);
 
-            handle.Free();
+                handle.Free();
+            }
         }
     }
 }

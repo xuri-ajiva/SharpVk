@@ -129,13 +129,8 @@ namespace SharpVk
     }
     
     /// <summary>
-    /// <para>
     /// Structure specifying parameters of a newly created Android surface
     /// object.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:window must: not be in a connected state ****
-    /// </para>
     /// </summary>
     public struct AndroidSurfaceCreateInfo
     {
@@ -639,8 +634,8 @@ namespace SharpVk
     /// sname:VkPhysicalDeviceLimits::pname:minTexelBufferOffsetAlignment * If
     /// pname:range is not equal to ename:VK_WHOLE_SIZE: ** pname:range must:
     /// be greater than `0` ** pname:range must: be a multiple of the element
-    /// size of pname:format ** pname:range divided by the size of an element
-    /// of pname:format, must: be less than or equal to
+    /// size of pname:format ** pname:range divided by the element size of
+    /// pname:format, must: be less than or equal to
     /// sname:VkPhysicalDeviceLimits::pname:maxTexelBufferElements ** the sum
     /// of pname:offset and pname:range must: be less than or equal to the size
     /// of pname:buffer * pname:buffer must: have been created with a
@@ -857,9 +852,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:subpass is the index of the subpass within pname:renderPass
-        /// that the sname:VkCommandBuffer will be executed within. If the
-        /// sname:VkCommandBuffer will not be executed within a render pass
+        /// pname:subpass is the index of the subpass within the render pass
+        /// instance that the sname:VkCommandBuffer will be executed within. If
+        /// the sname:VkCommandBuffer will not be executed within a render pass
         /// instance, pname:subpass is ignored.
         /// </summary>
         public uint Subpass
@@ -1242,6 +1237,8 @@ namespace SharpVk
             Interop.DebugMarkerMarkerInfo result = default(Interop.DebugMarkerMarkerInfo);
             result.SType = StructureType.DebugMarkerMarkerInfo;
             result.MarkerName = Interop.HeapUtil.MarshalTo(this.MarkerName);
+            Validate.CheckLength(this.Color, 4, "Color");
+            MemUtil.WriteToPtr((IntPtr)(result.Color), this.Color, 0, 4);
             return result;
         }
         
@@ -3210,9 +3207,9 @@ namespace SharpVk
         
         /// <summary>
         /// pname:renderPass is a handle to a render pass object describing the
-        /// environment in which the pipeline will be used; the pipeline can:
-        /// be used with an instance of any render pass compatible with the one
-        /// provided. See &lt;&lt;renderpass-compatibility,Render Pass
+        /// environment in which the pipeline will be used; the pipeline must:
+        /// only be used with an instance of any render pass compatible with
+        /// the one provided. See &lt;&lt;renderpass-compatibility,Render Pass
         /// Compatibility&gt;&gt; for more information.
         /// </summary>
         public RenderPass RenderPass
@@ -3222,7 +3219,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:subpass is the index of the subpass in pname:renderPass where
+        /// pname:subpass is the index of the subpass in the render pass where
         /// this pipeline will be used.
         /// </summary>
         public uint Subpass
@@ -3321,17 +3318,27 @@ namespace SharpVk
     /// greater than or equal to `0` and less than or equal to the source image
     /// subresource width * pname:srcOffset[0].pname:y and
     /// pname:srcOffset[1].pname:y must: both be greater than or equal to `0`
-    /// and less than or equal to the source image subresource height *
-    /// pname:srcOffset[0].pname:z and pname:srcOffset[1].pname:z must: both be
-    /// greater than or equal to `0` and less than or equal to the source image
-    /// subresource depth * pname:dstOffset[0].pname:x and
+    /// and less than or equal to the source image subresource height ** If the
+    /// calling command's pname:srcImage is of type ename:VK_IMAGE_TYPE_1D,
+    /// then pname:srcOffset[0].y must: be `0` and pname:srcOffset[1].y must:
+    /// be `1`. * pname:srcOffset[0].pname:z and pname:srcOffset[1].pname:z
+    /// must: both be greater than or equal to `0` and less than or equal to
+    /// the source image subresource depth ** If the calling command's
+    /// pname:srcImage is of type ename:VK_IMAGE_TYPE_1D or
+    /// ename:VK_IMAGE_TYPE_2D, then pname:srcOffset[0].z must: be `0` and
+    /// pname:srcOffset[1].z must: be `1`. * pname:dstOffset[0].pname:x and
     /// pname:dstOffset[1].pname:x must: both be greater than or equal to `0`
     /// and less than or equal to the destination image subresource width *
     /// pname:dstOffset[0].pname:y and pname:dstOffset[1].pname:y must: both be
     /// greater than or equal to `0` and less than or equal to the destination
-    /// image subresource height * pname:dstOffset[0].pname:z and
+    /// image subresource height ** If the calling command's pname:dstImage is
+    /// of type ename:VK_IMAGE_TYPE_1D, then pname:dstOffset[0].y must: be `0`
+    /// and pname:dstOffset[1].y must: be `1`. * pname:dstOffset[0].pname:z and
     /// pname:dstOffset[1].pname:z must: both be greater than or equal to `0`
-    /// and less than or equal to the destination image subresource depth ****
+    /// and less than or equal to the destination image subresource depth ** If
+    /// the calling command's pname:dstImage is of type ename:VK_IMAGE_TYPE_1D
+    /// or ename:VK_IMAGE_TYPE_2D, then pname:dstOffset[0].z must: be `0` and
+    /// pname:dstOffset[1].z must: be `1`. ****
     /// </para>
     /// </summary>
     public struct ImageBlit
@@ -3379,6 +3386,10 @@ namespace SharpVk
         internal unsafe Interop.ImageBlit Pack()
         {
             Interop.ImageBlit result = default(Interop.ImageBlit);
+            Validate.CheckLength(this.SourceOffsets, 2, "SourceOffsets");
+            MemUtil.WriteToPtr((IntPtr)(&result.SourceOffsets), this.SourceOffsets, 0, 2);
+            Validate.CheckLength(this.DestinationOffsets, 2, "DestinationOffsets");
+            MemUtil.WriteToPtr((IntPtr)(&result.DestinationOffsets), this.DestinationOffsets, 0, 2);
             result.SourceSubresource = this.SourceSubresource;
             result.DestinationSubresource = this.DestinationSubresource;
             return result;
@@ -3481,11 +3492,10 @@ namespace SharpVk
     /// fname:vkGetPhysicalDeviceImageFormatProperties with pname:format,
     /// pname:type, pname:tiling, pname:usage, and pname:flags equal to those
     /// in this structure) * pname:arrayLayers must: be less than or equal to
-    /// sname:VkPhysicalDeviceLimits::pname:maxImageArrayLayers, or
     /// sname:VkImageFormatProperties::pname:maxArrayLayers (as returned by
     /// fname:vkGetPhysicalDeviceImageFormatProperties with pname:format,
     /// pname:type, pname:tiling, pname:usage, and pname:flags equal to those
-    /// in this structure) - whichever is higher * If pname:samples is not
+    /// in this structure) * If pname:samples is not
     /// ename:VK_SAMPLE_COUNT_1_BIT, pname:imageType must: be
     /// ename:VK_IMAGE_TYPE_2D, pname:flags must: not contain
     /// ename:VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT, pname:tiling must: be
@@ -6653,6 +6663,8 @@ namespace SharpVk
             {
                 result.Attachments = null;
             }
+            Validate.CheckLength(this.BlendConstants, 4, "BlendConstants");
+            MemUtil.WriteToPtr((IntPtr)(result.BlendConstants), this.BlendConstants, 0, 4);
             result.AttachmentCount = (uint)(this.Attachments?.Length ?? 0);
             result.Flags = this.Flags;
             result.LogicOpEnable = this.LogicOpEnable;
@@ -7896,7 +7908,11 @@ namespace SharpVk
     /// .Valid Usage **** * pname:clearValueCount must: be greater than the
     /// largest attachment index in pname:renderPass that specifies a
     /// pname:loadOp (or pname:stencilLoadOp, if the attachment has a
-    /// depth/stencil format) of ename:VK_ATTACHMENT_LOAD_OP_CLEAR ****
+    /// depth/stencil format) of ename:VK_ATTACHMENT_LOAD_OP_CLEAR *
+    /// pname:renderPass must: be
+    /// &lt;&lt;renderpass-compatibility,compatible&gt;&gt; with the
+    /// pname:renderPass member of the sname:VkFramebufferCreateInfo structure
+    /// specified when creating pname:framebuffer. ****
     /// </para>
     /// </summary>
     public struct RenderPassBeginInfo
@@ -9249,23 +9265,20 @@ namespace SharpVk
     /// <para>
     /// .Valid Usage **** * pname:surface must: be a surface that is supported
     /// by the device as determined using
-    /// fname:vkGetPhysicalDeviceSurfaceSupportKHR * The native window referred
-    /// to by pname:surface must: not already be associated with a swapchain
-    /// other than pname:oldSwapchain, or with a non-Vulkan graphics API
-    /// surface * pname:minImageCount must: be greater than or equal to the
-    /// value returned in the pname:minImageCount member of the
-    /// sname:VkSurfaceCapabilitiesKHR structure returned by
-    /// fname:vkGetPhysicalDeviceSurfaceCapabilitiesKHR for the surface *
-    /// pname:minImageCount must: be less than or equal to the value returned
-    /// in the pname:maxImageCount member of the sname:VkSurfaceCapabilitiesKHR
+    /// fname:vkGetPhysicalDeviceSurfaceSupportKHR * pname:minImageCount must:
+    /// be greater than or equal to the value returned in the
+    /// pname:minImageCount member of the sname:VkSurfaceCapabilitiesKHR
     /// structure returned by fname:vkGetPhysicalDeviceSurfaceCapabilitiesKHR
-    /// for the surface if the returned pname:maxImageCount is not zero *
-    /// pname:imageFormat and pname:imageColorSpace must: match the
-    /// pname:format and pname:colorSpace members, respectively, of one of the
-    /// sname:VkSurfaceFormatKHR structures returned by
-    /// fname:vkGetPhysicalDeviceSurfaceFormatsKHR for the surface *
-    /// pname:imageExtent must: be between pname:minImageExtent and
-    /// pname:maxImageExtent, inclusive, where pname:minImageExtent and
+    /// for the surface * pname:minImageCount must: be less than or equal to
+    /// the value returned in the pname:maxImageCount member of the
+    /// sname:VkSurfaceCapabilitiesKHR structure returned by
+    /// fname:vkGetPhysicalDeviceSurfaceCapabilitiesKHR for the surface if the
+    /// returned pname:maxImageCount is not zero * pname:imageFormat and
+    /// pname:imageColorSpace must: match the pname:format and pname:colorSpace
+    /// members, respectively, of one of the sname:VkSurfaceFormatKHR
+    /// structures returned by fname:vkGetPhysicalDeviceSurfaceFormatsKHR for
+    /// the surface * pname:imageExtent must: be between pname:minImageExtent
+    /// and pname:maxImageExtent, inclusive, where pname:minImageExtent and
     /// pname:maxImageExtent are members of the sname:VkSurfaceCapabilitiesKHR
     /// structure returned by fname:vkGetPhysicalDeviceSurfaceCapabilitiesKHR
     /// for the surface * pname:imageArrayLayers must: be greater than `0` and

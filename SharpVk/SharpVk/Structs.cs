@@ -230,7 +230,7 @@ namespace SharpVk
     /// </para>
     /// <para>
     /// .Valid Usage **** * pname:bufferOffset must: be a multiple of the
-    /// calling command's sname:VkImage parameter's texel size *
+    /// calling command's sname:VkImage parameter's format's element size *
     /// pname:bufferOffset must: be a multiple of `4` * pname:bufferRowLength
     /// must: be `0`, or greater than or equal to the pname:width member of
     /// pname:imageExtent * pname:bufferImageHeight must: be `0`, or greater
@@ -240,29 +240,38 @@ namespace SharpVk
     /// the image subresource width * pname:imageOffset.y and
     /// (imageExtent.height + pname:imageOffset.y) must: both be greater than
     /// or equal to `0` and less than or equal to the image subresource height
-    /// * pname:imageOffset.z and (imageExtent.depth + pname:imageOffset.z)
-    /// must: both be greater than or equal to `0` and less than or equal to
-    /// the image subresource depth * If the calling command's sname:VkImage
-    /// parameter is a compressed format image: ** pname:bufferRowLength must:
-    /// be a multiple of the compressed texel block width **
-    /// pname:bufferImageHeight must: be a multiple of the compressed texel
-    /// block height ** all members of pname:imageOffset must: be a multiple of
-    /// the corresponding dimensions of the compressed texel block **
-    /// pname:bufferOffset must: be a multiple of the compressed texel block
-    /// size in bytes ** pname:imageExtent.width must: be a multiple of the
-    /// compressed texel block width or (pname:imageExtent.width +
-    /// pname:imageOffset.x) must: equal the image subresource width **
-    /// pname:imageExtent.height must: be a multiple of the compressed texel
-    /// block height or (pname:imageExtent.height + pname:imageOffset.y) must:
-    /// equal the image subresource height ** pname:imageExtent.depth must: be
-    /// a multiple of the compressed texel block depth or
-    /// (pname:imageExtent.depth + pname:imageOffset.z) must: equal the image
-    /// subresource depth * pname:bufferOffset, pname:bufferRowLength,
-    /// pname:bufferImageHeight and all members of pname:imageOffset and
-    /// pname:imageExtent must: respect the image transfer granularity
-    /// requirements of the queue family that it will be submitted against, as
-    /// described in &lt;&lt;devsandqueues-physical-device-enumeration,Physical
-    /// Device Enumeration&gt;&gt; * The pname:aspectMask member of
+    /// ** If the calling command's pname:srcImage
+    /// (flink:vkCmdCopyImageToBuffer) or pname:dstImage
+    /// (flink:vkCmdCopyBufferToImage) is of type ename:VK_IMAGE_TYPE_1D, then
+    /// pname:imageOffset.y must: be `0` and pname:imageExtent.height must: be
+    /// `1`. * pname:imageOffset.z and (imageExtent.depth +
+    /// pname:imageOffset.z) must: both be greater than or equal to `0` and
+    /// less than or equal to the image subresource depth ** If the calling
+    /// command's pname:srcImage (flink:vkCmdCopyImageToBuffer) or
+    /// pname:dstImage (flink:vkCmdCopyBufferToImage) is of type
+    /// ename:VK_IMAGE_TYPE_1D or ename:VK_IMAGE_TYPE_2D, then
+    /// pname:imageOffset.z must: be `0` and pname:imageExtent.depth must: be
+    /// `1`. * If the calling command's sname:VkImage parameter is a compressed
+    /// format image: ** pname:bufferRowLength must: be a multiple of the
+    /// compressed texel block width ** pname:bufferImageHeight must: be a
+    /// multiple of the compressed texel block height ** all members of
+    /// pname:imageOffset must: be a multiple of the corresponding dimensions
+    /// of the compressed texel block ** pname:bufferOffset must: be a multiple
+    /// of the compressed texel block size in bytes ** pname:imageExtent.width
+    /// must: be a multiple of the compressed texel block width or
+    /// (pname:imageExtent.width + pname:imageOffset.x) must: equal the image
+    /// subresource width ** pname:imageExtent.height must: be a multiple of
+    /// the compressed texel block height or (pname:imageExtent.height +
+    /// pname:imageOffset.y) must: equal the image subresource height **
+    /// pname:imageExtent.depth must: be a multiple of the compressed texel
+    /// block depth or (pname:imageExtent.depth + pname:imageOffset.z) must:
+    /// equal the image subresource depth * pname:bufferOffset,
+    /// pname:bufferRowLength, pname:bufferImageHeight and all members of
+    /// pname:imageOffset and pname:imageExtent must: respect the image
+    /// transfer granularity requirements of the queue family that it will be
+    /// submitted against, as described in
+    /// &lt;&lt;devsandqueues-physical-device-enumeration,Physical Device
+    /// Enumeration&gt;&gt; * The pname:aspectMask member of
     /// pname:imageSubresource must: specify aspects present in the calling
     /// command's sname:VkImage parameter * The pname:aspectMask member of
     /// pname:imageSubresource must: only have a single bit set * If the
@@ -312,10 +321,7 @@ namespace SharpVk
         
         /// <summary>
         /// pname:imageExtent is the size in texels of the image to copy in
-        /// pname:width, pname:height and pname:depth. 1D images use only
-        /// pname:x and pname:width. 2D images use pname:x, pname:y,
-        /// pname:width and pname:height. 3D images use pname:x, pname:y,
-        /// pname:z, pname:width, pname:height and pname:depth.
+        /// pname:width, pname:height and pname:depth.
         /// </summary>
         public Extent3D ImageExtent; 
         
@@ -1128,31 +1134,42 @@ namespace SharpVk
     /// source image subresource width * pname:srcOffset.y and
     /// (pname:extent.height + pname:srcOffset.y) must: both be greater than or
     /// equal to `0` and less than or equal to the source image subresource
-    /// height * pname:srcOffset.z and (pname:extent.depth + pname:srcOffset.z)
-    /// must: both be greater than or equal to `0` and less than or equal to
-    /// the source image subresource depth * pname:dstOffset.x and
-    /// (pname:extent.width + pname:dstOffset.x) must: both be greater than or
-    /// equal to `0` and less than or equal to the destination image
-    /// subresource width * pname:dstOffset.y and (pname:extent.height +
-    /// pname:dstOffset.y) must: both be greater than or equal to `0` and less
-    /// than or equal to the destination image subresource height *
-    /// pname:dstOffset.z and (pname:extent.depth + pname:dstOffset.z) must:
+    /// height ** If the calling command's pname:srcImage is of type
+    /// ename:VK_IMAGE_TYPE_1D, then pname:srcOffset.y must: be `0` and
+    /// pname:extent.height must: be `1`. * pname:srcOffset.z and
+    /// (pname:extent.depth + pname:srcOffset.z) must: both be greater than or
+    /// equal to `0` and less than or equal to the source image subresource
+    /// depth ** If the calling command's pname:srcImage is of type
+    /// ename:VK_IMAGE_TYPE_1D or ename:VK_IMAGE_TYPE_2D, then
+    /// pname:srcOffset.z must: be `0` and pname:extent.depth must: be `1`. *
+    /// pname:dstOffset.x and (pname:extent.width + pname:dstOffset.x) must:
     /// both be greater than or equal to `0` and less than or equal to the
-    /// destination image subresource depth * If the calling command's
-    /// pname:srcImage is a compressed format image: ** all members of
-    /// pname:srcOffset must: be a multiple of the corresponding dimensions of
+    /// destination image subresource width * pname:dstOffset.y and
+    /// (pname:extent.height + pname:dstOffset.y) must: both be greater than or
+    /// equal to `0` and less than or equal to the destination image
+    /// subresource height ** If the calling command's pname:dstImage is of
+    /// type ename:VK_IMAGE_TYPE_1D, then pname:dstOffset.y must: be `0` and
+    /// pname:extent.height must: be `1`. * pname:dstOffset.z and
+    /// (pname:extent.depth + pname:dstOffset.z) must: both be greater than or
+    /// equal to `0` and less than or equal to the destination image
+    /// subresource depth ** If the calling command's pname:dstImage is of type
+    /// ename:VK_IMAGE_TYPE_1D or ename:VK_IMAGE_TYPE_2D, then
+    /// pname:dstOffset.z must: be `0` and pname:extent.depth must: be `1`. *
+    /// If the calling command's pname:srcImage is a compressed format image:
+    /// ** all members of pname:srcOffset must: be a multiple of the
+    /// corresponding dimensions of the compressed texel block **
+    /// pname:extent.width must: be a multiple of the compressed texel block
+    /// width or (pname:extent.width + pname:srcOffset.x) must: equal the
+    /// source image subresource width ** pname:extent.height must: be a
+    /// multiple of the compressed texel block height or (pname:extent.height +
+    /// pname:srcOffset.y) must: equal the source image subresource height **
+    /// pname:extent.depth must: be a multiple of the compressed texel block
+    /// depth or (pname:extent.depth + pname:srcOffset.z) must: equal the
+    /// source image subresource depth * If the calling command's
+    /// pname:dstImage is a compressed format image: ** all members of
+    /// pname:dstOffset must: be a multiple of the corresponding dimensions of
     /// the compressed texel block ** pname:extent.width must: be a multiple of
     /// the compressed texel block width or (pname:extent.width +
-    /// pname:srcOffset.x) must: equal the source image subresource width **
-    /// pname:extent.height must: be a multiple of the compressed texel block
-    /// height or (pname:extent.height + pname:srcOffset.y) must: equal the
-    /// source image subresource height ** pname:extent.depth must: be a
-    /// multiple of the compressed texel block depth or (pname:extent.depth +
-    /// pname:srcOffset.z) must: equal the source image subresource depth * If
-    /// the calling command's pname:dstImage is a compressed format image: **
-    /// all members of pname:dstOffset must: be a multiple of the corresponding
-    /// dimensions of the compressed texel block ** pname:extent.width must: be
-    /// a multiple of the compressed texel block width or (pname:extent.width +
     /// pname:dstOffset.x) must: equal the destination image subresource width
     /// ** pname:extent.height must: be a multiple of the compressed texel
     /// block height or (pname:extent.height + pname:dstOffset.y) must: equal
@@ -1196,10 +1213,7 @@ namespace SharpVk
         
         /// <summary>
         /// pname:extent is the size in texels of the source image to copy in
-        /// pname:width, pname:height and pname:depth. 1D images use only
-        /// pname:x and pname:width. 2D images use pname:x, pname:y,
-        /// pname:width and pname:height. 3D images use pname:x, pname:y,
-        /// pname:z, pname:width, pname:height and pname:depth.
+        /// pname:width, pname:height and pname:depth.
         /// </summary>
         public Extent3D Extent; 
         
@@ -1319,7 +1333,33 @@ namespace SharpVk
     /// are of elink:VkImageType ename:VK_IMAGE_TYPE_3D, the
     /// pname:baseArrayLayer and pname:layerCount members of both
     /// pname:srcSubresource and pname:dstSubresource must: be `0` and `1`,
-    /// respectively ****
+    /// respectively * pname:srcOffset.x and (pname:extent.width +
+    /// pname:srcOffset.x) must: both be greater than or equal to `0` and less
+    /// than or equal to the source image subresource width * pname:srcOffset.y
+    /// and (pname:extent.height + pname:srcOffset.y) must: both be greater
+    /// than or equal to `0` and less than or equal to the source image
+    /// subresource height ** If the calling command's pname:srcImage is of
+    /// type ename:VK_IMAGE_TYPE_1D, then pname:srcOffset.y must: be `0` and
+    /// pname:extent.height must: be `1`. * pname:srcOffset.z and
+    /// (pname:extent.depth + pname:srcOffset.z) must: both be greater than or
+    /// equal to `0` and less than or equal to the source image subresource
+    /// depth ** If the calling command's pname:srcImage is of type
+    /// ename:VK_IMAGE_TYPE_1D or ename:VK_IMAGE_TYPE_2D, then
+    /// pname:srcOffset.z must: be `0` and pname:extent.depth must: be `1`. *
+    /// pname:dstOffset.x and (pname:extent.width + pname:dstOffset.x) must:
+    /// both be greater than or equal to `0` and less than or equal to the
+    /// destination image subresource width * pname:dstOffset.y and
+    /// (pname:extent.height + pname:dstOffset.y) must: both be greater than or
+    /// equal to `0` and less than or equal to the destination image
+    /// subresource height ** If the calling command's pname:dstImage is of
+    /// type ename:VK_IMAGE_TYPE_1D, then pname:dstOffset.y must: be `0` and
+    /// pname:extent.height must: be `1`. * pname:dstOffset.z and
+    /// (pname:extent.depth + pname:dstOffset.z) must: both be greater than or
+    /// equal to `0` and less than or equal to the destination image
+    /// subresource depth ** If the calling command's pname:dstImage is of type
+    /// ename:VK_IMAGE_TYPE_1D or ename:VK_IMAGE_TYPE_2D, then
+    /// pname:dstOffset.z must: be `0` and pname:extent.depth must: be `1`.
+    /// ****
     /// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
@@ -1353,10 +1393,7 @@ namespace SharpVk
         
         /// <summary>
         /// pname:extent is the size in texels of the source image to resolve
-        /// in pname:width, pname:height and pname:depth. 1D images use only
-        /// pname:x and pname:width. 2D images use pname:x, pname:y,
-        /// pname:width and pname:height. 3D images use pname:x, pname:y,
-        /// pname:z, pname:width, pname:height and pname:depth.
+        /// in pname:width, pname:height and pname:depth.
         /// </summary>
         public Extent3D Extent; 
         
@@ -2052,7 +2089,7 @@ namespace SharpVk
     /// also indicates whether shader modules can: declare the
     /// code:StorageImageWriteWithoutFormat capability. *
     /// pname:shaderUniformBufferArrayDynamicIndexing indicates whether arrays
-    /// of uniform buffers can: be indexed by dynamically uniform integer
+    /// of uniform buffers can: be indexed by _dynamically uniform_ integer
     /// expressions in shader code. If this feature is not enabled, resources
     /// with a descriptor type of ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER or
     /// ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC must: be indexed only
@@ -3194,7 +3231,7 @@ namespace SharpVk
     /// <para>
     /// [source,c] --------------------------------------------------- //
     /// (x,y,z,layer) are in texel coordinates address(x,y,z,layer) =
-    /// layer*arrayPitch + z*depthPitch + y*rowPitch + x*texelSize + offset
+    /// layer*arrayPitch + z*depthPitch + y*rowPitch + x*elementSize + offset
     /// ---------------------------------------------------
     /// </para>
     /// <para>

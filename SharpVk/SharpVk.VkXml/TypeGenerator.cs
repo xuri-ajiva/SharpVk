@@ -1025,6 +1025,8 @@ namespace SharpVk.VkXml
                         }
                         else
                         {
+                            string marshalToPointerExpression = $"result.{memberDesc.Name}";
+
                             if (memberType.IsPrimitive)
                             {
                                 newClass.MarshalFromStatements.Add(string.Format("result.{0} = Interop.HeapUtil.MarshalFrom(value->{0}, {1});", memberDesc.Name, fixedLengthValue));
@@ -1032,6 +1034,8 @@ namespace SharpVk.VkXml
                             else
                             {
                                 string pointerVarName = memberDesc.Name + "Pointer";
+
+                                marshalToPointerExpression = "&" + marshalToPointerExpression;
 
                                 //HACK There's no len attribute for fixed-length
                                 // fields, so work out what the len field name
@@ -1047,6 +1051,9 @@ namespace SharpVk.VkXml
                                 newClass.MarshalFromStatements.Add(string.Format("    {0}++;", pointerVarName));
                                 newClass.MarshalFromStatements.Add(string.Format("}}"));
                             }
+
+                            newClass.MarshalToStatements.Add($"Validate.CheckLength(this.{memberDesc.Name}, {member.FixedLength.Value}, \"{memberDesc.Name}\");");
+                            newClass.MarshalToStatements.Add($"MemUtil.WriteToPtr((IntPtr)({marshalToPointerExpression}), this.{memberDesc.Name}, 0, {member.FixedLength.Value});");
 
                             memberDesc.PublicTypeName += "[]";
                         }
