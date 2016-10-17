@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{F3FC01CD-9765-4FC4-8D00-83C6D37BEF86}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Test_Harness</RootNamespace>
     <AssemblyName>Test Harness</AssemblyName>
@@ -84,7 +84,7 @@
     <None Include="packages.config" />
     <None Include="Shaders\Shader.vert" />
     <Content Include="Shaders\vert.spv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>

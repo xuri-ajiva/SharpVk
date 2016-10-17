@@ -16,6 +16,7 @@ namespace SharpVk.Shanq
         private Dictionary<SpirvStatement, ResultId> expressionResults = new Dictionary<SpirvStatement, ResultId>();
         private readonly SpirvFile file;
         private Dictionary<FieldInfo, ResultId> inputMappings = new Dictionary<FieldInfo, ResultId>();
+        private Dictionary<FieldInfo, Tuple<ResultId, int>> bindingMappings = new Dictionary<FieldInfo, Tuple<ResultId, int>>();
 
         public ShanqExpressionVisitor(SpirvFile file)
         {
@@ -36,6 +37,11 @@ namespace SharpVk.Shanq
         public void AddInputMapping(FieldInfo field, ResultId resultId)
         {
             this.inputMappings.Add(field, resultId);
+        }
+
+        public void AddBinding(FieldInfo field, Tuple<ResultId, int> binding)
+        {
+            this.bindingMappings.Add(field, binding);
         }
 
         public ResultId Visit(Expression expression)
@@ -112,7 +118,7 @@ namespace SharpVk.Shanq
                 {
                     multiplicationOp = Op.OpMatrixTimesVector;
                 }
-                else if(IsMatrixType(expression.Right.Type))
+                else if (IsMatrixType(expression.Right.Type))
                 {
                     multiplicationOp = Op.OpMatrixTimesMatrix;
                 }
@@ -147,7 +153,7 @@ namespace SharpVk.Shanq
 
         private ResultId VisitUnary(UnaryExpression expression, Op unaryOp)
         {
-            ResultId resultTypeId = this.Visit(Expression.Constant(expression.Method.ReturnType));
+            ResultId resultTypeId = this.Visit(Expression.Constant(expression.Type));
 
             ResultId operand = this.Visit(expression.Operand);
             ResultId result = this.file.GetNextResultId();
@@ -159,7 +165,7 @@ namespace SharpVk.Shanq
 
         private ResultId VisitBinary(BinaryExpression expression, Op binaryOp)
         {
-            ResultId resultTypeId = this.Visit(Expression.Constant(expression.Method.ReturnType));
+            ResultId resultTypeId = this.Visit(Expression.Constant(expression.Type));
 
             ResultId left = this.Visit(expression.Left);
             ResultId right = this.Visit(expression.Right);
@@ -177,15 +183,7 @@ namespace SharpVk.Shanq
             {
                 var fieldInfo = (FieldInfo)expression.Member;
 
-                ResultId fieldId = this.inputMappings[fieldInfo];
-
-                ResultId typeId = this.Visit(Expression.Constant(fieldInfo.FieldType));
-
-                ResultId accessId = this.file.GetNextResultId();
-
-                this.file.AddFunctionStatement(accessId, Op.OpLoad, typeId, fieldId);
-
-                return accessId;
+                return this.GetInputId(fieldInfo);
             }
             else
             {
@@ -229,6 +227,34 @@ namespace SharpVk.Shanq
                 {
                     throw new NotImplementedException();
                 }
+            }
+        }
+
+        private ResultId GetInputId(FieldInfo fieldInfo)
+        {
+            ResultId typeId = this.Visit(Expression.Constant(fieldInfo.FieldType));
+
+            if (this.inputMappings.ContainsKey(fieldInfo))
+            {
+                ResultId fieldId = this.inputMappings[fieldInfo];
+
+                ResultId resultId = this.file.GetNextResultId();
+
+                this.file.AddFunctionStatement(resultId, Op.OpLoad, typeId, fieldId);
+
+                return resultId;
+            }
+            else
+            {
+                var binding = this.bindingMappings[fieldInfo];
+
+
+
+                ResultId resultId = this.file.GetNextResultId();
+
+                this.file.AddFunctionStatement(resultId, Op.OpAccessChain, binding.Item1, binding.Item2);
+
+                return resultId;
             }
         }
 
@@ -347,6 +373,12 @@ namespace SharpVk.Shanq
                 else if (value == typeof(void))
                 {
                     statement = new SpirvStatement(Op.OpTypeVoid);
+                }
+                else if (value.IsValueType)
+                {
+                    var fieldTypeIds = value.GetFields().Select(x => (object)this.Visit(Expression.Constant(x.FieldType))).ToArray();
+
+                    statement = new SpirvStatement(Op.OpTypeStruct, fieldTypeIds);
                 }
                 else
                 {

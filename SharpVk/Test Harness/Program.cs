@@ -91,10 +91,26 @@ namespace SharpVk
 
         public void Run()
         {
+            this.BuildShaders();
+            Console.ReadLine();
+            return;
             this.InitialiseWindow();
             this.InitialiseVulkan();
             this.MainLoop();
             this.TearDown();
+        }
+
+        private void BuildShaders()
+        {
+            ShanqShader.Create(ExecutionModel.Vertex,
+                                new MemoryStream(),
+                                shanq => from input in shanq.GetInput<Vertex>()
+                                         from ubo in shanq.GetBinding<UniformBufferObject>()
+                                         select new VertexOutput
+                                         {
+                                             Position = new vec4(input.Position.x * ubo.Scale, input.Position.y, 0, 1),
+                                             Colour = input.Colour
+                                         });
         }
 
         private void InitialiseWindow()
@@ -268,12 +284,13 @@ namespace SharpVk
 
             UniformBufferObject ubo = new UniformBufferObject
             {
-                Model = mat4.Rotate((float)Math.Sin(totalTime) * (float)Math.PI, vec3.UnitZ),
-                View = mat4.LookAt(new vec3(1), vec3.Zero, vec3.UnitZ),
-                Proj = mat4.Perspective((float)Math.PI / 4f, this.swapChainExtent.Width / (float)this.swapChainExtent.Height, 0.1f, 10)
+                //Model = mat4.Rotate((float)Math.Sin(totalTime) * (float)Math.PI, vec3.UnitZ),
+                //View = mat4.LookAt(new vec3(1), vec3.Zero, vec3.UnitZ),
+                //Proj = mat4.Perspective((float)Math.PI / 4f, this.swapChainExtent.Width / (float)this.swapChainExtent.Height, 0.1f, 10)
+                Scale = 1
             };
 
-            ubo.Proj[1, 1] *= -1;
+            //ubo.Proj[1, 1] *= -1;
 
             uint uboSize = MemUtil.SizeOf<UniformBufferObject>();
 
@@ -1080,9 +1097,10 @@ namespace SharpVk
 
         private struct UniformBufferObject
         {
-            public mat4 Model;
-            public mat4 View;
-            public mat4 Proj;
+            //public mat4 Model;
+            //public mat4 View;
+            //public mat4 Proj;
+            public float Scale;
         };
 
         private struct Vertex

@@ -37,4 +37,15 @@ namespace SharpVk.Shanq
 
         public static StorageClass Storage => StorageClass.Input;
     }
+
+    public class UniformPointer<T>
+        : Pointer<T>
+    {
+        public UniformPointer(T value)
+            : base(value)
+        {
+        }
+
+        public static StorageClass Storage => StorageClass.Uniform;
+    }
 }

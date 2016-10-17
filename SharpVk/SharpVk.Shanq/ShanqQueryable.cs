@@ -1,16 +1,12 @@
 ﻿using Remotion.Linq;
 using Remotion.Linq.Parsing.Structure;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SharpVk.Shanq
 {
-    public class ShanqQueryable<T>
-        : QueryableBase<T>
+    internal class ShanqQueryable<T>
+        : QueryableBase<T>, IShanqQueryable
     {
         private ShanqQueryExecutor executor;
 
@@ -20,10 +16,25 @@ namespace SharpVk.Shanq
             this.executor = (ShanqQueryExecutor)((QueryProviderBase)provider).Executor;
         }
 
-        public ShanqQueryable(IQueryParser queryParser, IQueryExecutor executor)
+        public ShanqQueryable(QueryableOrigin origin, IQueryParser queryParser, IQueryExecutor executor)
             : base(new DefaultQueryProvider(typeof(ShanqQueryable<>), queryParser, executor))
         {
+            this.Origin = origin;
             this.executor = (ShanqQueryExecutor)executor;
+        }
+
+        public QueryableOrigin Origin
+        {
+            get;
+            private set;
+        }
+    }
+
+    internal interface IShanqQueryable
+    {
+        QueryableOrigin Origin
+        {
+            get;
         }
     }
 }

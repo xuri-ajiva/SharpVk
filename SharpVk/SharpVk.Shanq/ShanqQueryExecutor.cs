@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using System.Runtime.InteropServices;
 
 namespace SharpVk.Shanq
 {
@@ -42,6 +43,7 @@ namespace SharpVk.Shanq
             file.AddFunctionStatement(entryPointerLabelId, Op.OpLabel);
 
             var fieldMapping = new Dictionary<FieldInfo, ResultId>();
+            var bindingMapping = new Dictionary<FieldInfo, Tuple<ResultId, int>>();
             var builtinList = new Dictionary<FieldInfo, Tuple<ResultId, ResultId, int>>();
 
             bool hasBuiltInOutput = false;
@@ -64,11 +66,25 @@ namespace SharpVk.Shanq
                 hasBuiltInOutput |= field.GetCustomAttribute<BuiltInAttribute>() != null;
             }
 
-            var inputTypes = new List<Type> { queryModel.MainFromClause.ItemType };
+            var fromClauses = new FromClauseBase[] { queryModel.MainFromClause }
+                                    .Concat(queryModel.BodyClauses.OfType<AdditionalFromClause>());
 
-            foreach(var clause in queryModel.BodyClauses.OfType<AdditionalFromClause>())
+            var inputTypes = new List<Type>();
+            var bindingTypes = new List<Type>();
+
+            foreach (var clause in fromClauses)
             {
-                inputTypes.Add(clause.ItemType);
+                var queryable = (IShanqQueryable)((ConstantExpression)clause.FromExpression).Value;
+
+                switch (queryable.Origin)
+                {
+                    case QueryableOrigin.Input:
+                        inputTypes.Add(clause.ItemType);
+                        break;
+                    case QueryableOrigin.Binding:
+                        bindingTypes.Add(clause.ItemType);
+                        break;
+                }
             }
 
             foreach (var field in inputTypes.SelectMany(type => type.GetFields()))
@@ -84,6 +100,20 @@ namespace SharpVk.Shanq
                     fieldMapping.Add(field, inputVariableId);
 
                     expressionVisitor.AddInputMapping(field, inputVariableId);
+                }
+            }
+            
+            foreach(var type in bindingTypes)
+            {
+                var pointerType = typeof(InputPointer<>).MakeGenericType(type);
+                ResultId uniformPointerId = expressionVisitor.Visit(Expression.Constant(pointerType));
+                ResultId uniformVariableId = file.GetNextResultId();
+
+                file.AddGlobalStatement(uniformVariableId, Op.OpVariable, uniformPointerId, StorageClass.Uniform);
+
+                foreach(var field in type.GetFields())
+                {
+                    expressionVisitor.AddBinding(field, Tuple.Create(uniformVariableId, Marshal.OffsetOf(type, field.Name).ToInt32()));
                 }
             }
 

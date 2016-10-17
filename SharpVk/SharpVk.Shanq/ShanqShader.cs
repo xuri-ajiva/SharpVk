@@ -25,12 +25,12 @@ namespace SharpVk.Shanq
 
         public IQueryable<T> GetBinding<T>()
         {
-            throw new NotImplementedException();
+            return new ShanqQueryable<T>(QueryableOrigin.Binding, QueryParser.CreateDefault(), this.executor);
         }
 
         public IQueryable<T> GetInput<T>()
         {
-            return new ShanqQueryable<T>(QueryParser.CreateDefault(), this.executor);
+            return new ShanqQueryable<T>(QueryableOrigin.Input, QueryParser.CreateDefault(), this.executor);
         }
     }
 

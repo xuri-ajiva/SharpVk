@@ -1,0 +1,78 @@
+; SPIR-V
+; Version: 1.0
+; Generator: Khronos Glslang Reference Front End; 1
+; Bound: 46
+; Schema: 0
+               OpCapability Shader
+          %1 = OpExtInstImport "GLSL.std.450"
+               OpMemoryModel Logical GLSL450
+               OpEntryPoint Vertex %main "main" %_ %inPosition %fragColor %inColor
+               OpSource GLSL 450
+               OpSourceExtension "GL_ARB_separate_shader_objects"
+               OpName %main "main"
+               OpName %gl_PerVertex "gl_PerVertex"
+               OpMemberName %gl_PerVertex 0 "gl_Position"
+               OpName %_ ""
+               OpName %inPosition "inPosition"
+               OpName %UniformBufferObject "UniformBufferObject"
+               OpMemberName %UniformBufferObject 0 "scale"
+               OpName %ubo "ubo"
+               OpName %fragColor "fragColor"
+               OpName %inColor "inColor"
+               OpMemberDecorate %gl_PerVertex 0 BuiltIn Position
+               OpDecorate %gl_PerVertex Block
+               OpDecorate %inPosition Location 0
+               OpMemberDecorate %UniformBufferObject 0 Offset 0
+               OpDecorate %UniformBufferObject Block
+               OpDecorate %ubo DescriptorSet 0
+               OpDecorate %ubo Binding 0
+               OpDecorate %fragColor Location 0
+               OpDecorate %inColor Location 1
+       %void = OpTypeVoid
+          %3 = OpTypeFunction %void
+      %float = OpTypeFloat 32
+    %v4float = OpTypeVector %float 4
+%gl_PerVertex = OpTypeStruct %v4float
+%_ptr_Output_gl_PerVertex = OpTypePointer Output %gl_PerVertex
+          %_ = OpVariable %_ptr_Output_gl_PerVertex Output
+        %int = OpTypeInt 32 1
+         %12 = OpConstant %int 0
+    %v2float = OpTypeVector %float 2
+%_ptr_Input_v2float = OpTypePointer Input %v2float
+ %inPosition = OpVariable %_ptr_Input_v2float Input
+       %uint = OpTypeInt 32 0
+         %17 = OpConstant %uint 0
+%_ptr_Input_float = OpTypePointer Input %float
+%UniformBufferObject = OpTypeStruct %float
+%_ptr_Uniform_UniformBufferObject = OpTypePointer Uniform %UniformBufferObject
+        %ubo = OpVariable %_ptr_Uniform_UniformBufferObject Uniform
+%_ptr_Uniform_float = OpTypePointer Uniform %float
+         %28 = OpConstant %uint 1
+         %35 = OpConstant %float 0
+         %36 = OpConstant %float 1
+%_ptr_Output_v4float = OpTypePointer Output %v4float
+    %v3float = OpTypeVector %float 3
+%_ptr_Output_v3float = OpTypePointer Output %v3float
+  %fragColor = OpVariable %_ptr_Output_v3float Output
+%_ptr_Input_v3float = OpTypePointer Input %v3float
+    %inColor = OpVariable %_ptr_Input_v3float Input
+       %main = OpFunction %void None %3
+          %5 = OpLabel
+         %19 = OpAccessChain %_ptr_Input_float %inPosition %17
+         %20 = OpLoad %float %19
+         %25 = OpAccessChain %_ptr_Uniform_float %ubo %12
+         %26 = OpLoad %float %25
+         %27 = OpFMul %float %20 %26
+         %29 = OpAccessChain %_ptr_Input_float %inPosition %28
+         %30 = OpLoad %float %29
+         %31 = OpAccessChain %_ptr_Uniform_float %ubo %12
+         %32 = OpLoad %float %31
+         %33 = OpFNegate %float %32
+         %34 = OpFMul %float %30 %33
+         %37 = OpCompositeConstruct %v4float %27 %34 %35 %36
+         %39 = OpAccessChain %_ptr_Output_v4float %_ %12
+               OpStore %39 %37
+         %45 = OpLoad %v3float %inColor
+               OpStore %fragColor %45
+               OpReturn
+               OpFunctionEnd
