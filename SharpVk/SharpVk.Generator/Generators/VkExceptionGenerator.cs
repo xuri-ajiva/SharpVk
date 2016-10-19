@@ -7,7 +7,7 @@ using static SharpVk.Generator.Emit.ExpressionBuilder;
 namespace SharpVk.Generator.Generators
 {
     public class VkExceptionGenerator
-        : ModelGenerator
+        : ModelGenerator<TypeSet>
     {
         public override void Run(TypeSet types, FileGenerator fileGenerator)
         {

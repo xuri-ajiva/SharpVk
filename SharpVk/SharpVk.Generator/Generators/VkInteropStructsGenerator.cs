@@ -8,7 +8,7 @@ using static SharpVk.Generator.Emit.MemberModifier;
 namespace SharpVk.Generator.Generators
 {
     public class VkInteropStructsGenerator
-        : ModelGenerator
+        : ModelGenerator<TypeSet>
     {
         public override void Run(TypeSet types, FileGenerator fileGenerator)
         {

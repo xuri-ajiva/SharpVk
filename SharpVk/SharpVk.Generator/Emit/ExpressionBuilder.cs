@@ -37,6 +37,30 @@ namespace SharpVk.Generator.Emit
             this.writer.Write(literal);
         }
 
+        public void EmitArrayInit(string elementTypeName, params Action<ExpressionBuilder>[] elements)
+        {
+            this.writer.WriteLine($"new {elementTypeName}[]");
+            this.writer.Write("{");
+            this.writer.IncreaseIndent();
+            bool isFirstElement = true;
+            foreach (var element in elements)
+            {
+                if(!isFirstElement)
+                {
+                    this.writer.WriteLine(",");
+                }
+                else
+                {
+                    isFirstElement = false;
+                }
+
+                element(new ExpressionBuilder(this.writer.GetSubWriter()));
+            }
+            this.writer.DecreaseIndent();
+            this.writer.WriteLine();
+            this.writer.Write("}");
+        }
+
         public void EmitMemberInit(string name, Action<MemberInitBuilder> members)
         {
             this.writer.WriteLine($"new {name}");
@@ -128,11 +152,34 @@ namespace SharpVk.Generator.Emit
             right(this.GetSubBuilder());
         }
 
+        public void EmitShiftLeft(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)
+        {
+            left(this.GetSubBuilder());
+
+            this.writer.Write(" << ");
+
+            right(this.GetSubBuilder());
+        }
+
+        public void EmitShiftRight(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)
+        {
+            left(this.GetSubBuilder());
+
+            this.writer.Write(" >> ");
+
+            right(this.GetSubBuilder());
+        }
+
         public void EmitNot(Action<ExpressionBuilder> target)
         {
             this.writer.Write("!");
 
             target(this.GetSubBuilder());
+        }
+
+        public void EmitEnumField(string type, string field)
+        {
+            this.writer.Write($"{type}.{field}");
         }
 
         private void EmitArguments(IEnumerable<Action<ExpressionBuilder>> arguments)
@@ -182,6 +229,11 @@ namespace SharpVk.Generator.Emit
         public static Action<ExpressionBuilder> Literal(int literal)
         {
             return builder => builder.EmitLiteral(literal);
+        }
+
+        public static Action<ExpressionBuilder> ArrayInit(string elementTypeName, params Action<ExpressionBuilder>[] elements)
+        {
+            return builder => builder.EmitArrayInit(elementTypeName, elements);
         }
 
         public static Action<ExpressionBuilder> MemberInit(string name, Action<MemberInitBuilder> members)
@@ -250,9 +302,24 @@ namespace SharpVk.Generator.Emit
             return builder => builder.EmitLessThan(left, right);
         }
 
+        public static Action<ExpressionBuilder> ShiftLeft(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)
+        {
+            return builder => builder.EmitShiftLeft(left, right);
+        }
+
+        public static Action<ExpressionBuilder> ShiftRight(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)
+        {
+            return builder => builder.EmitShiftRight(left, right);
+        }
+
         public static Action<ExpressionBuilder> Not(Action<ExpressionBuilder> target)
         {
             return builder => builder.EmitNot(target);
+        }
+
+        public static Action<ExpressionBuilder> EnumField(string type, string field)
+        {
+            return builder => builder.EmitEnumField(type, field);
         }
     }
 }

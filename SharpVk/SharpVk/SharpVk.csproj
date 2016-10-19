@@ -78,17 +78,12 @@
     <Compile Include="Interop\Handles.cs" />
     <Compile Include="Interop\Structs.cs" />
     <Compile Include="MemUtil.cs" />
-    <Compile Include="Spirv\Grammar.cs">
-      <DependentUpon>Grammar.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Spirv\Enums.cs">
-      <DependentUpon>Enums.tt</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
+    <Compile Include="Spirv\Enums.cs" />
     <Compile Include="Spirv\ISpirvSink.cs" />
+    <Compile Include="Spirv\Opcode.cs" />
+    <Compile Include="Spirv\Operand.cs" />
+    <Compile Include="Spirv\OperandKind.cs" />
+    <Compile Include="Spirv\Quantifier.cs" />
     <Compile Include="Spirv\ResultId.cs" />
     <Compile Include="Spirv\SpirvStatement.cs" />
     <Compile Include="Structs.cs" />
@@ -100,14 +95,6 @@
     <Compile Include="Version.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Spirv\Grammar.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Grammar.cs</LastGenOutput>
-    </Content>
-    <Content Include="Spirv\Enums.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Enums.cs</LastGenOutput>
-    </Content>
     <Content Include="License.tt" />
   </ItemGroup>
   <ItemGroup>
@@ -116,6 +103,7 @@
   <ItemGroup>
     <None Include="SharpVk.nuspec" />
     <Compile Include="Unions.Partial.cs" />
+    <Compile Include="Spirv\OpCode.partial.cs" />
     <None Include="Vk.ttinclude" />
   </ItemGroup>
   <ItemGroup />

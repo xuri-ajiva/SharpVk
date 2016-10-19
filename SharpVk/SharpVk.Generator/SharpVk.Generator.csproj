@@ -60,6 +60,9 @@
     <Compile Include="Emit\TypeKind.cs" />
     <Compile Include="Emit\TypeModifier.cs" />
     <Compile Include="Generators\FileGenerator.cs" />
+    <Compile Include="Generators\Spirv\SpirvOperandKindGenerator.cs" />
+    <Compile Include="Generators\Spirv\SpirvOpCodeGenerator.cs" />
+    <Compile Include="Generators\Spirv\SpirvEnumGenerator.cs" />
     <Compile Include="Generators\VkStructsGenerator.cs" />
     <Compile Include="Generators\VkUnionsGenerator.cs" />
     <Compile Include="Generators\VkInteropStructsGenerator.cs" />
@@ -78,6 +81,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SharpVk.SpirvJson\SharpVk.SpirvJson.csproj">
+      <Project>{65b38a22-87e5-4f27-9922-d6ba96d5618f}</Project>
+      <Name>SharpVk.SpirvJson</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SharpVk.VkXml\SharpVk.VkXml.csproj">
       <Project>{bba0786e-cb48-43a7-af46-6dd9e3482fd2}</Project>
       <Name>SharpVk.VkXml</Name>

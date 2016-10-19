@@ -156,18 +156,18 @@ namespace SharpVk.Generator.Emit
 
             if (getter != null)
             {
-                if (getter.Value != accessModifier)
+                if (getter.HasValue && getter.Value != accessModifier)
                 {
-                    this.writer.Write(accessModifier.Emit() + " ");
+                    this.writer.Write(getter.Value.Emit() + " ");
                 }
                 this.writer.WriteLine("get;");
             }
 
             if (setter != null)
             {
-                if (getter.Value != accessModifier)
+                if (setter.HasValue && setter.Value != accessModifier)
                 {
-                    this.writer.Write(accessModifier.Emit() + " ");
+                    this.writer.Write(setter.Value.Emit() + " ");
                 }
                 this.writer.WriteLine("set;");
             }

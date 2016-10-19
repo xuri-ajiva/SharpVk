@@ -1,4 +1,6 @@
 ﻿using SharpVk.Generator.Generators;
+using SharpVk.Generator.Generators.Spirv;
+using SharpVk.SpirvJson;
 using SharpVk.VkXml;
 
 namespace SharpVk.Generator
@@ -8,6 +10,7 @@ namespace SharpVk.Generator
         static void Main(string[] args)
         {
             var xmlCache = new VkXmlCache(".\\VkTemplates");
+            var jsonCache = new SpirvJsonCache(".\\VkTemplates");
 
             var parser = new SpecParser(xmlCache, ".\\VkTemplates");
             var generator = new TypeGenerator();
@@ -16,7 +19,7 @@ namespace SharpVk.Generator
 
             var fileGenerator = new FileGenerator("..\\..\\..\\SharpVk");
 
-            foreach (var modelGenerator in new ModelGenerator[]
+            foreach (var modelGenerator in new ModelGenerator<TypeSet>[]
             {
                 new VkCommandsGenerator(),
                 new VkHandleGenerator(),
@@ -31,6 +34,12 @@ namespace SharpVk.Generator
             {
                 modelGenerator.Run(types, fileGenerator);
             }
+
+            new SpirvEnumGenerator().Run(jsonCache.GetSpirvModel(), fileGenerator);
+
+            var grammarModel = jsonCache.GetSpirvGrammar();
+            new SpirvOpCodeGenerator().Run(grammarModel, fileGenerator);
+            new SpirvOperandKindGenerator().Run(grammarModel, fileGenerator);
         }
     }
 }

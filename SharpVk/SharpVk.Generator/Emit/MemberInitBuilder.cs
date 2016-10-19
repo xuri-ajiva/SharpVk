@@ -21,7 +21,10 @@ namespace SharpVk.Generator.Emit
             else
             {
                 this.writer.WriteLine();
+
+                this.hasFirstBinding = true;
             }
+
             this.writer.Write($"{memberName} = ");
             expression(new ExpressionBuilder(this.writer.GetSubWriter()));
         }

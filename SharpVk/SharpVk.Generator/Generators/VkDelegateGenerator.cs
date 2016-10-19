@@ -7,7 +7,7 @@ using static SharpVk.Generator.Emit.TypeModifier;
 namespace SharpVk.Generator.Generators
 {
     public class VkDelegateGenerator
-        : ModelGenerator
+        : ModelGenerator<TypeSet>
     {
         public override void Run(TypeSet types, FileGenerator fileGenerator)
         {

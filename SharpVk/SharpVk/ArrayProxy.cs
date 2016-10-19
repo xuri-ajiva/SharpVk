@@ -61,15 +61,26 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="value"></param>
-        public static implicit operator ArrayProxy<T>(T[] value)
+        public static ArrayProxy<T> Null
         {
-            if (value == null)
+            get
             {
                 return new ArrayProxy<T>
                 {
                     Contents = ProxyContents.Null
                 };
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        public static implicit operator ArrayProxy<T>(T[] value)
+        {
+            if (value == null)
+            {
+                return Null;
             }
             else if (value.Length == 1)
             {
@@ -95,7 +106,11 @@ namespace SharpVk
         /// <param name="value"></param>
         public static implicit operator ArrayProxy<T>(ArraySegment<T> value)
         {
-            if (value.Count == 1)
+            if (value.Count == 0)
+            {
+                return Null;
+            }
+            else if(value.Count == 1)
             {
                 return new ArrayProxy<T>
                 {
@@ -119,11 +134,18 @@ namespace SharpVk
         /// <param name="value"></param>
         public static implicit operator ArrayProxy<T>(T value)
         {
-            return new ArrayProxy<T>
+            if (!typeof(T).IsValueType && value.Equals(default(T)))
             {
-                value = value,
-                Contents = ProxyContents.Single
-            };
+                return Null;
+            }
+            else
+            {
+                return new ArrayProxy<T>
+                {
+                    value = value,
+                    Contents = ProxyContents.Single
+                };
+            }
         }
 
         /// <summary>

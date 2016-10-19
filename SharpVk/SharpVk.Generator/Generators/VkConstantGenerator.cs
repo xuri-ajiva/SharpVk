@@ -13,7 +13,7 @@ using static SharpVk.Generator.Emit.MemberModifier;
 namespace SharpVk.Generator.Generators
 {
     public class VkConstantGenerator
-        : ModelGenerator
+        : ModelGenerator<TypeSet>
     {
         private static CSharpCodeProvider codeDomCompiler = new CSharpCodeProvider();
 
