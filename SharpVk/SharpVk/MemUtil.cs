@@ -76,7 +76,8 @@ namespace SharpVk
         {
             if (count > 0)
             {
-                uint size = SizeOf<T>() * (uint)value.Length;
+                int elementSize = (int)SizeOf<T>();
+                int transferSize = elementSize * value.Length;
 
                 void* pointer = dest.ToPointer();
 
@@ -84,7 +85,7 @@ namespace SharpVk
 
                 byte* handlePointer = (byte*)handle.AddrOfPinnedObject().ToPointer();
 
-                System.Buffer.MemoryCopy(handlePointer + (int)(size * startIndex), pointer, size * count, size * count);
+                System.Buffer.MemoryCopy(handlePointer + (elementSize * startIndex), pointer, transferSize, transferSize);
 
                 handle.Free();
             }

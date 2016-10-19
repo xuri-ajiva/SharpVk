@@ -191,31 +191,37 @@ namespace SharpVk.Shanq
 
                 if (IsVectorType(targetType))
                 {
-                    var fieldInfo = (FieldInfo)expression.Member;
+                    string name;
+                    Type type;
+                    GetMemberData(expression, out name, out type);
 
                     int fieldIndex;
 
-                    switch (fieldInfo.Name)
+                    switch (name)
                     {
                         case "x":
+                        case "r":
                             fieldIndex = 0;
                             break;
                         case "y":
+                        case "g":
                             fieldIndex = 1;
                             break;
                         case "z":
+                        case "b":
                             fieldIndex = 2;
                             break;
                         case "w":
+                        case "a":
                             fieldIndex = 3;
                             break;
                         default:
-                            throw new Exception($"Unsupported field: {fieldInfo.Name}");
+                            throw new Exception($"Unsupported field: {name}");
                     }
 
                     ResultId targetId = this.Visit(expression.Expression);
 
-                    ResultId typeId = this.Visit(Expression.Constant(fieldInfo.FieldType));
+                    ResultId typeId = this.Visit(Expression.Constant(type));
 
                     ResultId accessId = this.file.GetNextResultId();
 
@@ -227,6 +233,23 @@ namespace SharpVk.Shanq
                 {
                     throw new NotImplementedException();
                 }
+            }
+        }
+
+        private static void GetMemberData(MemberExpression expression, out string name, out Type type)
+        {
+            name = expression.Member.Name;
+
+            switch (expression.Member.MemberType)
+            {
+                case MemberTypes.Field:
+                    type = ((FieldInfo)expression.Member).FieldType;
+                    break;
+                case MemberTypes.Property:
+                    type = ((PropertyInfo)expression.Member).PropertyType;
+                    break;
+                default:
+                    throw new NotSupportedException();
             }
         }
 
@@ -246,13 +269,17 @@ namespace SharpVk.Shanq
             }
             else
             {
+                ResultId pointerTypeId = this.Visit(Expression.Constant(typeof(UniformPointer<>).MakeGenericType(fieldInfo.FieldType)));
+
                 var binding = this.bindingMappings[fieldInfo];
 
+                ResultId accessId = this.file.GetNextResultId();
 
+                this.file.AddFunctionStatement(accessId, Op.OpAccessChain, pointerTypeId, binding.Item1, this.Visit(Expression.Constant(binding.Item2)));
 
                 ResultId resultId = this.file.GetNextResultId();
 
-                this.file.AddFunctionStatement(resultId, Op.OpAccessChain, binding.Item1, binding.Item2);
+                this.file.AddFunctionStatement(resultId, Op.OpLoad, typeId, accessId);
 
                 return resultId;
             }
@@ -325,7 +352,16 @@ namespace SharpVk.Shanq
             {
                 Type value = (Type)expression.Value;
 
-                if (IsVectorType(value))
+                if (IsMatrixType(value))
+                {
+                    Type rowType = GetMatrixRowType(value);
+                    int[] dimensions = GetMatrixDimensions(value);
+                    
+                    ResultId rowTypeId = this.Visit(Expression.Constant(rowType));
+
+                    statement = new SpirvStatement(Op.OpTypeMatrix, rowTypeId, dimensions[0]);
+                }
+                else if (IsVectorType(value))
                 {
                     Type elementType = GetVectorElementType(value);
                     int length = GetVectorLength(value);
@@ -485,6 +521,11 @@ namespace SharpVk.Shanq
             }
         }
 
+        private static Type GetMatrixRowType(Type value)
+        {
+            return value.GetProperty("Row0").PropertyType;
+        }
+
         private static Type GetVectorElementType(Type value)
         {
             return value.GetField("x").FieldType;
@@ -498,13 +539,28 @@ namespace SharpVk.Shanq
                                 .Count();
         }
 
+        private static int[] GetMatrixDimensions(Type value)
+        {
+            var identity = value.GetProperty("Identity")
+                                .GetValue(null);
+
+            var values = (float[,])value.GetProperty("Values")
+                                        .GetValue(identity);
+
+            return new[]
+            {
+                values.GetLength(0),
+                values.GetLength(1)
+            };
+        }
+
         private static bool IsVectorType(Type type)
         {
             return type.Assembly == typeof(vec3).Assembly
                 && type.Name.Contains("vec");
         }
 
-        private static bool IsMatrixType(Type type)
+        public static bool IsMatrixType(Type type)
         {
             return type.Assembly == typeof(mat4).Assembly
                 && type.Name.Contains("mat");

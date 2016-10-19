@@ -102,18 +102,34 @@ namespace SharpVk.Shanq
                     expressionVisitor.AddInputMapping(field, inputVariableId);
                 }
             }
-            
-            foreach(var type in bindingTypes)
+
+            foreach (var type in bindingTypes)
             {
+                ResultId structureTypeId = expressionVisitor.Visit(Expression.Constant(type));
                 var pointerType = typeof(InputPointer<>).MakeGenericType(type);
                 ResultId uniformPointerId = expressionVisitor.Visit(Expression.Constant(pointerType));
                 ResultId uniformVariableId = file.GetNextResultId();
 
                 file.AddGlobalStatement(uniformVariableId, Op.OpVariable, uniformPointerId, StorageClass.Uniform);
+                file.AddAnnotationStatement(Op.OpDecorate, structureTypeId, Decoration.Block);
+                file.AddAnnotationStatement(Op.OpDecorate, uniformVariableId, Decoration.DescriptorSet, 0);
+                file.AddAnnotationStatement(Op.OpDecorate, uniformVariableId, Decoration.Binding, 0);
 
-                foreach(var field in type.GetFields())
+                int fieldIndex = 0;
+
+                foreach (var field in type.GetFields())
                 {
-                    expressionVisitor.AddBinding(field, Tuple.Create(uniformVariableId, Marshal.OffsetOf(type, field.Name).ToInt32()));
+                    expressionVisitor.AddBinding(field, Tuple.Create(uniformVariableId, fieldIndex));
+
+                    if (ShanqExpressionVisitor.IsMatrixType(field.FieldType))
+                    {
+                        //HACK Should adapt to different matrix formats
+                        file.AddAnnotationStatement(Op.OpMemberDecorate, structureTypeId, fieldIndex, Decoration.ColMajor);
+                        file.AddAnnotationStatement(Op.OpMemberDecorate, structureTypeId, fieldIndex, Decoration.Offset, Marshal.OffsetOf(type, field.Name).ToInt32());
+                        file.AddAnnotationStatement(Op.OpMemberDecorate, structureTypeId, fieldIndex, Decoration.MatrixStride, 16);
+                    }
+
+                    fieldIndex++;
                 }
             }
 
