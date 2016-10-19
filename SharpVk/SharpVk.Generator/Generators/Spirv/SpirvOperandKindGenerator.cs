@@ -17,7 +17,7 @@ namespace SharpVk.Generator.Generators.Spirv
             {
                 fileBuilder.EmitNamespace("SharpVk.Spirv", namespaceBuilder =>
                 {
-                    namespaceBuilder.EmitType(TypeKind.Struct, "OperandKind", typeBuilder =>
+                    namespaceBuilder.EmitType(TypeKind.Class, "OperandKind", typeBuilder =>
                     {
                         foreach (var kind in model.Operand_Kinds)
                         {

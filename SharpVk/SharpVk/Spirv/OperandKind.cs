@@ -27,7 +27,7 @@ namespace SharpVk.Spirv
     /// <summary>
     /// 
     /// </summary>
-    public partial struct OperandKind
+    public partial class OperandKind
     {
         /// <summary>
         /// 
