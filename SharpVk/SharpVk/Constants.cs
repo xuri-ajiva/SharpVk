@@ -368,7 +368,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public const uint SpecVersion = 0; 
+        public const uint SpecVersion = 1; 
         
         /// <summary>
         /// 
@@ -400,7 +400,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public const uint SpecVersion = 0; 
+        public const uint SpecVersion = 1; 
         
         /// <summary>
         /// 

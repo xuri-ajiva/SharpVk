@@ -1854,7 +1854,8 @@ namespace SharpVk
     /// specified sparsely such that not all binding numbers between 0 and the
     /// maximum binding number need to be specified in the pname:pBindings
     /// array. However, all binding numbers between 0 and the maximum binding
-    /// number may: consume memory in the descriptor set layout even if not all
+    /// number in the slink:VkDescriptorSetLayoutCreateInfo::pname:pBindings
+    /// array may: consume memory in the descriptor set layout even if not all
     /// descriptor bindings are used, though it should: not consume additional
     /// memory from the descriptor pool.
     /// </para>
@@ -1983,8 +1984,16 @@ namespace SharpVk
     }
     
     /// <summary>
+    /// <para>
     /// Structure specifying parameters of a newly created descriptor set
     /// layout.
+    /// </para>
+    /// <para>
+    /// .Valid Usage **** * The
+    /// slink:VkDescriptorSetLayoutBinding::pname:binding members of the
+    /// elements of the pname:pBindings array must: each have different values.
+    /// ****
+    /// </para>
     /// </summary>
     public struct DescriptorSetLayoutCreateInfo
     {
@@ -3495,7 +3504,8 @@ namespace SharpVk
     /// sname:VkImageFormatProperties::pname:maxArrayLayers (as returned by
     /// fname:vkGetPhysicalDeviceImageFormatProperties with pname:format,
     /// pname:type, pname:tiling, pname:usage, and pname:flags equal to those
-    /// in this structure) * If pname:samples is not
+    /// in this structure) * If pname:imageType is ename:VK_IMAGE_TYPE_3D,
+    /// pname:arrayLayers must: be `1`. * If pname:samples is not
     /// ename:VK_SAMPLE_COUNT_1_BIT, pname:imageType must: be
     /// ename:VK_IMAGE_TYPE_2D, pname:flags must: not contain
     /// ename:VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT, pname:tiling must: be
@@ -7908,7 +7918,9 @@ namespace SharpVk
     /// .Valid Usage **** * pname:clearValueCount must: be greater than the
     /// largest attachment index in pname:renderPass that specifies a
     /// pname:loadOp (or pname:stencilLoadOp, if the attachment has a
-    /// depth/stencil format) of ename:VK_ATTACHMENT_LOAD_OP_CLEAR *
+    /// depth/stencil format) of ename:VK_ATTACHMENT_LOAD_OP_CLEAR * If
+    /// pname:clearValueCount is not `0`, pname:pClearValues must: be a pointer
+    /// to an array of pname:clearValueCount valid sname:VkClearValue unions *
     /// pname:renderPass must: be
     /// &lt;&lt;renderpass-compatibility,compatible&gt;&gt; with the
     /// pname:renderPass member of the sname:VkFramebufferCreateInfo structure
@@ -8786,7 +8798,9 @@ namespace SharpVk
     /// .Valid Usage **** * The pname:offset member of any given element of
     /// pname:pMapEntries must: be less than pname:dataSize * For any given
     /// element of pname:pMapEntries, pname:size must: be less than or equal to
-    /// pname:dataSize minus pname:offset ****
+    /// pname:dataSize minus pname:offset * If pname:mapEntryCount is not `0`,
+    /// pname:pMapEntries must: be a pointer to an array of pname:mapEntryCount
+    /// valid sname:VkSpecializationMapEntry structures ****
     /// </para>
     /// </summary>
     public struct SpecializationInfo

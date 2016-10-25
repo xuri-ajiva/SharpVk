@@ -367,8 +367,8 @@ namespace SharpVk
     /// .Valid Usage **** * If pname:aspectMask includes
     /// ename:VK_IMAGE_ASPECT_COLOR_BIT, it must: not include
     /// ename:VK_IMAGE_ASPECT_DEPTH_BIT or ename:VK_IMAGE_ASPECT_STENCIL_BIT *
-    /// pname:aspectMask must: not include ename:VK_IMAGE_ASPECT_METADATA_BIT
-    /// ****
+    /// pname:aspectMask must: not include ename:VK_IMAGE_ASPECT_METADATA_BIT *
+    /// pname:clearValue must: be a valid sname:VkClearValue union ****
     /// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]

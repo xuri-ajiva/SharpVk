@@ -6630,6 +6630,13 @@ namespace SharpVk
     /// however doing so means any contents written by other queue families or
     /// via incompatible aliases are undefined.
     /// </para>
+    /// <para>
+    /// Ranges of buffers and image subresources of image objects created using
+    /// ename:VK_SHARING_MODE_CONCURRENT must: only be accessed by queues from
+    /// the queue families specified through the pname:queueFamilyIndexCount
+    /// and pname:pQueueFamilyIndices members of the corresponding create info
+    /// structures.
+    /// </para>
     /// </summary>
     public enum SharingMode
     {

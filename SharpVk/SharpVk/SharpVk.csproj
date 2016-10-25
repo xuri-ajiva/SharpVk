@@ -95,16 +95,12 @@
     <Compile Include="Version.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="License.tt" />
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SharpVk.nuspec" />
     <Compile Include="Unions.Partial.cs" />
     <Compile Include="Spirv\OpCode.partial.cs" />
-    <None Include="Vk.ttinclude" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
