@@ -1,0 +1,96 @@
+// The MIT License (MIT)
+// 
+// Copyright (c) Andrew Armstrong/FacticiusVir 2016
+// 
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+// 
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+// 
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+
+// This file was automatically generated and should not be edited directly.
+
+using System;
+
+namespace SharpVk
+{
+    /// <summary>
+    /// <para>
+    /// Structure specifying specialization info.
+    /// </para>
+    /// <para>
+    /// pname:pMapEntries points to a structure of type
+    /// slink:VkSpecializationMapEntry.
+    /// </para>
+    /// <para>
+    /// .Valid Usage **** * The pname:offset member of any given element of
+    /// pname:pMapEntries must: be less than pname:dataSize * For any given
+    /// element of pname:pMapEntries, pname:size must: be less than or equal to
+    /// pname:dataSize minus pname:offset * If pname:mapEntryCount is not `0`,
+    /// pname:pMapEntries must: be a pointer to an array of pname:mapEntryCount
+    /// valid sname:VkSpecializationMapEntry structures ****
+    /// </para>
+    /// </summary>
+    public struct SpecializationInfo
+    {
+        /// <summary>
+        /// pname:pMapEntries is a pointer to an array of
+        /// sname:VkSpecializationMapEntry which maps constant IDs to offsets
+        /// in pname:pData.
+        /// </summary>
+        public SpecializationMapEntry[] MapEntries
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// pname:pData contains the actual constant values to specialize with.
+        /// </summary>
+        public byte[] Data
+        {
+            get;
+            set;
+        }
+        
+        internal unsafe Interop.SpecializationInfo Pack()
+        {
+            Interop.SpecializationInfo result = default(Interop.SpecializationInfo);
+            
+            //MapEntries
+            if (this.MapEntries != null)
+            {
+                result.MapEntries = (SpecializationMapEntry*)Interop.HeapUtil.Allocate<SpecializationMapEntry>(this.MapEntries.Length).ToPointer();
+                for (int index = 0; index < this.MapEntries.Length; index++)
+                {
+                    result.MapEntries[index] = this.MapEntries[index];
+                }
+            }
+            else
+            {
+                result.MapEntries = null;
+            }
+            result.Data = this.Data == null ? null : Interop.HeapUtil.MarshalTo(this.Data);
+            result.MapEntryCount = (uint)(this.MapEntries?.Length ?? 0);
+            result.DataSize = (Size)(this.Data?.Length ?? 0);
+            return result;
+        }
+        
+        internal unsafe Interop.SpecializationInfo* MarshalTo()
+        {
+            return (Interop.SpecializationInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+        }
+    }
+}

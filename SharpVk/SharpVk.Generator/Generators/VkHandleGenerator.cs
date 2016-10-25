@@ -3,6 +3,7 @@ using SharpVk.VkXml;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using static SharpVk.Generator.Emit.AccessModifier;
 using static SharpVk.Generator.Emit.ExpressionBuilder;
 
@@ -13,13 +14,13 @@ namespace SharpVk.Generator.Generators
     {
         public override void Run(TypeSet types, FileGenerator fileGenerator)
         {
-            fileGenerator.Generate("Interop", "Handles", fileBuilder =>
+            Parallel.ForEach(types.Handles, handle =>
             {
-                fileBuilder.EmitUsing("System");
-
-                fileBuilder.EmitNamespace("SharpVk.Interop", namespaceBuilder =>
+                fileGenerator.Generate("Interop", handle.Name, fileBuilder =>
                 {
-                    foreach (var handle in types.Handles)
+                    fileBuilder.EmitUsing("System");
+
+                    fileBuilder.EmitNamespace("SharpVk.Interop", namespaceBuilder =>
                     {
                         namespaceBuilder.EmitType(TypeKind.Struct, handle.Name, typeBuilder =>
                         {
@@ -51,17 +52,14 @@ namespace SharpVk.Generator.Generators
                                 }
                             }, null, Public, summary: new[] { "Returns the marshalled value of this handle as an unsigned 64-bit integer." });
                         }, Public, summary: handle.Comment);
-                    }
+                    });
                 });
-            });
 
-            fileGenerator.Generate(null, "Handles", fileBuilder =>
-            {
-                fileBuilder.EmitUsing("System");
-
-                fileBuilder.EmitNamespace("SharpVk", namespaceBuilder =>
+                fileGenerator.Generate(null, handle.Name, fileBuilder =>
                 {
-                    foreach (var handle in types.Handles)
+                    fileBuilder.EmitUsing("System");
+
+                    fileBuilder.EmitNamespace("SharpVk", namespaceBuilder =>
                     {
                         var interfaces = new List<string>();
 
@@ -76,188 +74,188 @@ namespace SharpVk.Generator.Generators
                         }
 
                         namespaceBuilder.EmitType(TypeKind.Class, handle.Name, typeBuilder =>
-                        {
-                            string interopTypeName = "Interop." + handle.Name;
-                            typeBuilder.EmitField(interopTypeName, "handle", Internal, MemberModifier.Readonly);
-                            typeBuilder.EmitField("CommandCache", "commandCache", Internal, MemberModifier.Readonly);
-
-                            var parameters = new List<Action<ParameterBuilder>>
                             {
-                                x => x.EmitParam(interopTypeName, "handle")
-                            };
+                                string interopTypeName = "Interop." + handle.Name;
+                                typeBuilder.EmitField(interopTypeName, "handle", Internal, MemberModifier.Readonly);
+                                typeBuilder.EmitField("CommandCache", "commandCache", Internal, MemberModifier.Readonly);
 
-                            var ctorStatements = new List<Action<CodeBlockBuilder>>
-                            {
-                                x => x.EmitAssignment(Member(This, "handle"), Variable("handle"))
-                            };
-
-                            if (handle.ParentHandle != null)
-                            {
-                                typeBuilder.EmitField(handle.ParentHandle, "parent", methodModifers: MemberModifier.Readonly);
-
-                                typeBuilder.EmitProperty("AllocationCallbacks?", "Allocator", Internal, getter: getBuilder =>
+                                var parameters = new List<Action<ParameterBuilder>>
                                 {
-                                    getBuilder.EmitReturn(Member(Member(This, "parent"), "Allocator"));
-                                });
+                                    x => x.EmitParam(interopTypeName, "handle")
+                                };
 
-                                parameters.Add(x => x.EmitParam(handle.ParentHandle, "parent"));
-
-                                ctorStatements.Add(x => x.EmitAssignment(Member(This, "parent"), Variable("parent")));
-
-                                if (handle.AssociatedHandle != null)
+                                var ctorStatements = new List<Action<CodeBlockBuilder>>
                                 {
-                                    typeBuilder.EmitField(handle.AssociatedHandle, "associated", methodModifers: MemberModifier.Readonly);
+                                    x => x.EmitAssignment(Member(This, "handle"), Variable("handle"))
+                                };
 
-                                    parameters.Add(x => x.EmitParam(handle.AssociatedHandle, "associated"));
-
-                                    ctorStatements.Add(x => x.EmitAssignment(Member(This, "associated"), Variable("associated")));
-                                }
-                            }
-                            else
-                            {
-                                typeBuilder.EmitField("AllocationCallbacks?", "allocator", methodModifers: MemberModifier.Readonly);
-
-                                typeBuilder.EmitProperty("AllocationCallbacks?", "Allocator", Internal, getter: getBuilder =>
+                                if (handle.ParentHandle != null)
                                 {
-                                    getBuilder.EmitReturn(Member(This, "allocator"));
-                                });
+                                    typeBuilder.EmitField(handle.ParentHandle, "parent", methodModifers: MemberModifier.Readonly);
 
-                                parameters.Add(x => x.EmitParam("AllocationCallbacks?", "allocator"));
-
-                                ctorStatements.Add(x => x.EmitAssignment(Member(This, "allocator"), Variable("allocator")));
-                            }
-
-                            var commandCacheAssignment = Variable("commandCache");
-
-                            if (handle.IsProcLookup)
-                            {
-                                var parentCache = handle.ParentHandle != null
-                                                    ? Member(Variable("parent"), "commandCache")
-                                                    : Null;
-
-                                commandCacheAssignment = New("CommandCache", This, Literal(handle.ProcCacheType), parentCache);
-                            }
-                            else
-                            {
-                                parameters.Add(x => x.EmitParam("CommandCache", "commandCache"));
-                            }
-
-                            ctorStatements.Add(x => x.EmitAssignment(Member(This, "commandCache"), commandCacheAssignment));
-
-                            typeBuilder.EmitConstructor(body =>
-                            {
-                                foreach (var statement in ctorStatements)
-                                {
-                                    statement(body);
-                                }
-                            },
-                            paramsBuilder =>
-                            {
-                                foreach (var param in parameters)
-                                {
-                                    param(paramsBuilder);
-                                }
-                            }, Internal);
-
-                            foreach (var method in handle.Methods)
-                            {
-                                var methodModifiers = method.IsStatic
-                                                        ? MemberModifier.Static
-                                                        : MemberModifier.None;
-
-                                typeBuilder.EmitMethod(method.ReturnTypeName, method.Name, body =>
-                                {
-                                    body.EmitUnsafeBlock(unsafeBlock =>
+                                    typeBuilder.EmitProperty("AllocationCallbacks?", "Allocator", Internal, getter: getBuilder =>
                                     {
-                                        unsafeBlock.EmitTry(tryBlock =>
-                                        {
-                                            Func<IEnumerable<Action<ExpressionBuilder>>, Action<ExpressionBuilder>> commandExpression = commandParameters =>
-                                            {
-                                                return StaticCall("Interop.Commands", method.CommandName, commandParameters.ToArray());
-                                            };
-
-                                            if (method.ShouldGetFromCache)
-                                            {
-                                                string delegateTypeName = "Interop." + method.CacheLookupName;
-
-                                                tryBlock.EmitVariableDeclaration("var", "commandDelegate",
-                                                            Call(Member(This, "commandCache"), $"GetCommandDelegate<{delegateTypeName}>", Literal(method.CacheLookupName), Literal(method.CacheLookupType)));
-
-                                                commandExpression = commandParameters =>
-                                                {
-                                                    return DelegateCall(Variable("commandDelegate"), commandParameters.ToArray());
-                                                };
-                                            }
-
-                                            if (method.ReturnTypeName != "void")
-                                            {
-                                                tryBlock.EmitVariableDeclaration(method.ReturnTypeName, "result", Default(method.ReturnTypeName));
-                                            }
-
-                                            if (method.HasVkResult)
-                                            {
-                                                tryBlock.EmitVariableDeclaration("Result", "commandResult");
-                                            }
-
-                                            foreach (var statement in method.MarshalToStatements)
-                                            {
-                                                tryBlock.EmitStatement(statement);
-                                            }
-
-                                            if (method.IsDoubleInvoke)
-                                            {
-                                                EmitInvokeCommand(tryBlock, method, commandExpression, x => x.PreInvokeArgumentName ?? x.ArgumentName);
-
-                                                foreach (var statement in method.MarshalMidStatements)
-                                                {
-                                                    tryBlock.EmitStatement(statement);
-                                                }
-                                            }
-
-                                            EmitInvokeCommand(tryBlock, method, commandExpression, x => x.ArgumentName);
-
-                                            foreach (var statement in method.MarshalFromStatements)
-                                            {
-                                                tryBlock.EmitStatement(statement);
-                                            }
-
-                                            if (method.ReturnTypeName != "void")
-                                            {
-                                                tryBlock.EmitReturn(Variable("result"));
-                                            }
-                                        },
-                                        finallyBlock => finallyBlock.EmitStaticCall("Interop.HeapUtil", "FreeLog"));
+                                        getBuilder.EmitReturn(Member(Member(This, "parent"), "Allocator"));
                                     });
+
+                                    parameters.Add(x => x.EmitParam(handle.ParentHandle, "parent"));
+
+                                    ctorStatements.Add(x => x.EmitAssignment(Member(This, "parent"), Variable("parent")));
+
+                                    if (handle.AssociatedHandle != null)
+                                    {
+                                        typeBuilder.EmitField(handle.AssociatedHandle, "associated", methodModifers: MemberModifier.Readonly);
+
+                                        parameters.Add(x => x.EmitParam(handle.AssociatedHandle, "associated"));
+
+                                        ctorStatements.Add(x => x.EmitAssignment(Member(This, "associated"), Variable("associated")));
+                                    }
+                                }
+                                else
+                                {
+                                    typeBuilder.EmitField("AllocationCallbacks?", "allocator", methodModifers: MemberModifier.Readonly);
+
+                                    typeBuilder.EmitProperty("AllocationCallbacks?", "Allocator", Internal, getter: getBuilder =>
+                                    {
+                                        getBuilder.EmitReturn(Member(This, "allocator"));
+                                    });
+
+                                    parameters.Add(x => x.EmitParam("AllocationCallbacks?", "allocator"));
+
+                                    ctorStatements.Add(x => x.EmitAssignment(Member(This, "allocator"), Variable("allocator")));
+                                }
+
+                                var commandCacheAssignment = Variable("commandCache");
+
+                                if (handle.IsProcLookup)
+                                {
+                                    var parentCache = handle.ParentHandle != null
+                                                        ? Member(Variable("parent"), "commandCache")
+                                                        : Null;
+
+                                    commandCacheAssignment = New("CommandCache", This, Literal(handle.ProcCacheType), parentCache);
+                                }
+                                else
+                                {
+                                    parameters.Add(x => x.EmitParam("CommandCache", "commandCache"));
+                                }
+
+                                ctorStatements.Add(x => x.EmitAssignment(Member(This, "commandCache"), commandCacheAssignment));
+
+                                typeBuilder.EmitConstructor(body =>
+                                {
+                                    foreach (var statement in ctorStatements)
+                                    {
+                                        statement(body);
+                                    }
                                 },
                                 paramsBuilder =>
                                 {
-                                    foreach (var parameter in method.Parameters.Where(x => x.Name != null))
+                                    foreach (var param in parameters)
                                     {
-                                        paramsBuilder.EmitParam(parameter.TypeName, parameter.Name);
+                                        param(paramsBuilder);
                                     }
-                                }, Public, methodModifiers, summary: method.Comment);
-                            }
+                                }, Internal);
 
-                            typeBuilder.EmitMethod(interopTypeName, "Pack", body =>
-                            {
-                                body.EmitReturn(Member(This, "handle"));
-                            }, null, Internal);
-
-                            typeBuilder.EmitProperty(interopTypeName,
-                                                        "RawHandle",
-                                                        Member(This, "handle"),
-                                                        Public,
-                                                        summary: new[] { $"The interop handle for this {handle.Name}." });
-
-                            if (handle.IsDisposable)
-                            {
-                                typeBuilder.EmitMethod("void", "Dispose", body =>
+                                foreach (var method in handle.Methods)
                                 {
-                                    body.EmitCall(This, "Destroy");
-                                }, null, Public, summary: new[] { "Releases the unmanaged resources associated with this instance and destroys the underlying Vulkan handle." });
-                            }
-                        }, Public, interfaces, summary: handle.Comment);
-                    }
+                                    var methodModifiers = method.IsStatic
+                                                            ? MemberModifier.Static
+                                                            : MemberModifier.None;
+
+                                    typeBuilder.EmitMethod(method.ReturnTypeName, method.Name, body =>
+                                    {
+                                        body.EmitUnsafeBlock(unsafeBlock =>
+                                        {
+                                            unsafeBlock.EmitTry(tryBlock =>
+                                            {
+                                                Func<IEnumerable<Action<ExpressionBuilder>>, Action<ExpressionBuilder>> commandExpression = commandParameters =>
+                                                {
+                                                    return StaticCall("Interop.Commands", method.CommandName, commandParameters.ToArray());
+                                                };
+
+                                                if (method.ShouldGetFromCache)
+                                                {
+                                                    string delegateTypeName = "Interop." + method.CacheLookupName;
+
+                                                    tryBlock.EmitVariableDeclaration("var", "commandDelegate",
+                                                                Call(Member(This, "commandCache"), $"GetCommandDelegate<{delegateTypeName}>", Literal(method.CacheLookupName), Literal(method.CacheLookupType)));
+
+                                                    commandExpression = commandParameters =>
+                                                    {
+                                                        return DelegateCall(Variable("commandDelegate"), commandParameters.ToArray());
+                                                    };
+                                                }
+
+                                                if (method.ReturnTypeName != "void")
+                                                {
+                                                    tryBlock.EmitVariableDeclaration(method.ReturnTypeName, "result", Default(method.ReturnTypeName));
+                                                }
+
+                                                if (method.HasVkResult)
+                                                {
+                                                    tryBlock.EmitVariableDeclaration("Result", "commandResult");
+                                                }
+
+                                                foreach (var statement in method.MarshalToStatements)
+                                                {
+                                                    tryBlock.EmitStatement(statement);
+                                                }
+
+                                                if (method.IsDoubleInvoke)
+                                                {
+                                                    EmitInvokeCommand(tryBlock, method, commandExpression, x => x.PreInvokeArgumentName ?? x.ArgumentName);
+
+                                                    foreach (var statement in method.MarshalMidStatements)
+                                                    {
+                                                        tryBlock.EmitStatement(statement);
+                                                    }
+                                                }
+
+                                                EmitInvokeCommand(tryBlock, method, commandExpression, x => x.ArgumentName);
+
+                                                foreach (var statement in method.MarshalFromStatements)
+                                                {
+                                                    tryBlock.EmitStatement(statement);
+                                                }
+
+                                                if (method.ReturnTypeName != "void")
+                                                {
+                                                    tryBlock.EmitReturn(Variable("result"));
+                                                }
+                                            },
+                                            finallyBlock => finallyBlock.EmitStaticCall("Interop.HeapUtil", "FreeLog"));
+                                        });
+                                    },
+                                    paramsBuilder =>
+                                    {
+                                        foreach (var parameter in method.Parameters.Where(x => x.Name != null))
+                                        {
+                                            paramsBuilder.EmitParam(parameter.TypeName, parameter.Name);
+                                        }
+                                    }, Public, methodModifiers, summary: method.Comment);
+                                }
+
+                                typeBuilder.EmitMethod(interopTypeName, "Pack", body =>
+                                {
+                                    body.EmitReturn(Member(This, "handle"));
+                                }, null, Internal);
+
+                                typeBuilder.EmitProperty(interopTypeName,
+                                                            "RawHandle",
+                                                            Member(This, "handle"),
+                                                            Public,
+                                                            summary: new[] { $"The interop handle for this {handle.Name}." });
+
+                                if (handle.IsDisposable)
+                                {
+                                    typeBuilder.EmitMethod("void", "Dispose", body =>
+                                    {
+                                        body.EmitCall(This, "Destroy");
+                                    }, null, Public, summary: new[] { "Releases the unmanaged resources associated with this instance and destroys the underlying Vulkan handle." });
+                                }
+                            }, Public, interfaces, summary: handle.Comment);
+                    });
                 });
             });
         }

@@ -1,4 +1,5 @@
 ﻿using SharpVk.VkXml;
+using System.Threading.Tasks;
 
 using static SharpVk.Generator.Emit.AccessModifier;
 using static SharpVk.Generator.Emit.ExpressionBuilder;
@@ -10,13 +11,13 @@ namespace SharpVk.Generator.Generators
     {
         public override void Run(TypeSet types, FileGenerator fileGenerator)
         {
-            fileGenerator.Generate(null, "Enums", builder =>
+            Parallel.ForEach(types.Enumerations, @enum =>
             {
-                builder.EmitUsing("System");
-
-                builder.EmitNamespace("SharpVk", namespaceBuilder =>
+                fileGenerator.Generate(null, @enum.Name, builder =>
                 {
-                    foreach (var @enum in types.Enumerations)
+                    builder.EmitUsing("System");
+
+                    builder.EmitNamespace("SharpVk", namespaceBuilder =>
                     {
                         var attributes = @enum.IsFlags
                                             ? new[] { "Flags" }
@@ -29,7 +30,7 @@ namespace SharpVk.Generator.Generators
                                 enumBuilder.EmitField(field.Name, AsIs(field.Value), field.Comment);
                             }
                         }, Public, @enum.Comment, attributes: attributes);
-                    }
+                    });
                 });
             });
         }
