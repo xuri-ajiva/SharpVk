@@ -23,6 +23,7 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
+using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
@@ -63,20 +64,28 @@ namespace SharpVk
         /// <summary>
         /// Submits a sequence of semaphores or command buffers to a queue.
         /// </summary>
-        public void Submit(SubmitInfo[] submits, Fence fence)
+        public void Submit(ArrayProxy<SubmitInfo> submits, Fence fence)
         {
             unsafe
             {
                 try
                 {
                     Result commandResult;
-                    Interop.SubmitInfo* marshalledSubmits;
-                    if (submits != null)
+                    Interop.SubmitInfo* marshalledSubmits = null;
+                    if (submits.Contents != ProxyContents.Null)
                     {
                         Interop.SubmitInfo* arrayPointer = stackalloc Interop.SubmitInfo[submits.Length];
-                        for (int index = 0; index < submits.Length; index++)
+                        if(submits.Contents == ProxyContents.Single)
                         {
-                            arrayPointer[index] = submits[index].Pack();
+                            *arrayPointer = submits.GetSingleValue().Pack();
+                        }
+                        else
+                        {
+                            var arrayValue  = submits.GetArrayValue();
+                            for (int index = 0; index < submits.Length; index++)
+                            {
+                                arrayPointer[index] = arrayValue.Array[arrayValue.Offset + index].Pack();
+                            }
                         }
                         marshalledSubmits = arrayPointer;
                     }
@@ -85,7 +94,7 @@ namespace SharpVk
                         marshalledSubmits = null;
                     }
                     Interop.Fence marshalledFence = fence?.Pack() ?? Interop.Fence.Null;
-                    commandResult = Interop.Commands.vkQueueSubmit(this.handle, (uint)(submits?.Length ?? 0), marshalledSubmits, marshalledFence);
+                    commandResult = Interop.Commands.vkQueueSubmit(this.handle, (uint)(submits.Length), marshalledSubmits, marshalledFence);
                     if (SharpVkException.IsError(commandResult))
                     {
                         throw SharpVkException.Create(commandResult);
@@ -124,20 +133,28 @@ namespace SharpVk
         /// <summary>
         /// Bind device memory to a sparse resource object.
         /// </summary>
-        public void BindSparse(BindSparseInfo[] bindInfo, Fence fence)
+        public void BindSparse(ArrayProxy<BindSparseInfo> bindInfo, Fence fence)
         {
             unsafe
             {
                 try
                 {
                     Result commandResult;
-                    Interop.BindSparseInfo* marshalledBindInfo;
-                    if (bindInfo != null)
+                    Interop.BindSparseInfo* marshalledBindInfo = null;
+                    if (bindInfo.Contents != ProxyContents.Null)
                     {
                         Interop.BindSparseInfo* arrayPointer = stackalloc Interop.BindSparseInfo[bindInfo.Length];
-                        for (int index = 0; index < bindInfo.Length; index++)
+                        if(bindInfo.Contents == ProxyContents.Single)
                         {
-                            arrayPointer[index] = bindInfo[index].Pack();
+                            *arrayPointer = bindInfo.GetSingleValue().Pack();
+                        }
+                        else
+                        {
+                            var arrayValue  = bindInfo.GetArrayValue();
+                            for (int index = 0; index < bindInfo.Length; index++)
+                            {
+                                arrayPointer[index] = arrayValue.Array[arrayValue.Offset + index].Pack();
+                            }
                         }
                         marshalledBindInfo = arrayPointer;
                     }
@@ -146,7 +163,7 @@ namespace SharpVk
                         marshalledBindInfo = null;
                     }
                     Interop.Fence marshalledFence = fence?.Pack() ?? Interop.Fence.Null;
-                    commandResult = Interop.Commands.vkQueueBindSparse(this.handle, (uint)(bindInfo?.Length ?? 0), marshalledBindInfo, marshalledFence);
+                    commandResult = Interop.Commands.vkQueueBindSparse(this.handle, (uint)(bindInfo.Length), marshalledBindInfo, marshalledFence);
                     if (SharpVkException.IsError(commandResult))
                     {
                         throw SharpVkException.Create(commandResult);

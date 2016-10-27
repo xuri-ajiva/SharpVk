@@ -538,7 +538,7 @@ namespace SharpVk.VkXml
 
                             newMethod.Parameters.Add(new TypeSet.VkMethodParam
                             {
-                                ArgumentName = $"({paramType.Name})({mapping}?.Length ?? 0)"
+                                ArgumentName = $"({paramType.Name})({mapping}.Length)"
                             });
                         }
                         else if (parameter.Dimensions?.Length > 0)
@@ -559,35 +559,71 @@ namespace SharpVk.VkXml
                                 string fixedName = null;
                                 string fixedType = null;
                                 string paramTypeName = (paramType.Name == "void" ? "byte" : paramType.Name);
+                                string handleName = paramName + "Handle";
+                                bool requiresInterop = paramType.RequiresInterop || paramType.Data.Category == TypeCategory.handle;
+                                string interopTypeName = paramTypeName;
 
-                                if (paramType.RequiresInterop || paramType.Data.Category == TypeCategory.handle)
+                                if (requiresInterop)
                                 {
-                                    newMethod.MarshalToStatements.Add($"Interop.{paramType.Name}* {marshalledName};");
-                                    newMethod.MarshalToStatements.Add($"if ({paramName} != null)");
-                                    newMethod.MarshalToStatements.Add("{");
-                                    newMethod.MarshalToStatements.Add($"    Interop.{paramType.Name}* arrayPointer = stackalloc Interop.{paramType.Name}[{paramName}.Length];");
-                                    newMethod.MarshalToStatements.Add($"    for (int index = 0; index < {paramName}.Length; index++)");
+                                    interopTypeName = "Interop." + interopTypeName;
+                                }
+                                else
+                                {
+                                    newMethod.MarshalToStatements.Add($"GCHandle {handleName} = default(GCHandle);");
+                                }
+
+                                newMethod.MarshalToStatements.Add($"{interopTypeName}* {marshalledName} = null;");
+                                newMethod.MarshalToStatements.Add($"if ({paramName}.Contents != ProxyContents.Null)");
+                                newMethod.MarshalToStatements.Add("{");
+                                if (requiresInterop)
+                                {
+                                    newMethod.MarshalToStatements.Add($"    {interopTypeName}* arrayPointer = stackalloc {interopTypeName}[{paramName}.Length];");
+                                    newMethod.MarshalToStatements.Add($"    if({paramName}.Contents == ProxyContents.Single)");
                                     newMethod.MarshalToStatements.Add("    {");
-                                    newMethod.MarshalToStatements.Add($"        arrayPointer[index] = {paramName}[index].Pack();");
+                                    newMethod.MarshalToStatements.Add($"        *arrayPointer = {paramName}.GetSingleValue().Pack();");
+                                    newMethod.MarshalToStatements.Add("    }");
+                                    newMethod.MarshalToStatements.Add("    else");
+                                    newMethod.MarshalToStatements.Add("    {");
+                                    newMethod.MarshalToStatements.Add($"        var arrayValue  = {paramName}.GetArrayValue();");
+                                    newMethod.MarshalToStatements.Add($"        for (int index = 0; index < {paramName}.Length; index++)");
+                                    newMethod.MarshalToStatements.Add("        {");
+                                    newMethod.MarshalToStatements.Add($"            arrayPointer[index] = arrayValue.Array[arrayValue.Offset + index].Pack();");
+                                    newMethod.MarshalToStatements.Add("        }");
                                     newMethod.MarshalToStatements.Add("    }");
                                     newMethod.MarshalToStatements.Add($"    {marshalledName} = arrayPointer;");
-                                    newMethod.MarshalToStatements.Add("}");
-                                    newMethod.MarshalToStatements.Add($"else");
-                                    newMethod.MarshalToStatements.Add("{");
-                                    newMethod.MarshalToStatements.Add($"    {marshalledName} = null;");
                                     newMethod.MarshalToStatements.Add("}");
                                 }
                                 else
                                 {
-                                    fixedName = marshalledName;
-                                    fixedType = paramTypeName + "*";
+                                    newMethod.MarshalToStatements.Add($"    if({paramName}.Contents == ProxyContents.Single)");
+                                    newMethod.MarshalToStatements.Add("    {");
+                                    newMethod.MarshalToStatements.Add($"        {interopTypeName}* dataPointer = stackalloc {interopTypeName}[1];");
+                                    newMethod.MarshalToStatements.Add($"        *dataPointer = {paramName}.GetSingleValue();");
+                                    newMethod.MarshalToStatements.Add($"        {marshalledName} = dataPointer;");
+                                    newMethod.MarshalToStatements.Add("    }");
+                                    newMethod.MarshalToStatements.Add("    else");
+                                    newMethod.MarshalToStatements.Add("    {");
+                                    newMethod.MarshalToStatements.Add($"        var arrayValue = {paramName}.GetArrayValue(); ");
+                                    newMethod.MarshalToStatements.Add($"        {handleName} = GCHandle.Alloc(arrayValue.Array); ");
+                                    newMethod.MarshalToStatements.Add($"        {marshalledName} = ({interopTypeName}*)({handleName}.AddrOfPinnedObject() + (int)(MemUtil.SizeOf<{interopTypeName}>() * arrayValue.Offset)).ToPointer(); ");
+                                    newMethod.MarshalToStatements.Add("    }");
+                                    newMethod.MarshalToStatements.Add("}");
+                                }
+                                newMethod.MarshalToStatements.Add($"else");
+                                newMethod.MarshalToStatements.Add("{");
+                                newMethod.MarshalToStatements.Add($"    {marshalledName} = null;");
+                                newMethod.MarshalToStatements.Add("}");
+
+                                if (!requiresInterop)
+                                {
+                                    newMethod.MarshalFromStatements.Add($"if ({handleName}.IsAllocated) {handleName}.Free();");
                                 }
 
                                 newMethod.Parameters.Add(new TypeSet.VkMethodParam
                                 {
                                     Name = paramName,
                                     ArgumentName = marshalledName,
-                                    TypeName = paramTypeName + "[]",
+                                    TypeName = $"ArrayProxy<{paramTypeName}>",
                                     FixedName = fixedName,
                                     FixedType = fixedType
                                 });

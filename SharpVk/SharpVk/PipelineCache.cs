@@ -23,6 +23,7 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
+using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
@@ -128,20 +129,28 @@ namespace SharpVk
         /// <summary>
         /// Combine the data stores of pipeline caches.
         /// </summary>
-        public void MergePipelineCaches(PipelineCache[] sourceCaches)
+        public void MergePipelineCaches(ArrayProxy<PipelineCache> sourceCaches)
         {
             unsafe
             {
                 try
                 {
                     Result commandResult;
-                    Interop.PipelineCache* marshalledSourceCaches;
-                    if (sourceCaches != null)
+                    Interop.PipelineCache* marshalledSourceCaches = null;
+                    if (sourceCaches.Contents != ProxyContents.Null)
                     {
                         Interop.PipelineCache* arrayPointer = stackalloc Interop.PipelineCache[sourceCaches.Length];
-                        for (int index = 0; index < sourceCaches.Length; index++)
+                        if(sourceCaches.Contents == ProxyContents.Single)
                         {
-                            arrayPointer[index] = sourceCaches[index].Pack();
+                            *arrayPointer = sourceCaches.GetSingleValue().Pack();
+                        }
+                        else
+                        {
+                            var arrayValue  = sourceCaches.GetArrayValue();
+                            for (int index = 0; index < sourceCaches.Length; index++)
+                            {
+                                arrayPointer[index] = arrayValue.Array[arrayValue.Offset + index].Pack();
+                            }
                         }
                         marshalledSourceCaches = arrayPointer;
                     }
@@ -149,7 +158,7 @@ namespace SharpVk
                     {
                         marshalledSourceCaches = null;
                     }
-                    commandResult = Interop.Commands.vkMergePipelineCaches(this.parent.handle, this.handle, (uint)(sourceCaches?.Length ?? 0), marshalledSourceCaches);
+                    commandResult = Interop.Commands.vkMergePipelineCaches(this.parent.handle, this.handle, (uint)(sourceCaches.Length), marshalledSourceCaches);
                     if (SharpVkException.IsError(commandResult))
                     {
                         throw SharpVkException.Create(commandResult);

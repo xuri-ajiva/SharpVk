@@ -291,16 +291,13 @@ namespace SharpVk
         {
             uint nextImage = this.swapChain.AcquireNextImage(uint.MaxValue, this.imageAvailableSemaphore, null);
 
-            this.graphicsQueue.Submit(new SubmitInfo[]
-            {
-                new SubmitInfo
+            this.graphicsQueue.Submit(new SubmitInfo
                 {
                     CommandBuffers = new [] { this.commandBuffers[nextImage] },
                     SignalSemaphores = new [] { this.renderFinishedSemaphore },
                     WaitDestinationStageMask = new [] { PipelineStageFlags.ColorAttachmentOutput },
                     WaitSemaphores = new [] { this.imageAvailableSemaphore }
-                }
-            }, null);
+                }, null);
 
             this.presentQueue.Present(new PresentInfo
             {
@@ -772,8 +769,7 @@ namespace SharpVk
                 }
             }).Single();
 
-            this.device.UpdateDescriptorSets(new[]
-            {
+            this.device.UpdateDescriptorSets(
                 new WriteDescriptorSet
                 {
                     BufferInfo = new []
@@ -789,8 +785,7 @@ namespace SharpVk
                     DestinationBinding = 0,
                     DestinationArrayElement = 0,
                     DescriptorType = DescriptorType.UniformBuffer
-                }
-            }, null);
+                }, null);
         }
 
         private void CreateCommandBuffers()
@@ -830,11 +825,11 @@ namespace SharpVk
 
                 commandBuffer.BindPipeline(PipelineBindPoint.Graphics, this.pipeline);
 
-                commandBuffer.BindVertexBuffers(0, new[] { this.vertexBuffer }, new DeviceSize[] { 0 });
+                commandBuffer.BindVertexBuffers(0, this.vertexBuffer, (DeviceSize)0);
 
                 commandBuffer.BindIndexBuffer(this.indexBuffer, 0, IndexType.UInt16);
 
-                commandBuffer.BindDescriptorSets(PipelineBindPoint.Graphics, this.pipelineLayout, 0, new[] { this.descriptorSet }, null);
+                commandBuffer.BindDescriptorSets(PipelineBindPoint.Graphics, this.pipelineLayout, 0, this.descriptorSet, null);
 
                 commandBuffer.DrawIndexed((uint)this.indices.Length, 1, 0, 0, 0);
 
@@ -1005,11 +1000,11 @@ namespace SharpVk
                 Flags = CommandBufferUsageFlags.OneTimeSubmit
             });
 
-            transferBuffers[0].CopyBuffer(sourceBuffer, destinationBuffer, new[] { new BufferCopy { Size = size } });
+            transferBuffers[0].CopyBuffer(sourceBuffer, destinationBuffer, new BufferCopy { Size = size });
 
             transferBuffers[0].End();
 
-            this.transferQueue.Submit(new[] { new SubmitInfo { CommandBuffers = transferBuffers } }, null);
+            this.transferQueue.Submit(new SubmitInfo { CommandBuffers = transferBuffers }, null);
             this.transferQueue.WaitIdle();
 
             this.transientCommandPool.FreeCommandBuffers(transferBuffers);

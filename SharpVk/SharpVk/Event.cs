@@ -23,6 +23,7 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
+using System.Runtime.InteropServices;
 
 namespace SharpVk
 {

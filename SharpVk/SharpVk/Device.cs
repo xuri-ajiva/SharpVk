@@ -23,6 +23,7 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
+using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
@@ -194,20 +195,28 @@ namespace SharpVk
         /// <summary>
         /// Flush mapped memory ranges.
         /// </summary>
-        public void FlushMappedMemoryRanges(MappedMemoryRange[] memoryRanges)
+        public void FlushMappedMemoryRanges(ArrayProxy<MappedMemoryRange> memoryRanges)
         {
             unsafe
             {
                 try
                 {
                     Result commandResult;
-                    Interop.MappedMemoryRange* marshalledMemoryRanges;
-                    if (memoryRanges != null)
+                    Interop.MappedMemoryRange* marshalledMemoryRanges = null;
+                    if (memoryRanges.Contents != ProxyContents.Null)
                     {
                         Interop.MappedMemoryRange* arrayPointer = stackalloc Interop.MappedMemoryRange[memoryRanges.Length];
-                        for (int index = 0; index < memoryRanges.Length; index++)
+                        if(memoryRanges.Contents == ProxyContents.Single)
                         {
-                            arrayPointer[index] = memoryRanges[index].Pack();
+                            *arrayPointer = memoryRanges.GetSingleValue().Pack();
+                        }
+                        else
+                        {
+                            var arrayValue  = memoryRanges.GetArrayValue();
+                            for (int index = 0; index < memoryRanges.Length; index++)
+                            {
+                                arrayPointer[index] = arrayValue.Array[arrayValue.Offset + index].Pack();
+                            }
                         }
                         marshalledMemoryRanges = arrayPointer;
                     }
@@ -215,7 +224,7 @@ namespace SharpVk
                     {
                         marshalledMemoryRanges = null;
                     }
-                    commandResult = Interop.Commands.vkFlushMappedMemoryRanges(this.handle, (uint)(memoryRanges?.Length ?? 0), marshalledMemoryRanges);
+                    commandResult = Interop.Commands.vkFlushMappedMemoryRanges(this.handle, (uint)(memoryRanges.Length), marshalledMemoryRanges);
                     if (SharpVkException.IsError(commandResult))
                     {
                         throw SharpVkException.Create(commandResult);
@@ -231,20 +240,28 @@ namespace SharpVk
         /// <summary>
         /// Invalidate ranges of mapped memory objects.
         /// </summary>
-        public void InvalidateMappedMemoryRanges(MappedMemoryRange[] memoryRanges)
+        public void InvalidateMappedMemoryRanges(ArrayProxy<MappedMemoryRange> memoryRanges)
         {
             unsafe
             {
                 try
                 {
                     Result commandResult;
-                    Interop.MappedMemoryRange* marshalledMemoryRanges;
-                    if (memoryRanges != null)
+                    Interop.MappedMemoryRange* marshalledMemoryRanges = null;
+                    if (memoryRanges.Contents != ProxyContents.Null)
                     {
                         Interop.MappedMemoryRange* arrayPointer = stackalloc Interop.MappedMemoryRange[memoryRanges.Length];
-                        for (int index = 0; index < memoryRanges.Length; index++)
+                        if(memoryRanges.Contents == ProxyContents.Single)
                         {
-                            arrayPointer[index] = memoryRanges[index].Pack();
+                            *arrayPointer = memoryRanges.GetSingleValue().Pack();
+                        }
+                        else
+                        {
+                            var arrayValue  = memoryRanges.GetArrayValue();
+                            for (int index = 0; index < memoryRanges.Length; index++)
+                            {
+                                arrayPointer[index] = arrayValue.Array[arrayValue.Offset + index].Pack();
+                            }
                         }
                         marshalledMemoryRanges = arrayPointer;
                     }
@@ -252,7 +269,7 @@ namespace SharpVk
                     {
                         marshalledMemoryRanges = null;
                     }
-                    commandResult = Interop.Commands.vkInvalidateMappedMemoryRanges(this.handle, (uint)(memoryRanges?.Length ?? 0), marshalledMemoryRanges);
+                    commandResult = Interop.Commands.vkInvalidateMappedMemoryRanges(this.handle, (uint)(memoryRanges.Length), marshalledMemoryRanges);
                     if (SharpVkException.IsError(commandResult))
                     {
                         throw SharpVkException.Create(commandResult);
@@ -299,20 +316,28 @@ namespace SharpVk
         /// <summary>
         /// Resets one or more fence objects.
         /// </summary>
-        public void ResetFences(Fence[] fences)
+        public void ResetFences(ArrayProxy<Fence> fences)
         {
             unsafe
             {
                 try
                 {
                     Result commandResult;
-                    Interop.Fence* marshalledFences;
-                    if (fences != null)
+                    Interop.Fence* marshalledFences = null;
+                    if (fences.Contents != ProxyContents.Null)
                     {
                         Interop.Fence* arrayPointer = stackalloc Interop.Fence[fences.Length];
-                        for (int index = 0; index < fences.Length; index++)
+                        if(fences.Contents == ProxyContents.Single)
                         {
-                            arrayPointer[index] = fences[index].Pack();
+                            *arrayPointer = fences.GetSingleValue().Pack();
+                        }
+                        else
+                        {
+                            var arrayValue  = fences.GetArrayValue();
+                            for (int index = 0; index < fences.Length; index++)
+                            {
+                                arrayPointer[index] = arrayValue.Array[arrayValue.Offset + index].Pack();
+                            }
                         }
                         marshalledFences = arrayPointer;
                     }
@@ -320,7 +345,7 @@ namespace SharpVk
                     {
                         marshalledFences = null;
                     }
-                    commandResult = Interop.Commands.vkResetFences(this.handle, (uint)(fences?.Length ?? 0), marshalledFences);
+                    commandResult = Interop.Commands.vkResetFences(this.handle, (uint)(fences.Length), marshalledFences);
                     if (SharpVkException.IsError(commandResult))
                     {
                         throw SharpVkException.Create(commandResult);
@@ -336,20 +361,28 @@ namespace SharpVk
         /// <summary>
         /// Wait for one or more fences to become signaled.
         /// </summary>
-        public void WaitForFences(Fence[] fences, Bool32 waitAll, ulong timeout)
+        public void WaitForFences(ArrayProxy<Fence> fences, Bool32 waitAll, ulong timeout)
         {
             unsafe
             {
                 try
                 {
                     Result commandResult;
-                    Interop.Fence* marshalledFences;
-                    if (fences != null)
+                    Interop.Fence* marshalledFences = null;
+                    if (fences.Contents != ProxyContents.Null)
                     {
                         Interop.Fence* arrayPointer = stackalloc Interop.Fence[fences.Length];
-                        for (int index = 0; index < fences.Length; index++)
+                        if(fences.Contents == ProxyContents.Single)
                         {
-                            arrayPointer[index] = fences[index].Pack();
+                            *arrayPointer = fences.GetSingleValue().Pack();
+                        }
+                        else
+                        {
+                            var arrayValue  = fences.GetArrayValue();
+                            for (int index = 0; index < fences.Length; index++)
+                            {
+                                arrayPointer[index] = arrayValue.Array[arrayValue.Offset + index].Pack();
+                            }
                         }
                         marshalledFences = arrayPointer;
                     }
@@ -357,7 +390,7 @@ namespace SharpVk
                     {
                         marshalledFences = null;
                     }
-                    commandResult = Interop.Commands.vkWaitForFences(this.handle, (uint)(fences?.Length ?? 0), marshalledFences, waitAll, timeout);
+                    commandResult = Interop.Commands.vkWaitForFences(this.handle, (uint)(fences.Length), marshalledFences, waitAll, timeout);
                     if (SharpVkException.IsError(commandResult))
                     {
                         throw SharpVkException.Create(commandResult);
@@ -652,7 +685,7 @@ namespace SharpVk
         /// <summary>
         /// Create graphics pipelines.
         /// </summary>
-        public Pipeline[] CreateGraphicsPipelines(PipelineCache pipelineCache, GraphicsPipelineCreateInfo[] createInfos)
+        public Pipeline[] CreateGraphicsPipelines(PipelineCache pipelineCache, ArrayProxy<GraphicsPipelineCreateInfo> createInfos)
         {
             unsafe
             {
@@ -661,13 +694,21 @@ namespace SharpVk
                     Pipeline[] result = default(Pipeline[]);
                     Result commandResult;
                     Interop.PipelineCache marshalledPipelineCache = pipelineCache?.Pack() ?? Interop.PipelineCache.Null;
-                    Interop.GraphicsPipelineCreateInfo* marshalledCreateInfos;
-                    if (createInfos != null)
+                    Interop.GraphicsPipelineCreateInfo* marshalledCreateInfos = null;
+                    if (createInfos.Contents != ProxyContents.Null)
                     {
                         Interop.GraphicsPipelineCreateInfo* arrayPointer = stackalloc Interop.GraphicsPipelineCreateInfo[createInfos.Length];
-                        for (int index = 0; index < createInfos.Length; index++)
+                        if(createInfos.Contents == ProxyContents.Single)
                         {
-                            arrayPointer[index] = createInfos[index].Pack();
+                            *arrayPointer = createInfos.GetSingleValue().Pack();
+                        }
+                        else
+                        {
+                            var arrayValue  = createInfos.GetArrayValue();
+                            for (int index = 0; index < createInfos.Length; index++)
+                            {
+                                arrayPointer[index] = arrayValue.Array[arrayValue.Offset + index].Pack();
+                            }
                         }
                         marshalledCreateInfos = arrayPointer;
                     }
@@ -678,7 +719,7 @@ namespace SharpVk
                     Interop.AllocationCallbacks marshalledAllocator;
                     if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
                     Interop.Pipeline* marshalledPipelines = (Interop.Pipeline*)Interop.HeapUtil.Allocate<Interop.Pipeline>(createInfos.Length);
-                    commandResult = Interop.Commands.vkCreateGraphicsPipelines(this.handle, marshalledPipelineCache, (uint)(createInfos?.Length ?? 0), marshalledCreateInfos, this.parent.Allocator == null ? null : &marshalledAllocator, marshalledPipelines);
+                    commandResult = Interop.Commands.vkCreateGraphicsPipelines(this.handle, marshalledPipelineCache, (uint)(createInfos.Length), marshalledCreateInfos, this.parent.Allocator == null ? null : &marshalledAllocator, marshalledPipelines);
                     if (SharpVkException.IsError(commandResult))
                     {
                         throw SharpVkException.Create(commandResult);
@@ -700,7 +741,7 @@ namespace SharpVk
         /// <summary>
         /// Creates a new compute pipeline object.
         /// </summary>
-        public Pipeline[] CreateComputePipelines(PipelineCache pipelineCache, ComputePipelineCreateInfo[] createInfos)
+        public Pipeline[] CreateComputePipelines(PipelineCache pipelineCache, ArrayProxy<ComputePipelineCreateInfo> createInfos)
         {
             unsafe
             {
@@ -709,13 +750,21 @@ namespace SharpVk
                     Pipeline[] result = default(Pipeline[]);
                     Result commandResult;
                     Interop.PipelineCache marshalledPipelineCache = pipelineCache?.Pack() ?? Interop.PipelineCache.Null;
-                    Interop.ComputePipelineCreateInfo* marshalledCreateInfos;
-                    if (createInfos != null)
+                    Interop.ComputePipelineCreateInfo* marshalledCreateInfos = null;
+                    if (createInfos.Contents != ProxyContents.Null)
                     {
                         Interop.ComputePipelineCreateInfo* arrayPointer = stackalloc Interop.ComputePipelineCreateInfo[createInfos.Length];
-                        for (int index = 0; index < createInfos.Length; index++)
+                        if(createInfos.Contents == ProxyContents.Single)
                         {
-                            arrayPointer[index] = createInfos[index].Pack();
+                            *arrayPointer = createInfos.GetSingleValue().Pack();
+                        }
+                        else
+                        {
+                            var arrayValue  = createInfos.GetArrayValue();
+                            for (int index = 0; index < createInfos.Length; index++)
+                            {
+                                arrayPointer[index] = arrayValue.Array[arrayValue.Offset + index].Pack();
+                            }
                         }
                         marshalledCreateInfos = arrayPointer;
                     }
@@ -726,7 +775,7 @@ namespace SharpVk
                     Interop.AllocationCallbacks marshalledAllocator;
                     if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
                     Interop.Pipeline* marshalledPipelines = (Interop.Pipeline*)Interop.HeapUtil.Allocate<Interop.Pipeline>(createInfos.Length);
-                    commandResult = Interop.Commands.vkCreateComputePipelines(this.handle, marshalledPipelineCache, (uint)(createInfos?.Length ?? 0), marshalledCreateInfos, this.parent.Allocator == null ? null : &marshalledAllocator, marshalledPipelines);
+                    commandResult = Interop.Commands.vkCreateComputePipelines(this.handle, marshalledPipelineCache, (uint)(createInfos.Length), marshalledCreateInfos, this.parent.Allocator == null ? null : &marshalledAllocator, marshalledPipelines);
                     if (SharpVkException.IsError(commandResult))
                     {
                         throw SharpVkException.Create(commandResult);
@@ -905,19 +954,27 @@ namespace SharpVk
         /// <summary>
         /// Update the contents of a descriptor set object.
         /// </summary>
-        public void UpdateDescriptorSets(WriteDescriptorSet[] descriptorWrites, CopyDescriptorSet[] descriptorCopies)
+        public void UpdateDescriptorSets(ArrayProxy<WriteDescriptorSet> descriptorWrites, ArrayProxy<CopyDescriptorSet> descriptorCopies)
         {
             unsafe
             {
                 try
                 {
-                    Interop.WriteDescriptorSet* marshalledDescriptorWrites;
-                    if (descriptorWrites != null)
+                    Interop.WriteDescriptorSet* marshalledDescriptorWrites = null;
+                    if (descriptorWrites.Contents != ProxyContents.Null)
                     {
                         Interop.WriteDescriptorSet* arrayPointer = stackalloc Interop.WriteDescriptorSet[descriptorWrites.Length];
-                        for (int index = 0; index < descriptorWrites.Length; index++)
+                        if(descriptorWrites.Contents == ProxyContents.Single)
                         {
-                            arrayPointer[index] = descriptorWrites[index].Pack();
+                            *arrayPointer = descriptorWrites.GetSingleValue().Pack();
+                        }
+                        else
+                        {
+                            var arrayValue  = descriptorWrites.GetArrayValue();
+                            for (int index = 0; index < descriptorWrites.Length; index++)
+                            {
+                                arrayPointer[index] = arrayValue.Array[arrayValue.Offset + index].Pack();
+                            }
                         }
                         marshalledDescriptorWrites = arrayPointer;
                     }
@@ -925,13 +982,21 @@ namespace SharpVk
                     {
                         marshalledDescriptorWrites = null;
                     }
-                    Interop.CopyDescriptorSet* marshalledDescriptorCopies;
-                    if (descriptorCopies != null)
+                    Interop.CopyDescriptorSet* marshalledDescriptorCopies = null;
+                    if (descriptorCopies.Contents != ProxyContents.Null)
                     {
                         Interop.CopyDescriptorSet* arrayPointer = stackalloc Interop.CopyDescriptorSet[descriptorCopies.Length];
-                        for (int index = 0; index < descriptorCopies.Length; index++)
+                        if(descriptorCopies.Contents == ProxyContents.Single)
                         {
-                            arrayPointer[index] = descriptorCopies[index].Pack();
+                            *arrayPointer = descriptorCopies.GetSingleValue().Pack();
+                        }
+                        else
+                        {
+                            var arrayValue  = descriptorCopies.GetArrayValue();
+                            for (int index = 0; index < descriptorCopies.Length; index++)
+                            {
+                                arrayPointer[index] = arrayValue.Array[arrayValue.Offset + index].Pack();
+                            }
                         }
                         marshalledDescriptorCopies = arrayPointer;
                     }
@@ -939,7 +1004,7 @@ namespace SharpVk
                     {
                         marshalledDescriptorCopies = null;
                     }
-                    Interop.Commands.vkUpdateDescriptorSets(this.handle, (uint)(descriptorWrites?.Length ?? 0), marshalledDescriptorWrites, (uint)(descriptorCopies?.Length ?? 0), marshalledDescriptorCopies);
+                    Interop.Commands.vkUpdateDescriptorSets(this.handle, (uint)(descriptorWrites.Length), marshalledDescriptorWrites, (uint)(descriptorCopies.Length), marshalledDescriptorCopies);
                 }
                 finally
                 {
@@ -1109,7 +1174,7 @@ namespace SharpVk
         /// <summary>
         /// Create multiple swapchains that share presentable images.
         /// </summary>
-        public Swapchain[] CreateSharedSwapchains(SwapchainCreateInfo[] createInfos)
+        public Swapchain[] CreateSharedSwapchains(ArrayProxy<SwapchainCreateInfo> createInfos)
         {
             unsafe
             {
@@ -1118,13 +1183,21 @@ namespace SharpVk
                     var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkCreateSharedSwapchainsKHR>("vkCreateSharedSwapchainsKHR", "device");
                     Swapchain[] result = default(Swapchain[]);
                     Result commandResult;
-                    Interop.SwapchainCreateInfo* marshalledCreateInfos;
-                    if (createInfos != null)
+                    Interop.SwapchainCreateInfo* marshalledCreateInfos = null;
+                    if (createInfos.Contents != ProxyContents.Null)
                     {
                         Interop.SwapchainCreateInfo* arrayPointer = stackalloc Interop.SwapchainCreateInfo[createInfos.Length];
-                        for (int index = 0; index < createInfos.Length; index++)
+                        if(createInfos.Contents == ProxyContents.Single)
                         {
-                            arrayPointer[index] = createInfos[index].Pack();
+                            *arrayPointer = createInfos.GetSingleValue().Pack();
+                        }
+                        else
+                        {
+                            var arrayValue  = createInfos.GetArrayValue();
+                            for (int index = 0; index < createInfos.Length; index++)
+                            {
+                                arrayPointer[index] = arrayValue.Array[arrayValue.Offset + index].Pack();
+                            }
                         }
                         marshalledCreateInfos = arrayPointer;
                     }
@@ -1135,7 +1208,7 @@ namespace SharpVk
                     Interop.AllocationCallbacks marshalledAllocator;
                     if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
                     Interop.Swapchain* marshalledSwapchains = (Interop.Swapchain*)Interop.HeapUtil.Allocate<Interop.Swapchain>(createInfos.Length);
-                    commandResult = commandDelegate(this.handle, (uint)(createInfos?.Length ?? 0), marshalledCreateInfos, this.parent.Allocator == null ? null : &marshalledAllocator, marshalledSwapchains);
+                    commandResult = commandDelegate(this.handle, (uint)(createInfos.Length), marshalledCreateInfos, this.parent.Allocator == null ? null : &marshalledAllocator, marshalledSwapchains);
                     if (SharpVkException.IsError(commandResult))
                     {
                         throw SharpVkException.Create(commandResult);

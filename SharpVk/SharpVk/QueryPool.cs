@@ -23,6 +23,7 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
+using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
@@ -82,19 +83,40 @@ namespace SharpVk
         /// <summary>
         /// Copy results of queries in a query pool to a host memory region.
         /// </summary>
-        public void GetResults(uint firstQuery, uint queryCount, byte[] data, DeviceSize stride, QueryResultFlags flags)
+        public void GetResults(uint firstQuery, uint queryCount, ArrayProxy<byte> data, DeviceSize stride, QueryResultFlags flags)
         {
             unsafe
             {
                 try
                 {
                     Result commandResult;
-                    fixed(byte* marshalledData = data)
-                    commandResult = Interop.Commands.vkGetQueryPoolResults(this.parent.handle, this.handle, firstQuery, queryCount, (Size)(data?.Length ?? 0), marshalledData, stride, flags);
+                    GCHandle dataHandle = default(GCHandle);
+                    byte* marshalledData = null;
+                    if (data.Contents != ProxyContents.Null)
+                    {
+                        if(data.Contents == ProxyContents.Single)
+                        {
+                            byte* dataPointer = stackalloc byte[1];
+                            *dataPointer = data.GetSingleValue();
+                            marshalledData = dataPointer;
+                        }
+                        else
+                        {
+                            var arrayValue = data.GetArrayValue(); 
+                            dataHandle = GCHandle.Alloc(arrayValue.Array); 
+                            marshalledData = (byte*)(dataHandle.AddrOfPinnedObject() + (int)(MemUtil.SizeOf<byte>() * arrayValue.Offset)).ToPointer(); 
+                        }
+                    }
+                    else
+                    {
+                        marshalledData = null;
+                    }
+                    commandResult = Interop.Commands.vkGetQueryPoolResults(this.parent.handle, this.handle, firstQuery, queryCount, (Size)(data.Length), marshalledData, stride, flags);
                     if (SharpVkException.IsError(commandResult))
                     {
                         throw SharpVkException.Create(commandResult);
                     }
+                    if (dataHandle.IsAllocated) dataHandle.Free();
                 }
                 finally
                 {

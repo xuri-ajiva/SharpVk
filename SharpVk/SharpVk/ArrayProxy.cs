@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
@@ -24,20 +25,50 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="index"></param>
         /// <returns></returns>
-        public int GetLength()
+        public T this[int index]
         {
-            // The underlying integer values for ProxyContents.Null & .Single
-            // are 0 and 1 respectively and can be returned directly; otherwise
-            // get the length of the array.
-            int length = (int)this.Contents;
-
-            if (length > 1)
+            get
             {
-                length = this.arrayValue.Count;
+                if (index < 0 || index >= this.Length)
+                {
+                    throw new IndexOutOfRangeException();
+                }
+                else
+                {
+                    if(this.Contents == ProxyContents.Single)
+                    {
+                        return this.value;
+                    }
+                    else
+                    {
+                        return this.arrayValue.Array[this.arrayValue.Offset + index];
+                    }
+                }
             }
+        }
 
-            return length;
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public int Length
+        {
+            get
+            {
+                // The underlying integer values for ProxyContents.Null & .Single
+                // are 0 and 1 respectively and can be returned directly; otherwise
+                // get the length of the array.
+                int length = (int)this.Contents;
+
+                if (length > 1)
+                {
+                    length = this.arrayValue.Count;
+                }
+
+                return length;
+            }
         }
 
         /// <summary>
@@ -110,7 +141,7 @@ namespace SharpVk
             {
                 return Null;
             }
-            else if(value.Count == 1)
+            else if (value.Count == 1)
             {
                 return new ArrayProxy<T>
                 {
@@ -147,26 +178,26 @@ namespace SharpVk
                 };
             }
         }
+    }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    public enum ProxyContents
+        : uint
+    {
         /// <summary>
         /// 
         /// </summary>
-        public enum ProxyContents
-            : uint
-        {
-            /// <summary>
-            /// 
-            /// </summary>
-            Null = 0,
-            /// <summary>
-            /// 
-            /// </summary>
-            Single = 1,
-            /// <summary>
-            /// 
-            /// </summary>
-            Array = 2
-        }
+        Null = 0,
+        /// <summary>
+        /// 
+        /// </summary>
+        Single = 1,
+        /// <summary>
+        /// 
+        /// </summary>
+        Array = 2
     }
 
     /// <summary>
@@ -183,7 +214,7 @@ namespace SharpVk
         public static void WriteToPointer<T>(this ArrayProxy<T> proxy, IntPtr pointer)
             where T : struct
         {
-            if (proxy.Contents == ArrayProxy<T>.ProxyContents.Single)
+            if (proxy.Contents == ProxyContents.Single)
             {
                 MemUtil.WriteToPtr(pointer, proxy.GetSingleValue());
             }

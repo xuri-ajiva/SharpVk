@@ -58,6 +58,7 @@ namespace SharpVk.Generator.Generators
                 fileGenerator.Generate(null, handle.Name, fileBuilder =>
                 {
                     fileBuilder.EmitUsing("System");
+                    fileBuilder.EmitUsing("System.Runtime.InteropServices");
 
                     fileBuilder.EmitNamespace("SharpVk", namespaceBuilder =>
                     {

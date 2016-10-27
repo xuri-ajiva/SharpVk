@@ -23,6 +23,7 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
+using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
@@ -111,19 +112,27 @@ namespace SharpVk
         /// <summary>
         /// Free command buffers.
         /// </summary>
-        public void FreeCommandBuffers(CommandBuffer[] commandBuffers)
+        public void FreeCommandBuffers(ArrayProxy<CommandBuffer> commandBuffers)
         {
             unsafe
             {
                 try
                 {
-                    Interop.CommandBuffer* marshalledCommandBuffers;
-                    if (commandBuffers != null)
+                    Interop.CommandBuffer* marshalledCommandBuffers = null;
+                    if (commandBuffers.Contents != ProxyContents.Null)
                     {
                         Interop.CommandBuffer* arrayPointer = stackalloc Interop.CommandBuffer[commandBuffers.Length];
-                        for (int index = 0; index < commandBuffers.Length; index++)
+                        if(commandBuffers.Contents == ProxyContents.Single)
                         {
-                            arrayPointer[index] = commandBuffers[index].Pack();
+                            *arrayPointer = commandBuffers.GetSingleValue().Pack();
+                        }
+                        else
+                        {
+                            var arrayValue  = commandBuffers.GetArrayValue();
+                            for (int index = 0; index < commandBuffers.Length; index++)
+                            {
+                                arrayPointer[index] = arrayValue.Array[arrayValue.Offset + index].Pack();
+                            }
                         }
                         marshalledCommandBuffers = arrayPointer;
                     }
@@ -131,7 +140,7 @@ namespace SharpVk
                     {
                         marshalledCommandBuffers = null;
                     }
-                    Interop.Commands.vkFreeCommandBuffers(this.parent.handle, this.handle, (uint)(commandBuffers?.Length ?? 0), marshalledCommandBuffers);
+                    Interop.Commands.vkFreeCommandBuffers(this.parent.handle, this.handle, (uint)(commandBuffers.Length), marshalledCommandBuffers);
                 }
                 finally
                 {

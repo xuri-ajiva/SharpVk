@@ -23,6 +23,7 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
+using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
@@ -108,20 +109,28 @@ namespace SharpVk
         /// <summary>
         /// Free one or more descriptor sets.
         /// </summary>
-        public void FreeDescriptorSets(DescriptorSet[] descriptorSets)
+        public void FreeDescriptorSets(ArrayProxy<DescriptorSet> descriptorSets)
         {
             unsafe
             {
                 try
                 {
                     Result commandResult;
-                    Interop.DescriptorSet* marshalledDescriptorSets;
-                    if (descriptorSets != null)
+                    Interop.DescriptorSet* marshalledDescriptorSets = null;
+                    if (descriptorSets.Contents != ProxyContents.Null)
                     {
                         Interop.DescriptorSet* arrayPointer = stackalloc Interop.DescriptorSet[descriptorSets.Length];
-                        for (int index = 0; index < descriptorSets.Length; index++)
+                        if(descriptorSets.Contents == ProxyContents.Single)
                         {
-                            arrayPointer[index] = descriptorSets[index].Pack();
+                            *arrayPointer = descriptorSets.GetSingleValue().Pack();
+                        }
+                        else
+                        {
+                            var arrayValue  = descriptorSets.GetArrayValue();
+                            for (int index = 0; index < descriptorSets.Length; index++)
+                            {
+                                arrayPointer[index] = arrayValue.Array[arrayValue.Offset + index].Pack();
+                            }
                         }
                         marshalledDescriptorSets = arrayPointer;
                     }
@@ -129,7 +138,7 @@ namespace SharpVk
                     {
                         marshalledDescriptorSets = null;
                     }
-                    commandResult = Interop.Commands.vkFreeDescriptorSets(this.parent.handle, this.handle, (uint)(descriptorSets?.Length ?? 0), marshalledDescriptorSets);
+                    commandResult = Interop.Commands.vkFreeDescriptorSets(this.parent.handle, this.handle, (uint)(descriptorSets.Length), marshalledDescriptorSets);
                     if (SharpVkException.IsError(commandResult))
                     {
                         throw SharpVkException.Create(commandResult);
