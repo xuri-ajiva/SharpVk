@@ -34,11 +34,14 @@ namespace SharpVk
     /// The above layout definition allows the descriptor bindings to be
     /// specified sparsely such that not all binding numbers between 0 and the
     /// maximum binding number need to be specified in the pname:pBindings
-    /// array. However, all binding numbers between 0 and the maximum binding
-    /// number in the slink:VkDescriptorSetLayoutCreateInfo::pname:pBindings
-    /// array may: consume memory in the descriptor set layout even if not all
-    /// descriptor bindings are used, though it should: not consume additional
-    /// memory from the descriptor pool.
+    /// array. Bindings that are not specified have a pname:descriptorCount and
+    /// pname:stageFlags of zero, and the pname:descriptorType is treated as
+    /// undefined. However, all binding numbers between 0 and the maximum
+    /// binding number in the
+    /// slink:VkDescriptorSetLayoutCreateInfo::pname:pBindings array may:
+    /// consume memory in the descriptor set layout even if not all descriptor
+    /// bindings are used, though it should: not consume additional memory from
+    /// the descriptor pool.
     /// </para>
     /// <para>
     /// [NOTE] .Note ==== The maximum binding number specified should: be as

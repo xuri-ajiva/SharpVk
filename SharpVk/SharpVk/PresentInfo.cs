@@ -33,10 +33,13 @@ namespace SharpVk
     /// <para>
     /// .Valid Usage **** * Any given element of pname:pImageIndices must: be
     /// the index of a presentable image acquired from the swapchain specified
-    /// by the corresponding element of the pname:pSwapchains array * Any given
-    /// element of sname:VkSemaphore in pname:pWaitSemaphores must: refer to a
-    /// prior signal of that sname:VkSemaphore that will not be consumed by any
-    /// other wait on that semaphore ****
+    /// by the corresponding element of the pname:pSwapchains array, and the
+    /// presented image subresource must: be in the
+    /// ename:VK_IMAGE_LAYOUT_PRESENT_SRC_KHR layout at the time the operation
+    /// is executed on a sname:VkDevice * Any given element of
+    /// sname:VkSemaphore in pname:pWaitSemaphores must: refer to a prior
+    /// signal of that sname:VkSemaphore that will not be consumed by any other
+    /// wait on that semaphore ****
     /// </para>
     /// </summary>
     public struct PresentInfo

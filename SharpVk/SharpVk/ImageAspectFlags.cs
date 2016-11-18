@@ -59,13 +59,14 @@ namespace SharpVk
     /// </para>
     /// <para>
     /// .Valid Usage **** * If pname:levelCount is not
-    /// ename:VK_REMAINING_MIP_LEVELS, [eq]#(pname:baseMipLevel +
-    /// pname:levelCount)# must: be less than or equal to the pname:mipLevels
-    /// specified in slink:VkImageCreateInfo when the image was created * If
-    /// pname:layerCount is not ename:VK_REMAINING_ARRAY_LAYERS,
-    /// [eq]#(pname:baseArrayLayer + pname:layerCount)# must: be less than or
-    /// equal to the pname:arrayLayers specified in slink:VkImageCreateInfo
-    /// when the image was created ****
+    /// ename:VK_REMAINING_MIP_LEVELS, [eq]#pname:levelCount# must: be non-zero
+    /// and [eq]#(pname:baseMipLevel + pname:levelCount)# must: be less than or
+    /// equal to the pname:mipLevels specified in slink:VkImageCreateInfo when
+    /// the image was created * If pname:layerCount is not
+    /// ename:VK_REMAINING_ARRAY_LAYERS, [eq]#pname:layerCount# must: be
+    /// non-zero and [eq]#(pname:baseArrayLayer + pname:layerCount)# must: be
+    /// less than or equal to the pname:arrayLayers specified in
+    /// slink:VkImageCreateInfo when the image was created ****
     /// </para>
     /// </summary>
     [Flags]
