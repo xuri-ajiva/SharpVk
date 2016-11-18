@@ -1044,7 +1044,7 @@ namespace SharpVk.VkXml
 
                         if (member.FixedLength.Type == SpecParser.FixedLengthType.EnumReference)
                         {
-                            fixedLengthValue = "(int)Constants." + GetNameForElement(spec.Constants[member.FixedLength.Value]);
+                            fixedLengthValue = "Constants." + GetNameForElement(spec.Constants[member.FixedLength.Value]);
                         }
 
                         if (member.Type == "char")
@@ -1104,7 +1104,7 @@ namespace SharpVk.VkXml
                             switch (member.FixedLength.Type)
                             {
                                 case SpecParser.FixedLengthType.EnumReference:
-                                    memberDesc.InteropNameSuffix = "[(int)Constants." + GetNameForElement(spec.Constants[member.FixedLength.Value]) + "]";
+                                    memberDesc.InteropNameSuffix = "[Constants." + GetNameForElement(spec.Constants[member.FixedLength.Value]) + "]";
                                     break;
                                 case SpecParser.FixedLengthType.IntegerLiteral:
                                     memberDesc.InteropNameSuffix = "[" + member.FixedLength.Value + "]";
@@ -1461,6 +1461,8 @@ namespace SharpVk.VkXml
                 string value = constant.Value;
                 bool isStaticReadonly = false;
 
+                string name = GetNameForElement(constant);
+
                 if (value.StartsWith("VK_MAKE_VERSION"))
                 {
                     type = null;
@@ -1493,18 +1495,20 @@ namespace SharpVk.VkXml
                             type = typeof(float);
                             break;
                         case "u":
-                        default:
                             type = typeof(uint);
                             break;
                         case "ul":
                             type = typeof(ulong);
+                            break;
+                        default:
+                            type = (name.StartsWith("Max") || name.EndsWith("Size")) ? typeof(int) : typeof(uint);
                             break;
                     }
                 }
 
                 result.Constants.Add(new TypeSet.VkConstant
                 {
-                    Name = GetNameForElement(constant),
+                    Name = name,
                     Type = type,
                     ExplicitType = explicitType,
                     SubGroupName = constant.ConstantSubGroup == null ? null : JoinNameParts(constant.ConstantSubGroup),

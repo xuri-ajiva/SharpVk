@@ -557,32 +557,32 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public const uint MaxExtensionNameSize = 256; 
+        public const int MaxExtensionNameSize = 256; 
         
         /// <summary>
         /// 
         /// </summary>
-        public const uint MaxDescriptionSize = 256; 
+        public const int MaxDescriptionSize = 256; 
         
         /// <summary>
         /// 
         /// </summary>
-        public const uint MaxMemoryTypes = 32; 
+        public const int MaxMemoryTypes = 32; 
         
         /// <summary>
         /// 
         /// </summary>
-        public const uint MaxMemoryHeaps = 16; 
+        public const int MaxMemoryHeaps = 16; 
         
         /// <summary>
         /// 
         /// </summary>
-        public const uint MaxPhysicalDeviceNameSize = 256; 
+        public const int MaxPhysicalDeviceNameSize = 256; 
         
         /// <summary>
         /// 
         /// </summary>
-        public const uint UuidSize = 16; 
+        public const int UuidSize = 16; 
         
         /// <summary>
         /// 

@@ -54,7 +54,7 @@ namespace SharpVk
         internal static unsafe ExtensionProperties MarshalFrom(Interop.ExtensionProperties* value)
         {
             ExtensionProperties result = new ExtensionProperties();
-            result.ExtensionName = System.Text.Encoding.UTF8.GetString(Interop.HeapUtil.MarshalFrom(value->ExtensionName, (int)Constants.MaxExtensionNameSize, true));
+            result.ExtensionName = System.Text.Encoding.UTF8.GetString(Interop.HeapUtil.MarshalFrom(value->ExtensionName, Constants.MaxExtensionNameSize, true));
             result.SpecVersion = value->SpecVersion;
             return result;
         }
