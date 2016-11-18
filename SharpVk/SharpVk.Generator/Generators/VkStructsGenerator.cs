@@ -27,6 +27,25 @@ namespace SharpVk.Generator.Generators
                                                     @struct.Name,
                                                     typeBuilder =>
                                                     {
+                                                        typeBuilder.EmitConstructor(body =>
+                                                                                    {
+                                                                                        foreach (var member in @struct.Members)
+                                                                                        {
+                                                                                            string paramName = char.ToLower(member.Name[0]) + member.Name.Substring(1);
+
+                                                                                            body.EmitAssignment(Member(This, member.Name), Variable(paramName));
+                                                                                        }
+                                                                                    },
+                                                                                    parameters =>
+                                                                                    {
+                                                                                        foreach(var member in @struct.Members)
+                                                                                        {
+                                                                                            string paramName = char.ToLower(member.Name[0]) + member.Name.Substring(1);
+
+                                                                                            parameters.EmitParam(member.TypeName, paramName);
+                                                                                        }
+                                                                                    }, Public);
+
                                                         foreach (var member in @struct.Members)
                                                         {
                                                             typeBuilder.EmitField(member.TypeName,

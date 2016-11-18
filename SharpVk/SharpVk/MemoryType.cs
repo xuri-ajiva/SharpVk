@@ -35,6 +35,15 @@ namespace SharpVk
     public partial struct MemoryType
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public MemoryType(MemoryPropertyFlags propertyFlags, uint heapIndex)
+        {
+            this.PropertyFlags = propertyFlags;
+            this.HeapIndex = heapIndex;
+        }
+        
+        /// <summary>
         /// pname:propertyFlags is a bitmask of properties for this memory
         /// type. The bits specified in pname:propertyFlags are: + --
         /// </summary>

@@ -85,6 +85,19 @@ namespace SharpVk
     public partial struct Viewport
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public Viewport(float x, float y, float width, float height, float minDepth, float maxDepth)
+        {
+            this.X = x;
+            this.Y = y;
+            this.Width = width;
+            this.Height = height;
+            this.MinDepth = minDepth;
+            this.MaxDepth = maxDepth;
+        }
+        
+        /// <summary>
         /// pname:x and pname:y are the viewport's upper left corner
         /// [eq]#(x,y)#.
         /// </summary>

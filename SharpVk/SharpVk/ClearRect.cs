@@ -42,6 +42,16 @@ namespace SharpVk
     public partial struct ClearRect
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public ClearRect(Rect2D rect, uint baseArrayLayer, uint layerCount)
+        {
+            this.Rect = rect;
+            this.BaseArrayLayer = baseArrayLayer;
+            this.LayerCount = layerCount;
+        }
+        
+        /// <summary>
         /// pname:rect is the two-dimensional region to be cleared.
         /// </summary>
         public Rect2D Rect; 

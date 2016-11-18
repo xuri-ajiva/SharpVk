@@ -53,6 +53,18 @@ namespace SharpVk
     public partial struct DrawIndexedIndirectCommand
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public DrawIndexedIndirectCommand(uint indexCount, uint instanceCount, uint firstIndex, int vertexOffset, uint firstInstance)
+        {
+            this.IndexCount = indexCount;
+            this.InstanceCount = instanceCount;
+            this.FirstIndex = firstIndex;
+            this.VertexOffset = vertexOffset;
+            this.FirstInstance = firstInstance;
+        }
+        
+        /// <summary>
         /// pname:indexCount is the number of vertices to draw.
         /// </summary>
         public uint IndexCount; 

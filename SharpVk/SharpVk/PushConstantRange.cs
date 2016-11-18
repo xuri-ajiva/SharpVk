@@ -45,6 +45,16 @@ namespace SharpVk
     public partial struct PushConstantRange
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public PushConstantRange(ShaderStageFlags stageFlags, uint offset, uint size)
+        {
+            this.StageFlags = stageFlags;
+            this.Offset = offset;
+            this.Size = size;
+        }
+        
+        /// <summary>
         /// pname:stageFlags is a set of stage flags describing the shader
         /// stages that will access a range of push constants. If a particular
         /// stage is not included in the range, then accessing members of that

@@ -35,6 +35,16 @@ namespace SharpVk
     public partial struct MemoryRequirements
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public MemoryRequirements(DeviceSize size, DeviceSize alignment, uint memoryTypeBits)
+        {
+            this.Size = size;
+            this.Alignment = alignment;
+            this.MemoryTypeBits = memoryTypeBits;
+        }
+        
+        /// <summary>
         /// pname:size is the size, in bytes, of the memory allocation
         /// required: for the resource.
         /// </summary>

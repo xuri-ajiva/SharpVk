@@ -49,6 +49,16 @@ namespace SharpVk
     public partial struct SpecializationMapEntry
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public SpecializationMapEntry(uint constantID, uint offset, Size size)
+        {
+            this.ConstantID = constantID;
+            this.Offset = offset;
+            this.Size = size;
+        }
+        
+        /// <summary>
         /// pname:constantID is the ID of the specialization constant in
         /// SPIR-V.
         /// </summary>

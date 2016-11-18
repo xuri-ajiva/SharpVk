@@ -35,6 +35,17 @@ namespace SharpVk
     public partial struct ExternalImageFormatProperties
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public ExternalImageFormatProperties(ImageFormatProperties imageFormatProperties, ExternalMemoryFeatureFlags externalMemoryFeatures, ExternalMemoryHandleTypeFlags exportFromImportedHandleTypes, ExternalMemoryHandleTypeFlags compatibleHandleTypes)
+        {
+            this.ImageFormatProperties = imageFormatProperties;
+            this.ExternalMemoryFeatures = externalMemoryFeatures;
+            this.ExportFromImportedHandleTypes = exportFromImportedHandleTypes;
+            this.CompatibleHandleTypes = compatibleHandleTypes;
+        }
+        
+        /// <summary>
         /// pname:imageFormatProperties will be filled in as when calling
         /// flink:vkGetPhysicalDeviceImageFormatProperties, but the values
         /// returned may: vary depending on the external handle type requested.

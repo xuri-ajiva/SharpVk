@@ -41,6 +41,15 @@ namespace SharpVk
     public partial struct DescriptorPoolSize
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public DescriptorPoolSize(DescriptorType type, uint descriptorCount)
+        {
+            this.Type = type;
+            this.DescriptorCount = descriptorCount;
+        }
+        
+        /// <summary>
         /// pname:type is the type of descriptor.
         /// </summary>
         public DescriptorType Type; 

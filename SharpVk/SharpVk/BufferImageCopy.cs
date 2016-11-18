@@ -127,6 +127,19 @@ namespace SharpVk
     public partial struct BufferImageCopy
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public BufferImageCopy(DeviceSize bufferOffset, uint bufferRowLength, uint bufferImageHeight, ImageSubresourceLayers imageSubresource, Offset3D imageOffset, Extent3D imageExtent)
+        {
+            this.BufferOffset = bufferOffset;
+            this.BufferRowLength = bufferRowLength;
+            this.BufferImageHeight = bufferImageHeight;
+            this.ImageSubresource = imageSubresource;
+            this.ImageOffset = imageOffset;
+            this.ImageExtent = imageExtent;
+        }
+        
+        /// <summary>
         /// pname:bufferOffset is the offset in bytes from the start of the
         /// buffer object where the image data is copied from or to.
         /// </summary>

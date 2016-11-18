@@ -86,6 +86,18 @@ namespace SharpVk
     public partial struct SubresourceLayout
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public SubresourceLayout(DeviceSize offset, DeviceSize size, DeviceSize rowPitch, DeviceSize arrayPitch, DeviceSize depthPitch)
+        {
+            this.Offset = offset;
+            this.Size = size;
+            this.RowPitch = rowPitch;
+            this.ArrayPitch = arrayPitch;
+            this.DepthPitch = depthPitch;
+        }
+        
+        /// <summary>
         /// pname:offset is the byte offset from the start of the image where
         /// the image subresource begins.
         /// </summary>

@@ -35,6 +35,16 @@ namespace SharpVk
     public partial struct BufferCopy
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public BufferCopy(DeviceSize sourceOffset, DeviceSize destinationOffset, DeviceSize size)
+        {
+            this.SourceOffset = sourceOffset;
+            this.DestinationOffset = destinationOffset;
+            this.Size = size;
+        }
+        
+        /// <summary>
         /// pname:srcOffset is the starting offset in bytes from the start of
         /// pname:srcBuffer.
         /// </summary>

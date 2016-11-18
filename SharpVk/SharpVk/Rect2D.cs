@@ -35,6 +35,15 @@ namespace SharpVk
     public partial struct Rect2D
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public Rect2D(Offset2D offset, Extent2D extent)
+        {
+            this.Offset = offset;
+            this.Extent = extent;
+        }
+        
+        /// <summary>
         /// -
         /// </summary>
         public Offset2D Offset; 

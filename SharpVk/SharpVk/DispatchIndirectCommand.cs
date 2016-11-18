@@ -49,6 +49,16 @@ namespace SharpVk
     public partial struct DispatchIndirectCommand
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public DispatchIndirectCommand(uint x, uint y, uint z)
+        {
+            this.X = x;
+            this.Y = y;
+            this.Z = z;
+        }
+        
+        /// <summary>
         /// pname:x is the number of local workgroups to dispatch in the X
         /// dimension.
         /// </summary>

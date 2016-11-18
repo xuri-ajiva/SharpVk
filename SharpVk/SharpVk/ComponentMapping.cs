@@ -40,6 +40,17 @@ namespace SharpVk
     public partial struct ComponentMapping
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public ComponentMapping(ComponentSwizzle r, ComponentSwizzle g, ComponentSwizzle b, ComponentSwizzle a)
+        {
+            this.R = r;
+            this.G = g;
+            this.B = b;
+            this.A = a;
+        }
+        
+        /// <summary>
         /// pname:r determines the component value placed in the R component of
         /// the output vector.
         /// </summary>

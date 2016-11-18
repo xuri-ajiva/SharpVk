@@ -60,6 +60,21 @@ namespace SharpVk
     public partial struct PipelineColorBlendAttachmentState
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public PipelineColorBlendAttachmentState(Bool32 blendEnable, BlendFactor sourceColorBlendFactor, BlendFactor destinationColorBlendFactor, BlendOp colorBlendOp, BlendFactor sourceAlphaBlendFactor, BlendFactor destinationAlphaBlendFactor, BlendOp alphaBlendOp, ColorComponentFlags colorWriteMask)
+        {
+            this.BlendEnable = blendEnable;
+            this.SourceColorBlendFactor = sourceColorBlendFactor;
+            this.DestinationColorBlendFactor = destinationColorBlendFactor;
+            this.ColorBlendOp = colorBlendOp;
+            this.SourceAlphaBlendFactor = sourceAlphaBlendFactor;
+            this.DestinationAlphaBlendFactor = destinationAlphaBlendFactor;
+            this.AlphaBlendOp = alphaBlendOp;
+            this.ColorWriteMask = colorWriteMask;
+        }
+        
+        /// <summary>
         /// pname:blendEnable controls whether blending is enabled for the
         /// corresponding color attachment. If blending is not enabled, the
         /// source fragment's color for that attachment is passed through

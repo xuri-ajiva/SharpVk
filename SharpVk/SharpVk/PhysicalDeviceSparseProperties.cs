@@ -35,6 +35,18 @@ namespace SharpVk
     public partial struct PhysicalDeviceSparseProperties
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public PhysicalDeviceSparseProperties(Bool32 residencyStandard2DBlockShape, Bool32 residencyStandard2DMultisampleBlockShape, Bool32 residencyStandard3DBlockShape, Bool32 residencyAlignedMipSize, Bool32 residencyNonResidentStrict)
+        {
+            this.ResidencyStandard2DBlockShape = residencyStandard2DBlockShape;
+            this.ResidencyStandard2DMultisampleBlockShape = residencyStandard2DMultisampleBlockShape;
+            this.ResidencyStandard3DBlockShape = residencyStandard3DBlockShape;
+            this.ResidencyAlignedMipSize = residencyAlignedMipSize;
+            this.ResidencyNonResidentStrict = residencyNonResidentStrict;
+        }
+        
+        /// <summary>
         /// pname:residencyStandard2DBlockShape is ename:VK_TRUE if the
         /// physical device will access all single-sample 2D sparse resources
         /// using the standard sparse image block shapes (based on image

@@ -72,6 +72,22 @@ namespace SharpVk
     public partial struct DisplayPlaneCapabilities
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public DisplayPlaneCapabilities(DisplayPlaneAlphaFlags supportedAlpha, Offset2D minSourcePosition, Offset2D maxSourcePosition, Extent2D minSourceExtent, Extent2D maxSourceExtent, Offset2D minDestinationPosition, Offset2D maxDestinationPosition, Extent2D minDestinationExtent, Extent2D maxDestinationExtent)
+        {
+            this.SupportedAlpha = supportedAlpha;
+            this.MinSourcePosition = minSourcePosition;
+            this.MaxSourcePosition = maxSourcePosition;
+            this.MinSourceExtent = minSourceExtent;
+            this.MaxSourceExtent = maxSourceExtent;
+            this.MinDestinationPosition = minDestinationPosition;
+            this.MaxDestinationPosition = maxDestinationPosition;
+            this.MinDestinationExtent = minDestinationExtent;
+            this.MaxDestinationExtent = maxDestinationExtent;
+        }
+        
+        /// <summary>
         /// pname:supportedAlpha is a bitmask of
         /// elink:VkDisplayPlaneAlphaFlagBitsKHR describing the supported alpha
         /// blending modes.

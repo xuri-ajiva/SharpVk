@@ -40,6 +40,17 @@ namespace SharpVk
     public partial struct QueueFamilyProperties
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public QueueFamilyProperties(QueueFlags queueFlags, uint queueCount, uint timestampValidBits, Extent3D minImageTransferGranularity)
+        {
+            this.QueueFlags = queueFlags;
+            this.QueueCount = queueCount;
+            this.TimestampValidBits = timestampValidBits;
+            this.MinImageTransferGranularity = minImageTransferGranularity;
+        }
+        
+        /// <summary>
         /// pname:queueFlags contains flags indicating the capabilities of the
         /// queues in this queue family.
         /// </summary>

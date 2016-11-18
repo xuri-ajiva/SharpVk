@@ -52,6 +52,18 @@ namespace SharpVk
     public partial struct ImageFormatProperties
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public ImageFormatProperties(Extent3D maxExtent, uint maxMipLevels, uint maxArrayLayers, SampleCountFlags sampleCounts, DeviceSize maxResourceSize)
+        {
+            this.MaxExtent = maxExtent;
+            this.MaxMipLevels = maxMipLevels;
+            this.MaxArrayLayers = maxArrayLayers;
+            this.SampleCounts = sampleCounts;
+            this.MaxResourceSize = maxResourceSize;
+        }
+        
+        /// <summary>
         /// pname:maxExtent are the maximum image dimensions. See the
         /// &lt;&lt;features-extentperimagetype,Allowed Extent Values&gt;&gt;
         /// section below for how these values are constrained by pname:type.

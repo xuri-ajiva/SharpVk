@@ -59,6 +59,16 @@ namespace SharpVk
     public partial struct ClearAttachment
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public ClearAttachment(ImageAspectFlags aspectMask, uint colorAttachment, ClearValue clearValue)
+        {
+            this.AspectMask = aspectMask;
+            this.ColorAttachment = colorAttachment;
+            this.ClearValue = clearValue;
+        }
+        
+        /// <summary>
         /// pname:aspectMask is a mask selecting the color, depth and/or
         /// stencil aspects of the attachment to be cleared. pname:aspectMask
         /// can: include ename:VK_IMAGE_ASPECT_COLOR_BIT for color attachments,

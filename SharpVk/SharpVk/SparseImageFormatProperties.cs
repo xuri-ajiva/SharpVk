@@ -35,6 +35,16 @@ namespace SharpVk
     public partial struct SparseImageFormatProperties
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public SparseImageFormatProperties(ImageAspectFlags aspectMask, Extent3D imageGranularity, SparseImageFormatFlags flags)
+        {
+            this.AspectMask = aspectMask;
+            this.ImageGranularity = imageGranularity;
+            this.Flags = flags;
+        }
+        
+        /// <summary>
         /// pname:aspectMask is a bitmask of elink:VkImageAspectFlagBits
         /// specifying which aspects of the image the properties apply to.
         /// </summary>

@@ -49,6 +49,17 @@ namespace SharpVk
     public partial struct VertexInputAttributeDescription
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public VertexInputAttributeDescription(uint location, uint binding, Format format, uint offset)
+        {
+            this.Location = location;
+            this.Binding = binding;
+            this.Format = format;
+            this.Offset = offset;
+        }
+        
+        /// <summary>
         /// pname:location is the shader binding location number for this
         /// attribute.
         /// </summary>

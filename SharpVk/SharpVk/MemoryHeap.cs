@@ -35,6 +35,15 @@ namespace SharpVk
     public partial struct MemoryHeap
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public MemoryHeap(DeviceSize size, MemoryHeapFlags flags)
+        {
+            this.Size = size;
+            this.Flags = flags;
+        }
+        
+        /// <summary>
         /// pname:size is the total memory size in bytes in the heap.
         /// </summary>
         public DeviceSize Size; 

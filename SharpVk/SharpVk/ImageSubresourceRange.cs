@@ -61,6 +61,18 @@ namespace SharpVk
     public partial struct ImageSubresourceRange
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public ImageSubresourceRange(ImageAspectFlags aspectMask, uint baseMipLevel, uint levelCount, uint baseArrayLayer, uint layerCount)
+        {
+            this.AspectMask = aspectMask;
+            this.BaseMipLevel = baseMipLevel;
+            this.LevelCount = levelCount;
+            this.BaseArrayLayer = baseArrayLayer;
+            this.LayerCount = layerCount;
+        }
+        
+        /// <summary>
         /// pname:aspectMask is a bitmask indicating which aspect(s) of the
         /// image are included in the view. See elink:VkImageAspectFlagBits.
         /// </summary>

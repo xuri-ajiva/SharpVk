@@ -35,6 +35,20 @@ namespace SharpVk
     public partial struct StencilOpState
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public StencilOpState(StencilOp failOp, StencilOp passOp, StencilOp depthFailOp, CompareOp compareOp, uint compareMask, uint writeMask, uint reference)
+        {
+            this.FailOp = failOp;
+            this.PassOp = passOp;
+            this.DepthFailOp = depthFailOp;
+            this.CompareOp = compareOp;
+            this.CompareMask = compareMask;
+            this.WriteMask = writeMask;
+            this.Reference = reference;
+        }
+        
+        /// <summary>
         /// pname:failOp is the action performed on samples that fail the
         /// stencil test.
         /// </summary>

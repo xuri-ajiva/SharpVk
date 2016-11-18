@@ -35,6 +35,16 @@ namespace SharpVk
     public partial struct VertexInputBindingDescription
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public VertexInputBindingDescription(uint binding, uint stride, VertexInputRate inputRate)
+        {
+            this.Binding = binding;
+            this.Stride = stride;
+            this.InputRate = inputRate;
+        }
+        
+        /// <summary>
         /// pname:binding is the binding number that this structure describes.
         /// </summary>
         public uint Binding; 

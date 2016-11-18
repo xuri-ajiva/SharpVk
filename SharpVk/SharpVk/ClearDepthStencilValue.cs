@@ -41,6 +41,15 @@ namespace SharpVk
     public partial struct ClearDepthStencilValue
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public ClearDepthStencilValue(float depth, uint stencil)
+        {
+            this.Depth = depth;
+            this.Stencil = stencil;
+        }
+        
+        /// <summary>
         /// pname:depth is the clear value for the depth aspect of the
         /// depth/stencil attachment. It is a floating-point value which is
         /// automatically converted to the attachment's format.

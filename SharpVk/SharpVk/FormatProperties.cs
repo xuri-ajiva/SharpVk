@@ -41,6 +41,16 @@ namespace SharpVk
     public partial struct FormatProperties
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public FormatProperties(FormatFeatureFlags linearTilingFeatures, FormatFeatureFlags optimalTilingFeatures, FormatFeatureFlags bufferFeatures)
+        {
+            this.LinearTilingFeatures = linearTilingFeatures;
+            this.OptimalTilingFeatures = optimalTilingFeatures;
+            this.BufferFeatures = bufferFeatures;
+        }
+        
+        /// <summary>
         /// pname:linearTilingFeatures describes the features supported by
         /// ename:VK_IMAGE_TILING_LINEAR.
         /// </summary>

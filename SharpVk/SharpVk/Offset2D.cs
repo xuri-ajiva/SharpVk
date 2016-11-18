@@ -35,6 +35,15 @@ namespace SharpVk
     public partial struct Offset2D
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public Offset2D(int x, int y)
+        {
+            this.X = x;
+            this.Y = y;
+        }
+        
+        /// <summary>
         /// -
         /// </summary>
         public int X; 

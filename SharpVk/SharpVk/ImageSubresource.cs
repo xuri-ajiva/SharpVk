@@ -43,6 +43,16 @@ namespace SharpVk
     public partial struct ImageSubresource
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public ImageSubresource(ImageAspectFlags aspectMask, uint mipLevel, uint arrayLayer)
+        {
+            this.AspectMask = aspectMask;
+            this.MipLevel = mipLevel;
+            this.ArrayLayer = arrayLayer;
+        }
+        
+        /// <summary>
         /// pname:aspectMask is a elink:VkImageAspectFlags selecting the image
         /// _aspect_.
         /// </summary>

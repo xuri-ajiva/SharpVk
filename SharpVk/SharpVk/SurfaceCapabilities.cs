@@ -41,6 +41,23 @@ namespace SharpVk
     public partial struct SurfaceCapabilities
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public SurfaceCapabilities(uint minImageCount, uint maxImageCount, Extent2D currentExtent, Extent2D minImageExtent, Extent2D maxImageExtent, uint maxImageArrayLayers, SurfaceTransformFlags supportedTransforms, SurfaceTransformFlags currentTransform, CompositeAlphaFlags supportedCompositeAlpha, ImageUsageFlags supportedUsageFlags)
+        {
+            this.MinImageCount = minImageCount;
+            this.MaxImageCount = maxImageCount;
+            this.CurrentExtent = currentExtent;
+            this.MinImageExtent = minImageExtent;
+            this.MaxImageExtent = maxImageExtent;
+            this.MaxImageArrayLayers = maxImageArrayLayers;
+            this.SupportedTransforms = supportedTransforms;
+            this.CurrentTransform = currentTransform;
+            this.SupportedCompositeAlpha = supportedCompositeAlpha;
+            this.SupportedUsageFlags = supportedUsageFlags;
+        }
+        
+        /// <summary>
         /// pname:minImageCount is the minimum number of images the specified
         /// device supports for a swapchain created for the surface.
         /// </summary>

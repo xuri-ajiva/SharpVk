@@ -48,6 +48,17 @@ namespace SharpVk
     public partial struct ImageSubresourceLayers
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public ImageSubresourceLayers(ImageAspectFlags aspectMask, uint mipLevel, uint baseArrayLayer, uint layerCount)
+        {
+            this.AspectMask = aspectMask;
+            this.MipLevel = mipLevel;
+            this.BaseArrayLayer = baseArrayLayer;
+            this.LayerCount = layerCount;
+        }
+        
+        /// <summary>
         /// pname:aspectMask is a combination of elink:VkImageAspectFlagBits,
         /// selecting the color, depth and/or stencil aspects to be copied.
         /// </summary>

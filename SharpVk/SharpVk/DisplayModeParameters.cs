@@ -41,6 +41,15 @@ namespace SharpVk
     public partial struct DisplayModeParameters
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public DisplayModeParameters(Extent2D visibleRegion, uint refreshRate)
+        {
+            this.VisibleRegion = visibleRegion;
+            this.RefreshRate = refreshRate;
+        }
+        
+        /// <summary>
         /// pname:visibleRegion is the 2D extents of the visible region.
         /// </summary>
         public Extent2D VisibleRegion; 

@@ -42,6 +42,15 @@ namespace SharpVk
     public partial struct AttachmentReference
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public AttachmentReference(uint attachment, ImageLayout layout)
+        {
+            this.Attachment = attachment;
+            this.Layout = layout;
+        }
+        
+        /// <summary>
         /// pname:attachment is the index of the attachment of the render pass,
         /// and corresponds to the index of the corresponding element in the
         /// pname:pAttachments array of the sname:VkRenderPassCreateInfo

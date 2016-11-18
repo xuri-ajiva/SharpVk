@@ -35,6 +35,15 @@ namespace SharpVk
     public partial struct SurfaceFormat
     {
         /// <summary>
+        /// 
+        /// </summary>
+        public SurfaceFormat(Format format, ColorSpace colorSpace)
+        {
+            this.Format = format;
+            this.ColorSpace = colorSpace;
+        }
+        
+        /// <summary>
         /// pname:format is a ename:VkFormat that is compatible with the
         /// specified surface.
         /// </summary>
