@@ -21,6 +21,7 @@
 //SOFTWARE.
 
 using GlmSharp;
+using SharpVk.Glfw;
 using SharpVk.Shanq;
 using SharpVk.Spirv;
 using System;
@@ -29,7 +30,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Windows.Forms;
 
 namespace SharpVk
 {
@@ -48,7 +48,7 @@ namespace SharpVk
 
         private readonly ushort[] indices = { 0, 1, 2, 2, 3, 0 };
 
-        private Form window;
+        private IntPtr window;
         private Instance instance;
         private Surface surface;
         private PhysicalDevice physicalDevice;
@@ -99,13 +99,12 @@ namespace SharpVk
 
         private void InitialiseWindow()
         {
-            this.window = new Form
-            {
-                Text = "Vulkan",
-                ClientSize = new System.Drawing.Size(SurfaceWidth, SurfaceHeight)
-            };
+            Glfw3.glfwInit();
 
-            this.window.ClientSizeChanged += (x, y) => this.RecreateSwapChain();
+            Glfw3.glfwWindowHint(0x00022001, 0);
+            this.window = Glfw3.glfwCreateWindow(SurfaceWidth, SurfaceHeight, "Vulkan", IntPtr.Zero, IntPtr.Zero);
+
+            //this.window.ClientSizeChanged += (x, y) => this.RecreateSwapChain();
         }
 
         private void InitialiseVulkan()
@@ -132,16 +131,14 @@ namespace SharpVk
 
         private void MainLoop()
         {
-            this.window.Show();
-
             this.initialTimestamp = Stopwatch.GetTimestamp();
 
-            while (!this.window.IsDisposed)
+            while (Glfw3.glfwWindowShouldClose(this.window) == 0)
             {
                 this.UpdateUniformBuffer();
                 this.DrawFrame();
 
-                Application.DoEvents();
+                Glfw3.glfwPollEvents();
             }
         }
 
@@ -292,12 +289,12 @@ namespace SharpVk
             uint nextImage = this.swapChain.AcquireNextImage(uint.MaxValue, this.imageAvailableSemaphore, null);
 
             this.graphicsQueue.Submit(new SubmitInfo
-                {
-                    CommandBuffers = new [] { this.commandBuffers[nextImage] },
-                    SignalSemaphores = new [] { this.renderFinishedSemaphore },
-                    WaitDestinationStageMask = new [] { PipelineStageFlags.ColorAttachmentOutput },
-                    WaitSemaphores = new [] { this.imageAvailableSemaphore }
-                }, null);
+            {
+                CommandBuffers = new[] { this.commandBuffers[nextImage] },
+                SignalSemaphores = new[] { this.renderFinishedSemaphore },
+                WaitDestinationStageMask = new[] { PipelineStageFlags.ColorAttachmentOutput },
+                WaitSemaphores = new[] { this.imageAvailableSemaphore }
+            }, null);
 
             this.presentQueue.Present(new PresentInfo
             {
@@ -354,10 +351,21 @@ namespace SharpVk
 
         private void CreateSurface()
         {
-            this.surface = this.instance.CreateWin32Surface(new Win32SurfaceCreateInfo
+            //this.surface = this.instance.CreateWin32Surface(new Win32SurfaceCreateInfo
+            //{
+            //    Hwnd = this.window.Handle
+            //});
+
+            ulong surfaceHandle = 0;
+
+            Result result = Glfw3.glfwCreateWindowSurface((IntPtr)this.instance.RawHandle.ToUInt64(), this.window, IntPtr.Zero, ref surfaceHandle);
+
+            if (SharpVkException.IsError(result))
             {
-                Hwnd = this.window.Handle
-            });
+                throw SharpVkException.Create(result);
+            }
+
+            this.surface = Surface.CreateFromHandle(this.instance, surfaceHandle);
         }
 
         private void PickPhysicalDevice()
@@ -772,7 +780,7 @@ namespace SharpVk
             this.device.UpdateDescriptorSets(
                 new WriteDescriptorSet
                 {
-                    BufferInfo = new []
+                    BufferInfo = new[]
                     {
                         new DescriptorBufferInfo
                         {
