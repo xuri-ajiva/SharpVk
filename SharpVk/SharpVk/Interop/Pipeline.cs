@@ -34,6 +34,14 @@ namespace SharpVk.Interop
         internal ulong handle; 
         
         /// <summary>
+        /// 
+        /// </summary>
+        public Pipeline(ulong handle)
+        {
+            this.handle = handle;
+        }
+        
+        /// <summary>
         /// A read-only property that returns a null Pipeline handle.
         /// </summary>
         public static Pipeline Null

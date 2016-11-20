@@ -40,6 +40,14 @@ namespace SharpVk.Interop
         internal ulong handle; 
         
         /// <summary>
+        /// 
+        /// </summary>
+        public QueryPool(ulong handle)
+        {
+            this.handle = handle;
+        }
+        
+        /// <summary>
         /// A read-only property that returns a null QueryPool handle.
         /// </summary>
         public static QueryPool Null

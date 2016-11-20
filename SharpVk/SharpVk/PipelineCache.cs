@@ -44,7 +44,7 @@ namespace SharpVk
     /// control the amount of data retrieved from a pipeline cache object.
     /// </para>
     /// </summary>
-    public class PipelineCache
+    public partial class PipelineCache
         : IDisposable
     {
         internal readonly Interop.PipelineCache handle; 

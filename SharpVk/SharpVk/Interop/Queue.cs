@@ -42,6 +42,14 @@ namespace SharpVk.Interop
         internal UIntPtr handle; 
         
         /// <summary>
+        /// 
+        /// </summary>
+        public Queue(UIntPtr handle)
+        {
+            this.handle = handle;
+        }
+        
+        /// <summary>
         /// A read-only property that returns a null Queue handle.
         /// </summary>
         public static Queue Null

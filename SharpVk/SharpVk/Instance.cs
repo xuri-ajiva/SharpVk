@@ -38,7 +38,7 @@ namespace SharpVk
     /// information about itself to the implementation.
     /// </para>
     /// </summary>
-    public class Instance
+    public partial class Instance
         : IDisposable, IProcLookup
     {
         internal readonly Interop.Instance handle; 

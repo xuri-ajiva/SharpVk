@@ -46,6 +46,14 @@ namespace SharpVk.Interop
         internal ulong handle; 
         
         /// <summary>
+        /// 
+        /// </summary>
+        public CommandPool(ulong handle)
+        {
+            this.handle = handle;
+        }
+        
+        /// <summary>
         /// A read-only property that returns a null CommandPool handle.
         /// </summary>
         public static CommandPool Null

@@ -42,6 +42,14 @@ namespace SharpVk.Interop
         internal UIntPtr handle; 
         
         /// <summary>
+        /// 
+        /// </summary>
+        public Instance(UIntPtr handle)
+        {
+            this.handle = handle;
+        }
+        
+        /// <summary>
         /// A read-only property that returns a null Instance handle.
         /// </summary>
         public static Instance Null

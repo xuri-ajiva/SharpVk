@@ -40,7 +40,7 @@ namespace SharpVk
     /// command buffers, and which are not directly submitted to queues.
     /// </para>
     /// </summary>
-    public class CommandBuffer
+    public partial class CommandBuffer
     {
         internal readonly Interop.CommandBuffer handle; 
         

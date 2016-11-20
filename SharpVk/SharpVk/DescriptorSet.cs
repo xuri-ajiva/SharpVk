@@ -30,7 +30,7 @@ namespace SharpVk
     /// <summary>
     /// Opaque handle to a descriptor set object.
     /// </summary>
-    public class DescriptorSet
+    public partial class DescriptorSet
     {
         internal readonly Interop.DescriptorSet handle; 
         

@@ -30,7 +30,7 @@ namespace SharpVk
     /// <summary>
     /// -
     /// </summary>
-    public class DebugReportCallback
+    public partial class DebugReportCallback
         : IDisposable
     {
         internal readonly Interop.DebugReportCallback handle; 

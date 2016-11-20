@@ -41,7 +41,7 @@ namespace SharpVk
     /// appendix.
     /// </para>
     /// </summary>
-    public class ShaderModule
+    public partial class ShaderModule
         : IDisposable
     {
         internal readonly Interop.ShaderModule handle; 

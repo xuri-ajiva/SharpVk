@@ -45,6 +45,14 @@ namespace SharpVk.Interop
         internal ulong handle; 
         
         /// <summary>
+        /// 
+        /// </summary>
+        public ShaderModule(ulong handle)
+        {
+            this.handle = handle;
+        }
+        
+        /// <summary>
         /// A read-only property that returns a null ShaderModule handle.
         /// </summary>
         public static ShaderModule Null

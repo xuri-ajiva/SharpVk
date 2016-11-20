@@ -30,7 +30,7 @@ namespace SharpVk
     /// <summary>
     /// -
     /// </summary>
-    public class Swapchain
+    public partial class Swapchain
         : IDisposable
     {
         internal readonly Interop.Swapchain handle; 

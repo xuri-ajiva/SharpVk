@@ -42,7 +42,7 @@ namespace SharpVk
     /// resources. Each pipeline is created using a pipeline layout.
     /// </para>
     /// </summary>
-    public class PipelineLayout
+    public partial class PipelineLayout
         : IDisposable
     {
         internal readonly Interop.PipelineLayout handle; 

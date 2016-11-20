@@ -43,6 +43,14 @@ namespace SharpVk.Interop
         internal ulong handle; 
         
         /// <summary>
+        /// 
+        /// </summary>
+        public DescriptorPool(ulong handle)
+        {
+            this.handle = handle;
+        }
+        
+        /// <summary>
         /// A read-only property that returns a null DescriptorPool handle.
         /// </summary>
         public static DescriptorPool Null

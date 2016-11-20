@@ -39,7 +39,7 @@ namespace SharpVk
     /// application's view of the device.
     /// </para>
     /// </summary>
-    public class PhysicalDevice
+    public partial class PhysicalDevice
     {
         internal readonly Interop.PhysicalDevice handle; 
         

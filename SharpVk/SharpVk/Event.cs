@@ -41,7 +41,7 @@ namespace SharpVk
     /// device can: wait for one or more events to become signaled.
     /// </para>
     /// </summary>
-    public class Event
+    public partial class Event
         : IDisposable
     {
         internal readonly Interop.Event handle; 

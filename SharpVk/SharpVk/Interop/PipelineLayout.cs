@@ -46,6 +46,14 @@ namespace SharpVk.Interop
         internal ulong handle; 
         
         /// <summary>
+        /// 
+        /// </summary>
+        public PipelineLayout(ulong handle)
+        {
+            this.handle = handle;
+        }
+        
+        /// <summary>
         /// A read-only property that returns a null PipelineLayout handle.
         /// </summary>
         public static PipelineLayout Null

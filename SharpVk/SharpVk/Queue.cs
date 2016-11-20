@@ -38,7 +38,7 @@ namespace SharpVk
     /// flink:vkCreateDevice in pname:pQueueCreateInfos.
     /// </para>
     /// </summary>
-    public class Queue
+    public partial class Queue
     {
         internal readonly Interop.Queue handle; 
         

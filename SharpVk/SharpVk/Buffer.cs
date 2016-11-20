@@ -38,7 +38,7 @@ namespace SharpVk
     /// as parameters to certain commands.
     /// </para>
     /// </summary>
-    public class Buffer
+    public partial class Buffer
         : IDisposable
     {
         internal readonly Interop.Buffer handle; 

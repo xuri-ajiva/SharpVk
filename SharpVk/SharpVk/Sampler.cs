@@ -37,7 +37,7 @@ namespace SharpVk
     /// and other transformations for the shader.
     /// </para>
     /// </summary>
-    public class Sampler
+    public partial class Sampler
         : IDisposable
     {
         internal readonly Interop.Sampler handle; 

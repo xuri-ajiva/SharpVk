@@ -34,6 +34,14 @@ namespace SharpVk.Interop
         internal UIntPtr handle; 
         
         /// <summary>
+        /// 
+        /// </summary>
+        public Device(UIntPtr handle)
+        {
+            this.handle = handle;
+        }
+        
+        /// <summary>
         /// A read-only property that returns a null Device handle.
         /// </summary>
         public static Device Null

@@ -32,6 +32,16 @@ namespace SharpVk.Generator.Generators
 
                             typeBuilder.EmitField(internalHandleType, handleFieldName, Internal);
 
+                            typeBuilder.EmitConstructor(body =>
+                                                        {
+                                                            body.EmitAssignment(Member(This, handleFieldName), Variable(handleFieldName));
+                                                        },
+                                                        parameters =>
+                                                        {
+                                                            parameters.EmitParam(internalHandleType, handleFieldName);
+                                                        },
+                                                        Public);
+
                             typeBuilder.EmitProperty(handle.Name, "Null", Public, MemberModifier.Static, getBuilder =>
                             {
                                 getBuilder.EmitReturn(MemberInit(handle.Name, member =>
@@ -255,7 +265,7 @@ namespace SharpVk.Generator.Generators
                                         body.EmitCall(This, "Destroy");
                                     }, null, Public, summary: new[] { "Releases the unmanaged resources associated with this instance and destroys the underlying Vulkan handle." });
                                 }
-                            }, Public, interfaces, summary: handle.Comment);
+                            }, Public, interfaces, TypeModifier.Partial, summary: handle.Comment);
                     });
                 });
             });

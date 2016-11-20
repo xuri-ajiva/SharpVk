@@ -44,6 +44,14 @@ namespace SharpVk.Interop
         internal UIntPtr handle; 
         
         /// <summary>
+        /// 
+        /// </summary>
+        public CommandBuffer(UIntPtr handle)
+        {
+            this.handle = handle;
+        }
+        
+        /// <summary>
         /// A read-only property that returns a null CommandBuffer handle.
         /// </summary>
         public static CommandBuffer Null

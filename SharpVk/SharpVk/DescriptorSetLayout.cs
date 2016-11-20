@@ -39,7 +39,7 @@ namespace SharpVk
     /// (if using immutable samplers) an array of sampler descriptors.
     /// </para>
     /// </summary>
-    public class DescriptorSetLayout
+    public partial class DescriptorSetLayout
         : IDisposable
     {
         internal readonly Interop.DescriptorSetLayout handle; 

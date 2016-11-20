@@ -41,7 +41,7 @@ namespace SharpVk
     /// group of fences to become signaled.
     /// </para>
     /// </summary>
-    public class Fence
+    public partial class Fence
         : IDisposable
     {
         internal readonly Interop.Fence handle; 

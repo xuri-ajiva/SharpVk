@@ -38,7 +38,7 @@ namespace SharpVk
     /// directly specifying them as parameters to certain commands.
     /// </para>
     /// </summary>
-    public class Image
+    public partial class Image
         : IDisposable
     {
         internal readonly Interop.Image handle; 

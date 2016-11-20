@@ -30,7 +30,7 @@ namespace SharpVk
     /// <summary>
     /// Opaque handle to a pipeline object.
     /// </summary>
-    public class Pipeline
+    public partial class Pipeline
         : IDisposable
     {
         internal readonly Interop.Pipeline handle; 

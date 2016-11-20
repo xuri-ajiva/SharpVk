@@ -37,7 +37,7 @@ namespace SharpVk
     /// pass instance uses.
     /// </para>
     /// </summary>
-    public class Framebuffer
+    public partial class Framebuffer
         : IDisposable
     {
         internal readonly Interop.Framebuffer handle; 

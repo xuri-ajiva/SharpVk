@@ -37,7 +37,7 @@ namespace SharpVk
     /// _signaled_ or _unsignaled_.
     /// </para>
     /// </summary>
-    public class Semaphore
+    public partial class Semaphore
         : IDisposable
     {
         internal readonly Interop.Semaphore handle; 

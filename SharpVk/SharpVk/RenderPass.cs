@@ -38,7 +38,7 @@ namespace SharpVk
     /// a command buffer is a _render pass instance_.
     /// </para>
     /// </summary>
-    public class RenderPass
+    public partial class RenderPass
         : IDisposable
     {
         internal readonly Interop.RenderPass handle; 

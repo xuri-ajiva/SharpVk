@@ -30,7 +30,7 @@ namespace SharpVk
     /// <summary>
     /// -
     /// </summary>
-    public class Surface
+    public partial class Surface
         : IDisposable
     {
         internal readonly Interop.Surface handle; 

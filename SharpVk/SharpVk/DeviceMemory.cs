@@ -36,7 +36,7 @@ namespace SharpVk
     /// that are represented in the API by a sname:VkDeviceMemory handle.
     /// </para>
     /// </summary>
-    public class DeviceMemory
+    public partial class DeviceMemory
     {
         internal readonly Interop.DeviceMemory handle; 
         

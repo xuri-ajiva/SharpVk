@@ -36,7 +36,7 @@ namespace SharpVk
     /// collection of a specific number of queries of a particular type.
     /// </para>
     /// </summary>
-    public class QueryPool
+    public partial class QueryPool
         : IDisposable
     {
         internal readonly Interop.QueryPool handle; 

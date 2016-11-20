@@ -30,7 +30,7 @@ namespace SharpVk
     /// <summary>
     /// Opaque handle to a device object.
     /// </summary>
-    public class Device
+    public partial class Device
         : IDisposable, IProcLookup
     {
         internal readonly Interop.Device handle; 

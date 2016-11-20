@@ -39,7 +39,7 @@ namespace SharpVk
     /// simultaneously.
     /// </para>
     /// </summary>
-    public class DescriptorPool
+    public partial class DescriptorPool
         : IDisposable
     {
         internal readonly Interop.DescriptorPool handle; 

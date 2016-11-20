@@ -34,6 +34,14 @@ namespace SharpVk.Interop
         internal ulong handle; 
         
         /// <summary>
+        /// 
+        /// </summary>
+        public DescriptorSet(ulong handle)
+        {
+            this.handle = handle;
+        }
+        
+        /// <summary>
         /// A read-only property that returns a null DescriptorSet handle.
         /// </summary>
         public static DescriptorSet Null

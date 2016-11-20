@@ -42,7 +42,7 @@ namespace SharpVk
     /// itself.
     /// </para>
     /// </summary>
-    public class CommandPool
+    public partial class CommandPool
         : IDisposable
     {
         internal readonly Interop.CommandPool handle; 

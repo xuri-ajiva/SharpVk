@@ -30,7 +30,7 @@ namespace SharpVk
     /// <summary>
     /// -
     /// </summary>
-    public class Display
+    public partial class Display
     {
         internal readonly Interop.Display handle; 
         

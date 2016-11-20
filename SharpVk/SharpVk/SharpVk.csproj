@@ -467,6 +467,7 @@
     <Compile Include="SubpassDescriptionFlags.cs" />
     <Compile Include="SubresourceLayout.cs" />
     <Compile Include="Surface.cs" />
+    <Compile Include="Surface.partial.cs" />
     <Compile Include="SurfaceCapabilities.cs" />
     <Compile Include="SurfaceFormat.cs" />
     <Compile Include="SurfaceTransformFlags.cs" />

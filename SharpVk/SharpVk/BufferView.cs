@@ -43,7 +43,7 @@ namespace SharpVk
     /// ename:VK_BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT
     /// </para>
     /// </summary>
-    public class BufferView
+    public partial class BufferView
         : IDisposable
     {
         internal readonly Interop.BufferView handle; 

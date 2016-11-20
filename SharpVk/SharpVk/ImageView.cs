@@ -39,7 +39,7 @@ namespace SharpVk
     /// types, and must: represent a valid subset of image subresources.
     /// </para>
     /// </summary>
-    public class ImageView
+    public partial class ImageView
         : IDisposable
     {
         internal readonly Interop.ImageView handle; 
