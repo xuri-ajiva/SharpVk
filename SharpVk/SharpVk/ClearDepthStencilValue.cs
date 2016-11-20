@@ -29,13 +29,7 @@ using System.Text;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Structure specifying a clear depth stencil value.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:depth must: be between `0.0` and `1.0`,
-    /// inclusive ****
-    /// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct ClearDepthStencilValue

@@ -27,17 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Structure specifying parameters of a newly created pipeline cache.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * If pname:initialDataSize is not `0`, it must: be
-    /// equal to the size of pname:pInitialData, as returned by
-    /// fname:vkGetPipelineCacheData when pname:pInitialData was originally
-    /// retrieved * If pname:initialDataSize is not `0`, pname:pInitialData
-    /// must: have been retrieved from a previous call to
-    /// fname:vkGetPipelineCacheData ****
-    /// </para>
     /// </summary>
     public struct PipelineCacheCreateInfo
     {

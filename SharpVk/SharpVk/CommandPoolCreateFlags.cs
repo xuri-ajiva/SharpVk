@@ -27,14 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Bitmask specifying usage behavior for a command pool.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:queueFamilyIndex must: be the index of a
-    /// queue family available in the calling command's pname:device parameter
-    /// ****
-    /// </para>
     /// </summary>
     [Flags]
     public enum CommandPoolCreateFlags

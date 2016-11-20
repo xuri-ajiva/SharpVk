@@ -27,25 +27,8 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Structure specifying parameters of a newly created pipeline vertex
     /// input state.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:vertexBindingDescriptionCount must: be less
-    /// than or equal to
-    /// sname:VkPhysicalDeviceLimits::pname:maxVertexInputBindings *
-    /// pname:vertexAttributeDescriptionCount must: be less than or equal to
-    /// sname:VkPhysicalDeviceLimits::pname:maxVertexInputAttributes * For
-    /// every pname:binding specified by any given element of
-    /// pname:pVertexAttributeDescriptions, a
-    /// sname:VkVertexInputBindingDescription must: exist in
-    /// pname:pVertexBindingDescriptions with the same value of pname:binding *
-    /// All elements of pname:pVertexBindingDescriptions must: describe
-    /// distinct binding numbers * All elements of
-    /// pname:pVertexAttributeDescriptions must: describe distinct attribute
-    /// locations ****
-    /// </para>
     /// </summary>
     public struct PipelineVertexInputStateCreateInfo
     {

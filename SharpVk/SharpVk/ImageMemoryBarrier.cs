@@ -54,50 +54,6 @@ namespace SharpVk
     /// [NOTE] .Note ==== See &lt;&lt;resources-image-layouts&gt;&gt; for
     /// details on available image layouts and their usages. ====
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:oldLayout must: be
-    /// ename:VK_IMAGE_LAYOUT_UNDEFINED or the current layout of the image
-    /// subresources affected by the barrier * pname:newLayout must: not be
-    /// ename:VK_IMAGE_LAYOUT_UNDEFINED or ename:VK_IMAGE_LAYOUT_PREINITIALIZED
-    /// * If pname:image was created with a sharing mode of
-    /// ename:VK_SHARING_MODE_CONCURRENT, pname:srcQueueFamilyIndex and
-    /// pname:dstQueueFamilyIndex must: both be ename:VK_QUEUE_FAMILY_IGNORED *
-    /// If pname:image was created with a sharing mode of
-    /// ename:VK_SHARING_MODE_EXCLUSIVE, pname:srcQueueFamilyIndex and
-    /// pname:dstQueueFamilyIndex must: either both be
-    /// ename:VK_QUEUE_FAMILY_IGNORED, or both be a valid queue family (see
-    /// &lt;&lt;devsandqueues-queueprops&gt;&gt;) * If pname:image was created
-    /// with a sharing mode of ename:VK_SHARING_MODE_EXCLUSIVE, and
-    /// pname:srcQueueFamilyIndex and pname:dstQueueFamilyIndex are valid queue
-    /// families, at least one of them must: be the same as the family of the
-    /// queue that will execute this barrier * pname:subresourceRange must: be
-    /// a valid image subresource range for the image (see
-    /// &lt;&lt;resources-image-views&gt;&gt;) * If pname:image has a
-    /// depth/stencil format with both depth and stencil components, then
-    /// pname:aspectMask member of pname:subresourceRange must: include both
-    /// ename:VK_IMAGE_ASPECT_DEPTH_BIT and ename:VK_IMAGE_ASPECT_STENCIL_BIT *
-    /// If either pname:oldLayout or pname:newLayout is
-    /// ename:VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL then pname:image must:
-    /// have been created with ename:VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT set *
-    /// If either pname:oldLayout or pname:newLayout is
-    /// ename:VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL then pname:image
-    /// must: have been created with
-    /// ename:VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT set * If either
-    /// pname:oldLayout or pname:newLayout is
-    /// ename:VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL then pname:image
-    /// must: have been created with
-    /// ename:VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT set * If either
-    /// pname:oldLayout or pname:newLayout is
-    /// ename:VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL then pname:image must:
-    /// have been created with ename:VK_IMAGE_USAGE_SAMPLED_BIT or
-    /// ename:VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT set * If either
-    /// pname:oldLayout or pname:newLayout is
-    /// ename:VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL then pname:image must: have
-    /// been created with ename:VK_IMAGE_USAGE_TRANSFER_SRC_BIT set * If either
-    /// pname:oldLayout or pname:newLayout is
-    /// ename:VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL then pname:image must: have
-    /// been created with ename:VK_IMAGE_USAGE_TRANSFER_DST_BIT set ****
-    /// </para>
     /// </summary>
     public struct ImageMemoryBarrier
     {

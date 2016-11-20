@@ -27,19 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Structure specifying parameters of a newly created device queue.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:queueFamilyIndex must: be less than
-    /// pname:pQueueFamilyPropertyCount returned by
-    /// fname:vkGetPhysicalDeviceQueueFamilyProperties * pname:queueCount must:
-    /// be less than or equal to the pname:queueCount member of the
-    /// sname:VkQueueFamilyProperties structure, as returned by
-    /// fname:vkGetPhysicalDeviceQueueFamilyProperties in the
-    /// pname:pQueueFamilyProperties[pname:queueFamilyIndex] * Each element of
-    /// pname:pQueuePriorities must: be between `0.0` and `1.0` inclusive ****
-    /// </para>
     /// </summary>
     public struct DeviceQueueCreateInfo
     {

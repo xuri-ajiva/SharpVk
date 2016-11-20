@@ -27,21 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Structure specifying command buffer inheritance info.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * If the
-    /// &lt;&lt;features-features-inheritedQueries,inherited queries&gt;&gt;
-    /// feature is not enabled, pname:occlusionQueryEnable must: be
-    /// ename:VK_FALSE * If the
-    /// &lt;&lt;features-features-inheritedQueries,inherited queries&gt;&gt;
-    /// feature is enabled, pname:queryFlags must: be a valid combination of
-    /// elink:VkQueryControlFlagBits values * If the
-    /// &lt;&lt;features-features-pipelineStatisticsQuery,pipeline statistics
-    /// queries&gt;&gt; feature is not enabled, pname:pipelineStatistics must:
-    /// be code:0 ****
-    /// </para>
     /// </summary>
     public struct CommandBufferInheritanceInfo
     {

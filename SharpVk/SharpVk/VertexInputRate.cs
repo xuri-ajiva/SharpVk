@@ -27,15 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Specify rate at which vertex attributes are pulled from buffers.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:binding must: be less than
-    /// sname:VkPhysicalDeviceLimits::pname:maxVertexInputBindings *
-    /// pname:stride must: be less than or equal to
-    /// sname:VkPhysicalDeviceLimits::pname:maxVertexInputBindingStride ****
-    /// </para>
     /// </summary>
     public enum VertexInputRate
     {

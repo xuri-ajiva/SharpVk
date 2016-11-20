@@ -27,69 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Bitmask specifying a pipeline stage.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * If the
-    /// &lt;&lt;features-features-geometryShader,geometry shaders&gt;&gt;
-    /// feature is not enabled, pname:stage must: not be
-    /// ename:VK_SHADER_STAGE_GEOMETRY_BIT * If the
-    /// &lt;&lt;features-features-tessellationShader,tessellation shaders&gt;&gt;
-    /// feature is not enabled, pname:stage must: not be
-    /// ename:VK_SHADER_STAGE_TESSELLATION_CONTROL_BIT or
-    /// ename:VK_SHADER_STAGE_TESSELLATION_EVALUATION_BIT * pname:stage must:
-    /// not be ename:VK_SHADER_STAGE_ALL_GRAPHICS, or ename:VK_SHADER_STAGE_ALL
-    /// * pname:pName must: be the name of an code:OpEntryPoint in pname:module
-    /// with an execution model that matches pname:stage * If the identified
-    /// entry point includes any variable in its interface that is declared
-    /// with the code:ClipDistance code:BuiltIn decoration, that variable must:
-    /// not have an array size greater than
-    /// sname:VkPhysicalDeviceLimits::pname:maxClipDistances * If the
-    /// identified entry point includes any variable in its interface that is
-    /// declared with the code:CullDistance code:BuiltIn decoration, that
-    /// variable must: not have an array size greater than
-    /// sname:VkPhysicalDeviceLimits::pname:maxCullDistances * If the
-    /// identified entry point includes any variables in its interface that are
-    /// declared with the code:ClipDistance or code:CullDistance code:BuiltIn
-    /// decoration, those variables must: not have array sizes which sum to
-    /// more than
-    /// sname:VkPhysicalDeviceLimits::pname:maxCombinedClipAndCullDistances *
-    /// If the identified entry point includes any variable in its interface
-    /// that is declared with the code:SampleMask code:BuiltIn decoration, that
-    /// variable must: not have an array size greater than
-    /// sname:VkPhysicalDeviceLimits::pname:maxSampleMaskWords * If pname:stage
-    /// is ename:VK_SHADER_STAGE_VERTEX_BIT, the identified entry point must:
-    /// not include any input variable in its interface that is decorated with
-    /// code:CullDistance * If pname:stage is
-    /// ename:VK_SHADER_STAGE_TESSELLATION_CONTROL_BIT or
-    /// ename:VK_SHADER_STAGE_TESSELLATION_EVALUATION_BIT, and the identified
-    /// entry point has an code:OpExecutionMode instruction that specifies a
-    /// patch size with code:OutputVertices, the patch size must: be greater
-    /// than `0` and less than or equal to
-    /// sname:VkPhysicalDeviceLimits::pname:maxTessellationPatchSize * If
-    /// pname:stage is ename:VK_SHADER_STAGE_GEOMETRY_BIT, the identified entry
-    /// point must: have an code:OpExecutionMode instruction that specifies a
-    /// maximum output vertex count that is greater than `0` and less than or
-    /// equal to sname:VkPhysicalDeviceLimits::pname:maxGeometryOutputVertices
-    /// * If pname:stage is ename:VK_SHADER_STAGE_GEOMETRY_BIT, the identified
-    /// entry point must: have an code:OpExecutionMode instruction that
-    /// specifies an invocation count that is greater than `0` and less than or
-    /// equal to
-    /// sname:VkPhysicalDeviceLimits::pname:maxGeometryShaderInvocations * If
-    /// pname:stage is ename:VK_SHADER_STAGE_GEOMETRY_BIT, and the identified
-    /// entry point writes to code:Layer for any primitive, it must: write the
-    /// same value to code:Layer for all vertices of a given primitive * If
-    /// pname:stage is ename:VK_SHADER_STAGE_GEOMETRY_BIT, and the identified
-    /// entry point writes to code:ViewportIndex for any primitive, it must:
-    /// write the same value to code:ViewportIndex for all vertices of a given
-    /// primitive * If pname:stage is ename:VK_SHADER_STAGE_FRAGMENT_BIT, the
-    /// identified entry point must: not include any output variables in its
-    /// interface decorated with code:CullDistance * If pname:stage is
-    /// ename:VK_SHADER_STAGE_FRAGMENT_BIT, and the identified entry point
-    /// writes to code:FragDepth in any execution path, it must: write to
-    /// code:FragDepth in all execution paths ****
-    /// </para>
     /// </summary>
     [Flags]
     public enum ShaderStageFlags

@@ -27,15 +27,8 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Structure specifying parameters of a newly created pipeline depth
     /// stencil state.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * If the &lt;&lt;features-features-depthBounds,depth
-    /// bounds testing&gt;&gt; feature is not enabled,
-    /// pname:depthBoundsTestEnable must: be ename:VK_FALSE ****
-    /// </para>
     /// </summary>
     public struct PipelineDepthStencilStateCreateInfo
     {

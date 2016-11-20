@@ -35,62 +35,6 @@ namespace SharpVk
     /// After beginning a render pass instance, the command buffer is ready to
     /// record the commands for the first subpass of that render pass.
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * If any of the pname:initialLayout or
-    /// pname:finalLayout member of the sname:VkAttachmentDescription
-    /// structures or the pname:layout member of the
-    /// sname:VkAttachmentReference structures specified when creating the
-    /// render pass specified in the pname:renderPass member of
-    /// pname:pRenderPassBegin is
-    /// ename:VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL then the corresponding
-    /// attachment image subresource of the framebuffer specified in the
-    /// pname:framebuffer member of pname:pRenderPassBegin must: have been
-    /// created with ename:VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT set * If any of
-    /// the pname:initialLayout or pname:finalLayout member of the
-    /// sname:VkAttachmentDescription structures or the pname:layout member of
-    /// the sname:VkAttachmentReference structures specified when creating the
-    /// render pass specified in the pname:renderPass member of
-    /// pname:pRenderPassBegin is
-    /// ename:VK_IMAGE_LAYOUT_DEPTH_STENCIL_ATTACHMENT_OPTIMAL or
-    /// ename:VK_IMAGE_LAYOUT_DEPTH_STENCIL_READ_ONLY_OPTIMAL then the
-    /// corresponding attachment image subresource of the framebuffer specified
-    /// in the pname:framebuffer member of pname:pRenderPassBegin must: have
-    /// been created with ename:VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT set
-    /// * If any of the pname:initialLayout or pname:finalLayout member of the
-    /// sname:VkAttachmentDescription structures or the pname:layout member of
-    /// the sname:VkAttachmentReference structures specified when creating the
-    /// render pass specified in the pname:renderPass member of
-    /// pname:pRenderPassBegin is
-    /// ename:VK_IMAGE_LAYOUT_SHADER_READ_ONLY_OPTIMAL then the corresponding
-    /// attachment image subresource of the framebuffer specified in the
-    /// pname:framebuffer member of pname:pRenderPassBegin must: have been
-    /// created with ename:VK_IMAGE_USAGE_SAMPLED_BIT or
-    /// ename:VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT set * If any of the
-    /// pname:initialLayout or pname:finalLayout member of the
-    /// sname:VkAttachmentDescription structures or the pname:layout member of
-    /// the sname:VkAttachmentReference structures specified when creating the
-    /// render pass specified in the pname:renderPass member of
-    /// pname:pRenderPassBegin is ename:VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL
-    /// then the corresponding attachment image subresource of the framebuffer
-    /// specified in the pname:framebuffer member of pname:pRenderPassBegin
-    /// must: have been created with ename:VK_IMAGE_USAGE_TRANSFER_SRC_BIT set
-    /// * If any of the pname:initialLayout or pname:finalLayout member of the
-    /// sname:VkAttachmentDescription structures or the pname:layout member of
-    /// the sname:VkAttachmentReference structures specified when creating the
-    /// render pass specified in the pname:renderPass member of
-    /// pname:pRenderPassBegin is ename:VK_IMAGE_LAYOUT_TRANSFER_DST_OPTIMAL
-    /// then the corresponding attachment image subresource of the framebuffer
-    /// specified in the pname:framebuffer member of pname:pRenderPassBegin
-    /// must: have been created with ename:VK_IMAGE_USAGE_TRANSFER_DST_BIT set
-    /// * If any of the pname:initialLayout members of the
-    /// sname:VkAttachmentDescription structures specified when creating the
-    /// render pass specified in the pname:renderPass member of
-    /// pname:pRenderPassBegin is not ename:VK_IMAGE_LAYOUT_UNDEFINED, then
-    /// each such pname:initialLayout must: be equal to the current layout of
-    /// the corresponding attachment image subresource of the framebuffer
-    /// specified in the pname:framebuffer member of pname:pRenderPassBegin
-    /// ****
-    /// </para>
     /// </summary>
     public enum SubpassContents
     {

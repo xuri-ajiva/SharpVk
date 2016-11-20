@@ -69,59 +69,6 @@ namespace SharpVk
     /// pname:baseArrayLayer member of pname:imageSubresource. pname:layerCount
     /// layers are copied from the source image or to the destination image.
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:bufferOffset must: be a multiple of the
-    /// calling command's sname:VkImage parameter's format's element size *
-    /// pname:bufferOffset must: be a multiple of `4` * pname:bufferRowLength
-    /// must: be `0`, or greater than or equal to the pname:width member of
-    /// pname:imageExtent * pname:bufferImageHeight must: be `0`, or greater
-    /// than or equal to the pname:height member of pname:imageExtent *
-    /// pname:imageOffset.x and (pname:imageExtent.width + pname:imageOffset.x)
-    /// must: both be greater than or equal to `0` and less than or equal to
-    /// the image subresource width * pname:imageOffset.y and
-    /// (imageExtent.height + pname:imageOffset.y) must: both be greater than
-    /// or equal to `0` and less than or equal to the image subresource height
-    /// ** If the calling command's pname:srcImage
-    /// (flink:vkCmdCopyImageToBuffer) or pname:dstImage
-    /// (flink:vkCmdCopyBufferToImage) is of type ename:VK_IMAGE_TYPE_1D, then
-    /// pname:imageOffset.y must: be `0` and pname:imageExtent.height must: be
-    /// `1`. * pname:imageOffset.z and (imageExtent.depth +
-    /// pname:imageOffset.z) must: both be greater than or equal to `0` and
-    /// less than or equal to the image subresource depth ** If the calling
-    /// command's pname:srcImage (flink:vkCmdCopyImageToBuffer) or
-    /// pname:dstImage (flink:vkCmdCopyBufferToImage) is of type
-    /// ename:VK_IMAGE_TYPE_1D or ename:VK_IMAGE_TYPE_2D, then
-    /// pname:imageOffset.z must: be `0` and pname:imageExtent.depth must: be
-    /// `1`. * If the calling command's sname:VkImage parameter is a compressed
-    /// format image: ** pname:bufferRowLength must: be a multiple of the
-    /// compressed texel block width ** pname:bufferImageHeight must: be a
-    /// multiple of the compressed texel block height ** all members of
-    /// pname:imageOffset must: be a multiple of the corresponding dimensions
-    /// of the compressed texel block ** pname:bufferOffset must: be a multiple
-    /// of the compressed texel block size in bytes ** pname:imageExtent.width
-    /// must: be a multiple of the compressed texel block width or
-    /// (pname:imageExtent.width + pname:imageOffset.x) must: equal the image
-    /// subresource width ** pname:imageExtent.height must: be a multiple of
-    /// the compressed texel block height or (pname:imageExtent.height +
-    /// pname:imageOffset.y) must: equal the image subresource height **
-    /// pname:imageExtent.depth must: be a multiple of the compressed texel
-    /// block depth or (pname:imageExtent.depth + pname:imageOffset.z) must:
-    /// equal the image subresource depth * pname:bufferOffset,
-    /// pname:bufferRowLength, pname:bufferImageHeight and all members of
-    /// pname:imageOffset and pname:imageExtent must: respect the image
-    /// transfer granularity requirements of the queue family that it will be
-    /// submitted against, as described in
-    /// &lt;&lt;devsandqueues-physical-device-enumeration,Physical Device
-    /// Enumeration&gt;&gt; * The pname:aspectMask member of
-    /// pname:imageSubresource must: specify aspects present in the calling
-    /// command's sname:VkImage parameter * The pname:aspectMask member of
-    /// pname:imageSubresource must: only have a single bit set * If the
-    /// calling command's sname:VkImage parameter is of elink:VkImageType
-    /// ename:VK_IMAGE_TYPE_3D, the pname:baseArrayLayer and pname:layerCount
-    /// members of pname:imageSubresource must: be `0` and `1`, respectively *
-    /// When copying to the depth aspect of an image subresource, the data in
-    /// the source buffer must: be in the range [eq]#[0,1]# ****
-    /// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct BufferImageCopy

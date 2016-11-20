@@ -34,17 +34,6 @@ namespace SharpVk
     /// If the extent of the pname:srcRect and pname:dstRect are not equal, the
     /// presented pixels will be scaled accordingly.
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:srcRect must: specify a rectangular region
-    /// that is a subset of the image being presented * pname:dstRect must:
-    /// specify a rectangular region that is a subset of the
-    /// pname:visibleRegion parameter of the display mode the swapchain being
-    /// presented uses * If the pname:persistentContent member of the
-    /// sname:VkDisplayPropertiesKHR structure returned by
-    /// fname:vkGetPhysicalDeviceDisplayPropertiesKHR for the display the
-    /// present operation targets then pname:persistent must: be ename:VK_FALSE
-    /// ****
-    /// </para>
     /// </summary>
     public struct DisplayPresentInfo
     {

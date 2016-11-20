@@ -36,26 +36,6 @@ namespace SharpVk
     /// Features&gt;&gt; for details of the sparse memory features supported on
     /// a device.
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:size must: be greater than `0` * If
-    /// pname:sharingMode is ename:VK_SHARING_MODE_CONCURRENT,
-    /// pname:pQueueFamilyIndices must: be a pointer to an array of
-    /// pname:queueFamilyIndexCount basetype:uint32_t values * If
-    /// pname:sharingMode is ename:VK_SHARING_MODE_CONCURRENT,
-    /// pname:queueFamilyIndexCount must: be greater than `1` * If the
-    /// &lt;&lt;features-features-sparseBinding,sparse bindings&gt;&gt; feature
-    /// is not enabled, pname:flags must: not contain
-    /// ename:VK_BUFFER_CREATE_SPARSE_BINDING_BIT * If the
-    /// &lt;&lt;features-features-sparseResidencyBuffer,sparse buffer
-    /// residency&gt;&gt; feature is not enabled, pname:flags must: not contain
-    /// ename:VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT * If the
-    /// &lt;&lt;features-features-sparseResidencyAliased,sparse aliased
-    /// residency&gt;&gt; feature is not enabled, pname:flags must: not contain
-    /// ename:VK_BUFFER_CREATE_SPARSE_ALIASED_BIT * If pname:flags contains
-    /// ename:VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT or
-    /// ename:VK_BUFFER_CREATE_SPARSE_ALIASED_BIT, it must: also contain
-    /// ename:VK_BUFFER_CREATE_SPARSE_BINDING_BIT ****
-    /// </para>
     /// </summary>
     [Flags]
     public enum BufferCreateFlags

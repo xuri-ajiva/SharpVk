@@ -40,15 +40,6 @@ namespace SharpVk
     /// slink:VkPipelineColorBlendAttachmentState elements in the
     /// pname:pAttachments array must: be identical.
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * If the
-    /// &lt;&lt;features-features-independentBlend,independent blending&gt;&gt;
-    /// feature is not enabled, all elements of pname:pAttachments must: be
-    /// identical * If the &lt;&lt;features-features-logicOp,logic
-    /// operations&gt;&gt; feature is not enabled, pname:logicOpEnable must: be
-    /// ename:VK_FALSE * If pname:logicOpEnable is ename:VK_TRUE, pname:logicOp
-    /// must: be a valid elink:VkLogicOp value ****
-    /// </para>
     /// </summary>
     public struct PipelineColorBlendStateCreateInfo
     {

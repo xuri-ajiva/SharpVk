@@ -29,21 +29,7 @@ using System.Text;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Structure specifying vertex input attribute description.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:location must: be less than
-    /// sname:VkPhysicalDeviceLimits::pname:maxVertexInputAttributes *
-    /// pname:binding must: be less than
-    /// sname:VkPhysicalDeviceLimits::pname:maxVertexInputBindings *
-    /// pname:offset must: be less than or equal to
-    /// sname:VkPhysicalDeviceLimits::pname:maxVertexInputAttributeOffset *
-    /// pname:format must: be allowed as a vertex buffer format, as specified
-    /// by the ename:VK_FORMAT_FEATURE_VERTEX_BUFFER_BIT flag in
-    /// sname:VkFormatProperties::pname:bufferFeatures returned by
-    /// fname:vkGetPhysicalDeviceFormatProperties ****
-    /// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct VertexInputAttributeDescription

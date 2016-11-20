@@ -36,14 +36,6 @@ namespace SharpVk
     /// The members of sname:VkDispatchIndirectCommand structure have the same
     /// meaning as the similarly named parameters of flink:vkCmdDispatch.
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:x must: be less than or equal to
-    /// sname:VkPhysicalDeviceLimits::pname:maxComputeWorkGroupCount[0] *
-    /// pname:y must: be less than or equal to
-    /// sname:VkPhysicalDeviceLimits::pname:maxComputeWorkGroupCount[1] *
-    /// pname:z must: be less than or equal to
-    /// sname:VkPhysicalDeviceLimits::pname:maxComputeWorkGroupCount[2] ****
-    /// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct DispatchIndirectCommand

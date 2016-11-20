@@ -34,11 +34,6 @@ namespace SharpVk
     /// If pname:handleType is 0, this structure is ignored by consumers of the
     /// slink:VkMemoryAllocateInfo structure it is chained from.
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:handleType must: not have more than one bit
-    /// set. * pname:handle must: be a valid handle to memory, obtained as
-    /// specified by pname:handleType. ****
-    /// </para>
     /// </summary>
     [Flags]
     public enum ExternalMemoryHandleTypeFlags

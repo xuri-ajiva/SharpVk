@@ -27,14 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Structure specifying parameters of a newly created device.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * The pname:queueFamilyIndex member of any given
-    /// element of pname:pQueueCreateInfos must: be unique within
-    /// pname:pQueueCreateInfos ****
-    /// </para>
     /// </summary>
     public struct DeviceCreateInfo
     {

@@ -27,15 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Structure containing parameters of a memory allocation.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:allocationSize must: be less than or equal to
-    /// the amount of memory available to the sname:VkMemoryHeap specified by
-    /// pname:memoryTypeIndex and the calling command's sname:VkDevice *
-    /// pname:allocationSize must: be greater than `0` ****
-    /// </para>
     /// </summary>
     public struct MemoryAllocateInfo
     {

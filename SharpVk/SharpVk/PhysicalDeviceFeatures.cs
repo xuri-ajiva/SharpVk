@@ -478,12 +478,6 @@ namespace SharpVk
     /// attachments. * pname:inheritedQueries indicates whether a secondary
     /// command buffer may: be executed while a query is active.
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * If any member of this structure is ename:VK_FALSE,
-    /// as returned by flink:vkGetPhysicalDeviceFeatures, then it must: be
-    /// ename:VK_FALSE when passed as part of the sname:VkDeviceCreateInfo
-    /// struct when creating a device ****
-    /// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct PhysicalDeviceFeatures

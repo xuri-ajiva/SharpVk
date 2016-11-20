@@ -27,23 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Bitmask specifying usage behavior for command buffer.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * If pname:flags contains
-    /// ename:VK_COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT, the
-    /// pname:renderPass member of pname:pInheritanceInfo must: be a valid
-    /// sname:VkRenderPass * If pname:flags contains
-    /// ename:VK_COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT, the
-    /// pname:subpass member of pname:pInheritanceInfo must: be a valid subpass
-    /// index within the pname:renderPass member of pname:pInheritanceInfo * If
-    /// pname:flags contains
-    /// ename:VK_COMMAND_BUFFER_USAGE_RENDER_PASS_CONTINUE_BIT, the
-    /// pname:framebuffer member of pname:pInheritanceInfo must: be either
-    /// dlink:VK_NULL_HANDLE, or a valid sname:VkFramebuffer that is compatible
-    /// with the pname:renderPass member of pname:pInheritanceInfo ****
-    /// </para>
     /// </summary>
     [Flags]
     public enum CommandBufferUsageFlags

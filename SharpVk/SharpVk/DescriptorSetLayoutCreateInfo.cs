@@ -27,16 +27,8 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Structure specifying parameters of a newly created descriptor set
     /// layout.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * The
-    /// slink:VkDescriptorSetLayoutBinding::pname:binding members of the
-    /// elements of the pname:pBindings array must: each have different values.
-    /// ****
-    /// </para>
     /// </summary>
     public struct DescriptorSetLayoutCreateInfo
     {

@@ -29,17 +29,7 @@ using System.Text;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Structure specifying a push constant range.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:offset must: be less than
-    /// sname:VkPhysicalDeviceLimits::pname:maxPushConstantsSize * pname:size
-    /// must: be greater than `0` * pname:size must: be a multiple of `4` *
-    /// pname:size must: be less than or equal to
-    /// sname:VkPhysicalDeviceLimits::pname:maxPushConstantsSize minus
-    /// pname:offset ****
-    /// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct PushConstantRange

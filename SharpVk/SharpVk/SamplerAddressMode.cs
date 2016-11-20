@@ -44,39 +44,6 @@ namespace SharpVk
     /// that are identical. In such cases, all such objects would only count
     /// once against the pname:maxSamplerAllocationCount limit.
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * The absolute value of pname:mipLodBias must: be
-    /// less than or equal to
-    /// sname:VkPhysicalDeviceLimits::pname:maxSamplerLodBias * If the
-    /// &lt;&lt;features-features-samplerAnisotropy,anisotropic sampling&gt;&gt;
-    /// feature is not enabled, pname:anisotropyEnable must: be ename:VK_FALSE
-    /// * If pname:anisotropyEnable is ename:VK_TRUE, pname:maxAnisotropy must:
-    /// be between `1.0` and
-    /// sname:VkPhysicalDeviceLimits::pname:maxSamplerAnisotropy, inclusive *
-    /// If pname:unnormalizedCoordinates is ename:VK_TRUE, pname:minFilter and
-    /// pname:magFilter must: be equal * If pname:unnormalizedCoordinates is
-    /// ename:VK_TRUE, pname:mipmapMode must: be
-    /// ename:VK_SAMPLER_MIPMAP_MODE_NEAREST * If pname:unnormalizedCoordinates
-    /// is ename:VK_TRUE, pname:minLod and pname:maxLod must: be zero * If
-    /// pname:unnormalizedCoordinates is ename:VK_TRUE, pname:addressModeU and
-    /// pname:addressModeV must: each be either
-    /// ename:VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_EDGE or
-    /// ename:VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_BORDER * If
-    /// pname:unnormalizedCoordinates is ename:VK_TRUE, pname:anisotropyEnable
-    /// must: be ename:VK_FALSE * If pname:unnormalizedCoordinates is
-    /// ename:VK_TRUE, pname:compareEnable must: be ename:VK_FALSE * If any of
-    /// pname:addressModeU, pname:addressModeV or pname:addressModeW are
-    /// ename:VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_BORDER, pname:borderColor must:
-    /// be a valid elink:VkBorderColor value * If the
-    /// +VK_KHR_sampler_mirror_clamp_to_edge+ extension is not enabled,
-    /// pname:addressModeU, pname:addressModeV and pname:addressModeW must: not
-    /// be ename:VK_SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE * If
-    /// pname:compareEnable is ename:VK_TRUE, pname:compareOp must: be a valid
-    /// elink:VkCompareOp value ifdef::VK_IMG_filter_cubic[] * If either
-    /// pname:magFilter or pname:minFilter is ename:VK_FILTER_CUBIC_IMG,
-    /// pname:anisotropyEnable must: be ename:VK_FALSE
-    /// endif::VK_IMG_filter_cubic[] ****
-    /// </para>
     /// </summary>
     public enum SamplerAddressMode
     {

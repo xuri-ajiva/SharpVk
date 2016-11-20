@@ -37,13 +37,6 @@ namespace SharpVk
     /// the shader, that map entry does not affect the behavior of the
     /// pipeline.
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * For a pname:constantID specialization constant
-    /// declared in a shader, pname:size must: match the byte size of the
-    /// pname:constantID. If the specialization constant is of type
-    /// code:boolean, pname:size must: be the byte size of basetype:VkBool32
-    /// ****
-    /// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct SpecializationMapEntry

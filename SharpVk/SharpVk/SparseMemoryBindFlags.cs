@@ -59,20 +59,6 @@ namespace SharpVk
     /// ename:VK_SPARSE_MEMORY_BIND_METADATA_BIT, the binding range must: be
     /// within the range [eq]#[0,slink:VkMemoryRequirements::pname:size)#.
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * If pname:memory is not dlink:VK_NULL_HANDLE,
-    /// pname:memory and pname:memoryOffset must: match the memory requirements
-    /// of the resource, as described in section
-    /// &lt;&lt;resources-association&gt;&gt; * If pname:memory is not
-    /// dlink:VK_NULL_HANDLE, pname:memory must: not have been created with a
-    /// memory type that reports ename:VK_MEMORY_PROPERTY_LAZILY_ALLOCATED_BIT
-    /// bit set * pname:size must: be greater than `0` * pname:resourceOffset
-    /// must: be less than the size of the resource * pname:size must: be less
-    /// than or equal to the size of the resource minus pname:resourceOffset *
-    /// pname:memoryOffset must: be less than the size of pname:memory *
-    /// pname:size must: be less than or equal to the size of pname:memory
-    /// minus pname:memoryOffset ****
-    /// </para>
     /// </summary>
     [Flags]
     public enum SparseMemoryBindFlags

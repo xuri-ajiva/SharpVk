@@ -29,46 +29,7 @@ using System.Text;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Structure specifying an image resolve operation.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * The pname:aspectMask member of pname:srcSubresource
-    /// and pname:dstSubresource must: only contain
-    /// ename:VK_IMAGE_ASPECT_COLOR_BIT * The pname:layerCount member of
-    /// pname:srcSubresource and pname:dstSubresource must: match * If either
-    /// of the calling command's pname:srcImage or pname:dstImage parameters
-    /// are of elink:VkImageType ename:VK_IMAGE_TYPE_3D, the
-    /// pname:baseArrayLayer and pname:layerCount members of both
-    /// pname:srcSubresource and pname:dstSubresource must: be `0` and `1`,
-    /// respectively * pname:srcOffset.x and (pname:extent.width +
-    /// pname:srcOffset.x) must: both be greater than or equal to `0` and less
-    /// than or equal to the source image subresource width * pname:srcOffset.y
-    /// and (pname:extent.height + pname:srcOffset.y) must: both be greater
-    /// than or equal to `0` and less than or equal to the source image
-    /// subresource height ** If the calling command's pname:srcImage is of
-    /// type ename:VK_IMAGE_TYPE_1D, then pname:srcOffset.y must: be `0` and
-    /// pname:extent.height must: be `1`. * pname:srcOffset.z and
-    /// (pname:extent.depth + pname:srcOffset.z) must: both be greater than or
-    /// equal to `0` and less than or equal to the source image subresource
-    /// depth ** If the calling command's pname:srcImage is of type
-    /// ename:VK_IMAGE_TYPE_1D or ename:VK_IMAGE_TYPE_2D, then
-    /// pname:srcOffset.z must: be `0` and pname:extent.depth must: be `1`. *
-    /// pname:dstOffset.x and (pname:extent.width + pname:dstOffset.x) must:
-    /// both be greater than or equal to `0` and less than or equal to the
-    /// destination image subresource width * pname:dstOffset.y and
-    /// (pname:extent.height + pname:dstOffset.y) must: both be greater than or
-    /// equal to `0` and less than or equal to the destination image
-    /// subresource height ** If the calling command's pname:dstImage is of
-    /// type ename:VK_IMAGE_TYPE_1D, then pname:dstOffset.y must: be `0` and
-    /// pname:extent.height must: be `1`. * pname:dstOffset.z and
-    /// (pname:extent.depth + pname:dstOffset.z) must: both be greater than or
-    /// equal to `0` and less than or equal to the destination image
-    /// subresource depth ** If the calling command's pname:dstImage is of type
-    /// ename:VK_IMAGE_TYPE_1D or ename:VK_IMAGE_TYPE_2D, then
-    /// pname:dstOffset.z must: be `0` and pname:extent.depth must: be `1`.
-    /// ****
-    /// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct ImageResolve

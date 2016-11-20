@@ -41,24 +41,6 @@ namespace SharpVk
     /// flink:vkCmdDrawIndexedIndirect. No other commands are affected by the
     /// pipeline state.
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * If pname:pipelineBindPoint is
-    /// ename:VK_PIPELINE_BIND_POINT_COMPUTE, the sname:VkCommandPool that
-    /// pname:commandBuffer was allocated from must: support compute operations
-    /// * If pname:pipelineBindPoint is ename:VK_PIPELINE_BIND_POINT_GRAPHICS,
-    /// the sname:VkCommandPool that pname:commandBuffer was allocated from
-    /// must: support graphics operations * If pname:pipelineBindPoint is
-    /// ename:VK_PIPELINE_BIND_POINT_COMPUTE, pname:pipeline must: be a compute
-    /// pipeline * If pname:pipelineBindPoint is
-    /// ename:VK_PIPELINE_BIND_POINT_GRAPHICS, pname:pipeline must: be a
-    /// graphics pipeline * If the
-    /// &lt;&lt;features-features-variableMultisampleRate,variable multisample
-    /// rate&gt;&gt; feature is not supported, pname:pipeline is a graphics
-    /// pipeline, the current subpass has no attachments, and this is not the
-    /// first call to this function with a graphics pipeline after
-    /// transitioning to the current subpass, then the sample count specified
-    /// by this pipeline must: match that set in the previous pipeline ****
-    /// </para>
     /// </summary>
     public enum PipelineBindPoint
     {

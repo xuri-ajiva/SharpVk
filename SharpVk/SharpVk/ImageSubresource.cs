@@ -29,15 +29,7 @@ using System.Text;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Structure specifying a image subresource.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:mipLevel must: be less than the
-    /// pname:mipLevels specified in slink:VkImageCreateInfo when the image was
-    /// created * pname:arrayLayer must: be less than the pname:arrayLayers
-    /// specified in slink:VkImageCreateInfo when the image was created ****
-    /// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct ImageSubresource

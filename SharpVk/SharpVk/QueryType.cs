@@ -27,18 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Specify the type of queries managed by a query pool.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * If the
-    /// &lt;&lt;features-features-pipelineStatisticsQuery,pipeline statistics
-    /// queries&gt;&gt; feature is not enabled, pname:queryType must: not be
-    /// ename:VK_QUERY_TYPE_PIPELINE_STATISTICS * If pname:queryType is
-    /// ename:VK_QUERY_TYPE_PIPELINE_STATISTICS, pname:pipelineStatistics must:
-    /// be a valid combination of elink:VkQueryPipelineStatisticFlagBits values
-    /// ****
-    /// </para>
     /// </summary>
     public enum QueryType
     {

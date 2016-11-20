@@ -27,16 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Structure specifying the allocation parameters for descriptor sets.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:descriptorSetCount must: not be greater than
-    /// the number of sets that are currently available for allocation in
-    /// pname:descriptorPool * pname:descriptorPool must: have enough free
-    /// descriptor capacity remaining to allocate the descriptor sets of the
-    /// specified layouts ****
-    /// </para>
     /// </summary>
     public struct DescriptorSetAllocateInfo
     {

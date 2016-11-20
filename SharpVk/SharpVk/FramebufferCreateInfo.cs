@@ -55,36 +55,6 @@ namespace SharpVk
     /// zero-attachment subpass must: have the same value for
     /// slink:VkPipelineMultisampleStateCreateInfo::pname:rasterizationSamples.
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:attachmentCount must: be equal to the
-    /// attachment count specified in pname:renderPass * Any given element of
-    /// pname:pAttachments that is used as a color attachment or resolve
-    /// attachment by pname:renderPass must: have been created with a
-    /// pname:usage value including ename:VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT *
-    /// Any given element of pname:pAttachments that is used as a depth/stencil
-    /// attachment by pname:renderPass must: have been created with a
-    /// pname:usage value including
-    /// ename:VK_IMAGE_USAGE_DEPTH_STENCIL_ATTACHMENT_BIT * Any given element
-    /// of pname:pAttachments that is used as an input attachment by
-    /// pname:renderPass must: have been created with a pname:usage value
-    /// including ename:VK_IMAGE_USAGE_INPUT_ATTACHMENT_BIT * Any given element
-    /// of pname:pAttachments must: have been created with an elink:VkFormat
-    /// value that matches the elink:VkFormat specified by the corresponding
-    /// sname:VkAttachmentDescription in pname:renderPass * Any given element
-    /// of pname:pAttachments must: have been created with a pname:samples
-    /// value that matches the pname:samples value specified by the
-    /// corresponding sname:VkAttachmentDescription in pname:renderPass * Any
-    /// given element of pname:pAttachments must: have dimensions at least as
-    /// large as the corresponding framebuffer dimension * Any given element of
-    /// pname:pAttachments must: only specify a single mip level * Any given
-    /// element of pname:pAttachments must: have been created with the identity
-    /// swizzle * pname:width must: be less than or equal to
-    /// sname:VkPhysicalDeviceLimits::pname:maxFramebufferWidth * pname:height
-    /// must: be less than or equal to
-    /// sname:VkPhysicalDeviceLimits::pname:maxFramebufferHeight * pname:layers
-    /// must: be less than or equal to
-    /// sname:VkPhysicalDeviceLimits::pname:maxFramebufferLayers ****
-    /// </para>
     /// </summary>
     public struct FramebufferCreateInfo
     {

@@ -27,15 +27,8 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Structure specifying parameters of a newly created pipeline
     /// tessellation state.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:patchControlPoints must: be greater than zero
-    /// and less than or equal to
-    /// sname:VkPhysicalDeviceLimits::pname:maxTessellationPatchSize ****
-    /// </para>
     /// </summary>
     public struct PipelineTessellationStateCreateInfo
     {

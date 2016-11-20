@@ -40,14 +40,6 @@ namespace SharpVk
     /// described in &lt;&lt;primrast-order, Rasterization Order&gt;&gt;.
     /// endif::VK_AMD_rasterization_order[]
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * If the &lt;&lt;features-features-depthClamp,depth
-    /// clamping&gt;&gt; feature is not enabled, pname:depthClampEnable must:
-    /// be ename:VK_FALSE * If the
-    /// &lt;&lt;features-features-fillModeNonSolid,non-solid fill modes&gt;&gt;
-    /// feature is not enabled, pname:polygonMode must: be
-    /// ename:VK_POLYGON_MODE_FILL ****
-    /// </para>
     /// </summary>
     public struct PipelineRasterizationStateCreateInfo
     {

@@ -27,35 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Structure specifying parameters of a newly created shader module.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:codeSize must: be greater than 0 *
-    /// pname:codeSize must: be a multiple of 4. If the +VK_NV_glsl_shader
-    /// extension+ is enabled and pname:pCode references GLSL code
-    /// pname:codeSize can be a multiple of 1 * pname:pCode must: point to
-    /// valid SPIR-V code, formatted and packed as described by the
-    /// &lt;&lt;spirv-spec,Khronos SPIR-V Specification&gt;&gt;. If the
-    /// +VK_NV_glsl_shader+ extension is enabled pname:pCode can instead
-    /// reference valid GLSL code and must: be written to the
-    /// +GL_KHR_vulkan_glsl+ extension specification * pname:pCode must: adhere
-    /// to the validation rules described by the
-    /// &lt;&lt;spirvenv-module-validation, Validation Rules within a
-    /// Module&gt;&gt; section of the &lt;&lt;spirvenv-capabilities,SPIR-V
-    /// Environment&gt;&gt; appendix. If the +VK_NV_glsl_shader+ extension is
-    /// enabled pname:pCode can be valid GLSL code with respect to the
-    /// +GL_KHR_vulkan_glsl+ GLSL extension specification * pname:pCode must:
-    /// declare the code:Shader capability for SPIR-V code * pname:pCode must:
-    /// not declare any capability that is not supported by the API, as
-    /// described by the &lt;&lt;spirvenv-module-validation,
-    /// Capabilities&gt;&gt; section of the
-    /// &lt;&lt;spirvenv-capabilities,SPIR-V Environment&gt;&gt; appendix * If
-    /// pname:pCode declares any of the capabilities that are listed as not
-    /// required by the implementation, the relevant feature must: be enabled,
-    /// as listed in the &lt;&lt;spirvenv-capabilities-table,SPIR-V
-    /// Environment&gt;&gt; appendix ****
-    /// </para>
     /// </summary>
     public struct ShaderModuleCreateInfo
     {

@@ -27,14 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Structure specifying application info.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:apiVersion must: be zero, or otherwise it
-    /// must: be a version that the implementation supports, or supports an
-    /// effective substitute for ****
-    /// </para>
     /// </summary>
     public struct ApplicationInfo
     {

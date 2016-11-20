@@ -36,10 +36,6 @@ namespace SharpVk
     /// depth/stencil clear values, depending on the attachment, and defines
     /// the initial clear values in the slink:VkRenderPassBeginInfo structure.
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:depthStencil must: be a valid
-    /// sname:VkClearDepthStencilValue structure ****
-    /// </para>
     /// </summary>
     [StructLayout(LayoutKind.Explicit)]
     public unsafe partial struct ClearValue

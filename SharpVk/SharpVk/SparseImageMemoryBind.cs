@@ -27,36 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Structure specifying sparse image memory bind.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * If the
-    /// &lt;&lt;features-features-sparseResidencyAliased,sparse aliased
-    /// residency&gt;&gt; feature is not enabled, and if any other resources
-    /// are bound to ranges of pname:memory, the range of pname:memory being
-    /// bound must: not overlap with those bound ranges * pname:memory and
-    /// pname:memoryOffset must: match the memory requirements of the calling
-    /// command's pname:image, as described in section
-    /// &lt;&lt;resources-association&gt;&gt; * pname:subresource must: be a
-    /// valid image subresource for pname:image (see
-    /// &lt;&lt;resources-image-views&gt;&gt;) * pname:offset.x must: be a
-    /// multiple of the sparse image block width
-    /// (sname:VkSparseImageFormatProperties::pname:imageGranularity.width) of
-    /// the image * pname:extent.width must: either be a multiple of the sparse
-    /// image block width of the image, or else pname:extent.width +
-    /// pname:offset.x must: equal the width of the image subresource *
-    /// pname:offset.y must: be a multiple of the sparse image block height
-    /// (sname:VkSparseImageFormatProperties::pname:imageGranularity.height) of
-    /// the image * pname:extent.height must: either be a multiple of the
-    /// sparse image block height of the image, or else pname:extent.height +
-    /// pname:offset.y must: equal the height of the image subresource *
-    /// pname:offset.z must: be a multiple of the sparse image block depth
-    /// (sname:VkSparseImageFormatProperties::pname:imageGranularity.depth) of
-    /// the image * pname:extent.depth must: either be a multiple of the sparse
-    /// image block depth of the image, or else pname:extent.depth +
-    /// pname:offset.z must: equal the depth of the image subresource ****
-    /// </para>
     /// </summary>
     public struct SparseImageMemoryBind
     {

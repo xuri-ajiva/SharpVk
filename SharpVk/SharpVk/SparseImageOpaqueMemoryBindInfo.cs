@@ -27,16 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Structure specifying sparse image opaque memory bind info.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * For any given element of pname:pBinds, if the
-    /// pname:flags member of that element contains
-    /// ename:VK_SPARSE_MEMORY_BIND_METADATA_BIT, the binding range defined
-    /// must: be within the mip tail region of the metadata aspect of
-    /// pname:image ****
-    /// </para>
     /// </summary>
     public struct SparseImageOpaqueMemoryBindInfo
     {

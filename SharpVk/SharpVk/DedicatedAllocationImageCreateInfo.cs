@@ -41,12 +41,6 @@ namespace SharpVk
     /// depth/stencil attachments or other large images may: improve
     /// performance on some devices. ====
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * If pname:dedicatedAllocation is ename:VK_TRUE,
-    /// sname:VkImageCreateInfo::pname:flags must: not include
-    /// ename:VK_IMAGE_CREATE_SPARSE_BINDING_BIT, ename:VK_IMAGE_CREATE_SPARSE_RESIDENCY_BIT,
-    /// or ename:VK_IMAGE_CREATE_SPARSE_ALIASED_BIT ****
-    /// </para>
     /// </summary>
     public struct DedicatedAllocationImageCreateInfo
     {

@@ -36,12 +36,6 @@ namespace SharpVk
     /// structure includes an enable controlling whether the buffer will have a
     /// dedicated memory allocation bound to it.
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * If pname:dedicatedAllocation is ename:VK_TRUE,
-    /// sname:VkBufferCreateInfo::pname:flags must: not include
-    /// ename:VK_BUFFER_CREATE_SPARSE_BINDING_BIT, ename:VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT,
-    /// or ename:VK_BUFFER_CREATE_SPARSE_ALIASED_BIT ****
-    /// </para>
     /// </summary>
     public struct DedicatedAllocationBufferCreateInfo
     {

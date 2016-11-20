@@ -27,19 +27,8 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Structure specifying parameters of a newly created pipeline multisample
     /// state.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * If the
-    /// &lt;&lt;features-features-sampleRateShading,sample rate shading&gt;&gt;
-    /// feature is not enabled, pname:sampleShadingEnable must: be
-    /// ename:VK_FALSE * If the &lt;&lt;features-features-alphaToOne,alpha to
-    /// one&gt;&gt; feature is not enabled, pname:alphaToOneEnable must: be
-    /// ename:VK_FALSE * pname:minSampleShading must: be in the range
-    /// [eq]#[0,1]# ****
-    /// </para>
     /// </summary>
     public struct PipelineMultisampleStateCreateInfo
     {

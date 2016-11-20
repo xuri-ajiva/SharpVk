@@ -27,32 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Structure specifying parameters of a newly created render pass.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * If any two subpasses operate on attachments with
-    /// overlapping ranges of the same sname:VkDeviceMemory object, and at
-    /// least one subpass writes to that area of sname:VkDeviceMemory, a
-    /// subpass dependency must: be included (either directly or via some
-    /// intermediate subpasses) between them * If the pname:attachment member
-    /// of any element of pname:pInputAttachments, pname:pColorAttachments,
-    /// pname:pResolveAttachments or pname:pDepthStencilAttachment, or the
-    /// attachment indexed by any element of pname:pPreserveAttachments in any
-    /// given element of pname:pSubpasses is bound to a range of a
-    /// sname:VkDeviceMemory object that overlaps with any other attachment in
-    /// any subpass (including the same subpass), the
-    /// sname:VkAttachmentDescription structures describing them must: include
-    /// ename:VK_ATTACHMENT_DESCRIPTION_MAY_ALIAS_BIT in pname:flags * If the
-    /// pname:attachment member of any element of pname:pInputAttachments,
-    /// pname:pColorAttachments, pname:pResolveAttachments or
-    /// pname:pDepthStencilAttachment, or any element of
-    /// pname:pPreserveAttachments in any given element of pname:pSubpasses is
-    /// not ename:VK_ATTACHMENT_UNUSED, it must: be less than
-    /// pname:attachmentCount * The value of any element of the
-    /// pname:pPreserveAttachments member in any given element of
-    /// pname:pSubpasses must: not be ename:VK_ATTACHMENT_UNUSED ****
-    /// </para>
     /// </summary>
     public struct RenderPassCreateInfo
     {

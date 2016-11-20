@@ -110,20 +110,6 @@ namespace SharpVk
     /// ordering by the application, e.g. to read the availability status
     /// before reading the results. ====
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:firstQuery must: be less than the number of
-    /// queries in pname:queryPool * If ename:VK_QUERY_RESULT_64_BIT is not set
-    /// in pname:flags then pname:pData and pname:stride must: be multiples of
-    /// `4` * If ename:VK_QUERY_RESULT_64_BIT is set in pname:flags then
-    /// pname:pData and pname:stride must: be multiples of `8` * The sum of
-    /// pname:firstQuery and pname:queryCount must: be less than or equal to
-    /// the number of queries in pname:queryPool * pname:dataSize must: be
-    /// large enough to contain the result of each query, as described
-    /// &lt;&lt;queries-operation-memorylayout,here&gt;&gt; * If the
-    /// pname:queryType used to create pname:queryPool was
-    /// ename:VK_QUERY_TYPE_TIMESTAMP, pname:flags must: not contain
-    /// ename:VK_QUERY_RESULT_PARTIAL_BIT ****
-    /// </para>
     /// </summary>
     [Flags]
     public enum QueryResultFlags

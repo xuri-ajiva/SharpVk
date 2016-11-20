@@ -36,18 +36,6 @@ namespace SharpVk
     /// The members of sname:VkDrawIndexedIndirectCommand have the same meaning
     /// as the similarly named parameters of flink:vkCmdDrawIndexed.
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * For a given vertex buffer binding, any attribute
-    /// data fetched must: be entirely contained within the corresponding
-    /// vertex buffer binding, as described in &lt;&lt;fxvertex-input&gt;&gt; *
-    /// (pname:indexSize * (pname:firstIndex + pname:indexCount) +
-    /// pname:offset) must: be less than or equal to the size of the currently
-    /// bound index buffer, with pname:indexSize being based on the type
-    /// specified by pname:indexType, where the index buffer, pname:indexType,
-    /// and pname:offset are specified via fname:vkCmdBindIndexBuffer * If the
-    /// &lt;&lt;features-features-drawIndirectFirstInstance,drawIndirectFirstInstance&gt;&gt; feature
-    /// is not enabled, pname:firstInstance must: be code:0 ****
-    /// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct DrawIndexedIndirectCommand

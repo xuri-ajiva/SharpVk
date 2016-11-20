@@ -29,14 +29,7 @@ using System.Text;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Structure specifying an attachment reference.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:layout must: not be
-    /// ename:VK_IMAGE_LAYOUT_UNDEFINED or ename:VK_IMAGE_LAYOUT_PREINITIALIZED
-    /// ****
-    /// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct AttachmentReference

@@ -43,32 +43,6 @@ namespace SharpVk
     /// active in a primary command buffer when secondary command buffers are
     /// executed are considered active for those secondary command buffers.
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * The query identified by pname:queryPool and
-    /// pname:query must: currently not be
-    /// &lt;&lt;queries-operation-active,active&gt;&gt; * The query identified
-    /// by pname:queryPool and pname:query must: be unavailable * If the
-    /// &lt;&lt;features-features-occlusionQueryPrecise,precise occlusion
-    /// queries&gt;&gt; feature is not enabled, or the pname:queryType used to
-    /// create pname:queryPool was not ename:VK_QUERY_TYPE_OCCLUSION,
-    /// pname:flags must: not contain ename:VK_QUERY_CONTROL_PRECISE_BIT *
-    /// pname:queryPool must: have been created with a pname:queryType that
-    /// differs from that of any other queries that have been made
-    /// &lt;&lt;queries-operation-active,active&gt;&gt;, and are currently
-    /// still active within pname:commandBuffer * pname:query must: be less
-    /// than the number of queries in pname:queryPool * If the pname:queryType
-    /// used to create pname:queryPool was ename:VK_QUERY_TYPE_OCCLUSION, the
-    /// sname:VkCommandPool that pname:commandBuffer was allocated from must:
-    /// support graphics operations * If the pname:queryType used to create
-    /// pname:queryPool was ename:VK_QUERY_TYPE_PIPELINE_STATISTICS and any of
-    /// the pname:pipelineStatistics indicate graphics operations, the
-    /// sname:VkCommandPool that pname:commandBuffer was allocated from must:
-    /// support graphics operations * If the pname:queryType used to create
-    /// pname:queryPool was ename:VK_QUERY_TYPE_PIPELINE_STATISTICS and any of
-    /// the pname:pipelineStatistics indicate compute operations, the
-    /// sname:VkCommandPool that pname:commandBuffer was allocated from must:
-    /// support compute operations ****
-    /// </para>
     /// </summary>
     [Flags]
     public enum QueryControlFlags

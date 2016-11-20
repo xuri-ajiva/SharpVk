@@ -47,16 +47,6 @@ namespace SharpVk
     /// [NOTE] .Note ==== The maximum binding number specified should: be as
     /// compact as possible to avoid wasted memory. ====
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * If pname:descriptorType is
-    /// ename:VK_DESCRIPTOR_TYPE_SAMPLER or
-    /// ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, and
-    /// pname:descriptorCount is not `0` and pname:pImmutableSamplers is not
-    /// `NULL`, pname:pImmutableSamplers must: be a pointer to an array of
-    /// pname:descriptorCount valid sname:VkSampler handles * If
-    /// pname:descriptorCount is not `0`, pname:stageFlags must: be a valid
-    /// combination of elink:VkShaderStageFlagBits values ****
-    /// </para>
     /// </summary>
     public struct DescriptorSetLayoutBinding
     {

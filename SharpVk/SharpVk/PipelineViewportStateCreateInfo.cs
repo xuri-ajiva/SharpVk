@@ -27,22 +27,8 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Structure specifying parameters of a newly created pipeline viewport
     /// state.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * If the
-    /// &lt;&lt;features-features-multiViewport,multiple viewports&gt;&gt;
-    /// feature is not enabled, pname:viewportCount must: be `1` * If the
-    /// &lt;&lt;features-features-multiViewport,multiple viewports&gt;&gt;
-    /// feature is not enabled, pname:scissorCount must: be `1` *
-    /// pname:viewportCount must: be between `1` and
-    /// sname:VkPhysicalDeviceLimits::pname:maxViewports, inclusive *
-    /// pname:scissorCount must: be between `1` and
-    /// sname:VkPhysicalDeviceLimits::pname:maxViewports, inclusive *
-    /// pname:scissorCount and pname:viewportCount must: be identical ****
-    /// </para>
     /// </summary>
     public struct PipelineViewportStateCreateInfo
     {

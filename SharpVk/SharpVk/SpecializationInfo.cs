@@ -34,14 +34,6 @@ namespace SharpVk
     /// pname:pMapEntries points to a structure of type
     /// slink:VkSpecializationMapEntry.
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * The pname:offset member of any given element of
-    /// pname:pMapEntries must: be less than pname:dataSize * For any given
-    /// element of pname:pMapEntries, pname:size must: be less than or equal to
-    /// pname:dataSize minus pname:offset * If pname:mapEntryCount is not `0`,
-    /// pname:pMapEntries must: be a pointer to an array of pname:mapEntryCount
-    /// valid sname:VkSpecializationMapEntry structures ****
-    /// </para>
     /// </summary>
     public struct SpecializationInfo
     {

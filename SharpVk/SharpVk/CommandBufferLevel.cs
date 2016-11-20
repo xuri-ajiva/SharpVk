@@ -27,13 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Structure specifying a command buffer level.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:commandBufferCount must: be greater than `0`
-    /// ****
-    /// </para>
     /// </summary>
     public enum CommandBufferLevel
     {

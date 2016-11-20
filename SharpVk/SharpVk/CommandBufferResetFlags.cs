@@ -27,15 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Bitmask controlling behavior of a command buffer reset.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:commandBuffer must: not currently be pending
-    /// execution * pname:commandBuffer must: have been allocated from a pool
-    /// that was created with the
-    /// ename:VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT ****
-    /// </para>
     /// </summary>
     [Flags]
     public enum CommandBufferResetFlags

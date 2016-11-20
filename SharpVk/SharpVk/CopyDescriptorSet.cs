@@ -27,26 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Structure specifying a copy descriptor set operation.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:srcBinding must: be a valid binding within
-    /// pname:srcSet * The sum of pname:srcArrayElement and
-    /// pname:descriptorCount must: be less than or equal to the number of
-    /// array elements in the descriptor set binding specified by
-    /// pname:srcBinding, and all applicable consecutive bindings, as described
-    /// by &lt;&lt;descriptorsets-updates-consecutive&gt;&gt; *
-    /// pname:dstBinding must: be a valid binding within pname:dstSet * The sum
-    /// of pname:dstArrayElement and pname:descriptorCount must: be less than
-    /// or equal to the number of array elements in the descriptor set binding
-    /// specified by pname:dstBinding, and all applicable consecutive bindings,
-    /// as described by &lt;&lt;descriptorsets-updates-consecutive&gt;&gt; * If
-    /// pname:srcSet is equal to pname:dstSet, then the source and destination
-    /// ranges of descriptors must: not overlap, where the ranges may: include
-    /// array elements from consecutive bindings as described by
-    /// &lt;&lt;descriptorsets-updates-consecutive&gt;&gt; ****
-    /// </para>
     /// </summary>
     public struct CopyDescriptorSet
     {

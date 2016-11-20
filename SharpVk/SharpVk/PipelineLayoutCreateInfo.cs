@@ -27,45 +27,8 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Structure specifying the parameters of a newly created pipeline layout
     /// object.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:setLayoutCount must: be less than or equal to
-    /// sname:VkPhysicalDeviceLimits::pname:maxBoundDescriptorSets * The total
-    /// number of descriptors of the type ename:VK_DESCRIPTOR_TYPE_SAMPLER and
-    /// ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER accessible to any given
-    /// shader stage across all elements of pname:pSetLayouts must: be less
-    /// than or equal to
-    /// sname:VkPhysicalDeviceLimits::pname:maxPerStageDescriptorSamplers * The
-    /// total number of descriptors of the type
-    /// ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER and
-    /// ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC accessible to any given
-    /// shader stage across all elements of pname:pSetLayouts must: be less
-    /// than or equal to
-    /// sname:VkPhysicalDeviceLimits::pname:maxPerStageDescriptorUniformBuffers *
-    /// The total number of descriptors of the type
-    /// ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER and
-    /// ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC accessible to any given
-    /// shader stage across all elements of pname:pSetLayouts must: be less
-    /// than or equal to
-    /// sname:VkPhysicalDeviceLimits::pname:maxPerStageDescriptorStorageBuffers *
-    /// The total number of descriptors of the type
-    /// ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, ename:VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE,
-    /// and ename:VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER accessible to any
-    /// given shader stage across all elements of pname:pSetLayouts must: be
-    /// less than or equal to
-    /// sname:VkPhysicalDeviceLimits::pname:maxPerStageDescriptorSampledImages *
-    /// The total number of descriptors of the type
-    /// ename:VK_DESCRIPTOR_TYPE_STORAGE_IMAGE, and
-    /// ename:VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER accessible to any given
-    /// shader stage across all elements of pname:pSetLayouts must: be less
-    /// than or equal to
-    /// sname:VkPhysicalDeviceLimits::pname:maxPerStageDescriptorStorageImages *
-    /// Any two elements of pname:pPushConstantRanges must: not include the
-    /// same stage in pname:stageFlags ****
-    /// </para>
     /// </summary>
     public struct PipelineLayoutCreateInfo
     {

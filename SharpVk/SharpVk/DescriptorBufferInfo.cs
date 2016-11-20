@@ -27,16 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Structure specifying descriptor buffer info.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:offset must: be less than the size of
-    /// pname:buffer * If pname:range is not equal to ename:VK_WHOLE_SIZE,
-    /// pname:range must: be greater than `0` * If pname:range is not equal to
-    /// ename:VK_WHOLE_SIZE, pname:range must: be less than or equal to the
-    /// size of pname:buffer minus pname:offset ****
-    /// </para>
     /// </summary>
     public struct DescriptorBufferInfo
     {

@@ -27,15 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Structure specifying parameters of a newly created display mode object.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * The pname:width and pname:height members of the
-    /// pname:visibleRegion member of pname:parameters must: be greater than
-    /// `0` * The pname:refreshRate member of pname:parameters must: be greater
-    /// than `0` ****
-    /// </para>
     /// </summary>
     public struct DisplayModeCreateInfo
     {

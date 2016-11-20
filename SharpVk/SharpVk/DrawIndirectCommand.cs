@@ -36,14 +36,6 @@ namespace SharpVk
     /// The members of sname:VkDrawIndirectCommand have the same meaning as the
     /// similarly named parameters of flink:vkCmdDraw.
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * For a given vertex buffer binding, any attribute
-    /// data fetched must: be entirely contained within the corresponding
-    /// vertex buffer binding, as described in &lt;&lt;fxvertex-input&gt;&gt; *
-    /// If the
-    /// &lt;&lt;features-features-drawIndirectFirstInstance,drawIndirectFirstInstance&gt;&gt; feature
-    /// is not enabled, pname:firstInstance must: be code:0 ****
-    /// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct DrawIndirectCommand

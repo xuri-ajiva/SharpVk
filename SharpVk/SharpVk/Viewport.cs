@@ -63,23 +63,6 @@ namespace SharpVk
     /// The floating-point viewport bounds are represented with an
     /// &lt;&lt;features-limits-viewportSubPixelBits,implementation-dependent precision&gt;&gt;.
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:width must: be greater than `0.0` and less
-    /// than or equal to
-    /// sname:VkPhysicalDeviceLimits::pname:maxViewportDimensions[0] *
-    /// pname:height must: be greater than `0.0` and less than or equal to
-    /// sname:VkPhysicalDeviceLimits::pname:maxViewportDimensions[1] ifdef::VK_AMD_negative_viewport_height[]
-    /// * If the VK_AMD_negative_viewport_height extension is enabled,
-    /// pname:height can: also be negative.
-    /// endif::VK_AMD_negative_viewport_height[] * pname:x and pname:y must:
-    /// each be between pname:viewportBoundsRange[0] and
-    /// pname:viewportBoundsRange[1], inclusive * pname:x + pname:width must:
-    /// be less than or equal to pname:viewportBoundsRange[1] * pname:y +
-    /// pname:height must: be less than or equal to
-    /// pname:viewportBoundsRange[1] * pname:minDepth must: be between `0.0`
-    /// and `1.0`, inclusive * pname:maxDepth must: be between `0.0` and `1.0`,
-    /// inclusive ****
-    /// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct Viewport

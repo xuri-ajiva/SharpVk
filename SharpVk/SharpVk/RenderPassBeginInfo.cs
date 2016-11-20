@@ -46,18 +46,6 @@ namespace SharpVk
     /// area smaller than the framebuffer, unless it matches the render area
     /// granularity for the render pass. ====
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:clearValueCount must: be greater than the
-    /// largest attachment index in pname:renderPass that specifies a
-    /// pname:loadOp (or pname:stencilLoadOp, if the attachment has a
-    /// depth/stencil format) of ename:VK_ATTACHMENT_LOAD_OP_CLEAR * If
-    /// pname:clearValueCount is not `0`, pname:pClearValues must: be a pointer
-    /// to an array of pname:clearValueCount valid sname:VkClearValue unions *
-    /// pname:renderPass must: be
-    /// &lt;&lt;renderpass-compatibility,compatible&gt;&gt; with the
-    /// pname:renderPass member of the sname:VkFramebufferCreateInfo structure
-    /// specified when creating pname:framebuffer. ****
-    /// </para>
     /// </summary>
     public struct RenderPassBeginInfo
     {

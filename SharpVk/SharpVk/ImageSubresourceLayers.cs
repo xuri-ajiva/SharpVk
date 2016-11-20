@@ -29,20 +29,7 @@ using System.Text;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Structure specifying a image subresource layers.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * If pname:aspectMask contains
-    /// ename:VK_IMAGE_ASPECT_COLOR_BIT, it must: not contain either of
-    /// ename:VK_IMAGE_ASPECT_DEPTH_BIT or ename:VK_IMAGE_ASPECT_STENCIL_BIT *
-    /// pname:aspectMask must: not contain ename:VK_IMAGE_ASPECT_METADATA_BIT *
-    /// pname:mipLevel must: be less than the pname:mipLevels specified in
-    /// slink:VkImageCreateInfo when the image was created *
-    /// [eq]#(pname:baseArrayLayer + pname:layerCount)# must: be less than or
-    /// equal to the pname:arrayLayers specified in slink:VkImageCreateInfo
-    /// when the image was created ****
-    /// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct ImageSubresourceLayers

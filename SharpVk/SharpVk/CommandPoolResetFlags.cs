@@ -36,10 +36,6 @@ namespace SharpVk
     /// pool. All command buffers that have been allocated from the command
     /// pool are put in the initial state.
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * All sname:VkCommandBuffer objects allocated from
-    /// pname:commandPool must: not currently be pending execution ****
-    /// </para>
     /// </summary>
     [Flags]
     public enum CommandPoolResetFlags

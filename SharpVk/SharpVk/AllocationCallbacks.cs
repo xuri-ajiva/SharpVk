@@ -27,18 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Structure containing callback function pointers for memory allocation.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:pfnAllocation must: be a pointer to a valid
-    /// user-defined tlink:PFN_vkAllocationFunction * pname:pfnReallocation
-    /// must: be a pointer to a valid user-defined
-    /// tlink:PFN_vkReallocationFunction * pname:pfnFree must: be a pointer to
-    /// a valid user-defined tlink:PFN_vkFreeFunction * If either of
-    /// pname:pfnInternalAllocation or pname:pfnInternalFree is not `NULL`,
-    /// both must: be valid callbacks ****
-    /// </para>
     /// </summary>
     public struct AllocationCallbacks
     {

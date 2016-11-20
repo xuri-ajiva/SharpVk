@@ -29,32 +29,7 @@ using System.Text;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Structure specifying a pipeline color blend attachment state.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * If the &lt;&lt;features-features-dualSrcBlend,dual
-    /// source blending&gt;&gt; feature is not enabled,
-    /// pname:srcColorBlendFactor must: not be
-    /// ename:VK_BLEND_FACTOR_SRC1_COLOR, ename:VK_BLEND_FACTOR_ONE_MINUS_SRC1_COLOR,
-    /// ename:VK_BLEND_FACTOR_SRC1_ALPHA, or
-    /// ename:VK_BLEND_FACTOR_ONE_MINUS_SRC1_ALPHA * If the
-    /// &lt;&lt;features-features-dualSrcBlend,dual source blending&gt;&gt;
-    /// feature is not enabled, pname:dstColorBlendFactor must: not be
-    /// ename:VK_BLEND_FACTOR_SRC1_COLOR, ename:VK_BLEND_FACTOR_ONE_MINUS_SRC1_COLOR,
-    /// ename:VK_BLEND_FACTOR_SRC1_ALPHA, or
-    /// ename:VK_BLEND_FACTOR_ONE_MINUS_SRC1_ALPHA * If the
-    /// &lt;&lt;features-features-dualSrcBlend,dual source blending&gt;&gt;
-    /// feature is not enabled, pname:srcAlphaBlendFactor must: not be
-    /// ename:VK_BLEND_FACTOR_SRC1_COLOR, ename:VK_BLEND_FACTOR_ONE_MINUS_SRC1_COLOR,
-    /// ename:VK_BLEND_FACTOR_SRC1_ALPHA, or
-    /// ename:VK_BLEND_FACTOR_ONE_MINUS_SRC1_ALPHA * If the
-    /// &lt;&lt;features-features-dualSrcBlend,dual source blending&gt;&gt;
-    /// feature is not enabled, pname:dstAlphaBlendFactor must: not be
-    /// ename:VK_BLEND_FACTOR_SRC1_COLOR, ename:VK_BLEND_FACTOR_ONE_MINUS_SRC1_COLOR,
-    /// ename:VK_BLEND_FACTOR_SRC1_ALPHA, or
-    /// ename:VK_BLEND_FACTOR_ONE_MINUS_SRC1_ALPHA ****
-    /// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct PipelineColorBlendAttachmentState

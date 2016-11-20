@@ -64,11 +64,6 @@ namespace SharpVk
     /// reordered against other uses of the same physical memory via a
     /// different attachment. This is described in more detail below.
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:finalLayout must: not be
-    /// ename:VK_IMAGE_LAYOUT_UNDEFINED or ename:VK_IMAGE_LAYOUT_PREINITIALIZED
-    /// ****
-    /// </para>
     /// </summary>
     public enum AttachmentStoreOp
     {

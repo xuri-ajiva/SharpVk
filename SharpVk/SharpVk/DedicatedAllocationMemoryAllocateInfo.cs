@@ -36,21 +36,6 @@ namespace SharpVk
     /// structure includes a handle of the sole buffer or image resource that
     /// the memory can: be bound to.
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * At least one of pname:image and pname:buffer must:
-    /// be sname:VK_NULL_HANDLE * If pname:image is not sname:VK_NULL_HANDLE,
-    /// the image must: have been created with
-    /// sname:VkDedicatedAllocationImageCreateInfoNV::pname:dedicatedAllocation equal
-    /// to ename:VK_TRUE * If pname:buffer is not sname:VK_NULL_HANDLE, the
-    /// buffer must: have been created with
-    /// sname:VkDedicatedAllocationBufferCreateInfoNV::pname:dedicatedAllocation equal
-    /// to ename:VK_TRUE * If pname:image is not sname:VK_NULL_HANDLE,
-    /// sname:VkMemoryAllocateInfo::pname:allocationSize must: equal the
-    /// sname:VkMemoryRequirements::pname:size of the image * If pname:buffer
-    /// is not sname:VK_NULL_HANDLE,
-    /// sname:VkMemoryAllocateInfo::pname:allocationSize must: equal the
-    /// sname:VkMemoryRequirements::pname:size of the buffer ****
-    /// </para>
     /// </summary>
     public struct DedicatedAllocationMemoryAllocateInfo
     {

@@ -27,20 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Structure specifying a mapped memory range.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:memory must: currently be mapped * If
-    /// pname:size is not equal to ename:VK_WHOLE_SIZE, pname:offset and
-    /// pname:size must: specify a range contained within the currently mapped
-    /// range of pname:memory * If pname:size is equal to ename:VK_WHOLE_SIZE,
-    /// pname:offset must: be within the currently mapped range of pname:memory
-    /// * pname:offset must: be a multiple of
-    /// sname:VkPhysicalDeviceLimits::pname:nonCoherentAtomSize * If pname:size
-    /// is not equal to ename:VK_WHOLE_SIZE, pname:size must: be a multiple of
-    /// sname:VkPhysicalDeviceLimits::pname:nonCoherentAtomSize ****
-    /// </para>
     /// </summary>
     public struct MappedMemoryRange
     {

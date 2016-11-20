@@ -40,22 +40,6 @@ namespace SharpVk
     /// comparison is performed before adding the pname:vertexOffset value to
     /// the index value.
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * If pname:topology is
-    /// ename:VK_PRIMITIVE_TOPOLOGY_POINT_LIST, ename:VK_PRIMITIVE_TOPOLOGY_LINE_LIST,
-    /// ename:VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST,
-    /// ename:VK_PRIMITIVE_TOPOLOGY_LINE_LIST_WITH_ADJACENCY, ename:VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST_WITH_ADJACENCY
-    /// or ename:VK_PRIMITIVE_TOPOLOGY_PATCH_LIST, pname:primitiveRestartEnable
-    /// must: be ename:VK_FALSE * If the
-    /// &lt;&lt;features-features-geometryShader,geometry shaders&gt;&gt;
-    /// feature is not enabled, pname:topology must: not be any of
-    /// ename:VK_PRIMITIVE_TOPOLOGY_LINE_LIST_WITH_ADJACENCY, ename:VK_PRIMITIVE_TOPOLOGY_LINE_STRIP_WITH_ADJACENCY,
-    /// ename:VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST_WITH_ADJACENCY or
-    /// ename:VK_PRIMITIVE_TOPOLOGY_TRIANGLE_STRIP_WITH_ADJACENCY * If the
-    /// &lt;&lt;features-features-tessellationShader,tessellation shaders&gt;&gt;
-    /// feature is not enabled, pname:topology must: not be
-    /// ename:VK_PRIMITIVE_TOPOLOGY_PATCH_LIST ****
-    /// </para>
     /// </summary>
     public struct PipelineInputAssemblyStateCreateInfo
     {

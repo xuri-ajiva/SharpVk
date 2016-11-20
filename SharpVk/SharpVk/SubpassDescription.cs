@@ -48,37 +48,6 @@ namespace SharpVk
     /// for subpasses in other subpass dependency chains starting with subpass
     /// S1 if those subpasses use or preserve the attachment.
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:pipelineBindPoint must: be
-    /// ename:VK_PIPELINE_BIND_POINT_GRAPHICS * pname:colorAttachmentCount
-    /// must: be less than or equal to
-    /// sname:VkPhysicalDeviceLimits::pname:maxColorAttachments * If the first
-    /// use of an attachment in this render pass is as an input attachment, and
-    /// the attachment is not also used as a color or depth/stencil attachment
-    /// in the same subpass, then pname:loadOp must: not be
-    /// ename:VK_ATTACHMENT_LOAD_OP_CLEAR * If pname:pResolveAttachments is not
-    /// `NULL`, for each resolve attachment that does not have the value
-    /// ename:VK_ATTACHMENT_UNUSED, the corresponding color attachment must:
-    /// not have the value ename:VK_ATTACHMENT_UNUSED * If
-    /// pname:pResolveAttachments is not `NULL`, the sample count of each
-    /// element of pname:pColorAttachments must: be anything other than
-    /// ename:VK_SAMPLE_COUNT_1_BIT * Any given element of
-    /// pname:pResolveAttachments must: have a sample count of
-    /// ename:VK_SAMPLE_COUNT_1_BIT * Any given element of
-    /// pname:pResolveAttachments must: have the same elink:VkFormat as its
-    /// corresponding color attachment * All attachments in
-    /// pname:pColorAttachments and pname:pDepthStencilAttachment that are not
-    /// ename:VK_ATTACHMENT_UNUSED must: have the same sample count * If any
-    /// input attachments are ename:VK_ATTACHMENT_UNUSED, then any pipelines
-    /// bound during the subpass must: not access those input attachments from
-    /// the fragment shader * The pname:attachment member of any element of
-    /// pname:pPreserveAttachments must: not be ename:VK_ATTACHMENT_UNUSED *
-    /// Any given element of pname:pPreserveAttachments must: not also be an
-    /// element of any other member of the subpass description * If any
-    /// attachment is used as both an input attachment and a color or
-    /// depth/stencil attachment, then each use must: use the same pname:layout
-    /// ****
-    /// </para>
     /// </summary>
     public struct SubpassDescription
     {

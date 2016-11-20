@@ -27,17 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Type of index buffer indices.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:offset must: be less than the size of
-    /// pname:buffer * The sum of pname:offset and the address of the range of
-    /// sname:VkDeviceMemory object that is backing pname:buffer, must: be a
-    /// multiple of the type indicated by pname:indexType * pname:buffer must:
-    /// have been created with the ename:VK_BUFFER_USAGE_INDEX_BUFFER_BIT flag
-    /// ****
-    /// </para>
     /// </summary>
     public enum IndexType
     {

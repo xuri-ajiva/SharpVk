@@ -62,9 +62,6 @@ namespace SharpVk
     /// can: create an additional descriptor pool to perform further descriptor
     /// set allocations.
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:maxSets must: be greater than `0` ****
-    /// </para>
     /// </summary>
     [Flags]
     public enum DescriptorPoolCreateFlags

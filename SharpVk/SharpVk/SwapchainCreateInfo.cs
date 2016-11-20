@@ -56,49 +56,6 @@ namespace SharpVk
     /// acquire any more images from the old swapchain regardless of whether or
     /// not creation of the new swapchain succeeds.
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:surface must: be a surface that is supported
-    /// by the device as determined using
-    /// fname:vkGetPhysicalDeviceSurfaceSupportKHR * pname:minImageCount must:
-    /// be greater than or equal to the value returned in the
-    /// pname:minImageCount member of the sname:VkSurfaceCapabilitiesKHR
-    /// structure returned by fname:vkGetPhysicalDeviceSurfaceCapabilitiesKHR
-    /// for the surface * pname:minImageCount must: be less than or equal to
-    /// the value returned in the pname:maxImageCount member of the
-    /// sname:VkSurfaceCapabilitiesKHR structure returned by
-    /// fname:vkGetPhysicalDeviceSurfaceCapabilitiesKHR for the surface if the
-    /// returned pname:maxImageCount is not zero * pname:imageFormat and
-    /// pname:imageColorSpace must: match the pname:format and pname:colorSpace
-    /// members, respectively, of one of the sname:VkSurfaceFormatKHR
-    /// structures returned by fname:vkGetPhysicalDeviceSurfaceFormatsKHR for
-    /// the surface * pname:imageExtent must: be between pname:minImageExtent
-    /// and pname:maxImageExtent, inclusive, where pname:minImageExtent and
-    /// pname:maxImageExtent are members of the sname:VkSurfaceCapabilitiesKHR
-    /// structure returned by fname:vkGetPhysicalDeviceSurfaceCapabilitiesKHR
-    /// for the surface * pname:imageArrayLayers must: be greater than `0` and
-    /// less than or equal to the pname:maxImageArrayLayers member of the
-    /// sname:VkSurfaceCapabilitiesKHR structure returned by
-    /// fname:vkGetPhysicalDeviceSurfaceCapabilitiesKHR for the surface *
-    /// pname:imageUsage must: be a subset of the supported usage flags present
-    /// in the pname:supportedUsageFlags member of the
-    /// sname:VkSurfaceCapabilitiesKHR structure returned by
-    /// fname:vkGetPhysicalDeviceSurfaceCapabilitiesKHR for the surface * If
-    /// pname:imageSharingMode is ename:VK_SHARING_MODE_CONCURRENT,
-    /// pname:pQueueFamilyIndices must: be a pointer to an array of
-    /// pname:queueFamilyIndexCount basetype:uint32_t values * If
-    /// pname:imageSharingMode is ename:VK_SHARING_MODE_CONCURRENT,
-    /// pname:queueFamilyIndexCount must: be greater than `1` *
-    /// pname:preTransform must: be one of the bits present in the
-    /// pname:supportedTransforms member of the sname:VkSurfaceCapabilitiesKHR
-    /// structure returned by fname:vkGetPhysicalDeviceSurfaceCapabilitiesKHR
-    /// for the surface * pname:compositeAlpha must: be one of the bits present
-    /// in the pname:supportedCompositeAlpha member of the
-    /// sname:VkSurfaceCapabilitiesKHR structure returned by
-    /// fname:vkGetPhysicalDeviceSurfaceCapabilitiesKHR for the surface *
-    /// pname:presentMode must: be one of the ename:VkPresentModeKHR values
-    /// returned by fname:vkGetPhysicalDeviceSurfacePresentModesKHR for the
-    /// surface ****
-    /// </para>
     /// </summary>
     public struct SwapchainCreateInfo
     {

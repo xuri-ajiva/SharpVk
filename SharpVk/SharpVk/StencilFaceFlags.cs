@@ -27,15 +27,8 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Bitmask specifying sets of stencil state for which to update the
     /// compare mask.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * The currently bound graphics pipeline must: have
-    /// been created with the ename:VK_DYNAMIC_STATE_STENCIL_COMPARE_MASK
-    /// dynamic state enabled ****
-    /// </para>
     /// </summary>
     [Flags]
     public enum StencilFaceFlags

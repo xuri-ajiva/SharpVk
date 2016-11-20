@@ -47,13 +47,6 @@ namespace SharpVk
     /// slink:VkAttachmentDescription to ename:VK_ATTACHMENT_LOAD_OP_CLEAR, as
     /// described for flink:vkCreateRenderPass.
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * If pname:aspectMask includes
-    /// ename:VK_IMAGE_ASPECT_COLOR_BIT, it must: not include
-    /// ename:VK_IMAGE_ASPECT_DEPTH_BIT or ename:VK_IMAGE_ASPECT_STENCIL_BIT *
-    /// pname:aspectMask must: not include ename:VK_IMAGE_ASPECT_METADATA_BIT *
-    /// pname:clearValue must: be a valid sname:VkClearValue union ****
-    /// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct ClearAttachment

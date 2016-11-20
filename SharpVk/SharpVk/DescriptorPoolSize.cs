@@ -29,13 +29,7 @@ using System.Text;
 namespace SharpVk
 {
     /// <summary>
-    /// <para>
     /// Structure specifying descriptor pool size.
-    /// </para>
-    /// <para>
-    /// .Valid Usage **** * pname:descriptorCount must: be greater than `0`
-    /// ****
-    /// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct DescriptorPoolSize

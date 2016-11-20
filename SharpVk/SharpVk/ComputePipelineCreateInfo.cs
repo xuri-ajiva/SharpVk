@@ -39,31 +39,6 @@ namespace SharpVk
     /// pname:stage points to a structure of type
     /// sname:VkPipelineShaderStageCreateInfo.
     /// </para>
-    /// <para>
-    /// .Valid Usage **** * If pname:flags contains the
-    /// ename:VK_PIPELINE_CREATE_DERIVATIVE_BIT flag, and
-    /// pname:basePipelineIndex is not `-1`, pname:basePipelineHandle must: be
-    /// dlink:VK_NULL_HANDLE * If pname:flags contains the
-    /// ename:VK_PIPELINE_CREATE_DERIVATIVE_BIT flag, and
-    /// pname:basePipelineIndex is not `-1`, it must: be a valid index into the
-    /// calling command's pname:pCreateInfos parameter * If pname:flags
-    /// contains the ename:VK_PIPELINE_CREATE_DERIVATIVE_BIT flag, and
-    /// pname:basePipelineHandle is not dlink:VK_NULL_HANDLE,
-    /// pname:basePipelineIndex must: be `-1` * If pname:flags contains the
-    /// ename:VK_PIPELINE_CREATE_DERIVATIVE_BIT flag, and
-    /// pname:basePipelineHandle is not dlink:VK_NULL_HANDLE,
-    /// pname:basePipelineHandle must: be a valid sname:VkPipeline handle * If
-    /// pname:flags contains the ename:VK_PIPELINE_CREATE_DERIVATIVE_BIT flag,
-    /// and pname:basePipelineHandle is not dlink:VK_NULL_HANDLE, it must: be a
-    /// valid handle to a compute sname:VkPipeline * The pname:stage member of
-    /// pname:stage must: be ename:VK_SHADER_STAGE_COMPUTE_BIT * The shader
-    /// code for the entry point identified by pname:stage and the rest of the
-    /// state identified by this structure must: adhere to the pipeline linking
-    /// rules described in the &lt;&lt;interfaces,Shader Interfaces&gt;&gt;
-    /// chapter * pname:layout must: be
-    /// &lt;&lt;descriptorsets-pipelinelayout-consistency,consistent&gt;&gt; with
-    /// the layout of the compute shader specified in pname:stage ****
-    /// </para>
     /// </summary>
     public struct ComputePipelineCreateInfo
     {
