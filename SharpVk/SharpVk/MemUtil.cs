@@ -52,14 +52,7 @@ namespace SharpVk
         public unsafe static void WriteToPtr<T>(IntPtr dest, T value)
             where T : struct
         {
-            uint size = SizeOf<T>();
-
-            void* pointer = dest.ToPointer();
-
-            TypedReference valueReference = __makeref(value);
-            void* valuePointer = (*((IntPtr*)&valueReference)).ToPointer();
-
-            System.Buffer.MemoryCopy(valuePointer, pointer, size, size);
+            Marshal.StructureToPtr(value, dest, false);
         }
 
         /// <summary>

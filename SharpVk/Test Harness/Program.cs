@@ -344,7 +344,7 @@ namespace SharpVk
 
         private static Bool32 DebugReport(DebugReportFlags flags, DebugReportObjectType objectType, ulong @object, Size location, int messageCode, string layerPrefix, string message, IntPtr userData)
         {
-            Debug.WriteLine(message);
+            Console.WriteLine(message);
 
             return false;
         }
