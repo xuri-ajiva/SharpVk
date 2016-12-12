@@ -102,9 +102,9 @@ namespace SharpVk
                         }
                         else
                         {
-                            var arrayValue = data.GetArrayValue(); 
-                            dataHandle = GCHandle.Alloc(arrayValue.Array); 
-                            marshalledData = (byte*)(dataHandle.AddrOfPinnedObject() + (int)(MemUtil.SizeOf<byte>() * arrayValue.Offset)).ToPointer(); 
+                            var arrayValue = data.GetArrayValue();
+                            dataHandle = GCHandle.Alloc(arrayValue.Array);
+                            marshalledData = (byte*)(dataHandle.AddrOfPinnedObject() + (int)(MemUtil.SizeOf<byte>() * arrayValue.Offset)).ToPointer();
                         }
                     }
                     else

@@ -793,6 +793,31 @@ namespace SharpVk
             }
         }
         
+        /// <summary>
+        /// -
+        /// </summary>
+        public DeviceGeneratedCommandsLimits GetGeneratedCommandsProperties(DeviceGeneratedCommandsFeatures features)
+        {
+            unsafe
+            {
+                try
+                {
+                    var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetPhysicalDeviceGeneratedCommandsPropertiesNVX>("vkGetPhysicalDeviceGeneratedCommandsPropertiesNVX", "device");
+                    DeviceGeneratedCommandsLimits result = default(DeviceGeneratedCommandsLimits);
+                    Interop.DeviceGeneratedCommandsFeatures marshalledFeatures;
+                    marshalledFeatures = features.Pack();
+                    Interop.DeviceGeneratedCommandsLimits marshalledLimits;
+                    commandDelegate(this.handle, &marshalledFeatures, &marshalledLimits);
+                    result = DeviceGeneratedCommandsLimits.MarshalFrom(&marshalledLimits);
+                    return result;
+                }
+                finally
+                {
+                    Interop.HeapUtil.FreeLog();
+                }
+            }
+        }
+        
         internal Interop.PhysicalDevice Pack()
         {
             return this.handle;

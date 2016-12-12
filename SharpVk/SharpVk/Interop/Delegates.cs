@@ -283,7 +283,7 @@ namespace SharpVk.Interop
     /// <summary>
     /// -
     /// </summary>
-    public unsafe delegate Result vkMapMemory(Device device, DeviceMemory memory, DeviceSize offset, DeviceSize size, MemoryMapFlags flags, void** ppData);
+    public unsafe delegate Result vkMapMemory(Device device, DeviceMemory memory, DeviceSize offset, DeviceSize size, MemoryMapFlags flags, void** data);
     
     /// <summary>
     /// -
@@ -1054,4 +1054,49 @@ namespace SharpVk.Interop
     /// -
     /// </summary>
     public unsafe delegate Result vkGetMemoryWin32HandleNV(Device device, DeviceMemory memory, ExternalMemoryHandleTypeFlags handleType, IntPtr* handle);
+    
+    /// <summary>
+    /// -
+    /// </summary>
+    public unsafe delegate void vkCmdProcessCommandsNVX(CommandBuffer commandBuffer, CommandProcessCommandsInfo* processCommandsInfo);
+    
+    /// <summary>
+    /// -
+    /// </summary>
+    public unsafe delegate void vkCmdReserveSpaceForCommandsNVX(CommandBuffer commandBuffer, CommandReserveSpaceForCommandsInfo* reserveSpaceInfo);
+    
+    /// <summary>
+    /// -
+    /// </summary>
+    public unsafe delegate Result vkCreateIndirectCommandsLayoutNVX(Device device, IndirectCommandsLayoutCreateInfo* createInfo, AllocationCallbacks* allocator, IndirectCommandsLayout* indirectCommandsLayout);
+    
+    /// <summary>
+    /// -
+    /// </summary>
+    public unsafe delegate void vkDestroyIndirectCommandsLayoutNVX(Device device, IndirectCommandsLayout indirectCommandsLayout, AllocationCallbacks* allocator);
+    
+    /// <summary>
+    /// -
+    /// </summary>
+    public unsafe delegate Result vkCreateObjectTableNVX(Device device, ObjectTableCreateInfo* createInfo, AllocationCallbacks* allocator, ObjectTable* objectTable);
+    
+    /// <summary>
+    /// -
+    /// </summary>
+    public unsafe delegate void vkDestroyObjectTableNVX(Device device, ObjectTable objectTable, AllocationCallbacks* allocator);
+    
+    /// <summary>
+    /// -
+    /// </summary>
+    public unsafe delegate Result vkRegisterObjectsNVX(Device device, ObjectTable objectTable, uint objectCount, ObjectTableEntry** objectTableEntries, uint* objectIndices);
+    
+    /// <summary>
+    /// -
+    /// </summary>
+    public unsafe delegate Result vkUnregisterObjectsNVX(Device device, ObjectTable objectTable, uint objectCount, ObjectEntryType* objectEntryTypes, uint* objectIndices);
+    
+    /// <summary>
+    /// -
+    /// </summary>
+    public unsafe delegate void vkGetPhysicalDeviceGeneratedCommandsPropertiesNVX(PhysicalDevice physicalDevice, DeviceGeneratedCommandsFeatures* features, DeviceGeneratedCommandsLimits* limits);
 }

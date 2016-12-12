@@ -168,5 +168,10 @@ namespace SharpVk
         /// supported on the queue.
         /// </summary>
         AllCommands = 1 << 16, 
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        CommandProcessBitNvx = 17, 
     }
 }

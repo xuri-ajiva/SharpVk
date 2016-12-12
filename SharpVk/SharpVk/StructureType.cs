@@ -400,5 +400,35 @@ namespace SharpVk
         /// -
         /// </summary>
         ValidationFlags = 1000061000, 
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        ObjectTableCreateInfoNvx = 1000086000, 
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        IndirectCommandsLayoutCreateInfoNvx = 1000086001, 
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        CommandProcessCommandsInfoNvx = 1000086002, 
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        CommandReserveSpaceForCommandsInfoNvx = 1000086003, 
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        DeviceGeneratedCommandsLimitsNvx = 1000086004, 
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        DeviceGeneratedCommandsFeaturesNvx = 1000086005, 
     }
 }

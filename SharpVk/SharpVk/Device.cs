@@ -1279,6 +1279,70 @@ namespace SharpVk
             }
         }
         
+        /// <summary>
+        /// -
+        /// </summary>
+        public IndirectCommandsLayout CreateIndirectCommandsLayout(IndirectCommandsLayoutCreateInfo createInfo)
+        {
+            unsafe
+            {
+                try
+                {
+                    var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkCreateIndirectCommandsLayoutNVX>("vkCreateIndirectCommandsLayoutNVX", "device");
+                    IndirectCommandsLayout result = default(IndirectCommandsLayout);
+                    Result commandResult;
+                    Interop.IndirectCommandsLayoutCreateInfo marshalledCreateInfo;
+                    marshalledCreateInfo = createInfo.Pack();
+                    Interop.AllocationCallbacks marshalledAllocator;
+                    if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
+                    Interop.IndirectCommandsLayout marshalledIndirectCommandsLayout;
+                    commandResult = commandDelegate(this.handle, &marshalledCreateInfo, this.parent.Allocator == null ? null : &marshalledAllocator, &marshalledIndirectCommandsLayout);
+                    if (SharpVkException.IsError(commandResult))
+                    {
+                        throw SharpVkException.Create(commandResult);
+                    }
+                    result = new IndirectCommandsLayout(marshalledIndirectCommandsLayout, this, this.commandCache);
+                    return result;
+                }
+                finally
+                {
+                    Interop.HeapUtil.FreeLog();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        public ObjectTable CreateObjectTable(ObjectTableCreateInfo createInfo)
+        {
+            unsafe
+            {
+                try
+                {
+                    var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkCreateObjectTableNVX>("vkCreateObjectTableNVX", "device");
+                    ObjectTable result = default(ObjectTable);
+                    Result commandResult;
+                    Interop.ObjectTableCreateInfo marshalledCreateInfo;
+                    marshalledCreateInfo = createInfo.Pack();
+                    Interop.AllocationCallbacks marshalledAllocator;
+                    if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
+                    Interop.ObjectTable marshalledObjectTable;
+                    commandResult = commandDelegate(this.handle, &marshalledCreateInfo, this.parent.Allocator == null ? null : &marshalledAllocator, &marshalledObjectTable);
+                    if (SharpVkException.IsError(commandResult))
+                    {
+                        throw SharpVkException.Create(commandResult);
+                    }
+                    result = new ObjectTable(marshalledObjectTable, this, this.commandCache);
+                    return result;
+                }
+                finally
+                {
+                    Interop.HeapUtil.FreeLog();
+                }
+            }
+        }
+        
         internal Interop.Device Pack()
         {
             return this.handle;

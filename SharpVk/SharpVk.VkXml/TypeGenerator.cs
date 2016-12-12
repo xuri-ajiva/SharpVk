@@ -282,7 +282,7 @@ namespace SharpVk.VkXml
                         var nameParts = x.NameParts.AsEnumerable();
                         int pointerCount = x.PointerType.GetPointerCount();
 
-                        if (pointerCount > 0 && nameParts.First() == "p")
+                        if (pointerCount > 0 && nameParts.First() == new string('p', pointerCount))
                         {
                             nameParts = nameParts.Skip(1);
                         }
@@ -562,6 +562,9 @@ namespace SharpVk.VkXml
                                 string handleName = paramName + "Handle";
                                 bool requiresInterop = paramType.RequiresInterop || paramType.Data.Category == TypeCategory.handle;
                                 string interopTypeName = paramTypeName;
+                                string argumentName = marshalledName;
+                                bool isDoubleMarshalled = parameter.PointerType == PointerType.DoubleConstPointer;
+                                string doubleMarshalledName = "double" + CapitaliseFirst(marshalledName);
 
                                 if (requiresInterop)
                                 {
@@ -573,6 +576,11 @@ namespace SharpVk.VkXml
                                 }
 
                                 newMethod.MarshalToStatements.Add($"{interopTypeName}* {marshalledName} = null;");
+                                if (isDoubleMarshalled)
+                                {
+                                    newMethod.MarshalToStatements.Add($"{interopTypeName}** {doubleMarshalledName} = null;");
+                                    argumentName = doubleMarshalledName;
+                                }
                                 newMethod.MarshalToStatements.Add($"if ({paramName}.Contents != ProxyContents.Null)");
                                 newMethod.MarshalToStatements.Add("{");
                                 if (requiresInterop)
@@ -600,12 +608,25 @@ namespace SharpVk.VkXml
                                     newMethod.MarshalToStatements.Add($"        {interopTypeName}* dataPointer = stackalloc {interopTypeName}[1];");
                                     newMethod.MarshalToStatements.Add($"        *dataPointer = {paramName}.GetSingleValue();");
                                     newMethod.MarshalToStatements.Add($"        {marshalledName} = dataPointer;");
+                                    if (isDoubleMarshalled)
+                                    {
+                                        newMethod.MarshalToStatements.Add($"        {doubleMarshalledName} = &{marshalledName};");
+                                    }
                                     newMethod.MarshalToStatements.Add("    }");
                                     newMethod.MarshalToStatements.Add("    else");
                                     newMethod.MarshalToStatements.Add("    {");
-                                    newMethod.MarshalToStatements.Add($"        var arrayValue = {paramName}.GetArrayValue(); ");
-                                    newMethod.MarshalToStatements.Add($"        {handleName} = GCHandle.Alloc(arrayValue.Array); ");
-                                    newMethod.MarshalToStatements.Add($"        {marshalledName} = ({interopTypeName}*)({handleName}.AddrOfPinnedObject() + (int)(MemUtil.SizeOf<{interopTypeName}>() * arrayValue.Offset)).ToPointer(); ");
+                                    newMethod.MarshalToStatements.Add($"        var arrayValue = {paramName}.GetArrayValue();");
+                                    newMethod.MarshalToStatements.Add($"        {handleName} = GCHandle.Alloc(arrayValue.Array);");
+                                    newMethod.MarshalToStatements.Add($"        {marshalledName} = ({interopTypeName}*)({handleName}.AddrOfPinnedObject() + (int)(MemUtil.SizeOf<{interopTypeName}>() * arrayValue.Offset)).ToPointer();");
+                                    if (isDoubleMarshalled)
+                                    {
+                                        newMethod.MarshalToStatements.Add($"        {interopTypeName}** dataPointer = stackalloc {interopTypeName}*[{paramName}.Length];");
+                                        newMethod.MarshalToStatements.Add($"        {doubleMarshalledName} = dataPointer;");
+                                        newMethod.MarshalToStatements.Add($"        for (int marshalIndex = 0; marshalIndex < {paramName}.Length; marshalIndex++)");
+                                        newMethod.MarshalToStatements.Add("        {");
+                                        newMethod.MarshalToStatements.Add($"            {doubleMarshalledName}[marshalIndex] = &{marshalledName}[marshalIndex];");
+                                        newMethod.MarshalToStatements.Add("        }");
+                                    }
                                     newMethod.MarshalToStatements.Add("    }");
                                     newMethod.MarshalToStatements.Add("}");
                                 }
@@ -622,7 +643,7 @@ namespace SharpVk.VkXml
                                 newMethod.Parameters.Add(new TypeSet.VkMethodParam
                                 {
                                     Name = paramName,
-                                    ArgumentName = marshalledName,
+                                    ArgumentName = argumentName,
                                     TypeName = $"ArrayProxy<{paramTypeName}>",
                                     FixedName = fixedName,
                                     FixedType = fixedType

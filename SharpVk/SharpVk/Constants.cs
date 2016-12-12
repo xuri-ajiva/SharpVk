@@ -192,7 +192,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public const uint SpecVersion = 3; 
+        public const uint SpecVersion = 4; 
         
         /// <summary>
         /// 
@@ -502,6 +502,22 @@ namespace SharpVk
         /// 
         /// </summary>
         public const string ExtensionName = "VK_EXT_validation_flags"; 
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    public static class NvxDeviceGeneratedCommands
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint SpecVersion = 1; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string ExtensionName = "VK_NVX_device_generated_commands"; 
     }
     
     /// <summary>

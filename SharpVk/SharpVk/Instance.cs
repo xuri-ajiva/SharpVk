@@ -511,14 +511,16 @@ namespace SharpVk
         /// <summary>
         /// -
         /// </summary>
-        public void DebugReportMessage(DebugReportFlags flags, DebugReportObjectType objectType, ulong @object, Size location, int messageCode, char layerPrefix, char message)
+        public void DebugReportMessage(DebugReportFlags flags, DebugReportObjectType objectType, ulong @object, Size location, int messageCode, string layerPrefix, string message)
         {
             unsafe
             {
                 try
                 {
                     var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkDebugReportMessageEXT>("vkDebugReportMessageEXT", "instance");
-                    commandDelegate(this.handle, flags, objectType, @object, location, messageCode, &layerPrefix, &message);
+                    char* marshalledLayerPrefix = Interop.HeapUtil.MarshalTo(layerPrefix);
+                    char* marshalledMessage = Interop.HeapUtil.MarshalTo(message);
+                    commandDelegate(this.handle, flags, objectType, @object, location, messageCode, marshalledLayerPrefix, marshalledMessage);
                 }
                 finally
                 {

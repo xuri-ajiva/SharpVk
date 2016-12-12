@@ -215,5 +215,15 @@ namespace SharpVk
         /// pipeline stages in pname:srcStageMask must: be visible in memory.
         /// </summary>
         MemoryWrite = 1 << 16, 
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        CommandProcessReadBitNvx = 17, 
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        CommandProcessWriteBitNvx = 18, 
     }
 }

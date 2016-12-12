@@ -62,20 +62,20 @@ namespace SharpVk
         /// <summary>
         /// Map a memory object into application address space.
         /// </summary>
-        public void MapMemory(DeviceSize offset, DeviceSize size, MemoryMapFlags flags, ref IntPtr ppData)
+        public void MapMemory(DeviceSize offset, DeviceSize size, MemoryMapFlags flags, ref IntPtr data)
         {
             unsafe
             {
                 try
                 {
                     Result commandResult;
-                    void* marshalledPpData;
-                    commandResult = Interop.Commands.vkMapMemory(this.parent.handle, this.handle, offset, size, flags, &marshalledPpData);
+                    void* marshalledData;
+                    commandResult = Interop.Commands.vkMapMemory(this.parent.handle, this.handle, offset, size, flags, &marshalledData);
                     if (SharpVkException.IsError(commandResult))
                     {
                         throw SharpVkException.Create(commandResult);
                     }
-                    ppData = new IntPtr(marshalledPpData);
+                    data = new IntPtr(marshalledData);
                 }
                 finally
                 {

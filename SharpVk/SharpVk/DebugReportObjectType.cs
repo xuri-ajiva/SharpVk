@@ -216,5 +216,25 @@ namespace SharpVk
         /// sname:VkDebugReportCallbackEXT.
         /// </summary>
         DebugReport = 28, 
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        DisplayKhr = 29, 
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        DisplayModeKhr = 30, 
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        ObjectTableNvx = 31, 
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        IndirectCommandsLayoutNvx = 32, 
     }
 }
