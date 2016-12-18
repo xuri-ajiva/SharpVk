@@ -69,18 +69,6 @@ namespace SharpVk
     /// pname:arrayPitch is undefined for images that were not created as
     /// arrays. pname:depthPitch is defined only for 3D images.
     /// </para>
-    /// <para>
-    /// For color formats, the pname:aspectMask member of
-    /// sname:VkImageSubresource must: be ename:VK_IMAGE_ASPECT_COLOR_BIT. For
-    /// depth/stencil formats, pname:aspectMask must: be either
-    /// ename:VK_IMAGE_ASPECT_DEPTH_BIT or ename:VK_IMAGE_ASPECT_STENCIL_BIT.
-    /// On implementations that store depth and stencil aspects separately,
-    /// querying each of these image subresource layouts will return a
-    /// different pname:offset and pname:size representing the region of memory
-    /// used for that aspect. On implementations that store depth and stencil
-    /// aspects interleaved, the same pname:offset and pname:size are returned
-    /// and represent the interleaved memory allocation.
-    /// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct SubresourceLayout

@@ -794,7 +794,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// -
+        /// Returns device-generated commands related properties of a physical
+        /// device.
         /// </summary>
         public DeviceGeneratedCommandsLimits GetGeneratedCommandsProperties(DeviceGeneratedCommandsFeatures features)
         {

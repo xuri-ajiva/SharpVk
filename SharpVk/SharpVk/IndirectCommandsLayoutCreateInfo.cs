@@ -27,12 +27,14 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// -
+    /// Structure specifying the parameters of a newly created indirect
+    /// commands layout object.
     /// </summary>
     public struct IndirectCommandsLayoutCreateInfo
     {
         /// <summary>
-        /// -
+        /// pname:pipelineBindPoint is the sname:VkPipelineBindPoint that this
+        /// layout targets.
         /// </summary>
         public PipelineBindPoint PipelineBindPoint
         {
@@ -41,7 +43,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// -
+        /// pname:flags is a bitmask providing usage hints of this layout. See
+        /// elink:VkIndirectCommandsLayoutUsageFlagBitsNVX below for a
+        /// description of the supported bits.
         /// </summary>
         public IndirectCommandsLayoutUsageFlags Flags
         {
@@ -50,7 +54,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// -
+        /// pname:pTokens is an array describing each command token in detail.
+        /// See elink:VkIndirectCommandsTokenTypeNVX and
+        /// slink:VkIndirectCommandsLayoutTokenNVX below for details.
         /// </summary>
         public IndirectCommandsLayoutToken[] Tokens
         {

@@ -27,14 +27,45 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// Structure specifying the parameters of a buffer memory barrier.
+    /// <para>
+    /// Structure specifying a buffer memory barrier.
+    /// </para>
+    /// <para>
+    /// The first &lt;&lt;synchronization-dependencies-access-scopes, access
+    /// scope&gt;&gt; is limited to access to the memory backing the specified
+    /// buffer range, via access types in the
+    /// &lt;&lt;synchronization-access-masks, source access mask&gt;&gt;
+    /// specified by pname:srcAccessMask.
+    /// </para>
+    /// <para>
+    /// The second &lt;&lt;synchronization-dependencies-access-scopes, access
+    /// scope&gt;&gt; is limited to access to the memory backing the specified
+    /// buffer range, via access types in the
+    /// &lt;&lt;synchronization-access-masks, destination access mask&gt;&gt;
+    /// specified by pname:dstAccessMask.
+    /// </para>
+    /// <para>
+    /// If pname:srcQueueFamilyIndex is not equal to pname:dstQueueFamilyIndex,
+    /// and pname:srcQueueFamilyIndex is equal to the current queue family,
+    /// then the memory barrier defines a
+    /// &lt;&lt;synchronization-queue-transfers-release, queue family release
+    /// operation&gt;&gt; for the specified buffer range, and the second access
+    /// scope includes no access, as if pname:dstAccessMask was `0`.
+    /// </para>
+    /// <para>
+    /// If pname:dstQueueFamilyIndex is not equal to pname:srcQueueFamilyIndex,
+    /// and pname:dstQueueFamilyIndex is equal to the current queue family,
+    /// then the memory barrier defines a
+    /// &lt;&lt;synchronization-queue-transfers-acquire, queue family acquire
+    /// operation&gt;&gt; for the specified buffer range, and the first access
+    /// scope includes no access, as if pname:srcAccessMask was `0`.
+    /// </para>
     /// </summary>
     public struct BufferMemoryBarrier
     {
         /// <summary>
-        /// pname:srcAccessMask is a bitmask of the classes of memory accesses
-        /// performed by the first set of commands that will participate in the
-        /// dependency.
+        /// pname:srcAccessMask defines a &lt;&lt;synchronization-access-masks,
+        /// source access mask&gt;&gt;.
         /// </summary>
         public AccessFlags SourceAccessMask
         {
@@ -43,9 +74,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:dstAccessMask is a bitmask of the classes of memory accesses
-        /// performed by the second set of commands that will participate in
-        /// the dependency.
+        /// pname:dstAccessMask defines a &lt;&lt;synchronization-access-masks,
+        /// destination access mask&gt;&gt;.
         /// </summary>
         public AccessFlags DestinationAccessMask
         {
@@ -54,9 +84,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:srcQueueFamilyIndex is the queue family that is relinquishing
-        /// ownership of the range of pname:buffer to another queue, or
-        /// ename:VK_QUEUE_FAMILY_IGNORED if there is no transfer of ownership.
+        /// pname:srcQueueFamilyIndex is the source queue family for a
+        /// &lt;&lt;synchronization-queue-transfers, queue family ownership
+        /// transfer&gt;&gt;
         /// </summary>
         public uint SourceQueueFamilyIndex
         {
@@ -65,9 +95,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:dstQueueFamilyIndex is the queue family that is acquiring
-        /// ownership of the range of pname:buffer from another queue, or
-        /// ename:VK_QUEUE_FAMILY_IGNORED if there is no transfer of ownership.
+        /// pname:dstQueueFamilyIndex is the destination queue family for a
+        /// &lt;&lt;synchronization-queue-transfers, queue family ownership
+        /// transfer&gt;&gt;
         /// </summary>
         public uint DestinationQueueFamilyIndex
         {

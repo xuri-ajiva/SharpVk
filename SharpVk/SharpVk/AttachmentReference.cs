@@ -55,9 +55,7 @@ namespace SharpVk
         
         /// <summary>
         /// pname:layout is a elink:VkImageLayout value specifying the layout
-        /// the attachment uses during the subpass. The implementation will
-        /// automatically perform layout transitions as needed between
-        /// subpasses to make each subpass use the requested layouts.
+        /// the attachment uses during the subpass.
         /// </summary>
         public ImageLayout Layout; 
         

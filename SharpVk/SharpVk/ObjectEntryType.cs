@@ -27,7 +27,25 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// -
+    /// <para>
+    /// Enum specifying object table entry type.
+    /// </para>
+    /// <para>
+    /// * ename:VK_OBJECT_ENTRY_DESCRIPTOR_SET_NVX indicates a
+    /// sname:VkDescriptorSet resource entry that is registered via
+    /// sname:VkObjectTableDescriptorSetEntryNVX. *
+    /// ename:VK_OBJECT_ENTRY_PIPELINE_NVX indicates a sname:VkPipeline
+    /// resource entry that is registered via
+    /// sname:VkObjectTablePipelineEntryNVX. *
+    /// ename:VK_OBJECT_ENTRY_INDEX_BUFFER_NVX indicates a sname:VkBuffer
+    /// resource entry that is registered via
+    /// sname:VkObjectTableIndexBufferEntryNVX. *
+    /// ename:VK_OBJECT_ENTRY_VERTEX_BUFFER_NVX indicates a sname:VkBuffer
+    /// resource entry that is registered via
+    /// sname:VkObjectTableVertexBufferEntryNVX. *
+    /// ename:VK_OBJECT_ENTRY_PUSH_CONSTANT_NVX indicates the resource entry is
+    /// registered via sname:VkObjectTablePushConstantEntryNVX.
+    /// </para>
     /// </summary>
     public enum ObjectEntryType
     {

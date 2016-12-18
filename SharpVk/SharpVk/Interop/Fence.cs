@@ -31,13 +31,13 @@ namespace SharpVk.Interop
     /// Opaque handle to a fence object.
     /// </para>
     /// <para>
-    /// Fences can: be used by the host to determine completion of execution of
-    /// _queue operations_.
-    /// </para>
-    /// <para>
-    /// A fence's status is always either _signaled_ or _unsignaled_. The host
-    /// can: poll the status of a single fence, or wait for any or all of a
-    /// group of fences to become signaled.
+    /// Fences are a synchronization primitive that can: be used to insert a
+    /// dependency from a queue to the host. Fences have two states - signaled
+    /// and unsignaled. A fence can: be signaled as part of the execution of a
+    /// &lt;&lt;devsandqueues-submission, queue submission&gt;&gt; command.
+    /// Fences can: be unsignaled on the host with flink:vkResetFences. Fences
+    /// can: be waited on by the host with the flink:vkWaitForFences command,
+    /// and the current state can: be queried with flink:vkGetFenceStatus.
     /// </para>
     /// </summary>
     public struct Fence

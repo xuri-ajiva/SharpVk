@@ -27,12 +27,13 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// -
+    /// Structure specifying the parameters of a newly created object table.
     /// </summary>
     public struct ObjectTableCreateInfo
     {
         /// <summary>
-        /// -
+        /// pname:pObjectEntryTypes is an array of elink:VkObjectEntryTypeNVX
+        /// providing the entry type of a given configuration.
         /// </summary>
         public ObjectEntryType[] ObjectEntryTypes
         {
@@ -41,7 +42,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// -
+        /// pname:pObjectEntryCounts is an array of counts how many objects can
+        /// be registered in the table.
         /// </summary>
         public uint[] ObjectEntryCounts
         {
@@ -50,7 +52,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// -
+        /// pname:pObjectEntryUsageFlags is an array of bitmasks describing the
+        /// binding usage of the entry. See elink:VkObjectEntryUsageFlagBitsNVX
+        /// below for a description of the supported bits.
         /// </summary>
         public ObjectEntryUsageFlags[] ObjectEntryUsageFlags
         {
@@ -59,7 +63,10 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// -
+        /// pname:maxUniformBuffersPerDescriptor is the maximum number of
+        /// ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER or
+        /// ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC used by any single
+        /// registered sname:VkDescriptorSet in this table.
         /// </summary>
         public uint MaxUniformBuffersPerDescriptor
         {
@@ -68,7 +75,10 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// -
+        /// pname:maxStorageBuffersPerDescriptor is the maximum number of
+        /// ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER or
+        /// ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC used by any single
+        /// registered sname:VkDescriptorSet in this table.
         /// </summary>
         public uint MaxStorageBuffersPerDescriptor
         {
@@ -77,7 +87,10 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// -
+        /// pname:maxStorageImagesPerDescriptor is the maximum number of
+        /// ename:VK_DESCRIPTOR_TYPE_STORAGE_IMAGE or
+        /// ename:VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER used by any single
+        /// registered sname:VkDescriptorSet in this table.
         /// </summary>
         public uint MaxStorageImagesPerDescriptor
         {
@@ -86,7 +99,11 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// -
+        /// pname:maxSampledImagesPerDescriptor is the maximum number of
+        /// ename:VK_DESCRIPTOR_TYPE_SAMPLER, ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER,
+        /// ename:VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER or
+        /// ename:VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT used by any single
+        /// registered sname:VkDescriptorSet in this table.
         /// </summary>
         public uint MaxSampledImagesPerDescriptor
         {
@@ -95,7 +112,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// -
+        /// pname:maxPipelineLayouts is the maximum number of unique
+        /// sname:VkPipelineLayout used by any registered sname:VkDescriptorSet
+        /// or sname:VkPipeline in this table.
         /// </summary>
         public uint MaxPipelineLayouts
         {

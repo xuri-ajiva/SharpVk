@@ -31,24 +31,48 @@ namespace SharpVk
     /// Bitmask specifying pipeline stages.
     /// </para>
     /// <para>
-    /// [NOTE] .Note ==== The ename:VK_PIPELINE_STAGE_ALL_COMMANDS_BIT and
-    /// ename:VK_PIPELINE_STAGE_ALL_GRAPHICS_BIT differ from
-    /// ename:VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT in that they correspond to
-    /// all (or all graphics) stages, rather than to a specific stage at the
-    /// end of the pipeline. An execution dependency with only
-    /// ename:VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT in pname:dstStageMask will
-    /// not delay subsequent commands, while including either of the other two
-    /// bits will. Similarly, when defining a memory dependency, if the stage
-    /// mask(s) refer to all stages, then the indicated access types from all
-    /// stages will be made available and/or visible, but using only
-    /// ename:VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT would not make any accesses
-    /// available and/or visible because this stage does not access memory. The
-    /// ename:VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT is useful for accomplishing
-    /// memory barriers and layout transitions when the next accesses will be
-    /// done in a different queue or by a presentation engine; in these cases
-    /// subsequent commands in the same queue do not need to wait, but the
-    /// barrier or transition must: complete before semaphores associated with
-    /// the batch signal. ====
+    /// Several of the &lt;&lt;fundamentals-queueoperation-commandorder,
+    /// synchronization commands&gt;&gt; include pipeline stage parameters,
+    /// restricting the &lt;&lt;synchronization-dependencies-scopes,
+    /// synchronization scopes&gt;&gt; for that command to those stages. This
+    /// allows fine grained control over the exact execution dependencies and
+    /// accesses performed by action commands. Implementations should: use
+    /// these pipeline stages to avoid unnecessary stalls or cache flushing.
+    /// </para>
+    /// <para>
+    /// ** ename:VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT **
+    /// ename:VK_PIPELINE_STAGE_DRAW_INDIRECT_BIT **
+    /// ename:VK_PIPELINE_STAGE_VERTEX_INPUT_BIT **
+    /// ename:VK_PIPELINE_STAGE_VERTEX_SHADER_BIT **
+    /// ename:VK_PIPELINE_STAGE_TESSELLATION_CONTROL_SHADER_BIT **
+    /// ename:VK_PIPELINE_STAGE_TESSELLATION_EVALUATION_SHADER_BIT **
+    /// ename:VK_PIPELINE_STAGE_GEOMETRY_SHADER_BIT **
+    /// ename:VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT **
+    /// ename:VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT **
+    /// ename:VK_PIPELINE_STAGE_LATE_FRAGMENT_TESTS_BIT **
+    /// ename:VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT **
+    /// ename:VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT
+    /// </para>
+    /// <para>
+    /// * ename:VK_PIPELINE_STAGE_ALL_COMMANDS_BIT: Equivalent to the logical
+    /// or of every other pipeline stage flag that is supported on the queue it
+    /// is used with.
+    /// </para>
+    /// <para>
+    /// [NOTE] .Note ==== An execution dependency with only
+    /// ename:VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT in the destination stage
+    /// mask will only prevent that stage from executing in subsequently
+    /// submitted commands. As this stage doesn't perform any actual execution,
+    /// this is not observable - in effect, it does not delay processing of
+    /// subsequent commands. Similarly an execution dependency with only
+    /// ename:VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT in the source stage mask will
+    /// effectively not wait for any prior commands to complete.
+    /// </para>
+    /// <para>
+    /// When defining a memory dependency, using only
+    /// ename:VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT or
+    /// ename:VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT would never make any accesses
+    /// available and/or visible because these stages do not access memory.
     /// </para>
     /// </summary>
     [Flags]
@@ -61,13 +85,17 @@ namespace SharpVk
         
         /// <summary>
         /// ename:VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT: Stage of the pipeline
-        /// where commands are initially received by the queue.
+        /// where any commands are initially received by the queue.
+        /// ifdef::VK_NVX_device_generated_commands[]
         /// </summary>
         TopOfPipe = 1 << 0, 
         
         /// <summary>
         /// ename:VK_PIPELINE_STAGE_DRAW_INDIRECT_BIT: Stage of the pipeline
         /// where Draw/DispatchIndirect data structures are consumed.
+        /// ifdef::VK_NVX_device_generated_commands[] This stage also includes
+        /// reading commands written by flink:vkCmdProcessCommandsNVX.
+        /// endif::VK_NVX_device_generated_commands[]
         /// </summary>
         DrawIndirect = 1 << 1, 
         
@@ -107,23 +135,28 @@ namespace SharpVk
         /// <summary>
         /// ename:VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT: Stage of the
         /// pipeline where early fragment tests (depth and stencil tests before
-        /// fragment shading) are performed.
+        /// fragment shading) are performed. This stage also includes
+        /// &lt;&lt;renderpass-load-store-ops, subpass load operations&gt;&gt;
+        /// for framebuffer attachments with a depth/stencil format.
         /// </summary>
         EarlyFragmentTests = 1 << 8, 
         
         /// <summary>
         /// ename:VK_PIPELINE_STAGE_LATE_FRAGMENT_TESTS_BIT: Stage of the
         /// pipeline where late fragment tests (depth and stencil tests after
-        /// fragment shading) are performed.
+        /// fragment shading) are performed. This stage also includes
+        /// &lt;&lt;renderpass-load-store-ops, subpass store operations&gt;&gt;
+        /// for framebuffer attachments with a depth/stencil format.
         /// </summary>
         LateFragmentTests = 1 << 9, 
         
         /// <summary>
         /// ename:VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT: Stage of the
         /// pipeline after blending where the final color values are output
-        /// from the pipeline. This stage also includes resolve operations that
-        /// occur at the end of a subpass. Note that this does not necessarily
-        /// indicate that the values have been committed to memory.
+        /// from the pipeline. This stage also includes
+        /// &lt;&lt;renderpass-load-store-ops, subpass load and store
+        /// operations&gt;&gt; and multisample resolve operations for
+        /// framebuffer attachments with a color format.
         /// </summary>
         ColorAttachmentOutput = 1 << 10, 
         
@@ -135,42 +168,43 @@ namespace SharpVk
         
         /// <summary>
         /// ename:VK_PIPELINE_STAGE_TRANSFER_BIT: Execution of copy commands.
-        /// This includes the operations resulting from all transfer commands.
-        /// The set of transfer commands comprises fname:vkCmdCopyBuffer,
-        /// fname:vkCmdCopyImage, fname:vkCmdBlitImage,
-        /// fname:vkCmdCopyBufferToImage, fname:vkCmdCopyImageToBuffer,
-        /// fname:vkCmdUpdateBuffer, fname:vkCmdFillBuffer,
-        /// fname:vkCmdClearColorImage, fname:vkCmdClearDepthStencilImage,
-        /// fname:vkCmdResolveImage, and fname:vkCmdCopyQueryPoolResults.
+        /// This includes the operations resulting from all &lt;&lt;copies,copy
+        /// commands&gt;&gt;, &lt;&lt;clears,clear commands&gt;&gt; (with the
+        /// exception of flink:vkCmdClearAttachments), and
+        /// flink:vkCmdCopyQueryPoolResults.
         /// </summary>
         Transfer = 1 << 12, 
         
         /// <summary>
         /// ename:VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT: Final stage in the
-        /// pipeline where commands complete execution.
+        /// pipeline where operations generated by all commands complete
+        /// execution.
         /// </summary>
         BottomOfPipe = 1 << 13, 
         
         /// <summary>
         /// ename:VK_PIPELINE_STAGE_HOST_BIT: A pseudo-stage indicating
-        /// execution on the host of reads/writes of device memory.
+        /// execution on the host of reads/writes of device memory. This stage
+        /// is not invoked by any commands recorded in a command buffer.
         /// </summary>
         Host = 1 << 14, 
         
         /// <summary>
         /// ename:VK_PIPELINE_STAGE_ALL_GRAPHICS_BIT: Execution of all graphics
-        /// pipeline stages.
+        /// pipeline stages. Equivalent to the logical or of:
         /// </summary>
         AllGraphics = 1 << 15, 
         
         /// <summary>
-        /// ename:VK_PIPELINE_STAGE_ALL_COMMANDS_BIT: Execution of all stages
-        /// supported on the queue.
+        /// All stages supported on the queue
         /// </summary>
         AllCommands = 1 << 16, 
         
         /// <summary>
-        /// -
+        /// ename:VK_PIPELINE_STAGE_COMMAND_PROCESS_BIT_NVX: Stage of the
+        /// pipeline where device-side generation of commands via
+        /// flink:vkCmdProcessCommandsNVX is handled.
+        /// endif::VK_NVX_device_generated_commands[]
         /// </summary>
         CommandProcessBitNvx = 17, 
     }

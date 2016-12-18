@@ -32,21 +32,22 @@ namespace SharpVk
     /// </para>
     /// <para>
     /// The contents of an attachment within the render area become undefined
-    /// at the start of a subpass S if all of the following conditions are
+    /// at the start of a subpass *S* if all of the following conditions are
     /// true:
     /// </para>
     /// <para>
     /// * The attachment is used as a color, depth/stencil, or resolve
-    /// attachment in any subpass in the render pass. * There is a subpass S1
-    /// that uses or preserves the attachment, and a subpass dependency from S1
-    /// to S. * The attachment is not used or preserved in subpass S.
+    /// attachment in any subpass in the render pass. * There is a subpass
+    /// *S~1~* that uses or preserves the attachment, and a subpass dependency
+    /// from *S~1~* to *S*. * The attachment is not used or preserved in
+    /// subpass *S*.
     /// </para>
     /// <para>
-    /// Once the contents of an attachment become undefined in subpass S, they
-    /// remain undefined for subpasses in subpass dependency chains starting
-    /// with subpass S until they are written again. However, they remain valid
-    /// for subpasses in other subpass dependency chains starting with subpass
-    /// S1 if those subpasses use or preserve the attachment.
+    /// Once the contents of an attachment become undefined in subpass *S*,
+    /// they remain undefined for subpasses in subpass dependency chains
+    /// starting with subpass *S* until they are written again. However, they
+    /// remain valid for subpasses in other subpass dependency chains starting
+    /// with subpass *S~1~* if those subpasses use or preserve the attachment.
     /// </para>
     /// </summary>
     public struct SubpassDescription
@@ -111,16 +112,18 @@ namespace SharpVk
         /// pname:colorAttachmentCount slink:VkAttachmentReference structures
         /// that lists which of the render pass's attachments are resolved to
         /// at the end of the subpass, and what layout each attachment will be
-        /// in during the resolve. If pname:pResolveAttachments is not `NULL`,
-        /// each of its elements corresponds to a color attachment (the element
-        /// in pname:pColorAttachments at the same index). At the end of each
-        /// subpass, the subpass's color attachments are resolved to
-        /// corresponding resolve attachments, unless the resolve attachment
-        /// index is ename:VK_ATTACHMENT_UNUSED or pname:pResolveAttachments is
-        /// `NULL`. If the first use of an attachment in a render pass is as a
-        /// resolve attachment, then the pname:loadOp is effectively ignored as
-        /// the resolve is guaranteed to overwrite all pixels in the render
-        /// area.
+        /// in during the multisample resolve operation. If
+        /// pname:pResolveAttachments is not `NULL`, each of its elements
+        /// corresponds to a color attachment (the element in
+        /// pname:pColorAttachments at the same index), and a multisample
+        /// resolve operation is defined for each attachment. At the end of
+        /// each subpass, multisample resolve operations read the subpass's
+        /// color attachments, and resolve the samples for each pixel to the
+        /// same pixel location in the corresponding resolve attachments,
+        /// unless the resolve attachment index is ename:VK_ATTACHMENT_UNUSED.
+        /// If the first use of an attachment in a render pass is as a resolve
+        /// attachment, then the pname:loadOp is effectively ignored as the
+        /// resolve is guaranteed to overwrite all pixels in the render area.
         /// </summary>
         public AttachmentReference[] ResolveAttachments
         {

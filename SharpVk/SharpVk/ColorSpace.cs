@@ -31,6 +31,15 @@ namespace SharpVk
     /// Supported color space of the presentation engine.
     /// </para>
     /// <para>
+    /// If pname:pSurfaceFormats includes an entry whose value for
+    /// pname:colorSpace is ename:VK_COLOR_SPACE_SRGB_NONLINEAR_KHR and whose
+    /// value for pname:format is a UNORM (or SRGB) format and the
+    /// corresponding SRGB (or UNORM) format is a color renderable format for
+    /// ename:VK_IMAGE_TILING_OPTIMAL, then pname:pSurfaceFormats must: also
+    /// contain an entry with the same value for pname:colorSpace and
+    /// pname:format equal to the corresponding SRGB (or UNORM) format.
+    /// </para>
+    /// <para>
     /// [NOTE] .Note ==== If pname:pSurfaceFormats includes just one entry,
     /// whose value for pname:format is ename:VK_FORMAT_UNDEFINED,
     /// pname:surface has no preferred format. In this case, the application

@@ -1216,7 +1216,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// Insert a set of execution and memory barriers.
+        /// Insert a memory dependency.
         /// </summary>
         public void PipelineBarrier(PipelineStageFlags sourceStageMask, PipelineStageFlags destinationStageMask, DependencyFlags dependencyFlags, ArrayProxy<MemoryBarrier> memoryBarriers, ArrayProxy<BufferMemoryBarrier> bufferMemoryBarriers, ArrayProxy<ImageMemoryBarrier> imageMemoryBarriers)
         {
@@ -1637,7 +1637,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// -
+        /// Performs the generation of commands on the device.
         /// </summary>
         public void ProcessCommands(CommandProcessCommandsInfo processCommandsInfo)
         {
@@ -1658,7 +1658,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// -
+        /// Perform a reservation of command buffer space.
         /// </summary>
         public void ReserveSpaceForCommands(CommandReserveSpaceForCommandsInfo reserveSpaceInfo)
         {

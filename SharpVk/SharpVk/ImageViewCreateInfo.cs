@@ -38,57 +38,6 @@ namespace SharpVk
     /// &lt;&lt;features-formats-compatibility-classes,Format Compatibility
     /// Classes&gt;&gt; section.
     /// </para>
-    /// <para>
-    /// .Image and image view parameter compatibility requirements
-    /// [cols="15%h,35%,50%",options="header"] |==== | Dim, Arrayed, MS | Image
-    /// parameters | View parameters | | pname:imageType = ci.pname:imageType +
-    /// pname:width = ci.pname:extent.width + pname:height =
-    /// ci.pname:extent.height + pname:depth = ci.pname:extent.depth +
-    /// pname:arrayLayers = ci.pname:arrayLayers + pname:samples =
-    /// ci.pname:samples + where ci is the slink:VkImageCreateInfo used to
-    /// create pname:image. | pname:baseArrayLayer and pname:layerCount are
-    /// members of the pname:subresourceRange member. | 1D, 0, 0 |
-    /// pname:imageType = ename:VK_IMAGE_TYPE_1D + pname:width {geq} 1 +
-    /// pname:height = 1 + pname:depth = 1 + pname:arrayLayers {geq} 1 +
-    /// pname:samples = 1 | pname:viewType = ename:VK_VIEW_TYPE_1D +
-    /// pname:baseArrayLayer {geq} 0 + pname:layerCount = 1 | 1D, 1, 0 |
-    /// pname:imageType = ename:VK_IMAGE_TYPE_1D + pname:width {geq} 1 +
-    /// pname:height = 1 + pname:depth = 1 + pname:arrayLayers {geq} 1 +
-    /// pname:samples = 1 | pname:viewType = ename:VK_VIEW_TYPE_1D_ARRAY +
-    /// pname:baseArrayLayer {geq} 0 + pname:layerCount {geq} 1 | 2D, 0, 0 |
-    /// pname:imageType = ename:VK_IMAGE_TYPE_2D + pname:width {geq} 1 +
-    /// pname:height {geq} 1 + pname:depth = 1 + pname:arrayLayers {geq} 1 +
-    /// pname:samples = 1 | pname:viewType = ename:VK_VIEW_TYPE_2D +
-    /// pname:baseArrayLayer {geq} 0 + pname:layerCount = 1 | 2D, 1, 0 |
-    /// pname:imageType = ename:VK_IMAGE_TYPE_2D + pname:width {geq} 1 +
-    /// pname:height {geq} 1 + pname:depth = 1 + pname:arrayLayers {geq} 1 +
-    /// pname:samples = 1 | pname:viewType = ename:VK_VIEW_TYPE_2D_ARRAY +
-    /// pname:baseArrayLayer {geq} 0 + pname:layerCount {geq} 1 | 2D, 0, 1 |
-    /// pname:imageType = ename:VK_IMAGE_TYPE_2D + pname:width {geq} 1 +
-    /// pname:height {geq} 1 + pname:depth = 1 + pname:arrayLayers {geq} 1 +
-    /// pname:samples &gt; 1 | pname:viewType = ename:VK_VIEW_TYPE_2D +
-    /// pname:baseArrayLayer {geq} 0 + pname:layerCount = 1 | 2D, 1, 1 |
-    /// pname:imageType = ename:VK_IMAGE_TYPE_2D + pname:width {geq} 1 +
-    /// pname:height {geq} 1 + pname:depth = 1 + pname:arrayLayers {geq} 1 +
-    /// pname:samples &gt; 1 | pname:viewType = ename:VK_VIEW_TYPE_2D_ARRAY +
-    /// pname:baseArrayLayer {geq} 0 + pname:layerCount {geq} 1 | CUBE, 0, 0 |
-    /// pname:imageType = ename:VK_IMAGE_TYPE_2D + pname:width {geq} 1 +
-    /// pname:height = pname:width + pname:depth = 1 + pname:arrayLayers {geq}
-    /// 6 + pname:samples = 1 + pname:flags includes
-    /// ename:VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT | pname:viewType =
-    /// ename:VK_VIEW_TYPE_CUBE + pname:baseArrayLayer {geq} 0 +
-    /// pname:layerCount = 6 | CUBE, 1, 0 | pname:imageType =
-    /// ename:VK_IMAGE_TYPE_2D + pname:width {geq} 1 + pname:height = width +
-    /// pname:depth = 1 + _N_ {geq} 1 + pname:arrayLayers {geq} 6 {times} _N_ +
-    /// pname:samples = 1 + pname:flags includes
-    /// ename:VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT | pname:viewType =
-    /// ename:VK_VIEW_TYPE_CUBE_ARRAY + pname:baseArrayLayer {geq} 0 +
-    /// pname:layerCount = 6 {times} _N_, _N_ {geq} 1 | 3D, 0, 0 |
-    /// pname:imageType = ename:VK_IMAGE_TYPE_3D + pname:width {geq} 1 +
-    /// pname:height {geq} 1 + pname:depth {geq} 1 + pname:arrayLayers = 1 +
-    /// pname:samples = 1 | pname:viewType = ename:VK_VIEW_TYPE_3D +
-    /// pname:baseArrayLayer = 0 + pname:layerCount = 1 |====
-    /// </para>
     /// </summary>
     public struct ImageViewCreateInfo
     {

@@ -33,56 +33,6 @@ namespace SharpVk
     /// <para>
     /// The semantics of each enum value is described in the table below:
     /// </para>
-    /// <para>
-    /// .Blend Factors
-    /// [width="100%",options="header",align="center",cols="59%,28%,13%"] |====
-    /// |VkBlendFactor | RGB Blend Factors [eq]#(S~r~,S~g~,S~b~)# or
-    /// [eq]#(D~r~,D~g~,D~b~)# | Alpha Blend Factor ([eq]#S~a~# or [eq]#D~a~#)
-    /// |ename:VK_BLEND_FACTOR_ZERO | [eq]#(0,0,0)# | [eq]#0#
-    /// |ename:VK_BLEND_FACTOR_ONE | [eq]#(1,1,1)# | [eq]#1#
-    /// |ename:VK_BLEND_FACTOR_SRC_COLOR | [eq]#(R~s0~,G~s0~,B~s0~)# |
-    /// [eq]#A~s0~# |ename:VK_BLEND_FACTOR_ONE_MINUS_SRC_COLOR |
-    /// [eq]#(1-R~s0~,1-G~s0~,1-B~s0~)# | [eq]#1-A~s0~#
-    /// |ename:VK_BLEND_FACTOR_DST_COLOR | [eq]#(R~d~,G~d~,B~d~)# | [eq]#A~d~#
-    /// |ename:VK_BLEND_FACTOR_ONE_MINUS_DST_COLOR |
-    /// [eq]#(1-R~d~,1-G~d~,1-B~d~)# | [eq]#1-A~d~#
-    /// |ename:VK_BLEND_FACTOR_SRC_ALPHA | [eq]#(A~s0~,A~s0~,A~s0~)# |
-    /// [eq]#A~s0~# |ename:VK_BLEND_FACTOR_ONE_MINUS_SRC_ALPHA |
-    /// [eq]#(1-A~s0~,1-A~s0~,1-A~s0~)# | [eq]#1-A~s0~#
-    /// |ename:VK_BLEND_FACTOR_DST_ALPHA | [eq]#(A~d~,A~d~,A~d~)# | [eq]#A~d~#
-    /// |ename:VK_BLEND_FACTOR_ONE_MINUS_DST_ALPHA |
-    /// [eq]#(1-A~d~,1-A~d~,1-A~d~)# | [eq]#1-A~d~#
-    /// |ename:VK_BLEND_FACTOR_CONSTANT_COLOR | [eq]#(R~c~,G~c~,B~c~)# |
-    /// [eq]#A~c~# |ename:VK_BLEND_FACTOR_ONE_MINUS_CONSTANT_COLOR |
-    /// [eq]#(1-R~c~,1-G~c~,1-B~c~)# | [eq]#1-A~c~#
-    /// |ename:VK_BLEND_FACTOR_CONSTANT_ALPHA | [eq]#(A~c~,A~c~,A~c~)# |
-    /// [eq]#A~c~# |ename:VK_BLEND_FACTOR_ONE_MINUS_CONSTANT_ALPHA |
-    /// [eq]#(1-A~c~,1-A~c~,1-A~c~)# | [eq]#1-A~c~#
-    /// |ename:VK_BLEND_FACTOR_SRC_ALPHA_SATURATE | [eq]#(f,f,f)#; [eq]#f =
-    /// min(A~s0~,1-A~d~)# | [eq]#1# |ename:VK_BLEND_FACTOR_SRC1_COLOR |
-    /// [eq]#(R~s1~,G~s1~,B~s1~)# | [eq]#A~s1~#
-    /// |ename:VK_BLEND_FACTOR_ONE_MINUS_SRC1_COLOR |
-    /// [eq]#(1-R~s1~,1-G~s1~,1-B~s1~)# | [eq]#1-A~s1~#
-    /// |ename:VK_BLEND_FACTOR_SRC1_ALPHA | [eq]#(A~s1~,A~s1~,A~s1~)# |
-    /// [eq]#A~s1~# |ename:VK_BLEND_FACTOR_ONE_MINUS_SRC1_ALPHA |
-    /// [eq]#(1-A~s1~,1-A~s1~,1-A~s1~)# | [eq]#1-A~s1~# |====
-    /// </para>
-    /// <para>
-    /// In this table, the following conventions are used:
-    /// </para>
-    /// <para>
-    /// * [eq]#R~s0~,G~s0~,B~s0~# and [eq]#A~s0~# represent the first source
-    /// color R, G, B, and A components, respectively, for the fragment output
-    /// location corresponding to the color attachment being blended. *
-    /// [eq]#R~s1~,G~s1~,B~s1~# and [eq]#A~s1~# represent the second source
-    /// color R, G, B, and A components, respectively, used in dual source
-    /// blending modes, for the fragment output location corresponding to the
-    /// color attachment being blended. * [eq]#R~d~,G~d~,B~d~# and [eq]#A~d~#
-    /// represent the R, G, B, and A components of the destination color. That
-    /// is, the color currently in the corresponding color attachment for this
-    /// fragment/sample. * [eq]#R~c~,G~c~,B~c~# and [eq]#A~c~# represent the
-    /// blend constant R, G, B, and A components, respectively.
-    /// </para>
     /// </summary>
     public enum BlendFactor
     {

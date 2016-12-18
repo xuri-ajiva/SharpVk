@@ -27,12 +27,13 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// -
+    /// Structure specifying physical device limits.
     /// </summary>
     public struct DeviceGeneratedCommandsLimits
     {
         /// <summary>
-        /// -
+        /// pname:maxIndirectCommandsLayoutTokenCount the maximum number of
+        /// tokens in sname:VkIndirectCommandsLayoutNVX.
         /// </summary>
         public uint MaxIndirectCommandsLayoutTokenCount
         {
@@ -41,7 +42,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// -
+        /// pname:maxObjectEntryCounts the maximum number of entries per
+        /// resource type in sname:VkObjectTableNVX.
         /// </summary>
         public uint MaxObjectEntryCounts
         {
@@ -50,7 +52,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// -
+        /// pname:minSequenceCountBufferOffsetAlignment the minimum alignment
+        /// for memory addresses optionally used in
+        /// fname:vkCmdProcessCommandsNVX.
         /// </summary>
         public uint MinSequenceCountBufferOffsetAlignment
         {
@@ -59,7 +63,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// -
+        /// pname:minSequenceIndexBufferOffsetAlignment the minimum alignment
+        /// for memory addresses optionally used in
+        /// fname:vkCmdProcessCommandsNVX.
         /// </summary>
         public uint MinSequenceIndexBufferOffsetAlignment
         {
@@ -68,7 +74,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// -
+        /// pname:minCommandsTokenBufferOffsetAlignment the minimum alignment
+        /// for memory addresses optionally used in
+        /// fname:vkCmdProcessCommandsNVX.
         /// </summary>
         public uint MinCommandsTokenBufferOffsetAlignment
         {

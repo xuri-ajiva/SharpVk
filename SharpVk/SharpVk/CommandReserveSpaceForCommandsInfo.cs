@@ -27,12 +27,16 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// -
+    /// Structure specifying parameters for the reservation of command buffer
+    /// space.
     /// </summary>
     public struct CommandReserveSpaceForCommandsInfo
     {
         /// <summary>
-        /// -
+        /// pname:objectTable is the sname:VkObjectTableNVX to be used for the
+        /// generation process. Only registered objects at the time
+        /// flink:vkCmdReserveSpaceForCommandsNVX is called, will be taken into
+        /// account for the reservation.
         /// </summary>
         public ObjectTable ObjectTable
         {
@@ -41,7 +45,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// -
+        /// pname:indirectCommandsLayout is the
+        /// sname:VkIndirectCommandsLayoutNVX that must: also be used at
+        /// generation time.
         /// </summary>
         public IndirectCommandsLayout IndirectCommandsLayout
         {
@@ -50,7 +56,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// -
+        /// pname:maxSequencesCount is the maximum number of sequences for
+        /// which command buffer space will be reserved.
         /// </summary>
         public uint MaxSequencesCount
         {

@@ -82,20 +82,6 @@ namespace SharpVk
     /// respectively. * [eq]#D~r~, D~g~, D~b~# and [eq]#D~a~# represent the
     /// destination blend factor R, G, B, and A components, respectively.
     /// </para>
-    /// <para>
-    /// The blending operation produces a new set of values [eq]#R, G, B# and
-    /// [eq]#A#, which are written to the framebuffer attachment. If blending
-    /// is not enabled for this attachment, then [eq]#R, G, B# and [eq]#A# are
-    /// assigned [eq]#R~s0~, G~s0~, B~s0~# and [eq]#A~s0~#, respectively.
-    /// </para>
-    /// <para>
-    /// If the color attachment is fixed-point, the components of the source
-    /// and destination values and blend factors are each clamped to
-    /// [eq]#[0,1]# or [eq]#[-1,1]# respectively for an unsigned normalized or
-    /// signed normalized color attachment prior to evaluating the blend
-    /// operations. If the color attachment is floating-point, no clamping
-    /// occurs.
-    /// </para>
     /// </summary>
     public enum BlendOp
     {

@@ -31,10 +31,6 @@ namespace SharpVk
     /// Bitmask specifying events which cause a debug report callback.
     /// </para>
     /// <para>
-    /// * pname:pfnCallback is the application callback function to call. *
-    /// pname:pUserData is user data to be passed to the callback. --
-    /// </para>
-    /// <para>
     /// For each sname:VkDebugReportCallbackEXT that is created the flags
     /// determine when that function is called. A callback will be made for
     /// issues that match any bit set in its flags. The callback will come
@@ -64,10 +60,14 @@ namespace SharpVk
         Information = 1 << 0, 
         
         /// <summary>
-        /// ename:VK_DEBUG_REPORT_WARNING_BIT_EXT indicates an unexpected use.
-        /// E.g. Not destroying objects prior to destroying the containing
-        /// object or potential inconsistencies between descriptor set layout
-        /// and the layout in the corresponding shader, etc.
+        /// ename:VK_DEBUG_REPORT_WARNING_BIT_EXT indicates use of Vulkan that
+        /// may expose an app bug. Such cases may not be immediately harmful,
+        /// such as a fragment shader outputting to a location with no
+        /// attachment. Other cases may point to behavior that is almost
+        /// certainly bad when unintended such as using an image whose memory
+        /// hasn't been filled. In general if you see a warning but you know
+        /// that the behavior is intended/desired, then simply ignore the
+        /// warning.
         /// </summary>
         Warning = 1 << 1, 
         
@@ -87,7 +87,7 @@ namespace SharpVk
         
         /// <summary>
         /// ename:VK_DEBUG_REPORT_DEBUG_BIT_EXT indicates diagnostic
-        /// information from the loader and layers.
+        /// information from the loader and layers. -- +
         /// </summary>
         Debug = 1 << 4, 
     }

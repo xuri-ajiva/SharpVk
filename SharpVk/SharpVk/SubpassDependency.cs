@@ -29,7 +29,44 @@ using System.Text;
 namespace SharpVk
 {
     /// <summary>
+    /// <para>
     /// Structure specifying a subpass dependency.
+    /// </para>
+    /// <para>
+    /// If pname:srcSubpass is equal to pname:dstSubpass then the
+    /// slink:VkSubpassDependency describes a
+    /// &lt;&lt;synchronization-pipeline-barriers-subpass-self-dependencies, subpass
+    /// self-dependency&gt;&gt;, and only constrains the pipeline barriers
+    /// allowed within a subpass instance. Otherwise, when a render pass
+    /// instance which includes a subpass dependency is submitted to a queue,
+    /// it defines a memory dependency between the subpasses identified by
+    /// pname:srcSubpass and pname:dstSubpass.
+    /// </para>
+    /// <para>
+    /// If pname:srcSubpass is equal to ename:VK_SUBPASS_EXTERNAL, the first
+    /// &lt;&lt;synchronization-dependencies-scopes, synchronization
+    /// scope&gt;&gt; includes commands submitted to the queue before the
+    /// render pass instance began. Otherwise, the first set of commands
+    /// includes all commands submitted as part of the subpass instance
+    /// identified by pname:srcSubpass and any load, store or multisample
+    /// resolve operations on attachments used in pname:srcSubpass. In either
+    /// case, the first synchronization scope is limited to operations on the
+    /// pipeline stages determined by the
+    /// &lt;&lt;synchronization-pipeline-stages-masks, source stage
+    /// mask&gt;&gt; specified by pname:srcStageMask.
+    /// </para>
+    /// <para>
+    /// If pname:dstSubpass is equal to ename:VK_SUBPASS_EXTERNAL, the second
+    /// &lt;&lt;synchronization-dependencies-scopes, synchronization
+    /// scope&gt;&gt; includes commands submitted after the render pass
+    /// instance is ended. Otherwise, the second set of commands includes all
+    /// commands submitted as part of the subpass instance identified by
+    /// pname:dstSubpass and any load, store or multisample resolve operations
+    /// on attachments used in pname:dstSubpass. In either case, the second
+    /// synchronization scope is limited to operations on the pipeline stages
+    /// determined by the &lt;&lt;synchronization-pipeline-stages-masks,
+    /// destination stage mask&gt;&gt; specified by pname:dstStageMask.
+    /// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct SubpassDependency
@@ -49,49 +86,45 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:srcSubpass and pname:dstSubpass are the subpass indices of
-        /// the producer and consumer subpasses, respectively. pname:srcSubpass
-        /// and pname:dstSubpass can: also have the special value
-        /// ename:VK_SUBPASS_EXTERNAL. The source subpass must: always be a
-        /// lower numbered subpass than the destination subpass (excluding
-        /// external subpasses and
-        /// &lt;&lt;synchronization-pipeline-barriers-subpass-self-dependencies, self-dependencies&gt;&gt;),
-        /// so that the order of subpass descriptions is a valid execution
-        /// ordering, avoiding cycles in the dependency graph.
+        /// pname:srcSubpass is the subpass index of the first subpass in the
+        /// dependency, or ename:VK_SUBPASS_EXTERNAL.
         /// </summary>
         public uint SourceSubpass; 
         
         /// <summary>
-        /// -
+        /// pname:dstSubpass is the subpass index of the second subpass in the
+        /// dependency, or ename:VK_SUBPASS_EXTERNAL.
         /// </summary>
         public uint DestinationSubpass; 
         
         /// <summary>
-        /// pname:srcStageMask, pname:dstStageMask, pname:srcAccessMask,
-        /// pname:dstAccessMask, and pname:dependencyFlags describe an
-        /// &lt;&lt;synchronization-execution-and-memory-dependencies,execution and
-        /// memory dependency&gt;&gt; between subpasses. The bits that can: be
-        /// included in pname:dependencyFlags are: + --
+        /// pname:srcStageMask defines a
+        /// &lt;&lt;synchronization-pipeline-stages-masks, source stage
+        /// mask&gt;&gt;.
         /// </summary>
         public PipelineStageFlags SourceStageMask; 
         
         /// <summary>
-        /// -
+        /// pname:dstStageMask defines a
+        /// &lt;&lt;synchronization-pipeline-stages-masks, destination stage
+        /// mask&gt;&gt;.
         /// </summary>
         public PipelineStageFlags DestinationStageMask; 
         
         /// <summary>
-        /// -
+        /// pname:srcAccessMask defines a &lt;&lt;synchronization-access-masks,
+        /// source access mask&gt;&gt;.
         /// </summary>
         public AccessFlags SourceAccessMask; 
         
         /// <summary>
-        /// -
+        /// pname:dstAccessMask defines a &lt;&lt;synchronization-access-masks,
+        /// destination access mask&gt;&gt;.
         /// </summary>
         public AccessFlags DestinationAccessMask; 
         
         /// <summary>
-        /// -
+        /// pname:dependencyFlags is a bitmask of elink:VkDependencyFlagBits.
         /// </summary>
         public DependencyFlags DependencyFlags; 
         

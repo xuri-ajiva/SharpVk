@@ -43,31 +43,6 @@ namespace SharpVk
     /// is otherwise at the discretion of the implementer, subject to the
     /// following constraints and guidelines:
     /// </para>
-    /// <para>
-    /// * For purposes of physical device identification, the _vendor_ of a
-    /// physical device is the entity responsible for the most salient
-    /// characteristics of the hardware represented by the physical device
-    /// handle. In the case of a discrete GPU, this should: be the GPU chipset
-    /// vendor. In the case of a GPU or other accelerator integrated into a
-    /// system-on-chip (SoC), this should: be the supplier of the silicon IP
-    /// used to create the GPU or other accelerator. * If the vendor of the
-    /// physical device has a valid PCI vendor ID issued by
-    /// https://pcisig.com/[PCI-SIG], that ID should: be used to construct
-    /// pname:vendorID as described above for PCI-based implementations.
-    /// Implementations that do not return a PCI vendor ID in pname:vendorID
-    /// must: return a valid Khronos vendor ID, obtained as described in the
-    /// &lt;&lt;vulkan-styleguide,Vulkan Documentation and Extensions&gt;&gt;
-    /// document in the section ``Registering a Vendor ID with Khronos''.
-    /// Khronos vendor IDs are allocated starting at 0x10000, to distinguish
-    /// them from the PCI vendor ID namespace. * The vendor of the physical
-    /// device is responsible for selecting pname:deviceID. The value selected
-    /// should: uniquely identify both the device version and any major
-    /// configuration options (for example, core count in the case of multicore
-    /// devices). The same device ID should: be used for all physical
-    /// implementations of that device version and configuration. For example,
-    /// all uses of a specific silicon IP GPU version and configuration should:
-    /// use the same device ID, even if those uses occur in different SoCs.
-    /// </para>
     /// </summary>
     public struct PhysicalDeviceProperties
     {

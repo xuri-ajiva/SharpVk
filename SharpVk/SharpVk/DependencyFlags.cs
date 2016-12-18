@@ -28,43 +28,36 @@ namespace SharpVk
 {
     /// <summary>
     /// <para>
-    /// Bitmask specifying dependencies between subpasses.
+    /// Bitmask specifying how execution and memory dependencies are formed.
     /// </para>
     /// <para>
-    /// Each subpass dependency defines an execution and memory dependency
-    /// between two sets of commands, with the second set depending on the
-    /// first set. When pname:srcSubpass does not equal pname:dstSubpass then
-    /// the first set of commands is:
+    /// When flink:vkCmdPipelineBarrier is submitted to a queue, it defines a
+    /// memory dependency between commands that were submitted before it, and
+    /// those submitted after it.
     /// </para>
     /// <para>
-    /// * All commands in the subpass indicated by pname:srcSubpass, if
-    /// pname:srcSubpass is not ename:VK_SUBPASS_EXTERNAL. * All commands
-    /// before the render pass instance, if pname:srcSubpass is
-    /// ename:VK_SUBPASS_EXTERNAL.
+    /// If flink:vkCmdPipelineBarrier was recorded outside a render pass
+    /// instance, the first &lt;&lt;synchronization-dependencies-scopes,
+    /// synchronization scope&gt;&gt; includes every command submitted to the
+    /// same queue before it, including those in the same command buffer and
+    /// batch. If flink:vkCmdPipelineBarrier was recorded inside a render pass
+    /// instance, the first synchronization scope includes only commands
+    /// submitted before it within the same subpass. In either case, the first
+    /// synchronization scope is limited to operations on the pipeline stages
+    /// determined by the &lt;&lt;synchronization-pipeline-stages-masks, source
+    /// stage mask&gt;&gt; specified by pname:srcStageMask.
     /// </para>
     /// <para>
-    /// While the corresponding second set of commands is:
-    /// </para>
-    /// <para>
-    /// * All commands in the subpass indicated by pname:dstSubpass, if
-    /// pname:dstSubpass is not ename:VK_SUBPASS_EXTERNAL. * All commands after
-    /// the render pass instance, if pname:dstSubpass is
-    /// ename:VK_SUBPASS_EXTERNAL.
-    /// </para>
-    /// <para>
-    /// When pname:srcSubpass equals pname:dstSubpass then the first set
-    /// consists of commands in the subpass before a call to
-    /// flink:vkCmdPipelineBarrier and the second set consists of commands in
-    /// the subpass following that same call as described in the
-    /// &lt;&lt;synchronization-pipeline-barriers-subpass-self-dependencies, Subpass
-    /// Self-dependency&gt;&gt; section.
-    /// </para>
-    /// <para>
-    /// The pname:srcStageMask, pname:dstStageMask, pname:srcAccessMask,
-    /// pname:dstAccessMask, and pname:dependencyFlags parameters of the
-    /// dependency are interpreted the same way as for other dependencies, as
-    /// described in &lt;&lt;synchronization, Synchronization and Cache
-    /// Control&gt;&gt;.
+    /// If flink:vkCmdPipelineBarrier was recorded outside a render pass
+    /// instance, the second &lt;&lt;synchronization-dependencies-scopes,
+    /// synchronization scope&gt;&gt; includes every command submitted to the
+    /// same queue after it, including those in the same command buffer and
+    /// batch. If flink:vkCmdPipelineBarrier was recorded inside a render pass
+    /// instance, the second synchronization scope includes only commands
+    /// submitted after it within the same subpass. In either case, the second
+    /// synchronization scope is limited to operations on the pipeline stages
+    /// determined by the &lt;&lt;synchronization-pipeline-stages-masks,
+    /// destination stage mask&gt;&gt; specified by pname:dstStageMask.
     /// </para>
     /// </summary>
     [Flags]

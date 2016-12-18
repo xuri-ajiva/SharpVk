@@ -32,14 +32,15 @@ namespace SharpVk
     /// </para>
     /// <para>
     /// pname:renderArea is the render area that is affected by the render pass
-    /// instance. The effects of attachment load, store and resolve operations
-    /// are restricted to the pixels whose x and y coordinates fall within the
-    /// render area on all attachments. The render area extends to all layers
-    /// of pname:framebuffer. The application must: ensure (using scissor if
-    /// necessary) that all rendering is contained within the render area,
-    /// otherwise the pixels outside of the render area become undefined and
-    /// shader side effects may: occur for fragments outside the render area.
-    /// The render area must: be contained within the framebuffer dimensions.
+    /// instance. The effects of attachment load, store and multisample resolve
+    /// operations are restricted to the pixels whose x and y coordinates fall
+    /// within the render area on all attachments. The render area extends to
+    /// all layers of pname:framebuffer. The application must: ensure (using
+    /// scissor if necessary) that all rendering is contained within the render
+    /// area, otherwise the pixels outside of the render area become undefined
+    /// and shader side effects may: occur for fragments outside the render
+    /// area. The render area must: be contained within the framebuffer
+    /// dimensions.
     /// </para>
     /// <para>
     /// [NOTE] .Note ==== There may: be a performance cost for using a render

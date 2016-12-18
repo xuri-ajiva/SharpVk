@@ -31,13 +31,14 @@ namespace SharpVk.Interop
     /// Opaque handle to a event object.
     /// </para>
     /// <para>
-    /// Events represent a fine-grained synchronization primitive that can: be
-    /// used to gauge progress through a sequence of commands executed on a
-    /// queue by Vulkan. An event is initially in the unsignaled state. It can:
-    /// be signaled by a device, using commands inserted into the command
-    /// buffer, or by the host. It can: also be reset to the unsignaled state
-    /// by a device or the host. The host can: query the state of an event. A
-    /// device can: wait for one or more events to become signaled.
+    /// Events are a synchronization primitive that can: be used to insert a
+    /// fine-grained dependency between commands submitted to the same queue,
+    /// or between the host and a queue. Events have two states - signaled and
+    /// unsignaled. An application can: signal an event, or unsignal it, on
+    /// either the host or the device. A device can: wait for an event to
+    /// become signaled before executing further operations. No command exists
+    /// to wait for an event to become signaled on the host, but the current
+    /// state of an event can: be queried.
     /// </para>
     /// </summary>
     public struct Event

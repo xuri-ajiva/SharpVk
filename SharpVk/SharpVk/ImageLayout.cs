@@ -120,9 +120,9 @@ namespace SharpVk
         /// <summary>
         /// ename:VK_IMAGE_LAYOUT_TRANSFER_SRC_OPTIMAL: must: only be used as a
         /// source image of a transfer command (see the definition of
-        /// &lt;&lt;synchronization-transfer,ename:VK_PIPELINE_STAGE_TRANSFER_BIT&gt;&gt;). This
-        /// layout is valid only for image subresources of images created with
-        /// the ename:VK_IMAGE_USAGE_TRANSFER_SRC_BIT usage bit enabled.
+        /// &lt;&lt;synchronization-pipeline-stages-transfer, ename:VK_PIPELINE_STAGE_TRANSFER_BIT&gt;&gt;).
+        /// This layout is valid only for image subresources of images created
+        /// with the ename:VK_IMAGE_USAGE_TRANSFER_SRC_BIT usage bit enabled.
         /// </summary>
         TransferSourceOptimal = 6, 
         

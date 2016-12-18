@@ -28,42 +28,26 @@ namespace SharpVk
 {
     /// <summary>
     /// <para>
-    /// Structure specifying a memory barrier.
+    /// Structure specifying a global memory barrier.
     /// </para>
     /// <para>
-    /// pname:srcAccessMask and pname:dstAccessMask, along with
-    /// pname:srcStageMask and pname:dstStageMask from
-    /// flink:vkCmdPipelineBarrier, define the two halves of a memory
-    /// dependency and an execution dependency. Memory accesses using the set
-    /// of access types in pname:srcAccessMask performed in pipeline stages in
-    /// pname:srcStageMask by the first set of commands must: complete and be
-    /// available to later commands. The side effects of the first set of
-    /// commands will be visible to memory accesses using the set of access
-    /// types in pname:dstAccessMask performed in pipeline stages in
-    /// pname:dstStageMask by the second set of commands. If the barrier is
-    /// by-region, these requirements only apply to invocations within the same
-    /// framebuffer-space region, for pipeline stages that perform
-    /// framebuffer-space work. The execution dependency guarantees that
-    /// execution of work by the destination stages of the second set of
-    /// commands will not begin until execution of work by the source stages of
-    /// the first set of commands has completed.
+    /// The first &lt;&lt;synchronization-dependencies-access-scopes, access
+    /// scope&gt;&gt; is limited to access types in the
+    /// &lt;&lt;synchronization-access-masks, source access mask&gt;&gt;
+    /// specified by pname:srcAccessMask.
     /// </para>
     /// <para>
-    /// A common type of memory dependency is to avoid a read-after-write
-    /// hazard. In this case, the source access mask and stages will include
-    /// writes from a particular stage, and the destination access mask and
-    /// stages will indicate how those writes will be read in subsequent
-    /// commands. However, barriers can: also express write-after-read
-    /// dependencies and write-after-write dependencies, and are even useful to
-    /// express read-after-read dependencies across an image layout change.
+    /// The second &lt;&lt;synchronization-dependencies-access-scopes, access
+    /// scope&gt;&gt; is limited to access types in the
+    /// &lt;&lt;synchronization-access-masks, destination access mask&gt;&gt;
+    /// specified by pname:dstAccessMask.
     /// </para>
     /// </summary>
     public struct MemoryBarrier
     {
         /// <summary>
-        /// pname:srcAccessMask is a bitmask of the classes of memory accesses
-        /// performed by the first set of commands that will participate in the
-        /// dependency.
+        /// pname:srcAccessMask defines a &lt;&lt;synchronization-access-masks,
+        /// source access mask&gt;&gt;.
         /// </summary>
         public AccessFlags SourceAccessMask
         {
@@ -72,9 +56,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:dstAccessMask is a bitmask of the classes of memory accesses
-        /// performed by the second set of commands that will participate in
-        /// the dependency.
+        /// pname:dstAccessMask defines a &lt;&lt;synchronization-access-masks,
+        /// destination access mask&gt;&gt;.
         /// </summary>
         public AccessFlags DestinationAccessMask
         {

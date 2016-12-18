@@ -59,16 +59,18 @@ namespace SharpVk
         
         /// <summary>
         /// pname:minImageCount is the minimum number of images the specified
-        /// device supports for a swapchain created for the surface.
+        /// device supports for a swapchain created for the surface, and will
+        /// be at least one.
         /// </summary>
         public uint MinImageCount; 
         
         /// <summary>
         /// pname:maxImageCount is the maximum number of images the specified
-        /// device supports for a swapchain created for the surface. A value of
-        /// 0 means that there is no limit on the number of images, though
-        /// there may: be limits related to the total amount of memory used by
-        /// swapchain images.
+        /// device supports for a swapchain created for the surface, and will
+        /// be either 0, or greater than or equal to pname:minImageCount. A
+        /// value of 0 means that there is no limit on the number of images,
+        /// though there may: be limits related to the total amount of memory
+        /// used by swapchain images.
         /// </summary>
         public uint MaxImageCount; 
         
@@ -82,35 +84,44 @@ namespace SharpVk
         
         /// <summary>
         /// pname:minImageExtent contains the smallest valid swapchain extent
-        /// for the surface on the specified device.
+        /// for the surface on the specified device. The pname:width and
+        /// pname:height of the extent will each be less than or equal to the
+        /// corresponding pname:width and pname:height of pname:currentExtent,
+        /// unless pname:currentExtent has the special value described above.
         /// </summary>
         public Extent2D MinImageExtent; 
         
         /// <summary>
         /// pname:maxImageExtent contains the largest valid swapchain extent
-        /// for the surface on the specified device.
+        /// for the surface on the specified device. The pname:width and
+        /// pname:height of the extent will each be greater than or equal to
+        /// the corresponding pname:width and pname:height of
+        /// pname:minImageExtent. The pname:width and pname:height of the
+        /// extent will each be greater than or equal to the corresponding
+        /// pname:width and pname:height of pname:currentExtent, unless
+        /// pname:currentExtent has the special value described above.
         /// </summary>
         public Extent2D MaxImageExtent; 
         
         /// <summary>
         /// pname:maxImageArrayLayers is the maximum number of layers swapchain
         /// images can: have for a swapchain created for this device and
-        /// surface.
+        /// surface, and will be at least one.
         /// </summary>
         public uint MaxImageArrayLayers; 
         
         /// <summary>
         /// pname:supportedTransforms is a bitmask of
         /// elink:VkSurfaceTransformFlagBitsKHR, describing the presentation
-        /// transforms supported for the surface on the specified device.
+        /// transforms supported for the surface on the specified device, and
+        /// at least one bit will be set.
         /// </summary>
         public SurfaceTransformFlags SupportedTransforms; 
         
         /// <summary>
-        /// pname:currentTransform is a bitmask of
-        /// elink:VkSurfaceTransformFlagBitsKHR, describing the surface's
-        /// current transform relative to the presentation engine's natural
-        /// orientation.
+        /// pname:currentTransform is the surface's current transform relative
+        /// to the presentation engine's natural orientation, as described by
+        /// elink:VkSurfaceTransformFlagBitsKHR.
         /// </summary>
         public SurfaceTransformFlags CurrentTransform; 
         
@@ -118,10 +129,11 @@ namespace SharpVk
         /// pname:supportedCompositeAlpha is a bitmask of
         /// elink:VkCompositeAlphaFlagBitsKHR, representing the alpha
         /// compositing modes supported by the presentation engine for the
-        /// surface on the specified device. Opaque composition can: be
-        /// achieved in any alpha compositing mode by either using a swapchain
-        /// image format that has no alpha component, or by ensuring that all
-        /// pixels in the swapchain images have an alpha value of 1.0.
+        /// surface on the specified device, and at least one bit will be set.
+        /// Opaque composition can: be achieved in any alpha compositing mode
+        /// by either using a swapchain image format that has no alpha
+        /// component, or by ensuring that all pixels in the swapchain images
+        /// have an alpha value of 1.0.
         /// </summary>
         public CompositeAlphaFlags SupportedCompositeAlpha; 
         

@@ -180,7 +180,7 @@ namespace SharpVk.VkXml
                 {
                     type = ((XText)vkType.Nodes().First()).Value.Split(' ')[1];
 
-                    if(type.EndsWith("*"))
+                    if (type.EndsWith("*"))
                     {
                         type = type.TrimEnd('*');
 
@@ -510,10 +510,26 @@ namespace SharpVk.VkXml
 
                     var description = vkDocType.Element("description");
 
-                    comment.AddRange(description.Elements("para").Select(x => x.Value));
+                    parsedElement.Comment = new List<string>();
 
-                    parsedElement.Comment = comment.Select(this.NormaliseComment).ToList();
-                    parsedElement.Comment.RemoveAll(x => x.StartsWith(".Valid Usage"));
+                    comment.AddRange(description.Elements("para").Select(x => x.Value));
+                    comment.RemoveAll(x => x.StartsWith(".Valid Usage"));
+
+                    int totalLength = 0;
+
+                    foreach (var para in comment)
+                    {
+                        totalLength += para.Length;
+
+                        if (totalLength > 2000)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            parsedElement.Comment.Add(NormaliseComment(para));
+                        }
+                    }
 
                     IEnumerable<ParsedElement> members = null;
 

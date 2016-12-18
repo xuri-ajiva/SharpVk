@@ -42,32 +42,6 @@ namespace SharpVk
     /// the application using the most specific allocator and allocation scope
     /// available:
     /// </para>
-    /// <para>
-    /// * If an allocation is scoped to the duration of a command, the
-    /// allocator will use the ename:VK_SYSTEM_ALLOCATION_SCOPE_COMMAND
-    /// allocation scope. The most specific allocator available is used: if the
-    /// object being created or manipulated has an allocator, that object's
-    /// allocator will be used, else if the parent sname:VkDevice has an
-    /// allocator it will be used, else if the parent sname:VkInstance has an
-    /// allocator it will be used. Else, * If an allocation is associated with
-    /// an object of type sname:VkPipelineCache, the allocator will use the
-    /// ename:VK_SYSTEM_ALLOCATION_SCOPE_CACHE allocation scope. The most
-    /// specific allocator available is used (pipeline cache, else device, else
-    /// instance). Else, * If an allocation is scoped to the lifetime of an
-    /// object, that object is being created or manipulated by the command, and
-    /// that object's type is not sname:VkDevice or sname:VkInstance, the
-    /// allocator will use an allocation scope of
-    /// ename:VK_SYSTEM_ALLOCATION_SCOPE_OBJECT. The most specific allocator
-    /// available is used (object, else device, else instance). Else, * If an
-    /// allocation is scoped to the lifetime of a device, the allocator will
-    /// use an allocation scope of ename VK_SYSTEM_ALLOCATION_SCOPE_DEVICE. The
-    /// most specific allocator available is used (device, else instance).
-    /// Else, * If the allocation is scoped to the lifetime of an instance and
-    /// the instance has an allocator, its allocator will be used with an
-    /// allocation scope of ename:VK_SYSTEM_ALLOCATION_SCOPE_INSTANCE. *
-    /// Otherwise an implementation will allocate memory through an alternative
-    /// mechanism that is unspecified.
-    /// </para>
     /// </summary>
     public enum SystemAllocationScope
     {

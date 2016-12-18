@@ -49,8 +49,8 @@ namespace SharpVk
         /// <summary>
         /// ename:VK_BUFFER_USAGE_TRANSFER_SRC_BIT indicates that the buffer
         /// can: be used as the source of a _transfer command_ (see the
-        /// definition of
-        /// &lt;&lt;synchronization-transfer,ename:VK_PIPELINE_STAGE_TRANSFER_BIT&gt;&gt;).
+        /// definition of &lt;&lt;synchronization-pipeline-stages-transfer,
+        /// ename:VK_PIPELINE_STAGE_TRANSFER_BIT&gt;&gt;).
         /// </summary>
         TransferSource = 1 << 0, 
         
@@ -112,7 +112,11 @@ namespace SharpVk
         /// ename:VK_BUFFER_USAGE_INDIRECT_BUFFER_BIT indicates that the buffer
         /// is suitable for passing as the pname:buffer parameter to
         /// fname:vkCmdDrawIndirect, fname:vkCmdDrawIndexedIndirect, or
-        /// fname:vkCmdDispatchIndirect.
+        /// fname:vkCmdDispatchIndirect. ifdef::VK_NVX_device_generated_commands[]
+        /// It is also suitable for passing as the pname:buffer member of
+        /// sname:VkIndirectCommandsTokenNVX, or pname:sequencesCountBuffer or
+        /// pname:sequencesIndexBuffer member of
+        /// sname:VkCmdProcessCommandsInfoNVX endif::VK_NVX_device_generated_commands[]
         /// </summary>
         IndirectBuffer = 1 << 8, 
     }

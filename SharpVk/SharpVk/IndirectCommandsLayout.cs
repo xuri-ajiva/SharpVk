@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// -
+    /// Opaque handle to an indirect commands layout object.
     /// </summary>
     public partial class IndirectCommandsLayout
         : IDisposable
@@ -55,7 +55,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// -
+        /// Destroy a object table.
         /// </summary>
         public void Destroy()
         {

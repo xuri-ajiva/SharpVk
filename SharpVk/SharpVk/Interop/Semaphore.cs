@@ -31,9 +31,13 @@ namespace SharpVk.Interop
     /// Opaque handle to a semaphore object.
     /// </para>
     /// <para>
-    /// Semaphores are used to coordinate queue operations both within a queue
-    /// and between different queues. A semaphore's status is always either
-    /// _signaled_ or _unsignaled_.
+    /// Semaphores are a synchronization primitive that can: be used to insert
+    /// a dependency between batches submitted to queues. Semaphores have two
+    /// states - signaled and unsignaled. The state of a semaphore can: be
+    /// signaled after execution of a batch of commands is completed. A batch
+    /// can: wait for a semaphore to become signaled before it begins
+    /// execution, and the semaphore is also unsignaled before the batch begins
+    /// execution.
     /// </para>
     /// </summary>
     public struct Semaphore

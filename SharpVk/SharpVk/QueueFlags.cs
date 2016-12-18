@@ -74,32 +74,6 @@ namespace SharpVk
     /// are all integer powers of two. In this case the following restrictions
     /// apply to all image transfer operations:
     /// </para>
-    /// <para>
-    /// ** pname:x, pname:y, and pname:z of a slink:VkOffset3D parameter must:
-    /// be integer multiples of [eq]#A~x~#, [eq]#A~y~#, and [eq]#A~z~#,
-    /// respectively. ** pname:width of a slink:VkExtent3D parameter must: be
-    /// an integer multiple of [eq]#A~x~#, or else [eq]#pname:x + pname:width#
-    /// must: equal the width of the image subresource corresponding to the
-    /// parameter. ** pname:height of a slink:VkExtent3D parameter must: be an
-    /// integer multiple of [eq]#A~y~#, or else [eq]#pname:y + pname:height#
-    /// must: equal the height of the image subresource corresponding to the
-    /// parameter. ** pname:depth of a slink:VkExtent3D parameter must: be an
-    /// integer multiple of [eq]#A~z~#, or else [eq]#pname:z + pname:depth#
-    /// must: equal the depth of the image subresource corresponding to the
-    /// parameter. ** If the format of the image corresponding to the
-    /// parameters is one of the block-compressed formats then for the purposes
-    /// of the above calculations the granularity must: be scaled up by the
-    /// compressed texel block dimensions.
-    /// </para>
-    /// <para>
-    /// Queues supporting graphics and/or compute operations must: report
-    /// [eq]#(1,1,1)# in pname:minImageTransferGranularity, meaning that there
-    /// are no additional restrictions on the granularity of image transfer
-    /// operations for these queues. Other queues supporting image transfer
-    /// operations are only required: to support whole mip level transfers,
-    /// thus pname:minImageTransferGranularity for queues belonging to such
-    /// queue families may: be [eq]#(0,0,0)#.
-    /// </para>
     /// </summary>
     [Flags]
     public enum QueueFlags

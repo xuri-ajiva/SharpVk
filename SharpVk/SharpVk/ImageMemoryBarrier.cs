@@ -31,36 +31,54 @@ namespace SharpVk
     /// Structure specifying the parameters of an image memory barrier.
     /// </para>
     /// <para>
-    /// If pname:oldLayout differs from pname:newLayout, a layout transition
-    /// occurs as part of the image memory barrier, affecting the data
-    /// contained in the region of the image defined by the
-    /// pname:subresourceRange. If pname:oldLayout is
-    /// ename:VK_IMAGE_LAYOUT_UNDEFINED, then the data is undefined after the
-    /// layout transition. This may: allow a more efficient transition, since
-    /// the data may: be discarded. The layout transition must: occur after all
-    /// operations using the old layout are completed and before all operations
-    /// using the new layout are started. This is achieved by ensuring that
-    /// there is a memory dependency between previous accesses and the layout
-    /// transition, as well as between the layout transition and subsequent
-    /// accesses, where the layout transition occurs between the two halves of
-    /// a memory dependency in an image memory barrier.
+    /// The first &lt;&lt;synchronization-dependencies-access-scopes, access
+    /// scope&gt;&gt; is limited to access to the memory backing the specified
+    /// image subresource range, via access types in the
+    /// &lt;&lt;synchronization-access-masks, source access mask&gt;&gt;
+    /// specified by pname:srcAccessMask.
     /// </para>
     /// <para>
-    /// Layout transitions that are performed via image memory barriers are
-    /// automatically ordered against other layout transitions, including those
-    /// that occur as part of a render pass instance.
+    /// The second &lt;&lt;synchronization-dependencies-access-scopes, access
+    /// scope&gt;&gt; is limited to access to the memory backing the specified
+    /// image subresource range, via access types in the
+    /// &lt;&lt;synchronization-access-masks, destination access mask&gt;&gt;
+    /// specified by pname:dstAccessMask.
     /// </para>
     /// <para>
-    /// [NOTE] .Note ==== See &lt;&lt;resources-image-layouts&gt;&gt; for
-    /// details on available image layouts and their usages. ====
+    /// If pname:srcQueueFamilyIndex is not equal to pname:dstQueueFamilyIndex,
+    /// and pname:srcQueueFamilyIndex is equal to the current queue family,
+    /// then the memory barrier defines a
+    /// &lt;&lt;synchronization-queue-transfers-release, queue family release
+    /// operation&gt;&gt; for the specified image subresource range, and the
+    /// second access scope includes no access, as if pname:dstAccessMask was
+    /// `0`.
+    /// </para>
+    /// <para>
+    /// If pname:dstQueueFamilyIndex is not equal to pname:srcQueueFamilyIndex,
+    /// and pname:dstQueueFamilyIndex is equal to the current queue family,
+    /// then the memory barrier defines a
+    /// &lt;&lt;synchronization-queue-transfers-acquire, queue family acquire
+    /// operation&gt;&gt; for the specified image subresource range, and the
+    /// first access scope includes no access, as if pname:srcAccessMask was
+    /// `0`.
+    /// </para>
+    /// <para>
+    /// If pname:oldLayout is not equal to pname:newLayout, then the memory
+    /// barrier defines an &lt;&lt;synchronization-image-layout-transitions,
+    /// image layout transition&gt;&gt; for the specified image subresource
+    /// range. Layout transitions that are performed via image memory barriers
+    /// automatically happen-after layout transitions previously submitted to
+    /// the same queue, and automatically happen-before layout transitions
+    /// subsequently submitted to the same queue; this includes layout
+    /// transitions that occur as part of a render pass instance, in both
+    /// cases.
     /// </para>
     /// </summary>
     public struct ImageMemoryBarrier
     {
         /// <summary>
-        /// pname:srcAccessMask is a bitmask of the classes of memory accesses
-        /// performed by the first set of commands that will participate in the
-        /// dependency.
+        /// pname:srcAccessMask defines a &lt;&lt;synchronization-access-masks,
+        /// source access mask&gt;&gt;.
         /// </summary>
         public AccessFlags SourceAccessMask
         {
@@ -69,9 +87,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:dstAccessMask is a bitmask of the classes of memory accesses
-        /// performed by the second set of commands that will participate in
-        /// the dependency.
+        /// pname:dstAccessMask defines a &lt;&lt;synchronization-access-masks,
+        /// destination access mask&gt;&gt;.
         /// </summary>
         public AccessFlags DestinationAccessMask
         {
@@ -80,8 +97,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:oldLayout describes the current layout of the image
-        /// subresource(s).
+        /// pname:oldLayout is the old layout in an
+        /// &lt;&lt;synchronization-image-layout-transitions, image layout
+        /// transition&gt;&gt;.
         /// </summary>
         public ImageLayout OldLayout
         {
@@ -90,8 +108,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:newLayout describes the new layout of the image
-        /// subresource(s).
+        /// pname:newLayout is the new layout in an
+        /// &lt;&lt;synchronization-image-layout-transitions, image layout
+        /// transition&gt;&gt;.
         /// </summary>
         public ImageLayout NewLayout
         {
@@ -100,10 +119,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:srcQueueFamilyIndex is the queue family that is relinquishing
-        /// ownership of the image subresource(s) to another queue, or
-        /// ename:VK_QUEUE_FAMILY_IGNORED if there is no transfer of
-        /// ownership).
+        /// pname:srcQueueFamilyIndex is the source queue family for a
+        /// &lt;&lt;synchronization-queue-transfers, queue family ownership
+        /// transfer&gt;&gt;
         /// </summary>
         public uint SourceQueueFamilyIndex
         {
@@ -112,10 +130,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:dstQueueFamilyIndex is the queue family that is acquiring
-        /// ownership of the image subresource(s) from another queue, or
-        /// ename:VK_QUEUE_FAMILY_IGNORED if there is no transfer of
-        /// ownership).
+        /// pname:dstQueueFamilyIndex is the destination queue family for a
+        /// &lt;&lt;synchronization-queue-transfers, queue family ownership
+        /// transfer&gt;&gt;
         /// </summary>
         public uint DestinationQueueFamilyIndex
         {

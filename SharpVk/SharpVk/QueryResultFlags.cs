@@ -64,52 +64,6 @@ namespace SharpVk
     /// [NOTE] .Note ==== Applications must: take care to ensure that use of
     /// the ename:VK_QUERY_RESULT_WAIT_BIT bit has the desired effect.
     /// </para>
-    /// <para>
-    /// For example, if a query has been used previously and a command buffer
-    /// records the commands fname:vkCmdResetQueryPool, fname:vkCmdBeginQuery,
-    /// and fname:vkCmdEndQuery for that query, then the query will remain in
-    /// the available state until the fname:vkCmdResetQueryPool command
-    /// executes on a queue. Applications can: use fences or events to ensure
-    /// that a query has already been reset before checking for its results or
-    /// availability status. Otherwise, a stale value could be returned from a
-    /// previous use of the query.
-    /// </para>
-    /// <para>
-    /// The above also applies when ename:VK_QUERY_RESULT_WAIT_BIT is used in
-    /// combination with ename:VK_QUERY_RESULT_WITH_AVAILABILITY_BIT. In this
-    /// case, the returned availability status may: reflect the result of a
-    /// previous use of the query unless the fname:vkCmdResetQueryPool command
-    /// has been executed since the last use of the query. ====
-    /// </para>
-    /// <para>
-    /// [NOTE] .Note ==== Applications can: double-buffer query pool usage,
-    /// with a pool per frame, and reset queries at the end of the frame in
-    /// which they are read. ====
-    /// </para>
-    /// <para>
-    /// If ename:VK_QUERY_RESULT_PARTIAL_BIT is set,
-    /// ename:VK_QUERY_RESULT_WAIT_BIT is not set, and the query's status is
-    /// unavailable, an intermediate result value between zero and the final
-    /// result value is written to pname:pData for that query.
-    /// </para>
-    /// <para>
-    /// ename:VK_QUERY_RESULT_PARTIAL_BIT must: not be used if the pool's
-    /// pname:queryType is ename:VK_QUERY_TYPE_TIMESTAMP.
-    /// </para>
-    /// <para>
-    /// If ename:VK_QUERY_RESULT_WITH_AVAILABILITY_BIT is set, the final
-    /// integer value written for each query is non-zero if the query's status
-    /// was available or zero if the status was unavailable. When
-    /// ename:VK_QUERY_RESULT_WITH_AVAILABILITY_BIT is used, implementations
-    /// must: guarantee that if they return a non-zero availability value then
-    /// the numerical results must: be valid, assuming the results are not
-    /// reset by a subsequent command.
-    /// </para>
-    /// <para>
-    /// [NOTE] .Note ==== Satisfying this guarantee may: require careful
-    /// ordering by the application, e.g. to read the availability status
-    /// before reading the results. ====
-    /// </para>
     /// </summary>
     [Flags]
     public enum QueryResultFlags

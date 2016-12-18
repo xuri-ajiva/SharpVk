@@ -31,11 +31,6 @@ namespace SharpVk
     /// Structure specifying the parameters of a newly created image object.
     /// </para>
     /// <para>
-    /// Valid limits for the image pname:extent, pname:mipLevels,
-    /// pname:arrayLayers and pname:samples members are queried with the
-    /// flink:vkGetPhysicalDeviceImageFormatProperties command.
-    /// </para>
-    /// <para>
     /// Images created with pname:tiling equal to ename:VK_IMAGE_TILING_LINEAR
     /// have further restrictions on their limits and capabilities compared to
     /// images created with pname:tiling equal to
@@ -52,11 +47,20 @@ namespace SharpVk
     /// </para>
     /// <para>
     /// Implementations may: support additional limits and capabilities beyond
-    /// those listed above. To determine the specific capabilities of an
-    /// implementation, query the valid pname:usage bits by calling
-    /// flink:vkGetPhysicalDeviceFormatProperties and the valid limits for
-    /// pname:mipLevels and pname:arrayLayers by calling
-    /// flink:vkGetPhysicalDeviceImageFormatProperties.
+    /// those listed above.
+    /// </para>
+    /// <para>
+    /// To query an implementation's specific capabilities for a given
+    /// combination of pname:format, pname:type, pname:tiling, pname:usage, and
+    /// pname:flags, call flink:vkGetPhysicalDeviceImageFormatProperties. The
+    /// return value indicates whether that combination of image settings is
+    /// supported. On success, the sname:VkImageFormatProperties output
+    /// parameter indicates the set of valid pname:samples bits and the limits
+    /// for pname:extent, pname:mipLevels, and pname:arrayLayers.
+    /// </para>
+    /// <para>
+    /// To determine the set of valid pname:usage bits for a given format, call
+    /// flink:vkGetPhysicalDeviceFormatProperties.
     /// </para>
     /// </summary>
     public struct ImageCreateInfo

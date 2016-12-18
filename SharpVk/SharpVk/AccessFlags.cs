@@ -28,65 +28,20 @@ namespace SharpVk
 {
     /// <summary>
     /// <para>
-    /// Bitmask specifying classes of memory access the will participate in a
-    /// memory barrier dependency.
+    /// Bitmask specifying memory access types that will participate in a
+    /// memory dependency.
     /// </para>
     /// <para>
-    /// Color attachment reads and writes are automatically (without memory or
-    /// execution dependencies) coherent and ordered against themselves and
-    /// each other for a given sample within a subpass of a render pass
-    /// instance, executing in &lt;&lt;primrast-order,rasterization
-    /// order&gt;&gt;. Similarly, depth/stencil attachment reads and writes are
-    /// automatically coherent and ordered against themselves and each other in
-    /// the same circumstances.
-    /// </para>
-    /// <para>
-    /// Shader reads and/or writes through two variables (in the same or
-    /// different shader invocations) decorated with code:Coherent and which
-    /// use the same image view or buffer view are automatically coherent with
-    /// each other, but require execution dependencies if a specific order is
-    /// desired. Similarly, shader atomic operations are coherent with each
-    /// other and with code:Coherent variables. Non-code:Coherent shader memory
-    /// accesses require memory dependencies for writes to be available and
-    /// reads to be visible.
-    /// </para>
-    /// <para>
-    /// Certain memory access types are only supported on queues that support a
-    /// particular set of operations. The following table lists, for each
-    /// access flag, which queue capability flag must: be supported by the
-    /// queue. When multiple flags are enumerated in the second column of the
-    /// table it means that the access type is supported on the queue if it
-    /// supports any of the listed capability flags. For further details on
-    /// queue capabilities see
-    /// &lt;&lt;devsandqueues-physical-device-enumeration,Physical Device
-    /// Enumeration&gt;&gt; and &lt;&lt;devsandqueues-queues,Queues&gt;&gt;.
-    /// </para>
-    /// <para>
-    /// .Supported access flags
-    /// [width="100%",cols="67%,33%",options="header",align="center"] |====
-    /// |Access flag | Required queue capability flag
-    /// |ename:VK_ACCESS_INDIRECT_COMMAND_READ_BIT |
-    /// ename:VK_QUEUE_GRAPHICS_BIT or ename:VK_QUEUE_COMPUTE_BIT
-    /// |ename:VK_ACCESS_INDEX_READ_BIT | ename:VK_QUEUE_GRAPHICS_BIT
-    /// |ename:VK_ACCESS_VERTEX_ATTRIBUTE_READ_BIT |
-    /// ename:VK_QUEUE_GRAPHICS_BIT |ename:VK_ACCESS_UNIFORM_READ_BIT |
-    /// ename:VK_QUEUE_GRAPHICS_BIT or ename:VK_QUEUE_COMPUTE_BIT
-    /// |ename:VK_ACCESS_INPUT_ATTACHMENT_READ_BIT |
-    /// ename:VK_QUEUE_GRAPHICS_BIT |ename:VK_ACCESS_SHADER_READ_BIT |
-    /// ename:VK_QUEUE_GRAPHICS_BIT or ename:VK_QUEUE_COMPUTE_BIT
-    /// |ename:VK_ACCESS_SHADER_WRITE_BIT | ename:VK_QUEUE_GRAPHICS_BIT or
-    /// ename:VK_QUEUE_COMPUTE_BIT |ename:VK_ACCESS_COLOR_ATTACHMENT_READ_BIT |
-    /// ename:VK_QUEUE_GRAPHICS_BIT |ename:VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT
-    /// | ename:VK_QUEUE_GRAPHICS_BIT
-    /// |ename:VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_READ_BIT |
-    /// ename:VK_QUEUE_GRAPHICS_BIT |ename:VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT
-    /// | ename:VK_QUEUE_GRAPHICS_BIT |ename:VK_ACCESS_TRANSFER_READ_BIT |
-    /// ename:VK_QUEUE_GRAPHICS_BIT, ename:VK_QUEUE_COMPUTE_BIT or
-    /// ename:VK_QUEUE_TRANSFER_BIT |ename:VK_ACCESS_TRANSFER_WRITE_BIT |
-    /// ename:VK_QUEUE_GRAPHICS_BIT, ename:VK_QUEUE_COMPUTE_BIT or
-    /// ename:VK_QUEUE_TRANSFER_BIT |ename:VK_ACCESS_HOST_READ_BIT | None
-    /// |ename:VK_ACCESS_HOST_WRITE_BIT | None |ename:VK_ACCESS_MEMORY_READ_BIT
-    /// | None |ename:VK_ACCESS_MEMORY_WRITE_BIT | None |====
+    /// Certain access types are only performed by a subset of pipeline stages.
+    /// Any synchronization command that takes both stage masks and access
+    /// masks uses both to define the
+    /// &lt;&lt;synchronization-dependencies-access-scopes, access
+    /// scopes&gt;&gt; - only the specified access types performed by the
+    /// specified stages are included in the access scope. An application must:
+    /// not specify an access flag in a synchronization command if it does not
+    /// include a pipeline stage in the corresponding stage mask that is able
+    /// to perform accesses of that type. The following table lists, for each
+    /// access flag, which pipeline stages can: perform that type of access.
     /// </para>
     /// </summary>
     [Flags]
@@ -98,131 +53,152 @@ namespace SharpVk
         None = 0, 
         
         /// <summary>
-        /// ename:VK_ACCESS_INDIRECT_COMMAND_READ_BIT indicates that the access
-        /// is an indirect command structure read as part of an indirect
-        /// drawing command.
+        /// ename:VK_ACCESS_INDIRECT_COMMAND_READ_BIT: Read access to an
+        /// indirect command structure read as part of an indirect drawing or
+        /// dispatch command.
         /// </summary>
         IndirectCommandRead = 1 << 0, 
         
         /// <summary>
-        /// ename:VK_ACCESS_INDEX_READ_BIT indicates that the access is an
-        /// index buffer read.
+        /// ename:VK_ACCESS_INDEX_READ_BIT: Read access to an index buffer as
+        /// part of an indexed drawing command, bound by
+        /// flink:vkCmdBindIndexBuffer.
         /// </summary>
         IndexRead = 1 << 1, 
         
         /// <summary>
-        /// ename:VK_ACCESS_VERTEX_ATTRIBUTE_READ_BIT indicates that the access
-        /// is a read via the vertex input bindings.
+        /// ename:VK_ACCESS_VERTEX_ATTRIBUTE_READ_BIT: Read access to a vertex
+        /// buffer as part of a drawing command, bound by
+        /// flink:vkCmdBindVertexBuffers.
         /// </summary>
         VertexAttributeRead = 1 << 2, 
         
         /// <summary>
-        /// ename:VK_ACCESS_UNIFORM_READ_BIT indicates that the access is a
-        /// read via a uniform buffer or dynamic uniform buffer descriptor.
+        /// ename:VK_ACCESS_UNIFORM_READ_BIT: Read access to a
+        /// &lt;&lt;descriptorsets-uniformbuffer, uniform buffer&gt;&gt;.
         /// </summary>
         UniformRead = 1 << 3, 
         
         /// <summary>
-        /// ename:VK_ACCESS_INPUT_ATTACHMENT_READ_BIT indicates that the access
-        /// is a read via an input attachment descriptor.
+        /// ename:VK_ACCESS_INPUT_ATTACHMENT_READ_BIT: Read access to an
+        /// &lt;&lt;renderpass, input attachment&gt;&gt; within a renderpass
+        /// during fragment shading.
         /// </summary>
         InputAttachmentRead = 1 << 4, 
         
         /// <summary>
-        /// ename:VK_ACCESS_SHADER_READ_BIT indicates that the access is a read
-        /// from a shader via any other descriptor type.
+        /// ename:VK_ACCESS_SHADER_READ_BIT: Read access to a
+        /// &lt;&lt;descriptorsets-storagebuffer, storage buffer&gt;&gt;,
+        /// &lt;&lt;descriptorsets-uniformtexelbuffer, uniform texel
+        /// buffer&gt;&gt;, &lt;&lt;descriptorsets-storagetexelbuffer, storage
+        /// texel buffer&gt;&gt;, &lt;&lt;descriptorsets-sampledimage, sampled
+        /// image&gt;&gt;, or &lt;&lt;descriptorsets-storageimage, storage
+        /// image&gt;&gt;.
         /// </summary>
         ShaderRead = 1 << 5, 
         
         /// <summary>
-        /// ename:VK_ACCESS_SHADER_WRITE_BIT indicates that the access is a
-        /// write or atomic from a shader via the same descriptor types as in
-        /// ename:VK_ACCESS_SHADER_READ_BIT.
+        /// ename:VK_ACCESS_SHADER_WRITE_BIT: Write access to a
+        /// &lt;&lt;descriptorsets-storagebuffer, storage buffer&gt;&gt;,
+        /// &lt;&lt;descriptorsets-storagetexelbuffer, storage texel
+        /// buffer&gt;&gt;, or &lt;&lt;descriptorsets-storageimage, storage
+        /// image&gt;&gt;.
         /// </summary>
         ShaderWrite = 1 << 6, 
         
         /// <summary>
-        /// ename:VK_ACCESS_COLOR_ATTACHMENT_READ_BIT indicates that the access
-        /// is a read via a color attachment.
+        /// ename:VK_ACCESS_COLOR_ATTACHMENT_READ_BIT: Read access to a
+        /// &lt;&lt;renderpass, color attachment&gt;&gt;, such as via
+        /// &lt;&lt;framebuffer-blending, blending&gt;&gt;,
+        /// &lt;&lt;framebuffer-logicop, logic operations&gt;&gt;, or via
+        /// certain &lt;&lt;renderpass-load-store-ops, subpass load
+        /// operations&gt;&gt;.
         /// </summary>
         ColorAttachmentRead = 1 << 7, 
         
         /// <summary>
-        /// ename:VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT indicates that the
-        /// access is a write via a color or resolve attachment.
+        /// ename:VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT: Write access to a
+        /// &lt;&lt;renderpass, color or resolve attachment&gt;&gt; during a
+        /// &lt;&lt;renderpass, render pass&gt;&gt; or via certain
+        /// &lt;&lt;renderpass-load-store-ops, subpass load and store
+        /// operations&gt;&gt;.
         /// </summary>
         ColorAttachmentWrite = 1 << 8, 
         
         /// <summary>
-        /// ename:VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_READ_BIT indicates that
-        /// the access is a read via a depth/stencil attachment.
+        /// ename:VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_READ_BIT: Read access to a
+        /// &lt;&lt;renderpass, depth/stencil attachment&gt;&gt;, via
+        /// &lt;&lt;fragops-ds-state, depth or stencil operations&gt;&gt; or
+        /// via certain &lt;&lt;renderpass-load-store-ops, subpass load
+        /// operations&gt;&gt;.
         /// </summary>
         DepthStencilAttachmentRead = 1 << 9, 
         
         /// <summary>
-        /// ename:VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT indicates that
-        /// the access is a write via a depth/stencil attachment.
+        /// ename:VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT: Write access to
+        /// a &lt;&lt;renderpass, depth/stencil attachment&gt;&gt;, via
+        /// &lt;&lt;fragops-ds-state, depth or stencil operations&gt;&gt; or
+        /// via certain &lt;&lt;renderpass-load-store-ops, subpass load and
+        /// store operations&gt;&gt;.
         /// </summary>
         DepthStencilAttachmentWrite = 1 << 10, 
         
         /// <summary>
-        /// ename:VK_ACCESS_TRANSFER_READ_BIT indicates that the access is a
-        /// read from a transfer (copy, blit, resolve, etc.) operation. For the
-        /// complete set of transfer operations, see
-        /// &lt;&lt;synchronization-transfer,ename:VK_PIPELINE_STAGE_TRANSFER_BIT&gt;&gt;.
+        /// ename:VK_ACCESS_TRANSFER_READ_BIT: Read access to an image or
+        /// buffer in a &lt;&lt;copies, copy&gt;&gt; operation.
         /// </summary>
         TransferRead = 1 << 11, 
         
         /// <summary>
-        /// ename:VK_ACCESS_TRANSFER_WRITE_BIT indicates that the access is a
-        /// write from a transfer (copy, blit, resolve, etc.) operation. For
-        /// the complete set of transfer operations, see
-        /// &lt;&lt;synchronization-transfer,ename:VK_PIPELINE_STAGE_TRANSFER_BIT&gt;&gt;.
+        /// ename:VK_ACCESS_TRANSFER_WRITE_BIT: Write access to an image or
+        /// buffer in a &lt;&lt;clears, clear&gt;&gt; or &lt;&lt;copies,
+        /// copy&gt;&gt; operation.
         /// </summary>
         TransferWrite = 1 << 12, 
         
         /// <summary>
-        /// ename:VK_ACCESS_HOST_READ_BIT indicates that the access is a read
-        /// via the host.
+        /// ename:VK_ACCESS_HOST_READ_BIT: Read access by a host operation.
         /// </summary>
         HostRead = 1 << 13, 
         
         /// <summary>
-        /// ename:VK_ACCESS_HOST_WRITE_BIT indicates that the access is a write
-        /// via the host.
+        /// ename:VK_ACCESS_HOST_WRITE_BIT: Write access by a host operation.
         /// </summary>
         HostWrite = 1 << 14, 
         
         /// <summary>
-        /// ename:VK_ACCESS_MEMORY_READ_BIT indicates that the access is a read
-        /// via a non-specific unit attached to the memory. This unit may: be
-        /// external to the Vulkan device or otherwise not part of the core
-        /// Vulkan pipeline. When included in pname:dstAccessMask, all writes
-        /// using access types in pname:srcAccessMask performed by pipeline
-        /// stages in pname:srcStageMask must: be visible in memory.
+        /// ename:VK_ACCESS_MEMORY_READ_BIT: Read access via non-specific
+        /// entities. These entities include the Vulkan device and host, but
+        /// may: also include entities external to the Vulkan device or
+        /// otherwise not part of the core Vulkan pipeline. When included in a
+        /// destination access mask, makes all available writes visible to all
+        /// future read accesses on entities known to the Vulkan device.
         /// </summary>
         MemoryRead = 1 << 15, 
         
         /// <summary>
-        /// ename:VK_ACCESS_MEMORY_WRITE_BIT indicates that the access is a
-        /// write via a non-specific unit attached to the memory. This unit
-        /// may: be external to the Vulkan device or otherwise not part of the
-        /// core Vulkan pipeline. When included in pname:srcAccessMask, all
-        /// access types in pname:dstAccessMask from pipeline stages in
-        /// pname:dstStageMask will observe the side effects of commands that
-        /// executed before the barrier. When included in pname:dstAccessMask
-        /// all writes using access types in pname:srcAccessMask performed by
-        /// pipeline stages in pname:srcStageMask must: be visible in memory.
+        /// ename:VK_ACCESS_MEMORY_WRITE_BIT: Write access via non-specific
+        /// entities. These entities include the Vulkan device and host, but
+        /// may: also include entities external to the Vulkan device or
+        /// otherwise not part of the core Vulkan pipeline. When included in a
+        /// source access mask, all writes that are performed by entities known
+        /// to the Vulkan device are made available. When included in a
+        /// destination access mask, makes all available writes visible to all
+        /// future write accesses on entities known to the Vulkan device.
+        /// ifdef::VK_NVX_device_generated_commands[]
         /// </summary>
         MemoryWrite = 1 << 16, 
         
         /// <summary>
-        /// -
+        /// ename:VK_ACCESS_COMMAND_PROCESS_READ_BIT_NVX: Reads from
+        /// sname:VkBuffer inputs to flink:vkCmdProcessCommandsNVX.
         /// </summary>
         CommandProcessReadBitNvx = 17, 
         
         /// <summary>
-        /// -
+        /// ename:VK_ACCESS_COMMAND_PROCESS_WRITE_BIT_NVX: Writes to the target
+        /// command buffer in flink:vkCmdProcessCommandsNVX.
+        /// endif::VK_NVX_device_generated_commands[]
         /// </summary>
         CommandProcessWriteBitNvx = 18, 
     }

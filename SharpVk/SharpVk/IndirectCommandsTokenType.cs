@@ -27,7 +27,26 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// -
+    /// <para>
+    /// Enum specifying.
+    /// </para>
+    /// <para>
+    /// .Supported indirect command tokens
+    /// [width="80%",cols="67%,33%",options="header",align="center"] |====
+    /// |Token type | Equivalent command
+    /// |ename:VK_INDIRECT_COMMANDS_TOKEN_PIPELINE_NVX |
+    /// fname:vkCmdBindPipeline |ename:VK_INDIRECT_COMMANDS_TOKEN_DESCRIPTOR_SET_NVX
+    /// | fname:vkCmdBindDescriptorSets
+    /// |ename:VK_INDIRECT_COMMANDS_TOKEN_INDEX_BUFFER_NVX |
+    /// fname:vkCmdBindIndexBuffer |ename:VK_INDIRECT_COMMANDS_TOKEN_VERTEX_BUFFER_NVX
+    /// | fname:vkCmdBindVertexBuffers
+    /// |ename:VK_INDIRECT_COMMANDS_TOKEN_PUSH_CONSTANT_NVX |
+    /// fname:vkCmdPushConstants |ename:VK_INDIRECT_COMMANDS_TOKEN_DRAW_INDEXED_NVX
+    /// | fname:vkCmdDrawIndexedIndirect
+    /// |ename:VK_INDIRECT_COMMANDS_TOKEN_DRAW_NVX | fname:vkCmdDrawIndirect
+    /// |ename:VK_INDIRECT_COMMANDS_TOKEN_DISPATCH_NVX |
+    /// fname:vkCmdDispatchIndirect |====
+    /// </para>
     /// </summary>
     public enum IndirectCommandsTokenType
     {

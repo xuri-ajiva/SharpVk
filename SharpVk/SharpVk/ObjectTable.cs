@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// -
+    /// Opaque handle to an object table.
     /// </summary>
     public partial class ObjectTable
         : IDisposable
@@ -55,7 +55,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// -
+        /// Destroy a object table.
         /// </summary>
         public void Destroy()
         {

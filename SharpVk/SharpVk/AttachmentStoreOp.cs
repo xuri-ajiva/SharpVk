@@ -37,32 +37,34 @@ namespace SharpVk
     /// pname:stencilStoreOp are ignored. If the format has depth and/or
     /// stencil components, pname:loadOp and pname:storeOp apply only to the
     /// depth data, while pname:stencilLoadOp and pname:stencilStoreOp define
-    /// how the stencil data is handled.
+    /// how the stencil data is handled. pname:loadOp and pname:stencilLoadOp
+    /// define the _load operations_ that execute as part of the first subpass
+    /// that uses the attachment. pname:storeOp and pname:stencilStoreOp define
+    /// the _store operations_ that execute as part of the last subpass that
+    /// uses the attachment.
     /// </para>
     /// <para>
-    /// During a render pass instance, input/color attachments with color
-    /// formats that have a component size of 8, 16, or 32 bits must: be
-    /// represented in the attachment's format throughout the instance.
-    /// Attachments with other floating- or fixed-point color formats, or with
-    /// depth components may: be represented in a format with a precision
-    /// higher than the attachment format, but must: be represented with the
-    /// same range. When such a component is loaded via the pname:loadOp, it
-    /// will be converted into an implementation-dependent format used by the
-    /// render pass. Such components must: be converted from the render pass
-    /// format, to the format of the attachment, before they are stored or
-    /// resolved at the end of a render pass instance via pname:storeOp.
-    /// Conversions occur as described in &lt;&lt;fundamentals-numerics,Numeric
-    /// Representation and Computation&gt;&gt; and
-    /// &lt;&lt;fundamentals-fixedconv, Fixed-Point Data Conversions&gt;&gt;.
+    /// The load operation for each value in an attachment used by a subpass
+    /// happens-before any command recorded into that subpass reads from that
+    /// value. Load operations for attachments with a depth/stencil format
+    /// execute in the ename:VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT
+    /// pipeline stage. Load operations for attachments with a color format
+    /// execute in the ename:VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT
+    /// pipeline stage.
     /// </para>
     /// <para>
-    /// If pname:flags includes ename:VK_ATTACHMENT_DESCRIPTION_MAY_ALIAS_BIT,
-    /// then the attachment is treated as if it shares physical memory with
-    /// another attachment in the same render pass. This information limits the
-    /// ability of the implementation to reorder certain operations (like
-    /// layout transitions and the pname:loadOp) such that it is not improperly
-    /// reordered against other uses of the same physical memory via a
-    /// different attachment. This is described in more detail below.
+    /// Store operations for each value in an attachment used by a subpass
+    /// happen-after any command recorded into that subpass writes to that
+    /// value. Store operations for attachments with a depth/stencil format
+    /// execute in the ename:VK_PIPELINE_STAGE_LATE_FRAGMENT_TESTS_BIT pipeline
+    /// stage. Store operations for attachments with a color format execute in
+    /// the ename:VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT pipeline stage.
+    /// </para>
+    /// <para>
+    /// If an attachment is not used by any subpass, then pname:loadOp,
+    /// pname:storeOp, pname:stencilStoreOp, and pname:stencilLoadOp are
+    /// ignored, and the attachment's memory contents will not be modified by
+    /// execution of a render pass instance.
     /// </para>
     /// </summary>
     public enum AttachmentStoreOp

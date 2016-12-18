@@ -29,7 +29,17 @@ using System.Text;
 namespace SharpVk
 {
     /// <summary>
-    /// -
+    /// <para>
+    /// Struct specifying the details of an indirect command layout token.
+    /// </para>
+    /// <para>
+    /// * pname:type specifies the token command type. * pname:bindingUnit has
+    /// a different meaning depending on the type, please refer pseudo code
+    /// further down for details. * pname:dynamicCount has a different meaning
+    /// depending on the type, please refer pseudo code further down for
+    /// details. * pname:divisor defines the rate at which the input data
+    /// buffers are accessed.
+    /// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct IndirectCommandsLayoutToken

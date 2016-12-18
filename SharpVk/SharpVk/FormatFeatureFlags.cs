@@ -78,69 +78,6 @@ namespace SharpVk
     /// ename:VK_FORMAT_FEATURE_BLIT_DST_BIT:: sname:VkImage can: be used as
     /// pname:dstImage for the fname:vkCmdBlitImage command.
     /// </para>
-    /// <para>
-    /// ename:VK_FORMAT_FEATURE_SAMPLED_IMAGE_FILTER_LINEAR_BIT:: If
-    /// ename:VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT is also set,
-    /// sname:VkImageView can: be used with a sampler that has either of
-    /// pname:magFilter or pname:minFilter set to ename:VK_FILTER_LINEAR, or
-    /// pname:mipmapMode set to ename:VK_SAMPLER_MIPMAP_MODE_LINEAR. If
-    /// ename:VK_FORMAT_FEATURE_BLIT_SRC_BIT is also set, sname:VkImage can be
-    /// used as the pname:srcImage to flink:vkCmdBlitImage with a pname:filter
-    /// of ename:VK_FILTER_LINEAR. This bit must: only be exposed for formats
-    /// that also support the ename:VK_FORMAT_FEATURE_SAMPLED_IMAGE_BIT or
-    /// ename:VK_FORMAT_FEATURE_BLIT_SRC_BIT. + If the format being queried is
-    /// a depth/stencil format, this bit only indicates that the depth aspect
-    /// (not the stencil aspect) of an image of this format supports linear
-    /// filtering, and that linear filtering of the depth aspect is supported
-    /// whether depth compare is enabled in the sampler or not. If this bit is
-    /// not present, linear filtering with depth compare disabled is
-    /// unsupported and linear filtering with depth compare enabled is
-    /// supported, but may: compute the filtered value in an
-    /// implementation-dependent manner which differs from the normal rules of
-    /// linear filtering. The resulting value must: be in the range [eq]#[0,1]#
-    /// and should: be proportional to, or a weighted average of, the number of
-    /// comparison passes or failures.
-    /// </para>
-    /// <para>
-    /// ifdef::VK_IMG_filter_cubic[]
-    /// include::VK_IMG_filter_cubic/filter_cubic_sampled_bit_description.txt[] endif::VK_IMG_filter_cubic[]
-    /// </para>
-    /// <para>
-    /// The following features may: appear in pname:bufferFeatures, indicating
-    /// they are supported by buffers or buffer views created with the queried
-    /// flink:vkGetPhysicalDeviceFormatProperties::pname:format:
-    /// </para>
-    /// <para>
-    /// ename:VK_FORMAT_FEATURE_UNIFORM_TEXEL_BUFFER_BIT:: Format can: be used
-    /// to create a sname:VkBufferView that can: be bound to a
-    /// ename:VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER descriptor.
-    /// </para>
-    /// <para>
-    /// ename:VK_FORMAT_FEATURE_STORAGE_TEXEL_BUFFER_BIT:: Format can: be used
-    /// to create a sname:VkBufferView that can: be bound to a
-    /// ename:VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER descriptor.
-    /// </para>
-    /// <para>
-    /// ename:VK_FORMAT_FEATURE_STORAGE_TEXEL_BUFFER_ATOMIC_BIT:: Atomic
-    /// operations are supported on
-    /// ename:VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER with this format.
-    /// </para>
-    /// <para>
-    /// ename:VK_FORMAT_FEATURE_VERTEX_BUFFER_BIT:: Format can: be used as a
-    /// vertex attribute format
-    /// (sname:VkVertexInputAttributeDescription::pname:format).
-    /// </para>
-    /// <para>
-    /// [NOTE] .Note ==== If no format feature flags are supported, then the
-    /// only possible use would be image transfers - which alone are not
-    /// useful. As such, if no format feature flags are supported, the format
-    /// itself is not supported, and images of that format cannot be created.
-    /// ====
-    /// </para>
-    /// <para>
-    /// If pname:format is a block-compression format, then buffers must: not
-    /// support any features for the format.
-    /// </para>
     /// </summary>
     [Flags]
     public enum FormatFeatureFlags

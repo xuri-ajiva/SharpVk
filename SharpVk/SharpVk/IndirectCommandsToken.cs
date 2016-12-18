@@ -27,12 +27,13 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// -
+    /// Structure specifying parameters for the reservation of command buffer
+    /// space.
     /// </summary>
     public struct IndirectCommandsToken
     {
         /// <summary>
-        /// -
+        /// pname:tokenType specifies the token command type.
         /// </summary>
         public IndirectCommandsTokenType TokenType
         {
@@ -41,7 +42,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// -
+        /// pname:buffer specifies the sname:VkBuffer storing the functional
+        /// arguments for each squence. These argumetns can be written by the
+        /// device.
         /// </summary>
         public Buffer Buffer
         {
@@ -50,7 +53,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// -
+        /// pname:offset specified an offset into pname:buffer where the
+        /// arguments start.
         /// </summary>
         public ulong Offset
         {
