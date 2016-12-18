@@ -48,8 +48,9 @@ namespace SharpVk
 
         private readonly ushort[] indices = { 0, 1, 2, 2, 3, 0 };
 
-        private IntPtr window;
+        private WindowHandle window;
         private Instance instance;
+        private DebugReportCallback debugCallback;
         private Surface surface;
         private PhysicalDevice physicalDevice;
         private Device device;
@@ -133,8 +134,10 @@ namespace SharpVk
         {
             this.initialTimestamp = Stopwatch.GetTimestamp();
 
-            while (Glfw3.glfwWindowShouldClose(this.window) == 0)
+            while (!Glfw3.glfwWindowShouldClose(this.window))
             {
+                this.device.WaitIdle();
+
                 this.UpdateUniformBuffer();
                 this.DrawFrame();
 
@@ -219,6 +222,8 @@ namespace SharpVk
             this.commandPool.Dispose();
             this.commandPool = null;
             this.commandBuffers = null;
+            this.transientCommandPool.Dispose();
+            this.transientCommandPool = null;
 
             foreach (var frameBuffer in this.frameBuffers)
             {
@@ -252,6 +257,9 @@ namespace SharpVk
 
             this.surface.Dispose();
             this.surface = null;
+
+            this.debugCallback.Dispose();
+            this.debugCallback = null;
 
             this.instance.Dispose();
             this.instance = null;
@@ -314,6 +322,8 @@ namespace SharpVk
                 enabledLayers.Add("VK_LAYER_LUNARG_standard_validation");
             }
 
+            var glfwExtensions = Glfw3.glfwGetRequiredInstanceExtensions();
+
             this.instance = Instance.Create(new InstanceCreateInfo
             {
                 ApplicationInfo = new ApplicationInfo
@@ -324,16 +334,11 @@ namespace SharpVk
                     EngineVersion = Constants.SharpVkVersion,
                     ApiVersion = Constants.ApiVersion10
                 },
-                EnabledExtensionNames = new[]
-                {
-                    KhrSurface.ExtensionName,
-                    KhrWin32Surface.ExtensionName,
-                    ExtDebugReport.ExtensionName
-                },
+                EnabledExtensionNames = glfwExtensions.Concat(new[] { ExtDebugReport.ExtensionName }).ToArray(),
                 EnabledLayerNames = enabledLayers.ToArray()
             }, null);
 
-            this.instance.CreateDebugReportCallback(new DebugReportCallbackCreateInfo
+            this.debugCallback = this.instance.CreateDebugReportCallback(new DebugReportCallbackCreateInfo
             {
                 Flags = DebugReportFlags.Error | DebugReportFlags.Warning | DebugReportFlags.PerformanceWarning,
                 PfnCallback = DebugReportDelegate
@@ -344,28 +349,14 @@ namespace SharpVk
 
         private static Bool32 DebugReport(DebugReportFlags flags, DebugReportObjectType objectType, ulong @object, Size location, int messageCode, string layerPrefix, string message, IntPtr userData)
         {
-            Console.WriteLine(message);
+            Debug.WriteLine(message);
 
             return false;
         }
 
         private void CreateSurface()
         {
-            //this.surface = this.instance.CreateWin32Surface(new Win32SurfaceCreateInfo
-            //{
-            //    Hwnd = this.window.Handle
-            //});
-
-            ulong surfaceHandle = 0;
-
-            Result result = Glfw3.glfwCreateWindowSurface((IntPtr)this.instance.RawHandle.ToUInt64(), this.window, IntPtr.Zero, ref surfaceHandle);
-
-            if (SharpVkException.IsError(result))
-            {
-                throw SharpVkException.Create(result);
-            }
-
-            this.surface = Surface.CreateFromHandle(this.instance, surfaceHandle);
+            this.surface = this.instance.CreateGlfwSurface(this.window);
         }
 
         private void PickPhysicalDevice()

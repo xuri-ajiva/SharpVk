@@ -77,22 +77,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Glfw\Glfw3.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Shaders\Shader.vert" />
-    <Content Include="glfw3.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Shaders\vert.spv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SharpVk.Glfw\SharpVk.Glfw.csproj">
+      <Project>{e61d7715-892d-4438-b6ed-08aa7bf1fb93}</Project>
+      <Name>SharpVk.Glfw</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SharpVk.Shanq\SharpVk.Shanq.csproj">
       <Project>{6DC5E1D5-2186-4AA4-9C49-90DA7458EE85}</Project>
       <Name>SharpVk.Shanq</Name>
