@@ -89,18 +89,19 @@ namespace SharpVk
         /// <summary>
         /// Retrieve the status of an event object.
         /// </summary>
-        public void GetStatus()
+        public Result GetStatus()
         {
             unsafe
             {
                 try
                 {
-                    Result commandResult;
-                    commandResult = Interop.Commands.vkGetEventStatus(this.parent.handle, this.handle);
-                    if (SharpVkException.IsError(commandResult))
+                    Result result = default(Result);
+                    result = Interop.Commands.vkGetEventStatus(this.parent.handle, this.handle);
+                    if (SharpVkException.IsError(result))
                     {
-                        throw SharpVkException.Create(commandResult);
+                        throw SharpVkException.Create(result);
                     }
+                    return result;
                 }
                 finally
                 {

@@ -418,13 +418,16 @@ namespace SharpVk.VkXml
 
                 string verb = verbExceptions.Contains(nameParts[0]) ? nameParts[1] : nameParts[0];
 
+                string[] successCodes = vkCommand.Attribute("successcodes")?.Value?.Split(',');
+
                 var newCommand = new ParsedCommand
                 {
                     VkName = name,
                     Type = type,
                     NameParts = nameParts,
                     Extension = extension,
-                    Verb = verb
+                    Verb = verb,
+                    SuccessCodes = successCodes
                 };
 
                 commandXml.Add(name, newCommand);
@@ -1027,6 +1030,7 @@ namespace SharpVk.VkXml
         {
             public string Verb;
             public string ExtensionType;
+            public string[] SuccessCodes;
             public readonly List<ParsedParam> Params = new List<ParsedParam>();
         }
 

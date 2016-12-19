@@ -179,21 +179,22 @@ namespace SharpVk
         /// <summary>
         /// Queue an image for presentation.
         /// </summary>
-        public void Present(PresentInfo presentInfo)
+        public Result Present(PresentInfo presentInfo)
         {
             unsafe
             {
                 try
                 {
                     var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkQueuePresentKHR>("vkQueuePresentKHR", "device");
-                    Result commandResult;
+                    Result result = default(Result);
                     Interop.PresentInfo marshalledPresentInfo;
                     marshalledPresentInfo = presentInfo.Pack();
-                    commandResult = commandDelegate(this.handle, &marshalledPresentInfo);
-                    if (SharpVkException.IsError(commandResult))
+                    result = commandDelegate(this.handle, &marshalledPresentInfo);
+                    if (SharpVkException.IsError(result))
                     {
-                        throw SharpVkException.Create(commandResult);
+                        throw SharpVkException.Create(result);
                     }
+                    return result;
                 }
                 finally
                 {

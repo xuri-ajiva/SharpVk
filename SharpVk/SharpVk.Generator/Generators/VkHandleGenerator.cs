@@ -203,9 +203,18 @@ namespace SharpVk.Generator.Generators
                                                     tryBlock.EmitVariableDeclaration(method.ReturnTypeName, "result", Default(method.ReturnTypeName));
                                                 }
 
+                                                string commandResultVariable = "commandResult";
+
                                                 if (method.HasVkResult)
                                                 {
-                                                    tryBlock.EmitVariableDeclaration("Result", "commandResult");
+                                                    if (method.IsPassthroughResult)
+                                                    {
+                                                        commandResultVariable = "result";
+                                                    }
+                                                    else
+                                                    {
+                                                        tryBlock.EmitVariableDeclaration("Result", "commandResult");
+                                                    }
                                                 }
 
                                                 foreach (var statement in method.MarshalToStatements)
@@ -215,7 +224,7 @@ namespace SharpVk.Generator.Generators
 
                                                 if (method.IsDoubleInvoke)
                                                 {
-                                                    EmitInvokeCommand(tryBlock, method, commandExpression, x => x.PreInvokeArgumentName ?? x.ArgumentName);
+                                                    EmitInvokeCommand(tryBlock, method, commandExpression, x => x.PreInvokeArgumentName ?? x.ArgumentName, commandResultVariable);
 
                                                     foreach (var statement in method.MarshalMidStatements)
                                                     {
@@ -223,7 +232,7 @@ namespace SharpVk.Generator.Generators
                                                     }
                                                 }
 
-                                                EmitInvokeCommand(tryBlock, method, commandExpression, x => x.ArgumentName);
+                                                EmitInvokeCommand(tryBlock, method, commandExpression, x => x.ArgumentName, commandResultVariable);
 
                                                 foreach (var statement in method.MarshalFromStatements)
                                                 {
@@ -271,7 +280,7 @@ namespace SharpVk.Generator.Generators
             });
         }
 
-        private static void EmitInvokeCommand(CodeBlockBuilder tryBlock, TypeSet.VkHandleMethod method, Func<IEnumerable<Action<ExpressionBuilder>>, Action<ExpressionBuilder>> commandExpression, Func<TypeSet.VkMethodParam, string> argumentNameSelector)
+        private static void EmitInvokeCommand(CodeBlockBuilder tryBlock, TypeSet.VkHandleMethod method, Func<IEnumerable<Action<ExpressionBuilder>>, Action<ExpressionBuilder>> commandExpression, Func<TypeSet.VkMethodParam, string> argumentNameSelector, string commandResultVariable)
         {
             foreach (var fixedArgument in method.Parameters.Where(x => !string.IsNullOrEmpty(x.FixedName)))
             {
@@ -280,13 +289,13 @@ namespace SharpVk.Generator.Generators
 
             var arguments = method.Parameters.Select(argumentNameSelector).Select(Variable);
 
-            if (method.HasVkResult)
-            {
-                tryBlock.EmitAssignment(Variable("commandResult"), commandExpression(arguments));
-            }
-            else if (method.IsPassthroughResult)
+            if (method.IsPassthroughResult)
             {
                 tryBlock.EmitAssignment(Variable("result"), commandExpression(arguments));
+            }
+            else if(method.HasVkResult)
+            {
+                tryBlock.EmitAssignment(Variable(commandResultVariable), commandExpression(arguments));
             }
             else
             {
@@ -295,9 +304,9 @@ namespace SharpVk.Generator.Generators
 
             if (method.HasVkResult)
             {
-                tryBlock.EmitIfBlock(StaticCall("SharpVkException", "IsError", Variable("commandResult")), ifBlock =>
+                tryBlock.EmitIfBlock(StaticCall("SharpVkException", "IsError", Variable(commandResultVariable)), ifBlock =>
                 {
-                    ifBlock.EmitThrow(StaticCall("SharpVkException", "Create", Variable("commandResult")));
+                    ifBlock.EmitThrow(StaticCall("SharpVkException", "Create", Variable(commandResultVariable)));
                 });
             }
         }

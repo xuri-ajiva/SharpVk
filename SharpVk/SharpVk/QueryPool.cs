@@ -83,13 +83,13 @@ namespace SharpVk
         /// <summary>
         /// Copy results of queries in a query pool to a host memory region.
         /// </summary>
-        public void GetResults(uint firstQuery, uint queryCount, ArrayProxy<byte> data, DeviceSize stride, QueryResultFlags flags)
+        public Result GetResults(uint firstQuery, uint queryCount, ArrayProxy<byte> data, DeviceSize stride, QueryResultFlags flags)
         {
             unsafe
             {
                 try
                 {
-                    Result commandResult;
+                    Result result = default(Result);
                     GCHandle dataHandle = default(GCHandle);
                     byte* marshalledData = null;
                     if (data.Contents != ProxyContents.Null)
@@ -111,12 +111,13 @@ namespace SharpVk
                     {
                         marshalledData = null;
                     }
-                    commandResult = Interop.Commands.vkGetQueryPoolResults(this.parent.handle, this.handle, firstQuery, queryCount, (Size)(data.Length), marshalledData, stride, flags);
-                    if (SharpVkException.IsError(commandResult))
+                    result = Interop.Commands.vkGetQueryPoolResults(this.parent.handle, this.handle, firstQuery, queryCount, (Size)(data.Length), marshalledData, stride, flags);
+                    if (SharpVkException.IsError(result))
                     {
-                        throw SharpVkException.Create(commandResult);
+                        throw SharpVkException.Create(result);
                     }
                     if (dataHandle.IsAllocated) dataHandle.Free();
+                    return result;
                 }
                 finally
                 {

@@ -767,6 +767,11 @@ namespace SharpVk.VkXml
                     newMethod.ReturnTypeName = "bool";
                     newMethod.IsPassthroughResult = true;
                 }
+                else if (command.Type == "VkResult" && newMethod.ReturnTypeName == "void" && command.SuccessCodes.Count() > 1)
+                {
+                    newMethod.ReturnTypeName = "Result";
+                    newMethod.IsPassthroughResult = true;
+                }
 
                 newMethod.HasVkResult = command.Type == "VkResult";
 
