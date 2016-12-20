@@ -94,18 +94,24 @@ namespace SharpVk
         internal unsafe Interop.ComputePipelineCreateInfo Pack()
         {
             Interop.ComputePipelineCreateInfo result = default(Interop.ComputePipelineCreateInfo);
-            result.SType = StructureType.ComputePipelineCreateInfo;
-            result.Stage = this.Stage.Pack();
-            result.Layout = this.Layout?.Pack() ?? Interop.PipelineLayout.Null;
-            result.BasePipelineHandle = this.BasePipelineHandle?.Pack() ?? Interop.Pipeline.Null;
-            result.Flags = this.Flags;
-            result.BasePipelineIndex = this.BasePipelineIndex;
             return result;
         }
         
         internal unsafe Interop.ComputePipelineCreateInfo* MarshalTo()
         {
-            return (Interop.ComputePipelineCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.ComputePipelineCreateInfo*)Interop.HeapUtil.Allocate<Interop.ComputePipelineCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.ComputePipelineCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.ComputePipelineCreateInfo;
+            pointer->Stage = this.Stage.Pack();
+            pointer->Layout = this.Layout?.Pack() ?? Interop.PipelineLayout.Null;
+            pointer->BasePipelineHandle = this.BasePipelineHandle?.Pack() ?? Interop.Pipeline.Null;
+            pointer->Flags = this.Flags;
+            pointer->BasePipelineIndex = this.BasePipelineIndex;
         }
     }
 }

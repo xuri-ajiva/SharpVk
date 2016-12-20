@@ -47,14 +47,20 @@ namespace SharpVk
         internal unsafe Interop.DeviceGeneratedCommandsFeatures Pack()
         {
             Interop.DeviceGeneratedCommandsFeatures result = default(Interop.DeviceGeneratedCommandsFeatures);
-            result.SType = StructureType.DeviceGeneratedCommandsFeaturesNvx;
-            result.ComputeBindingPointSupport = this.ComputeBindingPointSupport;
             return result;
         }
         
         internal unsafe Interop.DeviceGeneratedCommandsFeatures* MarshalTo()
         {
-            return (Interop.DeviceGeneratedCommandsFeatures*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.DeviceGeneratedCommandsFeatures*)Interop.HeapUtil.Allocate<Interop.DeviceGeneratedCommandsFeatures>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.DeviceGeneratedCommandsFeatures* pointer)
+        {
+            pointer->SType = StructureType.DeviceGeneratedCommandsFeaturesNvx;
+            pointer->ComputeBindingPointSupport = this.ComputeBindingPointSupport;
         }
     }
 }

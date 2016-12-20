@@ -61,15 +61,21 @@ namespace SharpVk
         internal unsafe Interop.ImportMemoryWin32HandleInfo Pack()
         {
             Interop.ImportMemoryWin32HandleInfo result = default(Interop.ImportMemoryWin32HandleInfo);
-            result.SType = StructureType.ImportMemoryWin32HandleInfo;
-            result.HandleType = this.HandleType;
-            result.Handle = this.Handle;
             return result;
         }
         
         internal unsafe Interop.ImportMemoryWin32HandleInfo* MarshalTo()
         {
-            return (Interop.ImportMemoryWin32HandleInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.ImportMemoryWin32HandleInfo*)Interop.HeapUtil.Allocate<Interop.ImportMemoryWin32HandleInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.ImportMemoryWin32HandleInfo* pointer)
+        {
+            pointer->SType = StructureType.ImportMemoryWin32HandleInfo;
+            pointer->HandleType = this.HandleType;
+            pointer->Handle = this.Handle;
         }
     }
 }

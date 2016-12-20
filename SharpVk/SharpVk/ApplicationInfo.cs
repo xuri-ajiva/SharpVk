@@ -94,18 +94,24 @@ namespace SharpVk
         internal unsafe Interop.ApplicationInfo Pack()
         {
             Interop.ApplicationInfo result = default(Interop.ApplicationInfo);
-            result.SType = StructureType.ApplicationInfo;
-            result.ApplicationName = Interop.HeapUtil.MarshalTo(this.ApplicationName);
-            result.ApplicationVersion = (uint)this.ApplicationVersion;
-            result.EngineName = Interop.HeapUtil.MarshalTo(this.EngineName);
-            result.EngineVersion = (uint)this.EngineVersion;
-            result.ApiVersion = (uint)this.ApiVersion;
             return result;
         }
         
         internal unsafe Interop.ApplicationInfo* MarshalTo()
         {
-            return (Interop.ApplicationInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.ApplicationInfo*)Interop.HeapUtil.Allocate<Interop.ApplicationInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.ApplicationInfo* pointer)
+        {
+            pointer->SType = StructureType.ApplicationInfo;
+            pointer->ApplicationName = Interop.HeapUtil.MarshalTo(this.ApplicationName);
+            pointer->ApplicationVersion = (uint)this.ApplicationVersion;
+            pointer->EngineName = Interop.HeapUtil.MarshalTo(this.EngineName);
+            pointer->EngineVersion = (uint)this.EngineVersion;
+            pointer->ApiVersion = (uint)this.ApiVersion;
         }
     }
 }

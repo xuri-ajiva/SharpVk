@@ -127,33 +127,39 @@ namespace SharpVk
         internal unsafe Interop.DescriptorSetLayoutBinding Pack()
         {
             Interop.DescriptorSetLayoutBinding result = default(Interop.DescriptorSetLayoutBinding);
-            
-            //ImmutableSamplers
-            if (this.ImmutableSamplers != null)
-            {
-                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.Sampler>();
-                IntPtr pointer = Interop.HeapUtil.Allocate<Interop.Sampler>(this.ImmutableSamplers.Length);
-                for (int index = 0; index < this.ImmutableSamplers.Length; index++)
-                {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.ImmutableSamplers[index].Pack(), pointer + (size * index), false);
-                }
-                result.ImmutableSamplers = (Interop.Sampler*)pointer.ToPointer();
-            }
-            else
-            {
-                result.ImmutableSamplers = null;
-            }
-            result.DescriptorCount = (uint)(this.ImmutableSamplers?.Length ?? (int)this.DescriptorCount);
-            result.Binding = this.Binding;
-            result.DescriptorType = this.DescriptorType;
-            result.DescriptorCount = this.DescriptorCount;
-            result.StageFlags = this.StageFlags;
             return result;
         }
         
         internal unsafe Interop.DescriptorSetLayoutBinding* MarshalTo()
         {
-            return (Interop.DescriptorSetLayoutBinding*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.DescriptorSetLayoutBinding*)Interop.HeapUtil.Allocate<Interop.DescriptorSetLayoutBinding>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.DescriptorSetLayoutBinding* pointer)
+        {
+            
+            //ImmutableSamplers
+            if (this.ImmutableSamplers != null)
+            {
+                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.Sampler>();
+                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.Sampler>(this.ImmutableSamplers.Length);
+                for (int index = 0; index < this.ImmutableSamplers.Length; index++)
+                {
+                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.ImmutableSamplers[index].Pack(), fieldPointer + (size * index), false);
+                }
+                pointer->ImmutableSamplers = (Interop.Sampler*)fieldPointer.ToPointer();
+            }
+            else
+            {
+                pointer->ImmutableSamplers = null;
+            }
+            pointer->DescriptorCount = (uint)(this.ImmutableSamplers?.Length ?? (int)this.DescriptorCount);
+            pointer->Binding = this.Binding;
+            pointer->DescriptorType = this.DescriptorType;
+            pointer->DescriptorCount = this.DescriptorCount;
+            pointer->StageFlags = this.StageFlags;
         }
     }
 }

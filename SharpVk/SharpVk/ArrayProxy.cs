@@ -199,31 +199,4 @@ namespace SharpVk
         /// </summary>
         Array = 2
     }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public static class Extensions
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="proxy"></param>
-        /// <param name="pointer"></param>
-        public static void WriteToPointer<T>(this ArrayProxy<T> proxy, IntPtr pointer)
-            where T : struct
-        {
-            if (proxy.Contents == ProxyContents.Single)
-            {
-                MemUtil.WriteToPtr(pointer, proxy.GetSingleValue());
-            }
-            else
-            {
-                var segment = proxy.GetArrayValue();
-
-                MemUtil.WriteToPtr(pointer, segment.Array, segment.Offset, segment.Count);
-            }
-        }
-    }
 }

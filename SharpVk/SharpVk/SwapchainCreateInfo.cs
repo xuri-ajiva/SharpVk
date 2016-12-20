@@ -226,29 +226,35 @@ namespace SharpVk
         internal unsafe Interop.SwapchainCreateInfo Pack()
         {
             Interop.SwapchainCreateInfo result = default(Interop.SwapchainCreateInfo);
-            result.SType = StructureType.SwapchainCreateInfo;
-            result.Surface = this.Surface?.Pack() ?? Interop.Surface.Null;
-            result.QueueFamilyIndices = this.QueueFamilyIndices == null ? null : Interop.HeapUtil.MarshalTo(this.QueueFamilyIndices);
-            result.OldSwapchain = this.OldSwapchain?.Pack() ?? Interop.Swapchain.Null;
-            result.QueueFamilyIndexCount = (uint)(this.QueueFamilyIndices?.Length ?? 0);
-            result.Flags = this.Flags;
-            result.MinImageCount = this.MinImageCount;
-            result.ImageFormat = this.ImageFormat;
-            result.ImageColorSpace = this.ImageColorSpace;
-            result.ImageExtent = this.ImageExtent;
-            result.ImageArrayLayers = this.ImageArrayLayers;
-            result.ImageUsage = this.ImageUsage;
-            result.ImageSharingMode = this.ImageSharingMode;
-            result.PreTransform = this.PreTransform;
-            result.CompositeAlpha = this.CompositeAlpha;
-            result.PresentMode = this.PresentMode;
-            result.Clipped = this.Clipped;
             return result;
         }
         
         internal unsafe Interop.SwapchainCreateInfo* MarshalTo()
         {
-            return (Interop.SwapchainCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.SwapchainCreateInfo*)Interop.HeapUtil.Allocate<Interop.SwapchainCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.SwapchainCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.SwapchainCreateInfo;
+            pointer->Surface = this.Surface?.Pack() ?? Interop.Surface.Null;
+            pointer->QueueFamilyIndices = this.QueueFamilyIndices == null ? null : Interop.HeapUtil.MarshalTo(this.QueueFamilyIndices);
+            pointer->OldSwapchain = this.OldSwapchain?.Pack() ?? Interop.Swapchain.Null;
+            pointer->QueueFamilyIndexCount = (uint)(this.QueueFamilyIndices?.Length ?? 0);
+            pointer->Flags = this.Flags;
+            pointer->MinImageCount = this.MinImageCount;
+            pointer->ImageFormat = this.ImageFormat;
+            pointer->ImageColorSpace = this.ImageColorSpace;
+            pointer->ImageExtent = this.ImageExtent;
+            pointer->ImageArrayLayers = this.ImageArrayLayers;
+            pointer->ImageUsage = this.ImageUsage;
+            pointer->ImageSharingMode = this.ImageSharingMode;
+            pointer->PreTransform = this.PreTransform;
+            pointer->CompositeAlpha = this.CompositeAlpha;
+            pointer->PresentMode = this.PresentMode;
+            pointer->Clipped = this.Clipped;
         }
     }
 }

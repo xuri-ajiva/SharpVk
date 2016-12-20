@@ -125,48 +125,54 @@ namespace SharpVk
         internal unsafe Interop.ObjectTableCreateInfo Pack()
         {
             Interop.ObjectTableCreateInfo result = default(Interop.ObjectTableCreateInfo);
-            result.SType = StructureType.ObjectTableCreateInfoNvx;
-            
-            //ObjectEntryTypes
-            if (this.ObjectEntryTypes != null)
-            {
-                result.ObjectEntryTypes = (ObjectEntryType*)Interop.HeapUtil.Allocate<int>(this.ObjectEntryTypes.Length).ToPointer();
-                for (int index = 0; index < this.ObjectEntryTypes.Length; index++)
-                {
-                    result.ObjectEntryTypes[index] = this.ObjectEntryTypes[index];
-                }
-            }
-            else
-            {
-                result.ObjectEntryTypes = null;
-            }
-            result.ObjectEntryCounts = this.ObjectEntryCounts == null ? null : Interop.HeapUtil.MarshalTo(this.ObjectEntryCounts);
-            
-            //ObjectEntryUsageFlags
-            if (this.ObjectEntryUsageFlags != null)
-            {
-                result.ObjectEntryUsageFlags = (ObjectEntryUsageFlags*)Interop.HeapUtil.Allocate<int>(this.ObjectEntryUsageFlags.Length).ToPointer();
-                for (int index = 0; index < this.ObjectEntryUsageFlags.Length; index++)
-                {
-                    result.ObjectEntryUsageFlags[index] = this.ObjectEntryUsageFlags[index];
-                }
-            }
-            else
-            {
-                result.ObjectEntryUsageFlags = null;
-            }
-            result.ObjectCount = (uint)(this.ObjectEntryUsageFlags?.Length ?? 0);
-            result.MaxUniformBuffersPerDescriptor = this.MaxUniformBuffersPerDescriptor;
-            result.MaxStorageBuffersPerDescriptor = this.MaxStorageBuffersPerDescriptor;
-            result.MaxStorageImagesPerDescriptor = this.MaxStorageImagesPerDescriptor;
-            result.MaxSampledImagesPerDescriptor = this.MaxSampledImagesPerDescriptor;
-            result.MaxPipelineLayouts = this.MaxPipelineLayouts;
             return result;
         }
         
         internal unsafe Interop.ObjectTableCreateInfo* MarshalTo()
         {
-            return (Interop.ObjectTableCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.ObjectTableCreateInfo*)Interop.HeapUtil.Allocate<Interop.ObjectTableCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.ObjectTableCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.ObjectTableCreateInfoNvx;
+            
+            //ObjectEntryTypes
+            if (this.ObjectEntryTypes != null)
+            {
+                pointer->ObjectEntryTypes = (ObjectEntryType*)Interop.HeapUtil.Allocate<int>(this.ObjectEntryTypes.Length).ToPointer();
+                for (int index = 0; index < this.ObjectEntryTypes.Length; index++)
+                {
+                    pointer->ObjectEntryTypes[index] = this.ObjectEntryTypes[index];
+                }
+            }
+            else
+            {
+                pointer->ObjectEntryTypes = null;
+            }
+            pointer->ObjectEntryCounts = this.ObjectEntryCounts == null ? null : Interop.HeapUtil.MarshalTo(this.ObjectEntryCounts);
+            
+            //ObjectEntryUsageFlags
+            if (this.ObjectEntryUsageFlags != null)
+            {
+                pointer->ObjectEntryUsageFlags = (ObjectEntryUsageFlags*)Interop.HeapUtil.Allocate<int>(this.ObjectEntryUsageFlags.Length).ToPointer();
+                for (int index = 0; index < this.ObjectEntryUsageFlags.Length; index++)
+                {
+                    pointer->ObjectEntryUsageFlags[index] = this.ObjectEntryUsageFlags[index];
+                }
+            }
+            else
+            {
+                pointer->ObjectEntryUsageFlags = null;
+            }
+            pointer->ObjectCount = (uint)(this.ObjectEntryUsageFlags?.Length ?? 0);
+            pointer->MaxUniformBuffersPerDescriptor = this.MaxUniformBuffersPerDescriptor;
+            pointer->MaxStorageBuffersPerDescriptor = this.MaxStorageBuffersPerDescriptor;
+            pointer->MaxStorageImagesPerDescriptor = this.MaxStorageImagesPerDescriptor;
+            pointer->MaxSampledImagesPerDescriptor = this.MaxSampledImagesPerDescriptor;
+            pointer->MaxPipelineLayouts = this.MaxPipelineLayouts;
         }
     }
 }

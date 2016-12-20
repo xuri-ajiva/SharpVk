@@ -130,66 +130,72 @@ namespace SharpVk
         internal unsafe Interop.WriteDescriptorSet Pack()
         {
             Interop.WriteDescriptorSet result = default(Interop.WriteDescriptorSet);
-            result.SType = StructureType.WriteDescriptorSet;
-            result.DestinationSet = this.DestinationSet?.Pack() ?? Interop.DescriptorSet.Null;
+            return result;
+        }
+        
+        internal unsafe Interop.WriteDescriptorSet* MarshalTo()
+        {
+            var result = (Interop.WriteDescriptorSet*)Interop.HeapUtil.Allocate<Interop.WriteDescriptorSet>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.WriteDescriptorSet* pointer)
+        {
+            pointer->SType = StructureType.WriteDescriptorSet;
+            pointer->DestinationSet = this.DestinationSet?.Pack() ?? Interop.DescriptorSet.Null;
             
             //ImageInfo
             if (this.ImageInfo != null)
             {
                 int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.DescriptorImageInfo>();
-                IntPtr pointer = Interop.HeapUtil.Allocate<Interop.DescriptorImageInfo>(this.ImageInfo.Length);
+                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.DescriptorImageInfo>(this.ImageInfo.Length);
                 for (int index = 0; index < this.ImageInfo.Length; index++)
                 {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.ImageInfo[index].Pack(), pointer + (size * index), false);
+                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.ImageInfo[index].Pack(), fieldPointer + (size * index), false);
                 }
-                result.ImageInfo = (Interop.DescriptorImageInfo*)pointer.ToPointer();
+                pointer->ImageInfo = (Interop.DescriptorImageInfo*)fieldPointer.ToPointer();
             }
             else
             {
-                result.ImageInfo = null;
+                pointer->ImageInfo = null;
             }
             
             //BufferInfo
             if (this.BufferInfo != null)
             {
                 int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.DescriptorBufferInfo>();
-                IntPtr pointer = Interop.HeapUtil.Allocate<Interop.DescriptorBufferInfo>(this.BufferInfo.Length);
+                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.DescriptorBufferInfo>(this.BufferInfo.Length);
                 for (int index = 0; index < this.BufferInfo.Length; index++)
                 {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.BufferInfo[index].Pack(), pointer + (size * index), false);
+                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.BufferInfo[index].Pack(), fieldPointer + (size * index), false);
                 }
-                result.BufferInfo = (Interop.DescriptorBufferInfo*)pointer.ToPointer();
+                pointer->BufferInfo = (Interop.DescriptorBufferInfo*)fieldPointer.ToPointer();
             }
             else
             {
-                result.BufferInfo = null;
+                pointer->BufferInfo = null;
             }
             
             //TexelBufferView
             if (this.TexelBufferView != null)
             {
                 int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.BufferView>();
-                IntPtr pointer = Interop.HeapUtil.Allocate<Interop.BufferView>(this.TexelBufferView.Length);
+                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.BufferView>(this.TexelBufferView.Length);
                 for (int index = 0; index < this.TexelBufferView.Length; index++)
                 {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.TexelBufferView[index].Pack(), pointer + (size * index), false);
+                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.TexelBufferView[index].Pack(), fieldPointer + (size * index), false);
                 }
-                result.TexelBufferView = (Interop.BufferView*)pointer.ToPointer();
+                pointer->TexelBufferView = (Interop.BufferView*)fieldPointer.ToPointer();
             }
             else
             {
-                result.TexelBufferView = null;
+                pointer->TexelBufferView = null;
             }
-            result.DescriptorCount = (uint)(this.ImageInfo?.Length ?? this.BufferInfo?.Length ?? this.TexelBufferView?.Length ?? 0);
-            result.DestinationBinding = this.DestinationBinding;
-            result.DestinationArrayElement = this.DestinationArrayElement;
-            result.DescriptorType = this.DescriptorType;
-            return result;
-        }
-        
-        internal unsafe Interop.WriteDescriptorSet* MarshalTo()
-        {
-            return (Interop.WriteDescriptorSet*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            pointer->DescriptorCount = (uint)(this.ImageInfo?.Length ?? this.BufferInfo?.Length ?? this.TexelBufferView?.Length ?? 0);
+            pointer->DestinationBinding = this.DestinationBinding;
+            pointer->DestinationArrayElement = this.DestinationArrayElement;
+            pointer->DescriptorType = this.DescriptorType;
         }
     }
 }

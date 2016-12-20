@@ -53,30 +53,36 @@ namespace SharpVk
         internal unsafe Interop.SparseImageOpaqueMemoryBindInfo Pack()
         {
             Interop.SparseImageOpaqueMemoryBindInfo result = default(Interop.SparseImageOpaqueMemoryBindInfo);
-            result.Image = this.Image?.Pack() ?? Interop.Image.Null;
-            
-            //Binds
-            if (this.Binds != null)
-            {
-                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.SparseMemoryBind>();
-                IntPtr pointer = Interop.HeapUtil.Allocate<Interop.SparseMemoryBind>(this.Binds.Length);
-                for (int index = 0; index < this.Binds.Length; index++)
-                {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.Binds[index].Pack(), pointer + (size * index), false);
-                }
-                result.Binds = (Interop.SparseMemoryBind*)pointer.ToPointer();
-            }
-            else
-            {
-                result.Binds = null;
-            }
-            result.BindCount = (uint)(this.Binds?.Length ?? 0);
             return result;
         }
         
         internal unsafe Interop.SparseImageOpaqueMemoryBindInfo* MarshalTo()
         {
-            return (Interop.SparseImageOpaqueMemoryBindInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.SparseImageOpaqueMemoryBindInfo*)Interop.HeapUtil.Allocate<Interop.SparseImageOpaqueMemoryBindInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.SparseImageOpaqueMemoryBindInfo* pointer)
+        {
+            pointer->Image = this.Image?.Pack() ?? Interop.Image.Null;
+            
+            //Binds
+            if (this.Binds != null)
+            {
+                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.SparseMemoryBind>();
+                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.SparseMemoryBind>(this.Binds.Length);
+                for (int index = 0; index < this.Binds.Length; index++)
+                {
+                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.Binds[index].Pack(), fieldPointer + (size * index), false);
+                }
+                pointer->Binds = (Interop.SparseMemoryBind*)fieldPointer.ToPointer();
+            }
+            else
+            {
+                pointer->Binds = null;
+            }
+            pointer->BindCount = (uint)(this.Binds?.Length ?? 0);
         }
     }
 }

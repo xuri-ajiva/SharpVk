@@ -102,18 +102,24 @@ namespace SharpVk
         internal unsafe Interop.AllocationCallbacks Pack()
         {
             Interop.AllocationCallbacks result = default(Interop.AllocationCallbacks);
-            result.UserData = this.UserData.ToPointer();
-            result.PfnAllocation = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.PfnAllocation);
-            result.PfnReallocation = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.PfnReallocation);
-            result.PfnFree = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.PfnFree);
-            result.PfnInternalAllocation = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.PfnInternalAllocation);
-            result.PfnInternalFree = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.PfnInternalFree);
             return result;
         }
         
         internal unsafe Interop.AllocationCallbacks* MarshalTo()
         {
-            return (Interop.AllocationCallbacks*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.AllocationCallbacks*)Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.AllocationCallbacks* pointer)
+        {
+            pointer->UserData = this.UserData.ToPointer();
+            pointer->PfnAllocation = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.PfnAllocation);
+            pointer->PfnReallocation = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.PfnReallocation);
+            pointer->PfnFree = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.PfnFree);
+            pointer->PfnInternalAllocation = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.PfnInternalAllocation);
+            pointer->PfnInternalFree = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.PfnInternalFree);
         }
     }
 }

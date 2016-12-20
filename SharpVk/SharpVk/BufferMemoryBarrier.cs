@@ -140,20 +140,26 @@ namespace SharpVk
         internal unsafe Interop.BufferMemoryBarrier Pack()
         {
             Interop.BufferMemoryBarrier result = default(Interop.BufferMemoryBarrier);
-            result.SType = StructureType.BufferMemoryBarrier;
-            result.Buffer = this.Buffer?.Pack() ?? Interop.Buffer.Null;
-            result.SourceAccessMask = this.SourceAccessMask;
-            result.DestinationAccessMask = this.DestinationAccessMask;
-            result.SourceQueueFamilyIndex = this.SourceQueueFamilyIndex;
-            result.DestinationQueueFamilyIndex = this.DestinationQueueFamilyIndex;
-            result.Offset = this.Offset;
-            result.Size = this.Size;
             return result;
         }
         
         internal unsafe Interop.BufferMemoryBarrier* MarshalTo()
         {
-            return (Interop.BufferMemoryBarrier*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.BufferMemoryBarrier*)Interop.HeapUtil.Allocate<Interop.BufferMemoryBarrier>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.BufferMemoryBarrier* pointer)
+        {
+            pointer->SType = StructureType.BufferMemoryBarrier;
+            pointer->Buffer = this.Buffer?.Pack() ?? Interop.Buffer.Null;
+            pointer->SourceAccessMask = this.SourceAccessMask;
+            pointer->DestinationAccessMask = this.DestinationAccessMask;
+            pointer->SourceQueueFamilyIndex = this.SourceQueueFamilyIndex;
+            pointer->DestinationQueueFamilyIndex = this.DestinationQueueFamilyIndex;
+            pointer->Offset = this.Offset;
+            pointer->Size = this.Size;
         }
     }
 }

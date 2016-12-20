@@ -64,44 +64,50 @@ namespace SharpVk
         internal unsafe Interop.PipelineVertexInputStateCreateInfo Pack()
         {
             Interop.PipelineVertexInputStateCreateInfo result = default(Interop.PipelineVertexInputStateCreateInfo);
-            result.SType = StructureType.PipelineVertexInputStateCreateInfo;
-            
-            //VertexBindingDescriptions
-            if (this.VertexBindingDescriptions != null)
-            {
-                result.VertexBindingDescriptions = (VertexInputBindingDescription*)Interop.HeapUtil.Allocate<VertexInputBindingDescription>(this.VertexBindingDescriptions.Length).ToPointer();
-                for (int index = 0; index < this.VertexBindingDescriptions.Length; index++)
-                {
-                    result.VertexBindingDescriptions[index] = this.VertexBindingDescriptions[index];
-                }
-            }
-            else
-            {
-                result.VertexBindingDescriptions = null;
-            }
-            
-            //VertexAttributeDescriptions
-            if (this.VertexAttributeDescriptions != null)
-            {
-                result.VertexAttributeDescriptions = (VertexInputAttributeDescription*)Interop.HeapUtil.Allocate<VertexInputAttributeDescription>(this.VertexAttributeDescriptions.Length).ToPointer();
-                for (int index = 0; index < this.VertexAttributeDescriptions.Length; index++)
-                {
-                    result.VertexAttributeDescriptions[index] = this.VertexAttributeDescriptions[index];
-                }
-            }
-            else
-            {
-                result.VertexAttributeDescriptions = null;
-            }
-            result.VertexBindingDescriptionCount = (uint)(this.VertexBindingDescriptions?.Length ?? 0);
-            result.VertexAttributeDescriptionCount = (uint)(this.VertexAttributeDescriptions?.Length ?? 0);
-            result.Flags = this.Flags;
             return result;
         }
         
         internal unsafe Interop.PipelineVertexInputStateCreateInfo* MarshalTo()
         {
-            return (Interop.PipelineVertexInputStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.PipelineVertexInputStateCreateInfo*)Interop.HeapUtil.Allocate<Interop.PipelineVertexInputStateCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.PipelineVertexInputStateCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.PipelineVertexInputStateCreateInfo;
+            
+            //VertexBindingDescriptions
+            if (this.VertexBindingDescriptions != null)
+            {
+                pointer->VertexBindingDescriptions = (VertexInputBindingDescription*)Interop.HeapUtil.Allocate<VertexInputBindingDescription>(this.VertexBindingDescriptions.Length).ToPointer();
+                for (int index = 0; index < this.VertexBindingDescriptions.Length; index++)
+                {
+                    pointer->VertexBindingDescriptions[index] = this.VertexBindingDescriptions[index];
+                }
+            }
+            else
+            {
+                pointer->VertexBindingDescriptions = null;
+            }
+            
+            //VertexAttributeDescriptions
+            if (this.VertexAttributeDescriptions != null)
+            {
+                pointer->VertexAttributeDescriptions = (VertexInputAttributeDescription*)Interop.HeapUtil.Allocate<VertexInputAttributeDescription>(this.VertexAttributeDescriptions.Length).ToPointer();
+                for (int index = 0; index < this.VertexAttributeDescriptions.Length; index++)
+                {
+                    pointer->VertexAttributeDescriptions[index] = this.VertexAttributeDescriptions[index];
+                }
+            }
+            else
+            {
+                pointer->VertexAttributeDescriptions = null;
+            }
+            pointer->VertexBindingDescriptionCount = (uint)(this.VertexBindingDescriptions?.Length ?? 0);
+            pointer->VertexAttributeDescriptionCount = (uint)(this.VertexAttributeDescriptions?.Length ?? 0);
+            pointer->Flags = this.Flags;
         }
     }
 }

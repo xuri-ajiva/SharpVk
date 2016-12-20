@@ -156,24 +156,30 @@ namespace SharpVk
         internal unsafe Interop.PipelineRasterizationStateCreateInfo Pack()
         {
             Interop.PipelineRasterizationStateCreateInfo result = default(Interop.PipelineRasterizationStateCreateInfo);
-            result.SType = StructureType.PipelineRasterizationStateCreateInfo;
-            result.Flags = this.Flags;
-            result.DepthClampEnable = this.DepthClampEnable;
-            result.RasterizerDiscardEnable = this.RasterizerDiscardEnable;
-            result.PolygonMode = this.PolygonMode;
-            result.CullMode = this.CullMode;
-            result.FrontFace = this.FrontFace;
-            result.DepthBiasEnable = this.DepthBiasEnable;
-            result.DepthBiasConstantFactor = this.DepthBiasConstantFactor;
-            result.DepthBiasClamp = this.DepthBiasClamp;
-            result.DepthBiasSlopeFactor = this.DepthBiasSlopeFactor;
-            result.LineWidth = this.LineWidth;
             return result;
         }
         
         internal unsafe Interop.PipelineRasterizationStateCreateInfo* MarshalTo()
         {
-            return (Interop.PipelineRasterizationStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.PipelineRasterizationStateCreateInfo*)Interop.HeapUtil.Allocate<Interop.PipelineRasterizationStateCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.PipelineRasterizationStateCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.PipelineRasterizationStateCreateInfo;
+            pointer->Flags = this.Flags;
+            pointer->DepthClampEnable = this.DepthClampEnable;
+            pointer->RasterizerDiscardEnable = this.RasterizerDiscardEnable;
+            pointer->PolygonMode = this.PolygonMode;
+            pointer->CullMode = this.CullMode;
+            pointer->FrontFace = this.FrontFace;
+            pointer->DepthBiasEnable = this.DepthBiasEnable;
+            pointer->DepthBiasConstantFactor = this.DepthBiasConstantFactor;
+            pointer->DepthBiasClamp = this.DepthBiasClamp;
+            pointer->DepthBiasSlopeFactor = this.DepthBiasSlopeFactor;
+            pointer->LineWidth = this.LineWidth;
         }
     }
 }

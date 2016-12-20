@@ -112,34 +112,40 @@ namespace SharpVk
         internal unsafe Interop.PipelineMultisampleStateCreateInfo Pack()
         {
             Interop.PipelineMultisampleStateCreateInfo result = default(Interop.PipelineMultisampleStateCreateInfo);
-            result.SType = StructureType.PipelineMultisampleStateCreateInfo;
-            
-            //SampleMask
-            if (this.SampleMask != null && Math.Ceiling((int)RasterizationSamples / (float)32) > 0)
-            {
-                int length = (int)(Math.Ceiling((int)RasterizationSamples / (float)32));
-                result.SampleMask = (SampleMask*)Interop.HeapUtil.Allocate<SampleMask>(length).ToPointer();
-                for (int index = 0; index < length; index++)
-                {
-                    result.SampleMask[index] = this.SampleMask[index];
-                }
-            }
-            else
-            {
-                result.SampleMask = null;
-            }
-            result.Flags = this.Flags;
-            result.RasterizationSamples = this.RasterizationSamples;
-            result.SampleShadingEnable = this.SampleShadingEnable;
-            result.MinSampleShading = this.MinSampleShading;
-            result.AlphaToCoverageEnable = this.AlphaToCoverageEnable;
-            result.AlphaToOneEnable = this.AlphaToOneEnable;
             return result;
         }
         
         internal unsafe Interop.PipelineMultisampleStateCreateInfo* MarshalTo()
         {
-            return (Interop.PipelineMultisampleStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.PipelineMultisampleStateCreateInfo*)Interop.HeapUtil.Allocate<Interop.PipelineMultisampleStateCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.PipelineMultisampleStateCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.PipelineMultisampleStateCreateInfo;
+            
+            //SampleMask
+            if (this.SampleMask != null && Math.Ceiling((int)RasterizationSamples / (float)32) > 0)
+            {
+                int length = (int)(Math.Ceiling((int)RasterizationSamples / (float)32));
+                pointer->SampleMask = (SampleMask*)Interop.HeapUtil.Allocate<SampleMask>(length).ToPointer();
+                for (int index = 0; index < length; index++)
+                {
+                    pointer->SampleMask[index] = this.SampleMask[index];
+                }
+            }
+            else
+            {
+                pointer->SampleMask = null;
+            }
+            pointer->Flags = this.Flags;
+            pointer->RasterizationSamples = this.RasterizationSamples;
+            pointer->SampleShadingEnable = this.SampleShadingEnable;
+            pointer->MinSampleShading = this.MinSampleShading;
+            pointer->AlphaToCoverageEnable = this.AlphaToCoverageEnable;
+            pointer->AlphaToOneEnable = this.AlphaToOneEnable;
         }
     }
 }

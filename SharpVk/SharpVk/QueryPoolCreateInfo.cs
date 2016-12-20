@@ -71,17 +71,23 @@ namespace SharpVk
         internal unsafe Interop.QueryPoolCreateInfo Pack()
         {
             Interop.QueryPoolCreateInfo result = default(Interop.QueryPoolCreateInfo);
-            result.SType = StructureType.QueryPoolCreateInfo;
-            result.Flags = this.Flags;
-            result.QueryType = this.QueryType;
-            result.QueryCount = this.QueryCount;
-            result.PipelineStatistics = this.PipelineStatistics;
             return result;
         }
         
         internal unsafe Interop.QueryPoolCreateInfo* MarshalTo()
         {
-            return (Interop.QueryPoolCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.QueryPoolCreateInfo*)Interop.HeapUtil.Allocate<Interop.QueryPoolCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.QueryPoolCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.QueryPoolCreateInfo;
+            pointer->Flags = this.Flags;
+            pointer->QueryType = this.QueryType;
+            pointer->QueryCount = this.QueryCount;
+            pointer->PipelineStatistics = this.PipelineStatistics;
         }
     }
 }

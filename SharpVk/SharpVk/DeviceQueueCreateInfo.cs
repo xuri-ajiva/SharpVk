@@ -69,17 +69,23 @@ namespace SharpVk
         internal unsafe Interop.DeviceQueueCreateInfo Pack()
         {
             Interop.DeviceQueueCreateInfo result = default(Interop.DeviceQueueCreateInfo);
-            result.SType = StructureType.DeviceQueueCreateInfo;
-            result.QueuePriorities = this.QueuePriorities == null ? null : Interop.HeapUtil.MarshalTo(this.QueuePriorities);
-            result.QueueCount = (uint)(this.QueuePriorities?.Length ?? 0);
-            result.Flags = this.Flags;
-            result.QueueFamilyIndex = this.QueueFamilyIndex;
             return result;
         }
         
         internal unsafe Interop.DeviceQueueCreateInfo* MarshalTo()
         {
-            return (Interop.DeviceQueueCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.DeviceQueueCreateInfo*)Interop.HeapUtil.Allocate<Interop.DeviceQueueCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.DeviceQueueCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.DeviceQueueCreateInfo;
+            pointer->QueuePriorities = this.QueuePriorities == null ? null : Interop.HeapUtil.MarshalTo(this.QueuePriorities);
+            pointer->QueueCount = (uint)(this.QueuePriorities?.Length ?? 0);
+            pointer->Flags = this.Flags;
+            pointer->QueueFamilyIndex = this.QueueFamilyIndex;
         }
     }
 }

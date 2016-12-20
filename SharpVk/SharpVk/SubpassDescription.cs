@@ -160,61 +160,68 @@ namespace SharpVk
         internal unsafe Interop.SubpassDescription Pack()
         {
             Interop.SubpassDescription result = default(Interop.SubpassDescription);
-            
-            //InputAttachments
-            if (this.InputAttachments != null)
-            {
-                result.InputAttachments = (AttachmentReference*)Interop.HeapUtil.Allocate<AttachmentReference>(this.InputAttachments.Length).ToPointer();
-                for (int index = 0; index < this.InputAttachments.Length; index++)
-                {
-                    result.InputAttachments[index] = this.InputAttachments[index];
-                }
-            }
-            else
-            {
-                result.InputAttachments = null;
-            }
-            
-            //ColorAttachments
-            if (this.ColorAttachments != null)
-            {
-                result.ColorAttachments = (AttachmentReference*)Interop.HeapUtil.Allocate<AttachmentReference>(this.ColorAttachments.Length).ToPointer();
-                for (int index = 0; index < this.ColorAttachments.Length; index++)
-                {
-                    result.ColorAttachments[index] = this.ColorAttachments[index];
-                }
-            }
-            else
-            {
-                result.ColorAttachments = null;
-            }
-            
-            //ResolveAttachments
-            if (this.ResolveAttachments != null)
-            {
-                result.ResolveAttachments = (AttachmentReference*)Interop.HeapUtil.Allocate<AttachmentReference>(this.ResolveAttachments.Length).ToPointer();
-                for (int index = 0; index < this.ResolveAttachments.Length; index++)
-                {
-                    result.ResolveAttachments[index] = this.ResolveAttachments[index];
-                }
-            }
-            else
-            {
-                result.ResolveAttachments = null;
-            }
-            result.DepthStencilAttachment = (AttachmentReference*)Interop.HeapUtil.AllocateAndMarshal(this.DepthStencilAttachment);
-            result.PreserveAttachments = this.PreserveAttachments == null ? null : Interop.HeapUtil.MarshalTo(this.PreserveAttachments);
-            result.InputAttachmentCount = (uint)(this.InputAttachments?.Length ?? 0);
-            result.ColorAttachmentCount = (uint)(this.ColorAttachments?.Length ?? 0);
-            result.PreserveAttachmentCount = (uint)(this.PreserveAttachments?.Length ?? 0);
-            result.Flags = this.Flags;
-            result.PipelineBindPoint = this.PipelineBindPoint;
             return result;
         }
         
         internal unsafe Interop.SubpassDescription* MarshalTo()
         {
-            return (Interop.SubpassDescription*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.SubpassDescription*)Interop.HeapUtil.Allocate<Interop.SubpassDescription>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.SubpassDescription* pointer)
+        {
+            
+            //InputAttachments
+            if (this.InputAttachments != null)
+            {
+                pointer->InputAttachments = (AttachmentReference*)Interop.HeapUtil.Allocate<AttachmentReference>(this.InputAttachments.Length).ToPointer();
+                for (int index = 0; index < this.InputAttachments.Length; index++)
+                {
+                    pointer->InputAttachments[index] = this.InputAttachments[index];
+                }
+            }
+            else
+            {
+                pointer->InputAttachments = null;
+            }
+            
+            //ColorAttachments
+            if (this.ColorAttachments != null)
+            {
+                pointer->ColorAttachments = (AttachmentReference*)Interop.HeapUtil.Allocate<AttachmentReference>(this.ColorAttachments.Length).ToPointer();
+                for (int index = 0; index < this.ColorAttachments.Length; index++)
+                {
+                    pointer->ColorAttachments[index] = this.ColorAttachments[index];
+                }
+            }
+            else
+            {
+                pointer->ColorAttachments = null;
+            }
+            
+            //ResolveAttachments
+            if (this.ResolveAttachments != null)
+            {
+                pointer->ResolveAttachments = (AttachmentReference*)Interop.HeapUtil.Allocate<AttachmentReference>(this.ResolveAttachments.Length).ToPointer();
+                for (int index = 0; index < this.ResolveAttachments.Length; index++)
+                {
+                    pointer->ResolveAttachments[index] = this.ResolveAttachments[index];
+                }
+            }
+            else
+            {
+                pointer->ResolveAttachments = null;
+            }
+            pointer->DepthStencilAttachment = (AttachmentReference*)Interop.HeapUtil.Allocate<AttachmentReference>();
+            *pointer->DepthStencilAttachment = this.DepthStencilAttachment;
+            pointer->PreserveAttachments = this.PreserveAttachments == null ? null : Interop.HeapUtil.MarshalTo(this.PreserveAttachments);
+            pointer->InputAttachmentCount = (uint)(this.InputAttachments?.Length ?? 0);
+            pointer->ColorAttachmentCount = (uint)(this.ColorAttachments?.Length ?? 0);
+            pointer->PreserveAttachmentCount = (uint)(this.PreserveAttachments?.Length ?? 0);
+            pointer->Flags = this.Flags;
+            pointer->PipelineBindPoint = this.PipelineBindPoint;
         }
     }
 }

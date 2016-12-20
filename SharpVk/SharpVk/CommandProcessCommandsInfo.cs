@@ -134,38 +134,44 @@ namespace SharpVk
         internal unsafe Interop.CommandProcessCommandsInfo Pack()
         {
             Interop.CommandProcessCommandsInfo result = default(Interop.CommandProcessCommandsInfo);
-            result.SType = StructureType.CommandProcessCommandsInfoNvx;
-            result.ObjectTable = this.ObjectTable?.Pack() ?? Interop.ObjectTable.Null;
-            result.IndirectCommandsLayout = this.IndirectCommandsLayout?.Pack() ?? Interop.IndirectCommandsLayout.Null;
-            
-            //IndirectCommandsTokens
-            if (this.IndirectCommandsTokens != null)
-            {
-                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.IndirectCommandsToken>();
-                IntPtr pointer = Interop.HeapUtil.Allocate<Interop.IndirectCommandsToken>(this.IndirectCommandsTokens.Length);
-                for (int index = 0; index < this.IndirectCommandsTokens.Length; index++)
-                {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.IndirectCommandsTokens[index].Pack(), pointer + (size * index), false);
-                }
-                result.IndirectCommandsTokens = (Interop.IndirectCommandsToken*)pointer.ToPointer();
-            }
-            else
-            {
-                result.IndirectCommandsTokens = null;
-            }
-            result.TargetCommandBuffer = this.TargetCommandBuffer?.Pack() ?? Interop.CommandBuffer.Null;
-            result.SequencesCountBuffer = this.SequencesCountBuffer?.Pack() ?? Interop.Buffer.Null;
-            result.SequencesIndexBuffer = this.SequencesIndexBuffer?.Pack() ?? Interop.Buffer.Null;
-            result.IndirectCommandsTokenCount = (uint)(this.IndirectCommandsTokens?.Length ?? 0);
-            result.MaxSequencesCount = this.MaxSequencesCount;
-            result.SequencesCountOffset = this.SequencesCountOffset;
-            result.SequencesIndexOffset = this.SequencesIndexOffset;
             return result;
         }
         
         internal unsafe Interop.CommandProcessCommandsInfo* MarshalTo()
         {
-            return (Interop.CommandProcessCommandsInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.CommandProcessCommandsInfo*)Interop.HeapUtil.Allocate<Interop.CommandProcessCommandsInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.CommandProcessCommandsInfo* pointer)
+        {
+            pointer->SType = StructureType.CommandProcessCommandsInfoNvx;
+            pointer->ObjectTable = this.ObjectTable?.Pack() ?? Interop.ObjectTable.Null;
+            pointer->IndirectCommandsLayout = this.IndirectCommandsLayout?.Pack() ?? Interop.IndirectCommandsLayout.Null;
+            
+            //IndirectCommandsTokens
+            if (this.IndirectCommandsTokens != null)
+            {
+                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.IndirectCommandsToken>();
+                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.IndirectCommandsToken>(this.IndirectCommandsTokens.Length);
+                for (int index = 0; index < this.IndirectCommandsTokens.Length; index++)
+                {
+                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.IndirectCommandsTokens[index].Pack(), fieldPointer + (size * index), false);
+                }
+                pointer->IndirectCommandsTokens = (Interop.IndirectCommandsToken*)fieldPointer.ToPointer();
+            }
+            else
+            {
+                pointer->IndirectCommandsTokens = null;
+            }
+            pointer->TargetCommandBuffer = this.TargetCommandBuffer?.Pack() ?? Interop.CommandBuffer.Null;
+            pointer->SequencesCountBuffer = this.SequencesCountBuffer?.Pack() ?? Interop.Buffer.Null;
+            pointer->SequencesIndexBuffer = this.SequencesIndexBuffer?.Pack() ?? Interop.Buffer.Null;
+            pointer->IndirectCommandsTokenCount = (uint)(this.IndirectCommandsTokens?.Length ?? 0);
+            pointer->MaxSequencesCount = this.MaxSequencesCount;
+            pointer->SequencesCountOffset = this.SequencesCountOffset;
+            pointer->SequencesIndexOffset = this.SequencesIndexOffset;
         }
     }
 }

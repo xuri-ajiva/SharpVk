@@ -56,29 +56,35 @@ namespace SharpVk
         internal unsafe Interop.PipelineDynamicStateCreateInfo Pack()
         {
             Interop.PipelineDynamicStateCreateInfo result = default(Interop.PipelineDynamicStateCreateInfo);
-            result.SType = StructureType.PipelineDynamicStateCreateInfo;
-            
-            //DynamicStates
-            if (this.DynamicStates != null)
-            {
-                result.DynamicStates = (DynamicState*)Interop.HeapUtil.Allocate<int>(this.DynamicStates.Length).ToPointer();
-                for (int index = 0; index < this.DynamicStates.Length; index++)
-                {
-                    result.DynamicStates[index] = this.DynamicStates[index];
-                }
-            }
-            else
-            {
-                result.DynamicStates = null;
-            }
-            result.DynamicStateCount = (uint)(this.DynamicStates?.Length ?? 0);
-            result.Flags = this.Flags;
             return result;
         }
         
         internal unsafe Interop.PipelineDynamicStateCreateInfo* MarshalTo()
         {
-            return (Interop.PipelineDynamicStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.PipelineDynamicStateCreateInfo*)Interop.HeapUtil.Allocate<Interop.PipelineDynamicStateCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.PipelineDynamicStateCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.PipelineDynamicStateCreateInfo;
+            
+            //DynamicStates
+            if (this.DynamicStates != null)
+            {
+                pointer->DynamicStates = (DynamicState*)Interop.HeapUtil.Allocate<int>(this.DynamicStates.Length).ToPointer();
+                for (int index = 0; index < this.DynamicStates.Length; index++)
+                {
+                    pointer->DynamicStates[index] = this.DynamicStates[index];
+                }
+            }
+            else
+            {
+                pointer->DynamicStates = null;
+            }
+            pointer->DynamicStateCount = (uint)(this.DynamicStates?.Length ?? 0);
+            pointer->Flags = this.Flags;
         }
     }
 }

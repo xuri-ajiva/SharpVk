@@ -45,28 +45,34 @@ namespace SharpVk
         internal unsafe Interop.ValidationFlags Pack()
         {
             Interop.ValidationFlags result = default(Interop.ValidationFlags);
-            result.SType = StructureType.ValidationFlags;
-            
-            //DisabledValidationChecks
-            if (this.DisabledValidationChecks != null)
-            {
-                result.DisabledValidationChecks = (ValidationCheck*)Interop.HeapUtil.Allocate<int>(this.DisabledValidationChecks.Length).ToPointer();
-                for (int index = 0; index < this.DisabledValidationChecks.Length; index++)
-                {
-                    result.DisabledValidationChecks[index] = this.DisabledValidationChecks[index];
-                }
-            }
-            else
-            {
-                result.DisabledValidationChecks = null;
-            }
-            result.DisabledValidationCheckCount = (uint)(this.DisabledValidationChecks?.Length ?? 0);
             return result;
         }
         
         internal unsafe Interop.ValidationFlags* MarshalTo()
         {
-            return (Interop.ValidationFlags*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.ValidationFlags*)Interop.HeapUtil.Allocate<Interop.ValidationFlags>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.ValidationFlags* pointer)
+        {
+            pointer->SType = StructureType.ValidationFlags;
+            
+            //DisabledValidationChecks
+            if (this.DisabledValidationChecks != null)
+            {
+                pointer->DisabledValidationChecks = (ValidationCheck*)Interop.HeapUtil.Allocate<int>(this.DisabledValidationChecks.Length).ToPointer();
+                for (int index = 0; index < this.DisabledValidationChecks.Length; index++)
+                {
+                    pointer->DisabledValidationChecks[index] = this.DisabledValidationChecks[index];
+                }
+            }
+            else
+            {
+                pointer->DisabledValidationChecks = null;
+            }
+            pointer->DisabledValidationCheckCount = (uint)(this.DisabledValidationChecks?.Length ?? 0);
         }
     }
 }

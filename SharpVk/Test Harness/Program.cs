@@ -285,7 +285,7 @@ namespace SharpVk
             IntPtr memoryBuffer = IntPtr.Zero;
             this.uniformStagingBufferMemory.MapMemory(0, uboSize, MemoryMapFlags.None, ref memoryBuffer);
 
-            MemUtil.WriteToPtr(memoryBuffer, ubo);
+            Marshal.StructureToPtr(ubo, memoryBuffer, false);
 
             this.uniformStagingBufferMemory.UnmapMemory();
 

@@ -63,16 +63,22 @@ namespace SharpVk
         internal unsafe Interop.Win32SurfaceCreateInfo Pack()
         {
             Interop.Win32SurfaceCreateInfo result = default(Interop.Win32SurfaceCreateInfo);
-            result.SType = StructureType.Win32SurfaceCreateInfo;
-            result.Flags = this.Flags;
-            result.Hinstance = this.Hinstance;
-            result.Hwnd = this.Hwnd;
             return result;
         }
         
         internal unsafe Interop.Win32SurfaceCreateInfo* MarshalTo()
         {
-            return (Interop.Win32SurfaceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.Win32SurfaceCreateInfo*)Interop.HeapUtil.Allocate<Interop.Win32SurfaceCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Win32SurfaceCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.Win32SurfaceCreateInfo;
+            pointer->Flags = this.Flags;
+            pointer->Hinstance = this.Hinstance;
+            pointer->Hwnd = this.Hwnd;
         }
     }
 }

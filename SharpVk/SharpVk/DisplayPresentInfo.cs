@@ -86,16 +86,22 @@ namespace SharpVk
         internal unsafe Interop.DisplayPresentInfo Pack()
         {
             Interop.DisplayPresentInfo result = default(Interop.DisplayPresentInfo);
-            result.SType = StructureType.DisplayPresentInfo;
-            result.SourceRect = this.SourceRect;
-            result.DestinationRect = this.DestinationRect;
-            result.Persistent = this.Persistent;
             return result;
         }
         
         internal unsafe Interop.DisplayPresentInfo* MarshalTo()
         {
-            return (Interop.DisplayPresentInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.DisplayPresentInfo*)Interop.HeapUtil.Allocate<Interop.DisplayPresentInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.DisplayPresentInfo* pointer)
+        {
+            pointer->SType = StructureType.DisplayPresentInfo;
+            pointer->SourceRect = this.SourceRect;
+            pointer->DestinationRect = this.DestinationRect;
+            pointer->Persistent = this.Persistent;
         }
     }
 }

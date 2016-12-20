@@ -43,14 +43,20 @@ namespace SharpVk
         internal unsafe Interop.SemaphoreCreateInfo Pack()
         {
             Interop.SemaphoreCreateInfo result = default(Interop.SemaphoreCreateInfo);
-            result.SType = StructureType.SemaphoreCreateInfo;
-            result.Flags = this.Flags;
             return result;
         }
         
         internal unsafe Interop.SemaphoreCreateInfo* MarshalTo()
         {
-            return (Interop.SemaphoreCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.SemaphoreCreateInfo*)Interop.HeapUtil.Allocate<Interop.SemaphoreCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.SemaphoreCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.SemaphoreCreateInfo;
+            pointer->Flags = this.Flags;
         }
     }
 }

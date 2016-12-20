@@ -68,15 +68,21 @@ namespace SharpVk
         internal unsafe Interop.MemoryBarrier Pack()
         {
             Interop.MemoryBarrier result = default(Interop.MemoryBarrier);
-            result.SType = StructureType.MemoryBarrier;
-            result.SourceAccessMask = this.SourceAccessMask;
-            result.DestinationAccessMask = this.DestinationAccessMask;
             return result;
         }
         
         internal unsafe Interop.MemoryBarrier* MarshalTo()
         {
-            return (Interop.MemoryBarrier*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.MemoryBarrier*)Interop.HeapUtil.Allocate<Interop.MemoryBarrier>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.MemoryBarrier* pointer)
+        {
+            pointer->SType = StructureType.MemoryBarrier;
+            pointer->SourceAccessMask = this.SourceAccessMask;
+            pointer->DestinationAccessMask = this.DestinationAccessMask;
         }
     }
 }

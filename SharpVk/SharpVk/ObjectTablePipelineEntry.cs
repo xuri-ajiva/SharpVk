@@ -61,15 +61,21 @@ namespace SharpVk
         internal unsafe Interop.ObjectTablePipelineEntry Pack()
         {
             Interop.ObjectTablePipelineEntry result = default(Interop.ObjectTablePipelineEntry);
-            result.Pipeline = this.Pipeline?.Pack() ?? Interop.Pipeline.Null;
-            result.Type = this.Type;
-            result.Flags = this.Flags;
             return result;
         }
         
         internal unsafe Interop.ObjectTablePipelineEntry* MarshalTo()
         {
-            return (Interop.ObjectTablePipelineEntry*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.ObjectTablePipelineEntry*)Interop.HeapUtil.Allocate<Interop.ObjectTablePipelineEntry>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.ObjectTablePipelineEntry* pointer)
+        {
+            pointer->Pipeline = this.Pipeline?.Pack() ?? Interop.Pipeline.Null;
+            pointer->Type = this.Type;
+            pointer->Flags = this.Flags;
         }
     }
 }

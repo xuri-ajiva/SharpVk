@@ -59,18 +59,33 @@ namespace SharpVk.Generator.Generators
 
                                         body.EmitVariableDeclaration(interopTypeName, resultVariableName, Default(interopTypeName));
 
-                                        foreach (var statement in @class.MarshalToStatements)
-                                        {
-                                            body.EmitStatement(statement);
-                                        }
+                                        //foreach (var statement in @class.MarshalToStatements)
+                                        //{
+                                        //    body.EmitStatement(statement);
+                                        //}
 
                                         body.EmitReturn(Variable(resultVariableName));
                                     }, null, Internal, Unsafe);
 
                                     builder.EmitMethod(interopPointerName, "MarshalTo", body =>
                                     {
-                                        body.EmitReturn(Cast(interopPointerName, Call(StaticCall("Interop.HeapUtil", "AllocateAndMarshal", Call(This, "Pack")), "ToPointer")));
+                                        body.EmitVariableDeclaration("var", "result", Cast(interopPointerName, Call(StaticCall("Interop.HeapUtil", $"Allocate<{interopTypeName}>"), "ToPointer")));
+
+                                        body.EmitCall(This, "MarshalTo", Variable("result"));
+
+                                        body.EmitReturn(Variable("result"));
                                     }, null, Internal, Unsafe);
+
+                                    builder.EmitMethod("void", "MarshalTo", body =>
+                                    {
+                                        foreach (var statement in @class.MarshalToStatements)
+                                        {
+                                            body.EmitStatement(statement);
+                                        }
+                                    }, parameters =>
+                                    {
+                                        parameters.EmitParam(interopPointerName, "pointer");
+                                    }, Internal, Unsafe);
                                 }
                                 else
                                 {

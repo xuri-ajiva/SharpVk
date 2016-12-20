@@ -119,21 +119,27 @@ namespace SharpVk
         internal unsafe Interop.DisplaySurfaceCreateInfo Pack()
         {
             Interop.DisplaySurfaceCreateInfo result = default(Interop.DisplaySurfaceCreateInfo);
-            result.SType = StructureType.DisplaySurfaceCreateInfo;
-            result.DisplayMode = this.DisplayMode?.Pack() ?? Interop.DisplayMode.Null;
-            result.Flags = this.Flags;
-            result.PlaneIndex = this.PlaneIndex;
-            result.PlaneStackIndex = this.PlaneStackIndex;
-            result.Transform = this.Transform;
-            result.GlobalAlpha = this.GlobalAlpha;
-            result.AlphaMode = this.AlphaMode;
-            result.ImageExtent = this.ImageExtent;
             return result;
         }
         
         internal unsafe Interop.DisplaySurfaceCreateInfo* MarshalTo()
         {
-            return (Interop.DisplaySurfaceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.DisplaySurfaceCreateInfo*)Interop.HeapUtil.Allocate<Interop.DisplaySurfaceCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.DisplaySurfaceCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.DisplaySurfaceCreateInfo;
+            pointer->DisplayMode = this.DisplayMode?.Pack() ?? Interop.DisplayMode.Null;
+            pointer->Flags = this.Flags;
+            pointer->PlaneIndex = this.PlaneIndex;
+            pointer->PlaneStackIndex = this.PlaneStackIndex;
+            pointer->Transform = this.Transform;
+            pointer->GlobalAlpha = this.GlobalAlpha;
+            pointer->AlphaMode = this.AlphaMode;
+            pointer->ImageExtent = this.ImageExtent;
         }
     }
 }

@@ -78,61 +78,67 @@ namespace SharpVk
         internal unsafe Interop.RenderPassCreateInfo Pack()
         {
             Interop.RenderPassCreateInfo result = default(Interop.RenderPassCreateInfo);
-            result.SType = StructureType.RenderPassCreateInfo;
+            return result;
+        }
+        
+        internal unsafe Interop.RenderPassCreateInfo* MarshalTo()
+        {
+            var result = (Interop.RenderPassCreateInfo*)Interop.HeapUtil.Allocate<Interop.RenderPassCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.RenderPassCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.RenderPassCreateInfo;
             
             //Attachments
             if (this.Attachments != null)
             {
-                result.Attachments = (AttachmentDescription*)Interop.HeapUtil.Allocate<AttachmentDescription>(this.Attachments.Length).ToPointer();
+                pointer->Attachments = (AttachmentDescription*)Interop.HeapUtil.Allocate<AttachmentDescription>(this.Attachments.Length).ToPointer();
                 for (int index = 0; index < this.Attachments.Length; index++)
                 {
-                    result.Attachments[index] = this.Attachments[index];
+                    pointer->Attachments[index] = this.Attachments[index];
                 }
             }
             else
             {
-                result.Attachments = null;
+                pointer->Attachments = null;
             }
             
             //Subpasses
             if (this.Subpasses != null)
             {
                 int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.SubpassDescription>();
-                IntPtr pointer = Interop.HeapUtil.Allocate<Interop.SubpassDescription>(this.Subpasses.Length);
+                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.SubpassDescription>(this.Subpasses.Length);
                 for (int index = 0; index < this.Subpasses.Length; index++)
                 {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.Subpasses[index].Pack(), pointer + (size * index), false);
+                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.Subpasses[index].Pack(), fieldPointer + (size * index), false);
                 }
-                result.Subpasses = (Interop.SubpassDescription*)pointer.ToPointer();
+                pointer->Subpasses = (Interop.SubpassDescription*)fieldPointer.ToPointer();
             }
             else
             {
-                result.Subpasses = null;
+                pointer->Subpasses = null;
             }
             
             //Dependencies
             if (this.Dependencies != null)
             {
-                result.Dependencies = (SubpassDependency*)Interop.HeapUtil.Allocate<SubpassDependency>(this.Dependencies.Length).ToPointer();
+                pointer->Dependencies = (SubpassDependency*)Interop.HeapUtil.Allocate<SubpassDependency>(this.Dependencies.Length).ToPointer();
                 for (int index = 0; index < this.Dependencies.Length; index++)
                 {
-                    result.Dependencies[index] = this.Dependencies[index];
+                    pointer->Dependencies[index] = this.Dependencies[index];
                 }
             }
             else
             {
-                result.Dependencies = null;
+                pointer->Dependencies = null;
             }
-            result.AttachmentCount = (uint)(this.Attachments?.Length ?? 0);
-            result.SubpassCount = (uint)(this.Subpasses?.Length ?? 0);
-            result.DependencyCount = (uint)(this.Dependencies?.Length ?? 0);
-            result.Flags = this.Flags;
-            return result;
-        }
-        
-        internal unsafe Interop.RenderPassCreateInfo* MarshalTo()
-        {
-            return (Interop.RenderPassCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            pointer->AttachmentCount = (uint)(this.Attachments?.Length ?? 0);
+            pointer->SubpassCount = (uint)(this.Subpasses?.Length ?? 0);
+            pointer->DependencyCount = (uint)(this.Dependencies?.Length ?? 0);
+            pointer->Flags = this.Flags;
         }
     }
 }

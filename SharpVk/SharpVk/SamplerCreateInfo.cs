@@ -179,29 +179,35 @@ namespace SharpVk
         internal unsafe Interop.SamplerCreateInfo Pack()
         {
             Interop.SamplerCreateInfo result = default(Interop.SamplerCreateInfo);
-            result.SType = StructureType.SamplerCreateInfo;
-            result.Flags = this.Flags;
-            result.MagFilter = this.MagFilter;
-            result.MinFilter = this.MinFilter;
-            result.MipmapMode = this.MipmapMode;
-            result.AddressModeU = this.AddressModeU;
-            result.AddressModeV = this.AddressModeV;
-            result.AddressModeW = this.AddressModeW;
-            result.MipLodBias = this.MipLodBias;
-            result.AnisotropyEnable = this.AnisotropyEnable;
-            result.MaxAnisotropy = this.MaxAnisotropy;
-            result.CompareEnable = this.CompareEnable;
-            result.CompareOp = this.CompareOp;
-            result.MinLod = this.MinLod;
-            result.MaxLod = this.MaxLod;
-            result.BorderColor = this.BorderColor;
-            result.UnnormalizedCoordinates = this.UnnormalizedCoordinates;
             return result;
         }
         
         internal unsafe Interop.SamplerCreateInfo* MarshalTo()
         {
-            return (Interop.SamplerCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.SamplerCreateInfo*)Interop.HeapUtil.Allocate<Interop.SamplerCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.SamplerCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.SamplerCreateInfo;
+            pointer->Flags = this.Flags;
+            pointer->MagFilter = this.MagFilter;
+            pointer->MinFilter = this.MinFilter;
+            pointer->MipmapMode = this.MipmapMode;
+            pointer->AddressModeU = this.AddressModeU;
+            pointer->AddressModeV = this.AddressModeV;
+            pointer->AddressModeW = this.AddressModeW;
+            pointer->MipLodBias = this.MipLodBias;
+            pointer->AnisotropyEnable = this.AnisotropyEnable;
+            pointer->MaxAnisotropy = this.MaxAnisotropy;
+            pointer->CompareEnable = this.CompareEnable;
+            pointer->CompareOp = this.CompareOp;
+            pointer->MinLod = this.MinLod;
+            pointer->MaxLod = this.MaxLod;
+            pointer->BorderColor = this.BorderColor;
+            pointer->UnnormalizedCoordinates = this.UnnormalizedCoordinates;
         }
     }
 }

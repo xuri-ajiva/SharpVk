@@ -67,44 +67,50 @@ namespace SharpVk
         internal unsafe Interop.PipelineViewportStateCreateInfo Pack()
         {
             Interop.PipelineViewportStateCreateInfo result = default(Interop.PipelineViewportStateCreateInfo);
-            result.SType = StructureType.PipelineViewportStateCreateInfo;
-            
-            //Viewports
-            if (this.Viewports != null)
-            {
-                result.Viewports = (Viewport*)Interop.HeapUtil.Allocate<Viewport>(this.Viewports.Length).ToPointer();
-                for (int index = 0; index < this.Viewports.Length; index++)
-                {
-                    result.Viewports[index] = this.Viewports[index];
-                }
-            }
-            else
-            {
-                result.Viewports = null;
-            }
-            
-            //Scissors
-            if (this.Scissors != null)
-            {
-                result.Scissors = (Rect2D*)Interop.HeapUtil.Allocate<Rect2D>(this.Scissors.Length).ToPointer();
-                for (int index = 0; index < this.Scissors.Length; index++)
-                {
-                    result.Scissors[index] = this.Scissors[index];
-                }
-            }
-            else
-            {
-                result.Scissors = null;
-            }
-            result.ViewportCount = (uint)(this.Viewports?.Length ?? 0);
-            result.ScissorCount = (uint)(this.Scissors?.Length ?? 0);
-            result.Flags = this.Flags;
             return result;
         }
         
         internal unsafe Interop.PipelineViewportStateCreateInfo* MarshalTo()
         {
-            return (Interop.PipelineViewportStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.PipelineViewportStateCreateInfo*)Interop.HeapUtil.Allocate<Interop.PipelineViewportStateCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.PipelineViewportStateCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.PipelineViewportStateCreateInfo;
+            
+            //Viewports
+            if (this.Viewports != null)
+            {
+                pointer->Viewports = (Viewport*)Interop.HeapUtil.Allocate<Viewport>(this.Viewports.Length).ToPointer();
+                for (int index = 0; index < this.Viewports.Length; index++)
+                {
+                    pointer->Viewports[index] = this.Viewports[index];
+                }
+            }
+            else
+            {
+                pointer->Viewports = null;
+            }
+            
+            //Scissors
+            if (this.Scissors != null)
+            {
+                pointer->Scissors = (Rect2D*)Interop.HeapUtil.Allocate<Rect2D>(this.Scissors.Length).ToPointer();
+                for (int index = 0; index < this.Scissors.Length; index++)
+                {
+                    pointer->Scissors[index] = this.Scissors[index];
+                }
+            }
+            else
+            {
+                pointer->Scissors = null;
+            }
+            pointer->ViewportCount = (uint)(this.Viewports?.Length ?? 0);
+            pointer->ScissorCount = (uint)(this.Scissors?.Length ?? 0);
+            pointer->Flags = this.Flags;
         }
     }
 }

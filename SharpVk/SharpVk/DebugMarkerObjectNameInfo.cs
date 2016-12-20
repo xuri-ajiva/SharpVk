@@ -71,16 +71,22 @@ namespace SharpVk
         internal unsafe Interop.DebugMarkerObjectNameInfo Pack()
         {
             Interop.DebugMarkerObjectNameInfo result = default(Interop.DebugMarkerObjectNameInfo);
-            result.SType = StructureType.DebugMarkerObjectNameInfo;
-            result.ObjectName = Interop.HeapUtil.MarshalTo(this.ObjectName);
-            result.ObjectType = this.ObjectType;
-            result.Object = this.Object;
             return result;
         }
         
         internal unsafe Interop.DebugMarkerObjectNameInfo* MarshalTo()
         {
-            return (Interop.DebugMarkerObjectNameInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.DebugMarkerObjectNameInfo*)Interop.HeapUtil.Allocate<Interop.DebugMarkerObjectNameInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.DebugMarkerObjectNameInfo* pointer)
+        {
+            pointer->SType = StructureType.DebugMarkerObjectNameInfo;
+            pointer->ObjectName = Interop.HeapUtil.MarshalTo(this.ObjectName);
+            pointer->ObjectType = this.ObjectType;
+            pointer->Object = this.Object;
         }
     }
 }

@@ -54,15 +54,22 @@ namespace SharpVk
         internal unsafe Interop.AndroidSurfaceCreateInfo Pack()
         {
             Interop.AndroidSurfaceCreateInfo result = default(Interop.AndroidSurfaceCreateInfo);
-            result.SType = StructureType.AndroidSurfaceCreateInfo;
-            result.Window = (IntPtr*)Interop.HeapUtil.AllocateAndMarshal(this.Window);
-            result.Flags = this.Flags;
             return result;
         }
         
         internal unsafe Interop.AndroidSurfaceCreateInfo* MarshalTo()
         {
-            return (Interop.AndroidSurfaceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.AndroidSurfaceCreateInfo*)Interop.HeapUtil.Allocate<Interop.AndroidSurfaceCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.AndroidSurfaceCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.AndroidSurfaceCreateInfo;
+            pointer->Window = (IntPtr*)Interop.HeapUtil.Allocate<IntPtr>();
+            *pointer->Window = this.Window;
+            pointer->Flags = this.Flags;
         }
     }
 }

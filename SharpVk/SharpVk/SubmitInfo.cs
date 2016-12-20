@@ -82,78 +82,84 @@ namespace SharpVk
         internal unsafe Interop.SubmitInfo Pack()
         {
             Interop.SubmitInfo result = default(Interop.SubmitInfo);
-            result.SType = StructureType.SubmitInfo;
+            return result;
+        }
+        
+        internal unsafe Interop.SubmitInfo* MarshalTo()
+        {
+            var result = (Interop.SubmitInfo*)Interop.HeapUtil.Allocate<Interop.SubmitInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.SubmitInfo* pointer)
+        {
+            pointer->SType = StructureType.SubmitInfo;
             
             //WaitSemaphores
             if (this.WaitSemaphores != null)
             {
                 int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.Semaphore>();
-                IntPtr pointer = Interop.HeapUtil.Allocate<Interop.Semaphore>(this.WaitSemaphores.Length);
+                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.Semaphore>(this.WaitSemaphores.Length);
                 for (int index = 0; index < this.WaitSemaphores.Length; index++)
                 {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.WaitSemaphores[index].Pack(), pointer + (size * index), false);
+                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.WaitSemaphores[index].Pack(), fieldPointer + (size * index), false);
                 }
-                result.WaitSemaphores = (Interop.Semaphore*)pointer.ToPointer();
+                pointer->WaitSemaphores = (Interop.Semaphore*)fieldPointer.ToPointer();
             }
             else
             {
-                result.WaitSemaphores = null;
+                pointer->WaitSemaphores = null;
             }
             
             //WaitDestinationStageMask
             if (this.WaitDestinationStageMask != null)
             {
-                result.WaitDestinationStageMask = (PipelineStageFlags*)Interop.HeapUtil.Allocate<int>(this.WaitDestinationStageMask.Length).ToPointer();
+                pointer->WaitDestinationStageMask = (PipelineStageFlags*)Interop.HeapUtil.Allocate<int>(this.WaitDestinationStageMask.Length).ToPointer();
                 for (int index = 0; index < this.WaitDestinationStageMask.Length; index++)
                 {
-                    result.WaitDestinationStageMask[index] = this.WaitDestinationStageMask[index];
+                    pointer->WaitDestinationStageMask[index] = this.WaitDestinationStageMask[index];
                 }
             }
             else
             {
-                result.WaitDestinationStageMask = null;
+                pointer->WaitDestinationStageMask = null;
             }
             
             //CommandBuffers
             if (this.CommandBuffers != null)
             {
                 int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.CommandBuffer>();
-                IntPtr pointer = Interop.HeapUtil.Allocate<Interop.CommandBuffer>(this.CommandBuffers.Length);
+                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.CommandBuffer>(this.CommandBuffers.Length);
                 for (int index = 0; index < this.CommandBuffers.Length; index++)
                 {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.CommandBuffers[index].Pack(), pointer + (size * index), false);
+                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.CommandBuffers[index].Pack(), fieldPointer + (size * index), false);
                 }
-                result.CommandBuffers = (Interop.CommandBuffer*)pointer.ToPointer();
+                pointer->CommandBuffers = (Interop.CommandBuffer*)fieldPointer.ToPointer();
             }
             else
             {
-                result.CommandBuffers = null;
+                pointer->CommandBuffers = null;
             }
             
             //SignalSemaphores
             if (this.SignalSemaphores != null)
             {
                 int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.Semaphore>();
-                IntPtr pointer = Interop.HeapUtil.Allocate<Interop.Semaphore>(this.SignalSemaphores.Length);
+                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.Semaphore>(this.SignalSemaphores.Length);
                 for (int index = 0; index < this.SignalSemaphores.Length; index++)
                 {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.SignalSemaphores[index].Pack(), pointer + (size * index), false);
+                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.SignalSemaphores[index].Pack(), fieldPointer + (size * index), false);
                 }
-                result.SignalSemaphores = (Interop.Semaphore*)pointer.ToPointer();
+                pointer->SignalSemaphores = (Interop.Semaphore*)fieldPointer.ToPointer();
             }
             else
             {
-                result.SignalSemaphores = null;
+                pointer->SignalSemaphores = null;
             }
-            result.WaitSemaphoreCount = (uint)(this.WaitDestinationStageMask?.Length ?? 0);
-            result.CommandBufferCount = (uint)(this.CommandBuffers?.Length ?? 0);
-            result.SignalSemaphoreCount = (uint)(this.SignalSemaphores?.Length ?? 0);
-            return result;
-        }
-        
-        internal unsafe Interop.SubmitInfo* MarshalTo()
-        {
-            return (Interop.SubmitInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            pointer->WaitSemaphoreCount = (uint)(this.WaitDestinationStageMask?.Length ?? 0);
+            pointer->CommandBufferCount = (uint)(this.CommandBuffers?.Length ?? 0);
+            pointer->SignalSemaphoreCount = (uint)(this.SignalSemaphores?.Length ?? 0);
         }
     }
 }

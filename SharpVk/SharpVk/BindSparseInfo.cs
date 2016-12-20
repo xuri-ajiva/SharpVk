@@ -93,98 +93,104 @@ namespace SharpVk
         internal unsafe Interop.BindSparseInfo Pack()
         {
             Interop.BindSparseInfo result = default(Interop.BindSparseInfo);
-            result.SType = StructureType.BindSparseInfo;
+            return result;
+        }
+        
+        internal unsafe Interop.BindSparseInfo* MarshalTo()
+        {
+            var result = (Interop.BindSparseInfo*)Interop.HeapUtil.Allocate<Interop.BindSparseInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.BindSparseInfo* pointer)
+        {
+            pointer->SType = StructureType.BindSparseInfo;
             
             //WaitSemaphores
             if (this.WaitSemaphores != null)
             {
                 int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.Semaphore>();
-                IntPtr pointer = Interop.HeapUtil.Allocate<Interop.Semaphore>(this.WaitSemaphores.Length);
+                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.Semaphore>(this.WaitSemaphores.Length);
                 for (int index = 0; index < this.WaitSemaphores.Length; index++)
                 {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.WaitSemaphores[index].Pack(), pointer + (size * index), false);
+                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.WaitSemaphores[index].Pack(), fieldPointer + (size * index), false);
                 }
-                result.WaitSemaphores = (Interop.Semaphore*)pointer.ToPointer();
+                pointer->WaitSemaphores = (Interop.Semaphore*)fieldPointer.ToPointer();
             }
             else
             {
-                result.WaitSemaphores = null;
+                pointer->WaitSemaphores = null;
             }
             
             //BufferBinds
             if (this.BufferBinds != null)
             {
                 int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.SparseBufferMemoryBindInfo>();
-                IntPtr pointer = Interop.HeapUtil.Allocate<Interop.SparseBufferMemoryBindInfo>(this.BufferBinds.Length);
+                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.SparseBufferMemoryBindInfo>(this.BufferBinds.Length);
                 for (int index = 0; index < this.BufferBinds.Length; index++)
                 {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.BufferBinds[index].Pack(), pointer + (size * index), false);
+                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.BufferBinds[index].Pack(), fieldPointer + (size * index), false);
                 }
-                result.BufferBinds = (Interop.SparseBufferMemoryBindInfo*)pointer.ToPointer();
+                pointer->BufferBinds = (Interop.SparseBufferMemoryBindInfo*)fieldPointer.ToPointer();
             }
             else
             {
-                result.BufferBinds = null;
+                pointer->BufferBinds = null;
             }
             
             //ImageOpaqueBinds
             if (this.ImageOpaqueBinds != null)
             {
                 int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.SparseImageOpaqueMemoryBindInfo>();
-                IntPtr pointer = Interop.HeapUtil.Allocate<Interop.SparseImageOpaqueMemoryBindInfo>(this.ImageOpaqueBinds.Length);
+                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.SparseImageOpaqueMemoryBindInfo>(this.ImageOpaqueBinds.Length);
                 for (int index = 0; index < this.ImageOpaqueBinds.Length; index++)
                 {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.ImageOpaqueBinds[index].Pack(), pointer + (size * index), false);
+                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.ImageOpaqueBinds[index].Pack(), fieldPointer + (size * index), false);
                 }
-                result.ImageOpaqueBinds = (Interop.SparseImageOpaqueMemoryBindInfo*)pointer.ToPointer();
+                pointer->ImageOpaqueBinds = (Interop.SparseImageOpaqueMemoryBindInfo*)fieldPointer.ToPointer();
             }
             else
             {
-                result.ImageOpaqueBinds = null;
+                pointer->ImageOpaqueBinds = null;
             }
             
             //ImageBinds
             if (this.ImageBinds != null)
             {
                 int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.SparseImageMemoryBindInfo>();
-                IntPtr pointer = Interop.HeapUtil.Allocate<Interop.SparseImageMemoryBindInfo>(this.ImageBinds.Length);
+                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.SparseImageMemoryBindInfo>(this.ImageBinds.Length);
                 for (int index = 0; index < this.ImageBinds.Length; index++)
                 {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.ImageBinds[index].Pack(), pointer + (size * index), false);
+                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.ImageBinds[index].Pack(), fieldPointer + (size * index), false);
                 }
-                result.ImageBinds = (Interop.SparseImageMemoryBindInfo*)pointer.ToPointer();
+                pointer->ImageBinds = (Interop.SparseImageMemoryBindInfo*)fieldPointer.ToPointer();
             }
             else
             {
-                result.ImageBinds = null;
+                pointer->ImageBinds = null;
             }
             
             //SignalSemaphores
             if (this.SignalSemaphores != null)
             {
                 int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.Semaphore>();
-                IntPtr pointer = Interop.HeapUtil.Allocate<Interop.Semaphore>(this.SignalSemaphores.Length);
+                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.Semaphore>(this.SignalSemaphores.Length);
                 for (int index = 0; index < this.SignalSemaphores.Length; index++)
                 {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.SignalSemaphores[index].Pack(), pointer + (size * index), false);
+                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.SignalSemaphores[index].Pack(), fieldPointer + (size * index), false);
                 }
-                result.SignalSemaphores = (Interop.Semaphore*)pointer.ToPointer();
+                pointer->SignalSemaphores = (Interop.Semaphore*)fieldPointer.ToPointer();
             }
             else
             {
-                result.SignalSemaphores = null;
+                pointer->SignalSemaphores = null;
             }
-            result.WaitSemaphoreCount = (uint)(this.WaitSemaphores?.Length ?? 0);
-            result.BufferBindCount = (uint)(this.BufferBinds?.Length ?? 0);
-            result.ImageOpaqueBindCount = (uint)(this.ImageOpaqueBinds?.Length ?? 0);
-            result.ImageBindCount = (uint)(this.ImageBinds?.Length ?? 0);
-            result.SignalSemaphoreCount = (uint)(this.SignalSemaphores?.Length ?? 0);
-            return result;
-        }
-        
-        internal unsafe Interop.BindSparseInfo* MarshalTo()
-        {
-            return (Interop.BindSparseInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            pointer->WaitSemaphoreCount = (uint)(this.WaitSemaphores?.Length ?? 0);
+            pointer->BufferBindCount = (uint)(this.BufferBinds?.Length ?? 0);
+            pointer->ImageOpaqueBindCount = (uint)(this.ImageOpaqueBinds?.Length ?? 0);
+            pointer->ImageBindCount = (uint)(this.ImageBinds?.Length ?? 0);
+            pointer->SignalSemaphoreCount = (uint)(this.SignalSemaphores?.Length ?? 0);
         }
     }
 }

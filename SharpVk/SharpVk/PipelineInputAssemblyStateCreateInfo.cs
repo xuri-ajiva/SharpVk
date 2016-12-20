@@ -82,16 +82,22 @@ namespace SharpVk
         internal unsafe Interop.PipelineInputAssemblyStateCreateInfo Pack()
         {
             Interop.PipelineInputAssemblyStateCreateInfo result = default(Interop.PipelineInputAssemblyStateCreateInfo);
-            result.SType = StructureType.PipelineInputAssemblyStateCreateInfo;
-            result.Flags = this.Flags;
-            result.Topology = this.Topology;
-            result.PrimitiveRestartEnable = this.PrimitiveRestartEnable;
             return result;
         }
         
         internal unsafe Interop.PipelineInputAssemblyStateCreateInfo* MarshalTo()
         {
-            return (Interop.PipelineInputAssemblyStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.PipelineInputAssemblyStateCreateInfo*)Interop.HeapUtil.Allocate<Interop.PipelineInputAssemblyStateCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.PipelineInputAssemblyStateCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.PipelineInputAssemblyStateCreateInfo;
+            pointer->Flags = this.Flags;
+            pointer->Topology = this.Topology;
+            pointer->PrimitiveRestartEnable = this.PrimitiveRestartEnable;
         }
     }
 }

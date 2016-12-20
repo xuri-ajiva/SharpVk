@@ -64,16 +64,22 @@ namespace SharpVk
         internal unsafe Interop.ShaderModuleCreateInfo Pack()
         {
             Interop.ShaderModuleCreateInfo result = default(Interop.ShaderModuleCreateInfo);
-            result.SType = StructureType.ShaderModuleCreateInfo;
-            result.Code = this.Code == null ? null : Interop.HeapUtil.MarshalTo(this.Code);
-            result.Flags = this.Flags;
-            result.CodeSize = this.CodeSize;
             return result;
         }
         
         internal unsafe Interop.ShaderModuleCreateInfo* MarshalTo()
         {
-            return (Interop.ShaderModuleCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.ShaderModuleCreateInfo*)Interop.HeapUtil.Allocate<Interop.ShaderModuleCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.ShaderModuleCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.ShaderModuleCreateInfo;
+            pointer->Code = this.Code == null ? null : Interop.HeapUtil.MarshalTo(this.Code);
+            pointer->Flags = this.Flags;
+            pointer->CodeSize = this.CodeSize;
         }
     }
 }

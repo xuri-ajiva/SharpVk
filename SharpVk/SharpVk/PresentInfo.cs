@@ -83,62 +83,68 @@ namespace SharpVk
         internal unsafe Interop.PresentInfo Pack()
         {
             Interop.PresentInfo result = default(Interop.PresentInfo);
-            result.SType = StructureType.PresentInfo;
+            return result;
+        }
+        
+        internal unsafe Interop.PresentInfo* MarshalTo()
+        {
+            var result = (Interop.PresentInfo*)Interop.HeapUtil.Allocate<Interop.PresentInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.PresentInfo* pointer)
+        {
+            pointer->SType = StructureType.PresentInfo;
             
             //WaitSemaphores
             if (this.WaitSemaphores != null)
             {
                 int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.Semaphore>();
-                IntPtr pointer = Interop.HeapUtil.Allocate<Interop.Semaphore>(this.WaitSemaphores.Length);
+                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.Semaphore>(this.WaitSemaphores.Length);
                 for (int index = 0; index < this.WaitSemaphores.Length; index++)
                 {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.WaitSemaphores[index].Pack(), pointer + (size * index), false);
+                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.WaitSemaphores[index].Pack(), fieldPointer + (size * index), false);
                 }
-                result.WaitSemaphores = (Interop.Semaphore*)pointer.ToPointer();
+                pointer->WaitSemaphores = (Interop.Semaphore*)fieldPointer.ToPointer();
             }
             else
             {
-                result.WaitSemaphores = null;
+                pointer->WaitSemaphores = null;
             }
             
             //Swapchains
             if (this.Swapchains != null)
             {
                 int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.Swapchain>();
-                IntPtr pointer = Interop.HeapUtil.Allocate<Interop.Swapchain>(this.Swapchains.Length);
+                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.Swapchain>(this.Swapchains.Length);
                 for (int index = 0; index < this.Swapchains.Length; index++)
                 {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.Swapchains[index].Pack(), pointer + (size * index), false);
+                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.Swapchains[index].Pack(), fieldPointer + (size * index), false);
                 }
-                result.Swapchains = (Interop.Swapchain*)pointer.ToPointer();
+                pointer->Swapchains = (Interop.Swapchain*)fieldPointer.ToPointer();
             }
             else
             {
-                result.Swapchains = null;
+                pointer->Swapchains = null;
             }
-            result.ImageIndices = this.ImageIndices == null ? null : Interop.HeapUtil.MarshalTo(this.ImageIndices);
+            pointer->ImageIndices = this.ImageIndices == null ? null : Interop.HeapUtil.MarshalTo(this.ImageIndices);
             
             //Results
             if (this.Results != null)
             {
-                result.Results = (Result*)Interop.HeapUtil.Allocate<int>(this.Results.Length).ToPointer();
+                pointer->Results = (Result*)Interop.HeapUtil.Allocate<int>(this.Results.Length).ToPointer();
                 for (int index = 0; index < this.Results.Length; index++)
                 {
-                    result.Results[index] = this.Results[index];
+                    pointer->Results[index] = this.Results[index];
                 }
             }
             else
             {
-                result.Results = null;
+                pointer->Results = null;
             }
-            result.WaitSemaphoreCount = (uint)(this.WaitSemaphores?.Length ?? 0);
-            result.SwapchainCount = (uint)(this.ImageIndices?.Length ?? 0);
-            return result;
-        }
-        
-        internal unsafe Interop.PresentInfo* MarshalTo()
-        {
-            return (Interop.PresentInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            pointer->WaitSemaphoreCount = (uint)(this.WaitSemaphores?.Length ?? 0);
+            pointer->SwapchainCount = (uint)(this.ImageIndices?.Length ?? 0);
         }
     }
 }

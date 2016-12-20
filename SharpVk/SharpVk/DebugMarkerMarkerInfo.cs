@@ -57,16 +57,22 @@ namespace SharpVk
         internal unsafe Interop.DebugMarkerMarkerInfo Pack()
         {
             Interop.DebugMarkerMarkerInfo result = default(Interop.DebugMarkerMarkerInfo);
-            result.SType = StructureType.DebugMarkerMarkerInfo;
-            result.MarkerName = Interop.HeapUtil.MarshalTo(this.MarkerName);
-            Validate.CheckLength(this.Color, 4, "Color");
-            MemUtil.WriteToPtr((IntPtr)(result.Color), this.Color, 0, 4);
             return result;
         }
         
         internal unsafe Interop.DebugMarkerMarkerInfo* MarshalTo()
         {
-            return (Interop.DebugMarkerMarkerInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.DebugMarkerMarkerInfo*)Interop.HeapUtil.Allocate<Interop.DebugMarkerMarkerInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.DebugMarkerMarkerInfo* pointer)
+        {
+            pointer->SType = StructureType.DebugMarkerMarkerInfo;
+            pointer->MarkerName = Interop.HeapUtil.MarshalTo(this.MarkerName);
+            Validate.CheckLength(this.Color, 4, "Color");
+            MemUtil.WriteToPtr((IntPtr)(pointer->Color), this.Color, 0, 4);
         }
     }
 }

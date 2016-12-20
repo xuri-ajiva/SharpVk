@@ -63,16 +63,24 @@ namespace SharpVk
         internal unsafe Interop.MirSurfaceCreateInfo Pack()
         {
             Interop.MirSurfaceCreateInfo result = default(Interop.MirSurfaceCreateInfo);
-            result.SType = StructureType.MirSurfaceCreateInfo;
-            result.Connection = (IntPtr*)Interop.HeapUtil.AllocateAndMarshal(this.Connection);
-            result.MirSurface = (IntPtr*)Interop.HeapUtil.AllocateAndMarshal(this.MirSurface);
-            result.Flags = this.Flags;
             return result;
         }
         
         internal unsafe Interop.MirSurfaceCreateInfo* MarshalTo()
         {
-            return (Interop.MirSurfaceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.MirSurfaceCreateInfo*)Interop.HeapUtil.Allocate<Interop.MirSurfaceCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.MirSurfaceCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.MirSurfaceCreateInfo;
+            pointer->Connection = (IntPtr*)Interop.HeapUtil.Allocate<IntPtr>();
+            *pointer->Connection = this.Connection;
+            pointer->MirSurface = (IntPtr*)Interop.HeapUtil.Allocate<IntPtr>();
+            *pointer->MirSurface = this.MirSurface;
+            pointer->Flags = this.Flags;
         }
     }
 }

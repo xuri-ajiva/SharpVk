@@ -53,15 +53,21 @@ namespace SharpVk
         internal unsafe Interop.CommandBufferBeginInfo Pack()
         {
             Interop.CommandBufferBeginInfo result = default(Interop.CommandBufferBeginInfo);
-            result.SType = StructureType.CommandBufferBeginInfo;
-            result.InheritanceInfo = this.InheritanceInfo == null ? null : this.InheritanceInfo.Value.MarshalTo();
-            result.Flags = this.Flags;
             return result;
         }
         
         internal unsafe Interop.CommandBufferBeginInfo* MarshalTo()
         {
-            return (Interop.CommandBufferBeginInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.CommandBufferBeginInfo*)Interop.HeapUtil.Allocate<Interop.CommandBufferBeginInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.CommandBufferBeginInfo* pointer)
+        {
+            pointer->SType = StructureType.CommandBufferBeginInfo;
+            pointer->InheritanceInfo = this.InheritanceInfo == null ? null : this.InheritanceInfo.Value.MarshalTo();
+            pointer->Flags = this.Flags;
         }
     }
 }

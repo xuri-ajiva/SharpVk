@@ -44,14 +44,20 @@ namespace SharpVk
         internal unsafe Interop.FenceCreateInfo Pack()
         {
             Interop.FenceCreateInfo result = default(Interop.FenceCreateInfo);
-            result.SType = StructureType.FenceCreateInfo;
-            result.Flags = this.Flags;
             return result;
         }
         
         internal unsafe Interop.FenceCreateInfo* MarshalTo()
         {
-            return (Interop.FenceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.FenceCreateInfo*)Interop.HeapUtil.Allocate<Interop.FenceCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.FenceCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.FenceCreateInfo;
+            pointer->Flags = this.Flags;
         }
     }
 }

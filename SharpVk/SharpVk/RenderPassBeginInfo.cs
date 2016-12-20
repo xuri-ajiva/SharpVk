@@ -98,32 +98,38 @@ namespace SharpVk
         internal unsafe Interop.RenderPassBeginInfo Pack()
         {
             Interop.RenderPassBeginInfo result = default(Interop.RenderPassBeginInfo);
-            result.SType = StructureType.RenderPassBeginInfo;
-            result.RenderPass = this.RenderPass?.Pack() ?? Interop.RenderPass.Null;
-            result.Framebuffer = this.Framebuffer?.Pack() ?? Interop.Framebuffer.Null;
-            
-            //ClearValues
-            if (this.ClearValues != null && this.ClearValues.Length > 0)
-            {
-                int length = (int)(this.ClearValues.Length);
-                result.ClearValues = (ClearValue*)Interop.HeapUtil.Allocate<ClearValue>(length).ToPointer();
-                for (int index = 0; index < length; index++)
-                {
-                    result.ClearValues[index] = this.ClearValues[index];
-                }
-            }
-            else
-            {
-                result.ClearValues = null;
-            }
-            result.ClearValueCount = (uint)(this.ClearValues?.Length ?? 0);
-            result.RenderArea = this.RenderArea;
             return result;
         }
         
         internal unsafe Interop.RenderPassBeginInfo* MarshalTo()
         {
-            return (Interop.RenderPassBeginInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.RenderPassBeginInfo*)Interop.HeapUtil.Allocate<Interop.RenderPassBeginInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.RenderPassBeginInfo* pointer)
+        {
+            pointer->SType = StructureType.RenderPassBeginInfo;
+            pointer->RenderPass = this.RenderPass?.Pack() ?? Interop.RenderPass.Null;
+            pointer->Framebuffer = this.Framebuffer?.Pack() ?? Interop.Framebuffer.Null;
+            
+            //ClearValues
+            if (this.ClearValues != null && this.ClearValues.Length > 0)
+            {
+                int length = (int)(this.ClearValues.Length);
+                pointer->ClearValues = (ClearValue*)Interop.HeapUtil.Allocate<ClearValue>(length).ToPointer();
+                for (int index = 0; index < length; index++)
+                {
+                    pointer->ClearValues[index] = this.ClearValues[index];
+                }
+            }
+            else
+            {
+                pointer->ClearValues = null;
+            }
+            pointer->ClearValueCount = (uint)(this.ClearValues?.Length ?? 0);
+            pointer->RenderArea = this.RenderArea;
         }
     }
 }

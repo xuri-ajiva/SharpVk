@@ -55,16 +55,22 @@ namespace SharpVk
         internal unsafe Interop.PipelineCacheCreateInfo Pack()
         {
             Interop.PipelineCacheCreateInfo result = default(Interop.PipelineCacheCreateInfo);
-            result.SType = StructureType.PipelineCacheCreateInfo;
-            result.InitialData = this.InitialData == null ? null : Interop.HeapUtil.MarshalTo(this.InitialData);
-            result.InitialDataSize = (Size)(this.InitialData?.Length ?? 0);
-            result.Flags = this.Flags;
             return result;
         }
         
         internal unsafe Interop.PipelineCacheCreateInfo* MarshalTo()
         {
-            return (Interop.PipelineCacheCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.PipelineCacheCreateInfo*)Interop.HeapUtil.Allocate<Interop.PipelineCacheCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.PipelineCacheCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.PipelineCacheCreateInfo;
+            pointer->InitialData = this.InitialData == null ? null : Interop.HeapUtil.MarshalTo(this.InitialData);
+            pointer->InitialDataSize = (Size)(this.InitialData?.Length ?? 0);
+            pointer->Flags = this.Flags;
         }
     }
 }

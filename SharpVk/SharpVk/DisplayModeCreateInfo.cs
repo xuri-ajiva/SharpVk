@@ -56,15 +56,21 @@ namespace SharpVk
         internal unsafe Interop.DisplayModeCreateInfo Pack()
         {
             Interop.DisplayModeCreateInfo result = default(Interop.DisplayModeCreateInfo);
-            result.SType = StructureType.DisplayModeCreateInfo;
-            result.Flags = this.Flags;
-            result.Parameters = this.Parameters;
             return result;
         }
         
         internal unsafe Interop.DisplayModeCreateInfo* MarshalTo()
         {
-            return (Interop.DisplayModeCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.DisplayModeCreateInfo*)Interop.HeapUtil.Allocate<Interop.DisplayModeCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.DisplayModeCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.DisplayModeCreateInfo;
+            pointer->Flags = this.Flags;
+            pointer->Parameters = this.Parameters;
         }
     }
 }

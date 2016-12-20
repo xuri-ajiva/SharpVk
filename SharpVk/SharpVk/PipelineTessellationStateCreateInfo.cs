@@ -53,15 +53,21 @@ namespace SharpVk
         internal unsafe Interop.PipelineTessellationStateCreateInfo Pack()
         {
             Interop.PipelineTessellationStateCreateInfo result = default(Interop.PipelineTessellationStateCreateInfo);
-            result.SType = StructureType.PipelineTessellationStateCreateInfo;
-            result.Flags = this.Flags;
-            result.PatchControlPoints = this.PatchControlPoints;
             return result;
         }
         
         internal unsafe Interop.PipelineTessellationStateCreateInfo* MarshalTo()
         {
-            return (Interop.PipelineTessellationStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.PipelineTessellationStateCreateInfo*)Interop.HeapUtil.Allocate<Interop.PipelineTessellationStateCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.PipelineTessellationStateCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.PipelineTessellationStateCreateInfo;
+            pointer->Flags = this.Flags;
+            pointer->PatchControlPoints = this.PatchControlPoints;
         }
     }
 }

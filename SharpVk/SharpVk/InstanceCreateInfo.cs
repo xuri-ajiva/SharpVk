@@ -79,19 +79,25 @@ namespace SharpVk
         internal unsafe Interop.InstanceCreateInfo Pack()
         {
             Interop.InstanceCreateInfo result = default(Interop.InstanceCreateInfo);
-            result.SType = StructureType.InstanceCreateInfo;
-            result.ApplicationInfo = this.ApplicationInfo == null ? null : this.ApplicationInfo.Value.MarshalTo();
-            result.EnabledLayerNames = this.EnabledLayerNames == null ? null : Interop.HeapUtil.MarshalTo(this.EnabledLayerNames);
-            result.EnabledExtensionNames = this.EnabledExtensionNames == null ? null : Interop.HeapUtil.MarshalTo(this.EnabledExtensionNames);
-            result.EnabledLayerCount = (uint)(this.EnabledLayerNames?.Length ?? 0);
-            result.EnabledExtensionCount = (uint)(this.EnabledExtensionNames?.Length ?? 0);
-            result.Flags = this.Flags;
             return result;
         }
         
         internal unsafe Interop.InstanceCreateInfo* MarshalTo()
         {
-            return (Interop.InstanceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.InstanceCreateInfo*)Interop.HeapUtil.Allocate<Interop.InstanceCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.InstanceCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.InstanceCreateInfo;
+            pointer->ApplicationInfo = this.ApplicationInfo == null ? null : this.ApplicationInfo.Value.MarshalTo();
+            pointer->EnabledLayerNames = this.EnabledLayerNames == null ? null : Interop.HeapUtil.MarshalTo(this.EnabledLayerNames);
+            pointer->EnabledExtensionNames = this.EnabledExtensionNames == null ? null : Interop.HeapUtil.MarshalTo(this.EnabledExtensionNames);
+            pointer->EnabledLayerCount = (uint)(this.EnabledLayerNames?.Length ?? 0);
+            pointer->EnabledExtensionCount = (uint)(this.EnabledExtensionNames?.Length ?? 0);
+            pointer->Flags = this.Flags;
         }
     }
 }

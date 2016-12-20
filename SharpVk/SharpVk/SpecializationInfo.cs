@@ -60,29 +60,35 @@ namespace SharpVk
         internal unsafe Interop.SpecializationInfo Pack()
         {
             Interop.SpecializationInfo result = default(Interop.SpecializationInfo);
-            
-            //MapEntries
-            if (this.MapEntries != null)
-            {
-                result.MapEntries = (SpecializationMapEntry*)Interop.HeapUtil.Allocate<SpecializationMapEntry>(this.MapEntries.Length).ToPointer();
-                for (int index = 0; index < this.MapEntries.Length; index++)
-                {
-                    result.MapEntries[index] = this.MapEntries[index];
-                }
-            }
-            else
-            {
-                result.MapEntries = null;
-            }
-            result.Data = this.Data == null ? null : Interop.HeapUtil.MarshalTo(this.Data);
-            result.MapEntryCount = (uint)(this.MapEntries?.Length ?? 0);
-            result.DataSize = (Size)(this.Data?.Length ?? 0);
             return result;
         }
         
         internal unsafe Interop.SpecializationInfo* MarshalTo()
         {
-            return (Interop.SpecializationInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.SpecializationInfo*)Interop.HeapUtil.Allocate<Interop.SpecializationInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.SpecializationInfo* pointer)
+        {
+            
+            //MapEntries
+            if (this.MapEntries != null)
+            {
+                pointer->MapEntries = (SpecializationMapEntry*)Interop.HeapUtil.Allocate<SpecializationMapEntry>(this.MapEntries.Length).ToPointer();
+                for (int index = 0; index < this.MapEntries.Length; index++)
+                {
+                    pointer->MapEntries[index] = this.MapEntries[index];
+                }
+            }
+            else
+            {
+                pointer->MapEntries = null;
+            }
+            pointer->Data = this.Data == null ? null : Interop.HeapUtil.MarshalTo(this.Data);
+            pointer->MapEntryCount = (uint)(this.MapEntries?.Length ?? 0);
+            pointer->DataSize = (Size)(this.Data?.Length ?? 0);
         }
     }
 }

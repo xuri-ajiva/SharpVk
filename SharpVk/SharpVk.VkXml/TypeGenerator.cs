@@ -899,7 +899,7 @@ namespace SharpVk.VkXml
                         var enumerationType = typeData[member.Type];
                         var enumerationField = enumLookup[member.Values];
 
-                        newClass.MarshalToStatements.Add($"result.{memberName} = {enumerationType.Name}.{enumerationField.Name};");
+                        newClass.MarshalToStatements.Add($"pointer->{memberName} = {enumerationType.Name}.{enumerationField.Name};");
                     }
                     else if (member.Dimensions != null)
                     {
@@ -918,7 +918,7 @@ namespace SharpVk.VkXml
                                 lenMembers[lenToken] = $"this.{memberName}?.Length ?? 0";
                             }
 
-                            newClass.MarshalToStatements.Add(string.Format("result.{0} = this.{0} == null ? null : Interop.HeapUtil.MarshalTo(this.{0});", memberName));
+                            newClass.MarshalToStatements.Add(string.Format("pointer->{0} = this.{0} == null ? null : Interop.HeapUtil.MarshalTo(this.{0});", memberName));
                         }
                         else
                         {
@@ -927,7 +927,7 @@ namespace SharpVk.VkXml
                                 case SpecParser.LenType.NullTerminated:
                                     memberDesc.PublicTypeName = "string";
 
-                                    newClass.MarshalToStatements.Add(string.Format("result.{0} = Interop.HeapUtil.MarshalTo(this.{0});", memberName));
+                                    newClass.MarshalToStatements.Add(string.Format("pointer->{0} = Interop.HeapUtil.MarshalTo(this.{0});", memberName));
                                     newClass.MarshalFromStatements.Add(string.Format("result.{0} = Interop.HeapUtil.MarshalFrom(value->{0});", memberName));
                                     break;
                                 case SpecParser.LenType.Expression:
@@ -948,16 +948,16 @@ namespace SharpVk.VkXml
                                         newClass.MarshalToStatements.Add($"if (this.{memberName} != null)");
                                         newClass.MarshalToStatements.Add("{");
                                         newClass.MarshalToStatements.Add($"    int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.{memberType.Name}>();");
-                                        newClass.MarshalToStatements.Add($"    IntPtr pointer = Interop.HeapUtil.Allocate<Interop.{memberType.Name}>(this.{memberName}.Length);");
+                                        newClass.MarshalToStatements.Add($"    IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.{memberType.Name}>(this.{memberName}.Length);");
                                         newClass.MarshalToStatements.Add($"    for (int index = 0; index < this.{memberName}.Length; index++)");
                                         newClass.MarshalToStatements.Add("    {");
-                                        newClass.MarshalToStatements.Add($"        System.Runtime.InteropServices.Marshal.StructureToPtr(this.{memberName}[index].Pack(), pointer + (size * index), false);");
+                                        newClass.MarshalToStatements.Add($"        System.Runtime.InteropServices.Marshal.StructureToPtr(this.{memberName}[index].Pack(), fieldPointer + (size * index), false);");
                                         newClass.MarshalToStatements.Add("    }");
-                                        newClass.MarshalToStatements.Add($"    result.{memberName} = (Interop.{memberType.Name}*)pointer.ToPointer();");
+                                        newClass.MarshalToStatements.Add($"    pointer->{memberName} = (Interop.{memberType.Name}*)fieldPointer.ToPointer();");
                                         newClass.MarshalToStatements.Add("}");
                                         newClass.MarshalToStatements.Add("else");
                                         newClass.MarshalToStatements.Add("{");
-                                        newClass.MarshalToStatements.Add($"    result.{memberName} = null;");
+                                        newClass.MarshalToStatements.Add($"    pointer->{memberName} = null;");
                                         newClass.MarshalToStatements.Add("}");
                                     }
                                     else if (memberType.Data.Category == TypeCategory.bitmask || memberType.Data.Category == TypeCategory.@enum || memberType.Data.Category == TypeCategory.@struct)
@@ -970,15 +970,15 @@ namespace SharpVk.VkXml
                                         newClass.MarshalToStatements.Add($"//{memberName}");
                                         newClass.MarshalToStatements.Add($"if (this.{memberName} != null)");
                                         newClass.MarshalToStatements.Add("{");
-                                        newClass.MarshalToStatements.Add($"    result.{memberName} = ({memberType.Name}*)Interop.HeapUtil.Allocate<{allocateType}>(this.{memberName}.Length).ToPointer();");
+                                        newClass.MarshalToStatements.Add($"    pointer->{memberName} = ({memberType.Name}*)Interop.HeapUtil.Allocate<{allocateType}>(this.{memberName}.Length).ToPointer();");
                                         newClass.MarshalToStatements.Add($"    for (int index = 0; index < this.{memberName}.Length; index++)");
                                         newClass.MarshalToStatements.Add("    {");
-                                        newClass.MarshalToStatements.Add($"        result.{memberName}[index] = this.{memberName}[index];");
+                                        newClass.MarshalToStatements.Add($"        pointer->{memberName}[index] = this.{memberName}[index];");
                                         newClass.MarshalToStatements.Add("    }");
                                         newClass.MarshalToStatements.Add("}");
                                         newClass.MarshalToStatements.Add("else");
                                         newClass.MarshalToStatements.Add("{");
-                                        newClass.MarshalToStatements.Add($"    result.{memberName} = null;");
+                                        newClass.MarshalToStatements.Add($"    pointer->{memberName} = null;");
                                         newClass.MarshalToStatements.Add("}");
                                     }
                                     else if (memberType.Data.Category == TypeCategory.basetype || memberType.Data.Category == TypeCategory.union)
@@ -991,20 +991,20 @@ namespace SharpVk.VkXml
                                         newClass.MarshalToStatements.Add($"if (this.{memberName} != null && {lenExpression} > 0)");
                                         newClass.MarshalToStatements.Add("{");
                                         newClass.MarshalToStatements.Add($"    int length = (int)({lenExpression});");
-                                        newClass.MarshalToStatements.Add($"    result.{memberName} = ({memberType.Name}*)Interop.HeapUtil.Allocate<{memberType.Name}>(length).ToPointer();");
+                                        newClass.MarshalToStatements.Add($"    pointer->{memberName} = ({memberType.Name}*)Interop.HeapUtil.Allocate<{memberType.Name}>(length).ToPointer();");
                                         newClass.MarshalToStatements.Add($"    for (int index = 0; index < length; index++)");
                                         newClass.MarshalToStatements.Add("    {");
-                                        newClass.MarshalToStatements.Add($"        result.{memberName}[index] = this.{memberName}[index];");
+                                        newClass.MarshalToStatements.Add($"        pointer->{memberName}[index] = this.{memberName}[index];");
                                         newClass.MarshalToStatements.Add("    }");
                                         newClass.MarshalToStatements.Add("}");
                                         newClass.MarshalToStatements.Add("else");
                                         newClass.MarshalToStatements.Add("{");
-                                        newClass.MarshalToStatements.Add($"    result.{memberName} = null;");
+                                        newClass.MarshalToStatements.Add($"    pointer->{memberName} = null;");
                                         newClass.MarshalToStatements.Add("}");
                                     }
                                     else
                                     {
-                                        newClass.MarshalToStatements.Add(string.Format("result.{0} = this.{0} == null ? null : Interop.HeapUtil.MarshalTo(this.{0});", memberName));
+                                        newClass.MarshalToStatements.Add(string.Format("pointer->{0} = this.{0} == null ? null : Interop.HeapUtil.MarshalTo(this.{0});", memberName));
                                     }
 
                                     if (lenToken != null)
@@ -1035,33 +1035,34 @@ namespace SharpVk.VkXml
                     {
                         memberDesc.PublicTypeName = "IntPtr";
 
-                        newClass.MarshalToStatements.Add(string.Format("result.{0} = this.{0}.ToPointer();", memberDesc.Name));
+                        newClass.MarshalToStatements.Add(string.Format("pointer->{0} = this.{0}.ToPointer();", memberDesc.Name));
                         newClass.MarshalFromStatements.Add(string.Format("result.{0} = new IntPtr(value->{0});", memberDesc.Name));
                     }
                     else if (memberType.Data.Category == TypeCategory.handle)
                     {
                         if (member.PointerType.IsPointer())
                         {
-                            newClass.MarshalToStatements.Add($"result.{memberDesc.Name} = this.{memberDesc.Name} == null ? null : (Interop.{memberDesc.InteropTypeName})Interop.HeapUtil.AllocateAndMarshal(this.{memberDesc.Name}.Pack());");
+                            newClass.MarshalToStatements.Add($"pointer->{memberDesc.Name} = this.{memberDesc.Name} == null ? null : this.{memberDesc.Name}.MarshalTo();");
                         }
                         else
                         {
-                            newClass.MarshalToStatements.Add($"result.{memberDesc.Name} = this.{memberDesc.Name}?.Pack() ?? Interop.{memberDesc.InteropTypeName}.Null;");
+                            newClass.MarshalToStatements.Add($"pointer->{memberDesc.Name} = this.{memberDesc.Name}?.Pack() ?? Interop.{memberDesc.InteropTypeName}.Null;");
                         }
                     }
                     else if (isPointer && memberType.RequiresInterop)
                     {
-                        newClass.MarshalToStatements.Add(string.Format("result.{0} = this.{0} == null ? null : this.{0}.Value.MarshalTo();", memberDesc.Name));
+                        newClass.MarshalToStatements.Add(string.Format("pointer->{0} = this.{0} == null ? null : this.{0}.Value.MarshalTo();", memberDesc.Name));
 
                         memberDesc.PublicTypeName += "?";
                     }
                     else if (isPointer)
                     {
-                        newClass.MarshalToStatements.Add(string.Format("result.{0} = ({1}*)Interop.HeapUtil.AllocateAndMarshal(this.{0});", memberDesc.Name, memberType.Name));
+                        newClass.MarshalToStatements.Add(string.Format("pointer->{0} = ({1}*)Interop.HeapUtil.Allocate<{1}>();", memberDesc.Name, memberType.Name));
+                        newClass.MarshalToStatements.Add(string.Format("*pointer->{0} = this.{0};", memberDesc.Name, memberType.Name));
                     }
                     else if (memberType.RequiresInterop)
                     {
-                        newClass.MarshalToStatements.Add(string.Format("result.{0} = this.{0}.Pack();", memberDesc.Name));
+                        newClass.MarshalToStatements.Add(string.Format("pointer->{0} = this.{0}.Pack();", memberDesc.Name));
                         newClass.MarshalFromStatements.Add(string.Format("result.{0} = {1}.MarshalFrom(&value->{0});", memberDesc.Name, memberDesc.PublicTypeName));
                     }
                     else if (member.FixedLength.Type != SpecParser.FixedLengthType.None)
@@ -1087,7 +1088,7 @@ namespace SharpVk.VkXml
                         }
                         else
                         {
-                            string marshalToPointerExpression = $"result.{memberDesc.Name}";
+                            string marshalToPointerExpression = $"pointer->{memberDesc.Name}";
 
                             if (memberType.IsPrimitive)
                             {
@@ -1168,7 +1169,7 @@ namespace SharpVk.VkXml
                     else if (memberDesc.Name.EndsWith("Version") && memberDesc.PublicTypeName == "uint")
                     {
                         memberDesc.PublicTypeName = "Version";
-                        newClass.MarshalToStatements.Add($"result.{memberName} = (uint)this.{memberName};");
+                        newClass.MarshalToStatements.Add($"pointer->{memberName} = (uint)this.{memberName};");
                         newClass.MarshalFromStatements.Add($"result.{memberName} = value->{memberName};");
                     }
                     else if (memberType.Data.Category == TypeCategory.funcpointer)
@@ -1176,7 +1177,7 @@ namespace SharpVk.VkXml
                         memberDesc.InteropTypeName = "IntPtr";
                         //HACK Expose the interop delegates until proper marshalling is implemented
                         memberDesc.PublicTypeName = "Interop." + memberDesc.PublicTypeName;
-                        newClass.MarshalToStatements.Add($"result.{memberName} = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.{memberName});");
+                        newClass.MarshalToStatements.Add($"pointer->{memberName} = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.{memberName});");
                     }
                     else
                     {
@@ -1217,20 +1218,20 @@ namespace SharpVk.VkXml
 
                     if (type.Data.VkName == "VkDescriptorSetLayoutBinding" && memberName == "descriptorCount")
                     {
-                        newClass.MarshalToStatements.Add($"result.{memberNameLookup[memberName]} = (uint)(this.ImmutableSamplers?.Length ?? (int)this.{memberNameLookup[memberName]});");
+                        newClass.MarshalToStatements.Add($"pointer->{memberNameLookup[memberName]} = (uint)(this.ImmutableSamplers?.Length ?? (int)this.{memberNameLookup[memberName]});");
                     }
                     //HACK Map VkWriteDescriptorSet to access length of any non-null array field
                     else if (type.Data.VkName == "VkWriteDescriptorSet" && memberName == "descriptorCount")
                     {
                         members[memberName].IsInteropOnly = true;
 
-                        newClass.MarshalToStatements.Add($"result.{memberNameLookup[memberName]} = (uint)(this.ImageInfo?.Length ?? this.BufferInfo?.Length ?? this.TexelBufferView?.Length ?? 0);");
+                        newClass.MarshalToStatements.Add($"pointer->{memberNameLookup[memberName]} = (uint)(this.ImageInfo?.Length ?? this.BufferInfo?.Length ?? this.TexelBufferView?.Length ?? 0);");
                     }
                     else
                     {
                         members[memberName].IsInteropOnly = true;
 
-                        newClass.MarshalToStatements.Add($"result.{memberNameLookup[memberName]} = ({members[memberName].InteropTypeName})({lenMembers[memberName]});");
+                        newClass.MarshalToStatements.Add($"pointer->{memberNameLookup[memberName]} = ({members[memberName].InteropTypeName})({lenMembers[memberName]});");
                     }
                 }
 
@@ -1245,7 +1246,7 @@ namespace SharpVk.VkXml
 
                     if (member.IsSimpleMarshal)
                     {
-                        newClass.MarshalToStatements.Add(string.Format("result.{0} = this.{0};", member.Name));
+                        newClass.MarshalToStatements.Add(string.Format("pointer->{0} = this.{0};", member.Name));
                         newClass.MarshalFromStatements.Add(string.Format("result.{0} = value->{0};", member.Name));
                     }
                 }

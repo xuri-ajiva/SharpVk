@@ -80,18 +80,24 @@ namespace SharpVk
         internal unsafe Interop.ImageBlit Pack()
         {
             Interop.ImageBlit result = default(Interop.ImageBlit);
-            Validate.CheckLength(this.SourceOffsets, 2, "SourceOffsets");
-            MemUtil.WriteToPtr((IntPtr)(&result.SourceOffsets), this.SourceOffsets, 0, 2);
-            Validate.CheckLength(this.DestinationOffsets, 2, "DestinationOffsets");
-            MemUtil.WriteToPtr((IntPtr)(&result.DestinationOffsets), this.DestinationOffsets, 0, 2);
-            result.SourceSubresource = this.SourceSubresource;
-            result.DestinationSubresource = this.DestinationSubresource;
             return result;
         }
         
         internal unsafe Interop.ImageBlit* MarshalTo()
         {
-            return (Interop.ImageBlit*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.ImageBlit*)Interop.HeapUtil.Allocate<Interop.ImageBlit>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.ImageBlit* pointer)
+        {
+            Validate.CheckLength(this.SourceOffsets, 2, "SourceOffsets");
+            MemUtil.WriteToPtr((IntPtr)(&pointer->SourceOffsets), this.SourceOffsets, 0, 2);
+            Validate.CheckLength(this.DestinationOffsets, 2, "DestinationOffsets");
+            MemUtil.WriteToPtr((IntPtr)(&pointer->DestinationOffsets), this.DestinationOffsets, 0, 2);
+            pointer->SourceSubresource = this.SourceSubresource;
+            pointer->DestinationSubresource = this.DestinationSubresource;
         }
     }
 }

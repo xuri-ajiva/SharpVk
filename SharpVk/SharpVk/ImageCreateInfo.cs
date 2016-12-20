@@ -198,26 +198,32 @@ namespace SharpVk
         internal unsafe Interop.ImageCreateInfo Pack()
         {
             Interop.ImageCreateInfo result = default(Interop.ImageCreateInfo);
-            result.SType = StructureType.ImageCreateInfo;
-            result.QueueFamilyIndices = this.QueueFamilyIndices == null ? null : Interop.HeapUtil.MarshalTo(this.QueueFamilyIndices);
-            result.QueueFamilyIndexCount = (uint)(this.QueueFamilyIndices?.Length ?? 0);
-            result.Flags = this.Flags;
-            result.ImageType = this.ImageType;
-            result.Format = this.Format;
-            result.Extent = this.Extent;
-            result.MipLevels = this.MipLevels;
-            result.ArrayLayers = this.ArrayLayers;
-            result.Samples = this.Samples;
-            result.Tiling = this.Tiling;
-            result.Usage = this.Usage;
-            result.SharingMode = this.SharingMode;
-            result.InitialLayout = this.InitialLayout;
             return result;
         }
         
         internal unsafe Interop.ImageCreateInfo* MarshalTo()
         {
-            return (Interop.ImageCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.ImageCreateInfo*)Interop.HeapUtil.Allocate<Interop.ImageCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.ImageCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.ImageCreateInfo;
+            pointer->QueueFamilyIndices = this.QueueFamilyIndices == null ? null : Interop.HeapUtil.MarshalTo(this.QueueFamilyIndices);
+            pointer->QueueFamilyIndexCount = (uint)(this.QueueFamilyIndices?.Length ?? 0);
+            pointer->Flags = this.Flags;
+            pointer->ImageType = this.ImageType;
+            pointer->Format = this.Format;
+            pointer->Extent = this.Extent;
+            pointer->MipLevels = this.MipLevels;
+            pointer->ArrayLayers = this.ArrayLayers;
+            pointer->Samples = this.Samples;
+            pointer->Tiling = this.Tiling;
+            pointer->Usage = this.Usage;
+            pointer->SharingMode = this.SharingMode;
+            pointer->InitialLayout = this.InitialLayout;
         }
     }
 }

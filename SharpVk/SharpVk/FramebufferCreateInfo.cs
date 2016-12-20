@@ -121,35 +121,41 @@ namespace SharpVk
         internal unsafe Interop.FramebufferCreateInfo Pack()
         {
             Interop.FramebufferCreateInfo result = default(Interop.FramebufferCreateInfo);
-            result.SType = StructureType.FramebufferCreateInfo;
-            result.RenderPass = this.RenderPass?.Pack() ?? Interop.RenderPass.Null;
-            
-            //Attachments
-            if (this.Attachments != null)
-            {
-                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.ImageView>();
-                IntPtr pointer = Interop.HeapUtil.Allocate<Interop.ImageView>(this.Attachments.Length);
-                for (int index = 0; index < this.Attachments.Length; index++)
-                {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.Attachments[index].Pack(), pointer + (size * index), false);
-                }
-                result.Attachments = (Interop.ImageView*)pointer.ToPointer();
-            }
-            else
-            {
-                result.Attachments = null;
-            }
-            result.AttachmentCount = (uint)(this.Attachments?.Length ?? 0);
-            result.Flags = this.Flags;
-            result.Width = this.Width;
-            result.Height = this.Height;
-            result.Layers = this.Layers;
             return result;
         }
         
         internal unsafe Interop.FramebufferCreateInfo* MarshalTo()
         {
-            return (Interop.FramebufferCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.FramebufferCreateInfo*)Interop.HeapUtil.Allocate<Interop.FramebufferCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.FramebufferCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.FramebufferCreateInfo;
+            pointer->RenderPass = this.RenderPass?.Pack() ?? Interop.RenderPass.Null;
+            
+            //Attachments
+            if (this.Attachments != null)
+            {
+                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.ImageView>();
+                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.ImageView>(this.Attachments.Length);
+                for (int index = 0; index < this.Attachments.Length; index++)
+                {
+                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.Attachments[index].Pack(), fieldPointer + (size * index), false);
+                }
+                pointer->Attachments = (Interop.ImageView*)fieldPointer.ToPointer();
+            }
+            else
+            {
+                pointer->Attachments = null;
+            }
+            pointer->AttachmentCount = (uint)(this.Attachments?.Length ?? 0);
+            pointer->Flags = this.Flags;
+            pointer->Width = this.Width;
+            pointer->Height = this.Height;
+            pointer->Layers = this.Layers;
         }
     }
 }

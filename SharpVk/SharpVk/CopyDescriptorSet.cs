@@ -103,20 +103,26 @@ namespace SharpVk
         internal unsafe Interop.CopyDescriptorSet Pack()
         {
             Interop.CopyDescriptorSet result = default(Interop.CopyDescriptorSet);
-            result.SType = StructureType.CopyDescriptorSet;
-            result.SourceSet = this.SourceSet?.Pack() ?? Interop.DescriptorSet.Null;
-            result.DestinationSet = this.DestinationSet?.Pack() ?? Interop.DescriptorSet.Null;
-            result.SourceBinding = this.SourceBinding;
-            result.SourceArrayElement = this.SourceArrayElement;
-            result.DestinationBinding = this.DestinationBinding;
-            result.DestinationArrayElement = this.DestinationArrayElement;
-            result.DescriptorCount = this.DescriptorCount;
             return result;
         }
         
         internal unsafe Interop.CopyDescriptorSet* MarshalTo()
         {
-            return (Interop.CopyDescriptorSet*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.CopyDescriptorSet*)Interop.HeapUtil.Allocate<Interop.CopyDescriptorSet>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.CopyDescriptorSet* pointer)
+        {
+            pointer->SType = StructureType.CopyDescriptorSet;
+            pointer->SourceSet = this.SourceSet?.Pack() ?? Interop.DescriptorSet.Null;
+            pointer->DestinationSet = this.DestinationSet?.Pack() ?? Interop.DescriptorSet.Null;
+            pointer->SourceBinding = this.SourceBinding;
+            pointer->SourceArrayElement = this.SourceArrayElement;
+            pointer->DestinationBinding = this.DestinationBinding;
+            pointer->DestinationArrayElement = this.DestinationArrayElement;
+            pointer->DescriptorCount = this.DescriptorCount;
         }
     }
 }

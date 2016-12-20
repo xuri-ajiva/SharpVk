@@ -54,15 +54,21 @@ namespace SharpVk
         internal unsafe Interop.CommandPoolCreateInfo Pack()
         {
             Interop.CommandPoolCreateInfo result = default(Interop.CommandPoolCreateInfo);
-            result.SType = StructureType.CommandPoolCreateInfo;
-            result.Flags = this.Flags;
-            result.QueueFamilyIndex = this.QueueFamilyIndex;
             return result;
         }
         
         internal unsafe Interop.CommandPoolCreateInfo* MarshalTo()
         {
-            return (Interop.CommandPoolCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.CommandPoolCreateInfo*)Interop.HeapUtil.Allocate<Interop.CommandPoolCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.CommandPoolCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.CommandPoolCreateInfo;
+            pointer->Flags = this.Flags;
+            pointer->QueueFamilyIndex = this.QueueFamilyIndex;
         }
     }
 }

@@ -41,20 +41,7 @@ namespace SharpVk
                 SizeOf = (uint)func();
             }
         }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="dest"></param>
-        /// <param name="value"></param>
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public unsafe static void WriteToPtr<T>(IntPtr dest, T value)
-            where T : struct
-        {
-            Marshal.StructureToPtr(value, dest, false);
-        }
-
+        
         /// <summary>
         /// 
         /// </summary>

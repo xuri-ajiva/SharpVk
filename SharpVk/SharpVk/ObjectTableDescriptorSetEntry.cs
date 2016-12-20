@@ -70,16 +70,22 @@ namespace SharpVk
         internal unsafe Interop.ObjectTableDescriptorSetEntry Pack()
         {
             Interop.ObjectTableDescriptorSetEntry result = default(Interop.ObjectTableDescriptorSetEntry);
-            result.PipelineLayout = this.PipelineLayout?.Pack() ?? Interop.PipelineLayout.Null;
-            result.DescriptorSet = this.DescriptorSet?.Pack() ?? Interop.DescriptorSet.Null;
-            result.Type = this.Type;
-            result.Flags = this.Flags;
             return result;
         }
         
         internal unsafe Interop.ObjectTableDescriptorSetEntry* MarshalTo()
         {
-            return (Interop.ObjectTableDescriptorSetEntry*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.ObjectTableDescriptorSetEntry*)Interop.HeapUtil.Allocate<Interop.ObjectTableDescriptorSetEntry>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.ObjectTableDescriptorSetEntry* pointer)
+        {
+            pointer->PipelineLayout = this.PipelineLayout?.Pack() ?? Interop.PipelineLayout.Null;
+            pointer->DescriptorSet = this.DescriptorSet?.Pack() ?? Interop.DescriptorSet.Null;
+            pointer->Type = this.Type;
+            pointer->Flags = this.Flags;
         }
     }
 }

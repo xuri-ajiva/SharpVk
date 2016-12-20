@@ -67,30 +67,36 @@ namespace SharpVk
         internal unsafe Interop.IndirectCommandsLayoutCreateInfo Pack()
         {
             Interop.IndirectCommandsLayoutCreateInfo result = default(Interop.IndirectCommandsLayoutCreateInfo);
-            result.SType = StructureType.IndirectCommandsLayoutCreateInfoNvx;
-            
-            //Tokens
-            if (this.Tokens != null)
-            {
-                result.Tokens = (IndirectCommandsLayoutToken*)Interop.HeapUtil.Allocate<IndirectCommandsLayoutToken>(this.Tokens.Length).ToPointer();
-                for (int index = 0; index < this.Tokens.Length; index++)
-                {
-                    result.Tokens[index] = this.Tokens[index];
-                }
-            }
-            else
-            {
-                result.Tokens = null;
-            }
-            result.TokenCount = (uint)(this.Tokens?.Length ?? 0);
-            result.PipelineBindPoint = this.PipelineBindPoint;
-            result.Flags = this.Flags;
             return result;
         }
         
         internal unsafe Interop.IndirectCommandsLayoutCreateInfo* MarshalTo()
         {
-            return (Interop.IndirectCommandsLayoutCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.IndirectCommandsLayoutCreateInfo*)Interop.HeapUtil.Allocate<Interop.IndirectCommandsLayoutCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.IndirectCommandsLayoutCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.IndirectCommandsLayoutCreateInfoNvx;
+            
+            //Tokens
+            if (this.Tokens != null)
+            {
+                pointer->Tokens = (IndirectCommandsLayoutToken*)Interop.HeapUtil.Allocate<IndirectCommandsLayoutToken>(this.Tokens.Length).ToPointer();
+                for (int index = 0; index < this.Tokens.Length; index++)
+                {
+                    pointer->Tokens[index] = this.Tokens[index];
+                }
+            }
+            else
+            {
+                pointer->Tokens = null;
+            }
+            pointer->TokenCount = (uint)(this.Tokens?.Length ?? 0);
+            pointer->PipelineBindPoint = this.PipelineBindPoint;
+            pointer->Flags = this.Flags;
         }
     }
 }

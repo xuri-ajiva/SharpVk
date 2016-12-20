@@ -64,16 +64,22 @@ namespace SharpVk
         internal unsafe Interop.DebugReportCallbackCreateInfo Pack()
         {
             Interop.DebugReportCallbackCreateInfo result = default(Interop.DebugReportCallbackCreateInfo);
-            result.SType = StructureType.DebugReportCallbackCreateInfo;
-            result.PfnCallback = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.PfnCallback);
-            result.UserData = this.UserData.ToPointer();
-            result.Flags = this.Flags;
             return result;
         }
         
         internal unsafe Interop.DebugReportCallbackCreateInfo* MarshalTo()
         {
-            return (Interop.DebugReportCallbackCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.DebugReportCallbackCreateInfo*)Interop.HeapUtil.Allocate<Interop.DebugReportCallbackCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.DebugReportCallbackCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.DebugReportCallbackCreateInfo;
+            pointer->PfnCallback = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.PfnCallback);
+            pointer->UserData = this.UserData.ToPointer();
+            pointer->Flags = this.Flags;
         }
     }
 }

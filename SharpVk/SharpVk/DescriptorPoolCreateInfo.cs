@@ -62,30 +62,36 @@ namespace SharpVk
         internal unsafe Interop.DescriptorPoolCreateInfo Pack()
         {
             Interop.DescriptorPoolCreateInfo result = default(Interop.DescriptorPoolCreateInfo);
-            result.SType = StructureType.DescriptorPoolCreateInfo;
-            
-            //PoolSizes
-            if (this.PoolSizes != null)
-            {
-                result.PoolSizes = (DescriptorPoolSize*)Interop.HeapUtil.Allocate<DescriptorPoolSize>(this.PoolSizes.Length).ToPointer();
-                for (int index = 0; index < this.PoolSizes.Length; index++)
-                {
-                    result.PoolSizes[index] = this.PoolSizes[index];
-                }
-            }
-            else
-            {
-                result.PoolSizes = null;
-            }
-            result.PoolSizeCount = (uint)(this.PoolSizes?.Length ?? 0);
-            result.Flags = this.Flags;
-            result.MaxSets = this.MaxSets;
             return result;
         }
         
         internal unsafe Interop.DescriptorPoolCreateInfo* MarshalTo()
         {
-            return (Interop.DescriptorPoolCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.DescriptorPoolCreateInfo*)Interop.HeapUtil.Allocate<Interop.DescriptorPoolCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.DescriptorPoolCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.DescriptorPoolCreateInfo;
+            
+            //PoolSizes
+            if (this.PoolSizes != null)
+            {
+                pointer->PoolSizes = (DescriptorPoolSize*)Interop.HeapUtil.Allocate<DescriptorPoolSize>(this.PoolSizes.Length).ToPointer();
+                for (int index = 0; index < this.PoolSizes.Length; index++)
+                {
+                    pointer->PoolSizes[index] = this.PoolSizes[index];
+                }
+            }
+            else
+            {
+                pointer->PoolSizes = null;
+            }
+            pointer->PoolSizeCount = (uint)(this.PoolSizes?.Length ?? 0);
+            pointer->Flags = this.Flags;
+            pointer->MaxSets = this.MaxSets;
         }
     }
 }

@@ -121,19 +121,25 @@ namespace SharpVk
         internal unsafe Interop.CommandBufferInheritanceInfo Pack()
         {
             Interop.CommandBufferInheritanceInfo result = default(Interop.CommandBufferInheritanceInfo);
-            result.SType = StructureType.CommandBufferInheritanceInfo;
-            result.RenderPass = this.RenderPass?.Pack() ?? Interop.RenderPass.Null;
-            result.Framebuffer = this.Framebuffer?.Pack() ?? Interop.Framebuffer.Null;
-            result.Subpass = this.Subpass;
-            result.OcclusionQueryEnable = this.OcclusionQueryEnable;
-            result.QueryFlags = this.QueryFlags;
-            result.PipelineStatistics = this.PipelineStatistics;
             return result;
         }
         
         internal unsafe Interop.CommandBufferInheritanceInfo* MarshalTo()
         {
-            return (Interop.CommandBufferInheritanceInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.CommandBufferInheritanceInfo*)Interop.HeapUtil.Allocate<Interop.CommandBufferInheritanceInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.CommandBufferInheritanceInfo* pointer)
+        {
+            pointer->SType = StructureType.CommandBufferInheritanceInfo;
+            pointer->RenderPass = this.RenderPass?.Pack() ?? Interop.RenderPass.Null;
+            pointer->Framebuffer = this.Framebuffer?.Pack() ?? Interop.Framebuffer.Null;
+            pointer->Subpass = this.Subpass;
+            pointer->OcclusionQueryEnable = this.OcclusionQueryEnable;
+            pointer->QueryFlags = this.QueryFlags;
+            pointer->PipelineStatistics = this.PipelineStatistics;
         }
     }
 }

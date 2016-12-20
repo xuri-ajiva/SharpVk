@@ -94,36 +94,43 @@ namespace SharpVk
         internal unsafe Interop.DeviceCreateInfo Pack()
         {
             Interop.DeviceCreateInfo result = default(Interop.DeviceCreateInfo);
-            result.SType = StructureType.DeviceCreateInfo;
-            
-            //QueueCreateInfos
-            if (this.QueueCreateInfos != null)
-            {
-                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.DeviceQueueCreateInfo>();
-                IntPtr pointer = Interop.HeapUtil.Allocate<Interop.DeviceQueueCreateInfo>(this.QueueCreateInfos.Length);
-                for (int index = 0; index < this.QueueCreateInfos.Length; index++)
-                {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.QueueCreateInfos[index].Pack(), pointer + (size * index), false);
-                }
-                result.QueueCreateInfos = (Interop.DeviceQueueCreateInfo*)pointer.ToPointer();
-            }
-            else
-            {
-                result.QueueCreateInfos = null;
-            }
-            result.EnabledLayerNames = this.EnabledLayerNames == null ? null : Interop.HeapUtil.MarshalTo(this.EnabledLayerNames);
-            result.EnabledExtensionNames = this.EnabledExtensionNames == null ? null : Interop.HeapUtil.MarshalTo(this.EnabledExtensionNames);
-            result.EnabledFeatures = (PhysicalDeviceFeatures*)Interop.HeapUtil.AllocateAndMarshal(this.EnabledFeatures);
-            result.QueueCreateInfoCount = (uint)(this.QueueCreateInfos?.Length ?? 0);
-            result.EnabledLayerCount = (uint)(this.EnabledLayerNames?.Length ?? 0);
-            result.EnabledExtensionCount = (uint)(this.EnabledExtensionNames?.Length ?? 0);
-            result.Flags = this.Flags;
             return result;
         }
         
         internal unsafe Interop.DeviceCreateInfo* MarshalTo()
         {
-            return (Interop.DeviceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.DeviceCreateInfo*)Interop.HeapUtil.Allocate<Interop.DeviceCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.DeviceCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.DeviceCreateInfo;
+            
+            //QueueCreateInfos
+            if (this.QueueCreateInfos != null)
+            {
+                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.DeviceQueueCreateInfo>();
+                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.DeviceQueueCreateInfo>(this.QueueCreateInfos.Length);
+                for (int index = 0; index < this.QueueCreateInfos.Length; index++)
+                {
+                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.QueueCreateInfos[index].Pack(), fieldPointer + (size * index), false);
+                }
+                pointer->QueueCreateInfos = (Interop.DeviceQueueCreateInfo*)fieldPointer.ToPointer();
+            }
+            else
+            {
+                pointer->QueueCreateInfos = null;
+            }
+            pointer->EnabledLayerNames = this.EnabledLayerNames == null ? null : Interop.HeapUtil.MarshalTo(this.EnabledLayerNames);
+            pointer->EnabledExtensionNames = this.EnabledExtensionNames == null ? null : Interop.HeapUtil.MarshalTo(this.EnabledExtensionNames);
+            pointer->EnabledFeatures = (PhysicalDeviceFeatures*)Interop.HeapUtil.Allocate<PhysicalDeviceFeatures>();
+            *pointer->EnabledFeatures = this.EnabledFeatures;
+            pointer->QueueCreateInfoCount = (uint)(this.QueueCreateInfos?.Length ?? 0);
+            pointer->EnabledLayerCount = (uint)(this.EnabledLayerNames?.Length ?? 0);
+            pointer->EnabledExtensionCount = (uint)(this.EnabledExtensionNames?.Length ?? 0);
+            pointer->Flags = this.Flags;
         }
     }
 }

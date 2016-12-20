@@ -55,31 +55,37 @@ namespace SharpVk
         internal unsafe Interop.DescriptorSetAllocateInfo Pack()
         {
             Interop.DescriptorSetAllocateInfo result = default(Interop.DescriptorSetAllocateInfo);
-            result.SType = StructureType.DescriptorSetAllocateInfo;
-            result.DescriptorPool = this.DescriptorPool?.Pack() ?? Interop.DescriptorPool.Null;
-            
-            //SetLayouts
-            if (this.SetLayouts != null)
-            {
-                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.DescriptorSetLayout>();
-                IntPtr pointer = Interop.HeapUtil.Allocate<Interop.DescriptorSetLayout>(this.SetLayouts.Length);
-                for (int index = 0; index < this.SetLayouts.Length; index++)
-                {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.SetLayouts[index].Pack(), pointer + (size * index), false);
-                }
-                result.SetLayouts = (Interop.DescriptorSetLayout*)pointer.ToPointer();
-            }
-            else
-            {
-                result.SetLayouts = null;
-            }
-            result.DescriptorSetCount = (uint)(this.SetLayouts?.Length ?? 0);
             return result;
         }
         
         internal unsafe Interop.DescriptorSetAllocateInfo* MarshalTo()
         {
-            return (Interop.DescriptorSetAllocateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.DescriptorSetAllocateInfo*)Interop.HeapUtil.Allocate<Interop.DescriptorSetAllocateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.DescriptorSetAllocateInfo* pointer)
+        {
+            pointer->SType = StructureType.DescriptorSetAllocateInfo;
+            pointer->DescriptorPool = this.DescriptorPool?.Pack() ?? Interop.DescriptorPool.Null;
+            
+            //SetLayouts
+            if (this.SetLayouts != null)
+            {
+                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.DescriptorSetLayout>();
+                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.DescriptorSetLayout>(this.SetLayouts.Length);
+                for (int index = 0; index < this.SetLayouts.Length; index++)
+                {
+                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.SetLayouts[index].Pack(), fieldPointer + (size * index), false);
+                }
+                pointer->SetLayouts = (Interop.DescriptorSetLayout*)fieldPointer.ToPointer();
+            }
+            else
+            {
+                pointer->SetLayouts = null;
+            }
+            pointer->DescriptorSetCount = (uint)(this.SetLayouts?.Length ?? 0);
         }
     }
 }

@@ -63,16 +63,23 @@ namespace SharpVk
         internal unsafe Interop.XcbSurfaceCreateInfo Pack()
         {
             Interop.XcbSurfaceCreateInfo result = default(Interop.XcbSurfaceCreateInfo);
-            result.SType = StructureType.XcbSurfaceCreateInfo;
-            result.Connection = (IntPtr*)Interop.HeapUtil.AllocateAndMarshal(this.Connection);
-            result.Flags = this.Flags;
-            result.Window = this.Window;
             return result;
         }
         
         internal unsafe Interop.XcbSurfaceCreateInfo* MarshalTo()
         {
-            return (Interop.XcbSurfaceCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.XcbSurfaceCreateInfo*)Interop.HeapUtil.Allocate<Interop.XcbSurfaceCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.XcbSurfaceCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.XcbSurfaceCreateInfo;
+            pointer->Connection = (IntPtr*)Interop.HeapUtil.Allocate<IntPtr>();
+            *pointer->Connection = this.Connection;
+            pointer->Flags = this.Flags;
+            pointer->Window = this.Window;
         }
     }
 }

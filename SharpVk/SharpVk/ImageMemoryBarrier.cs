@@ -165,21 +165,27 @@ namespace SharpVk
         internal unsafe Interop.ImageMemoryBarrier Pack()
         {
             Interop.ImageMemoryBarrier result = default(Interop.ImageMemoryBarrier);
-            result.SType = StructureType.ImageMemoryBarrier;
-            result.Image = this.Image?.Pack() ?? Interop.Image.Null;
-            result.SourceAccessMask = this.SourceAccessMask;
-            result.DestinationAccessMask = this.DestinationAccessMask;
-            result.OldLayout = this.OldLayout;
-            result.NewLayout = this.NewLayout;
-            result.SourceQueueFamilyIndex = this.SourceQueueFamilyIndex;
-            result.DestinationQueueFamilyIndex = this.DestinationQueueFamilyIndex;
-            result.SubresourceRange = this.SubresourceRange;
             return result;
         }
         
         internal unsafe Interop.ImageMemoryBarrier* MarshalTo()
         {
-            return (Interop.ImageMemoryBarrier*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.ImageMemoryBarrier*)Interop.HeapUtil.Allocate<Interop.ImageMemoryBarrier>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.ImageMemoryBarrier* pointer)
+        {
+            pointer->SType = StructureType.ImageMemoryBarrier;
+            pointer->Image = this.Image?.Pack() ?? Interop.Image.Null;
+            pointer->SourceAccessMask = this.SourceAccessMask;
+            pointer->DestinationAccessMask = this.DestinationAccessMask;
+            pointer->OldLayout = this.OldLayout;
+            pointer->NewLayout = this.NewLayout;
+            pointer->SourceQueueFamilyIndex = this.SourceQueueFamilyIndex;
+            pointer->DestinationQueueFamilyIndex = this.DestinationQueueFamilyIndex;
+            pointer->SubresourceRange = this.SubresourceRange;
         }
     }
 }

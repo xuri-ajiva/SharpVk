@@ -70,46 +70,52 @@ namespace SharpVk
         internal unsafe Interop.PipelineLayoutCreateInfo Pack()
         {
             Interop.PipelineLayoutCreateInfo result = default(Interop.PipelineLayoutCreateInfo);
-            result.SType = StructureType.PipelineLayoutCreateInfo;
-            
-            //SetLayouts
-            if (this.SetLayouts != null)
-            {
-                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.DescriptorSetLayout>();
-                IntPtr pointer = Interop.HeapUtil.Allocate<Interop.DescriptorSetLayout>(this.SetLayouts.Length);
-                for (int index = 0; index < this.SetLayouts.Length; index++)
-                {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.SetLayouts[index].Pack(), pointer + (size * index), false);
-                }
-                result.SetLayouts = (Interop.DescriptorSetLayout*)pointer.ToPointer();
-            }
-            else
-            {
-                result.SetLayouts = null;
-            }
-            
-            //PushConstantRanges
-            if (this.PushConstantRanges != null)
-            {
-                result.PushConstantRanges = (PushConstantRange*)Interop.HeapUtil.Allocate<PushConstantRange>(this.PushConstantRanges.Length).ToPointer();
-                for (int index = 0; index < this.PushConstantRanges.Length; index++)
-                {
-                    result.PushConstantRanges[index] = this.PushConstantRanges[index];
-                }
-            }
-            else
-            {
-                result.PushConstantRanges = null;
-            }
-            result.SetLayoutCount = (uint)(this.SetLayouts?.Length ?? 0);
-            result.PushConstantRangeCount = (uint)(this.PushConstantRanges?.Length ?? 0);
-            result.Flags = this.Flags;
             return result;
         }
         
         internal unsafe Interop.PipelineLayoutCreateInfo* MarshalTo()
         {
-            return (Interop.PipelineLayoutCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.PipelineLayoutCreateInfo*)Interop.HeapUtil.Allocate<Interop.PipelineLayoutCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.PipelineLayoutCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.PipelineLayoutCreateInfo;
+            
+            //SetLayouts
+            if (this.SetLayouts != null)
+            {
+                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.DescriptorSetLayout>();
+                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.DescriptorSetLayout>(this.SetLayouts.Length);
+                for (int index = 0; index < this.SetLayouts.Length; index++)
+                {
+                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.SetLayouts[index].Pack(), fieldPointer + (size * index), false);
+                }
+                pointer->SetLayouts = (Interop.DescriptorSetLayout*)fieldPointer.ToPointer();
+            }
+            else
+            {
+                pointer->SetLayouts = null;
+            }
+            
+            //PushConstantRanges
+            if (this.PushConstantRanges != null)
+            {
+                pointer->PushConstantRanges = (PushConstantRange*)Interop.HeapUtil.Allocate<PushConstantRange>(this.PushConstantRanges.Length).ToPointer();
+                for (int index = 0; index < this.PushConstantRanges.Length; index++)
+                {
+                    pointer->PushConstantRanges[index] = this.PushConstantRanges[index];
+                }
+            }
+            else
+            {
+                pointer->PushConstantRanges = null;
+            }
+            pointer->SetLayoutCount = (uint)(this.SetLayouts?.Length ?? 0);
+            pointer->PushConstantRangeCount = (uint)(this.PushConstantRanges?.Length ?? 0);
+            pointer->Flags = this.Flags;
         }
     }
 }

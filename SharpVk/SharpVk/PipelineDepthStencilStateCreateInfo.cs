@@ -132,23 +132,29 @@ namespace SharpVk
         internal unsafe Interop.PipelineDepthStencilStateCreateInfo Pack()
         {
             Interop.PipelineDepthStencilStateCreateInfo result = default(Interop.PipelineDepthStencilStateCreateInfo);
-            result.SType = StructureType.PipelineDepthStencilStateCreateInfo;
-            result.Flags = this.Flags;
-            result.DepthTestEnable = this.DepthTestEnable;
-            result.DepthWriteEnable = this.DepthWriteEnable;
-            result.DepthCompareOp = this.DepthCompareOp;
-            result.DepthBoundsTestEnable = this.DepthBoundsTestEnable;
-            result.StencilTestEnable = this.StencilTestEnable;
-            result.Front = this.Front;
-            result.Back = this.Back;
-            result.MinDepthBounds = this.MinDepthBounds;
-            result.MaxDepthBounds = this.MaxDepthBounds;
             return result;
         }
         
         internal unsafe Interop.PipelineDepthStencilStateCreateInfo* MarshalTo()
         {
-            return (Interop.PipelineDepthStencilStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.PipelineDepthStencilStateCreateInfo*)Interop.HeapUtil.Allocate<Interop.PipelineDepthStencilStateCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.PipelineDepthStencilStateCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.PipelineDepthStencilStateCreateInfo;
+            pointer->Flags = this.Flags;
+            pointer->DepthTestEnable = this.DepthTestEnable;
+            pointer->DepthWriteEnable = this.DepthWriteEnable;
+            pointer->DepthCompareOp = this.DepthCompareOp;
+            pointer->DepthBoundsTestEnable = this.DepthBoundsTestEnable;
+            pointer->StencilTestEnable = this.StencilTestEnable;
+            pointer->Front = this.Front;
+            pointer->Back = this.Back;
+            pointer->MinDepthBounds = this.MinDepthBounds;
+            pointer->MaxDepthBounds = this.MaxDepthBounds;
         }
     }
 }

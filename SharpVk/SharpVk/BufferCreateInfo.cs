@@ -93,19 +93,25 @@ namespace SharpVk
         internal unsafe Interop.BufferCreateInfo Pack()
         {
             Interop.BufferCreateInfo result = default(Interop.BufferCreateInfo);
-            result.SType = StructureType.BufferCreateInfo;
-            result.QueueFamilyIndices = this.QueueFamilyIndices == null ? null : Interop.HeapUtil.MarshalTo(this.QueueFamilyIndices);
-            result.QueueFamilyIndexCount = (uint)(this.QueueFamilyIndices?.Length ?? 0);
-            result.Flags = this.Flags;
-            result.Size = this.Size;
-            result.Usage = this.Usage;
-            result.SharingMode = this.SharingMode;
             return result;
         }
         
         internal unsafe Interop.BufferCreateInfo* MarshalTo()
         {
-            return (Interop.BufferCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.BufferCreateInfo*)Interop.HeapUtil.Allocate<Interop.BufferCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.BufferCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.BufferCreateInfo;
+            pointer->QueueFamilyIndices = this.QueueFamilyIndices == null ? null : Interop.HeapUtil.MarshalTo(this.QueueFamilyIndices);
+            pointer->QueueFamilyIndexCount = (uint)(this.QueueFamilyIndices?.Length ?? 0);
+            pointer->Flags = this.Flags;
+            pointer->Size = this.Size;
+            pointer->Usage = this.Usage;
+            pointer->SharingMode = this.SharingMode;
         }
     }
 }

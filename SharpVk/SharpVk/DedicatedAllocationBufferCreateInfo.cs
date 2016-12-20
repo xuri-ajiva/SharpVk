@@ -52,14 +52,20 @@ namespace SharpVk
         internal unsafe Interop.DedicatedAllocationBufferCreateInfo Pack()
         {
             Interop.DedicatedAllocationBufferCreateInfo result = default(Interop.DedicatedAllocationBufferCreateInfo);
-            result.SType = StructureType.DedicatedAllocationBufferCreateInfo;
-            result.DedicatedAllocation = this.DedicatedAllocation;
             return result;
         }
         
         internal unsafe Interop.DedicatedAllocationBufferCreateInfo* MarshalTo()
         {
-            return (Interop.DedicatedAllocationBufferCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.DedicatedAllocationBufferCreateInfo*)Interop.HeapUtil.Allocate<Interop.DedicatedAllocationBufferCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.DedicatedAllocationBufferCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.DedicatedAllocationBufferCreateInfo;
+            pointer->DedicatedAllocation = this.DedicatedAllocation;
         }
     }
 }

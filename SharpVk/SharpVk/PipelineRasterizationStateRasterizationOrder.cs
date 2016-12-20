@@ -43,14 +43,20 @@ namespace SharpVk
         internal unsafe Interop.PipelineRasterizationStateRasterizationOrder Pack()
         {
             Interop.PipelineRasterizationStateRasterizationOrder result = default(Interop.PipelineRasterizationStateRasterizationOrder);
-            result.SType = StructureType.PipelineRasterizationStateRasterizationOrder;
-            result.RasterizationOrder = this.RasterizationOrder;
             return result;
         }
         
         internal unsafe Interop.PipelineRasterizationStateRasterizationOrder* MarshalTo()
         {
-            return (Interop.PipelineRasterizationStateRasterizationOrder*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.PipelineRasterizationStateRasterizationOrder*)Interop.HeapUtil.Allocate<Interop.PipelineRasterizationStateRasterizationOrder>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.PipelineRasterizationStateRasterizationOrder* pointer)
+        {
+            pointer->SType = StructureType.PipelineRasterizationStateRasterizationOrder;
+            pointer->RasterizationOrder = this.RasterizationOrder;
         }
     }
 }

@@ -54,31 +54,37 @@ namespace SharpVk
         internal unsafe Interop.DescriptorSetLayoutCreateInfo Pack()
         {
             Interop.DescriptorSetLayoutCreateInfo result = default(Interop.DescriptorSetLayoutCreateInfo);
-            result.SType = StructureType.DescriptorSetLayoutCreateInfo;
-            
-            //Bindings
-            if (this.Bindings != null)
-            {
-                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.DescriptorSetLayoutBinding>();
-                IntPtr pointer = Interop.HeapUtil.Allocate<Interop.DescriptorSetLayoutBinding>(this.Bindings.Length);
-                for (int index = 0; index < this.Bindings.Length; index++)
-                {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.Bindings[index].Pack(), pointer + (size * index), false);
-                }
-                result.Bindings = (Interop.DescriptorSetLayoutBinding*)pointer.ToPointer();
-            }
-            else
-            {
-                result.Bindings = null;
-            }
-            result.BindingCount = (uint)(this.Bindings?.Length ?? 0);
-            result.Flags = this.Flags;
             return result;
         }
         
         internal unsafe Interop.DescriptorSetLayoutCreateInfo* MarshalTo()
         {
-            return (Interop.DescriptorSetLayoutCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.DescriptorSetLayoutCreateInfo*)Interop.HeapUtil.Allocate<Interop.DescriptorSetLayoutCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.DescriptorSetLayoutCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.DescriptorSetLayoutCreateInfo;
+            
+            //Bindings
+            if (this.Bindings != null)
+            {
+                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.DescriptorSetLayoutBinding>();
+                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.DescriptorSetLayoutBinding>(this.Bindings.Length);
+                for (int index = 0; index < this.Bindings.Length; index++)
+                {
+                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.Bindings[index].Pack(), fieldPointer + (size * index), false);
+                }
+                pointer->Bindings = (Interop.DescriptorSetLayoutBinding*)fieldPointer.ToPointer();
+            }
+            else
+            {
+                pointer->Bindings = null;
+            }
+            pointer->BindingCount = (uint)(this.Bindings?.Length ?? 0);
+            pointer->Flags = this.Flags;
         }
     }
 }

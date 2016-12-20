@@ -70,16 +70,22 @@ namespace SharpVk
         internal unsafe Interop.ObjectTablePushConstantEntry Pack()
         {
             Interop.ObjectTablePushConstantEntry result = default(Interop.ObjectTablePushConstantEntry);
-            result.PipelineLayout = this.PipelineLayout?.Pack() ?? Interop.PipelineLayout.Null;
-            result.Type = this.Type;
-            result.Flags = this.Flags;
-            result.StageFlags = this.StageFlags;
             return result;
         }
         
         internal unsafe Interop.ObjectTablePushConstantEntry* MarshalTo()
         {
-            return (Interop.ObjectTablePushConstantEntry*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.ObjectTablePushConstantEntry*)Interop.HeapUtil.Allocate<Interop.ObjectTablePushConstantEntry>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.ObjectTablePushConstantEntry* pointer)
+        {
+            pointer->PipelineLayout = this.PipelineLayout?.Pack() ?? Interop.PipelineLayout.Null;
+            pointer->Type = this.Type;
+            pointer->Flags = this.Flags;
+            pointer->StageFlags = this.StageFlags;
         }
     }
 }

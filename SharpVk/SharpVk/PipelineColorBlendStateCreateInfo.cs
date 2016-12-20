@@ -96,33 +96,39 @@ namespace SharpVk
         internal unsafe Interop.PipelineColorBlendStateCreateInfo Pack()
         {
             Interop.PipelineColorBlendStateCreateInfo result = default(Interop.PipelineColorBlendStateCreateInfo);
-            result.SType = StructureType.PipelineColorBlendStateCreateInfo;
-            
-            //Attachments
-            if (this.Attachments != null)
-            {
-                result.Attachments = (PipelineColorBlendAttachmentState*)Interop.HeapUtil.Allocate<PipelineColorBlendAttachmentState>(this.Attachments.Length).ToPointer();
-                for (int index = 0; index < this.Attachments.Length; index++)
-                {
-                    result.Attachments[index] = this.Attachments[index];
-                }
-            }
-            else
-            {
-                result.Attachments = null;
-            }
-            Validate.CheckLength(this.BlendConstants, 4, "BlendConstants");
-            MemUtil.WriteToPtr((IntPtr)(result.BlendConstants), this.BlendConstants, 0, 4);
-            result.AttachmentCount = (uint)(this.Attachments?.Length ?? 0);
-            result.Flags = this.Flags;
-            result.LogicOpEnable = this.LogicOpEnable;
-            result.LogicOp = this.LogicOp;
             return result;
         }
         
         internal unsafe Interop.PipelineColorBlendStateCreateInfo* MarshalTo()
         {
-            return (Interop.PipelineColorBlendStateCreateInfo*)Interop.HeapUtil.AllocateAndMarshal(this.Pack()).ToPointer();
+            var result = (Interop.PipelineColorBlendStateCreateInfo*)Interop.HeapUtil.Allocate<Interop.PipelineColorBlendStateCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
+        
+        internal unsafe void MarshalTo(Interop.PipelineColorBlendStateCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.PipelineColorBlendStateCreateInfo;
+            
+            //Attachments
+            if (this.Attachments != null)
+            {
+                pointer->Attachments = (PipelineColorBlendAttachmentState*)Interop.HeapUtil.Allocate<PipelineColorBlendAttachmentState>(this.Attachments.Length).ToPointer();
+                for (int index = 0; index < this.Attachments.Length; index++)
+                {
+                    pointer->Attachments[index] = this.Attachments[index];
+                }
+            }
+            else
+            {
+                pointer->Attachments = null;
+            }
+            Validate.CheckLength(this.BlendConstants, 4, "BlendConstants");
+            MemUtil.WriteToPtr((IntPtr)(pointer->BlendConstants), this.BlendConstants, 0, 4);
+            pointer->AttachmentCount = (uint)(this.Attachments?.Length ?? 0);
+            pointer->Flags = this.Flags;
+            pointer->LogicOpEnable = this.LogicOpEnable;
+            pointer->LogicOp = this.LogicOp;
         }
     }
 }
