@@ -59,15 +59,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.DescriptorPoolCreateInfo Pack()
-        {
-            Interop.DescriptorPoolCreateInfo result = default(Interop.DescriptorPoolCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.DescriptorPoolCreateInfo* MarshalTo()
         {
-            var result = (Interop.DescriptorPoolCreateInfo*)Interop.HeapUtil.Allocate<Interop.DescriptorPoolCreateInfo>().ToPointer();
+            var result = (Interop.DescriptorPoolCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.DescriptorPoolCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

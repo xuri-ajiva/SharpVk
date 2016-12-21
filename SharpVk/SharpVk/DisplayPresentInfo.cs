@@ -83,15 +83,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.DisplayPresentInfo Pack()
-        {
-            Interop.DisplayPresentInfo result = default(Interop.DisplayPresentInfo);
-            return result;
-        }
-        
         internal unsafe Interop.DisplayPresentInfo* MarshalTo()
         {
-            var result = (Interop.DisplayPresentInfo*)Interop.HeapUtil.Allocate<Interop.DisplayPresentInfo>().ToPointer();
+            var result = (Interop.DisplayPresentInfo*)Interop.HeapUtil.AllocateAndClear<Interop.DisplayPresentInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

@@ -79,9 +79,9 @@ namespace SharpVk
             }
         }
         
-        internal Interop.DisplayMode Pack()
+        internal unsafe void MarshalTo(Interop.DisplayMode* pointer)
         {
-            return this.handle;
+            *pointer = this.handle;
         }
         
         /// <summary>

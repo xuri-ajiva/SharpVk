@@ -65,15 +65,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.MemoryBarrier Pack()
-        {
-            Interop.MemoryBarrier result = default(Interop.MemoryBarrier);
-            return result;
-        }
-        
         internal unsafe Interop.MemoryBarrier* MarshalTo()
         {
-            var result = (Interop.MemoryBarrier*)Interop.HeapUtil.Allocate<Interop.MemoryBarrier>().ToPointer();
+            var result = (Interop.MemoryBarrier*)Interop.HeapUtil.AllocateAndClear<Interop.MemoryBarrier>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

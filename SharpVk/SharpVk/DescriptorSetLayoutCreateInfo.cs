@@ -51,15 +51,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.DescriptorSetLayoutCreateInfo Pack()
-        {
-            Interop.DescriptorSetLayoutCreateInfo result = default(Interop.DescriptorSetLayoutCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.DescriptorSetLayoutCreateInfo* MarshalTo()
         {
-            var result = (Interop.DescriptorSetLayoutCreateInfo*)Interop.HeapUtil.Allocate<Interop.DescriptorSetLayoutCreateInfo>().ToPointer();
+            var result = (Interop.DescriptorSetLayoutCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.DescriptorSetLayoutCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }
@@ -71,13 +65,12 @@ namespace SharpVk
             //Bindings
             if (this.Bindings != null)
             {
-                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.DescriptorSetLayoutBinding>();
-                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.DescriptorSetLayoutBinding>(this.Bindings.Length);
+                var fieldPointer = (Interop.DescriptorSetLayoutBinding*)Interop.HeapUtil.AllocateAndClear<Interop.DescriptorSetLayoutBinding>(this.Bindings.Length);
                 for (int index = 0; index < this.Bindings.Length; index++)
                 {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.Bindings[index].Pack(), fieldPointer + (size * index), false);
+                    this.Bindings[index].MarshalTo(&fieldPointer[index]);
                 }
-                pointer->Bindings = (Interop.DescriptorSetLayoutBinding*)fieldPointer.ToPointer();
+                pointer->Bindings = fieldPointer;
             }
             else
             {

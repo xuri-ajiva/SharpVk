@@ -67,15 +67,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.PipelineLayoutCreateInfo Pack()
-        {
-            Interop.PipelineLayoutCreateInfo result = default(Interop.PipelineLayoutCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.PipelineLayoutCreateInfo* MarshalTo()
         {
-            var result = (Interop.PipelineLayoutCreateInfo*)Interop.HeapUtil.Allocate<Interop.PipelineLayoutCreateInfo>().ToPointer();
+            var result = (Interop.PipelineLayoutCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.PipelineLayoutCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }
@@ -87,13 +81,12 @@ namespace SharpVk
             //SetLayouts
             if (this.SetLayouts != null)
             {
-                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.DescriptorSetLayout>();
-                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.DescriptorSetLayout>(this.SetLayouts.Length);
+                var fieldPointer = (Interop.DescriptorSetLayout*)Interop.HeapUtil.AllocateAndClear<Interop.DescriptorSetLayout>(this.SetLayouts.Length);
                 for (int index = 0; index < this.SetLayouts.Length; index++)
                 {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.SetLayouts[index].Pack(), fieldPointer + (size * index), false);
+                    this.SetLayouts[index].MarshalTo(&fieldPointer[index]);
                 }
-                pointer->SetLayouts = (Interop.DescriptorSetLayout*)fieldPointer.ToPointer();
+                pointer->SetLayouts = fieldPointer;
             }
             else
             {

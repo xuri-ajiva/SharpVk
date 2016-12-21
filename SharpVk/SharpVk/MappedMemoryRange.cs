@@ -61,15 +61,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.MappedMemoryRange Pack()
-        {
-            Interop.MappedMemoryRange result = default(Interop.MappedMemoryRange);
-            return result;
-        }
-        
         internal unsafe Interop.MappedMemoryRange* MarshalTo()
         {
-            var result = (Interop.MappedMemoryRange*)Interop.HeapUtil.Allocate<Interop.MappedMemoryRange>().ToPointer();
+            var result = (Interop.MappedMemoryRange*)Interop.HeapUtil.AllocateAndClear<Interop.MappedMemoryRange>().ToPointer();
             this.MarshalTo(result);
             return result;
         }
@@ -77,7 +71,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.MappedMemoryRange* pointer)
         {
             pointer->SType = StructureType.MappedMemoryRange;
-            pointer->Memory = this.Memory?.Pack() ?? Interop.DeviceMemory.Null;
+            this.Memory?.MarshalTo(&pointer->Memory);
             pointer->Offset = this.Offset;
             pointer->Size = this.Size;
         }

@@ -80,15 +80,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.PresentInfo Pack()
-        {
-            Interop.PresentInfo result = default(Interop.PresentInfo);
-            return result;
-        }
-        
         internal unsafe Interop.PresentInfo* MarshalTo()
         {
-            var result = (Interop.PresentInfo*)Interop.HeapUtil.Allocate<Interop.PresentInfo>().ToPointer();
+            var result = (Interop.PresentInfo*)Interop.HeapUtil.AllocateAndClear<Interop.PresentInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }
@@ -100,13 +94,12 @@ namespace SharpVk
             //WaitSemaphores
             if (this.WaitSemaphores != null)
             {
-                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.Semaphore>();
-                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.Semaphore>(this.WaitSemaphores.Length);
+                var fieldPointer = (Interop.Semaphore*)Interop.HeapUtil.AllocateAndClear<Interop.Semaphore>(this.WaitSemaphores.Length);
                 for (int index = 0; index < this.WaitSemaphores.Length; index++)
                 {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.WaitSemaphores[index].Pack(), fieldPointer + (size * index), false);
+                    this.WaitSemaphores[index].MarshalTo(&fieldPointer[index]);
                 }
-                pointer->WaitSemaphores = (Interop.Semaphore*)fieldPointer.ToPointer();
+                pointer->WaitSemaphores = fieldPointer;
             }
             else
             {
@@ -116,13 +109,12 @@ namespace SharpVk
             //Swapchains
             if (this.Swapchains != null)
             {
-                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.Swapchain>();
-                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.Swapchain>(this.Swapchains.Length);
+                var fieldPointer = (Interop.Swapchain*)Interop.HeapUtil.AllocateAndClear<Interop.Swapchain>(this.Swapchains.Length);
                 for (int index = 0; index < this.Swapchains.Length; index++)
                 {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.Swapchains[index].Pack(), fieldPointer + (size * index), false);
+                    this.Swapchains[index].MarshalTo(&fieldPointer[index]);
                 }
-                pointer->Swapchains = (Interop.Swapchain*)fieldPointer.ToPointer();
+                pointer->Swapchains = fieldPointer;
             }
             else
             {

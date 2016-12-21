@@ -60,15 +60,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.MirSurfaceCreateInfo Pack()
-        {
-            Interop.MirSurfaceCreateInfo result = default(Interop.MirSurfaceCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.MirSurfaceCreateInfo* MarshalTo()
         {
-            var result = (Interop.MirSurfaceCreateInfo*)Interop.HeapUtil.Allocate<Interop.MirSurfaceCreateInfo>().ToPointer();
+            var result = (Interop.MirSurfaceCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.MirSurfaceCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

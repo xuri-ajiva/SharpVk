@@ -122,15 +122,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.ObjectTableCreateInfo Pack()
-        {
-            Interop.ObjectTableCreateInfo result = default(Interop.ObjectTableCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.ObjectTableCreateInfo* MarshalTo()
         {
-            var result = (Interop.ObjectTableCreateInfo*)Interop.HeapUtil.Allocate<Interop.ObjectTableCreateInfo>().ToPointer();
+            var result = (Interop.ObjectTableCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.ObjectTableCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

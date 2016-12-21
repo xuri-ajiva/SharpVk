@@ -110,15 +110,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.Win32KeyedMutexAcquireReleaseInfo Pack()
-        {
-            Interop.Win32KeyedMutexAcquireReleaseInfo result = default(Interop.Win32KeyedMutexAcquireReleaseInfo);
-            return result;
-        }
-        
         internal unsafe Interop.Win32KeyedMutexAcquireReleaseInfo* MarshalTo()
         {
-            var result = (Interop.Win32KeyedMutexAcquireReleaseInfo*)Interop.HeapUtil.Allocate<Interop.Win32KeyedMutexAcquireReleaseInfo>().ToPointer();
+            var result = (Interop.Win32KeyedMutexAcquireReleaseInfo*)Interop.HeapUtil.AllocateAndClear<Interop.Win32KeyedMutexAcquireReleaseInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }
@@ -130,13 +124,12 @@ namespace SharpVk
             //AcquireSyncs
             if (this.AcquireSyncs != null)
             {
-                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.DeviceMemory>();
-                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.DeviceMemory>(this.AcquireSyncs.Length);
+                var fieldPointer = (Interop.DeviceMemory*)Interop.HeapUtil.AllocateAndClear<Interop.DeviceMemory>(this.AcquireSyncs.Length);
                 for (int index = 0; index < this.AcquireSyncs.Length; index++)
                 {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.AcquireSyncs[index].Pack(), fieldPointer + (size * index), false);
+                    this.AcquireSyncs[index].MarshalTo(&fieldPointer[index]);
                 }
-                pointer->AcquireSyncs = (Interop.DeviceMemory*)fieldPointer.ToPointer();
+                pointer->AcquireSyncs = fieldPointer;
             }
             else
             {
@@ -148,13 +141,12 @@ namespace SharpVk
             //ReleaseSyncs
             if (this.ReleaseSyncs != null)
             {
-                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.DeviceMemory>();
-                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.DeviceMemory>(this.ReleaseSyncs.Length);
+                var fieldPointer = (Interop.DeviceMemory*)Interop.HeapUtil.AllocateAndClear<Interop.DeviceMemory>(this.ReleaseSyncs.Length);
                 for (int index = 0; index < this.ReleaseSyncs.Length; index++)
                 {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.ReleaseSyncs[index].Pack(), fieldPointer + (size * index), false);
+                    this.ReleaseSyncs[index].MarshalTo(&fieldPointer[index]);
                 }
-                pointer->ReleaseSyncs = (Interop.DeviceMemory*)fieldPointer.ToPointer();
+                pointer->ReleaseSyncs = fieldPointer;
             }
             else
             {

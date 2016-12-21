@@ -53,9 +53,9 @@ namespace SharpVk
             this.commandCache = commandCache;
         }
         
-        internal Interop.DescriptorSet Pack()
+        internal unsafe void MarshalTo(Interop.DescriptorSet* pointer)
         {
-            return this.handle;
+            *pointer = this.handle;
         }
         
         /// <summary>

@@ -64,15 +64,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.IndirectCommandsLayoutCreateInfo Pack()
-        {
-            Interop.IndirectCommandsLayoutCreateInfo result = default(Interop.IndirectCommandsLayoutCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.IndirectCommandsLayoutCreateInfo* MarshalTo()
         {
-            var result = (Interop.IndirectCommandsLayoutCreateInfo*)Interop.HeapUtil.Allocate<Interop.IndirectCommandsLayoutCreateInfo>().ToPointer();
+            var result = (Interop.IndirectCommandsLayoutCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.IndirectCommandsLayoutCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

@@ -91,15 +91,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.DeviceCreateInfo Pack()
-        {
-            Interop.DeviceCreateInfo result = default(Interop.DeviceCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.DeviceCreateInfo* MarshalTo()
         {
-            var result = (Interop.DeviceCreateInfo*)Interop.HeapUtil.Allocate<Interop.DeviceCreateInfo>().ToPointer();
+            var result = (Interop.DeviceCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.DeviceCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }
@@ -111,13 +105,12 @@ namespace SharpVk
             //QueueCreateInfos
             if (this.QueueCreateInfos != null)
             {
-                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.DeviceQueueCreateInfo>();
-                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.DeviceQueueCreateInfo>(this.QueueCreateInfos.Length);
+                var fieldPointer = (Interop.DeviceQueueCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.DeviceQueueCreateInfo>(this.QueueCreateInfos.Length);
                 for (int index = 0; index < this.QueueCreateInfos.Length; index++)
                 {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.QueueCreateInfos[index].Pack(), fieldPointer + (size * index), false);
+                    this.QueueCreateInfos[index].MarshalTo(&fieldPointer[index]);
                 }
-                pointer->QueueCreateInfos = (Interop.DeviceQueueCreateInfo*)fieldPointer.ToPointer();
+                pointer->QueueCreateInfos = fieldPointer;
             }
             else
             {

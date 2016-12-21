@@ -60,15 +60,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.XcbSurfaceCreateInfo Pack()
-        {
-            Interop.XcbSurfaceCreateInfo result = default(Interop.XcbSurfaceCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.XcbSurfaceCreateInfo* MarshalTo()
         {
-            var result = (Interop.XcbSurfaceCreateInfo*)Interop.HeapUtil.Allocate<Interop.XcbSurfaceCreateInfo>().ToPointer();
+            var result = (Interop.XcbSurfaceCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.XcbSurfaceCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

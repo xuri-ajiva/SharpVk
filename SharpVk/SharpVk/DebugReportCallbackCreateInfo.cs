@@ -61,15 +61,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.DebugReportCallbackCreateInfo Pack()
-        {
-            Interop.DebugReportCallbackCreateInfo result = default(Interop.DebugReportCallbackCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.DebugReportCallbackCreateInfo* MarshalTo()
         {
-            var result = (Interop.DebugReportCallbackCreateInfo*)Interop.HeapUtil.Allocate<Interop.DebugReportCallbackCreateInfo>().ToPointer();
+            var result = (Interop.DebugReportCallbackCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.DebugReportCallbackCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

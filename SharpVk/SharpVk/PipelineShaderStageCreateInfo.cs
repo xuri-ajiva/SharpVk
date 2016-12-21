@@ -78,15 +78,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.PipelineShaderStageCreateInfo Pack()
-        {
-            Interop.PipelineShaderStageCreateInfo result = default(Interop.PipelineShaderStageCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.PipelineShaderStageCreateInfo* MarshalTo()
         {
-            var result = (Interop.PipelineShaderStageCreateInfo*)Interop.HeapUtil.Allocate<Interop.PipelineShaderStageCreateInfo>().ToPointer();
+            var result = (Interop.PipelineShaderStageCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.PipelineShaderStageCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }
@@ -94,7 +88,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.PipelineShaderStageCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineShaderStageCreateInfo;
-            pointer->Module = this.Module?.Pack() ?? Interop.ShaderModule.Null;
+            this.Module?.MarshalTo(&pointer->Module);
             pointer->Name = Interop.HeapUtil.MarshalTo(this.Name);
             pointer->SpecializationInfo = this.SpecializationInfo == null ? null : this.SpecializationInfo.Value.MarshalTo();
             pointer->Flags = this.Flags;

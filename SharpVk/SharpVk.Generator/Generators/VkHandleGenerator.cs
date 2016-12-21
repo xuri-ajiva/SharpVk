@@ -256,10 +256,13 @@ namespace SharpVk.Generator.Generators
                                     }, Public, methodModifiers, summary: method.Comment);
                                 }
 
-                                typeBuilder.EmitMethod(interopTypeName, "Pack", body =>
+                                typeBuilder.EmitMethod("void", "MarshalTo", body =>
                                 {
-                                    body.EmitReturn(Member(This, "handle"));
-                                }, null, Internal);
+                                    body.EmitAssignment(Variable("*pointer"), Member(This, "handle"));
+                                }, paramsBuilder =>
+                                {
+                                    paramsBuilder.EmitParam(interopTypeName + "*", "pointer");
+                                }, Internal, MemberModifier.Unsafe);
 
                                 typeBuilder.EmitProperty(interopTypeName,
                                                             "RawHandle",

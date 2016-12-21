@@ -53,23 +53,9 @@ namespace SharpVk.Generator.Generators
 
                                 if (!@class.IsOutput)
                                 {
-                                    builder.EmitMethod(interopTypeName, "Pack", body =>
-                                    {
-                                        const string resultVariableName = "result";
-
-                                        body.EmitVariableDeclaration(interopTypeName, resultVariableName, Default(interopTypeName));
-
-                                        //foreach (var statement in @class.MarshalToStatements)
-                                        //{
-                                        //    body.EmitStatement(statement);
-                                        //}
-
-                                        body.EmitReturn(Variable(resultVariableName));
-                                    }, null, Internal, Unsafe);
-
                                     builder.EmitMethod(interopPointerName, "MarshalTo", body =>
                                     {
-                                        body.EmitVariableDeclaration("var", "result", Cast(interopPointerName, Call(StaticCall("Interop.HeapUtil", $"Allocate<{interopTypeName}>"), "ToPointer")));
+                                        body.EmitVariableDeclaration("var", "result", Cast(interopPointerName, Call(StaticCall("Interop.HeapUtil", $"AllocateAndClear<{interopTypeName}>"), "ToPointer")));
 
                                         body.EmitCall(This, "MarshalTo", Variable("result"));
 

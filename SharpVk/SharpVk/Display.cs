@@ -53,9 +53,9 @@ namespace SharpVk
             this.commandCache = commandCache;
         }
         
-        internal Interop.Display Pack()
+        internal unsafe void MarshalTo(Interop.Display* pointer)
         {
-            return this.handle;
+            *pointer = this.handle;
         }
         
         /// <summary>

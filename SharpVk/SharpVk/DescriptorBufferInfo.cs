@@ -75,22 +75,16 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.DescriptorBufferInfo Pack()
-        {
-            Interop.DescriptorBufferInfo result = default(Interop.DescriptorBufferInfo);
-            return result;
-        }
-        
         internal unsafe Interop.DescriptorBufferInfo* MarshalTo()
         {
-            var result = (Interop.DescriptorBufferInfo*)Interop.HeapUtil.Allocate<Interop.DescriptorBufferInfo>().ToPointer();
+            var result = (Interop.DescriptorBufferInfo*)Interop.HeapUtil.AllocateAndClear<Interop.DescriptorBufferInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }
         
         internal unsafe void MarshalTo(Interop.DescriptorBufferInfo* pointer)
         {
-            pointer->Buffer = this.Buffer?.Pack() ?? Interop.Buffer.Null;
+            this.Buffer?.MarshalTo(&pointer->Buffer);
             pointer->Offset = this.Offset;
             pointer->Range = this.Range;
         }

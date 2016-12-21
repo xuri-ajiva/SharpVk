@@ -61,15 +61,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.ShaderModuleCreateInfo Pack()
-        {
-            Interop.ShaderModuleCreateInfo result = default(Interop.ShaderModuleCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.ShaderModuleCreateInfo* MarshalTo()
         {
-            var result = (Interop.ShaderModuleCreateInfo*)Interop.HeapUtil.Allocate<Interop.ShaderModuleCreateInfo>().ToPointer();
+            var result = (Interop.ShaderModuleCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.ShaderModuleCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

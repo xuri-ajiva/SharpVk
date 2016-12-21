@@ -91,15 +91,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.ApplicationInfo Pack()
-        {
-            Interop.ApplicationInfo result = default(Interop.ApplicationInfo);
-            return result;
-        }
-        
         internal unsafe Interop.ApplicationInfo* MarshalTo()
         {
-            var result = (Interop.ApplicationInfo*)Interop.HeapUtil.Allocate<Interop.ApplicationInfo>().ToPointer();
+            var result = (Interop.ApplicationInfo*)Interop.HeapUtil.AllocateAndClear<Interop.ApplicationInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

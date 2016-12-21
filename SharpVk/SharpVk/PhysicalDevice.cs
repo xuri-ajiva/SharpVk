@@ -212,9 +212,9 @@ namespace SharpVk
                     Device result = default(Device);
                     Result commandResult;
                     Interop.DeviceCreateInfo marshalledCreateInfo;
-                    marshalledCreateInfo = createInfo.Pack();
+                    createInfo.MarshalTo(&marshalledCreateInfo);
                     Interop.AllocationCallbacks marshalledAllocator;
-                    if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
+                    this.parent.Allocator?.MarshalTo(&marshalledAllocator);
                     Interop.Device marshalledDevice;
                     commandResult = Interop.Commands.vkCreateDevice(this.handle, &marshalledCreateInfo, this.parent.Allocator == null ? null : &marshalledAllocator, &marshalledDevice);
                     if (SharpVkException.IsError(commandResult))
@@ -349,7 +349,8 @@ namespace SharpVk
                     var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetPhysicalDeviceSurfaceSupportKHR>("vkGetPhysicalDeviceSurfaceSupportKHR", "instance");
                     Bool32 result = default(Bool32);
                     Result commandResult;
-                    Interop.Surface marshalledSurface = surface.Pack();
+                    Interop.Surface marshalledSurface = default(Interop.Surface);
+                    surface?.MarshalTo(&marshalledSurface);
                     commandResult = commandDelegate(this.handle, queueFamilyIndex, marshalledSurface, &result);
                     if (SharpVkException.IsError(commandResult))
                     {
@@ -376,7 +377,8 @@ namespace SharpVk
                     var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetPhysicalDeviceSurfaceCapabilitiesKHR>("vkGetPhysicalDeviceSurfaceCapabilitiesKHR", "instance");
                     SurfaceCapabilities result = default(SurfaceCapabilities);
                     Result commandResult;
-                    Interop.Surface marshalledSurface = surface.Pack();
+                    Interop.Surface marshalledSurface = default(Interop.Surface);
+                    surface?.MarshalTo(&marshalledSurface);
                     commandResult = commandDelegate(this.handle, marshalledSurface, &result);
                     if (SharpVkException.IsError(commandResult))
                     {
@@ -403,7 +405,8 @@ namespace SharpVk
                     var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetPhysicalDeviceSurfaceFormatsKHR>("vkGetPhysicalDeviceSurfaceFormatsKHR", "instance");
                     SurfaceFormat[] result = default(SurfaceFormat[]);
                     Result commandResult;
-                    Interop.Surface marshalledSurface = surface.Pack();
+                    Interop.Surface marshalledSurface = default(Interop.Surface);
+                    surface?.MarshalTo(&marshalledSurface);
                     uint surfaceFormatCount;
                     SurfaceFormat* marshalledSurfaceFormats = null;
                     commandResult = commandDelegate(this.handle, marshalledSurface, &surfaceFormatCount, null);
@@ -443,7 +446,8 @@ namespace SharpVk
                     var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetPhysicalDeviceSurfacePresentModesKHR>("vkGetPhysicalDeviceSurfacePresentModesKHR", "instance");
                     PresentMode[] result = default(PresentMode[]);
                     Result commandResult;
-                    Interop.Surface marshalledSurface = surface.Pack();
+                    Interop.Surface marshalledSurface = default(Interop.Surface);
+                    surface?.MarshalTo(&marshalledSurface);
                     uint presentModeCount;
                     PresentMode* marshalledPresentModes = null;
                     commandResult = commandDelegate(this.handle, marshalledSurface, &presentModeCount, null);
@@ -600,7 +604,8 @@ namespace SharpVk
                     var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetDisplayModePropertiesKHR>("vkGetDisplayModePropertiesKHR", "instance");
                     DisplayModeProperties[] result = default(DisplayModeProperties[]);
                     Result commandResult;
-                    Interop.Display marshalledDisplay = display.Pack();
+                    Interop.Display marshalledDisplay = default(Interop.Display);
+                    display?.MarshalTo(&marshalledDisplay);
                     uint propertyCount;
                     Interop.DisplayModeProperties* marshalledProperties = null;
                     commandResult = commandDelegate(this.handle, marshalledDisplay, &propertyCount, null);
@@ -640,11 +645,12 @@ namespace SharpVk
                     var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkCreateDisplayModeKHR>("vkCreateDisplayModeKHR", "instance");
                     DisplayMode result = default(DisplayMode);
                     Result commandResult;
-                    Interop.Display marshalledDisplay = display.Pack();
+                    Interop.Display marshalledDisplay = default(Interop.Display);
+                    display?.MarshalTo(&marshalledDisplay);
                     Interop.DisplayModeCreateInfo marshalledCreateInfo;
-                    marshalledCreateInfo = createInfo.Pack();
+                    createInfo.MarshalTo(&marshalledCreateInfo);
                     Interop.AllocationCallbacks marshalledAllocator;
-                    if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
+                    this.parent.Allocator?.MarshalTo(&marshalledAllocator);
                     Interop.DisplayMode marshalledMode;
                     commandResult = commandDelegate(this.handle, marshalledDisplay, &marshalledCreateInfo, this.parent.Allocator == null ? null : &marshalledAllocator, &marshalledMode);
                     if (SharpVkException.IsError(commandResult))
@@ -806,7 +812,7 @@ namespace SharpVk
                     var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetPhysicalDeviceGeneratedCommandsPropertiesNVX>("vkGetPhysicalDeviceGeneratedCommandsPropertiesNVX", "device");
                     DeviceGeneratedCommandsLimits result = default(DeviceGeneratedCommandsLimits);
                     Interop.DeviceGeneratedCommandsFeatures marshalledFeatures;
-                    marshalledFeatures = features.Pack();
+                    features.MarshalTo(&marshalledFeatures);
                     Interop.DeviceGeneratedCommandsLimits marshalledLimits;
                     commandDelegate(this.handle, &marshalledFeatures, &marshalledLimits);
                     result = DeviceGeneratedCommandsLimits.MarshalFrom(&marshalledLimits);
@@ -819,9 +825,9 @@ namespace SharpVk
             }
         }
         
-        internal Interop.PhysicalDevice Pack()
+        internal unsafe void MarshalTo(Interop.PhysicalDevice* pointer)
         {
-            return this.handle;
+            *pointer = this.handle;
         }
         
         /// <summary>

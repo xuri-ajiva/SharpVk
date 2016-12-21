@@ -116,15 +116,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.DisplaySurfaceCreateInfo Pack()
-        {
-            Interop.DisplaySurfaceCreateInfo result = default(Interop.DisplaySurfaceCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.DisplaySurfaceCreateInfo* MarshalTo()
         {
-            var result = (Interop.DisplaySurfaceCreateInfo*)Interop.HeapUtil.Allocate<Interop.DisplaySurfaceCreateInfo>().ToPointer();
+            var result = (Interop.DisplaySurfaceCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.DisplaySurfaceCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }
@@ -132,7 +126,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.DisplaySurfaceCreateInfo* pointer)
         {
             pointer->SType = StructureType.DisplaySurfaceCreateInfo;
-            pointer->DisplayMode = this.DisplayMode?.Pack() ?? Interop.DisplayMode.Null;
+            this.DisplayMode?.MarshalTo(&pointer->DisplayMode);
             pointer->Flags = this.Flags;
             pointer->PlaneIndex = this.PlaneIndex;
             pointer->PlaneStackIndex = this.PlaneStackIndex;

@@ -81,22 +81,16 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.SparseMemoryBind Pack()
-        {
-            Interop.SparseMemoryBind result = default(Interop.SparseMemoryBind);
-            return result;
-        }
-        
         internal unsafe Interop.SparseMemoryBind* MarshalTo()
         {
-            var result = (Interop.SparseMemoryBind*)Interop.HeapUtil.Allocate<Interop.SparseMemoryBind>().ToPointer();
+            var result = (Interop.SparseMemoryBind*)Interop.HeapUtil.AllocateAndClear<Interop.SparseMemoryBind>().ToPointer();
             this.MarshalTo(result);
             return result;
         }
         
         internal unsafe void MarshalTo(Interop.SparseMemoryBind* pointer)
         {
-            pointer->Memory = this.Memory?.Pack() ?? Interop.DeviceMemory.Null;
+            this.Memory?.MarshalTo(&pointer->Memory);
             pointer->ResourceOffset = this.ResourceOffset;
             pointer->Size = this.Size;
             pointer->MemoryOffset = this.MemoryOffset;

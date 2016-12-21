@@ -129,15 +129,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.PipelineDepthStencilStateCreateInfo Pack()
-        {
-            Interop.PipelineDepthStencilStateCreateInfo result = default(Interop.PipelineDepthStencilStateCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.PipelineDepthStencilStateCreateInfo* MarshalTo()
         {
-            var result = (Interop.PipelineDepthStencilStateCreateInfo*)Interop.HeapUtil.Allocate<Interop.PipelineDepthStencilStateCreateInfo>().ToPointer();
+            var result = (Interop.PipelineDepthStencilStateCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.PipelineDepthStencilStateCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

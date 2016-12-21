@@ -44,15 +44,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.DeviceGeneratedCommandsFeatures Pack()
-        {
-            Interop.DeviceGeneratedCommandsFeatures result = default(Interop.DeviceGeneratedCommandsFeatures);
-            return result;
-        }
-        
         internal unsafe Interop.DeviceGeneratedCommandsFeatures* MarshalTo()
         {
-            var result = (Interop.DeviceGeneratedCommandsFeatures*)Interop.HeapUtil.Allocate<Interop.DeviceGeneratedCommandsFeatures>().ToPointer();
+            var result = (Interop.DeviceGeneratedCommandsFeatures*)Interop.HeapUtil.AllocateAndClear<Interop.DeviceGeneratedCommandsFeatures>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

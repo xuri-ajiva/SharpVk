@@ -118,15 +118,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.FramebufferCreateInfo Pack()
-        {
-            Interop.FramebufferCreateInfo result = default(Interop.FramebufferCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.FramebufferCreateInfo* MarshalTo()
         {
-            var result = (Interop.FramebufferCreateInfo*)Interop.HeapUtil.Allocate<Interop.FramebufferCreateInfo>().ToPointer();
+            var result = (Interop.FramebufferCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.FramebufferCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }
@@ -134,18 +128,17 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.FramebufferCreateInfo* pointer)
         {
             pointer->SType = StructureType.FramebufferCreateInfo;
-            pointer->RenderPass = this.RenderPass?.Pack() ?? Interop.RenderPass.Null;
+            this.RenderPass?.MarshalTo(&pointer->RenderPass);
             
             //Attachments
             if (this.Attachments != null)
             {
-                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.ImageView>();
-                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.ImageView>(this.Attachments.Length);
+                var fieldPointer = (Interop.ImageView*)Interop.HeapUtil.AllocateAndClear<Interop.ImageView>(this.Attachments.Length);
                 for (int index = 0; index < this.Attachments.Length; index++)
                 {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.Attachments[index].Pack(), fieldPointer + (size * index), false);
+                    this.Attachments[index].MarshalTo(&fieldPointer[index]);
                 }
-                pointer->Attachments = (Interop.ImageView*)fieldPointer.ToPointer();
+                pointer->Attachments = fieldPointer;
             }
             else
             {

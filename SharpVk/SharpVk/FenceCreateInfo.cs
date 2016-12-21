@@ -41,15 +41,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.FenceCreateInfo Pack()
-        {
-            Interop.FenceCreateInfo result = default(Interop.FenceCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.FenceCreateInfo* MarshalTo()
         {
-            var result = (Interop.FenceCreateInfo*)Interop.HeapUtil.Allocate<Interop.FenceCreateInfo>().ToPointer();
+            var result = (Interop.FenceCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.FenceCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

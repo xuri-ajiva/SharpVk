@@ -65,7 +65,7 @@ namespace SharpVk
                 {
                     var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkDestroySurfaceKHR>("vkDestroySurfaceKHR", "instance");
                     Interop.AllocationCallbacks marshalledAllocator;
-                    if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
+                    this.parent.Allocator?.MarshalTo(&marshalledAllocator);
                     commandDelegate(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
                 }
                 finally
@@ -75,9 +75,9 @@ namespace SharpVk
             }
         }
         
-        internal Interop.Surface Pack()
+        internal unsafe void MarshalTo(Interop.Surface* pointer)
         {
-            return this.handle;
+            *pointer = this.handle;
         }
         
         /// <summary>

@@ -131,15 +131,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.CommandProcessCommandsInfo Pack()
-        {
-            Interop.CommandProcessCommandsInfo result = default(Interop.CommandProcessCommandsInfo);
-            return result;
-        }
-        
         internal unsafe Interop.CommandProcessCommandsInfo* MarshalTo()
         {
-            var result = (Interop.CommandProcessCommandsInfo*)Interop.HeapUtil.Allocate<Interop.CommandProcessCommandsInfo>().ToPointer();
+            var result = (Interop.CommandProcessCommandsInfo*)Interop.HeapUtil.AllocateAndClear<Interop.CommandProcessCommandsInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }
@@ -147,27 +141,26 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.CommandProcessCommandsInfo* pointer)
         {
             pointer->SType = StructureType.CommandProcessCommandsInfoNvx;
-            pointer->ObjectTable = this.ObjectTable?.Pack() ?? Interop.ObjectTable.Null;
-            pointer->IndirectCommandsLayout = this.IndirectCommandsLayout?.Pack() ?? Interop.IndirectCommandsLayout.Null;
+            this.ObjectTable?.MarshalTo(&pointer->ObjectTable);
+            this.IndirectCommandsLayout?.MarshalTo(&pointer->IndirectCommandsLayout);
             
             //IndirectCommandsTokens
             if (this.IndirectCommandsTokens != null)
             {
-                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.IndirectCommandsToken>();
-                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.IndirectCommandsToken>(this.IndirectCommandsTokens.Length);
+                var fieldPointer = (Interop.IndirectCommandsToken*)Interop.HeapUtil.AllocateAndClear<Interop.IndirectCommandsToken>(this.IndirectCommandsTokens.Length);
                 for (int index = 0; index < this.IndirectCommandsTokens.Length; index++)
                 {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.IndirectCommandsTokens[index].Pack(), fieldPointer + (size * index), false);
+                    this.IndirectCommandsTokens[index].MarshalTo(&fieldPointer[index]);
                 }
-                pointer->IndirectCommandsTokens = (Interop.IndirectCommandsToken*)fieldPointer.ToPointer();
+                pointer->IndirectCommandsTokens = fieldPointer;
             }
             else
             {
                 pointer->IndirectCommandsTokens = null;
             }
-            pointer->TargetCommandBuffer = this.TargetCommandBuffer?.Pack() ?? Interop.CommandBuffer.Null;
-            pointer->SequencesCountBuffer = this.SequencesCountBuffer?.Pack() ?? Interop.Buffer.Null;
-            pointer->SequencesIndexBuffer = this.SequencesIndexBuffer?.Pack() ?? Interop.Buffer.Null;
+            this.TargetCommandBuffer?.MarshalTo(&pointer->TargetCommandBuffer);
+            this.SequencesCountBuffer?.MarshalTo(&pointer->SequencesCountBuffer);
+            this.SequencesIndexBuffer?.MarshalTo(&pointer->SequencesIndexBuffer);
             pointer->IndirectCommandsTokenCount = (uint)(this.IndirectCommandsTokens?.Length ?? 0);
             pointer->MaxSequencesCount = this.MaxSequencesCount;
             pointer->SequencesCountOffset = this.SequencesCountOffset;

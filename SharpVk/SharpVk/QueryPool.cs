@@ -70,7 +70,7 @@ namespace SharpVk
                 try
                 {
                     Interop.AllocationCallbacks marshalledAllocator;
-                    if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
+                    this.parent.Allocator?.MarshalTo(&marshalledAllocator);
                     Interop.Commands.vkDestroyQueryPool(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
                 }
                 finally
@@ -126,9 +126,9 @@ namespace SharpVk
             }
         }
         
-        internal Interop.QueryPool Pack()
+        internal unsafe void MarshalTo(Interop.QueryPool* pointer)
         {
-            return this.handle;
+            *pointer = this.handle;
         }
         
         /// <summary>

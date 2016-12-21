@@ -83,15 +83,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.BufferViewCreateInfo Pack()
-        {
-            Interop.BufferViewCreateInfo result = default(Interop.BufferViewCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.BufferViewCreateInfo* MarshalTo()
         {
-            var result = (Interop.BufferViewCreateInfo*)Interop.HeapUtil.Allocate<Interop.BufferViewCreateInfo>().ToPointer();
+            var result = (Interop.BufferViewCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.BufferViewCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }
@@ -99,7 +93,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.BufferViewCreateInfo* pointer)
         {
             pointer->SType = StructureType.BufferViewCreateInfo;
-            pointer->Buffer = this.Buffer?.Pack() ?? Interop.Buffer.Null;
+            this.Buffer?.MarshalTo(&pointer->Buffer);
             pointer->Flags = this.Flags;
             pointer->Format = this.Format;
             pointer->Offset = this.Offset;

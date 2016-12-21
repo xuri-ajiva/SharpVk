@@ -100,15 +100,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.CopyDescriptorSet Pack()
-        {
-            Interop.CopyDescriptorSet result = default(Interop.CopyDescriptorSet);
-            return result;
-        }
-        
         internal unsafe Interop.CopyDescriptorSet* MarshalTo()
         {
-            var result = (Interop.CopyDescriptorSet*)Interop.HeapUtil.Allocate<Interop.CopyDescriptorSet>().ToPointer();
+            var result = (Interop.CopyDescriptorSet*)Interop.HeapUtil.AllocateAndClear<Interop.CopyDescriptorSet>().ToPointer();
             this.MarshalTo(result);
             return result;
         }
@@ -116,8 +110,8 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.CopyDescriptorSet* pointer)
         {
             pointer->SType = StructureType.CopyDescriptorSet;
-            pointer->SourceSet = this.SourceSet?.Pack() ?? Interop.DescriptorSet.Null;
-            pointer->DestinationSet = this.DestinationSet?.Pack() ?? Interop.DescriptorSet.Null;
+            this.SourceSet?.MarshalTo(&pointer->SourceSet);
+            this.DestinationSet?.MarshalTo(&pointer->DestinationSet);
             pointer->SourceBinding = this.SourceBinding;
             pointer->SourceArrayElement = this.SourceArrayElement;
             pointer->DestinationBinding = this.DestinationBinding;

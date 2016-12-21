@@ -223,15 +223,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.SwapchainCreateInfo Pack()
-        {
-            Interop.SwapchainCreateInfo result = default(Interop.SwapchainCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.SwapchainCreateInfo* MarshalTo()
         {
-            var result = (Interop.SwapchainCreateInfo*)Interop.HeapUtil.Allocate<Interop.SwapchainCreateInfo>().ToPointer();
+            var result = (Interop.SwapchainCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.SwapchainCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }
@@ -239,9 +233,9 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.SwapchainCreateInfo* pointer)
         {
             pointer->SType = StructureType.SwapchainCreateInfo;
-            pointer->Surface = this.Surface?.Pack() ?? Interop.Surface.Null;
+            this.Surface?.MarshalTo(&pointer->Surface);
             pointer->QueueFamilyIndices = this.QueueFamilyIndices == null ? null : Interop.HeapUtil.MarshalTo(this.QueueFamilyIndices);
-            pointer->OldSwapchain = this.OldSwapchain?.Pack() ?? Interop.Swapchain.Null;
+            this.OldSwapchain?.MarshalTo(&pointer->OldSwapchain);
             pointer->QueueFamilyIndexCount = (uint)(this.QueueFamilyIndices?.Length ?? 0);
             pointer->Flags = this.Flags;
             pointer->MinImageCount = this.MinImageCount;

@@ -66,15 +66,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.DeviceQueueCreateInfo Pack()
-        {
-            Interop.DeviceQueueCreateInfo result = default(Interop.DeviceQueueCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.DeviceQueueCreateInfo* MarshalTo()
         {
-            var result = (Interop.DeviceQueueCreateInfo*)Interop.HeapUtil.Allocate<Interop.DeviceQueueCreateInfo>().ToPointer();
+            var result = (Interop.DeviceQueueCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.DeviceQueueCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

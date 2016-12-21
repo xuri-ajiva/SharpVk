@@ -157,15 +157,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.SubpassDescription Pack()
-        {
-            Interop.SubpassDescription result = default(Interop.SubpassDescription);
-            return result;
-        }
-        
         internal unsafe Interop.SubpassDescription* MarshalTo()
         {
-            var result = (Interop.SubpassDescription*)Interop.HeapUtil.Allocate<Interop.SubpassDescription>().ToPointer();
+            var result = (Interop.SubpassDescription*)Interop.HeapUtil.AllocateAndClear<Interop.SubpassDescription>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

@@ -75,15 +75,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.RenderPassCreateInfo Pack()
-        {
-            Interop.RenderPassCreateInfo result = default(Interop.RenderPassCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.RenderPassCreateInfo* MarshalTo()
         {
-            var result = (Interop.RenderPassCreateInfo*)Interop.HeapUtil.Allocate<Interop.RenderPassCreateInfo>().ToPointer();
+            var result = (Interop.RenderPassCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.RenderPassCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }
@@ -109,13 +103,12 @@ namespace SharpVk
             //Subpasses
             if (this.Subpasses != null)
             {
-                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.SubpassDescription>();
-                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.SubpassDescription>(this.Subpasses.Length);
+                var fieldPointer = (Interop.SubpassDescription*)Interop.HeapUtil.AllocateAndClear<Interop.SubpassDescription>(this.Subpasses.Length);
                 for (int index = 0; index < this.Subpasses.Length; index++)
                 {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.Subpasses[index].Pack(), fieldPointer + (size * index), false);
+                    this.Subpasses[index].MarshalTo(&fieldPointer[index]);
                 }
-                pointer->Subpasses = (Interop.SubpassDescription*)fieldPointer.ToPointer();
+                pointer->Subpasses = fieldPointer;
             }
             else
             {

@@ -50,15 +50,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.CommandBufferBeginInfo Pack()
-        {
-            Interop.CommandBufferBeginInfo result = default(Interop.CommandBufferBeginInfo);
-            return result;
-        }
-        
         internal unsafe Interop.CommandBufferBeginInfo* MarshalTo()
         {
-            var result = (Interop.CommandBufferBeginInfo*)Interop.HeapUtil.Allocate<Interop.CommandBufferBeginInfo>().ToPointer();
+            var result = (Interop.CommandBufferBeginInfo*)Interop.HeapUtil.AllocateAndClear<Interop.CommandBufferBeginInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

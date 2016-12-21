@@ -40,15 +40,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.EventCreateInfo Pack()
-        {
-            Interop.EventCreateInfo result = default(Interop.EventCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.EventCreateInfo* MarshalTo()
         {
-            var result = (Interop.EventCreateInfo*)Interop.HeapUtil.Allocate<Interop.EventCreateInfo>().ToPointer();
+            var result = (Interop.EventCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.EventCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

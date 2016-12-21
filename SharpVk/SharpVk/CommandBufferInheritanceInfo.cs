@@ -118,15 +118,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.CommandBufferInheritanceInfo Pack()
-        {
-            Interop.CommandBufferInheritanceInfo result = default(Interop.CommandBufferInheritanceInfo);
-            return result;
-        }
-        
         internal unsafe Interop.CommandBufferInheritanceInfo* MarshalTo()
         {
-            var result = (Interop.CommandBufferInheritanceInfo*)Interop.HeapUtil.Allocate<Interop.CommandBufferInheritanceInfo>().ToPointer();
+            var result = (Interop.CommandBufferInheritanceInfo*)Interop.HeapUtil.AllocateAndClear<Interop.CommandBufferInheritanceInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }
@@ -134,8 +128,8 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.CommandBufferInheritanceInfo* pointer)
         {
             pointer->SType = StructureType.CommandBufferInheritanceInfo;
-            pointer->RenderPass = this.RenderPass?.Pack() ?? Interop.RenderPass.Null;
-            pointer->Framebuffer = this.Framebuffer?.Pack() ?? Interop.Framebuffer.Null;
+            this.RenderPass?.MarshalTo(&pointer->RenderPass);
+            this.Framebuffer?.MarshalTo(&pointer->Framebuffer);
             pointer->Subpass = this.Subpass;
             pointer->OcclusionQueryEnable = this.OcclusionQueryEnable;
             pointer->QueryFlags = this.QueryFlags;

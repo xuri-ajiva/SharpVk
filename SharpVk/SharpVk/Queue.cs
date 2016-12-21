@@ -77,14 +77,14 @@ namespace SharpVk
                         Interop.SubmitInfo* arrayPointer = stackalloc Interop.SubmitInfo[submits.Length];
                         if(submits.Contents == ProxyContents.Single)
                         {
-                            *arrayPointer = submits.GetSingleValue().Pack();
+                            submits.GetSingleValue().MarshalTo(arrayPointer);
                         }
                         else
                         {
                             var arrayValue  = submits.GetArrayValue();
                             for (int index = 0; index < submits.Length; index++)
                             {
-                                arrayPointer[index] = arrayValue.Array[arrayValue.Offset + index].Pack();
+                                arrayValue.Array[arrayValue.Offset + index].MarshalTo(&arrayPointer[index]);
                             }
                         }
                         marshalledSubmits = arrayPointer;
@@ -93,7 +93,8 @@ namespace SharpVk
                     {
                         marshalledSubmits = null;
                     }
-                    Interop.Fence marshalledFence = fence?.Pack() ?? Interop.Fence.Null;
+                    Interop.Fence marshalledFence = default(Interop.Fence);
+                    fence?.MarshalTo(&marshalledFence);
                     commandResult = Interop.Commands.vkQueueSubmit(this.handle, (uint)(submits.Length), marshalledSubmits, marshalledFence);
                     if (SharpVkException.IsError(commandResult))
                     {
@@ -146,14 +147,14 @@ namespace SharpVk
                         Interop.BindSparseInfo* arrayPointer = stackalloc Interop.BindSparseInfo[bindInfo.Length];
                         if(bindInfo.Contents == ProxyContents.Single)
                         {
-                            *arrayPointer = bindInfo.GetSingleValue().Pack();
+                            bindInfo.GetSingleValue().MarshalTo(arrayPointer);
                         }
                         else
                         {
                             var arrayValue  = bindInfo.GetArrayValue();
                             for (int index = 0; index < bindInfo.Length; index++)
                             {
-                                arrayPointer[index] = arrayValue.Array[arrayValue.Offset + index].Pack();
+                                arrayValue.Array[arrayValue.Offset + index].MarshalTo(&arrayPointer[index]);
                             }
                         }
                         marshalledBindInfo = arrayPointer;
@@ -162,7 +163,8 @@ namespace SharpVk
                     {
                         marshalledBindInfo = null;
                     }
-                    Interop.Fence marshalledFence = fence?.Pack() ?? Interop.Fence.Null;
+                    Interop.Fence marshalledFence = default(Interop.Fence);
+                    fence?.MarshalTo(&marshalledFence);
                     commandResult = Interop.Commands.vkQueueBindSparse(this.handle, (uint)(bindInfo.Length), marshalledBindInfo, marshalledFence);
                     if (SharpVkException.IsError(commandResult))
                     {
@@ -188,7 +190,7 @@ namespace SharpVk
                     var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkQueuePresentKHR>("vkQueuePresentKHR", "device");
                     Result result = default(Result);
                     Interop.PresentInfo marshalledPresentInfo;
-                    marshalledPresentInfo = presentInfo.Pack();
+                    presentInfo.MarshalTo(&marshalledPresentInfo);
                     result = commandDelegate(this.handle, &marshalledPresentInfo);
                     if (SharpVkException.IsError(result))
                     {
@@ -203,9 +205,9 @@ namespace SharpVk
             }
         }
         
-        internal Interop.Queue Pack()
+        internal unsafe void MarshalTo(Interop.Queue* pointer)
         {
-            return this.handle;
+            *pointer = this.handle;
         }
         
         /// <summary>

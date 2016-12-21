@@ -61,15 +61,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.CommandBufferAllocateInfo Pack()
-        {
-            Interop.CommandBufferAllocateInfo result = default(Interop.CommandBufferAllocateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.CommandBufferAllocateInfo* MarshalTo()
         {
-            var result = (Interop.CommandBufferAllocateInfo*)Interop.HeapUtil.Allocate<Interop.CommandBufferAllocateInfo>().ToPointer();
+            var result = (Interop.CommandBufferAllocateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.CommandBufferAllocateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }
@@ -77,7 +71,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.CommandBufferAllocateInfo* pointer)
         {
             pointer->SType = StructureType.CommandBufferAllocateInfo;
-            pointer->CommandPool = this.CommandPool?.Pack() ?? Interop.CommandPool.Null;
+            this.CommandPool?.MarshalTo(&pointer->CommandPool);
             pointer->Level = this.Level;
             pointer->CommandBufferCount = this.CommandBufferCount;
         }

@@ -76,15 +76,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.DebugMarkerObjectTagInfo Pack()
-        {
-            Interop.DebugMarkerObjectTagInfo result = default(Interop.DebugMarkerObjectTagInfo);
-            return result;
-        }
-        
         internal unsafe Interop.DebugMarkerObjectTagInfo* MarshalTo()
         {
-            var result = (Interop.DebugMarkerObjectTagInfo*)Interop.HeapUtil.Allocate<Interop.DebugMarkerObjectTagInfo>().ToPointer();
+            var result = (Interop.DebugMarkerObjectTagInfo*)Interop.HeapUtil.AllocateAndClear<Interop.DebugMarkerObjectTagInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

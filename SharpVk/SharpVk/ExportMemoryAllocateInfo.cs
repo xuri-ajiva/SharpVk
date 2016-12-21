@@ -40,15 +40,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.ExportMemoryAllocateInfo Pack()
-        {
-            Interop.ExportMemoryAllocateInfo result = default(Interop.ExportMemoryAllocateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.ExportMemoryAllocateInfo* MarshalTo()
         {
-            var result = (Interop.ExportMemoryAllocateInfo*)Interop.HeapUtil.Allocate<Interop.ExportMemoryAllocateInfo>().ToPointer();
+            var result = (Interop.ExportMemoryAllocateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.ExportMemoryAllocateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

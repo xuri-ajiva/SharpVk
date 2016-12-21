@@ -100,15 +100,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.ImageViewCreateInfo Pack()
-        {
-            Interop.ImageViewCreateInfo result = default(Interop.ImageViewCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.ImageViewCreateInfo* MarshalTo()
         {
-            var result = (Interop.ImageViewCreateInfo*)Interop.HeapUtil.Allocate<Interop.ImageViewCreateInfo>().ToPointer();
+            var result = (Interop.ImageViewCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.ImageViewCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }
@@ -116,7 +110,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.ImageViewCreateInfo* pointer)
         {
             pointer->SType = StructureType.ImageViewCreateInfo;
-            pointer->Image = this.Image?.Pack() ?? Interop.Image.Null;
+            this.Image?.MarshalTo(&pointer->Image);
             pointer->Flags = this.Flags;
             pointer->ViewType = this.ViewType;
             pointer->Format = this.Format;

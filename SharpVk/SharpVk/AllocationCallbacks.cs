@@ -99,15 +99,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.AllocationCallbacks Pack()
-        {
-            Interop.AllocationCallbacks result = default(Interop.AllocationCallbacks);
-            return result;
-        }
-        
         internal unsafe Interop.AllocationCallbacks* MarshalTo()
         {
-            var result = (Interop.AllocationCallbacks*)Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>().ToPointer();
+            var result = (Interop.AllocationCallbacks*)Interop.HeapUtil.AllocateAndClear<Interop.AllocationCallbacks>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

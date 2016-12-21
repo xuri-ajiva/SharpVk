@@ -124,15 +124,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.DescriptorSetLayoutBinding Pack()
-        {
-            Interop.DescriptorSetLayoutBinding result = default(Interop.DescriptorSetLayoutBinding);
-            return result;
-        }
-        
         internal unsafe Interop.DescriptorSetLayoutBinding* MarshalTo()
         {
-            var result = (Interop.DescriptorSetLayoutBinding*)Interop.HeapUtil.Allocate<Interop.DescriptorSetLayoutBinding>().ToPointer();
+            var result = (Interop.DescriptorSetLayoutBinding*)Interop.HeapUtil.AllocateAndClear<Interop.DescriptorSetLayoutBinding>().ToPointer();
             this.MarshalTo(result);
             return result;
         }
@@ -143,13 +137,12 @@ namespace SharpVk
             //ImmutableSamplers
             if (this.ImmutableSamplers != null)
             {
-                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.Sampler>();
-                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.Sampler>(this.ImmutableSamplers.Length);
+                var fieldPointer = (Interop.Sampler*)Interop.HeapUtil.AllocateAndClear<Interop.Sampler>(this.ImmutableSamplers.Length);
                 for (int index = 0; index < this.ImmutableSamplers.Length; index++)
                 {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.ImmutableSamplers[index].Pack(), fieldPointer + (size * index), false);
+                    this.ImmutableSamplers[index].MarshalTo(&fieldPointer[index]);
                 }
-                pointer->ImmutableSamplers = (Interop.Sampler*)fieldPointer.ToPointer();
+                pointer->ImmutableSamplers = fieldPointer;
             }
             else
             {

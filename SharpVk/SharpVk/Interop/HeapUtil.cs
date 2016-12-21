@@ -53,11 +53,11 @@ namespace SharpVk.Interop
             return pointer;
         }
 
-        internal static IntPtr AllocateAndClear<T>()
+        internal static IntPtr AllocateAndClear<T>(int count = 1)
         {
             uint size = MemUtil.SizeOf<T>();
 
-            IntPtr pointer = Allocate<T>();
+            IntPtr pointer = Allocate<T>(count);
 
             var bytePointer = (byte*)pointer.ToPointer();
 

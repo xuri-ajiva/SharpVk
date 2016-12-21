@@ -50,33 +50,26 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.SparseBufferMemoryBindInfo Pack()
-        {
-            Interop.SparseBufferMemoryBindInfo result = default(Interop.SparseBufferMemoryBindInfo);
-            return result;
-        }
-        
         internal unsafe Interop.SparseBufferMemoryBindInfo* MarshalTo()
         {
-            var result = (Interop.SparseBufferMemoryBindInfo*)Interop.HeapUtil.Allocate<Interop.SparseBufferMemoryBindInfo>().ToPointer();
+            var result = (Interop.SparseBufferMemoryBindInfo*)Interop.HeapUtil.AllocateAndClear<Interop.SparseBufferMemoryBindInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }
         
         internal unsafe void MarshalTo(Interop.SparseBufferMemoryBindInfo* pointer)
         {
-            pointer->Buffer = this.Buffer?.Pack() ?? Interop.Buffer.Null;
+            this.Buffer?.MarshalTo(&pointer->Buffer);
             
             //Binds
             if (this.Binds != null)
             {
-                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.SparseMemoryBind>();
-                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.SparseMemoryBind>(this.Binds.Length);
+                var fieldPointer = (Interop.SparseMemoryBind*)Interop.HeapUtil.AllocateAndClear<Interop.SparseMemoryBind>(this.Binds.Length);
                 for (int index = 0; index < this.Binds.Length; index++)
                 {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.Binds[index].Pack(), fieldPointer + (size * index), false);
+                    this.Binds[index].MarshalTo(&fieldPointer[index]);
                 }
-                pointer->Binds = (Interop.SparseMemoryBind*)fieldPointer.ToPointer();
+                pointer->Binds = fieldPointer;
             }
             else
             {

@@ -148,9 +148,9 @@ namespace SharpVk
             }
         }
         
-        internal Interop.DeviceMemory Pack()
+        internal unsafe void MarshalTo(Interop.DeviceMemory* pointer)
         {
-            return this.handle;
+            *pointer = this.handle;
         }
         
         /// <summary>

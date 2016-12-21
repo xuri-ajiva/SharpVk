@@ -127,15 +127,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.WriteDescriptorSet Pack()
-        {
-            Interop.WriteDescriptorSet result = default(Interop.WriteDescriptorSet);
-            return result;
-        }
-        
         internal unsafe Interop.WriteDescriptorSet* MarshalTo()
         {
-            var result = (Interop.WriteDescriptorSet*)Interop.HeapUtil.Allocate<Interop.WriteDescriptorSet>().ToPointer();
+            var result = (Interop.WriteDescriptorSet*)Interop.HeapUtil.AllocateAndClear<Interop.WriteDescriptorSet>().ToPointer();
             this.MarshalTo(result);
             return result;
         }
@@ -143,18 +137,17 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.WriteDescriptorSet* pointer)
         {
             pointer->SType = StructureType.WriteDescriptorSet;
-            pointer->DestinationSet = this.DestinationSet?.Pack() ?? Interop.DescriptorSet.Null;
+            this.DestinationSet?.MarshalTo(&pointer->DestinationSet);
             
             //ImageInfo
             if (this.ImageInfo != null)
             {
-                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.DescriptorImageInfo>();
-                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.DescriptorImageInfo>(this.ImageInfo.Length);
+                var fieldPointer = (Interop.DescriptorImageInfo*)Interop.HeapUtil.AllocateAndClear<Interop.DescriptorImageInfo>(this.ImageInfo.Length);
                 for (int index = 0; index < this.ImageInfo.Length; index++)
                 {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.ImageInfo[index].Pack(), fieldPointer + (size * index), false);
+                    this.ImageInfo[index].MarshalTo(&fieldPointer[index]);
                 }
-                pointer->ImageInfo = (Interop.DescriptorImageInfo*)fieldPointer.ToPointer();
+                pointer->ImageInfo = fieldPointer;
             }
             else
             {
@@ -164,13 +157,12 @@ namespace SharpVk
             //BufferInfo
             if (this.BufferInfo != null)
             {
-                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.DescriptorBufferInfo>();
-                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.DescriptorBufferInfo>(this.BufferInfo.Length);
+                var fieldPointer = (Interop.DescriptorBufferInfo*)Interop.HeapUtil.AllocateAndClear<Interop.DescriptorBufferInfo>(this.BufferInfo.Length);
                 for (int index = 0; index < this.BufferInfo.Length; index++)
                 {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.BufferInfo[index].Pack(), fieldPointer + (size * index), false);
+                    this.BufferInfo[index].MarshalTo(&fieldPointer[index]);
                 }
-                pointer->BufferInfo = (Interop.DescriptorBufferInfo*)fieldPointer.ToPointer();
+                pointer->BufferInfo = fieldPointer;
             }
             else
             {
@@ -180,13 +172,12 @@ namespace SharpVk
             //TexelBufferView
             if (this.TexelBufferView != null)
             {
-                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.BufferView>();
-                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.BufferView>(this.TexelBufferView.Length);
+                var fieldPointer = (Interop.BufferView*)Interop.HeapUtil.AllocateAndClear<Interop.BufferView>(this.TexelBufferView.Length);
                 for (int index = 0; index < this.TexelBufferView.Length; index++)
                 {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.TexelBufferView[index].Pack(), fieldPointer + (size * index), false);
+                    this.TexelBufferView[index].MarshalTo(&fieldPointer[index]);
                 }
-                pointer->TexelBufferView = (Interop.BufferView*)fieldPointer.ToPointer();
+                pointer->TexelBufferView = fieldPointer;
             }
             else
             {

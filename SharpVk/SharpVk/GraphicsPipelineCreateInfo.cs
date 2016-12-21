@@ -224,15 +224,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.GraphicsPipelineCreateInfo Pack()
-        {
-            Interop.GraphicsPipelineCreateInfo result = default(Interop.GraphicsPipelineCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.GraphicsPipelineCreateInfo* MarshalTo()
         {
-            var result = (Interop.GraphicsPipelineCreateInfo*)Interop.HeapUtil.Allocate<Interop.GraphicsPipelineCreateInfo>().ToPointer();
+            var result = (Interop.GraphicsPipelineCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.GraphicsPipelineCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }
@@ -244,13 +238,12 @@ namespace SharpVk
             //Stages
             if (this.Stages != null)
             {
-                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.PipelineShaderStageCreateInfo>();
-                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.PipelineShaderStageCreateInfo>(this.Stages.Length);
+                var fieldPointer = (Interop.PipelineShaderStageCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.PipelineShaderStageCreateInfo>(this.Stages.Length);
                 for (int index = 0; index < this.Stages.Length; index++)
                 {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.Stages[index].Pack(), fieldPointer + (size * index), false);
+                    this.Stages[index].MarshalTo(&fieldPointer[index]);
                 }
-                pointer->Stages = (Interop.PipelineShaderStageCreateInfo*)fieldPointer.ToPointer();
+                pointer->Stages = fieldPointer;
             }
             else
             {
@@ -265,9 +258,9 @@ namespace SharpVk
             pointer->DepthStencilState = this.DepthStencilState == null ? null : this.DepthStencilState.Value.MarshalTo();
             pointer->ColorBlendState = this.ColorBlendState == null ? null : this.ColorBlendState.Value.MarshalTo();
             pointer->DynamicState = this.DynamicState == null ? null : this.DynamicState.Value.MarshalTo();
-            pointer->Layout = this.Layout?.Pack() ?? Interop.PipelineLayout.Null;
-            pointer->RenderPass = this.RenderPass?.Pack() ?? Interop.RenderPass.Null;
-            pointer->BasePipelineHandle = this.BasePipelineHandle?.Pack() ?? Interop.Pipeline.Null;
+            this.Layout?.MarshalTo(&pointer->Layout);
+            this.RenderPass?.MarshalTo(&pointer->RenderPass);
+            this.BasePipelineHandle?.MarshalTo(&pointer->BasePipelineHandle);
             pointer->StageCount = (uint)(this.Stages?.Length ?? 0);
             pointer->Flags = this.Flags;
             pointer->Subpass = this.Subpass;

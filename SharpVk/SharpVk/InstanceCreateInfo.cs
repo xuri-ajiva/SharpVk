@@ -76,15 +76,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.InstanceCreateInfo Pack()
-        {
-            Interop.InstanceCreateInfo result = default(Interop.InstanceCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.InstanceCreateInfo* MarshalTo()
         {
-            var result = (Interop.InstanceCreateInfo*)Interop.HeapUtil.Allocate<Interop.InstanceCreateInfo>().ToPointer();
+            var result = (Interop.InstanceCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.InstanceCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

@@ -58,22 +58,16 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.ObjectTableVertexBufferEntry Pack()
-        {
-            Interop.ObjectTableVertexBufferEntry result = default(Interop.ObjectTableVertexBufferEntry);
-            return result;
-        }
-        
         internal unsafe Interop.ObjectTableVertexBufferEntry* MarshalTo()
         {
-            var result = (Interop.ObjectTableVertexBufferEntry*)Interop.HeapUtil.Allocate<Interop.ObjectTableVertexBufferEntry>().ToPointer();
+            var result = (Interop.ObjectTableVertexBufferEntry*)Interop.HeapUtil.AllocateAndClear<Interop.ObjectTableVertexBufferEntry>().ToPointer();
             this.MarshalTo(result);
             return result;
         }
         
         internal unsafe void MarshalTo(Interop.ObjectTableVertexBufferEntry* pointer)
         {
-            pointer->Buffer = this.Buffer?.Pack() ?? Interop.Buffer.Null;
+            this.Buffer?.MarshalTo(&pointer->Buffer);
             pointer->Type = this.Type;
             pointer->Flags = this.Flags;
         }

@@ -58,15 +58,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.ImportMemoryWin32HandleInfo Pack()
-        {
-            Interop.ImportMemoryWin32HandleInfo result = default(Interop.ImportMemoryWin32HandleInfo);
-            return result;
-        }
-        
         internal unsafe Interop.ImportMemoryWin32HandleInfo* MarshalTo()
         {
-            var result = (Interop.ImportMemoryWin32HandleInfo*)Interop.HeapUtil.Allocate<Interop.ImportMemoryWin32HandleInfo>().ToPointer();
+            var result = (Interop.ImportMemoryWin32HandleInfo*)Interop.HeapUtil.AllocateAndClear<Interop.ImportMemoryWin32HandleInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

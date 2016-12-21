@@ -65,15 +65,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.CommandReserveSpaceForCommandsInfo Pack()
-        {
-            Interop.CommandReserveSpaceForCommandsInfo result = default(Interop.CommandReserveSpaceForCommandsInfo);
-            return result;
-        }
-        
         internal unsafe Interop.CommandReserveSpaceForCommandsInfo* MarshalTo()
         {
-            var result = (Interop.CommandReserveSpaceForCommandsInfo*)Interop.HeapUtil.Allocate<Interop.CommandReserveSpaceForCommandsInfo>().ToPointer();
+            var result = (Interop.CommandReserveSpaceForCommandsInfo*)Interop.HeapUtil.AllocateAndClear<Interop.CommandReserveSpaceForCommandsInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }
@@ -81,8 +75,8 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.CommandReserveSpaceForCommandsInfo* pointer)
         {
             pointer->SType = StructureType.CommandReserveSpaceForCommandsInfoNvx;
-            pointer->ObjectTable = this.ObjectTable?.Pack() ?? Interop.ObjectTable.Null;
-            pointer->IndirectCommandsLayout = this.IndirectCommandsLayout?.Pack() ?? Interop.IndirectCommandsLayout.Null;
+            this.ObjectTable?.MarshalTo(&pointer->ObjectTable);
+            this.IndirectCommandsLayout?.MarshalTo(&pointer->IndirectCommandsLayout);
             pointer->MaxSequencesCount = this.MaxSequencesCount;
         }
     }

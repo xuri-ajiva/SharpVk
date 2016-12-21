@@ -60,15 +60,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.WaylandSurfaceCreateInfo Pack()
-        {
-            Interop.WaylandSurfaceCreateInfo result = default(Interop.WaylandSurfaceCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.WaylandSurfaceCreateInfo* MarshalTo()
         {
-            var result = (Interop.WaylandSurfaceCreateInfo*)Interop.HeapUtil.Allocate<Interop.WaylandSurfaceCreateInfo>().ToPointer();
+            var result = (Interop.WaylandSurfaceCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.WaylandSurfaceCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

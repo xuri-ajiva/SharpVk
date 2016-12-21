@@ -53,15 +53,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.PipelineDynamicStateCreateInfo Pack()
-        {
-            Interop.PipelineDynamicStateCreateInfo result = default(Interop.PipelineDynamicStateCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.PipelineDynamicStateCreateInfo* MarshalTo()
         {
-            var result = (Interop.PipelineDynamicStateCreateInfo*)Interop.HeapUtil.Allocate<Interop.PipelineDynamicStateCreateInfo>().ToPointer();
+            var result = (Interop.PipelineDynamicStateCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.PipelineDynamicStateCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

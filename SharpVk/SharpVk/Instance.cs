@@ -74,9 +74,9 @@ namespace SharpVk
                     Instance result = default(Instance);
                     Result commandResult;
                     Interop.InstanceCreateInfo marshalledCreateInfo;
-                    marshalledCreateInfo = createInfo.Pack();
+                    createInfo.MarshalTo(&marshalledCreateInfo);
                     Interop.AllocationCallbacks marshalledAllocator;
-                    if(allocator != null) marshalledAllocator = allocator.Value.Pack();
+                    allocator?.MarshalTo(&marshalledAllocator);
                     Interop.Instance marshalledInstance;
                     commandResult = Interop.Commands.vkCreateInstance(&marshalledCreateInfo, allocator == null ? null : &marshalledAllocator, &marshalledInstance);
                     if (SharpVkException.IsError(commandResult))
@@ -103,7 +103,7 @@ namespace SharpVk
                 try
                 {
                     Interop.AllocationCallbacks marshalledAllocator;
-                    if(this.allocator != null) marshalledAllocator = this.allocator.Value.Pack();
+                    this.allocator?.MarshalTo(&marshalledAllocator);
                     Interop.Commands.vkDestroyInstance(this.handle, this.allocator == null ? null : &marshalledAllocator);
                 }
                 finally
@@ -263,9 +263,9 @@ namespace SharpVk
                     Surface result = default(Surface);
                     Result commandResult;
                     Interop.DisplaySurfaceCreateInfo marshalledCreateInfo;
-                    marshalledCreateInfo = createInfo.Pack();
+                    createInfo.MarshalTo(&marshalledCreateInfo);
                     Interop.AllocationCallbacks marshalledAllocator;
-                    if(this.allocator != null) marshalledAllocator = this.allocator.Value.Pack();
+                    this.allocator?.MarshalTo(&marshalledAllocator);
                     Interop.Surface marshalledSurface;
                     commandResult = commandDelegate(this.handle, &marshalledCreateInfo, this.allocator == null ? null : &marshalledAllocator, &marshalledSurface);
                     if (SharpVkException.IsError(commandResult))
@@ -296,9 +296,9 @@ namespace SharpVk
                     Surface result = default(Surface);
                     Result commandResult;
                     Interop.XlibSurfaceCreateInfo marshalledCreateInfo;
-                    marshalledCreateInfo = createInfo.Pack();
+                    createInfo.MarshalTo(&marshalledCreateInfo);
                     Interop.AllocationCallbacks marshalledAllocator;
-                    if(this.allocator != null) marshalledAllocator = this.allocator.Value.Pack();
+                    this.allocator?.MarshalTo(&marshalledAllocator);
                     Interop.Surface marshalledSurface;
                     commandResult = commandDelegate(this.handle, &marshalledCreateInfo, this.allocator == null ? null : &marshalledAllocator, &marshalledSurface);
                     if (SharpVkException.IsError(commandResult))
@@ -329,9 +329,9 @@ namespace SharpVk
                     Surface result = default(Surface);
                     Result commandResult;
                     Interop.XcbSurfaceCreateInfo marshalledCreateInfo;
-                    marshalledCreateInfo = createInfo.Pack();
+                    createInfo.MarshalTo(&marshalledCreateInfo);
                     Interop.AllocationCallbacks marshalledAllocator;
-                    if(this.allocator != null) marshalledAllocator = this.allocator.Value.Pack();
+                    this.allocator?.MarshalTo(&marshalledAllocator);
                     Interop.Surface marshalledSurface;
                     commandResult = commandDelegate(this.handle, &marshalledCreateInfo, this.allocator == null ? null : &marshalledAllocator, &marshalledSurface);
                     if (SharpVkException.IsError(commandResult))
@@ -361,9 +361,9 @@ namespace SharpVk
                     Surface result = default(Surface);
                     Result commandResult;
                     Interop.WaylandSurfaceCreateInfo marshalledCreateInfo;
-                    marshalledCreateInfo = createInfo.Pack();
+                    createInfo.MarshalTo(&marshalledCreateInfo);
                     Interop.AllocationCallbacks marshalledAllocator;
-                    if(this.allocator != null) marshalledAllocator = this.allocator.Value.Pack();
+                    this.allocator?.MarshalTo(&marshalledAllocator);
                     Interop.Surface marshalledSurface;
                     commandResult = commandDelegate(this.handle, &marshalledCreateInfo, this.allocator == null ? null : &marshalledAllocator, &marshalledSurface);
                     if (SharpVkException.IsError(commandResult))
@@ -393,9 +393,9 @@ namespace SharpVk
                     Surface result = default(Surface);
                     Result commandResult;
                     Interop.MirSurfaceCreateInfo marshalledCreateInfo;
-                    marshalledCreateInfo = createInfo.Pack();
+                    createInfo.MarshalTo(&marshalledCreateInfo);
                     Interop.AllocationCallbacks marshalledAllocator;
-                    if(this.allocator != null) marshalledAllocator = this.allocator.Value.Pack();
+                    this.allocator?.MarshalTo(&marshalledAllocator);
                     Interop.Surface marshalledSurface;
                     commandResult = commandDelegate(this.handle, &marshalledCreateInfo, this.allocator == null ? null : &marshalledAllocator, &marshalledSurface);
                     if (SharpVkException.IsError(commandResult))
@@ -425,9 +425,9 @@ namespace SharpVk
                     Surface result = default(Surface);
                     Result commandResult;
                     Interop.AndroidSurfaceCreateInfo marshalledCreateInfo;
-                    marshalledCreateInfo = createInfo.Pack();
+                    createInfo.MarshalTo(&marshalledCreateInfo);
                     Interop.AllocationCallbacks marshalledAllocator;
-                    if(this.allocator != null) marshalledAllocator = this.allocator.Value.Pack();
+                    this.allocator?.MarshalTo(&marshalledAllocator);
                     Interop.Surface marshalledSurface;
                     commandResult = commandDelegate(this.handle, &marshalledCreateInfo, this.allocator == null ? null : &marshalledAllocator, &marshalledSurface);
                     if (SharpVkException.IsError(commandResult))
@@ -457,9 +457,9 @@ namespace SharpVk
                     Surface result = default(Surface);
                     Result commandResult;
                     Interop.Win32SurfaceCreateInfo marshalledCreateInfo;
-                    marshalledCreateInfo = createInfo.Pack();
+                    createInfo.MarshalTo(&marshalledCreateInfo);
                     Interop.AllocationCallbacks marshalledAllocator;
-                    if(this.allocator != null) marshalledAllocator = this.allocator.Value.Pack();
+                    this.allocator?.MarshalTo(&marshalledAllocator);
                     Interop.Surface marshalledSurface;
                     commandResult = commandDelegate(this.handle, &marshalledCreateInfo, this.allocator == null ? null : &marshalledAllocator, &marshalledSurface);
                     if (SharpVkException.IsError(commandResult))
@@ -489,9 +489,9 @@ namespace SharpVk
                     DebugReportCallback result = default(DebugReportCallback);
                     Result commandResult;
                     Interop.DebugReportCallbackCreateInfo marshalledCreateInfo;
-                    marshalledCreateInfo = createInfo.Pack();
+                    createInfo.MarshalTo(&marshalledCreateInfo);
                     Interop.AllocationCallbacks marshalledAllocator;
-                    if(this.allocator != null) marshalledAllocator = this.allocator.Value.Pack();
+                    this.allocator?.MarshalTo(&marshalledAllocator);
                     Interop.DebugReportCallback marshalledCallback;
                     commandResult = commandDelegate(this.handle, &marshalledCreateInfo, this.allocator == null ? null : &marshalledAllocator, &marshalledCallback);
                     if (SharpVkException.IsError(commandResult))
@@ -529,9 +529,9 @@ namespace SharpVk
             }
         }
         
-        internal Interop.Instance Pack()
+        internal unsafe void MarshalTo(Interop.Instance* pointer)
         {
-            return this.handle;
+            *pointer = this.handle;
         }
         
         /// <summary>

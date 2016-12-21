@@ -51,15 +51,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.CommandPoolCreateInfo Pack()
-        {
-            Interop.CommandPoolCreateInfo result = default(Interop.CommandPoolCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.CommandPoolCreateInfo* MarshalTo()
         {
-            var result = (Interop.CommandPoolCreateInfo*)Interop.HeapUtil.Allocate<Interop.CommandPoolCreateInfo>().ToPointer();
+            var result = (Interop.CommandPoolCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.CommandPoolCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

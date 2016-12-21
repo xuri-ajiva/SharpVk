@@ -72,7 +72,8 @@ namespace SharpVk
                 try
                 {
                     Result commandResult;
-                    Interop.DeviceMemory marshalledMemory = memory.Pack();
+                    Interop.DeviceMemory marshalledMemory = default(Interop.DeviceMemory);
+                    memory?.MarshalTo(&marshalledMemory);
                     commandResult = Interop.Commands.vkBindBufferMemory(this.parent.handle, this.handle, marshalledMemory, memoryOffset);
                     if (SharpVkException.IsError(commandResult))
                     {
@@ -116,7 +117,7 @@ namespace SharpVk
                 try
                 {
                     Interop.AllocationCallbacks marshalledAllocator;
-                    if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
+                    this.parent.Allocator?.MarshalTo(&marshalledAllocator);
                     Interop.Commands.vkDestroyBuffer(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
                 }
                 finally
@@ -126,9 +127,9 @@ namespace SharpVk
             }
         }
         
-        internal Interop.Buffer Pack()
+        internal unsafe void MarshalTo(Interop.Buffer* pointer)
         {
-            return this.handle;
+            *pointer = this.handle;
         }
         
         /// <summary>

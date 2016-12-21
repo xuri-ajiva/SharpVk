@@ -42,15 +42,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.ValidationFlags Pack()
-        {
-            Interop.ValidationFlags result = default(Interop.ValidationFlags);
-            return result;
-        }
-        
         internal unsafe Interop.ValidationFlags* MarshalTo()
         {
-            var result = (Interop.ValidationFlags*)Interop.HeapUtil.Allocate<Interop.ValidationFlags>().ToPointer();
+            var result = (Interop.ValidationFlags*)Interop.HeapUtil.AllocateAndClear<Interop.ValidationFlags>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

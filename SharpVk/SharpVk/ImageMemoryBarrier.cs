@@ -162,15 +162,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.ImageMemoryBarrier Pack()
-        {
-            Interop.ImageMemoryBarrier result = default(Interop.ImageMemoryBarrier);
-            return result;
-        }
-        
         internal unsafe Interop.ImageMemoryBarrier* MarshalTo()
         {
-            var result = (Interop.ImageMemoryBarrier*)Interop.HeapUtil.Allocate<Interop.ImageMemoryBarrier>().ToPointer();
+            var result = (Interop.ImageMemoryBarrier*)Interop.HeapUtil.AllocateAndClear<Interop.ImageMemoryBarrier>().ToPointer();
             this.MarshalTo(result);
             return result;
         }
@@ -178,7 +172,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.ImageMemoryBarrier* pointer)
         {
             pointer->SType = StructureType.ImageMemoryBarrier;
-            pointer->Image = this.Image?.Pack() ?? Interop.Image.Null;
+            this.Image?.MarshalTo(&pointer->Image);
             pointer->SourceAccessMask = this.SourceAccessMask;
             pointer->DestinationAccessMask = this.DestinationAccessMask;
             pointer->OldLayout = this.OldLayout;

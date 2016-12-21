@@ -68,7 +68,7 @@ namespace SharpVk
                 {
                     var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkDestroySwapchainKHR>("vkDestroySwapchainKHR", "device");
                     Interop.AllocationCallbacks marshalledAllocator;
-                    if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
+                    this.parent.Allocator?.MarshalTo(&marshalledAllocator);
                     commandDelegate(this.associated.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
                 }
                 finally
@@ -129,8 +129,10 @@ namespace SharpVk
                     var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkAcquireNextImageKHR>("vkAcquireNextImageKHR", "device");
                     uint result = default(uint);
                     Result commandResult;
-                    Interop.Semaphore marshalledSemaphore = semaphore?.Pack() ?? Interop.Semaphore.Null;
-                    Interop.Fence marshalledFence = fence?.Pack() ?? Interop.Fence.Null;
+                    Interop.Semaphore marshalledSemaphore = default(Interop.Semaphore);
+                    semaphore?.MarshalTo(&marshalledSemaphore);
+                    Interop.Fence marshalledFence = default(Interop.Fence);
+                    fence?.MarshalTo(&marshalledFence);
                     commandResult = commandDelegate(this.associated.handle, this.handle, timeout, marshalledSemaphore, marshalledFence, &result);
                     if (SharpVkException.IsError(commandResult))
                     {
@@ -145,9 +147,9 @@ namespace SharpVk
             }
         }
         
-        internal Interop.Swapchain Pack()
+        internal unsafe void MarshalTo(Interop.Swapchain* pointer)
         {
-            return this.handle;
+            *pointer = this.handle;
         }
         
         /// <summary>

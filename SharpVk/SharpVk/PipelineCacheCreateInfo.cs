@@ -52,15 +52,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.PipelineCacheCreateInfo Pack()
-        {
-            Interop.PipelineCacheCreateInfo result = default(Interop.PipelineCacheCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.PipelineCacheCreateInfo* MarshalTo()
         {
-            var result = (Interop.PipelineCacheCreateInfo*)Interop.HeapUtil.Allocate<Interop.PipelineCacheCreateInfo>().ToPointer();
+            var result = (Interop.PipelineCacheCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.PipelineCacheCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

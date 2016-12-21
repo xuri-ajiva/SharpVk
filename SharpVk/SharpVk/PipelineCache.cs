@@ -78,7 +78,7 @@ namespace SharpVk
                 try
                 {
                     Interop.AllocationCallbacks marshalledAllocator;
-                    if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
+                    this.parent.Allocator?.MarshalTo(&marshalledAllocator);
                     Interop.Commands.vkDestroyPipelineCache(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
                 }
                 finally
@@ -142,14 +142,14 @@ namespace SharpVk
                         Interop.PipelineCache* arrayPointer = stackalloc Interop.PipelineCache[sourceCaches.Length];
                         if(sourceCaches.Contents == ProxyContents.Single)
                         {
-                            *arrayPointer = sourceCaches.GetSingleValue().Pack();
+                            sourceCaches.GetSingleValue().MarshalTo(arrayPointer);
                         }
                         else
                         {
                             var arrayValue  = sourceCaches.GetArrayValue();
                             for (int index = 0; index < sourceCaches.Length; index++)
                             {
-                                arrayPointer[index] = arrayValue.Array[arrayValue.Offset + index].Pack();
+                                arrayValue.Array[arrayValue.Offset + index].MarshalTo(&arrayPointer[index]);
                             }
                         }
                         marshalledSourceCaches = arrayPointer;
@@ -171,9 +171,9 @@ namespace SharpVk
             }
         }
         
-        internal Interop.PipelineCache Pack()
+        internal unsafe void MarshalTo(Interop.PipelineCache* pointer)
         {
-            return this.handle;
+            *pointer = this.handle;
         }
         
         /// <summary>

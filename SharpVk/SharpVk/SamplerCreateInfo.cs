@@ -176,15 +176,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.SamplerCreateInfo Pack()
-        {
-            Interop.SamplerCreateInfo result = default(Interop.SamplerCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.SamplerCreateInfo* MarshalTo()
         {
-            var result = (Interop.SamplerCreateInfo*)Interop.HeapUtil.Allocate<Interop.SamplerCreateInfo>().ToPointer();
+            var result = (Interop.SamplerCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.SamplerCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

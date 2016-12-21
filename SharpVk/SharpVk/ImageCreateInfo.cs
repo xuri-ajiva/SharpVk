@@ -195,15 +195,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.ImageCreateInfo Pack()
-        {
-            Interop.ImageCreateInfo result = default(Interop.ImageCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.ImageCreateInfo* MarshalTo()
         {
-            var result = (Interop.ImageCreateInfo*)Interop.HeapUtil.Allocate<Interop.ImageCreateInfo>().ToPointer();
+            var result = (Interop.ImageCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.ImageCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

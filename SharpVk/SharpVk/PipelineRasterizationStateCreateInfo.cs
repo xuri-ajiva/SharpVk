@@ -153,15 +153,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.PipelineRasterizationStateCreateInfo Pack()
-        {
-            Interop.PipelineRasterizationStateCreateInfo result = default(Interop.PipelineRasterizationStateCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.PipelineRasterizationStateCreateInfo* MarshalTo()
         {
-            var result = (Interop.PipelineRasterizationStateCreateInfo*)Interop.HeapUtil.Allocate<Interop.PipelineRasterizationStateCreateInfo>().ToPointer();
+            var result = (Interop.PipelineRasterizationStateCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.PipelineRasterizationStateCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

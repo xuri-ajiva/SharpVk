@@ -54,15 +54,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.DebugMarkerMarkerInfo Pack()
-        {
-            Interop.DebugMarkerMarkerInfo result = default(Interop.DebugMarkerMarkerInfo);
-            return result;
-        }
-        
         internal unsafe Interop.DebugMarkerMarkerInfo* MarshalTo()
         {
-            var result = (Interop.DebugMarkerMarkerInfo*)Interop.HeapUtil.Allocate<Interop.DebugMarkerMarkerInfo>().ToPointer();
+            var result = (Interop.DebugMarkerMarkerInfo*)Interop.HeapUtil.AllocateAndClear<Interop.DebugMarkerMarkerInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

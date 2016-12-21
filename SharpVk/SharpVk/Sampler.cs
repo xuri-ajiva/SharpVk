@@ -71,7 +71,7 @@ namespace SharpVk
                 try
                 {
                     Interop.AllocationCallbacks marshalledAllocator;
-                    if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
+                    this.parent.Allocator?.MarshalTo(&marshalledAllocator);
                     Interop.Commands.vkDestroySampler(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
                 }
                 finally
@@ -81,9 +81,9 @@ namespace SharpVk
             }
         }
         
-        internal Interop.Sampler Pack()
+        internal unsafe void MarshalTo(Interop.Sampler* pointer)
         {
-            return this.handle;
+            *pointer = this.handle;
         }
         
         /// <summary>

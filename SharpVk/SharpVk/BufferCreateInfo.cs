@@ -90,15 +90,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.BufferCreateInfo Pack()
-        {
-            Interop.BufferCreateInfo result = default(Interop.BufferCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.BufferCreateInfo* MarshalTo()
         {
-            var result = (Interop.BufferCreateInfo*)Interop.HeapUtil.Allocate<Interop.BufferCreateInfo>().ToPointer();
+            var result = (Interop.BufferCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.BufferCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

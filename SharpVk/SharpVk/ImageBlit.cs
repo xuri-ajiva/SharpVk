@@ -77,15 +77,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.ImageBlit Pack()
-        {
-            Interop.ImageBlit result = default(Interop.ImageBlit);
-            return result;
-        }
-        
         internal unsafe Interop.ImageBlit* MarshalTo()
         {
-            var result = (Interop.ImageBlit*)Interop.HeapUtil.Allocate<Interop.ImageBlit>().ToPointer();
+            var result = (Interop.ImageBlit*)Interop.HeapUtil.AllocateAndClear<Interop.ImageBlit>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

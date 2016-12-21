@@ -65,7 +65,7 @@ namespace SharpVk
                 {
                     var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkDestroyObjectTableNVX>("vkDestroyObjectTableNVX", "device");
                     Interop.AllocationCallbacks marshalledAllocator;
-                    if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
+                    this.parent.Allocator?.MarshalTo(&marshalledAllocator);
                     commandDelegate(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
                 }
                 finally
@@ -219,9 +219,9 @@ namespace SharpVk
             }
         }
         
-        internal Interop.ObjectTable Pack()
+        internal unsafe void MarshalTo(Interop.ObjectTable* pointer)
         {
-            return this.handle;
+            *pointer = this.handle;
         }
         
         /// <summary>

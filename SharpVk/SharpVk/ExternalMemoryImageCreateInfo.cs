@@ -53,15 +53,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.ExternalMemoryImageCreateInfo Pack()
-        {
-            Interop.ExternalMemoryImageCreateInfo result = default(Interop.ExternalMemoryImageCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.ExternalMemoryImageCreateInfo* MarshalTo()
         {
-            var result = (Interop.ExternalMemoryImageCreateInfo*)Interop.HeapUtil.Allocate<Interop.ExternalMemoryImageCreateInfo>().ToPointer();
+            var result = (Interop.ExternalMemoryImageCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.ExternalMemoryImageCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

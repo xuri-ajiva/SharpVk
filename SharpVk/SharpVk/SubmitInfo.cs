@@ -79,15 +79,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.SubmitInfo Pack()
-        {
-            Interop.SubmitInfo result = default(Interop.SubmitInfo);
-            return result;
-        }
-        
         internal unsafe Interop.SubmitInfo* MarshalTo()
         {
-            var result = (Interop.SubmitInfo*)Interop.HeapUtil.Allocate<Interop.SubmitInfo>().ToPointer();
+            var result = (Interop.SubmitInfo*)Interop.HeapUtil.AllocateAndClear<Interop.SubmitInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }
@@ -99,13 +93,12 @@ namespace SharpVk
             //WaitSemaphores
             if (this.WaitSemaphores != null)
             {
-                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.Semaphore>();
-                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.Semaphore>(this.WaitSemaphores.Length);
+                var fieldPointer = (Interop.Semaphore*)Interop.HeapUtil.AllocateAndClear<Interop.Semaphore>(this.WaitSemaphores.Length);
                 for (int index = 0; index < this.WaitSemaphores.Length; index++)
                 {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.WaitSemaphores[index].Pack(), fieldPointer + (size * index), false);
+                    this.WaitSemaphores[index].MarshalTo(&fieldPointer[index]);
                 }
-                pointer->WaitSemaphores = (Interop.Semaphore*)fieldPointer.ToPointer();
+                pointer->WaitSemaphores = fieldPointer;
             }
             else
             {
@@ -129,13 +122,12 @@ namespace SharpVk
             //CommandBuffers
             if (this.CommandBuffers != null)
             {
-                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.CommandBuffer>();
-                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.CommandBuffer>(this.CommandBuffers.Length);
+                var fieldPointer = (Interop.CommandBuffer*)Interop.HeapUtil.AllocateAndClear<Interop.CommandBuffer>(this.CommandBuffers.Length);
                 for (int index = 0; index < this.CommandBuffers.Length; index++)
                 {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.CommandBuffers[index].Pack(), fieldPointer + (size * index), false);
+                    this.CommandBuffers[index].MarshalTo(&fieldPointer[index]);
                 }
-                pointer->CommandBuffers = (Interop.CommandBuffer*)fieldPointer.ToPointer();
+                pointer->CommandBuffers = fieldPointer;
             }
             else
             {
@@ -145,13 +137,12 @@ namespace SharpVk
             //SignalSemaphores
             if (this.SignalSemaphores != null)
             {
-                int size = System.Runtime.InteropServices.Marshal.SizeOf<Interop.Semaphore>();
-                IntPtr fieldPointer = Interop.HeapUtil.Allocate<Interop.Semaphore>(this.SignalSemaphores.Length);
+                var fieldPointer = (Interop.Semaphore*)Interop.HeapUtil.AllocateAndClear<Interop.Semaphore>(this.SignalSemaphores.Length);
                 for (int index = 0; index < this.SignalSemaphores.Length; index++)
                 {
-                    System.Runtime.InteropServices.Marshal.StructureToPtr(this.SignalSemaphores[index].Pack(), fieldPointer + (size * index), false);
+                    this.SignalSemaphores[index].MarshalTo(&fieldPointer[index]);
                 }
-                pointer->SignalSemaphores = (Interop.Semaphore*)fieldPointer.ToPointer();
+                pointer->SignalSemaphores = fieldPointer;
             }
             else
             {

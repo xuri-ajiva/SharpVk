@@ -76,7 +76,7 @@ namespace SharpVk
                 try
                 {
                     Interop.AllocationCallbacks marshalledAllocator;
-                    if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
+                    this.parent.Allocator?.MarshalTo(&marshalledAllocator);
                     Interop.Commands.vkDestroyCommandPool(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
                 }
                 finally
@@ -124,14 +124,14 @@ namespace SharpVk
                         Interop.CommandBuffer* arrayPointer = stackalloc Interop.CommandBuffer[commandBuffers.Length];
                         if(commandBuffers.Contents == ProxyContents.Single)
                         {
-                            *arrayPointer = commandBuffers.GetSingleValue().Pack();
+                            commandBuffers.GetSingleValue().MarshalTo(arrayPointer);
                         }
                         else
                         {
                             var arrayValue  = commandBuffers.GetArrayValue();
                             for (int index = 0; index < commandBuffers.Length; index++)
                             {
-                                arrayPointer[index] = arrayValue.Array[arrayValue.Offset + index].Pack();
+                                arrayValue.Array[arrayValue.Offset + index].MarshalTo(&arrayPointer[index]);
                             }
                         }
                         marshalledCommandBuffers = arrayPointer;
@@ -149,9 +149,9 @@ namespace SharpVk
             }
         }
         
-        internal Interop.CommandPool Pack()
+        internal unsafe void MarshalTo(Interop.CommandPool* pointer)
         {
-            return this.handle;
+            *pointer = this.handle;
         }
         
         /// <summary>

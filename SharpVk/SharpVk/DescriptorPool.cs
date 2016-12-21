@@ -73,7 +73,7 @@ namespace SharpVk
                 try
                 {
                     Interop.AllocationCallbacks marshalledAllocator;
-                    if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
+                    this.parent.Allocator?.MarshalTo(&marshalledAllocator);
                     Interop.Commands.vkDestroyDescriptorPool(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
                 }
                 finally
@@ -122,14 +122,14 @@ namespace SharpVk
                         Interop.DescriptorSet* arrayPointer = stackalloc Interop.DescriptorSet[descriptorSets.Length];
                         if(descriptorSets.Contents == ProxyContents.Single)
                         {
-                            *arrayPointer = descriptorSets.GetSingleValue().Pack();
+                            descriptorSets.GetSingleValue().MarshalTo(arrayPointer);
                         }
                         else
                         {
                             var arrayValue  = descriptorSets.GetArrayValue();
                             for (int index = 0; index < descriptorSets.Length; index++)
                             {
-                                arrayPointer[index] = arrayValue.Array[arrayValue.Offset + index].Pack();
+                                arrayValue.Array[arrayValue.Offset + index].MarshalTo(&arrayPointer[index]);
                             }
                         }
                         marshalledDescriptorSets = arrayPointer;
@@ -151,9 +151,9 @@ namespace SharpVk
             }
         }
         
-        internal Interop.DescriptorPool Pack()
+        internal unsafe void MarshalTo(Interop.DescriptorPool* pointer)
         {
-            return this.handle;
+            *pointer = this.handle;
         }
         
         /// <summary>

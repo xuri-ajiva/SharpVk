@@ -68,15 +68,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.QueryPoolCreateInfo Pack()
-        {
-            Interop.QueryPoolCreateInfo result = default(Interop.QueryPoolCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.QueryPoolCreateInfo* MarshalTo()
         {
-            var result = (Interop.QueryPoolCreateInfo*)Interop.HeapUtil.Allocate<Interop.QueryPoolCreateInfo>().ToPointer();
+            var result = (Interop.QueryPoolCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.QueryPoolCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

@@ -62,22 +62,16 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.IndirectCommandsToken Pack()
-        {
-            Interop.IndirectCommandsToken result = default(Interop.IndirectCommandsToken);
-            return result;
-        }
-        
         internal unsafe Interop.IndirectCommandsToken* MarshalTo()
         {
-            var result = (Interop.IndirectCommandsToken*)Interop.HeapUtil.Allocate<Interop.IndirectCommandsToken>().ToPointer();
+            var result = (Interop.IndirectCommandsToken*)Interop.HeapUtil.AllocateAndClear<Interop.IndirectCommandsToken>().ToPointer();
             this.MarshalTo(result);
             return result;
         }
         
         internal unsafe void MarshalTo(Interop.IndirectCommandsToken* pointer)
         {
-            pointer->Buffer = this.Buffer?.Pack() ?? Interop.Buffer.Null;
+            this.Buffer?.MarshalTo(&pointer->Buffer);
             pointer->TokenType = this.TokenType;
             pointer->Offset = this.Offset;
         }

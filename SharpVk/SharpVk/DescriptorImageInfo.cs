@@ -75,23 +75,17 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.DescriptorImageInfo Pack()
-        {
-            Interop.DescriptorImageInfo result = default(Interop.DescriptorImageInfo);
-            return result;
-        }
-        
         internal unsafe Interop.DescriptorImageInfo* MarshalTo()
         {
-            var result = (Interop.DescriptorImageInfo*)Interop.HeapUtil.Allocate<Interop.DescriptorImageInfo>().ToPointer();
+            var result = (Interop.DescriptorImageInfo*)Interop.HeapUtil.AllocateAndClear<Interop.DescriptorImageInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }
         
         internal unsafe void MarshalTo(Interop.DescriptorImageInfo* pointer)
         {
-            pointer->Sampler = this.Sampler?.Pack() ?? Interop.Sampler.Null;
-            pointer->ImageView = this.ImageView?.Pack() ?? Interop.ImageView.Null;
+            this.Sampler?.MarshalTo(&pointer->Sampler);
+            this.ImageView?.MarshalTo(&pointer->ImageView);
             pointer->ImageLayout = this.ImageLayout;
         }
     }

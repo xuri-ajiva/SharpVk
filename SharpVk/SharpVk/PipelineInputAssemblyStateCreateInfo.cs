@@ -79,15 +79,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.PipelineInputAssemblyStateCreateInfo Pack()
-        {
-            Interop.PipelineInputAssemblyStateCreateInfo result = default(Interop.PipelineInputAssemblyStateCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.PipelineInputAssemblyStateCreateInfo* MarshalTo()
         {
-            var result = (Interop.PipelineInputAssemblyStateCreateInfo*)Interop.HeapUtil.Allocate<Interop.PipelineInputAssemblyStateCreateInfo>().ToPointer();
+            var result = (Interop.PipelineInputAssemblyStateCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.PipelineInputAssemblyStateCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

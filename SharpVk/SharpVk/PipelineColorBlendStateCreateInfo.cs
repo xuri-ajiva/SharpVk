@@ -93,15 +93,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.PipelineColorBlendStateCreateInfo Pack()
-        {
-            Interop.PipelineColorBlendStateCreateInfo result = default(Interop.PipelineColorBlendStateCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.PipelineColorBlendStateCreateInfo* MarshalTo()
         {
-            var result = (Interop.PipelineColorBlendStateCreateInfo*)Interop.HeapUtil.Allocate<Interop.PipelineColorBlendStateCreateInfo>().ToPointer();
+            var result = (Interop.PipelineColorBlendStateCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.PipelineColorBlendStateCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

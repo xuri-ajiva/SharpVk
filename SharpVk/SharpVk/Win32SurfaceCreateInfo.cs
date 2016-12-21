@@ -60,15 +60,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.Win32SurfaceCreateInfo Pack()
-        {
-            Interop.Win32SurfaceCreateInfo result = default(Interop.Win32SurfaceCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.Win32SurfaceCreateInfo* MarshalTo()
         {
-            var result = (Interop.Win32SurfaceCreateInfo*)Interop.HeapUtil.Allocate<Interop.Win32SurfaceCreateInfo>().ToPointer();
+            var result = (Interop.Win32SurfaceCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.Win32SurfaceCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

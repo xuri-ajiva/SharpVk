@@ -74,7 +74,7 @@ namespace SharpVk
                 {
                     Result commandResult;
                     Interop.CommandBufferBeginInfo marshalledBeginInfo;
-                    marshalledBeginInfo = beginInfo.Pack();
+                    beginInfo.MarshalTo(&marshalledBeginInfo);
                     commandResult = Interop.Commands.vkBeginCommandBuffer(this.handle, &marshalledBeginInfo);
                     if (SharpVkException.IsError(commandResult))
                     {
@@ -143,7 +143,8 @@ namespace SharpVk
             {
                 try
                 {
-                    Interop.Pipeline marshalledPipeline = pipeline.Pack();
+                    Interop.Pipeline marshalledPipeline = default(Interop.Pipeline);
+                    pipeline?.MarshalTo(&marshalledPipeline);
                     Interop.Commands.vkCmdBindPipeline(this.handle, pipelineBindPoint, marshalledPipeline);
                 }
                 finally
@@ -368,21 +369,22 @@ namespace SharpVk
             {
                 try
                 {
-                    Interop.PipelineLayout marshalledLayout = layout.Pack();
+                    Interop.PipelineLayout marshalledLayout = default(Interop.PipelineLayout);
+                    layout?.MarshalTo(&marshalledLayout);
                     Interop.DescriptorSet* marshalledDescriptorSets = null;
                     if (descriptorSets.Contents != ProxyContents.Null)
                     {
                         Interop.DescriptorSet* arrayPointer = stackalloc Interop.DescriptorSet[descriptorSets.Length];
                         if(descriptorSets.Contents == ProxyContents.Single)
                         {
-                            *arrayPointer = descriptorSets.GetSingleValue().Pack();
+                            descriptorSets.GetSingleValue().MarshalTo(arrayPointer);
                         }
                         else
                         {
                             var arrayValue  = descriptorSets.GetArrayValue();
                             for (int index = 0; index < descriptorSets.Length; index++)
                             {
-                                arrayPointer[index] = arrayValue.Array[arrayValue.Offset + index].Pack();
+                                arrayValue.Array[arrayValue.Offset + index].MarshalTo(&arrayPointer[index]);
                             }
                         }
                         marshalledDescriptorSets = arrayPointer;
@@ -431,7 +433,8 @@ namespace SharpVk
             {
                 try
                 {
-                    Interop.Buffer marshalledBuffer = buffer.Pack();
+                    Interop.Buffer marshalledBuffer = default(Interop.Buffer);
+                    buffer?.MarshalTo(&marshalledBuffer);
                     Interop.Commands.vkCmdBindIndexBuffer(this.handle, marshalledBuffer, offset, indexType);
                 }
                 finally
@@ -456,14 +459,14 @@ namespace SharpVk
                         Interop.Buffer* arrayPointer = stackalloc Interop.Buffer[buffers.Length];
                         if(buffers.Contents == ProxyContents.Single)
                         {
-                            *arrayPointer = buffers.GetSingleValue().Pack();
+                            buffers.GetSingleValue().MarshalTo(arrayPointer);
                         }
                         else
                         {
                             var arrayValue  = buffers.GetArrayValue();
                             for (int index = 0; index < buffers.Length; index++)
                             {
-                                arrayPointer[index] = arrayValue.Array[arrayValue.Offset + index].Pack();
+                                arrayValue.Array[arrayValue.Offset + index].MarshalTo(&arrayPointer[index]);
                             }
                         }
                         marshalledBuffers = arrayPointer;
@@ -548,7 +551,8 @@ namespace SharpVk
             {
                 try
                 {
-                    Interop.Buffer marshalledBuffer = buffer.Pack();
+                    Interop.Buffer marshalledBuffer = default(Interop.Buffer);
+                    buffer?.MarshalTo(&marshalledBuffer);
                     Interop.Commands.vkCmdDrawIndirect(this.handle, marshalledBuffer, offset, drawCount, stride);
                 }
                 finally
@@ -567,7 +571,8 @@ namespace SharpVk
             {
                 try
                 {
-                    Interop.Buffer marshalledBuffer = buffer.Pack();
+                    Interop.Buffer marshalledBuffer = default(Interop.Buffer);
+                    buffer?.MarshalTo(&marshalledBuffer);
                     Interop.Commands.vkCmdDrawIndexedIndirect(this.handle, marshalledBuffer, offset, drawCount, stride);
                 }
                 finally
@@ -604,7 +609,8 @@ namespace SharpVk
             {
                 try
                 {
-                    Interop.Buffer marshalledBuffer = buffer.Pack();
+                    Interop.Buffer marshalledBuffer = default(Interop.Buffer);
+                    buffer?.MarshalTo(&marshalledBuffer);
                     Interop.Commands.vkCmdDispatchIndirect(this.handle, marshalledBuffer, offset);
                 }
                 finally
@@ -623,8 +629,10 @@ namespace SharpVk
             {
                 try
                 {
-                    Interop.Buffer marshalledSourceBuffer = sourceBuffer.Pack();
-                    Interop.Buffer marshalledDestinationBuffer = destinationBuffer.Pack();
+                    Interop.Buffer marshalledSourceBuffer = default(Interop.Buffer);
+                    sourceBuffer?.MarshalTo(&marshalledSourceBuffer);
+                    Interop.Buffer marshalledDestinationBuffer = default(Interop.Buffer);
+                    destinationBuffer?.MarshalTo(&marshalledDestinationBuffer);
                     GCHandle regionsHandle = default(GCHandle);
                     BufferCopy* marshalledRegions = null;
                     if (regions.Contents != ProxyContents.Null)
@@ -665,8 +673,10 @@ namespace SharpVk
             {
                 try
                 {
-                    Interop.Image marshalledSourceImage = sourceImage.Pack();
-                    Interop.Image marshalledDestinationImage = destinationImage.Pack();
+                    Interop.Image marshalledSourceImage = default(Interop.Image);
+                    sourceImage?.MarshalTo(&marshalledSourceImage);
+                    Interop.Image marshalledDestinationImage = default(Interop.Image);
+                    destinationImage?.MarshalTo(&marshalledDestinationImage);
                     GCHandle regionsHandle = default(GCHandle);
                     ImageCopy* marshalledRegions = null;
                     if (regions.Contents != ProxyContents.Null)
@@ -708,22 +718,24 @@ namespace SharpVk
             {
                 try
                 {
-                    Interop.Image marshalledSourceImage = sourceImage.Pack();
-                    Interop.Image marshalledDestinationImage = destinationImage.Pack();
+                    Interop.Image marshalledSourceImage = default(Interop.Image);
+                    sourceImage?.MarshalTo(&marshalledSourceImage);
+                    Interop.Image marshalledDestinationImage = default(Interop.Image);
+                    destinationImage?.MarshalTo(&marshalledDestinationImage);
                     Interop.ImageBlit* marshalledRegions = null;
                     if (regions.Contents != ProxyContents.Null)
                     {
                         Interop.ImageBlit* arrayPointer = stackalloc Interop.ImageBlit[regions.Length];
                         if(regions.Contents == ProxyContents.Single)
                         {
-                            *arrayPointer = regions.GetSingleValue().Pack();
+                            regions.GetSingleValue().MarshalTo(arrayPointer);
                         }
                         else
                         {
                             var arrayValue  = regions.GetArrayValue();
                             for (int index = 0; index < regions.Length; index++)
                             {
-                                arrayPointer[index] = arrayValue.Array[arrayValue.Offset + index].Pack();
+                                arrayValue.Array[arrayValue.Offset + index].MarshalTo(&arrayPointer[index]);
                             }
                         }
                         marshalledRegions = arrayPointer;
@@ -750,8 +762,10 @@ namespace SharpVk
             {
                 try
                 {
-                    Interop.Buffer marshalledSourceBuffer = sourceBuffer.Pack();
-                    Interop.Image marshalledDestinationImage = destinationImage.Pack();
+                    Interop.Buffer marshalledSourceBuffer = default(Interop.Buffer);
+                    sourceBuffer?.MarshalTo(&marshalledSourceBuffer);
+                    Interop.Image marshalledDestinationImage = default(Interop.Image);
+                    destinationImage?.MarshalTo(&marshalledDestinationImage);
                     GCHandle regionsHandle = default(GCHandle);
                     BufferImageCopy* marshalledRegions = null;
                     if (regions.Contents != ProxyContents.Null)
@@ -792,8 +806,10 @@ namespace SharpVk
             {
                 try
                 {
-                    Interop.Image marshalledSourceImage = sourceImage.Pack();
-                    Interop.Buffer marshalledDestinationBuffer = destinationBuffer.Pack();
+                    Interop.Image marshalledSourceImage = default(Interop.Image);
+                    sourceImage?.MarshalTo(&marshalledSourceImage);
+                    Interop.Buffer marshalledDestinationBuffer = default(Interop.Buffer);
+                    destinationBuffer?.MarshalTo(&marshalledDestinationBuffer);
                     GCHandle regionsHandle = default(GCHandle);
                     BufferImageCopy* marshalledRegions = null;
                     if (regions.Contents != ProxyContents.Null)
@@ -834,7 +850,8 @@ namespace SharpVk
             {
                 try
                 {
-                    Interop.Buffer marshalledDestinationBuffer = destinationBuffer.Pack();
+                    Interop.Buffer marshalledDestinationBuffer = default(Interop.Buffer);
+                    destinationBuffer?.MarshalTo(&marshalledDestinationBuffer);
                     GCHandle dataHandle = default(GCHandle);
                     byte* marshalledData = null;
                     if (data.Contents != ProxyContents.Null)
@@ -875,7 +892,8 @@ namespace SharpVk
             {
                 try
                 {
-                    Interop.Buffer marshalledDestinationBuffer = destinationBuffer.Pack();
+                    Interop.Buffer marshalledDestinationBuffer = default(Interop.Buffer);
+                    destinationBuffer?.MarshalTo(&marshalledDestinationBuffer);
                     Interop.Commands.vkCmdFillBuffer(this.handle, marshalledDestinationBuffer, destinationOffset, size, data);
                 }
                 finally
@@ -894,7 +912,8 @@ namespace SharpVk
             {
                 try
                 {
-                    Interop.Image marshalledImage = image.Pack();
+                    Interop.Image marshalledImage = default(Interop.Image);
+                    image?.MarshalTo(&marshalledImage);
                     GCHandle rangesHandle = default(GCHandle);
                     ImageSubresourceRange* marshalledRanges = null;
                     if (ranges.Contents != ProxyContents.Null)
@@ -935,7 +954,8 @@ namespace SharpVk
             {
                 try
                 {
-                    Interop.Image marshalledImage = image.Pack();
+                    Interop.Image marshalledImage = default(Interop.Image);
+                    image?.MarshalTo(&marshalledImage);
                     GCHandle rangesHandle = default(GCHandle);
                     ImageSubresourceRange* marshalledRanges = null;
                     if (ranges.Contents != ProxyContents.Null)
@@ -1038,8 +1058,10 @@ namespace SharpVk
             {
                 try
                 {
-                    Interop.Image marshalledSourceImage = sourceImage.Pack();
-                    Interop.Image marshalledDestinationImage = destinationImage.Pack();
+                    Interop.Image marshalledSourceImage = default(Interop.Image);
+                    sourceImage?.MarshalTo(&marshalledSourceImage);
+                    Interop.Image marshalledDestinationImage = default(Interop.Image);
+                    destinationImage?.MarshalTo(&marshalledDestinationImage);
                     GCHandle regionsHandle = default(GCHandle);
                     ImageResolve* marshalledRegions = null;
                     if (regions.Contents != ProxyContents.Null)
@@ -1080,7 +1102,8 @@ namespace SharpVk
             {
                 try
                 {
-                    Interop.Event marshalledEvent = @event.Pack();
+                    Interop.Event marshalledEvent = default(Interop.Event);
+                    @event?.MarshalTo(&marshalledEvent);
                     Interop.Commands.vkCmdSetEvent(this.handle, marshalledEvent, stageMask);
                 }
                 finally
@@ -1099,7 +1122,8 @@ namespace SharpVk
             {
                 try
                 {
-                    Interop.Event marshalledEvent = @event.Pack();
+                    Interop.Event marshalledEvent = default(Interop.Event);
+                    @event?.MarshalTo(&marshalledEvent);
                     Interop.Commands.vkCmdResetEvent(this.handle, marshalledEvent, stageMask);
                 }
                 finally
@@ -1124,14 +1148,14 @@ namespace SharpVk
                         Interop.Event* arrayPointer = stackalloc Interop.Event[events.Length];
                         if(events.Contents == ProxyContents.Single)
                         {
-                            *arrayPointer = events.GetSingleValue().Pack();
+                            events.GetSingleValue().MarshalTo(arrayPointer);
                         }
                         else
                         {
                             var arrayValue  = events.GetArrayValue();
                             for (int index = 0; index < events.Length; index++)
                             {
-                                arrayPointer[index] = arrayValue.Array[arrayValue.Offset + index].Pack();
+                                arrayValue.Array[arrayValue.Offset + index].MarshalTo(&arrayPointer[index]);
                             }
                         }
                         marshalledEvents = arrayPointer;
@@ -1146,14 +1170,14 @@ namespace SharpVk
                         Interop.MemoryBarrier* arrayPointer = stackalloc Interop.MemoryBarrier[memoryBarriers.Length];
                         if(memoryBarriers.Contents == ProxyContents.Single)
                         {
-                            *arrayPointer = memoryBarriers.GetSingleValue().Pack();
+                            memoryBarriers.GetSingleValue().MarshalTo(arrayPointer);
                         }
                         else
                         {
                             var arrayValue  = memoryBarriers.GetArrayValue();
                             for (int index = 0; index < memoryBarriers.Length; index++)
                             {
-                                arrayPointer[index] = arrayValue.Array[arrayValue.Offset + index].Pack();
+                                arrayValue.Array[arrayValue.Offset + index].MarshalTo(&arrayPointer[index]);
                             }
                         }
                         marshalledMemoryBarriers = arrayPointer;
@@ -1168,14 +1192,14 @@ namespace SharpVk
                         Interop.BufferMemoryBarrier* arrayPointer = stackalloc Interop.BufferMemoryBarrier[bufferMemoryBarriers.Length];
                         if(bufferMemoryBarriers.Contents == ProxyContents.Single)
                         {
-                            *arrayPointer = bufferMemoryBarriers.GetSingleValue().Pack();
+                            bufferMemoryBarriers.GetSingleValue().MarshalTo(arrayPointer);
                         }
                         else
                         {
                             var arrayValue  = bufferMemoryBarriers.GetArrayValue();
                             for (int index = 0; index < bufferMemoryBarriers.Length; index++)
                             {
-                                arrayPointer[index] = arrayValue.Array[arrayValue.Offset + index].Pack();
+                                arrayValue.Array[arrayValue.Offset + index].MarshalTo(&arrayPointer[index]);
                             }
                         }
                         marshalledBufferMemoryBarriers = arrayPointer;
@@ -1190,14 +1214,14 @@ namespace SharpVk
                         Interop.ImageMemoryBarrier* arrayPointer = stackalloc Interop.ImageMemoryBarrier[imageMemoryBarriers.Length];
                         if(imageMemoryBarriers.Contents == ProxyContents.Single)
                         {
-                            *arrayPointer = imageMemoryBarriers.GetSingleValue().Pack();
+                            imageMemoryBarriers.GetSingleValue().MarshalTo(arrayPointer);
                         }
                         else
                         {
                             var arrayValue  = imageMemoryBarriers.GetArrayValue();
                             for (int index = 0; index < imageMemoryBarriers.Length; index++)
                             {
-                                arrayPointer[index] = arrayValue.Array[arrayValue.Offset + index].Pack();
+                                arrayValue.Array[arrayValue.Offset + index].MarshalTo(&arrayPointer[index]);
                             }
                         }
                         marshalledImageMemoryBarriers = arrayPointer;
@@ -1230,14 +1254,14 @@ namespace SharpVk
                         Interop.MemoryBarrier* arrayPointer = stackalloc Interop.MemoryBarrier[memoryBarriers.Length];
                         if(memoryBarriers.Contents == ProxyContents.Single)
                         {
-                            *arrayPointer = memoryBarriers.GetSingleValue().Pack();
+                            memoryBarriers.GetSingleValue().MarshalTo(arrayPointer);
                         }
                         else
                         {
                             var arrayValue  = memoryBarriers.GetArrayValue();
                             for (int index = 0; index < memoryBarriers.Length; index++)
                             {
-                                arrayPointer[index] = arrayValue.Array[arrayValue.Offset + index].Pack();
+                                arrayValue.Array[arrayValue.Offset + index].MarshalTo(&arrayPointer[index]);
                             }
                         }
                         marshalledMemoryBarriers = arrayPointer;
@@ -1252,14 +1276,14 @@ namespace SharpVk
                         Interop.BufferMemoryBarrier* arrayPointer = stackalloc Interop.BufferMemoryBarrier[bufferMemoryBarriers.Length];
                         if(bufferMemoryBarriers.Contents == ProxyContents.Single)
                         {
-                            *arrayPointer = bufferMemoryBarriers.GetSingleValue().Pack();
+                            bufferMemoryBarriers.GetSingleValue().MarshalTo(arrayPointer);
                         }
                         else
                         {
                             var arrayValue  = bufferMemoryBarriers.GetArrayValue();
                             for (int index = 0; index < bufferMemoryBarriers.Length; index++)
                             {
-                                arrayPointer[index] = arrayValue.Array[arrayValue.Offset + index].Pack();
+                                arrayValue.Array[arrayValue.Offset + index].MarshalTo(&arrayPointer[index]);
                             }
                         }
                         marshalledBufferMemoryBarriers = arrayPointer;
@@ -1274,14 +1298,14 @@ namespace SharpVk
                         Interop.ImageMemoryBarrier* arrayPointer = stackalloc Interop.ImageMemoryBarrier[imageMemoryBarriers.Length];
                         if(imageMemoryBarriers.Contents == ProxyContents.Single)
                         {
-                            *arrayPointer = imageMemoryBarriers.GetSingleValue().Pack();
+                            imageMemoryBarriers.GetSingleValue().MarshalTo(arrayPointer);
                         }
                         else
                         {
                             var arrayValue  = imageMemoryBarriers.GetArrayValue();
                             for (int index = 0; index < imageMemoryBarriers.Length; index++)
                             {
-                                arrayPointer[index] = arrayValue.Array[arrayValue.Offset + index].Pack();
+                                arrayValue.Array[arrayValue.Offset + index].MarshalTo(&arrayPointer[index]);
                             }
                         }
                         marshalledImageMemoryBarriers = arrayPointer;
@@ -1308,7 +1332,8 @@ namespace SharpVk
             {
                 try
                 {
-                    Interop.QueryPool marshalledQueryPool = queryPool.Pack();
+                    Interop.QueryPool marshalledQueryPool = default(Interop.QueryPool);
+                    queryPool?.MarshalTo(&marshalledQueryPool);
                     Interop.Commands.vkCmdBeginQuery(this.handle, marshalledQueryPool, query, flags);
                 }
                 finally
@@ -1327,7 +1352,8 @@ namespace SharpVk
             {
                 try
                 {
-                    Interop.QueryPool marshalledQueryPool = queryPool.Pack();
+                    Interop.QueryPool marshalledQueryPool = default(Interop.QueryPool);
+                    queryPool?.MarshalTo(&marshalledQueryPool);
                     Interop.Commands.vkCmdEndQuery(this.handle, marshalledQueryPool, query);
                 }
                 finally
@@ -1346,7 +1372,8 @@ namespace SharpVk
             {
                 try
                 {
-                    Interop.QueryPool marshalledQueryPool = queryPool.Pack();
+                    Interop.QueryPool marshalledQueryPool = default(Interop.QueryPool);
+                    queryPool?.MarshalTo(&marshalledQueryPool);
                     Interop.Commands.vkCmdResetQueryPool(this.handle, marshalledQueryPool, firstQuery, queryCount);
                 }
                 finally
@@ -1365,7 +1392,8 @@ namespace SharpVk
             {
                 try
                 {
-                    Interop.QueryPool marshalledQueryPool = queryPool.Pack();
+                    Interop.QueryPool marshalledQueryPool = default(Interop.QueryPool);
+                    queryPool?.MarshalTo(&marshalledQueryPool);
                     Interop.Commands.vkCmdWriteTimestamp(this.handle, pipelineStage, marshalledQueryPool, query);
                 }
                 finally
@@ -1384,8 +1412,10 @@ namespace SharpVk
             {
                 try
                 {
-                    Interop.QueryPool marshalledQueryPool = queryPool.Pack();
-                    Interop.Buffer marshalledDestinationBuffer = destinationBuffer.Pack();
+                    Interop.QueryPool marshalledQueryPool = default(Interop.QueryPool);
+                    queryPool?.MarshalTo(&marshalledQueryPool);
+                    Interop.Buffer marshalledDestinationBuffer = default(Interop.Buffer);
+                    destinationBuffer?.MarshalTo(&marshalledDestinationBuffer);
                     Interop.Commands.vkCmdCopyQueryPoolResults(this.handle, marshalledQueryPool, firstQuery, queryCount, marshalledDestinationBuffer, destinationOffset, stride, flags);
                 }
                 finally
@@ -1404,7 +1434,8 @@ namespace SharpVk
             {
                 try
                 {
-                    Interop.PipelineLayout marshalledLayout = layout.Pack();
+                    Interop.PipelineLayout marshalledLayout = default(Interop.PipelineLayout);
+                    layout?.MarshalTo(&marshalledLayout);
                     GCHandle valuesHandle = default(GCHandle);
                     byte* marshalledValues = null;
                     if (values.Contents != ProxyContents.Null)
@@ -1446,7 +1477,7 @@ namespace SharpVk
                 try
                 {
                     Interop.RenderPassBeginInfo marshalledRenderPassBegin;
-                    marshalledRenderPassBegin = renderPassBegin.Pack();
+                    renderPassBegin.MarshalTo(&marshalledRenderPassBegin);
                     Interop.Commands.vkCmdBeginRenderPass(this.handle, &marshalledRenderPassBegin, contents);
                 }
                 finally
@@ -1507,14 +1538,14 @@ namespace SharpVk
                         Interop.CommandBuffer* arrayPointer = stackalloc Interop.CommandBuffer[commandBuffers.Length];
                         if(commandBuffers.Contents == ProxyContents.Single)
                         {
-                            *arrayPointer = commandBuffers.GetSingleValue().Pack();
+                            commandBuffers.GetSingleValue().MarshalTo(arrayPointer);
                         }
                         else
                         {
                             var arrayValue  = commandBuffers.GetArrayValue();
                             for (int index = 0; index < commandBuffers.Length; index++)
                             {
-                                arrayPointer[index] = arrayValue.Array[arrayValue.Offset + index].Pack();
+                                arrayValue.Array[arrayValue.Offset + index].MarshalTo(&arrayPointer[index]);
                             }
                         }
                         marshalledCommandBuffers = arrayPointer;
@@ -1543,7 +1574,7 @@ namespace SharpVk
                 {
                     var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkCmdDebugMarkerBeginEXT>("vkCmdDebugMarkerBeginEXT", "device");
                     Interop.DebugMarkerMarkerInfo marshalledMarkerInfo;
-                    marshalledMarkerInfo = markerInfo.Pack();
+                    markerInfo.MarshalTo(&marshalledMarkerInfo);
                     commandDelegate(this.handle, &marshalledMarkerInfo);
                 }
                 finally
@@ -1583,7 +1614,7 @@ namespace SharpVk
                 {
                     var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkCmdDebugMarkerInsertEXT>("vkCmdDebugMarkerInsertEXT", "device");
                     Interop.DebugMarkerMarkerInfo marshalledMarkerInfo;
-                    marshalledMarkerInfo = markerInfo.Pack();
+                    markerInfo.MarshalTo(&marshalledMarkerInfo);
                     commandDelegate(this.handle, &marshalledMarkerInfo);
                 }
                 finally
@@ -1603,8 +1634,10 @@ namespace SharpVk
                 try
                 {
                     var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkCmdDrawIndirectCountAMD>("vkCmdDrawIndirectCountAMD", "device");
-                    Interop.Buffer marshalledBuffer = buffer.Pack();
-                    Interop.Buffer marshalledCountBuffer = countBuffer.Pack();
+                    Interop.Buffer marshalledBuffer = default(Interop.Buffer);
+                    buffer?.MarshalTo(&marshalledBuffer);
+                    Interop.Buffer marshalledCountBuffer = default(Interop.Buffer);
+                    countBuffer?.MarshalTo(&marshalledCountBuffer);
                     commandDelegate(this.handle, marshalledBuffer, offset, marshalledCountBuffer, countBufferOffset, maxDrawCount, stride);
                 }
                 finally
@@ -1625,8 +1658,10 @@ namespace SharpVk
                 try
                 {
                     var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkCmdDrawIndexedIndirectCountAMD>("vkCmdDrawIndexedIndirectCountAMD", "device");
-                    Interop.Buffer marshalledBuffer = buffer.Pack();
-                    Interop.Buffer marshalledCountBuffer = countBuffer.Pack();
+                    Interop.Buffer marshalledBuffer = default(Interop.Buffer);
+                    buffer?.MarshalTo(&marshalledBuffer);
+                    Interop.Buffer marshalledCountBuffer = default(Interop.Buffer);
+                    countBuffer?.MarshalTo(&marshalledCountBuffer);
                     commandDelegate(this.handle, marshalledBuffer, offset, marshalledCountBuffer, countBufferOffset, maxDrawCount, stride);
                 }
                 finally
@@ -1647,7 +1682,7 @@ namespace SharpVk
                 {
                     var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkCmdProcessCommandsNVX>("vkCmdProcessCommandsNVX", "device");
                     Interop.CommandProcessCommandsInfo marshalledProcessCommandsInfo;
-                    marshalledProcessCommandsInfo = processCommandsInfo.Pack();
+                    processCommandsInfo.MarshalTo(&marshalledProcessCommandsInfo);
                     commandDelegate(this.handle, &marshalledProcessCommandsInfo);
                 }
                 finally
@@ -1668,7 +1703,7 @@ namespace SharpVk
                 {
                     var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkCmdReserveSpaceForCommandsNVX>("vkCmdReserveSpaceForCommandsNVX", "device");
                     Interop.CommandReserveSpaceForCommandsInfo marshalledReserveSpaceInfo;
-                    marshalledReserveSpaceInfo = reserveSpaceInfo.Pack();
+                    reserveSpaceInfo.MarshalTo(&marshalledReserveSpaceInfo);
                     commandDelegate(this.handle, &marshalledReserveSpaceInfo);
                 }
                 finally
@@ -1678,9 +1713,9 @@ namespace SharpVk
             }
         }
         
-        internal Interop.CommandBuffer Pack()
+        internal unsafe void MarshalTo(Interop.CommandBuffer* pointer)
         {
-            return this.handle;
+            *pointer = this.handle;
         }
         
         /// <summary>

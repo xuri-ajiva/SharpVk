@@ -51,15 +51,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.MemoryAllocateInfo Pack()
-        {
-            Interop.MemoryAllocateInfo result = default(Interop.MemoryAllocateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.MemoryAllocateInfo* MarshalTo()
         {
-            var result = (Interop.MemoryAllocateInfo*)Interop.HeapUtil.Allocate<Interop.MemoryAllocateInfo>().ToPointer();
+            var result = (Interop.MemoryAllocateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.MemoryAllocateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

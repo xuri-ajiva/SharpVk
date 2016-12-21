@@ -95,15 +95,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.RenderPassBeginInfo Pack()
-        {
-            Interop.RenderPassBeginInfo result = default(Interop.RenderPassBeginInfo);
-            return result;
-        }
-        
         internal unsafe Interop.RenderPassBeginInfo* MarshalTo()
         {
-            var result = (Interop.RenderPassBeginInfo*)Interop.HeapUtil.Allocate<Interop.RenderPassBeginInfo>().ToPointer();
+            var result = (Interop.RenderPassBeginInfo*)Interop.HeapUtil.AllocateAndClear<Interop.RenderPassBeginInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }
@@ -111,8 +105,8 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.RenderPassBeginInfo* pointer)
         {
             pointer->SType = StructureType.RenderPassBeginInfo;
-            pointer->RenderPass = this.RenderPass?.Pack() ?? Interop.RenderPass.Null;
-            pointer->Framebuffer = this.Framebuffer?.Pack() ?? Interop.Framebuffer.Null;
+            this.RenderPass?.MarshalTo(&pointer->RenderPass);
+            this.Framebuffer?.MarshalTo(&pointer->Framebuffer);
             
             //ClearValues
             if (this.ClearValues != null && this.ClearValues.Length > 0)

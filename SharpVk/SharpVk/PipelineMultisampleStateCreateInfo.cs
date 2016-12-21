@@ -109,15 +109,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe Interop.PipelineMultisampleStateCreateInfo Pack()
-        {
-            Interop.PipelineMultisampleStateCreateInfo result = default(Interop.PipelineMultisampleStateCreateInfo);
-            return result;
-        }
-        
         internal unsafe Interop.PipelineMultisampleStateCreateInfo* MarshalTo()
         {
-            var result = (Interop.PipelineMultisampleStateCreateInfo*)Interop.HeapUtil.Allocate<Interop.PipelineMultisampleStateCreateInfo>().ToPointer();
+            var result = (Interop.PipelineMultisampleStateCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.PipelineMultisampleStateCreateInfo>().ToPointer();
             this.MarshalTo(result);
             return result;
         }

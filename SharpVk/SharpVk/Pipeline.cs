@@ -64,7 +64,7 @@ namespace SharpVk
                 try
                 {
                     Interop.AllocationCallbacks marshalledAllocator;
-                    if(this.parent.Allocator != null) marshalledAllocator = this.parent.Allocator.Value.Pack();
+                    this.parent.Allocator?.MarshalTo(&marshalledAllocator);
                     Interop.Commands.vkDestroyPipeline(this.parent.handle, this.handle, this.parent.Allocator == null ? null : &marshalledAllocator);
                 }
                 finally
@@ -74,9 +74,9 @@ namespace SharpVk
             }
         }
         
-        internal Interop.Pipeline Pack()
+        internal unsafe void MarshalTo(Interop.Pipeline* pointer)
         {
-            return this.handle;
+            *pointer = this.handle;
         }
         
         /// <summary>
