@@ -608,6 +608,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public static readonly Version SharpVkVersion = Version.ExtractBindingVersion(); 
+        public static readonly Version SharpVkVersion = new Version(0, 3, 3); 
     }
 }

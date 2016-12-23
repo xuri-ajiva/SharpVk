@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
@@ -165,7 +166,7 @@ namespace SharpVk
         /// <param name="value"></param>
         public static implicit operator ArrayProxy<T>(T value)
         {
-            if (!typeof(T).IsValueType && value.Equals(default(T)))
+            if (!typeof(T).GetTypeInfo().IsValueType && value.Equals(default(T)))
             {
                 return Null;
             }

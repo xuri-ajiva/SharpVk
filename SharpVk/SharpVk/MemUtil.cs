@@ -30,18 +30,10 @@ namespace SharpVk
 
             static SizeOfCache()
             {
-                var dm = new DynamicMethod("func", typeof(int),
-                                           Type.EmptyTypes, typeof(MemUtil));
-
-                ILGenerator il = dm.GetILGenerator();
-                il.Emit(OpCodes.Sizeof, typeof(T));
-                il.Emit(OpCodes.Ret);
-
-                var func = (Func<int>)dm.CreateDelegate(typeof(Func<int>));
-                SizeOf = (uint)func();
+                SizeOf = (uint)Marshal.SizeOf(typeof(T));
             }
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
@@ -59,13 +51,17 @@ namespace SharpVk
                 int elementSize = (int)SizeOf<T>();
                 int transferSize = elementSize * value.Length;
 
-                void* pointer = dest.ToPointer();
+                byte* pointer = (byte*)dest.ToPointer();
 
                 var handle = GCHandle.Alloc(value, GCHandleType.Pinned);
 
                 byte* handlePointer = (byte*)handle.AddrOfPinnedObject().ToPointer();
 
-                System.Buffer.MemoryCopy(handlePointer + (elementSize * startIndex), pointer, transferSize, transferSize);
+                //HACK Replace with by-platform optimisations
+                for (int index = 0; index < transferSize; index++)
+                {
+                    pointer[index] = handlePointer[index];
+                }
 
                 handle.Free();
             }

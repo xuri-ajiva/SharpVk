@@ -100,7 +100,7 @@
       <Name>SharpVk.Shanq</Name>
     </ProjectReference>
     <ProjectReference Include="..\SharpVk\SharpVk.csproj">
-      <Project>{a0abab94-7022-4e2d-a13c-e7bad69dd9d3}</Project>
+      <Project>{391ce469-c33a-4ac7-ac42-f599d4c9a42b}</Project>
       <Name>SharpVk</Name>
     </ProjectReference>
   </ItemGroup>

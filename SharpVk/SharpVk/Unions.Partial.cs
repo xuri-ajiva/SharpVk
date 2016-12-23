@@ -45,13 +45,5 @@ namespace SharpVk
                 uIntArray[3] = a;
             }
         }
-
-		/// <summary>
-        /// 
-        /// </summary>
-		public static explicit operator ClearColorValue(Vector4 value)
-        {
-            return new ClearColorValue(value.X, value.Y, value.Z, value.W);
-        }
     }
 }

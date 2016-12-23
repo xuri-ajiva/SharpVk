@@ -2,16 +2,19 @@
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A0ABAB94-7022-4E2D-A13C-E7BAD69DD9D3}</ProjectGuid>
+    <ProjectGuid>{391CE469-C33A-4AC7-AC42-F599D4C9A42B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SharpVk</RootNamespace>
     <AssemblyName>SharpVk</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,7 +25,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <DocumentationFile>bin\Debug\SharpVk.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,39 +33,10 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <DocumentationFile>bin\Release\SharpVk.xml</DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <DebugSymbols>true</DebugSymbols>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <DebugType>full</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Optimize>true</Optimize>
-    <DebugType>pdbonly</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
+    <!-- A reference to the entire .NET Framework is automatically included -->
+    <Content Include="Interop\obj\VkTemplates\vk.xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccessFlags.cs" />
@@ -291,6 +264,7 @@
     <Compile Include="Interop\Framebuffer.cs" />
     <Compile Include="Interop\FramebufferCreateInfo.cs" />
     <Compile Include="Interop\GraphicsPipelineCreateInfo.cs" />
+    <Compile Include="Interop\HeapUtil.cs" />
     <Compile Include="Interop\Image.cs" />
     <Compile Include="Interop\ImageBlit.cs" />
     <Compile Include="Interop\ImageCreateInfo.cs" />
@@ -436,6 +410,7 @@
     <Compile Include="PresentInfo.cs" />
     <Compile Include="PresentMode.cs" />
     <Compile Include="PrimitiveTopology.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PushConstantRange.cs" />
     <Compile Include="QueryControlFlags.cs" />
     <Compile Include="QueryPipelineStatisticFlags.cs" />
@@ -482,6 +457,7 @@
     <Compile Include="Spirv\Enums.cs" />
     <Compile Include="Spirv\ISpirvSink.cs" />
     <Compile Include="Spirv\Opcode.cs" />
+    <Compile Include="Spirv\OpCode.partial.cs" />
     <Compile Include="Spirv\Operand.cs" />
     <Compile Include="Spirv\OperandKind.cs" />
     <Compile Include="Spirv\Quantifier.cs" />
@@ -491,8 +467,6 @@
     <Compile Include="StencilOp.cs" />
     <Compile Include="StencilOpState.cs" />
     <Compile Include="Structs.Partial.cs" />
-    <Compile Include="Interop\HeapUtil.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StructureType.cs" />
     <Compile Include="SubmitInfo.cs" />
     <Compile Include="SubpassContents.cs" />
@@ -509,6 +483,7 @@
     <Compile Include="SwapchainCreateFlags.cs" />
     <Compile Include="SwapchainCreateInfo.cs" />
     <Compile Include="SystemAllocationScope.cs" />
+    <Compile Include="Unions.Partial.cs" />
     <Compile Include="Validate.cs" />
     <Compile Include="ValidationCheck.cs" />
     <Compile Include="ValidationFlags.cs" />
@@ -529,18 +504,13 @@
     <Compile Include="XlibSurfaceCreateInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <None Include="App.config" />
+    <None Include="SharpVk.nuspec" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="SharpVk.nuspec" />
-    <Compile Include="Unions.Partial.cs" />
-    <Compile Include="Spirv\OpCode.partial.cs" />
+    <Folder Include="Spirv\obj\VkTemplates\" />
   </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

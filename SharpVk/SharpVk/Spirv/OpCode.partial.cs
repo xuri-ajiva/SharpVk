@@ -31,7 +31,8 @@ namespace SharpVk.Spirv
 
         static OpCode()
         {
-            Lookup = typeof(OpCode).GetFields(BindingFlags.Public | BindingFlags.Static)
+            Lookup = typeof(OpCode).GetTypeInfo().DeclaredFields
+                                    .Where(x => x.IsPublic && x.IsStatic)
 									.Where(x => x.FieldType == typeof(OpCode))
 									.Select(x => (OpCode)x.GetValue(null))
 									.ToDictionary(x => x.Op);

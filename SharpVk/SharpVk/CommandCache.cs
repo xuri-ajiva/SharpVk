@@ -50,7 +50,8 @@ namespace SharpVk
                 }
             }
 
-            T commandDelegate = Marshal.GetDelegateForFunctionPointer<T>(this.host.GetProcedureAddress(name));
+            //HACK Workaround for lack of generic function pointer mapping
+            T commandDelegate = (T)(object)Marshal.GetDelegateForFunctionPointer(this.host.GetProcedureAddress(name), typeof(T));
 
             lock (this.commands)
             {

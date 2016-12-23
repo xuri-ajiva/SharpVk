@@ -136,11 +136,18 @@ namespace SharpVk.Interop
             return Marshal.PtrToStringAnsi(new IntPtr(pointer), length);
         }
 
-        internal static byte[] MarshalFrom(byte* pointer, int length, bool isNullTerminated = false)
+        internal static byte[] MarshalFrom(byte* pointer, int length)
+        {
+            int actualLength;
+
+            return MarshalFrom(pointer, length, out actualLength);
+        }
+
+        internal static byte[] MarshalFrom(byte* pointer, int length, out int actualLength, bool isNullTerminated = false)
         {
             if (isNullTerminated)
             {
-                int actualLength = 0;
+                actualLength = 0;
 
                 while (actualLength < length && pointer[actualLength] != 0)
                 {
@@ -148,6 +155,10 @@ namespace SharpVk.Interop
                 }
 
                 length = actualLength;
+            }
+            else
+            {
+                actualLength = length;
             }
 
             var newArray = new byte[length];
@@ -240,14 +251,7 @@ namespace SharpVk.Interop
 
         //    return pointer.ToPointer();
         //}
-
-        internal static void MarshalTo(Guid value, int length, byte* pointer)
-        {
-            void* valuePointer = &value;
-
-            System.Buffer.MemoryCopy(valuePointer, pointer, length, length);
-        }
-
+        
         internal static void MarshalTo(byte[] value, int length, byte* pointer)
         {
             Marshal.Copy(value, 0, new IntPtr(pointer), length);
@@ -280,18 +284,7 @@ namespace SharpVk.Interop
                 pointer[index] = value[index];
             }
         }
-
-        internal static void MarshalTo(string value, int length, char* pointer)
-        {
-            char* stringPointer = MarshalTo(value);
-
-            int stringLength = value.Length;
-
-            int minLength = stringLength < length ? stringLength : length;
-
-            System.Buffer.MemoryCopy(stringPointer, pointer, length, minLength);
-        }
-
+        
         internal static void MarshalTo(string[] value, int length, char** pointer)
         {
             for (int index = 0; index < length; index++)

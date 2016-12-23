@@ -3,11 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpVk", "SharpVk\SharpVk.csproj", "{A0ABAB94-7022-4E2D-A13C-E7BAD69DD9D3}"
-	ProjectSection(ProjectDependencies) = postProject
-		{BBA0786E-CB48-43A7-AF46-6DD9E3482FD2} = {BBA0786E-CB48-43A7-AF46-6DD9E3482FD2}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpVk.VkXml", "SharpVk.VkXml\SharpVk.VkXml.csproj", "{BBA0786E-CB48-43A7-AF46-6DD9E3482FD2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5B770042-CFC1-4B48-90B3-8686E2A940A1}"
@@ -29,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpVk.SpirvJson", "SharpV
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpVk.Glfw", "SharpVk.Glfw\SharpVk.Glfw.csproj", "{E61D7715-892D-4438-B6ED-08AA7BF1FB93}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpVk", "SharpVk\SharpVk.csproj", "{391CE469-C33A-4AC7-AC42-F599D4C9A42B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,14 +34,6 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A0ABAB94-7022-4E2D-A13C-E7BAD69DD9D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A0ABAB94-7022-4E2D-A13C-E7BAD69DD9D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A0ABAB94-7022-4E2D-A13C-E7BAD69DD9D3}.Debug|x64.ActiveCfg = Debug|x64
-		{A0ABAB94-7022-4E2D-A13C-E7BAD69DD9D3}.Debug|x64.Build.0 = Debug|x64
-		{A0ABAB94-7022-4E2D-A13C-E7BAD69DD9D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A0ABAB94-7022-4E2D-A13C-E7BAD69DD9D3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A0ABAB94-7022-4E2D-A13C-E7BAD69DD9D3}.Release|x64.ActiveCfg = Release|x64
-		{A0ABAB94-7022-4E2D-A13C-E7BAD69DD9D3}.Release|x64.Build.0 = Release|x64
 		{BBA0786E-CB48-43A7-AF46-6DD9E3482FD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BBA0786E-CB48-43A7-AF46-6DD9E3482FD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBA0786E-CB48-43A7-AF46-6DD9E3482FD2}.Debug|x64.ActiveCfg = Debug|x64
@@ -93,6 +82,14 @@ Global
 		{E61D7715-892D-4438-B6ED-08AA7BF1FB93}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E61D7715-892D-4438-B6ED-08AA7BF1FB93}.Release|x64.ActiveCfg = Release|Any CPU
 		{E61D7715-892D-4438-B6ED-08AA7BF1FB93}.Release|x64.Build.0 = Release|Any CPU
+		{391CE469-C33A-4AC7-AC42-F599D4C9A42B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{391CE469-C33A-4AC7-AC42-F599D4C9A42B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{391CE469-C33A-4AC7-AC42-F599D4C9A42B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{391CE469-C33A-4AC7-AC42-F599D4C9A42B}.Debug|x64.Build.0 = Debug|Any CPU
+		{391CE469-C33A-4AC7-AC42-F599D4C9A42B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{391CE469-C33A-4AC7-AC42-F599D4C9A42B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{391CE469-C33A-4AC7-AC42-F599D4C9A42B}.Release|x64.ActiveCfg = Release|Any CPU
+		{391CE469-C33A-4AC7-AC42-F599D4C9A42B}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

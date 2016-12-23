@@ -146,7 +146,8 @@ namespace SharpVk
             PhysicalDeviceProperties result = new PhysicalDeviceProperties();
             result.ApiVersion = value->ApiVersion;
             result.DriverVersion = value->DriverVersion;
-            result.DeviceName = System.Text.Encoding.UTF8.GetString(Interop.HeapUtil.MarshalFrom(value->DeviceName, Constants.MaxPhysicalDeviceNameSize, true));
+            int DeviceNameActualLength;
+            result.DeviceName = System.Text.Encoding.UTF8.GetString(Interop.HeapUtil.MarshalFrom(value->DeviceName, Constants.MaxPhysicalDeviceNameSize, out DeviceNameActualLength, true), 0, DeviceNameActualLength);
             result.PipelineCacheUUID = new Guid(Interop.HeapUtil.MarshalFrom(value->PipelineCacheUUID, Constants.UuidSize));
             result.Limits = PhysicalDeviceLimits.MarshalFrom(&value->Limits);
             result.VendorID = value->VendorID;

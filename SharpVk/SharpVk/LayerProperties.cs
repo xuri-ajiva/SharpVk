@@ -78,10 +78,12 @@ namespace SharpVk
         internal static unsafe LayerProperties MarshalFrom(Interop.LayerProperties* value)
         {
             LayerProperties result = new LayerProperties();
-            result.LayerName = System.Text.Encoding.UTF8.GetString(Interop.HeapUtil.MarshalFrom(value->LayerName, Constants.MaxExtensionNameSize, true));
+            int LayerNameActualLength;
+            result.LayerName = System.Text.Encoding.UTF8.GetString(Interop.HeapUtil.MarshalFrom(value->LayerName, Constants.MaxExtensionNameSize, out LayerNameActualLength, true), 0, LayerNameActualLength);
             result.SpecVersion = value->SpecVersion;
             result.ImplementationVersion = value->ImplementationVersion;
-            result.Description = System.Text.Encoding.UTF8.GetString(Interop.HeapUtil.MarshalFrom(value->Description, Constants.MaxDescriptionSize, true));
+            int DescriptionActualLength;
+            result.Description = System.Text.Encoding.UTF8.GetString(Interop.HeapUtil.MarshalFrom(value->Description, Constants.MaxDescriptionSize, out DescriptionActualLength, true), 0, DescriptionActualLength);
             return result;
         }
     }
