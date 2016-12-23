@@ -35,8 +35,8 @@ namespace SharpVk
 {
     public class Program
     {
-        private const int SurfaceWidth = 800;
-        private const int SurfaceHeight = 600;
+        private const int SurfaceWidth = 1280;
+        private const int SurfaceHeight = 768;
 
         private readonly Vertex[] vertices =
         {
@@ -85,6 +85,8 @@ namespace SharpVk
         private Format swapChainFormat;
         private Extent2D swapChainExtent;
 
+        private WindowSizeDelegate windowSizeChanged;
+
         public static void Main(string[] args)
         {
             new Program().Run();
@@ -105,7 +107,8 @@ namespace SharpVk
             Glfw3.glfwWindowHint(0x00022001, 0);
             this.window = Glfw3.glfwCreateWindow(SurfaceWidth, SurfaceHeight, "Vulkan", IntPtr.Zero, IntPtr.Zero);
 
-            //this.window.ClientSizeChanged += (x, y) => this.RecreateSwapChain();
+            this.windowSizeChanged = (x, y, z) => this.RecreateSwapChain();
+            Glfw3.glfwSetWindowSizeCallback(this.window, this.windowSizeChanged);
         }
 
         private void InitialiseVulkan()

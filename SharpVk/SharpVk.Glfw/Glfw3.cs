@@ -31,6 +31,9 @@ namespace SharpVk.Glfw
         [DllImport(GlfwDll, CallingConvention = CallingConvention.Cdecl)]
         public static extern byte** glfwGetRequiredInstanceExtensions(out int count);
 
+        [DllImport(GlfwDll, CallingConvention = CallingConvention.Cdecl)]
+        public static extern WindowSizeDelegate glfwSetWindowSizeCallback(WindowHandle window, WindowSizeDelegate callback);
+
         public static string[] glfwGetRequiredInstanceExtensions()
         {
             int count = 0;

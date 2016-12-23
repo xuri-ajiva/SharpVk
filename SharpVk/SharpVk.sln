@@ -21,6 +21,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpVk.Shanq", "SharpVk.Shanq\SharpVk.Shanq.csproj", "{6DC5E1D5-2186-4AA4-9C49-90DA7458EE85}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test Harness", "Test Harness\Test Harness.csproj", "{F3FC01CD-9765-4FC4-8D00-83C6D37BEF86}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E61D7715-892D-4438-B6ED-08AA7BF1FB93} = {E61D7715-892D-4438-B6ED-08AA7BF1FB93}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpVk.SpirvJson", "SharpVk.SpirvJson\SharpVk.SpirvJson.csproj", "{65B38A22-87E5-4F27-9922-D6BA96D5618F}"
 EndProject
