@@ -523,7 +523,7 @@ namespace SharpVk
     /// <summary>
     /// 
     /// </summary>
-    public static class Constants
+    public static partial class Constants
     {
         /// <summary>
         /// 

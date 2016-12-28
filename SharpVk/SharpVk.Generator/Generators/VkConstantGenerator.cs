@@ -36,7 +36,7 @@ namespace SharpVk.Generator.Generators
                     namespaceBuilder.EmitType(TypeKind.Class, "Constants", typeBuilder =>
                     {
                         EmitConstantSubGroup(typeBuilder, types.Constants.Where(x => x.SubGroupName == null));
-                    }, Public, modifiers: TypeModifier.Static);
+                    }, Public, modifiers: TypeModifier.Static | TypeModifier.Partial);
                 });
             });
         }
