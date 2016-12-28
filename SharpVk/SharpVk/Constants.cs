@@ -604,10 +604,5 @@ namespace SharpVk
         /// 
         /// </summary>
         public static readonly Version ApiVersion10 = new Version(1, 0, 0); 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public static readonly Version SharpVkVersion = new Version(0, 3, 3); 
     }
 }

@@ -25,6 +25,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>bin\Debug\SharpVk.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -33,6 +34,8 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>bin\Release\SharpVk.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .NET Framework is automatically included -->
@@ -91,6 +94,7 @@
     <Compile Include="CompositeAlphaFlags.cs" />
     <Compile Include="ComputePipelineCreateInfo.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Constants.partial.cs" />
     <Compile Include="CopyDescriptorSet.cs" />
     <Compile Include="CullModeFlags.cs" />
     <Compile Include="DebugMarkerMarkerInfo.cs" />
