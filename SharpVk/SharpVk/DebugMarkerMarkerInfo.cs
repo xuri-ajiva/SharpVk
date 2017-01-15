@@ -64,6 +64,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.DebugMarkerMarkerInfo* pointer)
         {
             pointer->SType = StructureType.DebugMarkerMarkerInfo;
+            pointer->Next = null;
             pointer->MarkerName = Interop.HeapUtil.MarshalTo(this.MarkerName);
             Validate.CheckLength(this.Color, 4, "Color");
             MemUtil.WriteToPtr((IntPtr)(pointer->Color), this.Color, 0, 4);

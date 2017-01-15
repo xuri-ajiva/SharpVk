@@ -1018,11 +1018,8 @@ namespace SharpVk.VkXml
                     }
                     else if (member.VkName == "pNext")
                     {
-                        // These fields are not to be exposed to the public API
-                        // as they are either not supported or have pre-defined
-                        // values
-
                         memberDesc.IsInteropOnly = true;
+                        newClass.MarshalToStatements.Add($"pointer->{memberDesc.Name} = null;");
                     }
                     else if (isPointer && memberDesc.PublicTypeName == "void")
                     {

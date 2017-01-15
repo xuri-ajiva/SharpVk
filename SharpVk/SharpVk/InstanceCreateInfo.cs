@@ -86,6 +86,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.InstanceCreateInfo* pointer)
         {
             pointer->SType = StructureType.InstanceCreateInfo;
+            pointer->Next = null;
             pointer->ApplicationInfo = this.ApplicationInfo == null ? null : this.ApplicationInfo.Value.MarshalTo();
             pointer->EnabledLayerNames = this.EnabledLayerNames == null ? null : Interop.HeapUtil.MarshalTo(this.EnabledLayerNames);
             pointer->EnabledExtensionNames = this.EnabledExtensionNames == null ? null : Interop.HeapUtil.MarshalTo(this.EnabledExtensionNames);

@@ -71,6 +71,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.PipelineVertexInputStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineVertexInputStateCreateInfo;
+            pointer->Next = null;
             
             //VertexBindingDescriptions
             if (this.VertexBindingDescriptions != null)

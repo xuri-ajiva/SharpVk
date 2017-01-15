@@ -93,6 +93,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.BufferViewCreateInfo* pointer)
         {
             pointer->SType = StructureType.BufferViewCreateInfo;
+            pointer->Next = null;
             this.Buffer?.MarshalTo(&pointer->Buffer);
             pointer->Flags = this.Flags;
             pointer->Format = this.Format;

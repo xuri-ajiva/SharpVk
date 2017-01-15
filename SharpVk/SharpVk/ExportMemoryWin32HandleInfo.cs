@@ -86,6 +86,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.ExportMemoryWin32HandleInfo* pointer)
         {
             pointer->SType = StructureType.ExportMemoryWin32HandleInfo;
+            pointer->Next = null;
             pointer->Attributes = (SECURITY_ATTRIBUTES*)Interop.HeapUtil.Allocate<SECURITY_ATTRIBUTES>();
             *pointer->Attributes = this.Attributes;
             pointer->DwAccess = this.DwAccess;

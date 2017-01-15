@@ -69,6 +69,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.XlibSurfaceCreateInfo* pointer)
         {
             pointer->SType = StructureType.XlibSurfaceCreateInfo;
+            pointer->Next = null;
             pointer->Dpy = (IntPtr*)Interop.HeapUtil.Allocate<IntPtr>();
             *pointer->Dpy = this.Dpy;
             pointer->Flags = this.Flags;

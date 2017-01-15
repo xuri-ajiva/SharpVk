@@ -71,6 +71,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.CommandBufferAllocateInfo* pointer)
         {
             pointer->SType = StructureType.CommandBufferAllocateInfo;
+            pointer->Next = null;
             this.CommandPool?.MarshalTo(&pointer->CommandPool);
             pointer->Level = this.Level;
             pointer->CommandBufferCount = this.CommandBufferCount;

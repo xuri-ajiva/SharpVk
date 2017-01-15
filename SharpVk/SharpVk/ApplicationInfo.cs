@@ -101,6 +101,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.ApplicationInfo* pointer)
         {
             pointer->SType = StructureType.ApplicationInfo;
+            pointer->Next = null;
             pointer->ApplicationName = Interop.HeapUtil.MarshalTo(this.ApplicationName);
             pointer->ApplicationVersion = (uint)this.ApplicationVersion;
             pointer->EngineName = Interop.HeapUtil.MarshalTo(this.EngineName);

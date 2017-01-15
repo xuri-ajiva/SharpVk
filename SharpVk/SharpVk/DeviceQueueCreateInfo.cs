@@ -76,6 +76,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.DeviceQueueCreateInfo* pointer)
         {
             pointer->SType = StructureType.DeviceQueueCreateInfo;
+            pointer->Next = null;
             pointer->QueuePriorities = this.QueuePriorities == null ? null : Interop.HeapUtil.MarshalTo(this.QueuePriorities);
             pointer->QueueCount = (uint)(this.QueuePriorities?.Length ?? 0);
             pointer->Flags = this.Flags;

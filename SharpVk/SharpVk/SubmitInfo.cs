@@ -89,6 +89,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.SubmitInfo* pointer)
         {
             pointer->SType = StructureType.SubmitInfo;
+            pointer->Next = null;
             
             //WaitSemaphores
             if (this.WaitSemaphores != null)

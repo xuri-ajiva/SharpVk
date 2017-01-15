@@ -70,6 +70,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.MirSurfaceCreateInfo* pointer)
         {
             pointer->SType = StructureType.MirSurfaceCreateInfo;
+            pointer->Next = null;
             pointer->Connection = (IntPtr*)Interop.HeapUtil.Allocate<IntPtr>();
             *pointer->Connection = this.Connection;
             pointer->MirSurface = (IntPtr*)Interop.HeapUtil.Allocate<IntPtr>();

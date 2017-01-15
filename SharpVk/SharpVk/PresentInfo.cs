@@ -90,6 +90,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.PresentInfo* pointer)
         {
             pointer->SType = StructureType.PresentInfo;
+            pointer->Next = null;
             
             //WaitSemaphores
             if (this.WaitSemaphores != null)

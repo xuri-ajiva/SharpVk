@@ -70,6 +70,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.Win32SurfaceCreateInfo* pointer)
         {
             pointer->SType = StructureType.Win32SurfaceCreateInfo;
+            pointer->Next = null;
             pointer->Flags = this.Flags;
             pointer->Hinstance = this.Hinstance;
             pointer->Hwnd = this.Hwnd;

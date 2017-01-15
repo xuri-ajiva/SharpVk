@@ -52,6 +52,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.ValidationFlags* pointer)
         {
             pointer->SType = StructureType.ValidationFlags;
+            pointer->Next = null;
             
             //DisabledValidationChecks
             if (this.DisabledValidationChecks != null)

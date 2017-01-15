@@ -77,6 +77,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.PipelineLayoutCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineLayoutCreateInfo;
+            pointer->Next = null;
             
             //SetLayouts
             if (this.SetLayouts != null)

@@ -137,6 +137,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.WriteDescriptorSet* pointer)
         {
             pointer->SType = StructureType.WriteDescriptorSet;
+            pointer->Next = null;
             this.DestinationSet?.MarshalTo(&pointer->DestinationSet);
             
             //ImageInfo

@@ -186,6 +186,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.SamplerCreateInfo* pointer)
         {
             pointer->SType = StructureType.SamplerCreateInfo;
+            pointer->Next = null;
             pointer->Flags = this.Flags;
             pointer->MagFilter = this.MagFilter;
             pointer->MinFilter = this.MinFilter;

@@ -132,6 +132,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.ObjectTableCreateInfo* pointer)
         {
             pointer->SType = StructureType.ObjectTableCreateInfoNvx;
+            pointer->Next = null;
             
             //ObjectEntryTypes
             if (this.ObjectEntryTypes != null)

@@ -128,6 +128,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.CommandBufferInheritanceInfo* pointer)
         {
             pointer->SType = StructureType.CommandBufferInheritanceInfo;
+            pointer->Next = null;
             this.RenderPass?.MarshalTo(&pointer->RenderPass);
             this.Framebuffer?.MarshalTo(&pointer->Framebuffer);
             pointer->Subpass = this.Subpass;

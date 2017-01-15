@@ -93,6 +93,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.DisplayPresentInfo* pointer)
         {
             pointer->SType = StructureType.DisplayPresentInfo;
+            pointer->Next = null;
             pointer->SourceRect = this.SourceRect;
             pointer->DestinationRect = this.DestinationRect;
             pointer->Persistent = this.Persistent;

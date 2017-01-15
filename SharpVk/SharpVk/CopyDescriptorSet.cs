@@ -110,6 +110,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.CopyDescriptorSet* pointer)
         {
             pointer->SType = StructureType.CopyDescriptorSet;
+            pointer->Next = null;
             this.SourceSet?.MarshalTo(&pointer->SourceSet);
             this.DestinationSet?.MarshalTo(&pointer->DestinationSet);
             pointer->SourceBinding = this.SourceBinding;

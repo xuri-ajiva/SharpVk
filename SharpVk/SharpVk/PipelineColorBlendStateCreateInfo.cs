@@ -103,6 +103,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.PipelineColorBlendStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineColorBlendStateCreateInfo;
+            pointer->Next = null;
             
             //Attachments
             if (this.Attachments != null)

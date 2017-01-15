@@ -75,6 +75,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.MemoryBarrier* pointer)
         {
             pointer->SType = StructureType.MemoryBarrier;
+            pointer->Next = null;
             pointer->SourceAccessMask = this.SourceAccessMask;
             pointer->DestinationAccessMask = this.DestinationAccessMask;
         }

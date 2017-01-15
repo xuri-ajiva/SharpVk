@@ -74,6 +74,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.IndirectCommandsLayoutCreateInfo* pointer)
         {
             pointer->SType = StructureType.IndirectCommandsLayoutCreateInfoNvx;
+            pointer->Next = null;
             
             //Tokens
             if (this.Tokens != null)

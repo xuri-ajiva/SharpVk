@@ -70,6 +70,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.XcbSurfaceCreateInfo* pointer)
         {
             pointer->SType = StructureType.XcbSurfaceCreateInfo;
+            pointer->Next = null;
             pointer->Connection = (IntPtr*)Interop.HeapUtil.Allocate<IntPtr>();
             *pointer->Connection = this.Connection;
             pointer->Flags = this.Flags;

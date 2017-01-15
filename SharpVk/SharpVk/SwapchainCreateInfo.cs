@@ -233,6 +233,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.SwapchainCreateInfo* pointer)
         {
             pointer->SType = StructureType.SwapchainCreateInfo;
+            pointer->Next = null;
             this.Surface?.MarshalTo(&pointer->Surface);
             pointer->QueueFamilyIndices = this.QueueFamilyIndices == null ? null : Interop.HeapUtil.MarshalTo(this.QueueFamilyIndices);
             this.OldSwapchain?.MarshalTo(&pointer->OldSwapchain);

@@ -86,6 +86,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.DebugMarkerObjectTagInfo* pointer)
         {
             pointer->SType = StructureType.DebugMarkerObjectTagInfo;
+            pointer->Next = null;
             pointer->Tag = this.Tag == null ? null : Interop.HeapUtil.MarshalTo(this.Tag);
             pointer->TagSize = (Size)(this.Tag?.Length ?? 0);
             pointer->ObjectType = this.ObjectType;

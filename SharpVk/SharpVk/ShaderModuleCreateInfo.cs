@@ -71,6 +71,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.ShaderModuleCreateInfo* pointer)
         {
             pointer->SType = StructureType.ShaderModuleCreateInfo;
+            pointer->Next = null;
             pointer->Code = this.Code == null ? null : Interop.HeapUtil.MarshalTo(this.Code);
             pointer->Flags = this.Flags;
             pointer->CodeSize = this.CodeSize;

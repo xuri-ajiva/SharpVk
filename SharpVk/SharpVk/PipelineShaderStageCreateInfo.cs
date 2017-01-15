@@ -88,6 +88,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.PipelineShaderStageCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineShaderStageCreateInfo;
+            pointer->Next = null;
             this.Module?.MarshalTo(&pointer->Module);
             pointer->Name = Interop.HeapUtil.MarshalTo(this.Name);
             pointer->SpecializationInfo = this.SpecializationInfo == null ? null : this.SpecializationInfo.Value.MarshalTo();

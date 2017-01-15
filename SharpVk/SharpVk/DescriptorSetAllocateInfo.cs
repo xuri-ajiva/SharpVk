@@ -62,6 +62,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.DescriptorSetAllocateInfo* pointer)
         {
             pointer->SType = StructureType.DescriptorSetAllocateInfo;
+            pointer->Next = null;
             this.DescriptorPool?.MarshalTo(&pointer->DescriptorPool);
             
             //SetLayouts

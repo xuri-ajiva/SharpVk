@@ -139,6 +139,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.PipelineDepthStencilStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineDepthStencilStateCreateInfo;
+            pointer->Next = null;
             pointer->Flags = this.Flags;
             pointer->DepthTestEnable = this.DepthTestEnable;
             pointer->DepthWriteEnable = this.DepthWriteEnable;

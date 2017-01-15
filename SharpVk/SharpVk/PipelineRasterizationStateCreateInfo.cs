@@ -163,6 +163,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.PipelineRasterizationStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineRasterizationStateCreateInfo;
+            pointer->Next = null;
             pointer->Flags = this.Flags;
             pointer->DepthClampEnable = this.DepthClampEnable;
             pointer->RasterizerDiscardEnable = this.RasterizerDiscardEnable;

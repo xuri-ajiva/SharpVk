@@ -120,6 +120,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.Win32KeyedMutexAcquireReleaseInfo* pointer)
         {
             pointer->SType = StructureType.Win32KeyedMutexAcquireReleaseInfo;
+            pointer->Next = null;
             
             //AcquireSyncs
             if (this.AcquireSyncs != null)

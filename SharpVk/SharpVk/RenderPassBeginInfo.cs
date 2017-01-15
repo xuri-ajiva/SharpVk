@@ -105,6 +105,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.RenderPassBeginInfo* pointer)
         {
             pointer->SType = StructureType.RenderPassBeginInfo;
+            pointer->Next = null;
             this.RenderPass?.MarshalTo(&pointer->RenderPass);
             this.Framebuffer?.MarshalTo(&pointer->Framebuffer);
             

@@ -85,6 +85,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.RenderPassCreateInfo* pointer)
         {
             pointer->SType = StructureType.RenderPassCreateInfo;
+            pointer->Next = null;
             
             //Attachments
             if (this.Attachments != null)

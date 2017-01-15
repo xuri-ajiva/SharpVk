@@ -50,6 +50,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.EventCreateInfo* pointer)
         {
             pointer->SType = StructureType.EventCreateInfo;
+            pointer->Next = null;
             pointer->Flags = this.Flags;
         }
     }

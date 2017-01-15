@@ -119,6 +119,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.PipelineMultisampleStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineMultisampleStateCreateInfo;
+            pointer->Next = null;
             
             //SampleMask
             if (this.SampleMask != null && Math.Ceiling((int)RasterizationSamples / (float)32) > 0)

@@ -50,6 +50,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.PipelineRasterizationStateRasterizationOrder* pointer)
         {
             pointer->SType = StructureType.PipelineRasterizationStateRasterizationOrder;
+            pointer->Next = null;
             pointer->RasterizationOrder = this.RasterizationOrder;
         }
     }

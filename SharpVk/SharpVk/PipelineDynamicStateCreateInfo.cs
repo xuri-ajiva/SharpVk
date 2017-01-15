@@ -63,6 +63,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.PipelineDynamicStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineDynamicStateCreateInfo;
+            pointer->Next = null;
             
             //DynamicStates
             if (this.DynamicStates != null)

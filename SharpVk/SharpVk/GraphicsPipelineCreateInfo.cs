@@ -234,6 +234,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.GraphicsPipelineCreateInfo* pointer)
         {
             pointer->SType = StructureType.GraphicsPipelineCreateInfo;
+            pointer->Next = null;
             
             //Stages
             if (this.Stages != null)

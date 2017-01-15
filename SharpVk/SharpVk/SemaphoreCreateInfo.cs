@@ -50,6 +50,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.SemaphoreCreateInfo* pointer)
         {
             pointer->SType = StructureType.SemaphoreCreateInfo;
+            pointer->Next = null;
             pointer->Flags = this.Flags;
         }
     }

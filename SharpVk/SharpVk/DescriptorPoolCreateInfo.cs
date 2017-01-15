@@ -69,6 +69,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.DescriptorPoolCreateInfo* pointer)
         {
             pointer->SType = StructureType.DescriptorPoolCreateInfo;
+            pointer->Next = null;
             
             //PoolSizes
             if (this.PoolSizes != null)

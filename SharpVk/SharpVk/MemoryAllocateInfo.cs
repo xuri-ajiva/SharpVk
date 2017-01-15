@@ -61,6 +61,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.MemoryAllocateInfo* pointer)
         {
             pointer->SType = StructureType.MemoryAllocateInfo;
+            pointer->Next = null;
             pointer->AllocationSize = this.AllocationSize;
             pointer->MemoryTypeIndex = this.MemoryTypeIndex;
         }

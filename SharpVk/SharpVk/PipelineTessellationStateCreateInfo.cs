@@ -60,6 +60,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.PipelineTessellationStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineTessellationStateCreateInfo;
+            pointer->Next = null;
             pointer->Flags = this.Flags;
             pointer->PatchControlPoints = this.PatchControlPoints;
         }

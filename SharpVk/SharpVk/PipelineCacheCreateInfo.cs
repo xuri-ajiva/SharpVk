@@ -62,6 +62,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.PipelineCacheCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineCacheCreateInfo;
+            pointer->Next = null;
             pointer->InitialData = this.InitialData == null ? null : Interop.HeapUtil.MarshalTo(this.InitialData);
             pointer->InitialDataSize = (Size)(this.InitialData?.Length ?? 0);
             pointer->Flags = this.Flags;

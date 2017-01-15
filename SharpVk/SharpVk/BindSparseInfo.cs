@@ -100,6 +100,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.BindSparseInfo* pointer)
         {
             pointer->SType = StructureType.BindSparseInfo;
+            pointer->Next = null;
             
             //WaitSemaphores
             if (this.WaitSemaphores != null)

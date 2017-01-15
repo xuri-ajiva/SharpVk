@@ -126,6 +126,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.DisplaySurfaceCreateInfo* pointer)
         {
             pointer->SType = StructureType.DisplaySurfaceCreateInfo;
+            pointer->Next = null;
             this.DisplayMode?.MarshalTo(&pointer->DisplayMode);
             pointer->Flags = this.Flags;
             pointer->PlaneIndex = this.PlaneIndex;

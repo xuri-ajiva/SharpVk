@@ -61,6 +61,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.DescriptorSetLayoutCreateInfo* pointer)
         {
             pointer->SType = StructureType.DescriptorSetLayoutCreateInfo;
+            pointer->Next = null;
             
             //Bindings
             if (this.Bindings != null)

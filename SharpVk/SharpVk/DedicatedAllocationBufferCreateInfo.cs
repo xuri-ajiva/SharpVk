@@ -59,6 +59,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.DedicatedAllocationBufferCreateInfo* pointer)
         {
             pointer->SType = StructureType.DedicatedAllocationBufferCreateInfo;
+            pointer->Next = null;
             pointer->DedicatedAllocation = this.DedicatedAllocation;
         }
     }

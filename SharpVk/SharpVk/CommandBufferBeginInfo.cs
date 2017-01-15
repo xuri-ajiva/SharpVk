@@ -60,6 +60,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.CommandBufferBeginInfo* pointer)
         {
             pointer->SType = StructureType.CommandBufferBeginInfo;
+            pointer->Next = null;
             pointer->InheritanceInfo = this.InheritanceInfo == null ? null : this.InheritanceInfo.Value.MarshalTo();
             pointer->Flags = this.Flags;
         }

@@ -100,6 +100,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.BufferCreateInfo* pointer)
         {
             pointer->SType = StructureType.BufferCreateInfo;
+            pointer->Next = null;
             pointer->QueueFamilyIndices = this.QueueFamilyIndices == null ? null : Interop.HeapUtil.MarshalTo(this.QueueFamilyIndices);
             pointer->QueueFamilyIndexCount = (uint)(this.QueueFamilyIndices?.Length ?? 0);
             pointer->Flags = this.Flags;

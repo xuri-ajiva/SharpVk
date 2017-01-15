@@ -61,6 +61,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.CommandPoolCreateInfo* pointer)
         {
             pointer->SType = StructureType.CommandPoolCreateInfo;
+            pointer->Next = null;
             pointer->Flags = this.Flags;
             pointer->QueueFamilyIndex = this.QueueFamilyIndex;
         }

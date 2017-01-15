@@ -63,6 +63,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.ExternalMemoryImageCreateInfo* pointer)
         {
             pointer->SType = StructureType.ExternalMemoryImageCreateInfo;
+            pointer->Next = null;
             pointer->HandleTypes = this.HandleTypes;
         }
     }

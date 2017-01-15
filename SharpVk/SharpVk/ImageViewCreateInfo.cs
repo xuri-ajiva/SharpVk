@@ -110,6 +110,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.ImageViewCreateInfo* pointer)
         {
             pointer->SType = StructureType.ImageViewCreateInfo;
+            pointer->Next = null;
             this.Image?.MarshalTo(&pointer->Image);
             pointer->Flags = this.Flags;
             pointer->ViewType = this.ViewType;

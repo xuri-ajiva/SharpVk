@@ -78,6 +78,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.DebugMarkerObjectNameInfo* pointer)
         {
             pointer->SType = StructureType.DebugMarkerObjectNameInfo;
+            pointer->Next = null;
             pointer->ObjectName = Interop.HeapUtil.MarshalTo(this.ObjectName);
             pointer->ObjectType = this.ObjectType;
             pointer->Object = this.Object;

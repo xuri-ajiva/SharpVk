@@ -89,6 +89,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.PipelineInputAssemblyStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineInputAssemblyStateCreateInfo;
+            pointer->Next = null;
             pointer->Flags = this.Flags;
             pointer->Topology = this.Topology;
             pointer->PrimitiveRestartEnable = this.PrimitiveRestartEnable;

@@ -50,6 +50,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.ExportMemoryAllocateInfo* pointer)
         {
             pointer->SType = StructureType.ExportMemoryAllocateInfo;
+            pointer->Next = null;
             pointer->HandleTypes = this.HandleTypes;
         }
     }

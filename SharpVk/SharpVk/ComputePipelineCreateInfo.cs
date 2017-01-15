@@ -101,6 +101,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.ComputePipelineCreateInfo* pointer)
         {
             pointer->SType = StructureType.ComputePipelineCreateInfo;
+            pointer->Next = null;
             this.Stage.MarshalTo(&pointer->Stage);
             this.Layout?.MarshalTo(&pointer->Layout);
             this.BasePipelineHandle?.MarshalTo(&pointer->BasePipelineHandle);

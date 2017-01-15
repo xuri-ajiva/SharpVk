@@ -71,6 +71,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.MappedMemoryRange* pointer)
         {
             pointer->SType = StructureType.MappedMemoryRange;
+            pointer->Next = null;
             this.Memory?.MarshalTo(&pointer->Memory);
             pointer->Offset = this.Offset;
             pointer->Size = this.Size;

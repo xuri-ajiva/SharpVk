@@ -71,6 +71,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.DebugReportCallbackCreateInfo* pointer)
         {
             pointer->SType = StructureType.DebugReportCallbackCreateInfo;
+            pointer->Next = null;
             pointer->PfnCallback = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.PfnCallback);
             pointer->UserData = this.UserData.ToPointer();
             pointer->Flags = this.Flags;

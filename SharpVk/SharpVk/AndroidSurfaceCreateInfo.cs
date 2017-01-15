@@ -61,6 +61,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.AndroidSurfaceCreateInfo* pointer)
         {
             pointer->SType = StructureType.AndroidSurfaceCreateInfo;
+            pointer->Next = null;
             pointer->Window = (IntPtr*)Interop.HeapUtil.Allocate<IntPtr>();
             *pointer->Window = this.Window;
             pointer->Flags = this.Flags;
