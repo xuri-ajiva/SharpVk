@@ -46,6 +46,7 @@ namespace SharpVk.VkXml
                                                         .Or(Parse.String("BC"))
                                                         .Or(Parse.String("ID"))
                                                         .Or(Parse.String("UUID"))
+                                                        .Or(Parse.String("RandR"))
                                                         .Text();
 
         private static readonly Parser<NameParts> namePartsParser = from first in firstPart
@@ -451,10 +452,20 @@ namespace SharpVk.VkXml
 
                     string[] paramNameParts = GetNameParts(paramName, out paramExtension, false);
 
+                    string typeExtension;
+
+                    string[] typeNameParts = GetNameParts(paramType, out typeExtension, true);
+
+                    string typeWithoutExtension = typeNameParts != null
+                                                    ? "Vk" + string.Join("", typeNameParts.Select(CapitaliseFirst))
+                                                    : null;
+
                     newCommand.Params.Add(new ParsedParam
                     {
                         VkName = paramName,
                         Type = paramType,
+                        TypeWithoutExtension = typeWithoutExtension,
+                        TypeExtension = typeExtension,
                         PointerType = pointerType,
                         NameParts = paramNameParts,
                         Extension = paramExtension,
@@ -628,6 +639,15 @@ namespace SharpVk.VkXml
             var charArray = value.ToCharArray();
 
             charArray[0] = char.ToUpper(charArray[0]);
+
+            return new string(charArray);
+        }
+
+        private static string LowerCaseFirst(string value)
+        {
+            var charArray = value.ToCharArray();
+
+            charArray[0] = char.ToLower(charArray[0]);
 
             return new string(charArray);
         }

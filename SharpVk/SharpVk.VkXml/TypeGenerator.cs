@@ -33,7 +33,8 @@ namespace SharpVk.VkXml
             {"wl_surface", "IntPtr" },
             {"xcb_connection_t", "IntPtr" },
             {"xcb_visualid_t", "IntPtr" },
-            {"xcb_window_t", "IntPtr" }
+            {"xcb_window_t", "IntPtr" },
+            {"RROutput", "IntPtr" }
         };
 
         private static readonly string[] keywords = new[]
@@ -1614,7 +1615,7 @@ namespace SharpVk.VkXml
             }
             else
             {
-                return JoinNameParts(element.NameParts.Take(element.NameParts.Length - trimFromEnd));
+                return JoinNameParts(element.NameParts.Take(Math.Max(element.NameParts.Length - trimFromEnd, 1)));
             }
         }
 
