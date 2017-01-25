@@ -1347,6 +1347,100 @@ namespace SharpVk
             }
         }
         
+        /// <summary>
+        /// Set the power state of a display.
+        /// </summary>
+        public void DisplayPowerControl(Display display, DisplayPowerInfo displayPowerInfo)
+        {
+            unsafe
+            {
+                try
+                {
+                    var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkDisplayPowerControlEXT>("vkDisplayPowerControlEXT", "device");
+                    Result commandResult;
+                    Interop.Display marshalledDisplay = default(Interop.Display);
+                    display?.MarshalTo(&marshalledDisplay);
+                    Interop.DisplayPowerInfo marshalledDisplayPowerInfo;
+                    displayPowerInfo.MarshalTo(&marshalledDisplayPowerInfo);
+                    commandResult = commandDelegate(this.handle, marshalledDisplay, &marshalledDisplayPowerInfo);
+                    if (SharpVkException.IsError(commandResult))
+                    {
+                        throw SharpVkException.Create(commandResult);
+                    }
+                }
+                finally
+                {
+                    Interop.HeapUtil.FreeLog();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Signal a fence when a device event occurs.
+        /// </summary>
+        public Fence RegisterEvent(DeviceEventInfo deviceEventInfo)
+        {
+            unsafe
+            {
+                try
+                {
+                    var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkRegisterDeviceEventEXT>("vkRegisterDeviceEventEXT", "device");
+                    Fence result = default(Fence);
+                    Result commandResult;
+                    Interop.DeviceEventInfo marshalledDeviceEventInfo;
+                    deviceEventInfo.MarshalTo(&marshalledDeviceEventInfo);
+                    Interop.AllocationCallbacks marshalledAllocator;
+                    this.parent.Allocator?.MarshalTo(&marshalledAllocator);
+                    Interop.Fence marshalledFence;
+                    commandResult = commandDelegate(this.handle, &marshalledDeviceEventInfo, this.parent.Allocator == null ? null : &marshalledAllocator, &marshalledFence);
+                    if (SharpVkException.IsError(commandResult))
+                    {
+                        throw SharpVkException.Create(commandResult);
+                    }
+                    result = new Fence(marshalledFence, this, this.commandCache);
+                    return result;
+                }
+                finally
+                {
+                    Interop.HeapUtil.FreeLog();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Signal a fence when a display event occurs.
+        /// </summary>
+        public Fence RegisterDisplayEvent(Display display, DisplayEventInfo displayEventInfo)
+        {
+            unsafe
+            {
+                try
+                {
+                    var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkRegisterDisplayEventEXT>("vkRegisterDisplayEventEXT", "device");
+                    Fence result = default(Fence);
+                    Result commandResult;
+                    Interop.Display marshalledDisplay = default(Interop.Display);
+                    display?.MarshalTo(&marshalledDisplay);
+                    Interop.DisplayEventInfo marshalledDisplayEventInfo;
+                    displayEventInfo.MarshalTo(&marshalledDisplayEventInfo);
+                    Interop.AllocationCallbacks marshalledAllocator;
+                    this.parent.Allocator?.MarshalTo(&marshalledAllocator);
+                    Interop.Fence marshalledFence;
+                    commandResult = commandDelegate(this.handle, marshalledDisplay, &marshalledDisplayEventInfo, this.parent.Allocator == null ? null : &marshalledAllocator, &marshalledFence);
+                    if (SharpVkException.IsError(commandResult))
+                    {
+                        throw SharpVkException.Create(commandResult);
+                    }
+                    result = new Fence(marshalledFence, this, this.commandCache);
+                    return result;
+                }
+                finally
+                {
+                    Interop.HeapUtil.FreeLog();
+                }
+            }
+        }
+        
         internal unsafe void MarshalTo(Interop.Device* pointer)
         {
             *pointer = this.handle;

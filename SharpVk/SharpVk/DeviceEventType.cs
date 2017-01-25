@@ -23,34 +23,17 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
-using System.Runtime.InteropServices;
 
-namespace SharpVk.Interop
+namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Events that can occur on a device object.
     /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct ObjectTableIndexBufferEntry
+    public enum DeviceEventType
     {
         /// <summary>
-        /// 
+        /// -
         /// </summary>
-        public ObjectEntryType Type; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public ObjectEntryUsageFlags Flags; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Buffer Buffer; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public IndexType IndexType; 
+        DisplayHotplug = 0, 
     }
 }

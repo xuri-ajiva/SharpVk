@@ -800,6 +800,190 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// Reports capabilities of a physical device.
+        /// </summary>
+        public PhysicalDeviceFeatures2 GetFeatures2()
+        {
+            unsafe
+            {
+                try
+                {
+                    var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetPhysicalDeviceFeatures2KHR>("vkGetPhysicalDeviceFeatures2KHR", "instance");
+                    PhysicalDeviceFeatures2 result = default(PhysicalDeviceFeatures2);
+                    Interop.PhysicalDeviceFeatures2 marshalledFeatures;
+                    commandDelegate(this.handle, &marshalledFeatures);
+                    result = PhysicalDeviceFeatures2.MarshalFrom(&marshalledFeatures);
+                    return result;
+                }
+                finally
+                {
+                    Interop.HeapUtil.FreeLog();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Returns properties of a physical device.
+        /// </summary>
+        public PhysicalDeviceProperties2 GetProperties2()
+        {
+            unsafe
+            {
+                try
+                {
+                    var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetPhysicalDeviceProperties2KHR>("vkGetPhysicalDeviceProperties2KHR", "instance");
+                    PhysicalDeviceProperties2 result = default(PhysicalDeviceProperties2);
+                    Interop.PhysicalDeviceProperties2 marshalledProperties;
+                    commandDelegate(this.handle, &marshalledProperties);
+                    result = PhysicalDeviceProperties2.MarshalFrom(&marshalledProperties);
+                    return result;
+                }
+                finally
+                {
+                    Interop.HeapUtil.FreeLog();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Lists physical device's format capabilities.
+        /// </summary>
+        public FormatProperties2 GetFormatProperties2(Format format)
+        {
+            unsafe
+            {
+                try
+                {
+                    var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetPhysicalDeviceFormatProperties2KHR>("vkGetPhysicalDeviceFormatProperties2KHR", "instance");
+                    FormatProperties2 result = default(FormatProperties2);
+                    Interop.FormatProperties2 marshalledFormatProperties;
+                    commandDelegate(this.handle, format, &marshalledFormatProperties);
+                    result = FormatProperties2.MarshalFrom(&marshalledFormatProperties);
+                    return result;
+                }
+                finally
+                {
+                    Interop.HeapUtil.FreeLog();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Lists physical device's image format capabilities.
+        /// </summary>
+        public ImageFormatProperties2 GetImageFormatProperties2(PhysicalDeviceImageFormatInfo2 imageFormatInfo)
+        {
+            unsafe
+            {
+                try
+                {
+                    var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetPhysicalDeviceImageFormatProperties2KHR>("vkGetPhysicalDeviceImageFormatProperties2KHR", "instance");
+                    ImageFormatProperties2 result = default(ImageFormatProperties2);
+                    Result commandResult;
+                    Interop.PhysicalDeviceImageFormatInfo2 marshalledImageFormatInfo;
+                    imageFormatInfo.MarshalTo(&marshalledImageFormatInfo);
+                    Interop.ImageFormatProperties2 marshalledImageFormatProperties;
+                    commandResult = commandDelegate(this.handle, &marshalledImageFormatInfo, &marshalledImageFormatProperties);
+                    if (SharpVkException.IsError(commandResult))
+                    {
+                        throw SharpVkException.Create(commandResult);
+                    }
+                    result = ImageFormatProperties2.MarshalFrom(&marshalledImageFormatProperties);
+                    return result;
+                }
+                finally
+                {
+                    Interop.HeapUtil.FreeLog();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Reports properties of the queues of the specified physical device.
+        /// </summary>
+        public QueueFamilyProperties2[] GetQueueFamilyProperties2()
+        {
+            unsafe
+            {
+                try
+                {
+                    var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetPhysicalDeviceQueueFamilyProperties2KHR>("vkGetPhysicalDeviceQueueFamilyProperties2KHR", "instance");
+                    QueueFamilyProperties2[] result = default(QueueFamilyProperties2[]);
+                    uint queueFamilyPropertyCount;
+                    Interop.QueueFamilyProperties2* marshalledQueueFamilyProperties = null;
+                    commandDelegate(this.handle, &queueFamilyPropertyCount, null);
+                    marshalledQueueFamilyProperties = (Interop.QueueFamilyProperties2*)Interop.HeapUtil.Allocate<Interop.QueueFamilyProperties2>((uint)queueFamilyPropertyCount);
+                    commandDelegate(this.handle, &queueFamilyPropertyCount, marshalledQueueFamilyProperties);
+                    result = new QueueFamilyProperties2[(uint)queueFamilyPropertyCount];
+                    for(int index = 0; index < (uint)queueFamilyPropertyCount; index++)
+                    {
+                    	result[index] = QueueFamilyProperties2.MarshalFrom(&marshalledQueueFamilyProperties[index]);
+                    }
+                    return result;
+                }
+                finally
+                {
+                    Interop.HeapUtil.FreeLog();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Reports memory information for the specified physical device.
+        /// </summary>
+        public PhysicalDeviceMemoryProperties2 GetMemoryProperties2()
+        {
+            unsafe
+            {
+                try
+                {
+                    var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetPhysicalDeviceMemoryProperties2KHR>("vkGetPhysicalDeviceMemoryProperties2KHR", "instance");
+                    PhysicalDeviceMemoryProperties2 result = default(PhysicalDeviceMemoryProperties2);
+                    Interop.PhysicalDeviceMemoryProperties2 marshalledMemoryProperties;
+                    commandDelegate(this.handle, &marshalledMemoryProperties);
+                    result = PhysicalDeviceMemoryProperties2.MarshalFrom(&marshalledMemoryProperties);
+                    return result;
+                }
+                finally
+                {
+                    Interop.HeapUtil.FreeLog();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Retrieve properties of an image format applied to sparse images.
+        /// </summary>
+        public SparseImageFormatProperties2[] GetSparseImageFormatProperties2(PhysicalDeviceSparseImageFormatInfo2 formatInfo)
+        {
+            unsafe
+            {
+                try
+                {
+                    var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetPhysicalDeviceSparseImageFormatProperties2KHR>("vkGetPhysicalDeviceSparseImageFormatProperties2KHR", "instance");
+                    SparseImageFormatProperties2[] result = default(SparseImageFormatProperties2[]);
+                    Interop.PhysicalDeviceSparseImageFormatInfo2 marshalledFormatInfo;
+                    formatInfo.MarshalTo(&marshalledFormatInfo);
+                    uint propertyCount;
+                    Interop.SparseImageFormatProperties2* marshalledProperties = null;
+                    commandDelegate(this.handle, &marshalledFormatInfo, &propertyCount, null);
+                    marshalledProperties = (Interop.SparseImageFormatProperties2*)Interop.HeapUtil.Allocate<Interop.SparseImageFormatProperties2>((uint)propertyCount);
+                    commandDelegate(this.handle, &marshalledFormatInfo, &propertyCount, marshalledProperties);
+                    result = new SparseImageFormatProperties2[(uint)propertyCount];
+                    for(int index = 0; index < (uint)propertyCount; index++)
+                    {
+                    	result[index] = SparseImageFormatProperties2.MarshalFrom(&marshalledProperties[index]);
+                    }
+                    return result;
+                }
+                finally
+                {
+                    Interop.HeapUtil.FreeLog();
+                }
+            }
+        }
+        
+        /// <summary>
         /// Returns device-generated commands related properties of a physical
         /// device.
         /// </summary>
@@ -816,6 +1000,116 @@ namespace SharpVk
                     Interop.DeviceGeneratedCommandsLimits marshalledLimits;
                     commandDelegate(this.handle, &marshalledFeatures, &marshalledLimits);
                     result = DeviceGeneratedCommandsLimits.MarshalFrom(&marshalledLimits);
+                    return result;
+                }
+                finally
+                {
+                    Interop.HeapUtil.FreeLog();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Release access to an acquired VkDisplayKHR.
+        /// </summary>
+        public void ReleaseDisplay(Display display)
+        {
+            unsafe
+            {
+                try
+                {
+                    var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkReleaseDisplayEXT>("vkReleaseDisplayEXT", "instance");
+                    Result commandResult;
+                    Interop.Display marshalledDisplay = default(Interop.Display);
+                    display?.MarshalTo(&marshalledDisplay);
+                    commandResult = commandDelegate(this.handle, marshalledDisplay);
+                    if (SharpVkException.IsError(commandResult))
+                    {
+                        throw SharpVkException.Create(commandResult);
+                    }
+                }
+                finally
+                {
+                    Interop.HeapUtil.FreeLog();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Acquire access to a VkDisplayKHR using Xlib.
+        /// </summary>
+        public void AcquireXlibDisplay(IntPtr dpy, Display display)
+        {
+            unsafe
+            {
+                try
+                {
+                    var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkAcquireXlibDisplayEXT>("vkAcquireXlibDisplayEXT", "instance");
+                    Result commandResult;
+                    Interop.Display marshalledDisplay = default(Interop.Display);
+                    display?.MarshalTo(&marshalledDisplay);
+                    commandResult = commandDelegate(this.handle, &dpy, marshalledDisplay);
+                    if (SharpVkException.IsError(commandResult))
+                    {
+                        throw SharpVkException.Create(commandResult);
+                    }
+                }
+                finally
+                {
+                    Interop.HeapUtil.FreeLog();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Query the VkDisplayKHR corresponding to an X11 RandR Output.
+        /// </summary>
+        public Display GetRandROutputDisplay(IntPtr dpy, IntPtr rrOutput)
+        {
+            unsafe
+            {
+                try
+                {
+                    var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetRandROutputDisplayEXT>("vkGetRandROutputDisplayEXT", "instance");
+                    Display result = default(Display);
+                    Result commandResult;
+                    Interop.Display marshalledDisplay;
+                    commandResult = commandDelegate(this.handle, &dpy, rrOutput, &marshalledDisplay);
+                    if (SharpVkException.IsError(commandResult))
+                    {
+                        throw SharpVkException.Create(commandResult);
+                    }
+                    result = new Display(marshalledDisplay, this.parent.Allocator, this.commandCache);
+                    return result;
+                }
+                finally
+                {
+                    Interop.HeapUtil.FreeLog();
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Query surface capabilities.
+        /// </summary>
+        public SurfaceCapabilities2 GetSurfaceCapabilities2(Surface surface)
+        {
+            unsafe
+            {
+                try
+                {
+                    var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetPhysicalDeviceSurfaceCapabilities2EXT>("vkGetPhysicalDeviceSurfaceCapabilities2EXT", "instance");
+                    SurfaceCapabilities2 result = default(SurfaceCapabilities2);
+                    Result commandResult;
+                    Interop.Surface marshalledSurface = default(Interop.Surface);
+                    surface?.MarshalTo(&marshalledSurface);
+                    Interop.SurfaceCapabilities2 marshalledSurfaceCapabilities;
+                    commandResult = commandDelegate(this.handle, marshalledSurface, &marshalledSurfaceCapabilities);
+                    if (SharpVkException.IsError(commandResult))
+                    {
+                        throw SharpVkException.Create(commandResult);
+                    }
+                    result = SurfaceCapabilities2.MarshalFrom(&marshalledSurfaceCapabilities);
                     return result;
                 }
                 finally

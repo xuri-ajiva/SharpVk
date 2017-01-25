@@ -182,5 +182,10 @@ namespace SharpVk
         /// -
         /// </summary>
         ErrorInvalidShader = -1000012000, 
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        ErrorOutOfPoolMemory = -1000069000, 
     }
 }

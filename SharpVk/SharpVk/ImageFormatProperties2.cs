@@ -23,34 +23,38 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
-using System.Runtime.InteropServices;
 
-namespace SharpVk.Interop
+namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// <para>
+    /// Structure specifying a image format properties.
+    /// </para>
+    /// <para>
+    /// If the combination of parameters to
+    /// fname:vkGetPhysicalDeviceImageFormatProperties2KHR is not supported by
+    /// the implementation for use in flink:vkCreateImage, then all members of
+    /// pname:imageFormatProperties will be filled with zero.
+    /// </para>
     /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct ObjectTableIndexBufferEntry
+    public struct ImageFormatProperties2
     {
         /// <summary>
-        /// 
+        /// pname:imageFormatProperties is an instance of a
+        /// slink:VkImageFormatProperties structure in which capabilities are
+        /// returned.
         /// </summary>
-        public ObjectEntryType Type; 
+        public ImageFormatProperties ImageFormatProperties
+        {
+            get;
+            set;
+        }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public ObjectEntryUsageFlags Flags; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Buffer Buffer; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public IndexType IndexType; 
+        internal static unsafe ImageFormatProperties2 MarshalFrom(Interop.ImageFormatProperties2* value)
+        {
+            ImageFormatProperties2 result = new ImageFormatProperties2();
+            result.ImageFormatProperties = value->ImageFormatProperties;
+            return result;
+        }
     }
 }

@@ -23,34 +23,36 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
-using System.Runtime.InteropServices;
 
-namespace SharpVk.Interop
+namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Describe a display event to create.
     /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct ObjectTableIndexBufferEntry
+    public struct DisplayEventInfo
     {
         /// <summary>
-        /// 
+        /// pname:displayEvent specifies when the fence will be signaled.
+        /// Possible values are: + --
         /// </summary>
-        public ObjectEntryType Type; 
+        public DisplayEventType DisplayEvent
+        {
+            get;
+            set;
+        }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public ObjectEntryUsageFlags Flags; 
+        internal unsafe Interop.DisplayEventInfo* MarshalTo()
+        {
+            var result = (Interop.DisplayEventInfo*)Interop.HeapUtil.AllocateAndClear<Interop.DisplayEventInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public Buffer Buffer; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public IndexType IndexType; 
+        internal unsafe void MarshalTo(Interop.DisplayEventInfo* pointer)
+        {
+            pointer->SType = StructureType.DisplayEventInfo;
+            pointer->Next = null;
+            pointer->DisplayEvent = this.DisplayEvent;
+        }
     }
 }

@@ -158,11 +158,15 @@ namespace SharpVk
         
         /// <summary>
         /// ename:VK_ACCESS_HOST_READ_BIT: Read access by a host operation.
+        /// Accesses of this type are not performed through a resource, but
+        /// directly on memory.
         /// </summary>
         HostRead = 1 << 13, 
         
         /// <summary>
         /// ename:VK_ACCESS_HOST_WRITE_BIT: Write access by a host operation.
+        /// Accesses of this type are not performed through a resource, but
+        /// directly on memory.
         /// </summary>
         HostWrite = 1 << 14, 
         

@@ -31,6 +31,15 @@ namespace SharpVk
     /// Supported color space of the presentation engine.
     /// </para>
     /// <para>
+    /// The color components of Non-linear color space swap chain images have
+    /// had the appropriate transfer function applied. Vulkan requires that all
+    /// implementations support the sRGB OETF and EOTF transfer functions when
+    /// using an SRGB pixel format. Other transfer functions, such as SMPTE
+    /// 170M, must not: be performed by the implementation, but can: be
+    /// performed by the application shader.
+    /// endif::VK_EXT_swapchain_colorspace[]
+    /// </para>
+    /// <para>
     /// If pname:pSurfaceFormats includes an entry whose value for
     /// pname:colorSpace is ename:VK_COLOR_SPACE_SRGB_NONLINEAR_KHR and whose
     /// value for pname:format is a UNORM (or SRGB) format and the
@@ -59,8 +68,78 @@ namespace SharpVk
     {
         /// <summary>
         /// ename:VK_COLOR_SPACE_SRGB_NONLINEAR_KHR: The presentation engine
-        /// supports the sRGB color space.
+        /// supports the sRGB color space. ifdef::VK_EXT_swapchain_colorspace[]
         /// </summary>
         SrgbNonlinear = 0, 
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        DisplayP3Linear = 1000104001, 
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        DisplayP3Nonlinear = 1000104002, 
+        
+        /// <summary>
+        /// * ename:VK_COLOR_SPACE_SCRGB_LINEAR_EXT - supports the scRGB color
+        /// space and applies a linear OETF.
+        /// </summary>
+        ScrgbLinear = 1000104003, 
+        
+        /// <summary>
+        /// * ename:VK_COLOR_SPACE_SCRGB_NONLINEAR_EXT - supports the scRGB
+        /// color space and applies the scRGB OETF.
+        /// </summary>
+        ScrgbNonlinear = 1000104004, 
+        
+        /// <summary>
+        /// * ename:VK_COLOR_SPACE_DCI_P3_LINEAR_EXT - supports the DCI-P3
+        /// color space and applies a linear OETF.
+        /// </summary>
+        DciP3Linear = 1000104005, 
+        
+        /// <summary>
+        /// * ename:VK_COLOR_SPACE_DCI_P3_NONLINEAR_EXT - supports the DCI-P3
+        /// color space and applies the Gamma 2.6 OETF.
+        /// </summary>
+        DciP3Nonlinear = 1000104006, 
+        
+        /// <summary>
+        /// * ename:VK_COLOR_SPACE_BT709_LINEAR_EXT - supports the BT709 color
+        /// space and applies a linear OETF.
+        /// </summary>
+        Bt709Linear = 1000104007, 
+        
+        /// <summary>
+        /// * ename:VK_COLOR_SPACE_BT709_NONLINEAR_EXT - supports the BT709
+        /// color space and applies the SMPTE 170M OETF.
+        /// </summary>
+        Bt709Nonlinear = 1000104008, 
+        
+        /// <summary>
+        /// * ename:VK_COLOR_SPACE_BT2020_LINEAR_EXT - supports the BT2020
+        /// color space and applies a linear OETF.
+        /// </summary>
+        Bt2020Linear = 1000104009, 
+        
+        /// <summary>
+        /// * ename:VK_COLOR_SPACE_BT2020_NONLINEAR_EXT - supports the BT2020
+        /// color space and applies the SMPTE 170M OETF.
+        /// </summary>
+        Bt2020Nonlinear = 1000104010, 
+        
+        /// <summary>
+        /// * ename:VK_COLOR_SPACE_ADOBERGB_LINEAR_EXT - supports the AdobeRGB
+        /// color space and applies a linear OETF.
+        /// </summary>
+        AdobergbLinear = 1000104011, 
+        
+        /// <summary>
+        /// * ename:VK_COLOR_SPACE_ADOBERGB_NONLINEAR_EXT - supports the
+        /// AdobeRGB color space and applies the Gamma 2.2 OETF.
+        /// </summary>
+        AdobergbNonlinear = 1000104012, 
     }
 }

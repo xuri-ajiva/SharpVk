@@ -32,17 +32,23 @@ namespace SharpVk
     /// </para>
     /// <para>
     /// The first &lt;&lt;synchronization-dependencies-access-scopes, access
-    /// scope&gt;&gt; is limited to access to the memory backing the specified
+    /// scope&gt;&gt; is limited to access to memory through the specified
     /// image subresource range, via access types in the
     /// &lt;&lt;synchronization-access-masks, source access mask&gt;&gt;
-    /// specified by pname:srcAccessMask.
+    /// specified by pname:srcAccessMask. If pname:srcAccessMask includes
+    /// ename:VK_ACCESS_HOST_WRITE_BIT, memory writes performed by that access
+    /// type are also made visible, as that access type is not performed
+    /// through a resource.
     /// </para>
     /// <para>
     /// The second &lt;&lt;synchronization-dependencies-access-scopes, access
-    /// scope&gt;&gt; is limited to access to the memory backing the specified
+    /// scope&gt;&gt; is limited to access to memory through the specified
     /// image subresource range, via access types in the
     /// &lt;&lt;synchronization-access-masks, destination access mask&gt;&gt;
-    /// specified by pname:dstAccessMask.
+    /// specified by pname:dstAccessMask. If pname:dstAccessMask includes
+    /// ename:VK_ACCESS_HOST_WRITE_BIT or ename:VK_ACCESS_HOST_READ_BIT,
+    /// available memory writes are also made visible to accesses of those
+    /// types, as those access types are not performed through a resource.
     /// </para>
     /// <para>
     /// If pname:srcQueueFamilyIndex is not equal to pname:dstQueueFamilyIndex,
@@ -61,17 +67,6 @@ namespace SharpVk
     /// operation&gt;&gt; for the specified image subresource range, and the
     /// first access scope includes no access, as if pname:srcAccessMask was
     /// `0`.
-    /// </para>
-    /// <para>
-    /// If pname:oldLayout is not equal to pname:newLayout, then the memory
-    /// barrier defines an &lt;&lt;synchronization-image-layout-transitions,
-    /// image layout transition&gt;&gt; for the specified image subresource
-    /// range. Layout transitions that are performed via image memory barriers
-    /// automatically happen-after layout transitions previously submitted to
-    /// the same queue, and automatically happen-before layout transitions
-    /// subsequently submitted to the same queue; this includes layout
-    /// transitions that occur as part of a render pass instance, in both
-    /// cases.
     /// </para>
     /// </summary>
     public struct ImageMemoryBarrier
@@ -121,7 +116,7 @@ namespace SharpVk
         /// <summary>
         /// pname:srcQueueFamilyIndex is the source queue family for a
         /// &lt;&lt;synchronization-queue-transfers, queue family ownership
-        /// transfer&gt;&gt;
+        /// transfer&gt;&gt;.
         /// </summary>
         public uint SourceQueueFamilyIndex
         {
@@ -132,7 +127,7 @@ namespace SharpVk
         /// <summary>
         /// pname:dstQueueFamilyIndex is the destination queue family for a
         /// &lt;&lt;synchronization-queue-transfers, queue family ownership
-        /// transfer&gt;&gt;
+        /// transfer&gt;&gt;.
         /// </summary>
         public uint DestinationQueueFamilyIndex
         {
@@ -141,8 +136,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:image is a handle to the image whose backing memory is
-        /// affected by the barrier.
+        /// pname:image is a handle to the image affected by this barrier.
         /// </summary>
         public Image Image
         {
@@ -151,10 +145,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:subresourceRange describes an area of the backing memory for
-        /// pname:image (see &lt;&lt;resources-image-views&gt;&gt; for the
-        /// description of sname:VkImageSubresourceRange), as well as the set
-        /// of image subresources whose image layouts are modified.
+        /// pname:subresourceRange describes the &lt;&lt;resources-image-views,
+        /// image subresource range&gt;&gt; within pname:image that is affected
+        /// by this barrier.
         /// </summary>
         public ImageSubresourceRange SubresourceRange
         {

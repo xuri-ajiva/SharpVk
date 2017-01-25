@@ -85,8 +85,16 @@ namespace SharpVk
         /// ename:VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT indicates that the image
         /// can: be used to create a sname:VkImageView of type
         /// ename:VK_IMAGE_VIEW_TYPE_CUBE or
-        /// ename:VK_IMAGE_VIEW_TYPE_CUBE_ARRAY.
+        /// ename:VK_IMAGE_VIEW_TYPE_CUBE_ARRAY. ifdef::VK_KHR_maintenance1[]
         /// </summary>
         CubeCompatible = 1 << 4, 
+        
+        /// <summary>
+        /// ename:VK_IMAGE_CREATE_2D_ARRAY_COMPATIBLE_BIT_KHR indicates that
+        /// the image can: be used to create a sname:VkImageView of type
+        /// ename:VK_IMAGE_VIEW_TYPE_2D or ename:VK_IMAGE_VIEW_TYPE_2D_ARRAY.
+        /// endif::VK_KHR_maintenance1[]
+        /// </summary>
+        ImageCreate2dArrayCompatibleBit = 5, 
     }
 }

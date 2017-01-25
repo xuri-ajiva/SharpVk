@@ -23,34 +23,37 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
-using System.Runtime.InteropServices;
 
-namespace SharpVk.Interop
+namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// <para>
+    /// Structure specifying physical device properties.
+    /// </para>
+    /// <para>
+    /// The pname:pNext chain of this structure is used to extend the structure
+    /// with properties defined by extensions.
+    /// </para>
     /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct ObjectTableIndexBufferEntry
+    public struct PhysicalDeviceProperties2
     {
         /// <summary>
-        /// 
+        /// pname:properties is a structure of type
+        /// slink:VkPhysicalDeviceProperties describing the properties of the
+        /// physical device. This structure is written with the same values as
+        /// if it were written by flink:vkGetPhysicalDeviceProperties.
         /// </summary>
-        public ObjectEntryType Type; 
+        public PhysicalDeviceProperties Properties
+        {
+            get;
+            set;
+        }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public ObjectEntryUsageFlags Flags; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Buffer Buffer; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public IndexType IndexType; 
+        internal static unsafe PhysicalDeviceProperties2 MarshalFrom(Interop.PhysicalDeviceProperties2* value)
+        {
+            PhysicalDeviceProperties2 result = new PhysicalDeviceProperties2();
+            result.Properties = PhysicalDeviceProperties.MarshalFrom(&value->Properties);
+            return result;
+        }
     }
 }

@@ -31,26 +31,71 @@ namespace SharpVk.Interop
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct ObjectTableIndexBufferEntry
+    public unsafe struct SurfaceCapabilities2
     {
         /// <summary>
         /// 
         /// </summary>
-        public ObjectEntryType Type; 
+        public StructureType SType; 
         
         /// <summary>
         /// 
         /// </summary>
-        public ObjectEntryUsageFlags Flags; 
+        public void* Next; 
         
         /// <summary>
         /// 
         /// </summary>
-        public Buffer Buffer; 
+        public uint MinImageCount; 
         
         /// <summary>
         /// 
         /// </summary>
-        public IndexType IndexType; 
+        public uint MaxImageCount; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Extent2D CurrentExtent; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Extent2D MinImageExtent; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Extent2D MaxImageExtent; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public uint MaxImageArrayLayers; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public SurfaceTransformFlags SupportedTransforms; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public SurfaceTransformFlags CurrentTransform; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public CompositeAlphaFlags SupportedCompositeAlpha; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public ImageUsageFlags SupportedUsageFlags; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public SurfaceCounterFlags SupportedSurfaceCounters; 
     }
 }

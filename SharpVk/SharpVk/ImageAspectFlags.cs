@@ -57,6 +57,9 @@ namespace SharpVk
     /// identity for storage image descriptors, input attachment descriptors,
     /// and framebuffer attachments.
     /// </para>
+    /// <para>
+    /// ****
+    /// </para>
     /// </summary>
     [Flags]
     public enum ImageAspectFlags

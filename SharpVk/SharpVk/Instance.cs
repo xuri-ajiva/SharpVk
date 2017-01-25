@@ -529,6 +529,38 @@ namespace SharpVk
             }
         }
         
+        /// <summary>
+        /// Create a slink:VkSurfaceKHR object for a VI layer.
+        /// </summary>
+        public Surface CreateViSurface(ViSurfaceCreateInfo createInfo)
+        {
+            unsafe
+            {
+                try
+                {
+                    var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkCreateViSurfaceNN>("vkCreateViSurfaceNN", "instance");
+                    Surface result = default(Surface);
+                    Result commandResult;
+                    Interop.ViSurfaceCreateInfo marshalledCreateInfo;
+                    createInfo.MarshalTo(&marshalledCreateInfo);
+                    Interop.AllocationCallbacks marshalledAllocator;
+                    this.allocator?.MarshalTo(&marshalledAllocator);
+                    Interop.Surface marshalledSurface;
+                    commandResult = commandDelegate(this.handle, &marshalledCreateInfo, this.allocator == null ? null : &marshalledAllocator, &marshalledSurface);
+                    if (SharpVkException.IsError(commandResult))
+                    {
+                        throw SharpVkException.Create(commandResult);
+                    }
+                    result = new Surface(marshalledSurface, this, this.commandCache);
+                    return result;
+                }
+                finally
+                {
+                    Interop.HeapUtil.FreeLog();
+                }
+            }
+        }
+        
         internal unsafe void MarshalTo(Interop.Instance* pointer)
         {
             *pointer = this.handle;

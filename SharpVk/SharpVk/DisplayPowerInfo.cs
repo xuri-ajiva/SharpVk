@@ -23,34 +23,36 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
-using System.Runtime.InteropServices;
 
-namespace SharpVk.Interop
+namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Describe the power state of a display.
     /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct ObjectTableIndexBufferEntry
+    public struct DisplayPowerInfo
     {
         /// <summary>
-        /// 
+        /// pname:powerState is the new power state of the display. Possible
+        /// values are: + --
         /// </summary>
-        public ObjectEntryType Type; 
+        public DisplayPowerState PowerState
+        {
+            get;
+            set;
+        }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public ObjectEntryUsageFlags Flags; 
+        internal unsafe Interop.DisplayPowerInfo* MarshalTo()
+        {
+            var result = (Interop.DisplayPowerInfo*)Interop.HeapUtil.AllocateAndClear<Interop.DisplayPowerInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public Buffer Buffer; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public IndexType IndexType; 
+        internal unsafe void MarshalTo(Interop.DisplayPowerInfo* pointer)
+        {
+            pointer->SType = StructureType.DisplayPowerInfo;
+            pointer->Next = null;
+            pointer->PowerState = this.PowerState;
+        }
     }
 }

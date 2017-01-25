@@ -27,59 +27,83 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// -
+    /// <para>
+    /// Structure specifying image creation parameters.
+    /// </para>
+    /// <para>
+    /// The members of sname:VkPhysicalDeviceImageFormatInfo2KHR correspond to
+    /// the arguments to flink:vkGetPhysicalDeviceImageFormatProperties, with
+    /// pname:sType and pname:pNext added for extensibility.
+    /// </para>
     /// </summary>
-    public struct ObjectTableIndexBufferEntry
+    public struct PhysicalDeviceImageFormatInfo2
     {
         /// <summary>
-        /// -
+        /// pname:format is the image format, corresponding to
+        /// slink:VkImageCreateInfo::pname:format.
         /// </summary>
-        public ObjectEntryType Type
+        public Format Format
         {
             get;
             set;
         }
         
         /// <summary>
-        /// -
+        /// pname:type is the image type, corresponding to
+        /// slink:VkImageCreateInfo::pname:imageType.
         /// </summary>
-        public ObjectEntryUsageFlags Flags
+        public ImageType Type
         {
             get;
             set;
         }
         
         /// <summary>
-        /// -
+        /// pname:tiling is the image tiling, corresponding to
+        /// slink:VkImageCreateInfo::pname:tiling.
         /// </summary>
-        public Buffer Buffer
+        public ImageTiling Tiling
         {
             get;
             set;
         }
         
         /// <summary>
-        /// -
+        /// pname:usage is the intended usage of the image, corresponding to
+        /// slink:VkImageCreateInfo::pname:usage.
         /// </summary>
-        public IndexType IndexType
+        public ImageUsageFlags Usage
         {
             get;
             set;
         }
         
-        internal unsafe Interop.ObjectTableIndexBufferEntry* MarshalTo()
+        /// <summary>
+        /// pname:flags is a bitmask describing additional parameters of the
+        /// image, corresponding to slink:VkImageCreateInfo::pname:flags.
+        /// </summary>
+        public ImageCreateFlags Flags
         {
-            var result = (Interop.ObjectTableIndexBufferEntry*)Interop.HeapUtil.AllocateAndClear<Interop.ObjectTableIndexBufferEntry>().ToPointer();
+            get;
+            set;
+        }
+        
+        internal unsafe Interop.PhysicalDeviceImageFormatInfo2* MarshalTo()
+        {
+            var result = (Interop.PhysicalDeviceImageFormatInfo2*)Interop.HeapUtil.AllocateAndClear<Interop.PhysicalDeviceImageFormatInfo2>().ToPointer();
             this.MarshalTo(result);
             return result;
         }
         
-        internal unsafe void MarshalTo(Interop.ObjectTableIndexBufferEntry* pointer)
+        internal unsafe void MarshalTo(Interop.PhysicalDeviceImageFormatInfo2* pointer)
         {
-            this.Buffer?.MarshalTo(&pointer->Buffer);
+            pointer->SType = StructureType.PhysicalDeviceImageFormatInfo2;
+            pointer->Next = null;
+            pointer->Format = this.Format;
             pointer->Type = this.Type;
+            pointer->Tiling = this.Tiling;
+            pointer->Usage = this.Usage;
             pointer->Flags = this.Flags;
-            pointer->IndexType = this.IndexType;
         }
     }
 }

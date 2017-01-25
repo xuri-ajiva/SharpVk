@@ -149,6 +149,25 @@ namespace SharpVk
             }
         }
         
+        /// <summary>
+        /// Trim a command pool.
+        /// </summary>
+        public void Trim(CommandPoolTrimFlags flags)
+        {
+            unsafe
+            {
+                try
+                {
+                    var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkTrimCommandPoolKHR>("vkTrimCommandPoolKHR", "instance");
+                    commandDelegate(this.parent.handle, this.handle, flags);
+                }
+                finally
+                {
+                    Interop.HeapUtil.FreeLog();
+                }
+            }
+        }
+        
         internal unsafe void MarshalTo(Interop.CommandPool* pointer)
         {
             *pointer = this.handle;

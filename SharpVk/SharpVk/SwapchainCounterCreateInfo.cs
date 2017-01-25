@@ -23,34 +23,36 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
-using System.Runtime.InteropServices;
 
-namespace SharpVk.Interop
+namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Specify the surface counters desired.
     /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct ObjectTableIndexBufferEntry
+    public struct SwapchainCounterCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:surfaceCounters is a bitmask containing a bit set for each
+        /// surface counter to enable for the swapchain.
         /// </summary>
-        public ObjectEntryType Type; 
+        public SurfaceCounterFlags SurfaceCounters
+        {
+            get;
+            set;
+        }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public ObjectEntryUsageFlags Flags; 
+        internal unsafe Interop.SwapchainCounterCreateInfo* MarshalTo()
+        {
+            var result = (Interop.SwapchainCounterCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.SwapchainCounterCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public Buffer Buffer; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public IndexType IndexType; 
+        internal unsafe void MarshalTo(Interop.SwapchainCounterCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.SwapchainCounterCreateInfo;
+            pointer->Next = null;
+            pointer->SurfaceCounters = this.SurfaceCounters;
+        }
     }
 }

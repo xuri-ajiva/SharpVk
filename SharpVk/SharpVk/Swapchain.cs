@@ -147,6 +147,32 @@ namespace SharpVk
             }
         }
         
+        /// <summary>
+        /// Query the current value of a surface counter.
+        /// </summary>
+        public ulong GetCounter(SurfaceCounterFlags counter)
+        {
+            unsafe
+            {
+                try
+                {
+                    var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkGetSwapchainCounterEXT>("vkGetSwapchainCounterEXT", "device");
+                    ulong result = default(ulong);
+                    Result commandResult;
+                    commandResult = commandDelegate(this.associated.handle, this.handle, counter, &result);
+                    if (SharpVkException.IsError(commandResult))
+                    {
+                        throw SharpVkException.Create(commandResult);
+                    }
+                    return result;
+                }
+                finally
+                {
+                    Interop.HeapUtil.FreeLog();
+                }
+            }
+        }
+        
         internal unsafe void MarshalTo(Interop.Swapchain* pointer)
         {
             *pointer = this.handle;

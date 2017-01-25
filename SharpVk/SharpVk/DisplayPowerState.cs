@@ -23,34 +23,27 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
-using System.Runtime.InteropServices;
 
-namespace SharpVk.Interop
+namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Possible power states for a VkDisplay.
     /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct ObjectTableIndexBufferEntry
+    public enum DisplayPowerState
     {
         /// <summary>
-        /// 
+        /// -
         /// </summary>
-        public ObjectEntryType Type; 
+        Off = 0, 
         
         /// <summary>
-        /// 
+        /// -
         /// </summary>
-        public ObjectEntryUsageFlags Flags; 
+        Suspend = 1, 
         
         /// <summary>
-        /// 
+        /// -
         /// </summary>
-        public Buffer Buffer; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public IndexType IndexType; 
+        On = 2, 
     }
 }

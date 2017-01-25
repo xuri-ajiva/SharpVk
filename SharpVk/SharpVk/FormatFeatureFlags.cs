@@ -162,5 +162,15 @@ namespace SharpVk
         /// -
         /// </summary>
         SampledImageFilterCubicBitImg = 13, 
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        TransferSourceBit = 14, 
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        TransferDestinationBit = 15, 
     }
 }

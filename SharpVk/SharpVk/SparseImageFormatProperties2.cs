@@ -23,34 +23,31 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
-using System.Runtime.InteropServices;
 
-namespace SharpVk.Interop
+namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying sparse image format properties.
     /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct ObjectTableIndexBufferEntry
+    public struct SparseImageFormatProperties2
     {
         /// <summary>
-        /// 
+        /// pname:properties is a structure of type
+        /// slink:VkSparseImageFormatProperties which is populated with the
+        /// same values as in
+        /// flink:vkGetPhysicalDeviceSparseImageFormatProperties.
         /// </summary>
-        public ObjectEntryType Type; 
+        public SparseImageFormatProperties Properties
+        {
+            get;
+            set;
+        }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public ObjectEntryUsageFlags Flags; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Buffer Buffer; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public IndexType IndexType; 
+        internal static unsafe SparseImageFormatProperties2 MarshalFrom(Interop.SparseImageFormatProperties2* value)
+        {
+            SparseImageFormatProperties2 result = new SparseImageFormatProperties2();
+            result.Properties = value->Properties;
+            return result;
+        }
     }
 }

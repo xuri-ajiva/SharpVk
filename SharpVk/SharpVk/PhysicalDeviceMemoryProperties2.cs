@@ -23,34 +23,30 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
-using System.Runtime.InteropServices;
 
-namespace SharpVk.Interop
+namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying physical device memory properties.
     /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct ObjectTableIndexBufferEntry
+    public struct PhysicalDeviceMemoryProperties2
     {
         /// <summary>
-        /// 
+        /// pname:memoryProperties is a structure of type
+        /// slink:VkPhysicalDeviceMemoryProperties which is populated with the
+        /// same values as in flink:vkGetPhysicalDeviceMemoryProperties.
         /// </summary>
-        public ObjectEntryType Type; 
+        public PhysicalDeviceMemoryProperties MemoryProperties
+        {
+            get;
+            set;
+        }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public ObjectEntryUsageFlags Flags; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Buffer Buffer; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public IndexType IndexType; 
+        internal static unsafe PhysicalDeviceMemoryProperties2 MarshalFrom(Interop.PhysicalDeviceMemoryProperties2* value)
+        {
+            PhysicalDeviceMemoryProperties2 result = new PhysicalDeviceMemoryProperties2();
+            result.MemoryProperties = PhysicalDeviceMemoryProperties.MarshalFrom(&value->MemoryProperties);
+            return result;
+        }
     }
 }

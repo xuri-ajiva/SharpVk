@@ -1058,6 +1058,51 @@ namespace SharpVk.Interop
     /// <summary>
     /// -
     /// </summary>
+    public unsafe delegate void vkGetPhysicalDeviceFeatures2KHR(PhysicalDevice physicalDevice, PhysicalDeviceFeatures2* features);
+    
+    /// <summary>
+    /// -
+    /// </summary>
+    public unsafe delegate void vkGetPhysicalDeviceProperties2KHR(PhysicalDevice physicalDevice, PhysicalDeviceProperties2* properties);
+    
+    /// <summary>
+    /// -
+    /// </summary>
+    public unsafe delegate void vkGetPhysicalDeviceFormatProperties2KHR(PhysicalDevice physicalDevice, Format format, FormatProperties2* formatProperties);
+    
+    /// <summary>
+    /// -
+    /// </summary>
+    public unsafe delegate Result vkGetPhysicalDeviceImageFormatProperties2KHR(PhysicalDevice physicalDevice, PhysicalDeviceImageFormatInfo2* imageFormatInfo, ImageFormatProperties2* imageFormatProperties);
+    
+    /// <summary>
+    /// -
+    /// </summary>
+    public unsafe delegate void vkGetPhysicalDeviceQueueFamilyProperties2KHR(PhysicalDevice physicalDevice, uint* queueFamilyPropertyCount, QueueFamilyProperties2* queueFamilyProperties);
+    
+    /// <summary>
+    /// -
+    /// </summary>
+    public unsafe delegate void vkGetPhysicalDeviceMemoryProperties2KHR(PhysicalDevice physicalDevice, PhysicalDeviceMemoryProperties2* memoryProperties);
+    
+    /// <summary>
+    /// -
+    /// </summary>
+    public unsafe delegate void vkGetPhysicalDeviceSparseImageFormatProperties2KHR(PhysicalDevice physicalDevice, PhysicalDeviceSparseImageFormatInfo2* formatInfo, uint* propertyCount, SparseImageFormatProperties2* properties);
+    
+    /// <summary>
+    /// -
+    /// </summary>
+    public unsafe delegate Result vkCreateViSurfaceNN(Instance instance, ViSurfaceCreateInfo* createInfo, AllocationCallbacks* allocator, Surface* surface);
+    
+    /// <summary>
+    /// -
+    /// </summary>
+    public unsafe delegate void vkTrimCommandPoolKHR(Device device, CommandPool commandPool, CommandPoolTrimFlags flags);
+    
+    /// <summary>
+    /// -
+    /// </summary>
     public unsafe delegate void vkCmdProcessCommandsNVX(CommandBuffer commandBuffer, CommandProcessCommandsInfo* processCommandsInfo);
     
     /// <summary>
@@ -1099,4 +1144,44 @@ namespace SharpVk.Interop
     /// -
     /// </summary>
     public unsafe delegate void vkGetPhysicalDeviceGeneratedCommandsPropertiesNVX(PhysicalDevice physicalDevice, DeviceGeneratedCommandsFeatures* features, DeviceGeneratedCommandsLimits* limits);
+    
+    /// <summary>
+    /// -
+    /// </summary>
+    public unsafe delegate Result vkReleaseDisplayEXT(PhysicalDevice physicalDevice, Display display);
+    
+    /// <summary>
+    /// -
+    /// </summary>
+    public unsafe delegate Result vkAcquireXlibDisplayEXT(PhysicalDevice physicalDevice, IntPtr* dpy, Display display);
+    
+    /// <summary>
+    /// -
+    /// </summary>
+    public unsafe delegate Result vkGetRandROutputDisplayEXT(PhysicalDevice physicalDevice, IntPtr* dpy, IntPtr rrOutput, Display* display);
+    
+    /// <summary>
+    /// -
+    /// </summary>
+    public unsafe delegate Result vkGetPhysicalDeviceSurfaceCapabilities2EXT(PhysicalDevice physicalDevice, Surface surface, SurfaceCapabilities2* surfaceCapabilities);
+    
+    /// <summary>
+    /// -
+    /// </summary>
+    public unsafe delegate Result vkDisplayPowerControlEXT(Device device, Display display, DisplayPowerInfo* displayPowerInfo);
+    
+    /// <summary>
+    /// -
+    /// </summary>
+    public unsafe delegate Result vkRegisterDeviceEventEXT(Device device, DeviceEventInfo* deviceEventInfo, AllocationCallbacks* allocator, Fence* fence);
+    
+    /// <summary>
+    /// -
+    /// </summary>
+    public unsafe delegate Result vkRegisterDisplayEventEXT(Device device, Display display, DisplayEventInfo* displayEventInfo, AllocationCallbacks* allocator, Fence* fence);
+    
+    /// <summary>
+    /// -
+    /// </summary>
+    public unsafe delegate Result vkGetSwapchainCounterEXT(Device device, Swapchain swapchain, SurfaceCounterFlags counter, ulong* counterValue);
 }

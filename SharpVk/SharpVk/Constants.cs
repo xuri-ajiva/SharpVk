@@ -491,6 +491,22 @@ namespace SharpVk
     /// <summary>
     /// 
     /// </summary>
+    public static class KhrGetPhysicalDeviceProperties2
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint Properties2SpecVersion = 1; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string Properties2ExtensionName = "VK_KHR_get_physical_device_properties2"; 
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
     public static class ExtValidationFlags
     {
         /// <summary>
@@ -507,6 +523,86 @@ namespace SharpVk
     /// <summary>
     /// 
     /// </summary>
+    public static class NnViSurface
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint SpecVersion = 1; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string ExtensionName = "VK_NN_vi_surface"; 
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    public static class KhrShaderDrawParameters
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint SpecVersion = 1; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string ExtensionName = "VK_KHR_shader_draw_parameters"; 
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    public static class ExtShaderSubgroupBallot
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint SpecVersion = 1; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string ExtensionName = "VK_EXT_shader_subgroup_ballot"; 
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    public static class ExtShaderSubgroupVote
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint SpecVersion = 1; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string ExtensionName = "VK_EXT_shader_subgroup_vote"; 
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    public static class KhrMaintenance1
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint SpecVersion = 1; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string ExtensionName = "VK_KHR_maintenance1"; 
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
     public static class NvxDeviceGeneratedCommands
     {
         /// <summary>
@@ -518,6 +614,86 @@ namespace SharpVk
         /// 
         /// </summary>
         public const string ExtensionName = "VK_NVX_device_generated_commands"; 
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    public static class ExtDirectModeDisplay
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint SpecVersion = 1; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string ExtensionName = "VK_EXT_direct_mode_display"; 
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    public static class ExtAcquireXlibDisplay
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint SpecVersion = 1; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string ExtensionName = "VK_EXT_acquire_xlib_display"; 
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    public static class ExtDisplaySurfaceCounter
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint SpecVersion = 1; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string ExtensionName = "VK_EXT_display_surface_counter"; 
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    public static class ExtDisplayControl
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint SpecVersion = 1; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string ExtensionName = "VK_EXT_display_control"; 
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    public static class ExtSwapchainColorspace
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint SwapchainColorSpaceSpecVersion = 1; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string SwapchainColorSpaceExtensionName = "VK_EXT_swapchain_colorspace"; 
     }
     
     /// <summary>

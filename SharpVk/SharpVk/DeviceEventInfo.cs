@@ -23,34 +23,35 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
-using System.Runtime.InteropServices;
 
-namespace SharpVk.Interop
+namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Describe a device event to create.
     /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct ObjectTableIndexBufferEntry
+    public struct DeviceEventInfo
     {
         /// <summary>
-        /// 
+        /// -
         /// </summary>
-        public ObjectEntryType Type; 
+        public DeviceEventType DeviceEvent
+        {
+            get;
+            set;
+        }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public ObjectEntryUsageFlags Flags; 
+        internal unsafe Interop.DeviceEventInfo* MarshalTo()
+        {
+            var result = (Interop.DeviceEventInfo*)Interop.HeapUtil.AllocateAndClear<Interop.DeviceEventInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public Buffer Buffer; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public IndexType IndexType; 
+        internal unsafe void MarshalTo(Interop.DeviceEventInfo* pointer)
+        {
+            pointer->SType = StructureType.DeviceEventInfo;
+            pointer->Next = null;
+            pointer->DeviceEvent = this.DeviceEvent;
+        }
     }
 }

@@ -23,34 +23,47 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
-using System.Runtime.InteropServices;
 
-namespace SharpVk.Interop
+namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying parameters of a newly created VI surface object.
     /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct ObjectTableIndexBufferEntry
+    public struct ViSurfaceCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:flags is reserved for future use.
         /// </summary>
-        public ObjectEntryType Type; 
+        public ViSurfaceCreateFlags Flags
+        {
+            get;
+            set;
+        }
         
         /// <summary>
-        /// 
+        /// pname:window is the code:nn::code:vi::code:NativeWindowHandle for
+        /// the code:nn::code:vi::code:Layer with which to associate the
+        /// surface.
         /// </summary>
-        public ObjectEntryUsageFlags Flags; 
+        public IntPtr Window
+        {
+            get;
+            set;
+        }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public Buffer Buffer; 
+        internal unsafe Interop.ViSurfaceCreateInfo* MarshalTo()
+        {
+            var result = (Interop.ViSurfaceCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.ViSurfaceCreateInfo>().ToPointer();
+            this.MarshalTo(result);
+            return result;
+        }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public IndexType IndexType; 
+        internal unsafe void MarshalTo(Interop.ViSurfaceCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.ViSurfaceCreateInfoNn;
+            pointer->Next = null;
+            pointer->Window = this.Window.ToPointer();
+            pointer->Flags = this.Flags;
+        }
     }
 }

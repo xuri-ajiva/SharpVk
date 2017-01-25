@@ -27,59 +27,74 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// -
+    /// Structure specifying sparse image format inputs.
     /// </summary>
-    public struct ObjectTableIndexBufferEntry
+    public struct PhysicalDeviceSparseImageFormatInfo2
     {
         /// <summary>
-        /// -
+        /// pname:format is the image format.
         /// </summary>
-        public ObjectEntryType Type
+        public Format Format
         {
             get;
             set;
         }
         
         /// <summary>
-        /// -
+        /// pname:type is the dimensionality of image.
         /// </summary>
-        public ObjectEntryUsageFlags Flags
+        public ImageType Type
         {
             get;
             set;
         }
         
         /// <summary>
-        /// -
+        /// pname:samples is the number of samples per pixel as defined in
+        /// elink:VkSampleCountFlagBits.
         /// </summary>
-        public Buffer Buffer
+        public SampleCountFlags Samples
         {
             get;
             set;
         }
         
         /// <summary>
-        /// -
+        /// pname:usage is a bitmask describing the intended usage of the
+        /// image.
         /// </summary>
-        public IndexType IndexType
+        public ImageUsageFlags Usage
         {
             get;
             set;
         }
         
-        internal unsafe Interop.ObjectTableIndexBufferEntry* MarshalTo()
+        /// <summary>
+        /// pname:tiling is the tiling arrangement of the data elements in
+        /// memory.
+        /// </summary>
+        public ImageTiling Tiling
         {
-            var result = (Interop.ObjectTableIndexBufferEntry*)Interop.HeapUtil.AllocateAndClear<Interop.ObjectTableIndexBufferEntry>().ToPointer();
+            get;
+            set;
+        }
+        
+        internal unsafe Interop.PhysicalDeviceSparseImageFormatInfo2* MarshalTo()
+        {
+            var result = (Interop.PhysicalDeviceSparseImageFormatInfo2*)Interop.HeapUtil.AllocateAndClear<Interop.PhysicalDeviceSparseImageFormatInfo2>().ToPointer();
             this.MarshalTo(result);
             return result;
         }
         
-        internal unsafe void MarshalTo(Interop.ObjectTableIndexBufferEntry* pointer)
+        internal unsafe void MarshalTo(Interop.PhysicalDeviceSparseImageFormatInfo2* pointer)
         {
-            this.Buffer?.MarshalTo(&pointer->Buffer);
+            pointer->SType = StructureType.PhysicalDeviceSparseImageFormatInfo2;
+            pointer->Next = null;
+            pointer->Format = this.Format;
             pointer->Type = this.Type;
-            pointer->Flags = this.Flags;
-            pointer->IndexType = this.IndexType;
+            pointer->Samples = this.Samples;
+            pointer->Usage = this.Usage;
+            pointer->Tiling = this.Tiling;
         }
     }
 }

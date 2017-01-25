@@ -53,6 +53,17 @@ namespace SharpVk
     /// - pname:minDepth#.
     /// </para>
     /// <para>
+    /// ifdef::VK_KHR_maintenance1[] The application can: specify a negative
+    /// term for pname:height, which has the effect of negating the y
+    /// coordinate in clip space before performing the transform. When using a
+    /// negative pname:height, the application should: also adjust the pname:y
+    /// value to point to the lower left corner of the viewport instead of the
+    /// upper left corner. Using the negative pname:height allows the
+    /// application to avoid having to negate the y component of the
+    /// code:Position output from the last vertex processing stage in shaders
+    /// that also target other graphics APIs. endif::VK_KHR_maintenance1[]
+    /// </para>
+    /// <para>
     /// The width and height of the
     /// &lt;&lt;features-limits-maxViewportDimensions, implementation-dependent
     /// maximum viewport dimensions&gt;&gt; must: be greater than or equal to

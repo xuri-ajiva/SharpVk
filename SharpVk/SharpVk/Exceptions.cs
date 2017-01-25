@@ -101,6 +101,8 @@ namespace SharpVk
                     return new ValidationFailedException();
                 case Result.ErrorInvalidShader:
                     return new InvalidShaderException();
+                case Result.ErrorOutOfPoolMemory:
+                    return new OutOfPoolMemoryException();
             }
             return new UnknownSharpVkException(resultCode);
         }
@@ -441,5 +443,22 @@ namespace SharpVk
         /// The Vulkan result code represented by this exception.
         /// </summary>
         public override Result ResultCode => Result.ErrorInvalidShader;
+    }
+    
+    /// <summary>
+    /// -
+    /// </summary>
+    public class OutOfPoolMemoryException
+        : SharpVkException
+    {
+        internal OutOfPoolMemoryException()
+            : base("OutOfPoolMemoryException")
+        {
+        }
+        
+        /// <summary>
+        /// The Vulkan result code represented by this exception.
+        /// </summary>
+        public override Result ResultCode => Result.ErrorOutOfPoolMemory;
     }
 }

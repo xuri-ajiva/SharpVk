@@ -483,7 +483,14 @@ namespace SharpVk.VkXml
                                     }
                                     else
                                     {
-                                        parentArgument = ", allocator";
+                                        if (handleType.Data.Parent != null)
+                                        {
+                                            parentArgument = ", this.parent.Allocator";
+                                        }
+                                        else
+                                        {
+                                            parentArgument = ", allocator";
+                                        }
                                     }
 
                                     if (parameter.Dimensions != null)
@@ -672,8 +679,11 @@ namespace SharpVk.VkXml
                             string publicParamName = paramName;
                             string paramSource = paramName;
 
+                            bool isAllocator = false;
+
                             if (paramName == "allocator" && handleParams.Count() > 0)
                             {
+                                isAllocator = true;
                                 publicParamName = null;
                                 if (handle.ParentHandle != null)
                                 {
@@ -689,7 +699,7 @@ namespace SharpVk.VkXml
                             string paramTypeName = paramType.Name;
                             string argumentName = "&" + marshalledName;
 
-                            if (parameter.IsOptional)
+                            if (isAllocator || parameter.IsOptional)
                             {
                                 newMethod.MarshalToStatements.Add(string.Format("{1}?.MarshalTo(&{0});", marshalledName, paramSource));
 

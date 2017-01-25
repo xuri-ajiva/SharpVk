@@ -31,26 +31,21 @@ namespace SharpVk.Interop
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct ObjectTableIndexBufferEntry
+    public unsafe struct QueueFamilyProperties2
     {
         /// <summary>
         /// 
         /// </summary>
-        public ObjectEntryType Type; 
+        public StructureType SType; 
         
         /// <summary>
         /// 
         /// </summary>
-        public ObjectEntryUsageFlags Flags; 
+        public void* Next; 
         
         /// <summary>
         /// 
         /// </summary>
-        public Buffer Buffer; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public IndexType IndexType; 
+        public QueueFamilyProperties QueueFamilyProperties; 
     }
 }

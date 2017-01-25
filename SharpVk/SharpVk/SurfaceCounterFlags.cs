@@ -23,34 +23,25 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
-using System.Runtime.InteropServices;
 
-namespace SharpVk.Interop
+namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Surface-relative counter types.
     /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct ObjectTableIndexBufferEntry
+    [Flags]
+    public enum SurfaceCounterFlags
     {
         /// <summary>
-        /// 
+        /// -
         /// </summary>
-        public ObjectEntryType Type; 
+        None = 0, 
         
         /// <summary>
-        /// 
+        /// ename:VK_SURFACE_COUNTER_VBLANK_EXT A counter incrementing once
+        /// every time a vblank period occurs on the display associated with
+        /// the surface.
         /// </summary>
-        public ObjectEntryUsageFlags Flags; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Buffer Buffer; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public IndexType IndexType; 
+        Vblank = 1 << 0, 
     }
 }

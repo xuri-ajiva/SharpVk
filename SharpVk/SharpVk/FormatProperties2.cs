@@ -23,34 +23,30 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
-using System.Runtime.InteropServices;
 
-namespace SharpVk.Interop
+namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying image format properties.
     /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct ObjectTableIndexBufferEntry
+    public struct FormatProperties2
     {
         /// <summary>
-        /// 
+        /// pname:formatProperties is a structure of type
+        /// slink:VkFormatProperties describing features supported by the
+        /// requested format.
         /// </summary>
-        public ObjectEntryType Type; 
+        public FormatProperties FormatProperties
+        {
+            get;
+            set;
+        }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public ObjectEntryUsageFlags Flags; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Buffer Buffer; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public IndexType IndexType; 
+        internal static unsafe FormatProperties2 MarshalFrom(Interop.FormatProperties2* value)
+        {
+            FormatProperties2 result = new FormatProperties2();
+            result.FormatProperties = value->FormatProperties;
+            return result;
+        }
     }
 }

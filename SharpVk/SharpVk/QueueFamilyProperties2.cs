@@ -23,34 +23,30 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
-using System.Runtime.InteropServices;
 
-namespace SharpVk.Interop
+namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure providing information about a queue family.
     /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct ObjectTableIndexBufferEntry
+    public struct QueueFamilyProperties2
     {
         /// <summary>
-        /// 
+        /// pname:queueFamilyProperties is a structure of type
+        /// slink:VkQueueFamilyProperties which is populated with the same
+        /// values as in flink:vkGetPhysicalDeviceQueueFamilyProperties.
         /// </summary>
-        public ObjectEntryType Type; 
+        public QueueFamilyProperties QueueFamilyProperties
+        {
+            get;
+            set;
+        }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public ObjectEntryUsageFlags Flags; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Buffer Buffer; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public IndexType IndexType; 
+        internal static unsafe QueueFamilyProperties2 MarshalFrom(Interop.QueueFamilyProperties2* value)
+        {
+            QueueFamilyProperties2 result = new QueueFamilyProperties2();
+            result.QueueFamilyProperties = value->QueueFamilyProperties;
+            return result;
+        }
     }
 }

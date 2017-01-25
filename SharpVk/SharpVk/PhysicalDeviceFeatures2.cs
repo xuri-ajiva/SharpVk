@@ -23,34 +23,41 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
-using System.Runtime.InteropServices;
 
-namespace SharpVk.Interop
+namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// <para>
+    /// Structure describing the fine-grained features that can be supported by
+    /// an implementation.
+    /// </para>
+    /// <para>
+    /// The pname:pNext chain of this structure is used to extend the structure
+    /// with features defined by extensions. This structure can: be used in
+    /// flink:vkGetPhysicalDeviceFeatures2KHR or can: be in the pname:pNext
+    /// chain of a slink:VkDeviceCreateInfo structure, in which case it
+    /// controls which features are enabled in the device in lieu of
+    /// pname:pEnabledFeatures.
+    /// </para>
     /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct ObjectTableIndexBufferEntry
+    public struct PhysicalDeviceFeatures2
     {
         /// <summary>
-        /// 
+        /// pname:features is a structure of type
+        /// slink:VkPhysicalDeviceFeatures describing the fine-grained features
+        /// of the Vulkan 1.0 API.
         /// </summary>
-        public ObjectEntryType Type; 
+        public PhysicalDeviceFeatures Features
+        {
+            get;
+            set;
+        }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public ObjectEntryUsageFlags Flags; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Buffer Buffer; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public IndexType IndexType; 
+        internal static unsafe PhysicalDeviceFeatures2 MarshalFrom(Interop.PhysicalDeviceFeatures2* value)
+        {
+            PhysicalDeviceFeatures2 result = new PhysicalDeviceFeatures2();
+            result.Features = value->Features;
+            return result;
+        }
     }
 }

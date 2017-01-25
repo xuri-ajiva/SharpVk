@@ -32,17 +32,23 @@ namespace SharpVk
     /// </para>
     /// <para>
     /// The first &lt;&lt;synchronization-dependencies-access-scopes, access
-    /// scope&gt;&gt; is limited to access to the memory backing the specified
+    /// scope&gt;&gt; is limited to access to memory through the specified
     /// buffer range, via access types in the
     /// &lt;&lt;synchronization-access-masks, source access mask&gt;&gt;
-    /// specified by pname:srcAccessMask.
+    /// specified by pname:srcAccessMask. If pname:srcAccessMask includes
+    /// ename:VK_ACCESS_HOST_WRITE_BIT, memory writes performed by that access
+    /// type are also made visible, as that access type is not performed
+    /// through a resource.
     /// </para>
     /// <para>
     /// The second &lt;&lt;synchronization-dependencies-access-scopes, access
-    /// scope&gt;&gt; is limited to access to the memory backing the specified
+    /// scope&gt;&gt; is limited to access to memory through the specified
     /// buffer range, via access types in the
     /// &lt;&lt;synchronization-access-masks, destination access mask&gt;&gt;
-    /// specified by pname:dstAccessMask.
+    /// specified by pname:dstAccessMask. If pname:dstAccessMask includes
+    /// ename:VK_ACCESS_HOST_WRITE_BIT or ename:VK_ACCESS_HOST_READ_BIT,
+    /// available memory writes are also made visible to accesses of those
+    /// types, as those access types are not performed through a resource.
     /// </para>
     /// <para>
     /// If pname:srcQueueFamilyIndex is not equal to pname:dstQueueFamilyIndex,
@@ -86,7 +92,7 @@ namespace SharpVk
         /// <summary>
         /// pname:srcQueueFamilyIndex is the source queue family for a
         /// &lt;&lt;synchronization-queue-transfers, queue family ownership
-        /// transfer&gt;&gt;
+        /// transfer&gt;&gt;.
         /// </summary>
         public uint SourceQueueFamilyIndex
         {
@@ -97,7 +103,7 @@ namespace SharpVk
         /// <summary>
         /// pname:dstQueueFamilyIndex is the destination queue family for a
         /// &lt;&lt;synchronization-queue-transfers, queue family ownership
-        /// transfer&gt;&gt;
+        /// transfer&gt;&gt;.
         /// </summary>
         public uint DestinationQueueFamilyIndex
         {

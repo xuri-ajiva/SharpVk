@@ -399,7 +399,57 @@ namespace SharpVk
         /// <summary>
         /// -
         /// </summary>
+        PhysicalDeviceFeatures2 = 1000059000, 
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        PhysicalDeviceProperties2 = 1000059001, 
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        FormatProperties2 = 1000059002, 
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        ImageFormatProperties2 = 1000059003, 
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        PhysicalDeviceImageFormatInfo2 = 1000059004, 
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        QueueFamilyProperties2 = 1000059005, 
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        PhysicalDeviceMemoryProperties2 = 1000059006, 
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        SparseImageFormatProperties2 = 1000059007, 
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        PhysicalDeviceSparseImageFormatInfo2 = 1000059008, 
+        
+        /// <summary>
+        /// -
+        /// </summary>
         ValidationFlags = 1000061000, 
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        ViSurfaceCreateInfoNn = 1000062000, 
         
         /// <summary>
         /// -
@@ -430,5 +480,30 @@ namespace SharpVk
         /// -
         /// </summary>
         DeviceGeneratedCommandsFeaturesNvx = 1000086005, 
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        SurfaceCapabilities2 = 1000090000, 
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        DisplayPowerInfo = 1000091000, 
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        DeviceEventInfo = 1000091001, 
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        DisplayEventInfo = 1000091002, 
+        
+        /// <summary>
+        /// -
+        /// </summary>
+        SwapchainCounterCreateInfo = 1000091003, 
     }
 }

@@ -86,6 +86,7 @@
     <Compile Include="CommandPoolCreateFlags.cs" />
     <Compile Include="CommandPoolCreateInfo.cs" />
     <Compile Include="CommandPoolResetFlags.cs" />
+    <Compile Include="CommandPoolTrimFlags.cs" />
     <Compile Include="CommandProcessCommandsInfo.cs" />
     <Compile Include="CommandReserveSpaceForCommandsInfo.cs" />
     <Compile Include="CompareOp.cs" />
@@ -126,6 +127,8 @@
     <Compile Include="Device.cs" />
     <Compile Include="DeviceCreateFlags.cs" />
     <Compile Include="DeviceCreateInfo.cs" />
+    <Compile Include="DeviceEventInfo.cs" />
+    <Compile Include="DeviceEventType.cs" />
     <Compile Include="DeviceGeneratedCommandsFeatures.cs" />
     <Compile Include="DeviceGeneratedCommandsLimits.cs" />
     <Compile Include="DeviceMemory.cs" />
@@ -133,6 +136,8 @@
     <Compile Include="DeviceQueueCreateInfo.cs" />
     <Compile Include="DispatchIndirectCommand.cs" />
     <Compile Include="Display.cs" />
+    <Compile Include="DisplayEventInfo.cs" />
+    <Compile Include="DisplayEventType.cs" />
     <Compile Include="DisplayMode.cs" />
     <Compile Include="DisplayModeCreateFlags.cs" />
     <Compile Include="DisplayModeCreateInfo.cs" />
@@ -141,6 +146,8 @@
     <Compile Include="DisplayPlaneAlphaFlags.cs" />
     <Compile Include="DisplayPlaneCapabilities.cs" />
     <Compile Include="DisplayPlaneProperties.cs" />
+    <Compile Include="DisplayPowerInfo.cs" />
+    <Compile Include="DisplayPowerState.cs" />
     <Compile Include="DisplayPresentInfo.cs" />
     <Compile Include="DisplayProperties.cs" />
     <Compile Include="DisplaySurfaceCreateFlags.cs" />
@@ -168,6 +175,7 @@
     <Compile Include="Format.cs" />
     <Compile Include="FormatFeatureFlags.cs" />
     <Compile Include="FormatProperties.cs" />
+    <Compile Include="FormatProperties2.cs" />
     <Compile Include="Framebuffer.cs" />
     <Compile Include="FramebufferCreateFlags.cs" />
     <Compile Include="FramebufferCreateInfo.cs" />
@@ -180,6 +188,7 @@
     <Compile Include="ImageCreateFlags.cs" />
     <Compile Include="ImageCreateInfo.cs" />
     <Compile Include="ImageFormatProperties.cs" />
+    <Compile Include="ImageFormatProperties2.cs" />
     <Compile Include="ImageLayout.cs" />
     <Compile Include="ImageMemoryBarrier.cs" />
     <Compile Include="ImageResolve.cs" />
@@ -245,15 +254,18 @@
     <Compile Include="Interop\DescriptorSetLayoutCreateInfo.cs" />
     <Compile Include="Interop\Device.cs" />
     <Compile Include="Interop\DeviceCreateInfo.cs" />
+    <Compile Include="Interop\DeviceEventInfo.cs" />
     <Compile Include="Interop\DeviceGeneratedCommandsFeatures.cs" />
     <Compile Include="Interop\DeviceGeneratedCommandsLimits.cs" />
     <Compile Include="Interop\DeviceMemory.cs" />
     <Compile Include="Interop\DeviceQueueCreateInfo.cs" />
     <Compile Include="Interop\Display.cs" />
+    <Compile Include="Interop\DisplayEventInfo.cs" />
     <Compile Include="Interop\DisplayMode.cs" />
     <Compile Include="Interop\DisplayModeCreateInfo.cs" />
     <Compile Include="Interop\DisplayModeProperties.cs" />
     <Compile Include="Interop\DisplayPlaneProperties.cs" />
+    <Compile Include="Interop\DisplayPowerInfo.cs" />
     <Compile Include="Interop\DisplayPresentInfo.cs" />
     <Compile Include="Interop\DisplayProperties.cs" />
     <Compile Include="Interop\DisplaySurfaceCreateInfo.cs" />
@@ -265,6 +277,7 @@
     <Compile Include="Interop\ExternalMemoryImageCreateInfo.cs" />
     <Compile Include="Interop\Fence.cs" />
     <Compile Include="Interop\FenceCreateInfo.cs" />
+    <Compile Include="Interop\FormatProperties2.cs" />
     <Compile Include="Interop\Framebuffer.cs" />
     <Compile Include="Interop\FramebufferCreateInfo.cs" />
     <Compile Include="Interop\GraphicsPipelineCreateInfo.cs" />
@@ -272,6 +285,7 @@
     <Compile Include="Interop\Image.cs" />
     <Compile Include="Interop\ImageBlit.cs" />
     <Compile Include="Interop\ImageCreateInfo.cs" />
+    <Compile Include="Interop\ImageFormatProperties2.cs" />
     <Compile Include="Interop\ImageMemoryBarrier.cs" />
     <Compile Include="Interop\ImageView.cs" />
     <Compile Include="Interop\ImageViewCreateInfo.cs" />
@@ -294,9 +308,14 @@
     <Compile Include="Interop\ObjectTablePushConstantEntry.cs" />
     <Compile Include="Interop\ObjectTableVertexBufferEntry.cs" />
     <Compile Include="Interop\PhysicalDevice.cs" />
+    <Compile Include="Interop\PhysicalDeviceFeatures2.cs" />
+    <Compile Include="Interop\PhysicalDeviceImageFormatInfo2.cs" />
     <Compile Include="Interop\PhysicalDeviceLimits.cs" />
     <Compile Include="Interop\PhysicalDeviceMemoryProperties.cs" />
+    <Compile Include="Interop\PhysicalDeviceMemoryProperties2.cs" />
     <Compile Include="Interop\PhysicalDeviceProperties.cs" />
+    <Compile Include="Interop\PhysicalDeviceProperties2.cs" />
+    <Compile Include="Interop\PhysicalDeviceSparseImageFormatInfo2.cs" />
     <Compile Include="Interop\Pipeline.cs" />
     <Compile Include="Interop\PipelineCache.cs" />
     <Compile Include="Interop\PipelineCacheCreateInfo.cs" />
@@ -317,6 +336,7 @@
     <Compile Include="Interop\QueryPool.cs" />
     <Compile Include="Interop\QueryPoolCreateInfo.cs" />
     <Compile Include="Interop\Queue.cs" />
+    <Compile Include="Interop\QueueFamilyProperties2.cs" />
     <Compile Include="Interop\RenderPass.cs" />
     <Compile Include="Interop\RenderPassBeginInfo.cs" />
     <Compile Include="Interop\RenderPassCreateInfo.cs" />
@@ -327,6 +347,7 @@
     <Compile Include="Interop\ShaderModule.cs" />
     <Compile Include="Interop\ShaderModuleCreateInfo.cs" />
     <Compile Include="Interop\SparseBufferMemoryBindInfo.cs" />
+    <Compile Include="Interop\SparseImageFormatProperties2.cs" />
     <Compile Include="Interop\SparseImageMemoryBind.cs" />
     <Compile Include="Interop\SparseImageMemoryBindInfo.cs" />
     <Compile Include="Interop\SparseImageOpaqueMemoryBindInfo.cs" />
@@ -335,9 +356,12 @@
     <Compile Include="Interop\SubmitInfo.cs" />
     <Compile Include="Interop\SubpassDescription.cs" />
     <Compile Include="Interop\Surface.cs" />
+    <Compile Include="Interop\SurfaceCapabilities2.cs" />
     <Compile Include="Interop\Swapchain.cs" />
+    <Compile Include="Interop\SwapchainCounterCreateInfo.cs" />
     <Compile Include="Interop\SwapchainCreateInfo.cs" />
     <Compile Include="Interop\ValidationFlags.cs" />
+    <Compile Include="Interop\ViSurfaceCreateInfo.cs" />
     <Compile Include="Interop\WaylandSurfaceCreateInfo.cs" />
     <Compile Include="Interop\Win32KeyedMutexAcquireReleaseInfo.cs" />
     <Compile Include="Interop\Win32SurfaceCreateInfo.cs" />
@@ -372,9 +396,14 @@
     <Compile Include="Offset3D.cs" />
     <Compile Include="PhysicalDevice.cs" />
     <Compile Include="PhysicalDeviceFeatures.cs" />
+    <Compile Include="PhysicalDeviceFeatures2.cs" />
+    <Compile Include="PhysicalDeviceImageFormatInfo2.cs" />
     <Compile Include="PhysicalDeviceLimits.cs" />
     <Compile Include="PhysicalDeviceMemoryProperties.cs" />
+    <Compile Include="PhysicalDeviceMemoryProperties2.cs" />
     <Compile Include="PhysicalDeviceProperties.cs" />
+    <Compile Include="PhysicalDeviceProperties2.cs" />
+    <Compile Include="PhysicalDeviceSparseImageFormatInfo2.cs" />
     <Compile Include="PhysicalDeviceSparseProperties.cs" />
     <Compile Include="PhysicalDeviceType.cs" />
     <Compile Include="Pipeline.cs" />
@@ -425,6 +454,7 @@
     <Compile Include="QueryType.cs" />
     <Compile Include="Queue.cs" />
     <Compile Include="QueueFamilyProperties.cs" />
+    <Compile Include="QueueFamilyProperties2.cs" />
     <Compile Include="QueueFlags.cs" />
     <Compile Include="RasterizationOrder.cs" />
     <Compile Include="Rect2D.cs" />
@@ -450,6 +480,7 @@
     <Compile Include="SparseBufferMemoryBindInfo.cs" />
     <Compile Include="SparseImageFormatFlags.cs" />
     <Compile Include="SparseImageFormatProperties.cs" />
+    <Compile Include="SparseImageFormatProperties2.cs" />
     <Compile Include="SparseImageMemoryBind.cs" />
     <Compile Include="SparseImageMemoryBindInfo.cs" />
     <Compile Include="SparseImageMemoryRequirements.cs" />
@@ -481,9 +512,12 @@
     <Compile Include="Surface.cs" />
     <Compile Include="Surface.partial.cs" />
     <Compile Include="SurfaceCapabilities.cs" />
+    <Compile Include="SurfaceCapabilities2.cs" />
+    <Compile Include="SurfaceCounterFlags.cs" />
     <Compile Include="SurfaceFormat.cs" />
     <Compile Include="SurfaceTransformFlags.cs" />
     <Compile Include="Swapchain.cs" />
+    <Compile Include="SwapchainCounterCreateInfo.cs" />
     <Compile Include="SwapchainCreateFlags.cs" />
     <Compile Include="SwapchainCreateInfo.cs" />
     <Compile Include="SystemAllocationScope.cs" />
@@ -496,6 +530,8 @@
     <Compile Include="VertexInputBindingDescription.cs" />
     <Compile Include="VertexInputRate.cs" />
     <Compile Include="Viewport.cs" />
+    <Compile Include="ViSurfaceCreateFlags.cs" />
+    <Compile Include="ViSurfaceCreateInfo.cs" />
     <Compile Include="WaylandSurfaceCreateFlags.cs" />
     <Compile Include="WaylandSurfaceCreateInfo.cs" />
     <Compile Include="Win32KeyedMutexAcquireReleaseInfo.cs" />

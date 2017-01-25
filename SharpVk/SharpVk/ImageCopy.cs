@@ -29,7 +29,26 @@ using System.Text;
 namespace SharpVk
 {
     /// <summary>
+    /// <para>
     /// Structure specifying an image copy operation.
+    /// </para>
+    /// <para>
+    /// ifdef::VK_KHR_maintenance1[] For ename:VK_IMAGE_TYPE_3D images, copies
+    /// are performed slice by slice starting with the pname:z member of the
+    /// pname:srcOffset or pname:dstOffset, and copying pname:depth slices. For
+    /// images with multiple layers, copies are performed layer by layer
+    /// starting with the pname:baseArrayLayer member of the
+    /// pname:srcSubresource or pname:dstSubresource and copying
+    /// pname:layerCount layers. Image data can: be copied between images with
+    /// different image types. If one image is ename:VK_IMAGE_TYPE_3D and the
+    /// other image is ename:VK_IMAGE_TYPE_2D with multiple layers, then each
+    /// slice is copied to or from a different layer.
+    /// endif::VK_KHR_maintenance1[] ifndef::VK_KHR_maintenance1[] Copies are
+    /// done layer by layer starting with pname:baseArrayLayer member of
+    /// pname:srcSubresource for the source and pname:dstSubresource for the
+    /// destination. pname:layerCount layers are copied to the destination
+    /// image. endif::VK_KHR_maintenance1[]
+    /// </para>
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct ImageCopy
