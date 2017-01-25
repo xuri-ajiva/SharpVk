@@ -41,12 +41,12 @@ namespace SharpVk
         /// ename:VK_OBJECT_ENTRY_USAGE_GRAPHICS_BIT_NVX indicates that the
         /// resource is bound to ename:VK_PIPELINE_BIND_POINT_GRAPHICS
         /// </summary>
-        GraphicsBit = 1 << 0, 
+        Graphics = 1 << 0, 
         
         /// <summary>
         /// ename:VK_OBJECT_ENTRY_USAGE_COMPUTE_BIT_NVX indicates that the
         /// resource is bound to ename:VK_PIPELINE_BIND_POINT_COMPUTE
         /// </summary>
-        ComputeBit = 1 << 1, 
+        Compute = 1 << 1, 
     }
 }

@@ -74,7 +74,7 @@ namespace SharpVk
         
         internal unsafe void MarshalTo(Interop.CommandReserveSpaceForCommandsInfo* pointer)
         {
-            pointer->SType = StructureType.CommandReserveSpaceForCommandsInfoNvx;
+            pointer->SType = StructureType.CommandReserveSpaceForCommandsInfo;
             pointer->Next = null;
             this.ObjectTable?.MarshalTo(&pointer->ObjectTable);
             this.IndirectCommandsLayout?.MarshalTo(&pointer->IndirectCommandsLayout);

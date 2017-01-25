@@ -69,21 +69,21 @@ namespace SharpVk
         /// implementation-dependent order, which is not guaranteed to be
         /// coherent across multiple invocations.
         /// </summary>
-        UnorderedSequencesBit = 1 << 0, 
+        UnorderedSequences = 1 << 0, 
         
         /// <summary>
         /// ename:VK_INDIRECT_COMMANDS_LAYOUT_USAGE_SPARSE_SEQUENCES_BIT_NVX
         /// indicates that there is likely a high difference between allocated
         /// number of sequences and actually used.
         /// </summary>
-        SparseSequencesBit = 1 << 1, 
+        SparseSequences = 1 << 1, 
         
         /// <summary>
         /// ename:VK_INDIRECT_COMMANDS_LAYOUT_USAGE_EMPTY_EXECUTIONS_BIT_NVX
         /// indicates that there is likely many draw or dispatch calls that are
         /// zero-sized (zero grid dimension, no primitives to render).
         /// </summary>
-        EmptyExecutionsBit = 1 << 2, 
+        EmptyExecutions = 1 << 2, 
         
         /// <summary>
         /// ename:VK_INDIRECT_COMMANDS_LAYOUT_USAGE_INDEXED_SEQUENCES_BIT_NVX
@@ -91,6 +91,6 @@ namespace SharpVk
         /// indexed from 0..sequencesUsed but a user provided sname:VkBuffer
         /// encoding the index is provided.
         /// </summary>
-        IndexedSequencesBit = 1 << 3, 
+        IndexedSequences = 1 << 3, 
     }
 }

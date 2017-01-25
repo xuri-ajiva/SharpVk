@@ -449,37 +449,37 @@ namespace SharpVk
         /// <summary>
         /// -
         /// </summary>
-        ViSurfaceCreateInfoNn = 1000062000, 
+        ViSurfaceCreateInfo = 1000062000, 
         
         /// <summary>
         /// -
         /// </summary>
-        ObjectTableCreateInfoNvx = 1000086000, 
+        ObjectTableCreateInfo = 1000086000, 
         
         /// <summary>
         /// -
         /// </summary>
-        IndirectCommandsLayoutCreateInfoNvx = 1000086001, 
+        IndirectCommandsLayoutCreateInfo = 1000086001, 
         
         /// <summary>
         /// -
         /// </summary>
-        CommandProcessCommandsInfoNvx = 1000086002, 
+        CommandProcessCommandsInfo = 1000086002, 
         
         /// <summary>
         /// -
         /// </summary>
-        CommandReserveSpaceForCommandsInfoNvx = 1000086003, 
+        CommandReserveSpaceForCommandsInfo = 1000086003, 
         
         /// <summary>
         /// -
         /// </summary>
-        DeviceGeneratedCommandsLimitsNvx = 1000086004, 
+        DeviceGeneratedCommandsLimits = 1000086004, 
         
         /// <summary>
         /// -
         /// </summary>
-        DeviceGeneratedCommandsFeaturesNvx = 1000086005, 
+        DeviceGeneratedCommandsFeatures = 1000086005, 
         
         /// <summary>
         /// -

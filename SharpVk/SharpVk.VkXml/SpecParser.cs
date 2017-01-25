@@ -14,18 +14,18 @@ namespace SharpVk.VkXml
 {
     public class SpecParser
     {
-        private static readonly string[] knownExtensions = new[] { "khr", "ext", "nv", "amd" };
+        //private static readonly string[] knownExtensions = new[] { "khr", "ext", "nv", "amd" };
 
-        //HACK The VK_NV_win32_keyed_mutex extension is not properly
-        // documented, so hardcode these values till the spec is fixed
-        private static readonly Dictionary<string, string> missingLenMappings = new Dictionary<string, string>
-        {
-            //{ "VkWin32KeyedMutexAcquireReleaseInfoNV.AcquireSyncs", "acquireCount" },
-            //{ "VkWin32KeyedMutexAcquireReleaseInfoNV.AcquireKeys", "acquireCount" },
-            //{ "VkWin32KeyedMutexAcquireReleaseInfoNV.AcquireTimeoutMilliseconds", "acquireCount" },
-            //{ "VkWin32KeyedMutexAcquireReleaseInfoNV.ReleaseSyncs", "releaseCount" },
-            //{ "VkWin32KeyedMutexAcquireReleaseInfoNV.ReleaseKeys", "releaseCount" }
-        };
+        ////HACK The VK_NV_win32_keyed_mutex extension is not properly
+        //// documented, so hardcode these values till the spec is fixed
+        //private static readonly Dictionary<string, string> missingLenMappings = new Dictionary<string, string>
+        //{
+        //    //{ "VkWin32KeyedMutexAcquireReleaseInfoNV.AcquireSyncs", "acquireCount" },
+        //    //{ "VkWin32KeyedMutexAcquireReleaseInfoNV.AcquireKeys", "acquireCount" },
+        //    //{ "VkWin32KeyedMutexAcquireReleaseInfoNV.AcquireTimeoutMilliseconds", "acquireCount" },
+        //    //{ "VkWin32KeyedMutexAcquireReleaseInfoNV.ReleaseSyncs", "releaseCount" },
+        //    //{ "VkWin32KeyedMutexAcquireReleaseInfoNV.ReleaseKeys", "releaseCount" }
+        //};
 
         private static readonly Parser<string> firstPart = from head in Parse.Letter
                                                            from tail in Parse.Lower.Many()
@@ -155,6 +155,22 @@ namespace SharpVk.VkXml
         {
             var vkXml = this.xmlCache.GetVkXml();
 
+            var knownExtensions = new List<string>();
+
+            foreach (var vkExtension in vkXml.Element("registry").Element("extensions").Elements("extension"))
+            {
+                string name = vkExtension.Attribute("name").Value;
+
+                var nameParts = name.Split('_');
+
+                string extensionSuffix = nameParts[1].ToLower();
+
+                if (!knownExtensions.Contains(extensionSuffix))
+                {
+                    knownExtensions.Add(extensionSuffix);
+                }
+            }
+
             var typeXml = new Dictionary<string, ParsedType>();
 
             foreach (var vkType in vkXml.Element("registry").Element("types").Elements("type"))
@@ -192,7 +208,7 @@ namespace SharpVk.VkXml
 
                 string extension;
 
-                string[] nameParts = GetNameParts(category == TypeCategory.funcpointer ? name.Substring(4) : name, out extension);
+                string[] nameParts = GetNameParts(category == TypeCategory.funcpointer ? name.Substring(4) : name, out extension, knownExtensions);
 
                 // VkDisplayModeKHR has two parents defined, but associated
                 // handle should cover the requirements for the second
@@ -274,11 +290,11 @@ namespace SharpVk.VkXml
                     // Capture member name without array suffix
                     string memberExtension;
 
-                    string[] memberNameParts = GetNameParts(memberName, out memberExtension, false);
+                    string[] memberNameParts = GetNameParts(memberName, out memberExtension, knownExtensions, false);
 
                     string typeExtension;
 
-                    string[] typeNameParts = GetNameParts(memberType, out typeExtension, true);
+                    string[] typeNameParts = GetNameParts(memberType, out typeExtension, knownExtensions, true);
 
                     string typeWithoutExtension = typeNameParts != null
                                                     ? "Vk" + string.Join("", typeNameParts.Select(CapitaliseFirst))
@@ -332,7 +348,7 @@ namespace SharpVk.VkXml
 
                         string paramExtension;
 
-                        string[] paramNameParts = GetNameParts(paramName, out paramExtension, false);
+                        string[] paramNameParts = GetNameParts(paramName, out paramExtension, knownExtensions, false);
 
                         newType.Members.Add(new ParsedMember
                         {
@@ -357,7 +373,7 @@ namespace SharpVk.VkXml
 
                 string extension;
 
-                string[] nameParts = GetNameParts(name, out extension);
+                string[] nameParts = GetNameParts(name, out extension, knownExtensions);
 
                 var newEnum = new ParsedEnum
                 {
@@ -389,7 +405,7 @@ namespace SharpVk.VkXml
                         value = value.Trim('(', ')');
                     }
 
-                    IEnumerable<string> fieldNameParts = GetEnumFieldNameParts(nameParts, fieldName);
+                    IEnumerable<string> fieldNameParts = GetEnumFieldNameParts(nameParts, fieldName, knownExtensions);
 
                     newEnum.Fields.Add(fieldName, new ParsedEnumField
                     {
@@ -413,7 +429,7 @@ namespace SharpVk.VkXml
 
                 string extension;
 
-                string[] nameParts = GetNameParts(name, out extension);
+                string[] nameParts = GetNameParts(name, out extension, knownExtensions);
 
                 string[] verbExceptions = new[] { "cmd", "queue", "device" };
 
@@ -450,11 +466,11 @@ namespace SharpVk.VkXml
 
                     string paramExtension;
 
-                    string[] paramNameParts = GetNameParts(paramName, out paramExtension, false);
+                    string[] paramNameParts = GetNameParts(paramName, out paramExtension, knownExtensions, false);
 
                     string typeExtension;
 
-                    string[] typeNameParts = GetNameParts(paramType, out typeExtension, true);
+                    string[] typeNameParts = GetNameParts(paramType, out typeExtension, knownExtensions, true);
 
                     string typeWithoutExtension = typeNameParts != null
                                                     ? "Vk" + string.Join("", typeNameParts.Select(CapitaliseFirst))
@@ -479,11 +495,11 @@ namespace SharpVk.VkXml
 
             var vkExtensions = vkXml.Element("registry").Element("extensions").Elements("extension").Where(x => x.Attribute("supported").Value == "vulkan");
 
-            var filteredSpec = FilterRequiredElement(typeXml, enumXml, commandXml, vkFeature, vkExtensions);
+            var filteredSpec = FilterRequiredElement(typeXml, enumXml, commandXml, vkFeature, vkExtensions, knownExtensions);
 
             foreach (var defineType in typeXml.Values.Where(x => x.Category == TypeCategory.define && x.VkName.StartsWith("VK_API_VERSION_")))
             {
-                IEnumerable<string> fieldNameParts = GetEnumFieldNameParts(null, defineType.VkName);
+                IEnumerable<string> fieldNameParts = GetEnumFieldNameParts(null, defineType.VkName, knownExtensions);
 
                 filteredSpec.Constants.Add(defineType.VkName, new ParsedEnumField
                 {
@@ -603,7 +619,7 @@ namespace SharpVk.VkXml
             return comment;
         }
 
-        private static IEnumerable<string> GetEnumFieldNameParts(string[] nameParts, string fieldName)
+        private static IEnumerable<string> GetEnumFieldNameParts(string[] nameParts, string fieldName, IEnumerable<string> knownExtensions)
         {
             var fieldNameParts = fieldName.Split('_')
                                             .Select(x => x.ToLower())
@@ -667,32 +683,16 @@ namespace SharpVk.VkXml
 
                 dimensions = lenResult.Value.ToArray();
             }
-            else
-            {
-                string key = $"{name}.{memberName}";
-
-                string lenMember;
-
-                if (missingLenMappings.TryGetValue(key, out lenMember))
-                {
-                    dimensions = new[]
-                    {
-                        new ParsedLen
-                        {
-                            Type = LenType.Expression,
-                            Value = new ParsedExpressionToken
-                            {
-                                Value = lenMember
-                            }
-                        }
-                    };
-                }
-            }
 
             return dimensions;
         }
 
-        private static ParsedSpec FilterRequiredElement(Dictionary<string, ParsedType> typeXml, Dictionary<string, ParsedEnum> enumXml, Dictionary<string, ParsedCommand> commandXml, XElement vkFeature, IEnumerable<XElement> extensions)
+        private static ParsedSpec FilterRequiredElement(Dictionary<string, ParsedType> typeXml,
+                                                        Dictionary<string, ParsedEnum> enumXml,
+                                                        Dictionary<string, ParsedCommand> commandXml,
+                                                        XElement vkFeature,
+                                                        IEnumerable<XElement> extensions,
+                                                        IEnumerable<string> knownExtensions)
         {
             var requiredTypes = new List<string>();
             var requiredCommand = new Dictionary<string, string>();
@@ -726,7 +726,7 @@ namespace SharpVk.VkXml
                 int extensionNumber = int.Parse(extension.Attribute("number").Value);
                 string extensionType = extension.Attribute("type")?.Value;
 
-                var extensionNameParts = GetEnumFieldNameParts(null, extensionName).ToArray();
+                var extensionNameParts = GetEnumFieldNameParts(null, extensionName, knownExtensions).ToArray();
 
                 foreach (var requirement in extension.Elements("require").Elements())
                 {
@@ -764,7 +764,7 @@ namespace SharpVk.VkXml
                                     value = -value;
                                 }
 
-                                var nameParts = GetEnumFieldNameParts(extendedEnum.NameParts, vkName);
+                                var nameParts = GetEnumFieldNameParts(extendedEnum.NameParts, vkName, knownExtensions);
 
                                 extendedEnum.Fields.Add(vkName, new ParsedEnumField
                                 {
@@ -777,7 +777,7 @@ namespace SharpVk.VkXml
                             {
                                 string value = requirement.Attribute("value").Value;
 
-                                var nameParts = GetEnumFieldNameParts(extensionNameParts, vkName);
+                                var nameParts = GetEnumFieldNameParts(extensionNameParts, vkName, knownExtensions);
 
                                 result.Constants.Add(vkName, new ParsedEnumField
                                 {
@@ -943,8 +943,22 @@ namespace SharpVk.VkXml
             public string Extension;
         }
 
-        public static string[] GetNameParts(string vkName, out string extension, bool hasVkPrefix = true)
+        public static string[] GetNameParts(string vkName, out string extension, IEnumerable<string> knownExtensions, bool hasVkPrefix = true)
         {
+            extension = null;
+
+            //foreach (var possibleExtension in knownExtensions)
+            //{
+            //    if(vkName.EndsWith(possibleExtension))
+            //    {
+            //        extension = possibleExtension;
+
+            //        vkName = vkName.Substring(vkName.Length - extension.Length);
+
+            //        break;
+            //    }
+            //}
+
             var result = namePartsParser.TryParse(vkName);
 
             if (result.WasSuccessful && (!hasVkPrefix || result.Value.Parts[0] == "vk"))

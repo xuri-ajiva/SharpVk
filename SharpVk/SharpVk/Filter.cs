@@ -44,6 +44,6 @@ namespace SharpVk
         /// <summary>
         /// -
         /// </summary>
-        CubicImg = 1000015000, 
+        Cubic = 1000015000, 
     }
 }

@@ -53,7 +53,7 @@ namespace SharpVk
         
         internal unsafe void MarshalTo(Interop.DeviceGeneratedCommandsFeatures* pointer)
         {
-            pointer->SType = StructureType.DeviceGeneratedCommandsFeaturesNvx;
+            pointer->SType = StructureType.DeviceGeneratedCommandsFeatures;
             pointer->Next = null;
             pointer->ComputeBindingPointSupport = this.ComputeBindingPointSupport;
         }

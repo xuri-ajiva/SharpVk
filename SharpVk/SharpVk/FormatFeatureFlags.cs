@@ -161,7 +161,7 @@ namespace SharpVk
         /// <summary>
         /// -
         /// </summary>
-        SampledImageFilterCubicBitImg = 13, 
+        SampledImageFilterCubicBit = 13, 
         
         /// <summary>
         /// -

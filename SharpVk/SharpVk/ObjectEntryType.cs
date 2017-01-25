@@ -52,26 +52,26 @@ namespace SharpVk
         /// <summary>
         /// -
         /// </summary>
-        DescriptorSetNvx = 0, 
+        DescriptorSet = 0, 
         
         /// <summary>
         /// -
         /// </summary>
-        PipelineNvx = 1, 
+        Pipeline = 1, 
         
         /// <summary>
         /// -
         /// </summary>
-        IndexBufferNvx = 2, 
+        IndexBuffer = 2, 
         
         /// <summary>
         /// -
         /// </summary>
-        VertexBufferNvx = 3, 
+        VertexBuffer = 3, 
         
         /// <summary>
         /// -
         /// </summary>
-        PushConstantNvx = 4, 
+        PushConstant = 4, 
     }
 }

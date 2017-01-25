@@ -53,41 +53,41 @@ namespace SharpVk
         /// <summary>
         /// -
         /// </summary>
-        PipelineNvx = 0, 
+        Pipeline = 0, 
         
         /// <summary>
         /// -
         /// </summary>
-        DescriptorSetNvx = 1, 
+        DescriptorSet = 1, 
         
         /// <summary>
         /// -
         /// </summary>
-        IndexBufferNvx = 2, 
+        IndexBuffer = 2, 
         
         /// <summary>
         /// -
         /// </summary>
-        VertexBufferNvx = 3, 
+        VertexBuffer = 3, 
         
         /// <summary>
         /// -
         /// </summary>
-        PushConstantNvx = 4, 
+        PushConstant = 4, 
         
         /// <summary>
         /// -
         /// </summary>
-        DrawIndexedNvx = 5, 
+        DrawIndexed = 5, 
         
         /// <summary>
         /// -
         /// </summary>
-        DrawNvx = 6, 
+        Draw = 6, 
         
         /// <summary>
         /// -
         /// </summary>
-        DispatchNvx = 7, 
+        Dispatch = 7, 
     }
 }

@@ -1432,41 +1432,41 @@ namespace SharpVk
         /// <summary>
         /// -
         /// </summary>
-        Pvrtc12bppUNormBlockImg = 1000054000, 
+        Pvrtc12bppUNormBlock = 1000054000, 
         
         /// <summary>
         /// -
         /// </summary>
-        Pvrtc14bppUNormBlockImg = 1000054001, 
+        Pvrtc14bppUNormBlock = 1000054001, 
         
         /// <summary>
         /// -
         /// </summary>
-        Pvrtc22bppUNormBlockImg = 1000054002, 
+        Pvrtc22bppUNormBlock = 1000054002, 
         
         /// <summary>
         /// -
         /// </summary>
-        Pvrtc24bppUNormBlockImg = 1000054003, 
+        Pvrtc24bppUNormBlock = 1000054003, 
         
         /// <summary>
         /// -
         /// </summary>
-        Pvrtc12bppSrgbBlockImg = 1000054004, 
+        Pvrtc12bppSrgbBlock = 1000054004, 
         
         /// <summary>
         /// -
         /// </summary>
-        Pvrtc14bppSrgbBlockImg = 1000054005, 
+        Pvrtc14bppSrgbBlock = 1000054005, 
         
         /// <summary>
         /// -
         /// </summary>
-        Pvrtc22bppSrgbBlockImg = 1000054006, 
+        Pvrtc22bppSrgbBlock = 1000054006, 
         
         /// <summary>
         /// -
         /// </summary>
-        Pvrtc24bppSrgbBlockImg = 1000054007, 
+        Pvrtc24bppSrgbBlock = 1000054007, 
     }
 }

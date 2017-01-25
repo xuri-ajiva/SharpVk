@@ -206,6 +206,6 @@ namespace SharpVk
         /// flink:vkCmdProcessCommandsNVX is handled.
         /// endif::VK_NVX_device_generated_commands[]
         /// </summary>
-        CommandProcessBitNvx = 17, 
+        CommandProcessBit = 17, 
     }
 }

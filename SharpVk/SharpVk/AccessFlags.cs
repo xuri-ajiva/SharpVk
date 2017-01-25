@@ -197,13 +197,13 @@ namespace SharpVk
         /// ename:VK_ACCESS_COMMAND_PROCESS_READ_BIT_NVX: Reads from
         /// sname:VkBuffer inputs to flink:vkCmdProcessCommandsNVX.
         /// </summary>
-        CommandProcessReadBitNvx = 17, 
+        CommandProcessReadBit = 17, 
         
         /// <summary>
         /// ename:VK_ACCESS_COMMAND_PROCESS_WRITE_BIT_NVX: Writes to the target
         /// command buffer in flink:vkCmdProcessCommandsNVX.
         /// endif::VK_NVX_device_generated_commands[]
         /// </summary>
-        CommandProcessWriteBitNvx = 18, 
+        CommandProcessWriteBit = 18, 
     }
 }
