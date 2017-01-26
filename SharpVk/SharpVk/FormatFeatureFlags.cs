@@ -161,16 +161,16 @@ namespace SharpVk
         /// <summary>
         /// -
         /// </summary>
-        SampledImageFilterCubicBit = 13, 
+        SampledImageFilterCubic = 1 << 13, 
         
         /// <summary>
         /// -
         /// </summary>
-        TransferSourceBit = 14, 
+        TransferSource = 1 << 14, 
         
         /// <summary>
         /// -
         /// </summary>
-        TransferDestinationBit = 15, 
+        TransferDestination = 1 << 15, 
     }
 }

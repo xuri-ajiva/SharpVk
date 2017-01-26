@@ -743,6 +743,7 @@ namespace SharpVk.VkXml
                                 var extendedEnum = enumXml[requirement.Attribute("extends").Value];
 
                                 int value;
+                                bool isBitmask = false;
 
                                 if (requirement.Attribute("offset") != null)
                                 {
@@ -753,6 +754,7 @@ namespace SharpVk.VkXml
                                 else if (requirement.Attribute("bitpos") != null)
                                 {
                                     value = int.Parse(requirement.Attribute("bitpos").Value);
+                                    isBitmask = true;
                                 }
                                 else
                                 {
@@ -770,7 +772,8 @@ namespace SharpVk.VkXml
                                 {
                                     VkName = vkName,
                                     Value = value.ToString(),
-                                    NameParts = nameParts.ToArray()
+                                    NameParts = nameParts.ToArray(),
+                                    IsBitmask = isBitmask
                                 });
                             }
                             else

@@ -95,6 +95,6 @@ namespace SharpVk
         /// ename:VK_IMAGE_VIEW_TYPE_2D or ename:VK_IMAGE_VIEW_TYPE_2D_ARRAY.
         /// endif::VK_KHR_maintenance1[]
         /// </summary>
-        ImageCreate2dArrayCompatibleBit = 5, 
+        ImageCreate2dArrayCompatible = 1 << 5, 
     }
 }
