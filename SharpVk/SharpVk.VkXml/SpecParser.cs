@@ -47,6 +47,7 @@ namespace SharpVk.VkXml
                                                         .Or(Parse.String("ID"))
                                                         .Or(Parse.String("UUID"))
                                                         .Or(Parse.String("RandR"))
+                                                        .Or(Parse.String("SMPTE2086"))
                                                         .Text();
 
         private static readonly Parser<NameParts> namePartsParser = from first in firstPart
@@ -108,7 +109,15 @@ namespace SharpVk.VkXml
 
         private static readonly Parser<ParsedExpression> latexSubexpression = latexMultiplicativeExpression;
 
-        private static readonly Parser<ParsedExpression> latexExpression = latexSubexpression.Contained(Parse.String("latexmath:[$"), Parse.String("$]"));
+        private static readonly Parser<string> latexExpressionStart = from start in Parse.String("latexmath:[").Text()
+                                                                      from dollar in Parse.Char('$').Optional()
+                                                                      select start;
+
+        private static readonly Parser<char> latexExpressionEnd = from dollar in Parse.Char('$').Optional()
+                                                                  from end in Parse.Char(']')
+                                                                  select end;
+
+        private static readonly Parser<ParsedExpression> latexExpression = latexSubexpression.Contained(latexExpressionStart, latexExpressionEnd);
 
         private static readonly Parser<ParsedExpression> lenExpressionParser = latexExpression
                                                                                     .Or(lenDereferenceParser)
@@ -597,9 +606,12 @@ namespace SharpVk.VkXml
             {
                 string commandName = vkDocCommand.Attribute("name").Value;
 
-                var parsedCommand = filteredSpec.Commands[commandName];
+                if (filteredSpec.Commands.ContainsKey(commandName))
+                {
+                    var parsedCommand = filteredSpec.Commands[commandName];
 
-                parsedCommand.Comment = new List<string> { vkDocCommand.Attribute("summary").Value };
+                    parsedCommand.Comment = new List<string> { vkDocCommand.Attribute("summary").Value };
+                }
             }
 
             return filteredSpec;

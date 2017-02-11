@@ -153,8 +153,8 @@ namespace SharpVk
         
         /// <summary>
         /// ename:VK_IMAGE_LAYOUT_PRESENT_SRC_KHR: must: only be used for
-        /// presenting a swapchain image for display. A swapchain's image must:
-        /// be transitioned to this layout before calling
+        /// presenting a presentable image for display. A swapchain's image
+        /// must: be transitioned to this layout before calling
         /// flink:vkQueuePresentKHR, and must: be transitioned away from this
         /// layout after calling flink:vkAcquireNextImageKHR.
         /// endif::VK_KHR_swapchain[]

@@ -41,8 +41,8 @@ namespace SharpVk
     /// If this structure is not present, or if pname:pAttributes is set to
     /// `NULL`, default security descriptor values will be used, and child
     /// processes created by the application will not inherit the handle, as
-    /// described in the MSDN documentation for ``Synchronization Object
-    /// Security and Access Rights''[1]. Further, if the structure is not
+    /// described in the MSDN documentation for "`Synchronization Object
+    /// Security and Access Rights`"[1]. Further, if the structure is not
     /// present, the access rights will be
     /// </para>
     /// <para>

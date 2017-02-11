@@ -68,6 +68,12 @@ namespace SharpVk
     /// first access scope includes no access, as if pname:srcAccessMask was
     /// `0`.
     /// </para>
+    /// <para>
+    /// If pname:oldLayout is not equal to pname:newLayout, then the memory
+    /// barrier defines an &lt;&lt;synchronization-image-layout-transitions,
+    /// image layout transition&gt;&gt; for the specified image subresource
+    /// range.
+    /// </para>
     /// </summary>
     public struct ImageMemoryBarrier
     {

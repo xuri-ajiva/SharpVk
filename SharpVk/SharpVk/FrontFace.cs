@@ -38,13 +38,13 @@ namespace SharpVk
     /// </para>
     /// <para>
     /// [latexmath]
-    /// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ \[
-    /// a = -{1 \over 2}\sum_{i=0}^{n-1} x_f^i y_f^{i \oplus 1} - x_f^{i \oplus
-    /// 1} y_f^i \]
+    /// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ a
+    /// = -{1 \over 2}\sum_{i=0}^{n-1} x_f^i y_f^{i \oplus 1} - x_f^{i \oplus
+    /// 1} y_f^i
     /// ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     /// </para>
     /// <para>
-    /// where latexmath:[$x_f^i$] and latexmath:[$y_f^i$] are the [eq]#x# and
+    /// where latexmath:[x_f^i] and latexmath:[y_f^i] are the [eq]#x# and
     /// [eq]#y# framebuffer coordinates of the [eq]##i##th vertex of the
     /// [eq]#n#-vertex polygon (vertices are numbered starting at zero for the
     /// purposes of this computation) and [eq]#i {oplus} 1# is [eq]#(i + 1) mod

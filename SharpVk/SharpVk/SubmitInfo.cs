@@ -27,7 +27,18 @@ using System;
 namespace SharpVk
 {
     /// <summary>
+    /// <para>
     /// Structure specifying a queue submit operation.
+    /// </para>
+    /// <para>
+    /// The order that command buffers appear in pname:pCommandBuffers is used
+    /// to determine &lt;&lt;synchronization-submission-order, submission
+    /// order&gt;&gt;, and thus all the &lt;&lt;synchronization-implicit,
+    /// implicit ordering guarantees&gt;&gt; that respect it. Other than these
+    /// implicit ordering guarantees and any &lt;&lt;synchronization, explicit
+    /// synchronization primitives&gt;&gt;, these command buffers may: overlap
+    /// or otherwise execute out of order.
+    /// </para>
     /// </summary>
     public struct SubmitInfo
     {
@@ -56,9 +67,7 @@ namespace SharpVk
         
         /// <summary>
         /// pname:pCommandBuffers is a pointer to an array of command buffers
-        /// to execute in the batch. The command buffers submitted in a batch
-        /// begin execution in the order they appear in pname:pCommandBuffers,
-        /// but may: complete out of order.
+        /// to execute in the batch.
         /// </summary>
         public CommandBuffer[] CommandBuffers
         {

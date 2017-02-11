@@ -31,22 +31,10 @@ namespace SharpVk
     /// Specify the type of an object handle.
     /// </para>
     /// <para>
-    /// === Command Buffer Markers
-    /// </para>
-    /// <para>
-    /// Typical Vulkan applications will submit many command buffers in each
-    /// frame, with each command buffer containing a large number of individual
-    /// commands. Being able to logically annotate regions of command buffers
-    /// that belong together as well as hierarchically subdivide the frame is
-    /// important to a developer's ability to navigate the commands viewed
-    /// holistically.
-    /// </para>
-    /// <para>
-    /// The marker commands fname:vkCmdDebugMarkerBeginEXT and
-    /// fname:vkCmdDebugMarkerEndEXT define regions of a series of commands
-    /// that are grouped together, and they can be nested to create a
-    /// hierarchy. The fname:vkCmdDebugMarkerInsertEXT command allows insertion
-    /// of a single label within a command buffer.
+    /// [NOTE] .Note ==== The primary expected use of
+    /// ename:VK_ERROR_VALIDATION_FAILED_EXT is for validation layer testing.
+    /// It is not expected that an application would see this error code during
+    /// normal use of the validation layers. ====
     /// </para>
     /// </summary>
     public enum DebugReportObjectType
@@ -218,22 +206,26 @@ namespace SharpVk
         DebugReport = 28, 
         
         /// <summary>
-        /// -
+        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_DISPLAY_KHR_EXT is a
+        /// sname:VkDisplayKHR.
         /// </summary>
         DisplayKhr = 29, 
         
         /// <summary>
-        /// -
+        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_DISPLAY_MODE_KHR_EXT is a
+        /// sname:VkDisplayModeKHR.
         /// </summary>
         DisplayModeKhr = 30, 
         
         /// <summary>
-        /// -
+        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_OBJECT_TABLE_NVX_EXT is a
+        /// sname:VkObjectTableNVX.
         /// </summary>
         ObjectTableNvx = 31, 
         
         /// <summary>
-        /// -
+        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_INDIRECT_COMMANDS_LAYOUT_NVX_EXT
+        /// is a sname:VkIndirectCommandsLayoutNVX.
         /// </summary>
         IndirectCommandsLayoutNvx = 32, 
     }

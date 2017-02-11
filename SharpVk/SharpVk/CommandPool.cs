@@ -35,7 +35,7 @@ namespace SharpVk
     /// Command pools are opaque objects that command buffer memory is
     /// allocated from, and which allow the implementation to amortize the cost
     /// of resource creation across multiple command buffers. Command pools are
-    /// application-synchronized, meaning that a command pool must: not be used
+    /// externally synchronized, meaning that a command pool must: not be used
     /// concurrently in multiple threads. That includes use via recording
     /// commands on any command buffers allocated from the pool, as well as
     /// operations that allocate, free, and reset command buffers or the pool
@@ -158,7 +158,7 @@ namespace SharpVk
             {
                 try
                 {
-                    var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkTrimCommandPoolKHR>("vkTrimCommandPoolKHR", "instance");
+                    var commandDelegate = this.commandCache.GetCommandDelegate<Interop.vkTrimCommandPoolKHR>("vkTrimCommandPoolKHR", "device");
                     commandDelegate(this.parent.handle, this.handle, flags);
                 }
                 finally

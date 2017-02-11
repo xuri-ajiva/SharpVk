@@ -192,7 +192,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public const uint SpecVersion = 4; 
+        public const uint SpecVersion = 5; 
         
         /// <summary>
         /// 
@@ -304,7 +304,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public const uint SpecVersion = 3; 
+        public const uint SpecVersion = 4; 
         
         /// <summary>
         /// 
@@ -688,12 +688,12 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public const uint SwapchainColorSpaceSpecVersion = 1; 
+        public const uint ColorSpaceSpecVersion = 1; 
         
         /// <summary>
         /// 
         /// </summary>
-        public const string SwapchainColorSpaceExtensionName = "VK_EXT_swapchain_colorspace"; 
+        public const string ColorSpaceExtensionName = "VK_EXT_swapchain_colorspace"; 
     }
     
     /// <summary>

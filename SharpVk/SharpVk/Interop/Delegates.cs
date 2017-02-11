@@ -82,12 +82,6 @@ namespace SharpVk.Interop
     /// Vulkan call being aborted returns a elink:VkResult, the layer will
     /// return ename:VK_ERROR_VALIDATION_FAILED_EXT.
     /// </para>
-    /// <para>
-    /// [NOTE] .Note ==== The primary expected use of
-    /// ename:VK_ERROR_VALIDATION_FAILED_EXT is for validation layer testing.
-    /// It is not expected that an application would see this error code during
-    /// normal use of the validation layers. ====
-    /// </para>
     /// </summary>
     public unsafe delegate Bool32 DebugReportCallbackDelegate(DebugReportFlags flags, DebugReportObjectType objectType, ulong @object, Size location, int messageCode, string layerPrefix, string message, IntPtr userData);
     

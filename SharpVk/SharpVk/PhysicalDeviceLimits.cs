@@ -895,19 +895,19 @@ namespace SharpVk
         /// <summary>
         /// pname:viewportBoundsRange[2] is the [eq]#[minimum, maximum]# range
         /// that the corners of a viewport must: be contained in. This range
-        /// must: be at least + -- [eq]#[-2 {times} pname:size, 2 {times}
-        /// pname:size - 1]#, where [eq]#pname:size =
-        /// max(pname:maxViewportDimensions[0], maxViewportDimensions[1])# See
-        /// &lt;&lt;vertexpostproc-viewport,Controlling the Viewport&gt;&gt;.
-        /// [NOTE] .Note ==== The intent of the pname:viewportBoundsRange limit
-        /// is to allow a maximum sized viewport to be arbitrarily shifted
-        /// relative to the output target as long as at least some portion
-        /// intersects. This would give a bounds limit of [eq]#[-pname:size +
-        /// 1, 2 {times} pname:size - 1]# which would allow all possible
-        /// non-empty-set intersections of the output target and the viewport.
-        /// Since these numbers are typically powers of two, picking the signed
-        /// number range using the smallest possible number of bits ends up
-        /// with the specified range. ==== --
+        /// must: be at least [eq]#[-2 {times} pname:size, 2 {times} pname:size
+        /// - 1]#, where [eq]#pname:size = max(pname:maxViewportDimensions[0],
+        /// pname:maxViewportDimensions[1])#. See
+        /// &lt;&lt;vertexpostproc-viewport,Controlling the Viewport&gt;&gt;. +
+        /// -- [NOTE] .Note ==== The intent of the pname:viewportBoundsRange
+        /// limit is to allow a maximum sized viewport to be arbitrarily
+        /// shifted relative to the output target as long as at least some
+        /// portion intersects. This would give a bounds limit of
+        /// [eq]#[-pname:size + 1, 2 {times} pname:size - 1]# which would allow
+        /// all possible non-empty-set intersections of the output target and
+        /// the viewport. Since these numbers are typically powers of two,
+        /// picking the signed number range using the smallest possible number
+        /// of bits ends up with the specified range. ==== --
         /// </summary>
         public float[] ViewportBoundsRange
         {

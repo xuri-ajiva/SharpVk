@@ -38,7 +38,7 @@ namespace SharpVk
     /// floating-point representation must: be used if the depth/stencil
     /// attachment has a floating-point depth component. If an [eq]#m#-bit
     /// fixed-point representation is used, we assume that it represents each
-    /// value latexmath:[$\frac{k}{2^m - 1}$], where [eq]#k {elem} { 0, 1, ...,
+    /// value latexmath:[\frac{k}{2^m - 1}], where [eq]#k {elem} { 0, 1, ...,
     /// 2^m^-1 }#, as [eq]#k# (e.g. 1.0 is represented in binary as a string of
     /// all ones).
     /// </para>

@@ -31,13 +31,13 @@ namespace SharpVk
     /// Bitmask specifying pipeline stages.
     /// </para>
     /// <para>
-    /// Several of the &lt;&lt;fundamentals-queueoperation-commandorder,
-    /// synchronization commands&gt;&gt; include pipeline stage parameters,
-    /// restricting the &lt;&lt;synchronization-dependencies-scopes,
-    /// synchronization scopes&gt;&gt; for that command to those stages. This
-    /// allows fine grained control over the exact execution dependencies and
-    /// accesses performed by action commands. Implementations should: use
-    /// these pipeline stages to avoid unnecessary stalls or cache flushing.
+    /// Several of the synchronization commands include pipeline stage
+    /// parameters, restricting the
+    /// &lt;&lt;synchronization-dependencies-scopes, synchronization
+    /// scopes&gt;&gt; for that command to just those stages. This allows fine
+    /// grained control over the exact execution dependencies and accesses
+    /// performed by action commands. Implementations should: use these
+    /// pipeline stages to avoid unnecessary stalls or cache flushing.
     /// </para>
     /// <para>
     /// ** ename:VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT **

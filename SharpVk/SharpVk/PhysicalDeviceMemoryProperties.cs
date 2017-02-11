@@ -58,7 +58,7 @@ namespace SharpVk
     /// all have similar performance characteristics, they may: all include
     /// ename:VK_MEMORY_HEAP_DEVICE_LOCAL_BIT. In a unified memory architecture
     /// (UMA) system, there is often only a single memory heap which is
-    /// considered to be equally ``local'' to the host and to the device, and
+    /// considered to be equally "`local`" to the host and to the device, and
     /// such an implementation must: advertise the heap as device-local.
     /// </para>
     /// <para>

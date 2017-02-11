@@ -71,7 +71,7 @@ namespace SharpVk
         /// fname:vkCmdBindIndexBuffer is equal to ename:VK_INDEX_TYPE_UINT32,
         /// or 0xFFFF when pname:indexType is equal to
         /// ename:VK_INDEX_TYPE_UINT16. Primitive restart is not allowed for
-        /// ``list'' topologies.
+        /// "`list`" topologies.
         /// </summary>
         public Bool32 PrimitiveRestartEnable
         {

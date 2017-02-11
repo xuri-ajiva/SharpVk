@@ -33,8 +33,8 @@ namespace SharpVk
     public struct CommandBufferAllocateInfo
     {
         /// <summary>
-        /// pname:commandPool is the name of the command pool that the command
-        /// buffers allocate their memory from.
+        /// pname:commandPool is the command pool from which the command
+        /// buffers are allocated.
         /// </summary>
         public CommandPool CommandPool
         {
