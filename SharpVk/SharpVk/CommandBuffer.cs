@@ -176,7 +176,7 @@ namespace SharpVk
                         else
                         {
                             var arrayValue = viewports.GetArrayValue();
-                            viewportsHandle = GCHandle.Alloc(arrayValue.Array);
+                            viewportsHandle = GCHandle.Alloc(arrayValue.Array, GCHandleType.Pinned);
                             marshalledViewports = (Viewport*)(viewportsHandle.AddrOfPinnedObject() + (int)(MemUtil.SizeOf<Viewport>() * arrayValue.Offset)).ToPointer();
                         }
                     }
@@ -216,7 +216,7 @@ namespace SharpVk
                         else
                         {
                             var arrayValue = scissors.GetArrayValue();
-                            scissorsHandle = GCHandle.Alloc(arrayValue.Array);
+                            scissorsHandle = GCHandle.Alloc(arrayValue.Array, GCHandleType.Pinned);
                             marshalledScissors = (Rect2D*)(scissorsHandle.AddrOfPinnedObject() + (int)(MemUtil.SizeOf<Rect2D>() * arrayValue.Offset)).ToPointer();
                         }
                     }
@@ -406,7 +406,7 @@ namespace SharpVk
                         else
                         {
                             var arrayValue = dynamicOffsets.GetArrayValue();
-                            dynamicOffsetsHandle = GCHandle.Alloc(arrayValue.Array);
+                            dynamicOffsetsHandle = GCHandle.Alloc(arrayValue.Array, GCHandleType.Pinned);
                             marshalledDynamicOffsets = (uint*)(dynamicOffsetsHandle.AddrOfPinnedObject() + (int)(MemUtil.SizeOf<uint>() * arrayValue.Offset)).ToPointer();
                         }
                     }
@@ -488,7 +488,7 @@ namespace SharpVk
                         else
                         {
                             var arrayValue = offsets.GetArrayValue();
-                            offsetsHandle = GCHandle.Alloc(arrayValue.Array);
+                            offsetsHandle = GCHandle.Alloc(arrayValue.Array, GCHandleType.Pinned);
                             marshalledOffsets = (DeviceSize*)(offsetsHandle.AddrOfPinnedObject() + (int)(MemUtil.SizeOf<DeviceSize>() * arrayValue.Offset)).ToPointer();
                         }
                     }
@@ -646,7 +646,7 @@ namespace SharpVk
                         else
                         {
                             var arrayValue = regions.GetArrayValue();
-                            regionsHandle = GCHandle.Alloc(arrayValue.Array);
+                            regionsHandle = GCHandle.Alloc(arrayValue.Array, GCHandleType.Pinned);
                             marshalledRegions = (BufferCopy*)(regionsHandle.AddrOfPinnedObject() + (int)(MemUtil.SizeOf<BufferCopy>() * arrayValue.Offset)).ToPointer();
                         }
                     }
@@ -690,7 +690,7 @@ namespace SharpVk
                         else
                         {
                             var arrayValue = regions.GetArrayValue();
-                            regionsHandle = GCHandle.Alloc(arrayValue.Array);
+                            regionsHandle = GCHandle.Alloc(arrayValue.Array, GCHandleType.Pinned);
                             marshalledRegions = (ImageCopy*)(regionsHandle.AddrOfPinnedObject() + (int)(MemUtil.SizeOf<ImageCopy>() * arrayValue.Offset)).ToPointer();
                         }
                     }
@@ -779,7 +779,7 @@ namespace SharpVk
                         else
                         {
                             var arrayValue = regions.GetArrayValue();
-                            regionsHandle = GCHandle.Alloc(arrayValue.Array);
+                            regionsHandle = GCHandle.Alloc(arrayValue.Array, GCHandleType.Pinned);
                             marshalledRegions = (BufferImageCopy*)(regionsHandle.AddrOfPinnedObject() + (int)(MemUtil.SizeOf<BufferImageCopy>() * arrayValue.Offset)).ToPointer();
                         }
                     }
@@ -823,7 +823,7 @@ namespace SharpVk
                         else
                         {
                             var arrayValue = regions.GetArrayValue();
-                            regionsHandle = GCHandle.Alloc(arrayValue.Array);
+                            regionsHandle = GCHandle.Alloc(arrayValue.Array, GCHandleType.Pinned);
                             marshalledRegions = (BufferImageCopy*)(regionsHandle.AddrOfPinnedObject() + (int)(MemUtil.SizeOf<BufferImageCopy>() * arrayValue.Offset)).ToPointer();
                         }
                     }
@@ -865,7 +865,7 @@ namespace SharpVk
                         else
                         {
                             var arrayValue = data.GetArrayValue();
-                            dataHandle = GCHandle.Alloc(arrayValue.Array);
+                            dataHandle = GCHandle.Alloc(arrayValue.Array, GCHandleType.Pinned);
                             marshalledData = (byte*)(dataHandle.AddrOfPinnedObject() + (int)(MemUtil.SizeOf<byte>() * arrayValue.Offset)).ToPointer();
                         }
                     }
@@ -927,7 +927,7 @@ namespace SharpVk
                         else
                         {
                             var arrayValue = ranges.GetArrayValue();
-                            rangesHandle = GCHandle.Alloc(arrayValue.Array);
+                            rangesHandle = GCHandle.Alloc(arrayValue.Array, GCHandleType.Pinned);
                             marshalledRanges = (ImageSubresourceRange*)(rangesHandle.AddrOfPinnedObject() + (int)(MemUtil.SizeOf<ImageSubresourceRange>() * arrayValue.Offset)).ToPointer();
                         }
                     }
@@ -969,7 +969,7 @@ namespace SharpVk
                         else
                         {
                             var arrayValue = ranges.GetArrayValue();
-                            rangesHandle = GCHandle.Alloc(arrayValue.Array);
+                            rangesHandle = GCHandle.Alloc(arrayValue.Array, GCHandleType.Pinned);
                             marshalledRanges = (ImageSubresourceRange*)(rangesHandle.AddrOfPinnedObject() + (int)(MemUtil.SizeOf<ImageSubresourceRange>() * arrayValue.Offset)).ToPointer();
                         }
                     }
@@ -1009,7 +1009,7 @@ namespace SharpVk
                         else
                         {
                             var arrayValue = attachments.GetArrayValue();
-                            attachmentsHandle = GCHandle.Alloc(arrayValue.Array);
+                            attachmentsHandle = GCHandle.Alloc(arrayValue.Array, GCHandleType.Pinned);
                             marshalledAttachments = (ClearAttachment*)(attachmentsHandle.AddrOfPinnedObject() + (int)(MemUtil.SizeOf<ClearAttachment>() * arrayValue.Offset)).ToPointer();
                         }
                     }
@@ -1030,7 +1030,7 @@ namespace SharpVk
                         else
                         {
                             var arrayValue = rects.GetArrayValue();
-                            rectsHandle = GCHandle.Alloc(arrayValue.Array);
+                            rectsHandle = GCHandle.Alloc(arrayValue.Array, GCHandleType.Pinned);
                             marshalledRects = (ClearRect*)(rectsHandle.AddrOfPinnedObject() + (int)(MemUtil.SizeOf<ClearRect>() * arrayValue.Offset)).ToPointer();
                         }
                     }
@@ -1075,7 +1075,7 @@ namespace SharpVk
                         else
                         {
                             var arrayValue = regions.GetArrayValue();
-                            regionsHandle = GCHandle.Alloc(arrayValue.Array);
+                            regionsHandle = GCHandle.Alloc(arrayValue.Array, GCHandleType.Pinned);
                             marshalledRegions = (ImageResolve*)(regionsHandle.AddrOfPinnedObject() + (int)(MemUtil.SizeOf<ImageResolve>() * arrayValue.Offset)).ToPointer();
                         }
                     }
@@ -1449,7 +1449,7 @@ namespace SharpVk
                         else
                         {
                             var arrayValue = values.GetArrayValue();
-                            valuesHandle = GCHandle.Alloc(arrayValue.Array);
+                            valuesHandle = GCHandle.Alloc(arrayValue.Array, GCHandleType.Pinned);
                             marshalledValues = (byte*)(valuesHandle.AddrOfPinnedObject() + (int)(MemUtil.SizeOf<byte>() * arrayValue.Offset)).ToPointer();
                         }
                     }

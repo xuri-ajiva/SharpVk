@@ -101,7 +101,7 @@ namespace SharpVk
                         else
                         {
                             var arrayValue = objectTableEntries.GetArrayValue();
-                            objectTableEntriesHandle = GCHandle.Alloc(arrayValue.Array);
+                            objectTableEntriesHandle = GCHandle.Alloc(arrayValue.Array, GCHandleType.Pinned);
                             marshalledObjectTableEntries = (ObjectTableEntry*)(objectTableEntriesHandle.AddrOfPinnedObject() + (int)(MemUtil.SizeOf<ObjectTableEntry>() * arrayValue.Offset)).ToPointer();
                             ObjectTableEntry** dataPointer = stackalloc ObjectTableEntry*[objectTableEntries.Length];
                             doubleMarshalledObjectTableEntries = dataPointer;
@@ -128,7 +128,7 @@ namespace SharpVk
                         else
                         {
                             var arrayValue = objectIndices.GetArrayValue();
-                            objectIndicesHandle = GCHandle.Alloc(arrayValue.Array);
+                            objectIndicesHandle = GCHandle.Alloc(arrayValue.Array, GCHandleType.Pinned);
                             marshalledObjectIndices = (uint*)(objectIndicesHandle.AddrOfPinnedObject() + (int)(MemUtil.SizeOf<uint>() * arrayValue.Offset)).ToPointer();
                         }
                     }
@@ -175,7 +175,7 @@ namespace SharpVk
                         else
                         {
                             var arrayValue = objectEntryTypes.GetArrayValue();
-                            objectEntryTypesHandle = GCHandle.Alloc(arrayValue.Array);
+                            objectEntryTypesHandle = GCHandle.Alloc(arrayValue.Array, GCHandleType.Pinned);
                             marshalledObjectEntryTypes = (ObjectEntryType*)(objectEntryTypesHandle.AddrOfPinnedObject() + (int)(MemUtil.SizeOf<ObjectEntryType>() * arrayValue.Offset)).ToPointer();
                         }
                     }
@@ -196,7 +196,7 @@ namespace SharpVk
                         else
                         {
                             var arrayValue = objectIndices.GetArrayValue();
-                            objectIndicesHandle = GCHandle.Alloc(arrayValue.Array);
+                            objectIndicesHandle = GCHandle.Alloc(arrayValue.Array, GCHandleType.Pinned);
                             marshalledObjectIndices = (uint*)(objectIndicesHandle.AddrOfPinnedObject() + (int)(MemUtil.SizeOf<uint>() * arrayValue.Offset)).ToPointer();
                         }
                     }
