@@ -1,4 +1,4 @@
-﻿namespace SharpVk.Generator.Specification
+﻿namespace SharpVk.Generator.Specification.Elements
 {
     public enum TypeCategory
     {

@@ -1,4 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SharpVk.Generator.Rules;
+using SharpVk.Generator.Specification.Elements;
+using SharpVk.Generator.Specification.Rules;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +11,13 @@ namespace SharpVk.Generator.Specification
     public class TypeElementReader
     {
         private readonly IVkXmlCache xmlCache;
+        private readonly NameParser nameParser;
         private readonly IEnumerable<ITypeExtensionRule> typeExtensions;
 
-        public TypeElementReader(IVkXmlCache xmlCache, IEnumerable<ITypeExtensionRule> typeExtensions)
+        public TypeElementReader(IVkXmlCache xmlCache, NameParser nameParser, IEnumerable<ITypeExtensionRule> typeExtensions)
         {
             this.xmlCache = xmlCache;
+            this.nameParser = nameParser;
             this.typeExtensions = typeExtensions;
         }
 
@@ -38,7 +43,7 @@ namespace SharpVk.Generator.Specification
                 {
                     parent = parent.Split(',').First();
                 }
-
+                
                 var newType = new TypeElement
                 {
                     VkName = name,
@@ -50,9 +55,11 @@ namespace SharpVk.Generator.Specification
                     IsTypePointer = isTypePointer
                 };
 
-                var extension = this.typeExtensions.FirstOrDefault(x => x.CanApply(vkType, newType));
-
-                extension?.Apply(vkType, newType, target);
+                if (!this.typeExtensions.ApplyFirst(vkType, newType, target))
+                {
+                    newType.NameParts = new[] { name };
+                    newType.Extension = null;
+                }
 
                 target.AddSingleton(newType);
             }

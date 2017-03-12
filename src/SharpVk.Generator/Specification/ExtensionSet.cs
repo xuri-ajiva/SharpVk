@@ -5,7 +5,6 @@ using System.Text;
 namespace SharpVk.Generator.Specification
 {
     public class ExtensionSet
-        : IExtensionSet
     {
         private IVkXmlCache xmlCache;
         private Lazy<IEnumerable<string>> knownExtensions;

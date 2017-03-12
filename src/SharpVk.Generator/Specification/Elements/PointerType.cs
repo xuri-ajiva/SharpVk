@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SharpVk.Generator.Specification
+namespace SharpVk.Generator.Specification.Elements
 {
     public enum PointerType
     {

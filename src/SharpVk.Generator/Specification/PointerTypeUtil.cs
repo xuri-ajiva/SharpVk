@@ -1,10 +1,15 @@
-﻿using System;
+﻿using SharpVk.Generator.Specification.Elements;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Xml;
+using System.Xml.Linq;
 
 namespace SharpVk.Generator.Specification
 {
-    public static class PointerTypeUtil
+    internal static class PointerTypeUtil
     {
-        public static PointerType Map(string typeString)
+        internal static PointerType Map(string typeString)
         {
             switch (typeString)
             {
@@ -26,6 +31,32 @@ namespace SharpVk.Generator.Specification
                 default:
                     throw new NotSupportedException(string.Format("Unknown pointer type string '{0}'.", typeString));
             }
+        }
+
+        internal static PointerType GetFrom(IEnumerable<XNode> typeNodes)
+        {
+            string typeString = typeNodes.Select(x =>
+            {
+                if (x.NodeType == XmlNodeType.Element)
+                {
+                    var element = (XElement)x;
+
+                    if (element.Name == "type")
+                    {
+                        return "@";
+                    }
+                    else
+                    {
+                        return ((XElement)x).Value;
+                    }
+                }
+                else
+                {
+                    return x.ToString();
+                }
+            }).Aggregate(string.Concat).Trim();
+
+            return Map(typeString);
         }
     }
 }

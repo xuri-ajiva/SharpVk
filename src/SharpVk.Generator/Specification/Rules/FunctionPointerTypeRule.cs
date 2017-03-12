@@ -1,15 +1,28 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SharpVk.Generator.Specification.Elements;
 using System.Linq;
 using System.Xml;
 using System.Xml.Linq;
 
-namespace SharpVk.Generator.Specification
+namespace SharpVk.Generator.Specification.Rules
 {
     public class FunctionPointerTypeRule
         : ITypeExtensionRule
     {
-        public void Apply(XElement typeXml, TypeElement type, IServiceCollection target)
+        private readonly NameParser nameParser;
+
+        public FunctionPointerTypeRule(NameParser nameParser)
         {
+            this.nameParser = nameParser;
+        }
+
+        public bool Apply(XElement typeXml, TypeElement type, IServiceCollection target)
+        {
+            if (type.Category != TypeCategory.funcpointer)
+            {
+                return false;
+            }
+
             string returnType = ((XText)typeXml.Nodes().First()).Value.Split(' ')[1];
 
             if (returnType.EndsWith("*"))
@@ -20,7 +33,8 @@ namespace SharpVk.Generator.Specification
             }
 
             type.Type = returnType;
-
+            
+            type.NameParts = this.nameParser.ParseFunctionPointer(type.VkName, out type.Extension);
 
             var functionTail = typeXml.Element("name").NodesAfterSelf();
 
@@ -33,23 +47,19 @@ namespace SharpVk.Generator.Specification
                 string typeString = pre + "@" + (post.Substring(0, post.Length - paramName.Length).Trim());
                 string paramType = typeElement.Value;
                 PointerType pointerType = PointerTypeUtil.Map(typeString);
-
-                //string paramExtension;
-
-                //string[] paramNameParts = GetNameParts(paramName, out paramExtension, knownExtensions, false);
+                
+                var paramNameParts = this.nameParser.GetNameParts(paramName, out string paramExtension);
 
                 type.Members.Add(new MemberElement
                 {
                     VkName = paramName,
                     Type = paramType,
                     PointerType = pointerType,
-                    //NameParts = paramNameParts,
-                    //Extension = paramExtension
+                    NameParts = paramNameParts
                 });
             }
-        }
 
-        public bool CanApply(XElement typeXml, TypeElement type)
-            => type.Category == TypeCategory.funcpointer;
+            return true;
+        }
     }
 }

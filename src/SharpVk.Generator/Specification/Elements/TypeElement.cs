@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace SharpVk.Generator.Specification
+namespace SharpVk.Generator.Specification.Elements
 {
     public class TypeElement
         : SpecElement
