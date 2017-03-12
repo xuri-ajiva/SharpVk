@@ -2,17 +2,18 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace SharpVk.Generator.Specification
 {
     public class TypeElementReader
     {
         private readonly IVkXmlCache xmlCache;
+        private readonly IEnumerable<ITypeExtensionRule> typeExtensions;
 
-        public TypeElementReader(IVkXmlCache xmlCache)
+        public TypeElementReader(IVkXmlCache xmlCache, IEnumerable<ITypeExtensionRule> typeExtensions)
         {
             this.xmlCache = xmlCache;
+            this.typeExtensions = typeExtensions;
         }
 
         public void ReadTo(IServiceCollection target)
@@ -20,18 +21,14 @@ namespace SharpVk.Generator.Specification
             foreach (var vkType in this.xmlCache.GetVkXml().Element("registry").Element("types").Elements("type"))
             {
                 string name = vkType.Attribute("name")?.Value ?? vkType.Element("name").Value;
-                var categoryAttribute = vkType.Attribute("category");
-                TypeCategory category = categoryAttribute == null
-                                                            ? TypeCategory.None
-                                                            : (TypeCategory)Enum.Parse(typeof(TypeCategory), categoryAttribute.Value);
+                Enum.TryParse(vkType.Attribute("category")?.Value, out TypeCategory category);
                 string requires = vkType.Attribute("requires")?.Value;
                 string parent = vkType.Attribute("parent")?.Value;
-                string returnedOnly = vkType.Attribute("returnedonly")?.Value;
-                bool isReturnedOnly = returnedOnly != null
-                                        ? bool.Parse(returnedOnly)
-                                        : false;
+                bool.TryParse(vkType.Attribute("returnedonly")?.Value, out bool isReturnedOnly);
                 bool isTypePointer = false;
+
                 string type = vkType.Element("type")?.Value;
+
                 if (type == "VK_MAKE_VERSION")
                 {
                     type += vkType.Element("type").NextNode.ToString();
@@ -52,6 +49,10 @@ namespace SharpVk.Generator.Specification
                     Type = type,
                     IsTypePointer = isTypePointer
                 };
+
+                var extension = this.typeExtensions.FirstOrDefault(x => x.CanApply(vkType, newType));
+
+                extension?.Apply(vkType, newType, target);
 
                 target.AddSingleton(newType);
             }

@@ -20,6 +20,7 @@ namespace SharpVk.Generator
 
             specServices.AddSingleton<IVkXmlCache>(new VkXmlCache(tempFilePath));
             specServices.AddSingleton<IExtensionSet, ExtensionSet>();
+            specServices.AddSingleton<ITypeExtensionRule, FunctionPointerTypeRule>();
 
             var specProvider = specServices.BuildServiceProvider();
 
@@ -33,7 +34,15 @@ namespace SharpVk.Generator
 
             foreach (var typeElement in collectionProvider.GetServices<TypeElement>())
             {
-                Console.WriteLine($"{typeElement.Category}: {typeElement.VkName}");
+                string typeInfo = typeElement.Type == null
+                                        ? ""
+                                        : ", " + typeElement.Type;
+
+                Console.WriteLine($"{typeElement.Category}: {typeElement.VkName}" + typeInfo);
+                foreach (var member in typeElement.Members)
+                {
+                    Console.WriteLine($"\t{member.Type} {member.VkName}");
+                }
             }
 
             Console.WriteLine("Done");

@@ -1,13 +1,16 @@
-﻿namespace SharpVk.Generator.Specification
+﻿using System.Collections.Generic;
+
+namespace SharpVk.Generator.Specification
 {
     public class TypeElement
+        : SpecElement
     {
-        public string VkName;
-        public string Type;
         public TypeCategory Category;
         public string Requires;
         public string Parent;
         public bool IsReturnedOnly;
         public bool IsTypePointer;
+
+        public List<MemberElement> Members = new List<MemberElement>();
     }
 }
