@@ -62,15 +62,21 @@ namespace SharpVk.Generator.Specification
                 pointerCount--;
             }
 
-            return GetNameParts(vkName, out extension);
+            if (vkName.Contains("_"))
+            {
+                extension = null;
+
+                return SplitSnakeCase(vkName);
+            }
+            else
+            {
+                return GetNameParts(vkName, out extension);
+            }
         }
 
         public IEnumerable<string> ParseEnumField(string fieldName, string[] enumNameParts)
         {
-            var fieldNameParts = fieldName.Split('_')
-                                            .Select(x => x.ToLower())
-                                            .ToArray()
-                                            .AsEnumerable();
+            IEnumerable<string> fieldNameParts = SplitSnakeCase(fieldName);
 
             if (fieldNameParts.First() == "vk")
             {
@@ -94,6 +100,11 @@ namespace SharpVk.Generator.Specification
             }
 
             return fieldNameParts;
+        }
+
+        private static string[] SplitSnakeCase(string value)
+        {
+            return value.Split('_').Select(x => x.ToLower()).ToArray();
         }
 
         public string[] GetNameParts(string vkName, out string extension)

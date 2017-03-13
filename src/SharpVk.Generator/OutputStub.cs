@@ -8,22 +8,22 @@ namespace SharpVk.Generator
     public class OutputStub
         : IOutput
     {
-        private readonly IEnumerable<EnumElement> enums;
+        private readonly IEnumerable<CommandElement> commands;
 
-        public OutputStub(IEnumerable<EnumElement> enums)
+        public OutputStub(IEnumerable<CommandElement> commands)
         {
-            this.enums = enums;
+            this.commands = commands;
         }
 
         public void Run()
         {
-            foreach (var enumElement in this.enums)
+            foreach (var commandElement in this.commands)
             {
-                Console.WriteLine(enumElement.VkName);
+                Console.WriteLine(commandElement.VkName);
 
-                foreach(var field in enumElement.Fields)
+                foreach (var field in commandElement.Params)
                 {
-                    Console.WriteLine($"\t{field.Key}\t{field.Value.Value}");
+                    Console.WriteLine($"\t{field.Type}\t{field.VkName}");
                 }
             }
         }

@@ -1,8 +1,7 @@
 ﻿namespace SharpVk.Generator.Specification.Elements
 {
-    public class MemberElement
+    public class ParamElement
         : ChildElement
     {
-        public string Values;
     }
 }

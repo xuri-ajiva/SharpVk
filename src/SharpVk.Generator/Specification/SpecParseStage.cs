@@ -26,13 +26,9 @@ namespace SharpVk.Generator.Specification
 
             var specProvider = specServices.BuildServiceProvider();
 
-            var typeReader = specProvider.CreateInstance<TypeElementReader>();
-
-            typeReader.ReadTo(services);
-
-            var enumReader = specProvider.CreateInstance<EnumElementReader>();
-
-            enumReader.ReadTo(services);
+            specProvider.CreateInstance<TypeElementReader>().ReadTo(services);
+            specProvider.CreateInstance<EnumElementReader>().ReadTo(services);
+            specProvider.CreateInstance<CommandElementReader>().ReadTo(services);
         }
     }
 }
