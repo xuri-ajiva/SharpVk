@@ -1,4 +1,5 @@
-﻿using SharpVk.Generator.Pipeline;
+﻿using SharpVk.Generator.Collation;
+using SharpVk.Generator.Pipeline;
 using SharpVk.Generator.Specification;
 using System;
 
@@ -10,6 +11,7 @@ namespace SharpVk.Generator
         {
             var pipeline = PipelineBuilder.Create<LoadXmlStage>()
                                             .Extend<SpecParseStage>()
+                                            .Extend<CollationStage>()
                                             .Build<OutputStub>();
 
             pipeline.Run();

@@ -1,5 +1,5 @@
-﻿using SharpVk.Generator.Pipeline;
-using SharpVk.Generator.Specification.Elements;
+﻿using SharpVk.Generator.Collation;
+using SharpVk.Generator.Pipeline;
 using System;
 using System.Collections.Generic;
 
@@ -8,23 +8,18 @@ namespace SharpVk.Generator
     public class OutputStub
         : IOutput
     {
-        private readonly IEnumerable<CommandElement> commands;
+        private readonly Dictionary<string, TypeDeclaration> types;
 
-        public OutputStub(IEnumerable<CommandElement> commands)
+        public OutputStub(Dictionary<string, TypeDeclaration> types)
         {
-            this.commands = commands;
+            this.types = types;
         }
 
         public void Run()
         {
-            foreach (var commandElement in this.commands)
+            foreach (var typeDecl in this.types)
             {
-                Console.WriteLine(commandElement.VkName);
-
-                foreach (var field in commandElement.Params)
-                {
-                    Console.WriteLine($"\t{field.Type}\t{field.VkName}");
-                }
+                Console.WriteLine($"{typeDecl.Key} {typeDecl.Value.Name} {typeDecl.Value.Data.Category} {typeDecl.Value.RequiresMarshalling}");
             }
         }
     }
