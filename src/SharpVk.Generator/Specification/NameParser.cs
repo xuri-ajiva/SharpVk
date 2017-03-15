@@ -1,8 +1,6 @@
 ﻿using Sprache;
 using System.Collections.Generic;
 using System.Linq;
-using System;
-using SharpVk.Generator.Specification.Elements;
 
 namespace SharpVk.Generator.Specification
 {

@@ -1,41 +1,25 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SharpVk.Generator.Pipeline;
-using SharpVk.Generator.Specification.Elements;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace SharpVk.Generator.Collation
 {
     public class CollationStage
         : IStage
     {
-        private IServiceProvider provider;
+        private TypeCollator typeCollator;
+        private CommandCollator commandCollator;
 
         public CollationStage(IServiceProvider provider)
         {
-            this.provider = provider;
+            this.typeCollator = provider.CreateInstance<TypeCollator>();
+            this.commandCollator = provider.CreateInstance<CommandCollator>();
         }
 
         public void Configure(IServiceCollection services)
         {
-            //var collationServices = new ServiceCollection();
-
-            //void AddElementSet<T>()
-            //    where T: SpecElement
-            //{
-            //    var elements = this.provider.GetServices<T>();
-
-            //    collationServices.AddSingleton(elements.ToDictionary(x => x.VkName, x => x));
-            //}
-
-            //AddElementSet<TypeElement>();
-            //AddElementSet<EnumElement>();
-            //AddElementSet<CommandElement>();
-
-            //var collationProvider = collationServices.BuildServiceProvider();
-
-            this.provider.CreateInstance<TypeCollator>().CollateTo(services);
+            this.typeCollator.CollateTo(services);
+            this.commandCollator.CollateTo(services);
         }
     }
 }

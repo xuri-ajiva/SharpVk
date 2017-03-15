@@ -7,10 +7,10 @@ namespace SharpVk.Generator.Pipeline
 {
     public class Pipeline
     {
-        private readonly IEnumerable<Type> stages;
+        private readonly IEnumerable<Tuple<Type, Type>> stages;
         private readonly Type output;
 
-        internal Pipeline(IEnumerable<Type> stages, Type output)
+        internal Pipeline(IEnumerable<Tuple<Type, Type>> stages, Type output)
         {
             this.stages = stages;
             this.output = output;
@@ -20,22 +20,32 @@ namespace SharpVk.Generator.Pipeline
         {
             var services = new ServiceCollection();
 
-            var stage = (IStage)Activator.CreateInstance(this.stages.First());
+            var initial = this.stages.First();
+
+            var stage = (IStage)Activator.CreateInstance(initial.Item2);
 
             stage.Configure(services);
 
-            var provider = services.BuildServiceProvider();
-
-            foreach(var stageType in this.stages.Skip(1))
+            foreach (var stageType in this.stages.Skip(1))
             {
+                if (stageType.Item1 != null)
+                {
+                    var setup = (IStage)Activator.CreateInstance(stageType.Item1);
+
+                    setup.Configure(services);
+                }
+
+                var stageProvider = services.BuildServiceProvider();
+
                 services = new ServiceCollection();
 
-                stage = (IStage)ActivatorUtilities.CreateInstance(provider, stageType);
+                stage = (IStage)ActivatorUtilities.CreateInstance(stageProvider, stageType.Item2);
 
                 stage.Configure(services);
-
-                provider = services.BuildServiceProvider();
+                services.AddSingleton<IServiceCollection>(services);
             }
+
+            var provider = services.BuildServiceProvider();
 
             var output = (IOutput)ActivatorUtilities.CreateInstance(provider, this.output);
 

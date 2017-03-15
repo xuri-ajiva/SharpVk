@@ -1,34 +1,27 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SharpVk.Generator.Pipeline;
-using SharpVk.Generator.Specification.Rules;
 
 namespace SharpVk.Generator.Specification
 {
     public class SpecParseStage
         : IStage
     {
-        private readonly IVkXmlCache xmlCache;
+        private readonly TypeElementReader typeReader;
+        private readonly EnumElementReader enumReader;
+        private readonly CommandElementReader commandReader;
 
-        public SpecParseStage(IVkXmlCache xmlCache)
+        public SpecParseStage(TypeElementReader typeReader, EnumElementReader enumReader, CommandElementReader commandReader)
         {
-            this.xmlCache = xmlCache;
+            this.typeReader = typeReader;
+            this.enumReader = enumReader;
+            this.commandReader = commandReader;
         }
 
         public void Configure(IServiceCollection services)
         {
-            var specServices = new ServiceCollection();
-
-            specServices.AddSingleton(this.xmlCache);
-            specServices.AddSingleton<ExtensionSet>();
-            specServices.AddSingleton<NameParser>();
-            specServices.AddSingleton<ITypeExtensionRule, FunctionPointerTypeRule>();
-            specServices.AddSingleton<ITypeExtensionRule, MemberTypeRule>();
-
-            var specProvider = specServices.BuildServiceProvider();
-
-            specProvider.CreateInstance<TypeElementReader>().ReadTo(services);
-            specProvider.CreateInstance<EnumElementReader>().ReadTo(services);
-            specProvider.CreateInstance<CommandElementReader>().ReadTo(services);
+            this.typeReader.ReadTo(services);
+            this.enumReader.ReadTo(services);
+            this.commandReader.ReadTo(services);
         }
     }
 }

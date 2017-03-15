@@ -6,11 +6,11 @@ namespace SharpVk.Generator.Pipeline
 {
     public class PipelineBuilder
     {
-        private List<Type> stages = new List<Type>();
+        private List<Tuple<Type, Type>> stages = new List<Tuple<Type, Type>>();
 
         private PipelineBuilder(Type initialStage)
         {
-            this.stages.Add(initialStage);
+            this.AddStage(null, initialStage);
         }
 
         public static PipelineBuilder Create<T>()
@@ -22,9 +22,23 @@ namespace SharpVk.Generator.Pipeline
         public PipelineBuilder Extend<T>()
             where T : IStage
         {
-            this.stages.Add(typeof(T));
+            this.AddStage(null, typeof(T));
 
             return this;
+        }
+
+        public PipelineBuilder Extend<TSetup, TStage>()
+            where TSetup : IStage
+            where TStage : IStage
+        {
+            this.AddStage(typeof(TSetup), typeof(TStage));
+
+            return this;
+        }
+
+        private void AddStage(Type setup, Type stage)
+        {
+            this.stages.Add(Tuple.Create<Type, Type>(setup, stage));
         }
 
         public Pipeline Build<T>()

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace SharpVk.Generator.Specification.Elements
+﻿namespace SharpVk.Generator
 {
     public enum PointerType
     {

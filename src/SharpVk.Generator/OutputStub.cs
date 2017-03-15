@@ -2,6 +2,7 @@
 using SharpVk.Generator.Pipeline;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SharpVk.Generator
 {
@@ -9,17 +10,31 @@ namespace SharpVk.Generator
         : IOutput
     {
         private readonly Dictionary<string, TypeDeclaration> types;
+        private readonly IEnumerable<CommandDeclaration> commands;
 
-        public OutputStub(Dictionary<string, TypeDeclaration> types)
+        public OutputStub(Dictionary<string, TypeDeclaration> types, IEnumerable<CommandDeclaration> commands)
         {
             this.types = types;
+            this.commands = commands;
         }
 
         public void Run()
         {
-            foreach (var typeDecl in this.types)
+            //foreach (var typeDecl in this.types)
+            //{
+            //    Console.WriteLine($"{typeDecl.Key} {typeDecl.Value.Name} {typeDecl.Value.Data.Category} {typeDecl.Value.RequiresMarshalling}");
+
+            //    foreach (var memberDecl in typeDecl.Value.Members)
+            //    {
+            //        Console.WriteLine($"\t{memberDecl.Name}");
+            //    }
+            //}
+
+            foreach (var commandDecl in this.commands
+                                                .OrderBy(x=>x.HandleTypeName)
+                                                .ThenBy(x => x.VkName))
             {
-                Console.WriteLine($"{typeDecl.Key} {typeDecl.Value.Name} {typeDecl.Value.Data.Category} {typeDecl.Value.RequiresMarshalling}");
+                Console.WriteLine($"{commandDecl.VkName} => {this.types[commandDecl.HandleTypeName].Name}.{commandDecl.Name}");
             }
         }
     }

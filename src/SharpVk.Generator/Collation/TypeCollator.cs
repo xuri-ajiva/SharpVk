@@ -3,6 +3,7 @@ using SharpVk.Generator.Specification.Elements;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System;
 
 namespace SharpVk.Generator.Collation
 {
@@ -38,26 +39,30 @@ namespace SharpVk.Generator.Collation
         };
 
         private readonly IEnumerable<TypeElement> types;
+        private readonly NameFormatter nameFormatter;
+        private readonly IEnumerable<string> handleTypes;
 
-        public TypeCollator(IEnumerable<TypeElement> types)
+        public TypeCollator(IEnumerable<TypeElement> types, NameFormatter nameFormatter)
         {
             this.types = types;
+            this.nameFormatter = nameFormatter;
+
+            this.handleTypes = this.types.Where(x => x.Category == TypeCategory.handle)
+                                        .Select(x => x.VkName)
+                                        .ToArray();
         }
 
         public void CollateTo(IServiceCollection services)
         {
-            var handleTypes = this.types.Where(x => x.Category == TypeCategory.handle)
-                                        .Select(x => x.VkName)
-                                        .ToArray();
-
             var typeData = this.types
                                     .Where(x => x.Category != TypeCategory.define && x.Category != TypeCategory.include)
                                     .ToDictionary(x => x.VkName, x => new TypeDeclaration
                                     {
                                         Data = x,
-                                        Name = GetTypeName(x),
-                                        RequiresMarshalling = RequiresInterop(x, handleTypes),
-                                        IsPrimitive = x.Category == TypeCategory.basetype || x.Category == TypeCategory.None
+                                        Name = this.nameFormatter.FormatName(x),
+                                        RequiresMarshalling = RequiresMarshalling(x),
+                                        IsPrimitive = x.Category == TypeCategory.basetype || x.Category == TypeCategory.None,
+                                        Members = GetMembers(x).ToList()
                                     });
 
             bool newInteropTypes = true;
@@ -69,7 +74,7 @@ namespace SharpVk.Generator.Collation
                 foreach (var type in typeData.Values)
                 {
                     if (!type.RequiresMarshalling
-                            && type.Data.Members.Any(x => typeData[x.Type].RequiresMarshalling))
+                            && type.Members.Any(x => typeData[x.Type.VkName].RequiresMarshalling))
                     {
                         type.RequiresMarshalling = true;
 
@@ -97,23 +102,30 @@ namespace SharpVk.Generator.Collation
             services.AddSingleton(typeData);
         }
 
-        private static string GetTypeName(TypeElement type)
+        private IEnumerable<MemberDeclaration> GetMembers(TypeElement type)
         {
-            return type.NameParts//.Select(ExpandAbbreviations)
-                        .Select(x => x.FirstToUpper())
-                        .Aggregate(new StringBuilder(), (builder, value) => builder.Append(value))
-                        .ToString();
+            foreach(var member in type.Members)
+            {
+                yield return new MemberDeclaration
+                {
+                    Name = this.nameFormatter.FormatName(member),
+                    Type = new TypeReference
+                    {
+                        VkName = member.Type,
+                        PointerType = member.PointerType
+                    }
+                };
+            }
         }
 
-
-        private static bool RequiresInterop(TypeElement type, IEnumerable<string> handleTypes)
+        private bool RequiresMarshalling(TypeElement type)
         {
             return type.Category == TypeCategory.@struct
                 && type.Members.Any(y =>
                     y.FixedLength.Type != FixedLengthType.None
                         || (y.PointerType != PointerType.Value
                             && y.PointerType != PointerType.ConstValue
-                            || handleTypes.Contains(y.Type)));
+                            || this.handleTypes.Contains(y.Type)));
         }
     }
 }
