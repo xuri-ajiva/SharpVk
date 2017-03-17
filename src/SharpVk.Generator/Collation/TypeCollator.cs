@@ -9,35 +9,6 @@ namespace SharpVk.Generator.Collation
 {
     public class TypeCollator
     {
-        private static readonly Dictionary<string, string> primitiveTypes = new Dictionary<string, string>()
-        {
-            {"void", "void"},
-            {"char", "char"},
-            {"float", "float"},
-            {"uint8_t", "byte"},
-            {"uint32_t", "uint"},
-            {"DWORD", "uint"},
-            {"uint64_t", "ulong"},
-            {"int32_t", "int"},
-            {"size_t", "Size"},
-            {"HINSTANCE", "IntPtr" },
-            {"HWND", "IntPtr" },
-            {"HANDLE", "IntPtr" },
-            {"SECURITY_ATTRIBUTES", "SECURITY_ATTRIBUTES" },
-            {"ANativeWindow", "IntPtr" },
-            {"Display", "IntPtr" },
-            {"VisualID", "IntPtr" },
-            {"Window", "IntPtr" },
-            {"MirConnection", "IntPtr" },
-            {"MirSurface", "IntPtr" },
-            {"wl_display", "IntPtr" },
-            {"wl_surface", "IntPtr" },
-            {"xcb_connection_t", "IntPtr" },
-            {"xcb_visualid_t", "IntPtr" },
-            {"xcb_window_t", "IntPtr" },
-            {"RROutput", "IntPtr" }
-        };
-
         private readonly IEnumerable<TypeElement> types;
         private readonly NameFormatter nameFormatter;
         private readonly IEnumerable<string> handleTypes;
@@ -58,8 +29,9 @@ namespace SharpVk.Generator.Collation
                                     .Where(x => x.Category != TypeCategory.define && x.Category != TypeCategory.include)
                                     .ToDictionary(x => x.VkName, x => new TypeDeclaration
                                     {
-                                        Data = x,
+                                        VkName = x.VkName,
                                         Name = this.nameFormatter.FormatName(x),
+                                        Category = x.Category,
                                         RequiresMarshalling = RequiresMarshalling(x),
                                         IsPrimitive = x.Category == TypeCategory.basetype || x.Category == TypeCategory.None,
                                         Members = GetMembers(x).ToList()
@@ -82,23 +54,7 @@ namespace SharpVk.Generator.Collation
                     }
                 }
             }
-
-            foreach (var type in typeData.Values)
-            {
-                switch (type.Data.Category)
-                {
-                    case TypeCategory.None:
-                        if (primitiveTypes.ContainsKey(type.Data.VkName))
-                        {
-                            type.Name = primitiveTypes[type.Data.VkName];
-                        }
-                        break;
-                    case TypeCategory.funcpointer:
-                        type.Name += "Delegate";
-                        break;
-                }
-            }
-
+            
             services.AddSingleton(typeData);
         }
 

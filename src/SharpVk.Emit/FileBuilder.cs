@@ -20,7 +20,14 @@ namespace SharpVk.Emit
                 Directory.CreateDirectory(folderPath);
             }
 
-            this.fileWriter = new IndentedTextWriter(new StreamWriter(File.OpenWrite(Path.Combine(folderPath, fileName))));
+            var filePath = Path.Combine(folderPath, fileName);
+            
+            if (File.Exists(filePath))
+            {
+                File.Delete(filePath);
+            }
+
+            this.fileWriter = new IndentedTextWriter(new StreamWriter(File.OpenWrite(filePath)));
         }
 
         public void EmitComment(string comment)

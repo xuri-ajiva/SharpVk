@@ -1,5 +1,6 @@
 ﻿using SharpVk.Generator.Specification.Elements;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -7,9 +8,51 @@ namespace SharpVk.Generator.Collation
 {
     public class NameFormatter
     {
+        private static readonly Dictionary<string, string> primitiveTypes = new Dictionary<string, string>()
+        {
+            {"void", "void"},
+            {"char", "char"},
+            {"float", "float"},
+            {"uint8_t", "byte"},
+            {"uint32_t", "uint"},
+            {"DWORD", "uint"},
+            {"uint64_t", "ulong"},
+            {"int32_t", "int"},
+            {"size_t", "Size"},
+            {"HINSTANCE", "IntPtr" },
+            {"HWND", "IntPtr" },
+            {"HANDLE", "IntPtr" },
+            {"SECURITY_ATTRIBUTES", "SECURITY_ATTRIBUTES" },
+            {"ANativeWindow", "IntPtr" },
+            {"Display", "IntPtr" },
+            {"VisualID", "IntPtr" },
+            {"Window", "IntPtr" },
+            {"MirConnection", "IntPtr" },
+            {"MirSurface", "IntPtr" },
+            {"wl_display", "IntPtr" },
+            {"wl_surface", "IntPtr" },
+            {"xcb_connection_t", "IntPtr" },
+            {"xcb_visualid_t", "IntPtr" },
+            {"xcb_window_t", "IntPtr" },
+            {"RROutput", "IntPtr" }
+        };
+
         public string FormatName(TypeElement type)
         {
-            return JoinNameParts(type.NameParts);
+            if (type.Category == TypeCategory.None
+                && primitiveTypes.ContainsKey(type.VkName))
+            {
+                return primitiveTypes[type.VkName];
+            }
+
+            string result = JoinNameParts(type.NameParts);
+
+            if (type.Category == TypeCategory.funcpointer)
+            {
+                result += "Delegate";
+            }
+
+            return result;
         }
 
         public string FormatName(MemberElement member)

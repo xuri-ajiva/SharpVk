@@ -78,7 +78,8 @@ namespace SharpVk.Generator.Collation
                 {
                     VkName = command.VkName,
                     Name = this.nameFormatter.FormatName(command, typeData[handleTypeName]),
-                    HandleTypeName = handleTypeName
+                    HandleTypeName = handleTypeName,
+                    ReturnType = command.Type
                 });
             }
         }

@@ -1,8 +1,7 @@
 ﻿namespace SharpVk.Generator.Generation
 {
-    public class PInvokeDefinition
+    public class StructDefinition
     {
         public string Name;
-        public string ReturnType;
     }
 }

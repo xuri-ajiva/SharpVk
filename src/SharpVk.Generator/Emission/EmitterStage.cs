@@ -12,10 +12,14 @@ namespace SharpVk.Generator.Emission
         : IOutput
     {
         private IEnumerable<PInvokeDefinition> pInvokes;
+        private IEnumerable<StructDefinition> structs;
+        private IEnumerable<EnumDefinition> enums;
 
-        public EmitterStage(IEnumerable<PInvokeDefinition> pInvokes)
+        public EmitterStage(IEnumerable<PInvokeDefinition> pInvokes, IEnumerable<StructDefinition> structs, IEnumerable<EnumDefinition> enums)
         {
             this.pInvokes = pInvokes;
+            this.structs = structs;
+            this.enums = enums;
         }
 
         public void Run()
@@ -33,7 +37,7 @@ namespace SharpVk.Generator.Emission
 
                         foreach (var pInvoke in this.pInvokes)
                         {
-                            typeBuilder.EmitMethod("void", pInvoke.Name, null, paramsBuilder =>
+                            typeBuilder.EmitMethod(/*pInvoke.ReturnType*/ "void", pInvoke.Name, null, paramsBuilder =>
                             {
                                 //foreach (var param in pInvoke.Parameters)
                                 //{
@@ -43,6 +47,37 @@ namespace SharpVk.Generator.Emission
                         }
                     }, Public, modifiers: TypeModifier.Static | TypeModifier.Unsafe);
                 });
+            }
+
+            foreach (var @struct in this.structs)
+            {
+                using (var fileBuilder = new FileBuilder("..\\SharpVk", $"{@struct.Name}.cs"))
+                {
+                    fileBuilder.EmitUsing("System");
+
+                    fileBuilder.EmitNamespace("SharpVk", namespaceBuilder =>
+                    {
+                        namespaceBuilder.EmitType(TypeKind.Class, @struct.Name, typeBuilder =>
+                        {
+                        }, Public);
+                    });
+                }
+            }
+
+            foreach (var @enum in this.enums)
+            {
+                //using (var fileBuilder = new FileBuilder("..\\SharpVk", $"{@enum.Name}.cs"))
+                //{
+                //    fileBuilder.EmitUsing("System");
+
+                //    fileBuilder.EmitNamespace("SharpVk", namespaceBuilder =>
+                //    {
+                //        namespaceBuilder.EmitType(TypeKind.Enum, @enum.Name, typeBuilder =>
+                //        {
+                //        }, Public);
+                //    });
+                //}
+                System.Console.WriteLine(@enum.Name);
             }
         }
     }

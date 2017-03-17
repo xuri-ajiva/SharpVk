@@ -18,9 +18,6 @@ namespace SharpVk.Generator
                                             .Build<EmitterStage>();
 
             pipeline.Run();
-
-            Console.WriteLine("Done");
-            Console.ReadLine();
         }
     }
 }
