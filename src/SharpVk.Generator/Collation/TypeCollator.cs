@@ -1,13 +1,13 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SharpVk.Generator.Pipeline;
 using SharpVk.Generator.Specification.Elements;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System;
 
 namespace SharpVk.Generator.Collation
 {
     public class TypeCollator
+        : IWorker
     {
         private readonly IEnumerable<TypeElement> types;
         private readonly NameFormatter nameFormatter;
@@ -23,7 +23,7 @@ namespace SharpVk.Generator.Collation
                                         .ToArray();
         }
 
-        public void CollateTo(IServiceCollection services)
+        public void Execute(IServiceCollection services)
         {
             var typeData = this.types
                                     .Where(x => x.Category != TypeCategory.define && x.Category != TypeCategory.include)
@@ -31,9 +31,7 @@ namespace SharpVk.Generator.Collation
                                     {
                                         VkName = x.VkName,
                                         Name = this.nameFormatter.FormatName(x),
-                                        Category = x.Category,
-                                        RequiresMarshalling = RequiresMarshalling(x),
-                                        IsPrimitive = x.Category == TypeCategory.basetype || x.Category == TypeCategory.None,
+                                        Pattern = x.Category.MapToPattern(),
                                         Members = GetMembers(x).ToList()
                                     });
 
@@ -45,22 +43,22 @@ namespace SharpVk.Generator.Collation
 
                 foreach (var type in typeData.Values)
                 {
-                    if (!type.RequiresMarshalling
-                            && type.Members.Any(x => typeData[x.Type.VkName].RequiresMarshalling))
+                    if (type.Pattern == TypePattern.NonMarshalledStruct
+                            && type.Members.Any(x => x.RequiresMarshalling || typeData[x.Type.VkName].RequiresMarshalling))
                     {
-                        type.RequiresMarshalling = true;
+                        type.Pattern = TypePattern.MarshalledStruct;
 
                         newInteropTypes = true;
                     }
                 }
             }
-            
+
             services.AddSingleton(typeData);
         }
 
         private IEnumerable<MemberDeclaration> GetMembers(TypeElement type)
         {
-            foreach(var member in type.Members)
+            foreach (var member in type.Members)
             {
                 yield return new MemberDeclaration
                 {
@@ -68,20 +66,11 @@ namespace SharpVk.Generator.Collation
                     Type = new TypeReference
                     {
                         VkName = member.Type,
-                        PointerType = member.PointerType
+                        PointerType = member.PointerType,
+                        FixedLength = member.FixedLength
                     }
                 };
             }
-        }
-
-        private bool RequiresMarshalling(TypeElement type)
-        {
-            return type.Category == TypeCategory.@struct
-                && type.Members.Any(y =>
-                    y.FixedLength.Type != FixedLengthType.None
-                        || (y.PointerType != PointerType.Value
-                            && y.PointerType != PointerType.ConstValue
-                            || this.handleTypes.Contains(y.Type)));
         }
     }
 }

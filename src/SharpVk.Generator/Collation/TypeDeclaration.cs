@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace SharpVk.Generator.Collation
 {
@@ -6,9 +7,9 @@ namespace SharpVk.Generator.Collation
     {
         public string VkName;
         public string Name;
-        public bool RequiresMarshalling;
-        public bool IsPrimitive;
-        public TypeCategory Category;
+        public TypePattern Pattern;
         public List<MemberDeclaration> Members;
+
+        public bool RequiresMarshalling => this.Pattern.RequiresMarshalling() || this.Members.Any(x => x.RequiresMarshalling);
     }
 }

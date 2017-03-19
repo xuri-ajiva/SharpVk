@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SharpVk.Generator.Pipeline;
 using SharpVk.Generator.Rules;
 using SharpVk.Generator.Specification.Elements;
 using SharpVk.Generator.Specification.Rules;
@@ -9,6 +10,7 @@ using System.Linq;
 namespace SharpVk.Generator.Specification
 {
     public class TypeElementReader
+        : IWorker
     {
         private readonly IVkXmlCache xmlCache;
         private readonly NameParser nameParser;
@@ -21,7 +23,7 @@ namespace SharpVk.Generator.Specification
             this.typeExtensions = typeExtensions;
         }
 
-        public void ReadTo(IServiceCollection target)
+        public void Execute(IServiceCollection target)
         {
             foreach (var vkType in this.xmlCache.GetVkXml().Element("registry").Element("types").Elements("type"))
             {

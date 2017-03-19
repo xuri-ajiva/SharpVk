@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SharpVk.Generator.Pipeline;
 using SharpVk.Generator.Specification.Elements;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,7 @@ using System.Linq;
 namespace SharpVk.Generator.Collation
 {
     public class CommandCollator
+        : IWorker
     {
         private readonly IEnumerable<CommandElement> commands;
         private readonly NameFormatter nameFormatter;
@@ -18,7 +20,7 @@ namespace SharpVk.Generator.Collation
             this.typeData = types.ToDictionary(x => x.VkName);
         }
 
-        public void CollateTo(IServiceCollection services)
+        public void Execute(IServiceCollection services)
         {
             var associatedHandles = new Dictionary<string, string>();
 

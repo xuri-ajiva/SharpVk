@@ -1,4 +1,4 @@
-﻿namespace SharpVk.Generator.Specification.Elements
+﻿namespace SharpVk.Generator
 {
     public enum FixedLengthType
     {

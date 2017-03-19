@@ -1,10 +1,12 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SharpVk.Generator.Pipeline;
 using SharpVk.Generator.Specification.Elements;
 using System.Linq;
 
 namespace SharpVk.Generator.Specification
 {
     public class CommandElementReader
+        : IWorker
     {
         private readonly IVkXmlCache xmlCache;
         private readonly NameParser nameParser;
@@ -15,7 +17,7 @@ namespace SharpVk.Generator.Specification
             this.nameParser = nameParser;
         }
 
-        public void ReadTo(IServiceCollection services)
+        public void Execute(IServiceCollection services)
         {
             foreach (var vkCommand in this.xmlCache.GetVkXml().Element("registry").Element("commands").Elements("command"))
             {

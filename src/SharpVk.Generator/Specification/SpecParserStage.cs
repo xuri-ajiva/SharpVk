@@ -4,7 +4,7 @@ using SharpVk.Generator.Specification.Rules;
 
 namespace SharpVk.Generator.Specification
 {
-    public class SpecParserSetup
+    public class SpecParserStage
         : IStage
     {
         public void Configure(IServiceCollection services)
@@ -13,9 +13,9 @@ namespace SharpVk.Generator.Specification
             services.AddSingleton<NameParser>();
             services.AddSingleton<ITypeExtensionRule, FunctionPointerTypeRule>();
             services.AddSingleton<ITypeExtensionRule, MemberTypeRule>();
-            services.AddSingleton<TypeElementReader>();
-            services.AddSingleton<EnumElementReader>();
-            services.AddSingleton<CommandElementReader>();
+            services.AddSingleton<IWorker, TypeElementReader>();
+            services.AddSingleton<IWorker, EnumElementReader>();
+            services.AddSingleton<IWorker, CommandElementReader>();
         }
     }
 }
