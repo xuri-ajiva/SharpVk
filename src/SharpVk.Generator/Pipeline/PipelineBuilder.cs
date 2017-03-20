@@ -31,10 +31,9 @@ namespace SharpVk.Generator.Pipeline
             this.stages.Add(stage);
         }
 
-        public Pipeline Build<T>()
-            where T : IOutput
+        public Pipeline Build()
         {
-            return new Pipeline(this.stages, typeof(T));
+            return new Pipeline(this.stages);
         }
     }
 }

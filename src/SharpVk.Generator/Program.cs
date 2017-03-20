@@ -14,7 +14,8 @@ namespace SharpVk.Generator
                                             .Extend<SpecParserStage>()
                                             .Extend<CollationStage>()
                                             .Extend<GenerationStage>()
-                                            .Build<EmitterStage>();
+                                            .Extend<EmissionStage>()
+                                            .Build();
 
             pipeline.Run();
         }

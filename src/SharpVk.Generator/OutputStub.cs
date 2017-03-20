@@ -7,7 +7,7 @@ using System.Linq;
 namespace SharpVk.Generator
 {
     public class OutputStub
-        : IOutput
+        : IOutputWorker
     {
         private readonly Dictionary<string, TypeDeclaration> types;
         private readonly IEnumerable<CommandDeclaration> commands;
@@ -18,7 +18,7 @@ namespace SharpVk.Generator
             this.commands = commands;
         }
 
-        public void Run()
+        public void Execute()
         {
             //foreach (var typeDecl in this.types)
             //{

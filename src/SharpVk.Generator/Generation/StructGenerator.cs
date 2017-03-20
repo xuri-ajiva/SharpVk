@@ -22,8 +22,15 @@ namespace SharpVk.Generator.Generation
             {
                 services.AddSingleton(new StructDefinition
                 {
-                    Name = type.Name
+                    Name = type.Name,
+                    Members = type.Members.Select(x => new MemberDefinition
+                    {
+                        Name = x.Name,
+                        Type = x.Type
+                    }).ToList()
                 });
+
+                services.AddSingleton(TypeNameMapping.FromTypeDeclaration(type));
             }
         }
     }

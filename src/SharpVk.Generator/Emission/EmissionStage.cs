@@ -1,0 +1,19 @@
+﻿using Microsoft.Extensions.DependencyInjection;
+using SharpVk.Generator.Pipeline;
+
+namespace SharpVk.Generator.Emission
+{
+    public class EmissionStage
+        : IStage
+    {
+        public void Configure(IServiceCollection services)
+        {
+            services.AddSingleton<NameLookup>();
+            services.AddSingleton<IOutputWorker, PInvokeEmitter>();
+            services.AddSingleton<IOutputWorker, StructEmitter>();
+            services.AddSingleton<IOutputWorker, EnumEmitter>();
+            services.AddSingleton<IOutputWorker, UnionEmitter>();
+            services.AddSingleton<IOutputWorker, DelegateEmitter>();
+        }
+    }
+}

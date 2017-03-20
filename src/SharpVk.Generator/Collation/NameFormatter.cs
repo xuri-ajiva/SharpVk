@@ -1,5 +1,4 @@
 ﻿using SharpVk.Generator.Specification.Elements;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +17,7 @@ namespace SharpVk.Generator.Collation
             {"DWORD", "uint"},
             {"uint64_t", "ulong"},
             {"int32_t", "int"},
-            {"size_t", "Size"},
+            {"size_t", "HostSize"},
             {"HINSTANCE", "IntPtr" },
             {"HWND", "IntPtr" },
             {"HANDLE", "IntPtr" },
@@ -36,6 +35,11 @@ namespace SharpVk.Generator.Collation
             {"xcb_window_t", "IntPtr" },
             {"RROutput", "IntPtr" }
         };
+
+        public string FormatName(EnumElement enumeration)
+        {
+            return JoinNameParts(enumeration.NameParts);
+        }
 
         public string FormatName(TypeElement type)
         {

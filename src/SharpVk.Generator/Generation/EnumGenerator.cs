@@ -2,6 +2,7 @@
 using SharpVk.Generator.Collation;
 using SharpVk.Generator.Pipeline;
 using System.Collections.Generic;
+
 using System.Linq;
 
 namespace SharpVk.Generator.Generation
@@ -9,21 +10,32 @@ namespace SharpVk.Generator.Generation
     public class EnumGenerator
         : IWorker
     {
-        private readonly Dictionary<string, TypeDeclaration> typeData;
+        private readonly IEnumerable<EnumDeclaration> enums;
 
-        public EnumGenerator(Dictionary<string, TypeDeclaration> typeData)
+        public EnumGenerator(IEnumerable<EnumDeclaration> enums)
         {
-            this.typeData = typeData;
+            this.enums = enums;
         }
 
         public void Execute(IServiceCollection services)
         {
-            foreach (var type in this.typeData.Values.Where(x => x.Pattern == TypePattern.Enum))
+            foreach (var enumeration in this.enums)
             {
                 services.AddSingleton(new EnumDefinition
                 {
-                    Name = type.Name
+                    Name = enumeration.Name
                 });
+
+                services.AddSingleton(TypeNameMapping.FromEnumDeclaration(enumeration));
+
+                if (enumeration.BitmaskAlias != null)
+                {
+                    services.AddSingleton(new TypeNameMapping
+                    {
+                        VkName = enumeration.BitmaskAlias,
+                        OutputName = enumeration.Name
+                    });
+                }
             }
         }
     }
