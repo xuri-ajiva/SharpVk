@@ -10,12 +10,10 @@ namespace SharpVk.Generator.Emission
         : IOutputWorker
     {
         private readonly IEnumerable<UnionDefinition> unions;
-        private readonly NameLookup nameLookup;
 
-        public UnionEmitter(IEnumerable<UnionDefinition> unions, NameLookup nameLookup)
+        public UnionEmitter(IEnumerable<UnionDefinition> unions)
         {
             this.unions = unions;
-            this.nameLookup = nameLookup;
         }
 
         public void Execute()

@@ -29,10 +29,10 @@ namespace SharpVk.Generator.Collation
 
             foreach (var bitmaskType in types.Where(x => x.Category == TypeCategory.bitmask))
             {
+                bitmaskTypes.Add((bitmaskType));
+
                 if (bitmaskType.Requires != null)
                 {
-                    bitmaskTypes.Add((bitmaskType));
-
                     enumTypes.Remove(bitmaskType.Requires);
                 }
             }
@@ -49,22 +49,50 @@ namespace SharpVk.Generator.Collation
             {
                 var enumeration = this.enums[enumType];
 
+                string name = this.nameFormatter.FormatName(enumeration);
+
                 services.AddSingleton(new EnumDeclaration
                 {
                     VkName = enumeration.VkName,
-                    Name = this.nameFormatter.FormatName(enumeration)
+                    Name = name
+                });
+
+                services.AddSingleton(new TypeNameMapping
+                {
+                    VkName = enumeration.VkName,
+                    OutputName = name
                 });
             }
 
             foreach (var bitmaskType in this.bitmaskTypes)
             {
-                var enumeration = this.enums[bitmaskType.Requires];
+                var enumeration = bitmaskType.Requires != null
+                                        ? this.enums[bitmaskType.Requires]
+                                        : null;
+
+                string name = this.nameFormatter.FormatName(bitmaskType);
 
                 services.AddSingleton(new EnumDeclaration
                 {
                     VkName = bitmaskType.VkName,
-                    Name = this.nameFormatter.FormatName(bitmaskType),
-                    BitmaskAlias = enumeration.VkName
+                    Name = name
+                });
+
+                if (enumeration != null)
+                {
+                    services.AddSingleton(new TypeNameMapping
+                    {
+                        VkName = enumeration.VkName,
+                        OutputName = name,
+                        Priority = 1
+                    });
+                }
+
+                services.AddSingleton(new TypeNameMapping
+                {
+                    VkName = bitmaskType.VkName,
+                    OutputName = name,
+                    Priority = 1
                 });
             }
         }

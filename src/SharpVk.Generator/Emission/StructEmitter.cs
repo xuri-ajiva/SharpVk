@@ -4,6 +4,7 @@ using SharpVk.Generator.Pipeline;
 using System.Collections.Generic;
 using static SharpVk.Emit.AccessModifier;
 using static SharpVk.Emit.ExpressionBuilder;
+using static SharpVk.Emit.TypeModifier;
 
 namespace SharpVk.Generator.Emission
 {
@@ -11,23 +12,30 @@ namespace SharpVk.Generator.Emission
         : IOutputWorker
     {
         private readonly IEnumerable<StructDefinition> structs;
-        private readonly NameLookup nameLookup;
 
-        public StructEmitter(IEnumerable<StructDefinition> structs, NameLookup nameLookup)
+        public StructEmitter(IEnumerable<StructDefinition> structs)
         {
             this.structs = structs;
-            this.nameLookup = nameLookup;
         }
 
         public void Execute()
         {
             foreach (var @struct in this.structs)
             {
-                using (var fileBuilder = new FileBuilder("..\\SharpVk", $"{@struct.Name}.cs"))
+                var path = "..\\SharpVk";
+                var @namespace = "SharpVk";
+
+                if (@struct.IsInterop)
+                {
+                    path += "\\Interop";
+                    @namespace += ".Interop";
+                }
+
+                using (var fileBuilder = new FileBuilder(path, $"{@struct.Name}.cs"))
                 {
                     fileBuilder.EmitUsing("System");
 
-                    fileBuilder.EmitNamespace("SharpVk", namespaceBuilder =>
+                    fileBuilder.EmitNamespace(@namespace, namespaceBuilder =>
                     {
                         namespaceBuilder.EmitType(TypeKind.Struct, @struct.Name, typeBuilder =>
                         {
@@ -46,18 +54,18 @@ namespace SharpVk.Generator.Emission
                                 {
                                     string paramName = char.ToLower(member.Name[0]) + member.Name.Substring(1);
 
-                                    parameters.EmitParam(this.nameLookup.Lookup(member.Type.VkName), paramName);
+                                    parameters.EmitParam(member.Type, paramName);
                                 }
                             }, Public);
 
                             foreach (var member in @struct.Members)
                             {
-                                typeBuilder.EmitField(this.nameLookup.Lookup(member.Type.VkName),
+                                typeBuilder.EmitField(member.Type,
                                                         member.Name,
                                                         member.IsPrivate ? Private : Public,
                                                         summary: member.Comment);
                             }
-                        }, Public);
+                        }, Public, null, @struct.IsInterop ? Unsafe : None);
                     });
                 }
             }

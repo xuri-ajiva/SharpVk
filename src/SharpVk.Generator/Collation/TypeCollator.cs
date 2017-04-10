@@ -53,6 +53,15 @@ namespace SharpVk.Generator.Collation
                 }
             }
 
+            foreach(var type in typeData.Values)
+            {
+                services.AddSingleton(new TypeNameMapping
+                {
+                    VkName = type.VkName,
+                    OutputName = type.Name
+                });
+            }
+
             services.AddSingleton(typeData);
         }
 

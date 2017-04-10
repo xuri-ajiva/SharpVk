@@ -5,6 +5,7 @@ namespace SharpVk.Generator.Generation
     public class StructDefinition
     {
         public string Name;
+        public bool IsInterop;
         public List<MemberDefinition> Members;
     }
 }

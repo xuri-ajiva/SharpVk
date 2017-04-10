@@ -81,7 +81,18 @@ namespace SharpVk.Generator.Collation
                     VkName = command.VkName,
                     Name = this.nameFormatter.FormatName(command, typeData[handleTypeName]),
                     HandleTypeName = handleTypeName,
-                    ReturnType = command.Type
+                    ReturnType = command.Type,
+                    Params = command.Params.Select(x => new ParamDeclaration
+                    {
+                        VkName = x.VkName,
+                        Name = x.VkName,
+                        Type = new TypeReference
+                        {
+                            VkName = x.Type,
+                            PointerType = x.PointerType,
+                            FixedLength = x.FixedLength
+                        }
+                    }).ToList()
                 });
             }
         }

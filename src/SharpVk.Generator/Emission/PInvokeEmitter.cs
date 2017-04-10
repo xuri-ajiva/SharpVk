@@ -10,7 +10,7 @@ namespace SharpVk.Generator.Emission
     public class PInvokeEmitter
         : IOutputWorker
     {
-        private IEnumerable<PInvokeDefinition> pInvokes;
+        private readonly IEnumerable<PInvokeDefinition> pInvokes;
 
         public PInvokeEmitter(IEnumerable<PInvokeDefinition> pInvokes)
         {
@@ -34,10 +34,10 @@ namespace SharpVk.Generator.Emission
                         {
                             typeBuilder.EmitMethod(pInvoke.ReturnType, pInvoke.Name, null, paramsBuilder =>
                             {
-                                //foreach (var param in pInvoke.Parameters)
-                                //{
-                                //    paramsBuilder.EmitParam(param.TypeName, param.Name);
-                                //}
+                                foreach (var param in pInvoke.Parameters)
+                                {
+                                    paramsBuilder.EmitParam(param.Type, param.Name);
+                                }
                             }, Public, Static | Extern, attributes: new[] { "DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)" });
                         }
                     }, Public, modifiers: TypeModifier.Static | TypeModifier.Unsafe);

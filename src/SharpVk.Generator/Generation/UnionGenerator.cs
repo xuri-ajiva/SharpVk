@@ -24,8 +24,6 @@ namespace SharpVk.Generator.Generation
                 {
                     Name = type.Name
                 });
-
-                services.AddSingleton(TypeNameMapping.FromTypeDeclaration(type));
             }
         }
     }

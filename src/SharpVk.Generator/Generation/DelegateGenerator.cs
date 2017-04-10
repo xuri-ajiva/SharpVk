@@ -26,6 +26,12 @@ namespace SharpVk.Generator.Generation
                     Name = this.typeData[@delegate.VkName].Name,
                     ReturnType = this.typeData[@delegate.ReturnType].Name
                 });
+
+                services.AddSingleton(new TypeNameMapping
+                {
+                    VkName = @delegate.VkName,
+                    OutputName = this.typeData[@delegate.VkName].Name
+                });
             }
         }
     }

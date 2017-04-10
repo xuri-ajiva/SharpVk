@@ -14,6 +14,7 @@ namespace SharpVk.Generator.Collation
             {"float", "float"},
             {"uint8_t", "byte"},
             {"uint32_t", "uint"},
+            {"int", "int"},
             {"DWORD", "uint"},
             {"uint64_t", "ulong"},
             {"int32_t", "int"},
@@ -33,7 +34,8 @@ namespace SharpVk.Generator.Collation
             {"xcb_connection_t", "IntPtr" },
             {"xcb_visualid_t", "IntPtr" },
             {"xcb_window_t", "IntPtr" },
-            {"RROutput", "IntPtr" }
+            {"RROutput", "IntPtr" },
+            {"LPCWSTR", "IntPtr" }
         };
 
         public string FormatName(EnumElement enumeration)

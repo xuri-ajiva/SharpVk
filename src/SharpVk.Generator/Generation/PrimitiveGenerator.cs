@@ -20,7 +20,6 @@ namespace SharpVk.Generator.Generation
         {
             foreach (var type in this.typeData.Values.Where(x => x.Pattern == TypePattern.Primitive))
             {
-                services.AddSingleton(TypeNameMapping.FromTypeDeclaration(type));
             }
         }
     }

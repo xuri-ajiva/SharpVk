@@ -8,8 +8,8 @@ namespace SharpVk.Generator.Emission
     {
         public void Configure(IServiceCollection services)
         {
-            services.AddSingleton<NameLookup>();
             services.AddSingleton<IOutputWorker, PInvokeEmitter>();
+            services.AddSingleton<IOutputWorker, HandleEmitter>();
             services.AddSingleton<IOutputWorker, StructEmitter>();
             services.AddSingleton<IOutputWorker, EnumEmitter>();
             services.AddSingleton<IOutputWorker, UnionEmitter>();

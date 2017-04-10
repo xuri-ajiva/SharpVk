@@ -10,10 +10,12 @@ namespace SharpVk.Generator.Generation
         : IWorker
     {
         private readonly Dictionary<string, TypeDeclaration> typeData;
+        private readonly NameLookup nameLookup;
 
-        public StructGenerator(Dictionary<string, TypeDeclaration> typeData)
+        public StructGenerator(Dictionary<string, TypeDeclaration> typeData, NameLookup nameLookup)
         {
             this.typeData = typeData;
+            this.nameLookup = nameLookup;
         }
 
         public void Execute(IServiceCollection services)
@@ -25,12 +27,10 @@ namespace SharpVk.Generator.Generation
                     Name = type.Name,
                     Members = type.Members.Select(x => new MemberDefinition
                     {
-                        Name = x.Name,
-                        Type = x.Type
+                        Name = NameLookup.Normalise(x.Name),
+                        Type = this.nameLookup.Lookup(x.Type, false)
                     }).ToList()
                 });
-
-                services.AddSingleton(TypeNameMapping.FromTypeDeclaration(type));
             }
         }
     }

@@ -4,6 +4,5 @@
     {
         public string VkName;
         public string Name;
-        public string BitmaskAlias;
     }
 }

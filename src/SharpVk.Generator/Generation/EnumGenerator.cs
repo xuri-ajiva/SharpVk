@@ -25,17 +25,6 @@ namespace SharpVk.Generator.Generation
                 {
                     Name = enumeration.Name
                 });
-
-                services.AddSingleton(TypeNameMapping.FromEnumDeclaration(enumeration));
-
-                if (enumeration.BitmaskAlias != null)
-                {
-                    services.AddSingleton(new TypeNameMapping
-                    {
-                        VkName = enumeration.BitmaskAlias,
-                        OutputName = enumeration.Name
-                    });
-                }
             }
         }
     }
