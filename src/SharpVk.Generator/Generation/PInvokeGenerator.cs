@@ -30,7 +30,7 @@ namespace SharpVk.Generator.Generation
                     ReturnType = this.typeData[command.ReturnType].Name,
                     Parameters = command.Params.Select(x => new ParamDefinition
                     {
-                        Name = NameLookup.Normalise(x.Name),
+                        Name = x.Name,
                         Type = this.nameLookup.Lookup(x.Type, true)
                     }).ToList()
                 });

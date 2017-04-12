@@ -71,7 +71,8 @@ namespace SharpVk.Generator.Collation
             {
                 yield return new MemberDeclaration
                 {
-                    Name = this.nameFormatter.FormatName(member),
+                    Name = this.nameFormatter.FormatName(member, false),
+                    ParamName = this.nameFormatter.FormatName(member, true),
                     Type = new TypeReference
                     {
                         VkName = member.Type,

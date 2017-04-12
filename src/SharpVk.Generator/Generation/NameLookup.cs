@@ -33,17 +33,5 @@ namespace SharpVk.Generator.Generation
 
             return baseName + new string('*', type.PointerType.GetPointerCount());
         }
-
-        public static string Normalise(string name)
-        {
-            if (name.ToLower() == "event" || name.ToLower() == "object")
-            {
-                return $"@{name}";
-            }
-            else
-            {
-                return name;
-            }
-        }
     }
 }

@@ -10,14 +10,14 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public AllocationCallbacks(void* userData, IntPtr pfnAllocation, IntPtr pfnReallocation, IntPtr pfnFree, IntPtr pfnInternalAllocation, IntPtr pfnInternalFree)
+        public AllocationCallbacks(void* userData, IntPtr allocation, IntPtr reallocation, IntPtr free, IntPtr internalAllocation, IntPtr internalFree)
         {
             this.UserData = userData;
-            this.PfnAllocation = pfnAllocation;
-            this.PfnReallocation = pfnReallocation;
-            this.PfnFree = pfnFree;
-            this.PfnInternalAllocation = pfnInternalAllocation;
-            this.PfnInternalFree = pfnInternalFree;
+            this.Allocation = allocation;
+            this.Reallocation = reallocation;
+            this.Free = free;
+            this.InternalAllocation = internalAllocation;
+            this.InternalFree = internalFree;
         }
         
         /// <summary>
@@ -28,26 +28,26 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr PfnAllocation; 
+        public IntPtr Allocation; 
         
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr PfnReallocation; 
+        public IntPtr Reallocation; 
         
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr PfnFree; 
+        public IntPtr Free; 
         
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr PfnInternalAllocation; 
+        public IntPtr InternalAllocation; 
         
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr PfnInternalFree; 
+        public IntPtr InternalFree; 
     }
 }

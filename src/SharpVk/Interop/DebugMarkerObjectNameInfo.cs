@@ -10,12 +10,12 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DebugMarkerObjectNameInfo(StructureType sType, void* next, DebugReportObjectType objectType, ulong @Object, char* objectName)
+        public DebugMarkerObjectNameInfo(StructureType sType, void* next, DebugReportObjectType objectType, ulong @object, char* objectName)
         {
             this.SType = sType;
             this.Next = next;
             this.ObjectType = objectType;
-            this.@Object = @Object;
+            this.Object = @object;
             this.ObjectName = objectName;
         }
         
@@ -37,7 +37,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public ulong @Object; 
+        public ulong Object; 
         
         /// <summary>
         /// 

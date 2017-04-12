@@ -27,7 +27,8 @@ namespace SharpVk.Generator.Generation
                     Name = type.Name,
                     Members = type.Members.Select(x => new MemberDefinition
                     {
-                        Name = NameLookup.Normalise(x.Name),
+                        Name = x.Name,
+                        ParamName =x.ParamName,
                         Type = this.nameLookup.Lookup(x.Type, false)
                     }).ToList()
                 });

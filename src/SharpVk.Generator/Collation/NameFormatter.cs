@@ -61,9 +61,20 @@ namespace SharpVk.Generator.Collation
             return result;
         }
 
-        public string FormatName(MemberElement member)
+        public string FormatName(ChildElement member, bool isCamelCase)
         {
-            return JoinNameParts(member.NameParts);
+            var nameParts = member.NameParts.AsEnumerable();
+
+            if(nameParts.First() == "pfn")
+            {
+                nameParts = nameParts.Skip(1);
+            }
+
+            var result = JoinNameParts(nameParts);
+
+            return isCamelCase
+                ? Normalise(result.FirstToLower())
+                : result;
         }
 
         public string FormatName(CommandElement command, TypeElement handleType)
@@ -95,7 +106,7 @@ namespace SharpVk.Generator.Collation
             return JoinNameParts(methodNameParts);
         }
 
-        private static string JoinNameParts(string[] nameParts)
+        private static string JoinNameParts(IEnumerable<string> nameParts)
         {
             return nameParts
                         .Select(ExpandAbbreviations)
@@ -122,6 +133,18 @@ namespace SharpVk.Generator.Collation
                     return "fileDescriptor";
                 default:
                     return value;
+            }
+        }
+
+        private static string Normalise(string name)
+        {
+            if (name == "event" || name == "object")
+            {
+                return $"@{name}";
+            }
+            else
+            {
+                return name;
             }
         }
     }

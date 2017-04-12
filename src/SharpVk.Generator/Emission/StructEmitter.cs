@@ -43,18 +43,14 @@ namespace SharpVk.Generator.Emission
                             {
                                 foreach (var member in @struct.Members)
                                 {
-                                    string paramName = char.ToLower(member.Name[0]) + member.Name.Substring(1);
-
-                                    body.EmitAssignment(Member(This, member.Name), Variable(paramName));
+                                    body.EmitAssignment(Member(This, member.Name), Variable(member.ParamName));
                                 }
                             },
                             parameters =>
                             {
                                 foreach (var member in @struct.Members)
                                 {
-                                    string paramName = char.ToLower(member.Name[0]) + member.Name.Substring(1);
-
-                                    parameters.EmitParam(member.Type, paramName);
+                                    parameters.EmitParam(member.Type, member.ParamName);
                                 }
                             }, Public);
 

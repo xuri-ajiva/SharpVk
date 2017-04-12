@@ -53,20 +53,17 @@ namespace SharpVk.Generator.Collation
                     {
                         return false;
                     }
+                    else if (index == 0)
+                    {
+                        return true;
+                    }
                     else
                     {
-                        if (index == 0)
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            var paramHandle = typeData[x.Type];
-                            var previousParamHandle = typeData[command.Params[index - 1].Type];
-                            associatedHandles.TryGetValue(x.Type, out string associatedHandle);
+                        var paramHandle = typeData[x.Type];
+                        var previousParamHandle = typeData[command.Params[index - 1].Type];
+                        associatedHandles.TryGetValue(x.Type, out string associatedHandle);
 
-                            return previousParamHandle.VkName == paramHandle.Parent || previousParamHandle.VkName == associatedHandle;
-                        }
+                        return previousParamHandle.VkName == paramHandle.Parent || previousParamHandle.VkName == associatedHandle;
                     }
                 });
 
@@ -85,7 +82,7 @@ namespace SharpVk.Generator.Collation
                     Params = command.Params.Select(x => new ParamDeclaration
                     {
                         VkName = x.VkName,
-                        Name = x.VkName,
+                        Name = this.nameFormatter.FormatName(x, true),
                         Type = new TypeReference
                         {
                             VkName = x.Type,

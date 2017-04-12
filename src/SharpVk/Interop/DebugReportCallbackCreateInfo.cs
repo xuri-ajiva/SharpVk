@@ -10,12 +10,12 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DebugReportCallbackCreateInfo(StructureType sType, void* next, DebugReportFlags flags, IntPtr pfnCallback, void* userData)
+        public DebugReportCallbackCreateInfo(StructureType sType, void* next, DebugReportFlags flags, IntPtr callback, void* userData)
         {
             this.SType = sType;
             this.Next = next;
             this.Flags = flags;
-            this.PfnCallback = pfnCallback;
+            this.Callback = callback;
             this.UserData = userData;
         }
         
@@ -37,7 +37,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr PfnCallback; 
+        public IntPtr Callback; 
         
         /// <summary>
         /// 

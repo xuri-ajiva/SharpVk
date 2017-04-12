@@ -10,12 +10,12 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DebugMarkerObjectTagInfo(StructureType sType, void* next, DebugReportObjectType objectType, ulong @Object, ulong tagName, HostSize tagSize, void* tag)
+        public DebugMarkerObjectTagInfo(StructureType sType, void* next, DebugReportObjectType objectType, ulong @object, ulong tagName, HostSize tagSize, void* tag)
         {
             this.SType = sType;
             this.Next = next;
             this.ObjectType = objectType;
-            this.@Object = @Object;
+            this.Object = @object;
             this.TagName = tagName;
             this.TagSize = tagSize;
             this.Tag = tag;
@@ -39,7 +39,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public ulong @Object; 
+        public ulong Object; 
         
         /// <summary>
         /// 
