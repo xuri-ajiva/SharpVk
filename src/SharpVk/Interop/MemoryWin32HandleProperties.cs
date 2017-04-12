@@ -10,16 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public MemoryWin32HandleProperties(StructureType sType, void* next, uint memoryTypeBits)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.MemoryTypeBits = memoryTypeBits;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

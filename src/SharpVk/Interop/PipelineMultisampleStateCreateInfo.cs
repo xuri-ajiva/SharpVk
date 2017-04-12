@@ -10,22 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PipelineMultisampleStateCreateInfo(StructureType sType, void* next, PipelineMultisampleStateCreateFlags flags, SampleCountFlags rasterizationSamples, Bool32 sampleShadingEnable, float minSampleShading, SampleMask* sampleMask, Bool32 alphaToCoverageEnable, Bool32 alphaToOneEnable)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-            this.RasterizationSamples = rasterizationSamples;
-            this.SampleShadingEnable = sampleShadingEnable;
-            this.MinSampleShading = minSampleShading;
-            this.SampleMask = sampleMask;
-            this.AlphaToCoverageEnable = alphaToCoverageEnable;
-            this.AlphaToOneEnable = alphaToOneEnable;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

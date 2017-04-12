@@ -10,16 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PhysicalDeviceMemoryProperties2(StructureType sType, void* next, PhysicalDeviceMemoryProperties memoryProperties)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.MemoryProperties = memoryProperties;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

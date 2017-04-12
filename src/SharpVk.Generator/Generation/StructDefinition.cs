@@ -6,6 +6,7 @@ namespace SharpVk.Generator.Generation
     {
         public string Name;
         public bool IsInterop;
+        public MethodDefinition Constructor;
         public List<MemberDefinition> Members;
     }
 }

@@ -10,17 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public MemoryAllocateInfo(StructureType sType, void* next, DeviceSize allocationSize, uint memoryTypeIndex)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.AllocationSize = allocationSize;
-            this.MemoryTypeIndex = memoryTypeIndex;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

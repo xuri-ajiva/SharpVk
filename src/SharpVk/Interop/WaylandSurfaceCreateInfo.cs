@@ -10,18 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public WaylandSurfaceCreateInfo(StructureType sType, void* next, WaylandSurfaceCreateFlags flags, IntPtr display, IntPtr surface)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-            this.Display = display;
-            this.Surface = surface;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

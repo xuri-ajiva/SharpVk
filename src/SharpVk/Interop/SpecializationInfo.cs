@@ -10,17 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public SpecializationInfo(uint mapEntryCount, SpecializationMapEntry* mapEntries, HostSize dataSize, void* data)
-        {
-            this.MapEntryCount = mapEntryCount;
-            this.MapEntries = mapEntries;
-            this.DataSize = dataSize;
-            this.Data = data;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint MapEntryCount; 
         
         /// <summary>

@@ -10,20 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public BindBufferMemoryInfo(StructureType sType, void* next, Buffer buffer, DeviceMemory memory, DeviceSize memoryOffset, uint deviceIndexCount, uint* deviceIndices)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Buffer = buffer;
-            this.Memory = memory;
-            this.MemoryOffset = memoryOffset;
-            this.DeviceIndexCount = deviceIndexCount;
-            this.DeviceIndices = deviceIndices;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

@@ -10,17 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DeviceGroupPresentCapabilities(StructureType sType, void* next, uint presentMask, DeviceGroupPresentModeFlags modes)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.PresentMask = presentMask;
-            this.Modes = modes;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

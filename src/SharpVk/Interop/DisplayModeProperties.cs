@@ -10,15 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DisplayModeProperties(DisplayMode displayMode, DisplayModeParameters parameters)
-        {
-            this.DisplayMode = displayMode;
-            this.Parameters = parameters;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public DisplayMode DisplayMode; 
         
         /// <summary>

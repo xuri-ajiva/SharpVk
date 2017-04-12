@@ -10,18 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public ShaderModuleCreateInfo(StructureType sType, void* next, ShaderModuleCreateFlags flags, HostSize codeSize, uint* code)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-            this.CodeSize = codeSize;
-            this.Code = code;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

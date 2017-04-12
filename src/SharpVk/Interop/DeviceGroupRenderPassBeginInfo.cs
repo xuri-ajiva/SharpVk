@@ -10,18 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DeviceGroupRenderPassBeginInfo(StructureType sType, void* next, uint deviceMask, uint deviceRenderAreaCount, Rect2D* deviceRenderAreas)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.DeviceMask = deviceMask;
-            this.DeviceRenderAreaCount = deviceRenderAreaCount;
-            this.DeviceRenderAreas = deviceRenderAreas;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

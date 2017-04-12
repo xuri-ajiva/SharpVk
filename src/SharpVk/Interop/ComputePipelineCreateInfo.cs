@@ -10,20 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public ComputePipelineCreateInfo(StructureType sType, void* next, PipelineCreateFlags flags, PipelineShaderStageCreateInfo stage, PipelineLayout layout, Pipeline basePipelineHandle, int basePipelineIndex)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-            this.Stage = stage;
-            this.Layout = layout;
-            this.BasePipelineHandle = basePipelineHandle;
-            this.BasePipelineIndex = basePipelineIndex;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

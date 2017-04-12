@@ -10,15 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PresentRegion(uint rectangleCount, RectLayer* rectangles)
-        {
-            this.RectangleCount = rectangleCount;
-            this.Rectangles = rectangles;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint RectangleCount; 
         
         /// <summary>

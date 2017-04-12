@@ -10,16 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DeviceGeneratedCommandsFeatures(StructureType sType, void* next, Bool32 computeBindingPointSupport)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.ComputeBindingPointSupport = computeBindingPointSupport;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

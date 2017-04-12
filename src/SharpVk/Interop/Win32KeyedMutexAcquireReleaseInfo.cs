@@ -10,22 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public Win32KeyedMutexAcquireReleaseInfo(StructureType sType, void* next, uint acquireCount, DeviceMemory* acquireSyncs, ulong* acquireKeys, uint* acquireTimeouts, uint releaseCount, DeviceMemory* releaseSyncs, ulong* releaseKeys)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.AcquireCount = acquireCount;
-            this.AcquireSyncs = acquireSyncs;
-            this.AcquireKeys = acquireKeys;
-            this.AcquireTimeouts = acquireTimeouts;
-            this.ReleaseCount = releaseCount;
-            this.ReleaseSyncs = releaseSyncs;
-            this.ReleaseKeys = releaseKeys;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

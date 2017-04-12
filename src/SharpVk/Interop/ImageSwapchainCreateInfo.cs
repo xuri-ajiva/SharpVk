@@ -10,16 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public ImageSwapchainCreateInfo(StructureType sType, void* next, Swapchain swapchain)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Swapchain = swapchain;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

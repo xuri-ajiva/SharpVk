@@ -10,16 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PipelineRasterizationStateRasterizationOrder(StructureType sType, void* next, RasterizationOrder rasterizationOrder)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.RasterizationOrder = rasterizationOrder;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

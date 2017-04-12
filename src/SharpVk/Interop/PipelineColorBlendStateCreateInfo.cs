@@ -10,21 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PipelineColorBlendStateCreateInfo(StructureType sType, void* next, PipelineColorBlendStateCreateFlags flags, Bool32 logicOpEnable, LogicOp logicOp, uint attachmentCount, PipelineColorBlendAttachmentState* attachments, float blendConstants)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-            this.LogicOpEnable = logicOpEnable;
-            this.LogicOp = logicOp;
-            this.AttachmentCount = attachmentCount;
-            this.Attachments = attachments;
-            this.BlendConstants = blendConstants;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

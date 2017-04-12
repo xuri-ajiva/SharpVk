@@ -10,16 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorImageInfo(Sampler sampler, ImageView imageView, ImageLayout imageLayout)
-        {
-            this.Sampler = sampler;
-            this.ImageView = imageView;
-            this.ImageLayout = imageLayout;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public Sampler Sampler; 
         
         /// <summary>

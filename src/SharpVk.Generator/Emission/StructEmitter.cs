@@ -39,20 +39,23 @@ namespace SharpVk.Generator.Emission
                     {
                         namespaceBuilder.EmitType(TypeKind.Struct, @struct.Name, typeBuilder =>
                         {
-                            typeBuilder.EmitConstructor(body =>
+                            if (@struct.Constructor != null)
                             {
-                                foreach (var member in @struct.Members)
+                                typeBuilder.EmitConstructor(body =>
                                 {
-                                    body.EmitAssignment(Member(This, member.Name), Variable(member.ParamName));
-                                }
-                            },
-                            parameters =>
-                            {
-                                foreach (var member in @struct.Members)
+                                    foreach (var action in @struct.Constructor.Params)
+                                    {
+                                        body.EmitAssignment(Member(This, action.MemberName), Variable(action.Param.Name));
+                                    }
+                                },
+                                parameters =>
                                 {
-                                    parameters.EmitParam(member.Type, member.ParamName);
-                                }
-                            }, Public);
+                                    foreach (var action in @struct.Constructor.Params)
+                                    {
+                                        parameters.EmitParam(action.Param.Type, action.Param.Name);
+                                    }
+                                }, Public);
+                            }
 
                             foreach (var member in @struct.Members)
                             {

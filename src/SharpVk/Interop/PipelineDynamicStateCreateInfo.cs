@@ -10,18 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PipelineDynamicStateCreateInfo(StructureType sType, void* next, PipelineDynamicStateCreateFlags flags, uint dynamicStateCount, DynamicState* dynamicStates)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-            this.DynamicStateCount = dynamicStateCount;
-            this.DynamicStates = dynamicStates;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

@@ -10,19 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorPoolCreateInfo(StructureType sType, void* next, DescriptorPoolCreateFlags flags, uint maxSets, uint poolSizeCount, DescriptorPoolSize* poolSizes)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-            this.MaxSets = maxSets;
-            this.PoolSizeCount = poolSizeCount;
-            this.PoolSizes = poolSizes;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

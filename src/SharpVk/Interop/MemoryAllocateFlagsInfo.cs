@@ -10,17 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public MemoryAllocateFlagsInfo(StructureType sType, void* next, MemoryAllocateFlags flags, uint deviceMask)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-            this.DeviceMask = deviceMask;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

@@ -3,6 +3,7 @@ using SharpVk.Generator.Collation;
 using SharpVk.Generator.Pipeline;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace SharpVk.Generator.Generation
 {
@@ -26,7 +27,7 @@ namespace SharpVk.Generator.Generation
                 {
                     Name = type.Name,
                     IsInterop = true,
-                    Members = type.Members.Select(x => GetInteropMember(x)).ToList()
+                    Members = type.Members.Select(this.GetInteropMember).ToList()
                 });
             }
         }
@@ -36,7 +37,6 @@ namespace SharpVk.Generator.Generation
             return new MemberDefinition
             {
                 Name = member.Name,
-                ParamName = member.ParamName,
                 Type = this.nameLookup.Lookup(member.Type, true)
             };
         }

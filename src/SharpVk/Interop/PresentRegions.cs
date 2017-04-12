@@ -10,17 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PresentRegions(StructureType sType, void* next, uint swapchainCount, PresentRegion* regions)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.SwapchainCount = swapchainCount;
-            this.Regions = regions;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

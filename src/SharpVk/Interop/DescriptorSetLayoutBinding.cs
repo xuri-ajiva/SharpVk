@@ -10,18 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorSetLayoutBinding(uint binding, DescriptorType descriptorType, uint descriptorCount, ShaderStageFlags stageFlags, Sampler* immutableSamplers)
-        {
-            this.Binding = binding;
-            this.DescriptorType = descriptorType;
-            this.DescriptorCount = descriptorCount;
-            this.StageFlags = stageFlags;
-            this.ImmutableSamplers = immutableSamplers;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint Binding; 
         
         /// <summary>

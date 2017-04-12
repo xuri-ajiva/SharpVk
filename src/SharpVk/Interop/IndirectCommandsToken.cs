@@ -10,16 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public IndirectCommandsToken(IndirectCommandsTokenType tokenType, Buffer buffer, DeviceSize offset)
-        {
-            this.TokenType = tokenType;
-            this.Buffer = buffer;
-            this.Offset = offset;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public IndirectCommandsTokenType TokenType; 
         
         /// <summary>

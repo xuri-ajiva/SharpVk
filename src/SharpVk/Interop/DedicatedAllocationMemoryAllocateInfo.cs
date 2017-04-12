@@ -10,17 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DedicatedAllocationMemoryAllocateInfo(StructureType sType, void* next, Image image, Buffer buffer)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Image = image;
-            this.Buffer = buffer;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

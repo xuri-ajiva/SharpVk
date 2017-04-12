@@ -10,16 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorBufferInfo(Buffer buffer, DeviceSize offset, DeviceSize range)
-        {
-            this.Buffer = buffer;
-            this.Offset = offset;
-            this.Range = range;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public Buffer Buffer; 
         
         /// <summary>

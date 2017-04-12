@@ -10,19 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public QueryPoolCreateInfo(StructureType sType, void* next, QueryPoolCreateFlags flags, QueryType queryType, uint queryCount, QueryPipelineStatisticFlags pipelineStatistics)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-            this.QueryType = queryType;
-            this.QueryCount = queryCount;
-            this.PipelineStatistics = pipelineStatistics;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

@@ -10,17 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public MemoryBarrier(StructureType sType, void* next, AccessFlags sourceAccessMask, AccessFlags destinationAccessMask)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.SourceAccessMask = sourceAccessMask;
-            this.DestinationAccessMask = destinationAccessMask;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

@@ -10,23 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorUpdateTemplateCreateInfo(StructureType sType, void* next, DescriptorUpdateTemplateCreateFlags flags, uint descriptorUpdateEntryCount, DescriptorUpdateTemplateEntry* descriptorUpdateEntries, DescriptorUpdateTemplateType templateType, DescriptorSetLayout descriptorSetLayout, PipelineBindPoint pipelineBindPoint, PipelineLayout pipelineLayout, uint set)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-            this.DescriptorUpdateEntryCount = descriptorUpdateEntryCount;
-            this.DescriptorUpdateEntries = descriptorUpdateEntries;
-            this.TemplateType = templateType;
-            this.DescriptorSetLayout = descriptorSetLayout;
-            this.PipelineBindPoint = pipelineBindPoint;
-            this.PipelineLayout = pipelineLayout;
-            this.Set = set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

@@ -10,21 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public InstanceCreateInfo(StructureType sType, void* next, InstanceCreateFlags flags, ApplicationInfo* applicationInfo, uint enabledLayerCount, char** enabledLayerNames, uint enabledExtensionCount, char** enabledExtensionNames)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-            this.ApplicationInfo = applicationInfo;
-            this.EnabledLayerCount = enabledLayerCount;
-            this.EnabledLayerNames = enabledLayerNames;
-            this.EnabledExtensionCount = enabledExtensionCount;
-            this.EnabledExtensionNames = enabledExtensionNames;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

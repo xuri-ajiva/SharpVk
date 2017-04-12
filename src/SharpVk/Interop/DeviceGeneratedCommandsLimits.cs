@@ -10,20 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DeviceGeneratedCommandsLimits(StructureType sType, void* next, uint maxIndirectCommandsLayoutTokenCount, uint maxObjectEntryCounts, uint minSequenceCountBufferOffsetAlignment, uint minSequenceIndexBufferOffsetAlignment, uint minCommandsTokenBufferOffsetAlignment)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.MaxIndirectCommandsLayoutTokenCount = maxIndirectCommandsLayoutTokenCount;
-            this.MaxObjectEntryCounts = maxObjectEntryCounts;
-            this.MinSequenceCountBufferOffsetAlignment = minSequenceCountBufferOffsetAlignment;
-            this.MinSequenceIndexBufferOffsetAlignment = minSequenceIndexBufferOffsetAlignment;
-            this.MinCommandsTokenBufferOffsetAlignment = minCommandsTokenBufferOffsetAlignment;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

@@ -10,17 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DisplayModeCreateInfo(StructureType sType, void* next, DisplayModeCreateFlags flags, DisplayModeParameters parameters)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-            this.Parameters = parameters;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

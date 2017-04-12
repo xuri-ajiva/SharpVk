@@ -10,17 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public ObjectTableDescriptorSetEntry(ObjectEntryType type, ObjectEntryUsageFlags flags, PipelineLayout pipelineLayout, DescriptorSet descriptorSet)
-        {
-            this.Type = type;
-            this.Flags = flags;
-            this.PipelineLayout = pipelineLayout;
-            this.DescriptorSet = descriptorSet;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public ObjectEntryType Type; 
         
         /// <summary>

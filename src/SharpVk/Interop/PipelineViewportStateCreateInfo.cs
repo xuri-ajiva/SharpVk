@@ -10,20 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PipelineViewportStateCreateInfo(StructureType sType, void* next, PipelineViewportStateCreateFlags flags, uint viewportCount, Viewport* viewports, uint scissorCount, Rect2D* scissors)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-            this.ViewportCount = viewportCount;
-            this.Viewports = viewports;
-            this.ScissorCount = scissorCount;
-            this.Scissors = scissors;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

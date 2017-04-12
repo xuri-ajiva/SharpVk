@@ -10,18 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PipelineViewportSwizzleStateCreateInfo(StructureType sType, void* next, PipelineViewportSwizzleStateCreateFlags flags, uint viewportCount, ViewportSwizzle* viewportSwizzles)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-            this.ViewportCount = viewportCount;
-            this.ViewportSwizzles = viewportSwizzles;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

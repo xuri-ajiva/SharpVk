@@ -10,21 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public CommandBufferInheritanceInfo(StructureType sType, void* next, RenderPass renderPass, uint subpass, Framebuffer framebuffer, Bool32 occlusionQueryEnable, QueryControlFlags queryFlags, QueryPipelineStatisticFlags pipelineStatistics)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.RenderPass = renderPass;
-            this.Subpass = subpass;
-            this.Framebuffer = framebuffer;
-            this.OcclusionQueryEnable = occlusionQueryEnable;
-            this.QueryFlags = queryFlags;
-            this.PipelineStatistics = pipelineStatistics;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

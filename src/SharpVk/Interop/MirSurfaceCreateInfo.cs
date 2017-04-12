@@ -10,18 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public MirSurfaceCreateInfo(StructureType sType, void* next, MirSurfaceCreateFlags flags, IntPtr* connection, IntPtr* mirSurface)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-            this.Connection = connection;
-            this.MirSurface = mirSurface;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

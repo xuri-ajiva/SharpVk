@@ -10,18 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public XlibSurfaceCreateInfo(StructureType sType, void* next, XlibSurfaceCreateFlags flags, IntPtr* dpy, IntPtr window)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-            this.Dpy = dpy;
-            this.Window = window;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

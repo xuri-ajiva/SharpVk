@@ -10,16 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PhysicalDeviceExternalImageFormatInfo(StructureType sType, void* next, ExternalMemoryHandleTypeFlags handleType)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.HandleType = handleType;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

@@ -10,17 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PipelineTessellationStateCreateInfo(StructureType sType, void* next, PipelineTessellationStateCreateFlags flags, uint patchControlPoints)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-            this.PatchControlPoints = patchControlPoints;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

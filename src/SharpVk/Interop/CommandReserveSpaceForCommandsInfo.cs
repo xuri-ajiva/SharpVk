@@ -10,18 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public CommandReserveSpaceForCommandsInfo(StructureType sType, void* next, ObjectTable objectTable, IndirectCommandsLayout indirectCommandsLayout, uint maxSequencesCount)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.ObjectTable = objectTable;
-            this.IndirectCommandsLayout = indirectCommandsLayout;
-            this.MaxSequencesCount = maxSequencesCount;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

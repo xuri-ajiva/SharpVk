@@ -10,16 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public SemaphoreCreateInfo(StructureType sType, void* next, SemaphoreCreateFlags flags)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

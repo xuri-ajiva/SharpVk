@@ -10,23 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public ImageMemoryBarrier(StructureType sType, void* next, AccessFlags sourceAccessMask, AccessFlags destinationAccessMask, ImageLayout oldLayout, ImageLayout newLayout, uint sourceQueueFamilyIndex, uint destinationQueueFamilyIndex, Image image, ImageSubresourceRange subresourceRange)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.SourceAccessMask = sourceAccessMask;
-            this.DestinationAccessMask = destinationAccessMask;
-            this.OldLayout = oldLayout;
-            this.NewLayout = newLayout;
-            this.SourceQueueFamilyIndex = sourceQueueFamilyIndex;
-            this.DestinationQueueFamilyIndex = destinationQueueFamilyIndex;
-            this.Image = image;
-            this.SubresourceRange = subresourceRange;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

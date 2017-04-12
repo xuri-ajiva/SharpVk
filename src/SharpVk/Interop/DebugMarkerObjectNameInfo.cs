@@ -10,18 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DebugMarkerObjectNameInfo(StructureType sType, void* next, DebugReportObjectType objectType, ulong @object, char* objectName)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.ObjectType = objectType;
-            this.Object = @object;
-            this.ObjectName = objectName;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

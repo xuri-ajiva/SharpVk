@@ -10,16 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public SparseImageFormatProperties2(StructureType sType, void* next, SparseImageFormatProperties properties)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Properties = properties;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

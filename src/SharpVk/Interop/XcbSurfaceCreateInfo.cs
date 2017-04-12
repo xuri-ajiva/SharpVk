@@ -10,18 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public XcbSurfaceCreateInfo(StructureType sType, void* next, XcbSurfaceCreateFlags flags, IntPtr* connection, IntPtr window)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-            this.Connection = connection;
-            this.Window = window;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

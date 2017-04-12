@@ -10,26 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public SurfaceCapabilities2(StructureType sType, void* next, uint minImageCount, uint maxImageCount, Extent2D currentExtent, Extent2D minImageExtent, Extent2D maxImageExtent, uint maxImageArrayLayers, SurfaceTransformFlags supportedTransforms, SurfaceTransformFlags currentTransform, CompositeAlphaFlags supportedCompositeAlpha, ImageUsageFlags supportedUsageFlags, SurfaceCounterFlags supportedSurfaceCounters)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.MinImageCount = minImageCount;
-            this.MaxImageCount = maxImageCount;
-            this.CurrentExtent = currentExtent;
-            this.MinImageExtent = minImageExtent;
-            this.MaxImageExtent = maxImageExtent;
-            this.MaxImageArrayLayers = maxImageArrayLayers;
-            this.SupportedTransforms = supportedTransforms;
-            this.CurrentTransform = currentTransform;
-            this.SupportedCompositeAlpha = supportedCompositeAlpha;
-            this.SupportedUsageFlags = supportedUsageFlags;
-            this.SupportedSurfaceCounters = supportedSurfaceCounters;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

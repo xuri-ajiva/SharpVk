@@ -10,20 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public RenderPassBeginInfo(StructureType sType, void* next, RenderPass renderPass, Framebuffer framebuffer, Rect2D renderArea, uint clearValueCount, ClearValue* clearValues)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.RenderPass = renderPass;
-            this.Framebuffer = framebuffer;
-            this.RenderArea = renderArea;
-            this.ClearValueCount = clearValueCount;
-            this.ClearValues = clearValues;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

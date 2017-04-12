@@ -10,19 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public D3D12FenceSubmitInfo(StructureType sType, void* next, uint waitSemaphoreValuesCount, ulong* waitSemaphoreValues, uint signalSemaphoreValuesCount, ulong* signalSemaphoreValues)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.WaitSemaphoreValuesCount = waitSemaphoreValuesCount;
-            this.WaitSemaphoreValues = waitSemaphoreValues;
-            this.SignalSemaphoreValuesCount = signalSemaphoreValuesCount;
-            this.SignalSemaphoreValues = signalSemaphoreValues;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

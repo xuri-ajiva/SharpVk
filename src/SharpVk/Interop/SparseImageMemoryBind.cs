@@ -10,19 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public SparseImageMemoryBind(ImageSubresource subresource, Offset3D offset, Extent3D extent, DeviceMemory memory, DeviceSize memoryOffset, SparseMemoryBindFlags flags)
-        {
-            this.Subresource = subresource;
-            this.Offset = offset;
-            this.Extent = extent;
-            this.Memory = memory;
-            this.MemoryOffset = memoryOffset;
-            this.Flags = flags;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public ImageSubresource Subresource; 
         
         /// <summary>

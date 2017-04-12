@@ -10,17 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public AndroidSurfaceCreateInfo(StructureType sType, void* next, AndroidSurfaceCreateFlags flags, IntPtr* window)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-            this.Window = window;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

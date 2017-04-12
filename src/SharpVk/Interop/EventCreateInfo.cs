@@ -10,16 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public EventCreateInfo(StructureType sType, void* next, EventCreateFlags flags)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

@@ -10,20 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PipelineShaderStageCreateInfo(StructureType sType, void* next, PipelineShaderStageCreateFlags flags, ShaderStageFlags stage, ShaderModule module, char* name, SpecializationInfo* specializationInfo)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-            this.Stage = stage;
-            this.Module = module;
-            this.Name = name;
-            this.SpecializationInfo = specializationInfo;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

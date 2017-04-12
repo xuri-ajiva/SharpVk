@@ -10,20 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PipelineLayoutCreateInfo(StructureType sType, void* next, PipelineLayoutCreateFlags flags, uint setLayoutCount, DescriptorSetLayout* setLayouts, uint pushConstantRangeCount, PushConstantRange* pushConstantRanges)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-            this.SetLayoutCount = setLayoutCount;
-            this.SetLayouts = setLayouts;
-            this.PushConstantRangeCount = pushConstantRangeCount;
-            this.PushConstantRanges = pushConstantRanges;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

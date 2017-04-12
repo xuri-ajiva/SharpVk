@@ -10,20 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DisplayProperties(Display display, char* displayName, Extent2D physicalDimensions, Extent2D physicalResolution, SurfaceTransformFlags supportedTransforms, Bool32 planeReorderPossible, Bool32 persistentContent)
-        {
-            this.Display = display;
-            this.DisplayName = displayName;
-            this.PhysicalDimensions = physicalDimensions;
-            this.PhysicalResolution = physicalResolution;
-            this.SupportedTransforms = supportedTransforms;
-            this.PlaneReorderPossible = planeReorderPossible;
-            this.PersistentContent = persistentContent;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public Display Display; 
         
         /// <summary>

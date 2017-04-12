@@ -10,17 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public ObjectTableIndexBufferEntry(ObjectEntryType type, ObjectEntryUsageFlags flags, Buffer buffer, IndexType indexType)
-        {
-            this.Type = type;
-            this.Flags = flags;
-            this.Buffer = buffer;
-            this.IndexType = indexType;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public ObjectEntryType Type; 
         
         /// <summary>

@@ -10,31 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public SamplerCreateInfo(StructureType sType, void* next, SamplerCreateFlags flags, Filter magFilter, Filter minFilter, SamplerMipmapMode mipmapMode, SamplerAddressMode addressModeU, SamplerAddressMode addressModeV, SamplerAddressMode addressModeW, float mipLodBias, Bool32 anisotropyEnable, float maxAnisotropy, Bool32 compareEnable, CompareOp compareOp, float minLod, float maxLod, BorderColor borderColor, Bool32 unnormalizedCoordinates)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-            this.MagFilter = magFilter;
-            this.MinFilter = minFilter;
-            this.MipmapMode = mipmapMode;
-            this.AddressModeU = addressModeU;
-            this.AddressModeV = addressModeV;
-            this.AddressModeW = addressModeW;
-            this.MipLodBias = mipLodBias;
-            this.AnisotropyEnable = anisotropyEnable;
-            this.MaxAnisotropy = maxAnisotropy;
-            this.CompareEnable = compareEnable;
-            this.CompareOp = compareOp;
-            this.MinLod = minLod;
-            this.MaxLod = maxLod;
-            this.BorderColor = borderColor;
-            this.UnnormalizedCoordinates = unnormalizedCoordinates;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

@@ -10,22 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public CopyDescriptorSet(StructureType sType, void* next, DescriptorSet sourceSet, uint sourceBinding, uint sourceArrayElement, DescriptorSet destinationSet, uint destinationBinding, uint destinationArrayElement, uint descriptorCount)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.SourceSet = sourceSet;
-            this.SourceBinding = sourceBinding;
-            this.SourceArrayElement = sourceArrayElement;
-            this.DestinationSet = destinationSet;
-            this.DestinationBinding = destinationBinding;
-            this.DestinationArrayElement = destinationArrayElement;
-            this.DescriptorCount = descriptorCount;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

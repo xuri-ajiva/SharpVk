@@ -10,19 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public IndirectCommandsLayoutCreateInfo(StructureType sType, void* next, PipelineBindPoint pipelineBindPoint, IndirectCommandsLayoutUsageFlags flags, uint tokenCount, IndirectCommandsLayoutToken* tokens)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.PipelineBindPoint = pipelineBindPoint;
-            this.Flags = flags;
-            this.TokenCount = tokenCount;
-            this.Tokens = tokens;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

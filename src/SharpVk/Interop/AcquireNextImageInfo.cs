@@ -10,20 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public AcquireNextImageInfo(StructureType sType, void* next, Swapchain swapchain, ulong timeout, Semaphore semaphore, Fence fence, uint deviceMask)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Swapchain = swapchain;
-            this.Timeout = timeout;
-            this.Semaphore = semaphore;
-            this.Fence = fence;
-            this.DeviceMask = deviceMask;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

@@ -10,23 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public HdrMetadata(StructureType sType, void* next, XYColor displayPrimaryRed, XYColor displayPrimaryGreen, XYColor displayPrimaryBlue, XYColor whitePoint, float maxLuminance, float minLuminance, float maxContentLightLevel, float maxFrameAverageLightLevel)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.DisplayPrimaryRed = displayPrimaryRed;
-            this.DisplayPrimaryGreen = displayPrimaryGreen;
-            this.DisplayPrimaryBlue = displayPrimaryBlue;
-            this.WhitePoint = whitePoint;
-            this.MaxLuminance = maxLuminance;
-            this.MinLuminance = minLuminance;
-            this.MaxContentLightLevel = maxContentLightLevel;
-            this.MaxFrameAverageLightLevel = maxFrameAverageLightLevel;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

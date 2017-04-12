@@ -10,16 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public SparseBufferMemoryBindInfo(Buffer buffer, uint bindCount, SparseMemoryBind* binds)
-        {
-            this.Buffer = buffer;
-            this.BindCount = bindCount;
-            this.Binds = binds;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public Buffer Buffer; 
         
         /// <summary>

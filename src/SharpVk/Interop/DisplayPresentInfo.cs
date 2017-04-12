@@ -10,18 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DisplayPresentInfo(StructureType sType, void* next, Rect2D sourceRect, Rect2D destinationRect, Bool32 persistent)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.SourceRect = sourceRect;
-            this.DestinationRect = destinationRect;
-            this.Persistent = persistent;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

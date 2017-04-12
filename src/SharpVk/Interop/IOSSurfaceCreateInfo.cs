@@ -10,17 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public IOSSurfaceCreateInfo(StructureType sType, void* next, IOSSurfaceCreateFlags flags, void* view)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-            this.View = view;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

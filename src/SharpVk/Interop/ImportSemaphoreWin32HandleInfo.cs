@@ -10,18 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public ImportSemaphoreWin32HandleInfo(StructureType sType, void* next, Semaphore semaphore, ExternalSemaphoreHandleTypeFlags handleType, IntPtr handle)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Semaphore = semaphore;
-            this.HandleType = handleType;
-            this.Handle = handle;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

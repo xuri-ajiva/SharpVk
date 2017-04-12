@@ -10,16 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DedicatedAllocationImageCreateInfo(StructureType sType, void* next, Bool32 dedicatedAllocation)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.DedicatedAllocation = dedicatedAllocation;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

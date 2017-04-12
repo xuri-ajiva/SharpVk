@@ -10,18 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PipelineViewportWScalingStateCreateInfo(StructureType sType, void* next, Bool32 viewportWScalingEnable, uint viewportCount, ViewportWScaling* viewportWScalings)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.ViewportWScalingEnable = viewportWScalingEnable;
-            this.ViewportCount = viewportCount;
-            this.ViewportWScalings = viewportWScalings;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

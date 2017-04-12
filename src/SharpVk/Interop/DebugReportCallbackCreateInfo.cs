@@ -10,18 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DebugReportCallbackCreateInfo(StructureType sType, void* next, DebugReportFlags flags, IntPtr callback, void* userData)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-            this.Callback = callback;
-            this.UserData = userData;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

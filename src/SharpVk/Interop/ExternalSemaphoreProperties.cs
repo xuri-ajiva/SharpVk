@@ -10,18 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public ExternalSemaphoreProperties(StructureType sType, void* next, ExternalSemaphoreHandleTypeFlags exportFromImportedHandleTypes, ExternalSemaphoreHandleTypeFlags compatibleHandleTypes, ExternalSemaphoreFeatureFlags externalSemaphoreFeatures)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.ExportFromImportedHandleTypes = exportFromImportedHandleTypes;
-            this.CompatibleHandleTypes = compatibleHandleTypes;
-            this.ExternalSemaphoreFeatures = externalSemaphoreFeatures;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

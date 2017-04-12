@@ -10,16 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public ExternalMemoryBufferCreateInfo(StructureType sType, void* next, ExternalMemoryHandleTypeFlags handleTypes)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.HandleTypes = handleTypes;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

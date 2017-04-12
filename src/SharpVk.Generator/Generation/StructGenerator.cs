@@ -25,14 +25,30 @@ namespace SharpVk.Generator.Generation
                 services.AddSingleton(new StructDefinition
                 {
                     Name = type.Name,
+                    Constructor = new MethodDefinition
+                    {
+                        Params = type.Members.Select(this.GetConstructorParam).ToList()
+                    },
                     Members = type.Members.Select(x => new MemberDefinition
                     {
                         Name = x.Name,
-                        ParamName =x.ParamName,
                         Type = this.nameLookup.Lookup(x.Type, false)
                     }).ToList()
                 });
             }
+        }
+
+        private ParamActionDefinition GetConstructorParam(MemberDeclaration member)
+        {
+            return new ParamActionDefinition
+            {
+                MemberName = member.Name,
+                Param = new ParamDefinition
+                {
+                    Name = member.ParamName,
+                    Type = this.nameLookup.Lookup(member.Type, true)
+                }
+            };
         }
     }
 }

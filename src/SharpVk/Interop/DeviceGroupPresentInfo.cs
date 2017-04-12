@@ -10,18 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DeviceGroupPresentInfo(StructureType sType, void* next, uint swapchainCount, uint* deviceMasks, DeviceGroupPresentModeFlags mode)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.SwapchainCount = swapchainCount;
-            this.DeviceMasks = deviceMasks;
-            this.Mode = mode;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

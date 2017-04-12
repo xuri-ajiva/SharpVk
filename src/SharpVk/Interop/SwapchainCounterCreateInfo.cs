@@ -10,16 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public SwapchainCounterCreateInfo(StructureType sType, void* next, SurfaceCounterFlags surfaceCounters)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.SurfaceCounters = surfaceCounters;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

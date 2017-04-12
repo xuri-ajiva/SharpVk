@@ -10,32 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public GraphicsPipelineCreateInfo(StructureType sType, void* next, PipelineCreateFlags flags, uint stageCount, PipelineShaderStageCreateInfo* stages, PipelineVertexInputStateCreateInfo* vertexInputState, PipelineInputAssemblyStateCreateInfo* inputAssemblyState, PipelineTessellationStateCreateInfo* tessellationState, PipelineViewportStateCreateInfo* viewportState, PipelineRasterizationStateCreateInfo* rasterizationState, PipelineMultisampleStateCreateInfo* multisampleState, PipelineDepthStencilStateCreateInfo* depthStencilState, PipelineColorBlendStateCreateInfo* colorBlendState, PipelineDynamicStateCreateInfo* dynamicState, PipelineLayout layout, RenderPass renderPass, uint subpass, Pipeline basePipelineHandle, int basePipelineIndex)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-            this.StageCount = stageCount;
-            this.Stages = stages;
-            this.VertexInputState = vertexInputState;
-            this.InputAssemblyState = inputAssemblyState;
-            this.TessellationState = tessellationState;
-            this.ViewportState = viewportState;
-            this.RasterizationState = rasterizationState;
-            this.MultisampleState = multisampleState;
-            this.DepthStencilState = depthStencilState;
-            this.ColorBlendState = colorBlendState;
-            this.DynamicState = dynamicState;
-            this.Layout = layout;
-            this.RenderPass = renderPass;
-            this.Subpass = subpass;
-            this.BasePipelineHandle = basePipelineHandle;
-            this.BasePipelineIndex = basePipelineIndex;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

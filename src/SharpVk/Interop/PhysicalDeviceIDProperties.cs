@@ -10,19 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PhysicalDeviceIDProperties(StructureType sType, void* next, byte deviceUUID, byte driverUUID, byte deviceLUID, Bool32 deviceLUIDValid)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.DeviceUUID = deviceUUID;
-            this.DriverUUID = driverUUID;
-            this.DeviceLUID = deviceLUID;
-            this.DeviceLUIDValid = deviceLUIDValid;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

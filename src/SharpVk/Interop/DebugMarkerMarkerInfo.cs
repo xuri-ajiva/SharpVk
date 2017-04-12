@@ -10,17 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DebugMarkerMarkerInfo(StructureType sType, void* next, char* markerName, float color)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.MarkerName = markerName;
-            this.Color = color;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

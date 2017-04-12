@@ -10,17 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public CommandPoolCreateInfo(StructureType sType, void* next, CommandPoolCreateFlags flags, uint queueFamilyIndex)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-            this.QueueFamilyIndex = queueFamilyIndex;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

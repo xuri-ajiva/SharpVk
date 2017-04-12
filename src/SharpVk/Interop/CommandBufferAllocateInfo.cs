@@ -10,18 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public CommandBufferAllocateInfo(StructureType sType, void* next, CommandPool commandPool, CommandBufferLevel level, uint commandBufferCount)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.CommandPool = commandPool;
-            this.Level = level;
-            this.CommandBufferCount = commandBufferCount;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

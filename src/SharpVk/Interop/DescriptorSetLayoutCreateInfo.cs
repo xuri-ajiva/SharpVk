@@ -10,18 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorSetLayoutCreateInfo(StructureType sType, void* next, DescriptorSetLayoutCreateFlags flags, uint bindingCount, DescriptorSetLayoutBinding* bindings)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-            this.BindingCount = bindingCount;
-            this.Bindings = bindings;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

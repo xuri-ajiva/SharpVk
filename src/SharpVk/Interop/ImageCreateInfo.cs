@@ -10,28 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public ImageCreateInfo(StructureType sType, void* next, ImageCreateFlags flags, ImageType imageType, Format format, Extent3D extent, uint mipLevels, uint arrayLayers, SampleCountFlags samples, ImageTiling tiling, ImageUsageFlags usage, SharingMode sharingMode, uint queueFamilyIndexCount, uint* queueFamilyIndices, ImageLayout initialLayout)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-            this.ImageType = imageType;
-            this.Format = format;
-            this.Extent = extent;
-            this.MipLevels = mipLevels;
-            this.ArrayLayers = arrayLayers;
-            this.Samples = samples;
-            this.Tiling = tiling;
-            this.Usage = usage;
-            this.SharingMode = sharingMode;
-            this.QueueFamilyIndexCount = queueFamilyIndexCount;
-            this.QueueFamilyIndices = queueFamilyIndices;
-            this.InitialLayout = initialLayout;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

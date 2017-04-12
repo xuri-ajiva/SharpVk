@@ -10,17 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public ViSurfaceCreateInfo(StructureType sType, void* next, ViSurfaceCreateFlags flags, void* window)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-            this.Window = window;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

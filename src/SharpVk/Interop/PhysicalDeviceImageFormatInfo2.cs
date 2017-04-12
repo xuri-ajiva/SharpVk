@@ -10,20 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PhysicalDeviceImageFormatInfo2(StructureType sType, void* next, Format format, ImageType type, ImageTiling tiling, ImageUsageFlags usage, ImageCreateFlags flags)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Format = format;
-            this.Type = type;
-            this.Tiling = tiling;
-            this.Usage = usage;
-            this.Flags = flags;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

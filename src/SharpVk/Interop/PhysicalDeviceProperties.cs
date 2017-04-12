@@ -10,22 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PhysicalDeviceProperties(uint apiVersion, uint driverVersion, uint vendorID, uint deviceID, PhysicalDeviceType deviceType, char deviceName, byte pipelineCacheUUID, PhysicalDeviceLimits limits, PhysicalDeviceSparseProperties sparseProperties)
-        {
-            this.ApiVersion = apiVersion;
-            this.DriverVersion = driverVersion;
-            this.VendorID = vendorID;
-            this.DeviceID = deviceID;
-            this.DeviceType = deviceType;
-            this.DeviceName = deviceName;
-            this.PipelineCacheUUID = pipelineCacheUUID;
-            this.Limits = limits;
-            this.SparseProperties = sparseProperties;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint ApiVersion; 
         
         /// <summary>

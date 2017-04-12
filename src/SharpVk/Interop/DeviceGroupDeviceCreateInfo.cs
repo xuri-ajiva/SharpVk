@@ -10,17 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DeviceGroupDeviceCreateInfo(StructureType sType, void* next, uint physicalDeviceCount, PhysicalDevice* physicalDevices)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.PhysicalDeviceCount = physicalDeviceCount;
-            this.PhysicalDevices = physicalDevices;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

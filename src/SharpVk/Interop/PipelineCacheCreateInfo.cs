@@ -10,18 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PipelineCacheCreateInfo(StructureType sType, void* next, PipelineCacheCreateFlags flags, HostSize initialDataSize, void* initialData)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-            this.InitialDataSize = initialDataSize;
-            this.InitialData = initialData;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

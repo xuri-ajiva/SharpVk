@@ -10,18 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public MappedMemoryRange(StructureType sType, void* next, DeviceMemory memory, DeviceSize offset, DeviceSize size)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Memory = memory;
-            this.Offset = offset;
-            this.Size = size;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

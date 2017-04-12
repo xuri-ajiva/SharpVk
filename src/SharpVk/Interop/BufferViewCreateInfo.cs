@@ -10,20 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public BufferViewCreateInfo(StructureType sType, void* next, BufferViewCreateFlags flags, Buffer buffer, Format format, DeviceSize offset, DeviceSize range)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-            this.Buffer = buffer;
-            this.Format = format;
-            this.Offset = offset;
-            this.Range = range;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

@@ -10,25 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public BindSparseInfo(StructureType sType, void* next, uint waitSemaphoreCount, Semaphore* waitSemaphores, uint bufferBindCount, SparseBufferMemoryBindInfo* bufferBinds, uint imageOpaqueBindCount, SparseImageOpaqueMemoryBindInfo* imageOpaqueBinds, uint imageBindCount, SparseImageMemoryBindInfo* imageBinds, uint signalSemaphoreCount, Semaphore* signalSemaphores)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.WaitSemaphoreCount = waitSemaphoreCount;
-            this.WaitSemaphores = waitSemaphores;
-            this.BufferBindCount = bufferBindCount;
-            this.BufferBinds = bufferBinds;
-            this.ImageOpaqueBindCount = imageOpaqueBindCount;
-            this.ImageOpaqueBinds = imageOpaqueBinds;
-            this.ImageBindCount = imageBindCount;
-            this.ImageBinds = imageBinds;
-            this.SignalSemaphoreCount = signalSemaphoreCount;
-            this.SignalSemaphores = signalSemaphores;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

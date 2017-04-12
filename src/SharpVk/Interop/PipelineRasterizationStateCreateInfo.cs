@@ -10,26 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PipelineRasterizationStateCreateInfo(StructureType sType, void* next, PipelineRasterizationStateCreateFlags flags, Bool32 depthClampEnable, Bool32 rasterizerDiscardEnable, PolygonMode polygonMode, CullModeFlags cullMode, FrontFace frontFace, Bool32 depthBiasEnable, float depthBiasConstantFactor, float depthBiasClamp, float depthBiasSlopeFactor, float lineWidth)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-            this.DepthClampEnable = depthClampEnable;
-            this.RasterizerDiscardEnable = rasterizerDiscardEnable;
-            this.PolygonMode = polygonMode;
-            this.CullMode = cullMode;
-            this.FrontFace = frontFace;
-            this.DepthBiasEnable = depthBiasEnable;
-            this.DepthBiasConstantFactor = depthBiasConstantFactor;
-            this.DepthBiasClamp = depthBiasClamp;
-            this.DepthBiasSlopeFactor = depthBiasSlopeFactor;
-            this.LineWidth = lineWidth;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

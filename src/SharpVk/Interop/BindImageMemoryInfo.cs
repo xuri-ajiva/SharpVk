@@ -10,22 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public BindImageMemoryInfo(StructureType sType, void* next, Image image, DeviceMemory memory, DeviceSize memoryOffset, uint deviceIndexCount, uint* deviceIndices, uint sFRRectCount, Rect2D* sFRRects)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Image = image;
-            this.Memory = memory;
-            this.MemoryOffset = memoryOffset;
-            this.DeviceIndexCount = deviceIndexCount;
-            this.DeviceIndices = deviceIndices;
-            this.SFRRectCount = sFRRectCount;
-            this.SFRRects = sFRRects;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

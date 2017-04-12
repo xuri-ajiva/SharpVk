@@ -10,18 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PipelineInputAssemblyStateCreateInfo(StructureType sType, void* next, PipelineInputAssemblyStateCreateFlags flags, PrimitiveTopology topology, Bool32 primitiveRestartEnable)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.Flags = flags;
-            this.Topology = topology;
-            this.PrimitiveRestartEnable = primitiveRestartEnable;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

@@ -10,16 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DeviceGroupCommandBufferBeginInfo(StructureType sType, void* next, uint deviceMask)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.DeviceMask = deviceMask;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

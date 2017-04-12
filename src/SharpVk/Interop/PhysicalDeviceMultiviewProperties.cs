@@ -10,17 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PhysicalDeviceMultiviewProperties(StructureType sType, void* next, uint maxMultiviewViewCount, uint maxMultiviewInstanceIndex)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.MaxMultiviewViewCount = maxMultiviewViewCount;
-            this.MaxMultiviewInstanceIndex = maxMultiviewInstanceIndex;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

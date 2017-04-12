@@ -10,17 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public ValidationFlags(StructureType sType, void* next, uint disabledValidationCheckCount, ValidationCheck* disabledValidationChecks)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.DisabledValidationCheckCount = disabledValidationCheckCount;
-            this.DisabledValidationChecks = disabledValidationChecks;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

@@ -10,15 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DisplayPlaneProperties(Display currentDisplay, uint currentStackIndex)
-        {
-            this.CurrentDisplay = currentDisplay;
-            this.CurrentStackIndex = currentStackIndex;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public Display CurrentDisplay; 
         
         /// <summary>

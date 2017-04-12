@@ -10,16 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public SparseImageMemoryBindInfo(Image image, uint bindCount, SparseImageMemoryBind* binds)
-        {
-            this.Image = image;
-            this.BindCount = bindCount;
-            this.Binds = binds;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public Image Image; 
         
         /// <summary>

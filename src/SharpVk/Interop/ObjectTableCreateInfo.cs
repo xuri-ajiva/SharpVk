@@ -10,24 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public ObjectTableCreateInfo(StructureType sType, void* next, uint objectCount, ObjectEntryType* objectEntryTypes, uint* objectEntryCounts, ObjectEntryUsageFlags* objectEntryUsageFlags, uint maxUniformBuffersPerDescriptor, uint maxStorageBuffersPerDescriptor, uint maxStorageImagesPerDescriptor, uint maxSampledImagesPerDescriptor, uint maxPipelineLayouts)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.ObjectCount = objectCount;
-            this.ObjectEntryTypes = objectEntryTypes;
-            this.ObjectEntryCounts = objectEntryCounts;
-            this.ObjectEntryUsageFlags = objectEntryUsageFlags;
-            this.MaxUniformBuffersPerDescriptor = maxUniformBuffersPerDescriptor;
-            this.MaxStorageBuffersPerDescriptor = maxStorageBuffersPerDescriptor;
-            this.MaxStorageImagesPerDescriptor = maxStorageImagesPerDescriptor;
-            this.MaxSampledImagesPerDescriptor = maxSampledImagesPerDescriptor;
-            this.MaxPipelineLayouts = maxPipelineLayouts;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

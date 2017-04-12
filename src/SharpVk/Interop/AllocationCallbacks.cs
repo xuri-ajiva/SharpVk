@@ -10,19 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public AllocationCallbacks(void* userData, IntPtr allocation, IntPtr reallocation, IntPtr free, IntPtr internalAllocation, IntPtr internalFree)
-        {
-            this.UserData = userData;
-            this.Allocation = allocation;
-            this.Reallocation = reallocation;
-            this.Free = free;
-            this.InternalAllocation = internalAllocation;
-            this.InternalFree = internalFree;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public void* UserData; 
         
         /// <summary>

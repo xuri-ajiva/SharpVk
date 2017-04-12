@@ -10,25 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public CommandProcessCommandsInfo(StructureType sType, void* next, ObjectTable objectTable, IndirectCommandsLayout indirectCommandsLayout, uint indirectCommandsTokenCount, IndirectCommandsToken* indirectCommandsTokens, uint maxSequencesCount, CommandBuffer targetCommandBuffer, Buffer sequencesCountBuffer, DeviceSize sequencesCountOffset, Buffer sequencesIndexBuffer, DeviceSize sequencesIndexOffset)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.ObjectTable = objectTable;
-            this.IndirectCommandsLayout = indirectCommandsLayout;
-            this.IndirectCommandsTokenCount = indirectCommandsTokenCount;
-            this.IndirectCommandsTokens = indirectCommandsTokens;
-            this.MaxSequencesCount = maxSequencesCount;
-            this.TargetCommandBuffer = targetCommandBuffer;
-            this.SequencesCountBuffer = sequencesCountBuffer;
-            this.SequencesCountOffset = sequencesCountOffset;
-            this.SequencesIndexBuffer = sequencesIndexBuffer;
-            this.SequencesIndexOffset = sequencesIndexOffset;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

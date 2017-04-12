@@ -10,16 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PhysicalDeviceExternalSemaphoreInfo(StructureType sType, void* next, ExternalSemaphoreHandleTypeFlags handleType)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.HandleType = handleType;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>

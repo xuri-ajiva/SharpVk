@@ -10,23 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public SubpassDescription(SubpassDescriptionFlags flags, PipelineBindPoint pipelineBindPoint, uint inputAttachmentCount, AttachmentReference* inputAttachments, uint colorAttachmentCount, AttachmentReference* colorAttachments, AttachmentReference* resolveAttachments, AttachmentReference* depthStencilAttachment, uint preserveAttachmentCount, uint* preserveAttachments)
-        {
-            this.Flags = flags;
-            this.PipelineBindPoint = pipelineBindPoint;
-            this.InputAttachmentCount = inputAttachmentCount;
-            this.InputAttachments = inputAttachments;
-            this.ColorAttachmentCount = colorAttachmentCount;
-            this.ColorAttachments = colorAttachments;
-            this.ResolveAttachments = resolveAttachments;
-            this.DepthStencilAttachment = depthStencilAttachment;
-            this.PreserveAttachmentCount = preserveAttachmentCount;
-            this.PreserveAttachments = preserveAttachments;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public SubpassDescriptionFlags Flags; 
         
         /// <summary>

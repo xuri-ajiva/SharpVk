@@ -10,16 +10,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public FormatProperties2(StructureType sType, void* next, FormatProperties formatProperties)
-        {
-            this.SType = sType;
-            this.Next = next;
-            this.FormatProperties = formatProperties;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public StructureType SType; 
         
         /// <summary>
