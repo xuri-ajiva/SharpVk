@@ -21,7 +21,7 @@ namespace SharpVk.Emit
             }
 
             var filePath = Path.Combine(folderPath, fileName);
-            
+
             if (File.Exists(filePath))
             {
                 File.Delete(filePath);

@@ -1,5 +1,3 @@
-using System;
-
 namespace SharpVk
 {
     /// <summary>
@@ -7,5 +5,9 @@ namespace SharpVk
     /// </summary>
     public enum DeviceEventType
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        DisplayHotplug = 0, 
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System;
 
 namespace SharpVk.Generator.Collation
 {
@@ -38,6 +39,8 @@ namespace SharpVk.Generator.Collation
             {"LPCWSTR", "IntPtr" }
         };
 
+        private static readonly string[] digitsSuffix = new[] { "flags", "flag", "type", "bits", "bit" };
+
         public string FormatName(EnumElement enumeration)
         {
             return JoinNameParts(enumeration.NameParts);
@@ -65,7 +68,7 @@ namespace SharpVk.Generator.Collation
         {
             var nameParts = member.NameParts.AsEnumerable();
 
-            if(nameParts.First() == "pfn")
+            if (nameParts.First() == "pfn")
             {
                 nameParts = nameParts.Skip(1);
             }
@@ -104,6 +107,24 @@ namespace SharpVk.Generator.Collation
             }
 
             return JoinNameParts(methodNameParts);
+        }
+
+        public string FormatName(EnumElement enumeration, EnumField value, bool isBitmask)
+        {
+            string digitsPrefix = JoinNameParts(enumeration.NameParts.TakeWhile(x => !digitsSuffix.Contains(x)));
+
+            int skipAtEnd = isBitmask && digitsSuffix.Contains(value.NameParts.Last())
+                ? 1
+                : 0;
+
+            string result = JoinNameParts(value.NameParts.Take(value.NameParts.Length - skipAtEnd));
+
+            if (!char.IsLetter(result[0]))
+            {
+                result = digitsPrefix + result;
+            }
+
+            return result;
         }
 
         private static string JoinNameParts(IEnumerable<string> nameParts)

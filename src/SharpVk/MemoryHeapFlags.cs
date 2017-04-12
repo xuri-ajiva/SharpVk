@@ -1,5 +1,3 @@
-using System;
-
 namespace SharpVk
 {
     /// <summary>
@@ -7,5 +5,14 @@ namespace SharpVk
     /// </summary>
     public enum MemoryHeapFlags
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        None = 0, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DeviceLocal = 1 << 0, 
     }
 }

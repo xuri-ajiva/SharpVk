@@ -53,8 +53,8 @@ namespace SharpVk.Generator.Collation
 
                 services.AddSingleton(new EnumDeclaration
                 {
-                    VkName = enumeration.VkName,
-                    Name = name
+                    Name = name,
+                    Fields = this.DeclareFields(enumeration, false)
                 });
 
                 services.AddSingleton(new TypeNameMapping
@@ -74,8 +74,8 @@ namespace SharpVk.Generator.Collation
 
                 services.AddSingleton(new EnumDeclaration
                 {
-                    VkName = bitmaskType.VkName,
-                    Name = name
+                    Name = name,
+                    Fields = this.DeclareFields(enumeration, true)
                 });
 
                 if (enumeration != null)
@@ -95,6 +95,50 @@ namespace SharpVk.Generator.Collation
                     Priority = 1
                 });
             }
+        }
+
+        private List<FieldDeclaration> DeclareFields(EnumElement enumeration, bool isBitmask)
+        {
+            var result = new List<FieldDeclaration>();
+
+            if (enumeration != null)
+            {
+                if (isBitmask && !enumeration.Fields.Values.Any(x => x.Value == "0" && !x.IsBitmask))
+                {
+                    AddNoneField(result);
+                }
+
+                foreach (var field in enumeration.Fields.Values)
+                {
+                    string value = field.Value;
+
+                    if (field.IsBitmask)
+                    {
+                        value = $"1 << {value}";
+                    }
+
+                    result.Add(new FieldDeclaration
+                    {
+                        Name = this.nameFormatter.FormatName(enumeration, field, field.IsBitmask),
+                        Value = value
+                    });
+                }
+            }
+            else
+            {
+                AddNoneField(result);
+            }
+
+            return result;
+        }
+
+        private static void AddNoneField(List<FieldDeclaration> result)
+        {
+            result.Add(new FieldDeclaration
+            {
+                Name = "None",
+                Value = "0"
+            });
         }
     }
 }

@@ -1,5 +1,3 @@
-using System;
-
 namespace SharpVk
 {
     /// <summary>
@@ -7,5 +5,14 @@ namespace SharpVk
     /// </summary>
     public enum Filter
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        Nearest = 0, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Linear = 1, 
     }
 }

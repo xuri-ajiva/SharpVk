@@ -1,5 +1,3 @@
-using System;
-
 namespace SharpVk
 {
     /// <summary>
@@ -7,5 +5,14 @@ namespace SharpVk
     /// </summary>
     public enum FrontFace
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        CounterClockwise = 0, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Clockwise = 1, 
     }
 }

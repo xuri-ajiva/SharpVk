@@ -1,5 +1,3 @@
-using System;
-
 namespace SharpVk
 {
     /// <summary>
@@ -7,5 +5,19 @@ namespace SharpVk
     /// </summary>
     public enum QueryType
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        Occlusion = 0, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PipelineStatistics = 1, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Timestamp = 2, 
     }
 }

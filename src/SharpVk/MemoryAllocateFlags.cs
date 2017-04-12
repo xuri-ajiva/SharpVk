@@ -1,5 +1,3 @@
-using System;
-
 namespace SharpVk
 {
     /// <summary>
@@ -7,5 +5,14 @@ namespace SharpVk
     /// </summary>
     public enum MemoryAllocateFlags
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        None = 0, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DeviceMask = 1 << 0, 
     }
 }
