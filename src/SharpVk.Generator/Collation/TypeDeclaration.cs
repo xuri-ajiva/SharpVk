@@ -5,8 +5,8 @@ namespace SharpVk.Generator.Collation
 {
     public class TypeDeclaration
     {
-        public string VkName;
         public string Name;
+        public string Extension;
         public TypePattern Pattern;
         public List<MemberDeclaration> Members;
 

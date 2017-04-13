@@ -26,6 +26,7 @@ namespace SharpVk.Generator.Generation
                 services.AddSingleton(new EnumDefinition
                 {
                     Name = enumeration.Name,
+                    Namespace = enumeration.Extension != null ? new[] { enumeration.Extension } : null,
                     Fields = enumeration.Fields.Select(x => new FieldDefinition
                     {
                         Name = x.Name,

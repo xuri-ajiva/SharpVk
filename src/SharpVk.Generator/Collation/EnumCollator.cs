@@ -50,16 +50,24 @@ namespace SharpVk.Generator.Collation
                 var enumeration = this.enums[enumType];
 
                 string name = this.nameFormatter.FormatName(enumeration);
+                string extension = enumeration.Extension?.FirstToUpper();
 
                 services.AddSingleton(new EnumDeclaration
                 {
                     Name = name,
+                    Extension = extension,
                     Fields = this.DeclareFields(enumeration, false)
                 });
+
+                if (extension != null)
+                {
+                    name = "SharpVk." + extension + "." + name;
+                }
 
                 services.AddSingleton(new TypeNameMapping
                 {
                     VkName = enumeration.VkName,
+                    Priority = 1,
                     OutputName = name
                 });
             }
@@ -71,12 +79,19 @@ namespace SharpVk.Generator.Collation
                                         : null;
 
                 string name = this.nameFormatter.FormatName(bitmaskType);
+                string extension = bitmaskType.Extension?.FirstToUpper();
 
                 services.AddSingleton(new EnumDeclaration
                 {
                     Name = name,
+                    Extension = extension,
                     Fields = this.DeclareFields(enumeration, true)
                 });
+
+                if (extension != null)
+                {
+                    name = "SharpVk." + extension + "." + name;
+                }
 
                 if (enumeration != null)
                 {

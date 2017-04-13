@@ -136,7 +136,7 @@ namespace SharpVk.Emit
                 }
             }
         }
-
+        
         public void EmitProperty(string type,
                                     string name,
                                     AccessModifier accessModifier = AccessModifier.Private,

@@ -5,7 +5,7 @@
     {
         public bool IsOptional;
         public FixedLengthDeclaration FixedLength;
-        public ParsedLen[] Dimensions;
+        public MemberLen[] Dimensions;
         public PointerType PointerType;
     }
 }

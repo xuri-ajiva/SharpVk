@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SharpVk.Generator.Collation;
 using SharpVk.Generator.Pipeline;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -25,11 +26,12 @@ namespace SharpVk.Generator.Generation
                 services.AddSingleton(new StructDefinition
                 {
                     Name = type.Name,
+                    Namespace = type.Extension != null ? new[] { type.Extension.FirstToUpper() } : null,
                     Constructor = new MethodDefinition
                     {
                         Params = type.Members.Select(this.GetConstructorParam).ToList()
                     },
-                    Members = type.Members.Select(x => new MemberDefinition
+                    Fields = type.Members.Select(x => new MemberDefinition
                     {
                         Name = x.Name,
                         Type = this.nameLookup.Lookup(x.Type, false)

@@ -1,7 +1,9 @@
 ﻿using SharpVk.Emit;
 using SharpVk.Generator.Generation;
 using SharpVk.Generator.Pipeline;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using static SharpVk.Emit.AccessModifier;
 using static SharpVk.Emit.ExpressionBuilder;
 using static SharpVk.Emit.TypeModifier;
@@ -27,10 +29,10 @@ namespace SharpVk.Generator.Emission
                 string path = null;
                 string @namespace = "SharpVk";
 
-                if (@struct.IsInterop)
+                if (@struct.Namespace?.Any() ?? false)
                 {
-                    path = "Interop";
-                    @namespace += ".Interop";
+                    path = string.Join("\\", @struct.Namespace);
+                    @namespace += "." + string.Join(".", @struct.Namespace);
                 }
 
                 this.builderFactory.Generate(@struct.Name, path, fileBuilder =>
@@ -59,14 +61,30 @@ namespace SharpVk.Generator.Emission
                                 }, Public);
                             }
 
-                            foreach (var member in @struct.Members)
+                            if (@struct.Fields != null)
                             {
-                                typeBuilder.EmitField(member.Type,
-                                                        member.Name,
-                                                        member.IsPrivate ? Private : Public,
-                                                        summary: member.Comment);
+                                foreach (var member in @struct.Fields)
+                                {
+                                    typeBuilder.EmitField(member.Type,
+                                                            member.Name,
+                                                            member.IsPrivate ? Private : Public,
+                                                            summary: member.Comment);
+                                }
                             }
-                        }, Public, null, @struct.IsInterop ? Unsafe : None);
+
+                            if (@struct.Properties != null)
+                            {
+                                foreach (var member in @struct.Properties)
+                                {
+                                    typeBuilder.EmitProperty(member.Type,
+                                                            member.Name,
+                                                            Public,
+                                                            getter: member.IsPrivate ? Private : Public,
+                                                            setter: member.IsPrivate ? Private : Public,
+                                                            summary: member.Comment);
+                                }
+                            }
+                        }, Public, null, @struct.IsUnsafe ? Unsafe : None);
                     });
                 });
             }

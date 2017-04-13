@@ -29,9 +29,23 @@ namespace SharpVk.Generator.Generation
                 return "IntPtr";
             }
 
-            var baseName = this.nameMapping[type.VkName];
+            if (isInterop)
+            {
+                var baseName = this.nameMapping[type.VkName];
 
-            return baseName + new string('*', type.PointerType.GetPointerCount());
+                return baseName + new string('*', type.PointerType.GetPointerCount());
+            }
+            else
+            {
+                if (type.VkName == "void" && type.PointerType.IsPointer())
+                {
+                    return "IntPtr";
+                }
+                else
+                {
+                    return this.nameMapping[type.VkName];
+                }
+            }
         }
     }
 }

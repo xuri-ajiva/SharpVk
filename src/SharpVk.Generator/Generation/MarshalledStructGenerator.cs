@@ -23,13 +23,53 @@ namespace SharpVk.Generator.Generation
         {
             foreach (var type in this.typeData.Values.Where(x => x.Pattern == TypePattern.MarshalledStruct))
             {
+                var typeNamespace = new List<string>();
+
+                if (type.Extension != null)
+                {
+                    typeNamespace.Add(type.Extension);
+                }
+
+                var publicStruct = new StructDefinition
+                {
+                    Name = type.Name,
+                    Namespace = typeNamespace.ToArray(),
+                    Properties = new List<MemberDefinition>()
+                };
+
+                foreach (var member in type.Members)
+                {
+                    if (member.FixedValue != null)
+                    {
+
+                    }
+                    else
+                    {
+                        publicStruct.Properties.Add(GetPublicMember(member));
+                    }
+                }
+
+                typeNamespace.Insert(0, "Interop");
+
+                services.AddSingleton(publicStruct);
+
                 services.AddSingleton(new StructDefinition
                 {
                     Name = type.Name,
-                    IsInterop = true,
-                    Members = type.Members.Select(this.GetInteropMember).ToList()
+                    Namespace = typeNamespace.ToArray(),
+                    IsUnsafe = true,
+                    Fields = type.Members.Select(this.GetInteropMember).ToList()
                 });
             }
+        }
+
+        private MemberDefinition GetPublicMember(MemberDeclaration member)
+        {
+            return new MemberDefinition
+            {
+                Name = member.Name,
+                Type = this.nameLookup.Lookup(member.Type, false)
+            };
         }
 
         private MemberDefinition GetInteropMember(MemberDeclaration member)

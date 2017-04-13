@@ -5,5 +5,6 @@ namespace SharpVk.Generator.Generation
     public class HandleDefinition
     {
         public string Name;
+        public string[] Namespace;
     }
 }

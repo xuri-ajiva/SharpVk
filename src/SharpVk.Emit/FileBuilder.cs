@@ -12,7 +12,7 @@ namespace SharpVk.Emit
 
         private bool hasFirstParagraph = false;
         private bool previousParagraphWasNamespace = false;
-
+        
         public FileBuilder(string folderPath, string fileName)
         {
             if (!Directory.Exists(folderPath))
@@ -21,7 +21,7 @@ namespace SharpVk.Emit
             }
 
             var filePath = Path.Combine(folderPath, fileName);
-
+            
             if (File.Exists(filePath))
             {
                 File.Delete(filePath);

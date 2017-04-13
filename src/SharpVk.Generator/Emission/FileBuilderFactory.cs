@@ -20,7 +20,7 @@ namespace SharpVk.Generator.Emission
                 folderPath = Path.Combine(folderPath, subFolder);
             }
 
-            using (var builder = new FileBuilder(folderPath, $"{fileName}.cs"))
+            using (var builder = new FileBuilder(folderPath, $"{fileName}.gen.cs"))
             {
                 builder.EmitComment($@"The MIT License (MIT)
 

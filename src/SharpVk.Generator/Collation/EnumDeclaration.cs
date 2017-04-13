@@ -5,6 +5,7 @@ namespace SharpVk.Generator.Collation
     public class EnumDeclaration
     {
         public string Name;
+        public string Extension;
         public bool IsFlags;
         public List<FieldDeclaration> Fields;
     }

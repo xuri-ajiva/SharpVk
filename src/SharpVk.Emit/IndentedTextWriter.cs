@@ -79,6 +79,7 @@ namespace SharpVk.Emit
         {
             if (disposing)
             {
+                this.baseWriter.Flush();
                 this.baseWriter.Dispose();
             }
 

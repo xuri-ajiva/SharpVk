@@ -29,8 +29,8 @@ namespace SharpVk.Generator.Collation
                                     .Where(x => x.Category != TypeCategory.define && x.Category != TypeCategory.include)
                                     .ToDictionary(x => x.VkName, x => new TypeDeclaration
                                     {
-                                        VkName = x.VkName,
                                         Name = this.nameFormatter.FormatName(x),
+                                        Extension = x.Extension?.FirstToUpper(),
                                         Pattern = x.Category.MapToPattern(),
                                         Members = GetMembers(x).ToList()
                                     });
@@ -53,12 +53,24 @@ namespace SharpVk.Generator.Collation
                 }
             }
 
-            foreach(var type in typeData.Values)
+            foreach (var type in typeData)
             {
+                var name = type.Value.Name;
+
+                if (type.Value.Extension != null)
+                {
+                    name = type.Value.Extension + "." + name;
+
+                    if (type.Value.Pattern == TypePattern.NonMarshalledStruct)
+                    {
+                        name = "SharpVk." + name;
+                    }
+                }
+
                 services.AddSingleton(new TypeNameMapping
                 {
-                    VkName = type.VkName,
-                    OutputName = type.Name
+                    VkName = type.Key,
+                    OutputName = name
                 });
             }
 
@@ -73,6 +85,8 @@ namespace SharpVk.Generator.Collation
                 {
                     Name = this.nameFormatter.FormatName(member, false),
                     ParamName = this.nameFormatter.FormatName(member, true),
+                    FixedValue = member.Values,
+                    Dimensions = member.Dimensions,
                     Type = new TypeReference
                     {
                         VkName = member.Type,

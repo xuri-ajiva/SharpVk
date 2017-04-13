@@ -21,17 +21,21 @@ namespace SharpVk.Generator.Generation
         {
             foreach (var @delegate in delegates)
             {
+                var type = this.typeData[@delegate.VkName];
+                string extension = type.Extension?.FirstToUpper();
+
                 services.AddSingleton(new DelegateDefinition
                 {
-                    Name = this.typeData[@delegate.VkName].Name,
+                    Name = type.Name,
+                    Namespace = extension != null ? new[] { extension } : null,
                     ReturnType = this.typeData[@delegate.ReturnType].Name
                 });
 
-                services.AddSingleton(new TypeNameMapping
-                {
-                    VkName = @delegate.VkName,
-                    OutputName = this.typeData[@delegate.VkName].Name
-                });
+                //services.AddSingleton(new TypeNameMapping
+                //{
+                //    VkName = @delegate.VkName,
+                //    OutputName = type.Name
+                //});
             }
         }
     }

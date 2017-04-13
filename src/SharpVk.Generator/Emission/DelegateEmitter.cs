@@ -1,7 +1,8 @@
-﻿using SharpVk.Emit;
-using SharpVk.Generator.Generation;
+﻿using SharpVk.Generator.Generation;
 using SharpVk.Generator.Pipeline;
 using System.Collections.Generic;
+using System.Linq;
+
 using static SharpVk.Emit.AccessModifier;
 using static SharpVk.Emit.TypeModifier;
 
@@ -23,11 +24,20 @@ namespace SharpVk.Generator.Emission
         {
             foreach (var @delegate in this.delegates)
             {
-                this.builderFactory.Generate(@delegate.Name, fileBuilder =>
+                string path = null;
+                string @namespace = "SharpVk";
+
+                if (@delegate.Namespace?.Any() ?? false)
+                {
+                    path = string.Join("\\", @delegate.Namespace);
+                    @namespace += "." + string.Join(".", @delegate.Namespace);
+                }
+
+                this.builderFactory.Generate(@delegate.Name, path, fileBuilder =>
                 {
                     fileBuilder.EmitUsing("System");
 
-                    fileBuilder.EmitNamespace("SharpVk", namespaceBuilder =>
+                    fileBuilder.EmitNamespace(@namespace, namespaceBuilder =>
                     {
                         namespaceBuilder.EmitDelegate(@delegate.ReturnType,
                                                         @delegate.Name,

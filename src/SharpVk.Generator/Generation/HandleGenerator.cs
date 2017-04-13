@@ -24,7 +24,8 @@ namespace SharpVk.Generator.Generation
             {
                 services.AddSingleton(new HandleDefinition
                 {
-                    Name = this.nameLookup.Lookup(type.VkName)
+                    Name = type.Name,
+                    Namespace = type.Extension != null ? new[] { type.Extension } : null
                 });
             }
         }

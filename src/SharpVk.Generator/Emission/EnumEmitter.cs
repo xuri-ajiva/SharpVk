@@ -2,7 +2,7 @@
 using SharpVk.Generator.Generation;
 using SharpVk.Generator.Pipeline;
 using System.Collections.Generic;
-
+using System.Linq;
 using static SharpVk.Emit.AccessModifier;
 using static SharpVk.Emit.ExpressionBuilder;
 
@@ -24,9 +24,18 @@ namespace SharpVk.Generator.Emission
         {
             foreach (var @enum in this.enums)
             {
-                this.builderFactory.Generate(@enum.Name, fileBuilder =>
+                string path = null;
+                string @namespace = "SharpVk";
+
+                if (@enum.Namespace?.Any() ?? false)
                 {
-                    fileBuilder.EmitNamespace("SharpVk", namespaceBuilder =>
+                    path = string.Join("\\", @enum.Namespace);
+                    @namespace += "." + string.Join(".", @enum.Namespace);
+                }
+
+                this.builderFactory.Generate(@enum.Name, path, fileBuilder =>
+                {
+                    fileBuilder.EmitNamespace(@namespace, namespaceBuilder =>
                     {
                         namespaceBuilder.EmitEnum(@enum.Name, enumBuilder =>
                         {
