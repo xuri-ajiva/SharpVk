@@ -11,15 +11,17 @@ namespace SharpVk.Generator.Emission
         : IOutputWorker
     {
         private readonly IEnumerable<PInvokeDefinition> pInvokes;
+        private readonly FileBuilderFactory builderFactory;
 
-        public PInvokeEmitter(IEnumerable<PInvokeDefinition> pInvokes)
+        public PInvokeEmitter(IEnumerable<PInvokeDefinition> pInvokes, FileBuilderFactory builderFactory)
         {
             this.pInvokes = pInvokes;
+            this.builderFactory = builderFactory;
         }
 
         public void Execute()
         {
-            using (var fileBuilder = new FileBuilder("..\\SharpVk\\Interop", "Commands.cs"))
+            this.builderFactory.Generate("Commands", "Interop", fileBuilder =>
             {
                 fileBuilder.EmitUsing("System");
                 fileBuilder.EmitUsing("System.Runtime.InteropServices");
@@ -42,7 +44,7 @@ namespace SharpVk.Generator.Emission
                         }
                     }, Public, modifiers: TypeModifier.Static | TypeModifier.Unsafe);
                 });
-            }
+            });
         }
     }
 }

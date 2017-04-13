@@ -12,26 +12,28 @@ namespace SharpVk.Generator.Emission
         : IOutputWorker
     {
         private readonly IEnumerable<StructDefinition> structs;
+        private readonly FileBuilderFactory builderFactory;
 
-        public StructEmitter(IEnumerable<StructDefinition> structs)
+        public StructEmitter(IEnumerable<StructDefinition> structs, FileBuilderFactory builderFactory)
         {
             this.structs = structs;
+            this.builderFactory = builderFactory;
         }
 
         public void Execute()
         {
             foreach (var @struct in this.structs)
             {
-                var path = "..\\SharpVk";
-                var @namespace = "SharpVk";
+                string path = null;
+                string @namespace = "SharpVk";
 
                 if (@struct.IsInterop)
                 {
-                    path += "\\Interop";
+                    path = "Interop";
                     @namespace += ".Interop";
                 }
 
-                using (var fileBuilder = new FileBuilder(path, $"{@struct.Name}.cs"))
+                this.builderFactory.Generate(@struct.Name, path, fileBuilder =>
                 {
                     fileBuilder.EmitUsing("System");
 
@@ -66,7 +68,7 @@ namespace SharpVk.Generator.Emission
                             }
                         }, Public, null, @struct.IsInterop ? Unsafe : None);
                     });
-                }
+                });
             }
         }
     }

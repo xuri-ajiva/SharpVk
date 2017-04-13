@@ -2,6 +2,7 @@
 using SharpVk.Generator.Generation;
 using SharpVk.Generator.Pipeline;
 using System.Collections.Generic;
+
 using static SharpVk.Emit.AccessModifier;
 
 namespace SharpVk.Generator.Emission
@@ -9,18 +10,20 @@ namespace SharpVk.Generator.Emission
     class HandleEmitter
         : IOutputWorker
     {
-        private IEnumerable<HandleDefinition> handles;
+        private readonly IEnumerable<HandleDefinition> handles;
+        private readonly FileBuilderFactory builderFactory;
 
-        public HandleEmitter(IEnumerable<HandleDefinition> handles)
+        public HandleEmitter(IEnumerable<HandleDefinition> handles, FileBuilderFactory builderFactory)
         {
             this.handles = handles;
+            this.builderFactory = builderFactory;
         }
 
         public void Execute()
         {
             foreach (var handle in this.handles)
             {
-                using (var fileBuilder = new FileBuilder("..\\SharpVk\\Interop", $"{handle.Name}.cs"))
+                this.builderFactory.Generate(handle.Name, "Interop", fileBuilder =>
                 {
                     fileBuilder.EmitUsing("System");
 
@@ -30,7 +33,7 @@ namespace SharpVk.Generator.Emission
                         {
                         }, Public);
                     });
-                }
+                });
             }
         }
     }

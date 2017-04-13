@@ -10,18 +10,20 @@ namespace SharpVk.Generator.Emission
     public class DelegateEmitter
         : IOutputWorker
     {
-        private IEnumerable<DelegateDefinition> delegates;
+        private readonly IEnumerable<DelegateDefinition> delegates;
+        private readonly FileBuilderFactory builderFactory;
 
-        public DelegateEmitter(IEnumerable<DelegateDefinition> delegates)
+        public DelegateEmitter(IEnumerable<DelegateDefinition> delegates, FileBuilderFactory builderFactory)
         {
             this.delegates = delegates;
+            this.builderFactory = builderFactory;
         }
 
         public void Execute()
         {
             foreach (var @delegate in this.delegates)
             {
-                using (var fileBuilder = new FileBuilder("..\\SharpVk", $"{@delegate.Name}.cs"))
+                this.builderFactory.Generate(@delegate.Name, fileBuilder =>
                 {
                     fileBuilder.EmitUsing("System");
 
@@ -40,7 +42,7 @@ namespace SharpVk.Generator.Emission
                                                         },
                                                         @delegate.Comment);
                     });
-                }
+                });
             }
         }
     }

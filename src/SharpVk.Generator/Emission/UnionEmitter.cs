@@ -10,17 +10,19 @@ namespace SharpVk.Generator.Emission
         : IOutputWorker
     {
         private readonly IEnumerable<UnionDefinition> unions;
+        private readonly FileBuilderFactory builderFactory;
 
-        public UnionEmitter(IEnumerable<UnionDefinition> unions)
+        public UnionEmitter(IEnumerable<UnionDefinition> unions, FileBuilderFactory builderFactory)
         {
             this.unions = unions;
+            this.builderFactory = builderFactory;
         }
 
         public void Execute()
         {
             foreach (var @struct in this.unions)
             {
-                using (var fileBuilder = new FileBuilder("..\\SharpVk", $"{@struct.Name}.cs"))
+                this.builderFactory.Generate(@struct.Name, fileBuilder =>
                 {
                     fileBuilder.EmitUsing("System");
 
@@ -30,7 +32,7 @@ namespace SharpVk.Generator.Emission
                         {
                         }, Public);
                     });
-                }
+                });
             }
         }
     }

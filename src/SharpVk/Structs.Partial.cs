@@ -8,22 +8,23 @@ namespace SharpVk
     /// -
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct SECURITY_ATTRIBUTES
+    public struct SecurityAttributes
     {
         /// <summary>
         /// -
         /// </summary>
-        public int nLength;
+        public int Length;
 
         /// <summary>
         /// -
         /// </summary>
-        public IntPtr lpSecurityDescriptor;
+        public IntPtr SecurityDescriptor;
 
         /// <summary>
         /// -
         /// </summary>
-        public int bInheritHandle;
+        [MarshalAs(UnmanagedType.I4)]
+        public bool InheritHandle;
     }
 
     /// <summary>

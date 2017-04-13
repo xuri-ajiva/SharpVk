@@ -11,30 +11,32 @@ namespace SharpVk.Generator.Emission
     class EnumEmitter
         : IOutputWorker
     {
-        private IEnumerable<EnumDefinition> enums;
+        private readonly IEnumerable<EnumDefinition> enums;
+        private readonly FileBuilderFactory builderFactory;
 
-        public EnumEmitter(IEnumerable<EnumDefinition> enums)
+        public EnumEmitter(IEnumerable<EnumDefinition> enums, FileBuilderFactory builderFactory)
         {
             this.enums = enums;
+            this.builderFactory = builderFactory;
         }
 
         public void Execute()
         {
             foreach (var @enum in this.enums)
             {
-                using (var fileBuilder = new FileBuilder("..\\SharpVk", $"{@enum.Name}.cs"))
+                this.builderFactory.Generate(@enum.Name, fileBuilder =>
                 {
                     fileBuilder.EmitNamespace("SharpVk", namespaceBuilder =>
                     {
                         namespaceBuilder.EmitEnum(@enum.Name, enumBuilder =>
                         {
-                            foreach(var field in @enum.Fields)
+                            foreach (var field in @enum.Fields)
                             {
                                 enumBuilder.EmitField(field.Name, AsIs(field.Value));
                             }
                         }, Public);
                     });
-                }
+                });
             }
         }
     }

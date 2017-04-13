@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System;
 
 namespace SharpVk.Generator.Collation
 {
@@ -23,7 +22,7 @@ namespace SharpVk.Generator.Collation
             {"HINSTANCE", "IntPtr" },
             {"HWND", "IntPtr" },
             {"HANDLE", "IntPtr" },
-            {"SECURITY_ATTRIBUTES", "SECURITY_ATTRIBUTES" },
+            {"SECURITY_ATTRIBUTES", "SecurityAttributes" },
             {"ANativeWindow", "IntPtr" },
             {"Display", "IntPtr" },
             {"VisualID", "IntPtr" },
