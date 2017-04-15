@@ -34,19 +34,17 @@ namespace SharpVk.Khr
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
+        public uint MaxPushDescriptors
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public uint MaxPushDescriptors
+        internal unsafe void MarshalTo(Interop.Khr.PhysicalDevicePushDescriptorProperties* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.PhysicalDevicePushDescriptorPropertiesKhr;
+            pointer->Next = null;
+            pointer->MaxPushDescriptors = this.MaxPushDescriptors;
         }
     }
 }

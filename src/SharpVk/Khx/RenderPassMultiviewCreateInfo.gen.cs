@@ -34,25 +34,7 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint SubpassCount
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public uint ViewMasks
         {
             get;
             set;
@@ -70,28 +52,19 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public int ViewOffsets
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint CorrelationMaskCount
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public uint CorrelationMasks
+        internal unsafe void MarshalTo(Interop.Khx.RenderPassMultiviewCreateInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.RenderPassMultiviewCreateInfoKhx;
+            pointer->Next = null;
+            pointer->SubpassCount = this.SubpassCount;
+            pointer->DependencyCount = this.DependencyCount;
+            pointer->CorrelationMaskCount = this.CorrelationMaskCount;
         }
     }
 }

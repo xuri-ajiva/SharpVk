@@ -118,5 +118,55 @@ namespace SharpVk
         /// 
         /// </summary>
         ErrorFragmentedPool = -12, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ErrorSurfaceLostKhr = -1000000000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ErrorNativeWindowInUseKhr = -1000000001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SuboptimalKhr = 1000001003, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ErrorOutOfDateKhr = -1000001004, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ErrorIncompatibleDisplayKhr = -1000003001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ErrorValidationFailedExt = -1000011001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ErrorInvalidShaderNv = -1000012000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        NvExtension1ErrorNv = -1000013000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ErrorOutOfPoolMemoryKhr = -1000069000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ErrorInvalidExternalHandleKhx = -1000072003, 
     }
 }

@@ -31,5 +31,6 @@ namespace SharpVk
     /// </summary>
     public class Queue
     {
+        internal readonly SharpVk.Interop.Queue handle; 
     }
 }

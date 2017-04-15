@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public PipelineMultisampleStateCreateFlags Flags
         {
             get;
@@ -79,15 +70,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SampleMask SampleMask
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public Bool32 AlphaToCoverageEnable
         {
             get;
@@ -101,6 +83,18 @@ namespace SharpVk
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.PipelineMultisampleStateCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.PipelineMultisampleStateCreateInfo;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->RasterizationSamples = this.RasterizationSamples;
+            pointer->SampleShadingEnable = this.SampleShadingEnable;
+            pointer->MinSampleShading = this.MinSampleShading;
+            pointer->AlphaToCoverageEnable = this.AlphaToCoverageEnable;
+            pointer->AlphaToOneEnable = this.AlphaToOneEnable;
         }
     }
 }

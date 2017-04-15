@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public DeviceMemory Memory
         {
             get;
@@ -65,6 +56,15 @@ namespace SharpVk
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.MappedMemoryRange* pointer)
+        {
+            pointer->SType = StructureType.MappedMemoryRange;
+            pointer->Next = null;
+            pointer->Memory = this.Memory.handle;
+            pointer->Offset = this.Offset;
+            pointer->Size = this.Size;
         }
     }
 }

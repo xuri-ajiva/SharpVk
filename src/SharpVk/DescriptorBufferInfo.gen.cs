@@ -57,5 +57,12 @@ namespace SharpVk
             get;
             set;
         }
+        
+        internal unsafe void MarshalTo(Interop.DescriptorBufferInfo* pointer)
+        {
+            pointer->Buffer = this.Buffer.handle;
+            pointer->Offset = this.Offset;
+            pointer->Range = this.Range;
+        }
     }
 }

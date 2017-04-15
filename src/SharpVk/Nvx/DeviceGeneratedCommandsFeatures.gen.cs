@@ -34,19 +34,17 @@ namespace SharpVk.Nvx
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
+        public Bool32 ComputeBindingPointSupport
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public Bool32 ComputeBindingPointSupport
+        internal unsafe void MarshalTo(Interop.Nvx.DeviceGeneratedCommandsFeatures* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.DeviceGeneratedCommandsFeaturesNvx;
+            pointer->Next = null;
+            pointer->ComputeBindingPointSupport = this.ComputeBindingPointSupport;
         }
     }
 }

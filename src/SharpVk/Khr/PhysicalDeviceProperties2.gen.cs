@@ -34,19 +34,17 @@ namespace SharpVk.Khr
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
+        public PhysicalDeviceProperties Properties
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public PhysicalDeviceProperties Properties
+        internal unsafe void MarshalTo(Interop.Khr.PhysicalDeviceProperties2* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.PhysicalDeviceProperties2Khr;
+            pointer->Next = null;
+            this.Properties.MarshalTo(&pointer->Properties);
         }
     }
 }

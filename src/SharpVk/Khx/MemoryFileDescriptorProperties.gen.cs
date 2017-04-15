@@ -34,19 +34,17 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
+        public uint MemoryTypeBits
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public uint MemoryTypeBits
+        internal unsafe void MarshalTo(Interop.Khx.MemoryFileDescriptorProperties* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.MemoryFileDescriptorPropertiesKhx;
+            pointer->Next = null;
+            pointer->MemoryTypeBits = this.MemoryTypeBits;
         }
     }
 }

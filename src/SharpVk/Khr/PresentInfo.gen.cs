@@ -34,25 +34,7 @@ namespace SharpVk.Khr
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint WaitSemaphoreCount
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Semaphore WaitSemaphores
         {
             get;
             set;
@@ -67,31 +49,12 @@ namespace SharpVk.Khr
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public Khr.Swapchain Swapchains
+        internal unsafe void MarshalTo(Interop.Khr.PresentInfo* pointer)
         {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public uint ImageIndices
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Result Results
-        {
-            get;
-            set;
+            pointer->SType = StructureType.PresentInfoKhr;
+            pointer->Next = null;
+            pointer->WaitSemaphoreCount = this.WaitSemaphoreCount;
+            pointer->SwapchainCount = this.SwapchainCount;
         }
     }
 }

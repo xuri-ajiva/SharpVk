@@ -34,15 +34,6 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public Semaphore Semaphore
         {
             get;
@@ -65,6 +56,15 @@ namespace SharpVk.Khx
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Khx.ImportSemaphoreFileDescriptorInfo* pointer)
+        {
+            pointer->SType = StructureType.ImportSemaphoreFileDescriptorInfoKhx;
+            pointer->Next = null;
+            pointer->Semaphore = this.Semaphore.handle;
+            pointer->HandleType = this.HandleType;
+            pointer->FileDescriptor = this.FileDescriptor;
         }
     }
 }

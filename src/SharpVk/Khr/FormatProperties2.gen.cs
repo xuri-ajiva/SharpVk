@@ -34,19 +34,17 @@ namespace SharpVk.Khr
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
+        public FormatProperties FormatProperties
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public FormatProperties FormatProperties
+        internal unsafe void MarshalTo(Interop.Khr.FormatProperties2* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.FormatProperties2Khr;
+            pointer->Next = null;
+            pointer->FormatProperties = this.FormatProperties;
         }
     }
 }

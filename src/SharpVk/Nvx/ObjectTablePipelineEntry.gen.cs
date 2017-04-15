@@ -57,5 +57,12 @@ namespace SharpVk.Nvx
             get;
             set;
         }
+        
+        internal unsafe void MarshalTo(Interop.Nvx.ObjectTablePipelineEntry* pointer)
+        {
+            pointer->Type = this.Type;
+            pointer->Flags = this.Flags;
+            pointer->Pipeline = this.Pipeline.handle;
+        }
     }
 }

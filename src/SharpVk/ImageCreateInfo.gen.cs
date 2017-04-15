@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public ImageCreateFlags Flags
         {
             get;
@@ -142,19 +133,28 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint QueueFamilyIndices
+        public ImageLayout InitialLayout
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public ImageLayout InitialLayout
+        internal unsafe void MarshalTo(Interop.ImageCreateInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.ImageCreateInfo;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->ImageType = this.ImageType;
+            pointer->Format = this.Format;
+            pointer->Extent = this.Extent;
+            pointer->MipLevels = this.MipLevels;
+            pointer->ArrayLayers = this.ArrayLayers;
+            pointer->Samples = this.Samples;
+            pointer->Tiling = this.Tiling;
+            pointer->Usage = this.Usage;
+            pointer->SharingMode = this.SharingMode;
+            pointer->QueueFamilyIndexCount = this.QueueFamilyIndexCount;
+            pointer->InitialLayout = this.InitialLayout;
         }
     }
 }

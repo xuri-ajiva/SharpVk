@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public DescriptorPool DescriptorPool
         {
             get;
@@ -58,13 +49,12 @@ namespace SharpVk
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public DescriptorSetLayout SetLayouts
+        internal unsafe void MarshalTo(Interop.DescriptorSetAllocateInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.DescriptorSetAllocateInfo;
+            pointer->Next = null;
+            pointer->DescriptorPool = this.DescriptorPool.handle;
+            pointer->DescriptorSetCount = this.DescriptorSetCount;
         }
     }
 }

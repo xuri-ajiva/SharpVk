@@ -34,15 +34,6 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public Bool32 Multiview
         {
             get;
@@ -65,6 +56,15 @@ namespace SharpVk.Khx
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Khx.PhysicalDeviceMultiviewFeatures* pointer)
+        {
+            pointer->SType = StructureType.PhysicalDeviceMultiviewFeaturesKhx;
+            pointer->Next = null;
+            pointer->Multiview = this.Multiview;
+            pointer->MultiviewGeometryShader = this.MultiviewGeometryShader;
+            pointer->MultiviewTessellationShader = this.MultiviewTessellationShader;
         }
     }
 }

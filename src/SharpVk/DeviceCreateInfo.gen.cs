@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public DeviceCreateFlags Flags
         {
             get;
@@ -61,25 +52,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public DeviceQueueCreateInfo QueueCreateInfos
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint EnabledLayerCount
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public char EnabledLayerNames
         {
             get;
             set;
@@ -97,19 +70,22 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public char EnabledExtensionNames
+        public PhysicalDeviceFeatures EnabledFeatures
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public PhysicalDeviceFeatures EnabledFeatures
+        internal unsafe void MarshalTo(Interop.DeviceCreateInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.DeviceCreateInfo;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->QueueCreateInfoCount = this.QueueCreateInfoCount;
+            pointer->EnabledLayerCount = this.EnabledLayerCount;
+            pointer->EnabledExtensionCount = this.EnabledExtensionCount;
+            pointer->EnabledFeatures = (PhysicalDeviceFeatures*)Interop.HeapUtil.Allocate<PhysicalDeviceFeatures>();
+            *pointer->EnabledFeatures = this.EnabledFeatures;
         }
     }
 }

@@ -43,15 +43,6 @@ namespace SharpVk.Khr
         /// <summary>
         /// 
         /// </summary>
-        public char DisplayName
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public Extent2D PhysicalDimensions
         {
             get;
@@ -92,6 +83,16 @@ namespace SharpVk.Khr
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Khr.DisplayProperties* pointer)
+        {
+            pointer->Display = this.Display.handle;
+            pointer->PhysicalDimensions = this.PhysicalDimensions;
+            pointer->PhysicalResolution = this.PhysicalResolution;
+            pointer->SupportedTransforms = this.SupportedTransforms;
+            pointer->PlaneReorderPossible = this.PlaneReorderPossible;
+            pointer->PersistentContent = this.PersistentContent;
         }
     }
 }

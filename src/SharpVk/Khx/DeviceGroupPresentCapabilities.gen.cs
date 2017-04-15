@@ -34,15 +34,6 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint PresentMask
         {
             get;
@@ -56,6 +47,14 @@ namespace SharpVk.Khx
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Khx.DeviceGroupPresentCapabilities* pointer)
+        {
+            pointer->SType = StructureType.DeviceGroupPresentCapabilitiesKhx;
+            pointer->Next = null;
+            pointer->PresentMask = this.PresentMask;
+            pointer->Modes = this.Modes;
         }
     }
 }

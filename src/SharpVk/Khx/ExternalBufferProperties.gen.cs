@@ -34,19 +34,17 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
+        public SharpVk.Khx.ExternalMemoryProperties ExternalMemoryProperties
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public SharpVk.Khx.ExternalMemoryProperties ExternalMemoryProperties
+        internal unsafe void MarshalTo(Interop.Khx.ExternalBufferProperties* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.ExternalBufferPropertiesKhx;
+            pointer->Next = null;
+            pointer->ExternalMemoryProperties = this.ExternalMemoryProperties;
         }
     }
 }

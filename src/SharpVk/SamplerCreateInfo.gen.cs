@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public SamplerCreateFlags Flags
         {
             get;
@@ -182,6 +173,28 @@ namespace SharpVk
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.SamplerCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.SamplerCreateInfo;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->MagFilter = this.MagFilter;
+            pointer->MinFilter = this.MinFilter;
+            pointer->MipmapMode = this.MipmapMode;
+            pointer->AddressModeU = this.AddressModeU;
+            pointer->AddressModeV = this.AddressModeV;
+            pointer->AddressModeW = this.AddressModeW;
+            pointer->MipLodBias = this.MipLodBias;
+            pointer->AnisotropyEnable = this.AnisotropyEnable;
+            pointer->MaxAnisotropy = this.MaxAnisotropy;
+            pointer->CompareEnable = this.CompareEnable;
+            pointer->CompareOp = this.CompareOp;
+            pointer->MinLod = this.MinLod;
+            pointer->MaxLod = this.MaxLod;
+            pointer->BorderColor = this.BorderColor;
+            pointer->UnnormalizedCoordinates = this.UnnormalizedCoordinates;
         }
     }
 }

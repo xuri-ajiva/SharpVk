@@ -34,15 +34,6 @@ namespace SharpVk.Khr
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public SharpVk.Khr.DescriptorUpdateTemplateCreateFlags Flags
         {
             get;
@@ -53,15 +44,6 @@ namespace SharpVk.Khr
         /// 
         /// </summary>
         public uint DescriptorUpdateEntryCount
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public SharpVk.Khr.DescriptorUpdateTemplateEntry DescriptorUpdateEntries
         {
             get;
             set;
@@ -110,6 +92,19 @@ namespace SharpVk.Khr
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Khr.DescriptorUpdateTemplateCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.DescriptorUpdateTemplateCreateInfoKhr;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->DescriptorUpdateEntryCount = this.DescriptorUpdateEntryCount;
+            pointer->TemplateType = this.TemplateType;
+            pointer->DescriptorSetLayout = this.DescriptorSetLayout.handle;
+            pointer->PipelineBindPoint = this.PipelineBindPoint;
+            pointer->PipelineLayout = this.PipelineLayout.handle;
+            pointer->Set = this.Set;
         }
     }
 }

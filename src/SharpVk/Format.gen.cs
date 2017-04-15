@@ -953,5 +953,45 @@ namespace SharpVk
         /// 
         /// </summary>
         Astc12x12SrgbBlock = 184, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Pvrtc12bppUnormBlockImg = 1000054000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Pvrtc14bppUnormBlockImg = 1000054001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Pvrtc22bppUnormBlockImg = 1000054002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Pvrtc24bppUnormBlockImg = 1000054003, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Pvrtc12bppSrgbBlockImg = 1000054004, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Pvrtc14bppSrgbBlockImg = 1000054005, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Pvrtc22bppSrgbBlockImg = 1000054006, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Pvrtc24bppSrgbBlockImg = 1000054007, 
     }
 }

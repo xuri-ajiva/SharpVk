@@ -20,6 +20,8 @@ namespace SharpVk.Generator.Specification
 
         public void Execute(IServiceCollection target)
         {
+            var enums = new Dictionary<string, EnumElement>();
+
             foreach (var vkEnum in this.xmlCache.GetVkXml().Element("registry").Elements("enums"))
             {
                 string name = vkEnum.Attribute("name").Value;
@@ -72,7 +74,68 @@ namespace SharpVk.Generator.Specification
                     });
                 }
 
-                target.AddSingleton(newEnum);
+                enums.Add(name, newEnum);
+            }
+
+
+            foreach (var vkExtension in this.xmlCache.GetVkXml()
+                                                        .Element("registry")
+                                                        .Element("extensions")
+                                                        .Elements("extension"))
+            {
+                int extensionNumber = int.Parse(vkExtension.Attribute("number").Value);
+                string extensionName = vkExtension.Attribute("name").Value;
+
+                var extensionNameParts = extensionName.Split('_');
+
+                string extensionSuffix = extensionNameParts[1].ToLower().FirstToUpper();
+
+                foreach (var vkExtensionEnum in vkExtension.Elements("require")
+                                                            .SelectMany(x => x.Elements("enum"))
+                                                            .Where(x => x.Attribute("extends") != null))
+                {
+                    string vkName = vkExtensionEnum.Attribute("name").Value;
+                    var extendedEnum = enums[vkExtensionEnum.Attribute("extends").Value];
+
+                    int value;
+                    bool isBitmask = false;
+
+                    if (vkExtensionEnum.Attribute("offset") != null)
+                    {
+                        int offset = int.Parse(vkExtensionEnum.Attribute("offset").Value);
+
+                        value = 1000000000 + 1000 * (extensionNumber - 1) + offset;
+                    }
+                    else if (vkExtensionEnum.Attribute("bitpos") != null)
+                    {
+                        value = int.Parse(vkExtensionEnum.Attribute("bitpos").Value);
+                        isBitmask = true;
+                    }
+                    else
+                    {
+                        value = int.Parse(vkExtensionEnum.Attribute("value").Value);
+                    }
+
+                    if (vkExtensionEnum.Attribute("dir")?.Value == "-")
+                    {
+                        value = -value;
+                    }
+
+                    var nameParts = this.nameParser.ParseEnumField(vkName, extendedEnum.NameParts).Concat(new[] { extensionSuffix });
+
+                    extendedEnum.Fields.Add(vkName, new EnumField
+                    {
+                        VkName = vkName,
+                        Value = value.ToString(),
+                        NameParts = nameParts.ToArray(),
+                        IsBitmask = isBitmask
+                    });
+                }
+            }
+
+            foreach (var element in enums.Values)
+            {
+                target.AddSingleton(element);
             }
         }
     }

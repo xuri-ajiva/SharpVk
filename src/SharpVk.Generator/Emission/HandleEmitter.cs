@@ -58,6 +58,7 @@ namespace SharpVk.Generator.Emission
                     {
                         namespaceBuilder.EmitType(TypeKind.Class, handle.Name, typeBuilder =>
                         {
+                            typeBuilder.EmitField($"{interopNamespace}.{handle.Name}", "handle", Internal, MemberModifier.Readonly);
                         }, Public);
                     });
                 });

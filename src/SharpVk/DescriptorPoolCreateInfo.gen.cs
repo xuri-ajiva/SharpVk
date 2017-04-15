@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public DescriptorPoolCreateFlags Flags
         {
             get;
@@ -67,13 +58,13 @@ namespace SharpVk
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public DescriptorPoolSize PoolSizes
+        internal unsafe void MarshalTo(Interop.DescriptorPoolCreateInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.DescriptorPoolCreateInfo;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->MaxSets = this.MaxSets;
+            pointer->PoolSizeCount = this.PoolSizeCount;
         }
     }
 }

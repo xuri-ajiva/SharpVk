@@ -34,15 +34,6 @@ namespace SharpVk.Khr
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public SharpVk.Khr.DisplayModeCreateFlags Flags
         {
             get;
@@ -56,6 +47,14 @@ namespace SharpVk.Khr
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Khr.DisplayModeCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.DisplayModeCreateInfoKhr;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->Parameters = this.Parameters;
         }
     }
 }

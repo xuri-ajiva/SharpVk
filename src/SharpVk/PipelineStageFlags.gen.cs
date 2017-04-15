@@ -118,5 +118,10 @@ namespace SharpVk
         /// 
         /// </summary>
         AllCommands = 1 << 16, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        CommandProcessBitNvx = 1 << 17, 
     }
 }

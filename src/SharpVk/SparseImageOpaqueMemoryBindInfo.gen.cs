@@ -49,13 +49,10 @@ namespace SharpVk
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public SparseMemoryBind Binds
+        internal unsafe void MarshalTo(Interop.SparseImageOpaqueMemoryBindInfo* pointer)
         {
-            get;
-            set;
+            pointer->Image = this.Image.handle;
+            pointer->BindCount = this.BindCount;
         }
     }
 }

@@ -34,15 +34,6 @@ namespace SharpVk.Ext
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint MinImageCount
         {
             get;
@@ -137,6 +128,23 @@ namespace SharpVk.Ext
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Ext.SurfaceCapabilities2* pointer)
+        {
+            pointer->SType = StructureType.SurfaceCapabilities2Ext;
+            pointer->Next = null;
+            pointer->MinImageCount = this.MinImageCount;
+            pointer->MaxImageCount = this.MaxImageCount;
+            pointer->CurrentExtent = this.CurrentExtent;
+            pointer->MinImageExtent = this.MinImageExtent;
+            pointer->MaxImageExtent = this.MaxImageExtent;
+            pointer->MaxImageArrayLayers = this.MaxImageArrayLayers;
+            pointer->SupportedTransforms = this.SupportedTransforms;
+            pointer->CurrentTransform = this.CurrentTransform;
+            pointer->SupportedCompositeAlpha = this.SupportedCompositeAlpha;
+            pointer->SupportedUsageFlags = this.SupportedUsageFlags;
+            pointer->SupportedSurfaceCounters = this.SupportedSurfaceCounters;
         }
     }
 }

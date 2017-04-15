@@ -34,19 +34,17 @@ namespace SharpVk.Ext
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
+        public SharpVk.Ext.DisplayEventType DisplayEvent
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public SharpVk.Ext.DisplayEventType DisplayEvent
+        internal unsafe void MarshalTo(Interop.Ext.DisplayEventInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.DisplayEventInfoExt;
+            pointer->Next = null;
+            pointer->DisplayEvent = this.DisplayEvent;
         }
     }
 }

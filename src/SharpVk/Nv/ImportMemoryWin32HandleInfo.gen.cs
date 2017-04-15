@@ -34,15 +34,6 @@ namespace SharpVk.Nv
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public SharpVk.Nv.ExternalMemoryHandleTypeFlags HandleType
         {
             get;
@@ -56,6 +47,14 @@ namespace SharpVk.Nv
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Nv.ImportMemoryWin32HandleInfo* pointer)
+        {
+            pointer->SType = StructureType.ImportMemoryWin32HandleInfoNv;
+            pointer->Next = null;
+            pointer->HandleType = this.HandleType;
+            pointer->Handle = this.Handle;
         }
     }
 }

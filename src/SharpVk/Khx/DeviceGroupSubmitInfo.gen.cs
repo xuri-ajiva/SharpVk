@@ -34,25 +34,7 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint WaitSemaphoreCount
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public uint WaitSemaphoreDeviceIndices
         {
             get;
             set;
@@ -70,28 +52,19 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public uint CommandBufferDeviceMasks
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint SignalSemaphoreCount
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public uint SignalSemaphoreDeviceIndices
+        internal unsafe void MarshalTo(Interop.Khx.DeviceGroupSubmitInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.DeviceGroupSubmitInfoKhx;
+            pointer->Next = null;
+            pointer->WaitSemaphoreCount = this.WaitSemaphoreCount;
+            pointer->CommandBufferCount = this.CommandBufferCount;
+            pointer->SignalSemaphoreCount = this.SignalSemaphoreCount;
         }
     }
 }

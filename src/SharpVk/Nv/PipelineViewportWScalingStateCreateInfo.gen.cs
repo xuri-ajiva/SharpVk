@@ -34,15 +34,6 @@ namespace SharpVk.Nv
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public Bool32 ViewportWScalingEnable
         {
             get;
@@ -58,13 +49,12 @@ namespace SharpVk.Nv
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public SharpVk.Nv.ViewportWScaling ViewportWScalings
+        internal unsafe void MarshalTo(Interop.Nv.PipelineViewportWScalingStateCreateInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.PipelineViewportWScalingStateCreateInfoNv;
+            pointer->Next = null;
+            pointer->ViewportWScalingEnable = this.ViewportWScalingEnable;
+            pointer->ViewportCount = this.ViewportCount;
         }
     }
 }

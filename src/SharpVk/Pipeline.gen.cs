@@ -31,5 +31,6 @@ namespace SharpVk
     /// </summary>
     public class Pipeline
     {
+        internal readonly SharpVk.Interop.Pipeline handle; 
     }
 }

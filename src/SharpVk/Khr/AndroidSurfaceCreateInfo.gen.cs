@@ -34,15 +34,6 @@ namespace SharpVk.Khr
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public SharpVk.Khr.AndroidSurfaceCreateFlags Flags
         {
             get;
@@ -56,6 +47,15 @@ namespace SharpVk.Khr
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Khr.AndroidSurfaceCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.AndroidSurfaceCreateInfoKhr;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->Window = (IntPtr*)Interop.HeapUtil.Allocate<IntPtr>();
+            *pointer->Window = this.Window;
         }
     }
 }

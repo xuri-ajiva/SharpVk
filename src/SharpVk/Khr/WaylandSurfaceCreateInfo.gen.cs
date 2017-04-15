@@ -34,15 +34,6 @@ namespace SharpVk.Khr
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public SharpVk.Khr.WaylandSurfaceCreateFlags Flags
         {
             get;
@@ -65,6 +56,15 @@ namespace SharpVk.Khr
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Khr.WaylandSurfaceCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.WaylandSurfaceCreateInfoKhr;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->Display = this.Display;
+            pointer->Surface = this.Surface;
         }
     }
 }

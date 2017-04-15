@@ -31,5 +31,6 @@ namespace SharpVk
     /// </summary>
     public class Fence
     {
+        internal readonly SharpVk.Interop.Fence handle; 
     }
 }

@@ -34,19 +34,17 @@ namespace SharpVk.Khr
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
+        public SparseImageFormatProperties Properties
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public SparseImageFormatProperties Properties
+        internal unsafe void MarshalTo(Interop.Khr.SparseImageFormatProperties2* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.SparseImageFormatProperties2Khr;
+            pointer->Next = null;
+            pointer->Properties = this.Properties;
         }
     }
 }

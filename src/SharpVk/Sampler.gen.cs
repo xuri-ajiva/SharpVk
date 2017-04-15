@@ -31,5 +31,6 @@ namespace SharpVk
     /// </summary>
     public class Sampler
     {
+        internal readonly SharpVk.Interop.Sampler handle; 
     }
 }

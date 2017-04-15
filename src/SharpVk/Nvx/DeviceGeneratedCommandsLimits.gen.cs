@@ -34,15 +34,6 @@ namespace SharpVk.Nvx
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint MaxIndirectCommandsLayoutTokenCount
         {
             get;
@@ -83,6 +74,17 @@ namespace SharpVk.Nvx
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Nvx.DeviceGeneratedCommandsLimits* pointer)
+        {
+            pointer->SType = StructureType.DeviceGeneratedCommandsLimitsNvx;
+            pointer->Next = null;
+            pointer->MaxIndirectCommandsLayoutTokenCount = this.MaxIndirectCommandsLayoutTokenCount;
+            pointer->MaxObjectEntryCounts = this.MaxObjectEntryCounts;
+            pointer->MinSequenceCountBufferOffsetAlignment = this.MinSequenceCountBufferOffsetAlignment;
+            pointer->MinSequenceIndexBufferOffsetAlignment = this.MinSequenceIndexBufferOffsetAlignment;
+            pointer->MinCommandsTokenBufferOffsetAlignment = this.MinCommandsTokenBufferOffsetAlignment;
         }
     }
 }

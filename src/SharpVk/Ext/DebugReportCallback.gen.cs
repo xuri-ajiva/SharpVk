@@ -31,5 +31,6 @@ namespace SharpVk.Ext
     /// </summary>
     public class DebugReportCallback
     {
+        internal readonly SharpVk.Interop.Ext.DebugReportCallback handle; 
     }
 }

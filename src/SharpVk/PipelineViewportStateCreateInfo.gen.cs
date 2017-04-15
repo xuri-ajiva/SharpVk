@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public PipelineViewportStateCreateFlags Flags
         {
             get;
@@ -61,28 +52,19 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Viewport Viewports
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint ScissorCount
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public Rect2D Scissors
+        internal unsafe void MarshalTo(Interop.PipelineViewportStateCreateInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.PipelineViewportStateCreateInfo;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->ViewportCount = this.ViewportCount;
+            pointer->ScissorCount = this.ScissorCount;
         }
     }
 }

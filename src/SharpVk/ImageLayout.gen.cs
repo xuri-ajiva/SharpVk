@@ -73,5 +73,10 @@ namespace SharpVk
         /// 
         /// </summary>
         Preinitialized = 8, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PresentSourceKhr = 1000001002, 
     }
 }

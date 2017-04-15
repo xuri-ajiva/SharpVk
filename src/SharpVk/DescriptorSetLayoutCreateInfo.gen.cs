@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public DescriptorSetLayoutCreateFlags Flags
         {
             get;
@@ -58,13 +49,12 @@ namespace SharpVk
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public DescriptorSetLayoutBinding Bindings
+        internal unsafe void MarshalTo(Interop.DescriptorSetLayoutCreateInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.DescriptorSetLayoutCreateInfo;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->BindingCount = this.BindingCount;
         }
     }
 }

@@ -31,5 +31,6 @@ namespace SharpVk
     /// </summary>
     public class CommandPool
     {
+        internal readonly SharpVk.Interop.CommandPool handle; 
     }
 }

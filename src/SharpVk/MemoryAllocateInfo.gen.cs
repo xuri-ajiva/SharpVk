@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public DeviceSize AllocationSize
         {
             get;
@@ -56,6 +47,14 @@ namespace SharpVk
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.MemoryAllocateInfo* pointer)
+        {
+            pointer->SType = StructureType.MemoryAllocateInfo;
+            pointer->Next = null;
+            pointer->AllocationSize = this.AllocationSize;
+            pointer->MemoryTypeIndex = this.MemoryTypeIndex;
         }
     }
 }

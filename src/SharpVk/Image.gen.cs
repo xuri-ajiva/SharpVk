@@ -31,5 +31,6 @@ namespace SharpVk
     /// </summary>
     public class Image
     {
+        internal readonly SharpVk.Interop.Image handle; 
     }
 }

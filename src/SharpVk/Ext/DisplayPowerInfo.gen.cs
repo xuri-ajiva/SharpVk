@@ -34,19 +34,17 @@ namespace SharpVk.Ext
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
+        public SharpVk.Ext.DisplayPowerState PowerState
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public SharpVk.Ext.DisplayPowerState PowerState
+        internal unsafe void MarshalTo(Interop.Ext.DisplayPowerInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.DisplayPowerInfoExt;
+            pointer->Next = null;
+            pointer->PowerState = this.PowerState;
         }
     }
 }

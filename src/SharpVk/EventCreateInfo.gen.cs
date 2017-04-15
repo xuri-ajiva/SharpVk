@@ -34,19 +34,17 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
+        public EventCreateFlags Flags
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public EventCreateFlags Flags
+        internal unsafe void MarshalTo(Interop.EventCreateInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.EventCreateInfo;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
         }
     }
 }

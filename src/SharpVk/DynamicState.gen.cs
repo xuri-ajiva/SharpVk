@@ -73,5 +73,15 @@ namespace SharpVk
         /// 
         /// </summary>
         StencilReference = 8, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ViewportWScalingNv = 1000087000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DiscardRectangleExt = 1000099000, 
     }
 }

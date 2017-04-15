@@ -34,15 +34,6 @@ namespace SharpVk.Nvx
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public Nvx.ObjectTable ObjectTable
         {
             get;
@@ -62,15 +53,6 @@ namespace SharpVk.Nvx
         /// 
         /// </summary>
         public uint IndirectCommandsTokenCount
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Nvx.IndirectCommandsToken IndirectCommandsTokens
         {
             get;
             set;
@@ -128,6 +110,21 @@ namespace SharpVk.Nvx
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Nvx.CommandProcessCommandsInfo* pointer)
+        {
+            pointer->SType = StructureType.CommandProcessCommandsInfoNvx;
+            pointer->Next = null;
+            pointer->ObjectTable = this.ObjectTable.handle;
+            pointer->IndirectCommandsLayout = this.IndirectCommandsLayout.handle;
+            pointer->IndirectCommandsTokenCount = this.IndirectCommandsTokenCount;
+            pointer->MaxSequencesCount = this.MaxSequencesCount;
+            pointer->TargetCommandBuffer = this.TargetCommandBuffer.handle;
+            pointer->SequencesCountBuffer = this.SequencesCountBuffer.handle;
+            pointer->SequencesCountOffset = this.SequencesCountOffset;
+            pointer->SequencesIndexBuffer = this.SequencesIndexBuffer.handle;
+            pointer->SequencesIndexOffset = this.SequencesIndexOffset;
         }
     }
 }

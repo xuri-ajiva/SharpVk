@@ -75,5 +75,14 @@ namespace SharpVk
             get;
             set;
         }
+        
+        internal unsafe void MarshalTo(Interop.SparseMemoryBind* pointer)
+        {
+            pointer->ResourceOffset = this.ResourceOffset;
+            pointer->Size = this.Size;
+            pointer->Memory = this.Memory.handle;
+            pointer->MemoryOffset = this.MemoryOffset;
+            pointer->Flags = this.Flags;
+        }
     }
 }

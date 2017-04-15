@@ -98,5 +98,20 @@ namespace SharpVk
         /// 
         /// </summary>
         SampledImageFilterLinear = 1 << 12, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SampledImageFilterCubicBitImg = 1 << 13, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        TransferSourceBitKhr = 1 << 14, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        TransferDestinationBitKhr = 1 << 15, 
     }
 }

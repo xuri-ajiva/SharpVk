@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public DescriptorSet DestinationSet
         {
             get;
@@ -85,31 +76,15 @@ namespace SharpVk
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public DescriptorImageInfo ImageInfo
+        internal unsafe void MarshalTo(Interop.WriteDescriptorSet* pointer)
         {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public DescriptorBufferInfo BufferInfo
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public BufferView TexelBufferView
-        {
-            get;
-            set;
+            pointer->SType = StructureType.WriteDescriptorSet;
+            pointer->Next = null;
+            pointer->DestinationSet = this.DestinationSet.handle;
+            pointer->DestinationBinding = this.DestinationBinding;
+            pointer->DestinationArrayElement = this.DestinationArrayElement;
+            pointer->DescriptorCount = this.DescriptorCount;
+            pointer->DescriptorType = this.DescriptorType;
         }
     }
 }

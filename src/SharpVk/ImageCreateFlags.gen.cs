@@ -58,5 +58,15 @@ namespace SharpVk
         /// 
         /// </summary>
         CubeCompatible = 1 << 4, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        BindSfrBitKhx = 1 << 6, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ImageCreate2dArrayCompatibleBitKhr = 1 << 5, 
     }
 }

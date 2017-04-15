@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public QueryPoolCreateFlags Flags
         {
             get;
@@ -74,6 +65,16 @@ namespace SharpVk
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.QueryPoolCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.QueryPoolCreateInfo;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->QueryType = this.QueryType;
+            pointer->QueryCount = this.QueryCount;
+            pointer->PipelineStatistics = this.PipelineStatistics;
         }
     }
 }

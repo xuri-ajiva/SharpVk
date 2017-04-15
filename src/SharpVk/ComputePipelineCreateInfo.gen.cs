@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public PipelineCreateFlags Flags
         {
             get;
@@ -83,6 +74,17 @@ namespace SharpVk
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.ComputePipelineCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.ComputePipelineCreateInfo;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            this.Stage.MarshalTo(&pointer->Stage);
+            pointer->Layout = this.Layout.handle;
+            pointer->BasePipelineHandle = this.BasePipelineHandle.handle;
+            pointer->BasePipelineIndex = this.BasePipelineIndex;
         }
     }
 }

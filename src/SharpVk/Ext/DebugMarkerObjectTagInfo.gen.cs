@@ -34,15 +34,6 @@ namespace SharpVk.Ext
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public SharpVk.Ext.DebugReportObjectType ObjectType
         {
             get;
@@ -83,6 +74,17 @@ namespace SharpVk.Ext
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Ext.DebugMarkerObjectTagInfo* pointer)
+        {
+            pointer->SType = StructureType.DebugMarkerObjectTagInfoExt;
+            pointer->Next = null;
+            pointer->ObjectType = this.ObjectType;
+            pointer->Object = this.Object;
+            pointer->TagName = this.TagName;
+            pointer->TagSize = this.TagSize;
+            pointer->Tag = this.Tag.ToPointer();
         }
     }
 }

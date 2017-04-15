@@ -34,15 +34,6 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public byte DeviceUUID
         {
             get;
@@ -74,6 +65,16 @@ namespace SharpVk.Khx
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Khx.PhysicalDeviceIDProperties* pointer)
+        {
+            pointer->SType = StructureType.PhysicalDeviceIdPropertiesKhx;
+            pointer->Next = null;
+            pointer->DeviceUUID = this.DeviceUUID;
+            pointer->DriverUUID = this.DriverUUID;
+            pointer->DeviceLUID = this.DeviceLUID;
+            pointer->DeviceLUIDValid = this.DeviceLUIDValid;
         }
     }
 }

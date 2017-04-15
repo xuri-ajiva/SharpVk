@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public DescriptorSet SourceSet
         {
             get;
@@ -101,6 +92,19 @@ namespace SharpVk
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.CopyDescriptorSet* pointer)
+        {
+            pointer->SType = StructureType.CopyDescriptorSet;
+            pointer->Next = null;
+            pointer->SourceSet = this.SourceSet.handle;
+            pointer->SourceBinding = this.SourceBinding;
+            pointer->SourceArrayElement = this.SourceArrayElement;
+            pointer->DestinationSet = this.DestinationSet.handle;
+            pointer->DestinationBinding = this.DestinationBinding;
+            pointer->DestinationArrayElement = this.DestinationArrayElement;
+            pointer->DescriptorCount = this.DescriptorCount;
         }
     }
 }

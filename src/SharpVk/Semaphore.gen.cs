@@ -31,5 +31,6 @@ namespace SharpVk
     /// </summary>
     public class Semaphore
     {
+        internal readonly SharpVk.Interop.Semaphore handle; 
     }
 }

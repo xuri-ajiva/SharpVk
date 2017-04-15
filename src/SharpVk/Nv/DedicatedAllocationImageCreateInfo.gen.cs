@@ -34,19 +34,17 @@ namespace SharpVk.Nv
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
+        public Bool32 DedicatedAllocation
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public Bool32 DedicatedAllocation
+        internal unsafe void MarshalTo(Interop.Nv.DedicatedAllocationImageCreateInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.DedicatedAllocationImageCreateInfoNv;
+            pointer->Next = null;
+            pointer->DedicatedAllocation = this.DedicatedAllocation;
         }
     }
 }

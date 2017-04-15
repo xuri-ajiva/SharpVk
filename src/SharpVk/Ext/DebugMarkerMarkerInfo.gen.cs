@@ -34,28 +34,17 @@ namespace SharpVk.Ext
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public char MarkerName
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public float Color
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Ext.DebugMarkerMarkerInfo* pointer)
+        {
+            pointer->SType = StructureType.DebugMarkerMarkerInfoExt;
+            pointer->Next = null;
+            pointer->Color = this.Color;
         }
     }
 }

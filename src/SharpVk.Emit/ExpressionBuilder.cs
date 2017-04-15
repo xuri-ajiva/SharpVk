@@ -143,6 +143,26 @@ namespace SharpVk.Emit
             this.writer.Write($".{member}");
         }
 
+        public void EmitDeref(Action<ExpressionBuilder> target)
+        {
+            this.writer.Write("*");
+            target(this.GetSubBuilder());
+        }
+
+        public void EmitDerefMember(Action<ExpressionBuilder> target, string member)
+        {
+            target(this.GetSubBuilder());
+
+            this.writer.Write($"->{member}");
+        }
+
+        public void EmitAddressOf(Action<ExpressionBuilder> value)
+        {
+            this.writer.Write("&");
+
+            value(this.GetSubBuilder());
+        }
+
         public void EmitLessThan(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)
         {
             left(this.GetSubBuilder());
@@ -295,6 +315,21 @@ namespace SharpVk.Emit
         public static Action<ExpressionBuilder> Member(Action<ExpressionBuilder> target, string member)
         {
             return builder => builder.EmitMember(target, member);
+        }
+
+        public static Action<ExpressionBuilder> Deref(Action<ExpressionBuilder> target)
+        {
+            return builder => builder.EmitDeref(target);
+        }
+
+        public static Action<ExpressionBuilder> DerefMember(Action<ExpressionBuilder> target, string member)
+        {
+            return builder => builder.EmitDerefMember(target, member);
+        }
+
+        public static Action<ExpressionBuilder> AddressOf(Action<ExpressionBuilder> value)
+        {
+            return builder => builder.EmitAddressOf(value);
         }
 
         public static Action<ExpressionBuilder> LessThan(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)

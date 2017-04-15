@@ -43,7 +43,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint SpecVersion
+        public Version SpecVersion
         {
             get;
             set;
@@ -52,7 +52,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint ImplementationVersion
+        public Version ImplementationVersion
         {
             get;
             set;
@@ -65,6 +65,12 @@ namespace SharpVk
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.LayerProperties* pointer)
+        {
+            pointer->LayerName = this.LayerName;
+            pointer->Description = this.Description;
         }
     }
 }

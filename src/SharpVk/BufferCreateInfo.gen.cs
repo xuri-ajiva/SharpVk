@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public BufferCreateFlags Flags
         {
             get;
@@ -85,13 +76,15 @@ namespace SharpVk
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public uint QueueFamilyIndices
+        internal unsafe void MarshalTo(Interop.BufferCreateInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.BufferCreateInfo;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->Size = this.Size;
+            pointer->Usage = this.Usage;
+            pointer->SharingMode = this.SharingMode;
+            pointer->QueueFamilyIndexCount = this.QueueFamilyIndexCount;
         }
     }
 }

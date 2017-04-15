@@ -84,5 +84,15 @@ namespace SharpVk
             get;
             set;
         }
+        
+        internal unsafe void MarshalTo(Interop.SparseImageMemoryBind* pointer)
+        {
+            pointer->Subresource = this.Subresource;
+            pointer->Offset = this.Offset;
+            pointer->Extent = this.Extent;
+            pointer->Memory = this.Memory.handle;
+            pointer->MemoryOffset = this.MemoryOffset;
+            pointer->Flags = this.Flags;
+        }
     }
 }

@@ -34,19 +34,17 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
+        public FenceCreateFlags Flags
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public FenceCreateFlags Flags
+        internal unsafe void MarshalTo(Interop.FenceCreateInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.FenceCreateInfo;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
         }
     }
 }

@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public PipelineDynamicStateCreateFlags Flags
         {
             get;
@@ -58,13 +49,12 @@ namespace SharpVk
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public DynamicState DynamicStates
+        internal unsafe void MarshalTo(Interop.PipelineDynamicStateCreateInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.PipelineDynamicStateCreateInfo;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->DynamicStateCount = this.DynamicStateCount;
         }
     }
 }

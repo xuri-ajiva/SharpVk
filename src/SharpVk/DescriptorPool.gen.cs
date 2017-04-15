@@ -31,5 +31,6 @@ namespace SharpVk
     /// </summary>
     public class DescriptorPool
     {
+        internal readonly SharpVk.Interop.DescriptorPool handle; 
     }
 }

@@ -31,5 +31,6 @@ namespace SharpVk
     /// </summary>
     public class RenderPass
     {
+        internal readonly SharpVk.Interop.RenderPass handle; 
     }
 }

@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public CommandPoolCreateFlags Flags
         {
             get;
@@ -56,6 +47,14 @@ namespace SharpVk
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.CommandPoolCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.CommandPoolCreateInfo;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->QueueFamilyIndex = this.QueueFamilyIndex;
         }
     }
 }

@@ -14,4 +14,8 @@
     <DocumentationFile>bin\Release\netstandard1.4\SharpVk.xml</DocumentationFile>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.3.0" />
+  </ItemGroup>
+
 </Project>

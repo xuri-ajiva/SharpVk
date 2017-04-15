@@ -34,19 +34,17 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
+        public uint DeviceMask
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public uint DeviceMask
+        internal unsafe void MarshalTo(Interop.Khx.DeviceGroupCommandBufferBeginInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.DeviceGroupCommandBufferBeginInfoKhx;
+            pointer->Next = null;
+            pointer->DeviceMask = this.DeviceMask;
         }
     }
 }

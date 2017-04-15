@@ -67,13 +67,12 @@ namespace SharpVk
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public Sampler ImmutableSamplers
+        internal unsafe void MarshalTo(Interop.DescriptorSetLayoutBinding* pointer)
         {
-            get;
-            set;
+            pointer->Binding = this.Binding;
+            pointer->DescriptorType = this.DescriptorType;
+            pointer->DescriptorCount = this.DescriptorCount;
+            pointer->StageFlags = this.StageFlags;
         }
     }
 }

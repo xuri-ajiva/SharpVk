@@ -34,15 +34,6 @@ namespace SharpVk.Ext
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public SharpVk.Ext.DebugReportFlags Flags
         {
             get;
@@ -65,6 +56,15 @@ namespace SharpVk.Ext
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Ext.DebugReportCallbackCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.DebugReportCallbackCreateInfoExt;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->Callback = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.Callback);
+            pointer->UserData = this.UserData.ToPointer();
         }
     }
 }

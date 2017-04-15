@@ -34,43 +34,7 @@ namespace SharpVk.Nvx
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint ObjectCount
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public SharpVk.Nvx.ObjectEntryType ObjectEntryTypes
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public uint ObjectEntryCounts
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public SharpVk.Nvx.ObjectEntryUsageFlags ObjectEntryUsageFlags
         {
             get;
             set;
@@ -119,6 +83,18 @@ namespace SharpVk.Nvx
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Nvx.ObjectTableCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.ObjectTableCreateInfoNvx;
+            pointer->Next = null;
+            pointer->ObjectCount = this.ObjectCount;
+            pointer->MaxUniformBuffersPerDescriptor = this.MaxUniformBuffersPerDescriptor;
+            pointer->MaxStorageBuffersPerDescriptor = this.MaxStorageBuffersPerDescriptor;
+            pointer->MaxStorageImagesPerDescriptor = this.MaxStorageImagesPerDescriptor;
+            pointer->MaxSampledImagesPerDescriptor = this.MaxSampledImagesPerDescriptor;
+            pointer->MaxPipelineLayouts = this.MaxPipelineLayouts;
         }
     }
 }

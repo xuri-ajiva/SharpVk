@@ -34,7 +34,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
+        public Version ApplicationVersion
         {
             get;
             set;
@@ -43,7 +43,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public char ApplicationName
+        public Version EngineVersion
         {
             get;
             set;
@@ -52,37 +52,16 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint ApplicationVersion
+        public Version ApiVersion
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public char EngineName
+        internal unsafe void MarshalTo(Interop.ApplicationInfo* pointer)
         {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public uint EngineVersion
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public uint ApiVersion
-        {
-            get;
-            set;
+            pointer->SType = StructureType.ApplicationInfo;
+            pointer->Next = null;
         }
     }
 }

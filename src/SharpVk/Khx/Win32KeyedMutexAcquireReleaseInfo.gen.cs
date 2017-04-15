@@ -34,43 +34,7 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint AcquireCount
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public DeviceMemory AcquireSyncs
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public ulong AcquireKeys
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public uint AcquireTimeouts
         {
             get;
             set;
@@ -85,22 +49,12 @@ namespace SharpVk.Khx
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public DeviceMemory ReleaseSyncs
+        internal unsafe void MarshalTo(Interop.Khx.Win32KeyedMutexAcquireReleaseInfo* pointer)
         {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public ulong ReleaseKeys
-        {
-            get;
-            set;
+            pointer->SType = StructureType.Win32KeyedMutexAcquireReleaseInfoKhx;
+            pointer->Next = null;
+            pointer->AcquireCount = this.AcquireCount;
+            pointer->ReleaseCount = this.ReleaseCount;
         }
     }
 }

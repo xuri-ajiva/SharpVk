@@ -34,15 +34,6 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public Image Image
         {
             get;
@@ -79,28 +70,21 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public uint DeviceIndices
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint SFRRectCount
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public Rect2D SFRRects
+        internal unsafe void MarshalTo(Interop.Khx.BindImageMemoryInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.BindImageMemoryInfoKhx;
+            pointer->Next = null;
+            pointer->Image = this.Image.handle;
+            pointer->Memory = this.Memory.handle;
+            pointer->MemoryOffset = this.MemoryOffset;
+            pointer->DeviceIndexCount = this.DeviceIndexCount;
+            pointer->SFRRectCount = this.SFRRectCount;
         }
     }
 }

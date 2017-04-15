@@ -31,5 +31,6 @@ namespace SharpVk.Nvx
     /// </summary>
     public class IndirectCommandsLayout
     {
+        internal readonly SharpVk.Interop.Nvx.IndirectCommandsLayout handle; 
     }
 }

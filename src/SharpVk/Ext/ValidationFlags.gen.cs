@@ -34,28 +34,17 @@ namespace SharpVk.Ext
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint DisabledValidationCheckCount
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public SharpVk.Ext.ValidationCheck DisabledValidationChecks
+        internal unsafe void MarshalTo(Interop.Ext.ValidationFlags* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.ValidationFlagsExt;
+            pointer->Next = null;
+            pointer->DisabledValidationCheckCount = this.DisabledValidationCheckCount;
         }
     }
 }

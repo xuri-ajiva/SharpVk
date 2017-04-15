@@ -31,5 +31,6 @@ namespace SharpVk
     /// </summary>
     public class DescriptorSetLayout
     {
+        internal readonly SharpVk.Interop.DescriptorSetLayout handle; 
     }
 }

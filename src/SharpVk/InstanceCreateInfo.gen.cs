@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public InstanceCreateFlags Flags
         {
             get;
@@ -70,28 +61,20 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public char EnabledLayerNames
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint EnabledExtensionCount
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public char EnabledExtensionNames
+        internal unsafe void MarshalTo(Interop.InstanceCreateInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.InstanceCreateInfo;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            this.ApplicationInfo.MarshalTo(pointer->ApplicationInfo);
+            pointer->EnabledLayerCount = this.EnabledLayerCount;
+            pointer->EnabledExtensionCount = this.EnabledExtensionCount;
         }
     }
 }

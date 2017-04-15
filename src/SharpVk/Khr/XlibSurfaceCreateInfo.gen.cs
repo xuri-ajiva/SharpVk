@@ -34,15 +34,6 @@ namespace SharpVk.Khr
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public SharpVk.Khr.XlibSurfaceCreateFlags Flags
         {
             get;
@@ -65,6 +56,16 @@ namespace SharpVk.Khr
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Khr.XlibSurfaceCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.XlibSurfaceCreateInfoKhr;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->Dpy = (IntPtr*)Interop.HeapUtil.Allocate<IntPtr>();
+            *pointer->Dpy = this.Dpy;
+            pointer->Window = this.Window;
         }
     }
 }

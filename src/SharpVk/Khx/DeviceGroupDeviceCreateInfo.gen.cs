@@ -34,28 +34,17 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint PhysicalDeviceCount
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public PhysicalDevice PhysicalDevices
+        internal unsafe void MarshalTo(Interop.Khx.DeviceGroupDeviceCreateInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.DeviceGroupDeviceCreateInfoKhx;
+            pointer->Next = null;
+            pointer->PhysicalDeviceCount = this.PhysicalDeviceCount;
         }
     }
 }

@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public PipelineDepthStencilStateCreateFlags Flags
         {
             get;
@@ -128,6 +119,22 @@ namespace SharpVk
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.PipelineDepthStencilStateCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.PipelineDepthStencilStateCreateInfo;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->DepthTestEnable = this.DepthTestEnable;
+            pointer->DepthWriteEnable = this.DepthWriteEnable;
+            pointer->DepthCompareOp = this.DepthCompareOp;
+            pointer->DepthBoundsTestEnable = this.DepthBoundsTestEnable;
+            pointer->StencilTestEnable = this.StencilTestEnable;
+            pointer->Front = this.Front;
+            pointer->Back = this.Back;
+            pointer->MinDepthBounds = this.MinDepthBounds;
+            pointer->MaxDepthBounds = this.MaxDepthBounds;
         }
     }
 }

@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public FramebufferCreateFlags Flags
         {
             get;
@@ -62,15 +53,6 @@ namespace SharpVk
         /// 
         /// </summary>
         public uint AttachmentCount
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public ImageView Attachments
         {
             get;
             set;
@@ -101,6 +83,18 @@ namespace SharpVk
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.FramebufferCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.FramebufferCreateInfo;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->RenderPass = this.RenderPass.handle;
+            pointer->AttachmentCount = this.AttachmentCount;
+            pointer->Width = this.Width;
+            pointer->Height = this.Height;
+            pointer->Layers = this.Layers;
         }
     }
 }

@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public CommandPool CommandPool
         {
             get;
@@ -65,6 +56,15 @@ namespace SharpVk
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.CommandBufferAllocateInfo* pointer)
+        {
+            pointer->SType = StructureType.CommandBufferAllocateInfo;
+            pointer->Next = null;
+            pointer->CommandPool = this.CommandPool.handle;
+            pointer->Level = this.Level;
+            pointer->CommandBufferCount = this.CommandBufferCount;
         }
     }
 }

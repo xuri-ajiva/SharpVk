@@ -61,34 +61,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public AttachmentReference InputAttachments
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint ColorAttachmentCount
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public AttachmentReference ColorAttachments
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public AttachmentReference ResolveAttachments
         {
             get;
             set;
@@ -112,13 +85,15 @@ namespace SharpVk
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public uint PreserveAttachments
+        internal unsafe void MarshalTo(Interop.SubpassDescription* pointer)
         {
-            get;
-            set;
+            pointer->Flags = this.Flags;
+            pointer->PipelineBindPoint = this.PipelineBindPoint;
+            pointer->InputAttachmentCount = this.InputAttachmentCount;
+            pointer->ColorAttachmentCount = this.ColorAttachmentCount;
+            pointer->DepthStencilAttachment = (AttachmentReference*)Interop.HeapUtil.Allocate<AttachmentReference>();
+            *pointer->DepthStencilAttachment = this.DepthStencilAttachment;
+            pointer->PreserveAttachmentCount = this.PreserveAttachmentCount;
         }
     }
 }

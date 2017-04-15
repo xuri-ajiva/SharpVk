@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public PipelineShaderStageCreateFlags Flags
         {
             get;
@@ -70,19 +61,20 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public char Name
+        public SpecializationInfo SpecializationInfo
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public SpecializationInfo SpecializationInfo
+        internal unsafe void MarshalTo(Interop.PipelineShaderStageCreateInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.PipelineShaderStageCreateInfo;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->Stage = this.Stage;
+            pointer->Module = this.Module.handle;
+            this.SpecializationInfo.MarshalTo(pointer->SpecializationInfo);
         }
     }
 }

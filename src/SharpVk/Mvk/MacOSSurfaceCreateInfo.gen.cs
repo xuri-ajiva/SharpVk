@@ -34,15 +34,6 @@ namespace SharpVk.Mvk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public SharpVk.Mvk.MacOSSurfaceCreateFlags Flags
         {
             get;
@@ -56,6 +47,14 @@ namespace SharpVk.Mvk
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Mvk.MacOSSurfaceCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.MacosSurfaceCreateInfoMvk;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->View = this.View.ToPointer();
         }
     }
 }

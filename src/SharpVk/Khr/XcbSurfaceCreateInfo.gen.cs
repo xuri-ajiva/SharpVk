@@ -34,15 +34,6 @@ namespace SharpVk.Khr
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public SharpVk.Khr.XcbSurfaceCreateFlags Flags
         {
             get;
@@ -65,6 +56,16 @@ namespace SharpVk.Khr
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Khr.XcbSurfaceCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.XcbSurfaceCreateInfoKhr;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->Connection = (IntPtr*)Interop.HeapUtil.Allocate<IntPtr>();
+            *pointer->Connection = this.Connection;
+            pointer->Window = this.Window;
         }
     }
 }

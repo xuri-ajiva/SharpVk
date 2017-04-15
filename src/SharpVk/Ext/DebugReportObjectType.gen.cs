@@ -193,5 +193,10 @@ namespace SharpVk.Ext
         /// 
         /// </summary>
         IndirectCommandsLayoutNvx = 32, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DescriptorUpdateTemplateKhrKhr = 1000085000, 
     }
 }

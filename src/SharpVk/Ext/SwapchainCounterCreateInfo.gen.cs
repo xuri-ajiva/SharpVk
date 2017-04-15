@@ -34,19 +34,17 @@ namespace SharpVk.Ext
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
+        public SharpVk.Ext.SurfaceCounterFlags SurfaceCounters
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public SharpVk.Ext.SurfaceCounterFlags SurfaceCounters
+        internal unsafe void MarshalTo(Interop.Ext.SwapchainCounterCreateInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.SwapchainCounterCreateInfoExt;
+            pointer->Next = null;
+            pointer->SurfaceCounters = this.SurfaceCounters;
         }
     }
 }

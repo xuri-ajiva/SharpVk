@@ -34,15 +34,6 @@ namespace SharpVk.Khr
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public SharpVk.Khr.SwapchainCreateFlags Flags
         {
             get;
@@ -133,15 +124,6 @@ namespace SharpVk.Khr
         /// <summary>
         /// 
         /// </summary>
-        public uint QueueFamilyIndices
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public SharpVk.Khr.SurfaceTransformFlags PreTransform
         {
             get;
@@ -182,6 +164,27 @@ namespace SharpVk.Khr
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Khr.SwapchainCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.SwapchainCreateInfoKhr;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->Surface = this.Surface.handle;
+            pointer->MinImageCount = this.MinImageCount;
+            pointer->ImageFormat = this.ImageFormat;
+            pointer->ImageColorSpace = this.ImageColorSpace;
+            pointer->ImageExtent = this.ImageExtent;
+            pointer->ImageArrayLayers = this.ImageArrayLayers;
+            pointer->ImageUsage = this.ImageUsage;
+            pointer->ImageSharingMode = this.ImageSharingMode;
+            pointer->QueueFamilyIndexCount = this.QueueFamilyIndexCount;
+            pointer->PreTransform = this.PreTransform;
+            pointer->CompositeAlpha = this.CompositeAlpha;
+            pointer->PresentMode = this.PresentMode;
+            pointer->Clipped = this.Clipped;
+            pointer->OldSwapchain = this.OldSwapchain.handle;
         }
     }
 }

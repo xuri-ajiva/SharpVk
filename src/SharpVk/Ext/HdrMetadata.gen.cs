@@ -34,15 +34,6 @@ namespace SharpVk.Ext
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public SharpVk.Ext.XYColor DisplayPrimaryRed
         {
             get;
@@ -110,6 +101,20 @@ namespace SharpVk.Ext
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Ext.HdrMetadata* pointer)
+        {
+            pointer->SType = StructureType.HdrMetadataExt;
+            pointer->Next = null;
+            pointer->DisplayPrimaryRed = this.DisplayPrimaryRed;
+            pointer->DisplayPrimaryGreen = this.DisplayPrimaryGreen;
+            pointer->DisplayPrimaryBlue = this.DisplayPrimaryBlue;
+            pointer->WhitePoint = this.WhitePoint;
+            pointer->MaxLuminance = this.MaxLuminance;
+            pointer->MinLuminance = this.MinLuminance;
+            pointer->MaxContentLightLevel = this.MaxContentLightLevel;
+            pointer->MaxFrameAverageLightLevel = this.MaxFrameAverageLightLevel;
         }
     }
 }

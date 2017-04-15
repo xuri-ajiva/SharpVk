@@ -34,15 +34,6 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint ResourceDeviceIndex
         {
             get;
@@ -56,6 +47,14 @@ namespace SharpVk.Khx
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Khx.DeviceGroupBindSparseInfo* pointer)
+        {
+            pointer->SType = StructureType.DeviceGroupBindSparseInfoKhx;
+            pointer->Next = null;
+            pointer->ResourceDeviceIndex = this.ResourceDeviceIndex;
+            pointer->MemoryDeviceIndex = this.MemoryDeviceIndex;
         }
     }
 }

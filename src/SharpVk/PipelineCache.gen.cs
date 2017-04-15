@@ -31,5 +31,6 @@ namespace SharpVk
     /// </summary>
     public class PipelineCache
     {
+        internal readonly SharpVk.Interop.PipelineCache handle; 
     }
 }

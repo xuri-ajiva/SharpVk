@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public RenderPassCreateFlags Flags
         {
             get;
@@ -61,25 +52,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public AttachmentDescription Attachments
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint SubpassCount
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpassDescription Subpasses
         {
             get;
             set;
@@ -94,13 +67,14 @@ namespace SharpVk
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public SubpassDependency Dependencies
+        internal unsafe void MarshalTo(Interop.RenderPassCreateInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.RenderPassCreateInfo;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->AttachmentCount = this.AttachmentCount;
+            pointer->SubpassCount = this.SubpassCount;
+            pointer->DependencyCount = this.DependencyCount;
         }
     }
 }

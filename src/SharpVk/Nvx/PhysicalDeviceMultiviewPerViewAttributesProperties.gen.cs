@@ -34,19 +34,17 @@ namespace SharpVk.Nvx
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
+        public Bool32 PerViewPositionAllComponents
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public Bool32 PerViewPositionAllComponents
+        internal unsafe void MarshalTo(Interop.Nvx.PhysicalDeviceMultiviewPerViewAttributesProperties* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.PhysicalDeviceMultiviewPerViewAttributesPropertiesNvx;
+            pointer->Next = null;
+            pointer->PerViewPositionAllComponents = this.PerViewPositionAllComponents;
         }
     }
 }

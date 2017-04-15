@@ -34,15 +34,6 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public SecurityAttributes Attributes
         {
             get;
@@ -65,6 +56,16 @@ namespace SharpVk.Khx
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Khx.ExportSemaphoreWin32HandleInfo* pointer)
+        {
+            pointer->SType = StructureType.ExportSemaphoreWin32HandleInfoKhx;
+            pointer->Next = null;
+            pointer->Attributes = (SecurityAttributes*)Interop.HeapUtil.Allocate<SecurityAttributes>();
+            *pointer->Attributes = this.Attributes;
+            pointer->DwAccess = this.DwAccess;
+            pointer->Name = this.Name;
         }
     }
 }

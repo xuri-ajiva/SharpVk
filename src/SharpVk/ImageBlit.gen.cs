@@ -66,5 +66,13 @@ namespace SharpVk
             get;
             set;
         }
+        
+        internal unsafe void MarshalTo(Interop.ImageBlit* pointer)
+        {
+            pointer->SourceSubresource = this.SourceSubresource;
+            pointer->SourceOffsets = this.SourceOffsets;
+            pointer->DestinationSubresource = this.DestinationSubresource;
+            pointer->DestinationOffsets = this.DestinationOffsets;
+        }
     }
 }

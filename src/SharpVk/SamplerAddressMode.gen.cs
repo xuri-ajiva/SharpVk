@@ -48,5 +48,10 @@ namespace SharpVk
         /// 
         /// </summary>
         ClampToBorder = 3, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        MirrorClampToEdgeKhr = 4, 
     }
 }

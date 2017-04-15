@@ -34,25 +34,7 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint WaitSemaphoreValuesCount
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public ulong WaitSemaphoreValues
         {
             get;
             set;
@@ -67,13 +49,12 @@ namespace SharpVk.Khx
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public ulong SignalSemaphoreValues
+        internal unsafe void MarshalTo(Interop.Khx.D3D12FenceSubmitInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.D3d12FenceSubmitInfoKhx;
+            pointer->Next = null;
+            pointer->WaitSemaphoreValuesCount = this.WaitSemaphoreValuesCount;
+            pointer->SignalSemaphoreValuesCount = this.SignalSemaphoreValuesCount;
         }
     }
 }

@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public DeviceQueueCreateFlags Flags
         {
             get;
@@ -67,13 +58,13 @@ namespace SharpVk
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public float QueuePriorities
+        internal unsafe void MarshalTo(Interop.DeviceQueueCreateInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.DeviceQueueCreateInfo;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->QueueFamilyIndex = this.QueueFamilyIndex;
+            pointer->QueueCount = this.QueueCount;
         }
     }
 }

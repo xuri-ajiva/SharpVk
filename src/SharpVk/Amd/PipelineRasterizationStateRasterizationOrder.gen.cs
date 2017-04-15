@@ -34,19 +34,17 @@ namespace SharpVk.Amd
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
+        public SharpVk.Amd.RasterizationOrder RasterizationOrder
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public SharpVk.Amd.RasterizationOrder RasterizationOrder
+        internal unsafe void MarshalTo(Interop.Amd.PipelineRasterizationStateRasterizationOrder* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.PipelineRasterizationStateRasterizationOrderAmd;
+            pointer->Next = null;
+            pointer->RasterizationOrder = this.RasterizationOrder;
         }
     }
 }

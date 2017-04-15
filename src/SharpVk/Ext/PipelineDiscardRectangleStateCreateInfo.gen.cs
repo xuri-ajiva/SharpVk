@@ -34,15 +34,6 @@ namespace SharpVk.Ext
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public SharpVk.Ext.PipelineDiscardRectangleStateCreateFlags Flags
         {
             get;
@@ -67,13 +58,13 @@ namespace SharpVk.Ext
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public Rect2D DiscardRectangles
+        internal unsafe void MarshalTo(Interop.Ext.PipelineDiscardRectangleStateCreateInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.PipelineDiscardRectangleStateCreateInfoExt;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->DiscardRectangleMode = this.DiscardRectangleMode;
+            pointer->DiscardRectangleCount = this.DiscardRectangleCount;
         }
     }
 }

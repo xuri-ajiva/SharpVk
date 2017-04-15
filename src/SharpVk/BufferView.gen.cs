@@ -31,5 +31,6 @@ namespace SharpVk
     /// </summary>
     public class BufferView
     {
+        internal readonly SharpVk.Interop.BufferView handle; 
     }
 }

@@ -31,5 +31,6 @@ namespace SharpVk.Khr
     /// </summary>
     public class DescriptorUpdateTemplate
     {
+        internal readonly SharpVk.Interop.Khr.DescriptorUpdateTemplate handle; 
     }
 }

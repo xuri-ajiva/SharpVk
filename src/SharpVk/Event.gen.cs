@@ -31,5 +31,6 @@ namespace SharpVk
     /// </summary>
     public class Event
     {
+        internal readonly SharpVk.Interop.Event handle; 
     }
 }

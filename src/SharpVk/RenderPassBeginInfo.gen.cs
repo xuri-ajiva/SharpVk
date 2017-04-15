@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public RenderPass RenderPass
         {
             get;
@@ -76,13 +67,14 @@ namespace SharpVk
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public ClearValue ClearValues
+        internal unsafe void MarshalTo(Interop.RenderPassBeginInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.RenderPassBeginInfo;
+            pointer->Next = null;
+            pointer->RenderPass = this.RenderPass.handle;
+            pointer->Framebuffer = this.Framebuffer.handle;
+            pointer->RenderArea = this.RenderArea;
+            pointer->ClearValueCount = this.ClearValueCount;
         }
     }
 }

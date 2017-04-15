@@ -31,5 +31,6 @@ namespace SharpVk
     /// </summary>
     public class DeviceMemory
     {
+        internal readonly SharpVk.Interop.DeviceMemory handle; 
     }
 }

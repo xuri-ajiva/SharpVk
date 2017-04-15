@@ -118,5 +118,15 @@ namespace SharpVk
         /// 
         /// </summary>
         MemoryWrite = 1 << 16, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        CommandProcessReadBitNvx = 1 << 17, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        CommandProcessWriteBitNvx = 1 << 18, 
     }
 }

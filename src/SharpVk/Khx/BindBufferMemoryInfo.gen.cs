@@ -34,15 +34,6 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public Buffer Buffer
         {
             get;
@@ -76,13 +67,14 @@ namespace SharpVk.Khx
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public uint DeviceIndices
+        internal unsafe void MarshalTo(Interop.Khx.BindBufferMemoryInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.BindBufferMemoryInfoKhx;
+            pointer->Next = null;
+            pointer->Buffer = this.Buffer.handle;
+            pointer->Memory = this.Memory.handle;
+            pointer->MemoryOffset = this.MemoryOffset;
+            pointer->DeviceIndexCount = this.DeviceIndexCount;
         }
     }
 }

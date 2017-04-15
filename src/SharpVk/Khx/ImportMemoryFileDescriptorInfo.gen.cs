@@ -34,15 +34,6 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public SharpVk.Khx.ExternalMemoryHandleTypeFlags HandleType
         {
             get;
@@ -56,6 +47,14 @@ namespace SharpVk.Khx
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Khx.ImportMemoryFileDescriptorInfo* pointer)
+        {
+            pointer->SType = StructureType.ImportMemoryFileDescriptorInfoKhx;
+            pointer->Next = null;
+            pointer->HandleType = this.HandleType;
+            pointer->FileDescriptor = this.FileDescriptor;
         }
     }
 }

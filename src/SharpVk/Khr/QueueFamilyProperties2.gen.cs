@@ -34,19 +34,17 @@ namespace SharpVk.Khr
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
+        public QueueFamilyProperties QueueFamilyProperties
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public QueueFamilyProperties QueueFamilyProperties
+        internal unsafe void MarshalTo(Interop.Khr.QueueFamilyProperties2* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.QueueFamilyProperties2Khr;
+            pointer->Next = null;
+            pointer->QueueFamilyProperties = this.QueueFamilyProperties;
         }
     }
 }

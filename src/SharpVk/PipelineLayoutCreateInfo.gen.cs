@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public PipelineLayoutCreateFlags Flags
         {
             get;
@@ -61,28 +52,19 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorSetLayout SetLayouts
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint PushConstantRangeCount
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public PushConstantRange PushConstantRanges
+        internal unsafe void MarshalTo(Interop.PipelineLayoutCreateInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.PipelineLayoutCreateInfo;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->SetLayoutCount = this.SetLayoutCount;
+            pointer->PushConstantRangeCount = this.PushConstantRangeCount;
         }
     }
 }

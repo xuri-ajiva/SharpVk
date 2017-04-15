@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public PipelineVertexInputStateCreateFlags Flags
         {
             get;
@@ -61,28 +52,19 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public VertexInputBindingDescription VertexBindingDescriptions
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint VertexAttributeDescriptionCount
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public VertexInputAttributeDescription VertexAttributeDescriptions
+        internal unsafe void MarshalTo(Interop.PipelineVertexInputStateCreateInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.PipelineVertexInputStateCreateInfo;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->VertexBindingDescriptionCount = this.VertexBindingDescriptionCount;
+            pointer->VertexAttributeDescriptionCount = this.VertexAttributeDescriptionCount;
         }
     }
 }

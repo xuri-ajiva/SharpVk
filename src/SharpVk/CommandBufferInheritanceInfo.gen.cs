@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public RenderPass RenderPass
         {
             get;
@@ -92,6 +83,18 @@ namespace SharpVk
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.CommandBufferInheritanceInfo* pointer)
+        {
+            pointer->SType = StructureType.CommandBufferInheritanceInfo;
+            pointer->Next = null;
+            pointer->RenderPass = this.RenderPass.handle;
+            pointer->Subpass = this.Subpass;
+            pointer->Framebuffer = this.Framebuffer.handle;
+            pointer->OcclusionQueryEnable = this.OcclusionQueryEnable;
+            pointer->QueryFlags = this.QueryFlags;
+            pointer->PipelineStatistics = this.PipelineStatistics;
         }
     }
 }

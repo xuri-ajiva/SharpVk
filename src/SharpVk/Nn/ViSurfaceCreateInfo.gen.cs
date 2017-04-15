@@ -34,15 +34,6 @@ namespace SharpVk.Nn
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public SharpVk.Nn.ViSurfaceCreateFlags Flags
         {
             get;
@@ -56,6 +47,14 @@ namespace SharpVk.Nn
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Nn.ViSurfaceCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.ViSurfaceCreateInfoNn;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->Window = this.Window.ToPointer();
         }
     }
 }

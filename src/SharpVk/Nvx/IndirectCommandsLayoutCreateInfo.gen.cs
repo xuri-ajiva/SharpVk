@@ -34,15 +34,6 @@ namespace SharpVk.Nvx
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public PipelineBindPoint PipelineBindPoint
         {
             get;
@@ -67,13 +58,13 @@ namespace SharpVk.Nvx
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public SharpVk.Nvx.IndirectCommandsLayoutToken Tokens
+        internal unsafe void MarshalTo(Interop.Nvx.IndirectCommandsLayoutCreateInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.IndirectCommandsLayoutCreateInfoNvx;
+            pointer->Next = null;
+            pointer->PipelineBindPoint = this.PipelineBindPoint;
+            pointer->Flags = this.Flags;
+            pointer->TokenCount = this.TokenCount;
         }
     }
 }

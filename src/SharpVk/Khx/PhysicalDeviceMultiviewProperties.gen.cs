@@ -34,15 +34,6 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint MaxMultiviewViewCount
         {
             get;
@@ -56,6 +47,14 @@ namespace SharpVk.Khx
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Khx.PhysicalDeviceMultiviewProperties* pointer)
+        {
+            pointer->SType = StructureType.PhysicalDeviceMultiviewPropertiesKhx;
+            pointer->Next = null;
+            pointer->MaxMultiviewViewCount = this.MaxMultiviewViewCount;
+            pointer->MaxMultiviewInstanceIndex = this.MaxMultiviewInstanceIndex;
         }
     }
 }

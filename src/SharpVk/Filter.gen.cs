@@ -38,5 +38,10 @@ namespace SharpVk
         /// 
         /// </summary>
         Linear = 1, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        CubicImg = 1000015000, 
     }
 }

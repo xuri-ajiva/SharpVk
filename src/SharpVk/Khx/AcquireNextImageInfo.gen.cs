@@ -34,15 +34,6 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public Khr.Swapchain Swapchain
         {
             get;
@@ -83,6 +74,17 @@ namespace SharpVk.Khx
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Khx.AcquireNextImageInfo* pointer)
+        {
+            pointer->SType = StructureType.AcquireNextImageInfoKhx;
+            pointer->Next = null;
+            pointer->Swapchain = this.Swapchain.handle;
+            pointer->Timeout = this.Timeout;
+            pointer->Semaphore = this.Semaphore.handle;
+            pointer->Fence = this.Fence.handle;
+            pointer->DeviceMask = this.DeviceMask;
         }
     }
 }

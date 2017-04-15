@@ -34,15 +34,6 @@ namespace SharpVk.Nv
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public SharpVk.Nv.PipelineViewportSwizzleStateCreateFlags Flags
         {
             get;
@@ -58,13 +49,12 @@ namespace SharpVk.Nv
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public SharpVk.Nv.ViewportSwizzle ViewportSwizzles
+        internal unsafe void MarshalTo(Interop.Nv.PipelineViewportSwizzleStateCreateInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.PipelineViewportSwizzleStateCreateInfoNv;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->ViewportCount = this.ViewportCount;
         }
     }
 }

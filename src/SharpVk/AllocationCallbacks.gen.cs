@@ -84,5 +84,15 @@ namespace SharpVk
             get;
             set;
         }
+        
+        internal unsafe void MarshalTo(Interop.AllocationCallbacks* pointer)
+        {
+            pointer->UserData = this.UserData.ToPointer();
+            pointer->Allocation = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.Allocation);
+            pointer->Reallocation = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.Reallocation);
+            pointer->Free = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.Free);
+            pointer->InternalAllocation = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.InternalAllocation);
+            pointer->InternalFree = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.InternalFree);
+        }
     }
 }

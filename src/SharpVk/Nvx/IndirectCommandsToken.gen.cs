@@ -57,5 +57,12 @@ namespace SharpVk.Nvx
             get;
             set;
         }
+        
+        internal unsafe void MarshalTo(Interop.Nvx.IndirectCommandsToken* pointer)
+        {
+            pointer->TokenType = this.TokenType;
+            pointer->Buffer = this.Buffer.handle;
+            pointer->Offset = this.Offset;
+        }
     }
 }

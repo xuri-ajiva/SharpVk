@@ -33,5 +33,10 @@ namespace SharpVk
         /// 
         /// </summary>
         None = 0, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PushDescriptorBitKhr = 1 << 0, 
     }
 }

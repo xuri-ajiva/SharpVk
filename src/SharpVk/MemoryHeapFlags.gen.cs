@@ -38,5 +38,10 @@ namespace SharpVk
         /// 
         /// </summary>
         DeviceLocal = 1 << 0, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        MultiInstanceBitKhx = 1 << 1, 
     }
 }

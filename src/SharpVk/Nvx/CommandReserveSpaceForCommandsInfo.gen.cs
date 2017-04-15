@@ -34,15 +34,6 @@ namespace SharpVk.Nvx
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public Nvx.ObjectTable ObjectTable
         {
             get;
@@ -65,6 +56,15 @@ namespace SharpVk.Nvx
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Nvx.CommandReserveSpaceForCommandsInfo* pointer)
+        {
+            pointer->SType = StructureType.CommandReserveSpaceForCommandsInfoNvx;
+            pointer->Next = null;
+            pointer->ObjectTable = this.ObjectTable.handle;
+            pointer->IndirectCommandsLayout = this.IndirectCommandsLayout.handle;
+            pointer->MaxSequencesCount = this.MaxSequencesCount;
         }
     }
 }

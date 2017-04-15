@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public PipelineTessellationStateCreateFlags Flags
         {
             get;
@@ -56,6 +47,14 @@ namespace SharpVk
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.PipelineTessellationStateCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.PipelineTessellationStateCreateInfo;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->PatchControlPoints = this.PatchControlPoints;
         }
     }
 }

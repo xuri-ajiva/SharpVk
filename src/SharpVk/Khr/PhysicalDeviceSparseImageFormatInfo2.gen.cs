@@ -34,15 +34,6 @@ namespace SharpVk.Khr
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public Format Format
         {
             get;
@@ -83,6 +74,17 @@ namespace SharpVk.Khr
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Khr.PhysicalDeviceSparseImageFormatInfo2* pointer)
+        {
+            pointer->SType = StructureType.PhysicalDeviceSparseImageFormatInfo2Khr;
+            pointer->Next = null;
+            pointer->Format = this.Format;
+            pointer->Type = this.Type;
+            pointer->Samples = this.Samples;
+            pointer->Usage = this.Usage;
+            pointer->Tiling = this.Tiling;
         }
     }
 }

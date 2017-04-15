@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public AccessFlags SourceAccessMask
         {
             get;
@@ -110,6 +101,20 @@ namespace SharpVk
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.ImageMemoryBarrier* pointer)
+        {
+            pointer->SType = StructureType.ImageMemoryBarrier;
+            pointer->Next = null;
+            pointer->SourceAccessMask = this.SourceAccessMask;
+            pointer->DestinationAccessMask = this.DestinationAccessMask;
+            pointer->OldLayout = this.OldLayout;
+            pointer->NewLayout = this.NewLayout;
+            pointer->SourceQueueFamilyIndex = this.SourceQueueFamilyIndex;
+            pointer->DestinationQueueFamilyIndex = this.DestinationQueueFamilyIndex;
+            pointer->Image = this.Image.handle;
+            pointer->SubresourceRange = this.SubresourceRange;
         }
     }
 }

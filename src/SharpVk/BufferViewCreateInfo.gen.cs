@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public BufferViewCreateFlags Flags
         {
             get;
@@ -83,6 +74,17 @@ namespace SharpVk
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.BufferViewCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.BufferViewCreateInfo;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->Buffer = this.Buffer.handle;
+            pointer->Format = this.Format;
+            pointer->Offset = this.Offset;
+            pointer->Range = this.Range;
         }
     }
 }

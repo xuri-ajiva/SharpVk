@@ -34,34 +34,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint WaitSemaphoreCount
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Semaphore WaitSemaphores
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public PipelineStageFlags WaitDestinationStageMask
         {
             get;
             set;
@@ -79,28 +52,19 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public CommandBuffer CommandBuffers
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint SignalSemaphoreCount
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public Semaphore SignalSemaphores
+        internal unsafe void MarshalTo(Interop.SubmitInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.SubmitInfo;
+            pointer->Next = null;
+            pointer->WaitSemaphoreCount = this.WaitSemaphoreCount;
+            pointer->CommandBufferCount = this.CommandBufferCount;
+            pointer->SignalSemaphoreCount = this.SignalSemaphoreCount;
         }
     }
 }

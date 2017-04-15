@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public CommandBufferUsageFlags Flags
         {
             get;
@@ -56,6 +47,14 @@ namespace SharpVk
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.CommandBufferBeginInfo* pointer)
+        {
+            pointer->SType = StructureType.CommandBufferBeginInfo;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            this.InheritanceInfo.MarshalTo(pointer->InheritanceInfo);
         }
     }
 }

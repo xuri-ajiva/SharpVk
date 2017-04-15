@@ -34,15 +34,6 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public BufferCreateFlags Flags
         {
             get;
@@ -65,6 +56,15 @@ namespace SharpVk.Khx
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Khx.PhysicalDeviceExternalBufferInfo* pointer)
+        {
+            pointer->SType = StructureType.PhysicalDeviceExternalBufferInfoKhx;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->Usage = this.Usage;
+            pointer->HandleType = this.HandleType;
         }
     }
 }

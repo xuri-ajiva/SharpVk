@@ -34,15 +34,6 @@ namespace SharpVk.Nv
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public Image Image
         {
             get;
@@ -56,6 +47,14 @@ namespace SharpVk.Nv
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Nv.DedicatedAllocationMemoryAllocateInfo* pointer)
+        {
+            pointer->SType = StructureType.DedicatedAllocationMemoryAllocateInfoNv;
+            pointer->Next = null;
+            pointer->Image = this.Image.handle;
+            pointer->Buffer = this.Buffer.handle;
         }
     }
 }

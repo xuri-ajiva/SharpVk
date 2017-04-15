@@ -31,5 +31,6 @@ namespace SharpVk.Khr
     /// </summary>
     public class Surface
     {
+        internal readonly SharpVk.Interop.Khr.Surface handle; 
     }
 }

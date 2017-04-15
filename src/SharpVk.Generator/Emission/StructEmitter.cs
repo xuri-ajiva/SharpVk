@@ -45,20 +45,7 @@ namespace SharpVk.Generator.Emission
                         {
                             if (@struct.Constructor != null)
                             {
-                                typeBuilder.EmitConstructor(body =>
-                                {
-                                    foreach (var action in @struct.Constructor.Params)
-                                    {
-                                        body.EmitAssignment(Member(This, action.MemberName), Variable(action.Param.Name));
-                                    }
-                                },
-                                parameters =>
-                                {
-                                    foreach (var action in @struct.Constructor.Params)
-                                    {
-                                        parameters.EmitParam(action.Param.Type, action.Param.Name);
-                                    }
-                                }, Public);
+                                typeBuilder.EmitConstructor(BuildBody(@struct.Constructor), BuildParams(@struct.Constructor), Public);
                             }
 
                             if (@struct.Fields != null)
@@ -84,10 +71,80 @@ namespace SharpVk.Generator.Emission
                                                             summary: member.Comment);
                                 }
                             }
+
+                            if (@struct.Methods != null)
+                            {
+                                foreach (var method in @struct.Methods)
+                                {
+                                    typeBuilder.EmitMethod("void",
+                                                                method.Name,
+                                                                BuildBody(method),
+                                                                BuildParams(method),
+                                                                method.IsUnsafe ? Internal : Public,
+                                                                method.IsUnsafe ? MemberModifier.Unsafe : MemberModifier.None);
+                                }
+                            }
                         }, Public, null, @struct.IsUnsafe ? Unsafe : None);
                     });
                 });
             }
+        }
+
+        private static Action<ParameterBuilder> BuildParams(MethodDefinition method)
+        {
+            return parameters =>
+            {
+                foreach (var action in method.ParamActions)
+                {
+                    parameters.EmitParam(action.Param.Type, action.Param.Name);
+                }
+            };
+        }
+
+        private static Action<CodeBlockBuilder> BuildBody(MethodDefinition method)
+        {
+            return body =>
+            {
+                if (method.ParamActions != null)
+                {
+                    foreach (var action in method.ParamActions)
+                    {
+                        if (action.MemberName != null)
+                        {
+                            body.EmitAssignment(Member(This, action.MemberName), Variable(action.Param.Name));
+                        }
+                    }
+                }
+
+                if (method.MemberActions != null)
+                {
+                    foreach (var action in method.MemberActions)
+                    {
+                        var targetExpression = DerefMember(Variable(action.ParamName), action.ParamFieldName);
+
+                        if (action.AddressOfParamField)
+                        {
+                            targetExpression = AddressOf(targetExpression);
+                        }
+
+                        switch (action.Type)
+                        {
+                            case MemberActionType.AssignToDeref:
+                                body.EmitAssignment(targetExpression, action.ValueExpression);
+                                break;
+                            case MemberActionType.AllocAndAssign:
+                                body.EmitAssignment(DerefMember(Variable(action.ParamName), action.ParamFieldName),
+                                                    Cast(action.MemberType + "*", StaticCall("Interop.HeapUtil", $"Allocate<{action.MemberType}>")));
+                                body.EmitAssignment(Deref(DerefMember(Variable(action.ParamName), action.ParamFieldName)),
+                                                    action.ValueExpression);
+                                break;
+                            case MemberActionType.MarshalTo:
+                                body.EmitCall(action.ValueExpression, "MarshalTo", targetExpression);
+                                break;
+                        }
+                    }
+                }
+            };
         }
     }
 }

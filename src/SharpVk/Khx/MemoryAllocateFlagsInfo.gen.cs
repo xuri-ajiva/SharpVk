@@ -34,15 +34,6 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public SharpVk.Khx.MemoryAllocateFlags Flags
         {
             get;
@@ -56,6 +47,14 @@ namespace SharpVk.Khx
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Khx.MemoryAllocateFlagsInfo* pointer)
+        {
+            pointer->SType = StructureType.MemoryAllocateFlagsInfoKhx;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->DeviceMask = this.DeviceMask;
         }
     }
 }

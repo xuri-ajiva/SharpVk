@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public PipelineCreateFlags Flags
         {
             get;
@@ -53,15 +44,6 @@ namespace SharpVk
         /// 
         /// </summary>
         public uint StageCount
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public PipelineShaderStageCreateInfo Stages
         {
             get;
             set;
@@ -191,6 +173,28 @@ namespace SharpVk
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.GraphicsPipelineCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.GraphicsPipelineCreateInfo;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->StageCount = this.StageCount;
+            this.VertexInputState.MarshalTo(pointer->VertexInputState);
+            this.InputAssemblyState.MarshalTo(pointer->InputAssemblyState);
+            this.TessellationState.MarshalTo(pointer->TessellationState);
+            this.ViewportState.MarshalTo(pointer->ViewportState);
+            this.RasterizationState.MarshalTo(pointer->RasterizationState);
+            this.MultisampleState.MarshalTo(pointer->MultisampleState);
+            this.DepthStencilState.MarshalTo(pointer->DepthStencilState);
+            this.ColorBlendState.MarshalTo(pointer->ColorBlendState);
+            this.DynamicState.MarshalTo(pointer->DynamicState);
+            pointer->Layout = this.Layout.handle;
+            pointer->RenderPass = this.RenderPass.handle;
+            pointer->Subpass = this.Subpass;
+            pointer->BasePipelineHandle = this.BasePipelineHandle.handle;
+            pointer->BasePipelineIndex = this.BasePipelineIndex;
         }
     }
 }

@@ -34,15 +34,6 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint DeviceMask
         {
             get;
@@ -58,13 +49,12 @@ namespace SharpVk.Khx
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public Rect2D DeviceRenderAreas
+        internal unsafe void MarshalTo(Interop.Khx.DeviceGroupRenderPassBeginInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.DeviceGroupRenderPassBeginInfoKhx;
+            pointer->Next = null;
+            pointer->DeviceMask = this.DeviceMask;
+            pointer->DeviceRenderAreaCount = this.DeviceRenderAreaCount;
         }
     }
 }

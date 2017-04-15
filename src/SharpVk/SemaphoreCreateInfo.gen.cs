@@ -34,19 +34,17 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
+        public SemaphoreCreateFlags Flags
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public SemaphoreCreateFlags Flags
+        internal unsafe void MarshalTo(Interop.SemaphoreCreateInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.SemaphoreCreateInfo;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
         }
     }
 }

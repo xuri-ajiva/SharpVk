@@ -33,5 +33,70 @@ namespace SharpVk.Khr
         /// 
         /// </summary>
         SrgbNonlinear = 0, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DisplayP3NonlinearExt = 1000104001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ExtendedSrgbLinearExt = 1000104002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DciP3LinearExt = 1000104003, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DciP3NonlinearExt = 1000104004, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Bt709LinearExt = 1000104005, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Bt709NonlinearExt = 1000104006, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Bt2020LinearExt = 1000104007, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Hdr10St2084Ext = 1000104008, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DolbyvisionExt = 1000104009, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Hdr10HlgExt = 1000104010, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        AdobergbLinearExt = 1000104011, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        AdobergbNonlinearExt = 1000104012, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PassThroughExt = 1000104013, 
     }
 }

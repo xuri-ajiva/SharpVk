@@ -31,5 +31,6 @@ namespace SharpVk.Khr
     /// </summary>
     public class Display
     {
+        internal readonly SharpVk.Interop.Khr.Display handle; 
     }
 }

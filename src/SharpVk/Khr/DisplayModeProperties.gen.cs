@@ -48,5 +48,11 @@ namespace SharpVk.Khr
             get;
             set;
         }
+        
+        internal unsafe void MarshalTo(Interop.Khr.DisplayModeProperties* pointer)
+        {
+            pointer->DisplayMode = this.DisplayMode.handle;
+            pointer->Parameters = this.Parameters;
+        }
     }
 }

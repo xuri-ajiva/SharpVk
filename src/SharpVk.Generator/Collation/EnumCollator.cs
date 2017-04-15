@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SharpVk.Generator.Pipeline;
 using SharpVk.Generator.Specification.Elements;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -45,6 +44,8 @@ namespace SharpVk.Generator.Collation
 
         public void Execute(IServiceCollection services)
         {
+            var enumLookup = new Dictionary<string, EnumMapping>();
+
             foreach (var enumType in this.enumTypes)
             {
                 var enumeration = this.enums[enumType];
@@ -56,7 +57,7 @@ namespace SharpVk.Generator.Collation
                 {
                     Name = name,
                     Extension = extension,
-                    Fields = this.DeclareFields(enumeration, false)
+                    Fields = this.DeclareFields(enumeration, false, enumLookup)
                 });
 
                 if (extension != null)
@@ -85,7 +86,7 @@ namespace SharpVk.Generator.Collation
                 {
                     Name = name,
                     Extension = extension,
-                    Fields = this.DeclareFields(enumeration, true)
+                    Fields = this.DeclareFields(enumeration, true, enumLookup)
                 });
 
                 if (extension != null)
@@ -110,9 +111,11 @@ namespace SharpVk.Generator.Collation
                     Priority = 1
                 });
             }
+
+            services.AddSingleton(enumLookup);
         }
 
-        private List<FieldDeclaration> DeclareFields(EnumElement enumeration, bool isBitmask)
+        private List<FieldDeclaration> DeclareFields(EnumElement enumeration, bool isBitmask, Dictionary<string, EnumMapping> enumLookup)
         {
             var result = new List<FieldDeclaration>();
 
@@ -125,6 +128,7 @@ namespace SharpVk.Generator.Collation
 
                 foreach (var field in enumeration.Fields.Values)
                 {
+                    var name = this.nameFormatter.FormatName(enumeration, field, field.IsBitmask);
                     string value = field.Value;
 
                     if (field.IsBitmask)
@@ -134,9 +138,11 @@ namespace SharpVk.Generator.Collation
 
                     result.Add(new FieldDeclaration
                     {
-                        Name = this.nameFormatter.FormatName(enumeration, field, field.IsBitmask),
+                        Name = name,
                         Value = value
                     });
+
+                    enumLookup.Add(field.VkName, new EnumMapping(enumeration.VkName, name));
                 }
             }
             else

@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public ImageViewCreateFlags Flags
         {
             get;
@@ -92,6 +83,18 @@ namespace SharpVk
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.ImageViewCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.ImageViewCreateInfo;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->Image = this.Image.handle;
+            pointer->ViewType = this.ViewType;
+            pointer->Format = this.Format;
+            pointer->Components = this.Components;
+            pointer->SubresourceRange = this.SubresourceRange;
         }
     }
 }

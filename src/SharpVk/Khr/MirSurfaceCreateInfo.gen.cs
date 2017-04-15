@@ -34,15 +34,6 @@ namespace SharpVk.Khr
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public SharpVk.Khr.MirSurfaceCreateFlags Flags
         {
             get;
@@ -65,6 +56,17 @@ namespace SharpVk.Khr
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Khr.MirSurfaceCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.MirSurfaceCreateInfoKhr;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->Connection = (IntPtr*)Interop.HeapUtil.Allocate<IntPtr>();
+            *pointer->Connection = this.Connection;
+            pointer->MirSurface = (IntPtr*)Interop.HeapUtil.Allocate<IntPtr>();
+            *pointer->MirSurface = this.MirSurface;
         }
     }
 }

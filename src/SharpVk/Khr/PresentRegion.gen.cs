@@ -40,13 +40,9 @@ namespace SharpVk.Khr
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public SharpVk.Khr.RectLayer Rectangles
+        internal unsafe void MarshalTo(Interop.Khr.PresentRegion* pointer)
         {
-            get;
-            set;
+            pointer->RectangleCount = this.RectangleCount;
         }
     }
 }

@@ -34,15 +34,6 @@ namespace SharpVk.Nv
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public SecurityAttributes Attributes
         {
             get;
@@ -56,6 +47,15 @@ namespace SharpVk.Nv
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Nv.ExportMemoryWin32HandleInfo* pointer)
+        {
+            pointer->SType = StructureType.ExportMemoryWin32HandleInfoNv;
+            pointer->Next = null;
+            pointer->Attributes = (SecurityAttributes*)Interop.HeapUtil.Allocate<SecurityAttributes>();
+            *pointer->Attributes = this.Attributes;
+            pointer->DwAccess = this.DwAccess;
         }
     }
 }

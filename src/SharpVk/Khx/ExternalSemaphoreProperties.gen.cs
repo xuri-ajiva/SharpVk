@@ -34,15 +34,6 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public SharpVk.Khx.ExternalSemaphoreHandleTypeFlags ExportFromImportedHandleTypes
         {
             get;
@@ -65,6 +56,15 @@ namespace SharpVk.Khx
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Khx.ExternalSemaphoreProperties* pointer)
+        {
+            pointer->SType = StructureType.ExternalSemaphorePropertiesKhx;
+            pointer->Next = null;
+            pointer->ExportFromImportedHandleTypes = this.ExportFromImportedHandleTypes;
+            pointer->CompatibleHandleTypes = this.CompatibleHandleTypes;
+            pointer->ExternalSemaphoreFeatures = this.ExternalSemaphoreFeatures;
         }
     }
 }

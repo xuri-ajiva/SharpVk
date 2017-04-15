@@ -34,25 +34,7 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint SwapchainCount
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public uint DeviceMasks
         {
             get;
             set;
@@ -65,6 +47,14 @@ namespace SharpVk.Khx
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Khx.DeviceGroupPresentInfo* pointer)
+        {
+            pointer->SType = StructureType.DeviceGroupPresentInfoKhx;
+            pointer->Next = null;
+            pointer->SwapchainCount = this.SwapchainCount;
+            pointer->Mode = this.Mode;
         }
     }
 }

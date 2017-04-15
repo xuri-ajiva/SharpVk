@@ -66,5 +66,13 @@ namespace SharpVk.Nvx
             get;
             set;
         }
+        
+        internal unsafe void MarshalTo(Interop.Nvx.ObjectTableIndexBufferEntry* pointer)
+        {
+            pointer->Type = this.Type;
+            pointer->Flags = this.Flags;
+            pointer->Buffer = this.Buffer.handle;
+            pointer->IndexType = this.IndexType;
+        }
     }
 }

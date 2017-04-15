@@ -34,15 +34,6 @@ namespace SharpVk.Khr
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public Rect2D SourceRect
         {
             get;
@@ -65,6 +56,15 @@ namespace SharpVk.Khr
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Khr.DisplayPresentInfo* pointer)
+        {
+            pointer->SType = StructureType.DisplayPresentInfoKhr;
+            pointer->Next = null;
+            pointer->SourceRect = this.SourceRect;
+            pointer->DestinationRect = this.DestinationRect;
+            pointer->Persistent = this.Persistent;
         }
     }
 }

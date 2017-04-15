@@ -31,5 +31,6 @@ namespace SharpVk
     /// </summary>
     public class Instance
     {
+        internal readonly SharpVk.Interop.Instance handle; 
     }
 }

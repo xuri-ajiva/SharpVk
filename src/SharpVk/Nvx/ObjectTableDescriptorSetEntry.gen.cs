@@ -66,5 +66,13 @@ namespace SharpVk.Nvx
             get;
             set;
         }
+        
+        internal unsafe void MarshalTo(Interop.Nvx.ObjectTableDescriptorSetEntry* pointer)
+        {
+            pointer->Type = this.Type;
+            pointer->Flags = this.Flags;
+            pointer->PipelineLayout = this.PipelineLayout.handle;
+            pointer->DescriptorSet = this.DescriptorSet.handle;
+        }
     }
 }

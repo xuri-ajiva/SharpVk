@@ -5,6 +5,8 @@ namespace SharpVk.Generator.Generation
     public class MethodDefinition
     {
         public string Name;
-        public List<ParamActionDefinition> Params;
+        public bool IsUnsafe;
+        public List<ParamActionDefinition> ParamActions;
+        public List<MemberActionDefinition> MemberActions;
     }
 }

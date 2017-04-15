@@ -48,5 +48,15 @@ namespace SharpVk
         /// 
         /// </summary>
         Derivative = 1 << 2, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ViewIndexFromDeviceIndexBitKhx = 1 << 3, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DispatchBaseKhx = 1 << 4, 
     }
 }

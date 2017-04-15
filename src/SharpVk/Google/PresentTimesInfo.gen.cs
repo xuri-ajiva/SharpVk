@@ -34,28 +34,17 @@ namespace SharpVk.Google
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint SwapchainCount
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public SharpVk.Google.PresentTime Times
+        internal unsafe void MarshalTo(Interop.Google.PresentTimesInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.PresentTimesInfoGoogle;
+            pointer->Next = null;
+            pointer->SwapchainCount = this.SwapchainCount;
         }
     }
 }

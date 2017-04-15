@@ -37,14 +37,7 @@ namespace SharpVk.Generator.Generation
             }
             else
             {
-                if (type.VkName == "void" && type.PointerType.IsPointer())
-                {
-                    return "IntPtr";
-                }
-                else
-                {
-                    return this.nameMapping[type.VkName];
-                }
+                return this.nameMapping[type.VkName];
             }
         }
     }

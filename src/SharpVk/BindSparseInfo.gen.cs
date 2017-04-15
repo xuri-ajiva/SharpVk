@@ -34,25 +34,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint WaitSemaphoreCount
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Semaphore WaitSemaphores
         {
             get;
             set;
@@ -70,25 +52,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SparseBufferMemoryBindInfo BufferBinds
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint ImageOpaqueBindCount
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public SparseImageOpaqueMemoryBindInfo ImageOpaqueBinds
         {
             get;
             set;
@@ -106,28 +70,21 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SparseImageMemoryBindInfo ImageBinds
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint SignalSemaphoreCount
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public Semaphore SignalSemaphores
+        internal unsafe void MarshalTo(Interop.BindSparseInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.BindSparseInfo;
+            pointer->Next = null;
+            pointer->WaitSemaphoreCount = this.WaitSemaphoreCount;
+            pointer->BufferBindCount = this.BufferBindCount;
+            pointer->ImageOpaqueBindCount = this.ImageOpaqueBindCount;
+            pointer->ImageBindCount = this.ImageBindCount;
+            pointer->SignalSemaphoreCount = this.SignalSemaphoreCount;
         }
     }
 }

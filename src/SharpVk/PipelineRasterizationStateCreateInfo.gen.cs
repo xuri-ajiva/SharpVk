@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public PipelineRasterizationStateCreateFlags Flags
         {
             get;
@@ -137,6 +128,23 @@ namespace SharpVk
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.PipelineRasterizationStateCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.PipelineRasterizationStateCreateInfo;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->DepthClampEnable = this.DepthClampEnable;
+            pointer->RasterizerDiscardEnable = this.RasterizerDiscardEnable;
+            pointer->PolygonMode = this.PolygonMode;
+            pointer->CullMode = this.CullMode;
+            pointer->FrontFace = this.FrontFace;
+            pointer->DepthBiasEnable = this.DepthBiasEnable;
+            pointer->DepthBiasConstantFactor = this.DepthBiasConstantFactor;
+            pointer->DepthBiasClamp = this.DepthBiasClamp;
+            pointer->DepthBiasSlopeFactor = this.DepthBiasSlopeFactor;
+            pointer->LineWidth = this.LineWidth;
         }
     }
 }

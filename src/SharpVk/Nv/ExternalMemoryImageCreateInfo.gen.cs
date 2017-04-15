@@ -34,19 +34,17 @@ namespace SharpVk.Nv
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
+        public SharpVk.Nv.ExternalMemoryHandleTypeFlags HandleTypes
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public SharpVk.Nv.ExternalMemoryHandleTypeFlags HandleTypes
+        internal unsafe void MarshalTo(Interop.Nv.ExternalMemoryImageCreateInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.ExternalMemoryImageCreateInfoNv;
+            pointer->Next = null;
+            pointer->HandleTypes = this.HandleTypes;
         }
     }
 }

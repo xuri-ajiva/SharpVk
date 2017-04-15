@@ -43,15 +43,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SpecializationMapEntry MapEntries
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public HostSize DataSize
         {
             get;
@@ -65,6 +56,13 @@ namespace SharpVk
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.SpecializationInfo* pointer)
+        {
+            pointer->MapEntryCount = this.MapEntryCount;
+            pointer->DataSize = this.DataSize;
+            pointer->Data = this.Data.ToPointer();
         }
     }
 }

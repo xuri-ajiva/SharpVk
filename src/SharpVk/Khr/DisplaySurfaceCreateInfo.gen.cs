@@ -34,15 +34,6 @@ namespace SharpVk.Khr
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public SharpVk.Khr.DisplaySurfaceCreateFlags Flags
         {
             get;
@@ -110,6 +101,20 @@ namespace SharpVk.Khr
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.Khr.DisplaySurfaceCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.DisplaySurfaceCreateInfoKhr;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->DisplayMode = this.DisplayMode.handle;
+            pointer->PlaneIndex = this.PlaneIndex;
+            pointer->PlaneStackIndex = this.PlaneStackIndex;
+            pointer->Transform = this.Transform;
+            pointer->GlobalAlpha = this.GlobalAlpha;
+            pointer->AlphaMode = this.AlphaMode;
+            pointer->ImageExtent = this.ImageExtent;
         }
     }
 }

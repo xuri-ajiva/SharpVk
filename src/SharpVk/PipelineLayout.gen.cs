@@ -31,5 +31,6 @@ namespace SharpVk
     /// </summary>
     public class PipelineLayout
     {
+        internal readonly SharpVk.Interop.PipelineLayout handle; 
     }
 }

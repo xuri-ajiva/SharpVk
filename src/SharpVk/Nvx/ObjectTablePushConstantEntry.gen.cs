@@ -66,5 +66,13 @@ namespace SharpVk.Nvx
             get;
             set;
         }
+        
+        internal unsafe void MarshalTo(Interop.Nvx.ObjectTablePushConstantEntry* pointer)
+        {
+            pointer->Type = this.Type;
+            pointer->Flags = this.Flags;
+            pointer->PipelineLayout = this.PipelineLayout.handle;
+            pointer->StageFlags = this.StageFlags;
+        }
     }
 }

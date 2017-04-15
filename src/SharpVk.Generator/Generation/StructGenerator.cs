@@ -29,7 +29,7 @@ namespace SharpVk.Generator.Generation
                     Namespace = type.Extension != null ? new[] { type.Extension.FirstToUpper() } : null,
                     Constructor = new MethodDefinition
                     {
-                        Params = type.Members.Select(this.GetConstructorParam).ToList()
+                        ParamActions = type.Members.Select(this.GetConstructorParam).ToList()
                     },
                     Fields = type.Members.Select(x => new MemberDefinition
                     {

@@ -33,5 +33,10 @@ namespace SharpVk.Khr
         /// 
         /// </summary>
         None = 0, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        BindSfrBitKhx = 1 << 0, 
     }
 }

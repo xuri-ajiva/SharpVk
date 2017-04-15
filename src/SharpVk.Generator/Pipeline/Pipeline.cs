@@ -22,11 +22,15 @@ namespace SharpVk.Generator.Pipeline
 
             var stage = (IStage)Activator.CreateInstance(initial);
 
+            Console.WriteLine($"Initial Stage: {stage.GetType().Name}");
+
             stage.Configure(services);
 
             foreach (var stageType in this.stages.Skip(1).Take(this.stages.Count() - 2))
             {
                 var setup = (IStage)Activator.CreateInstance(stageType);
+
+                Console.WriteLine($"Stage: {setup.GetType().Name}");
 
                 setup.Configure(services);
 
@@ -36,11 +40,15 @@ namespace SharpVk.Generator.Pipeline
 
                 foreach (var worker in stageProvider.GetServices<IWorker>())
                 {
+                    Console.WriteLine($"Running: {worker.GetType().Name}");
+
                     worker.Execute(services);
                 }
             }
 
             var outputStage = (IStage)Activator.CreateInstance(this.stages.Last());
+
+            Console.WriteLine($"Output Stage: {outputStage.GetType().Name}");
 
             outputStage.Configure(services);
 
@@ -50,6 +58,8 @@ namespace SharpVk.Generator.Pipeline
 
             foreach (var output in outputs)
             {
+                Console.WriteLine($"Running: {output.GetType().Name}");
+
                 output.Execute();
             }
         }

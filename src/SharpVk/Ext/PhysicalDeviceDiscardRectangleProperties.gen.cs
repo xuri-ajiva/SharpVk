@@ -34,19 +34,17 @@ namespace SharpVk.Ext
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
+        public uint MaxDiscardRectangles
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public uint MaxDiscardRectangles
+        internal unsafe void MarshalTo(Interop.Ext.PhysicalDeviceDiscardRectangleProperties* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.PhysicalDeviceDiscardRectanglePropertiesExt;
+            pointer->Next = null;
+            pointer->MaxDiscardRectangles = this.MaxDiscardRectangles;
         }
     }
 }

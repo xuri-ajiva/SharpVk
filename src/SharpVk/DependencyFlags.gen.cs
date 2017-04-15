@@ -38,5 +38,15 @@ namespace SharpVk
         /// 
         /// </summary>
         ByRegion = 1 << 0, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ViewLocalBitKhx = 1 << 1, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DeviceGroupBitKhx = 1 << 2, 
     }
 }

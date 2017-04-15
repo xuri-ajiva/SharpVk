@@ -31,5 +31,6 @@ namespace SharpVk
     /// </summary>
     public class ShaderModule
     {
+        internal readonly SharpVk.Interop.ShaderModule handle; 
     }
 }

@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public PipelineColorBlendStateCreateFlags Flags
         {
             get;
@@ -79,19 +70,21 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineColorBlendAttachmentState Attachments
+        public float BlendConstants
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public float BlendConstants
+        internal unsafe void MarshalTo(Interop.PipelineColorBlendStateCreateInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.PipelineColorBlendStateCreateInfo;
+            pointer->Next = null;
+            pointer->Flags = this.Flags;
+            pointer->LogicOpEnable = this.LogicOpEnable;
+            pointer->LogicOp = this.LogicOp;
+            pointer->AttachmentCount = this.AttachmentCount;
+            pointer->BlendConstants = this.BlendConstants;
         }
     }
 }

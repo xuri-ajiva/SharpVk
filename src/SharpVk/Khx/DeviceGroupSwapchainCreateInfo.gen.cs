@@ -34,19 +34,17 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
+        public SharpVk.Khx.DeviceGroupPresentModeFlags Modes
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public SharpVk.Khx.DeviceGroupPresentModeFlags Modes
+        internal unsafe void MarshalTo(Interop.Khx.DeviceGroupSwapchainCreateInfo* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.DeviceGroupSwapchainCreateInfoKhx;
+            pointer->Next = null;
+            pointer->Modes = this.Modes;
         }
     }
 }

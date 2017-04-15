@@ -34,28 +34,17 @@ namespace SharpVk.Khr
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Next
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint SwapchainCount
         {
             get;
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public Khr.PresentRegion Regions
+        internal unsafe void MarshalTo(Interop.Khr.PresentRegions* pointer)
         {
-            get;
-            set;
+            pointer->SType = StructureType.PresentRegionsKhr;
+            pointer->Next = null;
+            pointer->SwapchainCount = this.SwapchainCount;
         }
     }
 }

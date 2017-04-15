@@ -31,5 +31,6 @@ namespace SharpVk
     /// </summary>
     public class CommandBuffer
     {
+        internal readonly SharpVk.Interop.CommandBuffer handle; 
     }
 }

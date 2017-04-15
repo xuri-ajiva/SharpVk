@@ -34,7 +34,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint ApiVersion
+        public Version ApiVersion
         {
             get;
             set;
@@ -43,7 +43,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint DriverVersion
+        public Version DriverVersion
         {
             get;
             set;
@@ -110,6 +110,17 @@ namespace SharpVk
         {
             get;
             set;
+        }
+        
+        internal unsafe void MarshalTo(Interop.PhysicalDeviceProperties* pointer)
+        {
+            pointer->VendorID = this.VendorID;
+            pointer->DeviceID = this.DeviceID;
+            pointer->DeviceType = this.DeviceType;
+            pointer->DeviceName = this.DeviceName;
+            pointer->PipelineCacheUUID = this.PipelineCacheUUID;
+            this.Limits.MarshalTo(&pointer->Limits);
+            pointer->SparseProperties = this.SparseProperties;
         }
     }
 }
