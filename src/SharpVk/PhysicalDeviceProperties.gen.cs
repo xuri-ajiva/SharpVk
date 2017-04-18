@@ -114,6 +114,8 @@ namespace SharpVk
         
         internal unsafe void MarshalTo(Interop.PhysicalDeviceProperties* pointer)
         {
+            pointer->ApiVersion = (uint)this.ApiVersion;
+            pointer->DriverVersion = (uint)this.DriverVersion;
             pointer->VendorID = this.VendorID;
             pointer->DeviceID = this.DeviceID;
             pointer->DeviceType = this.DeviceType;

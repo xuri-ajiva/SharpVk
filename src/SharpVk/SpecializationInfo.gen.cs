@@ -49,20 +49,10 @@ namespace SharpVk
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public IntPtr Data
-        {
-            get;
-            set;
-        }
-        
         internal unsafe void MarshalTo(Interop.SpecializationInfo* pointer)
         {
             pointer->MapEntryCount = this.MapEntryCount;
             pointer->DataSize = this.DataSize;
-            pointer->Data = this.Data.ToPointer();
         }
     }
 }

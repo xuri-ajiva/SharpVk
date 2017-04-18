@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SharpVk.Generator.Rules
 {
@@ -41,6 +42,45 @@ namespace SharpVk.Generator.Rules
             }
 
             return false;
+        }
+
+        public static U ApplyFirst<T, U>(this IEnumerable<IFuncRule<T, U>> rules, T arg)
+        {
+            foreach (var rule in rules)
+            {
+                if (rule.Apply(arg, out var result))
+                {
+                    return result;
+                }
+            }
+
+            throw new Exception("No applicable rule.");
+        }
+
+        public static V ApplyFirst<T, U, V>(this IEnumerable<IFuncRule<T, U, V>> rules, T arg1, U arg2)
+        {
+            foreach (var rule in rules)
+            {
+                if (rule.Apply(arg1, arg2, out var result))
+                {
+                    return result;
+                }
+            }
+
+            throw new Exception("No applicable rule.");
+        }
+
+        public static W ApplyFirst<T, U, V, W>(this IEnumerable<IFuncRule<T, U, V, W>> rules, T arg1, U arg2, V arg3)
+        {
+            foreach (var rule in rules)
+            {
+                if (rule.Apply(arg1, arg2, arg3, out var result))
+                {
+                    return result;
+                }
+            }
+
+            throw new Exception("No applicable rule.");
         }
     }
 }

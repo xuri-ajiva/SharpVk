@@ -122,11 +122,6 @@ namespace SharpVk.Generator.Emission
                     {
                         var targetExpression = DerefMember(Variable(action.ParamName), action.ParamFieldName);
 
-                        if (action.AddressOfParamField)
-                        {
-                            targetExpression = AddressOf(targetExpression);
-                        }
-
                         switch (action.Type)
                         {
                             case MemberActionType.AssignToDeref:
@@ -138,6 +133,9 @@ namespace SharpVk.Generator.Emission
                                 body.EmitAssignment(Deref(DerefMember(Variable(action.ParamName), action.ParamFieldName)),
                                                     action.ValueExpression);
                                 break;
+                            case MemberActionType.MarshalToAddressOf:
+                                targetExpression = AddressOf(targetExpression);
+                                goto case MemberActionType.MarshalTo;
                             case MemberActionType.MarshalTo:
                                 body.EmitCall(action.ValueExpression, "MarshalTo", targetExpression);
                                 break;

@@ -70,6 +70,8 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.LayerProperties* pointer)
         {
             pointer->LayerName = this.LayerName;
+            pointer->SpecVersion = (uint)this.SpecVersion;
+            pointer->ImplementationVersion = (uint)this.ImplementationVersion;
             pointer->Description = this.Description;
         }
     }

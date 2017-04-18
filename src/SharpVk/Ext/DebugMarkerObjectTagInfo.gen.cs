@@ -67,15 +67,6 @@ namespace SharpVk.Ext
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public IntPtr Tag
-        {
-            get;
-            set;
-        }
-        
         internal unsafe void MarshalTo(Interop.Ext.DebugMarkerObjectTagInfo* pointer)
         {
             pointer->SType = StructureType.DebugMarkerObjectTagInfoExt;
@@ -84,7 +75,6 @@ namespace SharpVk.Ext
             pointer->Object = this.Object;
             pointer->TagName = this.TagName;
             pointer->TagSize = this.TagSize;
-            pointer->Tag = this.Tag.ToPointer();
         }
     }
 }

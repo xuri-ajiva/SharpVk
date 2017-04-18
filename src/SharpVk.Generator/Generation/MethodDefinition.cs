@@ -7,6 +7,6 @@ namespace SharpVk.Generator.Generation
         public string Name;
         public bool IsUnsafe;
         public List<ParamActionDefinition> ParamActions;
-        public List<MemberActionDefinition> MemberActions;
+        public List<Action> MemberActions;
     }
 }

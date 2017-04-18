@@ -3,12 +3,11 @@ using System;
 
 namespace SharpVk.Generator.Generation
 {
-    public class MemberActionDefinition
+    public class Action
     {
         public Action<ExpressionBuilder> ValueExpression;
         public string ParamName;
         public string ParamFieldName;
-        public bool AddressOfParamField;
         public string MemberType;
         public MemberActionType Type;
     }
@@ -20,6 +19,7 @@ namespace SharpVk.Generator.Generation
     {
         AssignToDeref,
         AllocAndAssign,
-        MarshalTo
+        MarshalTo,
+        MarshalToAddressOf
     }
 }

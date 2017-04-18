@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SharpVk.Generator.Generation.Marshalling;
 using SharpVk.Generator.Pipeline;
 
 namespace SharpVk.Generator.Generation
@@ -9,6 +10,20 @@ namespace SharpVk.Generator.Generation
         public void Configure(IServiceCollection services)
         {
             services.AddSingleton<NameLookup>();
+
+            services.AddSingleton<IMarshalValueRule, MarshalVoidPointerValue>();
+            services.AddSingleton<IMarshalValueRule, MarshalDelegateValue>();
+            services.AddSingleton<IMarshalValueRule, MarshalHandleValue>();
+            services.AddSingleton<IMarshalValueRule, MarshalStructValue>();
+            services.AddSingleton<IMarshalValueRule, MarshalPointerValue>();
+            services.AddSingleton<IMarshalValueRule, MarshalSimpleValue>();
+
+            services.AddSingleton<IMemberPatternRule, FixedValueMemberPattern>();
+            services.AddSingleton<IMemberPatternRule, NextExtensionMemberPattern>();
+            services.AddSingleton<IMemberPatternRule, VersionMemberPattern>();
+            services.AddSingleton<IMemberPatternRule, ArrayMemberPattern>();
+            services.AddSingleton<IMemberPatternRule, SimpleMemberPattern>();
+
             services.AddSingleton<IWorker, PInvokeGenerator>();
             services.AddSingleton<IWorker, StructGenerator>();
             services.AddSingleton<IWorker, EnumGenerator>();

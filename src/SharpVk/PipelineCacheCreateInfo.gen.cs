@@ -49,22 +49,12 @@ namespace SharpVk
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public IntPtr InitialData
-        {
-            get;
-            set;
-        }
-        
         internal unsafe void MarshalTo(Interop.PipelineCacheCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineCacheCreateInfo;
             pointer->Next = null;
             pointer->Flags = this.Flags;
             pointer->InitialDataSize = this.InitialDataSize;
-            pointer->InitialData = this.InitialData.ToPointer();
         }
     }
 }

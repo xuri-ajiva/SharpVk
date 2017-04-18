@@ -52,6 +52,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.ExtensionProperties* pointer)
         {
             pointer->ExtensionName = this.ExtensionName;
+            pointer->SpecVersion = (uint)this.SpecVersion;
         }
     }
 }

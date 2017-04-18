@@ -62,6 +62,9 @@ namespace SharpVk
         {
             pointer->SType = StructureType.ApplicationInfo;
             pointer->Next = null;
+            pointer->ApplicationVersion = (uint)this.ApplicationVersion;
+            pointer->EngineVersion = (uint)this.EngineVersion;
+            pointer->ApiVersion = (uint)this.ApiVersion;
         }
     }
 }
