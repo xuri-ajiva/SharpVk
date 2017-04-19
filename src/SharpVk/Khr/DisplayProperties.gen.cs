@@ -43,6 +43,15 @@ namespace SharpVk.Khr
         /// <summary>
         /// 
         /// </summary>
+        public string DisplayName
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public Extent2D PhysicalDimensions
         {
             get;

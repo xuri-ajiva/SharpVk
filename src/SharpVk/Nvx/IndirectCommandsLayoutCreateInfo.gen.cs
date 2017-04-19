@@ -52,7 +52,7 @@ namespace SharpVk.Nvx
         /// <summary>
         /// 
         /// </summary>
-        public uint TokenCount
+        public SharpVk.Nvx.IndirectCommandsLayoutToken[] Tokens
         {
             get;
             set;
@@ -64,7 +64,20 @@ namespace SharpVk.Nvx
             pointer->Next = null;
             pointer->PipelineBindPoint = this.PipelineBindPoint;
             pointer->Flags = this.Flags;
-            pointer->TokenCount = this.TokenCount;
+            pointer->TokenCount = (uint)this.Tokens.Length;
+            if (this.Tokens != null)
+            {
+                var fieldPointer = (SharpVk.Nvx.IndirectCommandsLayoutToken*)Interop.HeapUtil.AllocateAndClear<SharpVk.Nvx.IndirectCommandsLayoutToken>(this.Tokens.Length).ToPointer();
+                for(int index = 0; index < this.Tokens.Length; index++)
+                {
+                    fieldPointer[index] = this.Tokens[index];
+                }
+                pointer->Tokens = fieldPointer;
+            }
+            else
+            {
+                pointer->Tokens = null;
+            }
         }
     }
 }

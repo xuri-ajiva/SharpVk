@@ -43,7 +43,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint BindingCount
+        public DescriptorSetLayoutBinding[] Bindings
         {
             get;
             set;
@@ -54,7 +54,20 @@ namespace SharpVk
             pointer->SType = StructureType.DescriptorSetLayoutCreateInfo;
             pointer->Next = null;
             pointer->Flags = this.Flags;
-            pointer->BindingCount = this.BindingCount;
+            pointer->BindingCount = (uint)this.Bindings.Length;
+            if (this.Bindings != null)
+            {
+                var fieldPointer = (Interop.DescriptorSetLayoutBinding*)Interop.HeapUtil.AllocateAndClear<Interop.DescriptorSetLayoutBinding>(this.Bindings.Length).ToPointer();
+                for(int index = 0; index < this.Bindings.Length; index++)
+                {
+                    this.Bindings[index].MarshalTo(&fieldPointer[index]);
+                }
+                pointer->Bindings = fieldPointer;
+            }
+            else
+            {
+                pointer->Bindings = null;
+            }
         }
     }
 }

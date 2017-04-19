@@ -143,6 +143,17 @@ namespace SharpVk.Emit
             this.writer.Write($".{member}");
         }
 
+        public void EmitIndex(Action<ExpressionBuilder> target, Action<ExpressionBuilder> index)
+        {
+            target(this.GetSubBuilder());
+
+            this.writer.Write("[");
+
+            index(this.GetSubBuilder());
+
+            this.writer.Write("]");
+        }
+
         public void EmitDeref(Action<ExpressionBuilder> target)
         {
             this.writer.Write("*");
@@ -161,6 +172,24 @@ namespace SharpVk.Emit
             this.writer.Write("&");
 
             value(this.GetSubBuilder());
+        }
+
+        public void EmitIsEqual(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)
+        {
+            left(this.GetSubBuilder());
+
+            this.writer.Write(" == ");
+
+            right(this.GetSubBuilder());
+        }
+
+        public void EmitIsNotEqual(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)
+        {
+            left(this.GetSubBuilder());
+
+            this.writer.Write(" != ");
+
+            right(this.GetSubBuilder());
         }
 
         public void EmitLessThan(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)
@@ -312,6 +341,11 @@ namespace SharpVk.Emit
             return builder => builder.EmitCall(target, method, arguments);
         }
 
+        public static Action<ExpressionBuilder> Index(Action<ExpressionBuilder> target, Action<ExpressionBuilder> index)
+        {
+            return builder => builder.EmitIndex(target, index);
+        }
+
         public static Action<ExpressionBuilder> Member(Action<ExpressionBuilder> target, string member)
         {
             return builder => builder.EmitMember(target, member);
@@ -330,6 +364,16 @@ namespace SharpVk.Emit
         public static Action<ExpressionBuilder> AddressOf(Action<ExpressionBuilder> value)
         {
             return builder => builder.EmitAddressOf(value);
+        }
+
+        public static Action<ExpressionBuilder> IsEqual(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)
+        {
+            return builder => builder.EmitIsEqual(left, right);
+        }
+
+        public static Action<ExpressionBuilder> IsNotEqual(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)
+        {
+            return builder => builder.EmitIsNotEqual(left, right);
         }
 
         public static Action<ExpressionBuilder> LessThan(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)

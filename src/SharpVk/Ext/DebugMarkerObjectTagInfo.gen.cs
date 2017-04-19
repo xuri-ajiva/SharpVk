@@ -61,7 +61,7 @@ namespace SharpVk.Ext
         /// <summary>
         /// 
         /// </summary>
-        public HostSize TagSize
+        public byte[] Tag
         {
             get;
             set;
@@ -74,7 +74,20 @@ namespace SharpVk.Ext
             pointer->ObjectType = this.ObjectType;
             pointer->Object = this.Object;
             pointer->TagName = this.TagName;
-            pointer->TagSize = this.TagSize;
+            pointer->TagSize = (HostSize)this.Tag.Length;
+            if (this.Tag != null)
+            {
+                var fieldPointer = (byte*)Interop.HeapUtil.AllocateAndClear<byte>(this.Tag.Length).ToPointer();
+                for(int index = 0; index < this.Tag.Length; index++)
+                {
+                    fieldPointer[index] = this.Tag[index];
+                }
+                pointer->Tag = fieldPointer;
+            }
+            else
+            {
+                pointer->Tag = null;
+            }
         }
     }
 }

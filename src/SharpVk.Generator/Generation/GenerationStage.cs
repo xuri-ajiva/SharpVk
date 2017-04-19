@@ -10,6 +10,8 @@ namespace SharpVk.Generator.Generation
         public void Configure(IServiceCollection services)
         {
             services.AddSingleton<NameLookup>();
+            services.AddSingleton<ParsedExpressionBuilder>();
+            services.AddSingleton<ParsedExpressionTokenCheck>();
 
             services.AddSingleton<IMarshalValueRule, MarshalVoidPointerValue>();
             services.AddSingleton<IMarshalValueRule, MarshalDelegateValue>();
@@ -21,6 +23,7 @@ namespace SharpVk.Generator.Generation
             services.AddSingleton<IMemberPatternRule, FixedValueMemberPattern>();
             services.AddSingleton<IMemberPatternRule, NextExtensionMemberPattern>();
             services.AddSingleton<IMemberPatternRule, VersionMemberPattern>();
+            services.AddSingleton<IMemberPatternRule, ArrayLenMemberPattern>();
             services.AddSingleton<IMemberPatternRule, ArrayMemberPattern>();
             services.AddSingleton<IMemberPatternRule, SimpleMemberPattern>();
 

@@ -49,6 +49,15 @@ namespace SharpVk.Ext
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
+        public string ObjectName
+        {
+            get;
+            set;
+        }
+        
         internal unsafe void MarshalTo(Interop.Ext.DebugMarkerObjectNameInfo* pointer)
         {
             pointer->SType = StructureType.DebugMarkerObjectNameInfoExt;

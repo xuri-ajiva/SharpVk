@@ -43,7 +43,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint StageCount
+        public PipelineShaderStageCreateInfo[] Stages
         {
             get;
             set;
@@ -180,7 +180,20 @@ namespace SharpVk
             pointer->SType = StructureType.GraphicsPipelineCreateInfo;
             pointer->Next = null;
             pointer->Flags = this.Flags;
-            pointer->StageCount = this.StageCount;
+            pointer->StageCount = (uint)this.Stages.Length;
+            if (this.Stages != null)
+            {
+                var fieldPointer = (Interop.PipelineShaderStageCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.PipelineShaderStageCreateInfo>(this.Stages.Length).ToPointer();
+                for(int index = 0; index < this.Stages.Length; index++)
+                {
+                    this.Stages[index].MarshalTo(&fieldPointer[index]);
+                }
+                pointer->Stages = fieldPointer;
+            }
+            else
+            {
+                pointer->Stages = null;
+            }
             this.VertexInputState.MarshalTo(pointer->VertexInputState);
             this.InputAssemblyState.MarshalTo(pointer->InputAssemblyState);
             this.TessellationState.MarshalTo(pointer->TessellationState);

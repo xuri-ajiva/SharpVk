@@ -34,7 +34,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint MapEntryCount
+        public SpecializationMapEntry[] MapEntries
         {
             get;
             set;
@@ -43,7 +43,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public HostSize DataSize
+        public byte[] Data
         {
             get;
             set;
@@ -51,8 +51,34 @@ namespace SharpVk
         
         internal unsafe void MarshalTo(Interop.SpecializationInfo* pointer)
         {
-            pointer->MapEntryCount = this.MapEntryCount;
-            pointer->DataSize = this.DataSize;
+            pointer->MapEntryCount = (uint)this.MapEntries.Length;
+            if (this.MapEntries != null)
+            {
+                var fieldPointer = (SpecializationMapEntry*)Interop.HeapUtil.AllocateAndClear<SpecializationMapEntry>(this.MapEntries.Length).ToPointer();
+                for(int index = 0; index < this.MapEntries.Length; index++)
+                {
+                    fieldPointer[index] = this.MapEntries[index];
+                }
+                pointer->MapEntries = fieldPointer;
+            }
+            else
+            {
+                pointer->MapEntries = null;
+            }
+            pointer->DataSize = (HostSize)this.Data.Length;
+            if (this.Data != null)
+            {
+                var fieldPointer = (byte*)Interop.HeapUtil.AllocateAndClear<byte>(this.Data.Length).ToPointer();
+                for(int index = 0; index < this.Data.Length; index++)
+                {
+                    fieldPointer[index] = this.Data[index];
+                }
+                pointer->Data = fieldPointer;
+            }
+            else
+            {
+                pointer->Data = null;
+            }
         }
     }
 }

@@ -43,7 +43,7 @@ namespace SharpVk.Khr
         /// <summary>
         /// 
         /// </summary>
-        public uint DescriptorUpdateEntryCount
+        public SharpVk.Khr.DescriptorUpdateTemplateEntry[] DescriptorUpdateEntries
         {
             get;
             set;
@@ -99,7 +99,20 @@ namespace SharpVk.Khr
             pointer->SType = StructureType.DescriptorUpdateTemplateCreateInfoKhr;
             pointer->Next = null;
             pointer->Flags = this.Flags;
-            pointer->DescriptorUpdateEntryCount = this.DescriptorUpdateEntryCount;
+            pointer->DescriptorUpdateEntryCount = (uint)this.DescriptorUpdateEntries.Length;
+            if (this.DescriptorUpdateEntries != null)
+            {
+                var fieldPointer = (SharpVk.Khr.DescriptorUpdateTemplateEntry*)Interop.HeapUtil.AllocateAndClear<SharpVk.Khr.DescriptorUpdateTemplateEntry>(this.DescriptorUpdateEntries.Length).ToPointer();
+                for(int index = 0; index < this.DescriptorUpdateEntries.Length; index++)
+                {
+                    fieldPointer[index] = this.DescriptorUpdateEntries[index];
+                }
+                pointer->DescriptorUpdateEntries = fieldPointer;
+            }
+            else
+            {
+                pointer->DescriptorUpdateEntries = null;
+            }
             pointer->TemplateType = this.TemplateType;
             pointer->DescriptorSetLayout = this.DescriptorSetLayout.handle;
             pointer->PipelineBindPoint = this.PipelineBindPoint;

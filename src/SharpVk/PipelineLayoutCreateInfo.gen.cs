@@ -43,7 +43,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint SetLayoutCount
+        public DescriptorSetLayout[] SetLayouts
         {
             get;
             set;
@@ -52,7 +52,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint PushConstantRangeCount
+        public PushConstantRange[] PushConstantRanges
         {
             get;
             set;
@@ -63,8 +63,34 @@ namespace SharpVk
             pointer->SType = StructureType.PipelineLayoutCreateInfo;
             pointer->Next = null;
             pointer->Flags = this.Flags;
-            pointer->SetLayoutCount = this.SetLayoutCount;
-            pointer->PushConstantRangeCount = this.PushConstantRangeCount;
+            pointer->SetLayoutCount = (uint)this.SetLayouts.Length;
+            if (this.SetLayouts != null)
+            {
+                var fieldPointer = (Interop.DescriptorSetLayout*)Interop.HeapUtil.AllocateAndClear<Interop.DescriptorSetLayout>(this.SetLayouts.Length).ToPointer();
+                for(int index = 0; index < this.SetLayouts.Length; index++)
+                {
+                    fieldPointer[index] = this.SetLayouts[index].handle;
+                }
+                pointer->SetLayouts = fieldPointer;
+            }
+            else
+            {
+                pointer->SetLayouts = null;
+            }
+            pointer->PushConstantRangeCount = (uint)this.PushConstantRanges.Length;
+            if (this.PushConstantRanges != null)
+            {
+                var fieldPointer = (PushConstantRange*)Interop.HeapUtil.AllocateAndClear<PushConstantRange>(this.PushConstantRanges.Length).ToPointer();
+                for(int index = 0; index < this.PushConstantRanges.Length; index++)
+                {
+                    fieldPointer[index] = this.PushConstantRanges[index];
+                }
+                pointer->PushConstantRanges = fieldPointer;
+            }
+            else
+            {
+                pointer->PushConstantRanges = null;
+            }
         }
     }
 }

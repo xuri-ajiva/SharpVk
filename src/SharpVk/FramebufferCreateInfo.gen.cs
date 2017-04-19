@@ -52,7 +52,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint AttachmentCount
+        public ImageView[] Attachments
         {
             get;
             set;
@@ -91,7 +91,20 @@ namespace SharpVk
             pointer->Next = null;
             pointer->Flags = this.Flags;
             pointer->RenderPass = this.RenderPass.handle;
-            pointer->AttachmentCount = this.AttachmentCount;
+            pointer->AttachmentCount = (uint)this.Attachments.Length;
+            if (this.Attachments != null)
+            {
+                var fieldPointer = (Interop.ImageView*)Interop.HeapUtil.AllocateAndClear<Interop.ImageView>(this.Attachments.Length).ToPointer();
+                for(int index = 0; index < this.Attachments.Length; index++)
+                {
+                    fieldPointer[index] = this.Attachments[index].handle;
+                }
+                pointer->Attachments = fieldPointer;
+            }
+            else
+            {
+                pointer->Attachments = null;
+            }
             pointer->Width = this.Width;
             pointer->Height = this.Height;
             pointer->Layers = this.Layers;

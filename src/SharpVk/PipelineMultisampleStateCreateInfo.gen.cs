@@ -43,15 +43,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SampleCountFlags RasterizationSamples
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public Bool32 SampleShadingEnable
         {
             get;
@@ -62,6 +53,15 @@ namespace SharpVk
         /// 
         /// </summary>
         public float MinSampleShading
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public SampleMask[] SampleMask
         {
             get;
             set;
@@ -90,9 +90,22 @@ namespace SharpVk
             pointer->SType = StructureType.PipelineMultisampleStateCreateInfo;
             pointer->Next = null;
             pointer->Flags = this.Flags;
-            pointer->RasterizationSamples = this.RasterizationSamples;
+            pointer->RasterizationSamples = (SampleCountFlags)this.SampleMask.Length;
             pointer->SampleShadingEnable = this.SampleShadingEnable;
             pointer->MinSampleShading = this.MinSampleShading;
+            if (this.SampleMask != null)
+            {
+                var fieldPointer = (SampleMask*)Interop.HeapUtil.AllocateAndClear<SampleMask>(this.SampleMask.Length).ToPointer();
+                for(int index = 0; index < this.SampleMask.Length; index++)
+                {
+                    fieldPointer[index] = this.SampleMask[index];
+                }
+                pointer->SampleMask = fieldPointer;
+            }
+            else
+            {
+                pointer->SampleMask = null;
+            }
             pointer->AlphaToCoverageEnable = this.AlphaToCoverageEnable;
             pointer->AlphaToOneEnable = this.AlphaToOneEnable;
         }

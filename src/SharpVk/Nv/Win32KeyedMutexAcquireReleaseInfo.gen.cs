@@ -34,7 +34,7 @@ namespace SharpVk.Nv
         /// <summary>
         /// 
         /// </summary>
-        public uint AcquireCount
+        public DeviceMemory[] AcquireSyncs
         {
             get;
             set;
@@ -43,7 +43,34 @@ namespace SharpVk.Nv
         /// <summary>
         /// 
         /// </summary>
-        public uint ReleaseCount
+        public ulong[] AcquireKeys
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public uint[] AcquireTimeoutMilliseconds
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public DeviceMemory[] ReleaseSyncs
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public ulong[] ReleaseKeys
         {
             get;
             set;
@@ -53,8 +80,73 @@ namespace SharpVk.Nv
         {
             pointer->SType = StructureType.Win32KeyedMutexAcquireReleaseInfoNv;
             pointer->Next = null;
-            pointer->AcquireCount = this.AcquireCount;
-            pointer->ReleaseCount = this.ReleaseCount;
+            pointer->AcquireCount = (uint)this.AcquireSyncs.Length;
+            if (this.AcquireSyncs != null)
+            {
+                var fieldPointer = (Interop.DeviceMemory*)Interop.HeapUtil.AllocateAndClear<Interop.DeviceMemory>(this.AcquireSyncs.Length).ToPointer();
+                for(int index = 0; index < this.AcquireSyncs.Length; index++)
+                {
+                    fieldPointer[index] = this.AcquireSyncs[index].handle;
+                }
+                pointer->AcquireSyncs = fieldPointer;
+            }
+            else
+            {
+                pointer->AcquireSyncs = null;
+            }
+            if (this.AcquireKeys != null)
+            {
+                var fieldPointer = (ulong*)Interop.HeapUtil.AllocateAndClear<ulong>(this.AcquireKeys.Length).ToPointer();
+                for(int index = 0; index < this.AcquireKeys.Length; index++)
+                {
+                    fieldPointer[index] = this.AcquireKeys[index];
+                }
+                pointer->AcquireKeys = fieldPointer;
+            }
+            else
+            {
+                pointer->AcquireKeys = null;
+            }
+            if (this.AcquireTimeoutMilliseconds != null)
+            {
+                var fieldPointer = (uint*)Interop.HeapUtil.AllocateAndClear<uint>(this.AcquireTimeoutMilliseconds.Length).ToPointer();
+                for(int index = 0; index < this.AcquireTimeoutMilliseconds.Length; index++)
+                {
+                    fieldPointer[index] = this.AcquireTimeoutMilliseconds[index];
+                }
+                pointer->AcquireTimeoutMilliseconds = fieldPointer;
+            }
+            else
+            {
+                pointer->AcquireTimeoutMilliseconds = null;
+            }
+            pointer->ReleaseCount = (uint)this.ReleaseSyncs.Length;
+            if (this.ReleaseSyncs != null)
+            {
+                var fieldPointer = (Interop.DeviceMemory*)Interop.HeapUtil.AllocateAndClear<Interop.DeviceMemory>(this.ReleaseSyncs.Length).ToPointer();
+                for(int index = 0; index < this.ReleaseSyncs.Length; index++)
+                {
+                    fieldPointer[index] = this.ReleaseSyncs[index].handle;
+                }
+                pointer->ReleaseSyncs = fieldPointer;
+            }
+            else
+            {
+                pointer->ReleaseSyncs = null;
+            }
+            if (this.ReleaseKeys != null)
+            {
+                var fieldPointer = (ulong*)Interop.HeapUtil.AllocateAndClear<ulong>(this.ReleaseKeys.Length).ToPointer();
+                for(int index = 0; index < this.ReleaseKeys.Length; index++)
+                {
+                    fieldPointer[index] = this.ReleaseKeys[index];
+                }
+                pointer->ReleaseKeys = fieldPointer;
+            }
+            else
+            {
+                pointer->ReleaseKeys = null;
+            }
         }
     }
 }

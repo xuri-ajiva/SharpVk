@@ -34,7 +34,25 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        public string ApplicationName
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public Version ApplicationVersion
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public string EngineName
         {
             get;
             set;

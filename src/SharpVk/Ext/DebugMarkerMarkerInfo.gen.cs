@@ -34,6 +34,15 @@ namespace SharpVk.Ext
         /// <summary>
         /// 
         /// </summary>
+        public string MarkerName
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public float Color
         {
             get;

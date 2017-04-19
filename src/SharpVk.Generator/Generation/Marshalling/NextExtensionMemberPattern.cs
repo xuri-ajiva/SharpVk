@@ -8,7 +8,7 @@ namespace SharpVk.Generator.Generation.Marshalling
     public class NextExtensionMemberPattern
         : IMemberPatternRule
     {
-        public bool Apply(MemberDeclaration member, StructDefinition publicStruct, Action<Action> addAction)
+        public bool Apply(TypeDeclaration type, MemberDeclaration member, StructDefinition publicStruct, Action<Action> addAction)
         {
             if (member.Name == "Next")
             {

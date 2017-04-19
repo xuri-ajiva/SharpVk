@@ -34,7 +34,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint WaitSemaphoreCount
+        public Semaphore[] WaitSemaphores
         {
             get;
             set;
@@ -43,7 +43,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint BufferBindCount
+        public SparseBufferMemoryBindInfo[] BufferBinds
         {
             get;
             set;
@@ -52,7 +52,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint ImageOpaqueBindCount
+        public SparseImageOpaqueMemoryBindInfo[] ImageOpaqueBinds
         {
             get;
             set;
@@ -61,7 +61,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint ImageBindCount
+        public SparseImageMemoryBindInfo[] ImageBinds
         {
             get;
             set;
@@ -70,7 +70,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint SignalSemaphoreCount
+        public Semaphore[] SignalSemaphores
         {
             get;
             set;
@@ -80,11 +80,76 @@ namespace SharpVk
         {
             pointer->SType = StructureType.BindSparseInfo;
             pointer->Next = null;
-            pointer->WaitSemaphoreCount = this.WaitSemaphoreCount;
-            pointer->BufferBindCount = this.BufferBindCount;
-            pointer->ImageOpaqueBindCount = this.ImageOpaqueBindCount;
-            pointer->ImageBindCount = this.ImageBindCount;
-            pointer->SignalSemaphoreCount = this.SignalSemaphoreCount;
+            pointer->WaitSemaphoreCount = (uint)this.WaitSemaphores.Length;
+            if (this.WaitSemaphores != null)
+            {
+                var fieldPointer = (Interop.Semaphore*)Interop.HeapUtil.AllocateAndClear<Interop.Semaphore>(this.WaitSemaphores.Length).ToPointer();
+                for(int index = 0; index < this.WaitSemaphores.Length; index++)
+                {
+                    fieldPointer[index] = this.WaitSemaphores[index].handle;
+                }
+                pointer->WaitSemaphores = fieldPointer;
+            }
+            else
+            {
+                pointer->WaitSemaphores = null;
+            }
+            pointer->BufferBindCount = (uint)this.BufferBinds.Length;
+            if (this.BufferBinds != null)
+            {
+                var fieldPointer = (Interop.SparseBufferMemoryBindInfo*)Interop.HeapUtil.AllocateAndClear<Interop.SparseBufferMemoryBindInfo>(this.BufferBinds.Length).ToPointer();
+                for(int index = 0; index < this.BufferBinds.Length; index++)
+                {
+                    this.BufferBinds[index].MarshalTo(&fieldPointer[index]);
+                }
+                pointer->BufferBinds = fieldPointer;
+            }
+            else
+            {
+                pointer->BufferBinds = null;
+            }
+            pointer->ImageOpaqueBindCount = (uint)this.ImageOpaqueBinds.Length;
+            if (this.ImageOpaqueBinds != null)
+            {
+                var fieldPointer = (Interop.SparseImageOpaqueMemoryBindInfo*)Interop.HeapUtil.AllocateAndClear<Interop.SparseImageOpaqueMemoryBindInfo>(this.ImageOpaqueBinds.Length).ToPointer();
+                for(int index = 0; index < this.ImageOpaqueBinds.Length; index++)
+                {
+                    this.ImageOpaqueBinds[index].MarshalTo(&fieldPointer[index]);
+                }
+                pointer->ImageOpaqueBinds = fieldPointer;
+            }
+            else
+            {
+                pointer->ImageOpaqueBinds = null;
+            }
+            pointer->ImageBindCount = (uint)this.ImageBinds.Length;
+            if (this.ImageBinds != null)
+            {
+                var fieldPointer = (Interop.SparseImageMemoryBindInfo*)Interop.HeapUtil.AllocateAndClear<Interop.SparseImageMemoryBindInfo>(this.ImageBinds.Length).ToPointer();
+                for(int index = 0; index < this.ImageBinds.Length; index++)
+                {
+                    this.ImageBinds[index].MarshalTo(&fieldPointer[index]);
+                }
+                pointer->ImageBinds = fieldPointer;
+            }
+            else
+            {
+                pointer->ImageBinds = null;
+            }
+            pointer->SignalSemaphoreCount = (uint)this.SignalSemaphores.Length;
+            if (this.SignalSemaphores != null)
+            {
+                var fieldPointer = (Interop.Semaphore*)Interop.HeapUtil.AllocateAndClear<Interop.Semaphore>(this.SignalSemaphores.Length).ToPointer();
+                for(int index = 0; index < this.SignalSemaphores.Length; index++)
+                {
+                    fieldPointer[index] = this.SignalSemaphores[index].handle;
+                }
+                pointer->SignalSemaphores = fieldPointer;
+            }
+            else
+            {
+                pointer->SignalSemaphores = null;
+            }
         }
     }
 }

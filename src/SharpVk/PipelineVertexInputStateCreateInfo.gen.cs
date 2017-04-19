@@ -43,7 +43,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint VertexBindingDescriptionCount
+        public VertexInputBindingDescription[] VertexBindingDescriptions
         {
             get;
             set;
@@ -52,7 +52,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint VertexAttributeDescriptionCount
+        public VertexInputAttributeDescription[] VertexAttributeDescriptions
         {
             get;
             set;
@@ -63,8 +63,34 @@ namespace SharpVk
             pointer->SType = StructureType.PipelineVertexInputStateCreateInfo;
             pointer->Next = null;
             pointer->Flags = this.Flags;
-            pointer->VertexBindingDescriptionCount = this.VertexBindingDescriptionCount;
-            pointer->VertexAttributeDescriptionCount = this.VertexAttributeDescriptionCount;
+            pointer->VertexBindingDescriptionCount = (uint)this.VertexBindingDescriptions.Length;
+            if (this.VertexBindingDescriptions != null)
+            {
+                var fieldPointer = (VertexInputBindingDescription*)Interop.HeapUtil.AllocateAndClear<VertexInputBindingDescription>(this.VertexBindingDescriptions.Length).ToPointer();
+                for(int index = 0; index < this.VertexBindingDescriptions.Length; index++)
+                {
+                    fieldPointer[index] = this.VertexBindingDescriptions[index];
+                }
+                pointer->VertexBindingDescriptions = fieldPointer;
+            }
+            else
+            {
+                pointer->VertexBindingDescriptions = null;
+            }
+            pointer->VertexAttributeDescriptionCount = (uint)this.VertexAttributeDescriptions.Length;
+            if (this.VertexAttributeDescriptions != null)
+            {
+                var fieldPointer = (VertexInputAttributeDescription*)Interop.HeapUtil.AllocateAndClear<VertexInputAttributeDescription>(this.VertexAttributeDescriptions.Length).ToPointer();
+                for(int index = 0; index < this.VertexAttributeDescriptions.Length; index++)
+                {
+                    fieldPointer[index] = this.VertexAttributeDescriptions[index];
+                }
+                pointer->VertexAttributeDescriptions = fieldPointer;
+            }
+            else
+            {
+                pointer->VertexAttributeDescriptions = null;
+            }
         }
     }
 }

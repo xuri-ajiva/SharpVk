@@ -43,7 +43,7 @@ namespace SharpVk.Nv
         /// <summary>
         /// 
         /// </summary>
-        public uint ViewportCount
+        public SharpVk.Nv.ViewportSwizzle[] ViewportSwizzles
         {
             get;
             set;
@@ -54,7 +54,20 @@ namespace SharpVk.Nv
             pointer->SType = StructureType.PipelineViewportSwizzleStateCreateInfoNv;
             pointer->Next = null;
             pointer->Flags = this.Flags;
-            pointer->ViewportCount = this.ViewportCount;
+            pointer->ViewportCount = (uint)this.ViewportSwizzles.Length;
+            if (this.ViewportSwizzles != null)
+            {
+                var fieldPointer = (SharpVk.Nv.ViewportSwizzle*)Interop.HeapUtil.AllocateAndClear<SharpVk.Nv.ViewportSwizzle>(this.ViewportSwizzles.Length).ToPointer();
+                for(int index = 0; index < this.ViewportSwizzles.Length; index++)
+                {
+                    fieldPointer[index] = this.ViewportSwizzles[index];
+                }
+                pointer->ViewportSwizzles = fieldPointer;
+            }
+            else
+            {
+                pointer->ViewportSwizzles = null;
+            }
         }
     }
 }

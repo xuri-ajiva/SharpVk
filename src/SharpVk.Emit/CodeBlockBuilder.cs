@@ -5,9 +5,12 @@ namespace SharpVk.Emit
     public class CodeBlockBuilder
         : BlockBuilder
     {
-        public CodeBlockBuilder(IndentedTextWriter writer, bool hasBraces = true)
+        private readonly bool writeSemicolons;
+
+        public CodeBlockBuilder(IndentedTextWriter writer, bool hasBraces = true, bool writeSemicolons = true)
             : base(writer, hasBraces)
         {
+            this.writeSemicolons = writeSemicolons;
         }
 
         public void EmitVariableDeclaration(string type, string name, Action<ExpressionBuilder> assignment = null)
@@ -18,40 +21,50 @@ namespace SharpVk.Emit
                 this.writer.Write(" = ");
                 assignment(this.GetExpressionBuilder());
             }
-            this.writer.WriteLine(";");
+
+            this.WriteSemicolon();
         }
-        
+
         public void EmitAssignment(Action<ExpressionBuilder> target, Action<ExpressionBuilder> assignment)
         {
             target(this.GetExpressionBuilder());
             this.writer.Write(" = ");
             assignment(this.GetExpressionBuilder());
-            this.writer.WriteLine(";");
+
+            this.WriteSemicolon();
         }
 
         public void EmitThrow(Action<ExpressionBuilder> expression)
         {
             this.writer.Write($"throw ");
             expression(this.GetExpressionBuilder());
-            this.writer.WriteLine(";");
+
+            this.WriteSemicolon();
         }
 
         public void EmitReturn(Action<ExpressionBuilder> expression)
         {
             this.writer.Write($"return ");
             expression(this.GetExpressionBuilder());
-            this.writer.WriteLine(";");
+
+            this.WriteSemicolon();
         }
 
         public void EmitStatement(string statement)
         {
-            this.writer.WriteLine(statement);
+            this.writer.Write(statement);
+
+            if (this.writeSemicolons)
+            {
+                this.writer.WriteLine();
+            }
         }
 
         public void EmitCallExpression(Action<ExpressionBuilder> expression)
         {
             expression(this.GetExpressionBuilder());
-            this.writer.WriteLine(";");
+
+            this.WriteSemicolon();
         }
 
         public void EmitStaticCall(string type, string method, params Action<ExpressionBuilder>[] arguments)
@@ -62,13 +75,27 @@ namespace SharpVk.Emit
         public void EmitDelegateCall(Action<ExpressionBuilder> @delegate, params Action<ExpressionBuilder>[] arguments)
         {
             this.GetExpressionBuilder().EmitDelegateCall(@delegate, arguments);
-            this.writer.WriteLine(";");
+
+            this.WriteSemicolon();
         }
 
         public void EmitCall(Action<ExpressionBuilder> target, string method, params Action<ExpressionBuilder>[] arguments)
         {
             this.GetExpressionBuilder().EmitCall(target, method, arguments);
-            this.writer.WriteLine(";");
+
+            this.WriteSemicolon();
+        }
+
+        public void EmitForLoop(Action<CodeBlockBuilder> initialiser, Action<ExpressionBuilder> condition, Action<CodeBlockBuilder> afterthought, Action<CodeBlockBuilder> loopBlock)
+        {
+            this.writer.Write("for(");
+            this.writer.WriteCodeBlock(initialiser, false, true);
+            this.writer.Write("; ");
+            condition(this.GetExpressionBuilder());
+            this.writer.Write("; ");
+            this.writer.WriteCodeBlock(afterthought, false, true);
+            this.writer.WriteLine(")");
+            this.writer.WriteCodeBlock(loopBlock);
         }
 
         public void EmitIfBlock(Action<ExpressionBuilder> condition, Action<CodeBlockBuilder> ifBlock)
@@ -79,6 +106,17 @@ namespace SharpVk.Emit
             using (var ifBlockBuilder = new CodeBlockBuilder(this.writer.GetSubWriter()))
             {
                 ifBlock(ifBlockBuilder);
+            }
+        }
+
+        public void EmitIfBlock(Action<ExpressionBuilder> condition, Action<CodeBlockBuilder> ifBlock, Action<CodeBlockBuilder> elseBlock)
+        {
+            this.EmitIfBlock(condition, ifBlock);
+
+            this.writer.WriteLine("else");
+            using (var elseBlockBuilder = new CodeBlockBuilder(this.writer.GetSubWriter()))
+            {
+                elseBlock(elseBlockBuilder);
             }
         }
 
@@ -113,6 +151,14 @@ namespace SharpVk.Emit
             using (var switchBlockBuilder = new SwitchCaseBuilder(this.writer.GetSubWriter()))
             {
                 caseBuilder(switchBlockBuilder);
+            }
+        }
+
+        private void WriteSemicolon()
+        {
+            if (this.writeSemicolons)
+            {
+                this.writer.WriteLine(";");
             }
         }
 

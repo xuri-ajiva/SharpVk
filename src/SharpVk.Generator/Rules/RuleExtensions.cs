@@ -44,6 +44,19 @@ namespace SharpVk.Generator.Rules
             return false;
         }
 
+        public static bool ApplyFirst<T, U, V, W>(this IEnumerable<IRule<T, U, V, W>> rules, T arg1, U arg2, V arg3, W arg4)
+        {
+            foreach (var rule in rules)
+            {
+                if (rule.Apply(arg1, arg2, arg3, arg4))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public static U ApplyFirst<T, U>(this IEnumerable<IFuncRule<T, U>> rules, T arg)
         {
             foreach (var rule in rules)

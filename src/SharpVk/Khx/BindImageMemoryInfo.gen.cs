@@ -61,7 +61,7 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public uint DeviceIndexCount
+        public uint[] DeviceIndices
         {
             get;
             set;
@@ -70,7 +70,7 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public uint SFRRectCount
+        public Rect2D[] SFRRects
         {
             get;
             set;
@@ -83,8 +83,34 @@ namespace SharpVk.Khx
             pointer->Image = this.Image.handle;
             pointer->Memory = this.Memory.handle;
             pointer->MemoryOffset = this.MemoryOffset;
-            pointer->DeviceIndexCount = this.DeviceIndexCount;
-            pointer->SFRRectCount = this.SFRRectCount;
+            pointer->DeviceIndexCount = (uint)this.DeviceIndices.Length;
+            if (this.DeviceIndices != null)
+            {
+                var fieldPointer = (uint*)Interop.HeapUtil.AllocateAndClear<uint>(this.DeviceIndices.Length).ToPointer();
+                for(int index = 0; index < this.DeviceIndices.Length; index++)
+                {
+                    fieldPointer[index] = this.DeviceIndices[index];
+                }
+                pointer->DeviceIndices = fieldPointer;
+            }
+            else
+            {
+                pointer->DeviceIndices = null;
+            }
+            pointer->SFRRectCount = (uint)this.SFRRects.Length;
+            if (this.SFRRects != null)
+            {
+                var fieldPointer = (Rect2D*)Interop.HeapUtil.AllocateAndClear<Rect2D>(this.SFRRects.Length).ToPointer();
+                for(int index = 0; index < this.SFRRects.Length; index++)
+                {
+                    fieldPointer[index] = this.SFRRects[index];
+                }
+                pointer->SFRRects = fieldPointer;
+            }
+            else
+            {
+                pointer->SFRRects = null;
+            }
         }
     }
 }

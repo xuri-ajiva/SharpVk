@@ -61,6 +61,15 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        public string Name
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public SpecializationInfo SpecializationInfo
         {
             get;

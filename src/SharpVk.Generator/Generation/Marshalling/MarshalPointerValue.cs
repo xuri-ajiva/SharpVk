@@ -1,7 +1,4 @@
-﻿using SharpVk.Emit;
-using System;
-
-namespace SharpVk.Generator.Generation.Marshalling
+﻿namespace SharpVk.Generator.Generation.Marshalling
 {
     public class MarshalPointerValue
         : IMarshalValueRule
@@ -13,19 +10,23 @@ namespace SharpVk.Generator.Generation.Marshalling
             this.nameLookup = nameLookup;
         }
 
-        public bool Apply(TypeReference type, out (string, MemberActionType, Func<Action<ExpressionBuilder>, Action<ExpressionBuilder>>) result)
+        public bool Apply(TypeReference type, out MarshalInfo info)
         {
             if (type.PointerType.IsPointer())
             {
-                result = (this.nameLookup.Lookup(type, false),
-                            MemberActionType.AllocAndAssign,
-                            value => value);
+                info = new MarshalInfo
+                {
+                    MemberType = this.nameLookup.Lookup(type, false),
+                    InteropType = this.nameLookup.Lookup(type, true),
+                    ActionType = MemberActionType.AllocAndAssign,
+                    BuildValueExpression = value => value
+                };
 
                 return true;
             }
             else
             {
-                result = (null, MemberActionType.AssignToDeref, null);
+                info = new MarshalInfo();
 
                 return false;
             }

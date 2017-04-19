@@ -34,7 +34,7 @@ namespace SharpVk.Khr
         /// <summary>
         /// 
         /// </summary>
-        public uint RectangleCount
+        public SharpVk.Khr.RectLayer[] Rectangles
         {
             get;
             set;
@@ -42,7 +42,20 @@ namespace SharpVk.Khr
         
         internal unsafe void MarshalTo(Interop.Khr.PresentRegion* pointer)
         {
-            pointer->RectangleCount = this.RectangleCount;
+            pointer->RectangleCount = (uint)this.Rectangles.Length;
+            if (this.Rectangles != null)
+            {
+                var fieldPointer = (SharpVk.Khr.RectLayer*)Interop.HeapUtil.AllocateAndClear<SharpVk.Khr.RectLayer>(this.Rectangles.Length).ToPointer();
+                for(int index = 0; index < this.Rectangles.Length; index++)
+                {
+                    fieldPointer[index] = this.Rectangles[index];
+                }
+                pointer->Rectangles = fieldPointer;
+            }
+            else
+            {
+                pointer->Rectangles = null;
+            }
         }
     }
 }

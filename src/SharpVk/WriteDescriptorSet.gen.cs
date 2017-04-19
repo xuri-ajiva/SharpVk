@@ -61,7 +61,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint DescriptorCount
+        public DescriptorType DescriptorType
         {
             get;
             set;
@@ -70,7 +70,25 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorType DescriptorType
+        public DescriptorImageInfo[] ImageInfo
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public DescriptorBufferInfo[] BufferInfo
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public BufferView[] TexelBufferView
         {
             get;
             set;
@@ -83,8 +101,47 @@ namespace SharpVk
             pointer->DestinationSet = this.DestinationSet.handle;
             pointer->DestinationBinding = this.DestinationBinding;
             pointer->DestinationArrayElement = this.DestinationArrayElement;
-            pointer->DescriptorCount = this.DescriptorCount;
+            pointer->DescriptorCount = (uint)this.ImageInfo.Length;
             pointer->DescriptorType = this.DescriptorType;
+            if (this.ImageInfo != null)
+            {
+                var fieldPointer = (Interop.DescriptorImageInfo*)Interop.HeapUtil.AllocateAndClear<Interop.DescriptorImageInfo>(this.ImageInfo.Length).ToPointer();
+                for(int index = 0; index < this.ImageInfo.Length; index++)
+                {
+                    this.ImageInfo[index].MarshalTo(&fieldPointer[index]);
+                }
+                pointer->ImageInfo = fieldPointer;
+            }
+            else
+            {
+                pointer->ImageInfo = null;
+            }
+            if (this.BufferInfo != null)
+            {
+                var fieldPointer = (Interop.DescriptorBufferInfo*)Interop.HeapUtil.AllocateAndClear<Interop.DescriptorBufferInfo>(this.BufferInfo.Length).ToPointer();
+                for(int index = 0; index < this.BufferInfo.Length; index++)
+                {
+                    this.BufferInfo[index].MarshalTo(&fieldPointer[index]);
+                }
+                pointer->BufferInfo = fieldPointer;
+            }
+            else
+            {
+                pointer->BufferInfo = null;
+            }
+            if (this.TexelBufferView != null)
+            {
+                var fieldPointer = (Interop.BufferView*)Interop.HeapUtil.AllocateAndClear<Interop.BufferView>(this.TexelBufferView.Length).ToPointer();
+                for(int index = 0; index < this.TexelBufferView.Length; index++)
+                {
+                    fieldPointer[index] = this.TexelBufferView[index].handle;
+                }
+                pointer->TexelBufferView = fieldPointer;
+            }
+            else
+            {
+                pointer->TexelBufferView = null;
+            }
         }
     }
 }

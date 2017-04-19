@@ -61,7 +61,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint AttachmentCount
+        public PipelineColorBlendAttachmentState[] Attachments
         {
             get;
             set;
@@ -83,7 +83,20 @@ namespace SharpVk
             pointer->Flags = this.Flags;
             pointer->LogicOpEnable = this.LogicOpEnable;
             pointer->LogicOp = this.LogicOp;
-            pointer->AttachmentCount = this.AttachmentCount;
+            pointer->AttachmentCount = (uint)this.Attachments.Length;
+            if (this.Attachments != null)
+            {
+                var fieldPointer = (PipelineColorBlendAttachmentState*)Interop.HeapUtil.AllocateAndClear<PipelineColorBlendAttachmentState>(this.Attachments.Length).ToPointer();
+                for(int index = 0; index < this.Attachments.Length; index++)
+                {
+                    fieldPointer[index] = this.Attachments[index];
+                }
+                pointer->Attachments = fieldPointer;
+            }
+            else
+            {
+                pointer->Attachments = null;
+            }
             pointer->BlendConstants = this.BlendConstants;
         }
     }

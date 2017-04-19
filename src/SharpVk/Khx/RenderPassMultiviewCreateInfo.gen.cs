@@ -34,7 +34,7 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public uint SubpassCount
+        public uint[] ViewMasks
         {
             get;
             set;
@@ -43,7 +43,7 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public uint DependencyCount
+        public int[] ViewOffsets
         {
             get;
             set;
@@ -52,7 +52,7 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public uint CorrelationMaskCount
+        public uint[] CorrelationMasks
         {
             get;
             set;
@@ -62,9 +62,48 @@ namespace SharpVk.Khx
         {
             pointer->SType = StructureType.RenderPassMultiviewCreateInfoKhx;
             pointer->Next = null;
-            pointer->SubpassCount = this.SubpassCount;
-            pointer->DependencyCount = this.DependencyCount;
-            pointer->CorrelationMaskCount = this.CorrelationMaskCount;
+            pointer->SubpassCount = (uint)this.ViewMasks.Length;
+            if (this.ViewMasks != null)
+            {
+                var fieldPointer = (uint*)Interop.HeapUtil.AllocateAndClear<uint>(this.ViewMasks.Length).ToPointer();
+                for(int index = 0; index < this.ViewMasks.Length; index++)
+                {
+                    fieldPointer[index] = this.ViewMasks[index];
+                }
+                pointer->ViewMasks = fieldPointer;
+            }
+            else
+            {
+                pointer->ViewMasks = null;
+            }
+            pointer->DependencyCount = (uint)this.ViewOffsets.Length;
+            if (this.ViewOffsets != null)
+            {
+                var fieldPointer = (int*)Interop.HeapUtil.AllocateAndClear<int>(this.ViewOffsets.Length).ToPointer();
+                for(int index = 0; index < this.ViewOffsets.Length; index++)
+                {
+                    fieldPointer[index] = this.ViewOffsets[index];
+                }
+                pointer->ViewOffsets = fieldPointer;
+            }
+            else
+            {
+                pointer->ViewOffsets = null;
+            }
+            pointer->CorrelationMaskCount = (uint)this.CorrelationMasks.Length;
+            if (this.CorrelationMasks != null)
+            {
+                var fieldPointer = (uint*)Interop.HeapUtil.AllocateAndClear<uint>(this.CorrelationMasks.Length).ToPointer();
+                for(int index = 0; index < this.CorrelationMasks.Length; index++)
+                {
+                    fieldPointer[index] = this.CorrelationMasks[index];
+                }
+                pointer->CorrelationMasks = fieldPointer;
+            }
+            else
+            {
+                pointer->CorrelationMasks = null;
+            }
         }
     }
 }

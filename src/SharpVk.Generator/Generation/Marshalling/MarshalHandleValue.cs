@@ -19,21 +19,27 @@ namespace SharpVk.Generator.Generation.Marshalling
             this.typeData = typeData;
         }
 
-        public bool Apply(TypeReference type, out (string, MemberActionType, Func<Action<ExpressionBuilder>, Action<ExpressionBuilder>>) result)
+        public bool Apply(TypeReference type, out MarshalInfo info)
         {
             var typePattern = this.typeData[type.VkName].Pattern;
 
             if (typePattern == TypePattern.Handle)
             {
-                result = (this.nameLookup.Lookup(type, false),
-                            MemberActionType.AssignToDeref,
-                            value => Member(value, "handle"));
+                string memberType = this.nameLookup.Lookup(type, false);
+
+                info = new MarshalInfo
+                {
+                    MemberType = memberType,
+                    InteropType = "Interop." + memberType,
+                    ActionType = MemberActionType.AssignToDeref,
+                    BuildValueExpression = value => Member(value, "handle")
+                };
 
                 return true;
             }
             else
             {
-                result = (null, MemberActionType.AssignToDeref, null);
+                info = new MarshalInfo();
 
                 return false;
             }

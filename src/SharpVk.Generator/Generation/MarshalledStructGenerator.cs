@@ -68,7 +68,7 @@ namespace SharpVk.Generator.Generation
 
                 foreach (var member in type.Members)
                 {
-                    this.patternRules.ApplyFirst(member, publicStruct, marshalToMethod.MemberActions.Add);
+                    this.patternRules.ApplyFirst(type, member, publicStruct, marshalToMethod.MemberActions.Add);
                 }
 
                 typeNamespace.Insert(0, "Interop");

@@ -43,7 +43,7 @@ namespace SharpVk.Nv
         /// <summary>
         /// 
         /// </summary>
-        public uint ViewportCount
+        public SharpVk.Nv.ViewportWScaling[] ViewportWScalings
         {
             get;
             set;
@@ -54,7 +54,20 @@ namespace SharpVk.Nv
             pointer->SType = StructureType.PipelineViewportWScalingStateCreateInfoNv;
             pointer->Next = null;
             pointer->ViewportWScalingEnable = this.ViewportWScalingEnable;
-            pointer->ViewportCount = this.ViewportCount;
+            pointer->ViewportCount = (uint)this.ViewportWScalings.Length;
+            if (this.ViewportWScalings != null)
+            {
+                var fieldPointer = (SharpVk.Nv.ViewportWScaling*)Interop.HeapUtil.AllocateAndClear<SharpVk.Nv.ViewportWScaling>(this.ViewportWScalings.Length).ToPointer();
+                for(int index = 0; index < this.ViewportWScalings.Length; index++)
+                {
+                    fieldPointer[index] = this.ViewportWScalings[index];
+                }
+                pointer->ViewportWScalings = fieldPointer;
+            }
+            else
+            {
+                pointer->ViewportWScalings = null;
+            }
         }
     }
 }

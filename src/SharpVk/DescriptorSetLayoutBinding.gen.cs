@@ -52,7 +52,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint DescriptorCount
+        public ShaderStageFlags StageFlags
         {
             get;
             set;
@@ -61,7 +61,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ShaderStageFlags StageFlags
+        public Sampler[] ImmutableSamplers
         {
             get;
             set;
@@ -71,8 +71,21 @@ namespace SharpVk
         {
             pointer->Binding = this.Binding;
             pointer->DescriptorType = this.DescriptorType;
-            pointer->DescriptorCount = this.DescriptorCount;
+            pointer->DescriptorCount = (uint)this.ImmutableSamplers.Length;
             pointer->StageFlags = this.StageFlags;
+            if (this.ImmutableSamplers != null)
+            {
+                var fieldPointer = (Interop.Sampler*)Interop.HeapUtil.AllocateAndClear<Interop.Sampler>(this.ImmutableSamplers.Length).ToPointer();
+                for(int index = 0; index < this.ImmutableSamplers.Length; index++)
+                {
+                    fieldPointer[index] = this.ImmutableSamplers[index].handle;
+                }
+                pointer->ImmutableSamplers = fieldPointer;
+            }
+            else
+            {
+                pointer->ImmutableSamplers = null;
+            }
         }
     }
 }

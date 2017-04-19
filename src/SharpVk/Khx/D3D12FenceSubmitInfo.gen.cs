@@ -34,7 +34,7 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public uint WaitSemaphoreValuesCount
+        public ulong[] WaitSemaphoreValues
         {
             get;
             set;
@@ -43,7 +43,7 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public uint SignalSemaphoreValuesCount
+        public ulong[] SignalSemaphoreValues
         {
             get;
             set;
@@ -53,8 +53,34 @@ namespace SharpVk.Khx
         {
             pointer->SType = StructureType.D3d12FenceSubmitInfoKhx;
             pointer->Next = null;
-            pointer->WaitSemaphoreValuesCount = this.WaitSemaphoreValuesCount;
-            pointer->SignalSemaphoreValuesCount = this.SignalSemaphoreValuesCount;
+            pointer->WaitSemaphoreValuesCount = (uint)this.WaitSemaphoreValues.Length;
+            if (this.WaitSemaphoreValues != null)
+            {
+                var fieldPointer = (ulong*)Interop.HeapUtil.AllocateAndClear<ulong>(this.WaitSemaphoreValues.Length).ToPointer();
+                for(int index = 0; index < this.WaitSemaphoreValues.Length; index++)
+                {
+                    fieldPointer[index] = this.WaitSemaphoreValues[index];
+                }
+                pointer->WaitSemaphoreValues = fieldPointer;
+            }
+            else
+            {
+                pointer->WaitSemaphoreValues = null;
+            }
+            pointer->SignalSemaphoreValuesCount = (uint)this.SignalSemaphoreValues.Length;
+            if (this.SignalSemaphoreValues != null)
+            {
+                var fieldPointer = (ulong*)Interop.HeapUtil.AllocateAndClear<ulong>(this.SignalSemaphoreValues.Length).ToPointer();
+                for(int index = 0; index < this.SignalSemaphoreValues.Length; index++)
+                {
+                    fieldPointer[index] = this.SignalSemaphoreValues[index];
+                }
+                pointer->SignalSemaphoreValues = fieldPointer;
+            }
+            else
+            {
+                pointer->SignalSemaphoreValues = null;
+            }
         }
     }
 }

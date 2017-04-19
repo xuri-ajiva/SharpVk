@@ -15,6 +15,11 @@
         bool Apply(T arg1, U arg2, V arg3);
     }
 
+    public interface IRule<in T, in U, in V, in W>
+    {
+        bool Apply(T arg1, U arg2, V arg3, W arg4);
+    }
+
     public interface IFuncRule<in T, U>
     {
         bool Apply(T arg, out U result);

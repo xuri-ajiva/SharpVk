@@ -43,7 +43,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint QueueCreateInfoCount
+        public DeviceQueueCreateInfo[] QueueCreateInfos
         {
             get;
             set;
@@ -52,7 +52,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint EnabledLayerCount
+        public string[] EnabledLayerNames
         {
             get;
             set;
@@ -61,7 +61,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint EnabledExtensionCount
+        public string[] EnabledExtensionNames
         {
             get;
             set;
@@ -81,9 +81,22 @@ namespace SharpVk
             pointer->SType = StructureType.DeviceCreateInfo;
             pointer->Next = null;
             pointer->Flags = this.Flags;
-            pointer->QueueCreateInfoCount = this.QueueCreateInfoCount;
-            pointer->EnabledLayerCount = this.EnabledLayerCount;
-            pointer->EnabledExtensionCount = this.EnabledExtensionCount;
+            pointer->QueueCreateInfoCount = (uint)this.QueueCreateInfos.Length;
+            if (this.QueueCreateInfos != null)
+            {
+                var fieldPointer = (Interop.DeviceQueueCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.DeviceQueueCreateInfo>(this.QueueCreateInfos.Length).ToPointer();
+                for(int index = 0; index < this.QueueCreateInfos.Length; index++)
+                {
+                    this.QueueCreateInfos[index].MarshalTo(&fieldPointer[index]);
+                }
+                pointer->QueueCreateInfos = fieldPointer;
+            }
+            else
+            {
+                pointer->QueueCreateInfos = null;
+            }
+            pointer->EnabledLayerCount = (uint)this.EnabledLayerNames.Length;
+            pointer->EnabledExtensionCount = (uint)this.EnabledExtensionNames.Length;
             pointer->EnabledFeatures = (PhysicalDeviceFeatures*)Interop.HeapUtil.Allocate<PhysicalDeviceFeatures>();
             *pointer->EnabledFeatures = this.EnabledFeatures;
         }

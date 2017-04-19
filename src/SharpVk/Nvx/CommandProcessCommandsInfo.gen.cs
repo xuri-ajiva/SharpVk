@@ -52,7 +52,7 @@ namespace SharpVk.Nvx
         /// <summary>
         /// 
         /// </summary>
-        public uint IndirectCommandsTokenCount
+        public Nvx.IndirectCommandsToken[] IndirectCommandsTokens
         {
             get;
             set;
@@ -118,7 +118,20 @@ namespace SharpVk.Nvx
             pointer->Next = null;
             pointer->ObjectTable = this.ObjectTable.handle;
             pointer->IndirectCommandsLayout = this.IndirectCommandsLayout.handle;
-            pointer->IndirectCommandsTokenCount = this.IndirectCommandsTokenCount;
+            pointer->IndirectCommandsTokenCount = (uint)this.IndirectCommandsTokens.Length;
+            if (this.IndirectCommandsTokens != null)
+            {
+                var fieldPointer = (Interop.Nvx.IndirectCommandsToken*)Interop.HeapUtil.AllocateAndClear<Interop.Nvx.IndirectCommandsToken>(this.IndirectCommandsTokens.Length).ToPointer();
+                for(int index = 0; index < this.IndirectCommandsTokens.Length; index++)
+                {
+                    this.IndirectCommandsTokens[index].MarshalTo(&fieldPointer[index]);
+                }
+                pointer->IndirectCommandsTokens = fieldPointer;
+            }
+            else
+            {
+                pointer->IndirectCommandsTokens = null;
+            }
             pointer->MaxSequencesCount = this.MaxSequencesCount;
             pointer->TargetCommandBuffer = this.TargetCommandBuffer.handle;
             pointer->SequencesCountBuffer = this.SequencesCountBuffer.handle;

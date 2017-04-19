@@ -5,7 +5,7 @@ using System;
 namespace SharpVk.Generator.Generation.Marshalling
 {
     public interface IMemberPatternRule
-        : IRule<MemberDeclaration, StructDefinition, Action<Action>>
+        : IRule<TypeDeclaration, MemberDeclaration, StructDefinition, Action<Action>>
     {
     }
 }

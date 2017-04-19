@@ -43,7 +43,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint ViewportCount
+        public Viewport[] Viewports
         {
             get;
             set;
@@ -52,7 +52,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint ScissorCount
+        public Rect2D[] Scissors
         {
             get;
             set;
@@ -63,8 +63,34 @@ namespace SharpVk
             pointer->SType = StructureType.PipelineViewportStateCreateInfo;
             pointer->Next = null;
             pointer->Flags = this.Flags;
-            pointer->ViewportCount = this.ViewportCount;
-            pointer->ScissorCount = this.ScissorCount;
+            pointer->ViewportCount = (uint)this.Viewports.Length;
+            if (this.Viewports != null)
+            {
+                var fieldPointer = (Viewport*)Interop.HeapUtil.AllocateAndClear<Viewport>(this.Viewports.Length).ToPointer();
+                for(int index = 0; index < this.Viewports.Length; index++)
+                {
+                    fieldPointer[index] = this.Viewports[index];
+                }
+                pointer->Viewports = fieldPointer;
+            }
+            else
+            {
+                pointer->Viewports = null;
+            }
+            pointer->ScissorCount = (uint)this.Scissors.Length;
+            if (this.Scissors != null)
+            {
+                var fieldPointer = (Rect2D*)Interop.HeapUtil.AllocateAndClear<Rect2D>(this.Scissors.Length).ToPointer();
+                for(int index = 0; index < this.Scissors.Length; index++)
+                {
+                    fieldPointer[index] = this.Scissors[index];
+                }
+                pointer->Scissors = fieldPointer;
+            }
+            else
+            {
+                pointer->Scissors = null;
+            }
         }
     }
 }

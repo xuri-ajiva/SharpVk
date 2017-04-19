@@ -1,11 +1,9 @@
-﻿using SharpVk.Emit;
-using SharpVk.Generator.Rules;
-using System;
+﻿using SharpVk.Generator.Rules;
 
 namespace SharpVk.Generator.Generation.Marshalling
 {
     public interface IMarshalValueRule
-        : IFuncRule<TypeReference, (string, MemberActionType, Func<Action<ExpressionBuilder>, Action<ExpressionBuilder>>)>
+        : IFuncRule<TypeReference, MarshalInfo>
     {
     }
 }

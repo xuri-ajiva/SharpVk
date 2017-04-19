@@ -34,7 +34,7 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public uint PhysicalDeviceCount
+        public PhysicalDevice[] PhysicalDevices
         {
             get;
             set;
@@ -44,7 +44,20 @@ namespace SharpVk.Khx
         {
             pointer->SType = StructureType.DeviceGroupDeviceCreateInfoKhx;
             pointer->Next = null;
-            pointer->PhysicalDeviceCount = this.PhysicalDeviceCount;
+            pointer->PhysicalDeviceCount = (uint)this.PhysicalDevices.Length;
+            if (this.PhysicalDevices != null)
+            {
+                var fieldPointer = (Interop.PhysicalDevice*)Interop.HeapUtil.AllocateAndClear<Interop.PhysicalDevice>(this.PhysicalDevices.Length).ToPointer();
+                for(int index = 0; index < this.PhysicalDevices.Length; index++)
+                {
+                    fieldPointer[index] = this.PhysicalDevices[index].handle;
+                }
+                pointer->PhysicalDevices = fieldPointer;
+            }
+            else
+            {
+                pointer->PhysicalDevices = null;
+            }
         }
     }
 }

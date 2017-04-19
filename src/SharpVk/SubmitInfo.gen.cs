@@ -34,7 +34,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint WaitSemaphoreCount
+        public Semaphore[] WaitSemaphores
         {
             get;
             set;
@@ -43,7 +43,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint CommandBufferCount
+        public PipelineStageFlags[] WaitDestinationStageMask
         {
             get;
             set;
@@ -52,7 +52,16 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint SignalSemaphoreCount
+        public CommandBuffer[] CommandBuffers
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Semaphore[] SignalSemaphores
         {
             get;
             set;
@@ -62,9 +71,61 @@ namespace SharpVk
         {
             pointer->SType = StructureType.SubmitInfo;
             pointer->Next = null;
-            pointer->WaitSemaphoreCount = this.WaitSemaphoreCount;
-            pointer->CommandBufferCount = this.CommandBufferCount;
-            pointer->SignalSemaphoreCount = this.SignalSemaphoreCount;
+            pointer->WaitSemaphoreCount = (uint)this.WaitSemaphores.Length;
+            if (this.WaitSemaphores != null)
+            {
+                var fieldPointer = (Interop.Semaphore*)Interop.HeapUtil.AllocateAndClear<Interop.Semaphore>(this.WaitSemaphores.Length).ToPointer();
+                for(int index = 0; index < this.WaitSemaphores.Length; index++)
+                {
+                    fieldPointer[index] = this.WaitSemaphores[index].handle;
+                }
+                pointer->WaitSemaphores = fieldPointer;
+            }
+            else
+            {
+                pointer->WaitSemaphores = null;
+            }
+            if (this.WaitDestinationStageMask != null)
+            {
+                var fieldPointer = (PipelineStageFlags*)Interop.HeapUtil.AllocateAndClear<PipelineStageFlags>(this.WaitDestinationStageMask.Length).ToPointer();
+                for(int index = 0; index < this.WaitDestinationStageMask.Length; index++)
+                {
+                    fieldPointer[index] = this.WaitDestinationStageMask[index];
+                }
+                pointer->WaitDestinationStageMask = fieldPointer;
+            }
+            else
+            {
+                pointer->WaitDestinationStageMask = null;
+            }
+            pointer->CommandBufferCount = (uint)this.CommandBuffers.Length;
+            if (this.CommandBuffers != null)
+            {
+                var fieldPointer = (Interop.CommandBuffer*)Interop.HeapUtil.AllocateAndClear<Interop.CommandBuffer>(this.CommandBuffers.Length).ToPointer();
+                for(int index = 0; index < this.CommandBuffers.Length; index++)
+                {
+                    fieldPointer[index] = this.CommandBuffers[index].handle;
+                }
+                pointer->CommandBuffers = fieldPointer;
+            }
+            else
+            {
+                pointer->CommandBuffers = null;
+            }
+            pointer->SignalSemaphoreCount = (uint)this.SignalSemaphores.Length;
+            if (this.SignalSemaphores != null)
+            {
+                var fieldPointer = (Interop.Semaphore*)Interop.HeapUtil.AllocateAndClear<Interop.Semaphore>(this.SignalSemaphores.Length).ToPointer();
+                for(int index = 0; index < this.SignalSemaphores.Length; index++)
+                {
+                    fieldPointer[index] = this.SignalSemaphores[index].handle;
+                }
+                pointer->SignalSemaphores = fieldPointer;
+            }
+            else
+            {
+                pointer->SignalSemaphores = null;
+            }
         }
     }
 }

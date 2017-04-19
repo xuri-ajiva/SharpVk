@@ -115,7 +115,7 @@ namespace SharpVk.Khr
         /// <summary>
         /// 
         /// </summary>
-        public uint QueueFamilyIndexCount
+        public uint[] QueueFamilyIndices
         {
             get;
             set;
@@ -179,7 +179,20 @@ namespace SharpVk.Khr
             pointer->ImageArrayLayers = this.ImageArrayLayers;
             pointer->ImageUsage = this.ImageUsage;
             pointer->ImageSharingMode = this.ImageSharingMode;
-            pointer->QueueFamilyIndexCount = this.QueueFamilyIndexCount;
+            pointer->QueueFamilyIndexCount = (uint)this.QueueFamilyIndices.Length;
+            if (this.QueueFamilyIndices != null)
+            {
+                var fieldPointer = (uint*)Interop.HeapUtil.AllocateAndClear<uint>(this.QueueFamilyIndices.Length).ToPointer();
+                for(int index = 0; index < this.QueueFamilyIndices.Length; index++)
+                {
+                    fieldPointer[index] = this.QueueFamilyIndices[index];
+                }
+                pointer->QueueFamilyIndices = fieldPointer;
+            }
+            else
+            {
+                pointer->QueueFamilyIndices = null;
+            }
             pointer->PreTransform = this.PreTransform;
             pointer->CompositeAlpha = this.CompositeAlpha;
             pointer->PresentMode = this.PresentMode;

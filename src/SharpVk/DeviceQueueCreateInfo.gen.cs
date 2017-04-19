@@ -52,7 +52,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint QueueCount
+        public float[] QueuePriorities
         {
             get;
             set;
@@ -64,7 +64,20 @@ namespace SharpVk
             pointer->Next = null;
             pointer->Flags = this.Flags;
             pointer->QueueFamilyIndex = this.QueueFamilyIndex;
-            pointer->QueueCount = this.QueueCount;
+            pointer->QueueCount = (uint)this.QueuePriorities.Length;
+            if (this.QueuePriorities != null)
+            {
+                var fieldPointer = (float*)Interop.HeapUtil.AllocateAndClear<float>(this.QueuePriorities.Length).ToPointer();
+                for(int index = 0; index < this.QueuePriorities.Length; index++)
+                {
+                    fieldPointer[index] = this.QueuePriorities[index];
+                }
+                pointer->QueuePriorities = fieldPointer;
+            }
+            else
+            {
+                pointer->QueuePriorities = null;
+            }
         }
     }
 }

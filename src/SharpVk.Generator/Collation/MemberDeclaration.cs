@@ -2,6 +2,7 @@
 {
     public class MemberDeclaration
     {
+        public string VkName;
         public string Name;
         public string ParamName;
         public TypeReference Type;

@@ -11,11 +11,11 @@ namespace SharpVk.Emit
         private int indent;
         private bool beginningOfLine;
 
-        public IndentedTextWriter(TextWriter baseWriter)
+        public IndentedTextWriter(TextWriter baseWriter, bool beginningOfLine = true)
             : base(baseWriter.FormatProvider)
         {
             this.baseWriter = baseWriter;
-            this.beginningOfLine = true;
+            this.beginningOfLine = beginningOfLine;
             this.indent = 0;
         }
 
@@ -62,9 +62,9 @@ namespace SharpVk.Emit
             }
         }
 
-        public IndentedTextWriter GetSubWriter()
+        public IndentedTextWriter GetSubWriter(bool beginningOfLine = true)
         {
-            return new IndentedTextWriter(this);
+            return new IndentedTextWriter(this, beginningOfLine);
         }
 
         public override Encoding Encoding

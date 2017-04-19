@@ -34,7 +34,7 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public uint SwapchainCount
+        public uint[] DeviceMasks
         {
             get;
             set;
@@ -53,7 +53,20 @@ namespace SharpVk.Khx
         {
             pointer->SType = StructureType.DeviceGroupPresentInfoKhx;
             pointer->Next = null;
-            pointer->SwapchainCount = this.SwapchainCount;
+            pointer->SwapchainCount = (uint)this.DeviceMasks.Length;
+            if (this.DeviceMasks != null)
+            {
+                var fieldPointer = (uint*)Interop.HeapUtil.AllocateAndClear<uint>(this.DeviceMasks.Length).ToPointer();
+                for(int index = 0; index < this.DeviceMasks.Length; index++)
+                {
+                    fieldPointer[index] = this.DeviceMasks[index];
+                }
+                pointer->DeviceMasks = fieldPointer;
+            }
+            else
+            {
+                pointer->DeviceMasks = null;
+            }
             pointer->Mode = this.Mode;
         }
     }

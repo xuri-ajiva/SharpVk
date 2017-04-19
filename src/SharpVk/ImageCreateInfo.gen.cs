@@ -124,7 +124,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint QueueFamilyIndexCount
+        public uint[] QueueFamilyIndices
         {
             get;
             set;
@@ -153,7 +153,20 @@ namespace SharpVk
             pointer->Tiling = this.Tiling;
             pointer->Usage = this.Usage;
             pointer->SharingMode = this.SharingMode;
-            pointer->QueueFamilyIndexCount = this.QueueFamilyIndexCount;
+            pointer->QueueFamilyIndexCount = (uint)this.QueueFamilyIndices.Length;
+            if (this.QueueFamilyIndices != null)
+            {
+                var fieldPointer = (uint*)Interop.HeapUtil.AllocateAndClear<uint>(this.QueueFamilyIndices.Length).ToPointer();
+                for(int index = 0; index < this.QueueFamilyIndices.Length; index++)
+                {
+                    fieldPointer[index] = this.QueueFamilyIndices[index];
+                }
+                pointer->QueueFamilyIndices = fieldPointer;
+            }
+            else
+            {
+                pointer->QueueFamilyIndices = null;
+            }
             pointer->InitialLayout = this.InitialLayout;
         }
     }

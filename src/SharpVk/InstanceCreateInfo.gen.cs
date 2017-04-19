@@ -52,7 +52,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint EnabledLayerCount
+        public string[] EnabledLayerNames
         {
             get;
             set;
@@ -61,7 +61,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint EnabledExtensionCount
+        public string[] EnabledExtensionNames
         {
             get;
             set;
@@ -73,8 +73,8 @@ namespace SharpVk
             pointer->Next = null;
             pointer->Flags = this.Flags;
             this.ApplicationInfo.MarshalTo(pointer->ApplicationInfo);
-            pointer->EnabledLayerCount = this.EnabledLayerCount;
-            pointer->EnabledExtensionCount = this.EnabledExtensionCount;
+            pointer->EnabledLayerCount = (uint)this.EnabledLayerNames.Length;
+            pointer->EnabledExtensionCount = (uint)this.EnabledExtensionNames.Length;
         }
     }
 }

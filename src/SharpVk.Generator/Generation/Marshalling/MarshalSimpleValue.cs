@@ -13,9 +13,15 @@ namespace SharpVk.Generator.Generation.Marshalling
             this.nameLookup = nameLookup;
         }
 
-        public bool Apply(TypeReference type, out (string, MemberActionType, Func<Action<ExpressionBuilder>, Action<ExpressionBuilder>>) result)
+        public bool Apply(TypeReference type, out MarshalInfo info)
         {
-            result = (this.nameLookup.Lookup(type, false), MemberActionType.AssignToDeref, value => value);
+            info = new MarshalInfo
+            {
+                MemberType = this.nameLookup.Lookup(type, false),
+                InteropType = this.nameLookup.Lookup(type, false),
+                ActionType = MemberActionType.AssignToDeref,
+                BuildValueExpression = value => value
+            };
 
             return true;
         }

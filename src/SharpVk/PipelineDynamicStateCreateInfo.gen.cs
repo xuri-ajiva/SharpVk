@@ -43,7 +43,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint DynamicStateCount
+        public DynamicState[] DynamicStates
         {
             get;
             set;
@@ -54,7 +54,20 @@ namespace SharpVk
             pointer->SType = StructureType.PipelineDynamicStateCreateInfo;
             pointer->Next = null;
             pointer->Flags = this.Flags;
-            pointer->DynamicStateCount = this.DynamicStateCount;
+            pointer->DynamicStateCount = (uint)this.DynamicStates.Length;
+            if (this.DynamicStates != null)
+            {
+                var fieldPointer = (DynamicState*)Interop.HeapUtil.AllocateAndClear<DynamicState>(this.DynamicStates.Length).ToPointer();
+                for(int index = 0; index < this.DynamicStates.Length; index++)
+                {
+                    fieldPointer[index] = this.DynamicStates[index];
+                }
+                pointer->DynamicStates = fieldPointer;
+            }
+            else
+            {
+                pointer->DynamicStates = null;
+            }
         }
     }
 }
