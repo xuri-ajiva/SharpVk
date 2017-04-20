@@ -34,7 +34,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                 ValueExpression = marshalling.BuildValueExpression(Member(This, member.Name)),
                 ParamName = "pointer",
                 ParamFieldName = member.Name,
-                MemberType = this.nameLookup.Lookup(member.Type, false),
+                MemberType = marshalling.InteropType,
                 Type = marshalling.ActionType
             });
 

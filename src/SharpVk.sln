@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26228.4
+VisualStudioVersion = 15.0.26403.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpVk.Generator", "SharpVk.Generator\SharpVk.Generator.csproj", "{9D9A80D4-9F65-427A-A69A-F3EB68AD33DA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpVk.Emit", "SharpVk.Emit\SharpVk.Emit.csproj", "{EF27EAE2-177B-441D-BC11-7550FB69C310}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpVk", "SharpVk\SharpVk.csproj", "{54E4B446-FE05-42D1-AA1A-1B59DCF4E34F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpVk.TestHarness", "SharpVk.TestHarness\SharpVk.TestHarness.csproj", "{71B61E91-401B-4B2C-95DF-CA3C7CB75A45}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{54E4B446-FE05-42D1-AA1A-1B59DCF4E34F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54E4B446-FE05-42D1-AA1A-1B59DCF4E34F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{54E4B446-FE05-42D1-AA1A-1B59DCF4E34F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71B61E91-401B-4B2C-95DF-CA3C7CB75A45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71B61E91-401B-4B2C-95DF-CA3C7CB75A45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71B61E91-401B-4B2C-95DF-CA3C7CB75A45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71B61E91-401B-4B2C-95DF-CA3C7CB75A45}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

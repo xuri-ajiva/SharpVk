@@ -10,7 +10,7 @@ namespace SharpVk.Generator.Collation
         private static readonly Dictionary<string, string> primitiveTypes = new Dictionary<string, string>()
         {
             {"void", "void"},
-            {"char", "char"},
+            {"char", "byte"},
             {"float", "float"},
             {"uint8_t", "byte"},
             {"uint32_t", "uint"},

@@ -71,10 +71,10 @@ namespace SharpVk
         {
             pointer->SType = StructureType.SubmitInfo;
             pointer->Next = null;
-            pointer->WaitSemaphoreCount = (uint)this.WaitSemaphores.Length;
+            pointer->WaitSemaphoreCount = (uint)(this.WaitSemaphores?.Length ?? 0);
             if (this.WaitSemaphores != null)
             {
-                var fieldPointer = (Interop.Semaphore*)Interop.HeapUtil.AllocateAndClear<Interop.Semaphore>(this.WaitSemaphores.Length).ToPointer();
+                var fieldPointer = (Interop.Semaphore*)(Interop.HeapUtil.AllocateAndClear<Interop.Semaphore>(this.WaitSemaphores.Length).ToPointer());
                 for(int index = 0; index < this.WaitSemaphores.Length; index++)
                 {
                     fieldPointer[index] = this.WaitSemaphores[index].handle;
@@ -87,7 +87,7 @@ namespace SharpVk
             }
             if (this.WaitDestinationStageMask != null)
             {
-                var fieldPointer = (PipelineStageFlags*)Interop.HeapUtil.AllocateAndClear<PipelineStageFlags>(this.WaitDestinationStageMask.Length).ToPointer();
+                var fieldPointer = (PipelineStageFlags*)(Interop.HeapUtil.AllocateAndClear<PipelineStageFlags>(this.WaitDestinationStageMask.Length).ToPointer());
                 for(int index = 0; index < this.WaitDestinationStageMask.Length; index++)
                 {
                     fieldPointer[index] = this.WaitDestinationStageMask[index];
@@ -98,10 +98,10 @@ namespace SharpVk
             {
                 pointer->WaitDestinationStageMask = null;
             }
-            pointer->CommandBufferCount = (uint)this.CommandBuffers.Length;
+            pointer->CommandBufferCount = (uint)(this.CommandBuffers?.Length ?? 0);
             if (this.CommandBuffers != null)
             {
-                var fieldPointer = (Interop.CommandBuffer*)Interop.HeapUtil.AllocateAndClear<Interop.CommandBuffer>(this.CommandBuffers.Length).ToPointer();
+                var fieldPointer = (Interop.CommandBuffer*)(Interop.HeapUtil.AllocateAndClear<Interop.CommandBuffer>(this.CommandBuffers.Length).ToPointer());
                 for(int index = 0; index < this.CommandBuffers.Length; index++)
                 {
                     fieldPointer[index] = this.CommandBuffers[index].handle;
@@ -112,10 +112,10 @@ namespace SharpVk
             {
                 pointer->CommandBuffers = null;
             }
-            pointer->SignalSemaphoreCount = (uint)this.SignalSemaphores.Length;
+            pointer->SignalSemaphoreCount = (uint)(this.SignalSemaphores?.Length ?? 0);
             if (this.SignalSemaphores != null)
             {
-                var fieldPointer = (Interop.Semaphore*)Interop.HeapUtil.AllocateAndClear<Interop.Semaphore>(this.SignalSemaphores.Length).ToPointer();
+                var fieldPointer = (Interop.Semaphore*)(Interop.HeapUtil.AllocateAndClear<Interop.Semaphore>(this.SignalSemaphores.Length).ToPointer());
                 for(int index = 0; index < this.SignalSemaphores.Length; index++)
                 {
                     fieldPointer[index] = this.SignalSemaphores[index].handle;

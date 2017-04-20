@@ -101,8 +101,9 @@ namespace SharpVk.Emit
 
         public void EmitCast(string type, Action<ExpressionBuilder> target)
         {
-            this.writer.Write($"({type})");
+            this.writer.Write($"({type})(");
             target(this.GetSubBuilder());
+            this.writer.Write(")");
         }
 
         public void EmitStaticCall(string type, string method, params Action<ExpressionBuilder>[] arguments)
@@ -143,6 +144,13 @@ namespace SharpVk.Emit
             this.writer.Write($".{member}");
         }
 
+        public void EmitCoalesceMember(Action<ExpressionBuilder> target, string member)
+        {
+            target(this.GetSubBuilder());
+
+            this.writer.Write($"?.{member}");
+        }
+
         public void EmitIndex(Action<ExpressionBuilder> target, Action<ExpressionBuilder> index)
         {
             target(this.GetSubBuilder());
@@ -172,6 +180,15 @@ namespace SharpVk.Emit
             this.writer.Write("&");
 
             value(this.GetSubBuilder());
+        }
+
+        public void EmitCoalesce(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)
+        {
+            left(this.GetSubBuilder());
+
+            this.writer.Write(" ?? ");
+
+            right(this.GetSubBuilder());
         }
 
         public void EmitIsEqual(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)
@@ -351,6 +368,11 @@ namespace SharpVk.Emit
             return builder => builder.EmitMember(target, member);
         }
 
+        public static Action<ExpressionBuilder> CoalesceMember(Action<ExpressionBuilder> target, string member)
+        {
+            return builder => builder.EmitCoalesceMember(target, member);
+        }
+
         public static Action<ExpressionBuilder> Deref(Action<ExpressionBuilder> target)
         {
             return builder => builder.EmitDeref(target);
@@ -364,6 +386,11 @@ namespace SharpVk.Emit
         public static Action<ExpressionBuilder> AddressOf(Action<ExpressionBuilder> value)
         {
             return builder => builder.EmitAddressOf(value);
+        }
+
+        public static Action<ExpressionBuilder> Coalesce(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)
+        {
+            return builder => builder.EmitCoalesce(left, right);
         }
 
         public static Action<ExpressionBuilder> IsEqual(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)

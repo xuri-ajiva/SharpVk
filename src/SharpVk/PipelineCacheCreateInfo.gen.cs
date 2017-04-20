@@ -54,10 +54,10 @@ namespace SharpVk
             pointer->SType = StructureType.PipelineCacheCreateInfo;
             pointer->Next = null;
             pointer->Flags = this.Flags;
-            pointer->InitialDataSize = (HostSize)this.InitialData.Length;
+            pointer->InitialDataSize = (HostSize)(this.InitialData?.Length ?? 0);
             if (this.InitialData != null)
             {
-                var fieldPointer = (byte*)Interop.HeapUtil.AllocateAndClear<byte>(this.InitialData.Length).ToPointer();
+                var fieldPointer = (byte*)(Interop.HeapUtil.AllocateAndClear<byte>(this.InitialData.Length).ToPointer());
                 for(int index = 0; index < this.InitialData.Length; index++)
                 {
                     fieldPointer[index] = this.InitialData[index];

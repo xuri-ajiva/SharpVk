@@ -71,10 +71,10 @@ namespace SharpVk.Khr
         {
             pointer->SType = StructureType.PresentInfoKhr;
             pointer->Next = null;
-            pointer->WaitSemaphoreCount = (uint)this.WaitSemaphores.Length;
+            pointer->WaitSemaphoreCount = (uint)(this.WaitSemaphores?.Length ?? 0);
             if (this.WaitSemaphores != null)
             {
-                var fieldPointer = (Interop.Semaphore*)Interop.HeapUtil.AllocateAndClear<Interop.Semaphore>(this.WaitSemaphores.Length).ToPointer();
+                var fieldPointer = (Interop.Semaphore*)(Interop.HeapUtil.AllocateAndClear<Interop.Semaphore>(this.WaitSemaphores.Length).ToPointer());
                 for(int index = 0; index < this.WaitSemaphores.Length; index++)
                 {
                     fieldPointer[index] = this.WaitSemaphores[index].handle;
@@ -85,10 +85,10 @@ namespace SharpVk.Khr
             {
                 pointer->WaitSemaphores = null;
             }
-            pointer->SwapchainCount = (uint)this.Swapchains.Length;
+            pointer->SwapchainCount = (uint)(this.Swapchains?.Length ?? 0);
             if (this.Swapchains != null)
             {
-                var fieldPointer = (Interop.Khr.Swapchain*)Interop.HeapUtil.AllocateAndClear<Interop.Khr.Swapchain>(this.Swapchains.Length).ToPointer();
+                var fieldPointer = (Interop.Khr.Swapchain*)(Interop.HeapUtil.AllocateAndClear<Interop.Khr.Swapchain>(this.Swapchains.Length).ToPointer());
                 for(int index = 0; index < this.Swapchains.Length; index++)
                 {
                     fieldPointer[index] = this.Swapchains[index].handle;
@@ -101,7 +101,7 @@ namespace SharpVk.Khr
             }
             if (this.ImageIndices != null)
             {
-                var fieldPointer = (uint*)Interop.HeapUtil.AllocateAndClear<uint>(this.ImageIndices.Length).ToPointer();
+                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.ImageIndices.Length).ToPointer());
                 for(int index = 0; index < this.ImageIndices.Length; index++)
                 {
                     fieldPointer[index] = this.ImageIndices[index];
@@ -114,7 +114,7 @@ namespace SharpVk.Khr
             }
             if (this.Results != null)
             {
-                var fieldPointer = (Result*)Interop.HeapUtil.AllocateAndClear<Result>(this.Results.Length).ToPointer();
+                var fieldPointer = (Result*)(Interop.HeapUtil.AllocateAndClear<Result>(this.Results.Length).ToPointer());
                 for(int index = 0; index < this.Results.Length; index++)
                 {
                     fieldPointer[index] = this.Results[index];

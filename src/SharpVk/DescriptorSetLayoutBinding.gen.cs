@@ -71,11 +71,11 @@ namespace SharpVk
         {
             pointer->Binding = this.Binding;
             pointer->DescriptorType = this.DescriptorType;
-            pointer->DescriptorCount = (uint)this.ImmutableSamplers.Length;
+            pointer->DescriptorCount = (uint)(this.ImmutableSamplers?.Length ?? 0);
             pointer->StageFlags = this.StageFlags;
             if (this.ImmutableSamplers != null)
             {
-                var fieldPointer = (Interop.Sampler*)Interop.HeapUtil.AllocateAndClear<Interop.Sampler>(this.ImmutableSamplers.Length).ToPointer();
+                var fieldPointer = (Interop.Sampler*)(Interop.HeapUtil.AllocateAndClear<Interop.Sampler>(this.ImmutableSamplers.Length).ToPointer());
                 for(int index = 0; index < this.ImmutableSamplers.Length; index++)
                 {
                     fieldPointer[index] = this.ImmutableSamplers[index].handle;

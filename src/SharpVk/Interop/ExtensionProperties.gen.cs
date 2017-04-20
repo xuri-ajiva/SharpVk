@@ -34,7 +34,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public char ExtensionName; 
+        public fixed byte ExtensionName[1]; 
         
         /// <summary>
         /// 

@@ -294,7 +294,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public uint MaxComputeWorkGroupCount; 
+        public fixed uint MaxComputeWorkGroupCount[3]; 
         
         /// <summary>
         /// 
@@ -304,7 +304,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public uint MaxComputeWorkGroupSize; 
+        public fixed uint MaxComputeWorkGroupSize[3]; 
         
         /// <summary>
         /// 
@@ -349,12 +349,12 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public uint MaxViewportDimensions; 
+        public fixed uint MaxViewportDimensions[2]; 
         
         /// <summary>
         /// 
         /// </summary>
-        public float ViewportBoundsRange; 
+        public fixed float ViewportBoundsRange[2]; 
         
         /// <summary>
         /// 
@@ -519,12 +519,12 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public float PointSizeRange; 
+        public fixed float PointSizeRange[2]; 
         
         /// <summary>
         /// 
         /// </summary>
-        public float LineWidthRange; 
+        public fixed float LineWidthRange[2]; 
         
         /// <summary>
         /// 

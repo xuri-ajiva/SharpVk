@@ -12,6 +12,19 @@
 
     public static class PointerTypeExtensions
     {
+        public static PointerType Deref(this PointerType pointerType)
+        {
+            switch (pointerType)
+            {
+                case PointerType.DoublePointer:
+                    return PointerType.Pointer;
+                case PointerType.DoubleConstPointer:
+                    return PointerType.ConstPointer;
+                default:
+                    return PointerType.Value;
+            }
+        }
+
         public static int GetPointerCount(this PointerType pointerType)
         {
             switch (pointerType)

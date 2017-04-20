@@ -44,7 +44,7 @@ namespace SharpVk.Interop.Khx
         /// <summary>
         /// 
         /// </summary>
-        public uint PresentMask; 
+        public fixed uint PresentMask[1]; 
         
         /// <summary>
         /// 

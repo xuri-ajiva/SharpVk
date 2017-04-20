@@ -54,6 +54,7 @@ namespace SharpVk
             pointer->SType = StructureType.CommandBufferBeginInfo;
             pointer->Next = null;
             pointer->Flags = this.Flags;
+            pointer->InheritanceInfo = (Interop.CommandBufferInheritanceInfo*)(Interop.HeapUtil.Allocate<Interop.CommandBufferInheritanceInfo>());
             this.InheritanceInfo.MarshalTo(pointer->InheritanceInfo);
         }
     }

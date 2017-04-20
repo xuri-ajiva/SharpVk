@@ -64,10 +64,10 @@ namespace SharpVk.Nvx
             pointer->Next = null;
             pointer->PipelineBindPoint = this.PipelineBindPoint;
             pointer->Flags = this.Flags;
-            pointer->TokenCount = (uint)this.Tokens.Length;
+            pointer->TokenCount = (uint)(this.Tokens?.Length ?? 0);
             if (this.Tokens != null)
             {
-                var fieldPointer = (SharpVk.Nvx.IndirectCommandsLayoutToken*)Interop.HeapUtil.AllocateAndClear<SharpVk.Nvx.IndirectCommandsLayoutToken>(this.Tokens.Length).ToPointer();
+                var fieldPointer = (SharpVk.Nvx.IndirectCommandsLayoutToken*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Nvx.IndirectCommandsLayoutToken>(this.Tokens.Length).ToPointer());
                 for(int index = 0; index < this.Tokens.Length; index++)
                 {
                     fieldPointer[index] = this.Tokens[index];

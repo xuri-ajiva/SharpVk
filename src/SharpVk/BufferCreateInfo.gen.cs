@@ -84,10 +84,10 @@ namespace SharpVk
             pointer->Size = this.Size;
             pointer->Usage = this.Usage;
             pointer->SharingMode = this.SharingMode;
-            pointer->QueueFamilyIndexCount = (uint)this.QueueFamilyIndices.Length;
+            pointer->QueueFamilyIndexCount = (uint)(this.QueueFamilyIndices?.Length ?? 0);
             if (this.QueueFamilyIndices != null)
             {
-                var fieldPointer = (uint*)Interop.HeapUtil.AllocateAndClear<uint>(this.QueueFamilyIndices.Length).ToPointer();
+                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.QueueFamilyIndices.Length).ToPointer());
                 for(int index = 0; index < this.QueueFamilyIndices.Length; index++)
                 {
                     fieldPointer[index] = this.QueueFamilyIndices[index];

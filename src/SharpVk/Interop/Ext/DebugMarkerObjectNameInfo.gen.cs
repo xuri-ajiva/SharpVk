@@ -54,6 +54,6 @@ namespace SharpVk.Interop.Ext
         /// <summary>
         /// 
         /// </summary>
-        public char* ObjectName; 
+        public byte* ObjectName; 
     }
 }

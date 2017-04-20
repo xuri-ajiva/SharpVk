@@ -31,5 +31,27 @@ namespace SharpVk.Interop
     /// </summary>
     public struct DescriptorPool
     {
+        internal ulong handle; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public DescriptorPool(ulong handle)
+        {
+            this.handle = handle;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public DescriptorPool Null => new DescriptorPool(default(ulong));
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public ulong ToUInt64()
+        {
+            return this.handle;
+        }
     }
 }

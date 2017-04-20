@@ -31,5 +31,27 @@ namespace SharpVk.Interop
     /// </summary>
     public struct Sampler
     {
+        internal ulong handle; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Sampler(ulong handle)
+        {
+            this.handle = handle;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Sampler Null => new Sampler(default(ulong));
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public ulong ToUInt64()
+        {
+            return this.handle;
+        }
     }
 }

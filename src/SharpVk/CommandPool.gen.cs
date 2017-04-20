@@ -29,8 +29,13 @@ namespace SharpVk
     /// <summary>
     /// 
     /// </summary>
-    public class CommandPool
+    public partial class CommandPool
     {
         internal readonly SharpVk.Interop.CommandPool handle; 
+        
+        internal CommandPool(SharpVk.Interop.CommandPool handle)
+        {
+            this.handle = handle;
+        }
     }
 }

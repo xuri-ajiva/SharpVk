@@ -29,8 +29,13 @@ namespace SharpVk
     /// <summary>
     /// 
     /// </summary>
-    public class Event
+    public partial class Event
     {
         internal readonly SharpVk.Interop.Event handle; 
+        
+        internal Event(SharpVk.Interop.Event handle)
+        {
+            this.handle = handle;
+        }
     }
 }

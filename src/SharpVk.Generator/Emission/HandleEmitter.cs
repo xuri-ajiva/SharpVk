@@ -3,7 +3,9 @@ using SharpVk.Generator.Generation;
 using SharpVk.Generator.Pipeline;
 using System.Collections.Generic;
 using System.Linq;
+
 using static SharpVk.Emit.AccessModifier;
+using static SharpVk.Emit.ExpressionBuilder;
 
 namespace SharpVk.Generator.Emission
 {
@@ -38,6 +40,8 @@ namespace SharpVk.Generator.Emission
                     interopNamespace += "." + string.Join(".", handle.Namespace);
                 }
 
+                string rawType = handle.IsDispatch ? "UIntPtr" : "ulong";
+
                 this.builderFactory.Generate(handle.Name, interopPath, fileBuilder =>
                 {
                     fileBuilder.EmitUsing("System");
@@ -46,20 +50,57 @@ namespace SharpVk.Generator.Emission
                     {
                         namespaceBuilder.EmitType(TypeKind.Struct, handle.Name, typeBuilder =>
                         {
+                            typeBuilder.EmitField(rawType, "handle", Internal);
+
+                            typeBuilder.EmitConstructor(body =>
+                            {
+                                body.EmitAssignment(Member(This, "handle"), Variable("handle"));
+                            },
+                            parameters =>
+                            {
+                                parameters.EmitParam(rawType, "handle");
+                            }, Public);
+
+                            typeBuilder.EmitProperty(handle.Name, "Null", New(handle.Name, Default(rawType)), Public);
+
+                            typeBuilder.EmitMethod("ulong", "ToUInt64", body =>
+                            {
+                                var returnValue = Member(This, "handle");
+
+                                if (handle.IsDispatch)
+                                {
+                                    returnValue = Call(returnValue, "ToUInt64");
+                                }
+
+                                body.EmitReturn(returnValue);
+                            },
+                            parameters => { }, Public);
                         }, Public);
                     });
+
                 });
 
                 this.builderFactory.Generate(handle.Name, path, fileBuilder =>
                 {
                     fileBuilder.EmitUsing("System");
 
+                    string interopTypeName = $"{interopNamespace}.{handle.Name}";
+
                     fileBuilder.EmitNamespace(@namespace, namespaceBuilder =>
                     {
                         namespaceBuilder.EmitType(TypeKind.Class, handle.Name, typeBuilder =>
                         {
-                            typeBuilder.EmitField($"{interopNamespace}.{handle.Name}", "handle", Internal, MemberModifier.Readonly);
-                        }, Public);
+                            typeBuilder.EmitField(interopTypeName, "handle", Internal, MemberModifier.Readonly);
+
+                            typeBuilder.EmitConstructor(body =>
+                            {
+                                body.EmitAssignment(Member(This, "handle"), Variable("handle"));
+                            },
+                            parameters =>
+                            {
+                                parameters.EmitParam(interopTypeName, "handle");
+                            }, Internal);
+                        }, Public, modifiers: TypeModifier.Partial);
                     });
                 });
             }

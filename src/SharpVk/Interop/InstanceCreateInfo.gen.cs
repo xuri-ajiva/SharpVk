@@ -59,7 +59,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public char** EnabledLayerNames; 
+        public byte** EnabledLayerNames; 
         
         /// <summary>
         /// 
@@ -69,6 +69,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public char** EnabledExtensionNames; 
+        public byte** EnabledExtensionNames; 
     }
 }

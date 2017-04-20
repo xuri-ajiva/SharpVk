@@ -29,8 +29,13 @@ namespace SharpVk
     /// <summary>
     /// 
     /// </summary>
-    public class Buffer
+    public partial class Buffer
     {
         internal readonly SharpVk.Interop.Buffer handle; 
+        
+        internal Buffer(SharpVk.Interop.Buffer handle)
+        {
+            this.handle = handle;
+        }
     }
 }

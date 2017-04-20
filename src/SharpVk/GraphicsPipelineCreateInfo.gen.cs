@@ -180,10 +180,10 @@ namespace SharpVk
             pointer->SType = StructureType.GraphicsPipelineCreateInfo;
             pointer->Next = null;
             pointer->Flags = this.Flags;
-            pointer->StageCount = (uint)this.Stages.Length;
+            pointer->StageCount = (uint)(this.Stages?.Length ?? 0);
             if (this.Stages != null)
             {
-                var fieldPointer = (Interop.PipelineShaderStageCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.PipelineShaderStageCreateInfo>(this.Stages.Length).ToPointer();
+                var fieldPointer = (Interop.PipelineShaderStageCreateInfo*)(Interop.HeapUtil.AllocateAndClear<Interop.PipelineShaderStageCreateInfo>(this.Stages.Length).ToPointer());
                 for(int index = 0; index < this.Stages.Length; index++)
                 {
                     this.Stages[index].MarshalTo(&fieldPointer[index]);
@@ -194,14 +194,23 @@ namespace SharpVk
             {
                 pointer->Stages = null;
             }
+            pointer->VertexInputState = (Interop.PipelineVertexInputStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineVertexInputStateCreateInfo>());
             this.VertexInputState.MarshalTo(pointer->VertexInputState);
+            pointer->InputAssemblyState = (Interop.PipelineInputAssemblyStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineInputAssemblyStateCreateInfo>());
             this.InputAssemblyState.MarshalTo(pointer->InputAssemblyState);
+            pointer->TessellationState = (Interop.PipelineTessellationStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineTessellationStateCreateInfo>());
             this.TessellationState.MarshalTo(pointer->TessellationState);
+            pointer->ViewportState = (Interop.PipelineViewportStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineViewportStateCreateInfo>());
             this.ViewportState.MarshalTo(pointer->ViewportState);
+            pointer->RasterizationState = (Interop.PipelineRasterizationStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineRasterizationStateCreateInfo>());
             this.RasterizationState.MarshalTo(pointer->RasterizationState);
+            pointer->MultisampleState = (Interop.PipelineMultisampleStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineMultisampleStateCreateInfo>());
             this.MultisampleState.MarshalTo(pointer->MultisampleState);
+            pointer->DepthStencilState = (Interop.PipelineDepthStencilStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineDepthStencilStateCreateInfo>());
             this.DepthStencilState.MarshalTo(pointer->DepthStencilState);
+            pointer->ColorBlendState = (Interop.PipelineColorBlendStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineColorBlendStateCreateInfo>());
             this.ColorBlendState.MarshalTo(pointer->ColorBlendState);
+            pointer->DynamicState = (Interop.PipelineDynamicStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineDynamicStateCreateInfo>());
             this.DynamicState.MarshalTo(pointer->DynamicState);
             pointer->Layout = this.Layout.handle;
             pointer->RenderPass = this.RenderPass.handle;

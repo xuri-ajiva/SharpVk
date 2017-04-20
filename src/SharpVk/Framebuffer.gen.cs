@@ -29,8 +29,13 @@ namespace SharpVk
     /// <summary>
     /// 
     /// </summary>
-    public class Framebuffer
+    public partial class Framebuffer
     {
         internal readonly SharpVk.Interop.Framebuffer handle; 
+        
+        internal Framebuffer(SharpVk.Interop.Framebuffer handle)
+        {
+            this.handle = handle;
+        }
     }
 }

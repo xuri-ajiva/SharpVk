@@ -83,6 +83,8 @@ namespace SharpVk
             pointer->Flags = this.Flags;
             pointer->Stage = this.Stage;
             pointer->Module = this.Module.handle;
+            pointer->Name = Interop.HeapUtil.MarshalTo(this.Name);
+            pointer->SpecializationInfo = (Interop.SpecializationInfo*)(Interop.HeapUtil.Allocate<Interop.SpecializationInfo>());
             this.SpecializationInfo.MarshalTo(pointer->SpecializationInfo);
         }
     }

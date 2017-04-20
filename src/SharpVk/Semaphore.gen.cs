@@ -29,8 +29,13 @@ namespace SharpVk
     /// <summary>
     /// 
     /// </summary>
-    public class Semaphore
+    public partial class Semaphore
     {
         internal readonly SharpVk.Interop.Semaphore handle; 
+        
+        internal Semaphore(SharpVk.Interop.Semaphore handle)
+        {
+            this.handle = handle;
+        }
     }
 }

@@ -25,7 +25,8 @@ namespace SharpVk.Generator.Generation
                 services.AddSingleton(new HandleDefinition
                 {
                     Name = type.Name,
-                    Namespace = type.Extension != null ? new[] { type.Extension } : null
+                    Namespace = type.Extension != null ? new[] { type.Extension } : null,
+                    IsDispatch  = type.Type != "VK_DEFINE_NON_DISPATCHABLE_HANDLE"
                 });
             }
         }

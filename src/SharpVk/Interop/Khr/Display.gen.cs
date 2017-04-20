@@ -31,5 +31,27 @@ namespace SharpVk.Interop.Khr
     /// </summary>
     public struct Display
     {
+        internal ulong handle; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Display(ulong handle)
+        {
+            this.handle = handle;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Display Null => new Display(default(ulong));
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public ulong ToUInt64()
+        {
+            return this.handle;
+        }
     }
 }

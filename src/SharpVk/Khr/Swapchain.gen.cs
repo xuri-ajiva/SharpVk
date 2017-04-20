@@ -29,8 +29,13 @@ namespace SharpVk.Khr
     /// <summary>
     /// 
     /// </summary>
-    public class Swapchain
+    public partial class Swapchain
     {
         internal readonly SharpVk.Interop.Khr.Swapchain handle; 
+        
+        internal Swapchain(SharpVk.Interop.Khr.Swapchain handle)
+        {
+            this.handle = handle;
+        }
     }
 }

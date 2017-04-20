@@ -29,8 +29,13 @@ namespace SharpVk
     /// <summary>
     /// 
     /// </summary>
-    public class PipelineCache
+    public partial class PipelineCache
     {
         internal readonly SharpVk.Interop.PipelineCache handle; 
+        
+        internal PipelineCache(SharpVk.Interop.PipelineCache handle)
+        {
+            this.handle = handle;
+        }
     }
 }

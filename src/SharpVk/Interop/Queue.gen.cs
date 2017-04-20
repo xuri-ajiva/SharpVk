@@ -31,5 +31,27 @@ namespace SharpVk.Interop
     /// </summary>
     public struct Queue
     {
+        internal UIntPtr handle; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Queue(UIntPtr handle)
+        {
+            this.handle = handle;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Queue Null => new Queue(default(UIntPtr));
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public ulong ToUInt64()
+        {
+            return this.handle.ToUInt64();
+        }
     }
 }

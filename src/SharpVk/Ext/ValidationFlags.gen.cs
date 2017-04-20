@@ -44,10 +44,10 @@ namespace SharpVk.Ext
         {
             pointer->SType = StructureType.ValidationFlagsExt;
             pointer->Next = null;
-            pointer->DisabledValidationCheckCount = (uint)this.DisabledValidationChecks.Length;
+            pointer->DisabledValidationCheckCount = (uint)(this.DisabledValidationChecks?.Length ?? 0);
             if (this.DisabledValidationChecks != null)
             {
-                var fieldPointer = (SharpVk.Ext.ValidationCheck*)Interop.HeapUtil.AllocateAndClear<SharpVk.Ext.ValidationCheck>(this.DisabledValidationChecks.Length).ToPointer();
+                var fieldPointer = (SharpVk.Ext.ValidationCheck*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Ext.ValidationCheck>(this.DisabledValidationChecks.Length).ToPointer());
                 for(int index = 0; index < this.DisabledValidationChecks.Length; index++)
                 {
                     fieldPointer[index] = this.DisabledValidationChecks[index];

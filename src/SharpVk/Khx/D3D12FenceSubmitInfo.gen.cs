@@ -53,10 +53,10 @@ namespace SharpVk.Khx
         {
             pointer->SType = StructureType.D3d12FenceSubmitInfoKhx;
             pointer->Next = null;
-            pointer->WaitSemaphoreValuesCount = (uint)this.WaitSemaphoreValues.Length;
+            pointer->WaitSemaphoreValuesCount = (uint)(this.WaitSemaphoreValues?.Length ?? 0);
             if (this.WaitSemaphoreValues != null)
             {
-                var fieldPointer = (ulong*)Interop.HeapUtil.AllocateAndClear<ulong>(this.WaitSemaphoreValues.Length).ToPointer();
+                var fieldPointer = (ulong*)(Interop.HeapUtil.AllocateAndClear<ulong>(this.WaitSemaphoreValues.Length).ToPointer());
                 for(int index = 0; index < this.WaitSemaphoreValues.Length; index++)
                 {
                     fieldPointer[index] = this.WaitSemaphoreValues[index];
@@ -67,10 +67,10 @@ namespace SharpVk.Khx
             {
                 pointer->WaitSemaphoreValues = null;
             }
-            pointer->SignalSemaphoreValuesCount = (uint)this.SignalSemaphoreValues.Length;
+            pointer->SignalSemaphoreValuesCount = (uint)(this.SignalSemaphoreValues?.Length ?? 0);
             if (this.SignalSemaphoreValues != null)
             {
-                var fieldPointer = (ulong*)Interop.HeapUtil.AllocateAndClear<ulong>(this.SignalSemaphoreValues.Length).ToPointer();
+                var fieldPointer = (ulong*)(Interop.HeapUtil.AllocateAndClear<ulong>(this.SignalSemaphoreValues.Length).ToPointer());
                 for(int index = 0; index < this.SignalSemaphoreValues.Length; index++)
                 {
                     fieldPointer[index] = this.SignalSemaphoreValues[index];

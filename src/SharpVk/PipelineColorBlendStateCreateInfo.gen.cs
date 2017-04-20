@@ -67,15 +67,6 @@ namespace SharpVk
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public float BlendConstants
-        {
-            get;
-            set;
-        }
-        
         internal unsafe void MarshalTo(Interop.PipelineColorBlendStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineColorBlendStateCreateInfo;
@@ -83,10 +74,10 @@ namespace SharpVk
             pointer->Flags = this.Flags;
             pointer->LogicOpEnable = this.LogicOpEnable;
             pointer->LogicOp = this.LogicOp;
-            pointer->AttachmentCount = (uint)this.Attachments.Length;
+            pointer->AttachmentCount = (uint)(this.Attachments?.Length ?? 0);
             if (this.Attachments != null)
             {
-                var fieldPointer = (PipelineColorBlendAttachmentState*)Interop.HeapUtil.AllocateAndClear<PipelineColorBlendAttachmentState>(this.Attachments.Length).ToPointer();
+                var fieldPointer = (PipelineColorBlendAttachmentState*)(Interop.HeapUtil.AllocateAndClear<PipelineColorBlendAttachmentState>(this.Attachments.Length).ToPointer());
                 for(int index = 0; index < this.Attachments.Length; index++)
                 {
                     fieldPointer[index] = this.Attachments[index];
@@ -97,7 +88,6 @@ namespace SharpVk
             {
                 pointer->Attachments = null;
             }
-            pointer->BlendConstants = this.BlendConstants;
         }
     }
 }

@@ -31,5 +31,27 @@ namespace SharpVk.Interop.Khr
     /// </summary>
     public struct Surface
     {
+        internal ulong handle; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Surface(ulong handle)
+        {
+            this.handle = handle;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Surface Null => new Surface(default(ulong));
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public ulong ToUInt64()
+        {
+            return this.handle;
+        }
     }
 }

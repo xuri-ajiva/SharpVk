@@ -90,12 +90,12 @@ namespace SharpVk
             pointer->SType = StructureType.PipelineMultisampleStateCreateInfo;
             pointer->Next = null;
             pointer->Flags = this.Flags;
-            pointer->RasterizationSamples = (SampleCountFlags)this.SampleMask.Length;
+            pointer->RasterizationSamples = (SampleCountFlags)(this.SampleMask?.Length ?? 0);
             pointer->SampleShadingEnable = this.SampleShadingEnable;
             pointer->MinSampleShading = this.MinSampleShading;
             if (this.SampleMask != null)
             {
-                var fieldPointer = (SampleMask*)Interop.HeapUtil.AllocateAndClear<SampleMask>(this.SampleMask.Length).ToPointer();
+                var fieldPointer = (SampleMask*)(Interop.HeapUtil.AllocateAndClear<SampleMask>(this.SampleMask.Length).ToPointer());
                 for(int index = 0; index < this.SampleMask.Length; index++)
                 {
                     fieldPointer[index] = this.SampleMask[index];

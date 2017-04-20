@@ -64,10 +64,10 @@ namespace SharpVk
             pointer->Next = null;
             pointer->Flags = this.Flags;
             pointer->QueueFamilyIndex = this.QueueFamilyIndex;
-            pointer->QueueCount = (uint)this.QueuePriorities.Length;
+            pointer->QueueCount = (uint)(this.QueuePriorities?.Length ?? 0);
             if (this.QueuePriorities != null)
             {
-                var fieldPointer = (float*)Interop.HeapUtil.AllocateAndClear<float>(this.QueuePriorities.Length).ToPointer();
+                var fieldPointer = (float*)(Interop.HeapUtil.AllocateAndClear<float>(this.QueuePriorities.Length).ToPointer());
                 for(int index = 0; index < this.QueuePriorities.Length; index++)
                 {
                     fieldPointer[index] = this.QueuePriorities[index];

@@ -62,7 +62,7 @@ namespace SharpVk.Khx
         {
             pointer->SType = StructureType.ExportSemaphoreWin32HandleInfoKhx;
             pointer->Next = null;
-            pointer->Attributes = (SecurityAttributes*)Interop.HeapUtil.Allocate<SecurityAttributes>();
+            pointer->Attributes = (SecurityAttributes*)(Interop.HeapUtil.Allocate<SecurityAttributes>());
             *pointer->Attributes = this.Attributes;
             pointer->DwAccess = this.DwAccess;
             pointer->Name = this.Name;

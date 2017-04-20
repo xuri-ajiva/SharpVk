@@ -43,25 +43,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public MemoryType MemoryTypes
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint MemoryHeapCount
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public MemoryHeap MemoryHeaps
         {
             get;
             set;
@@ -70,9 +52,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.PhysicalDeviceMemoryProperties* pointer)
         {
             pointer->MemoryTypeCount = this.MemoryTypeCount;
-            pointer->MemoryTypes = this.MemoryTypes;
             pointer->MemoryHeapCount = this.MemoryHeapCount;
-            pointer->MemoryHeaps = this.MemoryHeaps;
         }
     }
 }

@@ -34,7 +34,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public char LayerName; 
+        public fixed byte LayerName[1]; 
         
         /// <summary>
         /// 
@@ -49,6 +49,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public char Description; 
+        public fixed byte Description[1]; 
     }
 }

@@ -54,7 +54,7 @@ namespace SharpVk.Khr
             pointer->SType = StructureType.AndroidSurfaceCreateInfoKhr;
             pointer->Next = null;
             pointer->Flags = this.Flags;
-            pointer->Window = (IntPtr*)Interop.HeapUtil.Allocate<IntPtr>();
+            pointer->Window = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
             *pointer->Window = this.Window;
         }
     }

@@ -32,7 +32,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                 info = new MarshalInfo
                 {
                     MemberType = this.nameLookup.Lookup(type, false),
-                    InteropType = "Interop." + this.nameLookup.Lookup(type, true),
+                    InteropType = "Interop." + this.nameLookup.Lookup(type, false),
                     ActionType = action,
                     BuildValueExpression = value => value
                 };

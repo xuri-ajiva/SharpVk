@@ -63,7 +63,7 @@ namespace SharpVk.Khr
             pointer->SType = StructureType.XcbSurfaceCreateInfoKhr;
             pointer->Next = null;
             pointer->Flags = this.Flags;
-            pointer->Connection = (IntPtr*)Interop.HeapUtil.Allocate<IntPtr>();
+            pointer->Connection = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
             *pointer->Connection = this.Connection;
             pointer->Window = this.Window;
         }

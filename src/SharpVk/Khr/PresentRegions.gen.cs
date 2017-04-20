@@ -44,10 +44,10 @@ namespace SharpVk.Khr
         {
             pointer->SType = StructureType.PresentRegionsKhr;
             pointer->Next = null;
-            pointer->SwapchainCount = (uint)this.Regions.Length;
+            pointer->SwapchainCount = (uint)(this.Regions?.Length ?? 0);
             if (this.Regions != null)
             {
-                var fieldPointer = (Interop.Khr.PresentRegion*)Interop.HeapUtil.AllocateAndClear<Interop.Khr.PresentRegion>(this.Regions.Length).ToPointer();
+                var fieldPointer = (Interop.Khr.PresentRegion*)(Interop.HeapUtil.AllocateAndClear<Interop.Khr.PresentRegion>(this.Regions.Length).ToPointer());
                 for(int index = 0; index < this.Regions.Length; index++)
                 {
                     this.Regions[index].MarshalTo(&fieldPointer[index]);

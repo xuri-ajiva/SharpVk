@@ -43,15 +43,6 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public PhysicalDevice PhysicalDevices
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public Bool32 SubsetAllocation
         {
             get;
@@ -63,7 +54,6 @@ namespace SharpVk.Khx
             pointer->SType = StructureType.PhysicalDeviceGroupPropertiesKhx;
             pointer->Next = null;
             pointer->PhysicalDeviceCount = this.PhysicalDeviceCount;
-            pointer->PhysicalDevices = this.PhysicalDevices.handle;
             pointer->SubsetAllocation = this.SubsetAllocation;
         }
     }

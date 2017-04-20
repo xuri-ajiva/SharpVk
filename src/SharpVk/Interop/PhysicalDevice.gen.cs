@@ -31,5 +31,27 @@ namespace SharpVk.Interop
     /// </summary>
     public struct PhysicalDevice
     {
+        internal UIntPtr handle; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public PhysicalDevice(UIntPtr handle)
+        {
+            this.handle = handle;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public PhysicalDevice Null => new PhysicalDevice(default(UIntPtr));
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public ulong ToUInt64()
+        {
+            return this.handle.ToUInt64();
+        }
     }
 }

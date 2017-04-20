@@ -31,5 +31,27 @@ namespace SharpVk.Interop.Khr
     /// </summary>
     public struct DescriptorUpdateTemplate
     {
+        internal ulong handle; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public DescriptorUpdateTemplate(ulong handle)
+        {
+            this.handle = handle;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public DescriptorUpdateTemplate Null => new DescriptorUpdateTemplate(default(ulong));
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public ulong ToUInt64()
+        {
+            return this.handle;
+        }
     }
 }

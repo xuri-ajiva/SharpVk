@@ -31,5 +31,27 @@ namespace SharpVk.Interop.Nvx
     /// </summary>
     public struct IndirectCommandsLayout
     {
+        internal ulong handle; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public IndirectCommandsLayout(ulong handle)
+        {
+            this.handle = handle;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public IndirectCommandsLayout Null => new IndirectCommandsLayout(default(ulong));
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public ulong ToUInt64()
+        {
+            return this.handle;
+        }
     }
 }

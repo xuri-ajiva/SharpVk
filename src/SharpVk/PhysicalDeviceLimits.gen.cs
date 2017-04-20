@@ -502,25 +502,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint MaxComputeWorkGroupCount
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public uint MaxComputeWorkGroupInvocations
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public uint MaxComputeWorkGroupSize
         {
             get;
             set;
@@ -593,24 +575,6 @@ namespace SharpVk
         /// 
         /// </summary>
         public uint MaxViewports
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public uint MaxViewportDimensions
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public float ViewportBoundsRange
         {
             get;
             set;
@@ -907,24 +871,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public float PointSizeRange
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public float LineWidthRange
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public float PointSizeGranularity
         {
             get;
@@ -1039,9 +985,7 @@ namespace SharpVk
             pointer->MaxFragmentDualSourceAttachments = this.MaxFragmentDualSourceAttachments;
             pointer->MaxFragmentCombinedOutputResources = this.MaxFragmentCombinedOutputResources;
             pointer->MaxComputeSharedMemorySize = this.MaxComputeSharedMemorySize;
-            pointer->MaxComputeWorkGroupCount = this.MaxComputeWorkGroupCount;
             pointer->MaxComputeWorkGroupInvocations = this.MaxComputeWorkGroupInvocations;
-            pointer->MaxComputeWorkGroupSize = this.MaxComputeWorkGroupSize;
             pointer->SubPixelPrecisionBits = this.SubPixelPrecisionBits;
             pointer->SubTexelPrecisionBits = this.SubTexelPrecisionBits;
             pointer->MipmapPrecisionBits = this.MipmapPrecisionBits;
@@ -1050,8 +994,6 @@ namespace SharpVk
             pointer->MaxSamplerLodBias = this.MaxSamplerLodBias;
             pointer->MaxSamplerAnisotropy = this.MaxSamplerAnisotropy;
             pointer->MaxViewports = this.MaxViewports;
-            pointer->MaxViewportDimensions = this.MaxViewportDimensions;
-            pointer->ViewportBoundsRange = this.ViewportBoundsRange;
             pointer->ViewportSubPixelBits = this.ViewportSubPixelBits;
             pointer->MinMemoryMapAlignment = this.MinMemoryMapAlignment;
             pointer->MinTexelBufferOffsetAlignment = this.MinTexelBufferOffsetAlignment;
@@ -1084,8 +1026,6 @@ namespace SharpVk
             pointer->MaxCullDistances = this.MaxCullDistances;
             pointer->MaxCombinedClipAndCullDistances = this.MaxCombinedClipAndCullDistances;
             pointer->DiscreteQueuePriorities = this.DiscreteQueuePriorities;
-            pointer->PointSizeRange = this.PointSizeRange;
-            pointer->LineWidthRange = this.LineWidthRange;
             pointer->PointSizeGranularity = this.PointSizeGranularity;
             pointer->LineWidthGranularity = this.LineWidthGranularity;
             pointer->StrictLines = this.StrictLines;

@@ -62,10 +62,10 @@ namespace SharpVk.Khx
         {
             pointer->SType = StructureType.RenderPassMultiviewCreateInfoKhx;
             pointer->Next = null;
-            pointer->SubpassCount = (uint)this.ViewMasks.Length;
+            pointer->SubpassCount = (uint)(this.ViewMasks?.Length ?? 0);
             if (this.ViewMasks != null)
             {
-                var fieldPointer = (uint*)Interop.HeapUtil.AllocateAndClear<uint>(this.ViewMasks.Length).ToPointer();
+                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.ViewMasks.Length).ToPointer());
                 for(int index = 0; index < this.ViewMasks.Length; index++)
                 {
                     fieldPointer[index] = this.ViewMasks[index];
@@ -76,10 +76,10 @@ namespace SharpVk.Khx
             {
                 pointer->ViewMasks = null;
             }
-            pointer->DependencyCount = (uint)this.ViewOffsets.Length;
+            pointer->DependencyCount = (uint)(this.ViewOffsets?.Length ?? 0);
             if (this.ViewOffsets != null)
             {
-                var fieldPointer = (int*)Interop.HeapUtil.AllocateAndClear<int>(this.ViewOffsets.Length).ToPointer();
+                var fieldPointer = (int*)(Interop.HeapUtil.AllocateAndClear<int>(this.ViewOffsets.Length).ToPointer());
                 for(int index = 0; index < this.ViewOffsets.Length; index++)
                 {
                     fieldPointer[index] = this.ViewOffsets[index];
@@ -90,10 +90,10 @@ namespace SharpVk.Khx
             {
                 pointer->ViewOffsets = null;
             }
-            pointer->CorrelationMaskCount = (uint)this.CorrelationMasks.Length;
+            pointer->CorrelationMaskCount = (uint)(this.CorrelationMasks?.Length ?? 0);
             if (this.CorrelationMasks != null)
             {
-                var fieldPointer = (uint*)Interop.HeapUtil.AllocateAndClear<uint>(this.CorrelationMasks.Length).ToPointer();
+                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.CorrelationMasks.Length).ToPointer());
                 for(int index = 0; index < this.CorrelationMasks.Length; index++)
                 {
                     fieldPointer[index] = this.CorrelationMasks[index];

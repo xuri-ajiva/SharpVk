@@ -63,10 +63,10 @@ namespace SharpVk
             pointer->SType = StructureType.PipelineLayoutCreateInfo;
             pointer->Next = null;
             pointer->Flags = this.Flags;
-            pointer->SetLayoutCount = (uint)this.SetLayouts.Length;
+            pointer->SetLayoutCount = (uint)(this.SetLayouts?.Length ?? 0);
             if (this.SetLayouts != null)
             {
-                var fieldPointer = (Interop.DescriptorSetLayout*)Interop.HeapUtil.AllocateAndClear<Interop.DescriptorSetLayout>(this.SetLayouts.Length).ToPointer();
+                var fieldPointer = (Interop.DescriptorSetLayout*)(Interop.HeapUtil.AllocateAndClear<Interop.DescriptorSetLayout>(this.SetLayouts.Length).ToPointer());
                 for(int index = 0; index < this.SetLayouts.Length; index++)
                 {
                     fieldPointer[index] = this.SetLayouts[index].handle;
@@ -77,10 +77,10 @@ namespace SharpVk
             {
                 pointer->SetLayouts = null;
             }
-            pointer->PushConstantRangeCount = (uint)this.PushConstantRanges.Length;
+            pointer->PushConstantRangeCount = (uint)(this.PushConstantRanges?.Length ?? 0);
             if (this.PushConstantRanges != null)
             {
-                var fieldPointer = (PushConstantRange*)Interop.HeapUtil.AllocateAndClear<PushConstantRange>(this.PushConstantRanges.Length).ToPointer();
+                var fieldPointer = (PushConstantRange*)(Interop.HeapUtil.AllocateAndClear<PushConstantRange>(this.PushConstantRanges.Length).ToPointer());
                 for(int index = 0; index < this.PushConstantRanges.Length; index++)
                 {
                     fieldPointer[index] = this.PushConstantRanges[index];

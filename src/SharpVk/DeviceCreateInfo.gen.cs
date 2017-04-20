@@ -81,10 +81,10 @@ namespace SharpVk
             pointer->SType = StructureType.DeviceCreateInfo;
             pointer->Next = null;
             pointer->Flags = this.Flags;
-            pointer->QueueCreateInfoCount = (uint)this.QueueCreateInfos.Length;
+            pointer->QueueCreateInfoCount = (uint)(this.QueueCreateInfos?.Length ?? 0);
             if (this.QueueCreateInfos != null)
             {
-                var fieldPointer = (Interop.DeviceQueueCreateInfo*)Interop.HeapUtil.AllocateAndClear<Interop.DeviceQueueCreateInfo>(this.QueueCreateInfos.Length).ToPointer();
+                var fieldPointer = (Interop.DeviceQueueCreateInfo*)(Interop.HeapUtil.AllocateAndClear<Interop.DeviceQueueCreateInfo>(this.QueueCreateInfos.Length).ToPointer());
                 for(int index = 0; index < this.QueueCreateInfos.Length; index++)
                 {
                     this.QueueCreateInfos[index].MarshalTo(&fieldPointer[index]);
@@ -95,9 +95,9 @@ namespace SharpVk
             {
                 pointer->QueueCreateInfos = null;
             }
-            pointer->EnabledLayerCount = (uint)this.EnabledLayerNames.Length;
-            pointer->EnabledExtensionCount = (uint)this.EnabledExtensionNames.Length;
-            pointer->EnabledFeatures = (PhysicalDeviceFeatures*)Interop.HeapUtil.Allocate<PhysicalDeviceFeatures>();
+            pointer->EnabledLayerCount = (uint)(this.EnabledLayerNames?.Length ?? 0);
+            pointer->EnabledExtensionCount = (uint)(this.EnabledExtensionNames?.Length ?? 0);
+            pointer->EnabledFeatures = (PhysicalDeviceFeatures*)(Interop.HeapUtil.Allocate<PhysicalDeviceFeatures>());
             *pointer->EnabledFeatures = this.EnabledFeatures;
         }
     }

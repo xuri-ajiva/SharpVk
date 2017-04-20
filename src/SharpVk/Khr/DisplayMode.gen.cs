@@ -29,8 +29,13 @@ namespace SharpVk.Khr
     /// <summary>
     /// 
     /// </summary>
-    public class DisplayMode
+    public partial class DisplayMode
     {
         internal readonly SharpVk.Interop.Khr.DisplayMode handle; 
+        
+        internal DisplayMode(SharpVk.Interop.Khr.DisplayMode handle)
+        {
+            this.handle = handle;
+        }
     }
 }

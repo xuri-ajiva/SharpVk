@@ -74,10 +74,10 @@ namespace SharpVk.Khx
             pointer->Buffer = this.Buffer.handle;
             pointer->Memory = this.Memory.handle;
             pointer->MemoryOffset = this.MemoryOffset;
-            pointer->DeviceIndexCount = (uint)this.DeviceIndices.Length;
+            pointer->DeviceIndexCount = (uint)(this.DeviceIndices?.Length ?? 0);
             if (this.DeviceIndices != null)
             {
-                var fieldPointer = (uint*)Interop.HeapUtil.AllocateAndClear<uint>(this.DeviceIndices.Length).ToPointer();
+                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.DeviceIndices.Length).ToPointer());
                 for(int index = 0; index < this.DeviceIndices.Length; index++)
                 {
                     fieldPointer[index] = this.DeviceIndices[index];

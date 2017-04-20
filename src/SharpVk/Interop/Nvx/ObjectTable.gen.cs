@@ -31,5 +31,27 @@ namespace SharpVk.Interop.Nvx
     /// </summary>
     public struct ObjectTable
     {
+        internal ulong handle; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public ObjectTable(ulong handle)
+        {
+            this.handle = handle;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public ObjectTable Null => new ObjectTable(default(ulong));
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public ulong ToUInt64()
+        {
+            return this.handle;
+        }
     }
 }

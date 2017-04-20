@@ -69,6 +69,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public float BlendConstants; 
+        public fixed float BlendConstants[4]; 
     }
 }

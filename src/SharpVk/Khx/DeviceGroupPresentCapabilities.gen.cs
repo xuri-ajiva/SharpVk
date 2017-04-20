@@ -34,15 +34,6 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public uint PresentMask
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public SharpVk.Khx.DeviceGroupPresentModeFlags Modes
         {
             get;
@@ -53,7 +44,6 @@ namespace SharpVk.Khx
         {
             pointer->SType = StructureType.DeviceGroupPresentCapabilitiesKhx;
             pointer->Next = null;
-            pointer->PresentMask = this.PresentMask;
             pointer->Modes = this.Modes;
         }
     }

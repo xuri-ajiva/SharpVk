@@ -29,8 +29,13 @@ namespace SharpVk
     /// <summary>
     /// 
     /// </summary>
-    public class Instance
+    public partial class Instance
     {
         internal readonly SharpVk.Interop.Instance handle; 
+        
+        internal Instance(SharpVk.Interop.Instance handle)
+        {
+            this.handle = handle;
+        }
     }
 }

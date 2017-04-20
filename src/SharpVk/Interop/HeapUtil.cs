@@ -20,7 +20,7 @@ namespace SharpVk.Interop
         {
             get
             {
-                if (allocateSpace == null)
+                if (allocateSpace == IntPtr.Zero)
                 {
                     allocateSpace = Marshal.AllocHGlobal(perThreadSpace);
 
@@ -52,7 +52,7 @@ namespace SharpVk.Interop
                 throw new Exception("Out of interop heap memory");
             }
 
-            IntPtr pointer = allocateSpace + (int)allocatedCount;
+            IntPtr pointer = AllocateSpace + (int)allocatedCount;
 
             allocatedCount += requiredSize;
 
@@ -80,13 +80,13 @@ namespace SharpVk.Interop
             allocatedCount = 0;
         }
 
-        internal static char* MarshalTo(string value)
+        internal static byte* MarshalTo(string value)
         {
             if (value != null)
             {
-                int size = Encoding.ASCII.GetByteCount(value);
+                int size = Encoding.ASCII.GetByteCount(value) + 1;
 
-                IntPtr pointer = Allocate<byte>(size);
+                IntPtr pointer = AllocateAndClear<byte>(size);
 
                 var chars = stackalloc char[size];
 
@@ -94,7 +94,7 @@ namespace SharpVk.Interop
 
                 Encoding.ASCII.GetBytes(chars, value.Length, (byte*)pointer.ToPointer(), size);
 
-                return (char*)pointer.ToPointer();
+                return (byte*)pointer.ToPointer();
             }
             else
             {
@@ -102,11 +102,11 @@ namespace SharpVk.Interop
             }
         }
 
-        internal static char** MarshalTo(string[] value)
+        internal static byte** MarshalTo(string[] value)
         {
             IntPtr pointer = Allocate<IntPtr>(value.Length);
 
-            char** typedPointer = (char**)pointer.ToPointer();
+            byte** typedPointer = (byte**)pointer.ToPointer();
 
             MarshalTo(value, value.Length, typedPointer);
 
@@ -125,9 +125,7 @@ namespace SharpVk.Interop
 
         internal static byte[] MarshalFrom(byte* pointer, int length)
         {
-            int actualLength;
-
-            return MarshalFrom(pointer, length, out actualLength);
+            return MarshalFrom(pointer, length, out int actualLength);
         }
 
         internal static byte[] MarshalFrom(byte* pointer, int length, out int actualLength, bool isNullTerminated = false)
@@ -272,7 +270,7 @@ namespace SharpVk.Interop
             }
         }
 
-        internal static void MarshalTo(string[] value, int length, char** pointer)
+        internal static void MarshalTo(string[] value, int length, byte** pointer)
         {
             for (int index = 0; index < length; index++)
             {

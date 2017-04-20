@@ -29,8 +29,13 @@ namespace SharpVk
     /// <summary>
     /// 
     /// </summary>
-    public class DescriptorSetLayout
+    public partial class DescriptorSetLayout
     {
         internal readonly SharpVk.Interop.DescriptorSetLayout handle; 
+        
+        internal DescriptorSetLayout(SharpVk.Interop.DescriptorSetLayout handle)
+        {
+            this.handle = handle;
+        }
     }
 }

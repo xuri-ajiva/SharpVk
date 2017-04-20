@@ -44,11 +44,11 @@ namespace SharpVk.Interop.Ext
         /// <summary>
         /// 
         /// </summary>
-        public char* MarkerName; 
+        public byte* MarkerName; 
         
         /// <summary>
         /// 
         /// </summary>
-        public float Color; 
+        public fixed float Color[4]; 
     }
 }

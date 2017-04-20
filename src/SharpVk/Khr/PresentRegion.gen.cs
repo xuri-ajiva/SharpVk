@@ -42,10 +42,10 @@ namespace SharpVk.Khr
         
         internal unsafe void MarshalTo(Interop.Khr.PresentRegion* pointer)
         {
-            pointer->RectangleCount = (uint)this.Rectangles.Length;
+            pointer->RectangleCount = (uint)(this.Rectangles?.Length ?? 0);
             if (this.Rectangles != null)
             {
-                var fieldPointer = (SharpVk.Khr.RectLayer*)Interop.HeapUtil.AllocateAndClear<SharpVk.Khr.RectLayer>(this.Rectangles.Length).ToPointer();
+                var fieldPointer = (SharpVk.Khr.RectLayer*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Khr.RectLayer>(this.Rectangles.Length).ToPointer());
                 for(int index = 0; index < this.Rectangles.Length; index++)
                 {
                     fieldPointer[index] = this.Rectangles[index];

@@ -62,10 +62,10 @@ namespace SharpVk.Khx
         {
             pointer->SType = StructureType.DeviceGroupSubmitInfoKhx;
             pointer->Next = null;
-            pointer->WaitSemaphoreCount = (uint)this.WaitSemaphoreDeviceIndices.Length;
+            pointer->WaitSemaphoreCount = (uint)(this.WaitSemaphoreDeviceIndices?.Length ?? 0);
             if (this.WaitSemaphoreDeviceIndices != null)
             {
-                var fieldPointer = (uint*)Interop.HeapUtil.AllocateAndClear<uint>(this.WaitSemaphoreDeviceIndices.Length).ToPointer();
+                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.WaitSemaphoreDeviceIndices.Length).ToPointer());
                 for(int index = 0; index < this.WaitSemaphoreDeviceIndices.Length; index++)
                 {
                     fieldPointer[index] = this.WaitSemaphoreDeviceIndices[index];
@@ -76,10 +76,10 @@ namespace SharpVk.Khx
             {
                 pointer->WaitSemaphoreDeviceIndices = null;
             }
-            pointer->CommandBufferCount = (uint)this.CommandBufferDeviceMasks.Length;
+            pointer->CommandBufferCount = (uint)(this.CommandBufferDeviceMasks?.Length ?? 0);
             if (this.CommandBufferDeviceMasks != null)
             {
-                var fieldPointer = (uint*)Interop.HeapUtil.AllocateAndClear<uint>(this.CommandBufferDeviceMasks.Length).ToPointer();
+                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.CommandBufferDeviceMasks.Length).ToPointer());
                 for(int index = 0; index < this.CommandBufferDeviceMasks.Length; index++)
                 {
                     fieldPointer[index] = this.CommandBufferDeviceMasks[index];
@@ -90,10 +90,10 @@ namespace SharpVk.Khx
             {
                 pointer->CommandBufferDeviceMasks = null;
             }
-            pointer->SignalSemaphoreCount = (uint)this.SignalSemaphoreDeviceIndices.Length;
+            pointer->SignalSemaphoreCount = (uint)(this.SignalSemaphoreDeviceIndices?.Length ?? 0);
             if (this.SignalSemaphoreDeviceIndices != null)
             {
-                var fieldPointer = (uint*)Interop.HeapUtil.AllocateAndClear<uint>(this.SignalSemaphoreDeviceIndices.Length).ToPointer();
+                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.SignalSemaphoreDeviceIndices.Length).ToPointer());
                 for(int index = 0; index < this.SignalSemaphoreDeviceIndices.Length; index++)
                 {
                     fieldPointer[index] = this.SignalSemaphoreDeviceIndices[index];

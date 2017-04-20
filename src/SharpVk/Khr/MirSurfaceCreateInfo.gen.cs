@@ -63,9 +63,9 @@ namespace SharpVk.Khr
             pointer->SType = StructureType.MirSurfaceCreateInfoKhr;
             pointer->Next = null;
             pointer->Flags = this.Flags;
-            pointer->Connection = (IntPtr*)Interop.HeapUtil.Allocate<IntPtr>();
+            pointer->Connection = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
             *pointer->Connection = this.Connection;
-            pointer->MirSurface = (IntPtr*)Interop.HeapUtil.Allocate<IntPtr>();
+            pointer->MirSurface = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
             *pointer->MirSurface = this.MirSurface;
         }
     }

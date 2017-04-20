@@ -31,7 +31,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                     {
                         if (dimension.Type == LenType.Expression && tokenCheck.Check(dimension.Value, member.VkName))
                         {
-                            lenExpression.Add(Member(Member(This, otherMember.Name), "Length"));
+                            lenExpression.Add(Coalesce(CoalesceMember(Member(This, otherMember.Name), "Length"), Literal(0)));
                         }
                     }
                 }

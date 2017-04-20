@@ -31,5 +31,27 @@ namespace SharpVk.Interop
     /// </summary>
     public struct Instance
     {
+        internal UIntPtr handle; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Instance(UIntPtr handle)
+        {
+            this.handle = handle;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Instance Null => new Instance(default(UIntPtr));
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public ulong ToUInt64()
+        {
+            return this.handle.ToUInt64();
+        }
     }
 }

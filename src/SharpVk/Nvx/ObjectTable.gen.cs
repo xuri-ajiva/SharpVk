@@ -29,8 +29,13 @@ namespace SharpVk.Nvx
     /// <summary>
     /// 
     /// </summary>
-    public class ObjectTable
+    public partial class ObjectTable
     {
         internal readonly SharpVk.Interop.Nvx.ObjectTable handle; 
+        
+        internal ObjectTable(SharpVk.Interop.Nvx.ObjectTable handle)
+        {
+            this.handle = handle;
+        }
     }
 }

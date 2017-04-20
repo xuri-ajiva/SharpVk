@@ -29,8 +29,13 @@ namespace SharpVk
     /// <summary>
     /// 
     /// </summary>
-    public class PhysicalDevice
+    public partial class PhysicalDevice
     {
         internal readonly SharpVk.Interop.PhysicalDevice handle; 
+        
+        internal PhysicalDevice(SharpVk.Interop.PhysicalDevice handle)
+        {
+            this.handle = handle;
+        }
     }
 }

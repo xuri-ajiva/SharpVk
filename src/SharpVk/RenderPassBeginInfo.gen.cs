@@ -74,10 +74,10 @@ namespace SharpVk
             pointer->RenderPass = this.RenderPass.handle;
             pointer->Framebuffer = this.Framebuffer.handle;
             pointer->RenderArea = this.RenderArea;
-            pointer->ClearValueCount = (uint)this.ClearValues.Length;
+            pointer->ClearValueCount = (uint)(this.ClearValues?.Length ?? 0);
             if (this.ClearValues != null)
             {
-                var fieldPointer = (ClearValue*)Interop.HeapUtil.AllocateAndClear<ClearValue>(this.ClearValues.Length).ToPointer();
+                var fieldPointer = (ClearValue*)(Interop.HeapUtil.AllocateAndClear<ClearValue>(this.ClearValues.Length).ToPointer());
                 for(int index = 0; index < this.ClearValues.Length; index++)
                 {
                     fieldPointer[index] = this.ClearValues[index];

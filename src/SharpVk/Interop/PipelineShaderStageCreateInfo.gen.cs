@@ -59,7 +59,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public char* Name; 
+        public byte* Name; 
         
         /// <summary>
         /// 

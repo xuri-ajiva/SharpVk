@@ -54,10 +54,10 @@ namespace SharpVk.Khx
             pointer->SType = StructureType.DeviceGroupRenderPassBeginInfoKhx;
             pointer->Next = null;
             pointer->DeviceMask = this.DeviceMask;
-            pointer->DeviceRenderAreaCount = (uint)this.DeviceRenderAreas.Length;
+            pointer->DeviceRenderAreaCount = (uint)(this.DeviceRenderAreas?.Length ?? 0);
             if (this.DeviceRenderAreas != null)
             {
-                var fieldPointer = (Rect2D*)Interop.HeapUtil.AllocateAndClear<Rect2D>(this.DeviceRenderAreas.Length).ToPointer();
+                var fieldPointer = (Rect2D*)(Interop.HeapUtil.AllocateAndClear<Rect2D>(this.DeviceRenderAreas.Length).ToPointer());
                 for(int index = 0; index < this.DeviceRenderAreas.Length; index++)
                 {
                     fieldPointer[index] = this.DeviceRenderAreas[index];

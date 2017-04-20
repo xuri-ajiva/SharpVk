@@ -72,9 +72,10 @@ namespace SharpVk
             pointer->SType = StructureType.InstanceCreateInfo;
             pointer->Next = null;
             pointer->Flags = this.Flags;
+            pointer->ApplicationInfo = (Interop.ApplicationInfo*)(Interop.HeapUtil.Allocate<Interop.ApplicationInfo>());
             this.ApplicationInfo.MarshalTo(pointer->ApplicationInfo);
-            pointer->EnabledLayerCount = (uint)this.EnabledLayerNames.Length;
-            pointer->EnabledExtensionCount = (uint)this.EnabledExtensionNames.Length;
+            pointer->EnabledLayerCount = (uint)(this.EnabledLayerNames?.Length ?? 0);
+            pointer->EnabledExtensionCount = (uint)(this.EnabledExtensionNames?.Length ?? 0);
         }
     }
 }

@@ -101,11 +101,11 @@ namespace SharpVk
             pointer->DestinationSet = this.DestinationSet.handle;
             pointer->DestinationBinding = this.DestinationBinding;
             pointer->DestinationArrayElement = this.DestinationArrayElement;
-            pointer->DescriptorCount = (uint)this.ImageInfo.Length;
+            pointer->DescriptorCount = (uint)(this.ImageInfo?.Length ?? 0);
             pointer->DescriptorType = this.DescriptorType;
             if (this.ImageInfo != null)
             {
-                var fieldPointer = (Interop.DescriptorImageInfo*)Interop.HeapUtil.AllocateAndClear<Interop.DescriptorImageInfo>(this.ImageInfo.Length).ToPointer();
+                var fieldPointer = (Interop.DescriptorImageInfo*)(Interop.HeapUtil.AllocateAndClear<Interop.DescriptorImageInfo>(this.ImageInfo.Length).ToPointer());
                 for(int index = 0; index < this.ImageInfo.Length; index++)
                 {
                     this.ImageInfo[index].MarshalTo(&fieldPointer[index]);
@@ -118,7 +118,7 @@ namespace SharpVk
             }
             if (this.BufferInfo != null)
             {
-                var fieldPointer = (Interop.DescriptorBufferInfo*)Interop.HeapUtil.AllocateAndClear<Interop.DescriptorBufferInfo>(this.BufferInfo.Length).ToPointer();
+                var fieldPointer = (Interop.DescriptorBufferInfo*)(Interop.HeapUtil.AllocateAndClear<Interop.DescriptorBufferInfo>(this.BufferInfo.Length).ToPointer());
                 for(int index = 0; index < this.BufferInfo.Length; index++)
                 {
                     this.BufferInfo[index].MarshalTo(&fieldPointer[index]);
@@ -131,7 +131,7 @@ namespace SharpVk
             }
             if (this.TexelBufferView != null)
             {
-                var fieldPointer = (Interop.BufferView*)Interop.HeapUtil.AllocateAndClear<Interop.BufferView>(this.TexelBufferView.Length).ToPointer();
+                var fieldPointer = (Interop.BufferView*)(Interop.HeapUtil.AllocateAndClear<Interop.BufferView>(this.TexelBufferView.Length).ToPointer());
                 for(int index = 0; index < this.TexelBufferView.Length; index++)
                 {
                     fieldPointer[index] = this.TexelBufferView[index].handle;

@@ -64,10 +64,10 @@ namespace SharpVk
             pointer->Next = null;
             pointer->Flags = this.Flags;
             pointer->MaxSets = this.MaxSets;
-            pointer->PoolSizeCount = (uint)this.PoolSizes.Length;
+            pointer->PoolSizeCount = (uint)(this.PoolSizes?.Length ?? 0);
             if (this.PoolSizes != null)
             {
-                var fieldPointer = (DescriptorPoolSize*)Interop.HeapUtil.AllocateAndClear<DescriptorPoolSize>(this.PoolSizes.Length).ToPointer();
+                var fieldPointer = (DescriptorPoolSize*)(Interop.HeapUtil.AllocateAndClear<DescriptorPoolSize>(this.PoolSizes.Length).ToPointer());
                 for(int index = 0; index < this.PoolSizes.Length; index++)
                 {
                     fieldPointer[index] = this.PoolSizes[index];

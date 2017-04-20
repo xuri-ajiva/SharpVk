@@ -53,7 +53,7 @@ namespace SharpVk.Nv
         {
             pointer->SType = StructureType.ExportMemoryWin32HandleInfoNv;
             pointer->Next = null;
-            pointer->Attributes = (SecurityAttributes*)Interop.HeapUtil.Allocate<SecurityAttributes>();
+            pointer->Attributes = (SecurityAttributes*)(Interop.HeapUtil.Allocate<SecurityAttributes>());
             *pointer->Attributes = this.Attributes;
             pointer->DwAccess = this.DwAccess;
         }

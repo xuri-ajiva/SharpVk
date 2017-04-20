@@ -29,8 +29,13 @@ namespace SharpVk.Ext
     /// <summary>
     /// 
     /// </summary>
-    public class DebugReportCallback
+    public partial class DebugReportCallback
     {
         internal readonly SharpVk.Interop.Ext.DebugReportCallback handle; 
+        
+        internal DebugReportCallback(SharpVk.Interop.Ext.DebugReportCallback handle)
+        {
+            this.handle = handle;
+        }
     }
 }

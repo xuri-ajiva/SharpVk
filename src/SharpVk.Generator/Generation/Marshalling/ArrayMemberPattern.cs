@@ -41,16 +41,19 @@ namespace SharpVk.Generator.Generation.Marshalling
                                 Name = member.Name,
                                 Type = "string"
                             });
-                            //memberDesc.PublicTypeName = "string";
 
-                            //newClass.MarshalToStatements.Add(string.Format("pointer->{0} = Interop.HeapUtil.MarshalTo(this.{0});", memberName));
-                            //newClass.MarshalFromStatements.Add(string.Format("result.{0} = Interop.HeapUtil.MarshalFrom(value->{0});", memberName));
+                            addAction(new Action
+                            {
+                                ValueExpression = StaticCall("Interop.HeapUtil", "MarshalTo", Member(This, member.Name)),
+                                ParamName = "pointer",
+                                ParamFieldName = member.Name,
+                                MemberType = this.nameLookup.Lookup(member.Type, false),
+                                Type = MemberActionType.AssignToDeref
+                            });
+
                             break;
                         case LenType.Expression:
-                            var elementType = new TypeReference
-                            {
-                                VkName = member.Type.VkName
-                            };
+                            var elementType = member.Type.Deref();
 
                             if (elementType.VkName == "void")
                             {

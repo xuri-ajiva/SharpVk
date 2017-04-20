@@ -64,10 +64,10 @@ namespace SharpVk.Ext
             pointer->Next = null;
             pointer->Flags = this.Flags;
             pointer->DiscardRectangleMode = this.DiscardRectangleMode;
-            pointer->DiscardRectangleCount = (uint)this.DiscardRectangles.Length;
+            pointer->DiscardRectangleCount = (uint)(this.DiscardRectangles?.Length ?? 0);
             if (this.DiscardRectangles != null)
             {
-                var fieldPointer = (Rect2D*)Interop.HeapUtil.AllocateAndClear<Rect2D>(this.DiscardRectangles.Length).ToPointer();
+                var fieldPointer = (Rect2D*)(Interop.HeapUtil.AllocateAndClear<Rect2D>(this.DiscardRectangles.Length).ToPointer());
                 for(int index = 0; index < this.DiscardRectangles.Length; index++)
                 {
                     fieldPointer[index] = this.DiscardRectangles[index];

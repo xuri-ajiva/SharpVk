@@ -29,8 +29,13 @@ namespace SharpVk
     /// <summary>
     /// 
     /// </summary>
-    public class Sampler
+    public partial class Sampler
     {
         internal readonly SharpVk.Interop.Sampler handle; 
+        
+        internal Sampler(SharpVk.Interop.Sampler handle)
+        {
+            this.handle = handle;
+        }
     }
 }

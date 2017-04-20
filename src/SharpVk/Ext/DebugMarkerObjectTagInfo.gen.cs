@@ -74,10 +74,10 @@ namespace SharpVk.Ext
             pointer->ObjectType = this.ObjectType;
             pointer->Object = this.Object;
             pointer->TagName = this.TagName;
-            pointer->TagSize = (HostSize)this.Tag.Length;
+            pointer->TagSize = (HostSize)(this.Tag?.Length ?? 0);
             if (this.Tag != null)
             {
-                var fieldPointer = (byte*)Interop.HeapUtil.AllocateAndClear<byte>(this.Tag.Length).ToPointer();
+                var fieldPointer = (byte*)(Interop.HeapUtil.AllocateAndClear<byte>(this.Tag.Length).ToPointer());
                 for(int index = 0; index < this.Tag.Length; index++)
                 {
                     fieldPointer[index] = this.Tag[index];

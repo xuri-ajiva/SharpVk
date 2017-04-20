@@ -54,10 +54,10 @@ namespace SharpVk
             pointer->SType = StructureType.ShaderModuleCreateInfo;
             pointer->Next = null;
             pointer->Flags = this.Flags;
-            pointer->CodeSize = (HostSize)this.Code.Length;
+            pointer->CodeSize = (HostSize)(this.Code?.Length ?? 0);
             if (this.Code != null)
             {
-                var fieldPointer = (uint*)Interop.HeapUtil.AllocateAndClear<uint>(this.Code.Length).ToPointer();
+                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.Code.Length).ToPointer());
                 for(int index = 0; index < this.Code.Length; index++)
                 {
                     fieldPointer[index] = this.Code[index];

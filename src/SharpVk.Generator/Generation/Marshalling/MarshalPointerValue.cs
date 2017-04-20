@@ -17,7 +17,7 @@
                 info = new MarshalInfo
                 {
                     MemberType = this.nameLookup.Lookup(type, false),
-                    InteropType = this.nameLookup.Lookup(type, true),
+                    InteropType = this.nameLookup.Lookup(type, false),
                     ActionType = MemberActionType.AllocAndAssign,
                     BuildValueExpression = value => value
                 };

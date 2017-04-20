@@ -79,24 +79,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public char DeviceName
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public byte PipelineCacheUUID
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public PhysicalDeviceLimits Limits
         {
             get;
@@ -114,13 +96,11 @@ namespace SharpVk
         
         internal unsafe void MarshalTo(Interop.PhysicalDeviceProperties* pointer)
         {
-            pointer->ApiVersion = (uint)this.ApiVersion;
-            pointer->DriverVersion = (uint)this.DriverVersion;
+            pointer->ApiVersion = (uint)(this.ApiVersion);
+            pointer->DriverVersion = (uint)(this.DriverVersion);
             pointer->VendorID = this.VendorID;
             pointer->DeviceID = this.DeviceID;
             pointer->DeviceType = this.DeviceType;
-            pointer->DeviceName = this.DeviceName;
-            pointer->PipelineCacheUUID = this.PipelineCacheUUID;
             this.Limits.MarshalTo(&pointer->Limits);
             pointer->SparseProperties = this.SparseProperties;
         }

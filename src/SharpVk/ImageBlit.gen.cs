@@ -43,25 +43,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Offset3D SourceOffsets
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public ImageSubresourceLayers DestinationSubresource
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Offset3D DestinationOffsets
         {
             get;
             set;
@@ -70,9 +52,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(Interop.ImageBlit* pointer)
         {
             pointer->SourceSubresource = this.SourceSubresource;
-            pointer->SourceOffsets = this.SourceOffsets;
             pointer->DestinationSubresource = this.DestinationSubresource;
-            pointer->DestinationOffsets = this.DestinationOffsets;
         }
     }
 }

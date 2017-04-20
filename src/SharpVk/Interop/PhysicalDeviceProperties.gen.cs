@@ -59,12 +59,12 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public char DeviceName; 
+        public fixed byte DeviceName[1]; 
         
         /// <summary>
         /// 
         /// </summary>
-        public byte PipelineCacheUUID; 
+        public fixed byte PipelineCacheUUID[1]; 
         
         /// <summary>
         /// 

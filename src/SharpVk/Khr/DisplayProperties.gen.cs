@@ -97,6 +97,7 @@ namespace SharpVk.Khr
         internal unsafe void MarshalTo(Interop.Khr.DisplayProperties* pointer)
         {
             pointer->Display = this.Display.handle;
+            pointer->DisplayName = Interop.HeapUtil.MarshalTo(this.DisplayName);
             pointer->PhysicalDimensions = this.PhysicalDimensions;
             pointer->PhysicalResolution = this.PhysicalResolution;
             pointer->SupportedTransforms = this.SupportedTransforms;

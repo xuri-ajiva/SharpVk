@@ -72,10 +72,10 @@ namespace SharpVk
             pointer->SType = StructureType.RenderPassCreateInfo;
             pointer->Next = null;
             pointer->Flags = this.Flags;
-            pointer->AttachmentCount = (uint)this.Attachments.Length;
+            pointer->AttachmentCount = (uint)(this.Attachments?.Length ?? 0);
             if (this.Attachments != null)
             {
-                var fieldPointer = (AttachmentDescription*)Interop.HeapUtil.AllocateAndClear<AttachmentDescription>(this.Attachments.Length).ToPointer();
+                var fieldPointer = (AttachmentDescription*)(Interop.HeapUtil.AllocateAndClear<AttachmentDescription>(this.Attachments.Length).ToPointer());
                 for(int index = 0; index < this.Attachments.Length; index++)
                 {
                     fieldPointer[index] = this.Attachments[index];
@@ -86,10 +86,10 @@ namespace SharpVk
             {
                 pointer->Attachments = null;
             }
-            pointer->SubpassCount = (uint)this.Subpasses.Length;
+            pointer->SubpassCount = (uint)(this.Subpasses?.Length ?? 0);
             if (this.Subpasses != null)
             {
-                var fieldPointer = (Interop.SubpassDescription*)Interop.HeapUtil.AllocateAndClear<Interop.SubpassDescription>(this.Subpasses.Length).ToPointer();
+                var fieldPointer = (Interop.SubpassDescription*)(Interop.HeapUtil.AllocateAndClear<Interop.SubpassDescription>(this.Subpasses.Length).ToPointer());
                 for(int index = 0; index < this.Subpasses.Length; index++)
                 {
                     this.Subpasses[index].MarshalTo(&fieldPointer[index]);
@@ -100,10 +100,10 @@ namespace SharpVk
             {
                 pointer->Subpasses = null;
             }
-            pointer->DependencyCount = (uint)this.Dependencies.Length;
+            pointer->DependencyCount = (uint)(this.Dependencies?.Length ?? 0);
             if (this.Dependencies != null)
             {
-                var fieldPointer = (SubpassDependency*)Interop.HeapUtil.AllocateAndClear<SubpassDependency>(this.Dependencies.Length).ToPointer();
+                var fieldPointer = (SubpassDependency*)(Interop.HeapUtil.AllocateAndClear<SubpassDependency>(this.Dependencies.Length).ToPointer());
                 for(int index = 0; index < this.Dependencies.Length; index++)
                 {
                     fieldPointer[index] = this.Dependencies[index];

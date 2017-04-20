@@ -98,10 +98,10 @@ namespace SharpVk
         {
             pointer->Flags = this.Flags;
             pointer->PipelineBindPoint = this.PipelineBindPoint;
-            pointer->InputAttachmentCount = (uint)this.InputAttachments.Length;
+            pointer->InputAttachmentCount = (uint)(this.InputAttachments?.Length ?? 0);
             if (this.InputAttachments != null)
             {
-                var fieldPointer = (AttachmentReference*)Interop.HeapUtil.AllocateAndClear<AttachmentReference>(this.InputAttachments.Length).ToPointer();
+                var fieldPointer = (AttachmentReference*)(Interop.HeapUtil.AllocateAndClear<AttachmentReference>(this.InputAttachments.Length).ToPointer());
                 for(int index = 0; index < this.InputAttachments.Length; index++)
                 {
                     fieldPointer[index] = this.InputAttachments[index];
@@ -112,10 +112,10 @@ namespace SharpVk
             {
                 pointer->InputAttachments = null;
             }
-            pointer->ColorAttachmentCount = (uint)this.ColorAttachments.Length;
+            pointer->ColorAttachmentCount = (uint)(this.ColorAttachments?.Length ?? 0);
             if (this.ColorAttachments != null)
             {
-                var fieldPointer = (AttachmentReference*)Interop.HeapUtil.AllocateAndClear<AttachmentReference>(this.ColorAttachments.Length).ToPointer();
+                var fieldPointer = (AttachmentReference*)(Interop.HeapUtil.AllocateAndClear<AttachmentReference>(this.ColorAttachments.Length).ToPointer());
                 for(int index = 0; index < this.ColorAttachments.Length; index++)
                 {
                     fieldPointer[index] = this.ColorAttachments[index];
@@ -128,7 +128,7 @@ namespace SharpVk
             }
             if (this.ResolveAttachments != null)
             {
-                var fieldPointer = (AttachmentReference*)Interop.HeapUtil.AllocateAndClear<AttachmentReference>(this.ResolveAttachments.Length).ToPointer();
+                var fieldPointer = (AttachmentReference*)(Interop.HeapUtil.AllocateAndClear<AttachmentReference>(this.ResolveAttachments.Length).ToPointer());
                 for(int index = 0; index < this.ResolveAttachments.Length; index++)
                 {
                     fieldPointer[index] = this.ResolveAttachments[index];
@@ -139,12 +139,12 @@ namespace SharpVk
             {
                 pointer->ResolveAttachments = null;
             }
-            pointer->DepthStencilAttachment = (AttachmentReference*)Interop.HeapUtil.Allocate<AttachmentReference>();
+            pointer->DepthStencilAttachment = (AttachmentReference*)(Interop.HeapUtil.Allocate<AttachmentReference>());
             *pointer->DepthStencilAttachment = this.DepthStencilAttachment;
-            pointer->PreserveAttachmentCount = (uint)this.PreserveAttachments.Length;
+            pointer->PreserveAttachmentCount = (uint)(this.PreserveAttachments?.Length ?? 0);
             if (this.PreserveAttachments != null)
             {
-                var fieldPointer = (uint*)Interop.HeapUtil.AllocateAndClear<uint>(this.PreserveAttachments.Length).ToPointer();
+                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.PreserveAttachments.Length).ToPointer());
                 for(int index = 0; index < this.PreserveAttachments.Length; index++)
                 {
                     fieldPointer[index] = this.PreserveAttachments[index];

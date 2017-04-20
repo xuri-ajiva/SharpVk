@@ -83,10 +83,10 @@ namespace SharpVk.Khx
             pointer->Image = this.Image.handle;
             pointer->Memory = this.Memory.handle;
             pointer->MemoryOffset = this.MemoryOffset;
-            pointer->DeviceIndexCount = (uint)this.DeviceIndices.Length;
+            pointer->DeviceIndexCount = (uint)(this.DeviceIndices?.Length ?? 0);
             if (this.DeviceIndices != null)
             {
-                var fieldPointer = (uint*)Interop.HeapUtil.AllocateAndClear<uint>(this.DeviceIndices.Length).ToPointer();
+                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.DeviceIndices.Length).ToPointer());
                 for(int index = 0; index < this.DeviceIndices.Length; index++)
                 {
                     fieldPointer[index] = this.DeviceIndices[index];
@@ -97,10 +97,10 @@ namespace SharpVk.Khx
             {
                 pointer->DeviceIndices = null;
             }
-            pointer->SFRRectCount = (uint)this.SFRRects.Length;
+            pointer->SFRRectCount = (uint)(this.SFRRects?.Length ?? 0);
             if (this.SFRRects != null)
             {
-                var fieldPointer = (Rect2D*)Interop.HeapUtil.AllocateAndClear<Rect2D>(this.SFRRects.Length).ToPointer();
+                var fieldPointer = (Rect2D*)(Interop.HeapUtil.AllocateAndClear<Rect2D>(this.SFRRects.Length).ToPointer());
                 for(int index = 0; index < this.SFRRects.Length; index++)
                 {
                     fieldPointer[index] = this.SFRRects[index];

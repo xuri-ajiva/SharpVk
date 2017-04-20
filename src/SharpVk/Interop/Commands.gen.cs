@@ -59,13 +59,13 @@ namespace SharpVk.Interop
         /// 
         /// </summary>
         [DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-        public static extern VoidFunctionDelegate vkGetDeviceProcAddr(Device device, char* name);
+        public static extern VoidFunctionDelegate vkGetDeviceProcAddr(Device device, byte* name);
         
         /// <summary>
         /// 
         /// </summary>
         [DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-        public static extern VoidFunctionDelegate vkGetInstanceProcAddr(Instance instance, char* name);
+        public static extern VoidFunctionDelegate vkGetInstanceProcAddr(Instance instance, byte* name);
         
         /// <summary>
         /// 
@@ -125,7 +125,7 @@ namespace SharpVk.Interop
         /// 
         /// </summary>
         [DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-        public static extern Result vkEnumerateInstanceExtensionProperties(char* layerName, uint* propertyCount, ExtensionProperties* properties);
+        public static extern Result vkEnumerateInstanceExtensionProperties(byte* layerName, uint* propertyCount, ExtensionProperties* properties);
         
         /// <summary>
         /// 
@@ -137,7 +137,7 @@ namespace SharpVk.Interop
         /// 
         /// </summary>
         [DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-        public static extern Result vkEnumerateDeviceExtensionProperties(PhysicalDevice physicalDevice, char* layerName, uint* propertyCount, ExtensionProperties* properties);
+        public static extern Result vkEnumerateDeviceExtensionProperties(PhysicalDevice physicalDevice, byte* layerName, uint* propertyCount, ExtensionProperties* properties);
         
         /// <summary>
         /// 
@@ -1055,7 +1055,7 @@ namespace SharpVk.Interop
         /// 
         /// </summary>
         [DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-        public static extern void vkDebugReportMessageEXT(Instance instance, SharpVk.Ext.DebugReportFlags flags, SharpVk.Ext.DebugReportObjectType objectType, ulong @object, HostSize location, int messageCode, char* layerPrefix, char* message);
+        public static extern void vkDebugReportMessageEXT(Instance instance, SharpVk.Ext.DebugReportFlags flags, SharpVk.Ext.DebugReportObjectType objectType, ulong @object, HostSize location, int messageCode, byte* layerPrefix, byte* message);
         
         /// <summary>
         /// 

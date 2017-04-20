@@ -54,10 +54,10 @@ namespace SharpVk
             pointer->SType = StructureType.PipelineDynamicStateCreateInfo;
             pointer->Next = null;
             pointer->Flags = this.Flags;
-            pointer->DynamicStateCount = (uint)this.DynamicStates.Length;
+            pointer->DynamicStateCount = (uint)(this.DynamicStates?.Length ?? 0);
             if (this.DynamicStates != null)
             {
-                var fieldPointer = (DynamicState*)Interop.HeapUtil.AllocateAndClear<DynamicState>(this.DynamicStates.Length).ToPointer();
+                var fieldPointer = (DynamicState*)(Interop.HeapUtil.AllocateAndClear<DynamicState>(this.DynamicStates.Length).ToPointer());
                 for(int index = 0; index < this.DynamicStates.Length; index++)
                 {
                     fieldPointer[index] = this.DynamicStates[index];

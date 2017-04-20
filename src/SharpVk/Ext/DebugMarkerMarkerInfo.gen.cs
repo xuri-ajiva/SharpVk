@@ -40,20 +40,11 @@ namespace SharpVk.Ext
             set;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public float Color
-        {
-            get;
-            set;
-        }
-        
         internal unsafe void MarshalTo(Interop.Ext.DebugMarkerMarkerInfo* pointer)
         {
             pointer->SType = StructureType.DebugMarkerMarkerInfoExt;
             pointer->Next = null;
-            pointer->Color = this.Color;
+            pointer->MarkerName = Interop.HeapUtil.MarshalTo(this.MarkerName);
         }
     }
 }

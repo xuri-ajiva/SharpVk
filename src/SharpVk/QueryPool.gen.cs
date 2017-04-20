@@ -29,8 +29,13 @@ namespace SharpVk
     /// <summary>
     /// 
     /// </summary>
-    public class QueryPool
+    public partial class QueryPool
     {
         internal readonly SharpVk.Interop.QueryPool handle; 
+        
+        internal QueryPool(SharpVk.Interop.QueryPool handle)
+        {
+            this.handle = handle;
+        }
     }
 }

@@ -20,11 +20,12 @@ namespace SharpVk.Generator.Generation
             services.AddSingleton<IMarshalValueRule, MarshalPointerValue>();
             services.AddSingleton<IMarshalValueRule, MarshalSimpleValue>();
 
+            services.AddSingleton<IMemberPatternRule, FixedLengthMemberPattern>();
+            services.AddSingleton<IMemberPatternRule, ArrayMemberPattern>();
+            services.AddSingleton<IMemberPatternRule, ArrayLenMemberPattern>();
             services.AddSingleton<IMemberPatternRule, FixedValueMemberPattern>();
             services.AddSingleton<IMemberPatternRule, NextExtensionMemberPattern>();
             services.AddSingleton<IMemberPatternRule, VersionMemberPattern>();
-            services.AddSingleton<IMemberPatternRule, ArrayLenMemberPattern>();
-            services.AddSingleton<IMemberPatternRule, ArrayMemberPattern>();
             services.AddSingleton<IMemberPatternRule, SimpleMemberPattern>();
 
             services.AddSingleton<IWorker, PInvokeGenerator>();

@@ -99,10 +99,10 @@ namespace SharpVk.Khr
             pointer->SType = StructureType.DescriptorUpdateTemplateCreateInfoKhr;
             pointer->Next = null;
             pointer->Flags = this.Flags;
-            pointer->DescriptorUpdateEntryCount = (uint)this.DescriptorUpdateEntries.Length;
+            pointer->DescriptorUpdateEntryCount = (uint)(this.DescriptorUpdateEntries?.Length ?? 0);
             if (this.DescriptorUpdateEntries != null)
             {
-                var fieldPointer = (SharpVk.Khr.DescriptorUpdateTemplateEntry*)Interop.HeapUtil.AllocateAndClear<SharpVk.Khr.DescriptorUpdateTemplateEntry>(this.DescriptorUpdateEntries.Length).ToPointer();
+                var fieldPointer = (SharpVk.Khr.DescriptorUpdateTemplateEntry*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Khr.DescriptorUpdateTemplateEntry>(this.DescriptorUpdateEntries.Length).ToPointer());
                 for(int index = 0; index < this.DescriptorUpdateEntries.Length; index++)
                 {
                     fieldPointer[index] = this.DescriptorUpdateEntries[index];

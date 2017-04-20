@@ -80,10 +80,10 @@ namespace SharpVk.Khx
         {
             pointer->SType = StructureType.Win32KeyedMutexAcquireReleaseInfoKhx;
             pointer->Next = null;
-            pointer->AcquireCount = (uint)this.AcquireSyncs.Length;
+            pointer->AcquireCount = (uint)(this.AcquireSyncs?.Length ?? 0);
             if (this.AcquireSyncs != null)
             {
-                var fieldPointer = (Interop.DeviceMemory*)Interop.HeapUtil.AllocateAndClear<Interop.DeviceMemory>(this.AcquireSyncs.Length).ToPointer();
+                var fieldPointer = (Interop.DeviceMemory*)(Interop.HeapUtil.AllocateAndClear<Interop.DeviceMemory>(this.AcquireSyncs.Length).ToPointer());
                 for(int index = 0; index < this.AcquireSyncs.Length; index++)
                 {
                     fieldPointer[index] = this.AcquireSyncs[index].handle;
@@ -96,7 +96,7 @@ namespace SharpVk.Khx
             }
             if (this.AcquireKeys != null)
             {
-                var fieldPointer = (ulong*)Interop.HeapUtil.AllocateAndClear<ulong>(this.AcquireKeys.Length).ToPointer();
+                var fieldPointer = (ulong*)(Interop.HeapUtil.AllocateAndClear<ulong>(this.AcquireKeys.Length).ToPointer());
                 for(int index = 0; index < this.AcquireKeys.Length; index++)
                 {
                     fieldPointer[index] = this.AcquireKeys[index];
@@ -109,7 +109,7 @@ namespace SharpVk.Khx
             }
             if (this.AcquireTimeouts != null)
             {
-                var fieldPointer = (uint*)Interop.HeapUtil.AllocateAndClear<uint>(this.AcquireTimeouts.Length).ToPointer();
+                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.AcquireTimeouts.Length).ToPointer());
                 for(int index = 0; index < this.AcquireTimeouts.Length; index++)
                 {
                     fieldPointer[index] = this.AcquireTimeouts[index];
@@ -120,10 +120,10 @@ namespace SharpVk.Khx
             {
                 pointer->AcquireTimeouts = null;
             }
-            pointer->ReleaseCount = (uint)this.ReleaseSyncs.Length;
+            pointer->ReleaseCount = (uint)(this.ReleaseSyncs?.Length ?? 0);
             if (this.ReleaseSyncs != null)
             {
-                var fieldPointer = (Interop.DeviceMemory*)Interop.HeapUtil.AllocateAndClear<Interop.DeviceMemory>(this.ReleaseSyncs.Length).ToPointer();
+                var fieldPointer = (Interop.DeviceMemory*)(Interop.HeapUtil.AllocateAndClear<Interop.DeviceMemory>(this.ReleaseSyncs.Length).ToPointer());
                 for(int index = 0; index < this.ReleaseSyncs.Length; index++)
                 {
                     fieldPointer[index] = this.ReleaseSyncs[index].handle;
@@ -136,7 +136,7 @@ namespace SharpVk.Khx
             }
             if (this.ReleaseKeys != null)
             {
-                var fieldPointer = (ulong*)Interop.HeapUtil.AllocateAndClear<ulong>(this.ReleaseKeys.Length).ToPointer();
+                var fieldPointer = (ulong*)(Interop.HeapUtil.AllocateAndClear<ulong>(this.ReleaseKeys.Length).ToPointer());
                 for(int index = 0; index < this.ReleaseKeys.Length; index++)
                 {
                     fieldPointer[index] = this.ReleaseKeys[index];

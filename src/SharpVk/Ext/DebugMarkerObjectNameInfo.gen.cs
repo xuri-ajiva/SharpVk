@@ -64,6 +64,7 @@ namespace SharpVk.Ext
             pointer->Next = null;
             pointer->ObjectType = this.ObjectType;
             pointer->Object = this.Object;
+            pointer->ObjectName = Interop.HeapUtil.MarshalTo(this.ObjectName);
         }
     }
 }

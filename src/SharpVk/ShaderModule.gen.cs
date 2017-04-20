@@ -29,8 +29,13 @@ namespace SharpVk
     /// <summary>
     /// 
     /// </summary>
-    public class ShaderModule
+    public partial class ShaderModule
     {
         internal readonly SharpVk.Interop.ShaderModule handle; 
+        
+        internal ShaderModule(SharpVk.Interop.ShaderModule handle)
+        {
+            this.handle = handle;
+        }
     }
 }

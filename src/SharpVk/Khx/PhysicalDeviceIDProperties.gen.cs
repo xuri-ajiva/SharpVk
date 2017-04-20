@@ -34,33 +34,6 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public byte DeviceUUID
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public byte DriverUUID
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public byte DeviceLUID
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public Bool32 DeviceLUIDValid
         {
             get;
@@ -71,9 +44,6 @@ namespace SharpVk.Khx
         {
             pointer->SType = StructureType.PhysicalDeviceIdPropertiesKhx;
             pointer->Next = null;
-            pointer->DeviceUUID = this.DeviceUUID;
-            pointer->DriverUUID = this.DriverUUID;
-            pointer->DeviceLUID = this.DeviceLUID;
             pointer->DeviceLUIDValid = this.DeviceLUIDValid;
         }
     }

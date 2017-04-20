@@ -96,10 +96,26 @@ namespace SharpVk.Generator.Generation
 
         private MemberDefinition GetInteropMember(MemberDeclaration member)
         {
+            string name = member.Name;
+            string type = this.nameLookup.Lookup(member.Type, true);
+
+            if (member.Type.FixedLength.Type != FixedLengthType.None && this.typeData[member.Type.VkName].Pattern == TypePattern.Primitive)
+            {
+                string length = "1";
+
+                if (member.Type.FixedLength.Type == FixedLengthType.IntegerLiteral)
+                {
+                    length = member.Type.FixedLength.Value;
+                }
+
+                name += $"[{length}]";
+                type = "fixed " + type;
+            }
+
             return new MemberDefinition
             {
-                Name = member.Name,
-                Type = this.nameLookup.Lookup(member.Type, true)
+                Name = name,
+                Type = type
             };
         }
     }

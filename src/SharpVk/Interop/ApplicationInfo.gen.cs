@@ -44,7 +44,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public char* ApplicationName; 
+        public byte* ApplicationName; 
         
         /// <summary>
         /// 
@@ -54,7 +54,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public char* EngineName; 
+        public byte* EngineName; 
         
         /// <summary>
         /// 

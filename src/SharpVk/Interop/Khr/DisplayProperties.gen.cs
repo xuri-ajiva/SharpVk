@@ -39,7 +39,7 @@ namespace SharpVk.Interop.Khr
         /// <summary>
         /// 
         /// </summary>
-        public char* DisplayName; 
+        public byte* DisplayName; 
         
         /// <summary>
         /// 

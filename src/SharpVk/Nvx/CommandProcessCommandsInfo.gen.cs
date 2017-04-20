@@ -118,10 +118,10 @@ namespace SharpVk.Nvx
             pointer->Next = null;
             pointer->ObjectTable = this.ObjectTable.handle;
             pointer->IndirectCommandsLayout = this.IndirectCommandsLayout.handle;
-            pointer->IndirectCommandsTokenCount = (uint)this.IndirectCommandsTokens.Length;
+            pointer->IndirectCommandsTokenCount = (uint)(this.IndirectCommandsTokens?.Length ?? 0);
             if (this.IndirectCommandsTokens != null)
             {
-                var fieldPointer = (Interop.Nvx.IndirectCommandsToken*)Interop.HeapUtil.AllocateAndClear<Interop.Nvx.IndirectCommandsToken>(this.IndirectCommandsTokens.Length).ToPointer();
+                var fieldPointer = (Interop.Nvx.IndirectCommandsToken*)(Interop.HeapUtil.AllocateAndClear<Interop.Nvx.IndirectCommandsToken>(this.IndirectCommandsTokens.Length).ToPointer());
                 for(int index = 0; index < this.IndirectCommandsTokens.Length; index++)
                 {
                     this.IndirectCommandsTokens[index].MarshalTo(&fieldPointer[index]);

@@ -29,8 +29,13 @@ namespace SharpVk
     /// <summary>
     /// 
     /// </summary>
-    public class DescriptorPool
+    public partial class DescriptorPool
     {
         internal readonly SharpVk.Interop.DescriptorPool handle; 
+        
+        internal DescriptorPool(SharpVk.Interop.DescriptorPool handle)
+        {
+            this.handle = handle;
+        }
     }
 }

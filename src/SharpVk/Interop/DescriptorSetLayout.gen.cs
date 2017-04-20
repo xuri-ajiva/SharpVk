@@ -31,5 +31,27 @@ namespace SharpVk.Interop
     /// </summary>
     public struct DescriptorSetLayout
     {
+        internal ulong handle; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public DescriptorSetLayout(ulong handle)
+        {
+            this.handle = handle;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public DescriptorSetLayout Null => new DescriptorSetLayout(default(ulong));
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public ulong ToUInt64()
+        {
+            return this.handle;
+        }
     }
 }

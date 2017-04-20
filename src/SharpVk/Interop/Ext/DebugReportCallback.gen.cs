@@ -31,5 +31,27 @@ namespace SharpVk.Interop.Ext
     /// </summary>
     public struct DebugReportCallback
     {
+        internal ulong handle; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public DebugReportCallback(ulong handle)
+        {
+            this.handle = handle;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public DebugReportCallback Null => new DebugReportCallback(default(ulong));
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public ulong ToUInt64()
+        {
+            return this.handle;
+        }
     }
 }

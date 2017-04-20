@@ -29,8 +29,13 @@ namespace SharpVk
     /// <summary>
     /// 
     /// </summary>
-    public class ImageView
+    public partial class ImageView
     {
         internal readonly SharpVk.Interop.ImageView handle; 
+        
+        internal ImageView(SharpVk.Interop.ImageView handle)
+        {
+            this.handle = handle;
+        }
     }
 }

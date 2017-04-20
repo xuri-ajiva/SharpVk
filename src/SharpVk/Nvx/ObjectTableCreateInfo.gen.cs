@@ -107,10 +107,10 @@ namespace SharpVk.Nvx
         {
             pointer->SType = StructureType.ObjectTableCreateInfoNvx;
             pointer->Next = null;
-            pointer->ObjectCount = (uint)this.ObjectEntryTypes.Length;
+            pointer->ObjectCount = (uint)(this.ObjectEntryTypes?.Length ?? 0);
             if (this.ObjectEntryTypes != null)
             {
-                var fieldPointer = (SharpVk.Nvx.ObjectEntryType*)Interop.HeapUtil.AllocateAndClear<SharpVk.Nvx.ObjectEntryType>(this.ObjectEntryTypes.Length).ToPointer();
+                var fieldPointer = (SharpVk.Nvx.ObjectEntryType*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Nvx.ObjectEntryType>(this.ObjectEntryTypes.Length).ToPointer());
                 for(int index = 0; index < this.ObjectEntryTypes.Length; index++)
                 {
                     fieldPointer[index] = this.ObjectEntryTypes[index];
@@ -123,7 +123,7 @@ namespace SharpVk.Nvx
             }
             if (this.ObjectEntryCounts != null)
             {
-                var fieldPointer = (uint*)Interop.HeapUtil.AllocateAndClear<uint>(this.ObjectEntryCounts.Length).ToPointer();
+                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.ObjectEntryCounts.Length).ToPointer());
                 for(int index = 0; index < this.ObjectEntryCounts.Length; index++)
                 {
                     fieldPointer[index] = this.ObjectEntryCounts[index];
@@ -136,7 +136,7 @@ namespace SharpVk.Nvx
             }
             if (this.ObjectEntryUsageFlags != null)
             {
-                var fieldPointer = (SharpVk.Nvx.ObjectEntryUsageFlags*)Interop.HeapUtil.AllocateAndClear<SharpVk.Nvx.ObjectEntryUsageFlags>(this.ObjectEntryUsageFlags.Length).ToPointer();
+                var fieldPointer = (SharpVk.Nvx.ObjectEntryUsageFlags*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Nvx.ObjectEntryUsageFlags>(this.ObjectEntryUsageFlags.Length).ToPointer());
                 for(int index = 0; index < this.ObjectEntryUsageFlags.Length; index++)
                 {
                     fieldPointer[index] = this.ObjectEntryUsageFlags[index];

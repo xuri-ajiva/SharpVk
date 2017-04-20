@@ -34,15 +34,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public char ExtensionName
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public Version SpecVersion
         {
             get;
@@ -51,8 +42,7 @@ namespace SharpVk
         
         internal unsafe void MarshalTo(Interop.ExtensionProperties* pointer)
         {
-            pointer->ExtensionName = this.ExtensionName;
-            pointer->SpecVersion = (uint)this.SpecVersion;
+            pointer->SpecVersion = (uint)(this.SpecVersion);
         }
     }
 }
