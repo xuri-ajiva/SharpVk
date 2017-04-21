@@ -113,12 +113,12 @@ namespace SharpVk.Interop
             return typedPointer;
         }
 
-        internal static string MarshalFrom(char* pointer)
+        internal static string MarshalStringFrom(byte* pointer)
         {
             return Marshal.PtrToStringAnsi(new IntPtr(pointer));
         }
 
-        internal static string MarshalFrom(char* pointer, int length)
+        internal static string MarshalStringFrom(byte* pointer, int length)
         {
             return Marshal.PtrToStringAnsi(new IntPtr(pointer), length);
         }

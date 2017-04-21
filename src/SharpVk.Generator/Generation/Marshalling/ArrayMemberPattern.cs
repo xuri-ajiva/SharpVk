@@ -55,6 +55,14 @@ namespace SharpVk.Generator.Generation.Marshalling
                                 Type = MemberActionType.Assign
                             });
 
+                            info.MarshalFrom.MemberActions.Add(new Action
+                            {
+                                ValueExpression = StaticCall("Interop.HeapUtil", "MarshalStringFrom", DerefMember(Variable("pointer"), member.Name)),
+                                TargetExpression = Member(Variable("result"), member.Name),
+                                MemberType = this.nameLookup.Lookup(member.Type, false),
+                                Type = MemberActionType.Assign
+                            });
+
                             break;
                         case LenType.Expression:
                             var elementType = member.Type.Deref();

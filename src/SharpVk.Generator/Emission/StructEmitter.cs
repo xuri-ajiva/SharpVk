@@ -39,6 +39,7 @@ namespace SharpVk.Generator.Emission
                 this.builderFactory.Generate(@struct.Name, path, fileBuilder =>
                 {
                     fileBuilder.EmitUsing("System");
+                    fileBuilder.EmitUsing("System.Runtime.InteropServices");
 
                     fileBuilder.EmitNamespace(@namespace, namespaceBuilder =>
                     {
@@ -97,7 +98,7 @@ namespace SharpVk.Generator.Emission
                                                                 modifiers);
                                 }
                             }
-                        }, Public, null, @struct.IsUnsafe ? Unsafe : None);
+                        }, Public, null, @struct.IsUnsafe ? Unsafe : None, attributes: new[] { "StructLayout(LayoutKind.Sequential)" });
                     });
                 });
             }

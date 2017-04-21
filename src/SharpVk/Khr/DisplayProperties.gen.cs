@@ -23,12 +23,14 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
+using System.Runtime.InteropServices;
 
 namespace SharpVk.Khr
 {
     /// <summary>
     /// 
     /// </summary>
+    [StructLayout(LayoutKind.Sequential)]
     public struct DisplayProperties
     {
         /// <summary>
@@ -98,6 +100,7 @@ namespace SharpVk.Khr
         {
             DisplayProperties result = default(DisplayProperties);
             result.Display = new Khr.Display(pointer->Display);
+            result.DisplayName = Interop.HeapUtil.MarshalStringFrom(pointer->DisplayName);
             result.PhysicalDimensions = pointer->PhysicalDimensions;
             result.PhysicalResolution = pointer->PhysicalResolution;
             result.SupportedTransforms = pointer->SupportedTransforms;
