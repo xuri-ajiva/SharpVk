@@ -36,6 +36,7 @@ namespace SharpVk.Generator.Generation
             services.AddSingleton<IWorker, DelegateGenerator>();
             services.AddSingleton<IWorker, MarshalledStructGenerator>();
             services.AddSingleton<IWorker, HandleGenerator>();
+            services.AddSingleton<IWorker, ConstantGenerator>();
         }
     }
 }

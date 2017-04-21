@@ -7,6 +7,8 @@ namespace SharpVk.Generator.Generation
         public string Name;
         public string[] Namespace;
         public bool IsUnsafe;
+        public bool IsClass;
+        public bool IsStatic;
         public MethodDefinition Constructor;
         public List<MethodDefinition> Methods;
         public List<MemberDefinition> Fields;

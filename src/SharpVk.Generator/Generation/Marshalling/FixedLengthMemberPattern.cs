@@ -30,6 +30,10 @@ namespace SharpVk.Generator.Generation.Marshalling
                     {
                         length = member.Type.FixedLength.Value;
                     }
+                    else
+                    {
+                        //length = member.Type.FixedLength.Value;
+                    }
 
                     name += $"[{length}]";
                     memberType = "fixed " + memberType;

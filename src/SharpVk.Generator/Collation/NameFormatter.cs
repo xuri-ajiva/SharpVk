@@ -63,6 +63,11 @@ namespace SharpVk.Generator.Collation
             return result;
         }
 
+        public string FormatName(EnumField field)
+        {
+            return JoinNameParts(field.NameParts);
+        }
+
         public string FormatName(ChildElement member, bool isCamelCase)
         {
             var nameParts = member.NameParts.AsEnumerable();
@@ -113,8 +118,8 @@ namespace SharpVk.Generator.Collation
             string digitsPrefix = JoinNameParts(enumeration.NameParts.TakeWhile(x => !digitsSuffix.Contains(x)));
 
             int skipAtEnd = isBitmask && digitsSuffix.Contains(value.NameParts.Last())
-                ? 1
-                : 0;
+                                ? 1
+                                : 0;
 
             string result = JoinNameParts(value.NameParts.Take(value.NameParts.Length - skipAtEnd));
 

@@ -11,12 +11,10 @@ namespace SharpVk.Generator.Generation
         : IWorker
     {
         private readonly IEnumerable<EnumDeclaration> enums;
-        private readonly Dictionary<string, TypeDeclaration> typeData;
 
-        public EnumGenerator(IEnumerable<EnumDeclaration> enums, Dictionary<string, TypeDeclaration> typeData)
+        public EnumGenerator(IEnumerable<EnumDeclaration> enums)
         {
             this.enums = enums;
-            this.typeData = typeData;
         }
 
         public void Execute(IServiceCollection services)

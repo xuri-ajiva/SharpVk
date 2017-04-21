@@ -15,8 +15,4 @@
     <ProjectReference Include="..\SharpVk.Emit\SharpVk.Emit.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Marshalling\Generation\" />
-  </ItemGroup>
-
 </Project>

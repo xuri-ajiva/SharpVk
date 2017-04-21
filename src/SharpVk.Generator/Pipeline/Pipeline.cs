@@ -38,7 +38,7 @@ namespace SharpVk.Generator.Pipeline
 
                 services = new ServiceCollection();
 
-                foreach (var worker in stageProvider.GetServices<IWorker>())
+                foreach(var worker in stageProvider.GetServices<IWorker>())
                 {
                     Console.WriteLine($"Running: {worker.GetType().Name}");
 
