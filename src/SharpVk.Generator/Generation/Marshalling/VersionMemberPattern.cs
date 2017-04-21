@@ -28,8 +28,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                 info.MarshalTo.MemberActions.Add(new Action
                 {
                     ValueExpression = Cast("uint", Member(This, member.Name)),
-                    ParamName = "pointer",
-                    ParamFieldName = member.Name
+                    TargetExpression = DerefMember(Variable("pointer"), member.Name),
                 });
 
                 info.InteropStruct.Fields.Add(new MemberDefinition

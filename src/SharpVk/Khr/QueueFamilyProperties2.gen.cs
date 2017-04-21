@@ -43,6 +43,7 @@ namespace SharpVk.Khr
         internal static unsafe QueueFamilyProperties2 MarshalFrom(Interop.Khr.QueueFamilyProperties2* pointer)
         {
             QueueFamilyProperties2 result = default(QueueFamilyProperties2);
+            result.QueueFamilyProperties = pointer->QueueFamilyProperties;
             return result;
         }
     }

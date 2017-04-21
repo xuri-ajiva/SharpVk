@@ -43,6 +43,7 @@ namespace SharpVk.Khx
         internal static unsafe MemoryWin32HandleProperties MarshalFrom(Interop.Khx.MemoryWin32HandleProperties* pointer)
         {
             MemoryWin32HandleProperties result = default(MemoryWin32HandleProperties);
+            result.MemoryTypeBits = pointer->MemoryTypeBits;
             return result;
         }
     }

@@ -13,8 +13,9 @@ namespace SharpVk.Generator.Generation.Marshalling
                 {
                     MemberType = "IntPtr",
                     InteropType = "byte",
-                    ActionType = MemberActionType.AssignToDeref,
-                    BuildValueExpression = value => Call(value, "ToPointer")
+                    MarshalToActionType = MemberActionType.Assign,
+                    BuildMarshalToValueExpression = value => Call(value, "ToPointer"),
+                    BuildMarshalFromValueExpression = value => New("IntPtr", value)
                 };
 
                 return true;

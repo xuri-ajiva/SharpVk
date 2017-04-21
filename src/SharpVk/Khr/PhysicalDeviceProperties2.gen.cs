@@ -43,6 +43,7 @@ namespace SharpVk.Khr
         internal static unsafe PhysicalDeviceProperties2 MarshalFrom(Interop.Khr.PhysicalDeviceProperties2* pointer)
         {
             PhysicalDeviceProperties2 result = default(PhysicalDeviceProperties2);
+            result.Properties = PhysicalDeviceProperties.MarshalFrom(&pointer->Properties);
             return result;
         }
     }

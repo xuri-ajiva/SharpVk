@@ -43,6 +43,7 @@ namespace SharpVk.Khx
         internal static unsafe ExternalImageFormatProperties MarshalFrom(Interop.Khx.ExternalImageFormatProperties* pointer)
         {
             ExternalImageFormatProperties result = default(ExternalImageFormatProperties);
+            result.ExternalMemoryProperties = pointer->ExternalMemoryProperties;
             return result;
         }
     }

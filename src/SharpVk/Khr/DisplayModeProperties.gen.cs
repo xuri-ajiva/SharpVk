@@ -52,6 +52,8 @@ namespace SharpVk.Khr
         internal static unsafe DisplayModeProperties MarshalFrom(Interop.Khr.DisplayModeProperties* pointer)
         {
             DisplayModeProperties result = default(DisplayModeProperties);
+            result.DisplayMode = new Khr.DisplayMode(pointer->DisplayMode);
+            result.Parameters = pointer->Parameters;
             return result;
         }
     }

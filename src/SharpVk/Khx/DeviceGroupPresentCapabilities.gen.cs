@@ -43,6 +43,7 @@ namespace SharpVk.Khx
         internal static unsafe DeviceGroupPresentCapabilities MarshalFrom(Interop.Khx.DeviceGroupPresentCapabilities* pointer)
         {
             DeviceGroupPresentCapabilities result = default(DeviceGroupPresentCapabilities);
+            result.Modes = pointer->Modes;
             return result;
         }
     }

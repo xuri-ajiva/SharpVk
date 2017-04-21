@@ -97,6 +97,12 @@ namespace SharpVk.Khr
         internal static unsafe DisplayProperties MarshalFrom(Interop.Khr.DisplayProperties* pointer)
         {
             DisplayProperties result = default(DisplayProperties);
+            result.Display = new Khr.Display(pointer->Display);
+            result.PhysicalDimensions = pointer->PhysicalDimensions;
+            result.PhysicalResolution = pointer->PhysicalResolution;
+            result.SupportedTransforms = pointer->SupportedTransforms;
+            result.PlaneReorderPossible = pointer->PlaneReorderPossible;
+            result.PersistentContent = pointer->PersistentContent;
             return result;
         }
     }

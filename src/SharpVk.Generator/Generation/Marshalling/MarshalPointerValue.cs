@@ -18,8 +18,9 @@
                 {
                     MemberType = this.nameLookup.Lookup(type, false),
                     InteropType = this.nameLookup.Lookup(type, false),
-                    ActionType = MemberActionType.AllocAndAssign,
-                    BuildValueExpression = value => value
+                    MarshalToActionType = MemberActionType.AllocAndAssign,
+                    BuildMarshalToValueExpression = value => value,
+                    BuildMarshalFromValueExpression = value => value
                 };
 
                 return true;

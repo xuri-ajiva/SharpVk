@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SharpVk.Generator.Collation;
 using SharpVk.Generator.Pipeline;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 

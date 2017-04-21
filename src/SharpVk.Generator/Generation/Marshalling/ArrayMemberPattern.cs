@@ -50,10 +50,9 @@ namespace SharpVk.Generator.Generation.Marshalling
                             info.MarshalTo.MemberActions.Add(new Action
                             {
                                 ValueExpression = StaticCall("Interop.HeapUtil", "MarshalTo", Member(This, member.Name)),
-                                ParamName = "pointer",
-                                ParamFieldName = member.Name,
+                                TargetExpression = DerefMember(Variable("pointer"), member.Name),
                                 MemberType = this.nameLookup.Lookup(member.Type, false),
-                                Type = MemberActionType.AssignToDeref
+                                Type = MemberActionType.Assign
                             });
 
                             break;
@@ -75,15 +74,14 @@ namespace SharpVk.Generator.Generation.Marshalling
 
                             info.MarshalTo.MemberActions.Add(new Action
                             {
-                                ParamName = "pointer",
-                                ParamFieldName = member.Name,
+                                TargetExpression = DerefMember(Variable("pointer"), member.Name),
                                 MemberType = marshalling.InteropType,
                                 IsLoop = true,
                                 IndexName = "index",
-                                Type = marshalling.ActionType,
+                                Type = marshalling.MarshalToActionType,
                                 NullCheckExpression = IsNotEqual(Member(This, member.Name), Null),
                                 LengthExpression = Member(Member(This, member.Name), "Length"),
-                                ValueExpression = marshalling.BuildValueExpression(Index(Member(This, member.Name), Variable("index")))
+                                ValueExpression = marshalling.BuildMarshalToValueExpression(Index(Member(This, member.Name), Variable("index")))
                             });
                             break;
                     }

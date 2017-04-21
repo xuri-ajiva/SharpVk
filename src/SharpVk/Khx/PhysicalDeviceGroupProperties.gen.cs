@@ -52,6 +52,8 @@ namespace SharpVk.Khx
         internal static unsafe PhysicalDeviceGroupProperties MarshalFrom(Interop.Khx.PhysicalDeviceGroupProperties* pointer)
         {
             PhysicalDeviceGroupProperties result = default(PhysicalDeviceGroupProperties);
+            result.PhysicalDeviceCount = pointer->PhysicalDeviceCount;
+            result.SubsetAllocation = pointer->SubsetAllocation;
             return result;
         }
     }

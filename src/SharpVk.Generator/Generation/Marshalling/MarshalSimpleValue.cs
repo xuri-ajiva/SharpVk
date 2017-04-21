@@ -19,8 +19,8 @@ namespace SharpVk.Generator.Generation.Marshalling
             {
                 MemberType = this.nameLookup.Lookup(type, false),
                 InteropType = this.nameLookup.Lookup(type, false),
-                ActionType = MemberActionType.AssignToDeref,
-                BuildValueExpression = value => value
+                BuildMarshalToValueExpression = value => value,
+                BuildMarshalFromValueExpression = value => value
             };
 
             return true;

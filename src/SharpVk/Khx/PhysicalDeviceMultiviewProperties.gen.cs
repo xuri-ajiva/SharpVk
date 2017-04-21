@@ -52,6 +52,8 @@ namespace SharpVk.Khx
         internal static unsafe PhysicalDeviceMultiviewProperties MarshalFrom(Interop.Khx.PhysicalDeviceMultiviewProperties* pointer)
         {
             PhysicalDeviceMultiviewProperties result = default(PhysicalDeviceMultiviewProperties);
+            result.MaxMultiviewViewCount = pointer->MaxMultiviewViewCount;
+            result.MaxMultiviewInstanceIndex = pointer->MaxMultiviewInstanceIndex;
             return result;
         }
     }

@@ -41,8 +41,7 @@ namespace SharpVk.Generator.Generation.Marshalling
             {
                 info.MarshalTo.MemberActions.Add(new Action
                 {
-                    ParamName = "pointer",
-                    ParamFieldName = member.Name,
+                    TargetExpression = DerefMember(Variable("pointer"), member.Name),
                     ValueExpression = Cast(this.nameLookup.Lookup(member.Type, false), lenExpression.First())
                 });
 

@@ -133,6 +133,17 @@ namespace SharpVk.Ext
         internal static unsafe SurfaceCapabilities2 MarshalFrom(Interop.Ext.SurfaceCapabilities2* pointer)
         {
             SurfaceCapabilities2 result = default(SurfaceCapabilities2);
+            result.MinImageCount = pointer->MinImageCount;
+            result.MaxImageCount = pointer->MaxImageCount;
+            result.CurrentExtent = pointer->CurrentExtent;
+            result.MinImageExtent = pointer->MinImageExtent;
+            result.MaxImageExtent = pointer->MaxImageExtent;
+            result.MaxImageArrayLayers = pointer->MaxImageArrayLayers;
+            result.SupportedTransforms = pointer->SupportedTransforms;
+            result.CurrentTransform = pointer->CurrentTransform;
+            result.SupportedCompositeAlpha = pointer->SupportedCompositeAlpha;
+            result.SupportedUsageFlags = pointer->SupportedUsageFlags;
+            result.SupportedSurfaceCounters = pointer->SupportedSurfaceCounters;
             return result;
         }
     }

@@ -1,6 +1,4 @@
-﻿using SharpVk.Emit;
-using SharpVk.Generator.Collation;
-using System;
+﻿using SharpVk.Generator.Collation;
 using System.Collections.Generic;
 
 using static SharpVk.Emit.ExpressionBuilder;
@@ -29,8 +27,9 @@ namespace SharpVk.Generator.Generation.Marshalling
                 {
                     MemberType = this.nameLookup.Lookup(type, false),
                     InteropType = "IntPtr",
-                    ActionType = MemberActionType.AssignToDeref,
-                    BuildValueExpression = value => StaticCall("System.Runtime.InteropServices.Marshal", "GetFunctionPointerForDelegate", value)
+                    MarshalToActionType = MemberActionType.Assign,
+                    BuildMarshalToValueExpression = value => StaticCall("System.Runtime.InteropServices.Marshal", "GetFunctionPointerForDelegate", value),
+                    BuildMarshalFromValueExpression = value => value
                 };
 
                 return true;

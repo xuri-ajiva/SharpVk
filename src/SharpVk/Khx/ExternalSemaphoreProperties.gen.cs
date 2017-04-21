@@ -61,6 +61,9 @@ namespace SharpVk.Khx
         internal static unsafe ExternalSemaphoreProperties MarshalFrom(Interop.Khx.ExternalSemaphoreProperties* pointer)
         {
             ExternalSemaphoreProperties result = default(ExternalSemaphoreProperties);
+            result.ExportFromImportedHandleTypes = pointer->ExportFromImportedHandleTypes;
+            result.CompatibleHandleTypes = pointer->CompatibleHandleTypes;
+            result.ExternalSemaphoreFeatures = pointer->ExternalSemaphoreFeatures;
             return result;
         }
     }

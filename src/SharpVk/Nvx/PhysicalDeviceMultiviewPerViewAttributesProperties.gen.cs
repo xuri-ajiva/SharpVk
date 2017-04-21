@@ -43,6 +43,7 @@ namespace SharpVk.Nvx
         internal static unsafe PhysicalDeviceMultiviewPerViewAttributesProperties MarshalFrom(Interop.Nvx.PhysicalDeviceMultiviewPerViewAttributesProperties* pointer)
         {
             PhysicalDeviceMultiviewPerViewAttributesProperties result = default(PhysicalDeviceMultiviewPerViewAttributesProperties);
+            result.PerViewPositionAllComponents = pointer->PerViewPositionAllComponents;
             return result;
         }
     }

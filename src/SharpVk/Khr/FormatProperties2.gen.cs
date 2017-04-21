@@ -43,6 +43,7 @@ namespace SharpVk.Khr
         internal static unsafe FormatProperties2 MarshalFrom(Interop.Khr.FormatProperties2* pointer)
         {
             FormatProperties2 result = default(FormatProperties2);
+            result.FormatProperties = pointer->FormatProperties;
             return result;
         }
     }

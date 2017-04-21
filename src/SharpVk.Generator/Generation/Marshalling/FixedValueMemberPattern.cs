@@ -30,8 +30,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                     info.MarshalTo.MemberActions.Add(new Action
                     {
                         ValueExpression = EnumField(enumTypeName, enumInfo.FieldName),
-                        ParamName = "pointer",
-                        ParamFieldName = member.Name
+                        TargetExpression = DerefMember(Variable("pointer"), member.Name)
                     });
                 }
 

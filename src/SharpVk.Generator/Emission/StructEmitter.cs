@@ -153,16 +153,16 @@ namespace SharpVk.Generator.Emission
                                                             EmitMarshalAction(loop, action, Index(Variable("fieldPointer"), Variable(action.IndexName)));
                                                         });
 
-                                    ifBlock.EmitAssignment(DerefMember(Variable(action.ParamName), action.ParamFieldName), Variable("fieldPointer"));
+                                    ifBlock.EmitAssignment(action.TargetExpression, Variable("fieldPointer"));
                                 },
                                 elseBlock =>
                                 {
-                                    elseBlock.EmitAssignment(DerefMember(Variable(action.ParamName), action.ParamFieldName), Null);
+                                    elseBlock.EmitAssignment(action.TargetExpression, Null);
                                 });
                         }
                         else
                         {
-                            EmitMarshalAction(body, action, DerefMember(Variable(action.ParamName), action.ParamFieldName));
+                            EmitMarshalAction(body, action, action.TargetExpression);
                         }
                     }
                 }
@@ -178,7 +178,7 @@ namespace SharpVk.Generator.Emission
         {
             switch (action.Type)
             {
-                case MemberActionType.AssignToDeref:
+                case MemberActionType.Assign:
                     codeBlock.EmitAssignment(targetExpression, action.ValueExpression);
                     break;
                 case MemberActionType.AllocAndAssign:
@@ -187,13 +187,20 @@ namespace SharpVk.Generator.Emission
                     codeBlock.EmitAssignment(Deref(targetExpression), action.ValueExpression);
                     break;
                 case MemberActionType.MarshalToAddressOf:
-                    targetExpression = AddressOf(targetExpression);
-                    codeBlock.EmitCall(action.ValueExpression, "MarshalTo", targetExpression);
+                    codeBlock.EmitCall(action.ValueExpression, "MarshalTo", AddressOf(targetExpression));
                     break;
                 case MemberActionType.MarshalTo:
                     codeBlock.EmitAssignment(targetExpression,
                                         Cast(action.MemberType + "*", StaticCall("Interop.HeapUtil", $"Allocate<{action.MemberType}>")));
                     codeBlock.EmitCall(action.ValueExpression, "MarshalTo", targetExpression);
+                    break;
+                case MemberActionType.MarshalFrom:
+                    codeBlock.EmitAssignment(targetExpression,
+                                        StaticCall(action.MemberType, "MarshalFrom", action.ValueExpression));
+                    break;
+                case MemberActionType.MarshalFromAddressOf:
+                    codeBlock.EmitAssignment(targetExpression,
+                                        StaticCall(action.MemberType, "MarshalFrom", AddressOf(action.ValueExpression)));
                     break;
             }
         }

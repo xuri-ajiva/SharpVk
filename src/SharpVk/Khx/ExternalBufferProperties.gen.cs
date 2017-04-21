@@ -43,6 +43,7 @@ namespace SharpVk.Khx
         internal static unsafe ExternalBufferProperties MarshalFrom(Interop.Khx.ExternalBufferProperties* pointer)
         {
             ExternalBufferProperties result = default(ExternalBufferProperties);
+            result.ExternalMemoryProperties = pointer->ExternalMemoryProperties;
             return result;
         }
     }

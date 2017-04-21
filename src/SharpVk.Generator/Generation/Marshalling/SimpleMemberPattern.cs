@@ -37,11 +37,18 @@ namespace SharpVk.Generator.Generation.Marshalling
 
             info.MarshalTo.MemberActions.Add(new Action
             {
-                ValueExpression = marshalling.BuildValueExpression(Member(This, member.Name)),
-                ParamName = "pointer",
-                ParamFieldName = member.Name,
+                ValueExpression = marshalling.BuildMarshalToValueExpression(Member(This, member.Name)),
+                TargetExpression = DerefMember(Variable("pointer"), member.Name),
                 MemberType = marshalling.InteropType,
-                Type = marshalling.ActionType
+                Type = marshalling.MarshalToActionType
+            });
+
+            info.MarshalFrom.MemberActions.Add(new Action
+            {
+                ValueExpression = marshalling.BuildMarshalFromValueExpression(DerefMember(Variable("pointer"), member.Name)),
+                TargetExpression = Member(Variable("result"), member.Name),
+                MemberType = marshalling.MemberType,
+                Type = marshalling.MarshalFromActionType
             });
 
             return true;

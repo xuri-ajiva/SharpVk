@@ -1,6 +1,4 @@
-﻿using SharpVk.Emit;
-using SharpVk.Generator.Collation;
-using System;
+﻿using SharpVk.Generator.Collation;
 using System.Collections.Generic;
 
 using static SharpVk.Emit.ExpressionBuilder;
@@ -31,8 +29,8 @@ namespace SharpVk.Generator.Generation.Marshalling
                 {
                     MemberType = memberType,
                     InteropType = "Interop." + memberType,
-                    ActionType = MemberActionType.AssignToDeref,
-                    BuildValueExpression = value => Member(value, "handle")
+                    BuildMarshalToValueExpression = value => Member(value, "handle"),
+                    BuildMarshalFromValueExpression = value => New(memberType, value)
                 };
 
                 return true;

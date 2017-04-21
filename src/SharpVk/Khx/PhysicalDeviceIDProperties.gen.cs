@@ -43,6 +43,7 @@ namespace SharpVk.Khx
         internal static unsafe PhysicalDeviceIDProperties MarshalFrom(Interop.Khx.PhysicalDeviceIDProperties* pointer)
         {
             PhysicalDeviceIDProperties result = default(PhysicalDeviceIDProperties);
+            result.DeviceLUIDValid = pointer->DeviceLUIDValid;
             return result;
         }
     }

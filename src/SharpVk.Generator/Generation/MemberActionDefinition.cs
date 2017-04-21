@@ -8,8 +8,7 @@ namespace SharpVk.Generator.Generation
         public Action<ExpressionBuilder> NullCheckExpression;
         public Action<ExpressionBuilder> LengthExpression;
         public Action<ExpressionBuilder> ValueExpression;
-        public string ParamName;
-        public string ParamFieldName;
+        public Action<ExpressionBuilder> TargetExpression;
         public string IndexName;
         public string MemberType;
         public MemberActionType Type;
@@ -21,8 +20,10 @@ namespace SharpVk.Generator.Generation
 {
     public enum MemberActionType
     {
-        AssignToDeref,
+        Assign,
         AllocAndAssign,
+        MarshalFrom,
+        MarshalFromAddressOf,
         MarshalTo,
         MarshalToAddressOf
     }
