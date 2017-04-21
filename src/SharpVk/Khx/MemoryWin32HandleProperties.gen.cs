@@ -40,11 +40,10 @@ namespace SharpVk.Khx
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.Khx.MemoryWin32HandleProperties* pointer)
+        internal static unsafe MemoryWin32HandleProperties MarshalFrom(Interop.Khx.MemoryWin32HandleProperties* pointer)
         {
-            pointer->SType = StructureType.MemoryWin32HandlePropertiesKhx;
-            pointer->Next = null;
-            pointer->MemoryTypeBits = this.MemoryTypeBits;
+            MemoryWin32HandleProperties result = default(MemoryWin32HandleProperties);
+            return result;
         }
     }
 }

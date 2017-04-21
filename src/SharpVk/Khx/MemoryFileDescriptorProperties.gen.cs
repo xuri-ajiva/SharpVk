@@ -40,11 +40,10 @@ namespace SharpVk.Khx
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.Khx.MemoryFileDescriptorProperties* pointer)
+        internal static unsafe MemoryFileDescriptorProperties MarshalFrom(Interop.Khx.MemoryFileDescriptorProperties* pointer)
         {
-            pointer->SType = StructureType.MemoryFileDescriptorPropertiesKhx;
-            pointer->Next = null;
-            pointer->MemoryTypeBits = this.MemoryTypeBits;
+            MemoryFileDescriptorProperties result = default(MemoryFileDescriptorProperties);
+            return result;
         }
     }
 }

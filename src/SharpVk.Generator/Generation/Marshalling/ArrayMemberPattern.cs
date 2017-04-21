@@ -1,6 +1,5 @@
 ﻿using SharpVk.Generator.Collation;
 using SharpVk.Generator.Rules;
-using System;
 using System.Collections.Generic;
 
 using static SharpVk.Emit.ExpressionBuilder;
@@ -19,30 +18,36 @@ namespace SharpVk.Generator.Generation.Marshalling
             this.nameLookup = nameLookup;
         }
 
-        public bool Apply(TypeDeclaration type, MemberDeclaration member, StructDefinition publicStruct, Action<Action> addAction)
+        public bool Apply(TypeDeclaration type, MemberDeclaration member, MemberPatternInfo info)
         {
             if (member.Dimensions != null)
             {
+                info.InteropStruct.Fields.Add(new MemberDefinition
+                {
+                    Name = member.Name,
+                    Type = this.nameLookup.Lookup(member.Type, true)
+                });
+
                 if (member.Dimensions.Length == 2)
                 {
-                    publicStruct.Properties.Add(new MemberDefinition
+                    info.PublicStruct.Properties.Add(new MemberDefinition
                     {
                         Name = member.Name,
                         Type = "string[]"
                     });
                 }
-                if (member.Dimensions.Length == 1)
+                else if (member.Dimensions.Length == 1)
                 {
                     switch (member.Dimensions[0].Type)
                     {
                         case LenType.NullTerminated:
-                            publicStruct.Properties.Add(new MemberDefinition
+                            info.PublicStruct.Properties.Add(new MemberDefinition
                             {
                                 Name = member.Name,
                                 Type = "string"
                             });
 
-                            addAction(new Action
+                            info.MarshalTo.MemberActions.Add(new Action
                             {
                                 ValueExpression = StaticCall("Interop.HeapUtil", "MarshalTo", Member(This, member.Name)),
                                 ParamName = "pointer",
@@ -62,13 +67,13 @@ namespace SharpVk.Generator.Generation.Marshalling
 
                             var marshalling = this.marshallingRules.ApplyFirst(elementType);
 
-                            publicStruct.Properties.Add(new MemberDefinition
+                            info.PublicStruct.Properties.Add(new MemberDefinition
                             {
                                 Name = member.Name,
                                 Type = marshalling.MemberType + "[]"
                             });
 
-                            addAction(new Action
+                            info.MarshalTo.MemberActions.Add(new Action
                             {
                                 ParamName = "pointer",
                                 ParamFieldName = member.Name,

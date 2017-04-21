@@ -49,12 +49,10 @@ namespace SharpVk.Khx
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.Khx.PhysicalDeviceMultiviewProperties* pointer)
+        internal static unsafe PhysicalDeviceMultiviewProperties MarshalFrom(Interop.Khx.PhysicalDeviceMultiviewProperties* pointer)
         {
-            pointer->SType = StructureType.PhysicalDeviceMultiviewPropertiesKhx;
-            pointer->Next = null;
-            pointer->MaxMultiviewViewCount = this.MaxMultiviewViewCount;
-            pointer->MaxMultiviewInstanceIndex = this.MaxMultiviewInstanceIndex;
+            PhysicalDeviceMultiviewProperties result = default(PhysicalDeviceMultiviewProperties);
+            return result;
         }
     }
 }

@@ -40,11 +40,10 @@ namespace SharpVk.Khr
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.Khr.QueueFamilyProperties2* pointer)
+        internal static unsafe QueueFamilyProperties2 MarshalFrom(Interop.Khr.QueueFamilyProperties2* pointer)
         {
-            pointer->SType = StructureType.QueueFamilyProperties2Khr;
-            pointer->Next = null;
-            pointer->QueueFamilyProperties = this.QueueFamilyProperties;
+            QueueFamilyProperties2 result = default(QueueFamilyProperties2);
+            return result;
         }
     }
 }

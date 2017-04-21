@@ -94,15 +94,10 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.PhysicalDeviceProperties* pointer)
+        internal static unsafe PhysicalDeviceProperties MarshalFrom(Interop.PhysicalDeviceProperties* pointer)
         {
-            pointer->ApiVersion = (uint)(this.ApiVersion);
-            pointer->DriverVersion = (uint)(this.DriverVersion);
-            pointer->VendorID = this.VendorID;
-            pointer->DeviceID = this.DeviceID;
-            pointer->DeviceType = this.DeviceType;
-            this.Limits.MarshalTo(&pointer->Limits);
-            pointer->SparseProperties = this.SparseProperties;
+            PhysicalDeviceProperties result = default(PhysicalDeviceProperties);
+            return result;
         }
     }
 }

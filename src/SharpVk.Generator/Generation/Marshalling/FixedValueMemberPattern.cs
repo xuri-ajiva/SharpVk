@@ -18,7 +18,7 @@ namespace SharpVk.Generator.Generation.Marshalling
             this.enumLookup = enumLookup;
         }
 
-        public bool Apply(TypeDeclaration type, MemberDeclaration member, StructDefinition publicStruct, Action<Action> addAction)
+        public bool Apply(TypeDeclaration type, MemberDeclaration member, MemberPatternInfo info)
         {
             if (member.FixedValue != null)
             {
@@ -27,13 +27,19 @@ namespace SharpVk.Generator.Generation.Marshalling
                     var enumInfo = this.enumLookup[member.FixedValue];
                     var enumTypeName = this.nameLookup.Lookup(enumInfo.TypeVkName);
 
-                    addAction(new Action
+                    info.MarshalTo.MemberActions.Add(new Action
                     {
                         ValueExpression = EnumField(enumTypeName, enumInfo.FieldName),
                         ParamName = "pointer",
                         ParamFieldName = member.Name
                     });
                 }
+
+                info.InteropStruct.Fields.Add(new MemberDefinition
+                {
+                    Name = member.Name,
+                    Type = this.nameLookup.Lookup(member.Type, true)
+                });
 
                 return true;
             }

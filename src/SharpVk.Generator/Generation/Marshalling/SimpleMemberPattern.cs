@@ -19,17 +19,23 @@ namespace SharpVk.Generator.Generation.Marshalling
             this.nameLookup = nameLookup;
         }
 
-        public bool Apply(TypeDeclaration type, MemberDeclaration member, StructDefinition publicStruct, Action<Action> addAction)
+        public bool Apply(TypeDeclaration type, MemberDeclaration member, MemberPatternInfo info)
         {
             var marshalling = this.marshallingRules.ApplyFirst(member.Type);
 
-            publicStruct.Properties.Add(new MemberDefinition
+            info.PublicStruct.Properties.Add(new MemberDefinition
             {
                 Name = member.Name,
                 Type = marshalling.MemberType
             });
 
-            addAction(new Action
+            info.InteropStruct.Fields.Add(new MemberDefinition
+            {
+                Name = member.Name,
+                Type = this.nameLookup.Lookup(member.Type, true)
+            });
+
+            info.MarshalTo.MemberActions.Add(new Action
             {
                 ValueExpression = marshalling.BuildValueExpression(Member(This, member.Name)),
                 ParamName = "pointer",

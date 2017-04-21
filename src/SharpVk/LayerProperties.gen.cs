@@ -49,10 +49,10 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.LayerProperties* pointer)
+        internal static unsafe LayerProperties MarshalFrom(Interop.LayerProperties* pointer)
         {
-            pointer->SpecVersion = (uint)(this.SpecVersion);
-            pointer->ImplementationVersion = (uint)(this.ImplementationVersion);
+            LayerProperties result = default(LayerProperties);
+            return result;
         }
     }
 }

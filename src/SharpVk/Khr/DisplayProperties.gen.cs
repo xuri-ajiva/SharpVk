@@ -94,15 +94,10 @@ namespace SharpVk.Khr
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.Khr.DisplayProperties* pointer)
+        internal static unsafe DisplayProperties MarshalFrom(Interop.Khr.DisplayProperties* pointer)
         {
-            pointer->Display = this.Display.handle;
-            pointer->DisplayName = Interop.HeapUtil.MarshalTo(this.DisplayName);
-            pointer->PhysicalDimensions = this.PhysicalDimensions;
-            pointer->PhysicalResolution = this.PhysicalResolution;
-            pointer->SupportedTransforms = this.SupportedTransforms;
-            pointer->PlaneReorderPossible = this.PlaneReorderPossible;
-            pointer->PersistentContent = this.PersistentContent;
+            DisplayProperties result = default(DisplayProperties);
+            return result;
         }
     }
 }

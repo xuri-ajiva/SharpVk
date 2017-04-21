@@ -5,6 +5,7 @@ using SharpVk.Generator.Pipeline;
 using System.Collections.Generic;
 using System.Linq;
 using SharpVk.Generator.Rules;
+using SharpVk.Emit;
 
 namespace SharpVk.Generator.Generation
 {
@@ -64,24 +65,64 @@ namespace SharpVk.Generator.Generation
                     MemberActions = new List<Action>()
                 };
 
-                publicStruct.Methods.Add(marshalToMethod);
 
-                foreach (var member in type.Members)
+                var marshalFromMethod = new MethodDefinition
                 {
-                    this.patternRules.ApplyFirst(type, member, publicStruct, marshalToMethod.MemberActions.Add);
+                    Name = "MarshalFrom",
+                    ReturnType = type.Name,
+                    IsUnsafe = true,
+                    IsStatic = true,
+                    ParamActions = new List<ParamActionDefinition>
+                    {
+                        new ParamActionDefinition
+                        {
+                            Param = new ParamDefinition
+                            {
+                                Name = "pointer",
+                                Type = "Interop." + this.nameLookup.Lookup(new TypeReference
+                                {
+                                    VkName = typeItem.Key,
+                                    PointerType = PointerType.Pointer
+                                }, true)
+                            }
+                        }
+                    },
+                    MemberActions = new List<Action>()
+                };
+
+                if (type.IsOutputOnly)
+                {
+                    publicStruct.Methods.Add(marshalFromMethod);
+                }
+                else
+                {
+                    publicStruct.Methods.Add(marshalToMethod);
                 }
 
                 typeNamespace.Insert(0, "Interop");
 
-                services.AddSingleton(publicStruct);
-
-                services.AddSingleton(new StructDefinition
+                var interopStruct = new StructDefinition
                 {
                     Name = type.Name,
                     Namespace = typeNamespace.ToArray(),
                     IsUnsafe = true,
-                    Fields = type.Members.Select(this.GetInteropMember).ToList()
-                });
+                    Fields = new List<MemberDefinition>()
+                };
+
+                foreach (var member in type.Members)
+                {
+                    this.patternRules.ApplyFirst(type, member, new MemberPatternInfo
+                    {
+                        PublicStruct = publicStruct,
+                        InteropStruct = interopStruct,
+                        MarshalFrom = marshalFromMethod,
+                        MarshalTo = marshalToMethod
+                    });
+                }
+
+                services.AddSingleton(publicStruct);
+
+                services.AddSingleton(interopStruct);
             }
         }
 

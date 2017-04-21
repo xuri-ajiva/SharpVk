@@ -40,11 +40,10 @@ namespace SharpVk.Khr
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.Khr.SparseImageFormatProperties2* pointer)
+        internal static unsafe SparseImageFormatProperties2 MarshalFrom(Interop.Khr.SparseImageFormatProperties2* pointer)
         {
-            pointer->SType = StructureType.SparseImageFormatProperties2Khr;
-            pointer->Next = null;
-            pointer->Properties = this.Properties;
+            SparseImageFormatProperties2 result = default(SparseImageFormatProperties2);
+            return result;
         }
     }
 }

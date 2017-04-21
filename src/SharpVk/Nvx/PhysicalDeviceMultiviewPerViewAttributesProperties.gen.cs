@@ -40,11 +40,10 @@ namespace SharpVk.Nvx
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.Nvx.PhysicalDeviceMultiviewPerViewAttributesProperties* pointer)
+        internal static unsafe PhysicalDeviceMultiviewPerViewAttributesProperties MarshalFrom(Interop.Nvx.PhysicalDeviceMultiviewPerViewAttributesProperties* pointer)
         {
-            pointer->SType = StructureType.PhysicalDeviceMultiviewPerViewAttributesPropertiesNvx;
-            pointer->Next = null;
-            pointer->PerViewPositionAllComponents = this.PerViewPositionAllComponents;
+            PhysicalDeviceMultiviewPerViewAttributesProperties result = default(PhysicalDeviceMultiviewPerViewAttributesProperties);
+            return result;
         }
     }
 }

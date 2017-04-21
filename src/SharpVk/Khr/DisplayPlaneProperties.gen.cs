@@ -49,10 +49,10 @@ namespace SharpVk.Khr
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.Khr.DisplayPlaneProperties* pointer)
+        internal static unsafe DisplayPlaneProperties MarshalFrom(Interop.Khr.DisplayPlaneProperties* pointer)
         {
-            pointer->CurrentDisplay = this.CurrentDisplay.handle;
-            pointer->CurrentStackIndex = this.CurrentStackIndex;
+            DisplayPlaneProperties result = default(DisplayPlaneProperties);
+            return result;
         }
     }
 }

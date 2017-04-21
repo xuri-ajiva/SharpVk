@@ -130,21 +130,10 @@ namespace SharpVk.Ext
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.Ext.SurfaceCapabilities2* pointer)
+        internal static unsafe SurfaceCapabilities2 MarshalFrom(Interop.Ext.SurfaceCapabilities2* pointer)
         {
-            pointer->SType = StructureType.SurfaceCapabilities2Ext;
-            pointer->Next = null;
-            pointer->MinImageCount = this.MinImageCount;
-            pointer->MaxImageCount = this.MaxImageCount;
-            pointer->CurrentExtent = this.CurrentExtent;
-            pointer->MinImageExtent = this.MinImageExtent;
-            pointer->MaxImageExtent = this.MaxImageExtent;
-            pointer->MaxImageArrayLayers = this.MaxImageArrayLayers;
-            pointer->SupportedTransforms = this.SupportedTransforms;
-            pointer->CurrentTransform = this.CurrentTransform;
-            pointer->SupportedCompositeAlpha = this.SupportedCompositeAlpha;
-            pointer->SupportedUsageFlags = this.SupportedUsageFlags;
-            pointer->SupportedSurfaceCounters = this.SupportedSurfaceCounters;
+            SurfaceCapabilities2 result = default(SurfaceCapabilities2);
+            return result;
         }
     }
 }

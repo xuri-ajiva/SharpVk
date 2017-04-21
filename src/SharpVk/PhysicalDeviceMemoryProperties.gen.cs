@@ -49,10 +49,10 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.PhysicalDeviceMemoryProperties* pointer)
+        internal static unsafe PhysicalDeviceMemoryProperties MarshalFrom(Interop.PhysicalDeviceMemoryProperties* pointer)
         {
-            pointer->MemoryTypeCount = this.MemoryTypeCount;
-            pointer->MemoryHeapCount = this.MemoryHeapCount;
+            PhysicalDeviceMemoryProperties result = default(PhysicalDeviceMemoryProperties);
+            return result;
         }
     }
 }

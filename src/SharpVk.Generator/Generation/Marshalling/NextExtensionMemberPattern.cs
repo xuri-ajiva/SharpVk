@@ -1,5 +1,4 @@
 ﻿using SharpVk.Generator.Collation;
-using System;
 
 using static SharpVk.Emit.ExpressionBuilder;
 
@@ -8,15 +7,28 @@ namespace SharpVk.Generator.Generation.Marshalling
     public class NextExtensionMemberPattern
         : IMemberPatternRule
     {
-        public bool Apply(TypeDeclaration type, MemberDeclaration member, StructDefinition publicStruct, Action<Action> addAction)
+        private readonly NameLookup nameLookup;
+
+        public NextExtensionMemberPattern(NameLookup nameLookup)
+        {
+            this.nameLookup = nameLookup;
+        }
+
+        public bool Apply(TypeDeclaration type, MemberDeclaration member, MemberPatternInfo info)
         {
             if (member.Name == "Next")
             {
-                addAction(new Action
+                info.MarshalTo.MemberActions.Add(new Action
                 {
                     ValueExpression = Null,
                     ParamName = "pointer",
                     ParamFieldName = member.Name
+                });
+
+                info.InteropStruct.Fields.Add(new MemberDefinition
+                {
+                    Name = member.Name,
+                    Type = this.nameLookup.Lookup(member.Type, true)
                 });
 
                 return true;

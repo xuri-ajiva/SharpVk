@@ -40,11 +40,10 @@ namespace SharpVk.Khr
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.Khr.PhysicalDeviceMemoryProperties2* pointer)
+        internal static unsafe PhysicalDeviceMemoryProperties2 MarshalFrom(Interop.Khr.PhysicalDeviceMemoryProperties2* pointer)
         {
-            pointer->SType = StructureType.PhysicalDeviceMemoryProperties2Khr;
-            pointer->Next = null;
-            this.MemoryProperties.MarshalTo(&pointer->MemoryProperties);
+            PhysicalDeviceMemoryProperties2 result = default(PhysicalDeviceMemoryProperties2);
+            return result;
         }
     }
 }

@@ -8,21 +8,34 @@ namespace SharpVk.Generator.Generation.Marshalling
     public class VersionMemberPattern
         : IMemberPatternRule
     {
-        public bool Apply(TypeDeclaration type, MemberDeclaration member, StructDefinition publicStruct, Action<Action> addAction)
+        private readonly NameLookup nameLookup;
+
+        public VersionMemberPattern(NameLookup nameLookup)
+        {
+            this.nameLookup = nameLookup;
+        }
+
+        public bool Apply(TypeDeclaration type, MemberDeclaration member, MemberPatternInfo info)
         {
             if (member.Name.EndsWith("Version") && member.Type.VkName.StartsWith("uint32"))
             {
-                publicStruct.Properties.Add(new MemberDefinition
+                info.PublicStruct.Properties.Add(new MemberDefinition
                 {
                     Name = member.Name,
                     Type = "Version"
                 });
 
-                addAction(new Action
+                info.MarshalTo.MemberActions.Add(new Action
                 {
                     ValueExpression = Cast("uint", Member(This, member.Name)),
                     ParamName = "pointer",
                     ParamFieldName = member.Name
+                });
+
+                info.InteropStruct.Fields.Add(new MemberDefinition
+                {
+                    Name = member.Name,
+                    Type = this.nameLookup.Lookup(member.Type, true)
                 });
 
                 return true;

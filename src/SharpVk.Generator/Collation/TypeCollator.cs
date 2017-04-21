@@ -33,7 +33,8 @@ namespace SharpVk.Generator.Collation
                                         Extension = x.Extension?.FirstToUpper(),
                                         Pattern = x.Category.MapToPattern(),
                                         Members = GetMembers(x).ToList(),
-                                        Type = x.Type
+                                        Type = x.Type,
+                                        IsOutputOnly = x.IsReturnedOnly
                                     });
 
             bool newInteropTypes = true;

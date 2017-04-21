@@ -77,12 +77,24 @@ namespace SharpVk.Generator.Emission
                             {
                                 foreach (var method in @struct.Methods)
                                 {
-                                    typeBuilder.EmitMethod("void",
+                                    var modifiers = MemberModifier.None;
+
+                                    if (method.IsUnsafe)
+                                    {
+                                        modifiers |= MemberModifier.Unsafe;
+                                    }
+
+                                    if (method.IsStatic)
+                                    {
+                                        modifiers |= MemberModifier.Static;
+                                    }
+
+                                    typeBuilder.EmitMethod(method.ReturnType ?? "void",
                                                                 method.Name,
                                                                 BuildBody(method),
                                                                 BuildParams(method),
                                                                 method.IsUnsafe ? Internal : Public,
-                                                                method.IsUnsafe ? MemberModifier.Unsafe : MemberModifier.None);
+                                                                modifiers);
                                 }
                             }
                         }, Public, null, @struct.IsUnsafe ? Unsafe : None);
@@ -106,6 +118,11 @@ namespace SharpVk.Generator.Emission
         {
             return body =>
             {
+                if (method.ReturnType != null)
+                {
+                    body.EmitVariableDeclaration(method.ReturnType, "result", Default(method.ReturnType));
+                }
+
                 if (method.ParamActions != null)
                 {
                     foreach (var action in method.ParamActions)
@@ -148,6 +165,11 @@ namespace SharpVk.Generator.Emission
                             EmitMarshalAction(body, action, DerefMember(Variable(action.ParamName), action.ParamFieldName));
                         }
                     }
+                }
+
+                if (method.ReturnType != null)
+                {
+                    body.EmitReturn(Variable("result"));
                 }
             };
         }

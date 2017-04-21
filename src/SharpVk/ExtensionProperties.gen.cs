@@ -40,9 +40,10 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.ExtensionProperties* pointer)
+        internal static unsafe ExtensionProperties MarshalFrom(Interop.ExtensionProperties* pointer)
         {
-            pointer->SpecVersion = (uint)(this.SpecVersion);
+            ExtensionProperties result = default(ExtensionProperties);
+            return result;
         }
     }
 }

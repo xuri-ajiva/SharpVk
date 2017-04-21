@@ -49,12 +49,10 @@ namespace SharpVk.Khx
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.Khx.PhysicalDeviceGroupProperties* pointer)
+        internal static unsafe PhysicalDeviceGroupProperties MarshalFrom(Interop.Khx.PhysicalDeviceGroupProperties* pointer)
         {
-            pointer->SType = StructureType.PhysicalDeviceGroupPropertiesKhx;
-            pointer->Next = null;
-            pointer->PhysicalDeviceCount = this.PhysicalDeviceCount;
-            pointer->SubsetAllocation = this.SubsetAllocation;
+            PhysicalDeviceGroupProperties result = default(PhysicalDeviceGroupProperties);
+            return result;
         }
     }
 }

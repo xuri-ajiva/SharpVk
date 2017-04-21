@@ -8,6 +8,7 @@ namespace SharpVk.Generator.Collation
         public string Name;
         public string Extension;
         public string Type;
+        public bool IsOutputOnly;
         public TypePattern Pattern;
         public List<MemberDeclaration> Members;
 

@@ -40,11 +40,10 @@ namespace SharpVk.Khx
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.Khx.DeviceGroupPresentCapabilities* pointer)
+        internal static unsafe DeviceGroupPresentCapabilities MarshalFrom(Interop.Khx.DeviceGroupPresentCapabilities* pointer)
         {
-            pointer->SType = StructureType.DeviceGroupPresentCapabilitiesKhx;
-            pointer->Next = null;
-            pointer->Modes = this.Modes;
+            DeviceGroupPresentCapabilities result = default(DeviceGroupPresentCapabilities);
+            return result;
         }
     }
 }

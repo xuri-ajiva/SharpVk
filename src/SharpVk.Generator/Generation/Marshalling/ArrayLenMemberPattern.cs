@@ -19,7 +19,7 @@ namespace SharpVk.Generator.Generation.Marshalling
             this.nameLookup = nameLookup;
         }
 
-        public bool Apply(TypeDeclaration type, MemberDeclaration member, StructDefinition publicStruct, Action<Action> addAction)
+        public bool Apply(TypeDeclaration type, MemberDeclaration member, MemberPatternInfo info)
         {
             var lenExpression = new List<Action<ExpressionBuilder>>();
 
@@ -39,11 +39,17 @@ namespace SharpVk.Generator.Generation.Marshalling
 
             if (lenExpression.Any())
             {
-                addAction(new Action
+                info.MarshalTo.MemberActions.Add(new Action
                 {
                     ParamName = "pointer",
                     ParamFieldName = member.Name,
                     ValueExpression = Cast(this.nameLookup.Lookup(member.Type, false), lenExpression.First())
+                });
+
+                info.InteropStruct.Fields.Add(new MemberDefinition
+                {
+                    Name = member.Name,
+                    Type = this.nameLookup.Lookup(member.Type, true)
                 });
             }
 
