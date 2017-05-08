@@ -1,5 +1,4 @@
 ﻿using SharpVk.Generator.Collation;
-using System;
 
 using static SharpVk.Emit.ExpressionBuilder;
 
@@ -25,10 +24,10 @@ namespace SharpVk.Generator.Generation.Marshalling
                     Type = "Version"
                 });
 
-                info.MarshalTo.MemberActions.Add(new Action
+                info.MarshalFrom.MemberActions.Add(new Action
                 {
-                    ValueExpression = Cast("uint", Member(This, member.Name)),
-                    TargetExpression = DerefMember(Variable("pointer"), member.Name),
+                    ValueExpression = Cast("Version", DerefMember(Variable("pointer"), member.Name)),
+                    TargetExpression = Member(Variable("result"), member.Name),
                 });
 
                 info.InteropStruct.Fields.Add(new MemberDefinition

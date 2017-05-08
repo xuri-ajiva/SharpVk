@@ -46,17 +46,17 @@ namespace SharpVk.Interop.Khx
         /// <summary>
         /// 
         /// </summary>
-        public fixed byte DeviceUUID[1]; 
+        public fixed byte DeviceUUID[Constants.UuidSize]; 
         
         /// <summary>
         /// 
         /// </summary>
-        public fixed byte DriverUUID[1]; 
+        public fixed byte DriverUUID[Constants.UuidSize]; 
         
         /// <summary>
         /// 
         /// </summary>
-        public fixed byte DeviceLUID[1]; 
+        public fixed byte DeviceLUID[Constants.LuidSize]; 
         
         /// <summary>
         /// 

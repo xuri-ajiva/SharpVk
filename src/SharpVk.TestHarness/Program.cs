@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Linq;
 
 namespace SharpVk.TestHarness
 {
@@ -6,7 +6,11 @@ namespace SharpVk.TestHarness
     {
         static void Main(string[] args)
         {
-            var layers = Instance.EnumerateLayerProperties();
+            var instance = Instance.Create(new InstanceCreateInfo { });
+
+            var devices = instance._EnumeratePhysicalDevices();
+
+            var properties = devices.Select(x => x._GetProperties()).ToArray();
         }
     }
 }

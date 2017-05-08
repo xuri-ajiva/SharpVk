@@ -37,7 +37,7 @@
         /// 
         /// </summary>
         /// <returns></returns>
-        public PhysicalDevice[] EnumeratePhysicalDevices()
+        public PhysicalDevice[] _EnumeratePhysicalDevices()
         {
             unsafe
             {
@@ -70,7 +70,7 @@
         /// 
         /// </summary>
         /// <returns></returns>
-        public static LayerProperties[] EnumerateLayerProperties()
+        public static LayerProperties[] _EnumerateLayerProperties()
         {
             unsafe
             {
@@ -88,7 +88,7 @@
                     result = new LayerProperties[(uint)propertyCount];
                     for (int index = 0; index < (uint)propertyCount; index++)
                     {
-                        //result[index] = LayerProperties.MarshalFrom(&marshalledProperties[index]);
+                        result[index] = LayerProperties.MarshalFrom(&marshalledProperties[index]);
                     }
                     return result;
                 }

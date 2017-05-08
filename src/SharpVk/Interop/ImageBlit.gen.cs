@@ -41,7 +41,12 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public Offset3D SourceOffsets; 
+        public Offset3D SourceOffsets_0; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Offset3D SourceOffsets_1; 
         
         /// <summary>
         /// 
@@ -51,6 +56,11 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public Offset3D DestinationOffsets; 
+        public Offset3D DestinationOffsets_0; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Offset3D DestinationOffsets_1; 
     }
 }

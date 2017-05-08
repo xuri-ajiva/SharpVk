@@ -37,5 +37,57 @@ namespace SharpVk
         {
             this.handle = handle;
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Result Create()
+        {
+            Result result = default(Result);
+            return result;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Destroy()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Result EnumeratePhysicalDevices()
+        {
+            Result result = default(Result);
+            return result;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public VoidFunctionDelegate GetProcedureAddress()
+        {
+            VoidFunctionDelegate result = default(VoidFunctionDelegate);
+            return result;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Result EnumerateLayerProperties()
+        {
+            Result result = default(Result);
+            return result;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Result EnumerateExtensionProperties()
+        {
+            Result result = default(Result);
+            return result;
+        }
     }
 }

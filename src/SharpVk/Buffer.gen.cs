@@ -37,5 +37,28 @@ namespace SharpVk
         {
             this.handle = handle;
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void GetMemoryRequirements()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Result BindMemory()
+        {
+            Result result = default(Result);
+            return result;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Destroy()
+        {
+        }
     }
 }

@@ -41,7 +41,162 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public MemoryType MemoryTypes; 
+        public MemoryType MemoryTypes_0; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryType MemoryTypes_1; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryType MemoryTypes_2; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryType MemoryTypes_3; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryType MemoryTypes_4; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryType MemoryTypes_5; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryType MemoryTypes_6; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryType MemoryTypes_7; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryType MemoryTypes_8; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryType MemoryTypes_9; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryType MemoryTypes_10; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryType MemoryTypes_11; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryType MemoryTypes_12; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryType MemoryTypes_13; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryType MemoryTypes_14; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryType MemoryTypes_15; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryType MemoryTypes_16; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryType MemoryTypes_17; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryType MemoryTypes_18; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryType MemoryTypes_19; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryType MemoryTypes_20; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryType MemoryTypes_21; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryType MemoryTypes_22; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryType MemoryTypes_23; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryType MemoryTypes_24; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryType MemoryTypes_25; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryType MemoryTypes_26; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryType MemoryTypes_27; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryType MemoryTypes_28; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryType MemoryTypes_29; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryType MemoryTypes_30; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryType MemoryTypes_31; 
         
         /// <summary>
         /// 
@@ -51,6 +206,81 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public MemoryHeap MemoryHeaps; 
+        public MemoryHeap MemoryHeaps_0; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryHeap MemoryHeaps_1; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryHeap MemoryHeaps_2; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryHeap MemoryHeaps_3; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryHeap MemoryHeaps_4; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryHeap MemoryHeaps_5; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryHeap MemoryHeaps_6; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryHeap MemoryHeaps_7; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryHeap MemoryHeaps_8; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryHeap MemoryHeaps_9; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryHeap MemoryHeaps_10; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryHeap MemoryHeaps_11; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryHeap MemoryHeaps_12; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryHeap MemoryHeaps_13; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryHeap MemoryHeaps_14; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public MemoryHeap MemoryHeaps_15; 
     }
 }

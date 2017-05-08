@@ -13,11 +13,13 @@ namespace SharpVk.Generator.Emission
         : IOutputWorker
     {
         private readonly IEnumerable<HandleDefinition> handles;
+        private readonly MethodEmitter methodEmitter;
         private readonly FileBuilderFactory builderFactory;
 
-        public HandleEmitter(IEnumerable<HandleDefinition> handles, FileBuilderFactory builderFactory)
+        public HandleEmitter(IEnumerable<HandleDefinition> handles, MethodEmitter methodEmitter, FileBuilderFactory builderFactory)
         {
             this.handles = handles;
+            this.methodEmitter = methodEmitter;
             this.builderFactory = builderFactory;
         }
 
@@ -100,6 +102,11 @@ namespace SharpVk.Generator.Emission
                             {
                                 parameters.EmitParam(interopTypeName, "handle");
                             }, Internal);
+
+                            foreach (var command in handle.Commands)
+                            {
+                                this.methodEmitter.Emit(typeBuilder, command);
+                            }
                         }, Public, modifiers: TypeModifier.Partial);
                     });
                 });

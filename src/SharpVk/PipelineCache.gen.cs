@@ -37,5 +37,48 @@ namespace SharpVk
         {
             this.handle = handle;
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Destroy()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Result GetData()
+        {
+            Result result = default(Result);
+            return result;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Result MergePipelineCaches()
+        {
+            Result result = default(Result);
+            return result;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Result CreateGraphicsPipelines()
+        {
+            Result result = default(Result);
+            return result;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Result CreateComputePipelines()
+        {
+            Result result = default(Result);
+            return result;
+        }
     }
 }

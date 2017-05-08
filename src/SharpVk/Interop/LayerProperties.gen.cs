@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public fixed byte LayerName[1]; 
+        public fixed byte LayerName[Constants.MaxExtensionNameSize]; 
         
         /// <summary>
         /// 
@@ -51,6 +51,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public fixed byte Description[1]; 
+        public fixed byte Description[Constants.MaxDescriptionSize]; 
     }
 }

@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public fixed byte ExtensionName[1]; 
+        public fixed byte ExtensionName[Constants.MaxExtensionNameSize]; 
         
         /// <summary>
         /// 

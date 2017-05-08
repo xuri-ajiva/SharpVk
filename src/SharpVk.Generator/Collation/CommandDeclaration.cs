@@ -6,6 +6,7 @@ namespace SharpVk.Generator.Collation
     {
         public string VkName;
         public string Name;
+        public string Extension;
         public string HandleTypeName;
         public string ReturnType;
         public List<ParamDeclaration> Params;

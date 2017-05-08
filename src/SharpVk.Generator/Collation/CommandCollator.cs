@@ -77,6 +77,7 @@ namespace SharpVk.Generator.Collation
                 {
                     VkName = command.VkName,
                     Name = this.nameFormatter.FormatName(command, typeData[handleTypeName]),
+                    Extension = command.Extension,
                     HandleTypeName = handleTypeName,
                     ReturnType = command.Type,
                     Params = command.Params.Select(x => new ParamDeclaration

@@ -37,5 +37,21 @@ namespace SharpVk
         {
             this.handle = handle;
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Destroy()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Result GetStatus()
+        {
+            Result result = default(Result);
+            return result;
+        }
     }
 }

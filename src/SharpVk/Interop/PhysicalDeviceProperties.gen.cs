@@ -61,12 +61,12 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public fixed byte DeviceName[1]; 
+        public fixed byte DeviceName[Constants.MaxPhysicalDeviceNameSize]; 
         
         /// <summary>
         /// 
         /// </summary>
-        public fixed byte PipelineCacheUUID[1]; 
+        public fixed byte PipelineCacheUUID[Constants.UuidSize]; 
         
         /// <summary>
         /// 

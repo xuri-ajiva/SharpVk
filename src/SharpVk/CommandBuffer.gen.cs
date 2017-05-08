@@ -37,5 +37,340 @@ namespace SharpVk
         {
             this.handle = handle;
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Result Begin()
+        {
+            Result result = default(Result);
+            return result;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Result End()
+        {
+            Result result = default(Result);
+            return result;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Result Reset()
+        {
+            Result result = default(Result);
+            return result;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void BindPipeline()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void SetViewport()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void SetScissor()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void SetLineWidth()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void SetDepthBias()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void SetBlendConstants()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void SetDepthBounds()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void SetStencilCompareMask()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void SetStencilWriteMask()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void SetStencilReference()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void BindDescriptorSets()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void BindIndexBuffer()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void BindVertexBuffers()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Draw()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void DrawIndexed()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void DrawIndirect()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void DrawIndexedIndirect()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispatch()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void DispatchIndirect()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void CopyBuffer()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void CopyImage()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void BlitImage()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void CopyBufferToImage()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void CopyImageToBuffer()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void UpdateBuffer()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void FillBuffer()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void ClearColorImage()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void ClearDepthStencilImage()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void ClearAttachments()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void ResolveImage()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void SetEvent()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void ResetEvent()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void WaitEvents()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void PipelineBarrier()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void BeginQuery()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void EndQuery()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void ResetQueryPool()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void WriteTimestamp()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void CopyQueryPoolResults()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void PushConstants()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void BeginRenderPass()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void NextSubpass()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void EndRenderPass()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void ExecuteCommands()
+        {
+        }
     }
 }

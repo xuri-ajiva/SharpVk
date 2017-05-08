@@ -37,5 +37,19 @@ namespace SharpVk
         {
             this.handle = handle;
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Destroy()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void GetRenderAreaGranularity()
+        {
+        }
     }
 }

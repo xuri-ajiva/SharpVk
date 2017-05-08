@@ -81,6 +81,15 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        public string DeviceName
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public PhysicalDeviceLimits Limits
         {
             get;
@@ -99,9 +108,12 @@ namespace SharpVk
         internal static unsafe PhysicalDeviceProperties MarshalFrom(Interop.PhysicalDeviceProperties* pointer)
         {
             PhysicalDeviceProperties result = default(PhysicalDeviceProperties);
+            result.ApiVersion = (Version)(pointer->ApiVersion);
+            result.DriverVersion = (Version)(pointer->DriverVersion);
             result.VendorID = pointer->VendorID;
             result.DeviceID = pointer->DeviceID;
             result.DeviceType = pointer->DeviceType;
+            result.DeviceName = Interop.HeapUtil.MarshalStringFrom(pointer->DeviceName, Constants.MaxPhysicalDeviceNameSize, true);
             result.Limits = PhysicalDeviceLimits.MarshalFrom(&pointer->Limits);
             result.SparseProperties = pointer->SparseProperties;
             return result;

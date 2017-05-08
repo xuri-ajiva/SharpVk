@@ -36,6 +36,15 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        public string LayerName
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public Version SpecVersion
         {
             get;
@@ -51,9 +60,22 @@ namespace SharpVk
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
+        public string Description
+        {
+            get;
+            set;
+        }
+        
         internal static unsafe LayerProperties MarshalFrom(Interop.LayerProperties* pointer)
         {
             LayerProperties result = default(LayerProperties);
+            result.LayerName = Interop.HeapUtil.MarshalStringFrom(pointer->LayerName, Constants.MaxExtensionNameSize, true);
+            result.SpecVersion = (Version)(pointer->SpecVersion);
+            result.ImplementationVersion = (Version)(pointer->ImplementationVersion);
+            result.Description = Interop.HeapUtil.MarshalStringFrom(pointer->Description, Constants.MaxDescriptionSize, true);
             return result;
         }
     }

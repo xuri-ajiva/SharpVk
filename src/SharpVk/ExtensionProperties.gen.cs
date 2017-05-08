@@ -36,6 +36,15 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        public string ExtensionName
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public Version SpecVersion
         {
             get;
@@ -45,6 +54,8 @@ namespace SharpVk
         internal static unsafe ExtensionProperties MarshalFrom(Interop.ExtensionProperties* pointer)
         {
             ExtensionProperties result = default(ExtensionProperties);
+            result.ExtensionName = Interop.HeapUtil.MarshalStringFrom(pointer->ExtensionName, Constants.MaxExtensionNameSize, true);
+            result.SpecVersion = (Version)(pointer->SpecVersion);
             return result;
         }
     }

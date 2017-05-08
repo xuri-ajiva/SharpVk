@@ -46,7 +46,7 @@ namespace SharpVk.Interop.Khx
         /// <summary>
         /// 
         /// </summary>
-        public fixed uint PresentMask[1]; 
+        public fixed uint PresentMask[Constants.MaxDeviceGroupSize]; 
         
         /// <summary>
         /// 

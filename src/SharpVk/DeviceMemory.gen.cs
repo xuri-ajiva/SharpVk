@@ -37,5 +37,35 @@ namespace SharpVk
         {
             this.handle = handle;
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Free()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Result Map()
+        {
+            Result result = default(Result);
+            return result;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Unmap()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void GetCommitment()
+        {
+        }
     }
 }

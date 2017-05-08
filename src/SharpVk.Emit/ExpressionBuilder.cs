@@ -37,6 +37,11 @@ namespace SharpVk.Emit
             this.writer.Write(literal);
         }
 
+        public void EmitLiteral(bool literal)
+        {
+            this.writer.Write(literal ? "true" : "false");
+        }
+
         public void EmitArrayInit(string elementTypeName, params Action<ExpressionBuilder>[] elements)
         {
             this.writer.WriteLine($"new {elementTypeName}[]");
@@ -293,6 +298,11 @@ namespace SharpVk.Emit
         }
 
         public static Action<ExpressionBuilder> Literal(int literal)
+        {
+            return builder => builder.EmitLiteral(literal);
+        }
+
+        public static Action<ExpressionBuilder> Literal(bool literal)
         {
             return builder => builder.EmitLiteral(literal);
         }

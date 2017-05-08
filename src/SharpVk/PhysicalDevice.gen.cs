@@ -37,5 +37,83 @@ namespace SharpVk
         {
             this.handle = handle;
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void GetProperties()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void GetQueueFamilyProperties()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void GetMemoryProperties()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void GetFeatures()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void GetFormatProperties()
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Result GetImageFormatProperties()
+        {
+            Result result = default(Result);
+            return result;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Result CreateDevice()
+        {
+            Result result = default(Result);
+            return result;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Result EnumerateDeviceLayerProperties()
+        {
+            Result result = default(Result);
+            return result;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Result EnumerateDeviceExtensionProperties()
+        {
+            Result result = default(Result);
+            return result;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void GetSparseImageFormatProperties()
+        {
+        }
     }
 }
