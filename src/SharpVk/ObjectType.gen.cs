@@ -22,12 +22,12 @@
 
 // This file was automatically generated and should not be edited directly.
 
-namespace SharpVk.Ext
+namespace SharpVk
 {
     /// <summary>
     /// 
     /// </summary>
-    public enum DebugReportObjectType
+    public enum ObjectType
     {
         /// <summary>
         /// 
@@ -162,41 +162,41 @@ namespace SharpVk.Ext
         /// <summary>
         /// 
         /// </summary>
-        SurfaceKhr = 26, 
+        SurfaceKhr = 1000000000, 
         
         /// <summary>
         /// 
         /// </summary>
-        SwapchainKhr = 27, 
+        SwapchainKhr = 1000001000, 
         
         /// <summary>
         /// 
         /// </summary>
-        DebugReportCallbackExt = 28, 
+        DisplayKhr = 1000002000, 
         
         /// <summary>
         /// 
         /// </summary>
-        DisplayKhr = 29, 
+        DisplayModeKhr = 1000002001, 
         
         /// <summary>
         /// 
         /// </summary>
-        DisplayModeKhr = 30, 
+        DebugReportCallbackExt = 1000011000, 
         
         /// <summary>
         /// 
         /// </summary>
-        ObjectTableNvx = 31, 
+        DescriptorUpdateTemplateKhr = 1000085000, 
         
         /// <summary>
         /// 
         /// </summary>
-        IndirectCommandsLayoutNvx = 32, 
+        ObjectTableNvx = 1000086000, 
         
         /// <summary>
         /// 
         /// </summary>
-        DescriptorUpdateTemplateKhrKhr = 1000085000, 
+        IndirectCommandsLayoutNvx = 1000086001, 
     }
 }

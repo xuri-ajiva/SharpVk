@@ -78,5 +78,10 @@ namespace SharpVk
         /// 
         /// </summary>
         PresentSourceKhr = 1000001002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SharedPresentKhr = 1000111000, 
     }
 }

@@ -1421,6 +1421,12 @@ namespace SharpVk.Interop
         /// 
         /// </summary>
         [DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
+        public static extern Result vkGetSwapchainStatusKHR(Device device, Khr.Swapchain swapchain);
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        [DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
         public static extern Result vkGetRefreshCycleDurationGOOGLE(Device device, Khr.Swapchain swapchain, SharpVk.Google.RefreshCycleDuration* displayTimingProperties);
         
         /// <summary>
@@ -1452,5 +1458,17 @@ namespace SharpVk.Interop
         /// </summary>
         [DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
         public static extern void vkCmdSetDiscardRectangleEXT(CommandBuffer commandBuffer, uint firstDiscardRectangle, uint discardRectangleCount, Rect2D* discardRectangles);
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        [DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
+        public static extern Result vkGetPhysicalDeviceSurfaceCapabilities2KHR(PhysicalDevice physicalDevice, Khr.PhysicalDeviceSurfaceInfo2* surfaceInfo, Khr.SurfaceCapabilities2* surfaceCapabilities);
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        [DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
+        public static extern Result vkGetPhysicalDeviceSurfaceFormats2KHR(PhysicalDevice physicalDevice, Khr.PhysicalDeviceSurfaceInfo2* surfaceInfo, uint* surfaceFormatCount, Khr.SurfaceFormat2* surfaceFormats);
     }
 }

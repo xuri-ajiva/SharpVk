@@ -22,41 +22,31 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+using System.Runtime.InteropServices;
+
 namespace SharpVk.Khr
 {
     /// <summary>
     /// 
     /// </summary>
-    public enum PresentMode
+    [StructLayout(LayoutKind.Sequential)]
+    public struct SharedPresentSurfaceCapabilities
     {
         /// <summary>
         /// 
         /// </summary>
-        Immediate = 0, 
+        public ImageUsageFlags SharedPresentSupportedUsageFlags
+        {
+            get;
+            set;
+        }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        Mailbox = 1, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Fifo = 2, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        FifoRelaxed = 3, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        SharedDemandRefreshKhr = 1000111000, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        SharedContinuousRefreshKhr = 1000111001, 
+        internal static unsafe SharedPresentSurfaceCapabilities MarshalFrom(Interop.Khr.SharedPresentSurfaceCapabilities* pointer)
+        {
+            SharedPresentSurfaceCapabilities result = default(SharedPresentSurfaceCapabilities);
+            result.SharedPresentSupportedUsageFlags = pointer->SharedPresentSupportedUsageFlags;
+            return result;
+        }
     }
 }

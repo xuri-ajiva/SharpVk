@@ -22,41 +22,31 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+using System.Runtime.InteropServices;
+
 namespace SharpVk.Khr
 {
     /// <summary>
     /// 
     /// </summary>
-    public enum PresentMode
+    [StructLayout(LayoutKind.Sequential)]
+    public struct PhysicalDeviceSurfaceInfo2
     {
         /// <summary>
         /// 
         /// </summary>
-        Immediate = 0, 
+        public Khr.Surface Surface
+        {
+            get;
+            set;
+        }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        Mailbox = 1, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Fifo = 2, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        FifoRelaxed = 3, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        SharedDemandRefreshKhr = 1000111000, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        SharedContinuousRefreshKhr = 1000111001, 
+        internal unsafe void MarshalTo(Interop.Khr.PhysicalDeviceSurfaceInfo2* pointer)
+        {
+            pointer->SType = StructureType.PhysicalDeviceSurfaceInfo2Khr;
+            pointer->Next = null;
+            pointer->Surface = this.Surface.handle;
+        }
     }
 }

@@ -22,41 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-namespace SharpVk.Khr
+using System;
+using System.Runtime.InteropServices;
+
+namespace SharpVk.Interop.Khr
 {
     /// <summary>
     /// 
     /// </summary>
-    public enum PresentMode
+    [StructLayout(LayoutKind.Sequential)]
+    public unsafe struct SurfaceFormat2
     {
         /// <summary>
         /// 
         /// </summary>
-        Immediate = 0, 
+        public StructureType SType; 
         
         /// <summary>
         /// 
         /// </summary>
-        Mailbox = 1, 
+        public void* Next; 
         
         /// <summary>
         /// 
         /// </summary>
-        Fifo = 2, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        FifoRelaxed = 3, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        SharedDemandRefreshKhr = 1000111000, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        SharedContinuousRefreshKhr = 1000111001, 
+        public SharpVk.Khr.SurfaceFormat SurfaceFormat; 
     }
 }

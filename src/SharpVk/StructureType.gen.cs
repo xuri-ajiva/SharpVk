@@ -372,6 +372,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        TextureLodGatherFormatPropertiesAmd = 1000041000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         RenderPassMultiviewCreateInfoKhx = 1000053000, 
         
         /// <summary>
@@ -748,6 +753,26 @@ namespace SharpVk
         /// 
         /// </summary>
         HdrMetadataExt = 1000105000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SharedPresentSurfaceCapabilitiesKhr = 1000111000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceSurfaceInfo2Khr = 1000119000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SurfaceCapabilities2Khr = 1000119001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SurfaceFormat2Khr = 1000119002, 
         
         /// <summary>
         /// 

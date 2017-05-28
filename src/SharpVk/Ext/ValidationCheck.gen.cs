@@ -33,5 +33,10 @@ namespace SharpVk.Ext
         /// 
         /// </summary>
         All = 0, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Shaders = 1, 
     }
 }

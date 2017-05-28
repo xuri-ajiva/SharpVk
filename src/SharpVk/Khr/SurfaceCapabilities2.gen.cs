@@ -22,41 +22,31 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+using System.Runtime.InteropServices;
+
 namespace SharpVk.Khr
 {
     /// <summary>
     /// 
     /// </summary>
-    public enum PresentMode
+    [StructLayout(LayoutKind.Sequential)]
+    public struct SurfaceCapabilities2
     {
         /// <summary>
         /// 
         /// </summary>
-        Immediate = 0, 
+        public SharpVk.Khr.SurfaceCapabilities SurfaceCapabilities
+        {
+            get;
+            set;
+        }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        Mailbox = 1, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Fifo = 2, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        FifoRelaxed = 3, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        SharedDemandRefreshKhr = 1000111000, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        SharedContinuousRefreshKhr = 1000111001, 
+        internal static unsafe SurfaceCapabilities2 MarshalFrom(Interop.Khr.SurfaceCapabilities2* pointer)
+        {
+            SurfaceCapabilities2 result = default(SurfaceCapabilities2);
+            result.SurfaceCapabilities = pointer->SurfaceCapabilities;
+            return result;
+        }
     }
 }
