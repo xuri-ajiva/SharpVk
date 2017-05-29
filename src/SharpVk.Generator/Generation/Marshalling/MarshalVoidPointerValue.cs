@@ -12,7 +12,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                 info = new MarshalInfo
                 {
                     MemberType = "IntPtr",
-                    InteropType = "byte",
+                    InteropType = "void",
                     MarshalToActionType = MemberActionType.Assign,
                     BuildMarshalToValueExpression = value => Call(value, "ToPointer"),
                     BuildMarshalFromValueExpression = value => New("IntPtr", value)

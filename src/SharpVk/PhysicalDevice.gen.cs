@@ -38,78 +38,78 @@ namespace SharpVk
             this.handle = handle;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void GetProperties(PhysicalDeviceProperties properties)
+        internal unsafe void GetProperties()
         {
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void GetQueueFamilyProperties(QueueFamilyProperties[] queueFamilyProperties)
+        internal unsafe void GetQueueFamilyProperties()
         {
             uint queueFamilyPropertyCount;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void GetMemoryProperties(PhysicalDeviceMemoryProperties memoryProperties)
+        internal unsafe void GetMemoryProperties()
         {
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void GetFeatures(PhysicalDeviceFeatures features)
+        internal unsafe void GetFeatures()
         {
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void GetFormatProperties(Format format, FormatProperties formatProperties)
+        internal unsafe void GetFormatProperties(Format format)
         {
+            Format marshalledFormat;
+            marshalledFormat = format;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void GetImageFormatProperties(Format format, ImageType type, ImageTiling tiling, ImageUsageFlags usage, ImageCreateFlags flags, ImageFormatProperties imageFormatProperties)
+        internal unsafe void GetImageFormatProperties(Format format, ImageType type, ImageTiling tiling, ImageUsageFlags usage, ImageCreateFlags flags)
         {
+            Format marshalledFormat;
+            marshalledFormat = format;
+            ImageType marshalledType;
+            marshalledType = type;
+            ImageTiling marshalledTiling;
+            marshalledTiling = tiling;
+            ImageUsageFlags marshalledUsage;
+            marshalledUsage = usage;
+            ImageCreateFlags marshalledFlags;
+            marshalledFlags = flags;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void CreateDevice(DeviceCreateInfo createInfo, AllocationCallbacks allocator, Device device)
+        internal unsafe void CreateDevice(DeviceCreateInfo createInfo, AllocationCallbacks allocator)
         {
+            Interop.DeviceCreateInfo* marshalledCreateInfo;
+            marshalledCreateInfo = (Interop.DeviceCreateInfo*)(Interop.HeapUtil.Allocate<Interop.DeviceCreateInfo>());
+            createInfo.MarshalTo(marshalledCreateInfo);
+            Interop.AllocationCallbacks* marshalledAllocator;
+            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+            allocator.MarshalTo(marshalledAllocator);
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void EnumerateDeviceLayerProperties(LayerProperties[] properties)
+        internal unsafe void EnumerateDeviceLayerProperties()
         {
             uint propertyCount;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void EnumerateDeviceExtensionProperties(string layerName, ExtensionProperties[] properties)
+        internal unsafe void EnumerateDeviceExtensionProperties(string layerName)
         {
             uint propertyCount;
+            byte* marshalledLayerName;
+            marshalledLayerName = Interop.HeapUtil.MarshalTo(layerName);
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void GetSparseImageFormatProperties(Format format, ImageType type, SampleCountFlags samples, ImageUsageFlags usage, ImageTiling tiling, SparseImageFormatProperties[] properties)
+        internal unsafe void GetSparseImageFormatProperties(Format format, ImageType type, SampleCountFlags samples, ImageUsageFlags usage, ImageTiling tiling)
         {
             uint propertyCount;
+            Format marshalledFormat;
+            marshalledFormat = format;
+            ImageType marshalledType;
+            marshalledType = type;
+            SampleCountFlags marshalledSamples;
+            marshalledSamples = samples;
+            ImageUsageFlags marshalledUsage;
+            marshalledUsage = usage;
+            ImageTiling marshalledTiling;
+            marshalledTiling = tiling;
         }
     }
 }

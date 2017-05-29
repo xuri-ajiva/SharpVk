@@ -22,10 +22,12 @@ namespace SharpVk.Generator.Generation.Marshalling
         {
             if (source.Dimensions != null)
             {
+                string typeName = this.nameLookup.Lookup(source.Type, true);
+
                 info.Interop = new TypedDefinition
                 {
                     Name = source.Name,
-                    Type = this.nameLookup.Lookup(source.Type, true)
+                    Type = typeName
                 };
 
                 if (source.Dimensions.Length == 2)
@@ -47,10 +49,12 @@ namespace SharpVk.Generator.Generation.Marshalling
                                 Type = "string"
                             };
 
-                            info.MarshalTo.Add(new Action
+                            info.InteropFullType = typeName;
+
+                            info.MarshalTo.Add((getTarget, getValue) => new Action
                             {
-                                ValueExpression = StaticCall("Interop.HeapUtil", "MarshalTo", Member(This, source.Name)),
-                                TargetExpression = DerefMember(Variable("pointer"), source.Name),
+                                ValueExpression = StaticCall("Interop.HeapUtil", "MarshalTo", getValue(source.Name)),
+                                TargetExpression = getTarget(source.Name),
                                 MemberType = this.nameLookup.Lookup(source.Type, false),
                                 Type = MemberActionType.Assign
                             });
@@ -74,22 +78,29 @@ namespace SharpVk.Generator.Generation.Marshalling
 
                             var marshalling = this.marshallingRules.ApplyFirst(elementType);
 
+                            info.InteropFullType = marshalling.InteropType;
+
+                            if(source.Type.PointerType.IsPointer())
+                            {
+                                info.InteropFullType += "*";
+                            }
+
                             info.Public = new TypedDefinition
                             {
                                 Name = source.Name,
                                 Type = marshalling.MemberType + "[]"
                             };
 
-                            info.MarshalTo.Add(new Action
+                            info.MarshalTo.Add((getTarget, getValue) => new Action
                             {
-                                TargetExpression = DerefMember(Variable("pointer"), source.Name),
+                                TargetExpression = getTarget(source.Name),
                                 MemberType = marshalling.InteropType,
                                 IsLoop = true,
                                 IndexName = "index",
                                 Type = marshalling.MarshalToActionType,
-                                NullCheckExpression = IsNotEqual(Member(This, source.Name), Null),
-                                LengthExpression = Member(Member(This, source.Name), "Length"),
-                                ValueExpression = marshalling.BuildMarshalToValueExpression(Index(Member(This, source.Name), Variable("index")))
+                                NullCheckExpression = IsNotEqual(getValue(source.Name), Null),
+                                LengthExpression = Member(getValue(source.Name), "Length"),
+                                ValueExpression = marshalling.BuildMarshalToValueExpression(Index(getValue(source.Name), Variable("index")))
                             });
                             break;
                     }

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using SharpVk.Emit;
+using System;
+using System.Collections.Generic;
 
 namespace SharpVk.Generator.Generation.Marshalling
 {
@@ -6,7 +8,8 @@ namespace SharpVk.Generator.Generation.Marshalling
     {
         public TypedDefinition? Public;
         public TypedDefinition Interop;
-        public List<Action> MarshalTo;
+        public List<Func<Func<string, Action<ExpressionBuilder>>, Func<string, Action<ExpressionBuilder>>, Action>> MarshalTo = new List<Func<Func<string, Action<ExpressionBuilder>>, Func<string, Action<ExpressionBuilder>>, Action>>();
         public List<Action> MarshalFrom;
+        public string InteropFullType;
     }
 }

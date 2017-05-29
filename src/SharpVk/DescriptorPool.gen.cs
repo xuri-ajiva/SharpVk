@@ -38,25 +38,37 @@ namespace SharpVk
             this.handle = handle;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void Destroy(AllocationCallbacks allocator)
+        internal unsafe void Destroy(AllocationCallbacks allocator)
         {
+            Interop.AllocationCallbacks* marshalledAllocator;
+            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+            allocator.MarshalTo(marshalledAllocator);
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void Reset(DescriptorPoolResetFlags flags)
+        internal unsafe void Reset(DescriptorPoolResetFlags flags)
         {
+            DescriptorPoolResetFlags marshalledFlags;
+            marshalledFlags = flags;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void FreeDescriptorSets(DescriptorSet[] descriptorSets)
+        internal unsafe void FreeDescriptorSets(DescriptorSet[] descriptorSets)
         {
+            uint marshalledDescriptorSetCount;
+            marshalledDescriptorSetCount = (uint)(descriptorSets?.Length ?? 0);
+            Interop.DescriptorSet* marshalledDescriptorSets;
+            if (descriptorSets != null)
+            {
+                var fieldPointer = (Interop.DescriptorSet*)(Interop.HeapUtil.AllocateAndClear<Interop.DescriptorSet>(descriptorSets.Length).ToPointer());
+                for(int index = 0; index < descriptorSets.Length; index++)
+                {
+                    fieldPointer[index] = descriptorSets[index].handle;
+                }
+                marshalledDescriptorSets = fieldPointer;
+            }
+            else
+            {
+                marshalledDescriptorSets = null;
+            }
         }
     }
 }

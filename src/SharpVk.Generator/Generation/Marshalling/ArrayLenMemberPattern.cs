@@ -21,7 +21,7 @@ namespace SharpVk.Generator.Generation.Marshalling
 
         public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, MemberPatternInfo info)
         {
-            var lenExpression = new List<Action<ExpressionBuilder>>();
+            var lenExpression = new List<Func<Func<string, Action<ExpressionBuilder>>, Action<ExpressionBuilder>>>();
 
             foreach (var otherMember in others)
             {
@@ -31,7 +31,10 @@ namespace SharpVk.Generator.Generation.Marshalling
                     {
                         if (dimension.Type == LenType.Expression && tokenCheck.Check(dimension.Value, source.VkName))
                         {
-                            lenExpression.Add(Coalesce(CoalesceMember(Member(This, otherMember.Name), "Length"), Literal(0)));
+                            if (dimension.Value is LenExpressionToken)
+                            {
+                                lenExpression.Add(getValue => Coalesce(CoalesceMember(getValue(otherMember.Name), "Length"), Literal(0)));
+                            }
                         }
                     }
                 }
@@ -39,17 +42,21 @@ namespace SharpVk.Generator.Generation.Marshalling
 
             if (lenExpression.Any())
             {
-                info.MarshalTo.Add(new Action
+                info.MarshalTo.Add((getTarget, getValue) => new Action
                 {
-                    TargetExpression = DerefMember(Variable("pointer"), source.Name),
-                    ValueExpression = Cast(this.nameLookup.Lookup(source.Type, false), lenExpression.First())
+                    TargetExpression = getTarget(source.Name),
+                    ValueExpression = Cast(this.nameLookup.Lookup(source.Type, false), lenExpression.First()(getValue))
                 });
+
+                string typeName = this.nameLookup.Lookup(source.Type, true);
 
                 info.Interop = new TypedDefinition
                 {
                     Name = source.Name,
-                    Type = this.nameLookup.Lookup(source.Type, true)
+                    Type = typeName
                 };
+
+                info.InteropFullType = typeName;
             }
 
             return lenExpression.Any();

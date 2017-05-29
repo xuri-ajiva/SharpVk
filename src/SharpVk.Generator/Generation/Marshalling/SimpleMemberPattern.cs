@@ -29,16 +29,25 @@ namespace SharpVk.Generator.Generation.Marshalling
                 Type = marshalling.MemberType
             };
 
+            string typeName = this.nameLookup.Lookup(source.Type, true);
+
             info.Interop = new TypedDefinition
             {
                 Name = source.Name,
-                Type = this.nameLookup.Lookup(source.Type, true)
+                Type = typeName
             };
 
-            info.MarshalTo.Add(new Action
+            info.InteropFullType = marshalling.InteropType;
+
+            if(source.Type.PointerType.IsPointer())
             {
-                ValueExpression = marshalling.BuildMarshalToValueExpression(Member(This, source.Name)),
-                TargetExpression = DerefMember(Variable("pointer"), source.Name),
+                info.InteropFullType += "*";
+            }
+
+            info.MarshalTo.Add((getTarget, getValue) => new Action
+            {
+                ValueExpression = marshalling.BuildMarshalToValueExpression(getValue(source.Name)),
+                TargetExpression = getTarget(source.Name),
                 MemberType = marshalling.InteropType,
                 Type = marshalling.MarshalToActionType
             });

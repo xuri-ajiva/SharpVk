@@ -45,6 +45,15 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        public HostSize CodeSize
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public uint[] Code
         {
             get;
@@ -56,7 +65,7 @@ namespace SharpVk
             pointer->SType = StructureType.ShaderModuleCreateInfo;
             pointer->Next = null;
             pointer->Flags = this.Flags;
-            pointer->CodeSize = (HostSize)(this.Code?.Length ?? 0);
+            pointer->CodeSize = this.CodeSize;
             if (this.Code != null)
             {
                 var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.Code.Length).ToPointer());

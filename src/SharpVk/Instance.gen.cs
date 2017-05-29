@@ -38,49 +38,44 @@ namespace SharpVk
             this.handle = handle;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void Create(InstanceCreateInfo createInfo, AllocationCallbacks allocator, Instance instance)
+        internal unsafe void Create(InstanceCreateInfo createInfo, AllocationCallbacks allocator)
         {
+            Interop.InstanceCreateInfo* marshalledCreateInfo;
+            marshalledCreateInfo = (Interop.InstanceCreateInfo*)(Interop.HeapUtil.Allocate<Interop.InstanceCreateInfo>());
+            createInfo.MarshalTo(marshalledCreateInfo);
+            Interop.AllocationCallbacks* marshalledAllocator;
+            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+            allocator.MarshalTo(marshalledAllocator);
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void Destroy(AllocationCallbacks allocator)
+        internal unsafe void Destroy(AllocationCallbacks allocator)
         {
+            Interop.AllocationCallbacks* marshalledAllocator;
+            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+            allocator.MarshalTo(marshalledAllocator);
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void EnumeratePhysicalDevices(PhysicalDevice[] physicalDevices)
+        internal unsafe void EnumeratePhysicalDevices()
         {
             uint physicalDeviceCount;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void GetProcedureAddress(string name)
+        internal unsafe void GetProcedureAddress(string name)
         {
+            byte* marshalledName;
+            marshalledName = Interop.HeapUtil.MarshalTo(name);
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void EnumerateLayerProperties(LayerProperties[] properties)
+        internal unsafe void EnumerateLayerProperties()
         {
             uint propertyCount;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void EnumerateExtensionProperties(string layerName, ExtensionProperties[] properties)
+        internal unsafe void EnumerateExtensionProperties(string layerName)
         {
             uint propertyCount;
+            byte* marshalledLayerName;
+            marshalledLayerName = Interop.HeapUtil.MarshalTo(layerName);
         }
     }
 }

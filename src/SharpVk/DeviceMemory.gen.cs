@@ -38,31 +38,30 @@ namespace SharpVk
             this.handle = handle;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void Free(AllocationCallbacks allocator)
+        internal unsafe void Free(AllocationCallbacks allocator)
+        {
+            Interop.AllocationCallbacks* marshalledAllocator;
+            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+            allocator.MarshalTo(marshalledAllocator);
+        }
+        
+        internal unsafe void Map(DeviceSize offset, DeviceSize size, MemoryMapFlags flags, IntPtr data)
+        {
+            DeviceSize marshalledOffset;
+            marshalledOffset = offset;
+            DeviceSize marshalledSize;
+            marshalledSize = size;
+            MemoryMapFlags marshalledFlags;
+            marshalledFlags = flags;
+            void* marshalledData;
+            marshalledData = data.ToPointer();
+        }
+        
+        internal unsafe void Unmap()
         {
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void Map(DeviceSize offset, DeviceSize size, MemoryMapFlags flags, IntPtr data)
-        {
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public void Unmap()
-        {
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public void GetCommitment(DeviceSize committedMemoryInBytes)
+        internal unsafe void GetCommitment()
         {
         }
     }

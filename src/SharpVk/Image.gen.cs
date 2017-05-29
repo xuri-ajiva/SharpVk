@@ -38,40 +38,35 @@ namespace SharpVk
             this.handle = handle;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void GetMemoryRequirements(MemoryRequirements memoryRequirements)
+        internal unsafe void GetMemoryRequirements()
         {
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void BindMemory(DeviceMemory memory, DeviceSize memoryOffset)
+        internal unsafe void BindMemory(DeviceMemory memory, DeviceSize memoryOffset)
         {
+            Interop.DeviceMemory marshalledMemory;
+            marshalledMemory = memory.handle;
+            DeviceSize marshalledMemoryOffset;
+            marshalledMemoryOffset = memoryOffset;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void GetSparseMemoryRequirements(SparseImageMemoryRequirements[] sparseMemoryRequirements)
+        internal unsafe void GetSparseMemoryRequirements()
         {
             uint sparseMemoryRequirementCount;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void Destroy(AllocationCallbacks allocator)
+        internal unsafe void Destroy(AllocationCallbacks allocator)
         {
+            Interop.AllocationCallbacks* marshalledAllocator;
+            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+            allocator.MarshalTo(marshalledAllocator);
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void GetSubresourceLayout(ImageSubresource subresource, SubresourceLayout layout)
+        internal unsafe void GetSubresourceLayout(ImageSubresource subresource)
         {
+            ImageSubresource* marshalledSubresource;
+            marshalledSubresource = (ImageSubresource*)(Interop.HeapUtil.Allocate<ImageSubresource>());
+            *marshalledSubresource = subresource;
         }
     }
 }

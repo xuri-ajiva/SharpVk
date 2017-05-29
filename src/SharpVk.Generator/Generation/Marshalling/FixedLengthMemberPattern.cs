@@ -42,6 +42,8 @@ namespace SharpVk.Generator.Generation.Marshalling
                         length = $"Constants.{constant.Name}";
                     }
 
+                    info.InteropFullType = memberType;
+
                     name += $"[{length}]";
                     memberType = "fixed " + memberType;
 
@@ -51,7 +53,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                         Type = memberType
                     };
 
-                    switch(source.Type.VkName)
+                    switch (source.Type.VkName)
                     {
                         case "char":
                             info.Public = new TypedDefinition
@@ -83,13 +85,15 @@ namespace SharpVk.Generator.Generation.Marshalling
 
                         count = int.Parse(constant.Value);
                     }
-                    
-                        info.Interop = new TypedDefinition
-                        {
-                            Name = name,
-                            Type = memberType,
-                            Repeats = count
-                        };
+
+                    info.InteropFullType = "Interop." + memberType;
+
+                    info.Interop = new TypedDefinition
+                    {
+                        Name = name,
+                        Type = memberType,
+                        Repeats = count
+                    };
                 }
 
                 return true;

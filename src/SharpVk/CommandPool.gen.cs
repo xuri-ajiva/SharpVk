@@ -38,25 +38,37 @@ namespace SharpVk
             this.handle = handle;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void Destroy(AllocationCallbacks allocator)
+        internal unsafe void Destroy(AllocationCallbacks allocator)
         {
+            Interop.AllocationCallbacks* marshalledAllocator;
+            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+            allocator.MarshalTo(marshalledAllocator);
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void Reset(CommandPoolResetFlags flags)
+        internal unsafe void Reset(CommandPoolResetFlags flags)
         {
+            CommandPoolResetFlags marshalledFlags;
+            marshalledFlags = flags;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void FreeCommandBuffers(CommandBuffer[] commandBuffers)
+        internal unsafe void FreeCommandBuffers(CommandBuffer[] commandBuffers)
         {
+            uint marshalledCommandBufferCount;
+            marshalledCommandBufferCount = (uint)(commandBuffers?.Length ?? 0);
+            Interop.CommandBuffer* marshalledCommandBuffers;
+            if (commandBuffers != null)
+            {
+                var fieldPointer = (Interop.CommandBuffer*)(Interop.HeapUtil.AllocateAndClear<Interop.CommandBuffer>(commandBuffers.Length).ToPointer());
+                for(int index = 0; index < commandBuffers.Length; index++)
+                {
+                    fieldPointer[index] = commandBuffers[index].handle;
+                }
+                marshalledCommandBuffers = fieldPointer;
+            }
+            else
+            {
+                marshalledCommandBuffers = null;
+            }
         }
     }
 }

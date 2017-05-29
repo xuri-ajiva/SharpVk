@@ -38,25 +38,52 @@ namespace SharpVk
             this.handle = handle;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void Submit(SubmitInfo[] submits, Fence fence)
+        internal unsafe void Submit(SubmitInfo[] submits, Fence fence)
+        {
+            uint marshalledSubmitCount;
+            marshalledSubmitCount = (uint)(submits?.Length ?? 0);
+            Interop.SubmitInfo* marshalledSubmits;
+            if (submits != null)
+            {
+                var fieldPointer = (Interop.SubmitInfo*)(Interop.HeapUtil.AllocateAndClear<Interop.SubmitInfo>(submits.Length).ToPointer());
+                for(int index = 0; index < submits.Length; index++)
+                {
+                    submits[index].MarshalTo(&fieldPointer[index]);
+                }
+                marshalledSubmits = fieldPointer;
+            }
+            else
+            {
+                marshalledSubmits = null;
+            }
+            Interop.Fence marshalledFence;
+            marshalledFence = fence.handle;
+        }
+        
+        internal unsafe void WaitIdle()
         {
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void WaitIdle()
+        internal unsafe void BindSparse(BindSparseInfo[] bindInfo, Fence fence)
         {
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public void BindSparse(BindSparseInfo[] bindInfo, Fence fence)
-        {
+            uint marshalledBindInfoCount;
+            marshalledBindInfoCount = (uint)(bindInfo?.Length ?? 0);
+            Interop.BindSparseInfo* marshalledBindInfo;
+            if (bindInfo != null)
+            {
+                var fieldPointer = (Interop.BindSparseInfo*)(Interop.HeapUtil.AllocateAndClear<Interop.BindSparseInfo>(bindInfo.Length).ToPointer());
+                for(int index = 0; index < bindInfo.Length; index++)
+                {
+                    bindInfo[index].MarshalTo(&fieldPointer[index]);
+                }
+                marshalledBindInfo = fieldPointer;
+            }
+            else
+            {
+                marshalledBindInfo = null;
+            }
+            Interop.Fence marshalledFence;
+            marshalledFence = fence.handle;
         }
     }
 }

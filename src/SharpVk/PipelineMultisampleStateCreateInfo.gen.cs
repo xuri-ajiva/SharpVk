@@ -45,6 +45,15 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        public SampleCountFlags RasterizationSamples
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public Bool32 SampleShadingEnable
         {
             get;
@@ -92,7 +101,7 @@ namespace SharpVk
             pointer->SType = StructureType.PipelineMultisampleStateCreateInfo;
             pointer->Next = null;
             pointer->Flags = this.Flags;
-            pointer->RasterizationSamples = (SampleCountFlags)(this.SampleMask?.Length ?? 0);
+            pointer->RasterizationSamples = this.RasterizationSamples;
             pointer->SampleShadingEnable = this.SampleShadingEnable;
             pointer->MinSampleShading = this.MinSampleShading;
             if (this.SampleMask != null)

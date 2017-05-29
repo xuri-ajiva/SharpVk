@@ -30,11 +30,15 @@ namespace SharpVk.Generator.Generation.Marshalling
                     TargetExpression = Member(Variable("result"), source.Name),
                 });
 
+                string typeName = this.nameLookup.Lookup(source.Type, true);
+
                 info.Interop = new TypedDefinition
                 {
                     Name = source.Name,
-                    Type = this.nameLookup.Lookup(source.Type, true)
+                    Type = typeName
                 };
+
+                info.InteropFullType = typeName;
 
                 return true;
             }

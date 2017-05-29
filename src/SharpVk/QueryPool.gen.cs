@@ -38,18 +38,39 @@ namespace SharpVk
             this.handle = handle;
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void Destroy(AllocationCallbacks allocator)
+        internal unsafe void Destroy(AllocationCallbacks allocator)
         {
+            Interop.AllocationCallbacks* marshalledAllocator;
+            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+            allocator.MarshalTo(marshalledAllocator);
         }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public void GetResults(uint firstQuery, uint queryCount, byte[] data, DeviceSize stride, QueryResultFlags flags)
+        internal unsafe void GetResults(uint firstQuery, uint queryCount, byte[] data, DeviceSize stride, QueryResultFlags flags)
         {
+            uint marshalledFirstQuery;
+            marshalledFirstQuery = firstQuery;
+            uint marshalledQueryCount;
+            marshalledQueryCount = queryCount;
+            HostSize marshalledDataSize;
+            marshalledDataSize = (HostSize)(data?.Length ?? 0);
+            byte* marshalledData;
+            if (data != null)
+            {
+                var fieldPointer = (byte*)(Interop.HeapUtil.AllocateAndClear<byte>(data.Length).ToPointer());
+                for(int index = 0; index < data.Length; index++)
+                {
+                    fieldPointer[index] = data[index];
+                }
+                marshalledData = fieldPointer;
+            }
+            else
+            {
+                marshalledData = null;
+            }
+            DeviceSize marshalledStride;
+            marshalledStride = stride;
+            QueryResultFlags marshalledFlags;
+            marshalledFlags = flags;
         }
     }
 }

@@ -5,7 +5,8 @@ using SharpVk.Generator.Pipeline;
 using System.Collections.Generic;
 using System.Linq;
 using SharpVk.Generator.Rules;
-using SharpVk.Emit;
+
+using static SharpVk.Emit.ExpressionBuilder;
 
 namespace SharpVk.Generator.Generation
 {
@@ -114,10 +115,11 @@ namespace SharpVk.Generator.Generation
                     var patternInfo = new MemberPatternInfo
                     {
                         MarshalFrom = marshalFromMethod.MemberActions,
-                        MarshalTo = marshalToMethod.MemberActions
                     };
 
                     this.patternRules.ApplyFirst(type.Members, member, patternInfo);
+
+                    marshalToMethod.MemberActions.AddRange(patternInfo.MarshalTo.Select(action => action(targetName => DerefMember(Variable("pointer"), targetName), valueName => Member(This, valueName))));
 
                     if (patternInfo.Public.HasValue)
                     {
