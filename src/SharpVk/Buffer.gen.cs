@@ -41,23 +41,21 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public void GetMemoryRequirements()
+        public void GetMemoryRequirements(MemoryRequirements memoryRequirements)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public Result BindMemory()
+        public void BindMemory(DeviceMemory memory, DeviceSize memoryOffset)
         {
-            Result result = default(Result);
-            return result;
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void Destroy()
+        public void Destroy(AllocationCallbacks allocator)
         {
         }
     }

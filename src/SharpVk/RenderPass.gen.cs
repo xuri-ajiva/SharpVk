@@ -41,14 +41,14 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public void Destroy()
+        public void Destroy(AllocationCallbacks allocator)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void GetRenderAreaGranularity()
+        public void GetRenderAreaGranularity(Extent2D granularity)
         {
         }
     }

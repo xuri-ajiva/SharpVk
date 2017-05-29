@@ -41,7 +41,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public void Destroy()
+        public void Destroy(AllocationCallbacks allocator)
         {
         }
     }

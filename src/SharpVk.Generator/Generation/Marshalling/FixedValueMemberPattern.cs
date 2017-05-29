@@ -18,27 +18,27 @@ namespace SharpVk.Generator.Generation.Marshalling
             this.enumLookup = enumLookup;
         }
 
-        public bool Apply(TypeDeclaration type, MemberDeclaration member, MemberPatternInfo info)
+        public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, MemberPatternInfo info)
         {
-            if (member.FixedValue != null)
+            if (source.FixedValue != null)
             {
-                if (this.enumLookup.ContainsKey(member.FixedValue))
+                if (this.enumLookup.ContainsKey(source.FixedValue))
                 {
-                    var enumInfo = this.enumLookup[member.FixedValue];
+                    var enumInfo = this.enumLookup[source.FixedValue];
                     var enumTypeName = this.nameLookup.Lookup(enumInfo.TypeVkName);
 
-                    info.MarshalTo.MemberActions.Add(new Action
+                    info.MarshalTo.Add(new Action
                     {
                         ValueExpression = EnumField(enumTypeName, enumInfo.FieldName),
-                        TargetExpression = DerefMember(Variable("pointer"), member.Name)
+                        TargetExpression = DerefMember(Variable("pointer"), source.Name)
                     });
                 }
 
-                info.InteropStruct.Fields.Add(new MemberDefinition
+                info.Interop = new TypedDefinition
                 {
-                    Name = member.Name,
-                    Type = this.nameLookup.Lookup(member.Type, true)
-                });
+                    Name = source.Name,
+                    Type = this.nameLookup.Lookup(source.Type, true)
+                };
 
                 return true;
             }

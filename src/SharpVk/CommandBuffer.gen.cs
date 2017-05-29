@@ -41,321 +41,315 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Result Begin()
-        {
-            Result result = default(Result);
-            return result;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Result End()
-        {
-            Result result = default(Result);
-            return result;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Result Reset()
-        {
-            Result result = default(Result);
-            return result;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public void BindPipeline()
+        public void Begin(CommandBufferBeginInfo beginInfo)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void SetViewport()
+        public void End()
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void SetScissor()
+        public void Reset(CommandBufferResetFlags flags)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void SetLineWidth()
+        public void BindPipeline(PipelineBindPoint pipelineBindPoint, Pipeline pipeline)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void SetDepthBias()
+        public void SetViewport(uint firstViewport, Viewport[] viewports)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void SetBlendConstants()
+        public void SetScissor(uint firstScissor, Rect2D[] scissors)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void SetDepthBounds()
+        public void SetLineWidth(float lineWidth)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void SetStencilCompareMask()
+        public void SetDepthBias(float depthBiasConstantFactor, float depthBiasClamp, float depthBiasSlopeFactor)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void SetStencilWriteMask()
+        public void SetBlendConstants(float blendConstants)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void SetStencilReference()
+        public void SetDepthBounds(float minDepthBounds, float maxDepthBounds)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void BindDescriptorSets()
+        public void SetStencilCompareMask(StencilFaceFlags faceMask, uint compareMask)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void BindIndexBuffer()
+        public void SetStencilWriteMask(StencilFaceFlags faceMask, uint writeMask)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void BindVertexBuffers()
+        public void SetStencilReference(StencilFaceFlags faceMask, uint reference)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void Draw()
+        public void BindDescriptorSets(PipelineBindPoint pipelineBindPoint, PipelineLayout layout, uint firstSet, DescriptorSet[] descriptorSets, uint[] dynamicOffsets)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void DrawIndexed()
+        public void BindIndexBuffer(Buffer buffer, DeviceSize offset, IndexType indexType)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void DrawIndirect()
+        public void BindVertexBuffers(uint firstBinding, Buffer[] buffers, DeviceSize[] offsets)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void DrawIndexedIndirect()
+        public void Draw(uint vertexCount, uint instanceCount, uint firstVertex, uint firstInstance)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void Dispatch()
+        public void DrawIndexed(uint indexCount, uint instanceCount, uint firstIndex, int vertexOffset, uint firstInstance)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void DispatchIndirect()
+        public void DrawIndirect(Buffer buffer, DeviceSize offset, uint drawCount, uint stride)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void CopyBuffer()
+        public void DrawIndexedIndirect(Buffer buffer, DeviceSize offset, uint drawCount, uint stride)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void CopyImage()
+        public void Dispatch(uint groupCountX, uint groupCountY, uint groupCountZ)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void BlitImage()
+        public void DispatchIndirect(Buffer buffer, DeviceSize offset)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void CopyBufferToImage()
+        public void CopyBuffer(Buffer sourceBuffer, Buffer destinationBuffer, BufferCopy[] regions)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void CopyImageToBuffer()
+        public void CopyImage(Image sourceImage, ImageLayout sourceImageLayout, Image destinationImage, ImageLayout destinationImageLayout, ImageCopy[] regions)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void UpdateBuffer()
+        public void BlitImage(Image sourceImage, ImageLayout sourceImageLayout, Image destinationImage, ImageLayout destinationImageLayout, ImageBlit[] regions, Filter filter)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void FillBuffer()
+        public void CopyBufferToImage(Buffer sourceBuffer, Image destinationImage, ImageLayout destinationImageLayout, BufferImageCopy[] regions)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void ClearColorImage()
+        public void CopyImageToBuffer(Image sourceImage, ImageLayout sourceImageLayout, Buffer destinationBuffer, BufferImageCopy[] regions)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void ClearDepthStencilImage()
+        public void UpdateBuffer(Buffer destinationBuffer, DeviceSize destinationOffset, byte[] data)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void ClearAttachments()
+        public void FillBuffer(Buffer destinationBuffer, DeviceSize destinationOffset, DeviceSize size, uint data)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void ResolveImage()
+        public void ClearColorImage(Image image, ImageLayout imageLayout, ClearColorValue color, ImageSubresourceRange[] ranges)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void SetEvent()
+        public void ClearDepthStencilImage(Image image, ImageLayout imageLayout, ClearDepthStencilValue depthStencil, ImageSubresourceRange[] ranges)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void ResetEvent()
+        public void ClearAttachments(ClearAttachment[] attachments, ClearRect[] rects)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void WaitEvents()
+        public void ResolveImage(Image sourceImage, ImageLayout sourceImageLayout, Image destinationImage, ImageLayout destinationImageLayout, ImageResolve[] regions)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void PipelineBarrier()
+        public void SetEvent(Event @event, PipelineStageFlags stageMask)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void BeginQuery()
+        public void ResetEvent(Event @event, PipelineStageFlags stageMask)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void EndQuery()
+        public void WaitEvents(Event[] events, PipelineStageFlags sourceStageMask, PipelineStageFlags destinationStageMask, MemoryBarrier[] memoryBarriers, BufferMemoryBarrier[] bufferMemoryBarriers, ImageMemoryBarrier[] imageMemoryBarriers)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void ResetQueryPool()
+        public void PipelineBarrier(PipelineStageFlags sourceStageMask, PipelineStageFlags destinationStageMask, DependencyFlags dependencyFlags, MemoryBarrier[] memoryBarriers, BufferMemoryBarrier[] bufferMemoryBarriers, ImageMemoryBarrier[] imageMemoryBarriers)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void WriteTimestamp()
+        public void BeginQuery(QueryPool queryPool, uint query, QueryControlFlags flags)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void CopyQueryPoolResults()
+        public void EndQuery(QueryPool queryPool, uint query)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void PushConstants()
+        public void ResetQueryPool(QueryPool queryPool, uint firstQuery, uint queryCount)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void BeginRenderPass()
+        public void WriteTimestamp(PipelineStageFlags pipelineStage, QueryPool queryPool, uint query)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void NextSubpass()
+        public void CopyQueryPoolResults(QueryPool queryPool, uint firstQuery, uint queryCount, Buffer destinationBuffer, DeviceSize destinationOffset, DeviceSize stride, QueryResultFlags flags)
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void PushConstants(PipelineLayout layout, ShaderStageFlags stageFlags, uint offset, byte[] values)
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void BeginRenderPass(RenderPassBeginInfo renderPassBegin, SubpassContents contents)
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void NextSubpass(SubpassContents contents)
         {
         }
         
@@ -369,7 +363,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public void ExecuteCommands()
+        public void ExecuteCommands(CommandBuffer[] commandBuffers)
         {
         }
     }

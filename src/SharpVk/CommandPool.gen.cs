@@ -41,23 +41,21 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public void Destroy()
+        public void Destroy(AllocationCallbacks allocator)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public Result Reset()
+        public void Reset(CommandPoolResetFlags flags)
         {
-            Result result = default(Result);
-            return result;
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void FreeCommandBuffers()
+        public void FreeCommandBuffers(CommandBuffer[] commandBuffers)
         {
         }
     }

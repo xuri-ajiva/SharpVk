@@ -18,54 +18,54 @@ namespace SharpVk.Generator.Generation.Marshalling
             this.nameLookup = nameLookup;
         }
 
-        public bool Apply(TypeDeclaration type, MemberDeclaration member, MemberPatternInfo info)
+        public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, MemberPatternInfo info)
         {
-            if (member.Dimensions != null)
+            if (source.Dimensions != null)
             {
-                info.InteropStruct.Fields.Add(new MemberDefinition
+                info.Interop = new TypedDefinition
                 {
-                    Name = member.Name,
-                    Type = this.nameLookup.Lookup(member.Type, true)
-                });
+                    Name = source.Name,
+                    Type = this.nameLookup.Lookup(source.Type, true)
+                };
 
-                if (member.Dimensions.Length == 2)
+                if (source.Dimensions.Length == 2)
                 {
-                    info.PublicStruct.Properties.Add(new MemberDefinition
+                    info.Public = new TypedDefinition
                     {
-                        Name = member.Name,
+                        Name = source.Name,
                         Type = "string[]"
-                    });
+                    };
                 }
-                else if (member.Dimensions.Length == 1)
+                else if (source.Dimensions.Length == 1)
                 {
-                    switch (member.Dimensions[0].Type)
+                    switch (source.Dimensions[0].Type)
                     {
                         case LenType.NullTerminated:
-                            info.PublicStruct.Properties.Add(new MemberDefinition
+                            info.Public = new TypedDefinition
                             {
-                                Name = member.Name,
+                                Name = source.Name,
                                 Type = "string"
-                            });
+                            };
 
-                            info.MarshalTo.MemberActions.Add(new Action
+                            info.MarshalTo.Add(new Action
                             {
-                                ValueExpression = StaticCall("Interop.HeapUtil", "MarshalTo", Member(This, member.Name)),
-                                TargetExpression = DerefMember(Variable("pointer"), member.Name),
-                                MemberType = this.nameLookup.Lookup(member.Type, false),
+                                ValueExpression = StaticCall("Interop.HeapUtil", "MarshalTo", Member(This, source.Name)),
+                                TargetExpression = DerefMember(Variable("pointer"), source.Name),
+                                MemberType = this.nameLookup.Lookup(source.Type, false),
                                 Type = MemberActionType.Assign
                             });
 
-                            info.MarshalFrom.MemberActions.Add(new Action
+                            info.MarshalFrom.Add(new Action
                             {
-                                ValueExpression = StaticCall("Interop.HeapUtil", "MarshalStringFrom", DerefMember(Variable("pointer"), member.Name)),
-                                TargetExpression = Member(Variable("result"), member.Name),
-                                MemberType = this.nameLookup.Lookup(member.Type, false),
+                                ValueExpression = StaticCall("Interop.HeapUtil", "MarshalStringFrom", DerefMember(Variable("pointer"), source.Name)),
+                                TargetExpression = Member(Variable("result"), source.Name),
+                                MemberType = this.nameLookup.Lookup(source.Type, false),
                                 Type = MemberActionType.Assign
                             });
 
                             break;
                         case LenType.Expression:
-                            var elementType = member.Type.Deref();
+                            var elementType = source.Type.Deref();
 
                             if (elementType.VkName == "void")
                             {
@@ -74,22 +74,22 @@ namespace SharpVk.Generator.Generation.Marshalling
 
                             var marshalling = this.marshallingRules.ApplyFirst(elementType);
 
-                            info.PublicStruct.Properties.Add(new MemberDefinition
+                            info.Public = new TypedDefinition
                             {
-                                Name = member.Name,
+                                Name = source.Name,
                                 Type = marshalling.MemberType + "[]"
-                            });
+                            };
 
-                            info.MarshalTo.MemberActions.Add(new Action
+                            info.MarshalTo.Add(new Action
                             {
-                                TargetExpression = DerefMember(Variable("pointer"), member.Name),
+                                TargetExpression = DerefMember(Variable("pointer"), source.Name),
                                 MemberType = marshalling.InteropType,
                                 IsLoop = true,
                                 IndexName = "index",
                                 Type = marshalling.MarshalToActionType,
-                                NullCheckExpression = IsNotEqual(Member(This, member.Name), Null),
-                                LengthExpression = Member(Member(This, member.Name), "Length"),
-                                ValueExpression = marshalling.BuildMarshalToValueExpression(Index(Member(This, member.Name), Variable("index")))
+                                NullCheckExpression = IsNotEqual(Member(This, source.Name), Null),
+                                LengthExpression = Member(Member(This, source.Name), "Length"),
+                                ValueExpression = marshalling.BuildMarshalToValueExpression(Index(Member(This, source.Name), Variable("index")))
                             });
                             break;
                     }

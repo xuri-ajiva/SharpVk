@@ -41,17 +41,15 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public void Destroy()
+        public void Destroy(AllocationCallbacks allocator)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public Result GetResults()
+        public void GetResults(uint firstQuery, uint queryCount, byte[] data, DeviceSize stride, QueryResultFlags flags)
         {
-            Result result = default(Result);
-            return result;
         }
     }
 }

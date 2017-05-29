@@ -19,34 +19,34 @@ namespace SharpVk.Generator.Generation.Marshalling
             this.nameLookup = nameLookup;
         }
 
-        public bool Apply(TypeDeclaration type, MemberDeclaration member, MemberPatternInfo info)
+        public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, MemberPatternInfo info)
         {
-            var marshalling = this.marshallingRules.ApplyFirst(member.Type);
+            var marshalling = this.marshallingRules.ApplyFirst(source.Type);
 
-            info.PublicStruct.Properties.Add(new MemberDefinition
+            info.Public = new TypedDefinition
             {
-                Name = member.Name,
+                Name = source.Name,
                 Type = marshalling.MemberType
-            });
+            };
 
-            info.InteropStruct.Fields.Add(new MemberDefinition
+            info.Interop = new TypedDefinition
             {
-                Name = member.Name,
-                Type = this.nameLookup.Lookup(member.Type, true)
-            });
+                Name = source.Name,
+                Type = this.nameLookup.Lookup(source.Type, true)
+            };
 
-            info.MarshalTo.MemberActions.Add(new Action
+            info.MarshalTo.Add(new Action
             {
-                ValueExpression = marshalling.BuildMarshalToValueExpression(Member(This, member.Name)),
-                TargetExpression = DerefMember(Variable("pointer"), member.Name),
+                ValueExpression = marshalling.BuildMarshalToValueExpression(Member(This, source.Name)),
+                TargetExpression = DerefMember(Variable("pointer"), source.Name),
                 MemberType = marshalling.InteropType,
                 Type = marshalling.MarshalToActionType
             });
 
-            info.MarshalFrom.MemberActions.Add(new Action
+            info.MarshalFrom.Add(new Action
             {
-                ValueExpression = marshalling.BuildMarshalFromValueExpression(DerefMember(Variable("pointer"), member.Name)),
-                TargetExpression = Member(Variable("result"), member.Name),
+                ValueExpression = marshalling.BuildMarshalFromValueExpression(DerefMember(Variable("pointer"), source.Name)),
+                TargetExpression = Member(Variable("result"), source.Name),
                 MemberType = marshalling.MemberType,
                 Type = marshalling.MarshalFromActionType
             });

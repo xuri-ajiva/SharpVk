@@ -41,26 +41,22 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public void Destroy()
+        public void Destroy(AllocationCallbacks allocator)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public Result Reset()
+        public void Reset(DescriptorPoolResetFlags flags)
         {
-            Result result = default(Result);
-            return result;
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public Result FreeDescriptorSets()
+        public void FreeDescriptorSets(DescriptorSet[] descriptorSets)
         {
-            Result result = default(Result);
-            return result;
         }
     }
 }

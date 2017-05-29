@@ -41,79 +41,75 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public void GetProperties()
+        public void GetProperties(PhysicalDeviceProperties properties)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void GetQueueFamilyProperties()
+        public void GetQueueFamilyProperties(QueueFamilyProperties[] queueFamilyProperties)
+        {
+            uint queueFamilyPropertyCount;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void GetMemoryProperties(PhysicalDeviceMemoryProperties memoryProperties)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void GetMemoryProperties()
+        public void GetFeatures(PhysicalDeviceFeatures features)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void GetFeatures()
+        public void GetFormatProperties(Format format, FormatProperties formatProperties)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void GetFormatProperties()
+        public void GetImageFormatProperties(Format format, ImageType type, ImageTiling tiling, ImageUsageFlags usage, ImageCreateFlags flags, ImageFormatProperties imageFormatProperties)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public Result GetImageFormatProperties()
+        public void CreateDevice(DeviceCreateInfo createInfo, AllocationCallbacks allocator, Device device)
         {
-            Result result = default(Result);
-            return result;
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public Result CreateDevice()
+        public void EnumerateDeviceLayerProperties(LayerProperties[] properties)
         {
-            Result result = default(Result);
-            return result;
+            uint propertyCount;
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public Result EnumerateDeviceLayerProperties()
+        public void EnumerateDeviceExtensionProperties(string layerName, ExtensionProperties[] properties)
         {
-            Result result = default(Result);
-            return result;
+            uint propertyCount;
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public Result EnumerateDeviceExtensionProperties()
+        public void GetSparseImageFormatProperties(Format format, ImageType type, SampleCountFlags samples, ImageUsageFlags usage, ImageTiling tiling, SparseImageFormatProperties[] properties)
         {
-            Result result = default(Result);
-            return result;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public void GetSparseImageFormatProperties()
-        {
+            uint propertyCount;
         }
     }
 }

@@ -41,17 +41,15 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public void Free()
+        public void Free(AllocationCallbacks allocator)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public Result Map()
+        public void Map(DeviceSize offset, DeviceSize size, MemoryMapFlags flags, IntPtr data)
         {
-            Result result = default(Result);
-            return result;
         }
         
         /// <summary>
@@ -64,7 +62,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public void GetCommitment()
+        public void GetCommitment(DeviceSize committedMemoryInBytes)
         {
         }
     }

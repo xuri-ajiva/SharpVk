@@ -1,5 +1,5 @@
 ﻿using SharpVk.Generator.Collation;
-
+using System.Collections.Generic;
 using static SharpVk.Emit.ExpressionBuilder;
 
 namespace SharpVk.Generator.Generation.Marshalling
@@ -14,21 +14,21 @@ namespace SharpVk.Generator.Generation.Marshalling
             this.nameLookup = nameLookup;
         }
 
-        public bool Apply(TypeDeclaration type, MemberDeclaration member, MemberPatternInfo info)
+        public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, MemberPatternInfo info)
         {
-            if (member.Name == "Next")
+            if (source.Name == "Next")
             {
-                info.MarshalTo.MemberActions.Add(new Action
+                info.MarshalTo.Add(new Action
                 {
                     ValueExpression = Null,
-                    TargetExpression = DerefMember(Variable("pointer"), member.Name)
+                    TargetExpression = DerefMember(Variable("pointer"), source.Name)
                 });
 
-                info.InteropStruct.Fields.Add(new MemberDefinition
+                info.Interop = new TypedDefinition
                 {
-                    Name = member.Name,
-                    Type = this.nameLookup.Lookup(member.Type, true)
-                });
+                    Name = source.Name,
+                    Type = this.nameLookup.Lookup(source.Type, true)
+                };
 
                 return true;
             }

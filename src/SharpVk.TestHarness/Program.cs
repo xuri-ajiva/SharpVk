@@ -6,7 +6,13 @@ namespace SharpVk.TestHarness
     {
         static void Main(string[] args)
         {
-            var instance = Instance.Create(new InstanceCreateInfo { });
+            var instance = Instance._Create(new InstanceCreateInfo
+            {
+                ApplicationInfo = new ApplicationInfo
+                {
+                    
+                }
+            });
 
             var devices = instance._EnumeratePhysicalDevices();
 

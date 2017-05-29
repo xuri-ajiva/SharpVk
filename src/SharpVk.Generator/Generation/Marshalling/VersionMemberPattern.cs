@@ -1,5 +1,5 @@
 ﻿using SharpVk.Generator.Collation;
-
+using System.Collections.Generic;
 using static SharpVk.Emit.ExpressionBuilder;
 
 namespace SharpVk.Generator.Generation.Marshalling
@@ -14,27 +14,27 @@ namespace SharpVk.Generator.Generation.Marshalling
             this.nameLookup = nameLookup;
         }
 
-        public bool Apply(TypeDeclaration type, MemberDeclaration member, MemberPatternInfo info)
+        public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, MemberPatternInfo info)
         {
-            if (member.Name.EndsWith("Version") && member.Type.VkName.StartsWith("uint32"))
+            if (source.Name.EndsWith("Version") && source.Type.VkName.StartsWith("uint32"))
             {
-                info.PublicStruct.Properties.Add(new MemberDefinition
+                info.Public = new TypedDefinition
                 {
-                    Name = member.Name,
+                    Name = source.Name,
                     Type = "Version"
+                };
+
+                info.MarshalFrom.Add(new Action
+                {
+                    ValueExpression = Cast("Version", DerefMember(Variable("pointer"), source.Name)),
+                    TargetExpression = Member(Variable("result"), source.Name),
                 });
 
-                info.MarshalFrom.MemberActions.Add(new Action
+                info.Interop = new TypedDefinition
                 {
-                    ValueExpression = Cast("Version", DerefMember(Variable("pointer"), member.Name)),
-                    TargetExpression = Member(Variable("result"), member.Name),
-                });
-
-                info.InteropStruct.Fields.Add(new MemberDefinition
-                {
-                    Name = member.Name,
-                    Type = this.nameLookup.Lookup(member.Type, true)
-                });
+                    Name = source.Name,
+                    Type = this.nameLookup.Lookup(source.Type, true)
+                };
 
                 return true;
             }

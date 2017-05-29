@@ -41,37 +41,36 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public void GetMemoryRequirements()
+        public void GetMemoryRequirements(MemoryRequirements memoryRequirements)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public Result BindMemory()
-        {
-            Result result = default(Result);
-            return result;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public void GetSparseMemoryRequirements()
+        public void BindMemory(DeviceMemory memory, DeviceSize memoryOffset)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void Destroy()
+        public void GetSparseMemoryRequirements(SparseImageMemoryRequirements[] sparseMemoryRequirements)
+        {
+            uint sparseMemoryRequirementCount;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Destroy(AllocationCallbacks allocator)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void GetSubresourceLayout()
+        public void GetSubresourceLayout(ImageSubresource subresource, SubresourceLayout layout)
         {
         }
     }

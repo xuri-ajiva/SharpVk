@@ -41,53 +41,46 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Result Create()
-        {
-            Result result = default(Result);
-            return result;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public void Destroy()
+        public void Create(InstanceCreateInfo createInfo, AllocationCallbacks allocator, Instance instance)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public Result EnumeratePhysicalDevices()
+        public void Destroy(AllocationCallbacks allocator)
         {
-            Result result = default(Result);
-            return result;
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public VoidFunctionDelegate GetProcedureAddress()
+        public void EnumeratePhysicalDevices(PhysicalDevice[] physicalDevices)
         {
-            VoidFunctionDelegate result = default(VoidFunctionDelegate);
-            return result;
+            uint physicalDeviceCount;
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public Result EnumerateLayerProperties()
+        public void GetProcedureAddress(string name)
         {
-            Result result = default(Result);
-            return result;
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public Result EnumerateExtensionProperties()
+        public void EnumerateLayerProperties(LayerProperties[] properties)
         {
-            Result result = default(Result);
-            return result;
+            uint propertyCount;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void EnumerateExtensionProperties(string layerName, ExtensionProperties[] properties)
+        {
+            uint propertyCount;
         }
     }
 }

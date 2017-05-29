@@ -8,7 +8,7 @@
         /// <param name="createInfo"></param>
         /// <param name="allocator"></param>
         /// <returns></returns>
-        public static Instance Create(InstanceCreateInfo createInfo, AllocationCallbacks? allocator = null)
+        public static Instance _Create(InstanceCreateInfo createInfo, AllocationCallbacks? allocator = null)
         {
             unsafe
             {

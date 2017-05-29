@@ -41,17 +41,15 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public void Destroy()
+        public void Destroy(AllocationCallbacks allocator)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public Result GetStatus()
+        public void GetStatus()
         {
-            Result result = default(Result);
-            return result;
         }
     }
 }

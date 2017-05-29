@@ -122,6 +122,9 @@ namespace SharpVk.Generator.Emission
                                         Cast(action.MemberType + "*", StaticCall("Interop.HeapUtil", $"Allocate<{action.MemberType}>")));
                     codeBlock.EmitAssignment(Deref(targetExpression), action.ValueExpression);
                     break;
+                case MemberActionType.Declaration:
+                    codeBlock.EmitVariableDeclaration(action.MemberType, action.MemberName);
+                    break;
                 case MemberActionType.MarshalToAddressOf:
                     codeBlock.EmitCall(action.ValueExpression, "MarshalTo", AddressOf(targetExpression));
                     break;

@@ -41,256 +41,204 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public VoidFunctionDelegate GetProcedureAddress()
-        {
-            VoidFunctionDelegate result = default(VoidFunctionDelegate);
-            return result;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public void Destroy()
+        public void GetProcedureAddress(string name)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public void GetQueue()
+        public void Destroy(AllocationCallbacks allocator)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public Result WaitIdle()
-        {
-            Result result = default(Result);
-            return result;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Result AllocateMemory()
-        {
-            Result result = default(Result);
-            return result;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Result FlushMappedMemoryRanges()
-        {
-            Result result = default(Result);
-            return result;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Result InvalidateMappedMemoryRanges()
-        {
-            Result result = default(Result);
-            return result;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Result CreateFence()
-        {
-            Result result = default(Result);
-            return result;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Result ResetFences()
-        {
-            Result result = default(Result);
-            return result;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Result WaitForFences()
-        {
-            Result result = default(Result);
-            return result;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Result CreateSemaphore()
-        {
-            Result result = default(Result);
-            return result;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Result CreateEvent()
-        {
-            Result result = default(Result);
-            return result;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Result CreateQueryPool()
-        {
-            Result result = default(Result);
-            return result;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Result CreateBuffer()
-        {
-            Result result = default(Result);
-            return result;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Result CreateBufferView()
-        {
-            Result result = default(Result);
-            return result;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Result CreateImage()
-        {
-            Result result = default(Result);
-            return result;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Result CreateImageView()
-        {
-            Result result = default(Result);
-            return result;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Result CreateShaderModule()
-        {
-            Result result = default(Result);
-            return result;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Result CreatePipelineCache()
-        {
-            Result result = default(Result);
-            return result;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Result CreatePipelineLayout()
-        {
-            Result result = default(Result);
-            return result;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Result CreateSampler()
-        {
-            Result result = default(Result);
-            return result;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Result CreateDescriptorSetLayout()
-        {
-            Result result = default(Result);
-            return result;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Result CreateDescriptorPool()
-        {
-            Result result = default(Result);
-            return result;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Result AllocateDescriptorSets()
-        {
-            Result result = default(Result);
-            return result;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public void UpdateDescriptorSets()
+        public void GetQueue(uint queueFamilyIndex, uint queueIndex, Queue queue)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public Result CreateFramebuffer()
+        public void WaitIdle()
         {
-            Result result = default(Result);
-            return result;
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public Result CreateRenderPass()
+        public void AllocateMemory(MemoryAllocateInfo allocateInfo, AllocationCallbacks allocator, DeviceMemory memory)
         {
-            Result result = default(Result);
-            return result;
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public Result CreateCommandPool()
+        public void FlushMappedMemoryRanges(MappedMemoryRange[] memoryRanges)
         {
-            Result result = default(Result);
-            return result;
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public Result AllocateCommandBuffers()
+        public void InvalidateMappedMemoryRanges(MappedMemoryRange[] memoryRanges)
         {
-            Result result = default(Result);
-            return result;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void CreateFence(FenceCreateInfo createInfo, AllocationCallbacks allocator, Fence fence)
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void ResetFences(Fence[] fences)
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void WaitForFences(Fence[] fences, Bool32 waitAll, ulong timeout)
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void CreateSemaphore(SemaphoreCreateInfo createInfo, AllocationCallbacks allocator, Semaphore semaphore)
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void CreateEvent(EventCreateInfo createInfo, AllocationCallbacks allocator, Event @event)
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void CreateQueryPool(QueryPoolCreateInfo createInfo, AllocationCallbacks allocator, QueryPool queryPool)
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void CreateBuffer(BufferCreateInfo createInfo, AllocationCallbacks allocator, Buffer buffer)
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void CreateBufferView(BufferViewCreateInfo createInfo, AllocationCallbacks allocator, BufferView view)
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void CreateImage(ImageCreateInfo createInfo, AllocationCallbacks allocator, Image image)
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void CreateImageView(ImageViewCreateInfo createInfo, AllocationCallbacks allocator, ImageView view)
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void CreateShaderModule(ShaderModuleCreateInfo createInfo, AllocationCallbacks allocator, ShaderModule shaderModule)
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void CreatePipelineCache(PipelineCacheCreateInfo createInfo, AllocationCallbacks allocator, PipelineCache pipelineCache)
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void CreatePipelineLayout(PipelineLayoutCreateInfo createInfo, AllocationCallbacks allocator, PipelineLayout pipelineLayout)
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void CreateSampler(SamplerCreateInfo createInfo, AllocationCallbacks allocator, Sampler sampler)
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void CreateDescriptorSetLayout(DescriptorSetLayoutCreateInfo createInfo, AllocationCallbacks allocator, DescriptorSetLayout setLayout)
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void CreateDescriptorPool(DescriptorPoolCreateInfo createInfo, AllocationCallbacks allocator, DescriptorPool descriptorPool)
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void AllocateDescriptorSets(DescriptorSet[] descriptorSets)
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void UpdateDescriptorSets(WriteDescriptorSet[] descriptorWrites, CopyDescriptorSet[] descriptorCopies)
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void CreateFramebuffer(FramebufferCreateInfo createInfo, AllocationCallbacks allocator, Framebuffer framebuffer)
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void CreateRenderPass(RenderPassCreateInfo createInfo, AllocationCallbacks allocator, RenderPass renderPass)
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void CreateCommandPool(CommandPoolCreateInfo createInfo, AllocationCallbacks allocator, CommandPool commandPool)
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void AllocateCommandBuffers(CommandBuffer[] commandBuffers)
+        {
         }
     }
 }

@@ -65,20 +65,22 @@ namespace SharpVk.Generator.Collation
 
                         return previousParamHandle.VkName == paramHandle.Parent || previousParamHandle.VkName == associatedHandle;
                     }
-                });
+                }).ToArray();
 
                 var handleTypeName = handleParams.Any()
                                         ? handleParams.Last().Type
                                         : IsHandle(command.Params.Last())
                                             ? command.Params.Last().Type
                                             : "VkInstance";
-
+                
                 services.AddSingleton(new CommandDeclaration
                 {
                     VkName = command.VkName,
                     Name = this.nameFormatter.FormatName(command, typeData[handleTypeName]),
+                    Verb = command.Verb,
                     Extension = command.Extension,
                     HandleTypeName = handleTypeName,
+                    HandleParamsCount = handleParams.Length,
                     ReturnType = command.Type,
                     Params = command.Params.Select(x => new ParamDeclaration
                     {
@@ -89,7 +91,8 @@ namespace SharpVk.Generator.Collation
                             VkName = x.Type,
                             PointerType = x.PointerType,
                             FixedLength = x.FixedLength
-                        }
+                        },
+                        Dimensions = x.Dimensions
                     }).ToList()
                 });
             }

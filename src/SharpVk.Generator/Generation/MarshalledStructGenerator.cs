@@ -111,13 +111,43 @@ namespace SharpVk.Generator.Generation
 
                 foreach (var member in type.Members)
                 {
-                    this.patternRules.ApplyFirst(type, member, new MemberPatternInfo
+                    var patternInfo = new MemberPatternInfo
                     {
-                        PublicStruct = publicStruct,
-                        InteropStruct = interopStruct,
-                        MarshalFrom = marshalFromMethod,
-                        MarshalTo = marshalToMethod
-                    });
+                        MarshalFrom = marshalFromMethod.MemberActions,
+                        MarshalTo = marshalToMethod.MemberActions
+                    };
+
+                    this.patternRules.ApplyFirst(type.Members, member, patternInfo);
+
+                    if (patternInfo.Public.HasValue)
+                    {
+                        publicStruct.Properties.Add(new MemberDefinition
+                        {
+                            Name = patternInfo.Public.Value.Name,
+                            Type = patternInfo.Public.Value.Type
+                        });
+                    }
+
+                    if (patternInfo.Interop.Repeats.HasValue)
+                    {
+                        for (int index = 0; index < patternInfo.Interop.Repeats.Value; index++)
+                        {
+                            interopStruct.Fields.Add(new MemberDefinition
+                            {
+                                Name = patternInfo.Interop.Name + "_" + index,
+                                Type = patternInfo.Interop.Type
+                            });
+                        }
+                    }
+                    else
+                    {
+                        interopStruct.Fields.Add(new MemberDefinition
+                        {
+                            Name = patternInfo.Interop.Name,
+                            Type = patternInfo.Interop.Type
+                        });
+                    }
+
                 }
 
                 services.AddSingleton(publicStruct);

@@ -41,44 +41,37 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public void Destroy()
+        public void Destroy(AllocationCallbacks allocator)
         {
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public Result GetData()
+        public void GetData(byte[] data)
         {
-            Result result = default(Result);
-            return result;
+            HostSize dataSize;
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public Result MergePipelineCaches()
+        public void MergePipelineCaches(PipelineCache[] sourceCaches)
         {
-            Result result = default(Result);
-            return result;
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public Result CreateGraphicsPipelines()
+        public void CreateGraphicsPipelines(GraphicsPipelineCreateInfo[] createInfos, AllocationCallbacks allocator, Pipeline[] pipelines)
         {
-            Result result = default(Result);
-            return result;
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public Result CreateComputePipelines()
+        public void CreateComputePipelines(ComputePipelineCreateInfo[] createInfos, AllocationCallbacks allocator, Pipeline[] pipelines)
         {
-            Result result = default(Result);
-            return result;
         }
     }
 }

@@ -20,24 +20,24 @@ namespace SharpVk.Generator.Generation.Marshalling
             this.constantsLookup = constants.ToDictionary(x => x.VkName);
         }
 
-        public bool Apply(TypeDeclaration type, MemberDeclaration member, MemberPatternInfo info)
+        public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, MemberPatternInfo info)
         {
-            if (member.Type.FixedLength.Type != FixedLengthType.None)
+            if (source.Type.FixedLength.Type != FixedLengthType.None)
             {
-                string name = member.Name;
-                string memberType = this.nameLookup.Lookup(member.Type, true);
+                string name = source.Name;
+                string memberType = this.nameLookup.Lookup(source.Type, true);
 
-                if (this.typeData[member.Type.VkName].Pattern == TypePattern.Primitive)
+                if (this.typeData[source.Type.VkName].Pattern == TypePattern.Primitive)
                 {
                     string length = "1";
 
-                    if (member.Type.FixedLength.Type == FixedLengthType.IntegerLiteral)
+                    if (source.Type.FixedLength.Type == FixedLengthType.IntegerLiteral)
                     {
-                        length = member.Type.FixedLength.Value;
+                        length = source.Type.FixedLength.Value;
                     }
                     else
                     {
-                        var constant = this.constantsLookup[member.Type.FixedLength.Value];
+                        var constant = this.constantsLookup[source.Type.FixedLength.Value];
 
                         length = $"Constants.{constant.Name}";
                     }
@@ -45,25 +45,25 @@ namespace SharpVk.Generator.Generation.Marshalling
                     name += $"[{length}]";
                     memberType = "fixed " + memberType;
 
-                    info.InteropStruct.Fields.Add(new MemberDefinition
+                    info.Interop = new TypedDefinition
                     {
                         Name = name,
                         Type = memberType
-                    });
+                    };
 
-                    switch(member.Type.VkName)
+                    switch(source.Type.VkName)
                     {
                         case "char":
-                            info.PublicStruct.Properties.Add(new MemberDefinition
+                            info.Public = new TypedDefinition
                             {
-                                Name = member.Name,
+                                Name = source.Name,
                                 Type = "string"
-                            });
+                            };
 
-                            info.MarshalFrom.MemberActions.Add(new Action
+                            info.MarshalFrom.Add(new Action
                             {
-                                TargetExpression = Member(Variable("result"), member.Name),
-                                ValueExpression = StaticCall("Interop.HeapUtil", "MarshalStringFrom", DerefMember(Variable("pointer"), member.Name), AsIs(length), Literal(true))
+                                TargetExpression = Member(Variable("result"), source.Name),
+                                ValueExpression = StaticCall("Interop.HeapUtil", "MarshalStringFrom", DerefMember(Variable("pointer"), source.Name), AsIs(length), Literal(true))
                             });
 
                             break;
@@ -73,25 +73,23 @@ namespace SharpVk.Generator.Generation.Marshalling
                 {
                     int count = 1;
 
-                    if (member.Type.FixedLength.Type == FixedLengthType.IntegerLiteral)
+                    if (source.Type.FixedLength.Type == FixedLengthType.IntegerLiteral)
                     {
-                        count = int.Parse(member.Type.FixedLength.Value);
+                        count = int.Parse(source.Type.FixedLength.Value);
                     }
                     else
                     {
-                        var constant = this.constantsLookup[member.Type.FixedLength.Value];
+                        var constant = this.constantsLookup[source.Type.FixedLength.Value];
 
                         count = int.Parse(constant.Value);
                     }
-
-                    for (int index = 0; index < count; index++)
-                    {
-                        info.InteropStruct.Fields.Add(new MemberDefinition
+                    
+                        info.Interop = new TypedDefinition
                         {
-                            Name = name + "_" + index,
-                            Type = memberType
-                        });
-                    }
+                            Name = name,
+                            Type = memberType,
+                            Repeats = count
+                        };
                 }
 
                 return true;

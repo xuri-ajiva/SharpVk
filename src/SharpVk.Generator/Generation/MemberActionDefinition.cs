@@ -10,6 +10,7 @@ namespace SharpVk.Generator.Generation
         public Action<ExpressionBuilder> ValueExpression;
         public Action<ExpressionBuilder> TargetExpression;
         public string IndexName;
+        public string MemberName;
         public string MemberType;
         public MemberActionType Type;
         public bool IsLoop;
@@ -22,6 +23,7 @@ namespace SharpVk.Generator.Generation
     {
         Assign,
         AllocAndAssign,
+        Declaration,
         MarshalFrom,
         MarshalFromAddressOf,
         MarshalTo,

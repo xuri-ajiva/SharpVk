@@ -41,28 +41,22 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Result Submit()
+        public void Submit(SubmitInfo[] submits, Fence fence)
         {
-            Result result = default(Result);
-            return result;
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public Result WaitIdle()
+        public void WaitIdle()
         {
-            Result result = default(Result);
-            return result;
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public Result BindSparse()
+        public void BindSparse(BindSparseInfo[] bindInfo, Fence fence)
         {
-            Result result = default(Result);
-            return result;
         }
     }
 }
