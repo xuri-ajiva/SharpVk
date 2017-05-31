@@ -25,13 +25,13 @@ namespace SharpVk.Generator.Generation.Marshalling
 
             if (typePattern == TypePattern.MarshalledStruct)
             {
-                MemberActionType toAction = type.PointerType.IsPointer()
-                                                ? MemberActionType.MarshalTo
-                                                : MemberActionType.MarshalToAddressOf;
+                AssignActionType toAction = type.PointerType.IsPointer()
+                                                ? AssignActionType.MarshalTo
+                                                : AssignActionType.MarshalToAddressOf;
 
-                MemberActionType fromAction = type.PointerType.IsPointer()
-                                                    ? MemberActionType.MarshalFrom
-                                                    : MemberActionType.MarshalFromAddressOf;
+                AssignActionType fromAction = type.PointerType.IsPointer()
+                                                    ? AssignActionType.MarshalFrom
+                                                    : AssignActionType.MarshalFromAddressOf;
 
                 info = new MarshalInfo
                 {

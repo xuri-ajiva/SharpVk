@@ -44,7 +44,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                 info.InteropFullType += "*";
             }
 
-            info.MarshalTo.Add((getTarget, getValue) => new Action
+            info.MarshalTo.Add((getTarget, getValue) => new AssignAction
             {
                 ValueExpression = marshalling.BuildMarshalToValueExpression(getValue(source.Name)),
                 TargetExpression = getTarget(source.Name),
@@ -52,7 +52,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                 Type = marshalling.MarshalToActionType
             });
 
-            info.MarshalFrom.Add(new Action
+            info.MarshalFrom.Add(new AssignAction
             {
                 ValueExpression = marshalling.BuildMarshalFromValueExpression(DerefMember(Variable("pointer"), source.Name)),
                 TargetExpression = Member(Variable("result"), source.Name),

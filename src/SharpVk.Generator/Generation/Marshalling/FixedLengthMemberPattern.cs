@@ -62,7 +62,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                                 Type = "string"
                             };
 
-                            info.MarshalFrom.Add(new Action
+                            info.MarshalFrom.Add(new AssignAction
                             {
                                 TargetExpression = Member(Variable("result"), source.Name),
                                 ValueExpression = StaticCall("Interop.HeapUtil", "MarshalStringFrom", DerefMember(Variable("pointer"), source.Name), AsIs(length), Literal(true))

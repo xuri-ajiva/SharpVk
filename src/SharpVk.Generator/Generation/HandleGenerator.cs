@@ -119,10 +119,10 @@ namespace SharpVk.Generator.Generation
                 {
                     //result.ArgumentName = "&" + paramName;
 
-                    newMethod.MemberActions.Add(new Action
+                    newMethod.MemberActions.Add(new AssignAction
                     {
                         MemberType = paramType.Name,
-                        Type = MemberActionType.Declaration,
+                        Type = AssignActionType.Declaration,
                         MemberName = paramName
                     });
                 }
@@ -546,9 +546,9 @@ namespace SharpVk.Generator.Generation
 
                     if (patternInfo.MarshalTo.Any())
                     {
-                        marshalToActions.Add(new Action
+                        marshalToActions.Add(new AssignAction
                         {
-                            Type = MemberActionType.Declaration,
+                            Type = AssignActionType.Declaration,
                             MemberType = patternInfo.InteropFullType,
                             MemberName = GetMarshalledName(patternInfo.Interop.Name)
                         });

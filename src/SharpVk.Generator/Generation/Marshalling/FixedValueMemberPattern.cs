@@ -27,7 +27,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                     var enumInfo = this.enumLookup[source.FixedValue];
                     var enumTypeName = this.nameLookup.Lookup(enumInfo.TypeVkName);
 
-                    info.MarshalTo.Add((getTarget, getValue) => new Action
+                    info.MarshalTo.Add((getTarget, getValue) => new AssignAction
                     {
                         ValueExpression = EnumField(enumTypeName, enumInfo.FieldName),
                         TargetExpression = getTarget(source.Name)

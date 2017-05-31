@@ -51,20 +51,20 @@ namespace SharpVk.Generator.Generation.Marshalling
 
                             info.InteropFullType = typeName;
 
-                            info.MarshalTo.Add((getTarget, getValue) => new Action
+                            info.MarshalTo.Add((getTarget, getValue) => new AssignAction
                             {
                                 ValueExpression = StaticCall("Interop.HeapUtil", "MarshalTo", getValue(source.Name)),
                                 TargetExpression = getTarget(source.Name),
                                 MemberType = this.nameLookup.Lookup(source.Type, false),
-                                Type = MemberActionType.Assign
+                                Type = AssignActionType.Assign
                             });
 
-                            info.MarshalFrom.Add(new Action
+                            info.MarshalFrom.Add(new AssignAction
                             {
                                 ValueExpression = StaticCall("Interop.HeapUtil", "MarshalStringFrom", DerefMember(Variable("pointer"), source.Name)),
                                 TargetExpression = Member(Variable("result"), source.Name),
                                 MemberType = this.nameLookup.Lookup(source.Type, false),
-                                Type = MemberActionType.Assign
+                                Type = AssignActionType.Assign
                             });
 
                             break;
@@ -91,7 +91,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                                 Type = marshalling.MemberType + "[]"
                             };
 
-                            info.MarshalTo.Add((getTarget, getValue) => new Action
+                            info.MarshalTo.Add((getTarget, getValue) => new AssignAction
                             {
                                 TargetExpression = getTarget(source.Name),
                                 MemberType = marshalling.InteropType,

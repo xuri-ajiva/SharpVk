@@ -18,7 +18,7 @@ namespace SharpVk.Generator.Generation.Marshalling
         {
             if (source.Name == "Next")
             {
-                info.MarshalTo.Add((getTarget, getValue) => new Action
+                info.MarshalTo.Add((getTarget, getValue) => new AssignAction
                 {
                     ValueExpression = Null,
                     TargetExpression = getTarget(source.Name)

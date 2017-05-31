@@ -27,7 +27,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                 {
                     MemberType = this.nameLookup.Lookup(type, false),
                     InteropType = "IntPtr",
-                    MarshalToActionType = MemberActionType.Assign,
+                    MarshalToActionType = AssignActionType.Assign,
                     BuildMarshalToValueExpression = value => StaticCall("System.Runtime.InteropServices.Marshal", "GetFunctionPointerForDelegate", value),
                     BuildMarshalFromValueExpression = value => value
                 };

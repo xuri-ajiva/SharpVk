@@ -42,7 +42,7 @@ namespace SharpVk.Generator.Generation.Marshalling
 
             if (lenExpression.Any())
             {
-                info.MarshalTo.Add((getTarget, getValue) => new Action
+                info.MarshalTo.Add((getTarget, getValue) => new AssignAction
                 {
                     TargetExpression = getTarget(source.Name),
                     ValueExpression = Cast(this.nameLookup.Lookup(source.Type, false), lenExpression.First()(getValue))

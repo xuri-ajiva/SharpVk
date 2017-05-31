@@ -24,7 +24,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                     Type = "Version"
                 };
 
-                info.MarshalFrom.Add(new Action
+                info.MarshalFrom.Add(new AssignAction
                 {
                     ValueExpression = Cast("Version", DerefMember(Variable("pointer"), source.Name)),
                     TargetExpression = Member(Variable("result"), source.Name),
