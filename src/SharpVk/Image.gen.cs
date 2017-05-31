@@ -38,35 +38,80 @@ namespace SharpVk
             this.handle = handle;
         }
         
-        internal unsafe void GetMemoryRequirements()
+        internal unsafe MemoryRequirements GetMemoryRequirements()
         {
+            try
+            {
+                MemoryRequirements result = default(MemoryRequirements);
+                MemoryRequirements* marshalledMemoryRequirements = default(MemoryRequirements*);
+                result = *marshalledMemoryRequirements;
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void BindMemory(DeviceMemory memory, DeviceSize memoryOffset)
         {
-            Interop.DeviceMemory marshalledMemory;
-            marshalledMemory = memory.handle;
-            DeviceSize marshalledMemoryOffset;
-            marshalledMemoryOffset = memoryOffset;
+            try
+            {
+                Interop.DeviceMemory marshalledMemory = default(Interop.DeviceMemory);
+                DeviceSize marshalledMemoryOffset = default(DeviceSize);
+                marshalledMemory = memory.handle;
+                marshalledMemoryOffset = memoryOffset;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void GetSparseMemoryRequirements()
+        internal unsafe SparseImageMemoryRequirements[] GetSparseMemoryRequirements()
         {
-            uint sparseMemoryRequirementCount;
+            try
+            {
+                SparseImageMemoryRequirements[] result = default(SparseImageMemoryRequirements[]);
+                uint sparseMemoryRequirementCount = default(uint);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void Destroy(AllocationCallbacks allocator)
         {
-            Interop.AllocationCallbacks* marshalledAllocator;
-            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-            allocator.MarshalTo(marshalledAllocator);
+            try
+            {
+                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                allocator.MarshalTo(marshalledAllocator);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void GetSubresourceLayout(ImageSubresource subresource)
+        internal unsafe SubresourceLayout GetSubresourceLayout(ImageSubresource subresource)
         {
-            ImageSubresource* marshalledSubresource;
-            marshalledSubresource = (ImageSubresource*)(Interop.HeapUtil.Allocate<ImageSubresource>());
-            *marshalledSubresource = subresource;
+            try
+            {
+                SubresourceLayout result = default(SubresourceLayout);
+                ImageSubresource* marshalledSubresource = default(ImageSubresource*);
+                SubresourceLayout* marshalledLayout = default(SubresourceLayout*);
+                marshalledSubresource = (ImageSubresource*)(Interop.HeapUtil.Allocate<ImageSubresource>());
+                *marshalledSubresource = subresource;
+                result = *marshalledLayout;
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
     }
 }

@@ -24,10 +24,10 @@ namespace SharpVk.Generator.Generation.Marshalling
                     Type = "Version"
                 };
 
-                info.MarshalFrom.Add(new AssignAction
+                info.MarshalFrom.Add((getTarget, getValue) => new AssignAction
                 {
-                    ValueExpression = Cast("Version", DerefMember(Variable("pointer"), source.Name)),
-                    TargetExpression = Member(Variable("result"), source.Name),
+                    ValueExpression = Cast("Version", getValue(source.Name)),
+                    TargetExpression = getTarget(source.Name),
                 });
 
                 string typeName = this.nameLookup.Lookup(source.Type, true);

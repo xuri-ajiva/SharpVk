@@ -9,7 +9,8 @@ namespace SharpVk.Generator.Generation
         public string Name;
         public bool IsUnsafe;
         public bool IsStatic;
+        public bool AllocatesUnmanagedMemory;
         public List<ParamActionDefinition> ParamActions;
-        public List<Action> MemberActions;
+        public List<MethodAction> MemberActions;
     }
 }

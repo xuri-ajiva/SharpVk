@@ -40,50 +40,71 @@ namespace SharpVk
         
         internal unsafe void Submit(SubmitInfo[] submits, Fence fence)
         {
-            uint marshalledSubmitCount;
-            marshalledSubmitCount = (uint)(submits?.Length ?? 0);
-            Interop.SubmitInfo* marshalledSubmits;
-            if (submits != null)
+            try
             {
-                var fieldPointer = (Interop.SubmitInfo*)(Interop.HeapUtil.AllocateAndClear<Interop.SubmitInfo>(submits.Length).ToPointer());
-                for(int index = 0; index < submits.Length; index++)
+                uint marshalledSubmitCount = default(uint);
+                Interop.SubmitInfo* marshalledSubmits = default(Interop.SubmitInfo*);
+                Interop.Fence marshalledFence = default(Interop.Fence);
+                marshalledSubmitCount = (uint)(submits?.Length ?? 0);
+                if (submits != null)
                 {
-                    submits[index].MarshalTo(&fieldPointer[index]);
+                    var fieldPointer = (Interop.SubmitInfo*)(Interop.HeapUtil.AllocateAndClear<Interop.SubmitInfo>(submits.Length).ToPointer());
+                    for(int index = 0; index < submits.Length; index++)
+                    {
+                        submits[index].MarshalTo(&fieldPointer[index]);
+                    }
+                    marshalledSubmits = fieldPointer;
                 }
-                marshalledSubmits = fieldPointer;
+                else
+                {
+                    marshalledSubmits = null;
+                }
+                marshalledFence = fence.handle;
             }
-            else
+            finally
             {
-                marshalledSubmits = null;
+                Interop.HeapUtil.FreeAll();
             }
-            Interop.Fence marshalledFence;
-            marshalledFence = fence.handle;
         }
         
         internal unsafe void WaitIdle()
         {
+            try
+            {
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void BindSparse(BindSparseInfo[] bindInfo, Fence fence)
         {
-            uint marshalledBindInfoCount;
-            marshalledBindInfoCount = (uint)(bindInfo?.Length ?? 0);
-            Interop.BindSparseInfo* marshalledBindInfo;
-            if (bindInfo != null)
+            try
             {
-                var fieldPointer = (Interop.BindSparseInfo*)(Interop.HeapUtil.AllocateAndClear<Interop.BindSparseInfo>(bindInfo.Length).ToPointer());
-                for(int index = 0; index < bindInfo.Length; index++)
+                uint marshalledBindInfoCount = default(uint);
+                Interop.BindSparseInfo* marshalledBindInfo = default(Interop.BindSparseInfo*);
+                Interop.Fence marshalledFence = default(Interop.Fence);
+                marshalledBindInfoCount = (uint)(bindInfo?.Length ?? 0);
+                if (bindInfo != null)
                 {
-                    bindInfo[index].MarshalTo(&fieldPointer[index]);
+                    var fieldPointer = (Interop.BindSparseInfo*)(Interop.HeapUtil.AllocateAndClear<Interop.BindSparseInfo>(bindInfo.Length).ToPointer());
+                    for(int index = 0; index < bindInfo.Length; index++)
+                    {
+                        bindInfo[index].MarshalTo(&fieldPointer[index]);
+                    }
+                    marshalledBindInfo = fieldPointer;
                 }
-                marshalledBindInfo = fieldPointer;
+                else
+                {
+                    marshalledBindInfo = null;
+                }
+                marshalledFence = fence.handle;
             }
-            else
+            finally
             {
-                marshalledBindInfo = null;
+                Interop.HeapUtil.FreeAll();
             }
-            Interop.Fence marshalledFence;
-            marshalledFence = fence.handle;
         }
     }
 }

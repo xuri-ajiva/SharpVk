@@ -52,10 +52,10 @@ namespace SharpVk.Generator.Generation.Marshalling
                 Type = marshalling.MarshalToActionType
             });
 
-            info.MarshalFrom.Add(new AssignAction
+            info.MarshalFrom.Add((getTarget, getValue) => new AssignAction
             {
-                ValueExpression = marshalling.BuildMarshalFromValueExpression(DerefMember(Variable("pointer"), source.Name)),
-                TargetExpression = Member(Variable("result"), source.Name),
+                ValueExpression = marshalling.BuildMarshalFromValueExpression(getValue(source.Name)),
+                TargetExpression = getTarget(source.Name),
                 MemberType = marshalling.MemberType,
                 Type = marshalling.MarshalFromActionType
             });

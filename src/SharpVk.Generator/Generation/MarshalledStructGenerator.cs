@@ -63,7 +63,7 @@ namespace SharpVk.Generator.Generation
                             }
                         }
                     },
-                    MemberActions = new List<Action>()
+                    MemberActions = new List<MethodAction>()
                 };
 
 
@@ -88,7 +88,7 @@ namespace SharpVk.Generator.Generation
                             }
                         }
                     },
-                    MemberActions = new List<Action>()
+                    MemberActions = new List<MethodAction>()
                 };
 
                 if (type.IsOutputOnly)
@@ -114,12 +114,12 @@ namespace SharpVk.Generator.Generation
                 {
                     var patternInfo = new MemberPatternInfo
                     {
-                        MarshalFrom = marshalFromMethod.MemberActions,
                     };
 
                     this.patternRules.ApplyFirst(type.Members, member, patternInfo);
 
                     marshalToMethod.MemberActions.AddRange(patternInfo.MarshalTo.Select(action => action(targetName => DerefMember(Variable("pointer"), targetName), valueName => Member(This, valueName))));
+                    marshalFromMethod.MemberActions.AddRange(patternInfo.MarshalFrom.Select(action => action(targetName => Member(Variable("result"), targetName), valueName => DerefMember(Variable("pointer"), valueName))));
 
                     if (patternInfo.Public.HasValue)
                     {

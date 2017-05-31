@@ -29,9 +29,19 @@ namespace SharpVk.Generator.Emission
                 modifiers |= MemberModifier.Static;
             }
 
+            Func<MethodDefinition, Action<CodeBlockBuilder>> bodyFunc = BuildBody;
+
+            if (method.AllocatesUnmanagedMemory)
+            {
+                bodyFunc = x => body => body.EmitTry(BuildBody(x), finallyBlock =>
+                     {
+                         finallyBlock.EmitStaticCall("Interop.HeapUtil", "FreeAll");
+                     });
+            }
+
             typeBuilder.EmitMethod(method.ReturnType ?? "void",
                                         method.Name,
-                                        BuildBody(method),
+                                        bodyFunc(method),
                                         BuildParams(method),
                                         method.IsUnsafe ? Internal : Public,
                                         modifiers);
@@ -70,6 +80,11 @@ namespace SharpVk.Generator.Emission
 
                 if (method.MemberActions != null)
                 {
+                    foreach (var action in method.MemberActions.OfType<DeclarationAction>())
+                    {
+                        body.EmitVariableDeclaration(action.MemberType, action.MemberName, Default(action.MemberType));
+                    }
+
                     foreach (var action in method.MemberActions.OfType<AssignAction>())
                     {
                         if (action.IsLoop)
@@ -119,9 +134,6 @@ namespace SharpVk.Generator.Emission
                     codeBlock.EmitAssignment(targetExpression,
                                         Cast(action.MemberType + "*", StaticCall("Interop.HeapUtil", $"Allocate<{action.MemberType}>")));
                     codeBlock.EmitAssignment(Deref(targetExpression), action.ValueExpression);
-                    break;
-                case AssignActionType.Declaration:
-                    codeBlock.EmitVariableDeclaration(action.MemberType, action.MemberName);
                     break;
                 case AssignActionType.MarshalToAddressOf:
                     codeBlock.EmitCall(action.ValueExpression, "MarshalTo", AddressOf(targetExpression));

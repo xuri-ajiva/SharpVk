@@ -3,12 +3,12 @@ using System;
 
 namespace SharpVk.Generator.Generation
 {
-    public abstract class Action
+    public abstract class MethodAction
     {
     }
 
     public class AssignAction
-        : Action
+        : MethodAction
     {
         public Action<ExpressionBuilder> NullCheckExpression;
         public Action<ExpressionBuilder> LengthExpression;
@@ -21,11 +21,17 @@ namespace SharpVk.Generator.Generation
         public bool IsLoop;
     }
 
+    public class DeclarationAction
+        : MethodAction
+    {
+        public string MemberName;
+        public string MemberType;
+    }
+
     public enum AssignActionType
     {
         Assign,
         AllocAndAssign,
-        Declaration,
         MarshalFrom,
         MarshalFromAddressOf,
         MarshalTo,

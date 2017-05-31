@@ -8,8 +8,8 @@ namespace SharpVk.Generator.Generation.Marshalling
     {
         public TypedDefinition? Public;
         public TypedDefinition Interop;
-        public List<Func<Func<string, Action<ExpressionBuilder>>, Func<string, Action<ExpressionBuilder>>, Action>> MarshalTo = new List<Func<Func<string, Action<ExpressionBuilder>>, Func<string, Action<ExpressionBuilder>>, Action>>();
-        public List<Action> MarshalFrom;
+        public List<Func<Func<string, Action<ExpressionBuilder>>, Func<string, Action<ExpressionBuilder>>, MethodAction>> MarshalTo = new List<Func<Func<string, Action<ExpressionBuilder>>, Func<string, Action<ExpressionBuilder>>, MethodAction>>();
+        public List<Func<Func<string, Action<ExpressionBuilder>>, Func<string, Action<ExpressionBuilder>>, MethodAction>> MarshalFrom = new List<Func<Func<string, Action<ExpressionBuilder>>, Func<string, Action<ExpressionBuilder>>, MethodAction>>();
         public string InteropFullType;
     }
 }

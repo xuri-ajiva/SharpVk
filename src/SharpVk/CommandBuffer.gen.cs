@@ -40,835 +40,1164 @@ namespace SharpVk
         
         internal unsafe void Begin(CommandBufferBeginInfo beginInfo)
         {
-            Interop.CommandBufferBeginInfo* marshalledBeginInfo;
-            marshalledBeginInfo = (Interop.CommandBufferBeginInfo*)(Interop.HeapUtil.Allocate<Interop.CommandBufferBeginInfo>());
-            beginInfo.MarshalTo(marshalledBeginInfo);
+            try
+            {
+                Interop.CommandBufferBeginInfo* marshalledBeginInfo = default(Interop.CommandBufferBeginInfo*);
+                marshalledBeginInfo = (Interop.CommandBufferBeginInfo*)(Interop.HeapUtil.Allocate<Interop.CommandBufferBeginInfo>());
+                beginInfo.MarshalTo(marshalledBeginInfo);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void End()
         {
+            try
+            {
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void Reset(CommandBufferResetFlags flags)
         {
-            CommandBufferResetFlags marshalledFlags;
-            marshalledFlags = flags;
+            try
+            {
+                CommandBufferResetFlags marshalledFlags = default(CommandBufferResetFlags);
+                marshalledFlags = flags;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void BindPipeline(PipelineBindPoint pipelineBindPoint, Pipeline pipeline)
         {
-            PipelineBindPoint marshalledPipelineBindPoint;
-            marshalledPipelineBindPoint = pipelineBindPoint;
-            Interop.Pipeline marshalledPipeline;
-            marshalledPipeline = pipeline.handle;
+            try
+            {
+                PipelineBindPoint marshalledPipelineBindPoint = default(PipelineBindPoint);
+                Interop.Pipeline marshalledPipeline = default(Interop.Pipeline);
+                marshalledPipelineBindPoint = pipelineBindPoint;
+                marshalledPipeline = pipeline.handle;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void SetViewport(uint firstViewport, Viewport[] viewports)
         {
-            uint marshalledFirstViewport;
-            marshalledFirstViewport = firstViewport;
-            uint marshalledViewportCount;
-            marshalledViewportCount = (uint)(viewports?.Length ?? 0);
-            Viewport* marshalledViewports;
-            if (viewports != null)
+            try
             {
-                var fieldPointer = (Viewport*)(Interop.HeapUtil.AllocateAndClear<Viewport>(viewports.Length).ToPointer());
-                for(int index = 0; index < viewports.Length; index++)
+                uint marshalledFirstViewport = default(uint);
+                uint marshalledViewportCount = default(uint);
+                Viewport* marshalledViewports = default(Viewport*);
+                marshalledFirstViewport = firstViewport;
+                marshalledViewportCount = (uint)(viewports?.Length ?? 0);
+                if (viewports != null)
                 {
-                    fieldPointer[index] = viewports[index];
+                    var fieldPointer = (Viewport*)(Interop.HeapUtil.AllocateAndClear<Viewport>(viewports.Length).ToPointer());
+                    for(int index = 0; index < viewports.Length; index++)
+                    {
+                        fieldPointer[index] = viewports[index];
+                    }
+                    marshalledViewports = fieldPointer;
                 }
-                marshalledViewports = fieldPointer;
+                else
+                {
+                    marshalledViewports = null;
+                }
             }
-            else
+            finally
             {
-                marshalledViewports = null;
+                Interop.HeapUtil.FreeAll();
             }
         }
         
         internal unsafe void SetScissor(uint firstScissor, Rect2D[] scissors)
         {
-            uint marshalledFirstScissor;
-            marshalledFirstScissor = firstScissor;
-            uint marshalledScissorCount;
-            marshalledScissorCount = (uint)(scissors?.Length ?? 0);
-            Rect2D* marshalledScissors;
-            if (scissors != null)
+            try
             {
-                var fieldPointer = (Rect2D*)(Interop.HeapUtil.AllocateAndClear<Rect2D>(scissors.Length).ToPointer());
-                for(int index = 0; index < scissors.Length; index++)
+                uint marshalledFirstScissor = default(uint);
+                uint marshalledScissorCount = default(uint);
+                Rect2D* marshalledScissors = default(Rect2D*);
+                marshalledFirstScissor = firstScissor;
+                marshalledScissorCount = (uint)(scissors?.Length ?? 0);
+                if (scissors != null)
                 {
-                    fieldPointer[index] = scissors[index];
+                    var fieldPointer = (Rect2D*)(Interop.HeapUtil.AllocateAndClear<Rect2D>(scissors.Length).ToPointer());
+                    for(int index = 0; index < scissors.Length; index++)
+                    {
+                        fieldPointer[index] = scissors[index];
+                    }
+                    marshalledScissors = fieldPointer;
                 }
-                marshalledScissors = fieldPointer;
+                else
+                {
+                    marshalledScissors = null;
+                }
             }
-            else
+            finally
             {
-                marshalledScissors = null;
+                Interop.HeapUtil.FreeAll();
             }
         }
         
         internal unsafe void SetLineWidth(float lineWidth)
         {
-            float marshalledLineWidth;
-            marshalledLineWidth = lineWidth;
+            try
+            {
+                float marshalledLineWidth = default(float);
+                marshalledLineWidth = lineWidth;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void SetDepthBias(float depthBiasConstantFactor, float depthBiasClamp, float depthBiasSlopeFactor)
         {
-            float marshalledDepthBiasConstantFactor;
-            marshalledDepthBiasConstantFactor = depthBiasConstantFactor;
-            float marshalledDepthBiasClamp;
-            marshalledDepthBiasClamp = depthBiasClamp;
-            float marshalledDepthBiasSlopeFactor;
-            marshalledDepthBiasSlopeFactor = depthBiasSlopeFactor;
+            try
+            {
+                float marshalledDepthBiasConstantFactor = default(float);
+                float marshalledDepthBiasClamp = default(float);
+                float marshalledDepthBiasSlopeFactor = default(float);
+                marshalledDepthBiasConstantFactor = depthBiasConstantFactor;
+                marshalledDepthBiasClamp = depthBiasClamp;
+                marshalledDepthBiasSlopeFactor = depthBiasSlopeFactor;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void SetBlendConstants(float blendConstants)
         {
-            float marshalledBlendConstants;
-            marshalledBlendConstants = blendConstants;
+            try
+            {
+                float marshalledBlendConstants = default(float);
+                marshalledBlendConstants = blendConstants;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void SetDepthBounds(float minDepthBounds, float maxDepthBounds)
         {
-            float marshalledMinDepthBounds;
-            marshalledMinDepthBounds = minDepthBounds;
-            float marshalledMaxDepthBounds;
-            marshalledMaxDepthBounds = maxDepthBounds;
+            try
+            {
+                float marshalledMinDepthBounds = default(float);
+                float marshalledMaxDepthBounds = default(float);
+                marshalledMinDepthBounds = minDepthBounds;
+                marshalledMaxDepthBounds = maxDepthBounds;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void SetStencilCompareMask(StencilFaceFlags faceMask, uint compareMask)
         {
-            StencilFaceFlags marshalledFaceMask;
-            marshalledFaceMask = faceMask;
-            uint marshalledCompareMask;
-            marshalledCompareMask = compareMask;
+            try
+            {
+                StencilFaceFlags marshalledFaceMask = default(StencilFaceFlags);
+                uint marshalledCompareMask = default(uint);
+                marshalledFaceMask = faceMask;
+                marshalledCompareMask = compareMask;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void SetStencilWriteMask(StencilFaceFlags faceMask, uint writeMask)
         {
-            StencilFaceFlags marshalledFaceMask;
-            marshalledFaceMask = faceMask;
-            uint marshalledWriteMask;
-            marshalledWriteMask = writeMask;
+            try
+            {
+                StencilFaceFlags marshalledFaceMask = default(StencilFaceFlags);
+                uint marshalledWriteMask = default(uint);
+                marshalledFaceMask = faceMask;
+                marshalledWriteMask = writeMask;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void SetStencilReference(StencilFaceFlags faceMask, uint reference)
         {
-            StencilFaceFlags marshalledFaceMask;
-            marshalledFaceMask = faceMask;
-            uint marshalledReference;
-            marshalledReference = reference;
+            try
+            {
+                StencilFaceFlags marshalledFaceMask = default(StencilFaceFlags);
+                uint marshalledReference = default(uint);
+                marshalledFaceMask = faceMask;
+                marshalledReference = reference;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void BindDescriptorSets(PipelineBindPoint pipelineBindPoint, PipelineLayout layout, uint firstSet, DescriptorSet[] descriptorSets, uint[] dynamicOffsets)
         {
-            PipelineBindPoint marshalledPipelineBindPoint;
-            marshalledPipelineBindPoint = pipelineBindPoint;
-            Interop.PipelineLayout marshalledLayout;
-            marshalledLayout = layout.handle;
-            uint marshalledFirstSet;
-            marshalledFirstSet = firstSet;
-            uint marshalledDescriptorSetCount;
-            marshalledDescriptorSetCount = (uint)(descriptorSets?.Length ?? 0);
-            Interop.DescriptorSet* marshalledDescriptorSets;
-            if (descriptorSets != null)
+            try
             {
-                var fieldPointer = (Interop.DescriptorSet*)(Interop.HeapUtil.AllocateAndClear<Interop.DescriptorSet>(descriptorSets.Length).ToPointer());
-                for(int index = 0; index < descriptorSets.Length; index++)
+                PipelineBindPoint marshalledPipelineBindPoint = default(PipelineBindPoint);
+                Interop.PipelineLayout marshalledLayout = default(Interop.PipelineLayout);
+                uint marshalledFirstSet = default(uint);
+                uint marshalledDescriptorSetCount = default(uint);
+                Interop.DescriptorSet* marshalledDescriptorSets = default(Interop.DescriptorSet*);
+                uint marshalledDynamicOffsetCount = default(uint);
+                uint* marshalledDynamicOffsets = default(uint*);
+                marshalledPipelineBindPoint = pipelineBindPoint;
+                marshalledLayout = layout.handle;
+                marshalledFirstSet = firstSet;
+                marshalledDescriptorSetCount = (uint)(descriptorSets?.Length ?? 0);
+                if (descriptorSets != null)
                 {
-                    fieldPointer[index] = descriptorSets[index].handle;
+                    var fieldPointer = (Interop.DescriptorSet*)(Interop.HeapUtil.AllocateAndClear<Interop.DescriptorSet>(descriptorSets.Length).ToPointer());
+                    for(int index = 0; index < descriptorSets.Length; index++)
+                    {
+                        fieldPointer[index] = descriptorSets[index].handle;
+                    }
+                    marshalledDescriptorSets = fieldPointer;
                 }
-                marshalledDescriptorSets = fieldPointer;
-            }
-            else
-            {
-                marshalledDescriptorSets = null;
-            }
-            uint marshalledDynamicOffsetCount;
-            marshalledDynamicOffsetCount = (uint)(dynamicOffsets?.Length ?? 0);
-            uint* marshalledDynamicOffsets;
-            if (dynamicOffsets != null)
-            {
-                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(dynamicOffsets.Length).ToPointer());
-                for(int index = 0; index < dynamicOffsets.Length; index++)
+                else
                 {
-                    fieldPointer[index] = dynamicOffsets[index];
+                    marshalledDescriptorSets = null;
                 }
-                marshalledDynamicOffsets = fieldPointer;
+                marshalledDynamicOffsetCount = (uint)(dynamicOffsets?.Length ?? 0);
+                if (dynamicOffsets != null)
+                {
+                    var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(dynamicOffsets.Length).ToPointer());
+                    for(int index = 0; index < dynamicOffsets.Length; index++)
+                    {
+                        fieldPointer[index] = dynamicOffsets[index];
+                    }
+                    marshalledDynamicOffsets = fieldPointer;
+                }
+                else
+                {
+                    marshalledDynamicOffsets = null;
+                }
             }
-            else
+            finally
             {
-                marshalledDynamicOffsets = null;
+                Interop.HeapUtil.FreeAll();
             }
         }
         
         internal unsafe void BindIndexBuffer(Buffer buffer, DeviceSize offset, IndexType indexType)
         {
-            Interop.Buffer marshalledBuffer;
-            marshalledBuffer = buffer.handle;
-            DeviceSize marshalledOffset;
-            marshalledOffset = offset;
-            IndexType marshalledIndexType;
-            marshalledIndexType = indexType;
+            try
+            {
+                Interop.Buffer marshalledBuffer = default(Interop.Buffer);
+                DeviceSize marshalledOffset = default(DeviceSize);
+                IndexType marshalledIndexType = default(IndexType);
+                marshalledBuffer = buffer.handle;
+                marshalledOffset = offset;
+                marshalledIndexType = indexType;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void BindVertexBuffers(uint firstBinding, Buffer[] buffers, DeviceSize[] offsets)
         {
-            uint marshalledFirstBinding;
-            marshalledFirstBinding = firstBinding;
-            uint marshalledBindingCount;
-            marshalledBindingCount = (uint)(buffers?.Length ?? 0);
-            Interop.Buffer* marshalledBuffers;
-            if (buffers != null)
+            try
             {
-                var fieldPointer = (Interop.Buffer*)(Interop.HeapUtil.AllocateAndClear<Interop.Buffer>(buffers.Length).ToPointer());
-                for(int index = 0; index < buffers.Length; index++)
+                uint marshalledFirstBinding = default(uint);
+                uint marshalledBindingCount = default(uint);
+                Interop.Buffer* marshalledBuffers = default(Interop.Buffer*);
+                DeviceSize* marshalledOffsets = default(DeviceSize*);
+                marshalledFirstBinding = firstBinding;
+                marshalledBindingCount = (uint)(buffers?.Length ?? 0);
+                if (buffers != null)
                 {
-                    fieldPointer[index] = buffers[index].handle;
+                    var fieldPointer = (Interop.Buffer*)(Interop.HeapUtil.AllocateAndClear<Interop.Buffer>(buffers.Length).ToPointer());
+                    for(int index = 0; index < buffers.Length; index++)
+                    {
+                        fieldPointer[index] = buffers[index].handle;
+                    }
+                    marshalledBuffers = fieldPointer;
                 }
-                marshalledBuffers = fieldPointer;
-            }
-            else
-            {
-                marshalledBuffers = null;
-            }
-            DeviceSize* marshalledOffsets;
-            if (offsets != null)
-            {
-                var fieldPointer = (DeviceSize*)(Interop.HeapUtil.AllocateAndClear<DeviceSize>(offsets.Length).ToPointer());
-                for(int index = 0; index < offsets.Length; index++)
+                else
                 {
-                    fieldPointer[index] = offsets[index];
+                    marshalledBuffers = null;
                 }
-                marshalledOffsets = fieldPointer;
+                if (offsets != null)
+                {
+                    var fieldPointer = (DeviceSize*)(Interop.HeapUtil.AllocateAndClear<DeviceSize>(offsets.Length).ToPointer());
+                    for(int index = 0; index < offsets.Length; index++)
+                    {
+                        fieldPointer[index] = offsets[index];
+                    }
+                    marshalledOffsets = fieldPointer;
+                }
+                else
+                {
+                    marshalledOffsets = null;
+                }
             }
-            else
+            finally
             {
-                marshalledOffsets = null;
+                Interop.HeapUtil.FreeAll();
             }
         }
         
         internal unsafe void Draw(uint vertexCount, uint instanceCount, uint firstVertex, uint firstInstance)
         {
-            uint marshalledVertexCount;
-            marshalledVertexCount = vertexCount;
-            uint marshalledInstanceCount;
-            marshalledInstanceCount = instanceCount;
-            uint marshalledFirstVertex;
-            marshalledFirstVertex = firstVertex;
-            uint marshalledFirstInstance;
-            marshalledFirstInstance = firstInstance;
+            try
+            {
+                uint marshalledVertexCount = default(uint);
+                uint marshalledInstanceCount = default(uint);
+                uint marshalledFirstVertex = default(uint);
+                uint marshalledFirstInstance = default(uint);
+                marshalledVertexCount = vertexCount;
+                marshalledInstanceCount = instanceCount;
+                marshalledFirstVertex = firstVertex;
+                marshalledFirstInstance = firstInstance;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void DrawIndexed(uint indexCount, uint instanceCount, uint firstIndex, int vertexOffset, uint firstInstance)
         {
-            uint marshalledIndexCount;
-            marshalledIndexCount = indexCount;
-            uint marshalledInstanceCount;
-            marshalledInstanceCount = instanceCount;
-            uint marshalledFirstIndex;
-            marshalledFirstIndex = firstIndex;
-            int marshalledVertexOffset;
-            marshalledVertexOffset = vertexOffset;
-            uint marshalledFirstInstance;
-            marshalledFirstInstance = firstInstance;
+            try
+            {
+                uint marshalledIndexCount = default(uint);
+                uint marshalledInstanceCount = default(uint);
+                uint marshalledFirstIndex = default(uint);
+                int marshalledVertexOffset = default(int);
+                uint marshalledFirstInstance = default(uint);
+                marshalledIndexCount = indexCount;
+                marshalledInstanceCount = instanceCount;
+                marshalledFirstIndex = firstIndex;
+                marshalledVertexOffset = vertexOffset;
+                marshalledFirstInstance = firstInstance;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void DrawIndirect(Buffer buffer, DeviceSize offset, uint drawCount, uint stride)
         {
-            Interop.Buffer marshalledBuffer;
-            marshalledBuffer = buffer.handle;
-            DeviceSize marshalledOffset;
-            marshalledOffset = offset;
-            uint marshalledDrawCount;
-            marshalledDrawCount = drawCount;
-            uint marshalledStride;
-            marshalledStride = stride;
+            try
+            {
+                Interop.Buffer marshalledBuffer = default(Interop.Buffer);
+                DeviceSize marshalledOffset = default(DeviceSize);
+                uint marshalledDrawCount = default(uint);
+                uint marshalledStride = default(uint);
+                marshalledBuffer = buffer.handle;
+                marshalledOffset = offset;
+                marshalledDrawCount = drawCount;
+                marshalledStride = stride;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void DrawIndexedIndirect(Buffer buffer, DeviceSize offset, uint drawCount, uint stride)
         {
-            Interop.Buffer marshalledBuffer;
-            marshalledBuffer = buffer.handle;
-            DeviceSize marshalledOffset;
-            marshalledOffset = offset;
-            uint marshalledDrawCount;
-            marshalledDrawCount = drawCount;
-            uint marshalledStride;
-            marshalledStride = stride;
+            try
+            {
+                Interop.Buffer marshalledBuffer = default(Interop.Buffer);
+                DeviceSize marshalledOffset = default(DeviceSize);
+                uint marshalledDrawCount = default(uint);
+                uint marshalledStride = default(uint);
+                marshalledBuffer = buffer.handle;
+                marshalledOffset = offset;
+                marshalledDrawCount = drawCount;
+                marshalledStride = stride;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void Dispatch(uint groupCountX, uint groupCountY, uint groupCountZ)
         {
-            uint marshalledGroupCountX;
-            marshalledGroupCountX = groupCountX;
-            uint marshalledGroupCountY;
-            marshalledGroupCountY = groupCountY;
-            uint marshalledGroupCountZ;
-            marshalledGroupCountZ = groupCountZ;
+            try
+            {
+                uint marshalledGroupCountX = default(uint);
+                uint marshalledGroupCountY = default(uint);
+                uint marshalledGroupCountZ = default(uint);
+                marshalledGroupCountX = groupCountX;
+                marshalledGroupCountY = groupCountY;
+                marshalledGroupCountZ = groupCountZ;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void DispatchIndirect(Buffer buffer, DeviceSize offset)
         {
-            Interop.Buffer marshalledBuffer;
-            marshalledBuffer = buffer.handle;
-            DeviceSize marshalledOffset;
-            marshalledOffset = offset;
+            try
+            {
+                Interop.Buffer marshalledBuffer = default(Interop.Buffer);
+                DeviceSize marshalledOffset = default(DeviceSize);
+                marshalledBuffer = buffer.handle;
+                marshalledOffset = offset;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void CopyBuffer(Buffer sourceBuffer, Buffer destinationBuffer, BufferCopy[] regions)
         {
-            Interop.Buffer marshalledSourceBuffer;
-            marshalledSourceBuffer = sourceBuffer.handle;
-            Interop.Buffer marshalledDestinationBuffer;
-            marshalledDestinationBuffer = destinationBuffer.handle;
-            uint marshalledRegionCount;
-            marshalledRegionCount = (uint)(regions?.Length ?? 0);
-            BufferCopy* marshalledRegions;
-            if (regions != null)
+            try
             {
-                var fieldPointer = (BufferCopy*)(Interop.HeapUtil.AllocateAndClear<BufferCopy>(regions.Length).ToPointer());
-                for(int index = 0; index < regions.Length; index++)
+                Interop.Buffer marshalledSourceBuffer = default(Interop.Buffer);
+                Interop.Buffer marshalledDestinationBuffer = default(Interop.Buffer);
+                uint marshalledRegionCount = default(uint);
+                BufferCopy* marshalledRegions = default(BufferCopy*);
+                marshalledSourceBuffer = sourceBuffer.handle;
+                marshalledDestinationBuffer = destinationBuffer.handle;
+                marshalledRegionCount = (uint)(regions?.Length ?? 0);
+                if (regions != null)
                 {
-                    fieldPointer[index] = regions[index];
+                    var fieldPointer = (BufferCopy*)(Interop.HeapUtil.AllocateAndClear<BufferCopy>(regions.Length).ToPointer());
+                    for(int index = 0; index < regions.Length; index++)
+                    {
+                        fieldPointer[index] = regions[index];
+                    }
+                    marshalledRegions = fieldPointer;
                 }
-                marshalledRegions = fieldPointer;
+                else
+                {
+                    marshalledRegions = null;
+                }
             }
-            else
+            finally
             {
-                marshalledRegions = null;
+                Interop.HeapUtil.FreeAll();
             }
         }
         
         internal unsafe void CopyImage(Image sourceImage, ImageLayout sourceImageLayout, Image destinationImage, ImageLayout destinationImageLayout, ImageCopy[] regions)
         {
-            Interop.Image marshalledSourceImage;
-            marshalledSourceImage = sourceImage.handle;
-            ImageLayout marshalledSourceImageLayout;
-            marshalledSourceImageLayout = sourceImageLayout;
-            Interop.Image marshalledDestinationImage;
-            marshalledDestinationImage = destinationImage.handle;
-            ImageLayout marshalledDestinationImageLayout;
-            marshalledDestinationImageLayout = destinationImageLayout;
-            uint marshalledRegionCount;
-            marshalledRegionCount = (uint)(regions?.Length ?? 0);
-            ImageCopy* marshalledRegions;
-            if (regions != null)
+            try
             {
-                var fieldPointer = (ImageCopy*)(Interop.HeapUtil.AllocateAndClear<ImageCopy>(regions.Length).ToPointer());
-                for(int index = 0; index < regions.Length; index++)
+                Interop.Image marshalledSourceImage = default(Interop.Image);
+                ImageLayout marshalledSourceImageLayout = default(ImageLayout);
+                Interop.Image marshalledDestinationImage = default(Interop.Image);
+                ImageLayout marshalledDestinationImageLayout = default(ImageLayout);
+                uint marshalledRegionCount = default(uint);
+                ImageCopy* marshalledRegions = default(ImageCopy*);
+                marshalledSourceImage = sourceImage.handle;
+                marshalledSourceImageLayout = sourceImageLayout;
+                marshalledDestinationImage = destinationImage.handle;
+                marshalledDestinationImageLayout = destinationImageLayout;
+                marshalledRegionCount = (uint)(regions?.Length ?? 0);
+                if (regions != null)
                 {
-                    fieldPointer[index] = regions[index];
+                    var fieldPointer = (ImageCopy*)(Interop.HeapUtil.AllocateAndClear<ImageCopy>(regions.Length).ToPointer());
+                    for(int index = 0; index < regions.Length; index++)
+                    {
+                        fieldPointer[index] = regions[index];
+                    }
+                    marshalledRegions = fieldPointer;
                 }
-                marshalledRegions = fieldPointer;
+                else
+                {
+                    marshalledRegions = null;
+                }
             }
-            else
+            finally
             {
-                marshalledRegions = null;
+                Interop.HeapUtil.FreeAll();
             }
         }
         
         internal unsafe void BlitImage(Image sourceImage, ImageLayout sourceImageLayout, Image destinationImage, ImageLayout destinationImageLayout, ImageBlit[] regions, Filter filter)
         {
-            Interop.Image marshalledSourceImage;
-            marshalledSourceImage = sourceImage.handle;
-            ImageLayout marshalledSourceImageLayout;
-            marshalledSourceImageLayout = sourceImageLayout;
-            Interop.Image marshalledDestinationImage;
-            marshalledDestinationImage = destinationImage.handle;
-            ImageLayout marshalledDestinationImageLayout;
-            marshalledDestinationImageLayout = destinationImageLayout;
-            uint marshalledRegionCount;
-            marshalledRegionCount = (uint)(regions?.Length ?? 0);
-            Interop.ImageBlit* marshalledRegions;
-            if (regions != null)
+            try
             {
-                var fieldPointer = (Interop.ImageBlit*)(Interop.HeapUtil.AllocateAndClear<Interop.ImageBlit>(regions.Length).ToPointer());
-                for(int index = 0; index < regions.Length; index++)
+                Interop.Image marshalledSourceImage = default(Interop.Image);
+                ImageLayout marshalledSourceImageLayout = default(ImageLayout);
+                Interop.Image marshalledDestinationImage = default(Interop.Image);
+                ImageLayout marshalledDestinationImageLayout = default(ImageLayout);
+                uint marshalledRegionCount = default(uint);
+                Interop.ImageBlit* marshalledRegions = default(Interop.ImageBlit*);
+                Filter marshalledFilter = default(Filter);
+                marshalledSourceImage = sourceImage.handle;
+                marshalledSourceImageLayout = sourceImageLayout;
+                marshalledDestinationImage = destinationImage.handle;
+                marshalledDestinationImageLayout = destinationImageLayout;
+                marshalledRegionCount = (uint)(regions?.Length ?? 0);
+                if (regions != null)
                 {
-                    regions[index].MarshalTo(&fieldPointer[index]);
+                    var fieldPointer = (Interop.ImageBlit*)(Interop.HeapUtil.AllocateAndClear<Interop.ImageBlit>(regions.Length).ToPointer());
+                    for(int index = 0; index < regions.Length; index++)
+                    {
+                        regions[index].MarshalTo(&fieldPointer[index]);
+                    }
+                    marshalledRegions = fieldPointer;
                 }
-                marshalledRegions = fieldPointer;
+                else
+                {
+                    marshalledRegions = null;
+                }
+                marshalledFilter = filter;
             }
-            else
+            finally
             {
-                marshalledRegions = null;
+                Interop.HeapUtil.FreeAll();
             }
-            Filter marshalledFilter;
-            marshalledFilter = filter;
         }
         
         internal unsafe void CopyBufferToImage(Buffer sourceBuffer, Image destinationImage, ImageLayout destinationImageLayout, BufferImageCopy[] regions)
         {
-            Interop.Buffer marshalledSourceBuffer;
-            marshalledSourceBuffer = sourceBuffer.handle;
-            Interop.Image marshalledDestinationImage;
-            marshalledDestinationImage = destinationImage.handle;
-            ImageLayout marshalledDestinationImageLayout;
-            marshalledDestinationImageLayout = destinationImageLayout;
-            uint marshalledRegionCount;
-            marshalledRegionCount = (uint)(regions?.Length ?? 0);
-            BufferImageCopy* marshalledRegions;
-            if (regions != null)
+            try
             {
-                var fieldPointer = (BufferImageCopy*)(Interop.HeapUtil.AllocateAndClear<BufferImageCopy>(regions.Length).ToPointer());
-                for(int index = 0; index < regions.Length; index++)
+                Interop.Buffer marshalledSourceBuffer = default(Interop.Buffer);
+                Interop.Image marshalledDestinationImage = default(Interop.Image);
+                ImageLayout marshalledDestinationImageLayout = default(ImageLayout);
+                uint marshalledRegionCount = default(uint);
+                BufferImageCopy* marshalledRegions = default(BufferImageCopy*);
+                marshalledSourceBuffer = sourceBuffer.handle;
+                marshalledDestinationImage = destinationImage.handle;
+                marshalledDestinationImageLayout = destinationImageLayout;
+                marshalledRegionCount = (uint)(regions?.Length ?? 0);
+                if (regions != null)
                 {
-                    fieldPointer[index] = regions[index];
+                    var fieldPointer = (BufferImageCopy*)(Interop.HeapUtil.AllocateAndClear<BufferImageCopy>(regions.Length).ToPointer());
+                    for(int index = 0; index < regions.Length; index++)
+                    {
+                        fieldPointer[index] = regions[index];
+                    }
+                    marshalledRegions = fieldPointer;
                 }
-                marshalledRegions = fieldPointer;
+                else
+                {
+                    marshalledRegions = null;
+                }
             }
-            else
+            finally
             {
-                marshalledRegions = null;
+                Interop.HeapUtil.FreeAll();
             }
         }
         
         internal unsafe void CopyImageToBuffer(Image sourceImage, ImageLayout sourceImageLayout, Buffer destinationBuffer, BufferImageCopy[] regions)
         {
-            Interop.Image marshalledSourceImage;
-            marshalledSourceImage = sourceImage.handle;
-            ImageLayout marshalledSourceImageLayout;
-            marshalledSourceImageLayout = sourceImageLayout;
-            Interop.Buffer marshalledDestinationBuffer;
-            marshalledDestinationBuffer = destinationBuffer.handle;
-            uint marshalledRegionCount;
-            marshalledRegionCount = (uint)(regions?.Length ?? 0);
-            BufferImageCopy* marshalledRegions;
-            if (regions != null)
+            try
             {
-                var fieldPointer = (BufferImageCopy*)(Interop.HeapUtil.AllocateAndClear<BufferImageCopy>(regions.Length).ToPointer());
-                for(int index = 0; index < regions.Length; index++)
+                Interop.Image marshalledSourceImage = default(Interop.Image);
+                ImageLayout marshalledSourceImageLayout = default(ImageLayout);
+                Interop.Buffer marshalledDestinationBuffer = default(Interop.Buffer);
+                uint marshalledRegionCount = default(uint);
+                BufferImageCopy* marshalledRegions = default(BufferImageCopy*);
+                marshalledSourceImage = sourceImage.handle;
+                marshalledSourceImageLayout = sourceImageLayout;
+                marshalledDestinationBuffer = destinationBuffer.handle;
+                marshalledRegionCount = (uint)(regions?.Length ?? 0);
+                if (regions != null)
                 {
-                    fieldPointer[index] = regions[index];
+                    var fieldPointer = (BufferImageCopy*)(Interop.HeapUtil.AllocateAndClear<BufferImageCopy>(regions.Length).ToPointer());
+                    for(int index = 0; index < regions.Length; index++)
+                    {
+                        fieldPointer[index] = regions[index];
+                    }
+                    marshalledRegions = fieldPointer;
                 }
-                marshalledRegions = fieldPointer;
+                else
+                {
+                    marshalledRegions = null;
+                }
             }
-            else
+            finally
             {
-                marshalledRegions = null;
+                Interop.HeapUtil.FreeAll();
             }
         }
         
         internal unsafe void UpdateBuffer(Buffer destinationBuffer, DeviceSize destinationOffset, byte[] data)
         {
-            Interop.Buffer marshalledDestinationBuffer;
-            marshalledDestinationBuffer = destinationBuffer.handle;
-            DeviceSize marshalledDestinationOffset;
-            marshalledDestinationOffset = destinationOffset;
-            DeviceSize marshalledDataSize;
-            marshalledDataSize = (DeviceSize)(data?.Length ?? 0);
-            byte* marshalledData;
-            if (data != null)
+            try
             {
-                var fieldPointer = (byte*)(Interop.HeapUtil.AllocateAndClear<byte>(data.Length).ToPointer());
-                for(int index = 0; index < data.Length; index++)
+                Interop.Buffer marshalledDestinationBuffer = default(Interop.Buffer);
+                DeviceSize marshalledDestinationOffset = default(DeviceSize);
+                DeviceSize marshalledDataSize = default(DeviceSize);
+                byte* marshalledData = default(byte*);
+                marshalledDestinationBuffer = destinationBuffer.handle;
+                marshalledDestinationOffset = destinationOffset;
+                marshalledDataSize = (DeviceSize)(data?.Length ?? 0);
+                if (data != null)
                 {
-                    fieldPointer[index] = data[index];
+                    var fieldPointer = (byte*)(Interop.HeapUtil.AllocateAndClear<byte>(data.Length).ToPointer());
+                    for(int index = 0; index < data.Length; index++)
+                    {
+                        fieldPointer[index] = data[index];
+                    }
+                    marshalledData = fieldPointer;
                 }
-                marshalledData = fieldPointer;
+                else
+                {
+                    marshalledData = null;
+                }
             }
-            else
+            finally
             {
-                marshalledData = null;
+                Interop.HeapUtil.FreeAll();
             }
         }
         
         internal unsafe void FillBuffer(Buffer destinationBuffer, DeviceSize destinationOffset, DeviceSize size, uint data)
         {
-            Interop.Buffer marshalledDestinationBuffer;
-            marshalledDestinationBuffer = destinationBuffer.handle;
-            DeviceSize marshalledDestinationOffset;
-            marshalledDestinationOffset = destinationOffset;
-            DeviceSize marshalledSize;
-            marshalledSize = size;
-            uint marshalledData;
-            marshalledData = data;
+            try
+            {
+                Interop.Buffer marshalledDestinationBuffer = default(Interop.Buffer);
+                DeviceSize marshalledDestinationOffset = default(DeviceSize);
+                DeviceSize marshalledSize = default(DeviceSize);
+                uint marshalledData = default(uint);
+                marshalledDestinationBuffer = destinationBuffer.handle;
+                marshalledDestinationOffset = destinationOffset;
+                marshalledSize = size;
+                marshalledData = data;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void ClearColorImage(Image image, ImageLayout imageLayout, ClearColorValue color, ImageSubresourceRange[] ranges)
         {
-            Interop.Image marshalledImage;
-            marshalledImage = image.handle;
-            ImageLayout marshalledImageLayout;
-            marshalledImageLayout = imageLayout;
-            ClearColorValue* marshalledColor;
-            marshalledColor = (ClearColorValue*)(Interop.HeapUtil.Allocate<ClearColorValue>());
-            *marshalledColor = color;
-            uint marshalledRangeCount;
-            marshalledRangeCount = (uint)(ranges?.Length ?? 0);
-            ImageSubresourceRange* marshalledRanges;
-            if (ranges != null)
+            try
             {
-                var fieldPointer = (ImageSubresourceRange*)(Interop.HeapUtil.AllocateAndClear<ImageSubresourceRange>(ranges.Length).ToPointer());
-                for(int index = 0; index < ranges.Length; index++)
+                Interop.Image marshalledImage = default(Interop.Image);
+                ImageLayout marshalledImageLayout = default(ImageLayout);
+                ClearColorValue* marshalledColor = default(ClearColorValue*);
+                uint marshalledRangeCount = default(uint);
+                ImageSubresourceRange* marshalledRanges = default(ImageSubresourceRange*);
+                marshalledImage = image.handle;
+                marshalledImageLayout = imageLayout;
+                marshalledColor = (ClearColorValue*)(Interop.HeapUtil.Allocate<ClearColorValue>());
+                *marshalledColor = color;
+                marshalledRangeCount = (uint)(ranges?.Length ?? 0);
+                if (ranges != null)
                 {
-                    fieldPointer[index] = ranges[index];
+                    var fieldPointer = (ImageSubresourceRange*)(Interop.HeapUtil.AllocateAndClear<ImageSubresourceRange>(ranges.Length).ToPointer());
+                    for(int index = 0; index < ranges.Length; index++)
+                    {
+                        fieldPointer[index] = ranges[index];
+                    }
+                    marshalledRanges = fieldPointer;
                 }
-                marshalledRanges = fieldPointer;
+                else
+                {
+                    marshalledRanges = null;
+                }
             }
-            else
+            finally
             {
-                marshalledRanges = null;
+                Interop.HeapUtil.FreeAll();
             }
         }
         
         internal unsafe void ClearDepthStencilImage(Image image, ImageLayout imageLayout, ClearDepthStencilValue depthStencil, ImageSubresourceRange[] ranges)
         {
-            Interop.Image marshalledImage;
-            marshalledImage = image.handle;
-            ImageLayout marshalledImageLayout;
-            marshalledImageLayout = imageLayout;
-            ClearDepthStencilValue* marshalledDepthStencil;
-            marshalledDepthStencil = (ClearDepthStencilValue*)(Interop.HeapUtil.Allocate<ClearDepthStencilValue>());
-            *marshalledDepthStencil = depthStencil;
-            uint marshalledRangeCount;
-            marshalledRangeCount = (uint)(ranges?.Length ?? 0);
-            ImageSubresourceRange* marshalledRanges;
-            if (ranges != null)
+            try
             {
-                var fieldPointer = (ImageSubresourceRange*)(Interop.HeapUtil.AllocateAndClear<ImageSubresourceRange>(ranges.Length).ToPointer());
-                for(int index = 0; index < ranges.Length; index++)
+                Interop.Image marshalledImage = default(Interop.Image);
+                ImageLayout marshalledImageLayout = default(ImageLayout);
+                ClearDepthStencilValue* marshalledDepthStencil = default(ClearDepthStencilValue*);
+                uint marshalledRangeCount = default(uint);
+                ImageSubresourceRange* marshalledRanges = default(ImageSubresourceRange*);
+                marshalledImage = image.handle;
+                marshalledImageLayout = imageLayout;
+                marshalledDepthStencil = (ClearDepthStencilValue*)(Interop.HeapUtil.Allocate<ClearDepthStencilValue>());
+                *marshalledDepthStencil = depthStencil;
+                marshalledRangeCount = (uint)(ranges?.Length ?? 0);
+                if (ranges != null)
                 {
-                    fieldPointer[index] = ranges[index];
+                    var fieldPointer = (ImageSubresourceRange*)(Interop.HeapUtil.AllocateAndClear<ImageSubresourceRange>(ranges.Length).ToPointer());
+                    for(int index = 0; index < ranges.Length; index++)
+                    {
+                        fieldPointer[index] = ranges[index];
+                    }
+                    marshalledRanges = fieldPointer;
                 }
-                marshalledRanges = fieldPointer;
+                else
+                {
+                    marshalledRanges = null;
+                }
             }
-            else
+            finally
             {
-                marshalledRanges = null;
+                Interop.HeapUtil.FreeAll();
             }
         }
         
         internal unsafe void ClearAttachments(ClearAttachment[] attachments, ClearRect[] rects)
         {
-            uint marshalledAttachmentCount;
-            marshalledAttachmentCount = (uint)(attachments?.Length ?? 0);
-            ClearAttachment* marshalledAttachments;
-            if (attachments != null)
+            try
             {
-                var fieldPointer = (ClearAttachment*)(Interop.HeapUtil.AllocateAndClear<ClearAttachment>(attachments.Length).ToPointer());
-                for(int index = 0; index < attachments.Length; index++)
+                uint marshalledAttachmentCount = default(uint);
+                ClearAttachment* marshalledAttachments = default(ClearAttachment*);
+                uint marshalledRectCount = default(uint);
+                ClearRect* marshalledRects = default(ClearRect*);
+                marshalledAttachmentCount = (uint)(attachments?.Length ?? 0);
+                if (attachments != null)
                 {
-                    fieldPointer[index] = attachments[index];
+                    var fieldPointer = (ClearAttachment*)(Interop.HeapUtil.AllocateAndClear<ClearAttachment>(attachments.Length).ToPointer());
+                    for(int index = 0; index < attachments.Length; index++)
+                    {
+                        fieldPointer[index] = attachments[index];
+                    }
+                    marshalledAttachments = fieldPointer;
                 }
-                marshalledAttachments = fieldPointer;
-            }
-            else
-            {
-                marshalledAttachments = null;
-            }
-            uint marshalledRectCount;
-            marshalledRectCount = (uint)(rects?.Length ?? 0);
-            ClearRect* marshalledRects;
-            if (rects != null)
-            {
-                var fieldPointer = (ClearRect*)(Interop.HeapUtil.AllocateAndClear<ClearRect>(rects.Length).ToPointer());
-                for(int index = 0; index < rects.Length; index++)
+                else
                 {
-                    fieldPointer[index] = rects[index];
+                    marshalledAttachments = null;
                 }
-                marshalledRects = fieldPointer;
+                marshalledRectCount = (uint)(rects?.Length ?? 0);
+                if (rects != null)
+                {
+                    var fieldPointer = (ClearRect*)(Interop.HeapUtil.AllocateAndClear<ClearRect>(rects.Length).ToPointer());
+                    for(int index = 0; index < rects.Length; index++)
+                    {
+                        fieldPointer[index] = rects[index];
+                    }
+                    marshalledRects = fieldPointer;
+                }
+                else
+                {
+                    marshalledRects = null;
+                }
             }
-            else
+            finally
             {
-                marshalledRects = null;
+                Interop.HeapUtil.FreeAll();
             }
         }
         
         internal unsafe void ResolveImage(Image sourceImage, ImageLayout sourceImageLayout, Image destinationImage, ImageLayout destinationImageLayout, ImageResolve[] regions)
         {
-            Interop.Image marshalledSourceImage;
-            marshalledSourceImage = sourceImage.handle;
-            ImageLayout marshalledSourceImageLayout;
-            marshalledSourceImageLayout = sourceImageLayout;
-            Interop.Image marshalledDestinationImage;
-            marshalledDestinationImage = destinationImage.handle;
-            ImageLayout marshalledDestinationImageLayout;
-            marshalledDestinationImageLayout = destinationImageLayout;
-            uint marshalledRegionCount;
-            marshalledRegionCount = (uint)(regions?.Length ?? 0);
-            ImageResolve* marshalledRegions;
-            if (regions != null)
+            try
             {
-                var fieldPointer = (ImageResolve*)(Interop.HeapUtil.AllocateAndClear<ImageResolve>(regions.Length).ToPointer());
-                for(int index = 0; index < regions.Length; index++)
+                Interop.Image marshalledSourceImage = default(Interop.Image);
+                ImageLayout marshalledSourceImageLayout = default(ImageLayout);
+                Interop.Image marshalledDestinationImage = default(Interop.Image);
+                ImageLayout marshalledDestinationImageLayout = default(ImageLayout);
+                uint marshalledRegionCount = default(uint);
+                ImageResolve* marshalledRegions = default(ImageResolve*);
+                marshalledSourceImage = sourceImage.handle;
+                marshalledSourceImageLayout = sourceImageLayout;
+                marshalledDestinationImage = destinationImage.handle;
+                marshalledDestinationImageLayout = destinationImageLayout;
+                marshalledRegionCount = (uint)(regions?.Length ?? 0);
+                if (regions != null)
                 {
-                    fieldPointer[index] = regions[index];
+                    var fieldPointer = (ImageResolve*)(Interop.HeapUtil.AllocateAndClear<ImageResolve>(regions.Length).ToPointer());
+                    for(int index = 0; index < regions.Length; index++)
+                    {
+                        fieldPointer[index] = regions[index];
+                    }
+                    marshalledRegions = fieldPointer;
                 }
-                marshalledRegions = fieldPointer;
+                else
+                {
+                    marshalledRegions = null;
+                }
             }
-            else
+            finally
             {
-                marshalledRegions = null;
+                Interop.HeapUtil.FreeAll();
             }
         }
         
         internal unsafe void SetEvent(Event @event, PipelineStageFlags stageMask)
         {
-            Interop.Event marshalledEvent;
-            marshalledEvent = @event.handle;
-            PipelineStageFlags marshalledStageMask;
-            marshalledStageMask = stageMask;
+            try
+            {
+                Interop.Event marshalledEvent = default(Interop.Event);
+                PipelineStageFlags marshalledStageMask = default(PipelineStageFlags);
+                marshalledEvent = @event.handle;
+                marshalledStageMask = stageMask;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void ResetEvent(Event @event, PipelineStageFlags stageMask)
         {
-            Interop.Event marshalledEvent;
-            marshalledEvent = @event.handle;
-            PipelineStageFlags marshalledStageMask;
-            marshalledStageMask = stageMask;
+            try
+            {
+                Interop.Event marshalledEvent = default(Interop.Event);
+                PipelineStageFlags marshalledStageMask = default(PipelineStageFlags);
+                marshalledEvent = @event.handle;
+                marshalledStageMask = stageMask;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void WaitEvents(Event[] events, PipelineStageFlags sourceStageMask, PipelineStageFlags destinationStageMask, MemoryBarrier[] memoryBarriers, BufferMemoryBarrier[] bufferMemoryBarriers, ImageMemoryBarrier[] imageMemoryBarriers)
         {
-            uint marshalledEventCount;
-            marshalledEventCount = (uint)(events?.Length ?? 0);
-            Interop.Event* marshalledEvents;
-            if (events != null)
+            try
             {
-                var fieldPointer = (Interop.Event*)(Interop.HeapUtil.AllocateAndClear<Interop.Event>(events.Length).ToPointer());
-                for(int index = 0; index < events.Length; index++)
+                uint marshalledEventCount = default(uint);
+                Interop.Event* marshalledEvents = default(Interop.Event*);
+                PipelineStageFlags marshalledSourceStageMask = default(PipelineStageFlags);
+                PipelineStageFlags marshalledDestinationStageMask = default(PipelineStageFlags);
+                uint marshalledMemoryBarrierCount = default(uint);
+                Interop.MemoryBarrier* marshalledMemoryBarriers = default(Interop.MemoryBarrier*);
+                uint marshalledBufferMemoryBarrierCount = default(uint);
+                Interop.BufferMemoryBarrier* marshalledBufferMemoryBarriers = default(Interop.BufferMemoryBarrier*);
+                uint marshalledImageMemoryBarrierCount = default(uint);
+                Interop.ImageMemoryBarrier* marshalledImageMemoryBarriers = default(Interop.ImageMemoryBarrier*);
+                marshalledEventCount = (uint)(events?.Length ?? 0);
+                if (events != null)
                 {
-                    fieldPointer[index] = events[index].handle;
+                    var fieldPointer = (Interop.Event*)(Interop.HeapUtil.AllocateAndClear<Interop.Event>(events.Length).ToPointer());
+                    for(int index = 0; index < events.Length; index++)
+                    {
+                        fieldPointer[index] = events[index].handle;
+                    }
+                    marshalledEvents = fieldPointer;
                 }
-                marshalledEvents = fieldPointer;
-            }
-            else
-            {
-                marshalledEvents = null;
-            }
-            PipelineStageFlags marshalledSourceStageMask;
-            marshalledSourceStageMask = sourceStageMask;
-            PipelineStageFlags marshalledDestinationStageMask;
-            marshalledDestinationStageMask = destinationStageMask;
-            uint marshalledMemoryBarrierCount;
-            marshalledMemoryBarrierCount = (uint)(memoryBarriers?.Length ?? 0);
-            Interop.MemoryBarrier* marshalledMemoryBarriers;
-            if (memoryBarriers != null)
-            {
-                var fieldPointer = (Interop.MemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<Interop.MemoryBarrier>(memoryBarriers.Length).ToPointer());
-                for(int index = 0; index < memoryBarriers.Length; index++)
+                else
                 {
-                    memoryBarriers[index].MarshalTo(&fieldPointer[index]);
+                    marshalledEvents = null;
                 }
-                marshalledMemoryBarriers = fieldPointer;
-            }
-            else
-            {
-                marshalledMemoryBarriers = null;
-            }
-            uint marshalledBufferMemoryBarrierCount;
-            marshalledBufferMemoryBarrierCount = (uint)(bufferMemoryBarriers?.Length ?? 0);
-            Interop.BufferMemoryBarrier* marshalledBufferMemoryBarriers;
-            if (bufferMemoryBarriers != null)
-            {
-                var fieldPointer = (Interop.BufferMemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<Interop.BufferMemoryBarrier>(bufferMemoryBarriers.Length).ToPointer());
-                for(int index = 0; index < bufferMemoryBarriers.Length; index++)
+                marshalledSourceStageMask = sourceStageMask;
+                marshalledDestinationStageMask = destinationStageMask;
+                marshalledMemoryBarrierCount = (uint)(memoryBarriers?.Length ?? 0);
+                if (memoryBarriers != null)
                 {
-                    bufferMemoryBarriers[index].MarshalTo(&fieldPointer[index]);
+                    var fieldPointer = (Interop.MemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<Interop.MemoryBarrier>(memoryBarriers.Length).ToPointer());
+                    for(int index = 0; index < memoryBarriers.Length; index++)
+                    {
+                        memoryBarriers[index].MarshalTo(&fieldPointer[index]);
+                    }
+                    marshalledMemoryBarriers = fieldPointer;
                 }
-                marshalledBufferMemoryBarriers = fieldPointer;
-            }
-            else
-            {
-                marshalledBufferMemoryBarriers = null;
-            }
-            uint marshalledImageMemoryBarrierCount;
-            marshalledImageMemoryBarrierCount = (uint)(imageMemoryBarriers?.Length ?? 0);
-            Interop.ImageMemoryBarrier* marshalledImageMemoryBarriers;
-            if (imageMemoryBarriers != null)
-            {
-                var fieldPointer = (Interop.ImageMemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<Interop.ImageMemoryBarrier>(imageMemoryBarriers.Length).ToPointer());
-                for(int index = 0; index < imageMemoryBarriers.Length; index++)
+                else
                 {
-                    imageMemoryBarriers[index].MarshalTo(&fieldPointer[index]);
+                    marshalledMemoryBarriers = null;
                 }
-                marshalledImageMemoryBarriers = fieldPointer;
+                marshalledBufferMemoryBarrierCount = (uint)(bufferMemoryBarriers?.Length ?? 0);
+                if (bufferMemoryBarriers != null)
+                {
+                    var fieldPointer = (Interop.BufferMemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<Interop.BufferMemoryBarrier>(bufferMemoryBarriers.Length).ToPointer());
+                    for(int index = 0; index < bufferMemoryBarriers.Length; index++)
+                    {
+                        bufferMemoryBarriers[index].MarshalTo(&fieldPointer[index]);
+                    }
+                    marshalledBufferMemoryBarriers = fieldPointer;
+                }
+                else
+                {
+                    marshalledBufferMemoryBarriers = null;
+                }
+                marshalledImageMemoryBarrierCount = (uint)(imageMemoryBarriers?.Length ?? 0);
+                if (imageMemoryBarriers != null)
+                {
+                    var fieldPointer = (Interop.ImageMemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<Interop.ImageMemoryBarrier>(imageMemoryBarriers.Length).ToPointer());
+                    for(int index = 0; index < imageMemoryBarriers.Length; index++)
+                    {
+                        imageMemoryBarriers[index].MarshalTo(&fieldPointer[index]);
+                    }
+                    marshalledImageMemoryBarriers = fieldPointer;
+                }
+                else
+                {
+                    marshalledImageMemoryBarriers = null;
+                }
             }
-            else
+            finally
             {
-                marshalledImageMemoryBarriers = null;
+                Interop.HeapUtil.FreeAll();
             }
         }
         
         internal unsafe void PipelineBarrier(PipelineStageFlags sourceStageMask, PipelineStageFlags destinationStageMask, DependencyFlags dependencyFlags, MemoryBarrier[] memoryBarriers, BufferMemoryBarrier[] bufferMemoryBarriers, ImageMemoryBarrier[] imageMemoryBarriers)
         {
-            PipelineStageFlags marshalledSourceStageMask;
-            marshalledSourceStageMask = sourceStageMask;
-            PipelineStageFlags marshalledDestinationStageMask;
-            marshalledDestinationStageMask = destinationStageMask;
-            DependencyFlags marshalledDependencyFlags;
-            marshalledDependencyFlags = dependencyFlags;
-            uint marshalledMemoryBarrierCount;
-            marshalledMemoryBarrierCount = (uint)(memoryBarriers?.Length ?? 0);
-            Interop.MemoryBarrier* marshalledMemoryBarriers;
-            if (memoryBarriers != null)
+            try
             {
-                var fieldPointer = (Interop.MemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<Interop.MemoryBarrier>(memoryBarriers.Length).ToPointer());
-                for(int index = 0; index < memoryBarriers.Length; index++)
+                PipelineStageFlags marshalledSourceStageMask = default(PipelineStageFlags);
+                PipelineStageFlags marshalledDestinationStageMask = default(PipelineStageFlags);
+                DependencyFlags marshalledDependencyFlags = default(DependencyFlags);
+                uint marshalledMemoryBarrierCount = default(uint);
+                Interop.MemoryBarrier* marshalledMemoryBarriers = default(Interop.MemoryBarrier*);
+                uint marshalledBufferMemoryBarrierCount = default(uint);
+                Interop.BufferMemoryBarrier* marshalledBufferMemoryBarriers = default(Interop.BufferMemoryBarrier*);
+                uint marshalledImageMemoryBarrierCount = default(uint);
+                Interop.ImageMemoryBarrier* marshalledImageMemoryBarriers = default(Interop.ImageMemoryBarrier*);
+                marshalledSourceStageMask = sourceStageMask;
+                marshalledDestinationStageMask = destinationStageMask;
+                marshalledDependencyFlags = dependencyFlags;
+                marshalledMemoryBarrierCount = (uint)(memoryBarriers?.Length ?? 0);
+                if (memoryBarriers != null)
                 {
-                    memoryBarriers[index].MarshalTo(&fieldPointer[index]);
+                    var fieldPointer = (Interop.MemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<Interop.MemoryBarrier>(memoryBarriers.Length).ToPointer());
+                    for(int index = 0; index < memoryBarriers.Length; index++)
+                    {
+                        memoryBarriers[index].MarshalTo(&fieldPointer[index]);
+                    }
+                    marshalledMemoryBarriers = fieldPointer;
                 }
-                marshalledMemoryBarriers = fieldPointer;
-            }
-            else
-            {
-                marshalledMemoryBarriers = null;
-            }
-            uint marshalledBufferMemoryBarrierCount;
-            marshalledBufferMemoryBarrierCount = (uint)(bufferMemoryBarriers?.Length ?? 0);
-            Interop.BufferMemoryBarrier* marshalledBufferMemoryBarriers;
-            if (bufferMemoryBarriers != null)
-            {
-                var fieldPointer = (Interop.BufferMemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<Interop.BufferMemoryBarrier>(bufferMemoryBarriers.Length).ToPointer());
-                for(int index = 0; index < bufferMemoryBarriers.Length; index++)
+                else
                 {
-                    bufferMemoryBarriers[index].MarshalTo(&fieldPointer[index]);
+                    marshalledMemoryBarriers = null;
                 }
-                marshalledBufferMemoryBarriers = fieldPointer;
-            }
-            else
-            {
-                marshalledBufferMemoryBarriers = null;
-            }
-            uint marshalledImageMemoryBarrierCount;
-            marshalledImageMemoryBarrierCount = (uint)(imageMemoryBarriers?.Length ?? 0);
-            Interop.ImageMemoryBarrier* marshalledImageMemoryBarriers;
-            if (imageMemoryBarriers != null)
-            {
-                var fieldPointer = (Interop.ImageMemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<Interop.ImageMemoryBarrier>(imageMemoryBarriers.Length).ToPointer());
-                for(int index = 0; index < imageMemoryBarriers.Length; index++)
+                marshalledBufferMemoryBarrierCount = (uint)(bufferMemoryBarriers?.Length ?? 0);
+                if (bufferMemoryBarriers != null)
                 {
-                    imageMemoryBarriers[index].MarshalTo(&fieldPointer[index]);
+                    var fieldPointer = (Interop.BufferMemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<Interop.BufferMemoryBarrier>(bufferMemoryBarriers.Length).ToPointer());
+                    for(int index = 0; index < bufferMemoryBarriers.Length; index++)
+                    {
+                        bufferMemoryBarriers[index].MarshalTo(&fieldPointer[index]);
+                    }
+                    marshalledBufferMemoryBarriers = fieldPointer;
                 }
-                marshalledImageMemoryBarriers = fieldPointer;
+                else
+                {
+                    marshalledBufferMemoryBarriers = null;
+                }
+                marshalledImageMemoryBarrierCount = (uint)(imageMemoryBarriers?.Length ?? 0);
+                if (imageMemoryBarriers != null)
+                {
+                    var fieldPointer = (Interop.ImageMemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<Interop.ImageMemoryBarrier>(imageMemoryBarriers.Length).ToPointer());
+                    for(int index = 0; index < imageMemoryBarriers.Length; index++)
+                    {
+                        imageMemoryBarriers[index].MarshalTo(&fieldPointer[index]);
+                    }
+                    marshalledImageMemoryBarriers = fieldPointer;
+                }
+                else
+                {
+                    marshalledImageMemoryBarriers = null;
+                }
             }
-            else
+            finally
             {
-                marshalledImageMemoryBarriers = null;
+                Interop.HeapUtil.FreeAll();
             }
         }
         
         internal unsafe void BeginQuery(QueryPool queryPool, uint query, QueryControlFlags flags)
         {
-            Interop.QueryPool marshalledQueryPool;
-            marshalledQueryPool = queryPool.handle;
-            uint marshalledQuery;
-            marshalledQuery = query;
-            QueryControlFlags marshalledFlags;
-            marshalledFlags = flags;
+            try
+            {
+                Interop.QueryPool marshalledQueryPool = default(Interop.QueryPool);
+                uint marshalledQuery = default(uint);
+                QueryControlFlags marshalledFlags = default(QueryControlFlags);
+                marshalledQueryPool = queryPool.handle;
+                marshalledQuery = query;
+                marshalledFlags = flags;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void EndQuery(QueryPool queryPool, uint query)
         {
-            Interop.QueryPool marshalledQueryPool;
-            marshalledQueryPool = queryPool.handle;
-            uint marshalledQuery;
-            marshalledQuery = query;
+            try
+            {
+                Interop.QueryPool marshalledQueryPool = default(Interop.QueryPool);
+                uint marshalledQuery = default(uint);
+                marshalledQueryPool = queryPool.handle;
+                marshalledQuery = query;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void ResetQueryPool(QueryPool queryPool, uint firstQuery, uint queryCount)
         {
-            Interop.QueryPool marshalledQueryPool;
-            marshalledQueryPool = queryPool.handle;
-            uint marshalledFirstQuery;
-            marshalledFirstQuery = firstQuery;
-            uint marshalledQueryCount;
-            marshalledQueryCount = queryCount;
+            try
+            {
+                Interop.QueryPool marshalledQueryPool = default(Interop.QueryPool);
+                uint marshalledFirstQuery = default(uint);
+                uint marshalledQueryCount = default(uint);
+                marshalledQueryPool = queryPool.handle;
+                marshalledFirstQuery = firstQuery;
+                marshalledQueryCount = queryCount;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void WriteTimestamp(PipelineStageFlags pipelineStage, QueryPool queryPool, uint query)
         {
-            PipelineStageFlags marshalledPipelineStage;
-            marshalledPipelineStage = pipelineStage;
-            Interop.QueryPool marshalledQueryPool;
-            marshalledQueryPool = queryPool.handle;
-            uint marshalledQuery;
-            marshalledQuery = query;
+            try
+            {
+                PipelineStageFlags marshalledPipelineStage = default(PipelineStageFlags);
+                Interop.QueryPool marshalledQueryPool = default(Interop.QueryPool);
+                uint marshalledQuery = default(uint);
+                marshalledPipelineStage = pipelineStage;
+                marshalledQueryPool = queryPool.handle;
+                marshalledQuery = query;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void CopyQueryPoolResults(QueryPool queryPool, uint firstQuery, uint queryCount, Buffer destinationBuffer, DeviceSize destinationOffset, DeviceSize stride, QueryResultFlags flags)
         {
-            Interop.QueryPool marshalledQueryPool;
-            marshalledQueryPool = queryPool.handle;
-            uint marshalledFirstQuery;
-            marshalledFirstQuery = firstQuery;
-            uint marshalledQueryCount;
-            marshalledQueryCount = queryCount;
-            Interop.Buffer marshalledDestinationBuffer;
-            marshalledDestinationBuffer = destinationBuffer.handle;
-            DeviceSize marshalledDestinationOffset;
-            marshalledDestinationOffset = destinationOffset;
-            DeviceSize marshalledStride;
-            marshalledStride = stride;
-            QueryResultFlags marshalledFlags;
-            marshalledFlags = flags;
+            try
+            {
+                Interop.QueryPool marshalledQueryPool = default(Interop.QueryPool);
+                uint marshalledFirstQuery = default(uint);
+                uint marshalledQueryCount = default(uint);
+                Interop.Buffer marshalledDestinationBuffer = default(Interop.Buffer);
+                DeviceSize marshalledDestinationOffset = default(DeviceSize);
+                DeviceSize marshalledStride = default(DeviceSize);
+                QueryResultFlags marshalledFlags = default(QueryResultFlags);
+                marshalledQueryPool = queryPool.handle;
+                marshalledFirstQuery = firstQuery;
+                marshalledQueryCount = queryCount;
+                marshalledDestinationBuffer = destinationBuffer.handle;
+                marshalledDestinationOffset = destinationOffset;
+                marshalledStride = stride;
+                marshalledFlags = flags;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void PushConstants(PipelineLayout layout, ShaderStageFlags stageFlags, uint offset, byte[] values)
         {
-            Interop.PipelineLayout marshalledLayout;
-            marshalledLayout = layout.handle;
-            ShaderStageFlags marshalledStageFlags;
-            marshalledStageFlags = stageFlags;
-            uint marshalledOffset;
-            marshalledOffset = offset;
-            uint marshalledSize;
-            marshalledSize = (uint)(values?.Length ?? 0);
-            byte* marshalledValues;
-            if (values != null)
+            try
             {
-                var fieldPointer = (byte*)(Interop.HeapUtil.AllocateAndClear<byte>(values.Length).ToPointer());
-                for(int index = 0; index < values.Length; index++)
+                Interop.PipelineLayout marshalledLayout = default(Interop.PipelineLayout);
+                ShaderStageFlags marshalledStageFlags = default(ShaderStageFlags);
+                uint marshalledOffset = default(uint);
+                uint marshalledSize = default(uint);
+                byte* marshalledValues = default(byte*);
+                marshalledLayout = layout.handle;
+                marshalledStageFlags = stageFlags;
+                marshalledOffset = offset;
+                marshalledSize = (uint)(values?.Length ?? 0);
+                if (values != null)
                 {
-                    fieldPointer[index] = values[index];
+                    var fieldPointer = (byte*)(Interop.HeapUtil.AllocateAndClear<byte>(values.Length).ToPointer());
+                    for(int index = 0; index < values.Length; index++)
+                    {
+                        fieldPointer[index] = values[index];
+                    }
+                    marshalledValues = fieldPointer;
                 }
-                marshalledValues = fieldPointer;
+                else
+                {
+                    marshalledValues = null;
+                }
             }
-            else
+            finally
             {
-                marshalledValues = null;
+                Interop.HeapUtil.FreeAll();
             }
         }
         
         internal unsafe void BeginRenderPass(RenderPassBeginInfo renderPassBegin, SubpassContents contents)
         {
-            Interop.RenderPassBeginInfo* marshalledRenderPassBegin;
-            marshalledRenderPassBegin = (Interop.RenderPassBeginInfo*)(Interop.HeapUtil.Allocate<Interop.RenderPassBeginInfo>());
-            renderPassBegin.MarshalTo(marshalledRenderPassBegin);
-            SubpassContents marshalledContents;
-            marshalledContents = contents;
+            try
+            {
+                Interop.RenderPassBeginInfo* marshalledRenderPassBegin = default(Interop.RenderPassBeginInfo*);
+                SubpassContents marshalledContents = default(SubpassContents);
+                marshalledRenderPassBegin = (Interop.RenderPassBeginInfo*)(Interop.HeapUtil.Allocate<Interop.RenderPassBeginInfo>());
+                renderPassBegin.MarshalTo(marshalledRenderPassBegin);
+                marshalledContents = contents;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void NextSubpass(SubpassContents contents)
         {
-            SubpassContents marshalledContents;
-            marshalledContents = contents;
+            try
+            {
+                SubpassContents marshalledContents = default(SubpassContents);
+                marshalledContents = contents;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void EndRenderPass()
         {
+            try
+            {
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void ExecuteCommands(CommandBuffer[] commandBuffers)
         {
-            uint marshalledCommandBufferCount;
-            marshalledCommandBufferCount = (uint)(commandBuffers?.Length ?? 0);
-            Interop.CommandBuffer* marshalledCommandBuffers;
-            if (commandBuffers != null)
+            try
             {
-                var fieldPointer = (Interop.CommandBuffer*)(Interop.HeapUtil.AllocateAndClear<Interop.CommandBuffer>(commandBuffers.Length).ToPointer());
-                for(int index = 0; index < commandBuffers.Length; index++)
+                uint marshalledCommandBufferCount = default(uint);
+                Interop.CommandBuffer* marshalledCommandBuffers = default(Interop.CommandBuffer*);
+                marshalledCommandBufferCount = (uint)(commandBuffers?.Length ?? 0);
+                if (commandBuffers != null)
                 {
-                    fieldPointer[index] = commandBuffers[index].handle;
+                    var fieldPointer = (Interop.CommandBuffer*)(Interop.HeapUtil.AllocateAndClear<Interop.CommandBuffer>(commandBuffers.Length).ToPointer());
+                    for(int index = 0; index < commandBuffers.Length; index++)
+                    {
+                        fieldPointer[index] = commandBuffers[index].handle;
+                    }
+                    marshalledCommandBuffers = fieldPointer;
                 }
-                marshalledCommandBuffers = fieldPointer;
+                else
+                {
+                    marshalledCommandBuffers = null;
+                }
             }
-            else
+            finally
             {
-                marshalledCommandBuffers = null;
+                Interop.HeapUtil.FreeAll();
             }
         }
     }

@@ -38,44 +38,96 @@ namespace SharpVk
             this.handle = handle;
         }
         
-        internal unsafe void Create(InstanceCreateInfo createInfo, AllocationCallbacks allocator)
+        internal static unsafe Instance Create(InstanceCreateInfo createInfo, AllocationCallbacks allocator)
         {
-            Interop.InstanceCreateInfo* marshalledCreateInfo;
-            marshalledCreateInfo = (Interop.InstanceCreateInfo*)(Interop.HeapUtil.Allocate<Interop.InstanceCreateInfo>());
-            createInfo.MarshalTo(marshalledCreateInfo);
-            Interop.AllocationCallbacks* marshalledAllocator;
-            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-            allocator.MarshalTo(marshalledAllocator);
+            try
+            {
+                Instance result = default(Instance);
+                Interop.InstanceCreateInfo* marshalledCreateInfo = default(Interop.InstanceCreateInfo*);
+                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                Interop.Instance* marshalledInstance = default(Interop.Instance*);
+                marshalledCreateInfo = (Interop.InstanceCreateInfo*)(Interop.HeapUtil.Allocate<Interop.InstanceCreateInfo>());
+                createInfo.MarshalTo(marshalledCreateInfo);
+                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                allocator.MarshalTo(marshalledAllocator);
+                result = new Instance(*marshalledInstance);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void Destroy(AllocationCallbacks allocator)
         {
-            Interop.AllocationCallbacks* marshalledAllocator;
-            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-            allocator.MarshalTo(marshalledAllocator);
+            try
+            {
+                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                allocator.MarshalTo(marshalledAllocator);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void EnumeratePhysicalDevices()
+        internal unsafe PhysicalDevice[] EnumeratePhysicalDevices()
         {
-            uint physicalDeviceCount;
+            try
+            {
+                PhysicalDevice[] result = default(PhysicalDevice[]);
+                uint physicalDeviceCount = default(uint);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void GetProcedureAddress(string name)
         {
-            byte* marshalledName;
-            marshalledName = Interop.HeapUtil.MarshalTo(name);
+            try
+            {
+                byte* marshalledName = default(byte*);
+                marshalledName = Interop.HeapUtil.MarshalTo(name);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void EnumerateLayerProperties()
+        internal static unsafe LayerProperties[] EnumerateLayerProperties()
         {
-            uint propertyCount;
+            try
+            {
+                LayerProperties[] result = default(LayerProperties[]);
+                uint propertyCount = default(uint);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void EnumerateExtensionProperties(string layerName)
+        internal static unsafe ExtensionProperties[] EnumerateExtensionProperties(string layerName)
         {
-            uint propertyCount;
-            byte* marshalledLayerName;
-            marshalledLayerName = Interop.HeapUtil.MarshalTo(layerName);
+            try
+            {
+                ExtensionProperties[] result = default(ExtensionProperties[]);
+                uint propertyCount = default(uint);
+                byte* marshalledLayerName = default(byte*);
+                marshalledLayerName = Interop.HeapUtil.MarshalTo(layerName);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
     }
 }

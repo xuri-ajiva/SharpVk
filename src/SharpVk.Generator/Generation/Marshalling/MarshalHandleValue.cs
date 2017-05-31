@@ -28,10 +28,19 @@ namespace SharpVk.Generator.Generation.Marshalling
                 info = new MarshalInfo
                 {
                     MemberType = memberType,
-                    InteropType = "Interop." + memberType,
-                    BuildMarshalToValueExpression = value => Member(value, "handle"),
-                    BuildMarshalFromValueExpression = value => New(memberType, value)
+                    InteropType = "Interop." + memberType
                 };
+
+                if (type.PointerType.IsPointer())
+                {
+                    info.BuildMarshalToValueExpression = value => AddressOf(Member(value, "handle"));
+                    info.BuildMarshalFromValueExpression = value => New(memberType, Deref(value));
+                }
+                else
+                {
+                    info.BuildMarshalToValueExpression = value => Member(value, "handle");
+                    info.BuildMarshalFromValueExpression = value => New(memberType, value);
+                }
 
                 return true;
             }

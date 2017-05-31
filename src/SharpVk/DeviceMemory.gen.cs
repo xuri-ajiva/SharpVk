@@ -40,29 +40,61 @@ namespace SharpVk
         
         internal unsafe void Free(AllocationCallbacks allocator)
         {
-            Interop.AllocationCallbacks* marshalledAllocator;
-            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-            allocator.MarshalTo(marshalledAllocator);
+            try
+            {
+                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                allocator.MarshalTo(marshalledAllocator);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void Map(DeviceSize offset, DeviceSize size, MemoryMapFlags flags, IntPtr data)
         {
-            DeviceSize marshalledOffset;
-            marshalledOffset = offset;
-            DeviceSize marshalledSize;
-            marshalledSize = size;
-            MemoryMapFlags marshalledFlags;
-            marshalledFlags = flags;
-            void* marshalledData;
-            marshalledData = data.ToPointer();
+            try
+            {
+                DeviceSize marshalledOffset = default(DeviceSize);
+                DeviceSize marshalledSize = default(DeviceSize);
+                MemoryMapFlags marshalledFlags = default(MemoryMapFlags);
+                void* marshalledData = default(void*);
+                marshalledOffset = offset;
+                marshalledSize = size;
+                marshalledFlags = flags;
+                marshalledData = data.ToPointer();
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void Unmap()
         {
+            try
+            {
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void GetCommitment()
+        internal unsafe DeviceSize GetCommitment()
         {
+            try
+            {
+                DeviceSize result = default(DeviceSize);
+                DeviceSize* marshalledCommittedMemoryInBytes = default(DeviceSize*);
+                result = *marshalledCommittedMemoryInBytes;
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
     }
 }

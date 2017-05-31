@@ -38,78 +38,180 @@ namespace SharpVk
             this.handle = handle;
         }
         
-        internal unsafe void GetProperties()
+        internal unsafe PhysicalDeviceProperties GetProperties()
         {
+            try
+            {
+                PhysicalDeviceProperties result = default(PhysicalDeviceProperties);
+                Interop.PhysicalDeviceProperties* marshalledProperties = default(Interop.PhysicalDeviceProperties*);
+                result = PhysicalDeviceProperties.MarshalFrom(marshalledProperties);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void GetQueueFamilyProperties()
+        internal unsafe QueueFamilyProperties[] GetQueueFamilyProperties()
         {
-            uint queueFamilyPropertyCount;
+            try
+            {
+                QueueFamilyProperties[] result = default(QueueFamilyProperties[]);
+                uint queueFamilyPropertyCount = default(uint);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void GetMemoryProperties()
+        internal unsafe PhysicalDeviceMemoryProperties GetMemoryProperties()
         {
+            try
+            {
+                PhysicalDeviceMemoryProperties result = default(PhysicalDeviceMemoryProperties);
+                Interop.PhysicalDeviceMemoryProperties* marshalledMemoryProperties = default(Interop.PhysicalDeviceMemoryProperties*);
+                result = PhysicalDeviceMemoryProperties.MarshalFrom(marshalledMemoryProperties);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void GetFeatures()
+        internal unsafe PhysicalDeviceFeatures GetFeatures()
         {
+            try
+            {
+                PhysicalDeviceFeatures result = default(PhysicalDeviceFeatures);
+                PhysicalDeviceFeatures* marshalledFeatures = default(PhysicalDeviceFeatures*);
+                result = *marshalledFeatures;
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void GetFormatProperties(Format format)
+        internal unsafe FormatProperties GetFormatProperties(Format format)
         {
-            Format marshalledFormat;
-            marshalledFormat = format;
+            try
+            {
+                FormatProperties result = default(FormatProperties);
+                Format marshalledFormat = default(Format);
+                FormatProperties* marshalledFormatProperties = default(FormatProperties*);
+                marshalledFormat = format;
+                result = *marshalledFormatProperties;
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void GetImageFormatProperties(Format format, ImageType type, ImageTiling tiling, ImageUsageFlags usage, ImageCreateFlags flags)
+        internal unsafe ImageFormatProperties GetImageFormatProperties(Format format, ImageType type, ImageTiling tiling, ImageUsageFlags usage, ImageCreateFlags flags)
         {
-            Format marshalledFormat;
-            marshalledFormat = format;
-            ImageType marshalledType;
-            marshalledType = type;
-            ImageTiling marshalledTiling;
-            marshalledTiling = tiling;
-            ImageUsageFlags marshalledUsage;
-            marshalledUsage = usage;
-            ImageCreateFlags marshalledFlags;
-            marshalledFlags = flags;
+            try
+            {
+                ImageFormatProperties result = default(ImageFormatProperties);
+                Format marshalledFormat = default(Format);
+                ImageType marshalledType = default(ImageType);
+                ImageTiling marshalledTiling = default(ImageTiling);
+                ImageUsageFlags marshalledUsage = default(ImageUsageFlags);
+                ImageCreateFlags marshalledFlags = default(ImageCreateFlags);
+                ImageFormatProperties* marshalledImageFormatProperties = default(ImageFormatProperties*);
+                marshalledFormat = format;
+                marshalledType = type;
+                marshalledTiling = tiling;
+                marshalledUsage = usage;
+                marshalledFlags = flags;
+                result = *marshalledImageFormatProperties;
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void CreateDevice(DeviceCreateInfo createInfo, AllocationCallbacks allocator)
+        internal unsafe Device CreateDevice(DeviceCreateInfo createInfo, AllocationCallbacks allocator)
         {
-            Interop.DeviceCreateInfo* marshalledCreateInfo;
-            marshalledCreateInfo = (Interop.DeviceCreateInfo*)(Interop.HeapUtil.Allocate<Interop.DeviceCreateInfo>());
-            createInfo.MarshalTo(marshalledCreateInfo);
-            Interop.AllocationCallbacks* marshalledAllocator;
-            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-            allocator.MarshalTo(marshalledAllocator);
+            try
+            {
+                Device result = default(Device);
+                Interop.DeviceCreateInfo* marshalledCreateInfo = default(Interop.DeviceCreateInfo*);
+                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                Interop.Device* marshalledDevice = default(Interop.Device*);
+                marshalledCreateInfo = (Interop.DeviceCreateInfo*)(Interop.HeapUtil.Allocate<Interop.DeviceCreateInfo>());
+                createInfo.MarshalTo(marshalledCreateInfo);
+                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                allocator.MarshalTo(marshalledAllocator);
+                result = new Device(*marshalledDevice);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void EnumerateDeviceLayerProperties()
+        internal unsafe LayerProperties[] EnumerateDeviceLayerProperties()
         {
-            uint propertyCount;
+            try
+            {
+                LayerProperties[] result = default(LayerProperties[]);
+                uint propertyCount = default(uint);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void EnumerateDeviceExtensionProperties(string layerName)
+        internal unsafe ExtensionProperties[] EnumerateDeviceExtensionProperties(string layerName)
         {
-            uint propertyCount;
-            byte* marshalledLayerName;
-            marshalledLayerName = Interop.HeapUtil.MarshalTo(layerName);
+            try
+            {
+                ExtensionProperties[] result = default(ExtensionProperties[]);
+                uint propertyCount = default(uint);
+                byte* marshalledLayerName = default(byte*);
+                marshalledLayerName = Interop.HeapUtil.MarshalTo(layerName);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void GetSparseImageFormatProperties(Format format, ImageType type, SampleCountFlags samples, ImageUsageFlags usage, ImageTiling tiling)
+        internal unsafe SparseImageFormatProperties[] GetSparseImageFormatProperties(Format format, ImageType type, SampleCountFlags samples, ImageUsageFlags usage, ImageTiling tiling)
         {
-            uint propertyCount;
-            Format marshalledFormat;
-            marshalledFormat = format;
-            ImageType marshalledType;
-            marshalledType = type;
-            SampleCountFlags marshalledSamples;
-            marshalledSamples = samples;
-            ImageUsageFlags marshalledUsage;
-            marshalledUsage = usage;
-            ImageTiling marshalledTiling;
-            marshalledTiling = tiling;
+            try
+            {
+                SparseImageFormatProperties[] result = default(SparseImageFormatProperties[]);
+                uint propertyCount = default(uint);
+                Format marshalledFormat = default(Format);
+                ImageType marshalledType = default(ImageType);
+                SampleCountFlags marshalledSamples = default(SampleCountFlags);
+                ImageUsageFlags marshalledUsage = default(ImageUsageFlags);
+                ImageTiling marshalledTiling = default(ImageTiling);
+                marshalledFormat = format;
+                marshalledType = type;
+                marshalledSamples = samples;
+                marshalledUsage = usage;
+                marshalledTiling = tiling;
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
     }
 }

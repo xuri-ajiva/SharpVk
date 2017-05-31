@@ -59,10 +59,10 @@ namespace SharpVk.Generator.Generation.Marshalling
                                 Type = AssignActionType.Assign
                             });
 
-                            info.MarshalFrom.Add(new AssignAction
+                            info.MarshalFrom.Add((getTarget, getValue) => new AssignAction
                             {
-                                ValueExpression = StaticCall("Interop.HeapUtil", "MarshalStringFrom", DerefMember(Variable("pointer"), source.Name)),
-                                TargetExpression = Member(Variable("result"), source.Name),
+                                ValueExpression = StaticCall("Interop.HeapUtil", "MarshalStringFrom", getValue(source.Name)),
+                                TargetExpression = getTarget(source.Name),
                                 MemberType = this.nameLookup.Lookup(source.Type, false),
                                 Type = AssignActionType.Assign
                             });

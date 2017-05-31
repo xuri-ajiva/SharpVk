@@ -40,37 +40,51 @@ namespace SharpVk
         
         internal unsafe void Destroy(AllocationCallbacks allocator)
         {
-            Interop.AllocationCallbacks* marshalledAllocator;
-            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-            allocator.MarshalTo(marshalledAllocator);
+            try
+            {
+                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                allocator.MarshalTo(marshalledAllocator);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void GetResults(uint firstQuery, uint queryCount, byte[] data, DeviceSize stride, QueryResultFlags flags)
         {
-            uint marshalledFirstQuery;
-            marshalledFirstQuery = firstQuery;
-            uint marshalledQueryCount;
-            marshalledQueryCount = queryCount;
-            HostSize marshalledDataSize;
-            marshalledDataSize = (HostSize)(data?.Length ?? 0);
-            byte* marshalledData;
-            if (data != null)
+            try
             {
-                var fieldPointer = (byte*)(Interop.HeapUtil.AllocateAndClear<byte>(data.Length).ToPointer());
-                for(int index = 0; index < data.Length; index++)
+                uint marshalledFirstQuery = default(uint);
+                uint marshalledQueryCount = default(uint);
+                HostSize marshalledDataSize = default(HostSize);
+                byte* marshalledData = default(byte*);
+                DeviceSize marshalledStride = default(DeviceSize);
+                QueryResultFlags marshalledFlags = default(QueryResultFlags);
+                marshalledFirstQuery = firstQuery;
+                marshalledQueryCount = queryCount;
+                marshalledDataSize = (HostSize)(data?.Length ?? 0);
+                if (data != null)
                 {
-                    fieldPointer[index] = data[index];
+                    var fieldPointer = (byte*)(Interop.HeapUtil.AllocateAndClear<byte>(data.Length).ToPointer());
+                    for(int index = 0; index < data.Length; index++)
+                    {
+                        fieldPointer[index] = data[index];
+                    }
+                    marshalledData = fieldPointer;
                 }
-                marshalledData = fieldPointer;
+                else
+                {
+                    marshalledData = null;
+                }
+                marshalledStride = stride;
+                marshalledFlags = flags;
             }
-            else
+            finally
             {
-                marshalledData = null;
+                Interop.HeapUtil.FreeAll();
             }
-            DeviceSize marshalledStride;
-            marshalledStride = stride;
-            QueryResultFlags marshalledFlags;
-            marshalledFlags = flags;
         }
     }
 }

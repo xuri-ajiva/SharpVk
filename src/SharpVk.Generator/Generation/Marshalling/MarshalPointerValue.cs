@@ -1,4 +1,6 @@
-﻿namespace SharpVk.Generator.Generation.Marshalling
+﻿using static SharpVk.Emit.ExpressionBuilder;
+
+namespace SharpVk.Generator.Generation.Marshalling
 {
     public class MarshalPointerValue
         : IMarshalValueRule
@@ -20,7 +22,7 @@
                     InteropType = this.nameLookup.Lookup(type, false),
                     MarshalToActionType = AssignActionType.AllocAndAssign,
                     BuildMarshalToValueExpression = value => value,
-                    BuildMarshalFromValueExpression = value => value
+                    BuildMarshalFromValueExpression = value => Deref(value)
                 };
 
                 return true;

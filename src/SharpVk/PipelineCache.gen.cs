@@ -40,80 +40,121 @@ namespace SharpVk
         
         internal unsafe void Destroy(AllocationCallbacks allocator)
         {
-            Interop.AllocationCallbacks* marshalledAllocator;
-            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-            allocator.MarshalTo(marshalledAllocator);
+            try
+            {
+                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                allocator.MarshalTo(marshalledAllocator);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void GetData()
+        internal unsafe byte[] GetData()
         {
-            HostSize dataSize;
+            try
+            {
+                byte[] result = default(byte[]);
+                HostSize dataSize = default(HostSize);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void MergePipelineCaches(PipelineCache[] sourceCaches)
         {
-            uint marshalledSourceCacheCount;
-            marshalledSourceCacheCount = (uint)(sourceCaches?.Length ?? 0);
-            Interop.PipelineCache* marshalledSourceCaches;
-            if (sourceCaches != null)
+            try
             {
-                var fieldPointer = (Interop.PipelineCache*)(Interop.HeapUtil.AllocateAndClear<Interop.PipelineCache>(sourceCaches.Length).ToPointer());
-                for(int index = 0; index < sourceCaches.Length; index++)
+                uint marshalledSourceCacheCount = default(uint);
+                Interop.PipelineCache* marshalledSourceCaches = default(Interop.PipelineCache*);
+                marshalledSourceCacheCount = (uint)(sourceCaches?.Length ?? 0);
+                if (sourceCaches != null)
                 {
-                    fieldPointer[index] = sourceCaches[index].handle;
+                    var fieldPointer = (Interop.PipelineCache*)(Interop.HeapUtil.AllocateAndClear<Interop.PipelineCache>(sourceCaches.Length).ToPointer());
+                    for(int index = 0; index < sourceCaches.Length; index++)
+                    {
+                        fieldPointer[index] = sourceCaches[index].handle;
+                    }
+                    marshalledSourceCaches = fieldPointer;
                 }
-                marshalledSourceCaches = fieldPointer;
+                else
+                {
+                    marshalledSourceCaches = null;
+                }
             }
-            else
+            finally
             {
-                marshalledSourceCaches = null;
+                Interop.HeapUtil.FreeAll();
             }
         }
         
-        internal unsafe void CreateGraphicsPipelines(GraphicsPipelineCreateInfo[] createInfos, AllocationCallbacks allocator)
+        internal unsafe Pipeline[] CreateGraphicsPipelines(GraphicsPipelineCreateInfo[] createInfos, AllocationCallbacks allocator)
         {
-            uint marshalledCreateInfoCount;
-            marshalledCreateInfoCount = (uint)(createInfos?.Length ?? 0);
-            Interop.GraphicsPipelineCreateInfo* marshalledCreateInfos;
-            if (createInfos != null)
+            try
             {
-                var fieldPointer = (Interop.GraphicsPipelineCreateInfo*)(Interop.HeapUtil.AllocateAndClear<Interop.GraphicsPipelineCreateInfo>(createInfos.Length).ToPointer());
-                for(int index = 0; index < createInfos.Length; index++)
+                Pipeline[] result = default(Pipeline[]);
+                uint marshalledCreateInfoCount = default(uint);
+                Interop.GraphicsPipelineCreateInfo* marshalledCreateInfos = default(Interop.GraphicsPipelineCreateInfo*);
+                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                marshalledCreateInfoCount = (uint)(createInfos?.Length ?? 0);
+                if (createInfos != null)
                 {
-                    createInfos[index].MarshalTo(&fieldPointer[index]);
+                    var fieldPointer = (Interop.GraphicsPipelineCreateInfo*)(Interop.HeapUtil.AllocateAndClear<Interop.GraphicsPipelineCreateInfo>(createInfos.Length).ToPointer());
+                    for(int index = 0; index < createInfos.Length; index++)
+                    {
+                        createInfos[index].MarshalTo(&fieldPointer[index]);
+                    }
+                    marshalledCreateInfos = fieldPointer;
                 }
-                marshalledCreateInfos = fieldPointer;
+                else
+                {
+                    marshalledCreateInfos = null;
+                }
+                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                allocator.MarshalTo(marshalledAllocator);
+                return result;
             }
-            else
+            finally
             {
-                marshalledCreateInfos = null;
+                Interop.HeapUtil.FreeAll();
             }
-            Interop.AllocationCallbacks* marshalledAllocator;
-            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-            allocator.MarshalTo(marshalledAllocator);
         }
         
-        internal unsafe void CreateComputePipelines(ComputePipelineCreateInfo[] createInfos, AllocationCallbacks allocator)
+        internal unsafe Pipeline[] CreateComputePipelines(ComputePipelineCreateInfo[] createInfos, AllocationCallbacks allocator)
         {
-            uint marshalledCreateInfoCount;
-            marshalledCreateInfoCount = (uint)(createInfos?.Length ?? 0);
-            Interop.ComputePipelineCreateInfo* marshalledCreateInfos;
-            if (createInfos != null)
+            try
             {
-                var fieldPointer = (Interop.ComputePipelineCreateInfo*)(Interop.HeapUtil.AllocateAndClear<Interop.ComputePipelineCreateInfo>(createInfos.Length).ToPointer());
-                for(int index = 0; index < createInfos.Length; index++)
+                Pipeline[] result = default(Pipeline[]);
+                uint marshalledCreateInfoCount = default(uint);
+                Interop.ComputePipelineCreateInfo* marshalledCreateInfos = default(Interop.ComputePipelineCreateInfo*);
+                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                marshalledCreateInfoCount = (uint)(createInfos?.Length ?? 0);
+                if (createInfos != null)
                 {
-                    createInfos[index].MarshalTo(&fieldPointer[index]);
+                    var fieldPointer = (Interop.ComputePipelineCreateInfo*)(Interop.HeapUtil.AllocateAndClear<Interop.ComputePipelineCreateInfo>(createInfos.Length).ToPointer());
+                    for(int index = 0; index < createInfos.Length; index++)
+                    {
+                        createInfos[index].MarshalTo(&fieldPointer[index]);
+                    }
+                    marshalledCreateInfos = fieldPointer;
                 }
-                marshalledCreateInfos = fieldPointer;
+                else
+                {
+                    marshalledCreateInfos = null;
+                }
+                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                allocator.MarshalTo(marshalledAllocator);
+                return result;
             }
-            else
+            finally
             {
-                marshalledCreateInfos = null;
+                Interop.HeapUtil.FreeAll();
             }
-            Interop.AllocationCallbacks* marshalledAllocator;
-            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-            allocator.MarshalTo(marshalledAllocator);
         }
     }
 }

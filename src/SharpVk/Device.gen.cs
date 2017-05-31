@@ -40,341 +40,624 @@ namespace SharpVk
         
         internal unsafe void GetProcedureAddress(string name)
         {
-            byte* marshalledName;
-            marshalledName = Interop.HeapUtil.MarshalTo(name);
+            try
+            {
+                byte* marshalledName = default(byte*);
+                marshalledName = Interop.HeapUtil.MarshalTo(name);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void Destroy(AllocationCallbacks allocator)
         {
-            Interop.AllocationCallbacks* marshalledAllocator;
-            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-            allocator.MarshalTo(marshalledAllocator);
+            try
+            {
+                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                allocator.MarshalTo(marshalledAllocator);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void GetQueue(uint queueFamilyIndex, uint queueIndex)
+        internal unsafe Queue GetQueue(uint queueFamilyIndex, uint queueIndex)
         {
-            uint marshalledQueueFamilyIndex;
-            marshalledQueueFamilyIndex = queueFamilyIndex;
-            uint marshalledQueueIndex;
-            marshalledQueueIndex = queueIndex;
+            try
+            {
+                Queue result = default(Queue);
+                uint marshalledQueueFamilyIndex = default(uint);
+                uint marshalledQueueIndex = default(uint);
+                Interop.Queue* marshalledQueue = default(Interop.Queue*);
+                marshalledQueueFamilyIndex = queueFamilyIndex;
+                marshalledQueueIndex = queueIndex;
+                result = new Queue(*marshalledQueue);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void WaitIdle()
         {
+            try
+            {
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void AllocateMemory(MemoryAllocateInfo allocateInfo, AllocationCallbacks allocator)
+        internal unsafe DeviceMemory AllocateMemory(MemoryAllocateInfo allocateInfo, AllocationCallbacks allocator)
         {
-            Interop.MemoryAllocateInfo* marshalledAllocateInfo;
-            marshalledAllocateInfo = (Interop.MemoryAllocateInfo*)(Interop.HeapUtil.Allocate<Interop.MemoryAllocateInfo>());
-            allocateInfo.MarshalTo(marshalledAllocateInfo);
-            Interop.AllocationCallbacks* marshalledAllocator;
-            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-            allocator.MarshalTo(marshalledAllocator);
+            try
+            {
+                DeviceMemory result = default(DeviceMemory);
+                Interop.MemoryAllocateInfo* marshalledAllocateInfo = default(Interop.MemoryAllocateInfo*);
+                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                Interop.DeviceMemory* marshalledMemory = default(Interop.DeviceMemory*);
+                marshalledAllocateInfo = (Interop.MemoryAllocateInfo*)(Interop.HeapUtil.Allocate<Interop.MemoryAllocateInfo>());
+                allocateInfo.MarshalTo(marshalledAllocateInfo);
+                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                allocator.MarshalTo(marshalledAllocator);
+                result = new DeviceMemory(*marshalledMemory);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void FlushMappedMemoryRanges(MappedMemoryRange[] memoryRanges)
         {
-            uint marshalledMemoryRangeCount;
-            marshalledMemoryRangeCount = (uint)(memoryRanges?.Length ?? 0);
-            Interop.MappedMemoryRange* marshalledMemoryRanges;
-            if (memoryRanges != null)
+            try
             {
-                var fieldPointer = (Interop.MappedMemoryRange*)(Interop.HeapUtil.AllocateAndClear<Interop.MappedMemoryRange>(memoryRanges.Length).ToPointer());
-                for(int index = 0; index < memoryRanges.Length; index++)
+                uint marshalledMemoryRangeCount = default(uint);
+                Interop.MappedMemoryRange* marshalledMemoryRanges = default(Interop.MappedMemoryRange*);
+                marshalledMemoryRangeCount = (uint)(memoryRanges?.Length ?? 0);
+                if (memoryRanges != null)
                 {
-                    memoryRanges[index].MarshalTo(&fieldPointer[index]);
+                    var fieldPointer = (Interop.MappedMemoryRange*)(Interop.HeapUtil.AllocateAndClear<Interop.MappedMemoryRange>(memoryRanges.Length).ToPointer());
+                    for(int index = 0; index < memoryRanges.Length; index++)
+                    {
+                        memoryRanges[index].MarshalTo(&fieldPointer[index]);
+                    }
+                    marshalledMemoryRanges = fieldPointer;
                 }
-                marshalledMemoryRanges = fieldPointer;
+                else
+                {
+                    marshalledMemoryRanges = null;
+                }
             }
-            else
+            finally
             {
-                marshalledMemoryRanges = null;
+                Interop.HeapUtil.FreeAll();
             }
         }
         
         internal unsafe void InvalidateMappedMemoryRanges(MappedMemoryRange[] memoryRanges)
         {
-            uint marshalledMemoryRangeCount;
-            marshalledMemoryRangeCount = (uint)(memoryRanges?.Length ?? 0);
-            Interop.MappedMemoryRange* marshalledMemoryRanges;
-            if (memoryRanges != null)
+            try
             {
-                var fieldPointer = (Interop.MappedMemoryRange*)(Interop.HeapUtil.AllocateAndClear<Interop.MappedMemoryRange>(memoryRanges.Length).ToPointer());
-                for(int index = 0; index < memoryRanges.Length; index++)
+                uint marshalledMemoryRangeCount = default(uint);
+                Interop.MappedMemoryRange* marshalledMemoryRanges = default(Interop.MappedMemoryRange*);
+                marshalledMemoryRangeCount = (uint)(memoryRanges?.Length ?? 0);
+                if (memoryRanges != null)
                 {
-                    memoryRanges[index].MarshalTo(&fieldPointer[index]);
+                    var fieldPointer = (Interop.MappedMemoryRange*)(Interop.HeapUtil.AllocateAndClear<Interop.MappedMemoryRange>(memoryRanges.Length).ToPointer());
+                    for(int index = 0; index < memoryRanges.Length; index++)
+                    {
+                        memoryRanges[index].MarshalTo(&fieldPointer[index]);
+                    }
+                    marshalledMemoryRanges = fieldPointer;
                 }
-                marshalledMemoryRanges = fieldPointer;
+                else
+                {
+                    marshalledMemoryRanges = null;
+                }
             }
-            else
+            finally
             {
-                marshalledMemoryRanges = null;
+                Interop.HeapUtil.FreeAll();
             }
         }
         
-        internal unsafe void CreateFence(FenceCreateInfo createInfo, AllocationCallbacks allocator)
+        internal unsafe Fence CreateFence(FenceCreateInfo createInfo, AllocationCallbacks allocator)
         {
-            Interop.FenceCreateInfo* marshalledCreateInfo;
-            marshalledCreateInfo = (Interop.FenceCreateInfo*)(Interop.HeapUtil.Allocate<Interop.FenceCreateInfo>());
-            createInfo.MarshalTo(marshalledCreateInfo);
-            Interop.AllocationCallbacks* marshalledAllocator;
-            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-            allocator.MarshalTo(marshalledAllocator);
+            try
+            {
+                Fence result = default(Fence);
+                Interop.FenceCreateInfo* marshalledCreateInfo = default(Interop.FenceCreateInfo*);
+                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                Interop.Fence* marshalledFence = default(Interop.Fence*);
+                marshalledCreateInfo = (Interop.FenceCreateInfo*)(Interop.HeapUtil.Allocate<Interop.FenceCreateInfo>());
+                createInfo.MarshalTo(marshalledCreateInfo);
+                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                allocator.MarshalTo(marshalledAllocator);
+                result = new Fence(*marshalledFence);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void ResetFences(Fence[] fences)
         {
-            uint marshalledFenceCount;
-            marshalledFenceCount = (uint)(fences?.Length ?? 0);
-            Interop.Fence* marshalledFences;
-            if (fences != null)
+            try
             {
-                var fieldPointer = (Interop.Fence*)(Interop.HeapUtil.AllocateAndClear<Interop.Fence>(fences.Length).ToPointer());
-                for(int index = 0; index < fences.Length; index++)
+                uint marshalledFenceCount = default(uint);
+                Interop.Fence* marshalledFences = default(Interop.Fence*);
+                marshalledFenceCount = (uint)(fences?.Length ?? 0);
+                if (fences != null)
                 {
-                    fieldPointer[index] = fences[index].handle;
+                    var fieldPointer = (Interop.Fence*)(Interop.HeapUtil.AllocateAndClear<Interop.Fence>(fences.Length).ToPointer());
+                    for(int index = 0; index < fences.Length; index++)
+                    {
+                        fieldPointer[index] = fences[index].handle;
+                    }
+                    marshalledFences = fieldPointer;
                 }
-                marshalledFences = fieldPointer;
+                else
+                {
+                    marshalledFences = null;
+                }
             }
-            else
+            finally
             {
-                marshalledFences = null;
+                Interop.HeapUtil.FreeAll();
             }
         }
         
         internal unsafe void WaitForFences(Fence[] fences, Bool32 waitAll, ulong timeout)
         {
-            uint marshalledFenceCount;
-            marshalledFenceCount = (uint)(fences?.Length ?? 0);
-            Interop.Fence* marshalledFences;
-            if (fences != null)
+            try
             {
-                var fieldPointer = (Interop.Fence*)(Interop.HeapUtil.AllocateAndClear<Interop.Fence>(fences.Length).ToPointer());
-                for(int index = 0; index < fences.Length; index++)
+                uint marshalledFenceCount = default(uint);
+                Interop.Fence* marshalledFences = default(Interop.Fence*);
+                Bool32 marshalledWaitAll = default(Bool32);
+                ulong marshalledTimeout = default(ulong);
+                marshalledFenceCount = (uint)(fences?.Length ?? 0);
+                if (fences != null)
                 {
-                    fieldPointer[index] = fences[index].handle;
+                    var fieldPointer = (Interop.Fence*)(Interop.HeapUtil.AllocateAndClear<Interop.Fence>(fences.Length).ToPointer());
+                    for(int index = 0; index < fences.Length; index++)
+                    {
+                        fieldPointer[index] = fences[index].handle;
+                    }
+                    marshalledFences = fieldPointer;
                 }
-                marshalledFences = fieldPointer;
+                else
+                {
+                    marshalledFences = null;
+                }
+                marshalledWaitAll = waitAll;
+                marshalledTimeout = timeout;
             }
-            else
+            finally
             {
-                marshalledFences = null;
+                Interop.HeapUtil.FreeAll();
             }
-            Bool32 marshalledWaitAll;
-            marshalledWaitAll = waitAll;
-            ulong marshalledTimeout;
-            marshalledTimeout = timeout;
         }
         
-        internal unsafe void CreateSemaphore(SemaphoreCreateInfo createInfo, AllocationCallbacks allocator)
+        internal unsafe Semaphore CreateSemaphore(SemaphoreCreateInfo createInfo, AllocationCallbacks allocator)
         {
-            Interop.SemaphoreCreateInfo* marshalledCreateInfo;
-            marshalledCreateInfo = (Interop.SemaphoreCreateInfo*)(Interop.HeapUtil.Allocate<Interop.SemaphoreCreateInfo>());
-            createInfo.MarshalTo(marshalledCreateInfo);
-            Interop.AllocationCallbacks* marshalledAllocator;
-            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-            allocator.MarshalTo(marshalledAllocator);
+            try
+            {
+                Semaphore result = default(Semaphore);
+                Interop.SemaphoreCreateInfo* marshalledCreateInfo = default(Interop.SemaphoreCreateInfo*);
+                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                Interop.Semaphore* marshalledSemaphore = default(Interop.Semaphore*);
+                marshalledCreateInfo = (Interop.SemaphoreCreateInfo*)(Interop.HeapUtil.Allocate<Interop.SemaphoreCreateInfo>());
+                createInfo.MarshalTo(marshalledCreateInfo);
+                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                allocator.MarshalTo(marshalledAllocator);
+                result = new Semaphore(*marshalledSemaphore);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void CreateEvent(EventCreateInfo createInfo, AllocationCallbacks allocator)
+        internal unsafe Event CreateEvent(EventCreateInfo createInfo, AllocationCallbacks allocator)
         {
-            Interop.EventCreateInfo* marshalledCreateInfo;
-            marshalledCreateInfo = (Interop.EventCreateInfo*)(Interop.HeapUtil.Allocate<Interop.EventCreateInfo>());
-            createInfo.MarshalTo(marshalledCreateInfo);
-            Interop.AllocationCallbacks* marshalledAllocator;
-            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-            allocator.MarshalTo(marshalledAllocator);
+            try
+            {
+                Event result = default(Event);
+                Interop.EventCreateInfo* marshalledCreateInfo = default(Interop.EventCreateInfo*);
+                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                Interop.Event* marshalledEvent = default(Interop.Event*);
+                marshalledCreateInfo = (Interop.EventCreateInfo*)(Interop.HeapUtil.Allocate<Interop.EventCreateInfo>());
+                createInfo.MarshalTo(marshalledCreateInfo);
+                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                allocator.MarshalTo(marshalledAllocator);
+                result = new Event(*marshalledEvent);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void CreateQueryPool(QueryPoolCreateInfo createInfo, AllocationCallbacks allocator)
+        internal unsafe QueryPool CreateQueryPool(QueryPoolCreateInfo createInfo, AllocationCallbacks allocator)
         {
-            Interop.QueryPoolCreateInfo* marshalledCreateInfo;
-            marshalledCreateInfo = (Interop.QueryPoolCreateInfo*)(Interop.HeapUtil.Allocate<Interop.QueryPoolCreateInfo>());
-            createInfo.MarshalTo(marshalledCreateInfo);
-            Interop.AllocationCallbacks* marshalledAllocator;
-            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-            allocator.MarshalTo(marshalledAllocator);
+            try
+            {
+                QueryPool result = default(QueryPool);
+                Interop.QueryPoolCreateInfo* marshalledCreateInfo = default(Interop.QueryPoolCreateInfo*);
+                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                Interop.QueryPool* marshalledQueryPool = default(Interop.QueryPool*);
+                marshalledCreateInfo = (Interop.QueryPoolCreateInfo*)(Interop.HeapUtil.Allocate<Interop.QueryPoolCreateInfo>());
+                createInfo.MarshalTo(marshalledCreateInfo);
+                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                allocator.MarshalTo(marshalledAllocator);
+                result = new QueryPool(*marshalledQueryPool);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void CreateBuffer(BufferCreateInfo createInfo, AllocationCallbacks allocator)
+        internal unsafe Buffer CreateBuffer(BufferCreateInfo createInfo, AllocationCallbacks allocator)
         {
-            Interop.BufferCreateInfo* marshalledCreateInfo;
-            marshalledCreateInfo = (Interop.BufferCreateInfo*)(Interop.HeapUtil.Allocate<Interop.BufferCreateInfo>());
-            createInfo.MarshalTo(marshalledCreateInfo);
-            Interop.AllocationCallbacks* marshalledAllocator;
-            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-            allocator.MarshalTo(marshalledAllocator);
+            try
+            {
+                Buffer result = default(Buffer);
+                Interop.BufferCreateInfo* marshalledCreateInfo = default(Interop.BufferCreateInfo*);
+                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                Interop.Buffer* marshalledBuffer = default(Interop.Buffer*);
+                marshalledCreateInfo = (Interop.BufferCreateInfo*)(Interop.HeapUtil.Allocate<Interop.BufferCreateInfo>());
+                createInfo.MarshalTo(marshalledCreateInfo);
+                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                allocator.MarshalTo(marshalledAllocator);
+                result = new Buffer(*marshalledBuffer);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void CreateBufferView(BufferViewCreateInfo createInfo, AllocationCallbacks allocator)
+        internal unsafe BufferView CreateBufferView(BufferViewCreateInfo createInfo, AllocationCallbacks allocator)
         {
-            Interop.BufferViewCreateInfo* marshalledCreateInfo;
-            marshalledCreateInfo = (Interop.BufferViewCreateInfo*)(Interop.HeapUtil.Allocate<Interop.BufferViewCreateInfo>());
-            createInfo.MarshalTo(marshalledCreateInfo);
-            Interop.AllocationCallbacks* marshalledAllocator;
-            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-            allocator.MarshalTo(marshalledAllocator);
+            try
+            {
+                BufferView result = default(BufferView);
+                Interop.BufferViewCreateInfo* marshalledCreateInfo = default(Interop.BufferViewCreateInfo*);
+                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                Interop.BufferView* marshalledView = default(Interop.BufferView*);
+                marshalledCreateInfo = (Interop.BufferViewCreateInfo*)(Interop.HeapUtil.Allocate<Interop.BufferViewCreateInfo>());
+                createInfo.MarshalTo(marshalledCreateInfo);
+                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                allocator.MarshalTo(marshalledAllocator);
+                result = new BufferView(*marshalledView);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void CreateImage(ImageCreateInfo createInfo, AllocationCallbacks allocator)
+        internal unsafe Image CreateImage(ImageCreateInfo createInfo, AllocationCallbacks allocator)
         {
-            Interop.ImageCreateInfo* marshalledCreateInfo;
-            marshalledCreateInfo = (Interop.ImageCreateInfo*)(Interop.HeapUtil.Allocate<Interop.ImageCreateInfo>());
-            createInfo.MarshalTo(marshalledCreateInfo);
-            Interop.AllocationCallbacks* marshalledAllocator;
-            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-            allocator.MarshalTo(marshalledAllocator);
+            try
+            {
+                Image result = default(Image);
+                Interop.ImageCreateInfo* marshalledCreateInfo = default(Interop.ImageCreateInfo*);
+                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                Interop.Image* marshalledImage = default(Interop.Image*);
+                marshalledCreateInfo = (Interop.ImageCreateInfo*)(Interop.HeapUtil.Allocate<Interop.ImageCreateInfo>());
+                createInfo.MarshalTo(marshalledCreateInfo);
+                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                allocator.MarshalTo(marshalledAllocator);
+                result = new Image(*marshalledImage);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void CreateImageView(ImageViewCreateInfo createInfo, AllocationCallbacks allocator)
+        internal unsafe ImageView CreateImageView(ImageViewCreateInfo createInfo, AllocationCallbacks allocator)
         {
-            Interop.ImageViewCreateInfo* marshalledCreateInfo;
-            marshalledCreateInfo = (Interop.ImageViewCreateInfo*)(Interop.HeapUtil.Allocate<Interop.ImageViewCreateInfo>());
-            createInfo.MarshalTo(marshalledCreateInfo);
-            Interop.AllocationCallbacks* marshalledAllocator;
-            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-            allocator.MarshalTo(marshalledAllocator);
+            try
+            {
+                ImageView result = default(ImageView);
+                Interop.ImageViewCreateInfo* marshalledCreateInfo = default(Interop.ImageViewCreateInfo*);
+                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                Interop.ImageView* marshalledView = default(Interop.ImageView*);
+                marshalledCreateInfo = (Interop.ImageViewCreateInfo*)(Interop.HeapUtil.Allocate<Interop.ImageViewCreateInfo>());
+                createInfo.MarshalTo(marshalledCreateInfo);
+                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                allocator.MarshalTo(marshalledAllocator);
+                result = new ImageView(*marshalledView);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void CreateShaderModule(ShaderModuleCreateInfo createInfo, AllocationCallbacks allocator)
+        internal unsafe ShaderModule CreateShaderModule(ShaderModuleCreateInfo createInfo, AllocationCallbacks allocator)
         {
-            Interop.ShaderModuleCreateInfo* marshalledCreateInfo;
-            marshalledCreateInfo = (Interop.ShaderModuleCreateInfo*)(Interop.HeapUtil.Allocate<Interop.ShaderModuleCreateInfo>());
-            createInfo.MarshalTo(marshalledCreateInfo);
-            Interop.AllocationCallbacks* marshalledAllocator;
-            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-            allocator.MarshalTo(marshalledAllocator);
+            try
+            {
+                ShaderModule result = default(ShaderModule);
+                Interop.ShaderModuleCreateInfo* marshalledCreateInfo = default(Interop.ShaderModuleCreateInfo*);
+                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                Interop.ShaderModule* marshalledShaderModule = default(Interop.ShaderModule*);
+                marshalledCreateInfo = (Interop.ShaderModuleCreateInfo*)(Interop.HeapUtil.Allocate<Interop.ShaderModuleCreateInfo>());
+                createInfo.MarshalTo(marshalledCreateInfo);
+                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                allocator.MarshalTo(marshalledAllocator);
+                result = new ShaderModule(*marshalledShaderModule);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void CreatePipelineCache(PipelineCacheCreateInfo createInfo, AllocationCallbacks allocator)
+        internal unsafe PipelineCache CreatePipelineCache(PipelineCacheCreateInfo createInfo, AllocationCallbacks allocator)
         {
-            Interop.PipelineCacheCreateInfo* marshalledCreateInfo;
-            marshalledCreateInfo = (Interop.PipelineCacheCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineCacheCreateInfo>());
-            createInfo.MarshalTo(marshalledCreateInfo);
-            Interop.AllocationCallbacks* marshalledAllocator;
-            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-            allocator.MarshalTo(marshalledAllocator);
+            try
+            {
+                PipelineCache result = default(PipelineCache);
+                Interop.PipelineCacheCreateInfo* marshalledCreateInfo = default(Interop.PipelineCacheCreateInfo*);
+                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                Interop.PipelineCache* marshalledPipelineCache = default(Interop.PipelineCache*);
+                marshalledCreateInfo = (Interop.PipelineCacheCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineCacheCreateInfo>());
+                createInfo.MarshalTo(marshalledCreateInfo);
+                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                allocator.MarshalTo(marshalledAllocator);
+                result = new PipelineCache(*marshalledPipelineCache);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void CreatePipelineLayout(PipelineLayoutCreateInfo createInfo, AllocationCallbacks allocator)
+        internal unsafe PipelineLayout CreatePipelineLayout(PipelineLayoutCreateInfo createInfo, AllocationCallbacks allocator)
         {
-            Interop.PipelineLayoutCreateInfo* marshalledCreateInfo;
-            marshalledCreateInfo = (Interop.PipelineLayoutCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineLayoutCreateInfo>());
-            createInfo.MarshalTo(marshalledCreateInfo);
-            Interop.AllocationCallbacks* marshalledAllocator;
-            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-            allocator.MarshalTo(marshalledAllocator);
+            try
+            {
+                PipelineLayout result = default(PipelineLayout);
+                Interop.PipelineLayoutCreateInfo* marshalledCreateInfo = default(Interop.PipelineLayoutCreateInfo*);
+                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                Interop.PipelineLayout* marshalledPipelineLayout = default(Interop.PipelineLayout*);
+                marshalledCreateInfo = (Interop.PipelineLayoutCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineLayoutCreateInfo>());
+                createInfo.MarshalTo(marshalledCreateInfo);
+                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                allocator.MarshalTo(marshalledAllocator);
+                result = new PipelineLayout(*marshalledPipelineLayout);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void CreateSampler(SamplerCreateInfo createInfo, AllocationCallbacks allocator)
+        internal unsafe Sampler CreateSampler(SamplerCreateInfo createInfo, AllocationCallbacks allocator)
         {
-            Interop.SamplerCreateInfo* marshalledCreateInfo;
-            marshalledCreateInfo = (Interop.SamplerCreateInfo*)(Interop.HeapUtil.Allocate<Interop.SamplerCreateInfo>());
-            createInfo.MarshalTo(marshalledCreateInfo);
-            Interop.AllocationCallbacks* marshalledAllocator;
-            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-            allocator.MarshalTo(marshalledAllocator);
+            try
+            {
+                Sampler result = default(Sampler);
+                Interop.SamplerCreateInfo* marshalledCreateInfo = default(Interop.SamplerCreateInfo*);
+                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                Interop.Sampler* marshalledSampler = default(Interop.Sampler*);
+                marshalledCreateInfo = (Interop.SamplerCreateInfo*)(Interop.HeapUtil.Allocate<Interop.SamplerCreateInfo>());
+                createInfo.MarshalTo(marshalledCreateInfo);
+                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                allocator.MarshalTo(marshalledAllocator);
+                result = new Sampler(*marshalledSampler);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void CreateDescriptorSetLayout(DescriptorSetLayoutCreateInfo createInfo, AllocationCallbacks allocator)
+        internal unsafe DescriptorSetLayout CreateDescriptorSetLayout(DescriptorSetLayoutCreateInfo createInfo, AllocationCallbacks allocator)
         {
-            Interop.DescriptorSetLayoutCreateInfo* marshalledCreateInfo;
-            marshalledCreateInfo = (Interop.DescriptorSetLayoutCreateInfo*)(Interop.HeapUtil.Allocate<Interop.DescriptorSetLayoutCreateInfo>());
-            createInfo.MarshalTo(marshalledCreateInfo);
-            Interop.AllocationCallbacks* marshalledAllocator;
-            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-            allocator.MarshalTo(marshalledAllocator);
+            try
+            {
+                DescriptorSetLayout result = default(DescriptorSetLayout);
+                Interop.DescriptorSetLayoutCreateInfo* marshalledCreateInfo = default(Interop.DescriptorSetLayoutCreateInfo*);
+                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                Interop.DescriptorSetLayout* marshalledSetLayout = default(Interop.DescriptorSetLayout*);
+                marshalledCreateInfo = (Interop.DescriptorSetLayoutCreateInfo*)(Interop.HeapUtil.Allocate<Interop.DescriptorSetLayoutCreateInfo>());
+                createInfo.MarshalTo(marshalledCreateInfo);
+                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                allocator.MarshalTo(marshalledAllocator);
+                result = new DescriptorSetLayout(*marshalledSetLayout);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void CreateDescriptorPool(DescriptorPoolCreateInfo createInfo, AllocationCallbacks allocator)
+        internal unsafe DescriptorPool CreateDescriptorPool(DescriptorPoolCreateInfo createInfo, AllocationCallbacks allocator)
         {
-            Interop.DescriptorPoolCreateInfo* marshalledCreateInfo;
-            marshalledCreateInfo = (Interop.DescriptorPoolCreateInfo*)(Interop.HeapUtil.Allocate<Interop.DescriptorPoolCreateInfo>());
-            createInfo.MarshalTo(marshalledCreateInfo);
-            Interop.AllocationCallbacks* marshalledAllocator;
-            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-            allocator.MarshalTo(marshalledAllocator);
+            try
+            {
+                DescriptorPool result = default(DescriptorPool);
+                Interop.DescriptorPoolCreateInfo* marshalledCreateInfo = default(Interop.DescriptorPoolCreateInfo*);
+                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                Interop.DescriptorPool* marshalledDescriptorPool = default(Interop.DescriptorPool*);
+                marshalledCreateInfo = (Interop.DescriptorPoolCreateInfo*)(Interop.HeapUtil.Allocate<Interop.DescriptorPoolCreateInfo>());
+                createInfo.MarshalTo(marshalledCreateInfo);
+                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                allocator.MarshalTo(marshalledAllocator);
+                result = new DescriptorPool(*marshalledDescriptorPool);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void AllocateDescriptorSets(DescriptorSetAllocateInfo allocateInfo)
+        internal unsafe DescriptorSet[] AllocateDescriptorSets(DescriptorSetAllocateInfo allocateInfo)
         {
-            Interop.DescriptorSetAllocateInfo* marshalledAllocateInfo;
-            marshalledAllocateInfo = (Interop.DescriptorSetAllocateInfo*)(Interop.HeapUtil.Allocate<Interop.DescriptorSetAllocateInfo>());
-            allocateInfo.MarshalTo(marshalledAllocateInfo);
+            try
+            {
+                DescriptorSet[] result = default(DescriptorSet[]);
+                Interop.DescriptorSetAllocateInfo* marshalledAllocateInfo = default(Interop.DescriptorSetAllocateInfo*);
+                marshalledAllocateInfo = (Interop.DescriptorSetAllocateInfo*)(Interop.HeapUtil.Allocate<Interop.DescriptorSetAllocateInfo>());
+                allocateInfo.MarshalTo(marshalledAllocateInfo);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void UpdateDescriptorSets(WriteDescriptorSet[] descriptorWrites, CopyDescriptorSet[] descriptorCopies)
         {
-            uint marshalledDescriptorWriteCount;
-            marshalledDescriptorWriteCount = (uint)(descriptorWrites?.Length ?? 0);
-            Interop.WriteDescriptorSet* marshalledDescriptorWrites;
-            if (descriptorWrites != null)
+            try
             {
-                var fieldPointer = (Interop.WriteDescriptorSet*)(Interop.HeapUtil.AllocateAndClear<Interop.WriteDescriptorSet>(descriptorWrites.Length).ToPointer());
-                for(int index = 0; index < descriptorWrites.Length; index++)
+                uint marshalledDescriptorWriteCount = default(uint);
+                Interop.WriteDescriptorSet* marshalledDescriptorWrites = default(Interop.WriteDescriptorSet*);
+                uint marshalledDescriptorCopyCount = default(uint);
+                Interop.CopyDescriptorSet* marshalledDescriptorCopies = default(Interop.CopyDescriptorSet*);
+                marshalledDescriptorWriteCount = (uint)(descriptorWrites?.Length ?? 0);
+                if (descriptorWrites != null)
                 {
-                    descriptorWrites[index].MarshalTo(&fieldPointer[index]);
+                    var fieldPointer = (Interop.WriteDescriptorSet*)(Interop.HeapUtil.AllocateAndClear<Interop.WriteDescriptorSet>(descriptorWrites.Length).ToPointer());
+                    for(int index = 0; index < descriptorWrites.Length; index++)
+                    {
+                        descriptorWrites[index].MarshalTo(&fieldPointer[index]);
+                    }
+                    marshalledDescriptorWrites = fieldPointer;
                 }
-                marshalledDescriptorWrites = fieldPointer;
-            }
-            else
-            {
-                marshalledDescriptorWrites = null;
-            }
-            uint marshalledDescriptorCopyCount;
-            marshalledDescriptorCopyCount = (uint)(descriptorCopies?.Length ?? 0);
-            Interop.CopyDescriptorSet* marshalledDescriptorCopies;
-            if (descriptorCopies != null)
-            {
-                var fieldPointer = (Interop.CopyDescriptorSet*)(Interop.HeapUtil.AllocateAndClear<Interop.CopyDescriptorSet>(descriptorCopies.Length).ToPointer());
-                for(int index = 0; index < descriptorCopies.Length; index++)
+                else
                 {
-                    descriptorCopies[index].MarshalTo(&fieldPointer[index]);
+                    marshalledDescriptorWrites = null;
                 }
-                marshalledDescriptorCopies = fieldPointer;
+                marshalledDescriptorCopyCount = (uint)(descriptorCopies?.Length ?? 0);
+                if (descriptorCopies != null)
+                {
+                    var fieldPointer = (Interop.CopyDescriptorSet*)(Interop.HeapUtil.AllocateAndClear<Interop.CopyDescriptorSet>(descriptorCopies.Length).ToPointer());
+                    for(int index = 0; index < descriptorCopies.Length; index++)
+                    {
+                        descriptorCopies[index].MarshalTo(&fieldPointer[index]);
+                    }
+                    marshalledDescriptorCopies = fieldPointer;
+                }
+                else
+                {
+                    marshalledDescriptorCopies = null;
+                }
             }
-            else
+            finally
             {
-                marshalledDescriptorCopies = null;
+                Interop.HeapUtil.FreeAll();
             }
         }
         
-        internal unsafe void CreateFramebuffer(FramebufferCreateInfo createInfo, AllocationCallbacks allocator)
+        internal unsafe Framebuffer CreateFramebuffer(FramebufferCreateInfo createInfo, AllocationCallbacks allocator)
         {
-            Interop.FramebufferCreateInfo* marshalledCreateInfo;
-            marshalledCreateInfo = (Interop.FramebufferCreateInfo*)(Interop.HeapUtil.Allocate<Interop.FramebufferCreateInfo>());
-            createInfo.MarshalTo(marshalledCreateInfo);
-            Interop.AllocationCallbacks* marshalledAllocator;
-            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-            allocator.MarshalTo(marshalledAllocator);
+            try
+            {
+                Framebuffer result = default(Framebuffer);
+                Interop.FramebufferCreateInfo* marshalledCreateInfo = default(Interop.FramebufferCreateInfo*);
+                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                Interop.Framebuffer* marshalledFramebuffer = default(Interop.Framebuffer*);
+                marshalledCreateInfo = (Interop.FramebufferCreateInfo*)(Interop.HeapUtil.Allocate<Interop.FramebufferCreateInfo>());
+                createInfo.MarshalTo(marshalledCreateInfo);
+                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                allocator.MarshalTo(marshalledAllocator);
+                result = new Framebuffer(*marshalledFramebuffer);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void CreateRenderPass(RenderPassCreateInfo createInfo, AllocationCallbacks allocator)
+        internal unsafe RenderPass CreateRenderPass(RenderPassCreateInfo createInfo, AllocationCallbacks allocator)
         {
-            Interop.RenderPassCreateInfo* marshalledCreateInfo;
-            marshalledCreateInfo = (Interop.RenderPassCreateInfo*)(Interop.HeapUtil.Allocate<Interop.RenderPassCreateInfo>());
-            createInfo.MarshalTo(marshalledCreateInfo);
-            Interop.AllocationCallbacks* marshalledAllocator;
-            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-            allocator.MarshalTo(marshalledAllocator);
+            try
+            {
+                RenderPass result = default(RenderPass);
+                Interop.RenderPassCreateInfo* marshalledCreateInfo = default(Interop.RenderPassCreateInfo*);
+                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                Interop.RenderPass* marshalledRenderPass = default(Interop.RenderPass*);
+                marshalledCreateInfo = (Interop.RenderPassCreateInfo*)(Interop.HeapUtil.Allocate<Interop.RenderPassCreateInfo>());
+                createInfo.MarshalTo(marshalledCreateInfo);
+                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                allocator.MarshalTo(marshalledAllocator);
+                result = new RenderPass(*marshalledRenderPass);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void CreateCommandPool(CommandPoolCreateInfo createInfo, AllocationCallbacks allocator)
+        internal unsafe CommandPool CreateCommandPool(CommandPoolCreateInfo createInfo, AllocationCallbacks allocator)
         {
-            Interop.CommandPoolCreateInfo* marshalledCreateInfo;
-            marshalledCreateInfo = (Interop.CommandPoolCreateInfo*)(Interop.HeapUtil.Allocate<Interop.CommandPoolCreateInfo>());
-            createInfo.MarshalTo(marshalledCreateInfo);
-            Interop.AllocationCallbacks* marshalledAllocator;
-            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-            allocator.MarshalTo(marshalledAllocator);
+            try
+            {
+                CommandPool result = default(CommandPool);
+                Interop.CommandPoolCreateInfo* marshalledCreateInfo = default(Interop.CommandPoolCreateInfo*);
+                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                Interop.CommandPool* marshalledCommandPool = default(Interop.CommandPool*);
+                marshalledCreateInfo = (Interop.CommandPoolCreateInfo*)(Interop.HeapUtil.Allocate<Interop.CommandPoolCreateInfo>());
+                createInfo.MarshalTo(marshalledCreateInfo);
+                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                allocator.MarshalTo(marshalledAllocator);
+                result = new CommandPool(*marshalledCommandPool);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
-        internal unsafe void AllocateCommandBuffers(CommandBufferAllocateInfo allocateInfo)
+        internal unsafe CommandBuffer[] AllocateCommandBuffers(CommandBufferAllocateInfo allocateInfo)
         {
-            Interop.CommandBufferAllocateInfo* marshalledAllocateInfo;
-            marshalledAllocateInfo = (Interop.CommandBufferAllocateInfo*)(Interop.HeapUtil.Allocate<Interop.CommandBufferAllocateInfo>());
-            allocateInfo.MarshalTo(marshalledAllocateInfo);
+            try
+            {
+                CommandBuffer[] result = default(CommandBuffer[]);
+                Interop.CommandBufferAllocateInfo* marshalledAllocateInfo = default(Interop.CommandBufferAllocateInfo*);
+                marshalledAllocateInfo = (Interop.CommandBufferAllocateInfo*)(Interop.HeapUtil.Allocate<Interop.CommandBufferAllocateInfo>());
+                allocateInfo.MarshalTo(marshalledAllocateInfo);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
     }
 }

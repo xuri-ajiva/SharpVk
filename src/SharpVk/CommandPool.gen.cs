@@ -40,34 +40,55 @@ namespace SharpVk
         
         internal unsafe void Destroy(AllocationCallbacks allocator)
         {
-            Interop.AllocationCallbacks* marshalledAllocator;
-            marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-            allocator.MarshalTo(marshalledAllocator);
+            try
+            {
+                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                allocator.MarshalTo(marshalledAllocator);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void Reset(CommandPoolResetFlags flags)
         {
-            CommandPoolResetFlags marshalledFlags;
-            marshalledFlags = flags;
+            try
+            {
+                CommandPoolResetFlags marshalledFlags = default(CommandPoolResetFlags);
+                marshalledFlags = flags;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         internal unsafe void FreeCommandBuffers(CommandBuffer[] commandBuffers)
         {
-            uint marshalledCommandBufferCount;
-            marshalledCommandBufferCount = (uint)(commandBuffers?.Length ?? 0);
-            Interop.CommandBuffer* marshalledCommandBuffers;
-            if (commandBuffers != null)
+            try
             {
-                var fieldPointer = (Interop.CommandBuffer*)(Interop.HeapUtil.AllocateAndClear<Interop.CommandBuffer>(commandBuffers.Length).ToPointer());
-                for(int index = 0; index < commandBuffers.Length; index++)
+                uint marshalledCommandBufferCount = default(uint);
+                Interop.CommandBuffer* marshalledCommandBuffers = default(Interop.CommandBuffer*);
+                marshalledCommandBufferCount = (uint)(commandBuffers?.Length ?? 0);
+                if (commandBuffers != null)
                 {
-                    fieldPointer[index] = commandBuffers[index].handle;
+                    var fieldPointer = (Interop.CommandBuffer*)(Interop.HeapUtil.AllocateAndClear<Interop.CommandBuffer>(commandBuffers.Length).ToPointer());
+                    for(int index = 0; index < commandBuffers.Length; index++)
+                    {
+                        fieldPointer[index] = commandBuffers[index].handle;
+                    }
+                    marshalledCommandBuffers = fieldPointer;
                 }
-                marshalledCommandBuffers = fieldPointer;
+                else
+                {
+                    marshalledCommandBuffers = null;
+                }
             }
-            else
+            finally
             {
-                marshalledCommandBuffers = null;
+                Interop.HeapUtil.FreeAll();
             }
         }
     }
