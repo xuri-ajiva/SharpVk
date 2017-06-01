@@ -38,13 +38,20 @@ namespace SharpVk
             this.handle = handle;
         }
         
-        internal unsafe void Destroy(AllocationCallbacks allocator)
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe void Destroy(AllocationCallbacks? allocator)
         {
             try
             {
                 Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
-                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-                allocator.MarshalTo(marshalledAllocator);
+                if (allocator != null)
+                {
+                    marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                    allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                Interop.Commands.vkDestroyPipelineCache(default(Interop.Device), this.handle, marshalledAllocator);
             }
             finally
             {
@@ -52,12 +59,17 @@ namespace SharpVk
             }
         }
         
-        internal unsafe byte[] GetData()
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe byte[] GetData()
         {
             try
             {
                 byte[] result = default(byte[]);
                 HostSize dataSize = default(HostSize);
+                byte marshalledData = default(byte);
+                Interop.Commands.vkGetPipelineCacheData(default(Interop.Device), this.handle, &dataSize, &marshalledData);
                 return result;
             }
             finally
@@ -66,7 +78,10 @@ namespace SharpVk
             }
         }
         
-        internal unsafe void MergePipelineCaches(PipelineCache[] sourceCaches)
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe void MergePipelineCaches(PipelineCache[] sourceCaches)
         {
             try
             {
@@ -86,6 +101,7 @@ namespace SharpVk
                 {
                     marshalledSourceCaches = null;
                 }
+                Interop.Commands.vkMergePipelineCaches(default(Interop.Device), this.handle, marshalledSourceCacheCount, marshalledSourceCaches);
             }
             finally
             {
@@ -93,7 +109,10 @@ namespace SharpVk
             }
         }
         
-        internal unsafe Pipeline[] CreateGraphicsPipelines(GraphicsPipelineCreateInfo[] createInfos, AllocationCallbacks allocator)
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe Pipeline[] CreateGraphicsPipelines(GraphicsPipelineCreateInfo[] createInfos, AllocationCallbacks? allocator)
         {
             try
             {
@@ -101,6 +120,7 @@ namespace SharpVk
                 uint marshalledCreateInfoCount = default(uint);
                 Interop.GraphicsPipelineCreateInfo* marshalledCreateInfos = default(Interop.GraphicsPipelineCreateInfo*);
                 Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                Interop.Pipeline marshalledPipelines = default(Interop.Pipeline);
                 marshalledCreateInfoCount = (uint)(createInfos?.Length ?? 0);
                 if (createInfos != null)
                 {
@@ -115,8 +135,12 @@ namespace SharpVk
                 {
                     marshalledCreateInfos = null;
                 }
-                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-                allocator.MarshalTo(marshalledAllocator);
+                if (allocator != null)
+                {
+                    marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                    allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                Interop.Commands.vkCreateGraphicsPipelines(default(Interop.Device), this.handle, marshalledCreateInfoCount, marshalledCreateInfos, marshalledAllocator, &marshalledPipelines);
                 return result;
             }
             finally
@@ -125,7 +149,10 @@ namespace SharpVk
             }
         }
         
-        internal unsafe Pipeline[] CreateComputePipelines(ComputePipelineCreateInfo[] createInfos, AllocationCallbacks allocator)
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe Pipeline[] CreateComputePipelines(ComputePipelineCreateInfo[] createInfos, AllocationCallbacks? allocator)
         {
             try
             {
@@ -133,6 +160,7 @@ namespace SharpVk
                 uint marshalledCreateInfoCount = default(uint);
                 Interop.ComputePipelineCreateInfo* marshalledCreateInfos = default(Interop.ComputePipelineCreateInfo*);
                 Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                Interop.Pipeline marshalledPipelines = default(Interop.Pipeline);
                 marshalledCreateInfoCount = (uint)(createInfos?.Length ?? 0);
                 if (createInfos != null)
                 {
@@ -147,8 +175,12 @@ namespace SharpVk
                 {
                     marshalledCreateInfos = null;
                 }
-                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-                allocator.MarshalTo(marshalledAllocator);
+                if (allocator != null)
+                {
+                    marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                    allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                Interop.Commands.vkCreateComputePipelines(default(Interop.Device), this.handle, marshalledCreateInfoCount, marshalledCreateInfos, marshalledAllocator, &marshalledPipelines);
                 return result;
             }
             finally

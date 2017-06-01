@@ -51,5 +51,19 @@
                     return true;
             }
         }
+
+        public static bool IsConst(this PointerType pointerType)
+        {
+            switch(pointerType)
+            {
+                case PointerType.Value:
+                case PointerType.ConstValue:
+                case PointerType.ConstPointer:
+                case PointerType.DoubleConstPointer:
+                    return true;
+                default:
+                    return false;
+            }
+        }
     }
 }

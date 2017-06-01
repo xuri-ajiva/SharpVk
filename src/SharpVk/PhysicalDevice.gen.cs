@@ -38,13 +38,17 @@ namespace SharpVk
             this.handle = handle;
         }
         
-        internal unsafe PhysicalDeviceProperties GetProperties()
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe PhysicalDeviceProperties GetProperties()
         {
             try
             {
                 PhysicalDeviceProperties result = default(PhysicalDeviceProperties);
-                Interop.PhysicalDeviceProperties* marshalledProperties = default(Interop.PhysicalDeviceProperties*);
-                result = PhysicalDeviceProperties.MarshalFrom(marshalledProperties);
+                Interop.PhysicalDeviceProperties marshalledProperties = default(Interop.PhysicalDeviceProperties);
+                Interop.Commands.vkGetPhysicalDeviceProperties(this.handle, &marshalledProperties);
+                result = PhysicalDeviceProperties.MarshalFrom(&marshalledProperties);
                 return result;
             }
             finally
@@ -53,12 +57,17 @@ namespace SharpVk
             }
         }
         
-        internal unsafe QueueFamilyProperties[] GetQueueFamilyProperties()
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe QueueFamilyProperties[] GetQueueFamilyProperties()
         {
             try
             {
                 QueueFamilyProperties[] result = default(QueueFamilyProperties[]);
                 uint queueFamilyPropertyCount = default(uint);
+                QueueFamilyProperties marshalledQueueFamilyProperties = default(QueueFamilyProperties);
+                Interop.Commands.vkGetPhysicalDeviceQueueFamilyProperties(this.handle, &queueFamilyPropertyCount, &marshalledQueueFamilyProperties);
                 return result;
             }
             finally
@@ -67,13 +76,17 @@ namespace SharpVk
             }
         }
         
-        internal unsafe PhysicalDeviceMemoryProperties GetMemoryProperties()
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe PhysicalDeviceMemoryProperties GetMemoryProperties()
         {
             try
             {
                 PhysicalDeviceMemoryProperties result = default(PhysicalDeviceMemoryProperties);
-                Interop.PhysicalDeviceMemoryProperties* marshalledMemoryProperties = default(Interop.PhysicalDeviceMemoryProperties*);
-                result = PhysicalDeviceMemoryProperties.MarshalFrom(marshalledMemoryProperties);
+                Interop.PhysicalDeviceMemoryProperties marshalledMemoryProperties = default(Interop.PhysicalDeviceMemoryProperties);
+                Interop.Commands.vkGetPhysicalDeviceMemoryProperties(this.handle, &marshalledMemoryProperties);
+                result = PhysicalDeviceMemoryProperties.MarshalFrom(&marshalledMemoryProperties);
                 return result;
             }
             finally
@@ -82,13 +95,17 @@ namespace SharpVk
             }
         }
         
-        internal unsafe PhysicalDeviceFeatures GetFeatures()
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe PhysicalDeviceFeatures GetFeatures()
         {
             try
             {
                 PhysicalDeviceFeatures result = default(PhysicalDeviceFeatures);
-                PhysicalDeviceFeatures* marshalledFeatures = default(PhysicalDeviceFeatures*);
-                result = *marshalledFeatures;
+                PhysicalDeviceFeatures marshalledFeatures = default(PhysicalDeviceFeatures);
+                Interop.Commands.vkGetPhysicalDeviceFeatures(this.handle, &marshalledFeatures);
+                result = marshalledFeatures;
                 return result;
             }
             finally
@@ -97,15 +114,19 @@ namespace SharpVk
             }
         }
         
-        internal unsafe FormatProperties GetFormatProperties(Format format)
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe FormatProperties GetFormatProperties(Format format)
         {
             try
             {
                 FormatProperties result = default(FormatProperties);
                 Format marshalledFormat = default(Format);
-                FormatProperties* marshalledFormatProperties = default(FormatProperties*);
+                FormatProperties marshalledFormatProperties = default(FormatProperties);
                 marshalledFormat = format;
-                result = *marshalledFormatProperties;
+                Interop.Commands.vkGetPhysicalDeviceFormatProperties(this.handle, marshalledFormat, &marshalledFormatProperties);
+                result = marshalledFormatProperties;
                 return result;
             }
             finally
@@ -114,7 +135,10 @@ namespace SharpVk
             }
         }
         
-        internal unsafe ImageFormatProperties GetImageFormatProperties(Format format, ImageType type, ImageTiling tiling, ImageUsageFlags usage, ImageCreateFlags flags)
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe ImageFormatProperties GetImageFormatProperties(Format format, ImageType type, ImageTiling tiling, ImageUsageFlags usage, ImageCreateFlags flags)
         {
             try
             {
@@ -124,13 +148,14 @@ namespace SharpVk
                 ImageTiling marshalledTiling = default(ImageTiling);
                 ImageUsageFlags marshalledUsage = default(ImageUsageFlags);
                 ImageCreateFlags marshalledFlags = default(ImageCreateFlags);
-                ImageFormatProperties* marshalledImageFormatProperties = default(ImageFormatProperties*);
+                ImageFormatProperties marshalledImageFormatProperties = default(ImageFormatProperties);
                 marshalledFormat = format;
                 marshalledType = type;
                 marshalledTiling = tiling;
                 marshalledUsage = usage;
                 marshalledFlags = flags;
-                result = *marshalledImageFormatProperties;
+                Interop.Commands.vkGetPhysicalDeviceImageFormatProperties(this.handle, marshalledFormat, marshalledType, marshalledTiling, marshalledUsage, marshalledFlags, &marshalledImageFormatProperties);
+                result = marshalledImageFormatProperties;
                 return result;
             }
             finally
@@ -139,19 +164,26 @@ namespace SharpVk
             }
         }
         
-        internal unsafe Device CreateDevice(DeviceCreateInfo createInfo, AllocationCallbacks allocator)
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe Device CreateDevice(DeviceCreateInfo createInfo, AllocationCallbacks? allocator)
         {
             try
             {
                 Device result = default(Device);
                 Interop.DeviceCreateInfo* marshalledCreateInfo = default(Interop.DeviceCreateInfo*);
                 Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
-                Interop.Device* marshalledDevice = default(Interop.Device*);
+                Interop.Device marshalledDevice = default(Interop.Device);
                 marshalledCreateInfo = (Interop.DeviceCreateInfo*)(Interop.HeapUtil.Allocate<Interop.DeviceCreateInfo>());
                 createInfo.MarshalTo(marshalledCreateInfo);
-                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-                allocator.MarshalTo(marshalledAllocator);
-                result = new Device(*marshalledDevice);
+                if (allocator != null)
+                {
+                    marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                    allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                Interop.Commands.vkCreateDevice(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledDevice);
+                result = new Device(marshalledDevice);
                 return result;
             }
             finally
@@ -160,12 +192,17 @@ namespace SharpVk
             }
         }
         
-        internal unsafe LayerProperties[] EnumerateDeviceLayerProperties()
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe LayerProperties[] EnumerateDeviceLayerProperties()
         {
             try
             {
                 LayerProperties[] result = default(LayerProperties[]);
                 uint propertyCount = default(uint);
+                Interop.LayerProperties marshalledProperties = default(Interop.LayerProperties);
+                Interop.Commands.vkEnumerateDeviceLayerProperties(this.handle, &propertyCount, &marshalledProperties);
                 return result;
             }
             finally
@@ -174,14 +211,19 @@ namespace SharpVk
             }
         }
         
-        internal unsafe ExtensionProperties[] EnumerateDeviceExtensionProperties(string layerName)
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe ExtensionProperties[] EnumerateDeviceExtensionProperties(string layerName)
         {
             try
             {
                 ExtensionProperties[] result = default(ExtensionProperties[]);
                 uint propertyCount = default(uint);
                 byte* marshalledLayerName = default(byte*);
+                Interop.ExtensionProperties marshalledProperties = default(Interop.ExtensionProperties);
                 marshalledLayerName = Interop.HeapUtil.MarshalTo(layerName);
+                Interop.Commands.vkEnumerateDeviceExtensionProperties(this.handle, marshalledLayerName, &propertyCount, &marshalledProperties);
                 return result;
             }
             finally
@@ -190,7 +232,10 @@ namespace SharpVk
             }
         }
         
-        internal unsafe SparseImageFormatProperties[] GetSparseImageFormatProperties(Format format, ImageType type, SampleCountFlags samples, ImageUsageFlags usage, ImageTiling tiling)
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe SparseImageFormatProperties[] GetSparseImageFormatProperties(Format format, ImageType type, SampleCountFlags samples, ImageUsageFlags usage, ImageTiling tiling)
         {
             try
             {
@@ -201,11 +246,13 @@ namespace SharpVk
                 SampleCountFlags marshalledSamples = default(SampleCountFlags);
                 ImageUsageFlags marshalledUsage = default(ImageUsageFlags);
                 ImageTiling marshalledTiling = default(ImageTiling);
+                SparseImageFormatProperties marshalledProperties = default(SparseImageFormatProperties);
                 marshalledFormat = format;
                 marshalledType = type;
                 marshalledSamples = samples;
                 marshalledUsage = usage;
                 marshalledTiling = tiling;
+                Interop.Commands.vkGetPhysicalDeviceSparseImageFormatProperties(this.handle, marshalledFormat, marshalledType, marshalledSamples, marshalledUsage, marshalledTiling, &propertyCount, &marshalledProperties);
                 return result;
             }
             finally

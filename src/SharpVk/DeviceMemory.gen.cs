@@ -38,13 +38,20 @@ namespace SharpVk
             this.handle = handle;
         }
         
-        internal unsafe void Free(AllocationCallbacks allocator)
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe void Free(AllocationCallbacks? allocator)
         {
             try
             {
                 Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
-                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-                allocator.MarshalTo(marshalledAllocator);
+                if (allocator != null)
+                {
+                    marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                    allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                Interop.Commands.vkFreeMemory(default(Interop.Device), this.handle, marshalledAllocator);
             }
             finally
             {
@@ -52,10 +59,14 @@ namespace SharpVk
             }
         }
         
-        internal unsafe void Map(DeviceSize offset, DeviceSize size, MemoryMapFlags flags, IntPtr data)
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe IntPtr Map(DeviceSize offset, DeviceSize size, MemoryMapFlags flags)
         {
             try
             {
+                IntPtr result = default(IntPtr);
                 DeviceSize marshalledOffset = default(DeviceSize);
                 DeviceSize marshalledSize = default(DeviceSize);
                 MemoryMapFlags marshalledFlags = default(MemoryMapFlags);
@@ -63,7 +74,9 @@ namespace SharpVk
                 marshalledOffset = offset;
                 marshalledSize = size;
                 marshalledFlags = flags;
-                marshalledData = data.ToPointer();
+                Interop.Commands.vkMapMemory(default(Interop.Device), this.handle, marshalledOffset, marshalledSize, marshalledFlags, &marshalledData);
+                result = new IntPtr(marshalledData);
+                return result;
             }
             finally
             {
@@ -71,10 +84,14 @@ namespace SharpVk
             }
         }
         
-        internal unsafe void Unmap()
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe void Unmap()
         {
             try
             {
+                Interop.Commands.vkUnmapMemory(default(Interop.Device), this.handle);
             }
             finally
             {
@@ -82,13 +99,17 @@ namespace SharpVk
             }
         }
         
-        internal unsafe DeviceSize GetCommitment()
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe DeviceSize GetCommitment()
         {
             try
             {
                 DeviceSize result = default(DeviceSize);
-                DeviceSize* marshalledCommittedMemoryInBytes = default(DeviceSize*);
-                result = *marshalledCommittedMemoryInBytes;
+                DeviceSize marshalledCommittedMemoryInBytes = default(DeviceSize);
+                Interop.Commands.vkGetDeviceMemoryCommitment(default(Interop.Device), this.handle, &marshalledCommittedMemoryInBytes);
+                result = marshalledCommittedMemoryInBytes;
                 return result;
             }
             finally

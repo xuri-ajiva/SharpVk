@@ -9,6 +9,7 @@ namespace SharpVk.Generator.Collation
         public string Name;
         public TypeReference Type;
         public MemberLen[] Dimensions;
+        public bool IsOptional;
 
         string ITypedDeclaration.Name => this.Name;
 

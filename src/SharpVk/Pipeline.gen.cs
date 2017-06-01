@@ -38,13 +38,20 @@ namespace SharpVk
             this.handle = handle;
         }
         
-        internal unsafe void Destroy(AllocationCallbacks allocator)
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe void Destroy(AllocationCallbacks? allocator)
         {
             try
             {
                 Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
-                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-                allocator.MarshalTo(marshalledAllocator);
+                if (allocator != null)
+                {
+                    marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                    allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                Interop.Commands.vkDestroyPipeline(default(Interop.Device), this.handle, marshalledAllocator);
             }
             finally
             {

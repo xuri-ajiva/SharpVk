@@ -38,13 +38,17 @@ namespace SharpVk
             this.handle = handle;
         }
         
-        internal unsafe MemoryRequirements GetMemoryRequirements()
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe MemoryRequirements GetMemoryRequirements()
         {
             try
             {
                 MemoryRequirements result = default(MemoryRequirements);
-                MemoryRequirements* marshalledMemoryRequirements = default(MemoryRequirements*);
-                result = *marshalledMemoryRequirements;
+                MemoryRequirements marshalledMemoryRequirements = default(MemoryRequirements);
+                Interop.Commands.vkGetImageMemoryRequirements(default(Interop.Device), this.handle, &marshalledMemoryRequirements);
+                result = marshalledMemoryRequirements;
                 return result;
             }
             finally
@@ -53,7 +57,10 @@ namespace SharpVk
             }
         }
         
-        internal unsafe void BindMemory(DeviceMemory memory, DeviceSize memoryOffset)
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe void BindMemory(DeviceMemory memory, DeviceSize memoryOffset)
         {
             try
             {
@@ -61,6 +68,7 @@ namespace SharpVk
                 DeviceSize marshalledMemoryOffset = default(DeviceSize);
                 marshalledMemory = memory.handle;
                 marshalledMemoryOffset = memoryOffset;
+                Interop.Commands.vkBindImageMemory(default(Interop.Device), this.handle, marshalledMemory, marshalledMemoryOffset);
             }
             finally
             {
@@ -68,12 +76,17 @@ namespace SharpVk
             }
         }
         
-        internal unsafe SparseImageMemoryRequirements[] GetSparseMemoryRequirements()
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe SparseImageMemoryRequirements[] GetSparseMemoryRequirements()
         {
             try
             {
                 SparseImageMemoryRequirements[] result = default(SparseImageMemoryRequirements[]);
                 uint sparseMemoryRequirementCount = default(uint);
+                SparseImageMemoryRequirements marshalledSparseMemoryRequirements = default(SparseImageMemoryRequirements);
+                Interop.Commands.vkGetImageSparseMemoryRequirements(default(Interop.Device), this.handle, &sparseMemoryRequirementCount, &marshalledSparseMemoryRequirements);
                 return result;
             }
             finally
@@ -82,13 +95,20 @@ namespace SharpVk
             }
         }
         
-        internal unsafe void Destroy(AllocationCallbacks allocator)
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe void Destroy(AllocationCallbacks? allocator)
         {
             try
             {
                 Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
-                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-                allocator.MarshalTo(marshalledAllocator);
+                if (allocator != null)
+                {
+                    marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                    allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                Interop.Commands.vkDestroyImage(default(Interop.Device), this.handle, marshalledAllocator);
             }
             finally
             {
@@ -96,16 +116,20 @@ namespace SharpVk
             }
         }
         
-        internal unsafe SubresourceLayout GetSubresourceLayout(ImageSubresource subresource)
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe SubresourceLayout GetSubresourceLayout(ImageSubresource subresource)
         {
             try
             {
                 SubresourceLayout result = default(SubresourceLayout);
                 ImageSubresource* marshalledSubresource = default(ImageSubresource*);
-                SubresourceLayout* marshalledLayout = default(SubresourceLayout*);
+                SubresourceLayout marshalledLayout = default(SubresourceLayout);
                 marshalledSubresource = (ImageSubresource*)(Interop.HeapUtil.Allocate<ImageSubresource>());
                 *marshalledSubresource = subresource;
-                result = *marshalledLayout;
+                Interop.Commands.vkGetImageSubresourceLayout(default(Interop.Device), this.handle, marshalledSubresource, &marshalledLayout);
+                result = marshalledLayout;
                 return result;
             }
             finally

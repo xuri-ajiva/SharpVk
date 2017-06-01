@@ -1,5 +1,6 @@
 ﻿using SharpVk.Emit;
 using System;
+using System.Collections.Generic;
 
 namespace SharpVk.Generator.Generation
 {
@@ -26,6 +27,21 @@ namespace SharpVk.Generator.Generation
     {
         public string MemberName;
         public string MemberType;
+    }
+
+    public class InvokeAction
+        : MethodAction
+    {
+        public string TypeName;
+        public string MethodName;
+        public Action<ExpressionBuilder>[] Parameters;
+    }
+
+    public class OptionalAction
+        : MethodAction
+    {
+        public Action<ExpressionBuilder> NullCheckExpression;
+        public readonly List<MethodAction> Actions = new List<MethodAction>();
     }
 
     public enum AssignActionType

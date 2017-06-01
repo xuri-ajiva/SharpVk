@@ -38,13 +38,20 @@ namespace SharpVk
             this.handle = handle;
         }
         
-        internal unsafe void Destroy(AllocationCallbacks allocator)
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe void Destroy(AllocationCallbacks? allocator)
         {
             try
             {
                 Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
-                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-                allocator.MarshalTo(marshalledAllocator);
+                if (allocator != null)
+                {
+                    marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                    allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                Interop.Commands.vkDestroyRenderPass(default(Interop.Device), this.handle, marshalledAllocator);
             }
             finally
             {
@@ -52,13 +59,17 @@ namespace SharpVk
             }
         }
         
-        internal unsafe Extent2D GetRenderAreaGranularity()
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe Extent2D GetRenderAreaGranularity()
         {
             try
             {
                 Extent2D result = default(Extent2D);
-                Extent2D* marshalledGranularity = default(Extent2D*);
-                result = *marshalledGranularity;
+                Extent2D marshalledGranularity = default(Extent2D);
+                Interop.Commands.vkGetRenderAreaGranularity(default(Interop.Device), this.handle, &marshalledGranularity);
+                result = marshalledGranularity;
                 return result;
             }
             finally

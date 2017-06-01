@@ -39,9 +39,9 @@ namespace SharpVk.Generator.Generation.Marshalling
 
             info.InteropFullType = marshalling.InteropType;
 
-            if(source.Type.PointerType.IsPointer())
+            if (source.Type.PointerType.IsPointer())
             {
-                info.InteropFullType += "*";
+                info.InteropFullType += new string('*', source.Type.PointerType.GetPointerCount());
             }
 
             info.MarshalTo.Add((getTarget, getValue) => new AssignAction

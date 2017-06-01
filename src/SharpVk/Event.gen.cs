@@ -38,13 +38,20 @@ namespace SharpVk
             this.handle = handle;
         }
         
-        internal unsafe void Destroy(AllocationCallbacks allocator)
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe void Destroy(AllocationCallbacks? allocator)
         {
             try
             {
                 Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
-                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-                allocator.MarshalTo(marshalledAllocator);
+                if (allocator != null)
+                {
+                    marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                    allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                Interop.Commands.vkDestroyEvent(default(Interop.Device), this.handle, marshalledAllocator);
             }
             finally
             {
@@ -52,10 +59,14 @@ namespace SharpVk
             }
         }
         
-        internal unsafe void GetStatus()
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe void GetStatus()
         {
             try
             {
+                Interop.Commands.vkGetEventStatus(default(Interop.Device), this.handle);
             }
             finally
             {
@@ -63,10 +74,14 @@ namespace SharpVk
             }
         }
         
-        internal unsafe void Set()
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe void Set()
         {
             try
             {
+                Interop.Commands.vkSetEvent(default(Interop.Device), this.handle);
             }
             finally
             {
@@ -74,10 +89,14 @@ namespace SharpVk
             }
         }
         
-        internal unsafe void Reset()
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe void Reset()
         {
             try
             {
+                Interop.Commands.vkResetEvent(default(Interop.Device), this.handle);
             }
             finally
             {

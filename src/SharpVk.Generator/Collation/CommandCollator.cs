@@ -92,7 +92,8 @@ namespace SharpVk.Generator.Collation
                             PointerType = x.PointerType,
                             FixedLength = x.FixedLength
                         },
-                        Dimensions = x.Dimensions
+                        Dimensions = x.Dimensions,
+                        IsOptional = x.IsOptional
                     }).ToList()
                 });
             }

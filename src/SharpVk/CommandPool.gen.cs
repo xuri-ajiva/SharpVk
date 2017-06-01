@@ -38,13 +38,20 @@ namespace SharpVk
             this.handle = handle;
         }
         
-        internal unsafe void Destroy(AllocationCallbacks allocator)
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe void Destroy(AllocationCallbacks? allocator)
         {
             try
             {
                 Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
-                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-                allocator.MarshalTo(marshalledAllocator);
+                if (allocator != null)
+                {
+                    marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                    allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                Interop.Commands.vkDestroyCommandPool(default(Interop.Device), this.handle, marshalledAllocator);
             }
             finally
             {
@@ -52,12 +59,16 @@ namespace SharpVk
             }
         }
         
-        internal unsafe void Reset(CommandPoolResetFlags flags)
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe void Reset(CommandPoolResetFlags flags)
         {
             try
             {
                 CommandPoolResetFlags marshalledFlags = default(CommandPoolResetFlags);
                 marshalledFlags = flags;
+                Interop.Commands.vkResetCommandPool(default(Interop.Device), this.handle, marshalledFlags);
             }
             finally
             {
@@ -65,7 +76,10 @@ namespace SharpVk
             }
         }
         
-        internal unsafe void FreeCommandBuffers(CommandBuffer[] commandBuffers)
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe void FreeCommandBuffers(CommandBuffer[] commandBuffers)
         {
             try
             {
@@ -85,6 +99,7 @@ namespace SharpVk
                 {
                     marshalledCommandBuffers = null;
                 }
+                Interop.Commands.vkFreeCommandBuffers(default(Interop.Device), this.handle, marshalledCommandBufferCount, marshalledCommandBuffers);
             }
             finally
             {

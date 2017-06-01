@@ -1,6 +1,7 @@
 ﻿using SharpVk.Emit;
 using SharpVk.Generator.Generation;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 
 using static SharpVk.Emit.AccessModifier;
@@ -43,7 +44,7 @@ namespace SharpVk.Generator.Emission
                                         method.Name,
                                         bodyFunc(method),
                                         BuildParams(method),
-                                        method.IsUnsafe ? Internal : Public,
+                                        method.IsPublic ? Public : Internal,
                                         modifiers);
         }
 
@@ -80,40 +81,7 @@ namespace SharpVk.Generator.Emission
 
                 if (method.MemberActions != null)
                 {
-                    foreach (var action in method.MemberActions.OfType<DeclarationAction>())
-                    {
-                        body.EmitVariableDeclaration(action.MemberType, action.MemberName, Default(action.MemberType));
-                    }
-
-                    foreach (var action in method.MemberActions.OfType<AssignAction>())
-                    {
-                        if (action.IsLoop)
-                        {
-                            body.EmitIfBlock(action.NullCheckExpression,
-                                ifBlock =>
-                                {
-                                    ifBlock.EmitVariableDeclaration("var", "fieldPointer", Cast(action.MemberType + "*", Call(StaticCall("Interop.HeapUtil", $"AllocateAndClear<{action.MemberType}>", action.LengthExpression), "ToPointer")));
-
-                                    ifBlock.EmitForLoop(init => init.EmitVariableDeclaration("int", action.IndexName, Literal(0)),
-                                                        LessThan(Variable(action.IndexName), action.LengthExpression),
-                                                        after => after.EmitStatement(action.IndexName + "++"),
-                                                        loop =>
-                                                        {
-                                                            EmitMarshalAction(loop, action, Index(Variable("fieldPointer"), Variable(action.IndexName)));
-                                                        });
-
-                                    ifBlock.EmitAssignment(action.TargetExpression, Variable("fieldPointer"));
-                                },
-                                elseBlock =>
-                                {
-                                    elseBlock.EmitAssignment(action.TargetExpression, Null);
-                                });
-                        }
-                        else
-                        {
-                            EmitMarshalAction(body, action, action.TargetExpression);
-                        }
-                    }
+                    EmitActions(body, method.MemberActions);
                 }
 
                 if (IsNotNullOrVoid(method.ReturnType))
@@ -121,6 +89,57 @@ namespace SharpVk.Generator.Emission
                     body.EmitReturn(Variable("result"));
                 }
             };
+        }
+
+        private static void EmitActions(CodeBlockBuilder body, List<MethodAction> actions)
+        {
+            foreach (var action in actions.OfType<DeclarationAction>())
+            {
+                body.EmitVariableDeclaration(action.MemberType, action.MemberName, Default(action.MemberType));
+            }
+
+            foreach (var action in actions)
+            {
+                if (action is AssignAction assignAction)
+                {
+                    if (assignAction.IsLoop)
+                    {
+                        body.EmitIfBlock(assignAction.NullCheckExpression,
+                            ifBlock =>
+                            {
+                                ifBlock.EmitVariableDeclaration("var", "fieldPointer", Cast(assignAction.MemberType + "*", Call(StaticCall("Interop.HeapUtil", $"AllocateAndClear<{assignAction.MemberType}>", assignAction.LengthExpression), "ToPointer")));
+
+                                ifBlock.EmitForLoop(init => init.EmitVariableDeclaration("int", assignAction.IndexName, Literal(0)),
+                                                    LessThan(Variable(assignAction.IndexName), assignAction.LengthExpression),
+                                                    after => after.EmitStatement(assignAction.IndexName + "++"),
+                                                    loop =>
+                                                    {
+                                                        EmitMarshalAction(loop, assignAction, Index(Variable("fieldPointer"), Variable(assignAction.IndexName)));
+                                                    });
+
+                                ifBlock.EmitAssignment(assignAction.TargetExpression, Variable("fieldPointer"));
+                            },
+                            elseBlock =>
+                            {
+                                elseBlock.EmitAssignment(assignAction.TargetExpression, Null);
+                            });
+                    }
+                    else
+                    {
+                        EmitMarshalAction(body, assignAction, assignAction.TargetExpression);
+                    }
+                }
+                else if (action is InvokeAction invokeAction)
+                {
+                    var paramNames = (invokeAction.Parameters ?? Enumerable.Empty<Action<ExpressionBuilder>>().ToArray());
+
+                    body.EmitStaticCall(invokeAction.TypeName, invokeAction.MethodName, paramNames);
+                }
+                else if(action is OptionalAction optionalAction)
+                {
+                    body.EmitIfBlock(optionalAction.NullCheckExpression, ifBlock => EmitActions(ifBlock, optionalAction.Actions));
+                }
+            }
         }
 
         public static void EmitMarshalAction(CodeBlockBuilder codeBlock, Generation.AssignAction action, Action<ExpressionBuilder> targetExpression)

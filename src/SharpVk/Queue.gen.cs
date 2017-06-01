@@ -38,7 +38,10 @@ namespace SharpVk
             this.handle = handle;
         }
         
-        internal unsafe void Submit(SubmitInfo[] submits, Fence fence)
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe void Submit(SubmitInfo[] submits, Fence fence)
         {
             try
             {
@@ -60,6 +63,7 @@ namespace SharpVk
                     marshalledSubmits = null;
                 }
                 marshalledFence = fence.handle;
+                Interop.Commands.vkQueueSubmit(this.handle, marshalledSubmitCount, marshalledSubmits, marshalledFence);
             }
             finally
             {
@@ -67,10 +71,14 @@ namespace SharpVk
             }
         }
         
-        internal unsafe void WaitIdle()
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe void WaitIdle()
         {
             try
             {
+                Interop.Commands.vkQueueWaitIdle(this.handle);
             }
             finally
             {
@@ -78,7 +86,10 @@ namespace SharpVk
             }
         }
         
-        internal unsafe void BindSparse(BindSparseInfo[] bindInfo, Fence fence)
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe void BindSparse(BindSparseInfo[] bindInfo, Fence fence)
         {
             try
             {
@@ -100,6 +111,7 @@ namespace SharpVk
                     marshalledBindInfo = null;
                 }
                 marshalledFence = fence.handle;
+                Interop.Commands.vkQueueBindSparse(this.handle, marshalledBindInfoCount, marshalledBindInfo, marshalledFence);
             }
             finally
             {

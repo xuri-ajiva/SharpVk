@@ -38,19 +38,26 @@ namespace SharpVk
             this.handle = handle;
         }
         
-        internal static unsafe Instance Create(InstanceCreateInfo createInfo, AllocationCallbacks allocator)
+        /// <summary>
+        /// 
+        /// </summary>
+        public static unsafe Instance Create(InstanceCreateInfo createInfo, AllocationCallbacks? allocator)
         {
             try
             {
                 Instance result = default(Instance);
                 Interop.InstanceCreateInfo* marshalledCreateInfo = default(Interop.InstanceCreateInfo*);
                 Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
-                Interop.Instance* marshalledInstance = default(Interop.Instance*);
+                Interop.Instance marshalledInstance = default(Interop.Instance);
                 marshalledCreateInfo = (Interop.InstanceCreateInfo*)(Interop.HeapUtil.Allocate<Interop.InstanceCreateInfo>());
                 createInfo.MarshalTo(marshalledCreateInfo);
-                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-                allocator.MarshalTo(marshalledAllocator);
-                result = new Instance(*marshalledInstance);
+                if (allocator != null)
+                {
+                    marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                    allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                Interop.Commands.vkCreateInstance(marshalledCreateInfo, marshalledAllocator, &marshalledInstance);
+                result = new Instance(marshalledInstance);
                 return result;
             }
             finally
@@ -59,13 +66,20 @@ namespace SharpVk
             }
         }
         
-        internal unsafe void Destroy(AllocationCallbacks allocator)
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe void Destroy(AllocationCallbacks? allocator)
         {
             try
             {
                 Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
-                marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
-                allocator.MarshalTo(marshalledAllocator);
+                if (allocator != null)
+                {
+                    marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                    allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                Interop.Commands.vkDestroyInstance(this.handle, marshalledAllocator);
             }
             finally
             {
@@ -73,12 +87,17 @@ namespace SharpVk
             }
         }
         
-        internal unsafe PhysicalDevice[] EnumeratePhysicalDevices()
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe PhysicalDevice[] EnumeratePhysicalDevices()
         {
             try
             {
                 PhysicalDevice[] result = default(PhysicalDevice[]);
                 uint physicalDeviceCount = default(uint);
+                Interop.PhysicalDevice marshalledPhysicalDevices = default(Interop.PhysicalDevice);
+                Interop.Commands.vkEnumeratePhysicalDevices(this.handle, &physicalDeviceCount, &marshalledPhysicalDevices);
                 return result;
             }
             finally
@@ -87,12 +106,16 @@ namespace SharpVk
             }
         }
         
-        internal unsafe void GetProcedureAddress(string name)
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe void GetProcedureAddress(string name)
         {
             try
             {
                 byte* marshalledName = default(byte*);
                 marshalledName = Interop.HeapUtil.MarshalTo(name);
+                Interop.Commands.vkGetInstanceProcAddr(this.handle, marshalledName);
             }
             finally
             {
@@ -100,12 +123,17 @@ namespace SharpVk
             }
         }
         
-        internal static unsafe LayerProperties[] EnumerateLayerProperties()
+        /// <summary>
+        /// 
+        /// </summary>
+        public static unsafe LayerProperties[] EnumerateLayerProperties()
         {
             try
             {
                 LayerProperties[] result = default(LayerProperties[]);
                 uint propertyCount = default(uint);
+                Interop.LayerProperties marshalledProperties = default(Interop.LayerProperties);
+                Interop.Commands.vkEnumerateInstanceLayerProperties(&propertyCount, &marshalledProperties);
                 return result;
             }
             finally
@@ -114,14 +142,19 @@ namespace SharpVk
             }
         }
         
-        internal static unsafe ExtensionProperties[] EnumerateExtensionProperties(string layerName)
+        /// <summary>
+        /// 
+        /// </summary>
+        public static unsafe ExtensionProperties[] EnumerateExtensionProperties(string layerName)
         {
             try
             {
                 ExtensionProperties[] result = default(ExtensionProperties[]);
                 uint propertyCount = default(uint);
                 byte* marshalledLayerName = default(byte*);
+                Interop.ExtensionProperties marshalledProperties = default(Interop.ExtensionProperties);
                 marshalledLayerName = Interop.HeapUtil.MarshalTo(layerName);
+                Interop.Commands.vkEnumerateInstanceExtensionProperties(marshalledLayerName, &propertyCount, &marshalledProperties);
                 return result;
             }
             finally
