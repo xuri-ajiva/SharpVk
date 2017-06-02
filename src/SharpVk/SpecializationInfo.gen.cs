@@ -57,7 +57,7 @@ namespace SharpVk
             if (this.MapEntries != null)
             {
                 var fieldPointer = (SpecializationMapEntry*)(Interop.HeapUtil.AllocateAndClear<SpecializationMapEntry>(this.MapEntries.Length).ToPointer());
-                for(int index = 0; index < this.MapEntries.Length; index++)
+                for(int index = 0; index < (uint)(this.MapEntries.Length); index++)
                 {
                     fieldPointer[index] = this.MapEntries[index];
                 }
@@ -71,7 +71,7 @@ namespace SharpVk
             if (this.Data != null)
             {
                 var fieldPointer = (byte*)(Interop.HeapUtil.AllocateAndClear<byte>(this.Data.Length).ToPointer());
-                for(int index = 0; index < this.Data.Length; index++)
+                for(int index = 0; index < (uint)(this.Data.Length); index++)
                 {
                     fieldPointer[index] = this.Data[index];
                 }

@@ -185,7 +185,7 @@ namespace SharpVk.Khr
             if (this.QueueFamilyIndices != null)
             {
                 var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.QueueFamilyIndices.Length).ToPointer());
-                for(int index = 0; index < this.QueueFamilyIndices.Length; index++)
+                for(int index = 0; index < (uint)(this.QueueFamilyIndices.Length); index++)
                 {
                     fieldPointer[index] = this.QueueFamilyIndices[index];
                 }

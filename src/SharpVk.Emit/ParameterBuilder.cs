@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace SharpVk.Emit
 {
@@ -7,9 +8,13 @@ namespace SharpVk.Emit
     {
         private List<string> parameters = new List<string>();
 
-        public void EmitParam(string type, string name)
+        public void EmitParam(string type, string name, Action<ExpressionBuilder> defaultValue = null)
         {
-            this.parameters.Add($"{type} {name}");
+            var writer = new StringWriter();
+            var defaultExpression = new ExpressionBuilder(new IndentedTextWriter(writer));
+            defaultValue?.Invoke(defaultExpression);
+            
+            this.parameters.Add($"{type} {name}{(defaultValue != null ? " = " + writer.ToString() : "")}");
         }
 
         public override string ToString()

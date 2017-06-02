@@ -41,7 +41,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public static unsafe Instance Create(InstanceCreateInfo createInfo, AllocationCallbacks? allocator)
+        public static unsafe Instance Create(InstanceCreateInfo createInfo, AllocationCallbacks? allocator = null)
         {
             try
             {
@@ -69,7 +69,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void Destroy(AllocationCallbacks? allocator)
+        public unsafe void Destroy(AllocationCallbacks? allocator = null)
         {
             try
             {
@@ -96,8 +96,21 @@ namespace SharpVk
             {
                 PhysicalDevice[] result = default(PhysicalDevice[]);
                 uint physicalDeviceCount = default(uint);
-                Interop.PhysicalDevice marshalledPhysicalDevices = default(Interop.PhysicalDevice);
-                Interop.Commands.vkEnumeratePhysicalDevices(this.handle, &physicalDeviceCount, &marshalledPhysicalDevices);
+                Interop.PhysicalDevice* marshalledPhysicalDevices = default(Interop.PhysicalDevice*);
+                Interop.Commands.vkEnumeratePhysicalDevices(this.handle, &physicalDeviceCount, marshalledPhysicalDevices);
+                if (marshalledPhysicalDevices != null)
+                {
+                    var fieldPointer = new PhysicalDevice[(uint)(physicalDeviceCount)];
+                    for(int index = 0; index < (uint)(physicalDeviceCount); index++)
+                    {
+                        fieldPointer[index] = new PhysicalDevice(marshalledPhysicalDevices[index]);
+                    }
+                    result = fieldPointer;
+                }
+                else
+                {
+                    result = null;
+                }
                 return result;
             }
             finally
@@ -132,8 +145,21 @@ namespace SharpVk
             {
                 LayerProperties[] result = default(LayerProperties[]);
                 uint propertyCount = default(uint);
-                Interop.LayerProperties marshalledProperties = default(Interop.LayerProperties);
-                Interop.Commands.vkEnumerateInstanceLayerProperties(&propertyCount, &marshalledProperties);
+                Interop.LayerProperties* marshalledProperties = default(Interop.LayerProperties*);
+                Interop.Commands.vkEnumerateInstanceLayerProperties(&propertyCount, marshalledProperties);
+                if (marshalledProperties != null)
+                {
+                    var fieldPointer = new LayerProperties[(uint)(propertyCount)];
+                    for(int index = 0; index < (uint)(propertyCount); index++)
+                    {
+                        fieldPointer[index] = LayerProperties.MarshalFrom(&marshalledProperties[index]);
+                    }
+                    result = fieldPointer;
+                }
+                else
+                {
+                    result = null;
+                }
                 return result;
             }
             finally
@@ -152,9 +178,22 @@ namespace SharpVk
                 ExtensionProperties[] result = default(ExtensionProperties[]);
                 uint propertyCount = default(uint);
                 byte* marshalledLayerName = default(byte*);
-                Interop.ExtensionProperties marshalledProperties = default(Interop.ExtensionProperties);
+                Interop.ExtensionProperties* marshalledProperties = default(Interop.ExtensionProperties*);
                 marshalledLayerName = Interop.HeapUtil.MarshalTo(layerName);
-                Interop.Commands.vkEnumerateInstanceExtensionProperties(marshalledLayerName, &propertyCount, &marshalledProperties);
+                Interop.Commands.vkEnumerateInstanceExtensionProperties(marshalledLayerName, &propertyCount, marshalledProperties);
+                if (marshalledProperties != null)
+                {
+                    var fieldPointer = new ExtensionProperties[(uint)(propertyCount)];
+                    for(int index = 0; index < (uint)(propertyCount); index++)
+                    {
+                        fieldPointer[index] = ExtensionProperties.MarshalFrom(&marshalledProperties[index]);
+                    }
+                    result = fieldPointer;
+                }
+                else
+                {
+                    result = null;
+                }
                 return result;
             }
             finally

@@ -70,7 +70,7 @@ namespace SharpVk
             if (this.PoolSizes != null)
             {
                 var fieldPointer = (DescriptorPoolSize*)(Interop.HeapUtil.AllocateAndClear<DescriptorPoolSize>(this.PoolSizes.Length).ToPointer());
-                for(int index = 0; index < this.PoolSizes.Length; index++)
+                for(int index = 0; index < (uint)(this.PoolSizes.Length); index++)
                 {
                     fieldPointer[index] = this.PoolSizes[index];
                 }

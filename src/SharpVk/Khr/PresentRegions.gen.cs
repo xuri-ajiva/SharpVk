@@ -50,7 +50,7 @@ namespace SharpVk.Khr
             if (this.Regions != null)
             {
                 var fieldPointer = (Interop.Khr.PresentRegion*)(Interop.HeapUtil.AllocateAndClear<Interop.Khr.PresentRegion>(this.Regions.Length).ToPointer());
-                for(int index = 0; index < this.Regions.Length; index++)
+                for(int index = 0; index < (uint)(this.Regions.Length); index++)
                 {
                     this.Regions[index].MarshalTo(&fieldPointer[index]);
                 }

@@ -86,7 +86,7 @@ namespace SharpVk
             if (this.WaitSemaphores != null)
             {
                 var fieldPointer = (Interop.Semaphore*)(Interop.HeapUtil.AllocateAndClear<Interop.Semaphore>(this.WaitSemaphores.Length).ToPointer());
-                for(int index = 0; index < this.WaitSemaphores.Length; index++)
+                for(int index = 0; index < (uint)(this.WaitSemaphores.Length); index++)
                 {
                     fieldPointer[index] = this.WaitSemaphores[index].handle;
                 }
@@ -100,7 +100,7 @@ namespace SharpVk
             if (this.BufferBinds != null)
             {
                 var fieldPointer = (Interop.SparseBufferMemoryBindInfo*)(Interop.HeapUtil.AllocateAndClear<Interop.SparseBufferMemoryBindInfo>(this.BufferBinds.Length).ToPointer());
-                for(int index = 0; index < this.BufferBinds.Length; index++)
+                for(int index = 0; index < (uint)(this.BufferBinds.Length); index++)
                 {
                     this.BufferBinds[index].MarshalTo(&fieldPointer[index]);
                 }
@@ -114,7 +114,7 @@ namespace SharpVk
             if (this.ImageOpaqueBinds != null)
             {
                 var fieldPointer = (Interop.SparseImageOpaqueMemoryBindInfo*)(Interop.HeapUtil.AllocateAndClear<Interop.SparseImageOpaqueMemoryBindInfo>(this.ImageOpaqueBinds.Length).ToPointer());
-                for(int index = 0; index < this.ImageOpaqueBinds.Length; index++)
+                for(int index = 0; index < (uint)(this.ImageOpaqueBinds.Length); index++)
                 {
                     this.ImageOpaqueBinds[index].MarshalTo(&fieldPointer[index]);
                 }
@@ -128,7 +128,7 @@ namespace SharpVk
             if (this.ImageBinds != null)
             {
                 var fieldPointer = (Interop.SparseImageMemoryBindInfo*)(Interop.HeapUtil.AllocateAndClear<Interop.SparseImageMemoryBindInfo>(this.ImageBinds.Length).ToPointer());
-                for(int index = 0; index < this.ImageBinds.Length; index++)
+                for(int index = 0; index < (uint)(this.ImageBinds.Length); index++)
                 {
                     this.ImageBinds[index].MarshalTo(&fieldPointer[index]);
                 }
@@ -142,7 +142,7 @@ namespace SharpVk
             if (this.SignalSemaphores != null)
             {
                 var fieldPointer = (Interop.Semaphore*)(Interop.HeapUtil.AllocateAndClear<Interop.Semaphore>(this.SignalSemaphores.Length).ToPointer());
-                for(int index = 0; index < this.SignalSemaphores.Length; index++)
+                for(int index = 0; index < (uint)(this.SignalSemaphores.Length); index++)
                 {
                     fieldPointer[index] = this.SignalSemaphores[index].handle;
                 }

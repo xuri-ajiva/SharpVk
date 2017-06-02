@@ -48,7 +48,7 @@ namespace SharpVk.Khr
             if (this.Rectangles != null)
             {
                 var fieldPointer = (SharpVk.Khr.RectLayer*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Khr.RectLayer>(this.Rectangles.Length).ToPointer());
-                for(int index = 0; index < this.Rectangles.Length; index++)
+                for(int index = 0; index < (uint)(this.Rectangles.Length); index++)
                 {
                     fieldPointer[index] = this.Rectangles[index];
                 }

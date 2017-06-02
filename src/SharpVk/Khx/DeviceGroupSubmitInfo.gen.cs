@@ -68,7 +68,7 @@ namespace SharpVk.Khx
             if (this.WaitSemaphoreDeviceIndices != null)
             {
                 var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.WaitSemaphoreDeviceIndices.Length).ToPointer());
-                for(int index = 0; index < this.WaitSemaphoreDeviceIndices.Length; index++)
+                for(int index = 0; index < (uint)(this.WaitSemaphoreDeviceIndices.Length); index++)
                 {
                     fieldPointer[index] = this.WaitSemaphoreDeviceIndices[index];
                 }
@@ -82,7 +82,7 @@ namespace SharpVk.Khx
             if (this.CommandBufferDeviceMasks != null)
             {
                 var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.CommandBufferDeviceMasks.Length).ToPointer());
-                for(int index = 0; index < this.CommandBufferDeviceMasks.Length; index++)
+                for(int index = 0; index < (uint)(this.CommandBufferDeviceMasks.Length); index++)
                 {
                     fieldPointer[index] = this.CommandBufferDeviceMasks[index];
                 }
@@ -96,7 +96,7 @@ namespace SharpVk.Khx
             if (this.SignalSemaphoreDeviceIndices != null)
             {
                 var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.SignalSemaphoreDeviceIndices.Length).ToPointer());
-                for(int index = 0; index < this.SignalSemaphoreDeviceIndices.Length; index++)
+                for(int index = 0; index < (uint)(this.SignalSemaphoreDeviceIndices.Length); index++)
                 {
                     fieldPointer[index] = this.SignalSemaphoreDeviceIndices[index];
                 }

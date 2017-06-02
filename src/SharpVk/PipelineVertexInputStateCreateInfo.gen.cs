@@ -69,7 +69,7 @@ namespace SharpVk
             if (this.VertexBindingDescriptions != null)
             {
                 var fieldPointer = (VertexInputBindingDescription*)(Interop.HeapUtil.AllocateAndClear<VertexInputBindingDescription>(this.VertexBindingDescriptions.Length).ToPointer());
-                for(int index = 0; index < this.VertexBindingDescriptions.Length; index++)
+                for(int index = 0; index < (uint)(this.VertexBindingDescriptions.Length); index++)
                 {
                     fieldPointer[index] = this.VertexBindingDescriptions[index];
                 }
@@ -83,7 +83,7 @@ namespace SharpVk
             if (this.VertexAttributeDescriptions != null)
             {
                 var fieldPointer = (VertexInputAttributeDescription*)(Interop.HeapUtil.AllocateAndClear<VertexInputAttributeDescription>(this.VertexAttributeDescriptions.Length).ToPointer());
-                for(int index = 0; index < this.VertexAttributeDescriptions.Length; index++)
+                for(int index = 0; index < (uint)(this.VertexAttributeDescriptions.Length); index++)
                 {
                     fieldPointer[index] = this.VertexAttributeDescriptions[index];
                 }

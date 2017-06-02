@@ -59,7 +59,7 @@ namespace SharpVk.Khx
             if (this.DeviceMasks != null)
             {
                 var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.DeviceMasks.Length).ToPointer());
-                for(int index = 0; index < this.DeviceMasks.Length; index++)
+                for(int index = 0; index < (uint)(this.DeviceMasks.Length); index++)
                 {
                     fieldPointer[index] = this.DeviceMasks[index];
                 }

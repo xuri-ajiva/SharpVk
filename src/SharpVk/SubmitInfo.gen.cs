@@ -77,7 +77,7 @@ namespace SharpVk
             if (this.WaitSemaphores != null)
             {
                 var fieldPointer = (Interop.Semaphore*)(Interop.HeapUtil.AllocateAndClear<Interop.Semaphore>(this.WaitSemaphores.Length).ToPointer());
-                for(int index = 0; index < this.WaitSemaphores.Length; index++)
+                for(int index = 0; index < (uint)(this.WaitSemaphores.Length); index++)
                 {
                     fieldPointer[index] = this.WaitSemaphores[index].handle;
                 }
@@ -90,7 +90,7 @@ namespace SharpVk
             if (this.WaitDestinationStageMask != null)
             {
                 var fieldPointer = (PipelineStageFlags*)(Interop.HeapUtil.AllocateAndClear<PipelineStageFlags>(this.WaitDestinationStageMask.Length).ToPointer());
-                for(int index = 0; index < this.WaitDestinationStageMask.Length; index++)
+                for(int index = 0; index < (uint)(this.WaitDestinationStageMask.Length); index++)
                 {
                     fieldPointer[index] = this.WaitDestinationStageMask[index];
                 }
@@ -104,7 +104,7 @@ namespace SharpVk
             if (this.CommandBuffers != null)
             {
                 var fieldPointer = (Interop.CommandBuffer*)(Interop.HeapUtil.AllocateAndClear<Interop.CommandBuffer>(this.CommandBuffers.Length).ToPointer());
-                for(int index = 0; index < this.CommandBuffers.Length; index++)
+                for(int index = 0; index < (uint)(this.CommandBuffers.Length); index++)
                 {
                     fieldPointer[index] = this.CommandBuffers[index].handle;
                 }
@@ -118,7 +118,7 @@ namespace SharpVk
             if (this.SignalSemaphores != null)
             {
                 var fieldPointer = (Interop.Semaphore*)(Interop.HeapUtil.AllocateAndClear<Interop.Semaphore>(this.SignalSemaphores.Length).ToPointer());
-                for(int index = 0; index < this.SignalSemaphores.Length; index++)
+                for(int index = 0; index < (uint)(this.SignalSemaphores.Length); index++)
                 {
                     fieldPointer[index] = this.SignalSemaphores[index].handle;
                 }

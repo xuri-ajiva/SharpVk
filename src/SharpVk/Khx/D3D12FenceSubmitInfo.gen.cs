@@ -59,7 +59,7 @@ namespace SharpVk.Khx
             if (this.WaitSemaphoreValues != null)
             {
                 var fieldPointer = (ulong*)(Interop.HeapUtil.AllocateAndClear<ulong>(this.WaitSemaphoreValues.Length).ToPointer());
-                for(int index = 0; index < this.WaitSemaphoreValues.Length; index++)
+                for(int index = 0; index < (uint)(this.WaitSemaphoreValues.Length); index++)
                 {
                     fieldPointer[index] = this.WaitSemaphoreValues[index];
                 }
@@ -73,7 +73,7 @@ namespace SharpVk.Khx
             if (this.SignalSemaphoreValues != null)
             {
                 var fieldPointer = (ulong*)(Interop.HeapUtil.AllocateAndClear<ulong>(this.SignalSemaphoreValues.Length).ToPointer());
-                for(int index = 0; index < this.SignalSemaphoreValues.Length; index++)
+                for(int index = 0; index < (uint)(this.SignalSemaphoreValues.Length); index++)
                 {
                     fieldPointer[index] = this.SignalSemaphoreValues[index];
                 }

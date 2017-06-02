@@ -66,8 +66,21 @@ namespace SharpVk
             {
                 QueueFamilyProperties[] result = default(QueueFamilyProperties[]);
                 uint queueFamilyPropertyCount = default(uint);
-                QueueFamilyProperties marshalledQueueFamilyProperties = default(QueueFamilyProperties);
-                Interop.Commands.vkGetPhysicalDeviceQueueFamilyProperties(this.handle, &queueFamilyPropertyCount, &marshalledQueueFamilyProperties);
+                QueueFamilyProperties* marshalledQueueFamilyProperties = default(QueueFamilyProperties*);
+                Interop.Commands.vkGetPhysicalDeviceQueueFamilyProperties(this.handle, &queueFamilyPropertyCount, marshalledQueueFamilyProperties);
+                if (marshalledQueueFamilyProperties != null)
+                {
+                    var fieldPointer = new QueueFamilyProperties[(uint)(queueFamilyPropertyCount)];
+                    for(int index = 0; index < (uint)(queueFamilyPropertyCount); index++)
+                    {
+                        fieldPointer[index] = marshalledQueueFamilyProperties[index];
+                    }
+                    result = fieldPointer;
+                }
+                else
+                {
+                    result = null;
+                }
                 return result;
             }
             finally
@@ -167,7 +180,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe Device CreateDevice(DeviceCreateInfo createInfo, AllocationCallbacks? allocator)
+        public unsafe Device CreateDevice(DeviceCreateInfo createInfo, AllocationCallbacks? allocator = null)
         {
             try
             {
@@ -201,8 +214,21 @@ namespace SharpVk
             {
                 LayerProperties[] result = default(LayerProperties[]);
                 uint propertyCount = default(uint);
-                Interop.LayerProperties marshalledProperties = default(Interop.LayerProperties);
-                Interop.Commands.vkEnumerateDeviceLayerProperties(this.handle, &propertyCount, &marshalledProperties);
+                Interop.LayerProperties* marshalledProperties = default(Interop.LayerProperties*);
+                Interop.Commands.vkEnumerateDeviceLayerProperties(this.handle, &propertyCount, marshalledProperties);
+                if (marshalledProperties != null)
+                {
+                    var fieldPointer = new LayerProperties[(uint)(propertyCount)];
+                    for(int index = 0; index < (uint)(propertyCount); index++)
+                    {
+                        fieldPointer[index] = LayerProperties.MarshalFrom(&marshalledProperties[index]);
+                    }
+                    result = fieldPointer;
+                }
+                else
+                {
+                    result = null;
+                }
                 return result;
             }
             finally
@@ -221,9 +247,22 @@ namespace SharpVk
                 ExtensionProperties[] result = default(ExtensionProperties[]);
                 uint propertyCount = default(uint);
                 byte* marshalledLayerName = default(byte*);
-                Interop.ExtensionProperties marshalledProperties = default(Interop.ExtensionProperties);
+                Interop.ExtensionProperties* marshalledProperties = default(Interop.ExtensionProperties*);
                 marshalledLayerName = Interop.HeapUtil.MarshalTo(layerName);
-                Interop.Commands.vkEnumerateDeviceExtensionProperties(this.handle, marshalledLayerName, &propertyCount, &marshalledProperties);
+                Interop.Commands.vkEnumerateDeviceExtensionProperties(this.handle, marshalledLayerName, &propertyCount, marshalledProperties);
+                if (marshalledProperties != null)
+                {
+                    var fieldPointer = new ExtensionProperties[(uint)(propertyCount)];
+                    for(int index = 0; index < (uint)(propertyCount); index++)
+                    {
+                        fieldPointer[index] = ExtensionProperties.MarshalFrom(&marshalledProperties[index]);
+                    }
+                    result = fieldPointer;
+                }
+                else
+                {
+                    result = null;
+                }
                 return result;
             }
             finally
@@ -246,13 +285,26 @@ namespace SharpVk
                 SampleCountFlags marshalledSamples = default(SampleCountFlags);
                 ImageUsageFlags marshalledUsage = default(ImageUsageFlags);
                 ImageTiling marshalledTiling = default(ImageTiling);
-                SparseImageFormatProperties marshalledProperties = default(SparseImageFormatProperties);
+                SparseImageFormatProperties* marshalledProperties = default(SparseImageFormatProperties*);
                 marshalledFormat = format;
                 marshalledType = type;
                 marshalledSamples = samples;
                 marshalledUsage = usage;
                 marshalledTiling = tiling;
-                Interop.Commands.vkGetPhysicalDeviceSparseImageFormatProperties(this.handle, marshalledFormat, marshalledType, marshalledSamples, marshalledUsage, marshalledTiling, &propertyCount, &marshalledProperties);
+                Interop.Commands.vkGetPhysicalDeviceSparseImageFormatProperties(this.handle, marshalledFormat, marshalledType, marshalledSamples, marshalledUsage, marshalledTiling, &propertyCount, marshalledProperties);
+                if (marshalledProperties != null)
+                {
+                    var fieldPointer = new SparseImageFormatProperties[(uint)(propertyCount)];
+                    for(int index = 0; index < (uint)(propertyCount); index++)
+                    {
+                        fieldPointer[index] = marshalledProperties[index];
+                    }
+                    result = fieldPointer;
+                }
+                else
+                {
+                    result = null;
+                }
                 return result;
             }
             finally

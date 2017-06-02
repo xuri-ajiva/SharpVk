@@ -50,7 +50,7 @@ namespace SharpVk.Google
             if (this.Times != null)
             {
                 var fieldPointer = (SharpVk.Google.PresentTime*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Google.PresentTime>(this.Times.Length).ToPointer());
-                for(int index = 0; index < this.Times.Length; index++)
+                for(int index = 0; index < (uint)(this.Times.Length); index++)
                 {
                     fieldPointer[index] = this.Times[index];
                 }

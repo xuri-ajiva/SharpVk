@@ -60,7 +60,7 @@ namespace SharpVk.Nv
             if (this.ViewportSwizzles != null)
             {
                 var fieldPointer = (SharpVk.Nv.ViewportSwizzle*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Nv.ViewportSwizzle>(this.ViewportSwizzles.Length).ToPointer());
-                for(int index = 0; index < this.ViewportSwizzles.Length; index++)
+                for(int index = 0; index < (uint)(this.ViewportSwizzles.Length); index++)
                 {
                     fieldPointer[index] = this.ViewportSwizzles[index];
                 }

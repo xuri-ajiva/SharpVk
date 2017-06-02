@@ -50,7 +50,7 @@ namespace SharpVk.Ext
             if (this.DisabledValidationChecks != null)
             {
                 var fieldPointer = (SharpVk.Ext.ValidationCheck*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Ext.ValidationCheck>(this.DisabledValidationChecks.Length).ToPointer());
-                for(int index = 0; index < this.DisabledValidationChecks.Length; index++)
+                for(int index = 0; index < (uint)(this.DisabledValidationChecks.Length); index++)
                 {
                     fieldPointer[index] = this.DisabledValidationChecks[index];
                 }

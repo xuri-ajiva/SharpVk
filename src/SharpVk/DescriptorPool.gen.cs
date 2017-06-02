@@ -41,7 +41,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void Destroy(AllocationCallbacks? allocator)
+        public unsafe void Destroy(AllocationCallbacks? allocator = null)
         {
             try
             {
@@ -83,13 +83,13 @@ namespace SharpVk
         {
             try
             {
-                uint marshalledDescriptorSetCount = default(uint);
+                uint descriptorSetCount = default(uint);
                 Interop.DescriptorSet* marshalledDescriptorSets = default(Interop.DescriptorSet*);
-                marshalledDescriptorSetCount = (uint)(descriptorSets?.Length ?? 0);
+                descriptorSetCount = (uint)(descriptorSets?.Length ?? 0);
                 if (descriptorSets != null)
                 {
                     var fieldPointer = (Interop.DescriptorSet*)(Interop.HeapUtil.AllocateAndClear<Interop.DescriptorSet>(descriptorSets.Length).ToPointer());
-                    for(int index = 0; index < descriptorSets.Length; index++)
+                    for(int index = 0; index < (uint)(descriptorSets.Length); index++)
                     {
                         fieldPointer[index] = descriptorSets[index].handle;
                     }
@@ -99,7 +99,7 @@ namespace SharpVk
                 {
                     marshalledDescriptorSets = null;
                 }
-                Interop.Commands.vkFreeDescriptorSets(default(Interop.Device), this.handle, marshalledDescriptorSetCount, marshalledDescriptorSets);
+                Interop.Commands.vkFreeDescriptorSets(default(Interop.Device), this.handle, descriptorSetCount, marshalledDescriptorSets);
             }
             finally
             {

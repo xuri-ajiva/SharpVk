@@ -78,7 +78,7 @@ namespace SharpVk
             if (this.Attachments != null)
             {
                 var fieldPointer = (AttachmentDescription*)(Interop.HeapUtil.AllocateAndClear<AttachmentDescription>(this.Attachments.Length).ToPointer());
-                for(int index = 0; index < this.Attachments.Length; index++)
+                for(int index = 0; index < (uint)(this.Attachments.Length); index++)
                 {
                     fieldPointer[index] = this.Attachments[index];
                 }
@@ -92,7 +92,7 @@ namespace SharpVk
             if (this.Subpasses != null)
             {
                 var fieldPointer = (Interop.SubpassDescription*)(Interop.HeapUtil.AllocateAndClear<Interop.SubpassDescription>(this.Subpasses.Length).ToPointer());
-                for(int index = 0; index < this.Subpasses.Length; index++)
+                for(int index = 0; index < (uint)(this.Subpasses.Length); index++)
                 {
                     this.Subpasses[index].MarshalTo(&fieldPointer[index]);
                 }
@@ -106,7 +106,7 @@ namespace SharpVk
             if (this.Dependencies != null)
             {
                 var fieldPointer = (SubpassDependency*)(Interop.HeapUtil.AllocateAndClear<SubpassDependency>(this.Dependencies.Length).ToPointer());
-                for(int index = 0; index < this.Dependencies.Length; index++)
+                for(int index = 0; index < (uint)(this.Dependencies.Length); index++)
                 {
                     fieldPointer[index] = this.Dependencies[index];
                 }

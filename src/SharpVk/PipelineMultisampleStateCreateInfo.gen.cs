@@ -107,7 +107,7 @@ namespace SharpVk
             if (this.SampleMask != null)
             {
                 var fieldPointer = (SampleMask*)(Interop.HeapUtil.AllocateAndClear<SampleMask>(this.SampleMask.Length).ToPointer());
-                for(int index = 0; index < this.SampleMask.Length; index++)
+                for(int index = 0; index < (uint)(this.SampleMask.Length); index++)
                 {
                     fieldPointer[index] = this.SampleMask[index];
                 }

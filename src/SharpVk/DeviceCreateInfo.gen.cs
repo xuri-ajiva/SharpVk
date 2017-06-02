@@ -87,7 +87,7 @@ namespace SharpVk
             if (this.QueueCreateInfos != null)
             {
                 var fieldPointer = (Interop.DeviceQueueCreateInfo*)(Interop.HeapUtil.AllocateAndClear<Interop.DeviceQueueCreateInfo>(this.QueueCreateInfos.Length).ToPointer());
-                for(int index = 0; index < this.QueueCreateInfos.Length; index++)
+                for(int index = 0; index < (uint)(this.QueueCreateInfos.Length); index++)
                 {
                     this.QueueCreateInfos[index].MarshalTo(&fieldPointer[index]);
                 }

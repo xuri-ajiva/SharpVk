@@ -108,7 +108,7 @@ namespace SharpVk
             if (this.ImageInfo != null)
             {
                 var fieldPointer = (Interop.DescriptorImageInfo*)(Interop.HeapUtil.AllocateAndClear<Interop.DescriptorImageInfo>(this.ImageInfo.Length).ToPointer());
-                for(int index = 0; index < this.ImageInfo.Length; index++)
+                for(int index = 0; index < (uint)(this.ImageInfo.Length); index++)
                 {
                     this.ImageInfo[index].MarshalTo(&fieldPointer[index]);
                 }
@@ -121,7 +121,7 @@ namespace SharpVk
             if (this.BufferInfo != null)
             {
                 var fieldPointer = (Interop.DescriptorBufferInfo*)(Interop.HeapUtil.AllocateAndClear<Interop.DescriptorBufferInfo>(this.BufferInfo.Length).ToPointer());
-                for(int index = 0; index < this.BufferInfo.Length; index++)
+                for(int index = 0; index < (uint)(this.BufferInfo.Length); index++)
                 {
                     this.BufferInfo[index].MarshalTo(&fieldPointer[index]);
                 }
@@ -134,7 +134,7 @@ namespace SharpVk
             if (this.TexelBufferView != null)
             {
                 var fieldPointer = (Interop.BufferView*)(Interop.HeapUtil.AllocateAndClear<Interop.BufferView>(this.TexelBufferView.Length).ToPointer());
-                for(int index = 0; index < this.TexelBufferView.Length; index++)
+                for(int index = 0; index < (uint)(this.TexelBufferView.Length); index++)
                 {
                     fieldPointer[index] = this.TexelBufferView[index].handle;
                 }

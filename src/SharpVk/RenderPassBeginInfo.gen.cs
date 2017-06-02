@@ -80,7 +80,7 @@ namespace SharpVk
             if (this.ClearValues != null)
             {
                 var fieldPointer = (ClearValue*)(Interop.HeapUtil.AllocateAndClear<ClearValue>(this.ClearValues.Length).ToPointer());
-                for(int index = 0; index < this.ClearValues.Length; index++)
+                for(int index = 0; index < (uint)(this.ClearValues.Length); index++)
                 {
                     fieldPointer[index] = this.ClearValues[index];
                 }

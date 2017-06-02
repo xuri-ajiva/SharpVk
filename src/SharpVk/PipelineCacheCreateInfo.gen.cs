@@ -60,7 +60,7 @@ namespace SharpVk
             if (this.InitialData != null)
             {
                 var fieldPointer = (byte*)(Interop.HeapUtil.AllocateAndClear<byte>(this.InitialData.Length).ToPointer());
-                for(int index = 0; index < this.InitialData.Length; index++)
+                for(int index = 0; index < (uint)(this.InitialData.Length); index++)
                 {
                     fieldPointer[index] = this.InitialData[index];
                 }

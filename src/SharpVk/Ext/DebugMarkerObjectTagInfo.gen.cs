@@ -80,7 +80,7 @@ namespace SharpVk.Ext
             if (this.Tag != null)
             {
                 var fieldPointer = (byte*)(Interop.HeapUtil.AllocateAndClear<byte>(this.Tag.Length).ToPointer());
-                for(int index = 0; index < this.Tag.Length; index++)
+                for(int index = 0; index < (uint)(this.Tag.Length); index++)
                 {
                     fieldPointer[index] = this.Tag[index];
                 }

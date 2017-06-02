@@ -186,7 +186,7 @@ namespace SharpVk
             if (this.Stages != null)
             {
                 var fieldPointer = (Interop.PipelineShaderStageCreateInfo*)(Interop.HeapUtil.AllocateAndClear<Interop.PipelineShaderStageCreateInfo>(this.Stages.Length).ToPointer());
-                for(int index = 0; index < this.Stages.Length; index++)
+                for(int index = 0; index < (uint)(this.Stages.Length); index++)
                 {
                     this.Stages[index].MarshalTo(&fieldPointer[index]);
                 }

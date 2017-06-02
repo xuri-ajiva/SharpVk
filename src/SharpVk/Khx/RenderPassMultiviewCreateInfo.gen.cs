@@ -68,7 +68,7 @@ namespace SharpVk.Khx
             if (this.ViewMasks != null)
             {
                 var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.ViewMasks.Length).ToPointer());
-                for(int index = 0; index < this.ViewMasks.Length; index++)
+                for(int index = 0; index < (uint)(this.ViewMasks.Length); index++)
                 {
                     fieldPointer[index] = this.ViewMasks[index];
                 }
@@ -82,7 +82,7 @@ namespace SharpVk.Khx
             if (this.ViewOffsets != null)
             {
                 var fieldPointer = (int*)(Interop.HeapUtil.AllocateAndClear<int>(this.ViewOffsets.Length).ToPointer());
-                for(int index = 0; index < this.ViewOffsets.Length; index++)
+                for(int index = 0; index < (uint)(this.ViewOffsets.Length); index++)
                 {
                     fieldPointer[index] = this.ViewOffsets[index];
                 }
@@ -96,7 +96,7 @@ namespace SharpVk.Khx
             if (this.CorrelationMasks != null)
             {
                 var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.CorrelationMasks.Length).ToPointer());
-                for(int index = 0; index < this.CorrelationMasks.Length; index++)
+                for(int index = 0; index < (uint)(this.CorrelationMasks.Length); index++)
                 {
                     fieldPointer[index] = this.CorrelationMasks[index];
                 }

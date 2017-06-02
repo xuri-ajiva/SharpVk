@@ -70,7 +70,7 @@ namespace SharpVk.Ext
             if (this.DiscardRectangles != null)
             {
                 var fieldPointer = (Rect2D*)(Interop.HeapUtil.AllocateAndClear<Rect2D>(this.DiscardRectangles.Length).ToPointer());
-                for(int index = 0; index < this.DiscardRectangles.Length; index++)
+                for(int index = 0; index < (uint)(this.DiscardRectangles.Length); index++)
                 {
                     fieldPointer[index] = this.DiscardRectangles[index];
                 }

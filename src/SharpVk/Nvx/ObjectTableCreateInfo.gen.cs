@@ -113,7 +113,7 @@ namespace SharpVk.Nvx
             if (this.ObjectEntryTypes != null)
             {
                 var fieldPointer = (SharpVk.Nvx.ObjectEntryType*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Nvx.ObjectEntryType>(this.ObjectEntryTypes.Length).ToPointer());
-                for(int index = 0; index < this.ObjectEntryTypes.Length; index++)
+                for(int index = 0; index < (uint)(this.ObjectEntryTypes.Length); index++)
                 {
                     fieldPointer[index] = this.ObjectEntryTypes[index];
                 }
@@ -126,7 +126,7 @@ namespace SharpVk.Nvx
             if (this.ObjectEntryCounts != null)
             {
                 var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.ObjectEntryCounts.Length).ToPointer());
-                for(int index = 0; index < this.ObjectEntryCounts.Length; index++)
+                for(int index = 0; index < (uint)(this.ObjectEntryCounts.Length); index++)
                 {
                     fieldPointer[index] = this.ObjectEntryCounts[index];
                 }
@@ -139,7 +139,7 @@ namespace SharpVk.Nvx
             if (this.ObjectEntryUsageFlags != null)
             {
                 var fieldPointer = (SharpVk.Nvx.ObjectEntryUsageFlags*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Nvx.ObjectEntryUsageFlags>(this.ObjectEntryUsageFlags.Length).ToPointer());
-                for(int index = 0; index < this.ObjectEntryUsageFlags.Length; index++)
+                for(int index = 0; index < (uint)(this.ObjectEntryUsageFlags.Length); index++)
                 {
                     fieldPointer[index] = this.ObjectEntryUsageFlags[index];
                 }

@@ -58,7 +58,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void Destroy(AllocationCallbacks? allocator)
+        public unsafe void Destroy(AllocationCallbacks? allocator = null)
         {
             try
             {
@@ -117,7 +117,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe DeviceMemory AllocateMemory(MemoryAllocateInfo allocateInfo, AllocationCallbacks? allocator)
+        public unsafe DeviceMemory AllocateMemory(MemoryAllocateInfo allocateInfo, AllocationCallbacks? allocator = null)
         {
             try
             {
@@ -149,13 +149,13 @@ namespace SharpVk
         {
             try
             {
-                uint marshalledMemoryRangeCount = default(uint);
+                uint memoryRangeCount = default(uint);
                 Interop.MappedMemoryRange* marshalledMemoryRanges = default(Interop.MappedMemoryRange*);
-                marshalledMemoryRangeCount = (uint)(memoryRanges?.Length ?? 0);
+                memoryRangeCount = (uint)(memoryRanges?.Length ?? 0);
                 if (memoryRanges != null)
                 {
                     var fieldPointer = (Interop.MappedMemoryRange*)(Interop.HeapUtil.AllocateAndClear<Interop.MappedMemoryRange>(memoryRanges.Length).ToPointer());
-                    for(int index = 0; index < memoryRanges.Length; index++)
+                    for(int index = 0; index < (uint)(memoryRanges.Length); index++)
                     {
                         memoryRanges[index].MarshalTo(&fieldPointer[index]);
                     }
@@ -165,7 +165,7 @@ namespace SharpVk
                 {
                     marshalledMemoryRanges = null;
                 }
-                Interop.Commands.vkFlushMappedMemoryRanges(this.handle, marshalledMemoryRangeCount, marshalledMemoryRanges);
+                Interop.Commands.vkFlushMappedMemoryRanges(this.handle, memoryRangeCount, marshalledMemoryRanges);
             }
             finally
             {
@@ -180,13 +180,13 @@ namespace SharpVk
         {
             try
             {
-                uint marshalledMemoryRangeCount = default(uint);
+                uint memoryRangeCount = default(uint);
                 Interop.MappedMemoryRange* marshalledMemoryRanges = default(Interop.MappedMemoryRange*);
-                marshalledMemoryRangeCount = (uint)(memoryRanges?.Length ?? 0);
+                memoryRangeCount = (uint)(memoryRanges?.Length ?? 0);
                 if (memoryRanges != null)
                 {
                     var fieldPointer = (Interop.MappedMemoryRange*)(Interop.HeapUtil.AllocateAndClear<Interop.MappedMemoryRange>(memoryRanges.Length).ToPointer());
-                    for(int index = 0; index < memoryRanges.Length; index++)
+                    for(int index = 0; index < (uint)(memoryRanges.Length); index++)
                     {
                         memoryRanges[index].MarshalTo(&fieldPointer[index]);
                     }
@@ -196,7 +196,7 @@ namespace SharpVk
                 {
                     marshalledMemoryRanges = null;
                 }
-                Interop.Commands.vkInvalidateMappedMemoryRanges(this.handle, marshalledMemoryRangeCount, marshalledMemoryRanges);
+                Interop.Commands.vkInvalidateMappedMemoryRanges(this.handle, memoryRangeCount, marshalledMemoryRanges);
             }
             finally
             {
@@ -207,7 +207,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe Fence CreateFence(FenceCreateInfo createInfo, AllocationCallbacks? allocator)
+        public unsafe Fence CreateFence(FenceCreateInfo createInfo, AllocationCallbacks? allocator = null)
         {
             try
             {
@@ -239,13 +239,13 @@ namespace SharpVk
         {
             try
             {
-                uint marshalledFenceCount = default(uint);
+                uint fenceCount = default(uint);
                 Interop.Fence* marshalledFences = default(Interop.Fence*);
-                marshalledFenceCount = (uint)(fences?.Length ?? 0);
+                fenceCount = (uint)(fences?.Length ?? 0);
                 if (fences != null)
                 {
                     var fieldPointer = (Interop.Fence*)(Interop.HeapUtil.AllocateAndClear<Interop.Fence>(fences.Length).ToPointer());
-                    for(int index = 0; index < fences.Length; index++)
+                    for(int index = 0; index < (uint)(fences.Length); index++)
                     {
                         fieldPointer[index] = fences[index].handle;
                     }
@@ -255,7 +255,7 @@ namespace SharpVk
                 {
                     marshalledFences = null;
                 }
-                Interop.Commands.vkResetFences(this.handle, marshalledFenceCount, marshalledFences);
+                Interop.Commands.vkResetFences(this.handle, fenceCount, marshalledFences);
             }
             finally
             {
@@ -270,15 +270,15 @@ namespace SharpVk
         {
             try
             {
-                uint marshalledFenceCount = default(uint);
+                uint fenceCount = default(uint);
                 Interop.Fence* marshalledFences = default(Interop.Fence*);
                 Bool32 marshalledWaitAll = default(Bool32);
                 ulong marshalledTimeout = default(ulong);
-                marshalledFenceCount = (uint)(fences?.Length ?? 0);
+                fenceCount = (uint)(fences?.Length ?? 0);
                 if (fences != null)
                 {
                     var fieldPointer = (Interop.Fence*)(Interop.HeapUtil.AllocateAndClear<Interop.Fence>(fences.Length).ToPointer());
-                    for(int index = 0; index < fences.Length; index++)
+                    for(int index = 0; index < (uint)(fences.Length); index++)
                     {
                         fieldPointer[index] = fences[index].handle;
                     }
@@ -290,7 +290,7 @@ namespace SharpVk
                 }
                 marshalledWaitAll = waitAll;
                 marshalledTimeout = timeout;
-                Interop.Commands.vkWaitForFences(this.handle, marshalledFenceCount, marshalledFences, marshalledWaitAll, marshalledTimeout);
+                Interop.Commands.vkWaitForFences(this.handle, fenceCount, marshalledFences, marshalledWaitAll, marshalledTimeout);
             }
             finally
             {
@@ -301,7 +301,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe Semaphore CreateSemaphore(SemaphoreCreateInfo createInfo, AllocationCallbacks? allocator)
+        public unsafe Semaphore CreateSemaphore(SemaphoreCreateInfo createInfo, AllocationCallbacks? allocator = null)
         {
             try
             {
@@ -329,7 +329,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe Event CreateEvent(EventCreateInfo createInfo, AllocationCallbacks? allocator)
+        public unsafe Event CreateEvent(EventCreateInfo createInfo, AllocationCallbacks? allocator = null)
         {
             try
             {
@@ -357,7 +357,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe QueryPool CreateQueryPool(QueryPoolCreateInfo createInfo, AllocationCallbacks? allocator)
+        public unsafe QueryPool CreateQueryPool(QueryPoolCreateInfo createInfo, AllocationCallbacks? allocator = null)
         {
             try
             {
@@ -385,7 +385,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe Buffer CreateBuffer(BufferCreateInfo createInfo, AllocationCallbacks? allocator)
+        public unsafe Buffer CreateBuffer(BufferCreateInfo createInfo, AllocationCallbacks? allocator = null)
         {
             try
             {
@@ -413,7 +413,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe BufferView CreateBufferView(BufferViewCreateInfo createInfo, AllocationCallbacks? allocator)
+        public unsafe BufferView CreateBufferView(BufferViewCreateInfo createInfo, AllocationCallbacks? allocator = null)
         {
             try
             {
@@ -441,7 +441,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe Image CreateImage(ImageCreateInfo createInfo, AllocationCallbacks? allocator)
+        public unsafe Image CreateImage(ImageCreateInfo createInfo, AllocationCallbacks? allocator = null)
         {
             try
             {
@@ -469,7 +469,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe ImageView CreateImageView(ImageViewCreateInfo createInfo, AllocationCallbacks? allocator)
+        public unsafe ImageView CreateImageView(ImageViewCreateInfo createInfo, AllocationCallbacks? allocator = null)
         {
             try
             {
@@ -497,7 +497,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe ShaderModule CreateShaderModule(ShaderModuleCreateInfo createInfo, AllocationCallbacks? allocator)
+        public unsafe ShaderModule CreateShaderModule(ShaderModuleCreateInfo createInfo, AllocationCallbacks? allocator = null)
         {
             try
             {
@@ -525,7 +525,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe PipelineCache CreatePipelineCache(PipelineCacheCreateInfo createInfo, AllocationCallbacks? allocator)
+        public unsafe PipelineCache CreatePipelineCache(PipelineCacheCreateInfo createInfo, AllocationCallbacks? allocator = null)
         {
             try
             {
@@ -553,7 +553,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe PipelineLayout CreatePipelineLayout(PipelineLayoutCreateInfo createInfo, AllocationCallbacks? allocator)
+        public unsafe PipelineLayout CreatePipelineLayout(PipelineLayoutCreateInfo createInfo, AllocationCallbacks? allocator = null)
         {
             try
             {
@@ -581,7 +581,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe Sampler CreateSampler(SamplerCreateInfo createInfo, AllocationCallbacks? allocator)
+        public unsafe Sampler CreateSampler(SamplerCreateInfo createInfo, AllocationCallbacks? allocator = null)
         {
             try
             {
@@ -609,7 +609,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe DescriptorSetLayout CreateDescriptorSetLayout(DescriptorSetLayoutCreateInfo createInfo, AllocationCallbacks? allocator)
+        public unsafe DescriptorSetLayout CreateDescriptorSetLayout(DescriptorSetLayoutCreateInfo createInfo, AllocationCallbacks? allocator = null)
         {
             try
             {
@@ -637,7 +637,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe DescriptorPool CreateDescriptorPool(DescriptorPoolCreateInfo createInfo, AllocationCallbacks? allocator)
+        public unsafe DescriptorPool CreateDescriptorPool(DescriptorPoolCreateInfo createInfo, AllocationCallbacks? allocator = null)
         {
             try
             {
@@ -671,10 +671,10 @@ namespace SharpVk
             {
                 DescriptorSet[] result = default(DescriptorSet[]);
                 Interop.DescriptorSetAllocateInfo* marshalledAllocateInfo = default(Interop.DescriptorSetAllocateInfo*);
-                Interop.DescriptorSet marshalledDescriptorSets = default(Interop.DescriptorSet);
+                Interop.DescriptorSet* marshalledDescriptorSets = default(Interop.DescriptorSet*);
                 marshalledAllocateInfo = (Interop.DescriptorSetAllocateInfo*)(Interop.HeapUtil.Allocate<Interop.DescriptorSetAllocateInfo>());
                 allocateInfo.MarshalTo(marshalledAllocateInfo);
-                Interop.Commands.vkAllocateDescriptorSets(this.handle, marshalledAllocateInfo, &marshalledDescriptorSets);
+                Interop.Commands.vkAllocateDescriptorSets(this.handle, marshalledAllocateInfo, marshalledDescriptorSets);
                 return result;
             }
             finally
@@ -690,15 +690,15 @@ namespace SharpVk
         {
             try
             {
-                uint marshalledDescriptorWriteCount = default(uint);
+                uint descriptorWriteCount = default(uint);
                 Interop.WriteDescriptorSet* marshalledDescriptorWrites = default(Interop.WriteDescriptorSet*);
-                uint marshalledDescriptorCopyCount = default(uint);
+                uint descriptorCopyCount = default(uint);
                 Interop.CopyDescriptorSet* marshalledDescriptorCopies = default(Interop.CopyDescriptorSet*);
-                marshalledDescriptorWriteCount = (uint)(descriptorWrites?.Length ?? 0);
+                descriptorWriteCount = (uint)(descriptorWrites?.Length ?? 0);
                 if (descriptorWrites != null)
                 {
                     var fieldPointer = (Interop.WriteDescriptorSet*)(Interop.HeapUtil.AllocateAndClear<Interop.WriteDescriptorSet>(descriptorWrites.Length).ToPointer());
-                    for(int index = 0; index < descriptorWrites.Length; index++)
+                    for(int index = 0; index < (uint)(descriptorWrites.Length); index++)
                     {
                         descriptorWrites[index].MarshalTo(&fieldPointer[index]);
                     }
@@ -708,11 +708,11 @@ namespace SharpVk
                 {
                     marshalledDescriptorWrites = null;
                 }
-                marshalledDescriptorCopyCount = (uint)(descriptorCopies?.Length ?? 0);
+                descriptorCopyCount = (uint)(descriptorCopies?.Length ?? 0);
                 if (descriptorCopies != null)
                 {
                     var fieldPointer = (Interop.CopyDescriptorSet*)(Interop.HeapUtil.AllocateAndClear<Interop.CopyDescriptorSet>(descriptorCopies.Length).ToPointer());
-                    for(int index = 0; index < descriptorCopies.Length; index++)
+                    for(int index = 0; index < (uint)(descriptorCopies.Length); index++)
                     {
                         descriptorCopies[index].MarshalTo(&fieldPointer[index]);
                     }
@@ -722,7 +722,7 @@ namespace SharpVk
                 {
                     marshalledDescriptorCopies = null;
                 }
-                Interop.Commands.vkUpdateDescriptorSets(this.handle, marshalledDescriptorWriteCount, marshalledDescriptorWrites, marshalledDescriptorCopyCount, marshalledDescriptorCopies);
+                Interop.Commands.vkUpdateDescriptorSets(this.handle, descriptorWriteCount, marshalledDescriptorWrites, descriptorCopyCount, marshalledDescriptorCopies);
             }
             finally
             {
@@ -733,7 +733,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe Framebuffer CreateFramebuffer(FramebufferCreateInfo createInfo, AllocationCallbacks? allocator)
+        public unsafe Framebuffer CreateFramebuffer(FramebufferCreateInfo createInfo, AllocationCallbacks? allocator = null)
         {
             try
             {
@@ -761,7 +761,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe RenderPass CreateRenderPass(RenderPassCreateInfo createInfo, AllocationCallbacks? allocator)
+        public unsafe RenderPass CreateRenderPass(RenderPassCreateInfo createInfo, AllocationCallbacks? allocator = null)
         {
             try
             {
@@ -789,7 +789,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe CommandPool CreateCommandPool(CommandPoolCreateInfo createInfo, AllocationCallbacks? allocator)
+        public unsafe CommandPool CreateCommandPool(CommandPoolCreateInfo createInfo, AllocationCallbacks? allocator = null)
         {
             try
             {
@@ -823,10 +823,10 @@ namespace SharpVk
             {
                 CommandBuffer[] result = default(CommandBuffer[]);
                 Interop.CommandBufferAllocateInfo* marshalledAllocateInfo = default(Interop.CommandBufferAllocateInfo*);
-                Interop.CommandBuffer marshalledCommandBuffers = default(Interop.CommandBuffer);
+                Interop.CommandBuffer* marshalledCommandBuffers = default(Interop.CommandBuffer*);
                 marshalledAllocateInfo = (Interop.CommandBufferAllocateInfo*)(Interop.HeapUtil.Allocate<Interop.CommandBufferAllocateInfo>());
                 allocateInfo.MarshalTo(marshalledAllocateInfo);
-                Interop.Commands.vkAllocateCommandBuffers(this.handle, marshalledAllocateInfo, &marshalledCommandBuffers);
+                Interop.Commands.vkAllocateCommandBuffers(this.handle, marshalledAllocateInfo, marshalledCommandBuffers);
                 return result;
             }
             finally

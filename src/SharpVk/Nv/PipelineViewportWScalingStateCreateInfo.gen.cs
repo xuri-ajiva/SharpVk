@@ -60,7 +60,7 @@ namespace SharpVk.Nv
             if (this.ViewportWScalings != null)
             {
                 var fieldPointer = (SharpVk.Nv.ViewportWScaling*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Nv.ViewportWScaling>(this.ViewportWScalings.Length).ToPointer());
-                for(int index = 0; index < this.ViewportWScalings.Length; index++)
+                for(int index = 0; index < (uint)(this.ViewportWScalings.Length); index++)
                 {
                     fieldPointer[index] = this.ViewportWScalings[index];
                 }

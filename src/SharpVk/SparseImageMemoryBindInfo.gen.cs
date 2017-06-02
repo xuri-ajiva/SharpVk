@@ -58,7 +58,7 @@ namespace SharpVk
             if (this.Binds != null)
             {
                 var fieldPointer = (Interop.SparseImageMemoryBind*)(Interop.HeapUtil.AllocateAndClear<Interop.SparseImageMemoryBind>(this.Binds.Length).ToPointer());
-                for(int index = 0; index < this.Binds.Length; index++)
+                for(int index = 0; index < (uint)(this.Binds.Length); index++)
                 {
                     this.Binds[index].MarshalTo(&fieldPointer[index]);
                 }

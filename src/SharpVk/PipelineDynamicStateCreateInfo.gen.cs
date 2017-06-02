@@ -60,7 +60,7 @@ namespace SharpVk
             if (this.DynamicStates != null)
             {
                 var fieldPointer = (DynamicState*)(Interop.HeapUtil.AllocateAndClear<DynamicState>(this.DynamicStates.Length).ToPointer());
-                for(int index = 0; index < this.DynamicStates.Length; index++)
+                for(int index = 0; index < (uint)(this.DynamicStates.Length); index++)
                 {
                     fieldPointer[index] = this.DynamicStates[index];
                 }

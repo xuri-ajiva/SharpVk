@@ -41,7 +41,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void Destroy(AllocationCallbacks? allocator)
+        public unsafe void Destroy(AllocationCallbacks? allocator = null)
         {
             try
             {
@@ -68,8 +68,21 @@ namespace SharpVk
             {
                 byte[] result = default(byte[]);
                 HostSize dataSize = default(HostSize);
-                byte marshalledData = default(byte);
-                Interop.Commands.vkGetPipelineCacheData(default(Interop.Device), this.handle, &dataSize, &marshalledData);
+                byte* marshalledData = default(byte*);
+                Interop.Commands.vkGetPipelineCacheData(default(Interop.Device), this.handle, &dataSize, marshalledData);
+                if (marshalledData != null)
+                {
+                    var fieldPointer = new byte[(uint)(dataSize)];
+                    for(int index = 0; index < (uint)(dataSize); index++)
+                    {
+                        fieldPointer[index] = marshalledData[index];
+                    }
+                    result = fieldPointer;
+                }
+                else
+                {
+                    result = null;
+                }
                 return result;
             }
             finally
@@ -85,13 +98,13 @@ namespace SharpVk
         {
             try
             {
-                uint marshalledSourceCacheCount = default(uint);
+                uint sourceCacheCount = default(uint);
                 Interop.PipelineCache* marshalledSourceCaches = default(Interop.PipelineCache*);
-                marshalledSourceCacheCount = (uint)(sourceCaches?.Length ?? 0);
+                sourceCacheCount = (uint)(sourceCaches?.Length ?? 0);
                 if (sourceCaches != null)
                 {
                     var fieldPointer = (Interop.PipelineCache*)(Interop.HeapUtil.AllocateAndClear<Interop.PipelineCache>(sourceCaches.Length).ToPointer());
-                    for(int index = 0; index < sourceCaches.Length; index++)
+                    for(int index = 0; index < (uint)(sourceCaches.Length); index++)
                     {
                         fieldPointer[index] = sourceCaches[index].handle;
                     }
@@ -101,7 +114,7 @@ namespace SharpVk
                 {
                     marshalledSourceCaches = null;
                 }
-                Interop.Commands.vkMergePipelineCaches(default(Interop.Device), this.handle, marshalledSourceCacheCount, marshalledSourceCaches);
+                Interop.Commands.vkMergePipelineCaches(default(Interop.Device), this.handle, sourceCacheCount, marshalledSourceCaches);
             }
             finally
             {
@@ -112,20 +125,20 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe Pipeline[] CreateGraphicsPipelines(GraphicsPipelineCreateInfo[] createInfos, AllocationCallbacks? allocator)
+        public unsafe Pipeline[] CreateGraphicsPipelines(GraphicsPipelineCreateInfo[] createInfos, AllocationCallbacks? allocator = null)
         {
             try
             {
                 Pipeline[] result = default(Pipeline[]);
-                uint marshalledCreateInfoCount = default(uint);
+                uint createInfoCount = default(uint);
                 Interop.GraphicsPipelineCreateInfo* marshalledCreateInfos = default(Interop.GraphicsPipelineCreateInfo*);
                 Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
-                Interop.Pipeline marshalledPipelines = default(Interop.Pipeline);
-                marshalledCreateInfoCount = (uint)(createInfos?.Length ?? 0);
+                Interop.Pipeline* marshalledPipelines = default(Interop.Pipeline*);
+                createInfoCount = (uint)(createInfos?.Length ?? 0);
                 if (createInfos != null)
                 {
                     var fieldPointer = (Interop.GraphicsPipelineCreateInfo*)(Interop.HeapUtil.AllocateAndClear<Interop.GraphicsPipelineCreateInfo>(createInfos.Length).ToPointer());
-                    for(int index = 0; index < createInfos.Length; index++)
+                    for(int index = 0; index < (uint)(createInfos.Length); index++)
                     {
                         createInfos[index].MarshalTo(&fieldPointer[index]);
                     }
@@ -140,7 +153,20 @@ namespace SharpVk
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
-                Interop.Commands.vkCreateGraphicsPipelines(default(Interop.Device), this.handle, marshalledCreateInfoCount, marshalledCreateInfos, marshalledAllocator, &marshalledPipelines);
+                Interop.Commands.vkCreateGraphicsPipelines(default(Interop.Device), this.handle, createInfoCount, marshalledCreateInfos, marshalledAllocator, marshalledPipelines);
+                if (marshalledPipelines != null)
+                {
+                    var fieldPointer = new Pipeline[(uint)(createInfoCount)];
+                    for(int index = 0; index < (uint)(createInfoCount); index++)
+                    {
+                        fieldPointer[index] = new Pipeline(marshalledPipelines[index]);
+                    }
+                    result = fieldPointer;
+                }
+                else
+                {
+                    result = null;
+                }
                 return result;
             }
             finally
@@ -152,20 +178,20 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe Pipeline[] CreateComputePipelines(ComputePipelineCreateInfo[] createInfos, AllocationCallbacks? allocator)
+        public unsafe Pipeline[] CreateComputePipelines(ComputePipelineCreateInfo[] createInfos, AllocationCallbacks? allocator = null)
         {
             try
             {
                 Pipeline[] result = default(Pipeline[]);
-                uint marshalledCreateInfoCount = default(uint);
+                uint createInfoCount = default(uint);
                 Interop.ComputePipelineCreateInfo* marshalledCreateInfos = default(Interop.ComputePipelineCreateInfo*);
                 Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
-                Interop.Pipeline marshalledPipelines = default(Interop.Pipeline);
-                marshalledCreateInfoCount = (uint)(createInfos?.Length ?? 0);
+                Interop.Pipeline* marshalledPipelines = default(Interop.Pipeline*);
+                createInfoCount = (uint)(createInfos?.Length ?? 0);
                 if (createInfos != null)
                 {
                     var fieldPointer = (Interop.ComputePipelineCreateInfo*)(Interop.HeapUtil.AllocateAndClear<Interop.ComputePipelineCreateInfo>(createInfos.Length).ToPointer());
-                    for(int index = 0; index < createInfos.Length; index++)
+                    for(int index = 0; index < (uint)(createInfos.Length); index++)
                     {
                         createInfos[index].MarshalTo(&fieldPointer[index]);
                     }
@@ -180,7 +206,20 @@ namespace SharpVk
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
-                Interop.Commands.vkCreateComputePipelines(default(Interop.Device), this.handle, marshalledCreateInfoCount, marshalledCreateInfos, marshalledAllocator, &marshalledPipelines);
+                Interop.Commands.vkCreateComputePipelines(default(Interop.Device), this.handle, createInfoCount, marshalledCreateInfos, marshalledAllocator, marshalledPipelines);
+                if (marshalledPipelines != null)
+                {
+                    var fieldPointer = new Pipeline[(uint)(createInfoCount)];
+                    for(int index = 0; index < (uint)(createInfoCount); index++)
+                    {
+                        fieldPointer[index] = new Pipeline(marshalledPipelines[index]);
+                    }
+                    result = fieldPointer;
+                }
+                else
+                {
+                    result = null;
+                }
                 return result;
             }
             finally

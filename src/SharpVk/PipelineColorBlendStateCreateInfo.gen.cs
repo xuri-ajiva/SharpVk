@@ -80,7 +80,7 @@ namespace SharpVk
             if (this.Attachments != null)
             {
                 var fieldPointer = (PipelineColorBlendAttachmentState*)(Interop.HeapUtil.AllocateAndClear<PipelineColorBlendAttachmentState>(this.Attachments.Length).ToPointer());
-                for(int index = 0; index < this.Attachments.Length; index++)
+                for(int index = 0; index < (uint)(this.Attachments.Length); index++)
                 {
                     fieldPointer[index] = this.Attachments[index];
                 }

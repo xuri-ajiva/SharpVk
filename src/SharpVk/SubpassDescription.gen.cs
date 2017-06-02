@@ -104,7 +104,7 @@ namespace SharpVk
             if (this.InputAttachments != null)
             {
                 var fieldPointer = (AttachmentReference*)(Interop.HeapUtil.AllocateAndClear<AttachmentReference>(this.InputAttachments.Length).ToPointer());
-                for(int index = 0; index < this.InputAttachments.Length; index++)
+                for(int index = 0; index < (uint)(this.InputAttachments.Length); index++)
                 {
                     fieldPointer[index] = this.InputAttachments[index];
                 }
@@ -118,7 +118,7 @@ namespace SharpVk
             if (this.ColorAttachments != null)
             {
                 var fieldPointer = (AttachmentReference*)(Interop.HeapUtil.AllocateAndClear<AttachmentReference>(this.ColorAttachments.Length).ToPointer());
-                for(int index = 0; index < this.ColorAttachments.Length; index++)
+                for(int index = 0; index < (uint)(this.ColorAttachments.Length); index++)
                 {
                     fieldPointer[index] = this.ColorAttachments[index];
                 }
@@ -131,7 +131,7 @@ namespace SharpVk
             if (this.ResolveAttachments != null)
             {
                 var fieldPointer = (AttachmentReference*)(Interop.HeapUtil.AllocateAndClear<AttachmentReference>(this.ResolveAttachments.Length).ToPointer());
-                for(int index = 0; index < this.ResolveAttachments.Length; index++)
+                for(int index = 0; index < (uint)(this.ResolveAttachments.Length); index++)
                 {
                     fieldPointer[index] = this.ResolveAttachments[index];
                 }
@@ -147,7 +147,7 @@ namespace SharpVk
             if (this.PreserveAttachments != null)
             {
                 var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.PreserveAttachments.Length).ToPointer());
-                for(int index = 0; index < this.PreserveAttachments.Length; index++)
+                for(int index = 0; index < (uint)(this.PreserveAttachments.Length); index++)
                 {
                     fieldPointer[index] = this.PreserveAttachments[index];
                 }

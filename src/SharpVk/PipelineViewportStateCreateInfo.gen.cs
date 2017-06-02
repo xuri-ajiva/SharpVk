@@ -69,7 +69,7 @@ namespace SharpVk
             if (this.Viewports != null)
             {
                 var fieldPointer = (Viewport*)(Interop.HeapUtil.AllocateAndClear<Viewport>(this.Viewports.Length).ToPointer());
-                for(int index = 0; index < this.Viewports.Length; index++)
+                for(int index = 0; index < (uint)(this.Viewports.Length); index++)
                 {
                     fieldPointer[index] = this.Viewports[index];
                 }
@@ -83,7 +83,7 @@ namespace SharpVk
             if (this.Scissors != null)
             {
                 var fieldPointer = (Rect2D*)(Interop.HeapUtil.AllocateAndClear<Rect2D>(this.Scissors.Length).ToPointer());
-                for(int index = 0; index < this.Scissors.Length; index++)
+                for(int index = 0; index < (uint)(this.Scissors.Length); index++)
                 {
                     fieldPointer[index] = this.Scissors[index];
                 }

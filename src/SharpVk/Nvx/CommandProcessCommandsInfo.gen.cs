@@ -124,7 +124,7 @@ namespace SharpVk.Nvx
             if (this.IndirectCommandsTokens != null)
             {
                 var fieldPointer = (Interop.Nvx.IndirectCommandsToken*)(Interop.HeapUtil.AllocateAndClear<Interop.Nvx.IndirectCommandsToken>(this.IndirectCommandsTokens.Length).ToPointer());
-                for(int index = 0; index < this.IndirectCommandsTokens.Length; index++)
+                for(int index = 0; index < (uint)(this.IndirectCommandsTokens.Length); index++)
                 {
                     this.IndirectCommandsTokens[index].MarshalTo(&fieldPointer[index]);
                 }

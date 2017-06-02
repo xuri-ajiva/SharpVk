@@ -20,6 +20,7 @@ namespace SharpVk.Generator.Generation
         public string MemberType;
         public AssignActionType Type;
         public bool IsLoop;
+        public bool IsArray;
     }
 
     public class DeclarationAction

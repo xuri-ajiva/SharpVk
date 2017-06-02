@@ -70,7 +70,7 @@ namespace SharpVk
             if (this.QueuePriorities != null)
             {
                 var fieldPointer = (float*)(Interop.HeapUtil.AllocateAndClear<float>(this.QueuePriorities.Length).ToPointer());
-                for(int index = 0; index < this.QueuePriorities.Length; index++)
+                for(int index = 0; index < (uint)(this.QueuePriorities.Length); index++)
                 {
                     fieldPointer[index] = this.QueuePriorities[index];
                 }

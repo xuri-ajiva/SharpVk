@@ -70,7 +70,7 @@ namespace SharpVk.Nvx
             if (this.Tokens != null)
             {
                 var fieldPointer = (SharpVk.Nvx.IndirectCommandsLayoutToken*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Nvx.IndirectCommandsLayoutToken>(this.Tokens.Length).ToPointer());
-                for(int index = 0; index < this.Tokens.Length; index++)
+                for(int index = 0; index < (uint)(this.Tokens.Length); index++)
                 {
                     fieldPointer[index] = this.Tokens[index];
                 }

@@ -79,7 +79,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void Destroy(AllocationCallbacks? allocator)
+        public unsafe void Destroy(AllocationCallbacks? allocator = null)
         {
             try
             {

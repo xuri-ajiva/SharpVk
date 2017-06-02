@@ -56,7 +56,7 @@ namespace SharpVk.Generator.Emission
                 {
                     foreach (var action in method.ParamActions)
                     {
-                        parameters.EmitParam(action.Param.Type, action.Param.Name);
+                        parameters.EmitParam(action.Param.Type, action.Param.Name, action.Param.DefaultValue);
                     }
                 }
             };
@@ -107,10 +107,17 @@ namespace SharpVk.Generator.Emission
                         body.EmitIfBlock(assignAction.NullCheckExpression,
                             ifBlock =>
                             {
-                                ifBlock.EmitVariableDeclaration("var", "fieldPointer", Cast(assignAction.MemberType + "*", Call(StaticCall("Interop.HeapUtil", $"AllocateAndClear<{assignAction.MemberType}>", assignAction.LengthExpression), "ToPointer")));
+                                if (assignAction.IsArray)
+                                {
+                                    ifBlock.EmitVariableDeclaration("var", "fieldPointer", NewArray(assignAction.MemberType, Cast("uint", assignAction.LengthExpression)));
+                                }
+                                else
+                                {
+                                    ifBlock.EmitVariableDeclaration("var", "fieldPointer", Cast(assignAction.MemberType + "*", Call(StaticCall("Interop.HeapUtil", $"AllocateAndClear<{assignAction.MemberType}>", assignAction.LengthExpression), "ToPointer")));
+                                }
 
                                 ifBlock.EmitForLoop(init => init.EmitVariableDeclaration("int", assignAction.IndexName, Literal(0)),
-                                                    LessThan(Variable(assignAction.IndexName), assignAction.LengthExpression),
+                                                    LessThan(Variable(assignAction.IndexName), Cast("uint", assignAction.LengthExpression)),
                                                     after => after.EmitStatement(assignAction.IndexName + "++"),
                                                     loop =>
                                                     {

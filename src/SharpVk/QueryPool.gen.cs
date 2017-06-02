@@ -41,7 +41,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void Destroy(AllocationCallbacks? allocator)
+        public unsafe void Destroy(AllocationCallbacks? allocator = null)
         {
             try
             {
@@ -68,17 +68,17 @@ namespace SharpVk
             {
                 uint marshalledFirstQuery = default(uint);
                 uint marshalledQueryCount = default(uint);
-                HostSize marshalledDataSize = default(HostSize);
+                HostSize dataSize = default(HostSize);
                 byte* marshalledData = default(byte*);
                 DeviceSize marshalledStride = default(DeviceSize);
                 QueryResultFlags marshalledFlags = default(QueryResultFlags);
                 marshalledFirstQuery = firstQuery;
                 marshalledQueryCount = queryCount;
-                marshalledDataSize = (HostSize)(data?.Length ?? 0);
+                dataSize = (HostSize)(data?.Length ?? 0);
                 if (data != null)
                 {
                     var fieldPointer = (byte*)(Interop.HeapUtil.AllocateAndClear<byte>(data.Length).ToPointer());
-                    for(int index = 0; index < data.Length; index++)
+                    for(int index = 0; index < (uint)(data.Length); index++)
                     {
                         fieldPointer[index] = data[index];
                     }
@@ -90,7 +90,7 @@ namespace SharpVk
                 }
                 marshalledStride = stride;
                 marshalledFlags = flags;
-                Interop.Commands.vkGetQueryPoolResults(default(Interop.Device), this.handle, marshalledFirstQuery, marshalledQueryCount, marshalledDataSize, marshalledData, marshalledStride, marshalledFlags);
+                Interop.Commands.vkGetQueryPoolResults(default(Interop.Device), this.handle, marshalledFirstQuery, marshalledQueryCount, dataSize, marshalledData, marshalledStride, marshalledFlags);
             }
             finally
             {

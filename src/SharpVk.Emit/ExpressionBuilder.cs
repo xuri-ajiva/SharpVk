@@ -83,6 +83,13 @@ namespace SharpVk.Emit
             this.EmitArguments(arguments);
             this.writer.Write(")");
         }
+        
+        public void EmitNewArray(string name, params Action<ExpressionBuilder>[] arguments)
+        {
+            this.writer.Write($"new {name}[");
+            this.EmitArguments(arguments);
+            this.writer.Write("]");
+        }
 
         public void EmitDefault(string type)
         {
@@ -320,6 +327,11 @@ namespace SharpVk.Emit
         public static Action<ExpressionBuilder> New(string name, params Action<ExpressionBuilder>[] arguments)
         {
             return builder => builder.EmitNew(name, arguments);
+        }
+
+        public static Action<ExpressionBuilder> NewArray(string name, params Action<ExpressionBuilder>[] arguments)
+        {
+            return builder => builder.EmitNewArray(name, arguments);
         }
 
         public static Action<ExpressionBuilder> Default(string type)

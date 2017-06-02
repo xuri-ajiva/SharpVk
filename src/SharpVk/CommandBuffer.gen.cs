@@ -115,14 +115,14 @@ namespace SharpVk
             try
             {
                 uint marshalledFirstViewport = default(uint);
-                uint marshalledViewportCount = default(uint);
+                uint viewportCount = default(uint);
                 Viewport* marshalledViewports = default(Viewport*);
                 marshalledFirstViewport = firstViewport;
-                marshalledViewportCount = (uint)(viewports?.Length ?? 0);
+                viewportCount = (uint)(viewports?.Length ?? 0);
                 if (viewports != null)
                 {
                     var fieldPointer = (Viewport*)(Interop.HeapUtil.AllocateAndClear<Viewport>(viewports.Length).ToPointer());
-                    for(int index = 0; index < viewports.Length; index++)
+                    for(int index = 0; index < (uint)(viewports.Length); index++)
                     {
                         fieldPointer[index] = viewports[index];
                     }
@@ -132,7 +132,7 @@ namespace SharpVk
                 {
                     marshalledViewports = null;
                 }
-                Interop.Commands.vkCmdSetViewport(this.handle, marshalledFirstViewport, marshalledViewportCount, marshalledViewports);
+                Interop.Commands.vkCmdSetViewport(this.handle, marshalledFirstViewport, viewportCount, marshalledViewports);
             }
             finally
             {
@@ -148,14 +148,14 @@ namespace SharpVk
             try
             {
                 uint marshalledFirstScissor = default(uint);
-                uint marshalledScissorCount = default(uint);
+                uint scissorCount = default(uint);
                 Rect2D* marshalledScissors = default(Rect2D*);
                 marshalledFirstScissor = firstScissor;
-                marshalledScissorCount = (uint)(scissors?.Length ?? 0);
+                scissorCount = (uint)(scissors?.Length ?? 0);
                 if (scissors != null)
                 {
                     var fieldPointer = (Rect2D*)(Interop.HeapUtil.AllocateAndClear<Rect2D>(scissors.Length).ToPointer());
-                    for(int index = 0; index < scissors.Length; index++)
+                    for(int index = 0; index < (uint)(scissors.Length); index++)
                     {
                         fieldPointer[index] = scissors[index];
                     }
@@ -165,7 +165,7 @@ namespace SharpVk
                 {
                     marshalledScissors = null;
                 }
-                Interop.Commands.vkCmdSetScissor(this.handle, marshalledFirstScissor, marshalledScissorCount, marshalledScissors);
+                Interop.Commands.vkCmdSetScissor(this.handle, marshalledFirstScissor, scissorCount, marshalledScissors);
             }
             finally
             {
@@ -314,18 +314,18 @@ namespace SharpVk
                 PipelineBindPoint marshalledPipelineBindPoint = default(PipelineBindPoint);
                 Interop.PipelineLayout marshalledLayout = default(Interop.PipelineLayout);
                 uint marshalledFirstSet = default(uint);
-                uint marshalledDescriptorSetCount = default(uint);
+                uint descriptorSetCount = default(uint);
                 Interop.DescriptorSet* marshalledDescriptorSets = default(Interop.DescriptorSet*);
-                uint marshalledDynamicOffsetCount = default(uint);
+                uint dynamicOffsetCount = default(uint);
                 uint* marshalledDynamicOffsets = default(uint*);
                 marshalledPipelineBindPoint = pipelineBindPoint;
                 marshalledLayout = layout.handle;
                 marshalledFirstSet = firstSet;
-                marshalledDescriptorSetCount = (uint)(descriptorSets?.Length ?? 0);
+                descriptorSetCount = (uint)(descriptorSets?.Length ?? 0);
                 if (descriptorSets != null)
                 {
                     var fieldPointer = (Interop.DescriptorSet*)(Interop.HeapUtil.AllocateAndClear<Interop.DescriptorSet>(descriptorSets.Length).ToPointer());
-                    for(int index = 0; index < descriptorSets.Length; index++)
+                    for(int index = 0; index < (uint)(descriptorSets.Length); index++)
                     {
                         fieldPointer[index] = descriptorSets[index].handle;
                     }
@@ -335,11 +335,11 @@ namespace SharpVk
                 {
                     marshalledDescriptorSets = null;
                 }
-                marshalledDynamicOffsetCount = (uint)(dynamicOffsets?.Length ?? 0);
+                dynamicOffsetCount = (uint)(dynamicOffsets?.Length ?? 0);
                 if (dynamicOffsets != null)
                 {
                     var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(dynamicOffsets.Length).ToPointer());
-                    for(int index = 0; index < dynamicOffsets.Length; index++)
+                    for(int index = 0; index < (uint)(dynamicOffsets.Length); index++)
                     {
                         fieldPointer[index] = dynamicOffsets[index];
                     }
@@ -349,7 +349,7 @@ namespace SharpVk
                 {
                     marshalledDynamicOffsets = null;
                 }
-                Interop.Commands.vkCmdBindDescriptorSets(this.handle, marshalledPipelineBindPoint, marshalledLayout, marshalledFirstSet, marshalledDescriptorSetCount, marshalledDescriptorSets, marshalledDynamicOffsetCount, marshalledDynamicOffsets);
+                Interop.Commands.vkCmdBindDescriptorSets(this.handle, marshalledPipelineBindPoint, marshalledLayout, marshalledFirstSet, descriptorSetCount, marshalledDescriptorSets, dynamicOffsetCount, marshalledDynamicOffsets);
             }
             finally
             {
@@ -386,15 +386,15 @@ namespace SharpVk
             try
             {
                 uint marshalledFirstBinding = default(uint);
-                uint marshalledBindingCount = default(uint);
+                uint bindingCount = default(uint);
                 Interop.Buffer* marshalledBuffers = default(Interop.Buffer*);
                 DeviceSize* marshalledOffsets = default(DeviceSize*);
                 marshalledFirstBinding = firstBinding;
-                marshalledBindingCount = (uint)(buffers?.Length ?? 0);
+                bindingCount = (uint)(buffers?.Length ?? 0);
                 if (buffers != null)
                 {
                     var fieldPointer = (Interop.Buffer*)(Interop.HeapUtil.AllocateAndClear<Interop.Buffer>(buffers.Length).ToPointer());
-                    for(int index = 0; index < buffers.Length; index++)
+                    for(int index = 0; index < (uint)(buffers.Length); index++)
                     {
                         fieldPointer[index] = buffers[index].handle;
                     }
@@ -407,7 +407,7 @@ namespace SharpVk
                 if (offsets != null)
                 {
                     var fieldPointer = (DeviceSize*)(Interop.HeapUtil.AllocateAndClear<DeviceSize>(offsets.Length).ToPointer());
-                    for(int index = 0; index < offsets.Length; index++)
+                    for(int index = 0; index < (uint)(offsets.Length); index++)
                     {
                         fieldPointer[index] = offsets[index];
                     }
@@ -417,7 +417,7 @@ namespace SharpVk
                 {
                     marshalledOffsets = null;
                 }
-                Interop.Commands.vkCmdBindVertexBuffers(this.handle, marshalledFirstBinding, marshalledBindingCount, marshalledBuffers, marshalledOffsets);
+                Interop.Commands.vkCmdBindVertexBuffers(this.handle, marshalledFirstBinding, bindingCount, marshalledBuffers, marshalledOffsets);
             }
             finally
             {
@@ -568,15 +568,15 @@ namespace SharpVk
             {
                 Interop.Buffer marshalledSourceBuffer = default(Interop.Buffer);
                 Interop.Buffer marshalledDestinationBuffer = default(Interop.Buffer);
-                uint marshalledRegionCount = default(uint);
+                uint regionCount = default(uint);
                 BufferCopy* marshalledRegions = default(BufferCopy*);
                 marshalledSourceBuffer = sourceBuffer.handle;
                 marshalledDestinationBuffer = destinationBuffer.handle;
-                marshalledRegionCount = (uint)(regions?.Length ?? 0);
+                regionCount = (uint)(regions?.Length ?? 0);
                 if (regions != null)
                 {
                     var fieldPointer = (BufferCopy*)(Interop.HeapUtil.AllocateAndClear<BufferCopy>(regions.Length).ToPointer());
-                    for(int index = 0; index < regions.Length; index++)
+                    for(int index = 0; index < (uint)(regions.Length); index++)
                     {
                         fieldPointer[index] = regions[index];
                     }
@@ -586,7 +586,7 @@ namespace SharpVk
                 {
                     marshalledRegions = null;
                 }
-                Interop.Commands.vkCmdCopyBuffer(this.handle, marshalledSourceBuffer, marshalledDestinationBuffer, marshalledRegionCount, marshalledRegions);
+                Interop.Commands.vkCmdCopyBuffer(this.handle, marshalledSourceBuffer, marshalledDestinationBuffer, regionCount, marshalledRegions);
             }
             finally
             {
@@ -605,17 +605,17 @@ namespace SharpVk
                 ImageLayout marshalledSourceImageLayout = default(ImageLayout);
                 Interop.Image marshalledDestinationImage = default(Interop.Image);
                 ImageLayout marshalledDestinationImageLayout = default(ImageLayout);
-                uint marshalledRegionCount = default(uint);
+                uint regionCount = default(uint);
                 ImageCopy* marshalledRegions = default(ImageCopy*);
                 marshalledSourceImage = sourceImage.handle;
                 marshalledSourceImageLayout = sourceImageLayout;
                 marshalledDestinationImage = destinationImage.handle;
                 marshalledDestinationImageLayout = destinationImageLayout;
-                marshalledRegionCount = (uint)(regions?.Length ?? 0);
+                regionCount = (uint)(regions?.Length ?? 0);
                 if (regions != null)
                 {
                     var fieldPointer = (ImageCopy*)(Interop.HeapUtil.AllocateAndClear<ImageCopy>(regions.Length).ToPointer());
-                    for(int index = 0; index < regions.Length; index++)
+                    for(int index = 0; index < (uint)(regions.Length); index++)
                     {
                         fieldPointer[index] = regions[index];
                     }
@@ -625,7 +625,7 @@ namespace SharpVk
                 {
                     marshalledRegions = null;
                 }
-                Interop.Commands.vkCmdCopyImage(this.handle, marshalledSourceImage, marshalledSourceImageLayout, marshalledDestinationImage, marshalledDestinationImageLayout, marshalledRegionCount, marshalledRegions);
+                Interop.Commands.vkCmdCopyImage(this.handle, marshalledSourceImage, marshalledSourceImageLayout, marshalledDestinationImage, marshalledDestinationImageLayout, regionCount, marshalledRegions);
             }
             finally
             {
@@ -644,18 +644,18 @@ namespace SharpVk
                 ImageLayout marshalledSourceImageLayout = default(ImageLayout);
                 Interop.Image marshalledDestinationImage = default(Interop.Image);
                 ImageLayout marshalledDestinationImageLayout = default(ImageLayout);
-                uint marshalledRegionCount = default(uint);
+                uint regionCount = default(uint);
                 Interop.ImageBlit* marshalledRegions = default(Interop.ImageBlit*);
                 Filter marshalledFilter = default(Filter);
                 marshalledSourceImage = sourceImage.handle;
                 marshalledSourceImageLayout = sourceImageLayout;
                 marshalledDestinationImage = destinationImage.handle;
                 marshalledDestinationImageLayout = destinationImageLayout;
-                marshalledRegionCount = (uint)(regions?.Length ?? 0);
+                regionCount = (uint)(regions?.Length ?? 0);
                 if (regions != null)
                 {
                     var fieldPointer = (Interop.ImageBlit*)(Interop.HeapUtil.AllocateAndClear<Interop.ImageBlit>(regions.Length).ToPointer());
-                    for(int index = 0; index < regions.Length; index++)
+                    for(int index = 0; index < (uint)(regions.Length); index++)
                     {
                         regions[index].MarshalTo(&fieldPointer[index]);
                     }
@@ -666,7 +666,7 @@ namespace SharpVk
                     marshalledRegions = null;
                 }
                 marshalledFilter = filter;
-                Interop.Commands.vkCmdBlitImage(this.handle, marshalledSourceImage, marshalledSourceImageLayout, marshalledDestinationImage, marshalledDestinationImageLayout, marshalledRegionCount, marshalledRegions, marshalledFilter);
+                Interop.Commands.vkCmdBlitImage(this.handle, marshalledSourceImage, marshalledSourceImageLayout, marshalledDestinationImage, marshalledDestinationImageLayout, regionCount, marshalledRegions, marshalledFilter);
             }
             finally
             {
@@ -684,16 +684,16 @@ namespace SharpVk
                 Interop.Buffer marshalledSourceBuffer = default(Interop.Buffer);
                 Interop.Image marshalledDestinationImage = default(Interop.Image);
                 ImageLayout marshalledDestinationImageLayout = default(ImageLayout);
-                uint marshalledRegionCount = default(uint);
+                uint regionCount = default(uint);
                 BufferImageCopy* marshalledRegions = default(BufferImageCopy*);
                 marshalledSourceBuffer = sourceBuffer.handle;
                 marshalledDestinationImage = destinationImage.handle;
                 marshalledDestinationImageLayout = destinationImageLayout;
-                marshalledRegionCount = (uint)(regions?.Length ?? 0);
+                regionCount = (uint)(regions?.Length ?? 0);
                 if (regions != null)
                 {
                     var fieldPointer = (BufferImageCopy*)(Interop.HeapUtil.AllocateAndClear<BufferImageCopy>(regions.Length).ToPointer());
-                    for(int index = 0; index < regions.Length; index++)
+                    for(int index = 0; index < (uint)(regions.Length); index++)
                     {
                         fieldPointer[index] = regions[index];
                     }
@@ -703,7 +703,7 @@ namespace SharpVk
                 {
                     marshalledRegions = null;
                 }
-                Interop.Commands.vkCmdCopyBufferToImage(this.handle, marshalledSourceBuffer, marshalledDestinationImage, marshalledDestinationImageLayout, marshalledRegionCount, marshalledRegions);
+                Interop.Commands.vkCmdCopyBufferToImage(this.handle, marshalledSourceBuffer, marshalledDestinationImage, marshalledDestinationImageLayout, regionCount, marshalledRegions);
             }
             finally
             {
@@ -721,16 +721,16 @@ namespace SharpVk
                 Interop.Image marshalledSourceImage = default(Interop.Image);
                 ImageLayout marshalledSourceImageLayout = default(ImageLayout);
                 Interop.Buffer marshalledDestinationBuffer = default(Interop.Buffer);
-                uint marshalledRegionCount = default(uint);
+                uint regionCount = default(uint);
                 BufferImageCopy* marshalledRegions = default(BufferImageCopy*);
                 marshalledSourceImage = sourceImage.handle;
                 marshalledSourceImageLayout = sourceImageLayout;
                 marshalledDestinationBuffer = destinationBuffer.handle;
-                marshalledRegionCount = (uint)(regions?.Length ?? 0);
+                regionCount = (uint)(regions?.Length ?? 0);
                 if (regions != null)
                 {
                     var fieldPointer = (BufferImageCopy*)(Interop.HeapUtil.AllocateAndClear<BufferImageCopy>(regions.Length).ToPointer());
-                    for(int index = 0; index < regions.Length; index++)
+                    for(int index = 0; index < (uint)(regions.Length); index++)
                     {
                         fieldPointer[index] = regions[index];
                     }
@@ -740,7 +740,7 @@ namespace SharpVk
                 {
                     marshalledRegions = null;
                 }
-                Interop.Commands.vkCmdCopyImageToBuffer(this.handle, marshalledSourceImage, marshalledSourceImageLayout, marshalledDestinationBuffer, marshalledRegionCount, marshalledRegions);
+                Interop.Commands.vkCmdCopyImageToBuffer(this.handle, marshalledSourceImage, marshalledSourceImageLayout, marshalledDestinationBuffer, regionCount, marshalledRegions);
             }
             finally
             {
@@ -757,15 +757,15 @@ namespace SharpVk
             {
                 Interop.Buffer marshalledDestinationBuffer = default(Interop.Buffer);
                 DeviceSize marshalledDestinationOffset = default(DeviceSize);
-                DeviceSize marshalledDataSize = default(DeviceSize);
+                DeviceSize dataSize = default(DeviceSize);
                 byte* marshalledData = default(byte*);
                 marshalledDestinationBuffer = destinationBuffer.handle;
                 marshalledDestinationOffset = destinationOffset;
-                marshalledDataSize = (DeviceSize)(data?.Length ?? 0);
+                dataSize = (DeviceSize)(data?.Length ?? 0);
                 if (data != null)
                 {
                     var fieldPointer = (byte*)(Interop.HeapUtil.AllocateAndClear<byte>(data.Length).ToPointer());
-                    for(int index = 0; index < data.Length; index++)
+                    for(int index = 0; index < (uint)(data.Length); index++)
                     {
                         fieldPointer[index] = data[index];
                     }
@@ -775,7 +775,7 @@ namespace SharpVk
                 {
                     marshalledData = null;
                 }
-                Interop.Commands.vkCmdUpdateBuffer(this.handle, marshalledDestinationBuffer, marshalledDestinationOffset, marshalledDataSize, marshalledData);
+                Interop.Commands.vkCmdUpdateBuffer(this.handle, marshalledDestinationBuffer, marshalledDestinationOffset, dataSize, marshalledData);
             }
             finally
             {
@@ -816,17 +816,17 @@ namespace SharpVk
                 Interop.Image marshalledImage = default(Interop.Image);
                 ImageLayout marshalledImageLayout = default(ImageLayout);
                 ClearColorValue* marshalledColor = default(ClearColorValue*);
-                uint marshalledRangeCount = default(uint);
+                uint rangeCount = default(uint);
                 ImageSubresourceRange* marshalledRanges = default(ImageSubresourceRange*);
                 marshalledImage = image.handle;
                 marshalledImageLayout = imageLayout;
                 marshalledColor = (ClearColorValue*)(Interop.HeapUtil.Allocate<ClearColorValue>());
                 *marshalledColor = color;
-                marshalledRangeCount = (uint)(ranges?.Length ?? 0);
+                rangeCount = (uint)(ranges?.Length ?? 0);
                 if (ranges != null)
                 {
                     var fieldPointer = (ImageSubresourceRange*)(Interop.HeapUtil.AllocateAndClear<ImageSubresourceRange>(ranges.Length).ToPointer());
-                    for(int index = 0; index < ranges.Length; index++)
+                    for(int index = 0; index < (uint)(ranges.Length); index++)
                     {
                         fieldPointer[index] = ranges[index];
                     }
@@ -836,7 +836,7 @@ namespace SharpVk
                 {
                     marshalledRanges = null;
                 }
-                Interop.Commands.vkCmdClearColorImage(this.handle, marshalledImage, marshalledImageLayout, marshalledColor, marshalledRangeCount, marshalledRanges);
+                Interop.Commands.vkCmdClearColorImage(this.handle, marshalledImage, marshalledImageLayout, marshalledColor, rangeCount, marshalledRanges);
             }
             finally
             {
@@ -854,17 +854,17 @@ namespace SharpVk
                 Interop.Image marshalledImage = default(Interop.Image);
                 ImageLayout marshalledImageLayout = default(ImageLayout);
                 ClearDepthStencilValue* marshalledDepthStencil = default(ClearDepthStencilValue*);
-                uint marshalledRangeCount = default(uint);
+                uint rangeCount = default(uint);
                 ImageSubresourceRange* marshalledRanges = default(ImageSubresourceRange*);
                 marshalledImage = image.handle;
                 marshalledImageLayout = imageLayout;
                 marshalledDepthStencil = (ClearDepthStencilValue*)(Interop.HeapUtil.Allocate<ClearDepthStencilValue>());
                 *marshalledDepthStencil = depthStencil;
-                marshalledRangeCount = (uint)(ranges?.Length ?? 0);
+                rangeCount = (uint)(ranges?.Length ?? 0);
                 if (ranges != null)
                 {
                     var fieldPointer = (ImageSubresourceRange*)(Interop.HeapUtil.AllocateAndClear<ImageSubresourceRange>(ranges.Length).ToPointer());
-                    for(int index = 0; index < ranges.Length; index++)
+                    for(int index = 0; index < (uint)(ranges.Length); index++)
                     {
                         fieldPointer[index] = ranges[index];
                     }
@@ -874,7 +874,7 @@ namespace SharpVk
                 {
                     marshalledRanges = null;
                 }
-                Interop.Commands.vkCmdClearDepthStencilImage(this.handle, marshalledImage, marshalledImageLayout, marshalledDepthStencil, marshalledRangeCount, marshalledRanges);
+                Interop.Commands.vkCmdClearDepthStencilImage(this.handle, marshalledImage, marshalledImageLayout, marshalledDepthStencil, rangeCount, marshalledRanges);
             }
             finally
             {
@@ -889,15 +889,15 @@ namespace SharpVk
         {
             try
             {
-                uint marshalledAttachmentCount = default(uint);
+                uint attachmentCount = default(uint);
                 ClearAttachment* marshalledAttachments = default(ClearAttachment*);
-                uint marshalledRectCount = default(uint);
+                uint rectCount = default(uint);
                 ClearRect* marshalledRects = default(ClearRect*);
-                marshalledAttachmentCount = (uint)(attachments?.Length ?? 0);
+                attachmentCount = (uint)(attachments?.Length ?? 0);
                 if (attachments != null)
                 {
                     var fieldPointer = (ClearAttachment*)(Interop.HeapUtil.AllocateAndClear<ClearAttachment>(attachments.Length).ToPointer());
-                    for(int index = 0; index < attachments.Length; index++)
+                    for(int index = 0; index < (uint)(attachments.Length); index++)
                     {
                         fieldPointer[index] = attachments[index];
                     }
@@ -907,11 +907,11 @@ namespace SharpVk
                 {
                     marshalledAttachments = null;
                 }
-                marshalledRectCount = (uint)(rects?.Length ?? 0);
+                rectCount = (uint)(rects?.Length ?? 0);
                 if (rects != null)
                 {
                     var fieldPointer = (ClearRect*)(Interop.HeapUtil.AllocateAndClear<ClearRect>(rects.Length).ToPointer());
-                    for(int index = 0; index < rects.Length; index++)
+                    for(int index = 0; index < (uint)(rects.Length); index++)
                     {
                         fieldPointer[index] = rects[index];
                     }
@@ -921,7 +921,7 @@ namespace SharpVk
                 {
                     marshalledRects = null;
                 }
-                Interop.Commands.vkCmdClearAttachments(this.handle, marshalledAttachmentCount, marshalledAttachments, marshalledRectCount, marshalledRects);
+                Interop.Commands.vkCmdClearAttachments(this.handle, attachmentCount, marshalledAttachments, rectCount, marshalledRects);
             }
             finally
             {
@@ -940,17 +940,17 @@ namespace SharpVk
                 ImageLayout marshalledSourceImageLayout = default(ImageLayout);
                 Interop.Image marshalledDestinationImage = default(Interop.Image);
                 ImageLayout marshalledDestinationImageLayout = default(ImageLayout);
-                uint marshalledRegionCount = default(uint);
+                uint regionCount = default(uint);
                 ImageResolve* marshalledRegions = default(ImageResolve*);
                 marshalledSourceImage = sourceImage.handle;
                 marshalledSourceImageLayout = sourceImageLayout;
                 marshalledDestinationImage = destinationImage.handle;
                 marshalledDestinationImageLayout = destinationImageLayout;
-                marshalledRegionCount = (uint)(regions?.Length ?? 0);
+                regionCount = (uint)(regions?.Length ?? 0);
                 if (regions != null)
                 {
                     var fieldPointer = (ImageResolve*)(Interop.HeapUtil.AllocateAndClear<ImageResolve>(regions.Length).ToPointer());
-                    for(int index = 0; index < regions.Length; index++)
+                    for(int index = 0; index < (uint)(regions.Length); index++)
                     {
                         fieldPointer[index] = regions[index];
                     }
@@ -960,7 +960,7 @@ namespace SharpVk
                 {
                     marshalledRegions = null;
                 }
-                Interop.Commands.vkCmdResolveImage(this.handle, marshalledSourceImage, marshalledSourceImageLayout, marshalledDestinationImage, marshalledDestinationImageLayout, marshalledRegionCount, marshalledRegions);
+                Interop.Commands.vkCmdResolveImage(this.handle, marshalledSourceImage, marshalledSourceImageLayout, marshalledDestinationImage, marshalledDestinationImageLayout, regionCount, marshalledRegions);
             }
             finally
             {
@@ -1013,21 +1013,21 @@ namespace SharpVk
         {
             try
             {
-                uint marshalledEventCount = default(uint);
+                uint eventCount = default(uint);
                 Interop.Event* marshalledEvents = default(Interop.Event*);
                 PipelineStageFlags marshalledSourceStageMask = default(PipelineStageFlags);
                 PipelineStageFlags marshalledDestinationStageMask = default(PipelineStageFlags);
-                uint marshalledMemoryBarrierCount = default(uint);
+                uint memoryBarrierCount = default(uint);
                 Interop.MemoryBarrier* marshalledMemoryBarriers = default(Interop.MemoryBarrier*);
-                uint marshalledBufferMemoryBarrierCount = default(uint);
+                uint bufferMemoryBarrierCount = default(uint);
                 Interop.BufferMemoryBarrier* marshalledBufferMemoryBarriers = default(Interop.BufferMemoryBarrier*);
-                uint marshalledImageMemoryBarrierCount = default(uint);
+                uint imageMemoryBarrierCount = default(uint);
                 Interop.ImageMemoryBarrier* marshalledImageMemoryBarriers = default(Interop.ImageMemoryBarrier*);
-                marshalledEventCount = (uint)(events?.Length ?? 0);
+                eventCount = (uint)(events?.Length ?? 0);
                 if (events != null)
                 {
                     var fieldPointer = (Interop.Event*)(Interop.HeapUtil.AllocateAndClear<Interop.Event>(events.Length).ToPointer());
-                    for(int index = 0; index < events.Length; index++)
+                    for(int index = 0; index < (uint)(events.Length); index++)
                     {
                         fieldPointer[index] = events[index].handle;
                     }
@@ -1039,11 +1039,11 @@ namespace SharpVk
                 }
                 marshalledSourceStageMask = sourceStageMask;
                 marshalledDestinationStageMask = destinationStageMask;
-                marshalledMemoryBarrierCount = (uint)(memoryBarriers?.Length ?? 0);
+                memoryBarrierCount = (uint)(memoryBarriers?.Length ?? 0);
                 if (memoryBarriers != null)
                 {
                     var fieldPointer = (Interop.MemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<Interop.MemoryBarrier>(memoryBarriers.Length).ToPointer());
-                    for(int index = 0; index < memoryBarriers.Length; index++)
+                    for(int index = 0; index < (uint)(memoryBarriers.Length); index++)
                     {
                         memoryBarriers[index].MarshalTo(&fieldPointer[index]);
                     }
@@ -1053,11 +1053,11 @@ namespace SharpVk
                 {
                     marshalledMemoryBarriers = null;
                 }
-                marshalledBufferMemoryBarrierCount = (uint)(bufferMemoryBarriers?.Length ?? 0);
+                bufferMemoryBarrierCount = (uint)(bufferMemoryBarriers?.Length ?? 0);
                 if (bufferMemoryBarriers != null)
                 {
                     var fieldPointer = (Interop.BufferMemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<Interop.BufferMemoryBarrier>(bufferMemoryBarriers.Length).ToPointer());
-                    for(int index = 0; index < bufferMemoryBarriers.Length; index++)
+                    for(int index = 0; index < (uint)(bufferMemoryBarriers.Length); index++)
                     {
                         bufferMemoryBarriers[index].MarshalTo(&fieldPointer[index]);
                     }
@@ -1067,11 +1067,11 @@ namespace SharpVk
                 {
                     marshalledBufferMemoryBarriers = null;
                 }
-                marshalledImageMemoryBarrierCount = (uint)(imageMemoryBarriers?.Length ?? 0);
+                imageMemoryBarrierCount = (uint)(imageMemoryBarriers?.Length ?? 0);
                 if (imageMemoryBarriers != null)
                 {
                     var fieldPointer = (Interop.ImageMemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<Interop.ImageMemoryBarrier>(imageMemoryBarriers.Length).ToPointer());
-                    for(int index = 0; index < imageMemoryBarriers.Length; index++)
+                    for(int index = 0; index < (uint)(imageMemoryBarriers.Length); index++)
                     {
                         imageMemoryBarriers[index].MarshalTo(&fieldPointer[index]);
                     }
@@ -1081,7 +1081,7 @@ namespace SharpVk
                 {
                     marshalledImageMemoryBarriers = null;
                 }
-                Interop.Commands.vkCmdWaitEvents(this.handle, marshalledEventCount, marshalledEvents, marshalledSourceStageMask, marshalledDestinationStageMask, marshalledMemoryBarrierCount, marshalledMemoryBarriers, marshalledBufferMemoryBarrierCount, marshalledBufferMemoryBarriers, marshalledImageMemoryBarrierCount, marshalledImageMemoryBarriers);
+                Interop.Commands.vkCmdWaitEvents(this.handle, eventCount, marshalledEvents, marshalledSourceStageMask, marshalledDestinationStageMask, memoryBarrierCount, marshalledMemoryBarriers, bufferMemoryBarrierCount, marshalledBufferMemoryBarriers, imageMemoryBarrierCount, marshalledImageMemoryBarriers);
             }
             finally
             {
@@ -1099,20 +1099,20 @@ namespace SharpVk
                 PipelineStageFlags marshalledSourceStageMask = default(PipelineStageFlags);
                 PipelineStageFlags marshalledDestinationStageMask = default(PipelineStageFlags);
                 DependencyFlags marshalledDependencyFlags = default(DependencyFlags);
-                uint marshalledMemoryBarrierCount = default(uint);
+                uint memoryBarrierCount = default(uint);
                 Interop.MemoryBarrier* marshalledMemoryBarriers = default(Interop.MemoryBarrier*);
-                uint marshalledBufferMemoryBarrierCount = default(uint);
+                uint bufferMemoryBarrierCount = default(uint);
                 Interop.BufferMemoryBarrier* marshalledBufferMemoryBarriers = default(Interop.BufferMemoryBarrier*);
-                uint marshalledImageMemoryBarrierCount = default(uint);
+                uint imageMemoryBarrierCount = default(uint);
                 Interop.ImageMemoryBarrier* marshalledImageMemoryBarriers = default(Interop.ImageMemoryBarrier*);
                 marshalledSourceStageMask = sourceStageMask;
                 marshalledDestinationStageMask = destinationStageMask;
                 marshalledDependencyFlags = dependencyFlags;
-                marshalledMemoryBarrierCount = (uint)(memoryBarriers?.Length ?? 0);
+                memoryBarrierCount = (uint)(memoryBarriers?.Length ?? 0);
                 if (memoryBarriers != null)
                 {
                     var fieldPointer = (Interop.MemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<Interop.MemoryBarrier>(memoryBarriers.Length).ToPointer());
-                    for(int index = 0; index < memoryBarriers.Length; index++)
+                    for(int index = 0; index < (uint)(memoryBarriers.Length); index++)
                     {
                         memoryBarriers[index].MarshalTo(&fieldPointer[index]);
                     }
@@ -1122,11 +1122,11 @@ namespace SharpVk
                 {
                     marshalledMemoryBarriers = null;
                 }
-                marshalledBufferMemoryBarrierCount = (uint)(bufferMemoryBarriers?.Length ?? 0);
+                bufferMemoryBarrierCount = (uint)(bufferMemoryBarriers?.Length ?? 0);
                 if (bufferMemoryBarriers != null)
                 {
                     var fieldPointer = (Interop.BufferMemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<Interop.BufferMemoryBarrier>(bufferMemoryBarriers.Length).ToPointer());
-                    for(int index = 0; index < bufferMemoryBarriers.Length; index++)
+                    for(int index = 0; index < (uint)(bufferMemoryBarriers.Length); index++)
                     {
                         bufferMemoryBarriers[index].MarshalTo(&fieldPointer[index]);
                     }
@@ -1136,11 +1136,11 @@ namespace SharpVk
                 {
                     marshalledBufferMemoryBarriers = null;
                 }
-                marshalledImageMemoryBarrierCount = (uint)(imageMemoryBarriers?.Length ?? 0);
+                imageMemoryBarrierCount = (uint)(imageMemoryBarriers?.Length ?? 0);
                 if (imageMemoryBarriers != null)
                 {
                     var fieldPointer = (Interop.ImageMemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<Interop.ImageMemoryBarrier>(imageMemoryBarriers.Length).ToPointer());
-                    for(int index = 0; index < imageMemoryBarriers.Length; index++)
+                    for(int index = 0; index < (uint)(imageMemoryBarriers.Length); index++)
                     {
                         imageMemoryBarriers[index].MarshalTo(&fieldPointer[index]);
                     }
@@ -1150,7 +1150,7 @@ namespace SharpVk
                 {
                     marshalledImageMemoryBarriers = null;
                 }
-                Interop.Commands.vkCmdPipelineBarrier(this.handle, marshalledSourceStageMask, marshalledDestinationStageMask, marshalledDependencyFlags, marshalledMemoryBarrierCount, marshalledMemoryBarriers, marshalledBufferMemoryBarrierCount, marshalledBufferMemoryBarriers, marshalledImageMemoryBarrierCount, marshalledImageMemoryBarriers);
+                Interop.Commands.vkCmdPipelineBarrier(this.handle, marshalledSourceStageMask, marshalledDestinationStageMask, marshalledDependencyFlags, memoryBarrierCount, marshalledMemoryBarriers, bufferMemoryBarrierCount, marshalledBufferMemoryBarriers, imageMemoryBarrierCount, marshalledImageMemoryBarriers);
             }
             finally
             {
@@ -1279,16 +1279,16 @@ namespace SharpVk
                 Interop.PipelineLayout marshalledLayout = default(Interop.PipelineLayout);
                 ShaderStageFlags marshalledStageFlags = default(ShaderStageFlags);
                 uint marshalledOffset = default(uint);
-                uint marshalledSize = default(uint);
+                uint size = default(uint);
                 byte* marshalledValues = default(byte*);
                 marshalledLayout = layout.handle;
                 marshalledStageFlags = stageFlags;
                 marshalledOffset = offset;
-                marshalledSize = (uint)(values?.Length ?? 0);
+                size = (uint)(values?.Length ?? 0);
                 if (values != null)
                 {
                     var fieldPointer = (byte*)(Interop.HeapUtil.AllocateAndClear<byte>(values.Length).ToPointer());
-                    for(int index = 0; index < values.Length; index++)
+                    for(int index = 0; index < (uint)(values.Length); index++)
                     {
                         fieldPointer[index] = values[index];
                     }
@@ -1298,7 +1298,7 @@ namespace SharpVk
                 {
                     marshalledValues = null;
                 }
-                Interop.Commands.vkCmdPushConstants(this.handle, marshalledLayout, marshalledStageFlags, marshalledOffset, marshalledSize, marshalledValues);
+                Interop.Commands.vkCmdPushConstants(this.handle, marshalledLayout, marshalledStageFlags, marshalledOffset, size, marshalledValues);
             }
             finally
             {
@@ -1365,13 +1365,13 @@ namespace SharpVk
         {
             try
             {
-                uint marshalledCommandBufferCount = default(uint);
+                uint commandBufferCount = default(uint);
                 Interop.CommandBuffer* marshalledCommandBuffers = default(Interop.CommandBuffer*);
-                marshalledCommandBufferCount = (uint)(commandBuffers?.Length ?? 0);
+                commandBufferCount = (uint)(commandBuffers?.Length ?? 0);
                 if (commandBuffers != null)
                 {
                     var fieldPointer = (Interop.CommandBuffer*)(Interop.HeapUtil.AllocateAndClear<Interop.CommandBuffer>(commandBuffers.Length).ToPointer());
-                    for(int index = 0; index < commandBuffers.Length; index++)
+                    for(int index = 0; index < (uint)(commandBuffers.Length); index++)
                     {
                         fieldPointer[index] = commandBuffers[index].handle;
                     }
@@ -1381,7 +1381,7 @@ namespace SharpVk
                 {
                     marshalledCommandBuffers = null;
                 }
-                Interop.Commands.vkCmdExecuteCommands(this.handle, marshalledCommandBufferCount, marshalledCommandBuffers);
+                Interop.Commands.vkCmdExecuteCommands(this.handle, commandBufferCount, marshalledCommandBuffers);
             }
             finally
             {

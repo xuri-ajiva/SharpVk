@@ -41,7 +41,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void Destroy(AllocationCallbacks? allocator)
+        public unsafe void Destroy(AllocationCallbacks? allocator = null)
         {
             try
             {
@@ -83,13 +83,13 @@ namespace SharpVk
         {
             try
             {
-                uint marshalledCommandBufferCount = default(uint);
+                uint commandBufferCount = default(uint);
                 Interop.CommandBuffer* marshalledCommandBuffers = default(Interop.CommandBuffer*);
-                marshalledCommandBufferCount = (uint)(commandBuffers?.Length ?? 0);
+                commandBufferCount = (uint)(commandBuffers?.Length ?? 0);
                 if (commandBuffers != null)
                 {
                     var fieldPointer = (Interop.CommandBuffer*)(Interop.HeapUtil.AllocateAndClear<Interop.CommandBuffer>(commandBuffers.Length).ToPointer());
-                    for(int index = 0; index < commandBuffers.Length; index++)
+                    for(int index = 0; index < (uint)(commandBuffers.Length); index++)
                     {
                         fieldPointer[index] = commandBuffers[index].handle;
                     }
@@ -99,7 +99,7 @@ namespace SharpVk
                 {
                     marshalledCommandBuffers = null;
                 }
-                Interop.Commands.vkFreeCommandBuffers(default(Interop.Device), this.handle, marshalledCommandBufferCount, marshalledCommandBuffers);
+                Interop.Commands.vkFreeCommandBuffers(default(Interop.Device), this.handle, commandBufferCount, marshalledCommandBuffers);
             }
             finally
             {

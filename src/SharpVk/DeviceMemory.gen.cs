@@ -41,7 +41,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void Free(AllocationCallbacks? allocator)
+        public unsafe void Free(AllocationCallbacks? allocator = null)
         {
             try
             {

@@ -80,7 +80,7 @@ namespace SharpVk.Khx
             if (this.DeviceIndices != null)
             {
                 var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.DeviceIndices.Length).ToPointer());
-                for(int index = 0; index < this.DeviceIndices.Length; index++)
+                for(int index = 0; index < (uint)(this.DeviceIndices.Length); index++)
                 {
                     fieldPointer[index] = this.DeviceIndices[index];
                 }

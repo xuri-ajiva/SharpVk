@@ -85,8 +85,21 @@ namespace SharpVk
             {
                 SparseImageMemoryRequirements[] result = default(SparseImageMemoryRequirements[]);
                 uint sparseMemoryRequirementCount = default(uint);
-                SparseImageMemoryRequirements marshalledSparseMemoryRequirements = default(SparseImageMemoryRequirements);
-                Interop.Commands.vkGetImageSparseMemoryRequirements(default(Interop.Device), this.handle, &sparseMemoryRequirementCount, &marshalledSparseMemoryRequirements);
+                SparseImageMemoryRequirements* marshalledSparseMemoryRequirements = default(SparseImageMemoryRequirements*);
+                Interop.Commands.vkGetImageSparseMemoryRequirements(default(Interop.Device), this.handle, &sparseMemoryRequirementCount, marshalledSparseMemoryRequirements);
+                if (marshalledSparseMemoryRequirements != null)
+                {
+                    var fieldPointer = new SparseImageMemoryRequirements[(uint)(sparseMemoryRequirementCount)];
+                    for(int index = 0; index < (uint)(sparseMemoryRequirementCount); index++)
+                    {
+                        fieldPointer[index] = marshalledSparseMemoryRequirements[index];
+                    }
+                    result = fieldPointer;
+                }
+                else
+                {
+                    result = null;
+                }
                 return result;
             }
             finally
@@ -98,7 +111,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void Destroy(AllocationCallbacks? allocator)
+        public unsafe void Destroy(AllocationCallbacks? allocator = null)
         {
             try
             {

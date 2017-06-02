@@ -60,7 +60,7 @@ namespace SharpVk.Khx
             if (this.DeviceRenderAreas != null)
             {
                 var fieldPointer = (Rect2D*)(Interop.HeapUtil.AllocateAndClear<Rect2D>(this.DeviceRenderAreas.Length).ToPointer());
-                for(int index = 0; index < this.DeviceRenderAreas.Length; index++)
+                for(int index = 0; index < (uint)(this.DeviceRenderAreas.Length); index++)
                 {
                     fieldPointer[index] = this.DeviceRenderAreas[index];
                 }
