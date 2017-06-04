@@ -68,6 +68,8 @@ namespace SharpVk
                 uint queueFamilyPropertyCount = default(uint);
                 QueueFamilyProperties* marshalledQueueFamilyProperties = default(QueueFamilyProperties*);
                 Interop.Commands.vkGetPhysicalDeviceQueueFamilyProperties(this.handle, &queueFamilyPropertyCount, marshalledQueueFamilyProperties);
+                marshalledQueueFamilyProperties = (QueueFamilyProperties*)(Interop.HeapUtil.Allocate<QueueFamilyProperties>((uint)(queueFamilyPropertyCount)));
+                Interop.Commands.vkGetPhysicalDeviceQueueFamilyProperties(this.handle, &queueFamilyPropertyCount, marshalledQueueFamilyProperties);
                 if (marshalledQueueFamilyProperties != null)
                 {
                     var fieldPointer = new QueueFamilyProperties[(uint)(queueFamilyPropertyCount)];
@@ -216,6 +218,8 @@ namespace SharpVk
                 uint propertyCount = default(uint);
                 Interop.LayerProperties* marshalledProperties = default(Interop.LayerProperties*);
                 Interop.Commands.vkEnumerateDeviceLayerProperties(this.handle, &propertyCount, marshalledProperties);
+                marshalledProperties = (Interop.LayerProperties*)(Interop.HeapUtil.Allocate<Interop.LayerProperties>((uint)(propertyCount)));
+                Interop.Commands.vkEnumerateDeviceLayerProperties(this.handle, &propertyCount, marshalledProperties);
                 if (marshalledProperties != null)
                 {
                     var fieldPointer = new LayerProperties[(uint)(propertyCount)];
@@ -249,6 +253,8 @@ namespace SharpVk
                 byte* marshalledLayerName = default(byte*);
                 Interop.ExtensionProperties* marshalledProperties = default(Interop.ExtensionProperties*);
                 marshalledLayerName = Interop.HeapUtil.MarshalTo(layerName);
+                Interop.Commands.vkEnumerateDeviceExtensionProperties(this.handle, marshalledLayerName, &propertyCount, marshalledProperties);
+                marshalledProperties = (Interop.ExtensionProperties*)(Interop.HeapUtil.Allocate<Interop.ExtensionProperties>((uint)(propertyCount)));
                 Interop.Commands.vkEnumerateDeviceExtensionProperties(this.handle, marshalledLayerName, &propertyCount, marshalledProperties);
                 if (marshalledProperties != null)
                 {
@@ -291,6 +297,8 @@ namespace SharpVk
                 marshalledSamples = samples;
                 marshalledUsage = usage;
                 marshalledTiling = tiling;
+                Interop.Commands.vkGetPhysicalDeviceSparseImageFormatProperties(this.handle, marshalledFormat, marshalledType, marshalledSamples, marshalledUsage, marshalledTiling, &propertyCount, marshalledProperties);
+                marshalledProperties = (SparseImageFormatProperties*)(Interop.HeapUtil.Allocate<SparseImageFormatProperties>((uint)(propertyCount)));
                 Interop.Commands.vkGetPhysicalDeviceSparseImageFormatProperties(this.handle, marshalledFormat, marshalledType, marshalledSamples, marshalledUsage, marshalledTiling, &propertyCount, marshalledProperties);
                 if (marshalledProperties != null)
                 {

@@ -10,7 +10,11 @@ namespace SharpVk.TestHarness
             {
             }, null);
 
-            var devices = instance._EnumeratePhysicalDevices();
+            var devices = instance.EnumeratePhysicalDevices();
+
+            var layers = Instance.EnumerateLayerProperties();
+
+            var extensions = Instance.EnumerateExtensionProperties(null);
 
             var properties = devices.Select(x => x.GetProperties()).ToArray();
         }

@@ -98,13 +98,14 @@ namespace SharpVk.Generator.Generation
             newMethod.MemberActions = new List<MethodAction>();
 
             var marshalFromActions = new List<MethodAction>();
+            var marshalMidActions = new List<MethodAction>();
             var marshalToActions = new List<MethodAction>();
 
             var marshalledValues = new List<Action<ExpressionBuilder>>();
 
             foreach (var parameter in command.Params)
             {
-                var newParam = this.GenerateParameter(command, newMethod, parameter, parameterIndex, enumeratePattern, lastParamIsArray, lastParamReturns, marshalFromActions, marshalToActions, marshalledValues);
+                var newParam = this.GenerateParameter(command, newMethod, parameter, parameterIndex, enumeratePattern, lastParamIsArray, lastParamReturns, marshalFromActions, marshalMidActions, marshalToActions, marshalledValues);
 
                 if (newParam != null)
                 {
@@ -123,12 +124,24 @@ namespace SharpVk.Generator.Generation
                 Parameters = marshalledValues.ToArray()
             });
 
+            if (enumeratePattern)
+            {
+                newMethod.MemberActions.AddRange(marshalMidActions);
+
+                newMethod.MemberActions.Add(new InvokeAction
+                {
+                    TypeName = "Interop.Commands",
+                    MethodName = command.VkName,
+                    Parameters = marshalledValues.ToArray()
+                });
+            }
+
             newMethod.MemberActions.AddRange(marshalFromActions);
 
             return newMethod;
         }
 
-        private ParamActionDefinition GenerateParameter(CommandDeclaration command, MethodDefinition newMethod, ParamDeclaration parameter, int parameterIndex, bool isEnumeratePattern, bool isLastParamArray, bool lastParamReturns, List<MethodAction> marshalFromActions, List<MethodAction> marshalToActions, List<Action<ExpressionBuilder>> marshalledValues)
+        private ParamActionDefinition GenerateParameter(CommandDeclaration command, MethodDefinition newMethod, ParamDeclaration parameter, int parameterIndex, bool isEnumeratePattern, bool isLastParamArray, bool lastParamReturns, List<MethodAction> marshalFromActions, List<MethodAction> marshalMidActions, List<MethodAction> marshalToActions, List<Action<ExpressionBuilder>> marshalledValues)
         {
             string paramName = parameter.Name;
             var paramType = typeData[parameter.Type.VkName];
@@ -151,13 +164,27 @@ namespace SharpVk.Generator.Generation
                     });
 
                     marshalledValues.Add(AddressOf(Variable(paramName)));
+
+                    var patternInfo = new MemberPatternInfo();
+
+                    this.memberPatternRules.ApplyFirst(command.Params, command.Params.Last(), patternInfo);
+
+                    string marshalledName = GetMarshalledName(patternInfo.Interop.Name);
+
+                    marshalMidActions.Add(new AssignAction
+                    {
+                        Type = AssignActionType.Alloc,
+                        MemberType = patternInfo.InteropFullType.TrimEnd('*'),
+                        TargetExpression = Variable(marshalledName),
+                        LengthExpression = Cast("uint", Variable(paramName))
+                    });
                 }
                 else if (lastParamReturns && parameterIndex == command.Params.Count() - 1)
                 {
                     if (isLastParamArray)
                     {
                         var patternInfo = new MemberPatternInfo();
-                        
+
                         this.memberPatternRules.ApplyFirst(command.Params, parameter, patternInfo);
 
                         string marshalledName = GetMarshalledName(patternInfo.Interop.Name);

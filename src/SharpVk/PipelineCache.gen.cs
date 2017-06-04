@@ -70,6 +70,8 @@ namespace SharpVk
                 HostSize dataSize = default(HostSize);
                 byte* marshalledData = default(byte*);
                 Interop.Commands.vkGetPipelineCacheData(default(Interop.Device), this.handle, &dataSize, marshalledData);
+                marshalledData = (byte*)(Interop.HeapUtil.Allocate<byte>((uint)(dataSize)));
+                Interop.Commands.vkGetPipelineCacheData(default(Interop.Device), this.handle, &dataSize, marshalledData);
                 if (marshalledData != null)
                 {
                     var fieldPointer = new byte[(uint)(dataSize)];

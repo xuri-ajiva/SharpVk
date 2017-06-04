@@ -87,6 +87,8 @@ namespace SharpVk
                 uint sparseMemoryRequirementCount = default(uint);
                 SparseImageMemoryRequirements* marshalledSparseMemoryRequirements = default(SparseImageMemoryRequirements*);
                 Interop.Commands.vkGetImageSparseMemoryRequirements(default(Interop.Device), this.handle, &sparseMemoryRequirementCount, marshalledSparseMemoryRequirements);
+                marshalledSparseMemoryRequirements = (SparseImageMemoryRequirements*)(Interop.HeapUtil.Allocate<SparseImageMemoryRequirements>((uint)(sparseMemoryRequirementCount)));
+                Interop.Commands.vkGetImageSparseMemoryRequirements(default(Interop.Device), this.handle, &sparseMemoryRequirementCount, marshalledSparseMemoryRequirements);
                 if (marshalledSparseMemoryRequirements != null)
                 {
                     var fieldPointer = new SparseImageMemoryRequirements[(uint)(sparseMemoryRequirementCount)];

@@ -98,6 +98,8 @@ namespace SharpVk
                 uint physicalDeviceCount = default(uint);
                 Interop.PhysicalDevice* marshalledPhysicalDevices = default(Interop.PhysicalDevice*);
                 Interop.Commands.vkEnumeratePhysicalDevices(this.handle, &physicalDeviceCount, marshalledPhysicalDevices);
+                marshalledPhysicalDevices = (Interop.PhysicalDevice*)(Interop.HeapUtil.Allocate<Interop.PhysicalDevice>((uint)(physicalDeviceCount)));
+                Interop.Commands.vkEnumeratePhysicalDevices(this.handle, &physicalDeviceCount, marshalledPhysicalDevices);
                 if (marshalledPhysicalDevices != null)
                 {
                     var fieldPointer = new PhysicalDevice[(uint)(physicalDeviceCount)];
@@ -147,6 +149,8 @@ namespace SharpVk
                 uint propertyCount = default(uint);
                 Interop.LayerProperties* marshalledProperties = default(Interop.LayerProperties*);
                 Interop.Commands.vkEnumerateInstanceLayerProperties(&propertyCount, marshalledProperties);
+                marshalledProperties = (Interop.LayerProperties*)(Interop.HeapUtil.Allocate<Interop.LayerProperties>((uint)(propertyCount)));
+                Interop.Commands.vkEnumerateInstanceLayerProperties(&propertyCount, marshalledProperties);
                 if (marshalledProperties != null)
                 {
                     var fieldPointer = new LayerProperties[(uint)(propertyCount)];
@@ -180,6 +184,8 @@ namespace SharpVk
                 byte* marshalledLayerName = default(byte*);
                 Interop.ExtensionProperties* marshalledProperties = default(Interop.ExtensionProperties*);
                 marshalledLayerName = Interop.HeapUtil.MarshalTo(layerName);
+                Interop.Commands.vkEnumerateInstanceExtensionProperties(marshalledLayerName, &propertyCount, marshalledProperties);
+                marshalledProperties = (Interop.ExtensionProperties*)(Interop.HeapUtil.Allocate<Interop.ExtensionProperties>((uint)(propertyCount)));
                 Interop.Commands.vkEnumerateInstanceExtensionProperties(marshalledLayerName, &propertyCount, marshalledProperties);
                 if (marshalledProperties != null)
                 {

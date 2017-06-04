@@ -156,6 +156,10 @@ namespace SharpVk.Generator.Emission
                 case AssignActionType.Assign:
                     codeBlock.EmitAssignment(targetExpression, action.ValueExpression);
                     break;
+                case AssignActionType.Alloc:
+                    codeBlock.EmitAssignment(targetExpression,
+                                        Cast(action.MemberType + "*", StaticCall("Interop.HeapUtil", $"Allocate<{action.MemberType}>", action.LengthExpression)));
+                    break;
                 case AssignActionType.AllocAndAssign:
                     codeBlock.EmitAssignment(targetExpression,
                                         Cast(action.MemberType + "*", StaticCall("Interop.HeapUtil", $"Allocate<{action.MemberType}>")));

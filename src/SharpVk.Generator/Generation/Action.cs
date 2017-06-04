@@ -48,6 +48,7 @@ namespace SharpVk.Generator.Generation
     public enum AssignActionType
     {
         Assign,
+        Alloc,
         AllocAndAssign,
         MarshalFrom,
         MarshalFromAddressOf,
