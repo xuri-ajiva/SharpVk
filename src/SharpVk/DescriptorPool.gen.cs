@@ -77,7 +77,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void FreeDescriptorSets(uint descriptorSetCount, DescriptorSet[] descriptorSets)
+        public unsafe void FreeDescriptorSets(DescriptorSet[] descriptorSets)
         {
             try
             {
@@ -95,7 +95,7 @@ namespace SharpVk
                 {
                     marshalledDescriptorSets = null;
                 }
-                Interop.Commands.vkFreeDescriptorSets(default(Interop.Device), this.handle, descriptorSetCount, marshalledDescriptorSets);
+                Interop.Commands.vkFreeDescriptorSets(default(Interop.Device), this.handle, (uint)(descriptorSets?.Length ?? 0), marshalledDescriptorSets);
             }
             finally
             {

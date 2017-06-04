@@ -128,9 +128,7 @@ namespace SharpVk
         {
             try
             {
-                byte* marshalledName = default(byte*);
-                marshalledName = Interop.HeapUtil.MarshalTo(name);
-                Interop.Commands.vkGetInstanceProcAddr(this.handle, marshalledName);
+                Interop.Commands.vkGetInstanceProcAddr(this.handle, Interop.HeapUtil.MarshalTo(name));
             }
             finally
             {
@@ -181,12 +179,10 @@ namespace SharpVk
             {
                 ExtensionProperties[] result = default(ExtensionProperties[]);
                 uint propertyCount = default(uint);
-                byte* marshalledLayerName = default(byte*);
                 Interop.ExtensionProperties* marshalledProperties = default(Interop.ExtensionProperties*);
-                marshalledLayerName = Interop.HeapUtil.MarshalTo(layerName);
-                Interop.Commands.vkEnumerateInstanceExtensionProperties(marshalledLayerName, &propertyCount, marshalledProperties);
+                Interop.Commands.vkEnumerateInstanceExtensionProperties(Interop.HeapUtil.MarshalTo(layerName), &propertyCount, marshalledProperties);
                 marshalledProperties = (Interop.ExtensionProperties*)(Interop.HeapUtil.Allocate<Interop.ExtensionProperties>((uint)(propertyCount)));
-                Interop.Commands.vkEnumerateInstanceExtensionProperties(marshalledLayerName, &propertyCount, marshalledProperties);
+                Interop.Commands.vkEnumerateInstanceExtensionProperties(Interop.HeapUtil.MarshalTo(layerName), &propertyCount, marshalledProperties);
                 if (marshalledProperties != null)
                 {
                     var fieldPointer = new ExtensionProperties[(uint)(propertyCount)];

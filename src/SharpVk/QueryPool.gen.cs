@@ -62,7 +62,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void GetResults(uint firstQuery, uint queryCount, HostSize dataSize, byte[] data, DeviceSize stride, QueryResultFlags flags)
+        public unsafe void GetResults(uint firstQuery, uint queryCount, byte[] data, DeviceSize stride, QueryResultFlags flags)
         {
             try
             {
@@ -80,7 +80,7 @@ namespace SharpVk
                 {
                     marshalledData = null;
                 }
-                Interop.Commands.vkGetQueryPoolResults(default(Interop.Device), this.handle, firstQuery, queryCount, dataSize, marshalledData, stride, flags);
+                Interop.Commands.vkGetQueryPoolResults(default(Interop.Device), this.handle, firstQuery, queryCount, (HostSize)(data?.Length ?? 0), marshalledData, stride, flags);
             }
             finally
             {

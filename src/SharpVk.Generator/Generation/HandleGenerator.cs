@@ -21,14 +21,16 @@ namespace SharpVk.Generator.Generation
         private readonly Dictionary<string, IEnumerable<CommandDeclaration>> commands;
         private readonly IEnumerable<IMarshalValueRule> marshallingRules;
         private readonly IEnumerable<IMemberPatternRule> memberPatternRules;
+        private readonly ParsedExpressionTokenCheck tokenCheck;
 
-        public HandleGenerator(Dictionary<string, TypeDeclaration> typeData, NameLookup nameLookup, IEnumerable<CommandDeclaration> commands, IEnumerable<IMarshalValueRule> marshallingRules, IEnumerable<IMemberPatternRule> memberPatternRules)
+        public HandleGenerator(Dictionary<string, TypeDeclaration> typeData, NameLookup nameLookup, IEnumerable<CommandDeclaration> commands, IEnumerable<IMarshalValueRule> marshallingRules, IEnumerable<IMemberPatternRule> memberPatternRules, ParsedExpressionTokenCheck tokenCheck)
         {
             this.typeData = typeData;
             this.nameLookup = nameLookup;
             this.commands = commands.GroupBy(x => x.HandleTypeName).ToDictionary(x => x.Key, x => x.AsEnumerable());
             this.marshallingRules = marshallingRules;
             this.memberPatternRules = memberPatternRules;
+            this.tokenCheck = tokenCheck;
         }
 
         public void Execute(IServiceCollection services)
@@ -230,7 +232,7 @@ namespace SharpVk.Generator.Generation
                         newMethod.ReturnType = patternInfo.Public.Value.Type;
                     }
                 }
-                else if(parameter.Type.PointerType.IsPointer())
+                else
                 {
                     var patternInfo = new MemberPatternInfo();
 
@@ -275,31 +277,28 @@ namespace SharpVk.Generator.Generation
                             marshalledName = GetMarshalledName(patternInfo.Interop.Name);
                         }
 
-                        marshalToActions.Add(new DeclarationAction
-                        {
-                            MemberType = patternInfo.InteropFullType,
-                            MemberName = marshalledName
-                        });
+                        var newMarshalToActions = patternInfo.MarshalTo.Select(action => action(targetName => Variable(marshalledName), getValue));
 
-                        marshalledValues.Add(Variable(marshalledName));
+                        var lastParam = command.Params.Last();
+                        bool isLenForLastParam = lastParamReturns && lastParam.Dimensions != null && lastParam.Dimensions.Any(dimension => dimension.Type == LenType.Expression && this.tokenCheck.Check(dimension.Value, parameter.VkName));
 
-                        actionList.AddRange(patternInfo.MarshalTo.Select(action => action(targetName => Variable(marshalledName), getValue)));
-                    }
-                }
-                else
-                {
-                    var marshalInfo = this.marshallingRules.ApplyFirst(parameter.Type);
-                    
-                    result = new ParamActionDefinition
-                    {
-                        Param = new ParamDefinition
+                        if (!isLenForLastParam && newMarshalToActions.Count() == 1 && newMarshalToActions.First() is AssignAction newAssignAction && newAssignAction.Type == AssignActionType.Assign && !newAssignAction.IsLoop)
                         {
-                            Name = parameter.Name,
-                            Type = marshalInfo.MemberType
+                            marshalledValues.Add(newAssignAction.ValueExpression);
                         }
-                    };
+                        else
+                        {
+                            marshalToActions.Add(new DeclarationAction
+                            {
+                                MemberType = patternInfo.InteropFullType,
+                                MemberName = marshalledName
+                            });
 
-                    marshalledValues.Add(marshalInfo.BuildMarshalToValueExpression(Variable(parameter.Name)));
+                            marshalledValues.Add(Variable(marshalledName));
+
+                            actionList.AddRange(newMarshalToActions);
+                        }
+                    }
                 }
             }
             else if (parameter.Type.VkName == command.HandleTypeName)

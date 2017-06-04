@@ -104,7 +104,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void SetViewport(uint firstViewport, uint viewportCount, Viewport[] viewports)
+        public unsafe void SetViewport(uint firstViewport, Viewport[] viewports)
         {
             try
             {
@@ -122,7 +122,7 @@ namespace SharpVk
                 {
                     marshalledViewports = null;
                 }
-                Interop.Commands.vkCmdSetViewport(this.handle, firstViewport, viewportCount, marshalledViewports);
+                Interop.Commands.vkCmdSetViewport(this.handle, firstViewport, (uint)(viewports?.Length ?? 0), marshalledViewports);
             }
             finally
             {
@@ -133,7 +133,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void SetScissor(uint firstScissor, uint scissorCount, Rect2D[] scissors)
+        public unsafe void SetScissor(uint firstScissor, Rect2D[] scissors)
         {
             try
             {
@@ -151,7 +151,7 @@ namespace SharpVk
                 {
                     marshalledScissors = null;
                 }
-                Interop.Commands.vkCmdSetScissor(this.handle, firstScissor, scissorCount, marshalledScissors);
+                Interop.Commands.vkCmdSetScissor(this.handle, firstScissor, (uint)(scissors?.Length ?? 0), marshalledScissors);
             }
             finally
             {
@@ -267,7 +267,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void BindDescriptorSets(PipelineBindPoint pipelineBindPoint, PipelineLayout layout, uint firstSet, uint descriptorSetCount, DescriptorSet[] descriptorSets, uint dynamicOffsetCount, uint[] dynamicOffsets)
+        public unsafe void BindDescriptorSets(PipelineBindPoint pipelineBindPoint, PipelineLayout layout, uint firstSet, DescriptorSet[] descriptorSets, uint[] dynamicOffsets)
         {
             try
             {
@@ -299,7 +299,7 @@ namespace SharpVk
                 {
                     marshalledDynamicOffsets = null;
                 }
-                Interop.Commands.vkCmdBindDescriptorSets(this.handle, pipelineBindPoint, layout.handle, firstSet, descriptorSetCount, marshalledDescriptorSets, dynamicOffsetCount, marshalledDynamicOffsets);
+                Interop.Commands.vkCmdBindDescriptorSets(this.handle, pipelineBindPoint, layout.handle, firstSet, (uint)(descriptorSets?.Length ?? 0), marshalledDescriptorSets, (uint)(dynamicOffsets?.Length ?? 0), marshalledDynamicOffsets);
             }
             finally
             {
@@ -325,7 +325,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void BindVertexBuffers(uint firstBinding, uint bindingCount, Buffer[] buffers, DeviceSize[] offsets)
+        public unsafe void BindVertexBuffers(uint firstBinding, Buffer[] buffers, DeviceSize[] offsets)
         {
             try
             {
@@ -357,7 +357,7 @@ namespace SharpVk
                 {
                     marshalledOffsets = null;
                 }
-                Interop.Commands.vkCmdBindVertexBuffers(this.handle, firstBinding, bindingCount, marshalledBuffers, marshalledOffsets);
+                Interop.Commands.vkCmdBindVertexBuffers(this.handle, firstBinding, (uint)(buffers?.Length ?? 0), marshalledBuffers, marshalledOffsets);
             }
             finally
             {
@@ -458,7 +458,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void CopyBuffer(Buffer sourceBuffer, Buffer destinationBuffer, uint regionCount, BufferCopy[] regions)
+        public unsafe void CopyBuffer(Buffer sourceBuffer, Buffer destinationBuffer, BufferCopy[] regions)
         {
             try
             {
@@ -476,7 +476,7 @@ namespace SharpVk
                 {
                     marshalledRegions = null;
                 }
-                Interop.Commands.vkCmdCopyBuffer(this.handle, sourceBuffer.handle, destinationBuffer.handle, regionCount, marshalledRegions);
+                Interop.Commands.vkCmdCopyBuffer(this.handle, sourceBuffer.handle, destinationBuffer.handle, (uint)(regions?.Length ?? 0), marshalledRegions);
             }
             finally
             {
@@ -487,7 +487,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void CopyImage(Image sourceImage, ImageLayout sourceImageLayout, Image destinationImage, ImageLayout destinationImageLayout, uint regionCount, ImageCopy[] regions)
+        public unsafe void CopyImage(Image sourceImage, ImageLayout sourceImageLayout, Image destinationImage, ImageLayout destinationImageLayout, ImageCopy[] regions)
         {
             try
             {
@@ -505,7 +505,7 @@ namespace SharpVk
                 {
                     marshalledRegions = null;
                 }
-                Interop.Commands.vkCmdCopyImage(this.handle, sourceImage.handle, sourceImageLayout, destinationImage.handle, destinationImageLayout, regionCount, marshalledRegions);
+                Interop.Commands.vkCmdCopyImage(this.handle, sourceImage.handle, sourceImageLayout, destinationImage.handle, destinationImageLayout, (uint)(regions?.Length ?? 0), marshalledRegions);
             }
             finally
             {
@@ -516,7 +516,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void BlitImage(Image sourceImage, ImageLayout sourceImageLayout, Image destinationImage, ImageLayout destinationImageLayout, uint regionCount, ImageBlit[] regions, Filter filter)
+        public unsafe void BlitImage(Image sourceImage, ImageLayout sourceImageLayout, Image destinationImage, ImageLayout destinationImageLayout, ImageBlit[] regions, Filter filter)
         {
             try
             {
@@ -534,7 +534,7 @@ namespace SharpVk
                 {
                     marshalledRegions = null;
                 }
-                Interop.Commands.vkCmdBlitImage(this.handle, sourceImage.handle, sourceImageLayout, destinationImage.handle, destinationImageLayout, regionCount, marshalledRegions, filter);
+                Interop.Commands.vkCmdBlitImage(this.handle, sourceImage.handle, sourceImageLayout, destinationImage.handle, destinationImageLayout, (uint)(regions?.Length ?? 0), marshalledRegions, filter);
             }
             finally
             {
@@ -545,7 +545,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void CopyBufferToImage(Buffer sourceBuffer, Image destinationImage, ImageLayout destinationImageLayout, uint regionCount, BufferImageCopy[] regions)
+        public unsafe void CopyBufferToImage(Buffer sourceBuffer, Image destinationImage, ImageLayout destinationImageLayout, BufferImageCopy[] regions)
         {
             try
             {
@@ -563,7 +563,7 @@ namespace SharpVk
                 {
                     marshalledRegions = null;
                 }
-                Interop.Commands.vkCmdCopyBufferToImage(this.handle, sourceBuffer.handle, destinationImage.handle, destinationImageLayout, regionCount, marshalledRegions);
+                Interop.Commands.vkCmdCopyBufferToImage(this.handle, sourceBuffer.handle, destinationImage.handle, destinationImageLayout, (uint)(regions?.Length ?? 0), marshalledRegions);
             }
             finally
             {
@@ -574,7 +574,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void CopyImageToBuffer(Image sourceImage, ImageLayout sourceImageLayout, Buffer destinationBuffer, uint regionCount, BufferImageCopy[] regions)
+        public unsafe void CopyImageToBuffer(Image sourceImage, ImageLayout sourceImageLayout, Buffer destinationBuffer, BufferImageCopy[] regions)
         {
             try
             {
@@ -592,7 +592,7 @@ namespace SharpVk
                 {
                     marshalledRegions = null;
                 }
-                Interop.Commands.vkCmdCopyImageToBuffer(this.handle, sourceImage.handle, sourceImageLayout, destinationBuffer.handle, regionCount, marshalledRegions);
+                Interop.Commands.vkCmdCopyImageToBuffer(this.handle, sourceImage.handle, sourceImageLayout, destinationBuffer.handle, (uint)(regions?.Length ?? 0), marshalledRegions);
             }
             finally
             {
@@ -603,7 +603,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void UpdateBuffer(Buffer destinationBuffer, DeviceSize destinationOffset, DeviceSize dataSize, byte[] data)
+        public unsafe void UpdateBuffer(Buffer destinationBuffer, DeviceSize destinationOffset, byte[] data)
         {
             try
             {
@@ -621,7 +621,7 @@ namespace SharpVk
                 {
                     marshalledData = null;
                 }
-                Interop.Commands.vkCmdUpdateBuffer(this.handle, destinationBuffer.handle, destinationOffset, dataSize, marshalledData);
+                Interop.Commands.vkCmdUpdateBuffer(this.handle, destinationBuffer.handle, destinationOffset, (DeviceSize)(data?.Length ?? 0), marshalledData);
             }
             finally
             {
@@ -647,7 +647,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void ClearColorImage(Image image, ImageLayout imageLayout, ClearColorValue color, uint rangeCount, ImageSubresourceRange[] ranges)
+        public unsafe void ClearColorImage(Image image, ImageLayout imageLayout, ClearColorValue color, ImageSubresourceRange[] ranges)
         {
             try
             {
@@ -668,7 +668,7 @@ namespace SharpVk
                 {
                     marshalledRanges = null;
                 }
-                Interop.Commands.vkCmdClearColorImage(this.handle, image.handle, imageLayout, marshalledColor, rangeCount, marshalledRanges);
+                Interop.Commands.vkCmdClearColorImage(this.handle, image.handle, imageLayout, marshalledColor, (uint)(ranges?.Length ?? 0), marshalledRanges);
             }
             finally
             {
@@ -679,7 +679,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void ClearDepthStencilImage(Image image, ImageLayout imageLayout, ClearDepthStencilValue depthStencil, uint rangeCount, ImageSubresourceRange[] ranges)
+        public unsafe void ClearDepthStencilImage(Image image, ImageLayout imageLayout, ClearDepthStencilValue depthStencil, ImageSubresourceRange[] ranges)
         {
             try
             {
@@ -700,7 +700,7 @@ namespace SharpVk
                 {
                     marshalledRanges = null;
                 }
-                Interop.Commands.vkCmdClearDepthStencilImage(this.handle, image.handle, imageLayout, marshalledDepthStencil, rangeCount, marshalledRanges);
+                Interop.Commands.vkCmdClearDepthStencilImage(this.handle, image.handle, imageLayout, marshalledDepthStencil, (uint)(ranges?.Length ?? 0), marshalledRanges);
             }
             finally
             {
@@ -711,7 +711,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void ClearAttachments(uint attachmentCount, ClearAttachment[] attachments, uint rectCount, ClearRect[] rects)
+        public unsafe void ClearAttachments(ClearAttachment[] attachments, ClearRect[] rects)
         {
             try
             {
@@ -743,7 +743,7 @@ namespace SharpVk
                 {
                     marshalledRects = null;
                 }
-                Interop.Commands.vkCmdClearAttachments(this.handle, attachmentCount, marshalledAttachments, rectCount, marshalledRects);
+                Interop.Commands.vkCmdClearAttachments(this.handle, (uint)(attachments?.Length ?? 0), marshalledAttachments, (uint)(rects?.Length ?? 0), marshalledRects);
             }
             finally
             {
@@ -754,7 +754,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void ResolveImage(Image sourceImage, ImageLayout sourceImageLayout, Image destinationImage, ImageLayout destinationImageLayout, uint regionCount, ImageResolve[] regions)
+        public unsafe void ResolveImage(Image sourceImage, ImageLayout sourceImageLayout, Image destinationImage, ImageLayout destinationImageLayout, ImageResolve[] regions)
         {
             try
             {
@@ -772,7 +772,7 @@ namespace SharpVk
                 {
                     marshalledRegions = null;
                 }
-                Interop.Commands.vkCmdResolveImage(this.handle, sourceImage.handle, sourceImageLayout, destinationImage.handle, destinationImageLayout, regionCount, marshalledRegions);
+                Interop.Commands.vkCmdResolveImage(this.handle, sourceImage.handle, sourceImageLayout, destinationImage.handle, destinationImageLayout, (uint)(regions?.Length ?? 0), marshalledRegions);
             }
             finally
             {
@@ -813,7 +813,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void WaitEvents(uint eventCount, Event[] events, PipelineStageFlags sourceStageMask, PipelineStageFlags destinationStageMask, uint memoryBarrierCount, MemoryBarrier[] memoryBarriers, uint bufferMemoryBarrierCount, BufferMemoryBarrier[] bufferMemoryBarriers, uint imageMemoryBarrierCount, ImageMemoryBarrier[] imageMemoryBarriers)
+        public unsafe void WaitEvents(Event[] events, PipelineStageFlags sourceStageMask, PipelineStageFlags destinationStageMask, MemoryBarrier[] memoryBarriers, BufferMemoryBarrier[] bufferMemoryBarriers, ImageMemoryBarrier[] imageMemoryBarriers)
         {
             try
             {
@@ -873,7 +873,7 @@ namespace SharpVk
                 {
                     marshalledImageMemoryBarriers = null;
                 }
-                Interop.Commands.vkCmdWaitEvents(this.handle, eventCount, marshalledEvents, sourceStageMask, destinationStageMask, memoryBarrierCount, marshalledMemoryBarriers, bufferMemoryBarrierCount, marshalledBufferMemoryBarriers, imageMemoryBarrierCount, marshalledImageMemoryBarriers);
+                Interop.Commands.vkCmdWaitEvents(this.handle, (uint)(events?.Length ?? 0), marshalledEvents, sourceStageMask, destinationStageMask, (uint)(memoryBarriers?.Length ?? 0), marshalledMemoryBarriers, (uint)(bufferMemoryBarriers?.Length ?? 0), marshalledBufferMemoryBarriers, (uint)(imageMemoryBarriers?.Length ?? 0), marshalledImageMemoryBarriers);
             }
             finally
             {
@@ -884,7 +884,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void PipelineBarrier(PipelineStageFlags sourceStageMask, PipelineStageFlags destinationStageMask, DependencyFlags dependencyFlags, uint memoryBarrierCount, MemoryBarrier[] memoryBarriers, uint bufferMemoryBarrierCount, BufferMemoryBarrier[] bufferMemoryBarriers, uint imageMemoryBarrierCount, ImageMemoryBarrier[] imageMemoryBarriers)
+        public unsafe void PipelineBarrier(PipelineStageFlags sourceStageMask, PipelineStageFlags destinationStageMask, DependencyFlags dependencyFlags, MemoryBarrier[] memoryBarriers, BufferMemoryBarrier[] bufferMemoryBarriers, ImageMemoryBarrier[] imageMemoryBarriers)
         {
             try
             {
@@ -930,7 +930,7 @@ namespace SharpVk
                 {
                     marshalledImageMemoryBarriers = null;
                 }
-                Interop.Commands.vkCmdPipelineBarrier(this.handle, sourceStageMask, destinationStageMask, dependencyFlags, memoryBarrierCount, marshalledMemoryBarriers, bufferMemoryBarrierCount, marshalledBufferMemoryBarriers, imageMemoryBarrierCount, marshalledImageMemoryBarriers);
+                Interop.Commands.vkCmdPipelineBarrier(this.handle, sourceStageMask, destinationStageMask, dependencyFlags, (uint)(memoryBarriers?.Length ?? 0), marshalledMemoryBarriers, (uint)(bufferMemoryBarriers?.Length ?? 0), marshalledBufferMemoryBarriers, (uint)(imageMemoryBarriers?.Length ?? 0), marshalledImageMemoryBarriers);
             }
             finally
             {
@@ -1016,7 +1016,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void PushConstants(PipelineLayout layout, ShaderStageFlags stageFlags, uint offset, uint size, byte[] values)
+        public unsafe void PushConstants(PipelineLayout layout, ShaderStageFlags stageFlags, uint offset, byte[] values)
         {
             try
             {
@@ -1034,7 +1034,7 @@ namespace SharpVk
                 {
                     marshalledValues = null;
                 }
-                Interop.Commands.vkCmdPushConstants(this.handle, layout.handle, stageFlags, offset, size, marshalledValues);
+                Interop.Commands.vkCmdPushConstants(this.handle, layout.handle, stageFlags, offset, (uint)(values?.Length ?? 0), marshalledValues);
             }
             finally
             {
@@ -1093,7 +1093,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void ExecuteCommands(uint commandBufferCount, CommandBuffer[] commandBuffers)
+        public unsafe void ExecuteCommands(CommandBuffer[] commandBuffers)
         {
             try
             {
@@ -1111,7 +1111,7 @@ namespace SharpVk
                 {
                     marshalledCommandBuffers = null;
                 }
-                Interop.Commands.vkCmdExecuteCommands(this.handle, commandBufferCount, marshalledCommandBuffers);
+                Interop.Commands.vkCmdExecuteCommands(this.handle, (uint)(commandBuffers?.Length ?? 0), marshalledCommandBuffers);
             }
             finally
             {

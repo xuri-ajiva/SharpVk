@@ -77,7 +77,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void FreeCommandBuffers(uint commandBufferCount, CommandBuffer[] commandBuffers)
+        public unsafe void FreeCommandBuffers(CommandBuffer[] commandBuffers)
         {
             try
             {
@@ -95,7 +95,7 @@ namespace SharpVk
                 {
                     marshalledCommandBuffers = null;
                 }
-                Interop.Commands.vkFreeCommandBuffers(default(Interop.Device), this.handle, commandBufferCount, marshalledCommandBuffers);
+                Interop.Commands.vkFreeCommandBuffers(default(Interop.Device), this.handle, (uint)(commandBuffers?.Length ?? 0), marshalledCommandBuffers);
             }
             finally
             {

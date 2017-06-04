@@ -45,9 +45,7 @@ namespace SharpVk
         {
             try
             {
-                byte* marshalledName = default(byte*);
-                marshalledName = Interop.HeapUtil.MarshalTo(name);
-                Interop.Commands.vkGetDeviceProcAddr(this.handle, marshalledName);
+                Interop.Commands.vkGetDeviceProcAddr(this.handle, Interop.HeapUtil.MarshalTo(name));
             }
             finally
             {
@@ -141,7 +139,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void FlushMappedMemoryRanges(uint memoryRangeCount, MappedMemoryRange[] memoryRanges)
+        public unsafe void FlushMappedMemoryRanges(MappedMemoryRange[] memoryRanges)
         {
             try
             {
@@ -159,7 +157,7 @@ namespace SharpVk
                 {
                     marshalledMemoryRanges = null;
                 }
-                Interop.Commands.vkFlushMappedMemoryRanges(this.handle, memoryRangeCount, marshalledMemoryRanges);
+                Interop.Commands.vkFlushMappedMemoryRanges(this.handle, (uint)(memoryRanges?.Length ?? 0), marshalledMemoryRanges);
             }
             finally
             {
@@ -170,7 +168,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void InvalidateMappedMemoryRanges(uint memoryRangeCount, MappedMemoryRange[] memoryRanges)
+        public unsafe void InvalidateMappedMemoryRanges(MappedMemoryRange[] memoryRanges)
         {
             try
             {
@@ -188,7 +186,7 @@ namespace SharpVk
                 {
                     marshalledMemoryRanges = null;
                 }
-                Interop.Commands.vkInvalidateMappedMemoryRanges(this.handle, memoryRangeCount, marshalledMemoryRanges);
+                Interop.Commands.vkInvalidateMappedMemoryRanges(this.handle, (uint)(memoryRanges?.Length ?? 0), marshalledMemoryRanges);
             }
             finally
             {
@@ -227,7 +225,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void ResetFences(uint fenceCount, Fence[] fences)
+        public unsafe void ResetFences(Fence[] fences)
         {
             try
             {
@@ -245,7 +243,7 @@ namespace SharpVk
                 {
                     marshalledFences = null;
                 }
-                Interop.Commands.vkResetFences(this.handle, fenceCount, marshalledFences);
+                Interop.Commands.vkResetFences(this.handle, (uint)(fences?.Length ?? 0), marshalledFences);
             }
             finally
             {
@@ -256,7 +254,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void WaitForFences(uint fenceCount, Fence[] fences, Bool32 waitAll, ulong timeout)
+        public unsafe void WaitForFences(Fence[] fences, Bool32 waitAll, ulong timeout)
         {
             try
             {
@@ -274,7 +272,7 @@ namespace SharpVk
                 {
                     marshalledFences = null;
                 }
-                Interop.Commands.vkWaitForFences(this.handle, fenceCount, marshalledFences, waitAll, timeout);
+                Interop.Commands.vkWaitForFences(this.handle, (uint)(fences?.Length ?? 0), marshalledFences, waitAll, timeout);
             }
             finally
             {
@@ -670,7 +668,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void UpdateDescriptorSets(uint descriptorWriteCount, WriteDescriptorSet[] descriptorWrites, uint descriptorCopyCount, CopyDescriptorSet[] descriptorCopies)
+        public unsafe void UpdateDescriptorSets(WriteDescriptorSet[] descriptorWrites, CopyDescriptorSet[] descriptorCopies)
         {
             try
             {
@@ -702,7 +700,7 @@ namespace SharpVk
                 {
                     marshalledDescriptorCopies = null;
                 }
-                Interop.Commands.vkUpdateDescriptorSets(this.handle, descriptorWriteCount, marshalledDescriptorWrites, descriptorCopyCount, marshalledDescriptorCopies);
+                Interop.Commands.vkUpdateDescriptorSets(this.handle, (uint)(descriptorWrites?.Length ?? 0), marshalledDescriptorWrites, (uint)(descriptorCopies?.Length ?? 0), marshalledDescriptorCopies);
             }
             finally
             {

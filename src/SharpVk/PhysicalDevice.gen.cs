@@ -238,12 +238,10 @@ namespace SharpVk
             {
                 ExtensionProperties[] result = default(ExtensionProperties[]);
                 uint propertyCount = default(uint);
-                byte* marshalledLayerName = default(byte*);
                 Interop.ExtensionProperties* marshalledProperties = default(Interop.ExtensionProperties*);
-                marshalledLayerName = Interop.HeapUtil.MarshalTo(layerName);
-                Interop.Commands.vkEnumerateDeviceExtensionProperties(this.handle, marshalledLayerName, &propertyCount, marshalledProperties);
+                Interop.Commands.vkEnumerateDeviceExtensionProperties(this.handle, Interop.HeapUtil.MarshalTo(layerName), &propertyCount, marshalledProperties);
                 marshalledProperties = (Interop.ExtensionProperties*)(Interop.HeapUtil.Allocate<Interop.ExtensionProperties>((uint)(propertyCount)));
-                Interop.Commands.vkEnumerateDeviceExtensionProperties(this.handle, marshalledLayerName, &propertyCount, marshalledProperties);
+                Interop.Commands.vkEnumerateDeviceExtensionProperties(this.handle, Interop.HeapUtil.MarshalTo(layerName), &propertyCount, marshalledProperties);
                 if (marshalledProperties != null)
                 {
                     var fieldPointer = new ExtensionProperties[(uint)(propertyCount)];
