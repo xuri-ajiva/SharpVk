@@ -84,12 +84,8 @@ namespace SharpVk
             try
             {
                 Queue result = default(Queue);
-                uint marshalledQueueFamilyIndex = default(uint);
-                uint marshalledQueueIndex = default(uint);
                 Interop.Queue marshalledQueue = default(Interop.Queue);
-                marshalledQueueFamilyIndex = queueFamilyIndex;
-                marshalledQueueIndex = queueIndex;
-                Interop.Commands.vkGetDeviceQueue(this.handle, marshalledQueueFamilyIndex, marshalledQueueIndex, &marshalledQueue);
+                Interop.Commands.vkGetDeviceQueue(this.handle, queueFamilyIndex, queueIndex, &marshalledQueue);
                 result = new Queue(marshalledQueue);
                 return result;
             }
@@ -145,13 +141,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void FlushMappedMemoryRanges(MappedMemoryRange[] memoryRanges)
+        public unsafe void FlushMappedMemoryRanges(uint memoryRangeCount, MappedMemoryRange[] memoryRanges)
         {
             try
             {
-                uint memoryRangeCount = default(uint);
                 Interop.MappedMemoryRange* marshalledMemoryRanges = default(Interop.MappedMemoryRange*);
-                memoryRangeCount = (uint)(memoryRanges?.Length ?? 0);
                 if (memoryRanges != null)
                 {
                     var fieldPointer = (Interop.MappedMemoryRange*)(Interop.HeapUtil.AllocateAndClear<Interop.MappedMemoryRange>(memoryRanges.Length).ToPointer());
@@ -176,13 +170,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void InvalidateMappedMemoryRanges(MappedMemoryRange[] memoryRanges)
+        public unsafe void InvalidateMappedMemoryRanges(uint memoryRangeCount, MappedMemoryRange[] memoryRanges)
         {
             try
             {
-                uint memoryRangeCount = default(uint);
                 Interop.MappedMemoryRange* marshalledMemoryRanges = default(Interop.MappedMemoryRange*);
-                memoryRangeCount = (uint)(memoryRanges?.Length ?? 0);
                 if (memoryRanges != null)
                 {
                     var fieldPointer = (Interop.MappedMemoryRange*)(Interop.HeapUtil.AllocateAndClear<Interop.MappedMemoryRange>(memoryRanges.Length).ToPointer());
@@ -235,13 +227,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void ResetFences(Fence[] fences)
+        public unsafe void ResetFences(uint fenceCount, Fence[] fences)
         {
             try
             {
-                uint fenceCount = default(uint);
                 Interop.Fence* marshalledFences = default(Interop.Fence*);
-                fenceCount = (uint)(fences?.Length ?? 0);
                 if (fences != null)
                 {
                     var fieldPointer = (Interop.Fence*)(Interop.HeapUtil.AllocateAndClear<Interop.Fence>(fences.Length).ToPointer());
@@ -266,15 +256,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void WaitForFences(Fence[] fences, Bool32 waitAll, ulong timeout)
+        public unsafe void WaitForFences(uint fenceCount, Fence[] fences, Bool32 waitAll, ulong timeout)
         {
             try
             {
-                uint fenceCount = default(uint);
                 Interop.Fence* marshalledFences = default(Interop.Fence*);
-                Bool32 marshalledWaitAll = default(Bool32);
-                ulong marshalledTimeout = default(ulong);
-                fenceCount = (uint)(fences?.Length ?? 0);
                 if (fences != null)
                 {
                     var fieldPointer = (Interop.Fence*)(Interop.HeapUtil.AllocateAndClear<Interop.Fence>(fences.Length).ToPointer());
@@ -288,9 +274,7 @@ namespace SharpVk
                 {
                     marshalledFences = null;
                 }
-                marshalledWaitAll = waitAll;
-                marshalledTimeout = timeout;
-                Interop.Commands.vkWaitForFences(this.handle, fenceCount, marshalledFences, marshalledWaitAll, marshalledTimeout);
+                Interop.Commands.vkWaitForFences(this.handle, fenceCount, marshalledFences, waitAll, timeout);
             }
             finally
             {
@@ -686,15 +670,12 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void UpdateDescriptorSets(WriteDescriptorSet[] descriptorWrites, CopyDescriptorSet[] descriptorCopies)
+        public unsafe void UpdateDescriptorSets(uint descriptorWriteCount, WriteDescriptorSet[] descriptorWrites, uint descriptorCopyCount, CopyDescriptorSet[] descriptorCopies)
         {
             try
             {
-                uint descriptorWriteCount = default(uint);
                 Interop.WriteDescriptorSet* marshalledDescriptorWrites = default(Interop.WriteDescriptorSet*);
-                uint descriptorCopyCount = default(uint);
                 Interop.CopyDescriptorSet* marshalledDescriptorCopies = default(Interop.CopyDescriptorSet*);
-                descriptorWriteCount = (uint)(descriptorWrites?.Length ?? 0);
                 if (descriptorWrites != null)
                 {
                     var fieldPointer = (Interop.WriteDescriptorSet*)(Interop.HeapUtil.AllocateAndClear<Interop.WriteDescriptorSet>(descriptorWrites.Length).ToPointer());
@@ -708,7 +689,6 @@ namespace SharpVk
                 {
                     marshalledDescriptorWrites = null;
                 }
-                descriptorCopyCount = (uint)(descriptorCopies?.Length ?? 0);
                 if (descriptorCopies != null)
                 {
                     var fieldPointer = (Interop.CopyDescriptorSet*)(Interop.HeapUtil.AllocateAndClear<Interop.CopyDescriptorSet>(descriptorCopies.Length).ToPointer());

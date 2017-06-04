@@ -67,14 +67,8 @@ namespace SharpVk
             try
             {
                 IntPtr result = default(IntPtr);
-                DeviceSize marshalledOffset = default(DeviceSize);
-                DeviceSize marshalledSize = default(DeviceSize);
-                MemoryMapFlags marshalledFlags = default(MemoryMapFlags);
                 void* marshalledData = default(void*);
-                marshalledOffset = offset;
-                marshalledSize = size;
-                marshalledFlags = flags;
-                Interop.Commands.vkMapMemory(default(Interop.Device), this.handle, marshalledOffset, marshalledSize, marshalledFlags, &marshalledData);
+                Interop.Commands.vkMapMemory(default(Interop.Device), this.handle, offset, size, flags, &marshalledData);
                 result = new IntPtr(marshalledData);
                 return result;
             }

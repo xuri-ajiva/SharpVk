@@ -41,14 +41,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void Submit(SubmitInfo[] submits, Fence fence)
+        public unsafe void Submit(uint submitCount, SubmitInfo[] submits, Fence fence)
         {
             try
             {
-                uint submitCount = default(uint);
                 Interop.SubmitInfo* marshalledSubmits = default(Interop.SubmitInfo*);
-                Interop.Fence marshalledFence = default(Interop.Fence);
-                submitCount = (uint)(submits?.Length ?? 0);
                 if (submits != null)
                 {
                     var fieldPointer = (Interop.SubmitInfo*)(Interop.HeapUtil.AllocateAndClear<Interop.SubmitInfo>(submits.Length).ToPointer());
@@ -62,8 +59,7 @@ namespace SharpVk
                 {
                     marshalledSubmits = null;
                 }
-                marshalledFence = fence.handle;
-                Interop.Commands.vkQueueSubmit(this.handle, submitCount, marshalledSubmits, marshalledFence);
+                Interop.Commands.vkQueueSubmit(this.handle, submitCount, marshalledSubmits, fence.handle);
             }
             finally
             {
@@ -89,14 +85,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void BindSparse(BindSparseInfo[] bindInfo, Fence fence)
+        public unsafe void BindSparse(uint bindInfoCount, BindSparseInfo[] bindInfo, Fence fence)
         {
             try
             {
-                uint bindInfoCount = default(uint);
                 Interop.BindSparseInfo* marshalledBindInfo = default(Interop.BindSparseInfo*);
-                Interop.Fence marshalledFence = default(Interop.Fence);
-                bindInfoCount = (uint)(bindInfo?.Length ?? 0);
                 if (bindInfo != null)
                 {
                     var fieldPointer = (Interop.BindSparseInfo*)(Interop.HeapUtil.AllocateAndClear<Interop.BindSparseInfo>(bindInfo.Length).ToPointer());
@@ -110,8 +103,7 @@ namespace SharpVk
                 {
                     marshalledBindInfo = null;
                 }
-                marshalledFence = fence.handle;
-                Interop.Commands.vkQueueBindSparse(this.handle, bindInfoCount, marshalledBindInfo, marshalledFence);
+                Interop.Commands.vkQueueBindSparse(this.handle, bindInfoCount, marshalledBindInfo, fence.handle);
             }
             finally
             {

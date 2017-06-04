@@ -96,13 +96,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void MergePipelineCaches(PipelineCache[] sourceCaches)
+        public unsafe void MergePipelineCaches(uint sourceCacheCount, PipelineCache[] sourceCaches)
         {
             try
             {
-                uint sourceCacheCount = default(uint);
                 Interop.PipelineCache* marshalledSourceCaches = default(Interop.PipelineCache*);
-                sourceCacheCount = (uint)(sourceCaches?.Length ?? 0);
                 if (sourceCaches != null)
                 {
                     var fieldPointer = (Interop.PipelineCache*)(Interop.HeapUtil.AllocateAndClear<Interop.PipelineCache>(sourceCaches.Length).ToPointer());
@@ -127,16 +125,14 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe Pipeline[] CreateGraphicsPipelines(GraphicsPipelineCreateInfo[] createInfos, AllocationCallbacks? allocator = null)
+        public unsafe Pipeline[] CreateGraphicsPipelines(uint createInfoCount, GraphicsPipelineCreateInfo[] createInfos, AllocationCallbacks? allocator = null)
         {
             try
             {
                 Pipeline[] result = default(Pipeline[]);
-                uint createInfoCount = default(uint);
                 Interop.GraphicsPipelineCreateInfo* marshalledCreateInfos = default(Interop.GraphicsPipelineCreateInfo*);
                 Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
                 Interop.Pipeline* marshalledPipelines = default(Interop.Pipeline*);
-                createInfoCount = (uint)(createInfos?.Length ?? 0);
                 if (createInfos != null)
                 {
                     var fieldPointer = (Interop.GraphicsPipelineCreateInfo*)(Interop.HeapUtil.AllocateAndClear<Interop.GraphicsPipelineCreateInfo>(createInfos.Length).ToPointer());
@@ -180,16 +176,14 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe Pipeline[] CreateComputePipelines(ComputePipelineCreateInfo[] createInfos, AllocationCallbacks? allocator = null)
+        public unsafe Pipeline[] CreateComputePipelines(uint createInfoCount, ComputePipelineCreateInfo[] createInfos, AllocationCallbacks? allocator = null)
         {
             try
             {
                 Pipeline[] result = default(Pipeline[]);
-                uint createInfoCount = default(uint);
                 Interop.ComputePipelineCreateInfo* marshalledCreateInfos = default(Interop.ComputePipelineCreateInfo*);
                 Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
                 Interop.Pipeline* marshalledPipelines = default(Interop.Pipeline*);
-                createInfoCount = (uint)(createInfos?.Length ?? 0);
                 if (createInfos != null)
                 {
                     var fieldPointer = (Interop.ComputePipelineCreateInfo*)(Interop.HeapUtil.AllocateAndClear<Interop.ComputePipelineCreateInfo>(createInfos.Length).ToPointer());

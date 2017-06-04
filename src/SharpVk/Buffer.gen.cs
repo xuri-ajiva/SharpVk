@@ -64,11 +64,7 @@ namespace SharpVk
         {
             try
             {
-                Interop.DeviceMemory marshalledMemory = default(Interop.DeviceMemory);
-                DeviceSize marshalledMemoryOffset = default(DeviceSize);
-                marshalledMemory = memory.handle;
-                marshalledMemoryOffset = memoryOffset;
-                Interop.Commands.vkBindBufferMemory(default(Interop.Device), this.handle, marshalledMemory, marshalledMemoryOffset);
+                Interop.Commands.vkBindBufferMemory(default(Interop.Device), this.handle, memory.handle, memoryOffset);
             }
             finally
             {

@@ -230,7 +230,7 @@ namespace SharpVk.Generator.Generation
                         newMethod.ReturnType = patternInfo.Public.Value.Type;
                     }
                 }
-                else
+                else if(parameter.Type.PointerType.IsPointer())
                 {
                     var patternInfo = new MemberPatternInfo();
 
@@ -285,6 +285,21 @@ namespace SharpVk.Generator.Generation
 
                         actionList.AddRange(patternInfo.MarshalTo.Select(action => action(targetName => Variable(marshalledName), getValue)));
                     }
+                }
+                else
+                {
+                    var marshalInfo = this.marshallingRules.ApplyFirst(parameter.Type);
+                    
+                    result = new ParamActionDefinition
+                    {
+                        Param = new ParamDefinition
+                        {
+                            Name = parameter.Name,
+                            Type = marshalInfo.MemberType
+                        }
+                    };
+
+                    marshalledValues.Add(marshalInfo.BuildMarshalToValueExpression(Variable(parameter.Name)));
                 }
             }
             else if (parameter.Type.VkName == command.HandleTypeName)

@@ -66,9 +66,7 @@ namespace SharpVk
         {
             try
             {
-                CommandPoolResetFlags marshalledFlags = default(CommandPoolResetFlags);
-                marshalledFlags = flags;
-                Interop.Commands.vkResetCommandPool(default(Interop.Device), this.handle, marshalledFlags);
+                Interop.Commands.vkResetCommandPool(default(Interop.Device), this.handle, flags);
             }
             finally
             {
@@ -79,13 +77,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void FreeCommandBuffers(CommandBuffer[] commandBuffers)
+        public unsafe void FreeCommandBuffers(uint commandBufferCount, CommandBuffer[] commandBuffers)
         {
             try
             {
-                uint commandBufferCount = default(uint);
                 Interop.CommandBuffer* marshalledCommandBuffers = default(Interop.CommandBuffer*);
-                commandBufferCount = (uint)(commandBuffers?.Length ?? 0);
                 if (commandBuffers != null)
                 {
                     var fieldPointer = (Interop.CommandBuffer*)(Interop.HeapUtil.AllocateAndClear<Interop.CommandBuffer>(commandBuffers.Length).ToPointer());

@@ -66,9 +66,7 @@ namespace SharpVk
         {
             try
             {
-                DescriptorPoolResetFlags marshalledFlags = default(DescriptorPoolResetFlags);
-                marshalledFlags = flags;
-                Interop.Commands.vkResetDescriptorPool(default(Interop.Device), this.handle, marshalledFlags);
+                Interop.Commands.vkResetDescriptorPool(default(Interop.Device), this.handle, flags);
             }
             finally
             {
@@ -79,13 +77,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void FreeDescriptorSets(DescriptorSet[] descriptorSets)
+        public unsafe void FreeDescriptorSets(uint descriptorSetCount, DescriptorSet[] descriptorSets)
         {
             try
             {
-                uint descriptorSetCount = default(uint);
                 Interop.DescriptorSet* marshalledDescriptorSets = default(Interop.DescriptorSet*);
-                descriptorSetCount = (uint)(descriptorSets?.Length ?? 0);
                 if (descriptorSets != null)
                 {
                     var fieldPointer = (Interop.DescriptorSet*)(Interop.HeapUtil.AllocateAndClear<Interop.DescriptorSet>(descriptorSets.Length).ToPointer());

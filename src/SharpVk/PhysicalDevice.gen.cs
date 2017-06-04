@@ -137,10 +137,8 @@ namespace SharpVk
             try
             {
                 FormatProperties result = default(FormatProperties);
-                Format marshalledFormat = default(Format);
                 FormatProperties marshalledFormatProperties = default(FormatProperties);
-                marshalledFormat = format;
-                Interop.Commands.vkGetPhysicalDeviceFormatProperties(this.handle, marshalledFormat, &marshalledFormatProperties);
+                Interop.Commands.vkGetPhysicalDeviceFormatProperties(this.handle, format, &marshalledFormatProperties);
                 result = marshalledFormatProperties;
                 return result;
             }
@@ -158,18 +156,8 @@ namespace SharpVk
             try
             {
                 ImageFormatProperties result = default(ImageFormatProperties);
-                Format marshalledFormat = default(Format);
-                ImageType marshalledType = default(ImageType);
-                ImageTiling marshalledTiling = default(ImageTiling);
-                ImageUsageFlags marshalledUsage = default(ImageUsageFlags);
-                ImageCreateFlags marshalledFlags = default(ImageCreateFlags);
                 ImageFormatProperties marshalledImageFormatProperties = default(ImageFormatProperties);
-                marshalledFormat = format;
-                marshalledType = type;
-                marshalledTiling = tiling;
-                marshalledUsage = usage;
-                marshalledFlags = flags;
-                Interop.Commands.vkGetPhysicalDeviceImageFormatProperties(this.handle, marshalledFormat, marshalledType, marshalledTiling, marshalledUsage, marshalledFlags, &marshalledImageFormatProperties);
+                Interop.Commands.vkGetPhysicalDeviceImageFormatProperties(this.handle, format, type, tiling, usage, flags, &marshalledImageFormatProperties);
                 result = marshalledImageFormatProperties;
                 return result;
             }
@@ -286,20 +274,10 @@ namespace SharpVk
             {
                 SparseImageFormatProperties[] result = default(SparseImageFormatProperties[]);
                 uint propertyCount = default(uint);
-                Format marshalledFormat = default(Format);
-                ImageType marshalledType = default(ImageType);
-                SampleCountFlags marshalledSamples = default(SampleCountFlags);
-                ImageUsageFlags marshalledUsage = default(ImageUsageFlags);
-                ImageTiling marshalledTiling = default(ImageTiling);
                 SparseImageFormatProperties* marshalledProperties = default(SparseImageFormatProperties*);
-                marshalledFormat = format;
-                marshalledType = type;
-                marshalledSamples = samples;
-                marshalledUsage = usage;
-                marshalledTiling = tiling;
-                Interop.Commands.vkGetPhysicalDeviceSparseImageFormatProperties(this.handle, marshalledFormat, marshalledType, marshalledSamples, marshalledUsage, marshalledTiling, &propertyCount, marshalledProperties);
+                Interop.Commands.vkGetPhysicalDeviceSparseImageFormatProperties(this.handle, format, type, samples, usage, tiling, &propertyCount, marshalledProperties);
                 marshalledProperties = (SparseImageFormatProperties*)(Interop.HeapUtil.Allocate<SparseImageFormatProperties>((uint)(propertyCount)));
-                Interop.Commands.vkGetPhysicalDeviceSparseImageFormatProperties(this.handle, marshalledFormat, marshalledType, marshalledSamples, marshalledUsage, marshalledTiling, &propertyCount, marshalledProperties);
+                Interop.Commands.vkGetPhysicalDeviceSparseImageFormatProperties(this.handle, format, type, samples, usage, tiling, &propertyCount, marshalledProperties);
                 if (marshalledProperties != null)
                 {
                     var fieldPointer = new SparseImageFormatProperties[(uint)(propertyCount)];

@@ -62,19 +62,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void GetResults(uint firstQuery, uint queryCount, byte[] data, DeviceSize stride, QueryResultFlags flags)
+        public unsafe void GetResults(uint firstQuery, uint queryCount, HostSize dataSize, byte[] data, DeviceSize stride, QueryResultFlags flags)
         {
             try
             {
-                uint marshalledFirstQuery = default(uint);
-                uint marshalledQueryCount = default(uint);
-                HostSize dataSize = default(HostSize);
                 byte* marshalledData = default(byte*);
-                DeviceSize marshalledStride = default(DeviceSize);
-                QueryResultFlags marshalledFlags = default(QueryResultFlags);
-                marshalledFirstQuery = firstQuery;
-                marshalledQueryCount = queryCount;
-                dataSize = (HostSize)(data?.Length ?? 0);
                 if (data != null)
                 {
                     var fieldPointer = (byte*)(Interop.HeapUtil.AllocateAndClear<byte>(data.Length).ToPointer());
@@ -88,9 +80,7 @@ namespace SharpVk
                 {
                     marshalledData = null;
                 }
-                marshalledStride = stride;
-                marshalledFlags = flags;
-                Interop.Commands.vkGetQueryPoolResults(default(Interop.Device), this.handle, marshalledFirstQuery, marshalledQueryCount, dataSize, marshalledData, marshalledStride, marshalledFlags);
+                Interop.Commands.vkGetQueryPoolResults(default(Interop.Device), this.handle, firstQuery, queryCount, dataSize, marshalledData, stride, flags);
             }
             finally
             {
