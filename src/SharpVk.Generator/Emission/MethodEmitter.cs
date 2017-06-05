@@ -140,11 +140,25 @@ namespace SharpVk.Generator.Emission
                 {
                     var paramNames = (invokeAction.Parameters ?? Enumerable.Empty<Action<ExpressionBuilder>>().ToArray());
 
-                    body.EmitStaticCall(invokeAction.TypeName, invokeAction.MethodName, paramNames);
+                    if (invokeAction.ReturnType != null)
+                    {
+                        body.EmitVariableDeclaration(invokeAction.ReturnType, invokeAction.ReturnName, StaticCall(invokeAction.TypeName, invokeAction.MethodName, paramNames));
+                    }
+                    else
+                    {
+                        body.EmitStaticCall(invokeAction.TypeName, invokeAction.MethodName, paramNames);
+                    }
                 }
                 else if(action is OptionalAction optionalAction)
                 {
                     body.EmitIfBlock(optionalAction.NullCheckExpression, ifBlock => EmitActions(ifBlock, optionalAction.Actions));
+                }
+                else if(action is ValidateAction validationAction)
+                {
+                    body.EmitIfBlock(StaticCall("SharpVkException", "IsError", Variable(validationAction.VariableName)), ifBlock =>
+                    {
+                        ifBlock.EmitThrow(StaticCall("SharpVkException", "Create", Variable(validationAction.VariableName)));
+                    });
                 }
             }
         }

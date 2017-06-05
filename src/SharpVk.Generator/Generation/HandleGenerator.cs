@@ -143,14 +143,31 @@ namespace SharpVk.Generator.Generation
                 parameterIndex++;
             }
 
+            string returnType = null;
+
+            if (command.ReturnType == "VkResult")
+            {
+                returnType = this.typeData["VkResult"].Name;
+            }
+
             newMethod.MemberActions.AddRange(marshalToActions);
 
             newMethod.MemberActions.Add(new InvokeAction
             {
                 TypeName = "Interop.Commands",
                 MethodName = command.VkName,
+                ReturnName = "methodResult",
+                ReturnType = returnType,
                 Parameters = marshalledValues.ToArray()
             });
+
+            if (command.ReturnType == "VkResult")
+            {
+                newMethod.MemberActions.Add(new ValidateAction
+                {
+                    VariableName = "methodResult"
+                });
+            }
 
             if (enumeratePattern)
             {

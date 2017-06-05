@@ -71,7 +71,11 @@ namespace SharpVk
             {
                 IntPtr result = default(IntPtr);
                 void* marshalledData = default(void*);
-                Interop.Commands.vkMapMemory(this.parent, this.handle, offset, size, flags, &marshalledData);
+                Result methodResult = Interop.Commands.vkMapMemory(this.parent, this.handle, offset, size, flags, &marshalledData);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
                 result = new IntPtr(marshalledData);
                 return result;
             }

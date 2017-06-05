@@ -67,7 +67,11 @@ namespace SharpVk
         {
             try
             {
-                Interop.Commands.vkBindBufferMemory(this.parent, this.handle, memory.handle, memoryOffset);
+                Result methodResult = Interop.Commands.vkBindBufferMemory(this.parent, this.handle, memory.handle, memoryOffset);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
             }
             finally
             {

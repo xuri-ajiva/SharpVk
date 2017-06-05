@@ -69,7 +69,11 @@ namespace SharpVk
         {
             try
             {
-                Interop.Commands.vkGetFenceStatus(this.parent, this.handle);
+                Result methodResult = Interop.Commands.vkGetFenceStatus(this.parent, this.handle);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
             }
             finally
             {

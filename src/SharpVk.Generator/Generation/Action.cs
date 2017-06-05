@@ -35,6 +35,8 @@ namespace SharpVk.Generator.Generation
     {
         public string TypeName;
         public string MethodName;
+        public string ReturnName;
+        public string ReturnType;
         public Action<ExpressionBuilder>[] Parameters;
     }
 
@@ -43,6 +45,12 @@ namespace SharpVk.Generator.Generation
     {
         public Action<ExpressionBuilder> NullCheckExpression;
         public readonly List<MethodAction> Actions = new List<MethodAction>();
+    }
+
+    public class ValidateAction
+        : MethodAction
+    {
+        public string VariableName;
     }
 
     public enum AssignActionType

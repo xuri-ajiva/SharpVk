@@ -69,7 +69,11 @@ namespace SharpVk
         {
             try
             {
-                Interop.Commands.vkGetEventStatus(this.parent, this.handle);
+                Result methodResult = Interop.Commands.vkGetEventStatus(this.parent, this.handle);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
             }
             finally
             {
@@ -84,7 +88,11 @@ namespace SharpVk
         {
             try
             {
-                Interop.Commands.vkSetEvent(this.parent, this.handle);
+                Result methodResult = Interop.Commands.vkSetEvent(this.parent, this.handle);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
             }
             finally
             {
@@ -99,7 +107,11 @@ namespace SharpVk
         {
             try
             {
-                Interop.Commands.vkResetEvent(this.parent, this.handle);
+                Result methodResult = Interop.Commands.vkResetEvent(this.parent, this.handle);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
             }
             finally
             {

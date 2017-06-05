@@ -51,7 +51,11 @@ namespace SharpVk
                 Interop.CommandBufferBeginInfo* marshalledBeginInfo = default(Interop.CommandBufferBeginInfo*);
                 marshalledBeginInfo = (Interop.CommandBufferBeginInfo*)(Interop.HeapUtil.Allocate<Interop.CommandBufferBeginInfo>());
                 beginInfo.MarshalTo(marshalledBeginInfo);
-                Interop.Commands.vkBeginCommandBuffer(this.handle, marshalledBeginInfo);
+                Result methodResult = Interop.Commands.vkBeginCommandBuffer(this.handle, marshalledBeginInfo);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
             }
             finally
             {
@@ -66,7 +70,11 @@ namespace SharpVk
         {
             try
             {
-                Interop.Commands.vkEndCommandBuffer(this.handle);
+                Result methodResult = Interop.Commands.vkEndCommandBuffer(this.handle);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
             }
             finally
             {
@@ -81,7 +89,11 @@ namespace SharpVk
         {
             try
             {
-                Interop.Commands.vkResetCommandBuffer(this.handle, flags);
+                Result methodResult = Interop.Commands.vkResetCommandBuffer(this.handle, flags);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
             }
             finally
             {

@@ -83,7 +83,11 @@ namespace SharpVk
                 {
                     marshalledData = null;
                 }
-                Interop.Commands.vkGetQueryPoolResults(this.parent, this.handle, firstQuery, queryCount, (HostSize)(data?.Length ?? 0), marshalledData, stride, flags);
+                Result methodResult = Interop.Commands.vkGetQueryPoolResults(this.parent, this.handle, firstQuery, queryCount, (HostSize)(data?.Length ?? 0), marshalledData, stride, flags);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
             }
             finally
             {

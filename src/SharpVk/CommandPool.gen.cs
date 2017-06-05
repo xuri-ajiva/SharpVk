@@ -69,7 +69,11 @@ namespace SharpVk
         {
             try
             {
-                Interop.Commands.vkResetCommandPool(this.parent, this.handle, flags);
+                Result methodResult = Interop.Commands.vkResetCommandPool(this.parent, this.handle, flags);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
             }
             finally
             {

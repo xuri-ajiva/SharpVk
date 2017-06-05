@@ -69,7 +69,11 @@ namespace SharpVk
         {
             try
             {
-                Interop.Commands.vkResetDescriptorPool(this.parent, this.handle, flags);
+                Result methodResult = Interop.Commands.vkResetDescriptorPool(this.parent, this.handle, flags);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
             }
             finally
             {
@@ -98,7 +102,11 @@ namespace SharpVk
                 {
                     marshalledDescriptorSets = null;
                 }
-                Interop.Commands.vkFreeDescriptorSets(this.parent, this.handle, (uint)(descriptorSets?.Length ?? 0), marshalledDescriptorSets);
+                Result methodResult = Interop.Commands.vkFreeDescriptorSets(this.parent, this.handle, (uint)(descriptorSets?.Length ?? 0), marshalledDescriptorSets);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
             }
             finally
             {

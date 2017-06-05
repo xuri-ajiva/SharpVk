@@ -160,7 +160,11 @@ namespace SharpVk
             {
                 ImageFormatProperties result = default(ImageFormatProperties);
                 ImageFormatProperties marshalledImageFormatProperties = default(ImageFormatProperties);
-                Interop.Commands.vkGetPhysicalDeviceImageFormatProperties(this.handle, format, type, tiling, usage, flags, &marshalledImageFormatProperties);
+                Result methodResult = Interop.Commands.vkGetPhysicalDeviceImageFormatProperties(this.handle, format, type, tiling, usage, flags, &marshalledImageFormatProperties);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
                 result = marshalledImageFormatProperties;
                 return result;
             }
@@ -188,7 +192,11 @@ namespace SharpVk
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
-                Interop.Commands.vkCreateDevice(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledDevice);
+                Result methodResult = Interop.Commands.vkCreateDevice(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledDevice);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
                 result = new Device(this.handle, marshalledDevice);
                 return result;
             }
@@ -208,7 +216,11 @@ namespace SharpVk
                 LayerProperties[] result = default(LayerProperties[]);
                 uint propertyCount = default(uint);
                 Interop.LayerProperties* marshalledProperties = default(Interop.LayerProperties*);
-                Interop.Commands.vkEnumerateDeviceLayerProperties(this.handle, &propertyCount, marshalledProperties);
+                Result methodResult = Interop.Commands.vkEnumerateDeviceLayerProperties(this.handle, &propertyCount, marshalledProperties);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
                 marshalledProperties = (Interop.LayerProperties*)(Interop.HeapUtil.Allocate<Interop.LayerProperties>((uint)(propertyCount)));
                 Interop.Commands.vkEnumerateDeviceLayerProperties(this.handle, &propertyCount, marshalledProperties);
                 if (marshalledProperties != null)
@@ -242,7 +254,11 @@ namespace SharpVk
                 ExtensionProperties[] result = default(ExtensionProperties[]);
                 uint propertyCount = default(uint);
                 Interop.ExtensionProperties* marshalledProperties = default(Interop.ExtensionProperties*);
-                Interop.Commands.vkEnumerateDeviceExtensionProperties(this.handle, Interop.HeapUtil.MarshalTo(layerName), &propertyCount, marshalledProperties);
+                Result methodResult = Interop.Commands.vkEnumerateDeviceExtensionProperties(this.handle, Interop.HeapUtil.MarshalTo(layerName), &propertyCount, marshalledProperties);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
                 marshalledProperties = (Interop.ExtensionProperties*)(Interop.HeapUtil.Allocate<Interop.ExtensionProperties>((uint)(propertyCount)));
                 Interop.Commands.vkEnumerateDeviceExtensionProperties(this.handle, Interop.HeapUtil.MarshalTo(layerName), &propertyCount, marshalledProperties);
                 if (marshalledProperties != null)
