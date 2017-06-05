@@ -54,7 +54,7 @@ namespace SharpVk
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
-                Interop.Commands.vkDestroyFramebuffer(default(Interop.Device), this.handle, marshalledAllocator);
+                Interop.Commands.vkDestroyFramebuffer(this.parent, this.handle, marshalledAllocator);
             }
             finally
             {

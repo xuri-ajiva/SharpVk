@@ -50,7 +50,7 @@ namespace SharpVk
             {
                 MemoryRequirements result = default(MemoryRequirements);
                 MemoryRequirements marshalledMemoryRequirements = default(MemoryRequirements);
-                Interop.Commands.vkGetImageMemoryRequirements(default(Interop.Device), this.handle, &marshalledMemoryRequirements);
+                Interop.Commands.vkGetImageMemoryRequirements(this.parent, this.handle, &marshalledMemoryRequirements);
                 result = marshalledMemoryRequirements;
                 return result;
             }
@@ -67,7 +67,7 @@ namespace SharpVk
         {
             try
             {
-                Interop.Commands.vkBindImageMemory(default(Interop.Device), this.handle, memory.handle, memoryOffset);
+                Interop.Commands.vkBindImageMemory(this.parent, this.handle, memory.handle, memoryOffset);
             }
             finally
             {
@@ -85,9 +85,9 @@ namespace SharpVk
                 SparseImageMemoryRequirements[] result = default(SparseImageMemoryRequirements[]);
                 uint sparseMemoryRequirementCount = default(uint);
                 SparseImageMemoryRequirements* marshalledSparseMemoryRequirements = default(SparseImageMemoryRequirements*);
-                Interop.Commands.vkGetImageSparseMemoryRequirements(default(Interop.Device), this.handle, &sparseMemoryRequirementCount, marshalledSparseMemoryRequirements);
+                Interop.Commands.vkGetImageSparseMemoryRequirements(this.parent, this.handle, &sparseMemoryRequirementCount, marshalledSparseMemoryRequirements);
                 marshalledSparseMemoryRequirements = (SparseImageMemoryRequirements*)(Interop.HeapUtil.Allocate<SparseImageMemoryRequirements>((uint)(sparseMemoryRequirementCount)));
-                Interop.Commands.vkGetImageSparseMemoryRequirements(default(Interop.Device), this.handle, &sparseMemoryRequirementCount, marshalledSparseMemoryRequirements);
+                Interop.Commands.vkGetImageSparseMemoryRequirements(this.parent, this.handle, &sparseMemoryRequirementCount, marshalledSparseMemoryRequirements);
                 if (marshalledSparseMemoryRequirements != null)
                 {
                     var fieldPointer = new SparseImageMemoryRequirements[(uint)(sparseMemoryRequirementCount)];
@@ -122,7 +122,7 @@ namespace SharpVk
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
-                Interop.Commands.vkDestroyImage(default(Interop.Device), this.handle, marshalledAllocator);
+                Interop.Commands.vkDestroyImage(this.parent, this.handle, marshalledAllocator);
             }
             finally
             {
@@ -142,7 +142,7 @@ namespace SharpVk
                 SubresourceLayout marshalledLayout = default(SubresourceLayout);
                 marshalledSubresource = (ImageSubresource*)(Interop.HeapUtil.Allocate<ImageSubresource>());
                 *marshalledSubresource = subresource;
-                Interop.Commands.vkGetImageSubresourceLayout(default(Interop.Device), this.handle, marshalledSubresource, &marshalledLayout);
+                Interop.Commands.vkGetImageSubresourceLayout(this.parent, this.handle, marshalledSubresource, &marshalledLayout);
                 result = marshalledLayout;
                 return result;
             }

@@ -42,7 +42,7 @@ namespace SharpVk.Generator.Generation
                 var commands = this.commands.ContainsKey(typePair.Key)
                                         ? this.commands[typePair.Key]
                                             .Where(x => x.Extension == null)
-                                            .Select(GenerateCommand).ToList()
+                                            .Select(x => GenerateCommand(x, typePair.Key, typePair.Value)).ToList()
                                         : new List<MethodDefinition>();
 
                 var parentType = type.Parent != null
@@ -61,7 +61,7 @@ namespace SharpVk.Generator.Generation
             }
         }
 
-        private MethodDefinition GenerateCommand(CommandDeclaration command)
+        private MethodDefinition GenerateCommand(CommandDeclaration command, string handleTypeName, TypeDeclaration handleType)
         {
             var newMethod = new MethodDefinition
             {
@@ -71,6 +71,26 @@ namespace SharpVk.Generator.Generation
                 IsUnsafe = true,
                 AllocatesUnmanagedMemory = true
             };
+
+            var handleLookup = new Dictionary<string, Action<ExpressionBuilder>>
+            {
+                [handleTypeName] = Member(This, "handle")
+            };
+
+            if (handleType.Parent != null)
+            {
+                handleLookup.Add(handleType.Parent, Member(This, "parent"));
+            }
+
+            Action<ExpressionBuilder> GetHandle(string handleName)
+            {
+                if (!handleLookup.TryGetValue(handleName, out var result))
+                {
+                    return Default("Interop." + this.typeData[handleName].Name);
+                }
+
+                return result;
+            }
 
             var lastParam = command.Params.Last();
 
@@ -113,7 +133,7 @@ namespace SharpVk.Generator.Generation
 
             foreach (var parameter in command.Params)
             {
-                var newParam = this.GenerateParameter(command, newMethod, parameter, parameterIndex, enumeratePattern, lastParamIsArray, lastParamReturns, marshalFromActions, marshalMidActions, marshalToActions, marshalledValues);
+                var newParam = this.GenerateParameter(command, newMethod, parameter, parameterIndex, enumeratePattern, lastParamIsArray, lastParamReturns, marshalFromActions, marshalMidActions, marshalToActions, marshalledValues, GetHandle);
 
                 if (newParam != null)
                 {
@@ -149,7 +169,7 @@ namespace SharpVk.Generator.Generation
             return newMethod;
         }
 
-        private ParamActionDefinition GenerateParameter(CommandDeclaration command, MethodDefinition newMethod, ParamDeclaration parameter, int parameterIndex, bool isEnumeratePattern, bool isLastParamArray, bool lastParamReturns, List<MethodAction> marshalFromActions, List<MethodAction> marshalMidActions, List<MethodAction> marshalToActions, List<Action<ExpressionBuilder>> marshalledValues)
+        private ParamActionDefinition GenerateParameter(CommandDeclaration command, MethodDefinition newMethod, ParamDeclaration parameter, int parameterIndex, bool isEnumeratePattern, bool isLastParamArray, bool lastParamReturns, List<MethodAction> marshalFromActions, List<MethodAction> marshalMidActions, List<MethodAction> marshalToActions, List<Action<ExpressionBuilder>> marshalledValues, Func<string, Action<ExpressionBuilder>> getHandle)
         {
             string paramName = parameter.Name;
             var paramType = typeData[parameter.Type.VkName];
@@ -175,7 +195,7 @@ namespace SharpVk.Generator.Generation
 
                     var patternInfo = new MemberPatternInfo();
 
-                    this.memberPatternRules.ApplyFirst(command.Params, command.Params.Last(), patternInfo);
+                    this.memberPatternRules.ApplyFirst(command.Params, command.Params.Last(), getHandle, patternInfo);
 
                     string marshalledName = GetMarshalledName(patternInfo.Interop.Name);
 
@@ -193,7 +213,7 @@ namespace SharpVk.Generator.Generation
                     {
                         var patternInfo = new MemberPatternInfo();
 
-                        this.memberPatternRules.ApplyFirst(command.Params, parameter, patternInfo);
+                        this.memberPatternRules.ApplyFirst(command.Params, parameter, getHandle, patternInfo);
 
                         string marshalledName = GetMarshalledName(patternInfo.Interop.Name);
 
@@ -221,7 +241,7 @@ namespace SharpVk.Generator.Generation
                             VkName = parameter.VkName
                         };
 
-                        this.memberPatternRules.ApplyFirst(command.Params, effectiveParam, patternInfo);
+                        this.memberPatternRules.ApplyFirst(command.Params, effectiveParam, getHandle, patternInfo);
 
                         string marshalledName = GetMarshalledName(patternInfo.Interop.Name);
 
@@ -242,7 +262,7 @@ namespace SharpVk.Generator.Generation
                 {
                     var patternInfo = new MemberPatternInfo();
 
-                    this.memberPatternRules.ApplyFirst(command.Params, parameter, patternInfo);
+                    this.memberPatternRules.ApplyFirst(command.Params, parameter, getHandle, patternInfo);
 
                     var actionList = marshalToActions;
 
@@ -307,13 +327,9 @@ namespace SharpVk.Generator.Generation
                     }
                 }
             }
-            else if (parameter.Type.VkName == command.HandleTypeName)
-            {
-                marshalledValues.Add(Member(This, "handle"));
-            }
             else
             {
-                marshalledValues.Add(Default("Interop." + paramType.Name));
+                marshalledValues.Add(getHandle(parameter.Type.VkName));
             }
 
             return result;

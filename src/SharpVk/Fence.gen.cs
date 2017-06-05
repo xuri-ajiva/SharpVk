@@ -54,7 +54,7 @@ namespace SharpVk
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
-                Interop.Commands.vkDestroyFence(default(Interop.Device), this.handle, marshalledAllocator);
+                Interop.Commands.vkDestroyFence(this.parent, this.handle, marshalledAllocator);
             }
             finally
             {
@@ -69,7 +69,7 @@ namespace SharpVk
         {
             try
             {
-                Interop.Commands.vkGetFenceStatus(default(Interop.Device), this.handle);
+                Interop.Commands.vkGetFenceStatus(this.parent, this.handle);
             }
             finally
             {

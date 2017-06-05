@@ -19,7 +19,7 @@ namespace SharpVk.Generator.Generation.Marshalling
             this.nameLookup = nameLookup;
         }
 
-        public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, MemberPatternInfo info)
+        public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, Func<string, Action<ExpressionBuilder>> getHandle, MemberPatternInfo info)
         {
             var lenExpression = new List<Func<Func<string, Action<ExpressionBuilder>>, Action<ExpressionBuilder>>>();
 

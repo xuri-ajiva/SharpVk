@@ -1,4 +1,5 @@
-﻿using SharpVk.Generator.Collation;
+﻿using SharpVk.Emit;
+using SharpVk.Generator.Collation;
 using SharpVk.Generator.Rules;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace SharpVk.Generator.Generation.Marshalling
             this.nameLookup = nameLookup;
         }
 
-        public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, MemberPatternInfo info)
+        public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, Func<string, Action<ExpressionBuilder>> getHandle, MemberPatternInfo info)
         {
             var marshalling = this.marshallingRules.ApplyFirst(source.Type);
 
@@ -46,7 +47,7 @@ namespace SharpVk.Generator.Generation.Marshalling
 
             info.MarshalTo.Add((getTarget, getValue) => new AssignAction
             {
-                ValueExpression = marshalling.BuildMarshalToValueExpression(getValue(source.Name), handleType => Default(handleType)),
+                ValueExpression = marshalling.BuildMarshalToValueExpression(getValue(source.Name), getHandle),
                 TargetExpression = getTarget(source.Name),
                 MemberType = marshalling.InteropType,
                 Type = marshalling.MarshalToActionType
@@ -54,7 +55,7 @@ namespace SharpVk.Generator.Generation.Marshalling
 
             info.MarshalFrom.Add((getTarget, getValue) => new AssignAction
             {
-                ValueExpression = marshalling.BuildMarshalFromValueExpression(getValue(source.Name), handleType => Default(handleType)),
+                ValueExpression = marshalling.BuildMarshalFromValueExpression(getValue(source.Name), getHandle),
                 TargetExpression = getTarget(source.Name),
                 MemberType = marshalling.MemberType,
                 Type = marshalling.MarshalFromActionType

@@ -105,7 +105,7 @@ namespace SharpVk
                     var fieldPointer = new PhysicalDevice[(uint)(physicalDeviceCount)];
                     for(int index = 0; index < (uint)(physicalDeviceCount); index++)
                     {
-                        fieldPointer[index] = new PhysicalDevice(default(VkInstance), marshalledPhysicalDevices[index]);
+                        fieldPointer[index] = new PhysicalDevice(this.handle, marshalledPhysicalDevices[index]);
                     }
                     result = fieldPointer;
                 }

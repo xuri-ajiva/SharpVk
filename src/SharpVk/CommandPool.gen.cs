@@ -54,7 +54,7 @@ namespace SharpVk
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
-                Interop.Commands.vkDestroyCommandPool(default(Interop.Device), this.handle, marshalledAllocator);
+                Interop.Commands.vkDestroyCommandPool(this.parent, this.handle, marshalledAllocator);
             }
             finally
             {
@@ -69,7 +69,7 @@ namespace SharpVk
         {
             try
             {
-                Interop.Commands.vkResetCommandPool(default(Interop.Device), this.handle, flags);
+                Interop.Commands.vkResetCommandPool(this.parent, this.handle, flags);
             }
             finally
             {
@@ -98,7 +98,7 @@ namespace SharpVk
                 {
                     marshalledCommandBuffers = null;
                 }
-                Interop.Commands.vkFreeCommandBuffers(default(Interop.Device), this.handle, (uint)(commandBuffers?.Length ?? 0), marshalledCommandBuffers);
+                Interop.Commands.vkFreeCommandBuffers(this.parent, this.handle, (uint)(commandBuffers?.Length ?? 0), marshalledCommandBuffers);
             }
             finally
             {

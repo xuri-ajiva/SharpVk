@@ -50,7 +50,7 @@ namespace SharpVk
             {
                 MemoryRequirements result = default(MemoryRequirements);
                 MemoryRequirements marshalledMemoryRequirements = default(MemoryRequirements);
-                Interop.Commands.vkGetBufferMemoryRequirements(default(Interop.Device), this.handle, &marshalledMemoryRequirements);
+                Interop.Commands.vkGetBufferMemoryRequirements(this.parent, this.handle, &marshalledMemoryRequirements);
                 result = marshalledMemoryRequirements;
                 return result;
             }
@@ -67,7 +67,7 @@ namespace SharpVk
         {
             try
             {
-                Interop.Commands.vkBindBufferMemory(default(Interop.Device), this.handle, memory.handle, memoryOffset);
+                Interop.Commands.vkBindBufferMemory(this.parent, this.handle, memory.handle, memoryOffset);
             }
             finally
             {
@@ -88,7 +88,7 @@ namespace SharpVk
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
-                Interop.Commands.vkDestroyBuffer(default(Interop.Device), this.handle, marshalledAllocator);
+                Interop.Commands.vkDestroyBuffer(this.parent, this.handle, marshalledAllocator);
             }
             finally
             {

@@ -10,13 +10,32 @@ namespace SharpVk.TestHarness
             {
             }, null);
 
-            var devices = instance.EnumeratePhysicalDevices();
+            var physicalDevices = instance.EnumeratePhysicalDevices();
 
             var layers = Instance.EnumerateLayerProperties();
 
             var extensions = Instance.EnumerateExtensionProperties(null);
 
-            var properties = devices.Select(x => x.GetProperties()).ToArray();
+            var properties = physicalDevices.Select(x => x.GetProperties()).ToArray();
+
+            var devices = physicalDevices.Select(x => x.CreateDevice(new DeviceCreateInfo
+            {
+                QueueCreateInfos = new[]
+                {
+                    new DeviceQueueCreateInfo
+                    {
+                        QueueFamilyIndex = 0,
+                        QueuePriorities = new float[]{ 0 }
+                    }
+                }
+            })).ToArray();
+            
+            foreach(var device in devices)
+            {
+                device.Destroy();
+            }
+
+            instance.Destroy();
         }
     }
 }

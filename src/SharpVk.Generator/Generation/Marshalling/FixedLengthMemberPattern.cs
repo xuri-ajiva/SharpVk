@@ -1,4 +1,6 @@
-﻿using SharpVk.Generator.Collation;
+﻿using SharpVk.Emit;
+using SharpVk.Generator.Collation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -20,7 +22,7 @@ namespace SharpVk.Generator.Generation.Marshalling
             this.constantsLookup = constants.ToDictionary(x => x.VkName);
         }
 
-        public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, MemberPatternInfo info)
+        public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, Func<string, Action<ExpressionBuilder>> getHandle, MemberPatternInfo info)
         {
             if (source.Type.FixedLength.Type != FixedLengthType.None)
             {

@@ -1,4 +1,5 @@
-﻿using SharpVk.Generator.Collation;
+﻿using SharpVk.Emit;
+using SharpVk.Generator.Collation;
 using System;
 using System.Collections.Generic;
 
@@ -18,7 +19,7 @@ namespace SharpVk.Generator.Generation.Marshalling
             this.enumLookup = enumLookup;
         }
 
-        public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, MemberPatternInfo info)
+        public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, Func<string, Action<ExpressionBuilder>> getHandle, MemberPatternInfo info)
         {
             if (source.FixedValue != null)
             {

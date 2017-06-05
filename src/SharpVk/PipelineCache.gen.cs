@@ -54,7 +54,7 @@ namespace SharpVk
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
-                Interop.Commands.vkDestroyPipelineCache(default(Interop.Device), this.handle, marshalledAllocator);
+                Interop.Commands.vkDestroyPipelineCache(this.parent, this.handle, marshalledAllocator);
             }
             finally
             {
@@ -72,9 +72,9 @@ namespace SharpVk
                 byte[] result = default(byte[]);
                 HostSize dataSize = default(HostSize);
                 byte* marshalledData = default(byte*);
-                Interop.Commands.vkGetPipelineCacheData(default(Interop.Device), this.handle, &dataSize, marshalledData);
+                Interop.Commands.vkGetPipelineCacheData(this.parent, this.handle, &dataSize, marshalledData);
                 marshalledData = (byte*)(Interop.HeapUtil.Allocate<byte>((uint)(dataSize)));
-                Interop.Commands.vkGetPipelineCacheData(default(Interop.Device), this.handle, &dataSize, marshalledData);
+                Interop.Commands.vkGetPipelineCacheData(this.parent, this.handle, &dataSize, marshalledData);
                 if (marshalledData != null)
                 {
                     var fieldPointer = new byte[(uint)(dataSize)];
@@ -117,7 +117,7 @@ namespace SharpVk
                 {
                     marshalledSourceCaches = null;
                 }
-                Interop.Commands.vkMergePipelineCaches(default(Interop.Device), this.handle, (uint)(sourceCaches?.Length ?? 0), marshalledSourceCaches);
+                Interop.Commands.vkMergePipelineCaches(this.parent, this.handle, (uint)(sourceCaches?.Length ?? 0), marshalledSourceCaches);
             }
             finally
             {
@@ -156,13 +156,13 @@ namespace SharpVk
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
-                Interop.Commands.vkCreateGraphicsPipelines(default(Interop.Device), this.handle, createInfoCount, marshalledCreateInfos, marshalledAllocator, marshalledPipelines);
+                Interop.Commands.vkCreateGraphicsPipelines(this.parent, this.handle, createInfoCount, marshalledCreateInfos, marshalledAllocator, marshalledPipelines);
                 if (marshalledPipelines != null)
                 {
                     var fieldPointer = new Pipeline[(uint)(createInfoCount)];
                     for(int index = 0; index < (uint)(createInfoCount); index++)
                     {
-                        fieldPointer[index] = new Pipeline(default(VkDevice), marshalledPipelines[index]);
+                        fieldPointer[index] = new Pipeline(this.parent, marshalledPipelines[index]);
                     }
                     result = fieldPointer;
                 }
@@ -209,13 +209,13 @@ namespace SharpVk
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
-                Interop.Commands.vkCreateComputePipelines(default(Interop.Device), this.handle, createInfoCount, marshalledCreateInfos, marshalledAllocator, marshalledPipelines);
+                Interop.Commands.vkCreateComputePipelines(this.parent, this.handle, createInfoCount, marshalledCreateInfos, marshalledAllocator, marshalledPipelines);
                 if (marshalledPipelines != null)
                 {
                     var fieldPointer = new Pipeline[(uint)(createInfoCount)];
                     for(int index = 0; index < (uint)(createInfoCount); index++)
                     {
-                        fieldPointer[index] = new Pipeline(default(VkDevice), marshalledPipelines[index]);
+                        fieldPointer[index] = new Pipeline(this.parent, marshalledPipelines[index]);
                     }
                     result = fieldPointer;
                 }

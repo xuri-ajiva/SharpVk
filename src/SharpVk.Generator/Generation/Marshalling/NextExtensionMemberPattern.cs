@@ -1,4 +1,6 @@
-﻿using SharpVk.Generator.Collation;
+﻿using SharpVk.Emit;
+using SharpVk.Generator.Collation;
+using System;
 using System.Collections.Generic;
 using static SharpVk.Emit.ExpressionBuilder;
 
@@ -14,7 +16,7 @@ namespace SharpVk.Generator.Generation.Marshalling
             this.nameLookup = nameLookup;
         }
 
-        public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, MemberPatternInfo info)
+        public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, Func<string, Action<ExpressionBuilder>> getHandle, MemberPatternInfo info)
         {
             if (source.Name == "Next")
             {

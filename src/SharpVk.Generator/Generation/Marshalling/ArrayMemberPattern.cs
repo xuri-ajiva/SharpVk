@@ -1,5 +1,7 @@
-﻿using SharpVk.Generator.Collation;
+﻿using SharpVk.Emit;
+using SharpVk.Generator.Collation;
 using SharpVk.Generator.Rules;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using static SharpVk.Emit.ExpressionBuilder;
@@ -18,7 +20,7 @@ namespace SharpVk.Generator.Generation.Marshalling
             this.nameLookup = nameLookup;
         }
 
-        public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, MemberPatternInfo info)
+        public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, Func<string, Action<ExpressionBuilder>> getHandle, MemberPatternInfo info)
         {
             if (source.Dimensions != null)
             {
@@ -100,7 +102,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                                 Type = marshalling.MarshalToActionType,
                                 NullCheckExpression = IsNotEqual(getValue(source.Name), Null),
                                 LengthExpression = Member(getValue(source.Name), "Length"),
-                                ValueExpression = marshalling.BuildMarshalToValueExpression(Index(getValue(source.Name), Variable("index")), handleType => Default(handleType))
+                                ValueExpression = marshalling.BuildMarshalToValueExpression(Index(getValue(source.Name), Variable("index")), getHandle)
                             });
 
                             if (source.Dimensions[0].Value is LenExpressionToken lenToken)
@@ -117,7 +119,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                                     Type = marshalling.MarshalFromActionType,
                                     NullCheckExpression = IsNotEqual(getValue(source.Name), Null),
                                     LengthExpression = Variable(lenParam.Name),
-                                    ValueExpression = marshalling.BuildMarshalFromValueExpression(Index(getValue(source.Name), Variable("index")), handleType => Default(handleType))
+                                    ValueExpression = marshalling.BuildMarshalFromValueExpression(Index(getValue(source.Name), Variable("index")), getHandle)
                                 });
                             }
                             break;

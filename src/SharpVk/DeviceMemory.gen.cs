@@ -54,7 +54,7 @@ namespace SharpVk
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
-                Interop.Commands.vkFreeMemory(default(Interop.Device), this.handle, marshalledAllocator);
+                Interop.Commands.vkFreeMemory(this.parent, this.handle, marshalledAllocator);
             }
             finally
             {
@@ -71,7 +71,7 @@ namespace SharpVk
             {
                 IntPtr result = default(IntPtr);
                 void* marshalledData = default(void*);
-                Interop.Commands.vkMapMemory(default(Interop.Device), this.handle, offset, size, flags, &marshalledData);
+                Interop.Commands.vkMapMemory(this.parent, this.handle, offset, size, flags, &marshalledData);
                 result = new IntPtr(marshalledData);
                 return result;
             }
@@ -88,7 +88,7 @@ namespace SharpVk
         {
             try
             {
-                Interop.Commands.vkUnmapMemory(default(Interop.Device), this.handle);
+                Interop.Commands.vkUnmapMemory(this.parent, this.handle);
             }
             finally
             {
@@ -105,7 +105,7 @@ namespace SharpVk
             {
                 DeviceSize result = default(DeviceSize);
                 DeviceSize marshalledCommittedMemoryInBytes = default(DeviceSize);
-                Interop.Commands.vkGetDeviceMemoryCommitment(default(Interop.Device), this.handle, &marshalledCommittedMemoryInBytes);
+                Interop.Commands.vkGetDeviceMemoryCommitment(this.parent, this.handle, &marshalledCommittedMemoryInBytes);
                 result = marshalledCommittedMemoryInBytes;
                 return result;
             }

@@ -189,7 +189,7 @@ namespace SharpVk
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 Interop.Commands.vkCreateDevice(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledDevice);
-                result = new Device(default(VkPhysicalDevice), marshalledDevice);
+                result = new Device(this.handle, marshalledDevice);
                 return result;
             }
             finally
