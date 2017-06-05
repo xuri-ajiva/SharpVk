@@ -33,9 +33,12 @@ namespace SharpVk.Khr
     {
         internal readonly SharpVk.Interop.Khr.Surface handle; 
         
-        internal Surface(SharpVk.Interop.Khr.Surface handle)
+        private readonly SharpVk.Interop.Instance parent; 
+        
+        internal Surface(SharpVk.Interop.Instance parent, SharpVk.Interop.Khr.Surface handle)
         {
             this.handle = handle;
+            this.parent = parent;
         }
     }
 }

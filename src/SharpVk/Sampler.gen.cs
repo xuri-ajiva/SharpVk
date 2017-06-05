@@ -33,9 +33,12 @@ namespace SharpVk
     {
         internal readonly SharpVk.Interop.Sampler handle; 
         
-        internal Sampler(SharpVk.Interop.Sampler handle)
+        private readonly SharpVk.Interop.Device parent; 
+        
+        internal Sampler(SharpVk.Interop.Device parent, SharpVk.Interop.Sampler handle)
         {
             this.handle = handle;
+            this.parent = parent;
         }
         
         /// <summary>

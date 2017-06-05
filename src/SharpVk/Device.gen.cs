@@ -33,9 +33,12 @@ namespace SharpVk
     {
         internal readonly SharpVk.Interop.Device handle; 
         
-        internal Device(SharpVk.Interop.Device handle)
+        private readonly SharpVk.Interop.PhysicalDevice parent; 
+        
+        internal Device(SharpVk.Interop.PhysicalDevice parent, SharpVk.Interop.Device handle)
         {
             this.handle = handle;
+            this.parent = parent;
         }
         
         /// <summary>
@@ -84,7 +87,7 @@ namespace SharpVk
                 Queue result = default(Queue);
                 Interop.Queue marshalledQueue = default(Interop.Queue);
                 Interop.Commands.vkGetDeviceQueue(this.handle, queueFamilyIndex, queueIndex, &marshalledQueue);
-                result = new Queue(marshalledQueue);
+                result = new Queue(default(VkDevice), marshalledQueue);
                 return result;
             }
             finally
@@ -127,7 +130,7 @@ namespace SharpVk
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 Interop.Commands.vkAllocateMemory(this.handle, marshalledAllocateInfo, marshalledAllocator, &marshalledMemory);
-                result = new DeviceMemory(marshalledMemory);
+                result = new DeviceMemory(default(VkDevice), marshalledMemory);
                 return result;
             }
             finally
@@ -213,7 +216,7 @@ namespace SharpVk
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 Interop.Commands.vkCreateFence(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledFence);
-                result = new Fence(marshalledFence);
+                result = new Fence(default(VkDevice), marshalledFence);
                 return result;
             }
             finally
@@ -299,7 +302,7 @@ namespace SharpVk
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 Interop.Commands.vkCreateSemaphore(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledSemaphore);
-                result = new Semaphore(marshalledSemaphore);
+                result = new Semaphore(default(VkDevice), marshalledSemaphore);
                 return result;
             }
             finally
@@ -327,7 +330,7 @@ namespace SharpVk
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 Interop.Commands.vkCreateEvent(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledEvent);
-                result = new Event(marshalledEvent);
+                result = new Event(default(VkDevice), marshalledEvent);
                 return result;
             }
             finally
@@ -355,7 +358,7 @@ namespace SharpVk
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 Interop.Commands.vkCreateQueryPool(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledQueryPool);
-                result = new QueryPool(marshalledQueryPool);
+                result = new QueryPool(default(VkDevice), marshalledQueryPool);
                 return result;
             }
             finally
@@ -383,7 +386,7 @@ namespace SharpVk
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 Interop.Commands.vkCreateBuffer(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledBuffer);
-                result = new Buffer(marshalledBuffer);
+                result = new Buffer(default(VkDevice), marshalledBuffer);
                 return result;
             }
             finally
@@ -411,7 +414,7 @@ namespace SharpVk
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 Interop.Commands.vkCreateBufferView(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledView);
-                result = new BufferView(marshalledView);
+                result = new BufferView(default(VkDevice), marshalledView);
                 return result;
             }
             finally
@@ -439,7 +442,7 @@ namespace SharpVk
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 Interop.Commands.vkCreateImage(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledImage);
-                result = new Image(marshalledImage);
+                result = new Image(default(VkDevice), marshalledImage);
                 return result;
             }
             finally
@@ -467,7 +470,7 @@ namespace SharpVk
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 Interop.Commands.vkCreateImageView(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledView);
-                result = new ImageView(marshalledView);
+                result = new ImageView(default(VkDevice), marshalledView);
                 return result;
             }
             finally
@@ -495,7 +498,7 @@ namespace SharpVk
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 Interop.Commands.vkCreateShaderModule(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledShaderModule);
-                result = new ShaderModule(marshalledShaderModule);
+                result = new ShaderModule(default(VkDevice), marshalledShaderModule);
                 return result;
             }
             finally
@@ -523,7 +526,7 @@ namespace SharpVk
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 Interop.Commands.vkCreatePipelineCache(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledPipelineCache);
-                result = new PipelineCache(marshalledPipelineCache);
+                result = new PipelineCache(default(VkDevice), marshalledPipelineCache);
                 return result;
             }
             finally
@@ -551,7 +554,7 @@ namespace SharpVk
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 Interop.Commands.vkCreatePipelineLayout(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledPipelineLayout);
-                result = new PipelineLayout(marshalledPipelineLayout);
+                result = new PipelineLayout(default(VkDevice), marshalledPipelineLayout);
                 return result;
             }
             finally
@@ -579,7 +582,7 @@ namespace SharpVk
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 Interop.Commands.vkCreateSampler(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledSampler);
-                result = new Sampler(marshalledSampler);
+                result = new Sampler(default(VkDevice), marshalledSampler);
                 return result;
             }
             finally
@@ -607,7 +610,7 @@ namespace SharpVk
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 Interop.Commands.vkCreateDescriptorSetLayout(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledSetLayout);
-                result = new DescriptorSetLayout(marshalledSetLayout);
+                result = new DescriptorSetLayout(default(VkDevice), marshalledSetLayout);
                 return result;
             }
             finally
@@ -635,7 +638,7 @@ namespace SharpVk
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 Interop.Commands.vkCreateDescriptorPool(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledDescriptorPool);
-                result = new DescriptorPool(marshalledDescriptorPool);
+                result = new DescriptorPool(default(VkDevice), marshalledDescriptorPool);
                 return result;
             }
             finally
@@ -727,7 +730,7 @@ namespace SharpVk
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 Interop.Commands.vkCreateFramebuffer(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledFramebuffer);
-                result = new Framebuffer(marshalledFramebuffer);
+                result = new Framebuffer(default(VkDevice), marshalledFramebuffer);
                 return result;
             }
             finally
@@ -755,7 +758,7 @@ namespace SharpVk
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 Interop.Commands.vkCreateRenderPass(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledRenderPass);
-                result = new RenderPass(marshalledRenderPass);
+                result = new RenderPass(default(VkDevice), marshalledRenderPass);
                 return result;
             }
             finally
@@ -783,7 +786,7 @@ namespace SharpVk
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 Interop.Commands.vkCreateCommandPool(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledCommandPool);
-                result = new CommandPool(marshalledCommandPool);
+                result = new CommandPool(default(VkDevice), marshalledCommandPool);
                 return result;
             }
             finally

@@ -33,9 +33,12 @@ namespace SharpVk.Khr
     {
         internal readonly SharpVk.Interop.Khr.Swapchain handle; 
         
-        internal Swapchain(SharpVk.Interop.Khr.Swapchain handle)
+        private readonly SharpVk.Interop.Khr.Surface parent; 
+        
+        internal Swapchain(SharpVk.Interop.Khr.Surface parent, SharpVk.Interop.Khr.Swapchain handle)
         {
             this.handle = handle;
+            this.parent = parent;
         }
     }
 }

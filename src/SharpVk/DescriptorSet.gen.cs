@@ -33,9 +33,12 @@ namespace SharpVk
     {
         internal readonly SharpVk.Interop.DescriptorSet handle; 
         
-        internal DescriptorSet(SharpVk.Interop.DescriptorSet handle)
+        private readonly SharpVk.Interop.DescriptorPool parent; 
+        
+        internal DescriptorSet(SharpVk.Interop.DescriptorPool parent, SharpVk.Interop.DescriptorSet handle)
         {
             this.handle = handle;
+            this.parent = parent;
         }
     }
 }

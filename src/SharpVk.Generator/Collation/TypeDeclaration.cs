@@ -6,6 +6,7 @@ namespace SharpVk.Generator.Collation
     public class TypeDeclaration
     {
         public string Name;
+        public string Parent;
         public string Extension;
         public string Type;
         public bool IsOutputOnly;

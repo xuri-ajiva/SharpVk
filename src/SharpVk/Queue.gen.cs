@@ -33,9 +33,12 @@ namespace SharpVk
     {
         internal readonly SharpVk.Interop.Queue handle; 
         
-        internal Queue(SharpVk.Interop.Queue handle)
+        private readonly SharpVk.Interop.Device parent; 
+        
+        internal Queue(SharpVk.Interop.Device parent, SharpVk.Interop.Queue handle)
         {
             this.handle = handle;
+            this.parent = parent;
         }
         
         /// <summary>

@@ -14,8 +14,8 @@ namespace SharpVk.Generator.Generation.Marshalling
                     MemberType = "IntPtr",
                     InteropType = "void",
                     MarshalToActionType = AssignActionType.Assign,
-                    BuildMarshalToValueExpression = value => Call(value, "ToPointer"),
-                    BuildMarshalFromValueExpression = value => New("IntPtr", value)
+                    BuildMarshalToValueExpression = (value, getHandle) => Call(value, "ToPointer"),
+                    BuildMarshalFromValueExpression = (value, getHandle) => New("IntPtr", value)
                 };
 
                 return true;

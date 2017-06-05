@@ -9,7 +9,7 @@ namespace SharpVk.Generator.Generation.Marshalling
         public string InteropType;
         public AssignActionType MarshalToActionType;
         public AssignActionType MarshalFromActionType;
-        public Func<Action<ExpressionBuilder>, Action<ExpressionBuilder>> BuildMarshalToValueExpression;
-        public Func<Action<ExpressionBuilder>, Action<ExpressionBuilder>> BuildMarshalFromValueExpression;
+        public Func<Action<ExpressionBuilder>, Func<string, Action<ExpressionBuilder>>, Action<ExpressionBuilder>> BuildMarshalToValueExpression;
+        public Func<Action<ExpressionBuilder>, Func<string, Action<ExpressionBuilder>>, Action<ExpressionBuilder>> BuildMarshalFromValueExpression;
     }
 }

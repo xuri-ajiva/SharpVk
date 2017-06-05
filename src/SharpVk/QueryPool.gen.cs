@@ -33,9 +33,12 @@ namespace SharpVk
     {
         internal readonly SharpVk.Interop.QueryPool handle; 
         
-        internal QueryPool(SharpVk.Interop.QueryPool handle)
+        private readonly SharpVk.Interop.Device parent; 
+        
+        internal QueryPool(SharpVk.Interop.Device parent, SharpVk.Interop.QueryPool handle)
         {
             this.handle = handle;
+            this.parent = parent;
         }
         
         /// <summary>

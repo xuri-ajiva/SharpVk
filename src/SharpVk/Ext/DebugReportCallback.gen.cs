@@ -33,9 +33,12 @@ namespace SharpVk.Ext
     {
         internal readonly SharpVk.Interop.Ext.DebugReportCallback handle; 
         
-        internal DebugReportCallback(SharpVk.Interop.Ext.DebugReportCallback handle)
+        private readonly SharpVk.Interop.Instance parent; 
+        
+        internal DebugReportCallback(SharpVk.Interop.Instance parent, SharpVk.Interop.Ext.DebugReportCallback handle)
         {
             this.handle = handle;
+            this.parent = parent;
         }
     }
 }

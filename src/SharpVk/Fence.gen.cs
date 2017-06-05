@@ -33,9 +33,12 @@ namespace SharpVk
     {
         internal readonly SharpVk.Interop.Fence handle; 
         
-        internal Fence(SharpVk.Interop.Fence handle)
+        private readonly SharpVk.Interop.Device parent; 
+        
+        internal Fence(SharpVk.Interop.Device parent, SharpVk.Interop.Fence handle)
         {
             this.handle = handle;
+            this.parent = parent;
         }
         
         /// <summary>

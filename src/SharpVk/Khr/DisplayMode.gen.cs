@@ -33,9 +33,12 @@ namespace SharpVk.Khr
     {
         internal readonly SharpVk.Interop.Khr.DisplayMode handle; 
         
-        internal DisplayMode(SharpVk.Interop.Khr.DisplayMode handle)
+        private readonly SharpVk.Interop.PhysicalDevice parent; 
+        
+        internal DisplayMode(SharpVk.Interop.PhysicalDevice parent, SharpVk.Interop.Khr.DisplayMode handle)
         {
             this.handle = handle;
+            this.parent = parent;
         }
     }
 }

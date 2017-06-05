@@ -30,6 +30,7 @@ namespace SharpVk.Generator.Collation
                                     .ToDictionary(x => x.VkName, x => new TypeDeclaration
                                     {
                                         Name = this.nameFormatter.FormatName(x),
+                                        Parent = x.Parent,
                                         Extension = x.Extension?.FirstToUpper(),
                                         Pattern = x.Category.MapToPattern(),
                                         Members = GetMembers(x).ToList(),

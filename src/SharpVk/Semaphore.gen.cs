@@ -33,9 +33,12 @@ namespace SharpVk
     {
         internal readonly SharpVk.Interop.Semaphore handle; 
         
-        internal Semaphore(SharpVk.Interop.Semaphore handle)
+        private readonly SharpVk.Interop.Device parent; 
+        
+        internal Semaphore(SharpVk.Interop.Device parent, SharpVk.Interop.Semaphore handle)
         {
             this.handle = handle;
+            this.parent = parent;
         }
         
         /// <summary>

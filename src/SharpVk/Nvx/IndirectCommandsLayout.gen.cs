@@ -33,9 +33,12 @@ namespace SharpVk.Nvx
     {
         internal readonly SharpVk.Interop.Nvx.IndirectCommandsLayout handle; 
         
-        internal IndirectCommandsLayout(SharpVk.Interop.Nvx.IndirectCommandsLayout handle)
+        private readonly SharpVk.Interop.Device parent; 
+        
+        internal IndirectCommandsLayout(SharpVk.Interop.Device parent, SharpVk.Interop.Nvx.IndirectCommandsLayout handle)
         {
             this.handle = handle;
+            this.parent = parent;
         }
     }
 }

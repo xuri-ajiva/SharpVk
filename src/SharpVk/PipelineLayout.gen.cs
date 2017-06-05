@@ -33,9 +33,12 @@ namespace SharpVk
     {
         internal readonly SharpVk.Interop.PipelineLayout handle; 
         
-        internal PipelineLayout(SharpVk.Interop.PipelineLayout handle)
+        private readonly SharpVk.Interop.Device parent; 
+        
+        internal PipelineLayout(SharpVk.Interop.Device parent, SharpVk.Interop.PipelineLayout handle)
         {
             this.handle = handle;
+            this.parent = parent;
         }
         
         /// <summary>

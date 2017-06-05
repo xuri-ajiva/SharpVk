@@ -45,10 +45,16 @@ namespace SharpVk.Generator.Generation
                                             .Select(GenerateCommand).ToList()
                                         : new List<MethodDefinition>();
 
+                var parentType = type.Parent != null
+                                        ? typeData[type.Parent]
+                                        : null;
+
                 services.AddSingleton(new HandleDefinition
                 {
                     Name = type.Name,
+                    Parent = parentType?.Name,
                     Namespace = type.Extension != null ? new[] { type.Extension } : null,
+                    ParentNamespace = parentType?.Extension != null ? new[] { parentType.Extension } : null,
                     IsDispatch = type.Type != "VK_DEFINE_NON_DISPATCHABLE_HANDLE",
                     Commands = commands
                 });

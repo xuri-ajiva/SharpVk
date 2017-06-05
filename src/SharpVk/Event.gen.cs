@@ -33,9 +33,12 @@ namespace SharpVk
     {
         internal readonly SharpVk.Interop.Event handle; 
         
-        internal Event(SharpVk.Interop.Event handle)
+        private readonly SharpVk.Interop.Device parent; 
+        
+        internal Event(SharpVk.Interop.Device parent, SharpVk.Interop.Event handle)
         {
             this.handle = handle;
+            this.parent = parent;
         }
         
         /// <summary>

@@ -33,9 +33,12 @@ namespace SharpVk
     {
         internal readonly SharpVk.Interop.PhysicalDevice handle; 
         
-        internal PhysicalDevice(SharpVk.Interop.PhysicalDevice handle)
+        private readonly SharpVk.Interop.Instance parent; 
+        
+        internal PhysicalDevice(SharpVk.Interop.Instance parent, SharpVk.Interop.PhysicalDevice handle)
         {
             this.handle = handle;
+            this.parent = parent;
         }
         
         /// <summary>
@@ -186,7 +189,7 @@ namespace SharpVk
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 Interop.Commands.vkCreateDevice(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledDevice);
-                result = new Device(marshalledDevice);
+                result = new Device(default(VkPhysicalDevice), marshalledDevice);
                 return result;
             }
             finally

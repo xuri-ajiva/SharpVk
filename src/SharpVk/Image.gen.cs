@@ -33,9 +33,12 @@ namespace SharpVk
     {
         internal readonly SharpVk.Interop.Image handle; 
         
-        internal Image(SharpVk.Interop.Image handle)
+        private readonly SharpVk.Interop.Device parent; 
+        
+        internal Image(SharpVk.Interop.Device parent, SharpVk.Interop.Image handle)
         {
             this.handle = handle;
+            this.parent = parent;
         }
         
         /// <summary>

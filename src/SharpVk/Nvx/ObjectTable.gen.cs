@@ -33,9 +33,12 @@ namespace SharpVk.Nvx
     {
         internal readonly SharpVk.Interop.Nvx.ObjectTable handle; 
         
-        internal ObjectTable(SharpVk.Interop.Nvx.ObjectTable handle)
+        private readonly SharpVk.Interop.Device parent; 
+        
+        internal ObjectTable(SharpVk.Interop.Device parent, SharpVk.Interop.Nvx.ObjectTable handle)
         {
             this.handle = handle;
+            this.parent = parent;
         }
     }
 }

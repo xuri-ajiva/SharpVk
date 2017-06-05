@@ -33,9 +33,12 @@ namespace SharpVk.Khr
     {
         internal readonly SharpVk.Interop.Khr.DescriptorUpdateTemplate handle; 
         
-        internal DescriptorUpdateTemplate(SharpVk.Interop.Khr.DescriptorUpdateTemplate handle)
+        private readonly SharpVk.Interop.Device parent; 
+        
+        internal DescriptorUpdateTemplate(SharpVk.Interop.Device parent, SharpVk.Interop.Khr.DescriptorUpdateTemplate handle)
         {
             this.handle = handle;
+            this.parent = parent;
         }
     }
 }

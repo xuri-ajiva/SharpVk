@@ -1,6 +1,8 @@
-﻿using SharpVk.Generator.Collation;
+﻿using SharpVk.Emit;
+using SharpVk.Generator.Collation;
+using System;
 using System.Collections.Generic;
-
+using System.Linq;
 using static SharpVk.Emit.ExpressionBuilder;
 
 namespace SharpVk.Generator.Generation.Marshalling
@@ -19,7 +21,8 @@ namespace SharpVk.Generator.Generation.Marshalling
 
         public bool Apply(TypeReference type, out MarshalInfo info)
         {
-            var typePattern = this.typeData[type.VkName].Pattern;
+            var typeInfo = this.typeData[type.VkName];
+            var typePattern = typeInfo.Pattern;
 
             if (typePattern == TypePattern.Handle)
             {
@@ -31,16 +34,25 @@ namespace SharpVk.Generator.Generation.Marshalling
                     InteropType = "Interop." + memberType
                 };
 
+                var handleExpressions = new List<Func<Action<ExpressionBuilder>, Func<string, Action<ExpressionBuilder>>, Action<ExpressionBuilder>>>();
+
+                if (typeInfo.Parent != null)
+                {
+                    handleExpressions.Add((value, getHandle) => getHandle(typeInfo.Parent));
+                }
+
                 if (type.PointerType.IsPointer())
                 {
-                    info.BuildMarshalToValueExpression = value => AddressOf(Member(value, "handle"));
-                    info.BuildMarshalFromValueExpression = value => New(memberType, Deref(value));
+                    info.BuildMarshalToValueExpression = (value, getHandle) => AddressOf(Member(value, "handle"));
+                    handleExpressions.Add((value, getHandle) => Deref(value));
                 }
                 else
                 {
-                    info.BuildMarshalToValueExpression = value => Member(value, "handle");
-                    info.BuildMarshalFromValueExpression = value => New(memberType, value);
+                    info.BuildMarshalToValueExpression = (value, getHandle) => Member(value, "handle");
+                    handleExpressions.Add((value, getHandle) => value);
                 }
+
+                info.BuildMarshalFromValueExpression = (value, getHandle) => New(memberType, handleExpressions.Select(x => x(value, getHandle)).ToArray());
 
                 return true;
             }

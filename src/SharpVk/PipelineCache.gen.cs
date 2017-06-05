@@ -33,9 +33,12 @@ namespace SharpVk
     {
         internal readonly SharpVk.Interop.PipelineCache handle; 
         
-        internal PipelineCache(SharpVk.Interop.PipelineCache handle)
+        private readonly SharpVk.Interop.Device parent; 
+        
+        internal PipelineCache(SharpVk.Interop.Device parent, SharpVk.Interop.PipelineCache handle)
         {
             this.handle = handle;
+            this.parent = parent;
         }
         
         /// <summary>
@@ -159,7 +162,7 @@ namespace SharpVk
                     var fieldPointer = new Pipeline[(uint)(createInfoCount)];
                     for(int index = 0; index < (uint)(createInfoCount); index++)
                     {
-                        fieldPointer[index] = new Pipeline(marshalledPipelines[index]);
+                        fieldPointer[index] = new Pipeline(default(VkDevice), marshalledPipelines[index]);
                     }
                     result = fieldPointer;
                 }
@@ -212,7 +215,7 @@ namespace SharpVk
                     var fieldPointer = new Pipeline[(uint)(createInfoCount)];
                     for(int index = 0; index < (uint)(createInfoCount); index++)
                     {
-                        fieldPointer[index] = new Pipeline(marshalledPipelines[index]);
+                        fieldPointer[index] = new Pipeline(default(VkDevice), marshalledPipelines[index]);
                     }
                     result = fieldPointer;
                 }

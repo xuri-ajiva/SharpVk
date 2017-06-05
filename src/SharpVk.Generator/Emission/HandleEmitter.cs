@@ -32,6 +32,7 @@ namespace SharpVk.Generator.Emission
 
                 string interopPath = "Interop";
                 string interopNamespace = "SharpVk.Interop";
+                string parentInteropNamespace = "SharpVk.Interop";
 
                 if (handle.Namespace?.Any() ?? false)
                 {
@@ -40,6 +41,11 @@ namespace SharpVk.Generator.Emission
 
                     interopPath += "\\" + string.Join("\\", handle.Namespace);
                     interopNamespace += "." + string.Join(".", handle.Namespace);
+                }
+
+                if (handle.ParentNamespace?.Any() ?? false)
+                {
+                    parentInteropNamespace += "." + string.Join(".", handle.ParentNamespace);
                 }
 
                 string rawType = handle.IsDispatch ? "UIntPtr" : "ulong";
@@ -87,6 +93,7 @@ namespace SharpVk.Generator.Emission
                     fileBuilder.EmitUsing("System");
 
                     string interopTypeName = $"{interopNamespace}.{handle.Name}";
+                    string interopParentName = $"{parentInteropNamespace}.{handle.Parent}";
 
                     fileBuilder.EmitNamespace(@namespace, namespaceBuilder =>
                     {
@@ -94,12 +101,27 @@ namespace SharpVk.Generator.Emission
                         {
                             typeBuilder.EmitField(interopTypeName, "handle", Internal, MemberModifier.Readonly);
 
+                            if (handle.Parent != null)
+                            {
+                                typeBuilder.EmitField(interopParentName, "parent", Private, MemberModifier.Readonly);
+                            }
+
                             typeBuilder.EmitConstructor(body =>
                             {
                                 body.EmitAssignment(Member(This, "handle"), Variable("handle"));
+
+                                if (handle.Parent != null)
+                                {
+                                    body.EmitAssignment(Member(This, "parent"), Variable("parent"));
+                                }
                             },
                             parameters =>
                             {
+                                if (handle.Parent != null)
+                                {
+                                    parameters.EmitParam(interopParentName, "parent");
+                                }
+
                                 parameters.EmitParam(interopTypeName, "handle");
                             }, Internal);
 

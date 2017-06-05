@@ -33,9 +33,12 @@ namespace SharpVk
     {
         internal readonly SharpVk.Interop.DescriptorSetLayout handle; 
         
-        internal DescriptorSetLayout(SharpVk.Interop.DescriptorSetLayout handle)
+        private readonly SharpVk.Interop.Device parent; 
+        
+        internal DescriptorSetLayout(SharpVk.Interop.Device parent, SharpVk.Interop.DescriptorSetLayout handle)
         {
             this.handle = handle;
+            this.parent = parent;
         }
         
         /// <summary>
