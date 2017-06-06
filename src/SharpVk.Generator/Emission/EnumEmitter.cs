@@ -37,13 +37,15 @@ namespace SharpVk.Generator.Emission
                 {
                     fileBuilder.EmitNamespace(@namespace, namespaceBuilder =>
                     {
+                        var attributes = @enum.IsFlags ? new[] { "System.Flags" } : null;
+
                         namespaceBuilder.EmitEnum(@enum.Name, enumBuilder =>
                         {
                             foreach (var field in @enum.Fields)
                             {
                                 enumBuilder.EmitField(field.Name, AsIs(field.Value));
                             }
-                        }, Public);
+                        }, Public, attributes: attributes);
                     });
                 });
             }

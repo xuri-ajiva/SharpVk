@@ -36,7 +36,7 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public uint PhysicalDeviceCount
+        public PhysicalDevice[] PhysicalDevices
         {
             get;
             set;
@@ -54,7 +54,19 @@ namespace SharpVk.Khx
         internal static unsafe PhysicalDeviceGroupProperties MarshalFrom(Interop.Khx.PhysicalDeviceGroupProperties* pointer)
         {
             PhysicalDeviceGroupProperties result = default(PhysicalDeviceGroupProperties);
-            result.PhysicalDeviceCount = pointer->PhysicalDeviceCount;
+            if (pointer->PhysicalDeviceCount != 0)
+            {
+                var fieldPointer = new PhysicalDevice[(uint)(pointer->PhysicalDeviceCount)];
+                for(int index = 0; index < (uint)(pointer->PhysicalDeviceCount); index++)
+                {
+                    fieldPointer[index] = new PhysicalDevice(default(Interop.Instance), (&(pointer->PhysicalDevices_0))[index]);
+                }
+                result.PhysicalDevices = fieldPointer;
+            }
+            else
+            {
+                result.PhysicalDevices = null;
+            }
             result.SubsetAllocation = pointer->SubsetAllocation;
             return result;
         }

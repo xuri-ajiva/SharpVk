@@ -194,6 +194,15 @@ namespace SharpVk.Emit
             value(this.GetSubBuilder());
         }
 
+        public void EmitBrackets(Action<ExpressionBuilder> value)
+        {
+            this.writer.Write("(");
+
+            value(this.GetSubBuilder());
+
+            this.writer.Write(")");
+        }
+
         public void EmitCoalesce(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)
         {
             left(this.GetSubBuilder());
@@ -408,6 +417,11 @@ namespace SharpVk.Emit
         public static Action<ExpressionBuilder> AddressOf(Action<ExpressionBuilder> value)
         {
             return builder => builder.EmitAddressOf(value);
+        }
+
+        public static Action<ExpressionBuilder> Brackets(Action<ExpressionBuilder> value)
+        {
+            return builder => builder.EmitBrackets(value);
         }
 
         public static Action<ExpressionBuilder> Coalesce(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)

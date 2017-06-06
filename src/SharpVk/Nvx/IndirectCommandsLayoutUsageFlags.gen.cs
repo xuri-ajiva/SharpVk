@@ -27,6 +27,7 @@ namespace SharpVk.Nvx
     /// <summary>
     /// 
     /// </summary>
+    [System.Flags]
     public enum IndirectCommandsLayoutUsageFlags
     {
         /// <summary>

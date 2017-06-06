@@ -38,6 +38,10 @@ namespace SharpVk.Generator.Generation.Marshalling
                         }
                     }
                 }
+                else if (otherMember.Type.FixedLength.Type != FixedLengthType.None && source.VkName == otherMember.VkName.TrimEnd('s') + "Count")
+                {
+                    lenExpression.Add(getValue => Coalesce(CoalesceMember(getValue(otherMember.Name), "Length"), Literal(0)));
+                }
             }
 
             if (lenExpression.Any())

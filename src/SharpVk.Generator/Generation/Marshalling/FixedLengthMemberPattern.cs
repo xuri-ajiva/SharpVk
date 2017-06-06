@@ -1,5 +1,6 @@
 ﻿using SharpVk.Emit;
 using SharpVk.Generator.Collation;
+using SharpVk.Generator.Rules;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,12 +15,14 @@ namespace SharpVk.Generator.Generation.Marshalling
         private readonly Dictionary<string, TypeDeclaration> typeData;
         private readonly NameLookup nameLookup;
         private readonly Dictionary<string, ConstantDeclaration> constantsLookup;
+        private readonly IEnumerable<IMarshalValueRule> marshallingRules;
 
-        public FixedLengthMemberPattern(Dictionary<string, TypeDeclaration> typeData, NameLookup nameLookup, IEnumerable<ConstantDeclaration> constants)
+        public FixedLengthMemberPattern(Dictionary<string, TypeDeclaration> typeData, NameLookup nameLookup, IEnumerable<ConstantDeclaration> constants, IEnumerable<IMarshalValueRule> marshallingRules)
         {
             this.typeData = typeData;
             this.nameLookup = nameLookup;
             this.constantsLookup = constants.ToDictionary(x => x.VkName);
+            this.marshallingRules = marshallingRules;
         }
 
         public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, Func<string, Action<ExpressionBuilder>> getHandle, MemberPatternInfo info)
@@ -75,6 +78,10 @@ namespace SharpVk.Generator.Generation.Marshalling
                 }
                 else
                 {
+                    var elementType = source.Type.Deref();
+
+                    var marshalling = this.marshallingRules.ApplyFirst(elementType);
+
                     int count = 1;
 
                     if (source.Type.FixedLength.Type == FixedLengthType.IntegerLiteral)
@@ -96,6 +103,27 @@ namespace SharpVk.Generator.Generation.Marshalling
                         Type = memberType,
                         Repeats = count
                     };
+
+                    info.Public = new TypedDefinition
+                    {
+                        Name = name,
+                        Type = memberType + "[]"
+                    };
+
+                    string countMemberName = source.Name.TrimEnd('s') + "Count";
+
+                    info.MarshalFrom.Add((getTarget, getValue) => new AssignAction
+                    {
+                        TargetExpression = getTarget(source.Name),
+                        MemberType = memberType,
+                        IsLoop = true,
+                        IsArray = true,
+                        IndexName = "index",
+                        Type = marshalling.MarshalFromActionType,
+                        NullCheckExpression = IsNotEqual(getValue(countMemberName), Literal(0)),
+                        LengthExpression = getValue(countMemberName),
+                        ValueExpression = marshalling.BuildMarshalFromValueExpression(Index(Brackets(AddressOf(Brackets(getValue(source.Name + "_0")))), Variable("index")), x => Default("Interop." + this.typeData[x].Name))
+                    });
                 }
 
                 return true;

@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.4.0-preview1-25305-02" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SharpVk\SharpVk.csproj" />
   </ItemGroup>
 

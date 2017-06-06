@@ -25,6 +25,7 @@ namespace SharpVk.Generator.Generation
                 {
                     Name = enumeration.Name,
                     Namespace = enumeration.Extension != null ? new[] { enumeration.Extension } : null,
+                    IsFlags = enumeration.IsFlags,
                     Fields = enumeration.Fields.Select(x => new FieldDefinition
                     {
                         Name = x.Name,

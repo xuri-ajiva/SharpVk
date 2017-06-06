@@ -45,7 +45,25 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        public Offset3D[] SourceOffsets
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public ImageSubresourceLayers DestinationSubresource
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Offset3D[] DestinationOffsets
         {
             get;
             set;

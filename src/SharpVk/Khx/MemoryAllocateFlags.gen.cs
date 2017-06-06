@@ -27,6 +27,7 @@ namespace SharpVk.Khx
     /// <summary>
     /// 
     /// </summary>
+    [System.Flags]
     public enum MemoryAllocateFlags
     {
         /// <summary>

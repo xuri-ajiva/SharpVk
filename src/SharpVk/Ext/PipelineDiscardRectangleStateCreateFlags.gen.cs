@@ -27,6 +27,7 @@ namespace SharpVk.Ext
     /// <summary>
     /// 
     /// </summary>
+    [System.Flags]
     public enum PipelineDiscardRectangleStateCreateFlags
     {
         /// <summary>

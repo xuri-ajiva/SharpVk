@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint MemoryTypeCount
+        public MemoryType[] MemoryTypes
         {
             get;
             set;
@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public uint MemoryHeapCount
+        public MemoryHeap[] MemoryHeaps
         {
             get;
             set;
@@ -54,8 +54,32 @@ namespace SharpVk
         internal static unsafe PhysicalDeviceMemoryProperties MarshalFrom(Interop.PhysicalDeviceMemoryProperties* pointer)
         {
             PhysicalDeviceMemoryProperties result = default(PhysicalDeviceMemoryProperties);
-            result.MemoryTypeCount = pointer->MemoryTypeCount;
-            result.MemoryHeapCount = pointer->MemoryHeapCount;
+            if (pointer->MemoryTypeCount != 0)
+            {
+                var fieldPointer = new MemoryType[(uint)(pointer->MemoryTypeCount)];
+                for(int index = 0; index < (uint)(pointer->MemoryTypeCount); index++)
+                {
+                    fieldPointer[index] = (&(pointer->MemoryTypes_0))[index];
+                }
+                result.MemoryTypes = fieldPointer;
+            }
+            else
+            {
+                result.MemoryTypes = null;
+            }
+            if (pointer->MemoryHeapCount != 0)
+            {
+                var fieldPointer = new MemoryHeap[(uint)(pointer->MemoryHeapCount)];
+                for(int index = 0; index < (uint)(pointer->MemoryHeapCount); index++)
+                {
+                    fieldPointer[index] = (&(pointer->MemoryHeaps_0))[index];
+                }
+                result.MemoryHeaps = fieldPointer;
+            }
+            else
+            {
+                result.MemoryHeaps = null;
+            }
             return result;
         }
     }

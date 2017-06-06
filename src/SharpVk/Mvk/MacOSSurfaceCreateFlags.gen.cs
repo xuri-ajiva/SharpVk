@@ -27,6 +27,7 @@ namespace SharpVk.Mvk
     /// <summary>
     /// 
     /// </summary>
+    [System.Flags]
     public enum MacOSSurfaceCreateFlags
     {
         /// <summary>

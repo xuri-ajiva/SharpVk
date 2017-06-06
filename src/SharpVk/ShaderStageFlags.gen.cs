@@ -27,6 +27,7 @@ namespace SharpVk
     /// <summary>
     /// 
     /// </summary>
+    [System.Flags]
     public enum ShaderStageFlags
     {
         /// <summary>

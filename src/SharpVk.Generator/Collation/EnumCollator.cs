@@ -86,6 +86,7 @@ namespace SharpVk.Generator.Collation
                 {
                     Name = name,
                     Extension = extension,
+                    IsFlags = true,
                     Fields = this.DeclareFields(enumeration, true, enumLookup)
                 });
 

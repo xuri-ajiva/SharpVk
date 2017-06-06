@@ -27,6 +27,7 @@ namespace SharpVk.Nn
     /// <summary>
     /// 
     /// </summary>
+    [System.Flags]
     public enum ViSurfaceCreateFlags
     {
         /// <summary>

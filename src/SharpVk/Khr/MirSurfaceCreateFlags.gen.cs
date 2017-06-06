@@ -27,6 +27,7 @@ namespace SharpVk.Khr
     /// <summary>
     /// 
     /// </summary>
+    [System.Flags]
     public enum MirSurfaceCreateFlags
     {
         /// <summary>
