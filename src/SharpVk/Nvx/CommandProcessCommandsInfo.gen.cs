@@ -90,7 +90,7 @@ namespace SharpVk.Nvx
         /// <summary>
         /// 
         /// </summary>
-        public DeviceSize SequencesCountOffset
+        public DeviceSize? SequencesCountOffset
         {
             get;
             set;
@@ -108,7 +108,7 @@ namespace SharpVk.Nvx
         /// <summary>
         /// 
         /// </summary>
-        public DeviceSize SequencesIndexOffset
+        public DeviceSize? SequencesIndexOffset
         {
             get;
             set;
@@ -118,8 +118,8 @@ namespace SharpVk.Nvx
         {
             pointer->SType = StructureType.CommandProcessCommandsInfoNvx;
             pointer->Next = null;
-            pointer->ObjectTable = this.ObjectTable.handle;
-            pointer->IndirectCommandsLayout = this.IndirectCommandsLayout.handle;
+            pointer->ObjectTable = this.ObjectTable?.handle ?? default(Interop.Nvx.ObjectTable);
+            pointer->IndirectCommandsLayout = this.IndirectCommandsLayout?.handle ?? default(Interop.Nvx.IndirectCommandsLayout);
             pointer->IndirectCommandsTokenCount = (uint)(this.IndirectCommandsTokens?.Length ?? 0);
             if (this.IndirectCommandsTokens != null)
             {
@@ -135,11 +135,17 @@ namespace SharpVk.Nvx
                 pointer->IndirectCommandsTokens = null;
             }
             pointer->MaxSequencesCount = this.MaxSequencesCount;
-            pointer->TargetCommandBuffer = this.TargetCommandBuffer.handle;
-            pointer->SequencesCountBuffer = this.SequencesCountBuffer.handle;
-            pointer->SequencesCountOffset = this.SequencesCountOffset;
-            pointer->SequencesIndexBuffer = this.SequencesIndexBuffer.handle;
-            pointer->SequencesIndexOffset = this.SequencesIndexOffset;
+            pointer->TargetCommandBuffer = this.TargetCommandBuffer?.handle ?? default(Interop.CommandBuffer);
+            pointer->SequencesCountBuffer = this.SequencesCountBuffer?.handle ?? default(Interop.Buffer);
+            if (this.SequencesCountOffset != null)
+            {
+                pointer->SequencesCountOffset = this.SequencesCountOffset.Value;
+            }
+            pointer->SequencesIndexBuffer = this.SequencesIndexBuffer?.handle ?? default(Interop.Buffer);
+            if (this.SequencesIndexOffset != null)
+            {
+                pointer->SequencesIndexOffset = this.SequencesIndexOffset.Value;
+            }
         }
     }
 }

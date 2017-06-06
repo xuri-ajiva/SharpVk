@@ -100,10 +100,10 @@ namespace SharpVk
         {
             pointer->SType = StructureType.CopyDescriptorSet;
             pointer->Next = null;
-            pointer->SourceSet = this.SourceSet.handle;
+            pointer->SourceSet = this.SourceSet?.handle ?? default(Interop.DescriptorSet);
             pointer->SourceBinding = this.SourceBinding;
             pointer->SourceArrayElement = this.SourceArrayElement;
-            pointer->DestinationSet = this.DestinationSet.handle;
+            pointer->DestinationSet = this.DestinationSet?.handle ?? default(Interop.DescriptorSet);
             pointer->DestinationBinding = this.DestinationBinding;
             pointer->DestinationArrayElement = this.DestinationArrayElement;
             pointer->DescriptorCount = this.DescriptorCount;

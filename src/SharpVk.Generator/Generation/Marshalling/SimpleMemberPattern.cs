@@ -13,21 +13,28 @@ namespace SharpVk.Generator.Generation.Marshalling
     {
         private readonly IEnumerable<IMarshalValueRule> marshallingRules;
         private readonly NameLookup nameLookup;
+        private readonly Dictionary<string, TypeDeclaration> typeData;
 
-        public SimpleMemberPattern(IEnumerable<IMarshalValueRule> marshallingRules, NameLookup nameLookup)
+        public SimpleMemberPattern(IEnumerable<IMarshalValueRule> marshallingRules, NameLookup nameLookup, Dictionary<string, TypeDeclaration> typeData)
         {
             this.marshallingRules = marshallingRules;
             this.nameLookup = nameLookup;
+            this.typeData = typeData;
         }
 
         public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, Func<string, Action<ExpressionBuilder>> getHandle, MemberPatternInfo info)
         {
             var marshalling = this.marshallingRules.ApplyFirst(source.Type);
 
+            bool isOptional = source.IsOptional && this.typeData[source.Type.VkName].Pattern != TypePattern.Delegate
+                                                    && this.typeData[source.Type.VkName].Pattern != TypePattern.Handle
+                                                    && this.typeData[source.Type.VkName].Pattern != TypePattern.Enum;
+
             info.Public = new TypedDefinition
             {
                 Name = source.Name,
-                Type = marshalling.MemberType
+                Type = marshalling.MemberType + (isOptional ? "?" : ""),
+                DefaultValue = isOptional ? Null : null
             };
 
             string typeName = this.nameLookup.Lookup(source.Type, true);
@@ -45,12 +52,35 @@ namespace SharpVk.Generator.Generation.Marshalling
                 info.InteropFullType += new string('*', source.Type.PointerType.GetPointerCount());
             }
 
-            info.MarshalTo.Add((getTarget, getValue) => new AssignAction
+            info.MarshalTo.Add((getTarget, getValue) =>
             {
-                ValueExpression = marshalling.BuildMarshalToValueExpression(getValue(source.Name), getHandle),
-                TargetExpression = getTarget(source.Name),
-                MemberType = marshalling.InteropType,
-                Type = marshalling.MarshalToActionType
+                var valueExpression = isOptional
+                                        ? marshalling.BuildMarshalToValueExpression(Member(getValue(source.Name), "Value"), getHandle)
+                                        : marshalling.BuildMarshalToValueExpression(getValue(source.Name), getHandle);
+                var assignment = new AssignAction
+                {
+                    ValueExpression = valueExpression,
+                    TargetExpression = getTarget(source.Name),
+                    MemberType = marshalling.InteropType,
+                    Type = marshalling.MarshalToActionType,
+                    IsOptional = isOptional
+                };
+
+                if(isOptional)
+                {
+                    var result = new OptionalAction
+                    {
+                        NullCheckExpression = IsNotEqual(getValue(source.Name), Null)
+                    };
+
+                    result.Actions.Add(assignment);
+
+                    return result;
+                }
+                else
+                {
+                    return assignment;
+                }
             });
 
             info.MarshalFrom.Add((getTarget, getValue) => new AssignAction

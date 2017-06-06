@@ -48,7 +48,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                 }
                 else
                 {
-                    info.BuildMarshalToValueExpression = (value, getHandle) => Member(value, "handle");
+                    info.BuildMarshalToValueExpression = (value, getHandle) => Coalesce(CoalesceMember(value, "handle"), Default("Interop." + memberType));
                     handleExpressions.Add((value, getHandle) => value);
                 }
 

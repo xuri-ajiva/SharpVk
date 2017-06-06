@@ -13,6 +13,8 @@ namespace SharpVk.Generator.Collation
 
         string ITypedDeclaration.Name => this.Name;
 
+        bool ITypedDeclaration.IsOptional => this.IsOptional;
+
         TypeReference ITypedDeclaration.Type => this.Type;
 
         string ITypedDeclaration.VkName => this.VkName;

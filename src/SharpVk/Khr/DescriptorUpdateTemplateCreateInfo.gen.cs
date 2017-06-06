@@ -90,7 +90,7 @@ namespace SharpVk.Khr
         /// <summary>
         /// 
         /// </summary>
-        public uint Set
+        public uint? Set
         {
             get;
             set;
@@ -116,10 +116,13 @@ namespace SharpVk.Khr
                 pointer->DescriptorUpdateEntries = null;
             }
             pointer->TemplateType = this.TemplateType;
-            pointer->DescriptorSetLayout = this.DescriptorSetLayout.handle;
+            pointer->DescriptorSetLayout = this.DescriptorSetLayout?.handle ?? default(Interop.DescriptorSetLayout);
             pointer->PipelineBindPoint = this.PipelineBindPoint;
-            pointer->PipelineLayout = this.PipelineLayout.handle;
-            pointer->Set = this.Set;
+            pointer->PipelineLayout = this.PipelineLayout?.handle ?? default(Interop.PipelineLayout);
+            if (this.Set != null)
+            {
+                pointer->Set = this.Set.Value;
+            }
         }
     }
 }

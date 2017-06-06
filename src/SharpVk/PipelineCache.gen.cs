@@ -113,7 +113,7 @@ namespace SharpVk
                     var fieldPointer = (Interop.PipelineCache*)(Interop.HeapUtil.AllocateAndClear<Interop.PipelineCache>(sourceCaches.Length).ToPointer());
                     for(int index = 0; index < (uint)(sourceCaches.Length); index++)
                     {
-                        fieldPointer[index] = sourceCaches[index].handle;
+                        fieldPointer[index] = sourceCaches[index]?.handle ?? default(Interop.PipelineCache);
                     }
                     marshalledSourceCaches = fieldPointer;
                 }
@@ -164,6 +164,7 @@ namespace SharpVk
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
+                marshalledPipelines = (Interop.Pipeline*)(Interop.HeapUtil.Allocate<Interop.Pipeline>(createInfoCount));
                 Result methodResult = Interop.Commands.vkCreateGraphicsPipelines(this.parent, this.handle, createInfoCount, marshalledCreateInfos, marshalledAllocator, marshalledPipelines);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -221,6 +222,7 @@ namespace SharpVk
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
+                marshalledPipelines = (Interop.Pipeline*)(Interop.HeapUtil.Allocate<Interop.Pipeline>(createInfoCount));
                 Result methodResult = Interop.Commands.vkCreateComputePipelines(this.parent, this.handle, createInfoCount, marshalledCreateInfos, marshalledAllocator, marshalledPipelines);
                 if (SharpVkException.IsError(methodResult))
                 {

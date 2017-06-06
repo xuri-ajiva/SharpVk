@@ -45,7 +45,7 @@ namespace SharpVk.Nv
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Handle
+        public IntPtr? Handle
         {
             get;
             set;
@@ -56,7 +56,10 @@ namespace SharpVk.Nv
             pointer->SType = StructureType.ImportMemoryWin32HandleInfoNv;
             pointer->Next = null;
             pointer->HandleType = this.HandleType;
-            pointer->Handle = this.Handle;
+            if (this.Handle != null)
+            {
+                pointer->Handle = this.Handle.Value;
+            }
         }
     }
 }

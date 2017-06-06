@@ -81,7 +81,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public AttachmentReference DepthStencilAttachment
+        public AttachmentReference? DepthStencilAttachment
         {
             get;
             set;
@@ -141,8 +141,11 @@ namespace SharpVk
             {
                 pointer->ResolveAttachments = null;
             }
-            pointer->DepthStencilAttachment = (AttachmentReference*)(Interop.HeapUtil.Allocate<AttachmentReference>());
-            *pointer->DepthStencilAttachment = this.DepthStencilAttachment;
+            if (this.DepthStencilAttachment != null)
+            {
+                pointer->DepthStencilAttachment = (AttachmentReference*)(Interop.HeapUtil.Allocate<AttachmentReference>());
+                *pointer->DepthStencilAttachment = this.DepthStencilAttachment.Value;
+            }
             pointer->PreserveAttachmentCount = (uint)(this.PreserveAttachments?.Length ?? 0);
             if (this.PreserveAttachments != null)
             {

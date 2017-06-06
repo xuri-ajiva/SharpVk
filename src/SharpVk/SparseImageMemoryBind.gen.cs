@@ -92,7 +92,7 @@ namespace SharpVk
             pointer->Subresource = this.Subresource;
             pointer->Offset = this.Offset;
             pointer->Extent = this.Extent;
-            pointer->Memory = this.Memory.handle;
+            pointer->Memory = this.Memory?.handle ?? default(Interop.DeviceMemory);
             pointer->MemoryOffset = this.MemoryOffset;
             pointer->Flags = this.Flags;
         }

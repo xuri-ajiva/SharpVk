@@ -82,10 +82,10 @@ namespace SharpVk.Khx
         {
             pointer->SType = StructureType.AcquireNextImageInfoKhx;
             pointer->Next = null;
-            pointer->Swapchain = this.Swapchain.handle;
+            pointer->Swapchain = this.Swapchain?.handle ?? default(Interop.Khr.Swapchain);
             pointer->Timeout = this.Timeout;
-            pointer->Semaphore = this.Semaphore.handle;
-            pointer->Fence = this.Fence.handle;
+            pointer->Semaphore = this.Semaphore?.handle ?? default(Interop.Semaphore);
+            pointer->Fence = this.Fence?.handle ?? default(Interop.Fence);
             pointer->DeviceMask = this.DeviceMask;
         }
     }

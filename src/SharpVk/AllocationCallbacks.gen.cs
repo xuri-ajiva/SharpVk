@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr UserData
+        public IntPtr? UserData
         {
             get;
             set;
@@ -89,7 +89,10 @@ namespace SharpVk
         
         internal unsafe void MarshalTo(Interop.AllocationCallbacks* pointer)
         {
-            pointer->UserData = this.UserData.ToPointer();
+            if (this.UserData != null)
+            {
+                pointer->UserData = this.UserData.Value.ToPointer();
+            }
             pointer->Allocation = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.Allocation);
             pointer->Reallocation = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.Reallocation);
             pointer->Free = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.Free);

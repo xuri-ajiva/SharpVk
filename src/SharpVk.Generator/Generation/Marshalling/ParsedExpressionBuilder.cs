@@ -1,15 +1,17 @@
-﻿using SharpVk.Generator.Collation;
+﻿using SharpVk.Emit;
+using SharpVk.Generator.Collation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+
+using static SharpVk.Emit.ExpressionBuilder;
 
 namespace SharpVk.Generator.Generation.Marshalling
 {
-    internal class ParsedExpressionBuilder
+    public class ParsedExpressionBuilder
        : ILenExpressionVisitor<ParsedExpressionBuilder.ExpressionBuildState>
     {
-        private Dictionary<string, TypeDeclaration> typeData;
+        private readonly Dictionary<string, TypeDeclaration> typeData;
 
         public ParsedExpressionBuilder(Dictionary<string, TypeDeclaration> typeData)
         {
@@ -18,71 +20,74 @@ namespace SharpVk.Generator.Generation.Marshalling
 
         public void Visit(LenExpressionToken parsedExpressionToken, ExpressionBuildState state)
         {
-            var member = state.Context.Members.Single(x => x.VkName == parsedExpressionToken.Value);
-
-            string name = member.Name;
+            var member = state.Resolve(parsedExpressionToken.Value);
 
             //if (this.mapping != null && this.mapping.ContainsKey(name))
             //{
             //    name = this.mapping[name] + ".Length";
             //}
 
-            state.Builder.Append(name);
+            state.Result = Variable(member.Name);
             state.ExpressionType = member.Type.VkName;
         }
 
         public void Visit(LenExpressionReference reference, ExpressionBuildState state)
         {
-            throw new NotImplementedException();
-            //reference.LeftOperand.Visit(this, state);
-            //state.Builder.Append(".");
-            //var targetType = typeData[state.ExpressionType];
+            var leftState = new ExpressionBuildState
+            {
+                Resolve = state.Resolve
+            };
 
-            //var memberMappings = targetType.Members
-            //                                        .Where(x => x.Dimensions != null)
-            //                                        .ToDictionary(x => ((LenExpressionToken)x.Dimensions[0].Value).Value);
+            reference.LeftOperand.Visit(this, leftState);
 
-            //var member = targetType.Members.Single(x => x.VkName == reference.RightOperand.Value);
+            var target = leftState.Result;
 
-            //string memberName;
+            var targetType = typeData[leftState.ExpressionType];
 
-            //if (memberMappings.ContainsKey(member.VkName))
-            //{
-            //    memberName = TypeGenerator.GetNameForElement(memberMappings[member.VkName]) + ".Length";
-            //}
-            //else
-            //{
-            //    memberName = TypeGenerator.GetNameForElement(member);
-            //}
+            var memberMappings = targetType.Members
+                                        .Where(x => x.Dimensions != null)
+                                        .ToDictionary(x => ((LenExpressionToken)x.Dimensions[0].Value).Value);
 
-            //state.Builder.Append(memberName);
-            //state.ExpressionType = member.Type;
+            var member = targetType.Members.Single(x => x.VkName == reference.RightOperand.Value);
+
+            string memberName;
+
+            if (memberMappings.ContainsKey(member.VkName))
+            {
+                memberName = memberMappings[member.VkName].Name + ".Length";
+            }
+            else
+            {
+                memberName = member.Name;
+            }
+
+            state.Result = Member(target, memberName);
+
+            state.ExpressionType = member.Type.VkName;
         }
 
         public class ExpressionBuildState
         {
-            public StringBuilder Builder;
+            public Action<ExpressionBuilder> Result;
             public string ExpressionType;
-            public TypeDeclaration Context;
+            public Func<string, ITypedDeclaration> Resolve;
         }
 
-        public string Build(LenExpression value, TypeDeclaration type)
+        public Action<ExpressionBuilder> Build(LenExpression value, Func<string, ITypedDeclaration> resolve)
         {
-            var builder = new StringBuilder();
-
-            value.Visit(this, new ExpressionBuildState
+            var state = new ExpressionBuildState
             {
-                Builder = builder,
-                ExpressionType = null,
-                Context = type
-            });
+                Resolve = resolve
+            };
 
-            return builder.ToString();
+            value.Visit(this, state);
+
+            return state.Result;
         }
 
         public void Visit(LenExpressionLiteral literal, ExpressionBuildState state)
         {
-            state.Builder.Append(literal.Value);
+            state.Result = Literal(int.Parse(literal.Value));
             state.ExpressionType = "int32";
         }
 
@@ -91,15 +96,15 @@ namespace SharpVk.Generator.Generation.Marshalling
             switch (@operator.Operator)
             {
                 case LenOperatorType.Divide:
-                    state.Builder.Append("(int)");
-                    @operator.LeftOperand.Visit(this, state);
-                    state.Builder.Append(" / (float)");
-                    @operator.RightOperand.Visit(this, state);
+                    var left = Build(@operator.LeftOperand, state.Resolve);
+                    var right = Build(@operator.RightOperand, state.Resolve);
+
+                    state.Result = Divide(left, Cast("float", right));
                     break;
                 case LenOperatorType.Ceiling:
-                    state.Builder.Append("Math.Ceiling(");
-                    @operator.LeftOperand.Visit(this, state);
-                    state.Builder.Append(")");
+                    var value = Build(@operator.LeftOperand, state.Resolve);
+
+                    state.Result = StaticCall("Math", "Ceiling", Cast("float", value));
                     break;
                 default:
                     throw new NotImplementedException();

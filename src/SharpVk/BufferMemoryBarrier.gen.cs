@@ -104,7 +104,7 @@ namespace SharpVk
             pointer->DestinationAccessMask = this.DestinationAccessMask;
             pointer->SourceQueueFamilyIndex = this.SourceQueueFamilyIndex;
             pointer->DestinationQueueFamilyIndex = this.DestinationQueueFamilyIndex;
-            pointer->Buffer = this.Buffer.handle;
+            pointer->Buffer = this.Buffer?.handle ?? default(Interop.Buffer);
             pointer->Offset = this.Offset;
             pointer->Size = this.Size;
         }

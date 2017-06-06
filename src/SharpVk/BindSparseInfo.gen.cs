@@ -88,7 +88,7 @@ namespace SharpVk
                 var fieldPointer = (Interop.Semaphore*)(Interop.HeapUtil.AllocateAndClear<Interop.Semaphore>(this.WaitSemaphores.Length).ToPointer());
                 for(int index = 0; index < (uint)(this.WaitSemaphores.Length); index++)
                 {
-                    fieldPointer[index] = this.WaitSemaphores[index].handle;
+                    fieldPointer[index] = this.WaitSemaphores[index]?.handle ?? default(Interop.Semaphore);
                 }
                 pointer->WaitSemaphores = fieldPointer;
             }
@@ -144,7 +144,7 @@ namespace SharpVk
                 var fieldPointer = (Interop.Semaphore*)(Interop.HeapUtil.AllocateAndClear<Interop.Semaphore>(this.SignalSemaphores.Length).ToPointer());
                 for(int index = 0; index < (uint)(this.SignalSemaphores.Length); index++)
                 {
-                    fieldPointer[index] = this.SignalSemaphores[index].handle;
+                    fieldPointer[index] = this.SignalSemaphores[index]?.handle ?? default(Interop.Semaphore);
                 }
                 pointer->SignalSemaphores = fieldPointer;
             }

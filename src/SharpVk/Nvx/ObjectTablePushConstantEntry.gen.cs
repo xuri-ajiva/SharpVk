@@ -73,7 +73,7 @@ namespace SharpVk.Nvx
         {
             pointer->Type = this.Type;
             pointer->Flags = this.Flags;
-            pointer->PipelineLayout = this.PipelineLayout.handle;
+            pointer->PipelineLayout = this.PipelineLayout?.handle ?? default(Interop.PipelineLayout);
             pointer->StageFlags = this.StageFlags;
         }
     }

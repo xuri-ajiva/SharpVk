@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ApplicationInfo ApplicationInfo
+        public ApplicationInfo? ApplicationInfo
         {
             get;
             set;
@@ -74,8 +74,11 @@ namespace SharpVk
             pointer->SType = StructureType.InstanceCreateInfo;
             pointer->Next = null;
             pointer->Flags = this.Flags;
-            pointer->ApplicationInfo = (Interop.ApplicationInfo*)(Interop.HeapUtil.Allocate<Interop.ApplicationInfo>());
-            this.ApplicationInfo.MarshalTo(pointer->ApplicationInfo);
+            if (this.ApplicationInfo != null)
+            {
+                pointer->ApplicationInfo = (Interop.ApplicationInfo*)(Interop.HeapUtil.Allocate<Interop.ApplicationInfo>());
+                this.ApplicationInfo.Value.MarshalTo(pointer->ApplicationInfo);
+            }
             pointer->EnabledLayerCount = (uint)(this.EnabledLayerNames?.Length ?? 0);
             pointer->EnabledExtensionCount = (uint)(this.EnabledExtensionNames?.Length ?? 0);
         }

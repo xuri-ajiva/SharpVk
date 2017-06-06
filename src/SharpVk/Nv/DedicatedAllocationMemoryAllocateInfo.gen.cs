@@ -55,8 +55,8 @@ namespace SharpVk.Nv
         {
             pointer->SType = StructureType.DedicatedAllocationMemoryAllocateInfoNv;
             pointer->Next = null;
-            pointer->Image = this.Image.handle;
-            pointer->Buffer = this.Buffer.handle;
+            pointer->Image = this.Image?.handle ?? default(Interop.Image);
+            pointer->Buffer = this.Buffer?.handle ?? default(Interop.Buffer);
         }
     }
 }

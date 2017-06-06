@@ -55,14 +55,14 @@ namespace SharpVk
         {
             pointer->SType = StructureType.DescriptorSetAllocateInfo;
             pointer->Next = null;
-            pointer->DescriptorPool = this.DescriptorPool.handle;
+            pointer->DescriptorPool = this.DescriptorPool?.handle ?? default(Interop.DescriptorPool);
             pointer->DescriptorSetCount = (uint)(this.SetLayouts?.Length ?? 0);
             if (this.SetLayouts != null)
             {
                 var fieldPointer = (Interop.DescriptorSetLayout*)(Interop.HeapUtil.AllocateAndClear<Interop.DescriptorSetLayout>(this.SetLayouts.Length).ToPointer());
                 for(int index = 0; index < (uint)(this.SetLayouts.Length); index++)
                 {
-                    fieldPointer[index] = this.SetLayouts[index].handle;
+                    fieldPointer[index] = this.SetLayouts[index]?.handle ?? default(Interop.DescriptorSetLayout);
                 }
                 pointer->SetLayouts = fieldPointer;
             }

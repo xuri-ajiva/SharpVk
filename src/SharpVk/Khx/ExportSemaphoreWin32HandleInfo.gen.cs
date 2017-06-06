@@ -36,7 +36,7 @@ namespace SharpVk.Khx
         /// <summary>
         /// 
         /// </summary>
-        public SecurityAttributes Attributes
+        public SecurityAttributes? Attributes
         {
             get;
             set;
@@ -64,8 +64,11 @@ namespace SharpVk.Khx
         {
             pointer->SType = StructureType.ExportSemaphoreWin32HandleInfoKhx;
             pointer->Next = null;
-            pointer->Attributes = (SecurityAttributes*)(Interop.HeapUtil.Allocate<SecurityAttributes>());
-            *pointer->Attributes = this.Attributes;
+            if (this.Attributes != null)
+            {
+                pointer->Attributes = (SecurityAttributes*)(Interop.HeapUtil.Allocate<SecurityAttributes>());
+                *pointer->Attributes = this.Attributes.Value;
+            }
             pointer->DwAccess = this.DwAccess;
             pointer->Name = this.Name;
         }

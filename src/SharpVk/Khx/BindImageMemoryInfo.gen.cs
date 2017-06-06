@@ -82,8 +82,8 @@ namespace SharpVk.Khx
         {
             pointer->SType = StructureType.BindImageMemoryInfoKhx;
             pointer->Next = null;
-            pointer->Image = this.Image.handle;
-            pointer->Memory = this.Memory.handle;
+            pointer->Image = this.Image?.handle ?? default(Interop.Image);
+            pointer->Memory = this.Memory?.handle ?? default(Interop.DeviceMemory);
             pointer->MemoryOffset = this.MemoryOffset;
             pointer->DeviceIndexCount = (uint)(this.DeviceIndices?.Length ?? 0);
             if (this.DeviceIndices != null)

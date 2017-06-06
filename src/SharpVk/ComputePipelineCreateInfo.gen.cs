@@ -84,8 +84,8 @@ namespace SharpVk
             pointer->Next = null;
             pointer->Flags = this.Flags;
             this.Stage.MarshalTo(&pointer->Stage);
-            pointer->Layout = this.Layout.handle;
-            pointer->BasePipelineHandle = this.BasePipelineHandle.handle;
+            pointer->Layout = this.Layout?.handle ?? default(Interop.PipelineLayout);
+            pointer->BasePipelineHandle = this.BasePipelineHandle?.handle ?? default(Interop.Pipeline);
             pointer->BasePipelineIndex = this.BasePipelineIndex;
         }
     }

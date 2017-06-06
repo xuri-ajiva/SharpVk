@@ -94,7 +94,7 @@ namespace SharpVk
                     var fieldPointer = (Interop.DescriptorSet*)(Interop.HeapUtil.AllocateAndClear<Interop.DescriptorSet>(descriptorSets.Length).ToPointer());
                     for(int index = 0; index < (uint)(descriptorSets.Length); index++)
                     {
-                        fieldPointer[index] = descriptorSets[index].handle;
+                        fieldPointer[index] = descriptorSets[index]?.handle ?? default(Interop.DescriptorSet);
                     }
                     marshalledDescriptorSets = fieldPointer;
                 }

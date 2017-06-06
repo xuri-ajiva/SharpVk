@@ -173,7 +173,7 @@ namespace SharpVk.Khr
             pointer->SType = StructureType.SwapchainCreateInfoKhr;
             pointer->Next = null;
             pointer->Flags = this.Flags;
-            pointer->Surface = this.Surface.handle;
+            pointer->Surface = this.Surface?.handle ?? default(Interop.Khr.Surface);
             pointer->MinImageCount = this.MinImageCount;
             pointer->ImageFormat = this.ImageFormat;
             pointer->ImageColorSpace = this.ImageColorSpace;
@@ -199,7 +199,7 @@ namespace SharpVk.Khr
             pointer->CompositeAlpha = this.CompositeAlpha;
             pointer->PresentMode = this.PresentMode;
             pointer->Clipped = this.Clipped;
-            pointer->OldSwapchain = this.OldSwapchain.handle;
+            pointer->OldSwapchain = this.OldSwapchain?.handle ?? default(Interop.Khr.Swapchain);
         }
     }
 }

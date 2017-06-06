@@ -62,7 +62,7 @@ namespace SharpVk.TestHarness
 
             IntPtr inBufferPtr = sharedMemory.Map(0, 1024, MemoryMapFlags.None);
 
-            Marshal.Copy(Enumerable.Range(0, 256).ToArray(), 0, inBufferPtr, 256);
+            Marshal.Copy(Enumerable.Range(0, 256).Select(x => (byte)x).ToArray(), 0, inBufferPtr, 256);
 
             sharedMemory.Unmap();
 
@@ -72,12 +72,37 @@ namespace SharpVk.TestHarness
                 QueueFamilyIndex = 0
             });
 
-            //var transferCommandBuffer = device.AllocateCommandBuffers(new CommandBufferAllocateInfo
-            //{
-            //    CommandBufferCount = 1,
-            //    CommandPool = commandPool,
-            //    Level = CommandBufferLevel.Primary
-            //});
+            var transferCommandBuffer = device.AllocateCommandBuffers(new CommandBufferAllocateInfo
+            {
+                CommandBufferCount = 1,
+                CommandPool = commandPool,
+                Level = CommandBufferLevel.Primary
+            }).First();
+
+            transferCommandBuffer.Begin(new CommandBufferBeginInfo { Flags = CommandBufferUsageFlags.OneTimeSubmit });
+
+            transferCommandBuffer.CopyBuffer(inBuffer, outBuffer, new[] { new BufferCopy(0, 0, 1024) });
+
+            transferCommandBuffer.End();
+
+            var transferQueue = device.GetQueue(0, 0);
+
+            transferQueue.Submit(new[] { new SubmitInfo { CommandBuffers = new[] { transferCommandBuffer } } }, null);
+
+            transferQueue.WaitIdle();
+
+            IntPtr outBufferPtr = sharedMemory.Map(2048, 1024, MemoryMapFlags.None);
+
+            for (int index = 0; index < 256; index++)
+            {
+                Console.WriteLine(Marshal.ReadByte(outBufferPtr, index));
+            }
+
+            Console.ReadLine();
+
+            sharedMemory.Unmap();
+
+            commandPool.FreeCommandBuffers(new[] { transferCommandBuffer });
 
             commandPool.Destroy();
 

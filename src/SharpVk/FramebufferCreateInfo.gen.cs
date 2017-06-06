@@ -92,14 +92,14 @@ namespace SharpVk
             pointer->SType = StructureType.FramebufferCreateInfo;
             pointer->Next = null;
             pointer->Flags = this.Flags;
-            pointer->RenderPass = this.RenderPass.handle;
+            pointer->RenderPass = this.RenderPass?.handle ?? default(Interop.RenderPass);
             pointer->AttachmentCount = (uint)(this.Attachments?.Length ?? 0);
             if (this.Attachments != null)
             {
                 var fieldPointer = (Interop.ImageView*)(Interop.HeapUtil.AllocateAndClear<Interop.ImageView>(this.Attachments.Length).ToPointer());
                 for(int index = 0; index < (uint)(this.Attachments.Length); index++)
                 {
-                    fieldPointer[index] = this.Attachments[index].handle;
+                    fieldPointer[index] = this.Attachments[index]?.handle ?? default(Interop.ImageView);
                 }
                 pointer->Attachments = fieldPointer;
             }

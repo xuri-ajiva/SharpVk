@@ -110,7 +110,7 @@ namespace SharpVk.Khr
             pointer->SType = StructureType.DisplaySurfaceCreateInfoKhr;
             pointer->Next = null;
             pointer->Flags = this.Flags;
-            pointer->DisplayMode = this.DisplayMode.handle;
+            pointer->DisplayMode = this.DisplayMode?.handle ?? default(Interop.Khr.DisplayMode);
             pointer->PlaneIndex = this.PlaneIndex;
             pointer->PlaneStackIndex = this.PlaneStackIndex;
             pointer->Transform = this.Transform;

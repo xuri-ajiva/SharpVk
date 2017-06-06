@@ -71,7 +71,7 @@ namespace SharpVk
                 var fieldPointer = (Interop.DescriptorSetLayout*)(Interop.HeapUtil.AllocateAndClear<Interop.DescriptorSetLayout>(this.SetLayouts.Length).ToPointer());
                 for(int index = 0; index < (uint)(this.SetLayouts.Length); index++)
                 {
-                    fieldPointer[index] = this.SetLayouts[index].handle;
+                    fieldPointer[index] = this.SetLayouts[index]?.handle ?? default(Interop.DescriptorSetLayout);
                 }
                 pointer->SetLayouts = fieldPointer;
             }

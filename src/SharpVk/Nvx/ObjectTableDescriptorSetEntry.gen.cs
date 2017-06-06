@@ -73,8 +73,8 @@ namespace SharpVk.Nvx
         {
             pointer->Type = this.Type;
             pointer->Flags = this.Flags;
-            pointer->PipelineLayout = this.PipelineLayout.handle;
-            pointer->DescriptorSet = this.DescriptorSet.handle;
+            pointer->PipelineLayout = this.PipelineLayout?.handle ?? default(Interop.PipelineLayout);
+            pointer->DescriptorSet = this.DescriptorSet?.handle ?? default(Interop.DescriptorSet);
         }
     }
 }

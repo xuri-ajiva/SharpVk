@@ -73,7 +73,7 @@ namespace SharpVk.Nvx
         {
             pointer->Type = this.Type;
             pointer->Flags = this.Flags;
-            pointer->Buffer = this.Buffer.handle;
+            pointer->Buffer = this.Buffer?.handle ?? default(Interop.Buffer);
             pointer->IndexType = this.IndexType;
         }
     }

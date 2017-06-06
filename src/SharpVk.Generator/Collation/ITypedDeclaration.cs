@@ -6,6 +6,8 @@
 
         string Name { get; }
 
+        bool IsOptional { get; }
+
         string FixedValue { get; }
 
         TypeReference Type { get; }

@@ -62,7 +62,7 @@ namespace SharpVk
                 {
                     marshalledSubmits = null;
                 }
-                Result methodResult = Interop.Commands.vkQueueSubmit(this.handle, (uint)(submits?.Length ?? 0), marshalledSubmits, fence.handle);
+                Result methodResult = Interop.Commands.vkQueueSubmit(this.handle, (uint)(submits?.Length ?? 0), marshalledSubmits, fence?.handle ?? default(Interop.Fence));
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -114,7 +114,7 @@ namespace SharpVk
                 {
                     marshalledBindInfo = null;
                 }
-                Result methodResult = Interop.Commands.vkQueueBindSparse(this.handle, (uint)(bindInfo?.Length ?? 0), marshalledBindInfo, fence.handle);
+                Result methodResult = Interop.Commands.vkQueueBindSparse(this.handle, (uint)(bindInfo?.Length ?? 0), marshalledBindInfo, fence?.handle ?? default(Interop.Fence));
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);

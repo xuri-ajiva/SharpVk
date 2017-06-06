@@ -36,7 +36,7 @@ namespace SharpVk.Nv
         /// <summary>
         /// 
         /// </summary>
-        public SecurityAttributes Attributes
+        public SecurityAttributes? Attributes
         {
             get;
             set;
@@ -45,7 +45,7 @@ namespace SharpVk.Nv
         /// <summary>
         /// 
         /// </summary>
-        public uint DwAccess
+        public uint? DwAccess
         {
             get;
             set;
@@ -55,9 +55,15 @@ namespace SharpVk.Nv
         {
             pointer->SType = StructureType.ExportMemoryWin32HandleInfoNv;
             pointer->Next = null;
-            pointer->Attributes = (SecurityAttributes*)(Interop.HeapUtil.Allocate<SecurityAttributes>());
-            *pointer->Attributes = this.Attributes;
-            pointer->DwAccess = this.DwAccess;
+            if (this.Attributes != null)
+            {
+                pointer->Attributes = (SecurityAttributes*)(Interop.HeapUtil.Allocate<SecurityAttributes>());
+                *pointer->Attributes = this.Attributes.Value;
+            }
+            if (this.DwAccess != null)
+            {
+                pointer->DwAccess = this.DwAccess.Value;
+            }
         }
     }
 }

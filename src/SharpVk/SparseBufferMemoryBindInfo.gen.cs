@@ -53,7 +53,7 @@ namespace SharpVk
         
         internal unsafe void MarshalTo(Interop.SparseBufferMemoryBindInfo* pointer)
         {
-            pointer->Buffer = this.Buffer.handle;
+            pointer->Buffer = this.Buffer?.handle ?? default(Interop.Buffer);
             pointer->BindCount = (uint)(this.Binds?.Length ?? 0);
             if (this.Binds != null)
             {

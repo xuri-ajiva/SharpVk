@@ -73,8 +73,8 @@ namespace SharpVk.Khx
         {
             pointer->SType = StructureType.BindBufferMemoryInfoKhx;
             pointer->Next = null;
-            pointer->Buffer = this.Buffer.handle;
-            pointer->Memory = this.Memory.handle;
+            pointer->Buffer = this.Buffer?.handle ?? default(Interop.Buffer);
+            pointer->Memory = this.Memory?.handle ?? default(Interop.DeviceMemory);
             pointer->MemoryOffset = this.MemoryOffset;
             pointer->DeviceIndexCount = (uint)(this.DeviceIndices?.Length ?? 0);
             if (this.DeviceIndices != null)

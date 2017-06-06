@@ -240,7 +240,22 @@ namespace SharpVk.Generator.Generation
                             MemberName = marshalledName
                         });
 
-                        marshalFromActions.AddRange(patternInfo.MarshalFrom.Select(action => action(targetName => Variable("result"), valueName => Variable(GetMarshalledName(valueName)))));
+                        var newMarshalFrom = patternInfo.MarshalFrom.Select(action => action(targetName => Variable("result"), valueName => Variable(GetMarshalledName(valueName)))).ToArray();
+
+                        if (!isEnumeratePattern)
+                        {
+                            var lengthExpression = newMarshalFrom.OfType<AssignAction>().First(x => x.IsLoop).LengthExpression;
+
+                            marshalToActions.Add(new AssignAction
+                            {
+                                Type = AssignActionType.Alloc,
+                                MemberType = patternInfo.InteropFullType.TrimEnd('*'),
+                                TargetExpression = Variable(marshalledName),
+                                LengthExpression = lengthExpression
+                            });
+                        }
+
+                        marshalFromActions.AddRange(newMarshalFrom);
 
                         marshalledValues.Add(Variable(marshalledName));
 
@@ -284,23 +299,7 @@ namespace SharpVk.Generator.Generation
                     var actionList = marshalToActions;
 
                     Func<string, Action<ExpressionBuilder>> getValue = valueName => Variable(valueName);
-
-                    bool isOptional = parameter.IsOptional && paramType.Pattern == TypePattern.MarshalledStruct;
-
-                    if (isOptional)
-                    {
-                        var optionalBlock = new OptionalAction
-                        {
-                            NullCheckExpression = IsNotEqual(Variable(paramName), Null)
-                        };
-
-                        marshalToActions.Add(optionalBlock);
-
-                        actionList = optionalBlock.Actions;
-
-                        getValue = valueName => Member(Variable(valueName), "Value");
-                    }
-
+                    
                     if (patternInfo.MarshalTo.Any())
                     {
                         string marshalledName = patternInfo.Interop.Name;
@@ -312,8 +311,8 @@ namespace SharpVk.Generator.Generation
                                 Param = new ParamDefinition
                                 {
                                     Name = patternInfo.Public.Value.Name,
-                                    Type = patternInfo.Public.Value.Type + (isOptional ? "?" : ""),
-                                    DefaultValue = isOptional ? Null : null
+                                    Type = patternInfo.Public.Value.Type,
+                                    DefaultValue = patternInfo.Public.Value.DefaultValue
                                 }
                             };
 

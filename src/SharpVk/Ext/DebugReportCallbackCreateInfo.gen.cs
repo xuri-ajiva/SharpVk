@@ -54,7 +54,7 @@ namespace SharpVk.Ext
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr UserData
+        public IntPtr? UserData
         {
             get;
             set;
@@ -66,7 +66,10 @@ namespace SharpVk.Ext
             pointer->Next = null;
             pointer->Flags = this.Flags;
             pointer->Callback = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.Callback);
-            pointer->UserData = this.UserData.ToPointer();
+            if (this.UserData != null)
+            {
+                pointer->UserData = this.UserData.Value.ToPointer();
+            }
         }
     }
 }

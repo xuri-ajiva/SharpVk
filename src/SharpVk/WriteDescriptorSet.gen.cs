@@ -100,7 +100,7 @@ namespace SharpVk
         {
             pointer->SType = StructureType.WriteDescriptorSet;
             pointer->Next = null;
-            pointer->DestinationSet = this.DestinationSet.handle;
+            pointer->DestinationSet = this.DestinationSet?.handle ?? default(Interop.DescriptorSet);
             pointer->DestinationBinding = this.DestinationBinding;
             pointer->DestinationArrayElement = this.DestinationArrayElement;
             pointer->DescriptorCount = (uint)(this.ImageInfo?.Length ?? 0);
@@ -136,7 +136,7 @@ namespace SharpVk
                 var fieldPointer = (Interop.BufferView*)(Interop.HeapUtil.AllocateAndClear<Interop.BufferView>(this.TexelBufferView.Length).ToPointer());
                 for(int index = 0; index < (uint)(this.TexelBufferView.Length); index++)
                 {
-                    fieldPointer[index] = this.TexelBufferView[index].handle;
+                    fieldPointer[index] = this.TexelBufferView[index]?.handle ?? default(Interop.BufferView);
                 }
                 pointer->TexelBufferView = fieldPointer;
             }

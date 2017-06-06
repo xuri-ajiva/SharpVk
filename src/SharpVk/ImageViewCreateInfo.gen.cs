@@ -92,7 +92,7 @@ namespace SharpVk
             pointer->SType = StructureType.ImageViewCreateInfo;
             pointer->Next = null;
             pointer->Flags = this.Flags;
-            pointer->Image = this.Image.handle;
+            pointer->Image = this.Image?.handle ?? default(Interop.Image);
             pointer->ViewType = this.ViewType;
             pointer->Format = this.Format;
             pointer->Components = this.Components;

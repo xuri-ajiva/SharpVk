@@ -13,11 +13,13 @@ namespace SharpVk.Generator.Generation.Marshalling
     {
         private readonly IEnumerable<IMarshalValueRule> marshallingRules;
         private readonly NameLookup nameLookup;
+        private readonly ParsedExpressionBuilder expressionBuilder;
 
-        public ArrayMemberPattern(IEnumerable<IMarshalValueRule> marshallingRules, NameLookup nameLookup)
+        public ArrayMemberPattern(IEnumerable<IMarshalValueRule> marshallingRules, NameLookup nameLookup, ParsedExpressionBuilder expressionBuilder)
         {
             this.marshallingRules = marshallingRules;
             this.nameLookup = nameLookup;
+            this.expressionBuilder = expressionBuilder;
         }
 
         public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, Func<string, Action<ExpressionBuilder>> getHandle, MemberPatternInfo info)
@@ -105,23 +107,29 @@ namespace SharpVk.Generator.Generation.Marshalling
                                 ValueExpression = marshalling.BuildMarshalToValueExpression(Index(getValue(source.Name), Variable("index")), getHandle)
                             });
 
+                            Action<ExpressionBuilder> lenValue = null;
+
                             if (source.Dimensions[0].Value is LenExpressionToken lenToken)
                             {
-                                var lenParam = others.Single(x => x.VkName == lenToken.Value);
-
-                                info.MarshalFrom.Add((getTarget, getValue) => new AssignAction
-                                {
-                                    TargetExpression = getTarget(source.Name),
-                                    MemberType = marshalling.MemberType,
-                                    IsLoop = true,
-                                    IsArray = true,
-                                    IndexName = "index",
-                                    Type = marshalling.MarshalFromActionType,
-                                    NullCheckExpression = IsNotEqual(getValue(source.Name), Null),
-                                    LengthExpression = Variable(lenParam.Name),
-                                    ValueExpression = marshalling.BuildMarshalFromValueExpression(Index(getValue(source.Name), Variable("index")), getHandle)
-                                });
+                                lenValue = Variable(others.Single(x => x.VkName == lenToken.Value).Name);
                             }
+                            else
+                            {
+                                lenValue = this.expressionBuilder.Build(source.Dimensions[0].Value, x => others.Single(y => y.VkName == x));
+                            }
+
+                            info.MarshalFrom.Add((getTarget, getValue) => new AssignAction
+                            {
+                                TargetExpression = getTarget(source.Name),
+                                MemberType = marshalling.MemberType,
+                                IsLoop = true,
+                                IsArray = true,
+                                IndexName = "index",
+                                Type = marshalling.MarshalFromActionType,
+                                NullCheckExpression = IsNotEqual(getValue(source.Name), Null),
+                                LengthExpression = lenValue,
+                                ValueExpression = marshalling.BuildMarshalFromValueExpression(Index(getValue(source.Name), Variable("index")), getHandle)
+                            });
                             break;
                     }
                 }

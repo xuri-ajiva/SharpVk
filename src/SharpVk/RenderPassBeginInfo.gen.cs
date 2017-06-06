@@ -73,8 +73,8 @@ namespace SharpVk
         {
             pointer->SType = StructureType.RenderPassBeginInfo;
             pointer->Next = null;
-            pointer->RenderPass = this.RenderPass.handle;
-            pointer->Framebuffer = this.Framebuffer.handle;
+            pointer->RenderPass = this.RenderPass?.handle ?? default(Interop.RenderPass);
+            pointer->Framebuffer = this.Framebuffer?.handle ?? default(Interop.Framebuffer);
             pointer->RenderArea = this.RenderArea;
             pointer->ClearValueCount = (uint)(this.ClearValues?.Length ?? 0);
             if (this.ClearValues != null)

@@ -94,7 +94,7 @@ namespace SharpVk
                     var fieldPointer = (Interop.CommandBuffer*)(Interop.HeapUtil.AllocateAndClear<Interop.CommandBuffer>(commandBuffers.Length).ToPointer());
                     for(int index = 0; index < (uint)(commandBuffers.Length); index++)
                     {
-                        fieldPointer[index] = commandBuffers[index].handle;
+                        fieldPointer[index] = commandBuffers[index]?.handle ?? default(Interop.CommandBuffer);
                     }
                     marshalledCommandBuffers = fieldPointer;
                 }

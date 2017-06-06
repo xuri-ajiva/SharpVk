@@ -72,7 +72,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineTessellationStateCreateInfo TessellationState
+        public PipelineTessellationStateCreateInfo? TessellationState
         {
             get;
             set;
@@ -81,7 +81,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineViewportStateCreateInfo ViewportState
+        public PipelineViewportStateCreateInfo? ViewportState
         {
             get;
             set;
@@ -99,7 +99,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineMultisampleStateCreateInfo MultisampleState
+        public PipelineMultisampleStateCreateInfo? MultisampleState
         {
             get;
             set;
@@ -108,7 +108,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineDepthStencilStateCreateInfo DepthStencilState
+        public PipelineDepthStencilStateCreateInfo? DepthStencilState
         {
             get;
             set;
@@ -117,7 +117,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineColorBlendStateCreateInfo ColorBlendState
+        public PipelineColorBlendStateCreateInfo? ColorBlendState
         {
             get;
             set;
@@ -126,7 +126,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineDynamicStateCreateInfo DynamicState
+        public PipelineDynamicStateCreateInfo? DynamicState
         {
             get;
             set;
@@ -200,24 +200,42 @@ namespace SharpVk
             this.VertexInputState.MarshalTo(pointer->VertexInputState);
             pointer->InputAssemblyState = (Interop.PipelineInputAssemblyStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineInputAssemblyStateCreateInfo>());
             this.InputAssemblyState.MarshalTo(pointer->InputAssemblyState);
-            pointer->TessellationState = (Interop.PipelineTessellationStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineTessellationStateCreateInfo>());
-            this.TessellationState.MarshalTo(pointer->TessellationState);
-            pointer->ViewportState = (Interop.PipelineViewportStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineViewportStateCreateInfo>());
-            this.ViewportState.MarshalTo(pointer->ViewportState);
+            if (this.TessellationState != null)
+            {
+                pointer->TessellationState = (Interop.PipelineTessellationStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineTessellationStateCreateInfo>());
+                this.TessellationState.Value.MarshalTo(pointer->TessellationState);
+            }
+            if (this.ViewportState != null)
+            {
+                pointer->ViewportState = (Interop.PipelineViewportStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineViewportStateCreateInfo>());
+                this.ViewportState.Value.MarshalTo(pointer->ViewportState);
+            }
             pointer->RasterizationState = (Interop.PipelineRasterizationStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineRasterizationStateCreateInfo>());
             this.RasterizationState.MarshalTo(pointer->RasterizationState);
-            pointer->MultisampleState = (Interop.PipelineMultisampleStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineMultisampleStateCreateInfo>());
-            this.MultisampleState.MarshalTo(pointer->MultisampleState);
-            pointer->DepthStencilState = (Interop.PipelineDepthStencilStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineDepthStencilStateCreateInfo>());
-            this.DepthStencilState.MarshalTo(pointer->DepthStencilState);
-            pointer->ColorBlendState = (Interop.PipelineColorBlendStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineColorBlendStateCreateInfo>());
-            this.ColorBlendState.MarshalTo(pointer->ColorBlendState);
-            pointer->DynamicState = (Interop.PipelineDynamicStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineDynamicStateCreateInfo>());
-            this.DynamicState.MarshalTo(pointer->DynamicState);
-            pointer->Layout = this.Layout.handle;
-            pointer->RenderPass = this.RenderPass.handle;
+            if (this.MultisampleState != null)
+            {
+                pointer->MultisampleState = (Interop.PipelineMultisampleStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineMultisampleStateCreateInfo>());
+                this.MultisampleState.Value.MarshalTo(pointer->MultisampleState);
+            }
+            if (this.DepthStencilState != null)
+            {
+                pointer->DepthStencilState = (Interop.PipelineDepthStencilStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineDepthStencilStateCreateInfo>());
+                this.DepthStencilState.Value.MarshalTo(pointer->DepthStencilState);
+            }
+            if (this.ColorBlendState != null)
+            {
+                pointer->ColorBlendState = (Interop.PipelineColorBlendStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineColorBlendStateCreateInfo>());
+                this.ColorBlendState.Value.MarshalTo(pointer->ColorBlendState);
+            }
+            if (this.DynamicState != null)
+            {
+                pointer->DynamicState = (Interop.PipelineDynamicStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineDynamicStateCreateInfo>());
+                this.DynamicState.Value.MarshalTo(pointer->DynamicState);
+            }
+            pointer->Layout = this.Layout?.handle ?? default(Interop.PipelineLayout);
+            pointer->RenderPass = this.RenderPass?.handle ?? default(Interop.RenderPass);
             pointer->Subpass = this.Subpass;
-            pointer->BasePipelineHandle = this.BasePipelineHandle.handle;
+            pointer->BasePipelineHandle = this.BasePipelineHandle?.handle ?? default(Interop.Pipeline);
             pointer->BasePipelineIndex = this.BasePipelineIndex;
         }
     }

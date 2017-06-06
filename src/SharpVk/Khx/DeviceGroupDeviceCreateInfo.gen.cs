@@ -52,7 +52,7 @@ namespace SharpVk.Khx
                 var fieldPointer = (Interop.PhysicalDevice*)(Interop.HeapUtil.AllocateAndClear<Interop.PhysicalDevice>(this.PhysicalDevices.Length).ToPointer());
                 for(int index = 0; index < (uint)(this.PhysicalDevices.Length); index++)
                 {
-                    fieldPointer[index] = this.PhysicalDevices[index].handle;
+                    fieldPointer[index] = this.PhysicalDevices[index]?.handle ?? default(Interop.PhysicalDevice);
                 }
                 pointer->PhysicalDevices = fieldPointer;
             }

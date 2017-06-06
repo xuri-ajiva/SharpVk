@@ -46,7 +46,7 @@ namespace SharpVk.Khx
         {
             pointer->SType = StructureType.ImageSwapchainCreateInfoKhx;
             pointer->Next = null;
-            pointer->Swapchain = this.Swapchain.handle;
+            pointer->Swapchain = this.Swapchain?.handle ?? default(Interop.Khr.Swapchain);
         }
     }
 }

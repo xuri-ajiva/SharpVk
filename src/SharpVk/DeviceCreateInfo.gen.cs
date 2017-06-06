@@ -72,7 +72,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PhysicalDeviceFeatures EnabledFeatures
+        public PhysicalDeviceFeatures? EnabledFeatures
         {
             get;
             set;
@@ -99,8 +99,11 @@ namespace SharpVk
             }
             pointer->EnabledLayerCount = (uint)(this.EnabledLayerNames?.Length ?? 0);
             pointer->EnabledExtensionCount = (uint)(this.EnabledExtensionNames?.Length ?? 0);
-            pointer->EnabledFeatures = (PhysicalDeviceFeatures*)(Interop.HeapUtil.Allocate<PhysicalDeviceFeatures>());
-            *pointer->EnabledFeatures = this.EnabledFeatures;
+            if (this.EnabledFeatures != null)
+            {
+                pointer->EnabledFeatures = (PhysicalDeviceFeatures*)(Interop.HeapUtil.Allocate<PhysicalDeviceFeatures>());
+                *pointer->EnabledFeatures = this.EnabledFeatures.Value;
+            }
         }
     }
 }

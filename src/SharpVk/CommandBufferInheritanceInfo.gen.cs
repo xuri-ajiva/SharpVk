@@ -91,9 +91,9 @@ namespace SharpVk
         {
             pointer->SType = StructureType.CommandBufferInheritanceInfo;
             pointer->Next = null;
-            pointer->RenderPass = this.RenderPass.handle;
+            pointer->RenderPass = this.RenderPass?.handle ?? default(Interop.RenderPass);
             pointer->Subpass = this.Subpass;
-            pointer->Framebuffer = this.Framebuffer.handle;
+            pointer->Framebuffer = this.Framebuffer?.handle ?? default(Interop.Framebuffer);
             pointer->OcclusionQueryEnable = this.OcclusionQueryEnable;
             pointer->QueryFlags = this.QueryFlags;
             pointer->PipelineStatistics = this.PipelineStatistics;

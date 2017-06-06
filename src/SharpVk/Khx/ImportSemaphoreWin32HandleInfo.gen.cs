@@ -64,7 +64,7 @@ namespace SharpVk.Khx
         {
             pointer->SType = StructureType.ImportSemaphoreWin32HandleInfoKhx;
             pointer->Next = null;
-            pointer->Semaphore = this.Semaphore.handle;
+            pointer->Semaphore = this.Semaphore?.handle ?? default(Interop.Semaphore);
             pointer->HandleType = this.HandleType;
             pointer->Handle = this.Handle;
         }

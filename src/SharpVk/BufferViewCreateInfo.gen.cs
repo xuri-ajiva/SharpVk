@@ -83,7 +83,7 @@ namespace SharpVk
             pointer->SType = StructureType.BufferViewCreateInfo;
             pointer->Next = null;
             pointer->Flags = this.Flags;
-            pointer->Buffer = this.Buffer.handle;
+            pointer->Buffer = this.Buffer?.handle ?? default(Interop.Buffer);
             pointer->Format = this.Format;
             pointer->Offset = this.Offset;
             pointer->Range = this.Range;

@@ -258,7 +258,7 @@ namespace SharpVk
                     var fieldPointer = (Interop.Fence*)(Interop.HeapUtil.AllocateAndClear<Interop.Fence>(fences.Length).ToPointer());
                     for(int index = 0; index < (uint)(fences.Length); index++)
                     {
-                        fieldPointer[index] = fences[index].handle;
+                        fieldPointer[index] = fences[index]?.handle ?? default(Interop.Fence);
                     }
                     marshalledFences = fieldPointer;
                 }
@@ -291,7 +291,7 @@ namespace SharpVk
                     var fieldPointer = (Interop.Fence*)(Interop.HeapUtil.AllocateAndClear<Interop.Fence>(fences.Length).ToPointer());
                     for(int index = 0; index < (uint)(fences.Length); index++)
                     {
-                        fieldPointer[index] = fences[index].handle;
+                        fieldPointer[index] = fences[index]?.handle ?? default(Interop.Fence);
                     }
                     marshalledFences = fieldPointer;
                 }
@@ -739,10 +739,24 @@ namespace SharpVk
                 Interop.DescriptorSet* marshalledDescriptorSets = default(Interop.DescriptorSet*);
                 marshalledAllocateInfo = (Interop.DescriptorSetAllocateInfo*)(Interop.HeapUtil.Allocate<Interop.DescriptorSetAllocateInfo>());
                 allocateInfo.MarshalTo(marshalledAllocateInfo);
+                marshalledDescriptorSets = (Interop.DescriptorSet*)(Interop.HeapUtil.Allocate<Interop.DescriptorSet>(allocateInfo.SetLayouts.Length));
                 Result methodResult = Interop.Commands.vkAllocateDescriptorSets(this.handle, marshalledAllocateInfo, marshalledDescriptorSets);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
+                }
+                if (marshalledDescriptorSets != null)
+                {
+                    var fieldPointer = new DescriptorSet[(uint)(allocateInfo.SetLayouts.Length)];
+                    for(int index = 0; index < (uint)(allocateInfo.SetLayouts.Length); index++)
+                    {
+                        fieldPointer[index] = new DescriptorSet(default(Interop.DescriptorPool), marshalledDescriptorSets[index]);
+                    }
+                    result = fieldPointer;
+                }
+                else
+                {
+                    result = null;
                 }
                 return result;
             }
@@ -903,10 +917,24 @@ namespace SharpVk
                 Interop.CommandBuffer* marshalledCommandBuffers = default(Interop.CommandBuffer*);
                 marshalledAllocateInfo = (Interop.CommandBufferAllocateInfo*)(Interop.HeapUtil.Allocate<Interop.CommandBufferAllocateInfo>());
                 allocateInfo.MarshalTo(marshalledAllocateInfo);
+                marshalledCommandBuffers = (Interop.CommandBuffer*)(Interop.HeapUtil.Allocate<Interop.CommandBuffer>(allocateInfo.CommandBufferCount));
                 Result methodResult = Interop.Commands.vkAllocateCommandBuffers(this.handle, marshalledAllocateInfo, marshalledCommandBuffers);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
+                }
+                if (marshalledCommandBuffers != null)
+                {
+                    var fieldPointer = new CommandBuffer[(uint)(allocateInfo.CommandBufferCount)];
+                    for(int index = 0; index < (uint)(allocateInfo.CommandBufferCount); index++)
+                    {
+                        fieldPointer[index] = new CommandBuffer(default(Interop.CommandPool), marshalledCommandBuffers[index]);
+                    }
+                    result = fieldPointer;
+                }
+                else
+                {
+                    result = null;
                 }
                 return result;
             }

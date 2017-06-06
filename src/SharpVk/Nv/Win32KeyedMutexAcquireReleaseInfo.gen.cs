@@ -88,7 +88,7 @@ namespace SharpVk.Nv
                 var fieldPointer = (Interop.DeviceMemory*)(Interop.HeapUtil.AllocateAndClear<Interop.DeviceMemory>(this.AcquireSyncs.Length).ToPointer());
                 for(int index = 0; index < (uint)(this.AcquireSyncs.Length); index++)
                 {
-                    fieldPointer[index] = this.AcquireSyncs[index].handle;
+                    fieldPointer[index] = this.AcquireSyncs[index]?.handle ?? default(Interop.DeviceMemory);
                 }
                 pointer->AcquireSyncs = fieldPointer;
             }
@@ -128,7 +128,7 @@ namespace SharpVk.Nv
                 var fieldPointer = (Interop.DeviceMemory*)(Interop.HeapUtil.AllocateAndClear<Interop.DeviceMemory>(this.ReleaseSyncs.Length).ToPointer());
                 for(int index = 0; index < (uint)(this.ReleaseSyncs.Length); index++)
                 {
-                    fieldPointer[index] = this.ReleaseSyncs[index].handle;
+                    fieldPointer[index] = this.ReleaseSyncs[index]?.handle ?? default(Interop.DeviceMemory);
                 }
                 pointer->ReleaseSyncs = fieldPointer;
             }

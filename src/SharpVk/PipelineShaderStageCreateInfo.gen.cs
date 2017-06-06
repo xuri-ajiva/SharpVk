@@ -72,7 +72,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SpecializationInfo SpecializationInfo
+        public SpecializationInfo? SpecializationInfo
         {
             get;
             set;
@@ -84,10 +84,13 @@ namespace SharpVk
             pointer->Next = null;
             pointer->Flags = this.Flags;
             pointer->Stage = this.Stage;
-            pointer->Module = this.Module.handle;
+            pointer->Module = this.Module?.handle ?? default(Interop.ShaderModule);
             pointer->Name = Interop.HeapUtil.MarshalTo(this.Name);
-            pointer->SpecializationInfo = (Interop.SpecializationInfo*)(Interop.HeapUtil.Allocate<Interop.SpecializationInfo>());
-            this.SpecializationInfo.MarshalTo(pointer->SpecializationInfo);
+            if (this.SpecializationInfo != null)
+            {
+                pointer->SpecializationInfo = (Interop.SpecializationInfo*)(Interop.HeapUtil.Allocate<Interop.SpecializationInfo>());
+                this.SpecializationInfo.Value.MarshalTo(pointer->SpecializationInfo);
+            }
         }
     }
 }

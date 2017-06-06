@@ -64,7 +64,7 @@ namespace SharpVk
         {
             pointer->SType = StructureType.CommandBufferAllocateInfo;
             pointer->Next = null;
-            pointer->CommandPool = this.CommandPool.handle;
+            pointer->CommandPool = this.CommandPool?.handle ?? default(Interop.CommandPool);
             pointer->Level = this.Level;
             pointer->CommandBufferCount = this.CommandBufferCount;
         }

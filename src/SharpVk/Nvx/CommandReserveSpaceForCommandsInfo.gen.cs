@@ -64,8 +64,8 @@ namespace SharpVk.Nvx
         {
             pointer->SType = StructureType.CommandReserveSpaceForCommandsInfoNvx;
             pointer->Next = null;
-            pointer->ObjectTable = this.ObjectTable.handle;
-            pointer->IndirectCommandsLayout = this.IndirectCommandsLayout.handle;
+            pointer->ObjectTable = this.ObjectTable?.handle ?? default(Interop.Nvx.ObjectTable);
+            pointer->IndirectCommandsLayout = this.IndirectCommandsLayout?.handle ?? default(Interop.Nvx.IndirectCommandsLayout);
             pointer->MaxSequencesCount = this.MaxSequencesCount;
         }
     }

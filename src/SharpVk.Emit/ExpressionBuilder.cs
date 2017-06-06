@@ -257,6 +257,24 @@ namespace SharpVk.Emit
             right(this.GetSubBuilder());
         }
 
+        public void EmitMultiply(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)
+        {
+            left(this.GetSubBuilder());
+
+            this.writer.Write(" * ");
+
+            right(this.GetSubBuilder());
+        }
+
+        public void EmitDivide(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)
+        {
+            left(this.GetSubBuilder());
+
+            this.writer.Write(" / ");
+
+            right(this.GetSubBuilder());
+        }
+
         public void EmitNot(Action<ExpressionBuilder> target)
         {
             this.writer.Write("!");
@@ -452,6 +470,16 @@ namespace SharpVk.Emit
         public static Action<ExpressionBuilder> ShiftRight(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)
         {
             return builder => builder.EmitShiftRight(left, right);
+        }
+
+        public static Action<ExpressionBuilder> Multiply(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)
+        {
+            return builder => builder.EmitMultiply(left, right);
+        }
+
+        public static Action<ExpressionBuilder> Divide(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)
+        {
+            return builder => builder.EmitDivide(left, right);
         }
 
         public static Action<ExpressionBuilder> Not(Action<ExpressionBuilder> target)

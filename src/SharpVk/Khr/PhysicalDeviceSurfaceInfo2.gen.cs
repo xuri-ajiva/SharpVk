@@ -46,7 +46,7 @@ namespace SharpVk.Khr
         {
             pointer->SType = StructureType.PhysicalDeviceSurfaceInfo2Khr;
             pointer->Next = null;
-            pointer->Surface = this.Surface.handle;
+            pointer->Surface = this.Surface?.handle ?? default(Interop.Khr.Surface);
         }
     }
 }
