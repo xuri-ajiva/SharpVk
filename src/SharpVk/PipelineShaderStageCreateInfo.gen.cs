@@ -91,6 +91,10 @@ namespace SharpVk
                 pointer->SpecializationInfo = (Interop.SpecializationInfo*)(Interop.HeapUtil.Allocate<Interop.SpecializationInfo>());
                 this.SpecializationInfo.Value.MarshalTo(pointer->SpecializationInfo);
             }
+            else
+            {
+                pointer->SpecializationInfo = default(Interop.SpecializationInfo*);
+            }
         }
     }
 }

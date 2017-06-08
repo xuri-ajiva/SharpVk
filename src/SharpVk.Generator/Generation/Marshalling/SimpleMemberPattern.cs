@@ -62,8 +62,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                     ValueExpression = valueExpression,
                     TargetExpression = getTarget(source.Name),
                     MemberType = marshalling.InteropType,
-                    Type = marshalling.MarshalToActionType,
-                    IsOptional = isOptional
+                    Type = marshalling.MarshalToActionType
                 };
 
                 if(isOptional)
@@ -74,6 +73,12 @@ namespace SharpVk.Generator.Generation.Marshalling
                     };
 
                     result.Actions.Add(assignment);
+                    result.ElseActions.Add(new AssignAction
+                    {
+                        Type = AssignActionType.Assign,
+                        TargetExpression = getTarget(source.Name),
+                        ValueExpression = Default(info.InteropFullType)
+                    });
 
                     return result;
                 }

@@ -60,6 +60,10 @@ namespace SharpVk.Nv
             {
                 pointer->Handle = this.Handle.Value;
             }
+            else
+            {
+                pointer->Handle = default(IntPtr);
+            }
         }
     }
 }

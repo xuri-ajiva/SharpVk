@@ -61,6 +61,10 @@ namespace SharpVk
                 pointer->InheritanceInfo = (Interop.CommandBufferInheritanceInfo*)(Interop.HeapUtil.Allocate<Interop.CommandBufferInheritanceInfo>());
                 this.InheritanceInfo.Value.MarshalTo(pointer->InheritanceInfo);
             }
+            else
+            {
+                pointer->InheritanceInfo = default(Interop.CommandBufferInheritanceInfo*);
+            }
         }
     }
 }

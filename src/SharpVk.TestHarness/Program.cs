@@ -11,14 +11,10 @@ namespace SharpVk.TestHarness
             var instance = Instance.Create(new InstanceCreateInfo
             {
             }, null);
-
+            
             var physicalDevice = instance.EnumeratePhysicalDevices().First();
-
-            var layers = Instance.EnumerateLayerProperties();
-
-            var extensions = Instance.EnumerateExtensionProperties(null);
-
-            uint hostVisibleMemory = physicalDevice.GetMemoryProperties().MemoryTypes.First(x => x.PropertyFlags.HasFlag(MemoryPropertyFlags.HostVisible)).HeapIndex;
+            
+            uint hostVisibleMemory = physicalDevice.GetMemoryProperties().MemoryTypes.Select((x, index) => (x, (uint)index)).First(x => x.Item1.PropertyFlags.HasFlag(MemoryPropertyFlags.HostVisible | MemoryPropertyFlags.HostCoherent)).Item2;
 
             var device = physicalDevice.CreateDevice(new DeviceCreateInfo
             {
@@ -35,7 +31,7 @@ namespace SharpVk.TestHarness
             var sharedMemory = device.AllocateMemory(new MemoryAllocateInfo
             {
                 MemoryTypeIndex = hostVisibleMemory,
-                AllocationSize = 1 << 19
+                AllocationSize = 1 << 20
             });
 
             var inBuffer = device.CreateBuffer(new BufferCreateInfo
@@ -62,10 +58,10 @@ namespace SharpVk.TestHarness
 
             IntPtr inBufferPtr = sharedMemory.Map(0, 1024, MemoryMapFlags.None);
 
-            Marshal.Copy(Enumerable.Range(0, 256).Select(x => (byte)x).ToArray(), 0, inBufferPtr, 256);
+            Marshal.Copy(Enumerable.Range(0, 256).Select(x => x).ToArray(), 0, inBufferPtr, 256);
 
             sharedMemory.Unmap();
-
+            
             var commandPool = device.CreateCommandPool(new CommandPoolCreateInfo
             {
                 Flags = CommandPoolCreateFlags.Transient,
@@ -95,7 +91,7 @@ namespace SharpVk.TestHarness
 
             for (int index = 0; index < 256; index++)
             {
-                Console.WriteLine(Marshal.ReadByte(outBufferPtr, index));
+                Console.WriteLine(Marshal.ReadInt32(outBufferPtr, index * 4));
             }
 
             Console.ReadLine();

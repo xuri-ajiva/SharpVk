@@ -104,6 +104,10 @@ namespace SharpVk
                 pointer->EnabledFeatures = (PhysicalDeviceFeatures*)(Interop.HeapUtil.Allocate<PhysicalDeviceFeatures>());
                 *pointer->EnabledFeatures = this.EnabledFeatures.Value;
             }
+            else
+            {
+                pointer->EnabledFeatures = default(PhysicalDeviceFeatures*);
+            }
         }
     }
 }

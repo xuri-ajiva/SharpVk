@@ -21,7 +21,6 @@ namespace SharpVk.Generator.Generation
         public AssignActionType Type;
         public bool IsLoop;
         public bool IsArray;
-        public bool IsOptional;
     }
 
     public class DeclarationAction
@@ -46,6 +45,7 @@ namespace SharpVk.Generator.Generation
     {
         public Action<ExpressionBuilder> NullCheckExpression;
         public readonly List<MethodAction> Actions = new List<MethodAction>();
+        public readonly List<MethodAction> ElseActions = new List<MethodAction>();
     }
 
     public class ValidateAction

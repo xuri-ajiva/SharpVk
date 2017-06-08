@@ -151,14 +151,17 @@ namespace SharpVk.Generator.Emission
                 }
                 else if(action is OptionalAction optionalAction)
                 {
-                    body.EmitIfBlock(optionalAction.NullCheckExpression, ifBlock => EmitActions(ifBlock, optionalAction.Actions));
+                    body.EmitIfBlock(optionalAction.NullCheckExpression,
+                            ifBlock => EmitActions(ifBlock, optionalAction.Actions),
+                            elseBlock => EmitActions(elseBlock, optionalAction.ElseActions));
                 }
                 else if(action is ValidateAction validationAction)
                 {
-                    body.EmitIfBlock(StaticCall("SharpVkException", "IsError", Variable(validationAction.VariableName)), ifBlock =>
-                    {
-                        ifBlock.EmitThrow(StaticCall("SharpVkException", "Create", Variable(validationAction.VariableName)));
-                    });
+                    body.EmitIfBlock(StaticCall("SharpVkException", "IsError", Variable(validationAction.VariableName)),
+                        ifBlock =>
+                        {
+                            ifBlock.EmitThrow(StaticCall("SharpVkException", "Create", Variable(validationAction.VariableName)));
+                        });
                 }
             }
         }

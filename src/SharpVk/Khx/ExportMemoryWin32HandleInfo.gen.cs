@@ -69,6 +69,10 @@ namespace SharpVk.Khx
                 pointer->Attributes = (SecurityAttributes*)(Interop.HeapUtil.Allocate<SecurityAttributes>());
                 *pointer->Attributes = this.Attributes.Value;
             }
+            else
+            {
+                pointer->Attributes = default(SecurityAttributes*);
+            }
             pointer->DwAccess = this.DwAccess;
             pointer->Name = this.Name;
         }

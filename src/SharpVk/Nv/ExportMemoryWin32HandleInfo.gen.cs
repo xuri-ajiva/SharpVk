@@ -60,9 +60,17 @@ namespace SharpVk.Nv
                 pointer->Attributes = (SecurityAttributes*)(Interop.HeapUtil.Allocate<SecurityAttributes>());
                 *pointer->Attributes = this.Attributes.Value;
             }
+            else
+            {
+                pointer->Attributes = default(SecurityAttributes*);
+            }
             if (this.DwAccess != null)
             {
                 pointer->DwAccess = this.DwAccess.Value;
+            }
+            else
+            {
+                pointer->DwAccess = default(uint);
             }
         }
     }

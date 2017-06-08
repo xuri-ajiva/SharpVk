@@ -192,6 +192,10 @@ namespace SharpVk
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
+                else
+                {
+                    marshalledAllocator = default(Interop.AllocationCallbacks*);
+                }
                 Result methodResult = Interop.Commands.vkCreateDevice(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledDevice);
                 if (SharpVkException.IsError(methodResult))
                 {

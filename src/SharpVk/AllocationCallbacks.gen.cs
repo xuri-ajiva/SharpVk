@@ -93,6 +93,10 @@ namespace SharpVk
             {
                 pointer->UserData = this.UserData.Value.ToPointer();
             }
+            else
+            {
+                pointer->UserData = default(void*);
+            }
             pointer->Allocation = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.Allocation);
             pointer->Reallocation = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.Reallocation);
             pointer->Free = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.Free);

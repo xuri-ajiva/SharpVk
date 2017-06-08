@@ -205,10 +205,18 @@ namespace SharpVk
                 pointer->TessellationState = (Interop.PipelineTessellationStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineTessellationStateCreateInfo>());
                 this.TessellationState.Value.MarshalTo(pointer->TessellationState);
             }
+            else
+            {
+                pointer->TessellationState = default(Interop.PipelineTessellationStateCreateInfo*);
+            }
             if (this.ViewportState != null)
             {
                 pointer->ViewportState = (Interop.PipelineViewportStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineViewportStateCreateInfo>());
                 this.ViewportState.Value.MarshalTo(pointer->ViewportState);
+            }
+            else
+            {
+                pointer->ViewportState = default(Interop.PipelineViewportStateCreateInfo*);
             }
             pointer->RasterizationState = (Interop.PipelineRasterizationStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineRasterizationStateCreateInfo>());
             this.RasterizationState.MarshalTo(pointer->RasterizationState);
@@ -217,20 +225,36 @@ namespace SharpVk
                 pointer->MultisampleState = (Interop.PipelineMultisampleStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineMultisampleStateCreateInfo>());
                 this.MultisampleState.Value.MarshalTo(pointer->MultisampleState);
             }
+            else
+            {
+                pointer->MultisampleState = default(Interop.PipelineMultisampleStateCreateInfo*);
+            }
             if (this.DepthStencilState != null)
             {
                 pointer->DepthStencilState = (Interop.PipelineDepthStencilStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineDepthStencilStateCreateInfo>());
                 this.DepthStencilState.Value.MarshalTo(pointer->DepthStencilState);
+            }
+            else
+            {
+                pointer->DepthStencilState = default(Interop.PipelineDepthStencilStateCreateInfo*);
             }
             if (this.ColorBlendState != null)
             {
                 pointer->ColorBlendState = (Interop.PipelineColorBlendStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineColorBlendStateCreateInfo>());
                 this.ColorBlendState.Value.MarshalTo(pointer->ColorBlendState);
             }
+            else
+            {
+                pointer->ColorBlendState = default(Interop.PipelineColorBlendStateCreateInfo*);
+            }
             if (this.DynamicState != null)
             {
                 pointer->DynamicState = (Interop.PipelineDynamicStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineDynamicStateCreateInfo>());
                 this.DynamicState.Value.MarshalTo(pointer->DynamicState);
+            }
+            else
+            {
+                pointer->DynamicState = default(Interop.PipelineDynamicStateCreateInfo*);
             }
             pointer->Layout = this.Layout?.handle ?? default(Interop.PipelineLayout);
             pointer->RenderPass = this.RenderPass?.handle ?? default(Interop.RenderPass);

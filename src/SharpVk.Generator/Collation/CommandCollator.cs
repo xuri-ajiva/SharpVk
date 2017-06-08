@@ -57,6 +57,10 @@ namespace SharpVk.Generator.Collation
                     {
                         return true;
                     }
+                    else if(x.IsOptional && command.Verb == "create")
+                    {
+                        return false;
+                    }
                     else
                     {
                         var paramHandle = typeData[x.Type];

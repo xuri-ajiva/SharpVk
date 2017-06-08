@@ -69,6 +69,10 @@ namespace SharpVk
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
+                else
+                {
+                    marshalledAllocator = default(Interop.AllocationCallbacks*);
+                }
                 Interop.Commands.vkDestroyDevice(this.handle, marshalledAllocator);
             }
             finally
@@ -132,6 +136,10 @@ namespace SharpVk
                 {
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                else
+                {
+                    marshalledAllocator = default(Interop.AllocationCallbacks*);
                 }
                 Result methodResult = Interop.Commands.vkAllocateMemory(this.handle, marshalledAllocateInfo, marshalledAllocator, &marshalledMemory);
                 if (SharpVkException.IsError(methodResult))
@@ -231,6 +239,10 @@ namespace SharpVk
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
+                else
+                {
+                    marshalledAllocator = default(Interop.AllocationCallbacks*);
+                }
                 Result methodResult = Interop.Commands.vkCreateFence(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledFence);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -329,6 +341,10 @@ namespace SharpVk
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
+                else
+                {
+                    marshalledAllocator = default(Interop.AllocationCallbacks*);
+                }
                 Result methodResult = Interop.Commands.vkCreateSemaphore(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledSemaphore);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -360,6 +376,10 @@ namespace SharpVk
                 {
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                else
+                {
+                    marshalledAllocator = default(Interop.AllocationCallbacks*);
                 }
                 Result methodResult = Interop.Commands.vkCreateEvent(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledEvent);
                 if (SharpVkException.IsError(methodResult))
@@ -393,6 +413,10 @@ namespace SharpVk
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
+                else
+                {
+                    marshalledAllocator = default(Interop.AllocationCallbacks*);
+                }
                 Result methodResult = Interop.Commands.vkCreateQueryPool(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledQueryPool);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -424,6 +448,10 @@ namespace SharpVk
                 {
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                else
+                {
+                    marshalledAllocator = default(Interop.AllocationCallbacks*);
                 }
                 Result methodResult = Interop.Commands.vkCreateBuffer(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledBuffer);
                 if (SharpVkException.IsError(methodResult))
@@ -457,6 +485,10 @@ namespace SharpVk
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
+                else
+                {
+                    marshalledAllocator = default(Interop.AllocationCallbacks*);
+                }
                 Result methodResult = Interop.Commands.vkCreateBufferView(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledView);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -488,6 +520,10 @@ namespace SharpVk
                 {
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                else
+                {
+                    marshalledAllocator = default(Interop.AllocationCallbacks*);
                 }
                 Result methodResult = Interop.Commands.vkCreateImage(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledImage);
                 if (SharpVkException.IsError(methodResult))
@@ -521,6 +557,10 @@ namespace SharpVk
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
+                else
+                {
+                    marshalledAllocator = default(Interop.AllocationCallbacks*);
+                }
                 Result methodResult = Interop.Commands.vkCreateImageView(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledView);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -552,6 +592,10 @@ namespace SharpVk
                 {
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                else
+                {
+                    marshalledAllocator = default(Interop.AllocationCallbacks*);
                 }
                 Result methodResult = Interop.Commands.vkCreateShaderModule(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledShaderModule);
                 if (SharpVkException.IsError(methodResult))
@@ -585,12 +629,140 @@ namespace SharpVk
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
+                else
+                {
+                    marshalledAllocator = default(Interop.AllocationCallbacks*);
+                }
                 Result methodResult = Interop.Commands.vkCreatePipelineCache(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledPipelineCache);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
                 }
                 result = new PipelineCache(this.handle, marshalledPipelineCache);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe Pipeline[] CreateGraphicsPipelines(PipelineCache pipelineCache, GraphicsPipelineCreateInfo[] createInfos, AllocationCallbacks? allocator = null)
+        {
+            try
+            {
+                Pipeline[] result = default(Pipeline[]);
+                uint createInfoCount = default(uint);
+                Interop.GraphicsPipelineCreateInfo* marshalledCreateInfos = default(Interop.GraphicsPipelineCreateInfo*);
+                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                Interop.Pipeline* marshalledPipelines = default(Interop.Pipeline*);
+                createInfoCount = (uint)(createInfos?.Length ?? 0);
+                if (createInfos != null)
+                {
+                    var fieldPointer = (Interop.GraphicsPipelineCreateInfo*)(Interop.HeapUtil.AllocateAndClear<Interop.GraphicsPipelineCreateInfo>(createInfos.Length).ToPointer());
+                    for(int index = 0; index < (uint)(createInfos.Length); index++)
+                    {
+                        createInfos[index].MarshalTo(&fieldPointer[index]);
+                    }
+                    marshalledCreateInfos = fieldPointer;
+                }
+                else
+                {
+                    marshalledCreateInfos = null;
+                }
+                if (allocator != null)
+                {
+                    marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                    allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                else
+                {
+                    marshalledAllocator = default(Interop.AllocationCallbacks*);
+                }
+                marshalledPipelines = (Interop.Pipeline*)(Interop.HeapUtil.Allocate<Interop.Pipeline>(createInfoCount));
+                Result methodResult = Interop.Commands.vkCreateGraphicsPipelines(this.handle, pipelineCache?.handle ?? default(Interop.PipelineCache), createInfoCount, marshalledCreateInfos, marshalledAllocator, marshalledPipelines);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                if (marshalledPipelines != null)
+                {
+                    var fieldPointer = new Pipeline[(uint)(createInfoCount)];
+                    for(int index = 0; index < (uint)(createInfoCount); index++)
+                    {
+                        fieldPointer[index] = new Pipeline(this.handle, marshalledPipelines[index]);
+                    }
+                    result = fieldPointer;
+                }
+                else
+                {
+                    result = null;
+                }
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe Pipeline[] CreateComputePipelines(PipelineCache pipelineCache, ComputePipelineCreateInfo[] createInfos, AllocationCallbacks? allocator = null)
+        {
+            try
+            {
+                Pipeline[] result = default(Pipeline[]);
+                uint createInfoCount = default(uint);
+                Interop.ComputePipelineCreateInfo* marshalledCreateInfos = default(Interop.ComputePipelineCreateInfo*);
+                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                Interop.Pipeline* marshalledPipelines = default(Interop.Pipeline*);
+                createInfoCount = (uint)(createInfos?.Length ?? 0);
+                if (createInfos != null)
+                {
+                    var fieldPointer = (Interop.ComputePipelineCreateInfo*)(Interop.HeapUtil.AllocateAndClear<Interop.ComputePipelineCreateInfo>(createInfos.Length).ToPointer());
+                    for(int index = 0; index < (uint)(createInfos.Length); index++)
+                    {
+                        createInfos[index].MarshalTo(&fieldPointer[index]);
+                    }
+                    marshalledCreateInfos = fieldPointer;
+                }
+                else
+                {
+                    marshalledCreateInfos = null;
+                }
+                if (allocator != null)
+                {
+                    marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                    allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                else
+                {
+                    marshalledAllocator = default(Interop.AllocationCallbacks*);
+                }
+                marshalledPipelines = (Interop.Pipeline*)(Interop.HeapUtil.Allocate<Interop.Pipeline>(createInfoCount));
+                Result methodResult = Interop.Commands.vkCreateComputePipelines(this.handle, pipelineCache?.handle ?? default(Interop.PipelineCache), createInfoCount, marshalledCreateInfos, marshalledAllocator, marshalledPipelines);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                if (marshalledPipelines != null)
+                {
+                    var fieldPointer = new Pipeline[(uint)(createInfoCount)];
+                    for(int index = 0; index < (uint)(createInfoCount); index++)
+                    {
+                        fieldPointer[index] = new Pipeline(this.handle, marshalledPipelines[index]);
+                    }
+                    result = fieldPointer;
+                }
+                else
+                {
+                    result = null;
+                }
                 return result;
             }
             finally
@@ -616,6 +788,10 @@ namespace SharpVk
                 {
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                else
+                {
+                    marshalledAllocator = default(Interop.AllocationCallbacks*);
                 }
                 Result methodResult = Interop.Commands.vkCreatePipelineLayout(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledPipelineLayout);
                 if (SharpVkException.IsError(methodResult))
@@ -649,6 +825,10 @@ namespace SharpVk
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
+                else
+                {
+                    marshalledAllocator = default(Interop.AllocationCallbacks*);
+                }
                 Result methodResult = Interop.Commands.vkCreateSampler(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledSampler);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -681,6 +861,10 @@ namespace SharpVk
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
+                else
+                {
+                    marshalledAllocator = default(Interop.AllocationCallbacks*);
+                }
                 Result methodResult = Interop.Commands.vkCreateDescriptorSetLayout(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledSetLayout);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -712,6 +896,10 @@ namespace SharpVk
                 {
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                else
+                {
+                    marshalledAllocator = default(Interop.AllocationCallbacks*);
                 }
                 Result methodResult = Interop.Commands.vkCreateDescriptorPool(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledDescriptorPool);
                 if (SharpVkException.IsError(methodResult))
@@ -827,6 +1015,10 @@ namespace SharpVk
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
+                else
+                {
+                    marshalledAllocator = default(Interop.AllocationCallbacks*);
+                }
                 Result methodResult = Interop.Commands.vkCreateFramebuffer(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledFramebuffer);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -859,6 +1051,10 @@ namespace SharpVk
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
+                else
+                {
+                    marshalledAllocator = default(Interop.AllocationCallbacks*);
+                }
                 Result methodResult = Interop.Commands.vkCreateRenderPass(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledRenderPass);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -890,6 +1086,10 @@ namespace SharpVk
                 {
                     marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                else
+                {
+                    marshalledAllocator = default(Interop.AllocationCallbacks*);
                 }
                 Result methodResult = Interop.Commands.vkCreateCommandPool(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledCommandPool);
                 if (SharpVkException.IsError(methodResult))

@@ -123,6 +123,10 @@ namespace SharpVk.Khr
             {
                 pointer->Set = this.Set.Value;
             }
+            else
+            {
+                pointer->Set = default(uint);
+            }
         }
     }
 }

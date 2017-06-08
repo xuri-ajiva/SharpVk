@@ -70,6 +70,10 @@ namespace SharpVk.Ext
             {
                 pointer->UserData = this.UserData.Value.ToPointer();
             }
+            else
+            {
+                pointer->UserData = default(void*);
+            }
         }
     }
 }

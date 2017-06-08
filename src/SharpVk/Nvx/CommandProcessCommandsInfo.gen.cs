@@ -141,10 +141,18 @@ namespace SharpVk.Nvx
             {
                 pointer->SequencesCountOffset = this.SequencesCountOffset.Value;
             }
+            else
+            {
+                pointer->SequencesCountOffset = default(DeviceSize);
+            }
             pointer->SequencesIndexBuffer = this.SequencesIndexBuffer?.handle ?? default(Interop.Buffer);
             if (this.SequencesIndexOffset != null)
             {
                 pointer->SequencesIndexOffset = this.SequencesIndexOffset.Value;
+            }
+            else
+            {
+                pointer->SequencesIndexOffset = default(DeviceSize);
             }
         }
     }
