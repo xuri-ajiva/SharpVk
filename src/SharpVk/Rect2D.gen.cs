@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Rect2D(Offset2D offset, Extent2D extent)
+        public Rect2D(SharpVk.Offset2D offset, SharpVk.Extent2D extent)
         {
             this.Offset = offset;
             this.Extent = extent;
@@ -45,11 +45,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Offset2D Offset; 
+        public SharpVk.Offset2D Offset; 
         
         /// <summary>
         /// 
         /// </summary>
-        public Extent2D Extent; 
+        public SharpVk.Extent2D Extent; 
     }
 }

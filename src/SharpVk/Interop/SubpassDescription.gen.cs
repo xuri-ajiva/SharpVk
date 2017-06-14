@@ -36,12 +36,12 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public SubpassDescriptionFlags Flags; 
+        public SharpVk.SubpassDescriptionFlags Flags; 
         
         /// <summary>
         /// 
         /// </summary>
-        public PipelineBindPoint PipelineBindPoint; 
+        public SharpVk.PipelineBindPoint PipelineBindPoint; 
         
         /// <summary>
         /// 
@@ -51,7 +51,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public AttachmentReference* InputAttachments; 
+        public SharpVk.AttachmentReference* InputAttachments; 
         
         /// <summary>
         /// 
@@ -61,17 +61,17 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public AttachmentReference* ColorAttachments; 
+        public SharpVk.AttachmentReference* ColorAttachments; 
         
         /// <summary>
         /// 
         /// </summary>
-        public AttachmentReference* ResolveAttachments; 
+        public SharpVk.AttachmentReference* ResolveAttachments; 
         
         /// <summary>
         /// 
         /// </summary>
-        public AttachmentReference* DepthStencilAttachment; 
+        public SharpVk.AttachmentReference* DepthStencilAttachment; 
         
         /// <summary>
         /// 

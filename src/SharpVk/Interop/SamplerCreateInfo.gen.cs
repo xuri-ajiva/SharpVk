@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public StructureType SType; 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
@@ -46,37 +46,37 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public SamplerCreateFlags Flags; 
+        public SharpVk.SamplerCreateFlags Flags; 
         
         /// <summary>
         /// 
         /// </summary>
-        public Filter MagFilter; 
+        public SharpVk.Filter MagFilter; 
         
         /// <summary>
         /// 
         /// </summary>
-        public Filter MinFilter; 
+        public SharpVk.Filter MinFilter; 
         
         /// <summary>
         /// 
         /// </summary>
-        public SamplerMipmapMode MipmapMode; 
+        public SharpVk.SamplerMipmapMode MipmapMode; 
         
         /// <summary>
         /// 
         /// </summary>
-        public SamplerAddressMode AddressModeU; 
+        public SharpVk.SamplerAddressMode AddressModeU; 
         
         /// <summary>
         /// 
         /// </summary>
-        public SamplerAddressMode AddressModeV; 
+        public SharpVk.SamplerAddressMode AddressModeV; 
         
         /// <summary>
         /// 
         /// </summary>
-        public SamplerAddressMode AddressModeW; 
+        public SharpVk.SamplerAddressMode AddressModeW; 
         
         /// <summary>
         /// 
@@ -101,7 +101,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public CompareOp CompareOp; 
+        public SharpVk.CompareOp CompareOp; 
         
         /// <summary>
         /// 
@@ -116,7 +116,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public BorderColor BorderColor; 
+        public SharpVk.BorderColor BorderColor; 
         
         /// <summary>
         /// 

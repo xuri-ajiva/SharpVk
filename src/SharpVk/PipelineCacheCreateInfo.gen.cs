@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineCacheCreateFlags Flags
+        public SharpVk.PipelineCacheCreateFlags Flags
         {
             get;
             set;
@@ -51,7 +51,7 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.PipelineCacheCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.PipelineCacheCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineCacheCreateInfo;
             pointer->Next = null;

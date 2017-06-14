@@ -36,13 +36,13 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public EventCreateFlags Flags
+        public SharpVk.EventCreateFlags Flags
         {
             get;
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.EventCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.EventCreateInfo* pointer)
         {
             pointer->SType = StructureType.EventCreateInfo;
             pointer->Next = null;

@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public StructureType SType; 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
@@ -46,7 +46,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PipelineVertexInputStateCreateFlags Flags; 
+        public SharpVk.PipelineVertexInputStateCreateFlags Flags; 
         
         /// <summary>
         /// 
@@ -56,7 +56,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public VertexInputBindingDescription* VertexBindingDescriptions; 
+        public SharpVk.VertexInputBindingDescription* VertexBindingDescriptions; 
         
         /// <summary>
         /// 
@@ -66,6 +66,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public VertexInputAttributeDescription* VertexAttributeDescriptions; 
+        public SharpVk.VertexInputAttributeDescription* VertexAttributeDescriptions; 
     }
 }

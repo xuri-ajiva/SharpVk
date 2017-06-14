@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public StructureType SType; 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
@@ -46,22 +46,22 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PipelineCreateFlags Flags; 
+        public SharpVk.PipelineCreateFlags Flags; 
         
         /// <summary>
         /// 
         /// </summary>
-        public PipelineShaderStageCreateInfo Stage; 
+        public SharpVk.Interop.PipelineShaderStageCreateInfo Stage; 
         
         /// <summary>
         /// 
         /// </summary>
-        public PipelineLayout Layout; 
+        public SharpVk.Interop.PipelineLayout Layout; 
         
         /// <summary>
         /// 
         /// </summary>
-        public Pipeline BasePipelineHandle; 
+        public SharpVk.Interop.Pipeline BasePipelineHandle; 
         
         /// <summary>
         /// 

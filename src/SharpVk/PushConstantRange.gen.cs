@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PushConstantRange(ShaderStageFlags stageFlags, uint offset, uint size)
+        public PushConstantRange(SharpVk.ShaderStageFlags stageFlags, uint offset, uint size)
         {
             this.StageFlags = stageFlags;
             this.Offset = offset;
@@ -46,7 +46,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ShaderStageFlags StageFlags; 
+        public SharpVk.ShaderStageFlags StageFlags; 
         
         /// <summary>
         /// 

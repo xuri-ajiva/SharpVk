@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public StructureType SType; 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
@@ -46,7 +46,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorSet DestinationSet; 
+        public SharpVk.Interop.DescriptorSet DestinationSet; 
         
         /// <summary>
         /// 
@@ -66,21 +66,21 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorType DescriptorType; 
+        public SharpVk.DescriptorType DescriptorType; 
         
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorImageInfo* ImageInfo; 
+        public SharpVk.Interop.DescriptorImageInfo* ImageInfo; 
         
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorBufferInfo* BufferInfo; 
+        public SharpVk.Interop.DescriptorBufferInfo* BufferInfo; 
         
         /// <summary>
         /// 
         /// </summary>
-        public BufferView* TexelBufferView; 
+        public SharpVk.Interop.BufferView* TexelBufferView; 
     }
 }

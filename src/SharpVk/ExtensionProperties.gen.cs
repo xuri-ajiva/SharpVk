@@ -51,7 +51,7 @@ namespace SharpVk
             set;
         }
         
-        internal static unsafe ExtensionProperties MarshalFrom(Interop.ExtensionProperties* pointer)
+        internal static unsafe ExtensionProperties MarshalFrom(SharpVk.Interop.ExtensionProperties* pointer)
         {
             ExtensionProperties result = default(ExtensionProperties);
             result.ExtensionName = Interop.HeapUtil.MarshalStringFrom(pointer->ExtensionName, Constants.MaxExtensionNameSize, true);

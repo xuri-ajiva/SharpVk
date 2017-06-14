@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorPool DescriptorPool
+        public SharpVk.DescriptorPool DescriptorPool
         {
             get;
             set;
@@ -45,24 +45,24 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorSetLayout[] SetLayouts
+        public SharpVk.DescriptorSetLayout[] SetLayouts
         {
             get;
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.DescriptorSetAllocateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.DescriptorSetAllocateInfo* pointer)
         {
             pointer->SType = StructureType.DescriptorSetAllocateInfo;
             pointer->Next = null;
-            pointer->DescriptorPool = this.DescriptorPool?.handle ?? default(Interop.DescriptorPool);
+            pointer->DescriptorPool = this.DescriptorPool?.handle ?? default(SharpVk.Interop.DescriptorPool);
             pointer->DescriptorSetCount = (uint)(this.SetLayouts?.Length ?? 0);
             if (this.SetLayouts != null)
             {
-                var fieldPointer = (Interop.DescriptorSetLayout*)(Interop.HeapUtil.AllocateAndClear<Interop.DescriptorSetLayout>(this.SetLayouts.Length).ToPointer());
+                var fieldPointer = (SharpVk.Interop.DescriptorSetLayout*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.DescriptorSetLayout>(this.SetLayouts.Length).ToPointer());
                 for(int index = 0; index < (uint)(this.SetLayouts.Length); index++)
                 {
-                    fieldPointer[index] = this.SetLayouts[index]?.handle ?? default(Interop.DescriptorSetLayout);
+                    fieldPointer[index] = this.SetLayouts[index]?.handle ?? default(SharpVk.Interop.DescriptorSetLayout);
                 }
                 pointer->SetLayouts = fieldPointer;
             }

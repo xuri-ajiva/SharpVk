@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public StructureType SType; 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
@@ -46,7 +46,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorPool DescriptorPool; 
+        public SharpVk.Interop.DescriptorPool DescriptorPool; 
         
         /// <summary>
         /// 
@@ -56,6 +56,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorSetLayout* SetLayouts; 
+        public SharpVk.Interop.DescriptorSetLayout* SetLayouts; 
     }
 }

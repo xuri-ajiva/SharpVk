@@ -36,16 +36,16 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public Sampler Sampler; 
+        public SharpVk.Interop.Sampler Sampler; 
         
         /// <summary>
         /// 
         /// </summary>
-        public ImageView ImageView; 
+        public SharpVk.Interop.ImageView ImageView; 
         
         /// <summary>
         /// 
         /// </summary>
-        public ImageLayout ImageLayout; 
+        public SharpVk.ImageLayout ImageLayout; 
     }
 }

@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public StructureType SType; 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
@@ -46,7 +46,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorSetLayoutCreateFlags Flags; 
+        public SharpVk.DescriptorSetLayoutCreateFlags Flags; 
         
         /// <summary>
         /// 
@@ -56,6 +56,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorSetLayoutBinding* Bindings; 
+        public SharpVk.Interop.DescriptorSetLayoutBinding* Bindings; 
     }
 }

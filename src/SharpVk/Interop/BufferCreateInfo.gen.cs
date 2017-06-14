@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public StructureType SType; 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
@@ -46,7 +46,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public BufferCreateFlags Flags; 
+        public SharpVk.BufferCreateFlags Flags; 
         
         /// <summary>
         /// 
@@ -56,12 +56,12 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public BufferUsageFlags Usage; 
+        public SharpVk.BufferUsageFlags Usage; 
         
         /// <summary>
         /// 
         /// </summary>
-        public SharingMode SharingMode; 
+        public SharpVk.SharingMode SharingMode; 
         
         /// <summary>
         /// 

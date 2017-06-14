@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorSetLayoutCreateFlags Flags
+        public SharpVk.DescriptorSetLayoutCreateFlags Flags
         {
             get;
             set;
@@ -45,13 +45,13 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorSetLayoutBinding[] Bindings
+        public SharpVk.DescriptorSetLayoutBinding[] Bindings
         {
             get;
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.DescriptorSetLayoutCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.DescriptorSetLayoutCreateInfo* pointer)
         {
             pointer->SType = StructureType.DescriptorSetLayoutCreateInfo;
             pointer->Next = null;
@@ -59,7 +59,7 @@ namespace SharpVk
             pointer->BindingCount = (uint)(this.Bindings?.Length ?? 0);
             if (this.Bindings != null)
             {
-                var fieldPointer = (Interop.DescriptorSetLayoutBinding*)(Interop.HeapUtil.AllocateAndClear<Interop.DescriptorSetLayoutBinding>(this.Bindings.Length).ToPointer());
+                var fieldPointer = (SharpVk.Interop.DescriptorSetLayoutBinding*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.DescriptorSetLayoutBinding>(this.Bindings.Length).ToPointer());
                 for(int index = 0; index < (uint)(this.Bindings.Length); index++)
                 {
                     this.Bindings[index].MarshalTo(&fieldPointer[index]);

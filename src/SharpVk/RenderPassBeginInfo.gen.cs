@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public RenderPass RenderPass
+        public SharpVk.RenderPass RenderPass
         {
             get;
             set;
@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Framebuffer Framebuffer
+        public SharpVk.Framebuffer Framebuffer
         {
             get;
             set;
@@ -54,7 +54,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Rect2D RenderArea
+        public SharpVk.Rect2D RenderArea
         {
             get;
             set;
@@ -63,26 +63,26 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ClearValue[] ClearValues
+        public SharpVk.ClearValue[] ClearValues
         {
             get;
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.RenderPassBeginInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.RenderPassBeginInfo* pointer)
         {
             pointer->SType = StructureType.RenderPassBeginInfo;
             pointer->Next = null;
-            pointer->RenderPass = this.RenderPass?.handle ?? default(Interop.RenderPass);
-            pointer->Framebuffer = this.Framebuffer?.handle ?? default(Interop.Framebuffer);
+            pointer->RenderPass = this.RenderPass?.handle ?? default(SharpVk.Interop.RenderPass);
+            pointer->Framebuffer = this.Framebuffer?.handle ?? default(SharpVk.Interop.Framebuffer);
             pointer->RenderArea = this.RenderArea;
             pointer->ClearValueCount = (uint)(this.ClearValues?.Length ?? 0);
             if (this.ClearValues != null)
             {
-                var fieldPointer = (ClearValue*)(Interop.HeapUtil.AllocateAndClear<ClearValue>(this.ClearValues.Length).ToPointer());
+                var fieldPointer = (SharpVk.ClearValue*)(Interop.HeapUtil.AllocateAndClear<SharpVk.ClearValue>(this.ClearValues.Length).ToPointer());
                 for(int index = 0; index < (uint)(this.ClearValues.Length); index++)
                 {
-                    fieldPointer[index] = this.ClearValues[index];
+                    fieldPointer[index] = default(SharpVk.ClearValue);
                 }
                 pointer->ClearValues = fieldPointer;
             }

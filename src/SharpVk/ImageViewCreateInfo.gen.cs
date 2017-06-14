@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ImageViewCreateFlags Flags
+        public SharpVk.ImageViewCreateFlags Flags
         {
             get;
             set;
@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Image Image
+        public SharpVk.Image Image
         {
             get;
             set;
@@ -54,7 +54,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ImageViewType ViewType
+        public SharpVk.ImageViewType ViewType
         {
             get;
             set;
@@ -63,7 +63,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Format Format
+        public SharpVk.Format Format
         {
             get;
             set;
@@ -72,7 +72,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ComponentMapping Components
+        public SharpVk.ComponentMapping Components
         {
             get;
             set;
@@ -81,18 +81,18 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ImageSubresourceRange SubresourceRange
+        public SharpVk.ImageSubresourceRange SubresourceRange
         {
             get;
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.ImageViewCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.ImageViewCreateInfo* pointer)
         {
             pointer->SType = StructureType.ImageViewCreateInfo;
             pointer->Next = null;
             pointer->Flags = this.Flags;
-            pointer->Image = this.Image?.handle ?? default(Interop.Image);
+            pointer->Image = this.Image?.handle ?? default(SharpVk.Interop.Image);
             pointer->ViewType = this.ViewType;
             pointer->Format = this.Format;
             pointer->Components = this.Components;

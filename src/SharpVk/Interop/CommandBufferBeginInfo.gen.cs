@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public StructureType SType; 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
@@ -46,11 +46,11 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public CommandBufferUsageFlags Flags; 
+        public SharpVk.CommandBufferUsageFlags Flags; 
         
         /// <summary>
         /// 
         /// </summary>
-        public CommandBufferInheritanceInfo* InheritanceInfo; 
+        public SharpVk.Interop.CommandBufferInheritanceInfo* InheritanceInfo; 
     }
 }

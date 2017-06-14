@@ -44,19 +44,19 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void Destroy(AllocationCallbacks? allocator = null)
+        public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = null)
         {
             try
             {
-                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 if (allocator != null)
                 {
-                    marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
-                    marshalledAllocator = default(Interop.AllocationCallbacks*);
+                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
                 Interop.Commands.vkDestroyCommandPool(this.parent, this.handle, marshalledAllocator);
             }
@@ -69,7 +69,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void Reset(CommandPoolResetFlags flags)
+        public unsafe void Reset(SharpVk.CommandPoolResetFlags flags)
         {
             try
             {
@@ -88,17 +88,17 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void FreeCommandBuffers(CommandBuffer[] commandBuffers)
+        public unsafe void FreeCommandBuffers(SharpVk.CommandBuffer[] commandBuffers)
         {
             try
             {
-                Interop.CommandBuffer* marshalledCommandBuffers = default(Interop.CommandBuffer*);
+                SharpVk.Interop.CommandBuffer* marshalledCommandBuffers = default(SharpVk.Interop.CommandBuffer*);
                 if (commandBuffers != null)
                 {
-                    var fieldPointer = (Interop.CommandBuffer*)(Interop.HeapUtil.AllocateAndClear<Interop.CommandBuffer>(commandBuffers.Length).ToPointer());
+                    var fieldPointer = (SharpVk.Interop.CommandBuffer*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.CommandBuffer>(commandBuffers.Length).ToPointer());
                     for(int index = 0; index < (uint)(commandBuffers.Length); index++)
                     {
-                        fieldPointer[index] = commandBuffers[index]?.handle ?? default(Interop.CommandBuffer);
+                        fieldPointer[index] = commandBuffers[index]?.handle ?? default(SharpVk.Interop.CommandBuffer);
                     }
                     marshalledCommandBuffers = fieldPointer;
                 }

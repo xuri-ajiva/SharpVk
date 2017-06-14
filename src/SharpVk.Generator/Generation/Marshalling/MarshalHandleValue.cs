@@ -27,11 +27,12 @@ namespace SharpVk.Generator.Generation.Marshalling
             if (typePattern == TypePattern.Handle)
             {
                 string memberType = this.nameLookup.Lookup(type, false);
+                var interopType = this.nameLookup.Lookup(type, true);
 
                 info = new MarshalInfo
                 {
                     MemberType = memberType,
-                    InteropType = "Interop." + memberType
+                    InteropType = interopType
                 };
 
                 var handleExpressions = new List<Func<Action<ExpressionBuilder>, Func<string, Action<ExpressionBuilder>>, Action<ExpressionBuilder>>>();
@@ -48,7 +49,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                 }
                 else
                 {
-                    info.BuildMarshalToValueExpression = (value, getHandle) => Coalesce(CoalesceMember(value, "handle"), Default("Interop." + memberType));
+                    info.BuildMarshalToValueExpression = (value, getHandle) => Coalesce(CoalesceMember(value, "handle"), Default(interopType));
                     handleExpressions.Add((value, getHandle) => value);
                 }
 

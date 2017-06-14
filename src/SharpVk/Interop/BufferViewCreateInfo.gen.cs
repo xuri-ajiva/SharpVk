@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public StructureType SType; 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
@@ -46,17 +46,17 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public BufferViewCreateFlags Flags; 
+        public SharpVk.BufferViewCreateFlags Flags; 
         
         /// <summary>
         /// 
         /// </summary>
-        public Buffer Buffer; 
+        public SharpVk.Interop.Buffer Buffer; 
         
         /// <summary>
         /// 
         /// </summary>
-        public Format Format; 
+        public SharpVk.Format Format; 
         
         /// <summary>
         /// 

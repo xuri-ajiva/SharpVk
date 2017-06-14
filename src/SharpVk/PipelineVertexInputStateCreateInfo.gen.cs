@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineVertexInputStateCreateFlags Flags
+        public SharpVk.PipelineVertexInputStateCreateFlags Flags
         {
             get;
             set;
@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public VertexInputBindingDescription[] VertexBindingDescriptions
+        public SharpVk.VertexInputBindingDescription[] VertexBindingDescriptions
         {
             get;
             set;
@@ -54,13 +54,13 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public VertexInputAttributeDescription[] VertexAttributeDescriptions
+        public SharpVk.VertexInputAttributeDescription[] VertexAttributeDescriptions
         {
             get;
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.PipelineVertexInputStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.PipelineVertexInputStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineVertexInputStateCreateInfo;
             pointer->Next = null;
@@ -68,7 +68,7 @@ namespace SharpVk
             pointer->VertexBindingDescriptionCount = (uint)(this.VertexBindingDescriptions?.Length ?? 0);
             if (this.VertexBindingDescriptions != null)
             {
-                var fieldPointer = (VertexInputBindingDescription*)(Interop.HeapUtil.AllocateAndClear<VertexInputBindingDescription>(this.VertexBindingDescriptions.Length).ToPointer());
+                var fieldPointer = (SharpVk.VertexInputBindingDescription*)(Interop.HeapUtil.AllocateAndClear<SharpVk.VertexInputBindingDescription>(this.VertexBindingDescriptions.Length).ToPointer());
                 for(int index = 0; index < (uint)(this.VertexBindingDescriptions.Length); index++)
                 {
                     fieldPointer[index] = this.VertexBindingDescriptions[index];
@@ -82,7 +82,7 @@ namespace SharpVk
             pointer->VertexAttributeDescriptionCount = (uint)(this.VertexAttributeDescriptions?.Length ?? 0);
             if (this.VertexAttributeDescriptions != null)
             {
-                var fieldPointer = (VertexInputAttributeDescription*)(Interop.HeapUtil.AllocateAndClear<VertexInputAttributeDescription>(this.VertexAttributeDescriptions.Length).ToPointer());
+                var fieldPointer = (SharpVk.VertexInputAttributeDescription*)(Interop.HeapUtil.AllocateAndClear<SharpVk.VertexInputAttributeDescription>(this.VertexAttributeDescriptions.Length).ToPointer());
                 for(int index = 0; index < (uint)(this.VertexAttributeDescriptions.Length); index++)
                 {
                     fieldPointer[index] = this.VertexAttributeDescriptions[index];

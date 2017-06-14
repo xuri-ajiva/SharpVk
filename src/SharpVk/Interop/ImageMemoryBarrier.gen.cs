@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public StructureType SType; 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
@@ -46,22 +46,22 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public AccessFlags SourceAccessMask; 
+        public SharpVk.AccessFlags SourceAccessMask; 
         
         /// <summary>
         /// 
         /// </summary>
-        public AccessFlags DestinationAccessMask; 
+        public SharpVk.AccessFlags DestinationAccessMask; 
         
         /// <summary>
         /// 
         /// </summary>
-        public ImageLayout OldLayout; 
+        public SharpVk.ImageLayout OldLayout; 
         
         /// <summary>
         /// 
         /// </summary>
-        public ImageLayout NewLayout; 
+        public SharpVk.ImageLayout NewLayout; 
         
         /// <summary>
         /// 
@@ -76,11 +76,11 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public Image Image; 
+        public SharpVk.Interop.Image Image; 
         
         /// <summary>
         /// 
         /// </summary>
-        public ImageSubresourceRange SubresourceRange; 
+        public SharpVk.ImageSubresourceRange SubresourceRange; 
     }
 }

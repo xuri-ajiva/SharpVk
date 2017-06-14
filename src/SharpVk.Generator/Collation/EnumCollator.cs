@@ -59,16 +59,12 @@ namespace SharpVk.Generator.Collation
                     Extension = extension,
                     Fields = this.DeclareFields(enumeration, false, enumLookup)
                 });
-
-                if (extension != null)
-                {
-                    name = "SharpVk." + extension + "." + name;
-                }
-
+                
                 services.AddSingleton(new TypeNameMapping
                 {
                     VkName = enumeration.VkName,
                     Priority = 1,
+                    Extension = extension,
                     OutputName = name
                 });
             }
@@ -89,17 +85,13 @@ namespace SharpVk.Generator.Collation
                     IsFlags = true,
                     Fields = this.DeclareFields(enumeration, true, enumLookup)
                 });
-
-                if (extension != null)
-                {
-                    name = "SharpVk." + extension + "." + name;
-                }
-
+                
                 if (enumeration != null)
                 {
                     services.AddSingleton(new TypeNameMapping
                     {
                         VkName = enumeration.VkName,
+                        Extension = extension,
                         OutputName = name,
                         Priority = 1
                     });
@@ -108,6 +100,7 @@ namespace SharpVk.Generator.Collation
                 services.AddSingleton(new TypeNameMapping
                 {
                     VkName = bitmaskType.VkName,
+                    Extension = extension,
                     OutputName = name,
                     Priority = 1
                 });

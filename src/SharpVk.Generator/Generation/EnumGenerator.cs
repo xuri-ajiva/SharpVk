@@ -11,10 +11,12 @@ namespace SharpVk.Generator.Generation
         : IWorker
     {
         private readonly IEnumerable<EnumDeclaration> enums;
+        private readonly NamespaceMap namespaceMap;
 
-        public EnumGenerator(IEnumerable<EnumDeclaration> enums)
+        public EnumGenerator(IEnumerable<EnumDeclaration> enums, NamespaceMap namespaceMap)
         {
             this.enums = enums;
+            this.namespaceMap = namespaceMap;
         }
 
         public void Execute(IServiceCollection services)
@@ -24,7 +26,7 @@ namespace SharpVk.Generator.Generation
                 services.AddSingleton(new EnumDefinition
                 {
                     Name = enumeration.Name,
-                    Namespace = enumeration.Extension != null ? new[] { enumeration.Extension } : null,
+                    Namespace = enumeration.Extension != null ? this.namespaceMap.Map(enumeration.Extension).ToArray() : null,
                     IsFlags = enumeration.IsFlags,
                     Fields = enumeration.Fields.Select(x => new FieldDefinition
                     {

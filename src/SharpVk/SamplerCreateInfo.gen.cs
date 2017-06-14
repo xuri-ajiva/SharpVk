@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SamplerCreateFlags Flags
+        public SharpVk.SamplerCreateFlags Flags
         {
             get;
             set;
@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Filter MagFilter
+        public SharpVk.Filter MagFilter
         {
             get;
             set;
@@ -54,7 +54,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Filter MinFilter
+        public SharpVk.Filter MinFilter
         {
             get;
             set;
@@ -63,7 +63,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SamplerMipmapMode MipmapMode
+        public SharpVk.SamplerMipmapMode MipmapMode
         {
             get;
             set;
@@ -72,7 +72,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SamplerAddressMode AddressModeU
+        public SharpVk.SamplerAddressMode AddressModeU
         {
             get;
             set;
@@ -81,7 +81,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SamplerAddressMode AddressModeV
+        public SharpVk.SamplerAddressMode AddressModeV
         {
             get;
             set;
@@ -90,7 +90,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SamplerAddressMode AddressModeW
+        public SharpVk.SamplerAddressMode AddressModeW
         {
             get;
             set;
@@ -135,7 +135,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public CompareOp CompareOp
+        public SharpVk.CompareOp CompareOp
         {
             get;
             set;
@@ -162,7 +162,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public BorderColor BorderColor
+        public SharpVk.BorderColor BorderColor
         {
             get;
             set;
@@ -177,7 +177,7 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.SamplerCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.SamplerCreateInfo* pointer)
         {
             pointer->SType = StructureType.SamplerCreateInfo;
             pointer->Next = null;

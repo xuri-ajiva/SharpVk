@@ -56,7 +56,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PhysicalDeviceType DeviceType; 
+        public SharpVk.PhysicalDeviceType DeviceType; 
         
         /// <summary>
         /// 
@@ -71,11 +71,11 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PhysicalDeviceLimits Limits; 
+        public SharpVk.Interop.PhysicalDeviceLimits Limits; 
         
         /// <summary>
         /// 
         /// </summary>
-        public PhysicalDeviceSparseProperties SparseProperties; 
+        public SharpVk.PhysicalDeviceSparseProperties SparseProperties; 
     }
 }

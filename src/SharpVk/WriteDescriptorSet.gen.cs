@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorSet DestinationSet
+        public SharpVk.DescriptorSet DestinationSet
         {
             get;
             set;
@@ -63,7 +63,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorType DescriptorType
+        public SharpVk.DescriptorType DescriptorType
         {
             get;
             set;
@@ -72,7 +72,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorImageInfo[] ImageInfo
+        public SharpVk.DescriptorImageInfo[] ImageInfo
         {
             get;
             set;
@@ -81,7 +81,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorBufferInfo[] BufferInfo
+        public SharpVk.DescriptorBufferInfo[] BufferInfo
         {
             get;
             set;
@@ -90,24 +90,24 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public BufferView[] TexelBufferView
+        public SharpVk.BufferView[] TexelBufferView
         {
             get;
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.WriteDescriptorSet* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.WriteDescriptorSet* pointer)
         {
             pointer->SType = StructureType.WriteDescriptorSet;
             pointer->Next = null;
-            pointer->DestinationSet = this.DestinationSet?.handle ?? default(Interop.DescriptorSet);
+            pointer->DestinationSet = this.DestinationSet?.handle ?? default(SharpVk.Interop.DescriptorSet);
             pointer->DestinationBinding = this.DestinationBinding;
             pointer->DestinationArrayElement = this.DestinationArrayElement;
             pointer->DescriptorCount = (uint)(this.ImageInfo?.Length ?? 0);
             pointer->DescriptorType = this.DescriptorType;
             if (this.ImageInfo != null)
             {
-                var fieldPointer = (Interop.DescriptorImageInfo*)(Interop.HeapUtil.AllocateAndClear<Interop.DescriptorImageInfo>(this.ImageInfo.Length).ToPointer());
+                var fieldPointer = (SharpVk.Interop.DescriptorImageInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.DescriptorImageInfo>(this.ImageInfo.Length).ToPointer());
                 for(int index = 0; index < (uint)(this.ImageInfo.Length); index++)
                 {
                     this.ImageInfo[index].MarshalTo(&fieldPointer[index]);
@@ -120,7 +120,7 @@ namespace SharpVk
             }
             if (this.BufferInfo != null)
             {
-                var fieldPointer = (Interop.DescriptorBufferInfo*)(Interop.HeapUtil.AllocateAndClear<Interop.DescriptorBufferInfo>(this.BufferInfo.Length).ToPointer());
+                var fieldPointer = (SharpVk.Interop.DescriptorBufferInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.DescriptorBufferInfo>(this.BufferInfo.Length).ToPointer());
                 for(int index = 0; index < (uint)(this.BufferInfo.Length); index++)
                 {
                     this.BufferInfo[index].MarshalTo(&fieldPointer[index]);
@@ -133,10 +133,10 @@ namespace SharpVk
             }
             if (this.TexelBufferView != null)
             {
-                var fieldPointer = (Interop.BufferView*)(Interop.HeapUtil.AllocateAndClear<Interop.BufferView>(this.TexelBufferView.Length).ToPointer());
+                var fieldPointer = (SharpVk.Interop.BufferView*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.BufferView>(this.TexelBufferView.Length).ToPointer());
                 for(int index = 0; index < (uint)(this.TexelBufferView.Length); index++)
                 {
-                    fieldPointer[index] = this.TexelBufferView[index]?.handle ?? default(Interop.BufferView);
+                    fieldPointer[index] = this.TexelBufferView[index]?.handle ?? default(SharpVk.Interop.BufferView);
                 }
                 pointer->TexelBufferView = fieldPointer;
             }

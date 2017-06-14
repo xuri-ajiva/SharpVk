@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public StructureType SType; 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
@@ -46,12 +46,12 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public InstanceCreateFlags Flags; 
+        public SharpVk.InstanceCreateFlags Flags; 
         
         /// <summary>
         /// 
         /// </summary>
-        public ApplicationInfo* ApplicationInfo; 
+        public SharpVk.Interop.ApplicationInfo* ApplicationInfo; 
         
         /// <summary>
         /// 

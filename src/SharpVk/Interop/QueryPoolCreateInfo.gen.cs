@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public StructureType SType; 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
@@ -46,12 +46,12 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public QueryPoolCreateFlags Flags; 
+        public SharpVk.QueryPoolCreateFlags Flags; 
         
         /// <summary>
         /// 
         /// </summary>
-        public QueryType QueryType; 
+        public SharpVk.QueryType QueryType; 
         
         /// <summary>
         /// 
@@ -61,6 +61,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public QueryPipelineStatisticFlags PipelineStatistics; 
+        public SharpVk.QueryPipelineStatisticFlags PipelineStatistics; 
     }
 }

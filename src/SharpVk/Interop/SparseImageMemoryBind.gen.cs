@@ -36,22 +36,22 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public ImageSubresource Subresource; 
+        public SharpVk.ImageSubresource Subresource; 
         
         /// <summary>
         /// 
         /// </summary>
-        public Offset3D Offset; 
+        public SharpVk.Offset3D Offset; 
         
         /// <summary>
         /// 
         /// </summary>
-        public Extent3D Extent; 
+        public SharpVk.Extent3D Extent; 
         
         /// <summary>
         /// 
         /// </summary>
-        public DeviceMemory Memory; 
+        public SharpVk.Interop.DeviceMemory Memory; 
         
         /// <summary>
         /// 
@@ -61,6 +61,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public SparseMemoryBindFlags Flags; 
+        public SharpVk.SparseMemoryBindFlags Flags; 
     }
 }

@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public AccessFlags SourceAccessMask
+        public SharpVk.AccessFlags SourceAccessMask
         {
             get;
             set;
@@ -45,13 +45,13 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public AccessFlags DestinationAccessMask
+        public SharpVk.AccessFlags DestinationAccessMask
         {
             get;
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.MemoryBarrier* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.MemoryBarrier* pointer)
         {
             pointer->SType = StructureType.MemoryBarrier;
             pointer->Next = null;

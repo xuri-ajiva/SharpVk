@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorPoolSize(DescriptorType type, uint descriptorCount)
+        public DescriptorPoolSize(SharpVk.DescriptorType type, uint descriptorCount)
         {
             this.Type = type;
             this.DescriptorCount = descriptorCount;
@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorType Type; 
+        public SharpVk.DescriptorType Type; 
         
         /// <summary>
         /// 

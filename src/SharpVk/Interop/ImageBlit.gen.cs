@@ -36,31 +36,31 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public ImageSubresourceLayers SourceSubresource; 
+        public SharpVk.ImageSubresourceLayers SourceSubresource; 
         
         /// <summary>
         /// 
         /// </summary>
-        public Offset3D SourceOffsets_0; 
+        public SharpVk.Offset3D SourceOffsets_0; 
         
         /// <summary>
         /// 
         /// </summary>
-        public Offset3D SourceOffsets_1; 
+        public SharpVk.Offset3D SourceOffsets_1; 
         
         /// <summary>
         /// 
         /// </summary>
-        public ImageSubresourceLayers DestinationSubresource; 
+        public SharpVk.ImageSubresourceLayers DestinationSubresource; 
         
         /// <summary>
         /// 
         /// </summary>
-        public Offset3D DestinationOffsets_0; 
+        public SharpVk.Offset3D DestinationOffsets_0; 
         
         /// <summary>
         /// 
         /// </summary>
-        public Offset3D DestinationOffsets_1; 
+        public SharpVk.Offset3D DestinationOffsets_1; 
     }
 }

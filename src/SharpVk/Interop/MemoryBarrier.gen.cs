@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public StructureType SType; 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
@@ -46,11 +46,11 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public AccessFlags SourceAccessMask; 
+        public SharpVk.AccessFlags SourceAccessMask; 
         
         /// <summary>
         /// 
         /// </summary>
-        public AccessFlags DestinationAccessMask; 
+        public SharpVk.AccessFlags DestinationAccessMask; 
     }
 }

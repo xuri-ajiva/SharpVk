@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ImageResolve(ImageSubresourceLayers sourceSubresource, Offset3D sourceOffset, ImageSubresourceLayers destinationSubresource, Offset3D destinationOffset, Extent3D extent)
+        public ImageResolve(SharpVk.ImageSubresourceLayers sourceSubresource, SharpVk.Offset3D sourceOffset, SharpVk.ImageSubresourceLayers destinationSubresource, SharpVk.Offset3D destinationOffset, SharpVk.Extent3D extent)
         {
             this.SourceSubresource = sourceSubresource;
             this.SourceOffset = sourceOffset;
@@ -48,26 +48,26 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ImageSubresourceLayers SourceSubresource; 
+        public SharpVk.ImageSubresourceLayers SourceSubresource; 
         
         /// <summary>
         /// 
         /// </summary>
-        public Offset3D SourceOffset; 
+        public SharpVk.Offset3D SourceOffset; 
         
         /// <summary>
         /// 
         /// </summary>
-        public ImageSubresourceLayers DestinationSubresource; 
+        public SharpVk.ImageSubresourceLayers DestinationSubresource; 
         
         /// <summary>
         /// 
         /// </summary>
-        public Offset3D DestinationOffset; 
+        public SharpVk.Offset3D DestinationOffset; 
         
         /// <summary>
         /// 
         /// </summary>
-        public Extent3D Extent; 
+        public SharpVk.Extent3D Extent; 
     }
 }

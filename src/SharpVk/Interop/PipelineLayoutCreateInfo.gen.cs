@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public StructureType SType; 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
@@ -46,7 +46,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PipelineLayoutCreateFlags Flags; 
+        public SharpVk.PipelineLayoutCreateFlags Flags; 
         
         /// <summary>
         /// 
@@ -56,7 +56,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorSetLayout* SetLayouts; 
+        public SharpVk.Interop.DescriptorSetLayout* SetLayouts; 
         
         /// <summary>
         /// 
@@ -66,6 +66,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PushConstantRange* PushConstantRanges; 
+        public SharpVk.PushConstantRange* PushConstantRanges; 
     }
 }

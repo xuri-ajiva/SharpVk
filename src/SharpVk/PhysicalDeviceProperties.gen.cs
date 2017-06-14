@@ -72,7 +72,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PhysicalDeviceType DeviceType
+        public SharpVk.PhysicalDeviceType DeviceType
         {
             get;
             set;
@@ -90,7 +90,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PhysicalDeviceLimits Limits
+        public SharpVk.PhysicalDeviceLimits Limits
         {
             get;
             set;
@@ -99,13 +99,13 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PhysicalDeviceSparseProperties SparseProperties
+        public SharpVk.PhysicalDeviceSparseProperties SparseProperties
         {
             get;
             set;
         }
         
-        internal static unsafe PhysicalDeviceProperties MarshalFrom(Interop.PhysicalDeviceProperties* pointer)
+        internal static unsafe PhysicalDeviceProperties MarshalFrom(SharpVk.Interop.PhysicalDeviceProperties* pointer)
         {
             PhysicalDeviceProperties result = default(PhysicalDeviceProperties);
             result.ApiVersion = (Version)(pointer->ApiVersion);
@@ -114,7 +114,7 @@ namespace SharpVk
             result.DeviceID = pointer->DeviceID;
             result.DeviceType = pointer->DeviceType;
             result.DeviceName = Interop.HeapUtil.MarshalStringFrom(pointer->DeviceName, Constants.MaxPhysicalDeviceNameSize, true);
-            result.Limits = PhysicalDeviceLimits.MarshalFrom(&pointer->Limits);
+            result.Limits = SharpVk.PhysicalDeviceLimits.MarshalFrom(&pointer->Limits);
             result.SparseProperties = pointer->SparseProperties;
             return result;
         }

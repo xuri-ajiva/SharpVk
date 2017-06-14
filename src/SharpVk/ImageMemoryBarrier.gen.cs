@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public AccessFlags SourceAccessMask
+        public SharpVk.AccessFlags SourceAccessMask
         {
             get;
             set;
@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public AccessFlags DestinationAccessMask
+        public SharpVk.AccessFlags DestinationAccessMask
         {
             get;
             set;
@@ -54,7 +54,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ImageLayout OldLayout
+        public SharpVk.ImageLayout OldLayout
         {
             get;
             set;
@@ -63,7 +63,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ImageLayout NewLayout
+        public SharpVk.ImageLayout NewLayout
         {
             get;
             set;
@@ -90,7 +90,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Image Image
+        public SharpVk.Image Image
         {
             get;
             set;
@@ -99,13 +99,13 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ImageSubresourceRange SubresourceRange
+        public SharpVk.ImageSubresourceRange SubresourceRange
         {
             get;
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.ImageMemoryBarrier* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.ImageMemoryBarrier* pointer)
         {
             pointer->SType = StructureType.ImageMemoryBarrier;
             pointer->Next = null;
@@ -115,7 +115,7 @@ namespace SharpVk
             pointer->NewLayout = this.NewLayout;
             pointer->SourceQueueFamilyIndex = this.SourceQueueFamilyIndex;
             pointer->DestinationQueueFamilyIndex = this.DestinationQueueFamilyIndex;
-            pointer->Image = this.Image?.handle ?? default(Interop.Image);
+            pointer->Image = this.Image?.handle ?? default(SharpVk.Interop.Image);
             pointer->SubresourceRange = this.SubresourceRange;
         }
     }

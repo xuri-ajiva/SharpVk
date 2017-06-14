@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public DeviceCreateFlags Flags
+        public SharpVk.DeviceCreateFlags Flags
         {
             get;
             set;
@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public DeviceQueueCreateInfo[] QueueCreateInfos
+        public SharpVk.DeviceQueueCreateInfo[] QueueCreateInfos
         {
             get;
             set;
@@ -72,13 +72,13 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PhysicalDeviceFeatures? EnabledFeatures
+        public SharpVk.PhysicalDeviceFeatures? EnabledFeatures
         {
             get;
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.DeviceCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.DeviceCreateInfo* pointer)
         {
             pointer->SType = StructureType.DeviceCreateInfo;
             pointer->Next = null;
@@ -86,7 +86,7 @@ namespace SharpVk
             pointer->QueueCreateInfoCount = (uint)(this.QueueCreateInfos?.Length ?? 0);
             if (this.QueueCreateInfos != null)
             {
-                var fieldPointer = (Interop.DeviceQueueCreateInfo*)(Interop.HeapUtil.AllocateAndClear<Interop.DeviceQueueCreateInfo>(this.QueueCreateInfos.Length).ToPointer());
+                var fieldPointer = (SharpVk.Interop.DeviceQueueCreateInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.DeviceQueueCreateInfo>(this.QueueCreateInfos.Length).ToPointer());
                 for(int index = 0; index < (uint)(this.QueueCreateInfos.Length); index++)
                 {
                     this.QueueCreateInfos[index].MarshalTo(&fieldPointer[index]);
@@ -101,12 +101,12 @@ namespace SharpVk
             pointer->EnabledExtensionCount = (uint)(this.EnabledExtensionNames?.Length ?? 0);
             if (this.EnabledFeatures != null)
             {
-                pointer->EnabledFeatures = (PhysicalDeviceFeatures*)(Interop.HeapUtil.Allocate<PhysicalDeviceFeatures>());
+                pointer->EnabledFeatures = (SharpVk.PhysicalDeviceFeatures*)(Interop.HeapUtil.Allocate<SharpVk.PhysicalDeviceFeatures>());
                 *pointer->EnabledFeatures = this.EnabledFeatures.Value;
             }
             else
             {
-                pointer->EnabledFeatures = default(PhysicalDeviceFeatures*);
+                pointer->EnabledFeatures = default(SharpVk.PhysicalDeviceFeatures*);
             }
         }
     }

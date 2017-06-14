@@ -16,12 +16,14 @@ namespace SharpVk.Generator.Generation
         private readonly Dictionary<string, TypeDeclaration> typeData;
         private readonly NameLookup nameLookup;
         private readonly IEnumerable<IMemberPatternRule> patternRules;
+        private readonly NamespaceMap namespaceMap;
 
-        public MarshalledStructGenerator(Dictionary<string, TypeDeclaration> typeData, NameLookup nameLookup, IEnumerable<IMemberPatternRule> patternRules)
+        public MarshalledStructGenerator(Dictionary<string, TypeDeclaration> typeData, NameLookup nameLookup, IEnumerable<IMemberPatternRule> patternRules, NamespaceMap namespaceMap)
         {
             this.typeData = typeData;
             this.nameLookup = nameLookup;
             this.patternRules = patternRules;
+            this.namespaceMap = namespaceMap;
         }
 
         public void Execute(IServiceCollection services)
@@ -33,7 +35,7 @@ namespace SharpVk.Generator.Generation
 
                 if (type.Extension != null)
                 {
-                    typeNamespace.Add(type.Extension);
+                    typeNamespace.AddRange(this.namespaceMap.Map(type.Extension));
                 }
 
                 var publicStruct = new StructDefinition
@@ -55,7 +57,7 @@ namespace SharpVk.Generator.Generation
                             Param = new ParamDefinition
                             {
                                 Name = "pointer",
-                                Type = "Interop." + this.nameLookup.Lookup(new TypeReference
+                                Type = this.nameLookup.Lookup(new TypeReference
                                 {
                                     VkName = typeItem.Key,
                                     PointerType = PointerType.Pointer
@@ -80,7 +82,7 @@ namespace SharpVk.Generator.Generation
                             Param = new ParamDefinition
                             {
                                 Name = "pointer",
-                                Type = "Interop." + this.nameLookup.Lookup(new TypeReference
+                                Type = this.nameLookup.Lookup(new TypeReference
                                 {
                                     VkName = typeItem.Key,
                                     PointerType = PointerType.Pointer
@@ -116,7 +118,7 @@ namespace SharpVk.Generator.Generation
                     {
                     };
 
-                    this.patternRules.ApplyFirst(type.Members, member, x => Default("Interop." + this.typeData[x].Name), patternInfo);
+                    this.patternRules.ApplyFirst(type.Members, member, x => Default(this.nameLookup.Lookup(new TypeReference { VkName = x }, true)), patternInfo);
 
                     marshalToMethod.MemberActions.AddRange(patternInfo.MarshalTo.Select(action => action(targetName => DerefMember(Variable("pointer"), targetName), valueName => Member(This, valueName))));
                     marshalFromMethod.MemberActions.AddRange(patternInfo.MarshalFrom.Select(action => action(targetName => Member(Variable("result"), targetName), valueName => DerefMember(Variable("pointer"), valueName))));

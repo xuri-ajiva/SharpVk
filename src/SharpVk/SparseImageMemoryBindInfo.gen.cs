@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Image Image
+        public SharpVk.Image Image
         {
             get;
             set;
@@ -45,19 +45,19 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SparseImageMemoryBind[] Binds
+        public SharpVk.SparseImageMemoryBind[] Binds
         {
             get;
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.SparseImageMemoryBindInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.SparseImageMemoryBindInfo* pointer)
         {
-            pointer->Image = this.Image?.handle ?? default(Interop.Image);
+            pointer->Image = this.Image?.handle ?? default(SharpVk.Interop.Image);
             pointer->BindCount = (uint)(this.Binds?.Length ?? 0);
             if (this.Binds != null)
             {
-                var fieldPointer = (Interop.SparseImageMemoryBind*)(Interop.HeapUtil.AllocateAndClear<Interop.SparseImageMemoryBind>(this.Binds.Length).ToPointer());
+                var fieldPointer = (SharpVk.Interop.SparseImageMemoryBind*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.SparseImageMemoryBind>(this.Binds.Length).ToPointer());
                 for(int index = 0; index < (uint)(this.Binds.Length); index++)
                 {
                     this.Binds[index].MarshalTo(&fieldPointer[index]);

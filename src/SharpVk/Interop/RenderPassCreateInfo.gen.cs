@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public StructureType SType; 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
@@ -46,7 +46,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public RenderPassCreateFlags Flags; 
+        public SharpVk.RenderPassCreateFlags Flags; 
         
         /// <summary>
         /// 
@@ -56,7 +56,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public AttachmentDescription* Attachments; 
+        public SharpVk.AttachmentDescription* Attachments; 
         
         /// <summary>
         /// 
@@ -66,7 +66,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public SubpassDescription* Subpasses; 
+        public SharpVk.Interop.SubpassDescription* Subpasses; 
         
         /// <summary>
         /// 
@@ -76,6 +76,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public SubpassDependency* Dependencies; 
+        public SharpVk.SubpassDependency* Dependencies; 
     }
 }

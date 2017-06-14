@@ -22,8 +22,9 @@ namespace SharpVk.Generator.Generation
         private readonly IEnumerable<IMarshalValueRule> marshallingRules;
         private readonly IEnumerable<IMemberPatternRule> memberPatternRules;
         private readonly ParsedExpressionTokenCheck tokenCheck;
+        private readonly NamespaceMap namespaceMap;
 
-        public HandleGenerator(Dictionary<string, TypeDeclaration> typeData, NameLookup nameLookup, IEnumerable<CommandDeclaration> commands, IEnumerable<IMarshalValueRule> marshallingRules, IEnumerable<IMemberPatternRule> memberPatternRules, ParsedExpressionTokenCheck tokenCheck)
+        public HandleGenerator(Dictionary<string, TypeDeclaration> typeData, NameLookup nameLookup, IEnumerable<CommandDeclaration> commands, IEnumerable<IMarshalValueRule> marshallingRules, IEnumerable<IMemberPatternRule> memberPatternRules, ParsedExpressionTokenCheck tokenCheck, NamespaceMap namespaceMap)
         {
             this.typeData = typeData;
             this.nameLookup = nameLookup;
@@ -31,6 +32,7 @@ namespace SharpVk.Generator.Generation
             this.marshallingRules = marshallingRules;
             this.memberPatternRules = memberPatternRules;
             this.tokenCheck = tokenCheck;
+            this.namespaceMap = namespaceMap;
         }
 
         public void Execute(IServiceCollection services)
@@ -53,8 +55,8 @@ namespace SharpVk.Generator.Generation
                 {
                     Name = type.Name,
                     Parent = parentType?.Name,
-                    Namespace = type.Extension != null ? new[] { type.Extension } : null,
-                    ParentNamespace = parentType?.Extension != null ? new[] { parentType.Extension } : null,
+                    Namespace = type.Extension != null ? this.namespaceMap.Map(type.Extension).ToArray() : null,
+                    ParentNamespace = parentType?.Extension != null ? this.namespaceMap.Map(parentType.Extension).ToArray() : null,
                     IsDispatch = type.Type != "VK_DEFINE_NON_DISPATCHABLE_HANDLE",
                     Commands = commands
                 });

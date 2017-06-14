@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public StructureType SType; 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
@@ -46,7 +46,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PipelineColorBlendStateCreateFlags Flags; 
+        public SharpVk.PipelineColorBlendStateCreateFlags Flags; 
         
         /// <summary>
         /// 
@@ -56,7 +56,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public LogicOp LogicOp; 
+        public SharpVk.LogicOp LogicOp; 
         
         /// <summary>
         /// 
@@ -66,7 +66,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PipelineColorBlendAttachmentState* Attachments; 
+        public SharpVk.PipelineColorBlendAttachmentState* Attachments; 
         
         /// <summary>
         /// 

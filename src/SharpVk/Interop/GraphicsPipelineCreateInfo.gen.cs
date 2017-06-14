@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public StructureType SType; 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
@@ -46,7 +46,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PipelineCreateFlags Flags; 
+        public SharpVk.PipelineCreateFlags Flags; 
         
         /// <summary>
         /// 
@@ -56,62 +56,62 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PipelineShaderStageCreateInfo* Stages; 
+        public SharpVk.Interop.PipelineShaderStageCreateInfo* Stages; 
         
         /// <summary>
         /// 
         /// </summary>
-        public PipelineVertexInputStateCreateInfo* VertexInputState; 
+        public SharpVk.Interop.PipelineVertexInputStateCreateInfo* VertexInputState; 
         
         /// <summary>
         /// 
         /// </summary>
-        public PipelineInputAssemblyStateCreateInfo* InputAssemblyState; 
+        public SharpVk.Interop.PipelineInputAssemblyStateCreateInfo* InputAssemblyState; 
         
         /// <summary>
         /// 
         /// </summary>
-        public PipelineTessellationStateCreateInfo* TessellationState; 
+        public SharpVk.Interop.PipelineTessellationStateCreateInfo* TessellationState; 
         
         /// <summary>
         /// 
         /// </summary>
-        public PipelineViewportStateCreateInfo* ViewportState; 
+        public SharpVk.Interop.PipelineViewportStateCreateInfo* ViewportState; 
         
         /// <summary>
         /// 
         /// </summary>
-        public PipelineRasterizationStateCreateInfo* RasterizationState; 
+        public SharpVk.Interop.PipelineRasterizationStateCreateInfo* RasterizationState; 
         
         /// <summary>
         /// 
         /// </summary>
-        public PipelineMultisampleStateCreateInfo* MultisampleState; 
+        public SharpVk.Interop.PipelineMultisampleStateCreateInfo* MultisampleState; 
         
         /// <summary>
         /// 
         /// </summary>
-        public PipelineDepthStencilStateCreateInfo* DepthStencilState; 
+        public SharpVk.Interop.PipelineDepthStencilStateCreateInfo* DepthStencilState; 
         
         /// <summary>
         /// 
         /// </summary>
-        public PipelineColorBlendStateCreateInfo* ColorBlendState; 
+        public SharpVk.Interop.PipelineColorBlendStateCreateInfo* ColorBlendState; 
         
         /// <summary>
         /// 
         /// </summary>
-        public PipelineDynamicStateCreateInfo* DynamicState; 
+        public SharpVk.Interop.PipelineDynamicStateCreateInfo* DynamicState; 
         
         /// <summary>
         /// 
         /// </summary>
-        public PipelineLayout Layout; 
+        public SharpVk.Interop.PipelineLayout Layout; 
         
         /// <summary>
         /// 
         /// </summary>
-        public RenderPass RenderPass; 
+        public SharpVk.Interop.RenderPass RenderPass; 
         
         /// <summary>
         /// 
@@ -121,7 +121,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public Pipeline BasePipelineHandle; 
+        public SharpVk.Interop.Pipeline BasePipelineHandle; 
         
         /// <summary>
         /// 

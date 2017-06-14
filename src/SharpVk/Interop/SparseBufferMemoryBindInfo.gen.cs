@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public Buffer Buffer; 
+        public SharpVk.Interop.Buffer Buffer; 
         
         /// <summary>
         /// 
@@ -46,6 +46,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public SparseMemoryBind* Binds; 
+        public SharpVk.Interop.SparseMemoryBind* Binds; 
     }
 }

@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public VertexInputBindingDescription(uint binding, uint stride, VertexInputRate inputRate)
+        public VertexInputBindingDescription(uint binding, uint stride, SharpVk.VertexInputRate inputRate)
         {
             this.Binding = binding;
             this.Stride = stride;
@@ -56,6 +56,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public VertexInputRate InputRate; 
+        public SharpVk.VertexInputRate InputRate; 
     }
 }

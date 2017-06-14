@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public BufferImageCopy(DeviceSize bufferOffset, uint bufferRowLength, uint bufferImageHeight, ImageSubresourceLayers imageSubresource, Offset3D imageOffset, Extent3D imageExtent)
+        public BufferImageCopy(DeviceSize bufferOffset, uint bufferRowLength, uint bufferImageHeight, SharpVk.ImageSubresourceLayers imageSubresource, SharpVk.Offset3D imageOffset, SharpVk.Extent3D imageExtent)
         {
             this.BufferOffset = bufferOffset;
             this.BufferRowLength = bufferRowLength;
@@ -64,16 +64,16 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ImageSubresourceLayers ImageSubresource; 
+        public SharpVk.ImageSubresourceLayers ImageSubresource; 
         
         /// <summary>
         /// 
         /// </summary>
-        public Offset3D ImageOffset; 
+        public SharpVk.Offset3D ImageOffset; 
         
         /// <summary>
         /// 
         /// </summary>
-        public Extent3D ImageExtent; 
+        public SharpVk.Extent3D ImageExtent; 
     }
 }

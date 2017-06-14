@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public StencilOpState(StencilOp failOp, StencilOp passOp, StencilOp depthFailOp, CompareOp compareOp, uint compareMask, uint writeMask, uint reference)
+        public StencilOpState(SharpVk.StencilOp failOp, SharpVk.StencilOp passOp, SharpVk.StencilOp depthFailOp, SharpVk.CompareOp compareOp, uint compareMask, uint writeMask, uint reference)
         {
             this.FailOp = failOp;
             this.PassOp = passOp;
@@ -50,22 +50,22 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public StencilOp FailOp; 
+        public SharpVk.StencilOp FailOp; 
         
         /// <summary>
         /// 
         /// </summary>
-        public StencilOp PassOp; 
+        public SharpVk.StencilOp PassOp; 
         
         /// <summary>
         /// 
         /// </summary>
-        public StencilOp DepthFailOp; 
+        public SharpVk.StencilOp DepthFailOp; 
         
         /// <summary>
         /// 
         /// </summary>
-        public CompareOp CompareOp; 
+        public SharpVk.CompareOp CompareOp; 
         
         /// <summary>
         /// 

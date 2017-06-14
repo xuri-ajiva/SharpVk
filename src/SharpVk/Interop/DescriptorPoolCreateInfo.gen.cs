@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public StructureType SType; 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
@@ -46,7 +46,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorPoolCreateFlags Flags; 
+        public SharpVk.DescriptorPoolCreateFlags Flags; 
         
         /// <summary>
         /// 
@@ -61,6 +61,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorPoolSize* PoolSizes; 
+        public SharpVk.DescriptorPoolSize* PoolSizes; 
     }
 }

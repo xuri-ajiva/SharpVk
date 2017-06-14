@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SparseImageFormatProperties(ImageAspectFlags aspectMask, Extent3D imageGranularity, SparseImageFormatFlags flags)
+        public SparseImageFormatProperties(SharpVk.ImageAspectFlags aspectMask, SharpVk.Extent3D imageGranularity, SharpVk.SparseImageFormatFlags flags)
         {
             this.AspectMask = aspectMask;
             this.ImageGranularity = imageGranularity;
@@ -46,16 +46,16 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ImageAspectFlags AspectMask; 
+        public SharpVk.ImageAspectFlags AspectMask; 
         
         /// <summary>
         /// 
         /// </summary>
-        public Extent3D ImageGranularity; 
+        public SharpVk.Extent3D ImageGranularity; 
         
         /// <summary>
         /// 
         /// </summary>
-        public SparseImageFormatFlags Flags; 
+        public SharpVk.SparseImageFormatFlags Flags; 
     }
 }

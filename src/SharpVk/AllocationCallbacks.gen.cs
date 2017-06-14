@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public AllocationFunctionDelegate Allocation
+        public SharpVk.AllocationFunctionDelegate Allocation
         {
             get;
             set;
@@ -54,7 +54,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ReallocationFunctionDelegate Reallocation
+        public SharpVk.ReallocationFunctionDelegate Reallocation
         {
             get;
             set;
@@ -63,7 +63,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public FreeFunctionDelegate Free
+        public SharpVk.FreeFunctionDelegate Free
         {
             get;
             set;
@@ -72,7 +72,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public InternalAllocationNotificationDelegate InternalAllocation
+        public SharpVk.InternalAllocationNotificationDelegate InternalAllocation
         {
             get;
             set;
@@ -81,13 +81,13 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public InternalFreeNotificationDelegate InternalFree
+        public SharpVk.InternalFreeNotificationDelegate InternalFree
         {
             get;
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.AllocationCallbacks* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.AllocationCallbacks* pointer)
         {
             if (this.UserData != null)
             {

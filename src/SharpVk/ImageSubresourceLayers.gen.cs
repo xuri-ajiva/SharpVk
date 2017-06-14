@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ImageSubresourceLayers(ImageAspectFlags aspectMask, uint mipLevel, uint baseArrayLayer, uint layerCount)
+        public ImageSubresourceLayers(SharpVk.ImageAspectFlags aspectMask, uint mipLevel, uint baseArrayLayer, uint layerCount)
         {
             this.AspectMask = aspectMask;
             this.MipLevel = mipLevel;
@@ -47,7 +47,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ImageAspectFlags AspectMask; 
+        public SharpVk.ImageAspectFlags AspectMask; 
         
         /// <summary>
         /// 

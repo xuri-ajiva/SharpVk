@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public QueueFamilyProperties(QueueFlags queueFlags, uint queueCount, uint timestampValidBits, Extent3D minImageTransferGranularity)
+        public QueueFamilyProperties(SharpVk.QueueFlags queueFlags, uint queueCount, uint timestampValidBits, SharpVk.Extent3D minImageTransferGranularity)
         {
             this.QueueFlags = queueFlags;
             this.QueueCount = queueCount;
@@ -47,7 +47,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public QueueFlags QueueFlags; 
+        public SharpVk.QueueFlags QueueFlags; 
         
         /// <summary>
         /// 
@@ -62,6 +62,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Extent3D MinImageTransferGranularity; 
+        public SharpVk.Extent3D MinImageTransferGranularity; 
     }
 }

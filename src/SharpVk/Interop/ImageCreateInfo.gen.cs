@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public StructureType SType; 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
@@ -46,22 +46,22 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public ImageCreateFlags Flags; 
+        public SharpVk.ImageCreateFlags Flags; 
         
         /// <summary>
         /// 
         /// </summary>
-        public ImageType ImageType; 
+        public SharpVk.ImageType ImageType; 
         
         /// <summary>
         /// 
         /// </summary>
-        public Format Format; 
+        public SharpVk.Format Format; 
         
         /// <summary>
         /// 
         /// </summary>
-        public Extent3D Extent; 
+        public SharpVk.Extent3D Extent; 
         
         /// <summary>
         /// 
@@ -76,22 +76,22 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public SampleCountFlags Samples; 
+        public SharpVk.SampleCountFlags Samples; 
         
         /// <summary>
         /// 
         /// </summary>
-        public ImageTiling Tiling; 
+        public SharpVk.ImageTiling Tiling; 
         
         /// <summary>
         /// 
         /// </summary>
-        public ImageUsageFlags Usage; 
+        public SharpVk.ImageUsageFlags Usage; 
         
         /// <summary>
         /// 
         /// </summary>
-        public SharingMode SharingMode; 
+        public SharpVk.SharingMode SharingMode; 
         
         /// <summary>
         /// 
@@ -106,6 +106,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public ImageLayout InitialLayout; 
+        public SharpVk.ImageLayout InitialLayout; 
     }
 }

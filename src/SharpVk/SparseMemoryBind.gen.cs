@@ -54,7 +54,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public DeviceMemory Memory
+        public SharpVk.DeviceMemory Memory
         {
             get;
             set;
@@ -72,17 +72,17 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SparseMemoryBindFlags Flags
+        public SharpVk.SparseMemoryBindFlags Flags
         {
             get;
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.SparseMemoryBind* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.SparseMemoryBind* pointer)
         {
             pointer->ResourceOffset = this.ResourceOffset;
             pointer->Size = this.Size;
-            pointer->Memory = this.Memory?.handle ?? default(Interop.DeviceMemory);
+            pointer->Memory = this.Memory?.handle ?? default(SharpVk.Interop.DeviceMemory);
             pointer->MemoryOffset = this.MemoryOffset;
             pointer->Flags = this.Flags;
         }

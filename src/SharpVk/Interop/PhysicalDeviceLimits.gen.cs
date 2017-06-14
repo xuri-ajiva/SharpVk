@@ -436,22 +436,22 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public SampleCountFlags FramebufferColorSampleCounts; 
+        public SharpVk.SampleCountFlags FramebufferColorSampleCounts; 
         
         /// <summary>
         /// 
         /// </summary>
-        public SampleCountFlags FramebufferDepthSampleCounts; 
+        public SharpVk.SampleCountFlags FramebufferDepthSampleCounts; 
         
         /// <summary>
         /// 
         /// </summary>
-        public SampleCountFlags FramebufferStencilSampleCounts; 
+        public SharpVk.SampleCountFlags FramebufferStencilSampleCounts; 
         
         /// <summary>
         /// 
         /// </summary>
-        public SampleCountFlags FramebufferNoAttachmentsSampleCounts; 
+        public SharpVk.SampleCountFlags FramebufferNoAttachmentsSampleCounts; 
         
         /// <summary>
         /// 
@@ -461,27 +461,27 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public SampleCountFlags SampledImageColorSampleCounts; 
+        public SharpVk.SampleCountFlags SampledImageColorSampleCounts; 
         
         /// <summary>
         /// 
         /// </summary>
-        public SampleCountFlags SampledImageIntegerSampleCounts; 
+        public SharpVk.SampleCountFlags SampledImageIntegerSampleCounts; 
         
         /// <summary>
         /// 
         /// </summary>
-        public SampleCountFlags SampledImageDepthSampleCounts; 
+        public SharpVk.SampleCountFlags SampledImageDepthSampleCounts; 
         
         /// <summary>
         /// 
         /// </summary>
-        public SampleCountFlags SampledImageStencilSampleCounts; 
+        public SharpVk.SampleCountFlags SampledImageStencilSampleCounts; 
         
         /// <summary>
         /// 
         /// </summary>
-        public SampleCountFlags StorageImageSampleCounts; 
+        public SharpVk.SampleCountFlags StorageImageSampleCounts; 
         
         /// <summary>
         /// 

@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ImageCreateFlags Flags
+        public SharpVk.ImageCreateFlags Flags
         {
             get;
             set;
@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ImageType ImageType
+        public SharpVk.ImageType ImageType
         {
             get;
             set;
@@ -54,7 +54,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Format Format
+        public SharpVk.Format Format
         {
             get;
             set;
@@ -63,7 +63,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Extent3D Extent
+        public SharpVk.Extent3D Extent
         {
             get;
             set;
@@ -90,7 +90,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SampleCountFlags Samples
+        public SharpVk.SampleCountFlags Samples
         {
             get;
             set;
@@ -99,7 +99,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ImageTiling Tiling
+        public SharpVk.ImageTiling Tiling
         {
             get;
             set;
@@ -108,7 +108,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ImageUsageFlags Usage
+        public SharpVk.ImageUsageFlags Usage
         {
             get;
             set;
@@ -117,7 +117,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharingMode SharingMode
+        public SharpVk.SharingMode SharingMode
         {
             get;
             set;
@@ -135,13 +135,13 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ImageLayout InitialLayout
+        public SharpVk.ImageLayout InitialLayout
         {
             get;
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.ImageCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.ImageCreateInfo* pointer)
         {
             pointer->SType = StructureType.ImageCreateInfo;
             pointer->Next = null;

@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public StructureType SType; 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
@@ -46,7 +46,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public RenderPass RenderPass; 
+        public SharpVk.Interop.RenderPass RenderPass; 
         
         /// <summary>
         /// 
@@ -56,7 +56,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public Framebuffer Framebuffer; 
+        public SharpVk.Interop.Framebuffer Framebuffer; 
         
         /// <summary>
         /// 
@@ -66,11 +66,11 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public QueryControlFlags QueryFlags; 
+        public SharpVk.QueryControlFlags QueryFlags; 
         
         /// <summary>
         /// 
         /// </summary>
-        public QueryPipelineStatisticFlags PipelineStatistics; 
+        public SharpVk.QueryPipelineStatisticFlags PipelineStatistics; 
     }
 }

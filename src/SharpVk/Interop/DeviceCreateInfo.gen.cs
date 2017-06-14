@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public StructureType SType; 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
@@ -46,7 +46,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DeviceCreateFlags Flags; 
+        public SharpVk.DeviceCreateFlags Flags; 
         
         /// <summary>
         /// 
@@ -56,7 +56,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DeviceQueueCreateInfo* QueueCreateInfos; 
+        public SharpVk.Interop.DeviceQueueCreateInfo* QueueCreateInfos; 
         
         /// <summary>
         /// 
@@ -81,6 +81,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PhysicalDeviceFeatures* EnabledFeatures; 
+        public SharpVk.PhysicalDeviceFeatures* EnabledFeatures; 
     }
 }

@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public Buffer Buffer; 
+        public SharpVk.Interop.Buffer Buffer; 
         
         /// <summary>
         /// 

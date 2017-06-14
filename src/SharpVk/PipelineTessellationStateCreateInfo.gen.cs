@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineTessellationStateCreateFlags Flags
+        public SharpVk.PipelineTessellationStateCreateFlags Flags
         {
             get;
             set;
@@ -51,7 +51,7 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.PipelineTessellationStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.PipelineTessellationStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineTessellationStateCreateInfo;
             pointer->Next = null;

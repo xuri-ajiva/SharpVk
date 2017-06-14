@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ImageSubresource Subresource
+        public SharpVk.ImageSubresource Subresource
         {
             get;
             set;
@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Offset3D Offset
+        public SharpVk.Offset3D Offset
         {
             get;
             set;
@@ -54,7 +54,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Extent3D Extent
+        public SharpVk.Extent3D Extent
         {
             get;
             set;
@@ -63,7 +63,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public DeviceMemory Memory
+        public SharpVk.DeviceMemory Memory
         {
             get;
             set;
@@ -81,18 +81,18 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SparseMemoryBindFlags Flags
+        public SharpVk.SparseMemoryBindFlags Flags
         {
             get;
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.SparseImageMemoryBind* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.SparseImageMemoryBind* pointer)
         {
             pointer->Subresource = this.Subresource;
             pointer->Offset = this.Offset;
             pointer->Extent = this.Extent;
-            pointer->Memory = this.Memory?.handle ?? default(Interop.DeviceMemory);
+            pointer->Memory = this.Memory?.handle ?? default(SharpVk.Interop.DeviceMemory);
             pointer->MemoryOffset = this.MemoryOffset;
             pointer->Flags = this.Flags;
         }

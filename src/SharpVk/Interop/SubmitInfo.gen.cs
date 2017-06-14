@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public StructureType SType; 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
@@ -51,12 +51,12 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public Semaphore* WaitSemaphores; 
+        public SharpVk.Interop.Semaphore* WaitSemaphores; 
         
         /// <summary>
         /// 
         /// </summary>
-        public PipelineStageFlags* WaitDestinationStageMask; 
+        public SharpVk.PipelineStageFlags* WaitDestinationStageMask; 
         
         /// <summary>
         /// 
@@ -66,7 +66,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public CommandBuffer* CommandBuffers; 
+        public SharpVk.Interop.CommandBuffer* CommandBuffers; 
         
         /// <summary>
         /// 
@@ -76,6 +76,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public Semaphore* SignalSemaphores; 
+        public SharpVk.Interop.Semaphore* SignalSemaphores; 
     }
 }

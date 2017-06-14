@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ComponentMapping(ComponentSwizzle r, ComponentSwizzle g, ComponentSwizzle b, ComponentSwizzle a)
+        public ComponentMapping(SharpVk.ComponentSwizzle r, SharpVk.ComponentSwizzle g, SharpVk.ComponentSwizzle b, SharpVk.ComponentSwizzle a)
         {
             this.R = r;
             this.G = g;
@@ -47,21 +47,21 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ComponentSwizzle R; 
+        public SharpVk.ComponentSwizzle R; 
         
         /// <summary>
         /// 
         /// </summary>
-        public ComponentSwizzle G; 
+        public SharpVk.ComponentSwizzle G; 
         
         /// <summary>
         /// 
         /// </summary>
-        public ComponentSwizzle B; 
+        public SharpVk.ComponentSwizzle B; 
         
         /// <summary>
         /// 
         /// </summary>
-        public ComponentSwizzle A; 
+        public SharpVk.ComponentSwizzle A; 
     }
 }

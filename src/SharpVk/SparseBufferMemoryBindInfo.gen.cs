@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Buffer Buffer
+        public SharpVk.Buffer Buffer
         {
             get;
             set;
@@ -45,19 +45,19 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SparseMemoryBind[] Binds
+        public SharpVk.SparseMemoryBind[] Binds
         {
             get;
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.SparseBufferMemoryBindInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.SparseBufferMemoryBindInfo* pointer)
         {
-            pointer->Buffer = this.Buffer?.handle ?? default(Interop.Buffer);
+            pointer->Buffer = this.Buffer?.handle ?? default(SharpVk.Interop.Buffer);
             pointer->BindCount = (uint)(this.Binds?.Length ?? 0);
             if (this.Binds != null)
             {
-                var fieldPointer = (Interop.SparseMemoryBind*)(Interop.HeapUtil.AllocateAndClear<Interop.SparseMemoryBind>(this.Binds.Length).ToPointer());
+                var fieldPointer = (SharpVk.Interop.SparseMemoryBind*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.SparseMemoryBind>(this.Binds.Length).ToPointer());
                 for(int index = 0; index < (uint)(this.Binds.Length); index++)
                 {
                     this.Binds[index].MarshalTo(&fieldPointer[index]);

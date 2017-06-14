@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineMultisampleStateCreateFlags Flags
+        public SharpVk.PipelineMultisampleStateCreateFlags Flags
         {
             get;
             set;
@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SampleCountFlags RasterizationSamples
+        public SharpVk.SampleCountFlags RasterizationSamples
         {
             get;
             set;
@@ -96,7 +96,7 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.PipelineMultisampleStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.PipelineMultisampleStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineMultisampleStateCreateInfo;
             pointer->Next = null;

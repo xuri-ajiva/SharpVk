@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorSet SourceSet
+        public SharpVk.DescriptorSet SourceSet
         {
             get;
             set;
@@ -63,7 +63,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorSet DestinationSet
+        public SharpVk.DescriptorSet DestinationSet
         {
             get;
             set;
@@ -96,14 +96,14 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.CopyDescriptorSet* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.CopyDescriptorSet* pointer)
         {
             pointer->SType = StructureType.CopyDescriptorSet;
             pointer->Next = null;
-            pointer->SourceSet = this.SourceSet?.handle ?? default(Interop.DescriptorSet);
+            pointer->SourceSet = this.SourceSet?.handle ?? default(SharpVk.Interop.DescriptorSet);
             pointer->SourceBinding = this.SourceBinding;
             pointer->SourceArrayElement = this.SourceArrayElement;
-            pointer->DestinationSet = this.DestinationSet?.handle ?? default(Interop.DescriptorSet);
+            pointer->DestinationSet = this.DestinationSet?.handle ?? default(SharpVk.Interop.DescriptorSet);
             pointer->DestinationBinding = this.DestinationBinding;
             pointer->DestinationArrayElement = this.DestinationArrayElement;
             pointer->DescriptorCount = this.DescriptorCount;

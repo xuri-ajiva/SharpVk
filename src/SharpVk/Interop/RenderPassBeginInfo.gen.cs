@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public StructureType SType; 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
@@ -46,17 +46,17 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public RenderPass RenderPass; 
+        public SharpVk.Interop.RenderPass RenderPass; 
         
         /// <summary>
         /// 
         /// </summary>
-        public Framebuffer Framebuffer; 
+        public SharpVk.Interop.Framebuffer Framebuffer; 
         
         /// <summary>
         /// 
         /// </summary>
-        public Rect2D RenderArea; 
+        public SharpVk.Rect2D RenderArea; 
         
         /// <summary>
         /// 
@@ -66,6 +66,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public ClearValue* ClearValues; 
+        public SharpVk.ClearValue* ClearValues; 
     }
 }

@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public AttachmentReference(uint attachment, ImageLayout layout)
+        public AttachmentReference(uint attachment, SharpVk.ImageLayout layout)
         {
             this.Attachment = attachment;
             this.Layout = layout;
@@ -50,6 +50,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ImageLayout Layout; 
+        public SharpVk.ImageLayout Layout; 
     }
 }

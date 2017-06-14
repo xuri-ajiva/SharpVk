@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Buffer Buffer
+        public SharpVk.Buffer Buffer
         {
             get;
             set;
@@ -60,9 +60,9 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.DescriptorBufferInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.DescriptorBufferInfo* pointer)
         {
-            pointer->Buffer = this.Buffer?.handle ?? default(Interop.Buffer);
+            pointer->Buffer = this.Buffer?.handle ?? default(SharpVk.Interop.Buffer);
             pointer->Offset = this.Offset;
             pointer->Range = this.Range;
         }

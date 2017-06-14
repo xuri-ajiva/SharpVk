@@ -11,11 +11,13 @@ namespace SharpVk.Generator.Generation
     {
         private readonly Dictionary<string, TypeDeclaration> typeData;
         private readonly NameLookup nameLookup;
+        private readonly NamespaceMap namespaceMap;
 
-        public StructGenerator(Dictionary<string, TypeDeclaration> typeData, NameLookup nameLookup)
+        public StructGenerator(Dictionary<string, TypeDeclaration> typeData, NameLookup nameLookup, NamespaceMap namespaceMap)
         {
             this.typeData = typeData;
             this.nameLookup = nameLookup;
+            this.namespaceMap = namespaceMap;
         }
 
         public void Execute(IServiceCollection services)
@@ -25,7 +27,7 @@ namespace SharpVk.Generator.Generation
                 services.AddSingleton(new StructDefinition
                 {
                     Name = type.Name,
-                    Namespace = type.Extension != null ? new[] { type.Extension.FirstToUpper() } : null,
+                    Namespace = type.Extension != null ? this.namespaceMap.Map(type.Extension).ToArray() : null,
                     Constructor = new MethodDefinition
                     {
                         ParamActions = type.Members.Select(this.GetConstructorParam).ToList()

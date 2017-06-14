@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorPoolCreateFlags Flags
+        public SharpVk.DescriptorPoolCreateFlags Flags
         {
             get;
             set;
@@ -54,13 +54,13 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorPoolSize[] PoolSizes
+        public SharpVk.DescriptorPoolSize[] PoolSizes
         {
             get;
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.DescriptorPoolCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.DescriptorPoolCreateInfo* pointer)
         {
             pointer->SType = StructureType.DescriptorPoolCreateInfo;
             pointer->Next = null;
@@ -69,7 +69,7 @@ namespace SharpVk
             pointer->PoolSizeCount = (uint)(this.PoolSizes?.Length ?? 0);
             if (this.PoolSizes != null)
             {
-                var fieldPointer = (DescriptorPoolSize*)(Interop.HeapUtil.AllocateAndClear<DescriptorPoolSize>(this.PoolSizes.Length).ToPointer());
+                var fieldPointer = (SharpVk.DescriptorPoolSize*)(Interop.HeapUtil.AllocateAndClear<SharpVk.DescriptorPoolSize>(this.PoolSizes.Length).ToPointer());
                 for(int index = 0; index < (uint)(this.PoolSizes.Length); index++)
                 {
                     fieldPointer[index] = this.PoolSizes[index];

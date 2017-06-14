@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public StructureType SType; 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
@@ -46,7 +46,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PipelineViewportStateCreateFlags Flags; 
+        public SharpVk.PipelineViewportStateCreateFlags Flags; 
         
         /// <summary>
         /// 
@@ -56,7 +56,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public Viewport* Viewports; 
+        public SharpVk.Viewport* Viewports; 
         
         /// <summary>
         /// 
@@ -66,6 +66,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public Rect2D* Scissors; 
+        public SharpVk.Rect2D* Scissors; 
     }
 }

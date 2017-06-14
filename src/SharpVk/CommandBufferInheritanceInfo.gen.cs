@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public RenderPass RenderPass
+        public SharpVk.RenderPass RenderPass
         {
             get;
             set;
@@ -54,7 +54,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Framebuffer Framebuffer
+        public SharpVk.Framebuffer Framebuffer
         {
             get;
             set;
@@ -72,7 +72,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public QueryControlFlags QueryFlags
+        public SharpVk.QueryControlFlags QueryFlags
         {
             get;
             set;
@@ -81,19 +81,19 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public QueryPipelineStatisticFlags PipelineStatistics
+        public SharpVk.QueryPipelineStatisticFlags PipelineStatistics
         {
             get;
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.CommandBufferInheritanceInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.CommandBufferInheritanceInfo* pointer)
         {
             pointer->SType = StructureType.CommandBufferInheritanceInfo;
             pointer->Next = null;
-            pointer->RenderPass = this.RenderPass?.handle ?? default(Interop.RenderPass);
+            pointer->RenderPass = this.RenderPass?.handle ?? default(SharpVk.Interop.RenderPass);
             pointer->Subpass = this.Subpass;
-            pointer->Framebuffer = this.Framebuffer?.handle ?? default(Interop.Framebuffer);
+            pointer->Framebuffer = this.Framebuffer?.handle ?? default(SharpVk.Interop.Framebuffer);
             pointer->OcclusionQueryEnable = this.OcclusionQueryEnable;
             pointer->QueryFlags = this.QueryFlags;
             pointer->PipelineStatistics = this.PipelineStatistics;

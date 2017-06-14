@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SubpassDependency(uint sourceSubpass, uint destinationSubpass, PipelineStageFlags sourceStageMask, PipelineStageFlags destinationStageMask, AccessFlags sourceAccessMask, AccessFlags destinationAccessMask, DependencyFlags dependencyFlags)
+        public SubpassDependency(uint sourceSubpass, uint destinationSubpass, SharpVk.PipelineStageFlags sourceStageMask, SharpVk.PipelineStageFlags destinationStageMask, SharpVk.AccessFlags sourceAccessMask, SharpVk.AccessFlags destinationAccessMask, SharpVk.DependencyFlags dependencyFlags)
         {
             this.SourceSubpass = sourceSubpass;
             this.DestinationSubpass = destinationSubpass;
@@ -60,26 +60,26 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineStageFlags SourceStageMask; 
+        public SharpVk.PipelineStageFlags SourceStageMask; 
         
         /// <summary>
         /// 
         /// </summary>
-        public PipelineStageFlags DestinationStageMask; 
+        public SharpVk.PipelineStageFlags DestinationStageMask; 
         
         /// <summary>
         /// 
         /// </summary>
-        public AccessFlags SourceAccessMask; 
+        public SharpVk.AccessFlags SourceAccessMask; 
         
         /// <summary>
         /// 
         /// </summary>
-        public AccessFlags DestinationAccessMask; 
+        public SharpVk.AccessFlags DestinationAccessMask; 
         
         /// <summary>
         /// 
         /// </summary>
-        public DependencyFlags DependencyFlags; 
+        public SharpVk.DependencyFlags DependencyFlags; 
     }
 }

@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public AttachmentDescription(AttachmentDescriptionFlags flags, Format format, SampleCountFlags samples, AttachmentLoadOp loadOp, AttachmentStoreOp storeOp, AttachmentLoadOp stencilLoadOp, AttachmentStoreOp stencilStoreOp, ImageLayout initialLayout, ImageLayout finalLayout)
+        public AttachmentDescription(SharpVk.AttachmentDescriptionFlags flags, SharpVk.Format format, SharpVk.SampleCountFlags samples, SharpVk.AttachmentLoadOp loadOp, SharpVk.AttachmentStoreOp storeOp, SharpVk.AttachmentLoadOp stencilLoadOp, SharpVk.AttachmentStoreOp stencilStoreOp, SharpVk.ImageLayout initialLayout, SharpVk.ImageLayout finalLayout)
         {
             this.Flags = flags;
             this.Format = format;
@@ -52,46 +52,46 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public AttachmentDescriptionFlags Flags; 
+        public SharpVk.AttachmentDescriptionFlags Flags; 
         
         /// <summary>
         /// 
         /// </summary>
-        public Format Format; 
+        public SharpVk.Format Format; 
         
         /// <summary>
         /// 
         /// </summary>
-        public SampleCountFlags Samples; 
+        public SharpVk.SampleCountFlags Samples; 
         
         /// <summary>
         /// 
         /// </summary>
-        public AttachmentLoadOp LoadOp; 
+        public SharpVk.AttachmentLoadOp LoadOp; 
         
         /// <summary>
         /// 
         /// </summary>
-        public AttachmentStoreOp StoreOp; 
+        public SharpVk.AttachmentStoreOp StoreOp; 
         
         /// <summary>
         /// 
         /// </summary>
-        public AttachmentLoadOp StencilLoadOp; 
+        public SharpVk.AttachmentLoadOp StencilLoadOp; 
         
         /// <summary>
         /// 
         /// </summary>
-        public AttachmentStoreOp StencilStoreOp; 
+        public SharpVk.AttachmentStoreOp StencilStoreOp; 
         
         /// <summary>
         /// 
         /// </summary>
-        public ImageLayout InitialLayout; 
+        public SharpVk.ImageLayout InitialLayout; 
         
         /// <summary>
         /// 
         /// </summary>
-        public ImageLayout FinalLayout; 
+        public SharpVk.ImageLayout FinalLayout; 
     }
 }

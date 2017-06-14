@@ -44,19 +44,19 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void Destroy(AllocationCallbacks? allocator = null)
+        public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = null)
         {
             try
             {
-                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 if (allocator != null)
                 {
-                    marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
-                    marshalledAllocator = default(Interop.AllocationCallbacks*);
+                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
                 Interop.Commands.vkDestroyPipelineCache(this.parent, this.handle, marshalledAllocator);
             }
@@ -107,17 +107,17 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void MergePipelineCaches(PipelineCache[] sourceCaches)
+        public unsafe void MergePipelineCaches(SharpVk.PipelineCache[] sourceCaches)
         {
             try
             {
-                Interop.PipelineCache* marshalledSourceCaches = default(Interop.PipelineCache*);
+                SharpVk.Interop.PipelineCache* marshalledSourceCaches = default(SharpVk.Interop.PipelineCache*);
                 if (sourceCaches != null)
                 {
-                    var fieldPointer = (Interop.PipelineCache*)(Interop.HeapUtil.AllocateAndClear<Interop.PipelineCache>(sourceCaches.Length).ToPointer());
+                    var fieldPointer = (SharpVk.Interop.PipelineCache*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.PipelineCache>(sourceCaches.Length).ToPointer());
                     for(int index = 0; index < (uint)(sourceCaches.Length); index++)
                     {
-                        fieldPointer[index] = sourceCaches[index]?.handle ?? default(Interop.PipelineCache);
+                        fieldPointer[index] = sourceCaches[index]?.handle ?? default(SharpVk.Interop.PipelineCache);
                     }
                     marshalledSourceCaches = fieldPointer;
                 }

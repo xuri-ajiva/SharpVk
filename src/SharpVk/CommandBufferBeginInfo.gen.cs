@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public CommandBufferUsageFlags Flags
+        public SharpVk.CommandBufferUsageFlags Flags
         {
             get;
             set;
@@ -45,25 +45,25 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public CommandBufferInheritanceInfo? InheritanceInfo
+        public SharpVk.CommandBufferInheritanceInfo? InheritanceInfo
         {
             get;
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.CommandBufferBeginInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.CommandBufferBeginInfo* pointer)
         {
             pointer->SType = StructureType.CommandBufferBeginInfo;
             pointer->Next = null;
             pointer->Flags = this.Flags;
             if (this.InheritanceInfo != null)
             {
-                pointer->InheritanceInfo = (Interop.CommandBufferInheritanceInfo*)(Interop.HeapUtil.Allocate<Interop.CommandBufferInheritanceInfo>());
+                pointer->InheritanceInfo = (SharpVk.Interop.CommandBufferInheritanceInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.CommandBufferInheritanceInfo>());
                 this.InheritanceInfo.Value.MarshalTo(pointer->InheritanceInfo);
             }
             else
             {
-                pointer->InheritanceInfo = default(Interop.CommandBufferInheritanceInfo*);
+                pointer->InheritanceInfo = default(SharpVk.Interop.CommandBufferInheritanceInfo*);
             }
         }
     }

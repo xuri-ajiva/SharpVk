@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public StructureType SType; 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
@@ -46,12 +46,12 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public FramebufferCreateFlags Flags; 
+        public SharpVk.FramebufferCreateFlags Flags; 
         
         /// <summary>
         /// 
         /// </summary>
-        public RenderPass RenderPass; 
+        public SharpVk.Interop.RenderPass RenderPass; 
         
         /// <summary>
         /// 
@@ -61,7 +61,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public ImageView* Attachments; 
+        public SharpVk.Interop.ImageView* Attachments; 
         
         /// <summary>
         /// 

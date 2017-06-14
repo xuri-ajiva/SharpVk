@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineViewportStateCreateFlags Flags
+        public SharpVk.PipelineViewportStateCreateFlags Flags
         {
             get;
             set;
@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Viewport[] Viewports
+        public SharpVk.Viewport[] Viewports
         {
             get;
             set;
@@ -54,13 +54,13 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Rect2D[] Scissors
+        public SharpVk.Rect2D[] Scissors
         {
             get;
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.PipelineViewportStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.PipelineViewportStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineViewportStateCreateInfo;
             pointer->Next = null;
@@ -68,7 +68,7 @@ namespace SharpVk
             pointer->ViewportCount = (uint)(this.Viewports?.Length ?? 0);
             if (this.Viewports != null)
             {
-                var fieldPointer = (Viewport*)(Interop.HeapUtil.AllocateAndClear<Viewport>(this.Viewports.Length).ToPointer());
+                var fieldPointer = (SharpVk.Viewport*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Viewport>(this.Viewports.Length).ToPointer());
                 for(int index = 0; index < (uint)(this.Viewports.Length); index++)
                 {
                     fieldPointer[index] = this.Viewports[index];
@@ -82,7 +82,7 @@ namespace SharpVk
             pointer->ScissorCount = (uint)(this.Scissors?.Length ?? 0);
             if (this.Scissors != null)
             {
-                var fieldPointer = (Rect2D*)(Interop.HeapUtil.AllocateAndClear<Rect2D>(this.Scissors.Length).ToPointer());
+                var fieldPointer = (SharpVk.Rect2D*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Rect2D>(this.Scissors.Length).ToPointer());
                 for(int index = 0; index < (uint)(this.Scissors.Length); index++)
                 {
                     fieldPointer[index] = this.Scissors[index];

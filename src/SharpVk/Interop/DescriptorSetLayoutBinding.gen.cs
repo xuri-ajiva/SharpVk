@@ -41,7 +41,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorType DescriptorType; 
+        public SharpVk.DescriptorType DescriptorType; 
         
         /// <summary>
         /// 
@@ -51,11 +51,11 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public ShaderStageFlags StageFlags; 
+        public SharpVk.ShaderStageFlags StageFlags; 
         
         /// <summary>
         /// 
         /// </summary>
-        public Sampler* ImmutableSamplers; 
+        public SharpVk.Interop.Sampler* ImmutableSamplers; 
     }
 }

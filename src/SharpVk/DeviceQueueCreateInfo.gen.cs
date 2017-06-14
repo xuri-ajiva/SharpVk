@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public DeviceQueueCreateFlags Flags
+        public SharpVk.DeviceQueueCreateFlags Flags
         {
             get;
             set;
@@ -60,7 +60,7 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.DeviceQueueCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.DeviceQueueCreateInfo* pointer)
         {
             pointer->SType = StructureType.DeviceQueueCreateInfo;
             pointer->Next = null;

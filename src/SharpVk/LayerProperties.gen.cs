@@ -69,7 +69,7 @@ namespace SharpVk
             set;
         }
         
-        internal static unsafe LayerProperties MarshalFrom(Interop.LayerProperties* pointer)
+        internal static unsafe LayerProperties MarshalFrom(SharpVk.Interop.LayerProperties* pointer)
         {
             LayerProperties result = default(LayerProperties);
             result.LayerName = Interop.HeapUtil.MarshalStringFrom(pointer->LayerName, Constants.MaxExtensionNameSize, true);

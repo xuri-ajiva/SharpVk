@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public StructureType SType; 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
@@ -46,7 +46,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PipelineRasterizationStateCreateFlags Flags; 
+        public SharpVk.PipelineRasterizationStateCreateFlags Flags; 
         
         /// <summary>
         /// 
@@ -61,17 +61,17 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PolygonMode PolygonMode; 
+        public SharpVk.PolygonMode PolygonMode; 
         
         /// <summary>
         /// 
         /// </summary>
-        public CullModeFlags CullMode; 
+        public SharpVk.CullModeFlags CullMode; 
         
         /// <summary>
         /// 
         /// </summary>
-        public FrontFace FrontFace; 
+        public SharpVk.FrontFace FrontFace; 
         
         /// <summary>
         /// 

@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public StructureType SType; 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
@@ -46,12 +46,12 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PipelineMultisampleStateCreateFlags Flags; 
+        public SharpVk.PipelineMultisampleStateCreateFlags Flags; 
         
         /// <summary>
         /// 
         /// </summary>
-        public SampleCountFlags RasterizationSamples; 
+        public SharpVk.SampleCountFlags RasterizationSamples; 
         
         /// <summary>
         /// 

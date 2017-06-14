@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public FramebufferCreateFlags Flags
+        public SharpVk.FramebufferCreateFlags Flags
         {
             get;
             set;
@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public RenderPass RenderPass
+        public SharpVk.RenderPass RenderPass
         {
             get;
             set;
@@ -54,7 +54,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ImageView[] Attachments
+        public SharpVk.ImageView[] Attachments
         {
             get;
             set;
@@ -87,19 +87,19 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.FramebufferCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.FramebufferCreateInfo* pointer)
         {
             pointer->SType = StructureType.FramebufferCreateInfo;
             pointer->Next = null;
             pointer->Flags = this.Flags;
-            pointer->RenderPass = this.RenderPass?.handle ?? default(Interop.RenderPass);
+            pointer->RenderPass = this.RenderPass?.handle ?? default(SharpVk.Interop.RenderPass);
             pointer->AttachmentCount = (uint)(this.Attachments?.Length ?? 0);
             if (this.Attachments != null)
             {
-                var fieldPointer = (Interop.ImageView*)(Interop.HeapUtil.AllocateAndClear<Interop.ImageView>(this.Attachments.Length).ToPointer());
+                var fieldPointer = (SharpVk.Interop.ImageView*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.ImageView>(this.Attachments.Length).ToPointer());
                 for(int index = 0; index < (uint)(this.Attachments.Length); index++)
                 {
-                    fieldPointer[index] = this.Attachments[index]?.handle ?? default(Interop.ImageView);
+                    fieldPointer[index] = this.Attachments[index]?.handle ?? default(SharpVk.Interop.ImageView);
                 }
                 pointer->Attachments = fieldPointer;
             }

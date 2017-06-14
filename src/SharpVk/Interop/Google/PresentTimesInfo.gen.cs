@@ -36,7 +36,7 @@ namespace SharpVk.Interop.Google
         /// <summary>
         /// 
         /// </summary>
-        public StructureType SType; 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 

@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public InstanceCreateFlags Flags
+        public SharpVk.InstanceCreateFlags Flags
         {
             get;
             set;
@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ApplicationInfo? ApplicationInfo
+        public SharpVk.ApplicationInfo? ApplicationInfo
         {
             get;
             set;
@@ -69,19 +69,19 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.InstanceCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.InstanceCreateInfo* pointer)
         {
             pointer->SType = StructureType.InstanceCreateInfo;
             pointer->Next = null;
             pointer->Flags = this.Flags;
             if (this.ApplicationInfo != null)
             {
-                pointer->ApplicationInfo = (Interop.ApplicationInfo*)(Interop.HeapUtil.Allocate<Interop.ApplicationInfo>());
+                pointer->ApplicationInfo = (SharpVk.Interop.ApplicationInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.ApplicationInfo>());
                 this.ApplicationInfo.Value.MarshalTo(pointer->ApplicationInfo);
             }
             else
             {
-                pointer->ApplicationInfo = default(Interop.ApplicationInfo*);
+                pointer->ApplicationInfo = default(SharpVk.Interop.ApplicationInfo*);
             }
             pointer->EnabledLayerCount = (uint)(this.EnabledLayerNames?.Length ?? 0);
             pointer->EnabledExtensionCount = (uint)(this.EnabledExtensionNames?.Length ?? 0);

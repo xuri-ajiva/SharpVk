@@ -46,7 +46,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DeviceMemory Memory; 
+        public SharpVk.Interop.DeviceMemory Memory; 
         
         /// <summary>
         /// 
@@ -56,6 +56,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public SparseMemoryBindFlags Flags; 
+        public SharpVk.SparseMemoryBindFlags Flags; 
     }
 }

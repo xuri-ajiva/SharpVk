@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorType DescriptorType
+        public SharpVk.DescriptorType DescriptorType
         {
             get;
             set;
@@ -54,7 +54,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ShaderStageFlags StageFlags
+        public SharpVk.ShaderStageFlags StageFlags
         {
             get;
             set;
@@ -63,13 +63,13 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Sampler[] ImmutableSamplers
+        public SharpVk.Sampler[] ImmutableSamplers
         {
             get;
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.DescriptorSetLayoutBinding* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.DescriptorSetLayoutBinding* pointer)
         {
             pointer->Binding = this.Binding;
             pointer->DescriptorType = this.DescriptorType;
@@ -77,10 +77,10 @@ namespace SharpVk
             pointer->StageFlags = this.StageFlags;
             if (this.ImmutableSamplers != null)
             {
-                var fieldPointer = (Interop.Sampler*)(Interop.HeapUtil.AllocateAndClear<Interop.Sampler>(this.ImmutableSamplers.Length).ToPointer());
+                var fieldPointer = (SharpVk.Interop.Sampler*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Sampler>(this.ImmutableSamplers.Length).ToPointer());
                 for(int index = 0; index < (uint)(this.ImmutableSamplers.Length); index++)
                 {
-                    fieldPointer[index] = this.ImmutableSamplers[index]?.handle ?? default(Interop.Sampler);
+                    fieldPointer[index] = this.ImmutableSamplers[index]?.handle ?? default(SharpVk.Interop.Sampler);
                 }
                 pointer->ImmutableSamplers = fieldPointer;
             }

@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineRasterizationStateCreateFlags Flags
+        public SharpVk.PipelineRasterizationStateCreateFlags Flags
         {
             get;
             set;
@@ -63,7 +63,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PolygonMode PolygonMode
+        public SharpVk.PolygonMode PolygonMode
         {
             get;
             set;
@@ -72,7 +72,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public CullModeFlags CullMode
+        public SharpVk.CullModeFlags CullMode
         {
             get;
             set;
@@ -81,7 +81,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public FrontFace FrontFace
+        public SharpVk.FrontFace FrontFace
         {
             get;
             set;
@@ -132,7 +132,7 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.PipelineRasterizationStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.PipelineRasterizationStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineRasterizationStateCreateInfo;
             pointer->Next = null;

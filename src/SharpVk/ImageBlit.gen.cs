@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ImageSubresourceLayers SourceSubresource
+        public SharpVk.ImageSubresourceLayers SourceSubresource
         {
             get;
             set;
@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Offset3D[] SourceOffsets
+        public SharpVk.Offset3D[] SourceOffsets
         {
             get;
             set;
@@ -54,7 +54,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ImageSubresourceLayers DestinationSubresource
+        public SharpVk.ImageSubresourceLayers DestinationSubresource
         {
             get;
             set;
@@ -63,13 +63,13 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Offset3D[] DestinationOffsets
+        public SharpVk.Offset3D[] DestinationOffsets
         {
             get;
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.ImageBlit* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.ImageBlit* pointer)
         {
             pointer->SourceSubresource = this.SourceSubresource;
             pointer->DestinationSubresource = this.DestinationSubresource;

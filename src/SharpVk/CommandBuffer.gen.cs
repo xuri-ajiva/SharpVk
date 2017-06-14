@@ -44,12 +44,12 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void Begin(CommandBufferBeginInfo beginInfo)
+        public unsafe void Begin(SharpVk.CommandBufferBeginInfo beginInfo)
         {
             try
             {
-                Interop.CommandBufferBeginInfo* marshalledBeginInfo = default(Interop.CommandBufferBeginInfo*);
-                marshalledBeginInfo = (Interop.CommandBufferBeginInfo*)(Interop.HeapUtil.Allocate<Interop.CommandBufferBeginInfo>());
+                SharpVk.Interop.CommandBufferBeginInfo* marshalledBeginInfo = default(SharpVk.Interop.CommandBufferBeginInfo*);
+                marshalledBeginInfo = (SharpVk.Interop.CommandBufferBeginInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.CommandBufferBeginInfo>());
                 beginInfo.MarshalTo(marshalledBeginInfo);
                 Result methodResult = Interop.Commands.vkBeginCommandBuffer(this.handle, marshalledBeginInfo);
                 if (SharpVkException.IsError(methodResult))
@@ -85,7 +85,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void Reset(CommandBufferResetFlags flags)
+        public unsafe void Reset(SharpVk.CommandBufferResetFlags flags)
         {
             try
             {
@@ -104,11 +104,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void BindPipeline(PipelineBindPoint pipelineBindPoint, Pipeline pipeline)
+        public unsafe void BindPipeline(SharpVk.PipelineBindPoint pipelineBindPoint, SharpVk.Pipeline pipeline)
         {
             try
             {
-                Interop.Commands.vkCmdBindPipeline(this.handle, pipelineBindPoint, pipeline?.handle ?? default(Interop.Pipeline));
+                Interop.Commands.vkCmdBindPipeline(this.handle, pipelineBindPoint, pipeline?.handle ?? default(SharpVk.Interop.Pipeline));
             }
             finally
             {
@@ -119,14 +119,14 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void SetViewport(uint firstViewport, Viewport[] viewports)
+        public unsafe void SetViewport(uint firstViewport, SharpVk.Viewport[] viewports)
         {
             try
             {
-                Viewport* marshalledViewports = default(Viewport*);
+                SharpVk.Viewport* marshalledViewports = default(SharpVk.Viewport*);
                 if (viewports != null)
                 {
-                    var fieldPointer = (Viewport*)(Interop.HeapUtil.AllocateAndClear<Viewport>(viewports.Length).ToPointer());
+                    var fieldPointer = (SharpVk.Viewport*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Viewport>(viewports.Length).ToPointer());
                     for(int index = 0; index < (uint)(viewports.Length); index++)
                     {
                         fieldPointer[index] = viewports[index];
@@ -148,14 +148,14 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void SetScissor(uint firstScissor, Rect2D[] scissors)
+        public unsafe void SetScissor(uint firstScissor, SharpVk.Rect2D[] scissors)
         {
             try
             {
-                Rect2D* marshalledScissors = default(Rect2D*);
+                SharpVk.Rect2D* marshalledScissors = default(SharpVk.Rect2D*);
                 if (scissors != null)
                 {
-                    var fieldPointer = (Rect2D*)(Interop.HeapUtil.AllocateAndClear<Rect2D>(scissors.Length).ToPointer());
+                    var fieldPointer = (SharpVk.Rect2D*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Rect2D>(scissors.Length).ToPointer());
                     for(int index = 0; index < (uint)(scissors.Length); index++)
                     {
                         fieldPointer[index] = scissors[index];
@@ -237,7 +237,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void SetStencilCompareMask(StencilFaceFlags faceMask, uint compareMask)
+        public unsafe void SetStencilCompareMask(SharpVk.StencilFaceFlags faceMask, uint compareMask)
         {
             try
             {
@@ -252,7 +252,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void SetStencilWriteMask(StencilFaceFlags faceMask, uint writeMask)
+        public unsafe void SetStencilWriteMask(SharpVk.StencilFaceFlags faceMask, uint writeMask)
         {
             try
             {
@@ -267,7 +267,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void SetStencilReference(StencilFaceFlags faceMask, uint reference)
+        public unsafe void SetStencilReference(SharpVk.StencilFaceFlags faceMask, uint reference)
         {
             try
             {
@@ -282,18 +282,18 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void BindDescriptorSets(PipelineBindPoint pipelineBindPoint, PipelineLayout layout, uint firstSet, DescriptorSet[] descriptorSets, uint[] dynamicOffsets)
+        public unsafe void BindDescriptorSets(SharpVk.PipelineBindPoint pipelineBindPoint, SharpVk.PipelineLayout layout, uint firstSet, SharpVk.DescriptorSet[] descriptorSets, uint[] dynamicOffsets)
         {
             try
             {
-                Interop.DescriptorSet* marshalledDescriptorSets = default(Interop.DescriptorSet*);
+                SharpVk.Interop.DescriptorSet* marshalledDescriptorSets = default(SharpVk.Interop.DescriptorSet*);
                 uint* marshalledDynamicOffsets = default(uint*);
                 if (descriptorSets != null)
                 {
-                    var fieldPointer = (Interop.DescriptorSet*)(Interop.HeapUtil.AllocateAndClear<Interop.DescriptorSet>(descriptorSets.Length).ToPointer());
+                    var fieldPointer = (SharpVk.Interop.DescriptorSet*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.DescriptorSet>(descriptorSets.Length).ToPointer());
                     for(int index = 0; index < (uint)(descriptorSets.Length); index++)
                     {
-                        fieldPointer[index] = descriptorSets[index]?.handle ?? default(Interop.DescriptorSet);
+                        fieldPointer[index] = descriptorSets[index]?.handle ?? default(SharpVk.Interop.DescriptorSet);
                     }
                     marshalledDescriptorSets = fieldPointer;
                 }
@@ -314,7 +314,7 @@ namespace SharpVk
                 {
                     marshalledDynamicOffsets = null;
                 }
-                Interop.Commands.vkCmdBindDescriptorSets(this.handle, pipelineBindPoint, layout?.handle ?? default(Interop.PipelineLayout), firstSet, (uint)(descriptorSets?.Length ?? 0), marshalledDescriptorSets, (uint)(dynamicOffsets?.Length ?? 0), marshalledDynamicOffsets);
+                Interop.Commands.vkCmdBindDescriptorSets(this.handle, pipelineBindPoint, layout?.handle ?? default(SharpVk.Interop.PipelineLayout), firstSet, (uint)(descriptorSets?.Length ?? 0), marshalledDescriptorSets, (uint)(dynamicOffsets?.Length ?? 0), marshalledDynamicOffsets);
             }
             finally
             {
@@ -325,11 +325,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void BindIndexBuffer(Buffer buffer, DeviceSize offset, IndexType indexType)
+        public unsafe void BindIndexBuffer(SharpVk.Buffer buffer, DeviceSize offset, SharpVk.IndexType indexType)
         {
             try
             {
-                Interop.Commands.vkCmdBindIndexBuffer(this.handle, buffer?.handle ?? default(Interop.Buffer), offset, indexType);
+                Interop.Commands.vkCmdBindIndexBuffer(this.handle, buffer?.handle ?? default(SharpVk.Interop.Buffer), offset, indexType);
             }
             finally
             {
@@ -340,18 +340,18 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void BindVertexBuffers(uint firstBinding, Buffer[] buffers, DeviceSize[] offsets)
+        public unsafe void BindVertexBuffers(uint firstBinding, SharpVk.Buffer[] buffers, DeviceSize[] offsets)
         {
             try
             {
-                Interop.Buffer* marshalledBuffers = default(Interop.Buffer*);
+                SharpVk.Interop.Buffer* marshalledBuffers = default(SharpVk.Interop.Buffer*);
                 DeviceSize* marshalledOffsets = default(DeviceSize*);
                 if (buffers != null)
                 {
-                    var fieldPointer = (Interop.Buffer*)(Interop.HeapUtil.AllocateAndClear<Interop.Buffer>(buffers.Length).ToPointer());
+                    var fieldPointer = (SharpVk.Interop.Buffer*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Buffer>(buffers.Length).ToPointer());
                     for(int index = 0; index < (uint)(buffers.Length); index++)
                     {
-                        fieldPointer[index] = buffers[index]?.handle ?? default(Interop.Buffer);
+                        fieldPointer[index] = buffers[index]?.handle ?? default(SharpVk.Interop.Buffer);
                     }
                     marshalledBuffers = fieldPointer;
                 }
@@ -413,11 +413,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void DrawIndirect(Buffer buffer, DeviceSize offset, uint drawCount, uint stride)
+        public unsafe void DrawIndirect(SharpVk.Buffer buffer, DeviceSize offset, uint drawCount, uint stride)
         {
             try
             {
-                Interop.Commands.vkCmdDrawIndirect(this.handle, buffer?.handle ?? default(Interop.Buffer), offset, drawCount, stride);
+                Interop.Commands.vkCmdDrawIndirect(this.handle, buffer?.handle ?? default(SharpVk.Interop.Buffer), offset, drawCount, stride);
             }
             finally
             {
@@ -428,11 +428,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void DrawIndexedIndirect(Buffer buffer, DeviceSize offset, uint drawCount, uint stride)
+        public unsafe void DrawIndexedIndirect(SharpVk.Buffer buffer, DeviceSize offset, uint drawCount, uint stride)
         {
             try
             {
-                Interop.Commands.vkCmdDrawIndexedIndirect(this.handle, buffer?.handle ?? default(Interop.Buffer), offset, drawCount, stride);
+                Interop.Commands.vkCmdDrawIndexedIndirect(this.handle, buffer?.handle ?? default(SharpVk.Interop.Buffer), offset, drawCount, stride);
             }
             finally
             {
@@ -458,11 +458,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void DispatchIndirect(Buffer buffer, DeviceSize offset)
+        public unsafe void DispatchIndirect(SharpVk.Buffer buffer, DeviceSize offset)
         {
             try
             {
-                Interop.Commands.vkCmdDispatchIndirect(this.handle, buffer?.handle ?? default(Interop.Buffer), offset);
+                Interop.Commands.vkCmdDispatchIndirect(this.handle, buffer?.handle ?? default(SharpVk.Interop.Buffer), offset);
             }
             finally
             {
@@ -473,14 +473,14 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void CopyBuffer(Buffer sourceBuffer, Buffer destinationBuffer, BufferCopy[] regions)
+        public unsafe void CopyBuffer(SharpVk.Buffer sourceBuffer, SharpVk.Buffer destinationBuffer, SharpVk.BufferCopy[] regions)
         {
             try
             {
-                BufferCopy* marshalledRegions = default(BufferCopy*);
+                SharpVk.BufferCopy* marshalledRegions = default(SharpVk.BufferCopy*);
                 if (regions != null)
                 {
-                    var fieldPointer = (BufferCopy*)(Interop.HeapUtil.AllocateAndClear<BufferCopy>(regions.Length).ToPointer());
+                    var fieldPointer = (SharpVk.BufferCopy*)(Interop.HeapUtil.AllocateAndClear<SharpVk.BufferCopy>(regions.Length).ToPointer());
                     for(int index = 0; index < (uint)(regions.Length); index++)
                     {
                         fieldPointer[index] = regions[index];
@@ -491,7 +491,7 @@ namespace SharpVk
                 {
                     marshalledRegions = null;
                 }
-                Interop.Commands.vkCmdCopyBuffer(this.handle, sourceBuffer?.handle ?? default(Interop.Buffer), destinationBuffer?.handle ?? default(Interop.Buffer), (uint)(regions?.Length ?? 0), marshalledRegions);
+                Interop.Commands.vkCmdCopyBuffer(this.handle, sourceBuffer?.handle ?? default(SharpVk.Interop.Buffer), destinationBuffer?.handle ?? default(SharpVk.Interop.Buffer), (uint)(regions?.Length ?? 0), marshalledRegions);
             }
             finally
             {
@@ -502,14 +502,14 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void CopyImage(Image sourceImage, ImageLayout sourceImageLayout, Image destinationImage, ImageLayout destinationImageLayout, ImageCopy[] regions)
+        public unsafe void CopyImage(SharpVk.Image sourceImage, SharpVk.ImageLayout sourceImageLayout, SharpVk.Image destinationImage, SharpVk.ImageLayout destinationImageLayout, SharpVk.ImageCopy[] regions)
         {
             try
             {
-                ImageCopy* marshalledRegions = default(ImageCopy*);
+                SharpVk.ImageCopy* marshalledRegions = default(SharpVk.ImageCopy*);
                 if (regions != null)
                 {
-                    var fieldPointer = (ImageCopy*)(Interop.HeapUtil.AllocateAndClear<ImageCopy>(regions.Length).ToPointer());
+                    var fieldPointer = (SharpVk.ImageCopy*)(Interop.HeapUtil.AllocateAndClear<SharpVk.ImageCopy>(regions.Length).ToPointer());
                     for(int index = 0; index < (uint)(regions.Length); index++)
                     {
                         fieldPointer[index] = regions[index];
@@ -520,7 +520,7 @@ namespace SharpVk
                 {
                     marshalledRegions = null;
                 }
-                Interop.Commands.vkCmdCopyImage(this.handle, sourceImage?.handle ?? default(Interop.Image), sourceImageLayout, destinationImage?.handle ?? default(Interop.Image), destinationImageLayout, (uint)(regions?.Length ?? 0), marshalledRegions);
+                Interop.Commands.vkCmdCopyImage(this.handle, sourceImage?.handle ?? default(SharpVk.Interop.Image), sourceImageLayout, destinationImage?.handle ?? default(SharpVk.Interop.Image), destinationImageLayout, (uint)(regions?.Length ?? 0), marshalledRegions);
             }
             finally
             {
@@ -531,14 +531,14 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void BlitImage(Image sourceImage, ImageLayout sourceImageLayout, Image destinationImage, ImageLayout destinationImageLayout, ImageBlit[] regions, Filter filter)
+        public unsafe void BlitImage(SharpVk.Image sourceImage, SharpVk.ImageLayout sourceImageLayout, SharpVk.Image destinationImage, SharpVk.ImageLayout destinationImageLayout, SharpVk.ImageBlit[] regions, SharpVk.Filter filter)
         {
             try
             {
-                Interop.ImageBlit* marshalledRegions = default(Interop.ImageBlit*);
+                SharpVk.Interop.ImageBlit* marshalledRegions = default(SharpVk.Interop.ImageBlit*);
                 if (regions != null)
                 {
-                    var fieldPointer = (Interop.ImageBlit*)(Interop.HeapUtil.AllocateAndClear<Interop.ImageBlit>(regions.Length).ToPointer());
+                    var fieldPointer = (SharpVk.Interop.ImageBlit*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.ImageBlit>(regions.Length).ToPointer());
                     for(int index = 0; index < (uint)(regions.Length); index++)
                     {
                         regions[index].MarshalTo(&fieldPointer[index]);
@@ -549,7 +549,7 @@ namespace SharpVk
                 {
                     marshalledRegions = null;
                 }
-                Interop.Commands.vkCmdBlitImage(this.handle, sourceImage?.handle ?? default(Interop.Image), sourceImageLayout, destinationImage?.handle ?? default(Interop.Image), destinationImageLayout, (uint)(regions?.Length ?? 0), marshalledRegions, filter);
+                Interop.Commands.vkCmdBlitImage(this.handle, sourceImage?.handle ?? default(SharpVk.Interop.Image), sourceImageLayout, destinationImage?.handle ?? default(SharpVk.Interop.Image), destinationImageLayout, (uint)(regions?.Length ?? 0), marshalledRegions, filter);
             }
             finally
             {
@@ -560,14 +560,14 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void CopyBufferToImage(Buffer sourceBuffer, Image destinationImage, ImageLayout destinationImageLayout, BufferImageCopy[] regions)
+        public unsafe void CopyBufferToImage(SharpVk.Buffer sourceBuffer, SharpVk.Image destinationImage, SharpVk.ImageLayout destinationImageLayout, SharpVk.BufferImageCopy[] regions)
         {
             try
             {
-                BufferImageCopy* marshalledRegions = default(BufferImageCopy*);
+                SharpVk.BufferImageCopy* marshalledRegions = default(SharpVk.BufferImageCopy*);
                 if (regions != null)
                 {
-                    var fieldPointer = (BufferImageCopy*)(Interop.HeapUtil.AllocateAndClear<BufferImageCopy>(regions.Length).ToPointer());
+                    var fieldPointer = (SharpVk.BufferImageCopy*)(Interop.HeapUtil.AllocateAndClear<SharpVk.BufferImageCopy>(regions.Length).ToPointer());
                     for(int index = 0; index < (uint)(regions.Length); index++)
                     {
                         fieldPointer[index] = regions[index];
@@ -578,7 +578,7 @@ namespace SharpVk
                 {
                     marshalledRegions = null;
                 }
-                Interop.Commands.vkCmdCopyBufferToImage(this.handle, sourceBuffer?.handle ?? default(Interop.Buffer), destinationImage?.handle ?? default(Interop.Image), destinationImageLayout, (uint)(regions?.Length ?? 0), marshalledRegions);
+                Interop.Commands.vkCmdCopyBufferToImage(this.handle, sourceBuffer?.handle ?? default(SharpVk.Interop.Buffer), destinationImage?.handle ?? default(SharpVk.Interop.Image), destinationImageLayout, (uint)(regions?.Length ?? 0), marshalledRegions);
             }
             finally
             {
@@ -589,14 +589,14 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void CopyImageToBuffer(Image sourceImage, ImageLayout sourceImageLayout, Buffer destinationBuffer, BufferImageCopy[] regions)
+        public unsafe void CopyImageToBuffer(SharpVk.Image sourceImage, SharpVk.ImageLayout sourceImageLayout, SharpVk.Buffer destinationBuffer, SharpVk.BufferImageCopy[] regions)
         {
             try
             {
-                BufferImageCopy* marshalledRegions = default(BufferImageCopy*);
+                SharpVk.BufferImageCopy* marshalledRegions = default(SharpVk.BufferImageCopy*);
                 if (regions != null)
                 {
-                    var fieldPointer = (BufferImageCopy*)(Interop.HeapUtil.AllocateAndClear<BufferImageCopy>(regions.Length).ToPointer());
+                    var fieldPointer = (SharpVk.BufferImageCopy*)(Interop.HeapUtil.AllocateAndClear<SharpVk.BufferImageCopy>(regions.Length).ToPointer());
                     for(int index = 0; index < (uint)(regions.Length); index++)
                     {
                         fieldPointer[index] = regions[index];
@@ -607,7 +607,7 @@ namespace SharpVk
                 {
                     marshalledRegions = null;
                 }
-                Interop.Commands.vkCmdCopyImageToBuffer(this.handle, sourceImage?.handle ?? default(Interop.Image), sourceImageLayout, destinationBuffer?.handle ?? default(Interop.Buffer), (uint)(regions?.Length ?? 0), marshalledRegions);
+                Interop.Commands.vkCmdCopyImageToBuffer(this.handle, sourceImage?.handle ?? default(SharpVk.Interop.Image), sourceImageLayout, destinationBuffer?.handle ?? default(SharpVk.Interop.Buffer), (uint)(regions?.Length ?? 0), marshalledRegions);
             }
             finally
             {
@@ -618,7 +618,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void UpdateBuffer(Buffer destinationBuffer, DeviceSize destinationOffset, byte[] data)
+        public unsafe void UpdateBuffer(SharpVk.Buffer destinationBuffer, DeviceSize destinationOffset, byte[] data)
         {
             try
             {
@@ -636,7 +636,7 @@ namespace SharpVk
                 {
                     marshalledData = null;
                 }
-                Interop.Commands.vkCmdUpdateBuffer(this.handle, destinationBuffer?.handle ?? default(Interop.Buffer), destinationOffset, (DeviceSize)(data?.Length ?? 0), marshalledData);
+                Interop.Commands.vkCmdUpdateBuffer(this.handle, destinationBuffer?.handle ?? default(SharpVk.Interop.Buffer), destinationOffset, (DeviceSize)(data?.Length ?? 0), marshalledData);
             }
             finally
             {
@@ -647,11 +647,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void FillBuffer(Buffer destinationBuffer, DeviceSize destinationOffset, DeviceSize size, uint data)
+        public unsafe void FillBuffer(SharpVk.Buffer destinationBuffer, DeviceSize destinationOffset, DeviceSize size, uint data)
         {
             try
             {
-                Interop.Commands.vkCmdFillBuffer(this.handle, destinationBuffer?.handle ?? default(Interop.Buffer), destinationOffset, size, data);
+                Interop.Commands.vkCmdFillBuffer(this.handle, destinationBuffer?.handle ?? default(SharpVk.Interop.Buffer), destinationOffset, size, data);
             }
             finally
             {
@@ -662,17 +662,14 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void ClearColorImage(Image image, ImageLayout imageLayout, ClearColorValue color, ImageSubresourceRange[] ranges)
+        public unsafe void ClearColorImage(SharpVk.Image image, SharpVk.ImageLayout imageLayout, SharpVk.ClearColorValue color, SharpVk.ImageSubresourceRange[] ranges)
         {
             try
             {
-                ClearColorValue* marshalledColor = default(ClearColorValue*);
-                ImageSubresourceRange* marshalledRanges = default(ImageSubresourceRange*);
-                marshalledColor = (ClearColorValue*)(Interop.HeapUtil.Allocate<ClearColorValue>());
-                *marshalledColor = color;
+                SharpVk.ImageSubresourceRange* marshalledRanges = default(SharpVk.ImageSubresourceRange*);
                 if (ranges != null)
                 {
-                    var fieldPointer = (ImageSubresourceRange*)(Interop.HeapUtil.AllocateAndClear<ImageSubresourceRange>(ranges.Length).ToPointer());
+                    var fieldPointer = (SharpVk.ImageSubresourceRange*)(Interop.HeapUtil.AllocateAndClear<SharpVk.ImageSubresourceRange>(ranges.Length).ToPointer());
                     for(int index = 0; index < (uint)(ranges.Length); index++)
                     {
                         fieldPointer[index] = ranges[index];
@@ -683,7 +680,7 @@ namespace SharpVk
                 {
                     marshalledRanges = null;
                 }
-                Interop.Commands.vkCmdClearColorImage(this.handle, image?.handle ?? default(Interop.Image), imageLayout, marshalledColor, (uint)(ranges?.Length ?? 0), marshalledRanges);
+                Interop.Commands.vkCmdClearColorImage(this.handle, image?.handle ?? default(SharpVk.Interop.Image), imageLayout, default(SharpVk.Interop.ClearColorValue*), (uint)(ranges?.Length ?? 0), marshalledRanges);
             }
             finally
             {
@@ -694,17 +691,17 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void ClearDepthStencilImage(Image image, ImageLayout imageLayout, ClearDepthStencilValue depthStencil, ImageSubresourceRange[] ranges)
+        public unsafe void ClearDepthStencilImage(SharpVk.Image image, SharpVk.ImageLayout imageLayout, SharpVk.ClearDepthStencilValue depthStencil, SharpVk.ImageSubresourceRange[] ranges)
         {
             try
             {
-                ClearDepthStencilValue* marshalledDepthStencil = default(ClearDepthStencilValue*);
-                ImageSubresourceRange* marshalledRanges = default(ImageSubresourceRange*);
-                marshalledDepthStencil = (ClearDepthStencilValue*)(Interop.HeapUtil.Allocate<ClearDepthStencilValue>());
+                SharpVk.ClearDepthStencilValue* marshalledDepthStencil = default(SharpVk.ClearDepthStencilValue*);
+                SharpVk.ImageSubresourceRange* marshalledRanges = default(SharpVk.ImageSubresourceRange*);
+                marshalledDepthStencil = (SharpVk.ClearDepthStencilValue*)(Interop.HeapUtil.Allocate<SharpVk.ClearDepthStencilValue>());
                 *marshalledDepthStencil = depthStencil;
                 if (ranges != null)
                 {
-                    var fieldPointer = (ImageSubresourceRange*)(Interop.HeapUtil.AllocateAndClear<ImageSubresourceRange>(ranges.Length).ToPointer());
+                    var fieldPointer = (SharpVk.ImageSubresourceRange*)(Interop.HeapUtil.AllocateAndClear<SharpVk.ImageSubresourceRange>(ranges.Length).ToPointer());
                     for(int index = 0; index < (uint)(ranges.Length); index++)
                     {
                         fieldPointer[index] = ranges[index];
@@ -715,7 +712,7 @@ namespace SharpVk
                 {
                     marshalledRanges = null;
                 }
-                Interop.Commands.vkCmdClearDepthStencilImage(this.handle, image?.handle ?? default(Interop.Image), imageLayout, marshalledDepthStencil, (uint)(ranges?.Length ?? 0), marshalledRanges);
+                Interop.Commands.vkCmdClearDepthStencilImage(this.handle, image?.handle ?? default(SharpVk.Interop.Image), imageLayout, marshalledDepthStencil, (uint)(ranges?.Length ?? 0), marshalledRanges);
             }
             finally
             {
@@ -726,15 +723,15 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void ClearAttachments(ClearAttachment[] attachments, ClearRect[] rects)
+        public unsafe void ClearAttachments(SharpVk.ClearAttachment[] attachments, SharpVk.ClearRect[] rects)
         {
             try
             {
-                ClearAttachment* marshalledAttachments = default(ClearAttachment*);
-                ClearRect* marshalledRects = default(ClearRect*);
+                SharpVk.ClearAttachment* marshalledAttachments = default(SharpVk.ClearAttachment*);
+                SharpVk.ClearRect* marshalledRects = default(SharpVk.ClearRect*);
                 if (attachments != null)
                 {
-                    var fieldPointer = (ClearAttachment*)(Interop.HeapUtil.AllocateAndClear<ClearAttachment>(attachments.Length).ToPointer());
+                    var fieldPointer = (SharpVk.ClearAttachment*)(Interop.HeapUtil.AllocateAndClear<SharpVk.ClearAttachment>(attachments.Length).ToPointer());
                     for(int index = 0; index < (uint)(attachments.Length); index++)
                     {
                         fieldPointer[index] = attachments[index];
@@ -747,7 +744,7 @@ namespace SharpVk
                 }
                 if (rects != null)
                 {
-                    var fieldPointer = (ClearRect*)(Interop.HeapUtil.AllocateAndClear<ClearRect>(rects.Length).ToPointer());
+                    var fieldPointer = (SharpVk.ClearRect*)(Interop.HeapUtil.AllocateAndClear<SharpVk.ClearRect>(rects.Length).ToPointer());
                     for(int index = 0; index < (uint)(rects.Length); index++)
                     {
                         fieldPointer[index] = rects[index];
@@ -769,14 +766,14 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void ResolveImage(Image sourceImage, ImageLayout sourceImageLayout, Image destinationImage, ImageLayout destinationImageLayout, ImageResolve[] regions)
+        public unsafe void ResolveImage(SharpVk.Image sourceImage, SharpVk.ImageLayout sourceImageLayout, SharpVk.Image destinationImage, SharpVk.ImageLayout destinationImageLayout, SharpVk.ImageResolve[] regions)
         {
             try
             {
-                ImageResolve* marshalledRegions = default(ImageResolve*);
+                SharpVk.ImageResolve* marshalledRegions = default(SharpVk.ImageResolve*);
                 if (regions != null)
                 {
-                    var fieldPointer = (ImageResolve*)(Interop.HeapUtil.AllocateAndClear<ImageResolve>(regions.Length).ToPointer());
+                    var fieldPointer = (SharpVk.ImageResolve*)(Interop.HeapUtil.AllocateAndClear<SharpVk.ImageResolve>(regions.Length).ToPointer());
                     for(int index = 0; index < (uint)(regions.Length); index++)
                     {
                         fieldPointer[index] = regions[index];
@@ -787,7 +784,7 @@ namespace SharpVk
                 {
                     marshalledRegions = null;
                 }
-                Interop.Commands.vkCmdResolveImage(this.handle, sourceImage?.handle ?? default(Interop.Image), sourceImageLayout, destinationImage?.handle ?? default(Interop.Image), destinationImageLayout, (uint)(regions?.Length ?? 0), marshalledRegions);
+                Interop.Commands.vkCmdResolveImage(this.handle, sourceImage?.handle ?? default(SharpVk.Interop.Image), sourceImageLayout, destinationImage?.handle ?? default(SharpVk.Interop.Image), destinationImageLayout, (uint)(regions?.Length ?? 0), marshalledRegions);
             }
             finally
             {
@@ -798,11 +795,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void SetEvent(Event @event, PipelineStageFlags stageMask)
+        public unsafe void SetEvent(SharpVk.Event @event, SharpVk.PipelineStageFlags stageMask)
         {
             try
             {
-                Interop.Commands.vkCmdSetEvent(this.handle, @event?.handle ?? default(Interop.Event), stageMask);
+                Interop.Commands.vkCmdSetEvent(this.handle, @event?.handle ?? default(SharpVk.Interop.Event), stageMask);
             }
             finally
             {
@@ -813,11 +810,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void ResetEvent(Event @event, PipelineStageFlags stageMask)
+        public unsafe void ResetEvent(SharpVk.Event @event, SharpVk.PipelineStageFlags stageMask)
         {
             try
             {
-                Interop.Commands.vkCmdResetEvent(this.handle, @event?.handle ?? default(Interop.Event), stageMask);
+                Interop.Commands.vkCmdResetEvent(this.handle, @event?.handle ?? default(SharpVk.Interop.Event), stageMask);
             }
             finally
             {
@@ -828,20 +825,20 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void WaitEvents(Event[] events, PipelineStageFlags sourceStageMask, PipelineStageFlags destinationStageMask, MemoryBarrier[] memoryBarriers, BufferMemoryBarrier[] bufferMemoryBarriers, ImageMemoryBarrier[] imageMemoryBarriers)
+        public unsafe void WaitEvents(SharpVk.Event[] events, SharpVk.PipelineStageFlags sourceStageMask, SharpVk.PipelineStageFlags destinationStageMask, SharpVk.MemoryBarrier[] memoryBarriers, SharpVk.BufferMemoryBarrier[] bufferMemoryBarriers, SharpVk.ImageMemoryBarrier[] imageMemoryBarriers)
         {
             try
             {
-                Interop.Event* marshalledEvents = default(Interop.Event*);
-                Interop.MemoryBarrier* marshalledMemoryBarriers = default(Interop.MemoryBarrier*);
-                Interop.BufferMemoryBarrier* marshalledBufferMemoryBarriers = default(Interop.BufferMemoryBarrier*);
-                Interop.ImageMemoryBarrier* marshalledImageMemoryBarriers = default(Interop.ImageMemoryBarrier*);
+                SharpVk.Interop.Event* marshalledEvents = default(SharpVk.Interop.Event*);
+                SharpVk.Interop.MemoryBarrier* marshalledMemoryBarriers = default(SharpVk.Interop.MemoryBarrier*);
+                SharpVk.Interop.BufferMemoryBarrier* marshalledBufferMemoryBarriers = default(SharpVk.Interop.BufferMemoryBarrier*);
+                SharpVk.Interop.ImageMemoryBarrier* marshalledImageMemoryBarriers = default(SharpVk.Interop.ImageMemoryBarrier*);
                 if (events != null)
                 {
-                    var fieldPointer = (Interop.Event*)(Interop.HeapUtil.AllocateAndClear<Interop.Event>(events.Length).ToPointer());
+                    var fieldPointer = (SharpVk.Interop.Event*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Event>(events.Length).ToPointer());
                     for(int index = 0; index < (uint)(events.Length); index++)
                     {
-                        fieldPointer[index] = events[index]?.handle ?? default(Interop.Event);
+                        fieldPointer[index] = events[index]?.handle ?? default(SharpVk.Interop.Event);
                     }
                     marshalledEvents = fieldPointer;
                 }
@@ -851,7 +848,7 @@ namespace SharpVk
                 }
                 if (memoryBarriers != null)
                 {
-                    var fieldPointer = (Interop.MemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<Interop.MemoryBarrier>(memoryBarriers.Length).ToPointer());
+                    var fieldPointer = (SharpVk.Interop.MemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.MemoryBarrier>(memoryBarriers.Length).ToPointer());
                     for(int index = 0; index < (uint)(memoryBarriers.Length); index++)
                     {
                         memoryBarriers[index].MarshalTo(&fieldPointer[index]);
@@ -864,7 +861,7 @@ namespace SharpVk
                 }
                 if (bufferMemoryBarriers != null)
                 {
-                    var fieldPointer = (Interop.BufferMemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<Interop.BufferMemoryBarrier>(bufferMemoryBarriers.Length).ToPointer());
+                    var fieldPointer = (SharpVk.Interop.BufferMemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.BufferMemoryBarrier>(bufferMemoryBarriers.Length).ToPointer());
                     for(int index = 0; index < (uint)(bufferMemoryBarriers.Length); index++)
                     {
                         bufferMemoryBarriers[index].MarshalTo(&fieldPointer[index]);
@@ -877,7 +874,7 @@ namespace SharpVk
                 }
                 if (imageMemoryBarriers != null)
                 {
-                    var fieldPointer = (Interop.ImageMemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<Interop.ImageMemoryBarrier>(imageMemoryBarriers.Length).ToPointer());
+                    var fieldPointer = (SharpVk.Interop.ImageMemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.ImageMemoryBarrier>(imageMemoryBarriers.Length).ToPointer());
                     for(int index = 0; index < (uint)(imageMemoryBarriers.Length); index++)
                     {
                         imageMemoryBarriers[index].MarshalTo(&fieldPointer[index]);
@@ -899,16 +896,16 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void PipelineBarrier(PipelineStageFlags sourceStageMask, PipelineStageFlags destinationStageMask, DependencyFlags dependencyFlags, MemoryBarrier[] memoryBarriers, BufferMemoryBarrier[] bufferMemoryBarriers, ImageMemoryBarrier[] imageMemoryBarriers)
+        public unsafe void PipelineBarrier(SharpVk.PipelineStageFlags sourceStageMask, SharpVk.PipelineStageFlags destinationStageMask, SharpVk.DependencyFlags dependencyFlags, SharpVk.MemoryBarrier[] memoryBarriers, SharpVk.BufferMemoryBarrier[] bufferMemoryBarriers, SharpVk.ImageMemoryBarrier[] imageMemoryBarriers)
         {
             try
             {
-                Interop.MemoryBarrier* marshalledMemoryBarriers = default(Interop.MemoryBarrier*);
-                Interop.BufferMemoryBarrier* marshalledBufferMemoryBarriers = default(Interop.BufferMemoryBarrier*);
-                Interop.ImageMemoryBarrier* marshalledImageMemoryBarriers = default(Interop.ImageMemoryBarrier*);
+                SharpVk.Interop.MemoryBarrier* marshalledMemoryBarriers = default(SharpVk.Interop.MemoryBarrier*);
+                SharpVk.Interop.BufferMemoryBarrier* marshalledBufferMemoryBarriers = default(SharpVk.Interop.BufferMemoryBarrier*);
+                SharpVk.Interop.ImageMemoryBarrier* marshalledImageMemoryBarriers = default(SharpVk.Interop.ImageMemoryBarrier*);
                 if (memoryBarriers != null)
                 {
-                    var fieldPointer = (Interop.MemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<Interop.MemoryBarrier>(memoryBarriers.Length).ToPointer());
+                    var fieldPointer = (SharpVk.Interop.MemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.MemoryBarrier>(memoryBarriers.Length).ToPointer());
                     for(int index = 0; index < (uint)(memoryBarriers.Length); index++)
                     {
                         memoryBarriers[index].MarshalTo(&fieldPointer[index]);
@@ -921,7 +918,7 @@ namespace SharpVk
                 }
                 if (bufferMemoryBarriers != null)
                 {
-                    var fieldPointer = (Interop.BufferMemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<Interop.BufferMemoryBarrier>(bufferMemoryBarriers.Length).ToPointer());
+                    var fieldPointer = (SharpVk.Interop.BufferMemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.BufferMemoryBarrier>(bufferMemoryBarriers.Length).ToPointer());
                     for(int index = 0; index < (uint)(bufferMemoryBarriers.Length); index++)
                     {
                         bufferMemoryBarriers[index].MarshalTo(&fieldPointer[index]);
@@ -934,7 +931,7 @@ namespace SharpVk
                 }
                 if (imageMemoryBarriers != null)
                 {
-                    var fieldPointer = (Interop.ImageMemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<Interop.ImageMemoryBarrier>(imageMemoryBarriers.Length).ToPointer());
+                    var fieldPointer = (SharpVk.Interop.ImageMemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.ImageMemoryBarrier>(imageMemoryBarriers.Length).ToPointer());
                     for(int index = 0; index < (uint)(imageMemoryBarriers.Length); index++)
                     {
                         imageMemoryBarriers[index].MarshalTo(&fieldPointer[index]);
@@ -956,11 +953,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void BeginQuery(QueryPool queryPool, uint query, QueryControlFlags flags)
+        public unsafe void BeginQuery(SharpVk.QueryPool queryPool, uint query, SharpVk.QueryControlFlags flags)
         {
             try
             {
-                Interop.Commands.vkCmdBeginQuery(this.handle, queryPool?.handle ?? default(Interop.QueryPool), query, flags);
+                Interop.Commands.vkCmdBeginQuery(this.handle, queryPool?.handle ?? default(SharpVk.Interop.QueryPool), query, flags);
             }
             finally
             {
@@ -971,11 +968,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void EndQuery(QueryPool queryPool, uint query)
+        public unsafe void EndQuery(SharpVk.QueryPool queryPool, uint query)
         {
             try
             {
-                Interop.Commands.vkCmdEndQuery(this.handle, queryPool?.handle ?? default(Interop.QueryPool), query);
+                Interop.Commands.vkCmdEndQuery(this.handle, queryPool?.handle ?? default(SharpVk.Interop.QueryPool), query);
             }
             finally
             {
@@ -986,11 +983,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void ResetQueryPool(QueryPool queryPool, uint firstQuery, uint queryCount)
+        public unsafe void ResetQueryPool(SharpVk.QueryPool queryPool, uint firstQuery, uint queryCount)
         {
             try
             {
-                Interop.Commands.vkCmdResetQueryPool(this.handle, queryPool?.handle ?? default(Interop.QueryPool), firstQuery, queryCount);
+                Interop.Commands.vkCmdResetQueryPool(this.handle, queryPool?.handle ?? default(SharpVk.Interop.QueryPool), firstQuery, queryCount);
             }
             finally
             {
@@ -1001,11 +998,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void WriteTimestamp(PipelineStageFlags pipelineStage, QueryPool queryPool, uint query)
+        public unsafe void WriteTimestamp(SharpVk.PipelineStageFlags pipelineStage, SharpVk.QueryPool queryPool, uint query)
         {
             try
             {
-                Interop.Commands.vkCmdWriteTimestamp(this.handle, pipelineStage, queryPool?.handle ?? default(Interop.QueryPool), query);
+                Interop.Commands.vkCmdWriteTimestamp(this.handle, pipelineStage, queryPool?.handle ?? default(SharpVk.Interop.QueryPool), query);
             }
             finally
             {
@@ -1016,11 +1013,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void CopyQueryPoolResults(QueryPool queryPool, uint firstQuery, uint queryCount, Buffer destinationBuffer, DeviceSize destinationOffset, DeviceSize stride, QueryResultFlags flags)
+        public unsafe void CopyQueryPoolResults(SharpVk.QueryPool queryPool, uint firstQuery, uint queryCount, SharpVk.Buffer destinationBuffer, DeviceSize destinationOffset, DeviceSize stride, SharpVk.QueryResultFlags flags)
         {
             try
             {
-                Interop.Commands.vkCmdCopyQueryPoolResults(this.handle, queryPool?.handle ?? default(Interop.QueryPool), firstQuery, queryCount, destinationBuffer?.handle ?? default(Interop.Buffer), destinationOffset, stride, flags);
+                Interop.Commands.vkCmdCopyQueryPoolResults(this.handle, queryPool?.handle ?? default(SharpVk.Interop.QueryPool), firstQuery, queryCount, destinationBuffer?.handle ?? default(SharpVk.Interop.Buffer), destinationOffset, stride, flags);
             }
             finally
             {
@@ -1031,7 +1028,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void PushConstants(PipelineLayout layout, ShaderStageFlags stageFlags, uint offset, byte[] values)
+        public unsafe void PushConstants(SharpVk.PipelineLayout layout, SharpVk.ShaderStageFlags stageFlags, uint offset, byte[] values)
         {
             try
             {
@@ -1049,7 +1046,7 @@ namespace SharpVk
                 {
                     marshalledValues = null;
                 }
-                Interop.Commands.vkCmdPushConstants(this.handle, layout?.handle ?? default(Interop.PipelineLayout), stageFlags, offset, (uint)(values?.Length ?? 0), marshalledValues);
+                Interop.Commands.vkCmdPushConstants(this.handle, layout?.handle ?? default(SharpVk.Interop.PipelineLayout), stageFlags, offset, (uint)(values?.Length ?? 0), marshalledValues);
             }
             finally
             {
@@ -1060,12 +1057,12 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void BeginRenderPass(RenderPassBeginInfo renderPassBegin, SubpassContents contents)
+        public unsafe void BeginRenderPass(SharpVk.RenderPassBeginInfo renderPassBegin, SharpVk.SubpassContents contents)
         {
             try
             {
-                Interop.RenderPassBeginInfo* marshalledRenderPassBegin = default(Interop.RenderPassBeginInfo*);
-                marshalledRenderPassBegin = (Interop.RenderPassBeginInfo*)(Interop.HeapUtil.Allocate<Interop.RenderPassBeginInfo>());
+                SharpVk.Interop.RenderPassBeginInfo* marshalledRenderPassBegin = default(SharpVk.Interop.RenderPassBeginInfo*);
+                marshalledRenderPassBegin = (SharpVk.Interop.RenderPassBeginInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.RenderPassBeginInfo>());
                 renderPassBegin.MarshalTo(marshalledRenderPassBegin);
                 Interop.Commands.vkCmdBeginRenderPass(this.handle, marshalledRenderPassBegin, contents);
             }
@@ -1078,7 +1075,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void NextSubpass(SubpassContents contents)
+        public unsafe void NextSubpass(SharpVk.SubpassContents contents)
         {
             try
             {
@@ -1108,17 +1105,17 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void ExecuteCommands(CommandBuffer[] commandBuffers)
+        public unsafe void ExecuteCommands(SharpVk.CommandBuffer[] commandBuffers)
         {
             try
             {
-                Interop.CommandBuffer* marshalledCommandBuffers = default(Interop.CommandBuffer*);
+                SharpVk.Interop.CommandBuffer* marshalledCommandBuffers = default(SharpVk.Interop.CommandBuffer*);
                 if (commandBuffers != null)
                 {
-                    var fieldPointer = (Interop.CommandBuffer*)(Interop.HeapUtil.AllocateAndClear<Interop.CommandBuffer>(commandBuffers.Length).ToPointer());
+                    var fieldPointer = (SharpVk.Interop.CommandBuffer*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.CommandBuffer>(commandBuffers.Length).ToPointer());
                     for(int index = 0; index < (uint)(commandBuffers.Length); index++)
                     {
-                        fieldPointer[index] = commandBuffers[index]?.handle ?? default(Interop.CommandBuffer);
+                        fieldPointer[index] = commandBuffers[index]?.handle ?? default(SharpVk.Interop.CommandBuffer);
                     }
                     marshalledCommandBuffers = fieldPointer;
                 }

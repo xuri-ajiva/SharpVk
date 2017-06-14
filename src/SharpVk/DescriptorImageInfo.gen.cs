@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Sampler Sampler
+        public SharpVk.Sampler Sampler
         {
             get;
             set;
@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ImageView ImageView
+        public SharpVk.ImageView ImageView
         {
             get;
             set;
@@ -54,16 +54,16 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ImageLayout ImageLayout
+        public SharpVk.ImageLayout ImageLayout
         {
             get;
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.DescriptorImageInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.DescriptorImageInfo* pointer)
         {
-            pointer->Sampler = this.Sampler?.handle ?? default(Interop.Sampler);
-            pointer->ImageView = this.ImageView?.handle ?? default(Interop.ImageView);
+            pointer->Sampler = this.Sampler?.handle ?? default(SharpVk.Interop.Sampler);
+            pointer->ImageView = this.ImageView?.handle ?? default(SharpVk.Interop.ImageView);
             pointer->ImageLayout = this.ImageLayout;
         }
     }

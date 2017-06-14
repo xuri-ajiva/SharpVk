@@ -59,20 +59,12 @@ namespace SharpVk.Generator.Collation
             foreach (var type in typeData)
             {
                 var name = type.Value.Name;
-
-                if (type.Value.Extension != null)
-                {
-                    name = type.Value.Extension + "." + name;
-
-                    if (type.Value.Pattern == TypePattern.NonMarshalledStruct)
-                    {
-                        name = "SharpVk." + name;
-                    }
-                }
-
+                
                 services.AddSingleton(new TypeNameMapping
                 {
                     VkName = type.Key,
+                    Extension = type.Value.Extension,
+                    IsDefined = type.Value.Pattern != TypePattern.Primitive,
                     OutputName = name
                 });
             }

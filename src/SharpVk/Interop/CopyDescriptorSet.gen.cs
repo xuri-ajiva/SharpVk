@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public StructureType SType; 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
@@ -46,7 +46,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorSet SourceSet; 
+        public SharpVk.Interop.DescriptorSet SourceSet; 
         
         /// <summary>
         /// 
@@ -61,7 +61,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DescriptorSet DestinationSet; 
+        public SharpVk.Interop.DescriptorSet DestinationSet; 
         
         /// <summary>
         /// 

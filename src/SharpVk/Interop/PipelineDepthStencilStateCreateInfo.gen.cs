@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public StructureType SType; 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
@@ -46,7 +46,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PipelineDepthStencilStateCreateFlags Flags; 
+        public SharpVk.PipelineDepthStencilStateCreateFlags Flags; 
         
         /// <summary>
         /// 
@@ -61,7 +61,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public CompareOp DepthCompareOp; 
+        public SharpVk.CompareOp DepthCompareOp; 
         
         /// <summary>
         /// 
@@ -76,12 +76,12 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public StencilOpState Front; 
+        public SharpVk.StencilOpState Front; 
         
         /// <summary>
         /// 
         /// </summary>
-        public StencilOpState Back; 
+        public SharpVk.StencilOpState Back; 
         
         /// <summary>
         /// 

@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public FormatProperties(FormatFeatureFlags linearTilingFeatures, FormatFeatureFlags optimalTilingFeatures, FormatFeatureFlags bufferFeatures)
+        public FormatProperties(SharpVk.FormatFeatureFlags linearTilingFeatures, SharpVk.FormatFeatureFlags optimalTilingFeatures, SharpVk.FormatFeatureFlags bufferFeatures)
         {
             this.LinearTilingFeatures = linearTilingFeatures;
             this.OptimalTilingFeatures = optimalTilingFeatures;
@@ -46,16 +46,16 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public FormatFeatureFlags LinearTilingFeatures; 
+        public SharpVk.FormatFeatureFlags LinearTilingFeatures; 
         
         /// <summary>
         /// 
         /// </summary>
-        public FormatFeatureFlags OptimalTilingFeatures; 
+        public SharpVk.FormatFeatureFlags OptimalTilingFeatures; 
         
         /// <summary>
         /// 
         /// </summary>
-        public FormatFeatureFlags BufferFeatures; 
+        public SharpVk.FormatFeatureFlags BufferFeatures; 
     }
 }

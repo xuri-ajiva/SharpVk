@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public Image Image; 
+        public SharpVk.Interop.Image Image; 
         
         /// <summary>
         /// 
@@ -46,6 +46,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public SparseMemoryBind* Binds; 
+        public SharpVk.Interop.SparseMemoryBind* Binds; 
     }
 }

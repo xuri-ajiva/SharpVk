@@ -720,7 +720,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SampleCountFlags FramebufferColorSampleCounts
+        public SharpVk.SampleCountFlags FramebufferColorSampleCounts
         {
             get;
             set;
@@ -729,7 +729,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SampleCountFlags FramebufferDepthSampleCounts
+        public SharpVk.SampleCountFlags FramebufferDepthSampleCounts
         {
             get;
             set;
@@ -738,7 +738,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SampleCountFlags FramebufferStencilSampleCounts
+        public SharpVk.SampleCountFlags FramebufferStencilSampleCounts
         {
             get;
             set;
@@ -747,7 +747,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SampleCountFlags FramebufferNoAttachmentsSampleCounts
+        public SharpVk.SampleCountFlags FramebufferNoAttachmentsSampleCounts
         {
             get;
             set;
@@ -765,7 +765,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SampleCountFlags SampledImageColorSampleCounts
+        public SharpVk.SampleCountFlags SampledImageColorSampleCounts
         {
             get;
             set;
@@ -774,7 +774,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SampleCountFlags SampledImageIntegerSampleCounts
+        public SharpVk.SampleCountFlags SampledImageIntegerSampleCounts
         {
             get;
             set;
@@ -783,7 +783,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SampleCountFlags SampledImageDepthSampleCounts
+        public SharpVk.SampleCountFlags SampledImageDepthSampleCounts
         {
             get;
             set;
@@ -792,7 +792,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SampleCountFlags SampledImageStencilSampleCounts
+        public SharpVk.SampleCountFlags SampledImageStencilSampleCounts
         {
             get;
             set;
@@ -801,7 +801,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SampleCountFlags StorageImageSampleCounts
+        public SharpVk.SampleCountFlags StorageImageSampleCounts
         {
             get;
             set;
@@ -933,7 +933,7 @@ namespace SharpVk
             set;
         }
         
-        internal static unsafe PhysicalDeviceLimits MarshalFrom(Interop.PhysicalDeviceLimits* pointer)
+        internal static unsafe PhysicalDeviceLimits MarshalFrom(SharpVk.Interop.PhysicalDeviceLimits* pointer)
         {
             PhysicalDeviceLimits result = default(PhysicalDeviceLimits);
             result.MaxImageDimension1D = pointer->MaxImageDimension1D;

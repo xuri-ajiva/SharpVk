@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public MemoryHeap(DeviceSize size, MemoryHeapFlags flags)
+        public MemoryHeap(DeviceSize size, SharpVk.MemoryHeapFlags flags)
         {
             this.Size = size;
             this.Flags = flags;
@@ -50,6 +50,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public MemoryHeapFlags Flags; 
+        public SharpVk.MemoryHeapFlags Flags; 
     }
 }

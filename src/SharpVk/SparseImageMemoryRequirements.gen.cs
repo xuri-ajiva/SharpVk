@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SparseImageMemoryRequirements(SparseImageFormatProperties formatProperties, uint imageMipTailFirstLod, DeviceSize imageMipTailSize, DeviceSize imageMipTailOffset, DeviceSize imageMipTailStride)
+        public SparseImageMemoryRequirements(SharpVk.SparseImageFormatProperties formatProperties, uint imageMipTailFirstLod, DeviceSize imageMipTailSize, DeviceSize imageMipTailOffset, DeviceSize imageMipTailStride)
         {
             this.FormatProperties = formatProperties;
             this.ImageMipTailFirstLod = imageMipTailFirstLod;
@@ -48,7 +48,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SparseImageFormatProperties FormatProperties; 
+        public SharpVk.SparseImageFormatProperties FormatProperties; 
         
         /// <summary>
         /// 

@@ -42,7 +42,7 @@ namespace SharpVk.Google
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.Google.PresentTimesInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Google.PresentTimesInfo* pointer)
         {
             pointer->SType = StructureType.PresentTimesInfoGoogle;
             pointer->Next = null;

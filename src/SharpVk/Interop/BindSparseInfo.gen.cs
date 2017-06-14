@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public StructureType SType; 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
@@ -51,7 +51,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public Semaphore* WaitSemaphores; 
+        public SharpVk.Interop.Semaphore* WaitSemaphores; 
         
         /// <summary>
         /// 
@@ -61,7 +61,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public SparseBufferMemoryBindInfo* BufferBinds; 
+        public SharpVk.Interop.SparseBufferMemoryBindInfo* BufferBinds; 
         
         /// <summary>
         /// 
@@ -71,7 +71,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public SparseImageOpaqueMemoryBindInfo* ImageOpaqueBinds; 
+        public SharpVk.Interop.SparseImageOpaqueMemoryBindInfo* ImageOpaqueBinds; 
         
         /// <summary>
         /// 
@@ -81,7 +81,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public SparseImageMemoryBindInfo* ImageBinds; 
+        public SharpVk.Interop.SparseImageMemoryBindInfo* ImageBinds; 
         
         /// <summary>
         /// 
@@ -91,6 +91,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public Semaphore* SignalSemaphores; 
+        public SharpVk.Interop.Semaphore* SignalSemaphores; 
     }
 }

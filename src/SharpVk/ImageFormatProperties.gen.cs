@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ImageFormatProperties(Extent3D maxExtent, uint maxMipLevels, uint maxArrayLayers, SampleCountFlags sampleCounts, DeviceSize maxResourceSize)
+        public ImageFormatProperties(SharpVk.Extent3D maxExtent, uint maxMipLevels, uint maxArrayLayers, SharpVk.SampleCountFlags sampleCounts, DeviceSize maxResourceSize)
         {
             this.MaxExtent = maxExtent;
             this.MaxMipLevels = maxMipLevels;
@@ -48,7 +48,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Extent3D MaxExtent; 
+        public SharpVk.Extent3D MaxExtent; 
         
         /// <summary>
         /// 
@@ -63,7 +63,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SampleCountFlags SampleCounts; 
+        public SharpVk.SampleCountFlags SampleCounts; 
         
         /// <summary>
         /// 

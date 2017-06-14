@@ -44,19 +44,19 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void Free(AllocationCallbacks? allocator = null)
+        public unsafe void Free(SharpVk.AllocationCallbacks? allocator = null)
         {
             try
             {
-                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 if (allocator != null)
                 {
-                    marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
-                    marshalledAllocator = default(Interop.AllocationCallbacks*);
+                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
                 Interop.Commands.vkFreeMemory(this.parent, this.handle, marshalledAllocator);
             }
@@ -69,7 +69,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe IntPtr Map(DeviceSize offset, DeviceSize size, MemoryMapFlags flags)
+        public unsafe IntPtr Map(DeviceSize offset, DeviceSize size, SharpVk.MemoryMapFlags flags)
         {
             try
             {

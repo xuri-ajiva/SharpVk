@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public MemoryType(MemoryPropertyFlags propertyFlags, uint heapIndex)
+        public MemoryType(SharpVk.MemoryPropertyFlags propertyFlags, uint heapIndex)
         {
             this.PropertyFlags = propertyFlags;
             this.HeapIndex = heapIndex;
@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public MemoryPropertyFlags PropertyFlags; 
+        public SharpVk.MemoryPropertyFlags PropertyFlags; 
         
         /// <summary>
         /// 

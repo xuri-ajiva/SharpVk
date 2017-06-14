@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ClearRect(Rect2D rect, uint baseArrayLayer, uint layerCount)
+        public ClearRect(SharpVk.Rect2D rect, uint baseArrayLayer, uint layerCount)
         {
             this.Rect = rect;
             this.BaseArrayLayer = baseArrayLayer;
@@ -46,7 +46,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Rect2D Rect; 
+        public SharpVk.Rect2D Rect; 
         
         /// <summary>
         /// 

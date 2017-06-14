@@ -36,13 +36,13 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public FenceCreateFlags Flags
+        public SharpVk.FenceCreateFlags Flags
         {
             get;
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.FenceCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.FenceCreateInfo* pointer)
         {
             pointer->SType = StructureType.FenceCreateInfo;
             pointer->Next = null;

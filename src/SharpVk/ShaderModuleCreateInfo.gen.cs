@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ShaderModuleCreateFlags Flags
+        public SharpVk.ShaderModuleCreateFlags Flags
         {
             get;
             set;
@@ -60,7 +60,7 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.ShaderModuleCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.ShaderModuleCreateInfo* pointer)
         {
             pointer->SType = StructureType.ShaderModuleCreateInfo;
             pointer->Next = null;

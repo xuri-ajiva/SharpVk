@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineInputAssemblyStateCreateFlags Flags
+        public SharpVk.PipelineInputAssemblyStateCreateFlags Flags
         {
             get;
             set;
@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PrimitiveTopology Topology
+        public SharpVk.PrimitiveTopology Topology
         {
             get;
             set;
@@ -60,7 +60,7 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.PipelineInputAssemblyStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.PipelineInputAssemblyStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineInputAssemblyStateCreateInfo;
             pointer->Next = null;

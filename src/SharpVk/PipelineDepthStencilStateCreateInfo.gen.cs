@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineDepthStencilStateCreateFlags Flags
+        public SharpVk.PipelineDepthStencilStateCreateFlags Flags
         {
             get;
             set;
@@ -63,7 +63,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public CompareOp DepthCompareOp
+        public SharpVk.CompareOp DepthCompareOp
         {
             get;
             set;
@@ -90,7 +90,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public StencilOpState Front
+        public SharpVk.StencilOpState Front
         {
             get;
             set;
@@ -99,7 +99,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public StencilOpState Back
+        public SharpVk.StencilOpState Back
         {
             get;
             set;
@@ -123,7 +123,7 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.PipelineDepthStencilStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.PipelineDepthStencilStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineDepthStencilStateCreateInfo;
             pointer->Next = null;

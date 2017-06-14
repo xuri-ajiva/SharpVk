@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SpecializationMapEntry[] MapEntries
+        public SharpVk.SpecializationMapEntry[] MapEntries
         {
             get;
             set;
@@ -51,12 +51,12 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.SpecializationInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.SpecializationInfo* pointer)
         {
             pointer->MapEntryCount = (uint)(this.MapEntries?.Length ?? 0);
             if (this.MapEntries != null)
             {
-                var fieldPointer = (SpecializationMapEntry*)(Interop.HeapUtil.AllocateAndClear<SpecializationMapEntry>(this.MapEntries.Length).ToPointer());
+                var fieldPointer = (SharpVk.SpecializationMapEntry*)(Interop.HeapUtil.AllocateAndClear<SharpVk.SpecializationMapEntry>(this.MapEntries.Length).ToPointer());
                 for(int index = 0; index < (uint)(this.MapEntries.Length); index++)
                 {
                     fieldPointer[index] = this.MapEntries[index];

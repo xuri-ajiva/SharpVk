@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ClearAttachment(ImageAspectFlags aspectMask, uint colorAttachment, ClearValue clearValue)
+        public ClearAttachment(SharpVk.ImageAspectFlags aspectMask, uint colorAttachment, SharpVk.ClearValue clearValue)
         {
             this.AspectMask = aspectMask;
             this.ColorAttachment = colorAttachment;
@@ -46,7 +46,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ImageAspectFlags AspectMask; 
+        public SharpVk.ImageAspectFlags AspectMask; 
         
         /// <summary>
         /// 
@@ -56,6 +56,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ClearValue ClearValue; 
+        public SharpVk.ClearValue ClearValue; 
     }
 }

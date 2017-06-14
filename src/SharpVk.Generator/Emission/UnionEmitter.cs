@@ -33,6 +33,18 @@ namespace SharpVk.Generator.Emission
                         }, Public);
                     });
                 });
+
+                this.builderFactory.Generate("Interop\\" + @struct.Name, fileBuilder =>
+                  {
+                      fileBuilder.EmitUsing("System");
+
+                      fileBuilder.EmitNamespace("SharpVk.Interop", namespaceBuilder =>
+                      {
+                          namespaceBuilder.EmitType(TypeKind.Struct, @struct.Name, typeBuilder =>
+                          {
+                          }, Public);
+                      });
+                  });
             }
         }
     }

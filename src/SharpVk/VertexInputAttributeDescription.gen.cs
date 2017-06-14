@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public VertexInputAttributeDescription(uint location, uint binding, Format format, uint offset)
+        public VertexInputAttributeDescription(uint location, uint binding, SharpVk.Format format, uint offset)
         {
             this.Location = location;
             this.Binding = binding;
@@ -57,7 +57,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Format Format; 
+        public SharpVk.Format Format; 
         
         /// <summary>
         /// 

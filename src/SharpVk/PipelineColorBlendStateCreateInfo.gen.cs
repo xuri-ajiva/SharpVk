@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineColorBlendStateCreateFlags Flags
+        public SharpVk.PipelineColorBlendStateCreateFlags Flags
         {
             get;
             set;
@@ -54,7 +54,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public LogicOp LogicOp
+        public SharpVk.LogicOp LogicOp
         {
             get;
             set;
@@ -63,13 +63,13 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineColorBlendAttachmentState[] Attachments
+        public SharpVk.PipelineColorBlendAttachmentState[] Attachments
         {
             get;
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.PipelineColorBlendStateCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.PipelineColorBlendStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineColorBlendStateCreateInfo;
             pointer->Next = null;
@@ -79,7 +79,7 @@ namespace SharpVk
             pointer->AttachmentCount = (uint)(this.Attachments?.Length ?? 0);
             if (this.Attachments != null)
             {
-                var fieldPointer = (PipelineColorBlendAttachmentState*)(Interop.HeapUtil.AllocateAndClear<PipelineColorBlendAttachmentState>(this.Attachments.Length).ToPointer());
+                var fieldPointer = (SharpVk.PipelineColorBlendAttachmentState*)(Interop.HeapUtil.AllocateAndClear<SharpVk.PipelineColorBlendAttachmentState>(this.Attachments.Length).ToPointer());
                 for(int index = 0; index < (uint)(this.Attachments.Length); index++)
                 {
                     fieldPointer[index] = this.Attachments[index];

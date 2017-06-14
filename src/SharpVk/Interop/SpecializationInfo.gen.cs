@@ -41,7 +41,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public SpecializationMapEntry* MapEntries; 
+        public SharpVk.SpecializationMapEntry* MapEntries; 
         
         /// <summary>
         /// 

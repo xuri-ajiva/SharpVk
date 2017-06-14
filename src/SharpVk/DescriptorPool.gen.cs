@@ -44,19 +44,19 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void Destroy(AllocationCallbacks? allocator = null)
+        public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = null)
         {
             try
             {
-                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 if (allocator != null)
                 {
-                    marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
-                    marshalledAllocator = default(Interop.AllocationCallbacks*);
+                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
                 Interop.Commands.vkDestroyDescriptorPool(this.parent, this.handle, marshalledAllocator);
             }
@@ -69,7 +69,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void Reset(DescriptorPoolResetFlags flags)
+        public unsafe void Reset(SharpVk.DescriptorPoolResetFlags flags)
         {
             try
             {
@@ -88,17 +88,17 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void FreeDescriptorSets(DescriptorSet[] descriptorSets)
+        public unsafe void FreeDescriptorSets(SharpVk.DescriptorSet[] descriptorSets)
         {
             try
             {
-                Interop.DescriptorSet* marshalledDescriptorSets = default(Interop.DescriptorSet*);
+                SharpVk.Interop.DescriptorSet* marshalledDescriptorSets = default(SharpVk.Interop.DescriptorSet*);
                 if (descriptorSets != null)
                 {
-                    var fieldPointer = (Interop.DescriptorSet*)(Interop.HeapUtil.AllocateAndClear<Interop.DescriptorSet>(descriptorSets.Length).ToPointer());
+                    var fieldPointer = (SharpVk.Interop.DescriptorSet*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.DescriptorSet>(descriptorSets.Length).ToPointer());
                     for(int index = 0; index < (uint)(descriptorSets.Length); index++)
                     {
-                        fieldPointer[index] = descriptorSets[index]?.handle ?? default(Interop.DescriptorSet);
+                        fieldPointer[index] = descriptorSets[index]?.handle ?? default(SharpVk.Interop.DescriptorSet);
                     }
                     marshalledDescriptorSets = fieldPointer;
                 }

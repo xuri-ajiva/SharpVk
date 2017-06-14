@@ -44,12 +44,12 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe MemoryRequirements GetMemoryRequirements()
+        public unsafe SharpVk.MemoryRequirements GetMemoryRequirements()
         {
             try
             {
-                MemoryRequirements result = default(MemoryRequirements);
-                MemoryRequirements marshalledMemoryRequirements = default(MemoryRequirements);
+                SharpVk.MemoryRequirements result = default(SharpVk.MemoryRequirements);
+                SharpVk.MemoryRequirements marshalledMemoryRequirements = default(SharpVk.MemoryRequirements);
                 Interop.Commands.vkGetBufferMemoryRequirements(this.parent, this.handle, &marshalledMemoryRequirements);
                 result = marshalledMemoryRequirements;
                 return result;
@@ -63,11 +63,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void BindMemory(DeviceMemory memory, DeviceSize memoryOffset)
+        public unsafe void BindMemory(SharpVk.DeviceMemory memory, DeviceSize memoryOffset)
         {
             try
             {
-                Result methodResult = Interop.Commands.vkBindBufferMemory(this.parent, this.handle, memory?.handle ?? default(Interop.DeviceMemory), memoryOffset);
+                Result methodResult = Interop.Commands.vkBindBufferMemory(this.parent, this.handle, memory?.handle ?? default(SharpVk.Interop.DeviceMemory), memoryOffset);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -82,19 +82,19 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void Destroy(AllocationCallbacks? allocator = null)
+        public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = null)
         {
             try
             {
-                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 if (allocator != null)
                 {
-                    marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
-                    marshalledAllocator = default(Interop.AllocationCallbacks*);
+                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
                 Interop.Commands.vkDestroyBuffer(this.parent, this.handle, marshalledAllocator);
             }

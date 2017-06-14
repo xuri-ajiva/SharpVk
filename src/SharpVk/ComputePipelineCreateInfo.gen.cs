@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineCreateFlags Flags
+        public SharpVk.PipelineCreateFlags Flags
         {
             get;
             set;
@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineShaderStageCreateInfo Stage
+        public SharpVk.PipelineShaderStageCreateInfo Stage
         {
             get;
             set;
@@ -54,7 +54,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineLayout Layout
+        public SharpVk.PipelineLayout Layout
         {
             get;
             set;
@@ -63,7 +63,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Pipeline BasePipelineHandle
+        public SharpVk.Pipeline BasePipelineHandle
         {
             get;
             set;
@@ -78,14 +78,14 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.ComputePipelineCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.ComputePipelineCreateInfo* pointer)
         {
             pointer->SType = StructureType.ComputePipelineCreateInfo;
             pointer->Next = null;
             pointer->Flags = this.Flags;
             this.Stage.MarshalTo(&pointer->Stage);
-            pointer->Layout = this.Layout?.handle ?? default(Interop.PipelineLayout);
-            pointer->BasePipelineHandle = this.BasePipelineHandle?.handle ?? default(Interop.Pipeline);
+            pointer->Layout = this.Layout?.handle ?? default(SharpVk.Interop.PipelineLayout);
+            pointer->BasePipelineHandle = this.BasePipelineHandle?.handle ?? default(SharpVk.Interop.Pipeline);
             pointer->BasePipelineIndex = this.BasePipelineIndex;
         }
     }

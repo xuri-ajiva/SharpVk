@@ -12,10 +12,12 @@ namespace SharpVk.Generator.Generation
             services.AddSingleton<NameLookup>();
             services.AddSingleton<ParsedExpressionBuilder>();
             services.AddSingleton<ParsedExpressionTokenCheck>();
+            services.AddSingleton<NamespaceMap>();
 
             services.AddSingleton<IMarshalValueRule, MarshalVoidPointerValue>();
             services.AddSingleton<IMarshalValueRule, MarshalDelegateValue>();
             services.AddSingleton<IMarshalValueRule, MarshalHandleValue>();
+            services.AddSingleton<IMarshalValueRule, MarshalUnionValue>();
             services.AddSingleton<IMarshalValueRule, MarshalStructValue>();
             services.AddSingleton<IMarshalValueRule, MarshalPointerValue>();
             services.AddSingleton<IMarshalValueRule, MarshalSimpleValue>();

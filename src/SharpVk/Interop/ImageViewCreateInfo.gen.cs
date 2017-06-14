@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public StructureType SType; 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
@@ -46,31 +46,31 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public ImageViewCreateFlags Flags; 
+        public SharpVk.ImageViewCreateFlags Flags; 
         
         /// <summary>
         /// 
         /// </summary>
-        public Image Image; 
+        public SharpVk.Interop.Image Image; 
         
         /// <summary>
         /// 
         /// </summary>
-        public ImageViewType ViewType; 
+        public SharpVk.ImageViewType ViewType; 
         
         /// <summary>
         /// 
         /// </summary>
-        public Format Format; 
+        public SharpVk.Format Format; 
         
         /// <summary>
         /// 
         /// </summary>
-        public ComponentMapping Components; 
+        public SharpVk.ComponentMapping Components; 
         
         /// <summary>
         /// 
         /// </summary>
-        public ImageSubresourceRange SubresourceRange; 
+        public SharpVk.ImageSubresourceRange SubresourceRange; 
     }
 }

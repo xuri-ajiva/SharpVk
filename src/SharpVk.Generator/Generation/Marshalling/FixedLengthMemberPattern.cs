@@ -30,7 +30,8 @@ namespace SharpVk.Generator.Generation.Marshalling
             if (source.Type.FixedLength.Type != FixedLengthType.None)
             {
                 string name = source.Name;
-                string memberType = this.nameLookup.Lookup(source.Type, true);
+                string memberType = this.nameLookup.Lookup(source.Type, false);
+                string interopType = this.nameLookup.Lookup(source.Type, true);
 
                 if (this.typeData[source.Type.VkName].Pattern == TypePattern.Primitive)
                 {
@@ -47,15 +48,15 @@ namespace SharpVk.Generator.Generation.Marshalling
                         length = $"Constants.{constant.Name}";
                     }
 
-                    info.InteropFullType = memberType;
+                    info.InteropFullType = interopType;
 
                     name += $"[{length}]";
-                    memberType = "fixed " + memberType;
+                    interopType = "fixed " + interopType;
 
                     info.Interop = new TypedDefinition
                     {
                         Name = name,
-                        Type = memberType
+                        Type = interopType
                     };
 
                     switch (source.Type.VkName)
@@ -95,12 +96,12 @@ namespace SharpVk.Generator.Generation.Marshalling
                         count = int.Parse(constant.Value);
                     }
 
-                    info.InteropFullType = "Interop." + memberType;
+                    info.InteropFullType = interopType;
 
                     info.Interop = new TypedDefinition
                     {
                         Name = name,
-                        Type = memberType,
+                        Type = interopType,
                         Repeats = count
                     };
 

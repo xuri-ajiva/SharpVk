@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineCreateFlags Flags
+        public SharpVk.PipelineCreateFlags Flags
         {
             get;
             set;
@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineShaderStageCreateInfo[] Stages
+        public SharpVk.PipelineShaderStageCreateInfo[] Stages
         {
             get;
             set;
@@ -54,7 +54,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineVertexInputStateCreateInfo VertexInputState
+        public SharpVk.PipelineVertexInputStateCreateInfo VertexInputState
         {
             get;
             set;
@@ -63,7 +63,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineInputAssemblyStateCreateInfo InputAssemblyState
+        public SharpVk.PipelineInputAssemblyStateCreateInfo InputAssemblyState
         {
             get;
             set;
@@ -72,7 +72,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineTessellationStateCreateInfo? TessellationState
+        public SharpVk.PipelineTessellationStateCreateInfo? TessellationState
         {
             get;
             set;
@@ -81,7 +81,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineViewportStateCreateInfo? ViewportState
+        public SharpVk.PipelineViewportStateCreateInfo? ViewportState
         {
             get;
             set;
@@ -90,7 +90,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineRasterizationStateCreateInfo RasterizationState
+        public SharpVk.PipelineRasterizationStateCreateInfo RasterizationState
         {
             get;
             set;
@@ -99,7 +99,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineMultisampleStateCreateInfo? MultisampleState
+        public SharpVk.PipelineMultisampleStateCreateInfo? MultisampleState
         {
             get;
             set;
@@ -108,7 +108,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineDepthStencilStateCreateInfo? DepthStencilState
+        public SharpVk.PipelineDepthStencilStateCreateInfo? DepthStencilState
         {
             get;
             set;
@@ -117,7 +117,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineColorBlendStateCreateInfo? ColorBlendState
+        public SharpVk.PipelineColorBlendStateCreateInfo? ColorBlendState
         {
             get;
             set;
@@ -126,7 +126,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineDynamicStateCreateInfo? DynamicState
+        public SharpVk.PipelineDynamicStateCreateInfo? DynamicState
         {
             get;
             set;
@@ -135,7 +135,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineLayout Layout
+        public SharpVk.PipelineLayout Layout
         {
             get;
             set;
@@ -144,7 +144,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public RenderPass RenderPass
+        public SharpVk.RenderPass RenderPass
         {
             get;
             set;
@@ -162,7 +162,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Pipeline BasePipelineHandle
+        public SharpVk.Pipeline BasePipelineHandle
         {
             get;
             set;
@@ -177,7 +177,7 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.GraphicsPipelineCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.GraphicsPipelineCreateInfo* pointer)
         {
             pointer->SType = StructureType.GraphicsPipelineCreateInfo;
             pointer->Next = null;
@@ -185,7 +185,7 @@ namespace SharpVk
             pointer->StageCount = (uint)(this.Stages?.Length ?? 0);
             if (this.Stages != null)
             {
-                var fieldPointer = (Interop.PipelineShaderStageCreateInfo*)(Interop.HeapUtil.AllocateAndClear<Interop.PipelineShaderStageCreateInfo>(this.Stages.Length).ToPointer());
+                var fieldPointer = (SharpVk.Interop.PipelineShaderStageCreateInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.PipelineShaderStageCreateInfo>(this.Stages.Length).ToPointer());
                 for(int index = 0; index < (uint)(this.Stages.Length); index++)
                 {
                     this.Stages[index].MarshalTo(&fieldPointer[index]);
@@ -196,70 +196,70 @@ namespace SharpVk
             {
                 pointer->Stages = null;
             }
-            pointer->VertexInputState = (Interop.PipelineVertexInputStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineVertexInputStateCreateInfo>());
+            pointer->VertexInputState = (SharpVk.Interop.PipelineVertexInputStateCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PipelineVertexInputStateCreateInfo>());
             this.VertexInputState.MarshalTo(pointer->VertexInputState);
-            pointer->InputAssemblyState = (Interop.PipelineInputAssemblyStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineInputAssemblyStateCreateInfo>());
+            pointer->InputAssemblyState = (SharpVk.Interop.PipelineInputAssemblyStateCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PipelineInputAssemblyStateCreateInfo>());
             this.InputAssemblyState.MarshalTo(pointer->InputAssemblyState);
             if (this.TessellationState != null)
             {
-                pointer->TessellationState = (Interop.PipelineTessellationStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineTessellationStateCreateInfo>());
+                pointer->TessellationState = (SharpVk.Interop.PipelineTessellationStateCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PipelineTessellationStateCreateInfo>());
                 this.TessellationState.Value.MarshalTo(pointer->TessellationState);
             }
             else
             {
-                pointer->TessellationState = default(Interop.PipelineTessellationStateCreateInfo*);
+                pointer->TessellationState = default(SharpVk.Interop.PipelineTessellationStateCreateInfo*);
             }
             if (this.ViewportState != null)
             {
-                pointer->ViewportState = (Interop.PipelineViewportStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineViewportStateCreateInfo>());
+                pointer->ViewportState = (SharpVk.Interop.PipelineViewportStateCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PipelineViewportStateCreateInfo>());
                 this.ViewportState.Value.MarshalTo(pointer->ViewportState);
             }
             else
             {
-                pointer->ViewportState = default(Interop.PipelineViewportStateCreateInfo*);
+                pointer->ViewportState = default(SharpVk.Interop.PipelineViewportStateCreateInfo*);
             }
-            pointer->RasterizationState = (Interop.PipelineRasterizationStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineRasterizationStateCreateInfo>());
+            pointer->RasterizationState = (SharpVk.Interop.PipelineRasterizationStateCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PipelineRasterizationStateCreateInfo>());
             this.RasterizationState.MarshalTo(pointer->RasterizationState);
             if (this.MultisampleState != null)
             {
-                pointer->MultisampleState = (Interop.PipelineMultisampleStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineMultisampleStateCreateInfo>());
+                pointer->MultisampleState = (SharpVk.Interop.PipelineMultisampleStateCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PipelineMultisampleStateCreateInfo>());
                 this.MultisampleState.Value.MarshalTo(pointer->MultisampleState);
             }
             else
             {
-                pointer->MultisampleState = default(Interop.PipelineMultisampleStateCreateInfo*);
+                pointer->MultisampleState = default(SharpVk.Interop.PipelineMultisampleStateCreateInfo*);
             }
             if (this.DepthStencilState != null)
             {
-                pointer->DepthStencilState = (Interop.PipelineDepthStencilStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineDepthStencilStateCreateInfo>());
+                pointer->DepthStencilState = (SharpVk.Interop.PipelineDepthStencilStateCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PipelineDepthStencilStateCreateInfo>());
                 this.DepthStencilState.Value.MarshalTo(pointer->DepthStencilState);
             }
             else
             {
-                pointer->DepthStencilState = default(Interop.PipelineDepthStencilStateCreateInfo*);
+                pointer->DepthStencilState = default(SharpVk.Interop.PipelineDepthStencilStateCreateInfo*);
             }
             if (this.ColorBlendState != null)
             {
-                pointer->ColorBlendState = (Interop.PipelineColorBlendStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineColorBlendStateCreateInfo>());
+                pointer->ColorBlendState = (SharpVk.Interop.PipelineColorBlendStateCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PipelineColorBlendStateCreateInfo>());
                 this.ColorBlendState.Value.MarshalTo(pointer->ColorBlendState);
             }
             else
             {
-                pointer->ColorBlendState = default(Interop.PipelineColorBlendStateCreateInfo*);
+                pointer->ColorBlendState = default(SharpVk.Interop.PipelineColorBlendStateCreateInfo*);
             }
             if (this.DynamicState != null)
             {
-                pointer->DynamicState = (Interop.PipelineDynamicStateCreateInfo*)(Interop.HeapUtil.Allocate<Interop.PipelineDynamicStateCreateInfo>());
+                pointer->DynamicState = (SharpVk.Interop.PipelineDynamicStateCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PipelineDynamicStateCreateInfo>());
                 this.DynamicState.Value.MarshalTo(pointer->DynamicState);
             }
             else
             {
-                pointer->DynamicState = default(Interop.PipelineDynamicStateCreateInfo*);
+                pointer->DynamicState = default(SharpVk.Interop.PipelineDynamicStateCreateInfo*);
             }
-            pointer->Layout = this.Layout?.handle ?? default(Interop.PipelineLayout);
-            pointer->RenderPass = this.RenderPass?.handle ?? default(Interop.RenderPass);
+            pointer->Layout = this.Layout?.handle ?? default(SharpVk.Interop.PipelineLayout);
+            pointer->RenderPass = this.RenderPass?.handle ?? default(SharpVk.Interop.RenderPass);
             pointer->Subpass = this.Subpass;
-            pointer->BasePipelineHandle = this.BasePipelineHandle?.handle ?? default(Interop.Pipeline);
+            pointer->BasePipelineHandle = this.BasePipelineHandle?.handle ?? default(SharpVk.Interop.Pipeline);
             pointer->BasePipelineIndex = this.BasePipelineIndex;
         }
     }

@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public BufferCreateFlags Flags
+        public SharpVk.BufferCreateFlags Flags
         {
             get;
             set;
@@ -54,7 +54,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public BufferUsageFlags Usage
+        public SharpVk.BufferUsageFlags Usage
         {
             get;
             set;
@@ -63,7 +63,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharingMode SharingMode
+        public SharpVk.SharingMode SharingMode
         {
             get;
             set;
@@ -78,7 +78,7 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.BufferCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.BufferCreateInfo* pointer)
         {
             pointer->SType = StructureType.BufferCreateInfo;
             pointer->Next = null;

@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineColorBlendAttachmentState(Bool32 blendEnable, BlendFactor sourceColorBlendFactor, BlendFactor destinationColorBlendFactor, BlendOp colorBlendOp, BlendFactor sourceAlphaBlendFactor, BlendFactor destinationAlphaBlendFactor, BlendOp alphaBlendOp, ColorComponentFlags colorWriteMask)
+        public PipelineColorBlendAttachmentState(Bool32 blendEnable, SharpVk.BlendFactor sourceColorBlendFactor, SharpVk.BlendFactor destinationColorBlendFactor, SharpVk.BlendOp colorBlendOp, SharpVk.BlendFactor sourceAlphaBlendFactor, SharpVk.BlendFactor destinationAlphaBlendFactor, SharpVk.BlendOp alphaBlendOp, SharpVk.ColorComponentFlags colorWriteMask)
         {
             this.BlendEnable = blendEnable;
             this.SourceColorBlendFactor = sourceColorBlendFactor;
@@ -56,36 +56,36 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public BlendFactor SourceColorBlendFactor; 
+        public SharpVk.BlendFactor SourceColorBlendFactor; 
         
         /// <summary>
         /// 
         /// </summary>
-        public BlendFactor DestinationColorBlendFactor; 
+        public SharpVk.BlendFactor DestinationColorBlendFactor; 
         
         /// <summary>
         /// 
         /// </summary>
-        public BlendOp ColorBlendOp; 
+        public SharpVk.BlendOp ColorBlendOp; 
         
         /// <summary>
         /// 
         /// </summary>
-        public BlendFactor SourceAlphaBlendFactor; 
+        public SharpVk.BlendFactor SourceAlphaBlendFactor; 
         
         /// <summary>
         /// 
         /// </summary>
-        public BlendFactor DestinationAlphaBlendFactor; 
+        public SharpVk.BlendFactor DestinationAlphaBlendFactor; 
         
         /// <summary>
         /// 
         /// </summary>
-        public BlendOp AlphaBlendOp; 
+        public SharpVk.BlendOp AlphaBlendOp; 
         
         /// <summary>
         /// 
         /// </summary>
-        public ColorComponentFlags ColorWriteMask; 
+        public SharpVk.ColorComponentFlags ColorWriteMask; 
     }
 }

@@ -41,31 +41,31 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public static unsafe Instance Create(InstanceCreateInfo createInfo, AllocationCallbacks? allocator = null)
+        public static unsafe SharpVk.Instance Create(SharpVk.InstanceCreateInfo createInfo, SharpVk.AllocationCallbacks? allocator = null)
         {
             try
             {
-                Instance result = default(Instance);
-                Interop.InstanceCreateInfo* marshalledCreateInfo = default(Interop.InstanceCreateInfo*);
-                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
-                Interop.Instance marshalledInstance = default(Interop.Instance);
-                marshalledCreateInfo = (Interop.InstanceCreateInfo*)(Interop.HeapUtil.Allocate<Interop.InstanceCreateInfo>());
+                SharpVk.Instance result = default(SharpVk.Instance);
+                SharpVk.Interop.InstanceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.InstanceCreateInfo*);
+                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                SharpVk.Interop.Instance marshalledInstance = default(SharpVk.Interop.Instance);
+                marshalledCreateInfo = (SharpVk.Interop.InstanceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.InstanceCreateInfo>());
                 createInfo.MarshalTo(marshalledCreateInfo);
                 if (allocator != null)
                 {
-                    marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
-                    marshalledAllocator = default(Interop.AllocationCallbacks*);
+                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
                 Result methodResult = Interop.Commands.vkCreateInstance(marshalledCreateInfo, marshalledAllocator, &marshalledInstance);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                result = new Instance(marshalledInstance);
+                result = new SharpVk.Instance(marshalledInstance);
                 return result;
             }
             finally
@@ -77,19 +77,19 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void Destroy(AllocationCallbacks? allocator = null)
+        public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = null)
         {
             try
             {
-                Interop.AllocationCallbacks* marshalledAllocator = default(Interop.AllocationCallbacks*);
+                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 if (allocator != null)
                 {
-                    marshalledAllocator = (Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<Interop.AllocationCallbacks>());
+                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
                     allocator.Value.MarshalTo(marshalledAllocator);
                 }
                 else
                 {
-                    marshalledAllocator = default(Interop.AllocationCallbacks*);
+                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
                 Interop.Commands.vkDestroyInstance(this.handle, marshalledAllocator);
             }
@@ -102,26 +102,26 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe PhysicalDevice[] EnumeratePhysicalDevices()
+        public unsafe SharpVk.PhysicalDevice[] EnumeratePhysicalDevices()
         {
             try
             {
-                PhysicalDevice[] result = default(PhysicalDevice[]);
+                SharpVk.PhysicalDevice[] result = default(SharpVk.PhysicalDevice[]);
                 uint physicalDeviceCount = default(uint);
-                Interop.PhysicalDevice* marshalledPhysicalDevices = default(Interop.PhysicalDevice*);
+                SharpVk.Interop.PhysicalDevice* marshalledPhysicalDevices = default(SharpVk.Interop.PhysicalDevice*);
                 Result methodResult = Interop.Commands.vkEnumeratePhysicalDevices(this.handle, &physicalDeviceCount, marshalledPhysicalDevices);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                marshalledPhysicalDevices = (Interop.PhysicalDevice*)(Interop.HeapUtil.Allocate<Interop.PhysicalDevice>((uint)(physicalDeviceCount)));
+                marshalledPhysicalDevices = (SharpVk.Interop.PhysicalDevice*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDevice>((uint)(physicalDeviceCount)));
                 Interop.Commands.vkEnumeratePhysicalDevices(this.handle, &physicalDeviceCount, marshalledPhysicalDevices);
                 if (marshalledPhysicalDevices != null)
                 {
-                    var fieldPointer = new PhysicalDevice[(uint)(physicalDeviceCount)];
+                    var fieldPointer = new SharpVk.PhysicalDevice[(uint)(physicalDeviceCount)];
                     for(int index = 0; index < (uint)(physicalDeviceCount); index++)
                     {
-                        fieldPointer[index] = new PhysicalDevice(this.handle, marshalledPhysicalDevices[index]);
+                        fieldPointer[index] = new SharpVk.PhysicalDevice(this.handle, marshalledPhysicalDevices[index]);
                     }
                     result = fieldPointer;
                 }
@@ -155,26 +155,26 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public static unsafe LayerProperties[] EnumerateLayerProperties()
+        public static unsafe SharpVk.LayerProperties[] EnumerateLayerProperties()
         {
             try
             {
-                LayerProperties[] result = default(LayerProperties[]);
+                SharpVk.LayerProperties[] result = default(SharpVk.LayerProperties[]);
                 uint propertyCount = default(uint);
-                Interop.LayerProperties* marshalledProperties = default(Interop.LayerProperties*);
+                SharpVk.Interop.LayerProperties* marshalledProperties = default(SharpVk.Interop.LayerProperties*);
                 Result methodResult = Interop.Commands.vkEnumerateInstanceLayerProperties(&propertyCount, marshalledProperties);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                marshalledProperties = (Interop.LayerProperties*)(Interop.HeapUtil.Allocate<Interop.LayerProperties>((uint)(propertyCount)));
+                marshalledProperties = (SharpVk.Interop.LayerProperties*)(Interop.HeapUtil.Allocate<SharpVk.Interop.LayerProperties>((uint)(propertyCount)));
                 Interop.Commands.vkEnumerateInstanceLayerProperties(&propertyCount, marshalledProperties);
                 if (marshalledProperties != null)
                 {
-                    var fieldPointer = new LayerProperties[(uint)(propertyCount)];
+                    var fieldPointer = new SharpVk.LayerProperties[(uint)(propertyCount)];
                     for(int index = 0; index < (uint)(propertyCount); index++)
                     {
-                        fieldPointer[index] = LayerProperties.MarshalFrom(&marshalledProperties[index]);
+                        fieldPointer[index] = SharpVk.LayerProperties.MarshalFrom(&marshalledProperties[index]);
                     }
                     result = fieldPointer;
                 }
@@ -193,26 +193,26 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public static unsafe ExtensionProperties[] EnumerateExtensionProperties(string layerName)
+        public static unsafe SharpVk.ExtensionProperties[] EnumerateExtensionProperties(string layerName)
         {
             try
             {
-                ExtensionProperties[] result = default(ExtensionProperties[]);
+                SharpVk.ExtensionProperties[] result = default(SharpVk.ExtensionProperties[]);
                 uint propertyCount = default(uint);
-                Interop.ExtensionProperties* marshalledProperties = default(Interop.ExtensionProperties*);
+                SharpVk.Interop.ExtensionProperties* marshalledProperties = default(SharpVk.Interop.ExtensionProperties*);
                 Result methodResult = Interop.Commands.vkEnumerateInstanceExtensionProperties(Interop.HeapUtil.MarshalTo(layerName), &propertyCount, marshalledProperties);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                marshalledProperties = (Interop.ExtensionProperties*)(Interop.HeapUtil.Allocate<Interop.ExtensionProperties>((uint)(propertyCount)));
+                marshalledProperties = (SharpVk.Interop.ExtensionProperties*)(Interop.HeapUtil.Allocate<SharpVk.Interop.ExtensionProperties>((uint)(propertyCount)));
                 Interop.Commands.vkEnumerateInstanceExtensionProperties(Interop.HeapUtil.MarshalTo(layerName), &propertyCount, marshalledProperties);
                 if (marshalledProperties != null)
                 {
-                    var fieldPointer = new ExtensionProperties[(uint)(propertyCount)];
+                    var fieldPointer = new SharpVk.ExtensionProperties[(uint)(propertyCount)];
                     for(int index = 0; index < (uint)(propertyCount); index++)
                     {
-                        fieldPointer[index] = ExtensionProperties.MarshalFrom(&marshalledProperties[index]);
+                        fieldPointer[index] = SharpVk.ExtensionProperties.MarshalFrom(&marshalledProperties[index]);
                     }
                     result = fieldPointer;
                 }

@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ImageSubresourceRange(ImageAspectFlags aspectMask, uint baseMipLevel, uint levelCount, uint baseArrayLayer, uint layerCount)
+        public ImageSubresourceRange(SharpVk.ImageAspectFlags aspectMask, uint baseMipLevel, uint levelCount, uint baseArrayLayer, uint layerCount)
         {
             this.AspectMask = aspectMask;
             this.BaseMipLevel = baseMipLevel;
@@ -48,7 +48,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ImageAspectFlags AspectMask; 
+        public SharpVk.ImageAspectFlags AspectMask; 
         
         /// <summary>
         /// 

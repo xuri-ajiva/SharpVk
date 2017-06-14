@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineShaderStageCreateFlags Flags
+        public SharpVk.PipelineShaderStageCreateFlags Flags
         {
             get;
             set;
@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ShaderStageFlags Stage
+        public SharpVk.ShaderStageFlags Stage
         {
             get;
             set;
@@ -54,7 +54,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ShaderModule Module
+        public SharpVk.ShaderModule Module
         {
             get;
             set;
@@ -72,28 +72,28 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SpecializationInfo? SpecializationInfo
+        public SharpVk.SpecializationInfo? SpecializationInfo
         {
             get;
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.PipelineShaderStageCreateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.PipelineShaderStageCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineShaderStageCreateInfo;
             pointer->Next = null;
             pointer->Flags = this.Flags;
             pointer->Stage = this.Stage;
-            pointer->Module = this.Module?.handle ?? default(Interop.ShaderModule);
+            pointer->Module = this.Module?.handle ?? default(SharpVk.Interop.ShaderModule);
             pointer->Name = Interop.HeapUtil.MarshalTo(this.Name);
             if (this.SpecializationInfo != null)
             {
-                pointer->SpecializationInfo = (Interop.SpecializationInfo*)(Interop.HeapUtil.Allocate<Interop.SpecializationInfo>());
+                pointer->SpecializationInfo = (SharpVk.Interop.SpecializationInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.SpecializationInfo>());
                 this.SpecializationInfo.Value.MarshalTo(pointer->SpecializationInfo);
             }
             else
             {
-                pointer->SpecializationInfo = default(Interop.SpecializationInfo*);
+                pointer->SpecializationInfo = default(SharpVk.Interop.SpecializationInfo*);
             }
         }
     }

@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public CommandPool CommandPool
+        public SharpVk.CommandPool CommandPool
         {
             get;
             set;
@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public CommandBufferLevel Level
+        public SharpVk.CommandBufferLevel Level
         {
             get;
             set;
@@ -60,11 +60,11 @@ namespace SharpVk
             set;
         }
         
-        internal unsafe void MarshalTo(Interop.CommandBufferAllocateInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.CommandBufferAllocateInfo* pointer)
         {
             pointer->SType = StructureType.CommandBufferAllocateInfo;
             pointer->Next = null;
-            pointer->CommandPool = this.CommandPool?.handle ?? default(Interop.CommandPool);
+            pointer->CommandPool = this.CommandPool?.handle ?? default(SharpVk.Interop.CommandPool);
             pointer->Level = this.Level;
             pointer->CommandBufferCount = this.CommandBufferCount;
         }

@@ -36,7 +36,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public StructureType SType; 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
@@ -46,17 +46,17 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public PipelineShaderStageCreateFlags Flags; 
+        public SharpVk.PipelineShaderStageCreateFlags Flags; 
         
         /// <summary>
         /// 
         /// </summary>
-        public ShaderStageFlags Stage; 
+        public SharpVk.ShaderStageFlags Stage; 
         
         /// <summary>
         /// 
         /// </summary>
-        public ShaderModule Module; 
+        public SharpVk.Interop.ShaderModule Module; 
         
         /// <summary>
         /// 
@@ -66,6 +66,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public SpecializationInfo* SpecializationInfo; 
+        public SharpVk.Interop.SpecializationInfo* SpecializationInfo; 
     }
 }
