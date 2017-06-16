@@ -44,7 +44,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = null)
+        public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {

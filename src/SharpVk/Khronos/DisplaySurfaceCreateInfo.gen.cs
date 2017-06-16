@@ -36,7 +36,7 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Khronos.DisplaySurfaceCreateFlags Flags
+        public SharpVk.Khronos.DisplaySurfaceCreateFlags? Flags
         {
             get;
             set;
@@ -109,7 +109,14 @@ namespace SharpVk.Khronos
         {
             pointer->SType = StructureType.DisplaySurfaceCreateInfoKhr;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.Khronos.DisplaySurfaceCreateFlags);
+            }
             pointer->DisplayMode = this.DisplayMode?.handle ?? default(SharpVk.Interop.Khronos.DisplayMode);
             pointer->PlaneIndex = this.PlaneIndex;
             pointer->PlaneStackIndex = this.PlaneStackIndex;

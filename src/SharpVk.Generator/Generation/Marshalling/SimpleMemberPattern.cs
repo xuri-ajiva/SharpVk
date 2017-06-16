@@ -22,20 +22,21 @@ namespace SharpVk.Generator.Generation.Marshalling
             this.typeData = typeData;
         }
 
-        public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, Func<string, Action<ExpressionBuilder>> getHandle, MemberPatternInfo info)
+        public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, MemberPatternContext context, MemberPatternInfo info)
         {
             var marshalling = this.marshallingRules.ApplyFirst(source.Type);
 
             bool isOptional = source.IsOptional && this.typeData[source.Type.VkName].Pattern != TypePattern.Delegate
-                                                    && this.typeData[source.Type.VkName].Pattern != TypePattern.Handle
-                                                    && this.typeData[source.Type.VkName].Pattern != TypePattern.Enum;
+                                                    && this.typeData[source.Type.VkName].Pattern != TypePattern.Handle;
 
-            info.Public = new TypedDefinition
+            string memberType = marshalling.MemberType + (isOptional ? "?" : "");
+
+            info.Public.Add(new TypedDefinition
             {
                 Name = source.Name,
-                Type = marshalling.MemberType + (isOptional ? "?" : ""),
-                DefaultValue = isOptional ? Null : null
-            };
+                Type = memberType,
+                DefaultValue = isOptional ? Default(memberType) : null
+            });
 
             string typeName = this.nameLookup.Lookup(source.Type, true);
 
@@ -55,8 +56,8 @@ namespace SharpVk.Generator.Generation.Marshalling
             info.MarshalTo.Add((getTarget, getValue) =>
             {
                 var valueExpression = isOptional
-                                        ? marshalling.BuildMarshalToValueExpression(Member(getValue(source.Name), "Value"), getHandle)
-                                        : marshalling.BuildMarshalToValueExpression(getValue(source.Name), getHandle);
+                                        ? marshalling.BuildMarshalToValueExpression(Member(getValue(source.Name), "Value"), context.GetHandle)
+                                        : marshalling.BuildMarshalToValueExpression(getValue(source.Name), context.GetHandle);
                 var assignment = new AssignAction
                 {
                     ValueExpression = valueExpression,
@@ -90,7 +91,7 @@ namespace SharpVk.Generator.Generation.Marshalling
 
             info.MarshalFrom.Add((getTarget, getValue) => new AssignAction
             {
-                ValueExpression = marshalling.BuildMarshalFromValueExpression(getValue(source.Name), getHandle),
+                ValueExpression = marshalling.BuildMarshalFromValueExpression(getValue(source.Name), context.GetHandle),
                 TargetExpression = getTarget(source.Name),
                 MemberType = marshalling.MemberType,
                 Type = marshalling.MarshalFromActionType

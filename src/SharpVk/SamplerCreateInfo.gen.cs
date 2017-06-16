@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.SamplerCreateFlags Flags
+        public SharpVk.SamplerCreateFlags? Flags
         {
             get;
             set;
@@ -181,7 +181,14 @@ namespace SharpVk
         {
             pointer->SType = StructureType.SamplerCreateInfo;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.SamplerCreateFlags);
+            }
             pointer->MagFilter = this.MagFilter;
             pointer->MinFilter = this.MinFilter;
             pointer->MipmapMode = this.MipmapMode;

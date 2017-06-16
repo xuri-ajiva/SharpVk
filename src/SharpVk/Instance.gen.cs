@@ -41,7 +41,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public static unsafe SharpVk.Instance Create(SharpVk.InstanceCreateInfo createInfo, SharpVk.AllocationCallbacks? allocator = null)
+        public static unsafe SharpVk.Instance Create(string[] enabledLayerNames, string[] enabledExtensionNames, SharpVk.InstanceCreateFlags? flags = default(SharpVk.InstanceCreateFlags?), SharpVk.ApplicationInfo? applicationInfo = default(SharpVk.ApplicationInfo?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
@@ -49,8 +49,27 @@ namespace SharpVk
                 SharpVk.Interop.InstanceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.InstanceCreateInfo*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Instance marshalledInstance = default(SharpVk.Interop.Instance);
-                marshalledCreateInfo = (SharpVk.Interop.InstanceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.InstanceCreateInfo>());
-                createInfo.MarshalTo(marshalledCreateInfo);
+                marshalledCreateInfo->SType = StructureType.InstanceCreateInfo;
+                marshalledCreateInfo->Next = null;
+                if (flags != null)
+                {
+                    marshalledCreateInfo->Flags = flags.Value;
+                }
+                else
+                {
+                    marshalledCreateInfo->Flags = default(SharpVk.InstanceCreateFlags);
+                }
+                if (applicationInfo != null)
+                {
+                    marshalledCreateInfo->ApplicationInfo = (SharpVk.Interop.ApplicationInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.ApplicationInfo>());
+                    applicationInfo.Value.MarshalTo(marshalledCreateInfo->ApplicationInfo);
+                }
+                else
+                {
+                    marshalledCreateInfo->ApplicationInfo = default(SharpVk.Interop.ApplicationInfo*);
+                }
+                marshalledCreateInfo->EnabledLayerCount = (uint)(enabledLayerNames?.Length ?? 0);
+                marshalledCreateInfo->EnabledExtensionCount = (uint)(enabledExtensionNames?.Length ?? 0);
                 if (allocator != null)
                 {
                     marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
@@ -77,7 +96,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = null)
+        public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {

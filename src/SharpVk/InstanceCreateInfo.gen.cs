@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.InstanceCreateFlags Flags
+        public SharpVk.InstanceCreateFlags? Flags
         {
             get;
             set;
@@ -73,7 +73,14 @@ namespace SharpVk
         {
             pointer->SType = StructureType.InstanceCreateInfo;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.InstanceCreateFlags);
+            }
             if (this.ApplicationInfo != null)
             {
                 pointer->ApplicationInfo = (SharpVk.Interop.ApplicationInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.ApplicationInfo>());

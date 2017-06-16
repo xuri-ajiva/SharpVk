@@ -36,7 +36,7 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Multivendor.DebugReportFlags Flags
+        public SharpVk.Multivendor.DebugReportFlags? Flags
         {
             get;
             set;
@@ -64,7 +64,14 @@ namespace SharpVk.Multivendor
         {
             pointer->SType = StructureType.DebugReportCallbackCreateInfoExt;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.Multivendor.DebugReportFlags);
+            }
             pointer->Callback = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(this.Callback);
             if (this.UserData != null)
             {

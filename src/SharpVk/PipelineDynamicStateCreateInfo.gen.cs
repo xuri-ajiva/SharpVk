@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.PipelineDynamicStateCreateFlags Flags
+        public SharpVk.PipelineDynamicStateCreateFlags? Flags
         {
             get;
             set;
@@ -55,7 +55,14 @@ namespace SharpVk
         {
             pointer->SType = StructureType.PipelineDynamicStateCreateInfo;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.PipelineDynamicStateCreateFlags);
+            }
             pointer->DynamicStateCount = (uint)(this.DynamicStates?.Length ?? 0);
             if (this.DynamicStates != null)
             {

@@ -36,7 +36,7 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Khronos.DescriptorUpdateTemplateCreateFlags Flags
+        public SharpVk.Khronos.DescriptorUpdateTemplateCreateFlags? Flags
         {
             get;
             set;
@@ -72,7 +72,7 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.PipelineBindPoint PipelineBindPoint
+        public SharpVk.PipelineBindPoint? PipelineBindPoint
         {
             get;
             set;
@@ -100,7 +100,14 @@ namespace SharpVk.Khronos
         {
             pointer->SType = StructureType.DescriptorUpdateTemplateCreateInfoKhr;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.Khronos.DescriptorUpdateTemplateCreateFlags);
+            }
             pointer->DescriptorUpdateEntryCount = (uint)(this.DescriptorUpdateEntries?.Length ?? 0);
             if (this.DescriptorUpdateEntries != null)
             {
@@ -117,7 +124,14 @@ namespace SharpVk.Khronos
             }
             pointer->TemplateType = this.TemplateType;
             pointer->DescriptorSetLayout = this.DescriptorSetLayout?.handle ?? default(SharpVk.Interop.DescriptorSetLayout);
-            pointer->PipelineBindPoint = this.PipelineBindPoint;
+            if (this.PipelineBindPoint != null)
+            {
+                pointer->PipelineBindPoint = this.PipelineBindPoint.Value;
+            }
+            else
+            {
+                pointer->PipelineBindPoint = default(SharpVk.PipelineBindPoint);
+            }
             pointer->PipelineLayout = this.PipelineLayout?.handle ?? default(SharpVk.Interop.PipelineLayout);
             if (this.Set != null)
             {

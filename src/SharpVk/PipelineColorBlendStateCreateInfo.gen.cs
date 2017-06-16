@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.PipelineColorBlendStateCreateFlags Flags
+        public SharpVk.PipelineColorBlendStateCreateFlags? Flags
         {
             get;
             set;
@@ -73,7 +73,14 @@ namespace SharpVk
         {
             pointer->SType = StructureType.PipelineColorBlendStateCreateInfo;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.PipelineColorBlendStateCreateFlags);
+            }
             pointer->LogicOpEnable = this.LogicOpEnable;
             pointer->LogicOp = this.LogicOp;
             pointer->AttachmentCount = (uint)(this.Attachments?.Length ?? 0);

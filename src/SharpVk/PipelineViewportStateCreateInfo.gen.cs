@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.PipelineViewportStateCreateFlags Flags
+        public SharpVk.PipelineViewportStateCreateFlags? Flags
         {
             get;
             set;
@@ -64,7 +64,14 @@ namespace SharpVk
         {
             pointer->SType = StructureType.PipelineViewportStateCreateInfo;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.PipelineViewportStateCreateFlags);
+            }
             pointer->ViewportCount = (uint)(this.Viewports?.Length ?? 0);
             if (this.Viewports != null)
             {

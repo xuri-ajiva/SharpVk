@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.QueryPoolCreateFlags Flags
+        public SharpVk.QueryPoolCreateFlags? Flags
         {
             get;
             set;
@@ -63,7 +63,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.QueryPipelineStatisticFlags PipelineStatistics
+        public SharpVk.QueryPipelineStatisticFlags? PipelineStatistics
         {
             get;
             set;
@@ -73,10 +73,24 @@ namespace SharpVk
         {
             pointer->SType = StructureType.QueryPoolCreateInfo;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.QueryPoolCreateFlags);
+            }
             pointer->QueryType = this.QueryType;
             pointer->QueryCount = this.QueryCount;
-            pointer->PipelineStatistics = this.PipelineStatistics;
+            if (this.PipelineStatistics != null)
+            {
+                pointer->PipelineStatistics = this.PipelineStatistics.Value;
+            }
+            else
+            {
+                pointer->PipelineStatistics = default(SharpVk.QueryPipelineStatisticFlags);
+            }
         }
     }
 }

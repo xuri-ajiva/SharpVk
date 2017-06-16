@@ -90,7 +90,7 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Khronos.SurfaceTransformFlags SupportedTransforms
+        public SharpVk.Khronos.SurfaceTransformFlags? SupportedTransforms
         {
             get;
             set;
@@ -108,7 +108,7 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Khronos.CompositeAlphaFlags SupportedCompositeAlpha
+        public SharpVk.Khronos.CompositeAlphaFlags? SupportedCompositeAlpha
         {
             get;
             set;
@@ -117,7 +117,7 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.ImageUsageFlags SupportedUsageFlags
+        public SharpVk.ImageUsageFlags? SupportedUsageFlags
         {
             get;
             set;
@@ -126,7 +126,7 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Multivendor.SurfaceCounterFlags SupportedSurfaceCounters
+        public SharpVk.Multivendor.SurfaceCounterFlags? SupportedSurfaceCounters
         {
             get;
             set;

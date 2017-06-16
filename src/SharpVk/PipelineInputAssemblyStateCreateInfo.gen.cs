@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.PipelineInputAssemblyStateCreateFlags Flags
+        public SharpVk.PipelineInputAssemblyStateCreateFlags? Flags
         {
             get;
             set;
@@ -64,7 +64,14 @@ namespace SharpVk
         {
             pointer->SType = StructureType.PipelineInputAssemblyStateCreateInfo;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.PipelineInputAssemblyStateCreateFlags);
+            }
             pointer->Topology = this.Topology;
             pointer->PrimitiveRestartEnable = this.PrimitiveRestartEnable;
         }

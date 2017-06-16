@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.DeviceCreateFlags Flags
+        public SharpVk.DeviceCreateFlags? Flags
         {
             get;
             set;
@@ -82,7 +82,14 @@ namespace SharpVk
         {
             pointer->SType = StructureType.DeviceCreateInfo;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.DeviceCreateFlags);
+            }
             pointer->QueueCreateInfoCount = (uint)(this.QueueCreateInfos?.Length ?? 0);
             if (this.QueueCreateInfos != null)
             {

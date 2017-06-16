@@ -36,7 +36,7 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Khronos.XcbSurfaceCreateFlags Flags
+        public SharpVk.Khronos.XcbSurfaceCreateFlags? Flags
         {
             get;
             set;
@@ -64,7 +64,14 @@ namespace SharpVk.Khronos
         {
             pointer->SType = StructureType.XcbSurfaceCreateInfoKhr;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.Khronos.XcbSurfaceCreateFlags);
+            }
             pointer->Connection = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
             *pointer->Connection = this.Connection;
             pointer->Window = this.Window;

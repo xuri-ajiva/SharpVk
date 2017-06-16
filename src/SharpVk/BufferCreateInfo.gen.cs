@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.BufferCreateFlags Flags
+        public SharpVk.BufferCreateFlags? Flags
         {
             get;
             set;
@@ -82,7 +82,14 @@ namespace SharpVk
         {
             pointer->SType = StructureType.BufferCreateInfo;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.BufferCreateFlags);
+            }
             pointer->Size = this.Size;
             pointer->Usage = this.Usage;
             pointer->SharingMode = this.SharingMode;

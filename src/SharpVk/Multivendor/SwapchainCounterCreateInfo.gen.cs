@@ -36,7 +36,7 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Multivendor.SurfaceCounterFlags SurfaceCounters
+        public SharpVk.Multivendor.SurfaceCounterFlags? SurfaceCounters
         {
             get;
             set;
@@ -46,7 +46,14 @@ namespace SharpVk.Multivendor
         {
             pointer->SType = StructureType.SwapchainCounterCreateInfoExt;
             pointer->Next = null;
-            pointer->SurfaceCounters = this.SurfaceCounters;
+            if (this.SurfaceCounters != null)
+            {
+                pointer->SurfaceCounters = this.SurfaceCounters.Value;
+            }
+            else
+            {
+                pointer->SurfaceCounters = default(SharpVk.Multivendor.SurfaceCounterFlags);
+            }
         }
     }
 }

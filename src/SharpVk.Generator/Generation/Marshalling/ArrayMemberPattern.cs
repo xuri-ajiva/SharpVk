@@ -22,7 +22,7 @@ namespace SharpVk.Generator.Generation.Marshalling
             this.expressionBuilder = expressionBuilder;
         }
 
-        public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, Func<string, Action<ExpressionBuilder>> getHandle, MemberPatternInfo info)
+        public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, MemberPatternContext context, MemberPatternInfo info)
         {
             if (source.Dimensions != null)
             {
@@ -36,22 +36,22 @@ namespace SharpVk.Generator.Generation.Marshalling
 
                 if (source.Dimensions.Length == 2)
                 {
-                    info.Public = new TypedDefinition
+                    info.Public.Add(new TypedDefinition
                     {
                         Name = source.Name,
                         Type = "string[]"
-                    };
+                    });
                 }
                 else if (source.Dimensions.Length == 1)
                 {
                     switch (source.Dimensions[0].Type)
                     {
                         case LenType.NullTerminated:
-                            info.Public = new TypedDefinition
+                            info.Public.Add(new TypedDefinition
                             {
                                 Name = source.Name,
                                 Type = "string"
-                            };
+                            });
 
                             info.InteropFullType = typeName;
 
@@ -89,11 +89,11 @@ namespace SharpVk.Generator.Generation.Marshalling
                                 info.InteropFullType += new string('*', source.Type.PointerType.GetPointerCount());
                             }
 
-                            info.Public = new TypedDefinition
+                            info.Public.Add(new TypedDefinition
                             {
                                 Name = source.Name,
                                 Type = marshalling.MemberType + "[]"
-                            };
+                            });
 
                             info.MarshalTo.Add((getTarget, getValue) => new AssignAction
                             {
@@ -104,7 +104,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                                 Type = marshalling.MarshalToActionType,
                                 NullCheckExpression = IsNotEqual(getValue(source.Name), Null),
                                 LengthExpression = Member(getValue(source.Name), "Length"),
-                                ValueExpression = marshalling.BuildMarshalToValueExpression(Index(getValue(source.Name), Variable("index")), getHandle)
+                                ValueExpression = marshalling.BuildMarshalToValueExpression(Index(getValue(source.Name), Variable("index")), context.GetHandle)
                             });
 
                             Action<ExpressionBuilder> lenValue = null;
@@ -128,7 +128,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                                 Type = marshalling.MarshalFromActionType,
                                 NullCheckExpression = IsNotEqual(getValue(source.Name), Null),
                                 LengthExpression = lenValue,
-                                ValueExpression = marshalling.BuildMarshalFromValueExpression(Index(getValue(source.Name), Variable("index")), getHandle)
+                                ValueExpression = marshalling.BuildMarshalFromValueExpression(Index(getValue(source.Name), Variable("index")), context.GetHandle)
                             });
                             break;
                     }

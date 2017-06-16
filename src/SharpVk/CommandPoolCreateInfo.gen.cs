@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.CommandPoolCreateFlags Flags
+        public SharpVk.CommandPoolCreateFlags? Flags
         {
             get;
             set;
@@ -55,7 +55,14 @@ namespace SharpVk
         {
             pointer->SType = StructureType.CommandPoolCreateInfo;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.CommandPoolCreateFlags);
+            }
             pointer->QueueFamilyIndex = this.QueueFamilyIndex;
         }
     }

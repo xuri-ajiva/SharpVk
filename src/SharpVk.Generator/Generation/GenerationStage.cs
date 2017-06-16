@@ -22,6 +22,7 @@ namespace SharpVk.Generator.Generation
             services.AddSingleton<IMarshalValueRule, MarshalPointerValue>();
             services.AddSingleton<IMarshalValueRule, MarshalSimpleValue>();
 
+            services.AddSingleton<IMemberPatternRule, VerbInfoMemberPattern>();
             services.AddSingleton<IMemberPatternRule, FixedLengthMemberPattern>();
             services.AddSingleton<IMemberPatternRule, ArrayMemberPattern>();
             services.AddSingleton<IMemberPatternRule, ArrayLenMemberPattern>();

@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.DescriptorSetLayoutCreateFlags Flags
+        public SharpVk.DescriptorSetLayoutCreateFlags? Flags
         {
             get;
             set;
@@ -55,7 +55,14 @@ namespace SharpVk
         {
             pointer->SType = StructureType.DescriptorSetLayoutCreateInfo;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.DescriptorSetLayoutCreateFlags);
+            }
             pointer->BindingCount = (uint)(this.Bindings?.Length ?? 0);
             if (this.Bindings != null)
             {

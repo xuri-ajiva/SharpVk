@@ -36,7 +36,7 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.NVidia.ExternalMemoryHandleTypeFlags HandleTypes
+        public SharpVk.NVidia.ExternalMemoryHandleTypeFlags? HandleTypes
         {
             get;
             set;
@@ -46,7 +46,14 @@ namespace SharpVk.NVidia
         {
             pointer->SType = StructureType.ExternalMemoryImageCreateInfoNv;
             pointer->Next = null;
-            pointer->HandleTypes = this.HandleTypes;
+            if (this.HandleTypes != null)
+            {
+                pointer->HandleTypes = this.HandleTypes.Value;
+            }
+            else
+            {
+                pointer->HandleTypes = default(SharpVk.NVidia.ExternalMemoryHandleTypeFlags);
+            }
         }
     }
 }

@@ -72,7 +72,7 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.ImageCreateFlags Flags
+        public SharpVk.ImageCreateFlags? Flags
         {
             get;
             set;
@@ -86,7 +86,14 @@ namespace SharpVk.Khronos
             pointer->Type = this.Type;
             pointer->Tiling = this.Tiling;
             pointer->Usage = this.Usage;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.ImageCreateFlags);
+            }
         }
     }
 }

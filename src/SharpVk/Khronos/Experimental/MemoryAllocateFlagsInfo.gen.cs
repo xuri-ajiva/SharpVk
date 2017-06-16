@@ -36,7 +36,7 @@ namespace SharpVk.Khronos.Experimental
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Khronos.Experimental.MemoryAllocateFlags Flags
+        public SharpVk.Khronos.Experimental.MemoryAllocateFlags? Flags
         {
             get;
             set;
@@ -55,7 +55,14 @@ namespace SharpVk.Khronos.Experimental
         {
             pointer->SType = StructureType.MemoryAllocateFlagsInfoKhx;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.Khronos.Experimental.MemoryAllocateFlags);
+            }
             pointer->DeviceMask = this.DeviceMask;
         }
     }

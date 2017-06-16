@@ -36,7 +36,7 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Khronos.WaylandSurfaceCreateFlags Flags
+        public SharpVk.Khronos.WaylandSurfaceCreateFlags? Flags
         {
             get;
             set;
@@ -64,7 +64,14 @@ namespace SharpVk.Khronos
         {
             pointer->SType = StructureType.WaylandSurfaceCreateInfoKhr;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.Khronos.WaylandSurfaceCreateFlags);
+            }
             pointer->Display = this.Display;
             pointer->Surface = this.Surface;
         }

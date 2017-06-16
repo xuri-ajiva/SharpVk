@@ -36,7 +36,7 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.ImageUsageFlags SharedPresentSupportedUsageFlags
+        public SharpVk.ImageUsageFlags? SharedPresentSupportedUsageFlags
         {
             get;
             set;

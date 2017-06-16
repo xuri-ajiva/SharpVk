@@ -54,7 +54,12 @@ namespace SharpVk.Generator.Emission
             {
                 if (method.ParamActions != null)
                 {
-                    foreach (var action in method.ParamActions)
+                    foreach (var action in method.ParamActions.Where(x => x.Param.DefaultValue == null))
+                    {
+                        parameters.EmitParam(action.Param.Type, action.Param.Name, action.Param.DefaultValue);
+                    }
+
+                    foreach (var action in method.ParamActions.Where(x => x.Param.DefaultValue != null))
                     {
                         parameters.EmitParam(action.Param.Type, action.Param.Name, action.Param.DefaultValue);
                     }
@@ -149,13 +154,13 @@ namespace SharpVk.Generator.Emission
                         body.EmitStaticCall(invokeAction.TypeName, invokeAction.MethodName, paramNames);
                     }
                 }
-                else if(action is OptionalAction optionalAction)
+                else if (action is OptionalAction optionalAction)
                 {
                     body.EmitIfBlock(optionalAction.NullCheckExpression,
                             ifBlock => EmitActions(ifBlock, optionalAction.Actions),
                             elseBlock => EmitActions(elseBlock, optionalAction.ElseActions));
                 }
-                else if(action is ValidateAction validationAction)
+                else if (action is ValidateAction validationAction)
                 {
                     body.EmitIfBlock(StaticCall("SharpVkException", "IsError", Variable(validationAction.VariableName)),
                         ifBlock =>

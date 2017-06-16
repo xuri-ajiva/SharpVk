@@ -81,7 +81,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.SparseMemoryBindFlags Flags
+        public SharpVk.SparseMemoryBindFlags? Flags
         {
             get;
             set;
@@ -94,7 +94,14 @@ namespace SharpVk
             pointer->Extent = this.Extent;
             pointer->Memory = this.Memory?.handle ?? default(SharpVk.Interop.DeviceMemory);
             pointer->MemoryOffset = this.MemoryOffset;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.SparseMemoryBindFlags);
+            }
         }
     }
 }

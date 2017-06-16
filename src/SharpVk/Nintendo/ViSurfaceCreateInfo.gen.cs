@@ -36,7 +36,7 @@ namespace SharpVk.Nintendo
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Nintendo.ViSurfaceCreateFlags Flags
+        public SharpVk.Nintendo.ViSurfaceCreateFlags? Flags
         {
             get;
             set;
@@ -55,7 +55,14 @@ namespace SharpVk.Nintendo
         {
             pointer->SType = StructureType.ViSurfaceCreateInfoNn;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.Nintendo.ViSurfaceCreateFlags);
+            }
             pointer->Window = this.Window.ToPointer();
         }
     }

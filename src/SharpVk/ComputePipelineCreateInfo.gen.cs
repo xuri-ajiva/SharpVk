@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.PipelineCreateFlags Flags
+        public SharpVk.PipelineCreateFlags? Flags
         {
             get;
             set;
@@ -82,7 +82,14 @@ namespace SharpVk
         {
             pointer->SType = StructureType.ComputePipelineCreateInfo;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.PipelineCreateFlags);
+            }
             this.Stage.MarshalTo(&pointer->Stage);
             pointer->Layout = this.Layout?.handle ?? default(SharpVk.Interop.PipelineLayout);
             pointer->BasePipelineHandle = this.BasePipelineHandle?.handle ?? default(SharpVk.Interop.Pipeline);

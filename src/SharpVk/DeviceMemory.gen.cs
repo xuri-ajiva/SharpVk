@@ -44,7 +44,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void Free(SharpVk.AllocationCallbacks? allocator = null)
+        public unsafe void Free(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
@@ -69,13 +69,22 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe IntPtr Map(DeviceSize offset, DeviceSize size, SharpVk.MemoryMapFlags flags)
+        public unsafe IntPtr Map(DeviceSize offset, DeviceSize size, SharpVk.MemoryMapFlags? flags = default(SharpVk.MemoryMapFlags?))
         {
             try
             {
                 IntPtr result = default(IntPtr);
+                SharpVk.MemoryMapFlags marshalledFlags = default(SharpVk.MemoryMapFlags);
                 void* marshalledData = default(void*);
-                Result methodResult = Interop.Commands.vkMapMemory(this.parent, this.handle, offset, size, flags, &marshalledData);
+                if (flags != null)
+                {
+                    marshalledFlags = flags.Value;
+                }
+                else
+                {
+                    marshalledFlags = default(SharpVk.MemoryMapFlags);
+                }
+                Result methodResult = Interop.Commands.vkMapMemory(this.parent, this.handle, offset, size, marshalledFlags, &marshalledData);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);

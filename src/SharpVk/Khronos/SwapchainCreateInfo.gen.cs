@@ -36,7 +36,7 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Khronos.SwapchainCreateFlags Flags
+        public SharpVk.Khronos.SwapchainCreateFlags? Flags
         {
             get;
             set;
@@ -172,7 +172,14 @@ namespace SharpVk.Khronos
         {
             pointer->SType = StructureType.SwapchainCreateInfoKhr;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.Khronos.SwapchainCreateFlags);
+            }
             pointer->Surface = this.Surface?.handle ?? default(SharpVk.Interop.Khronos.Surface);
             pointer->MinImageCount = this.MinImageCount;
             pointer->ImageFormat = this.ImageFormat;

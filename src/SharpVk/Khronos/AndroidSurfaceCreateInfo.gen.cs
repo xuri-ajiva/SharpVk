@@ -36,7 +36,7 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Khronos.AndroidSurfaceCreateFlags Flags
+        public SharpVk.Khronos.AndroidSurfaceCreateFlags? Flags
         {
             get;
             set;
@@ -55,7 +55,14 @@ namespace SharpVk.Khronos
         {
             pointer->SType = StructureType.AndroidSurfaceCreateInfoKhr;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.Khronos.AndroidSurfaceCreateFlags);
+            }
             pointer->Window = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
             *pointer->Window = this.Window;
         }

@@ -54,7 +54,7 @@ namespace SharpVk.Khronos.Experimental
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Khronos.Experimental.ExternalSemaphoreFeatureFlags ExternalSemaphoreFeatures
+        public SharpVk.Khronos.Experimental.ExternalSemaphoreFeatureFlags? ExternalSemaphoreFeatures
         {
             get;
             set;

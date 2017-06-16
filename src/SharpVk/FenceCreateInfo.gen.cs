@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.FenceCreateFlags Flags
+        public SharpVk.FenceCreateFlags? Flags
         {
             get;
             set;
@@ -46,7 +46,14 @@ namespace SharpVk
         {
             pointer->SType = StructureType.FenceCreateInfo;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.FenceCreateFlags);
+            }
         }
     }
 }

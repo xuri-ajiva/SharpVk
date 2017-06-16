@@ -135,11 +135,11 @@ namespace SharpVk.Generator.Generation
 
             foreach (var parameter in command.Params)
             {
-                var newParam = this.GenerateParameter(command, newMethod, parameter, parameterIndex, enumeratePattern, lastParamIsArray, lastParamReturns, marshalFromActions, marshalMidActions, marshalToActions, marshalledValues, GetHandle);
+                var newParams = this.GenerateParameter(command, newMethod, parameter, parameterIndex, enumeratePattern, lastParamIsArray, lastParamReturns, marshalFromActions, marshalMidActions, marshalToActions, marshalledValues, GetHandle);
 
-                if (newParam != null)
+                if (newParams != null)
                 {
-                    newMethod.ParamActions.Add(newParam);
+                    newMethod.ParamActions.AddRange(newParams);
                 }
 
                 parameterIndex++;
@@ -188,7 +188,7 @@ namespace SharpVk.Generator.Generation
             return newMethod;
         }
 
-        private ParamActionDefinition GenerateParameter(CommandDeclaration command, MethodDefinition newMethod, ParamDeclaration parameter, int parameterIndex, bool isEnumeratePattern, bool isLastParamArray, bool lastParamReturns, List<MethodAction> marshalFromActions, List<MethodAction> marshalMidActions, List<MethodAction> marshalToActions, List<Action<ExpressionBuilder>> marshalledValues, Func<string, Action<ExpressionBuilder>> getHandle)
+        private IEnumerable<ParamActionDefinition> GenerateParameter(CommandDeclaration command, MethodDefinition newMethod, ParamDeclaration parameter, int parameterIndex, bool isEnumeratePattern, bool isLastParamArray, bool lastParamReturns, List<MethodAction> marshalFromActions, List<MethodAction> marshalMidActions, List<MethodAction> marshalToActions, List<Action<ExpressionBuilder>> marshalledValues, Func<string, Action<ExpressionBuilder>> getHandle)
         {
             string paramName = parameter.Name;
             var paramType = typeData[parameter.Type.VkName];
@@ -198,7 +198,7 @@ namespace SharpVk.Generator.Generation
                 return "marshalled" + baseName.TrimStart('@').FirstToUpper();
             }
 
-            ParamActionDefinition result = null;
+            List<ParamActionDefinition> result = new List<ParamActionDefinition>();
 
             if (parameterIndex >= command.HandleParamsCount)
             {
@@ -214,7 +214,7 @@ namespace SharpVk.Generator.Generation
 
                     var patternInfo = new MemberPatternInfo();
 
-                    this.memberPatternRules.ApplyFirst(command.Params, command.Params.Last(), getHandle, patternInfo);
+                    this.memberPatternRules.ApplyFirst(command.Params, command.Params.Last(), new MemberPatternContext(command.Verb, getHandle), patternInfo);
 
                     string marshalledName = GetMarshalledName(patternInfo.Interop.Name);
 
@@ -232,7 +232,7 @@ namespace SharpVk.Generator.Generation
                     {
                         var patternInfo = new MemberPatternInfo();
 
-                        this.memberPatternRules.ApplyFirst(command.Params, parameter, getHandle, patternInfo);
+                        this.memberPatternRules.ApplyFirst(command.Params, parameter, new MemberPatternContext(command.Verb, getHandle), patternInfo);
 
                         string marshalledName = GetMarshalledName(patternInfo.Interop.Name);
 
@@ -261,7 +261,7 @@ namespace SharpVk.Generator.Generation
 
                         marshalledValues.Add(Variable(marshalledName));
 
-                        newMethod.ReturnType = patternInfo.Public.Value.Type;
+                        newMethod.ReturnType = patternInfo.Public.Single().Type;
                     }
                     else
                     {
@@ -275,7 +275,7 @@ namespace SharpVk.Generator.Generation
                             VkName = parameter.VkName
                         };
 
-                        this.memberPatternRules.ApplyFirst(command.Params, effectiveParam, getHandle, patternInfo);
+                        this.memberPatternRules.ApplyFirst(command.Params, effectiveParam, new MemberPatternContext(command.Verb, getHandle), patternInfo);
 
                         string marshalledName = GetMarshalledName(patternInfo.Interop.Name);
 
@@ -289,35 +289,38 @@ namespace SharpVk.Generator.Generation
 
                         marshalledValues.Add(AddressOf(Variable(marshalledName)));
 
-                        newMethod.ReturnType = patternInfo.Public.Value.Type;
+                        newMethod.ReturnType = patternInfo.Public.Single().Type;
                     }
                 }
                 else
                 {
                     var patternInfo = new MemberPatternInfo();
 
-                    this.memberPatternRules.ApplyFirst(command.Params, parameter, getHandle, patternInfo);
+                    this.memberPatternRules.ApplyFirst(command.Params, parameter, new MemberPatternContext(command.Verb, getHandle), patternInfo);
 
                     var actionList = marshalToActions;
 
                     Func<string, Action<ExpressionBuilder>> getValue = valueName => Variable(valueName);
-                    
+
+                    foreach (var publicMember in patternInfo.Public)
+                    {
+                        result.Add(new ParamActionDefinition
+                        {
+                            Param = new ParamDefinition
+                            {
+                                Name = publicMember.Name,
+                                Type = publicMember.Type,
+                                DefaultValue = publicMember.DefaultValue
+                            }
+                        });
+                    }
+
                     if (patternInfo.MarshalTo.Any())
                     {
                         string marshalledName = patternInfo.Interop.Name;
 
-                        if (patternInfo.Public.HasValue)
+                        if (patternInfo.Public.Any())
                         {
-                            result = new ParamActionDefinition
-                            {
-                                Param = new ParamDefinition
-                                {
-                                    Name = patternInfo.Public.Value.Name,
-                                    Type = patternInfo.Public.Value.Type,
-                                    DefaultValue = patternInfo.Public.Value.DefaultValue
-                                }
-                            };
-
                             marshalledName = GetMarshalledName(patternInfo.Interop.Name);
                         }
 

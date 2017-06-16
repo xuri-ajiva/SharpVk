@@ -36,7 +36,7 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.NVidia.PipelineViewportSwizzleStateCreateFlags Flags
+        public SharpVk.NVidia.PipelineViewportSwizzleStateCreateFlags? Flags
         {
             get;
             set;
@@ -55,7 +55,14 @@ namespace SharpVk.NVidia
         {
             pointer->SType = StructureType.PipelineViewportSwizzleStateCreateInfoNv;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.NVidia.PipelineViewportSwizzleStateCreateFlags);
+            }
             pointer->ViewportCount = (uint)(this.ViewportSwizzles?.Length ?? 0);
             if (this.ViewportSwizzles != null)
             {

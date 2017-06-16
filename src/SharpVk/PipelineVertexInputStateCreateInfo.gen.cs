@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.PipelineVertexInputStateCreateFlags Flags
+        public SharpVk.PipelineVertexInputStateCreateFlags? Flags
         {
             get;
             set;
@@ -64,7 +64,14 @@ namespace SharpVk
         {
             pointer->SType = StructureType.PipelineVertexInputStateCreateInfo;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.PipelineVertexInputStateCreateFlags);
+            }
             pointer->VertexBindingDescriptionCount = (uint)(this.VertexBindingDescriptions?.Length ?? 0);
             if (this.VertexBindingDescriptions != null)
             {

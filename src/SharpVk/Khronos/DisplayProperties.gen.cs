@@ -72,7 +72,7 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Khronos.SurfaceTransformFlags SupportedTransforms
+        public SharpVk.Khronos.SurfaceTransformFlags? SupportedTransforms
         {
             get;
             set;

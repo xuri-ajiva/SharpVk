@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.DescriptorPoolCreateFlags Flags
+        public SharpVk.DescriptorPoolCreateFlags? Flags
         {
             get;
             set;
@@ -64,7 +64,14 @@ namespace SharpVk
         {
             pointer->SType = StructureType.DescriptorPoolCreateInfo;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.DescriptorPoolCreateFlags);
+            }
             pointer->MaxSets = this.MaxSets;
             pointer->PoolSizeCount = (uint)(this.PoolSizes?.Length ?? 0);
             if (this.PoolSizes != null)

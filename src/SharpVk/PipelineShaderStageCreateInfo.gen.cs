@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.PipelineShaderStageCreateFlags Flags
+        public SharpVk.PipelineShaderStageCreateFlags? Flags
         {
             get;
             set;
@@ -82,7 +82,14 @@ namespace SharpVk
         {
             pointer->SType = StructureType.PipelineShaderStageCreateInfo;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.PipelineShaderStageCreateFlags);
+            }
             pointer->Stage = this.Stage;
             pointer->Module = this.Module?.handle ?? default(SharpVk.Interop.ShaderModule);
             pointer->Name = Interop.HeapUtil.MarshalTo(this.Name);

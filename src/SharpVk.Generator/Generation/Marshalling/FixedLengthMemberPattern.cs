@@ -25,7 +25,7 @@ namespace SharpVk.Generator.Generation.Marshalling
             this.marshallingRules = marshallingRules;
         }
 
-        public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, Func<string, Action<ExpressionBuilder>> getHandle, MemberPatternInfo info)
+        public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, MemberPatternContext context, MemberPatternInfo info)
         {
             if (source.Type.FixedLength.Type != FixedLengthType.None)
             {
@@ -62,11 +62,11 @@ namespace SharpVk.Generator.Generation.Marshalling
                     switch (source.Type.VkName)
                     {
                         case "char":
-                            info.Public = new TypedDefinition
+                            info.Public.Add(new TypedDefinition
                             {
                                 Name = source.Name,
                                 Type = "string"
-                            };
+                            });
 
                             info.MarshalFrom.Add((getTarget, getValue) => new AssignAction
                             {
@@ -105,11 +105,11 @@ namespace SharpVk.Generator.Generation.Marshalling
                         Repeats = count
                     };
 
-                    info.Public = new TypedDefinition
+                    info.Public.Add(new TypedDefinition
                     {
                         Name = name,
                         Type = memberType + "[]"
-                    };
+                    });
 
                     string countMemberName = source.Name.TrimEnd('s') + "Count";
 

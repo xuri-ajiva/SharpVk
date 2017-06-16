@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.PipelineCacheCreateFlags Flags
+        public SharpVk.PipelineCacheCreateFlags? Flags
         {
             get;
             set;
@@ -55,7 +55,14 @@ namespace SharpVk
         {
             pointer->SType = StructureType.PipelineCacheCreateInfo;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.PipelineCacheCreateFlags);
+            }
             pointer->InitialDataSize = (HostSize)(this.InitialData?.Length ?? 0);
             if (this.InitialData != null)
             {

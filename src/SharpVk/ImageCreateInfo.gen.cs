@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.ImageCreateFlags Flags
+        public SharpVk.ImageCreateFlags? Flags
         {
             get;
             set;
@@ -145,7 +145,14 @@ namespace SharpVk
         {
             pointer->SType = StructureType.ImageCreateInfo;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.ImageCreateFlags);
+            }
             pointer->ImageType = this.ImageType;
             pointer->Format = this.Format;
             pointer->Extent = this.Extent;

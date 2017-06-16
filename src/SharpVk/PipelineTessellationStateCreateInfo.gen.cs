@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.PipelineTessellationStateCreateFlags Flags
+        public SharpVk.PipelineTessellationStateCreateFlags? Flags
         {
             get;
             set;
@@ -55,7 +55,14 @@ namespace SharpVk
         {
             pointer->SType = StructureType.PipelineTessellationStateCreateInfo;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.PipelineTessellationStateCreateFlags);
+            }
             pointer->PatchControlPoints = this.PatchControlPoints;
         }
     }

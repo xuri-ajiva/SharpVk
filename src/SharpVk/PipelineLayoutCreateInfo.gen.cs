@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.PipelineLayoutCreateFlags Flags
+        public SharpVk.PipelineLayoutCreateFlags? Flags
         {
             get;
             set;
@@ -64,7 +64,14 @@ namespace SharpVk
         {
             pointer->SType = StructureType.PipelineLayoutCreateInfo;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.PipelineLayoutCreateFlags);
+            }
             pointer->SetLayoutCount = (uint)(this.SetLayouts?.Length ?? 0);
             if (this.SetLayouts != null)
             {

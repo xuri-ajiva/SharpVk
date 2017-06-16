@@ -61,7 +61,16 @@ namespace SharpVk.Generator.Generation.Marshalling
                 memberName = member.Name;
             }
 
-            state.Result = Member(target, memberName);
+            bool isDecomposed = targetType.Name.EndsWith("Info");
+
+            if (isDecomposed)
+            {
+                state.Result = Variable(memberName.FirstToLower());
+            }
+            else
+            {
+                state.Result = Member(target, memberName);
+            }
 
             state.ExpressionType = member.Type.VkName;
         }

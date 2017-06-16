@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.FramebufferCreateFlags Flags
+        public SharpVk.FramebufferCreateFlags? Flags
         {
             get;
             set;
@@ -91,7 +91,14 @@ namespace SharpVk
         {
             pointer->SType = StructureType.FramebufferCreateInfo;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.FramebufferCreateFlags);
+            }
             pointer->RenderPass = this.RenderPass?.handle ?? default(SharpVk.Interop.RenderPass);
             pointer->AttachmentCount = (uint)(this.Attachments?.Length ?? 0);
             if (this.Attachments != null)

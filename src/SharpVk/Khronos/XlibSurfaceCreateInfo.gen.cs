@@ -36,7 +36,7 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Khronos.XlibSurfaceCreateFlags Flags
+        public SharpVk.Khronos.XlibSurfaceCreateFlags? Flags
         {
             get;
             set;
@@ -64,7 +64,14 @@ namespace SharpVk.Khronos
         {
             pointer->SType = StructureType.XlibSurfaceCreateInfoKhr;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.Khronos.XlibSurfaceCreateFlags);
+            }
             pointer->Dpy = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
             *pointer->Dpy = this.Dpy;
             pointer->Window = this.Window;

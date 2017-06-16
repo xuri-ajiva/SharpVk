@@ -16,15 +16,15 @@ namespace SharpVk.Generator.Generation.Marshalling
             this.nameLookup = nameLookup;
         }
 
-        public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, Func<string, Action<ExpressionBuilder>> getHandle, MemberPatternInfo info)
+        public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, MemberPatternContext context, MemberPatternInfo info)
         {
             if (source.Name.EndsWith("Version") && source.Type.VkName.StartsWith("uint32"))
             {
-                info.Public = new TypedDefinition
+                info.Public.Add(new TypedDefinition
                 {
                     Name = source.Name,
                     Type = "Version"
-                };
+                });
 
                 info.MarshalFrom.Add((getTarget, getValue) => new AssignAction
                 {

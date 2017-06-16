@@ -44,7 +44,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = null)
+        public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
@@ -69,11 +69,12 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void GetResults(uint firstQuery, uint queryCount, byte[] data, DeviceSize stride, SharpVk.QueryResultFlags flags)
+        public unsafe void GetResults(uint firstQuery, uint queryCount, byte[] data, DeviceSize stride, SharpVk.QueryResultFlags? flags = default(SharpVk.QueryResultFlags?))
         {
             try
             {
                 byte* marshalledData = default(byte*);
+                SharpVk.QueryResultFlags marshalledFlags = default(SharpVk.QueryResultFlags);
                 if (data != null)
                 {
                     var fieldPointer = (byte*)(Interop.HeapUtil.AllocateAndClear<byte>(data.Length).ToPointer());
@@ -87,7 +88,15 @@ namespace SharpVk
                 {
                     marshalledData = null;
                 }
-                Result methodResult = Interop.Commands.vkGetQueryPoolResults(this.parent, this.handle, firstQuery, queryCount, (HostSize)(data?.Length ?? 0), marshalledData, stride, flags);
+                if (flags != null)
+                {
+                    marshalledFlags = flags.Value;
+                }
+                else
+                {
+                    marshalledFlags = default(SharpVk.QueryResultFlags);
+                }
+                Result methodResult = Interop.Commands.vkGetQueryPoolResults(this.parent, this.handle, firstQuery, queryCount, (HostSize)(data?.Length ?? 0), marshalledData, stride, marshalledFlags);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);

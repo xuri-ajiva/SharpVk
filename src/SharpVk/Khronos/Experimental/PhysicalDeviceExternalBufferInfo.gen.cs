@@ -36,7 +36,7 @@ namespace SharpVk.Khronos.Experimental
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.BufferCreateFlags Flags
+        public SharpVk.BufferCreateFlags? Flags
         {
             get;
             set;
@@ -64,7 +64,14 @@ namespace SharpVk.Khronos.Experimental
         {
             pointer->SType = StructureType.PhysicalDeviceExternalBufferInfoKhx;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.BufferCreateFlags);
+            }
             pointer->Usage = this.Usage;
             pointer->HandleType = this.HandleType;
         }

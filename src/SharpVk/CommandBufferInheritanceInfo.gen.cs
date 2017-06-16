@@ -72,7 +72,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.QueryControlFlags QueryFlags
+        public SharpVk.QueryControlFlags? QueryFlags
         {
             get;
             set;
@@ -81,7 +81,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.QueryPipelineStatisticFlags PipelineStatistics
+        public SharpVk.QueryPipelineStatisticFlags? PipelineStatistics
         {
             get;
             set;
@@ -95,8 +95,22 @@ namespace SharpVk
             pointer->Subpass = this.Subpass;
             pointer->Framebuffer = this.Framebuffer?.handle ?? default(SharpVk.Interop.Framebuffer);
             pointer->OcclusionQueryEnable = this.OcclusionQueryEnable;
-            pointer->QueryFlags = this.QueryFlags;
-            pointer->PipelineStatistics = this.PipelineStatistics;
+            if (this.QueryFlags != null)
+            {
+                pointer->QueryFlags = this.QueryFlags.Value;
+            }
+            else
+            {
+                pointer->QueryFlags = default(SharpVk.QueryControlFlags);
+            }
+            if (this.PipelineStatistics != null)
+            {
+                pointer->PipelineStatistics = this.PipelineStatistics.Value;
+            }
+            else
+            {
+                pointer->PipelineStatistics = default(SharpVk.QueryPipelineStatisticFlags);
+            }
         }
     }
 }

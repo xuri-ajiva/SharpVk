@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.SubpassDescriptionFlags Flags
+        public SharpVk.SubpassDescriptionFlags? Flags
         {
             get;
             set;
@@ -98,7 +98,14 @@ namespace SharpVk
         
         internal unsafe void MarshalTo(SharpVk.Interop.SubpassDescription* pointer)
         {
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.SubpassDescriptionFlags);
+            }
             pointer->PipelineBindPoint = this.PipelineBindPoint;
             pointer->InputAttachmentCount = (uint)(this.InputAttachments?.Length ?? 0);
             if (this.InputAttachments != null)

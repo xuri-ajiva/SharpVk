@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.RenderPassCreateFlags Flags
+        public SharpVk.RenderPassCreateFlags? Flags
         {
             get;
             set;
@@ -73,7 +73,14 @@ namespace SharpVk
         {
             pointer->SType = StructureType.RenderPassCreateInfo;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.RenderPassCreateFlags);
+            }
             pointer->AttachmentCount = (uint)(this.Attachments?.Length ?? 0);
             if (this.Attachments != null)
             {

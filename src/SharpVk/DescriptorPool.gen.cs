@@ -44,7 +44,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = null)
+        public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
@@ -69,11 +69,20 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void Reset(SharpVk.DescriptorPoolResetFlags flags)
+        public unsafe void Reset(SharpVk.DescriptorPoolResetFlags? flags = default(SharpVk.DescriptorPoolResetFlags?))
         {
             try
             {
-                Result methodResult = Interop.Commands.vkResetDescriptorPool(this.parent, this.handle, flags);
+                SharpVk.DescriptorPoolResetFlags marshalledFlags = default(SharpVk.DescriptorPoolResetFlags);
+                if (flags != null)
+                {
+                    marshalledFlags = flags.Value;
+                }
+                else
+                {
+                    marshalledFlags = default(SharpVk.DescriptorPoolResetFlags);
+                }
+                Result methodResult = Interop.Commands.vkResetDescriptorPool(this.parent, this.handle, marshalledFlags);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);

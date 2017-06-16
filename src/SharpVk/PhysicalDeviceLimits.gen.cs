@@ -720,7 +720,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.SampleCountFlags FramebufferColorSampleCounts
+        public SharpVk.SampleCountFlags? FramebufferColorSampleCounts
         {
             get;
             set;
@@ -729,7 +729,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.SampleCountFlags FramebufferDepthSampleCounts
+        public SharpVk.SampleCountFlags? FramebufferDepthSampleCounts
         {
             get;
             set;
@@ -738,7 +738,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.SampleCountFlags FramebufferStencilSampleCounts
+        public SharpVk.SampleCountFlags? FramebufferStencilSampleCounts
         {
             get;
             set;
@@ -747,7 +747,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.SampleCountFlags FramebufferNoAttachmentsSampleCounts
+        public SharpVk.SampleCountFlags? FramebufferNoAttachmentsSampleCounts
         {
             get;
             set;
@@ -765,7 +765,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.SampleCountFlags SampledImageColorSampleCounts
+        public SharpVk.SampleCountFlags? SampledImageColorSampleCounts
         {
             get;
             set;
@@ -774,7 +774,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.SampleCountFlags SampledImageIntegerSampleCounts
+        public SharpVk.SampleCountFlags? SampledImageIntegerSampleCounts
         {
             get;
             set;
@@ -783,7 +783,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.SampleCountFlags SampledImageDepthSampleCounts
+        public SharpVk.SampleCountFlags? SampledImageDepthSampleCounts
         {
             get;
             set;
@@ -792,7 +792,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.SampleCountFlags SampledImageStencilSampleCounts
+        public SharpVk.SampleCountFlags? SampledImageStencilSampleCounts
         {
             get;
             set;
@@ -801,7 +801,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.SampleCountFlags StorageImageSampleCounts
+        public SharpVk.SampleCountFlags? StorageImageSampleCounts
         {
             get;
             set;

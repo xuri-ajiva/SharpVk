@@ -36,7 +36,7 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Multivendor.PipelineDiscardRectangleStateCreateFlags Flags
+        public SharpVk.Multivendor.PipelineDiscardRectangleStateCreateFlags? Flags
         {
             get;
             set;
@@ -64,7 +64,14 @@ namespace SharpVk.Multivendor
         {
             pointer->SType = StructureType.PipelineDiscardRectangleStateCreateInfoExt;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.Multivendor.PipelineDiscardRectangleStateCreateFlags);
+            }
             pointer->DiscardRectangleMode = this.DiscardRectangleMode;
             pointer->DiscardRectangleCount = (uint)(this.DiscardRectangles?.Length ?? 0);
             if (this.DiscardRectangles != null)

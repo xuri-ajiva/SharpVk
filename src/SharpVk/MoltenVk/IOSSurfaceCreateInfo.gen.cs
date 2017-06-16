@@ -36,7 +36,7 @@ namespace SharpVk.MoltenVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.MoltenVk.IOSSurfaceCreateFlags Flags
+        public SharpVk.MoltenVk.IOSSurfaceCreateFlags? Flags
         {
             get;
             set;
@@ -55,7 +55,14 @@ namespace SharpVk.MoltenVk
         {
             pointer->SType = StructureType.IosSurfaceCreateInfoMvk;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.MoltenVk.IOSSurfaceCreateFlags);
+            }
             pointer->View = this.View.ToPointer();
         }
     }

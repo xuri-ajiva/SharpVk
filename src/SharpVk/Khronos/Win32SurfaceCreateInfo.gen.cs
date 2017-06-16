@@ -36,7 +36,7 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Khronos.Win32SurfaceCreateFlags Flags
+        public SharpVk.Khronos.Win32SurfaceCreateFlags? Flags
         {
             get;
             set;
@@ -64,7 +64,14 @@ namespace SharpVk.Khronos
         {
             pointer->SType = StructureType.Win32SurfaceCreateInfoKhr;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.Khronos.Win32SurfaceCreateFlags);
+            }
             pointer->Hinstance = this.Hinstance;
             pointer->Hwnd = this.Hwnd;
         }

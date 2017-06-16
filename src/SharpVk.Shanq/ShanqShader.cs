@@ -70,11 +70,7 @@ namespace SharpVk.Shanq
 
             var shaderData = LoadShaderData(shaderBytes, shaderLength);
 
-            return device.CreateShaderModule(new ShaderModuleCreateInfo
-            {
-                Code = shaderData,
-                CodeSize = shaderLength
-            });
+            return device.CreateShaderModule(shaderLength, shaderData);
         }
 
         private static uint[] LoadShaderData(byte[] shaderBytes, int codeSize)

@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.PipelineRasterizationStateCreateFlags Flags
+        public SharpVk.PipelineRasterizationStateCreateFlags? Flags
         {
             get;
             set;
@@ -72,7 +72,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.CullModeFlags CullMode
+        public SharpVk.CullModeFlags? CullMode
         {
             get;
             set;
@@ -136,11 +136,25 @@ namespace SharpVk
         {
             pointer->SType = StructureType.PipelineRasterizationStateCreateInfo;
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.PipelineRasterizationStateCreateFlags);
+            }
             pointer->DepthClampEnable = this.DepthClampEnable;
             pointer->RasterizerDiscardEnable = this.RasterizerDiscardEnable;
             pointer->PolygonMode = this.PolygonMode;
-            pointer->CullMode = this.CullMode;
+            if (this.CullMode != null)
+            {
+                pointer->CullMode = this.CullMode.Value;
+            }
+            else
+            {
+                pointer->CullMode = default(SharpVk.CullModeFlags);
+            }
             pointer->FrontFace = this.FrontFace;
             pointer->DepthBiasEnable = this.DepthBiasEnable;
             pointer->DepthBiasConstantFactor = this.DepthBiasConstantFactor;

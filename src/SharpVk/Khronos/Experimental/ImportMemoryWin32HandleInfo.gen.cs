@@ -36,7 +36,7 @@ namespace SharpVk.Khronos.Experimental
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Khronos.Experimental.ExternalMemoryHandleTypeFlags HandleType
+        public SharpVk.Khronos.Experimental.ExternalMemoryHandleTypeFlags? HandleType
         {
             get;
             set;
@@ -55,7 +55,14 @@ namespace SharpVk.Khronos.Experimental
         {
             pointer->SType = StructureType.ImportMemoryWin32HandleInfoKhx;
             pointer->Next = null;
-            pointer->HandleType = this.HandleType;
+            if (this.HandleType != null)
+            {
+                pointer->HandleType = this.HandleType.Value;
+            }
+            else
+            {
+                pointer->HandleType = default(SharpVk.Khronos.Experimental.ExternalMemoryHandleTypeFlags);
+            }
             pointer->Handle = this.Handle;
         }
     }
