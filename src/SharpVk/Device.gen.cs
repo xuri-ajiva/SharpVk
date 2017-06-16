@@ -130,6 +130,7 @@ namespace SharpVk
                 SharpVk.Interop.MemoryAllocateInfo* marshalledAllocateInfo = default(SharpVk.Interop.MemoryAllocateInfo*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.DeviceMemory marshalledMemory = default(SharpVk.Interop.DeviceMemory);
+                marshalledAllocateInfo = (SharpVk.Interop.MemoryAllocateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.MemoryAllocateInfo>());
                 marshalledAllocateInfo->SType = StructureType.MemoryAllocateInfo;
                 marshalledAllocateInfo->Next = null;
                 marshalledAllocateInfo->AllocationSize = allocationSize;
@@ -234,6 +235,7 @@ namespace SharpVk
                 SharpVk.Interop.FenceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.FenceCreateInfo*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Fence marshalledFence = default(SharpVk.Interop.Fence);
+                marshalledCreateInfo = (SharpVk.Interop.FenceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.FenceCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.FenceCreateInfo;
                 marshalledCreateInfo->Next = null;
                 if (flags != null)
@@ -344,6 +346,7 @@ namespace SharpVk
                 SharpVk.Interop.SemaphoreCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.SemaphoreCreateInfo*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Semaphore marshalledSemaphore = default(SharpVk.Interop.Semaphore);
+                marshalledCreateInfo = (SharpVk.Interop.SemaphoreCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.SemaphoreCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.SemaphoreCreateInfo;
                 marshalledCreateInfo->Next = null;
                 if (flags != null)
@@ -388,6 +391,7 @@ namespace SharpVk
                 SharpVk.Interop.EventCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.EventCreateInfo*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Event marshalledEvent = default(SharpVk.Interop.Event);
+                marshalledCreateInfo = (SharpVk.Interop.EventCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.EventCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.EventCreateInfo;
                 marshalledCreateInfo->Next = null;
                 if (flags != null)
@@ -432,6 +436,7 @@ namespace SharpVk
                 SharpVk.Interop.QueryPoolCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.QueryPoolCreateInfo*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.QueryPool marshalledQueryPool = default(SharpVk.Interop.QueryPool);
+                marshalledCreateInfo = (SharpVk.Interop.QueryPoolCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.QueryPoolCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.QueryPoolCreateInfo;
                 marshalledCreateInfo->Next = null;
                 if (flags != null)
@@ -486,6 +491,7 @@ namespace SharpVk
                 SharpVk.Interop.BufferCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.BufferCreateInfo*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Buffer marshalledBuffer = default(SharpVk.Interop.Buffer);
+                marshalledCreateInfo = (SharpVk.Interop.BufferCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.BufferCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.BufferCreateInfo;
                 marshalledCreateInfo->Next = null;
                 if (flags != null)
@@ -547,6 +553,7 @@ namespace SharpVk
                 SharpVk.Interop.BufferViewCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.BufferViewCreateInfo*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.BufferView marshalledView = default(SharpVk.Interop.BufferView);
+                marshalledCreateInfo = (SharpVk.Interop.BufferViewCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.BufferViewCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.BufferViewCreateInfo;
                 marshalledCreateInfo->Next = null;
                 if (flags != null)
@@ -595,6 +602,7 @@ namespace SharpVk
                 SharpVk.Interop.ImageCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.ImageCreateInfo*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Image marshalledImage = default(SharpVk.Interop.Image);
+                marshalledCreateInfo = (SharpVk.Interop.ImageCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.ImageCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.ImageCreateInfo;
                 marshalledCreateInfo->Next = null;
                 if (flags != null)
@@ -663,6 +671,7 @@ namespace SharpVk
                 SharpVk.Interop.ImageViewCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.ImageViewCreateInfo*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.ImageView marshalledView = default(SharpVk.Interop.ImageView);
+                marshalledCreateInfo = (SharpVk.Interop.ImageViewCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.ImageViewCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.ImageViewCreateInfo;
                 marshalledCreateInfo->Next = null;
                 if (flags != null)
@@ -712,6 +721,7 @@ namespace SharpVk
                 SharpVk.Interop.ShaderModuleCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.ShaderModuleCreateInfo*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.ShaderModule marshalledShaderModule = default(SharpVk.Interop.ShaderModule);
+                marshalledCreateInfo = (SharpVk.Interop.ShaderModuleCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.ShaderModuleCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.ShaderModuleCreateInfo;
                 marshalledCreateInfo->Next = null;
                 if (flags != null)
@@ -770,6 +780,7 @@ namespace SharpVk
                 SharpVk.Interop.PipelineCacheCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.PipelineCacheCreateInfo*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.PipelineCache marshalledPipelineCache = default(SharpVk.Interop.PipelineCache);
+                marshalledCreateInfo = (SharpVk.Interop.PipelineCacheCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PipelineCacheCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.PipelineCacheCreateInfo;
                 marshalledCreateInfo->Next = null;
                 if (flags != null)
@@ -952,6 +963,7 @@ namespace SharpVk
                 SharpVk.Interop.PipelineLayoutCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.PipelineLayoutCreateInfo*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.PipelineLayout marshalledPipelineLayout = default(SharpVk.Interop.PipelineLayout);
+                marshalledCreateInfo = (SharpVk.Interop.PipelineLayoutCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PipelineLayoutCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.PipelineLayoutCreateInfo;
                 marshalledCreateInfo->Next = null;
                 if (flags != null)
@@ -1024,6 +1036,7 @@ namespace SharpVk
                 SharpVk.Interop.SamplerCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.SamplerCreateInfo*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Sampler marshalledSampler = default(SharpVk.Interop.Sampler);
+                marshalledCreateInfo = (SharpVk.Interop.SamplerCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.SamplerCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.SamplerCreateInfo;
                 marshalledCreateInfo->Next = null;
                 if (flags != null)
@@ -1083,6 +1096,7 @@ namespace SharpVk
                 SharpVk.Interop.DescriptorSetLayoutCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.DescriptorSetLayoutCreateInfo*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.DescriptorSetLayout marshalledSetLayout = default(SharpVk.Interop.DescriptorSetLayout);
+                marshalledCreateInfo = (SharpVk.Interop.DescriptorSetLayoutCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.DescriptorSetLayoutCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.DescriptorSetLayoutCreateInfo;
                 marshalledCreateInfo->Next = null;
                 if (flags != null)
@@ -1141,6 +1155,7 @@ namespace SharpVk
                 SharpVk.Interop.DescriptorPoolCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.DescriptorPoolCreateInfo*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.DescriptorPool marshalledDescriptorPool = default(SharpVk.Interop.DescriptorPool);
+                marshalledCreateInfo = (SharpVk.Interop.DescriptorPoolCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.DescriptorPoolCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.DescriptorPoolCreateInfo;
                 marshalledCreateInfo->Next = null;
                 if (flags != null)
@@ -1199,6 +1214,7 @@ namespace SharpVk
                 SharpVk.DescriptorSet[] result = default(SharpVk.DescriptorSet[]);
                 SharpVk.Interop.DescriptorSetAllocateInfo* marshalledAllocateInfo = default(SharpVk.Interop.DescriptorSetAllocateInfo*);
                 SharpVk.Interop.DescriptorSet* marshalledDescriptorSets = default(SharpVk.Interop.DescriptorSet*);
+                marshalledAllocateInfo = (SharpVk.Interop.DescriptorSetAllocateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.DescriptorSetAllocateInfo>());
                 marshalledAllocateInfo->SType = StructureType.DescriptorSetAllocateInfo;
                 marshalledAllocateInfo->Next = null;
                 marshalledAllocateInfo->DescriptorPool = descriptorPool?.handle ?? default(SharpVk.Interop.DescriptorPool);
@@ -1297,6 +1313,7 @@ namespace SharpVk
                 SharpVk.Interop.FramebufferCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.FramebufferCreateInfo*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Framebuffer marshalledFramebuffer = default(SharpVk.Interop.Framebuffer);
+                marshalledCreateInfo = (SharpVk.Interop.FramebufferCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.FramebufferCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.FramebufferCreateInfo;
                 marshalledCreateInfo->Next = null;
                 if (flags != null)
@@ -1359,6 +1376,7 @@ namespace SharpVk
                 SharpVk.Interop.RenderPassCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.RenderPassCreateInfo*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.RenderPass marshalledRenderPass = default(SharpVk.Interop.RenderPass);
+                marshalledCreateInfo = (SharpVk.Interop.RenderPassCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.RenderPassCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.RenderPassCreateInfo;
                 marshalledCreateInfo->Next = null;
                 if (flags != null)
@@ -1445,6 +1463,7 @@ namespace SharpVk
                 SharpVk.Interop.CommandPoolCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.CommandPoolCreateInfo*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.CommandPool marshalledCommandPool = default(SharpVk.Interop.CommandPool);
+                marshalledCreateInfo = (SharpVk.Interop.CommandPoolCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.CommandPoolCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.CommandPoolCreateInfo;
                 marshalledCreateInfo->Next = null;
                 if (flags != null)
@@ -1489,6 +1508,7 @@ namespace SharpVk
                 SharpVk.CommandBuffer[] result = default(SharpVk.CommandBuffer[]);
                 SharpVk.Interop.CommandBufferAllocateInfo* marshalledAllocateInfo = default(SharpVk.Interop.CommandBufferAllocateInfo*);
                 SharpVk.Interop.CommandBuffer* marshalledCommandBuffers = default(SharpVk.Interop.CommandBuffer*);
+                marshalledAllocateInfo = (SharpVk.Interop.CommandBufferAllocateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.CommandBufferAllocateInfo>());
                 marshalledAllocateInfo->SType = StructureType.CommandBufferAllocateInfo;
                 marshalledAllocateInfo->Next = null;
                 marshalledAllocateInfo->CommandPool = commandPool?.handle ?? default(SharpVk.Interop.CommandPool);

@@ -46,7 +46,15 @@ namespace SharpVk.Generator.Generation.Marshalling
                 };
 
                 info.InteropFullType = interopType;
-                
+
+                info.MarshalTo.Add((getTarget, getValue) => new AssignAction
+                {
+                    ValueExpression = New(interopBaseType),
+                    TargetExpression = getTarget(source.Name),
+                    MemberType = interopBaseType,
+                    Type = isPointer ? AssignActionType.Alloc : AssignActionType.Assign
+                });
+
                 foreach (var member in infoTypeData.Members)
                 {
                     var subPatternInfo = new MemberPatternInfo();

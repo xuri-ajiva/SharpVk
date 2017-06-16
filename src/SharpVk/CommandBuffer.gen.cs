@@ -49,6 +49,7 @@ namespace SharpVk
             try
             {
                 SharpVk.Interop.CommandBufferBeginInfo* marshalledBeginInfo = default(SharpVk.Interop.CommandBufferBeginInfo*);
+                marshalledBeginInfo = (SharpVk.Interop.CommandBufferBeginInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.CommandBufferBeginInfo>());
                 marshalledBeginInfo->SType = StructureType.CommandBufferBeginInfo;
                 marshalledBeginInfo->Next = null;
                 if (flags != null)
@@ -1115,6 +1116,7 @@ namespace SharpVk
             try
             {
                 SharpVk.Interop.RenderPassBeginInfo* marshalledRenderPassBegin = default(SharpVk.Interop.RenderPassBeginInfo*);
+                marshalledRenderPassBegin = (SharpVk.Interop.RenderPassBeginInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.RenderPassBeginInfo>());
                 marshalledRenderPassBegin->SType = StructureType.RenderPassBeginInfo;
                 marshalledRenderPassBegin->Next = null;
                 marshalledRenderPassBegin->RenderPass = renderPass?.handle ?? default(SharpVk.Interop.RenderPass);

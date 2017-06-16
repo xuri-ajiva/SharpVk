@@ -194,6 +194,7 @@ namespace SharpVk
                 SharpVk.Interop.DeviceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.DeviceCreateInfo*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Device marshalledDevice = default(SharpVk.Interop.Device);
+                marshalledCreateInfo = (SharpVk.Interop.DeviceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.DeviceCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.DeviceCreateInfo;
                 marshalledCreateInfo->Next = null;
                 if (flags != null)

@@ -49,6 +49,7 @@ namespace SharpVk
                 SharpVk.Interop.InstanceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.InstanceCreateInfo*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Instance marshalledInstance = default(SharpVk.Interop.Instance);
+                marshalledCreateInfo = (SharpVk.Interop.InstanceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.InstanceCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.InstanceCreateInfo;
                 marshalledCreateInfo->Next = null;
                 if (flags != null)
