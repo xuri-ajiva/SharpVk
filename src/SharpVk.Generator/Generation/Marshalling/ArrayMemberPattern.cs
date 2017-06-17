@@ -74,6 +74,21 @@ namespace SharpVk.Generator.Generation.Marshalling
                             break;
                         case LenType.Expression:
                             var elementType = source.Type.Deref();
+                            bool isDoubleMarshalled = false;
+                            string semiMarshalledName = "semiMarshalled" + source.Name.FirstToUpper();
+                            string semiMarshalType = this.nameLookup.Lookup(elementType, true);
+
+                            if (elementType.PointerType.IsPointer())
+                            {
+                                info.MarshalTo.Add((getTarget, getValue) => new DeclarationAction
+                                {
+                                    MemberType = semiMarshalType,
+                                    MemberName = semiMarshalledName
+                                });
+
+                                isDoubleMarshalled = true;
+                                elementType = elementType.Deref();
+                            }
 
                             if (elementType.VkName == "void")
                             {
@@ -97,7 +112,7 @@ namespace SharpVk.Generator.Generation.Marshalling
 
                             info.MarshalTo.Add((getTarget, getValue) => new AssignAction
                             {
-                                TargetExpression = getTarget(source.Name),
+                                TargetExpression = isDoubleMarshalled ? Variable(semiMarshalledName) : getTarget(source.Name),
                                 MemberType = marshalling.InteropType,
                                 IsLoop = true,
                                 IndexName = "index",
@@ -106,6 +121,21 @@ namespace SharpVk.Generator.Generation.Marshalling
                                 LengthExpression = Member(getValue(source.Name), "Length"),
                                 ValueExpression = marshalling.BuildMarshalToValueExpression(Index(getValue(source.Name), Variable("index")), context.GetHandle)
                             });
+
+                            if (isDoubleMarshalled)
+                            {
+                                info.MarshalTo.Add((getTarget, getValue) => new AssignAction
+                                {
+                                    TargetExpression = getTarget(source.Name),
+                                    MemberType = semiMarshalType,
+                                    IsLoop = true,
+                                    IndexName = "index",
+                                    Type = AssignActionType.Assign,
+                                    NullCheckExpression = IsNotEqual(getValue(source.Name), Null),
+                                    LengthExpression = Member(getValue(source.Name), "Length"),
+                                    ValueExpression = AddressOf(Index(Variable(semiMarshalledName), Variable("index")))
+                                });
+                            }
 
                             Action<ExpressionBuilder> lenValue = null;
 

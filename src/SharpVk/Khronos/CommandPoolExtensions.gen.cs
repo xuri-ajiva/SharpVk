@@ -29,41 +29,13 @@ namespace SharpVk.Khronos
     /// <summary>
     /// 
     /// </summary>
-    public partial class DescriptorUpdateTemplate
+    public static class CommandPoolExtensions
     {
-        internal readonly SharpVk.Interop.Khronos.DescriptorUpdateTemplate handle; 
-        
-        private readonly SharpVk.Interop.Device parent; 
-        
-        internal DescriptorUpdateTemplate(SharpVk.Interop.Device parent, SharpVk.Interop.Khronos.DescriptorUpdateTemplate handle)
-        {
-            this.handle = handle;
-            this.parent = parent;
-        }
-        
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public static void Trim(this SharpVk.CommandPool handle)
         {
-            try
-            {
-                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
-                if (allocator != null)
-                {
-                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
-                    allocator.Value.MarshalTo(marshalledAllocator);
-                }
-                else
-                {
-                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
-                }
-                Interop.Commands.vkDestroyDescriptorUpdateTemplateKHR(this.parent, this.handle, marshalledAllocator);
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
         }
     }
 }

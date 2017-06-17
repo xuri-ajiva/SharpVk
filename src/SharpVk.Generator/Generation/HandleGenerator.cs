@@ -43,7 +43,7 @@ namespace SharpVk.Generator.Generation
 
                 var commands = this.commands.ContainsKey(typePair.Key)
                                         ? this.commands[typePair.Key]
-                                            .Where(x => x.Extension == null)
+                                            .Where(x => x.Extension?.ToLower() == type.Extension?.ToLower())
                                             .Select(x => GenerateCommand(x, typePair.Key, typePair.Value)).ToList()
                                         : new List<MethodDefinition>();
 

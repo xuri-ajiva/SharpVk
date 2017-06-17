@@ -24,46 +24,25 @@
 
 using System;
 
-namespace SharpVk.Khronos
+namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
     /// 
     /// </summary>
-    public partial class DescriptorUpdateTemplate
+    public static class DeviceExtensions
     {
-        internal readonly SharpVk.Interop.Khronos.DescriptorUpdateTemplate handle; 
-        
-        private readonly SharpVk.Interop.Device parent; 
-        
-        internal DescriptorUpdateTemplate(SharpVk.Interop.Device parent, SharpVk.Interop.Khronos.DescriptorUpdateTemplate handle)
+        /// <summary>
+        /// 
+        /// </summary>
+        public static void CreateIndirectCommandsLayout(this SharpVk.Device handle)
         {
-            this.handle = handle;
-            this.parent = parent;
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public static void CreateObjectTable(this SharpVk.Device handle)
         {
-            try
-            {
-                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
-                if (allocator != null)
-                {
-                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
-                    allocator.Value.MarshalTo(marshalledAllocator);
-                }
-                else
-                {
-                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
-                }
-                Interop.Commands.vkDestroyDescriptorUpdateTemplateKHR(this.parent, this.handle, marshalledAllocator);
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
         }
     }
 }

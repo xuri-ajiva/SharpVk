@@ -29,41 +29,55 @@ namespace SharpVk.Khronos
     /// <summary>
     /// 
     /// </summary>
-    public partial class DescriptorUpdateTemplate
+    public static class InstanceExtensions
     {
-        internal readonly SharpVk.Interop.Khronos.DescriptorUpdateTemplate handle; 
-        
-        private readonly SharpVk.Interop.Device parent; 
-        
-        internal DescriptorUpdateTemplate(SharpVk.Interop.Device parent, SharpVk.Interop.Khronos.DescriptorUpdateTemplate handle)
+        /// <summary>
+        /// 
+        /// </summary>
+        public static void CreateAndroidSurface(this SharpVk.Instance handle)
         {
-            this.handle = handle;
-            this.parent = parent;
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public static void CreateDisplayPlaneSurface(this SharpVk.Instance handle)
         {
-            try
-            {
-                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
-                if (allocator != null)
-                {
-                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
-                    allocator.Value.MarshalTo(marshalledAllocator);
-                }
-                else
-                {
-                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
-                }
-                Interop.Commands.vkDestroyDescriptorUpdateTemplateKHR(this.parent, this.handle, marshalledAllocator);
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public static void CreateMirSurface(this SharpVk.Instance handle)
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public static void CreateWaylandSurface(this SharpVk.Instance handle)
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public static void CreateWin32Surface(this SharpVk.Instance handle)
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public static void CreateXlibSurface(this SharpVk.Instance handle)
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public static void CreateXcbSurface(this SharpVk.Instance handle)
+        {
         }
     }
 }

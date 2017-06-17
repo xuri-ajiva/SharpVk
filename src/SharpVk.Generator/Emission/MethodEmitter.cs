@@ -118,7 +118,11 @@ namespace SharpVk.Generator.Emission
                                 }
                                 else
                                 {
-                                    ifBlock.EmitVariableDeclaration("var", "fieldPointer", Cast(assignAction.MemberType + "*", Call(StaticCall("Interop.HeapUtil", $"AllocateAndClear<{assignAction.MemberType}>", assignAction.LengthExpression), "ToPointer")));
+                                    string allocationType = assignAction.MemberType.EndsWith("*")
+                                                                ? "IntPtr"
+                                                                : assignAction.MemberType;
+
+                                    ifBlock.EmitVariableDeclaration("var", "fieldPointer", Cast(assignAction.MemberType + "*", Call(StaticCall("Interop.HeapUtil", $"AllocateAndClear<{allocationType}>", assignAction.LengthExpression), "ToPointer")));
                                 }
 
                                 ifBlock.EmitForLoop(init => init.EmitVariableDeclaration("int", assignAction.IndexName, Literal(0)),

@@ -40,5 +40,138 @@ namespace SharpVk.NVidia.Experimental
             this.handle = handle;
             this.parent = parent;
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        {
+            try
+            {
+                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                if (allocator != null)
+                {
+                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
+                    allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                else
+                {
+                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                }
+                Interop.Commands.vkDestroyObjectTableNVX(this.parent, this.handle, marshalledAllocator);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe void RegisterObjects(SharpVk.NVidia.Experimental.ObjectTableEntry[] objectTableEntries, uint[] objectIndices)
+        {
+            try
+            {
+                SharpVk.NVidia.Experimental.ObjectTableEntry** marshalledObjectTableEntries = default(SharpVk.NVidia.Experimental.ObjectTableEntry**);
+                SharpVk.NVidia.Experimental.ObjectTableEntry* semiMarshalledObjectTableEntries = default(SharpVk.NVidia.Experimental.ObjectTableEntry*);
+                uint* marshalledObjectIndices = default(uint*);
+                if (objectTableEntries != null)
+                {
+                    var fieldPointer = (SharpVk.NVidia.Experimental.ObjectTableEntry*)(Interop.HeapUtil.AllocateAndClear<SharpVk.NVidia.Experimental.ObjectTableEntry>(objectTableEntries.Length).ToPointer());
+                    for(int index = 0; index < (uint)(objectTableEntries.Length); index++)
+                    {
+                        fieldPointer[index] = objectTableEntries[index];
+                    }
+                    semiMarshalledObjectTableEntries = fieldPointer;
+                }
+                else
+                {
+                    semiMarshalledObjectTableEntries = null;
+                }
+                if (objectTableEntries != null)
+                {
+                    var fieldPointer = (SharpVk.NVidia.Experimental.ObjectTableEntry**)(Interop.HeapUtil.AllocateAndClear<IntPtr>(objectTableEntries.Length).ToPointer());
+                    for(int index = 0; index < (uint)(objectTableEntries.Length); index++)
+                    {
+                        fieldPointer[index] = &semiMarshalledObjectTableEntries[index];
+                    }
+                    marshalledObjectTableEntries = fieldPointer;
+                }
+                else
+                {
+                    marshalledObjectTableEntries = null;
+                }
+                if (objectIndices != null)
+                {
+                    var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(objectIndices.Length).ToPointer());
+                    for(int index = 0; index < (uint)(objectIndices.Length); index++)
+                    {
+                        fieldPointer[index] = objectIndices[index];
+                    }
+                    marshalledObjectIndices = fieldPointer;
+                }
+                else
+                {
+                    marshalledObjectIndices = null;
+                }
+                Result methodResult = Interop.Commands.vkRegisterObjectsNVX(this.parent, this.handle, (uint)(objectTableEntries?.Length ?? 0), marshalledObjectTableEntries, marshalledObjectIndices);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe void UnregisterObjects(SharpVk.NVidia.Experimental.ObjectEntryType[] objectEntryTypes, uint[] objectIndices)
+        {
+            try
+            {
+                SharpVk.NVidia.Experimental.ObjectEntryType* marshalledObjectEntryTypes = default(SharpVk.NVidia.Experimental.ObjectEntryType*);
+                uint* marshalledObjectIndices = default(uint*);
+                if (objectEntryTypes != null)
+                {
+                    var fieldPointer = (SharpVk.NVidia.Experimental.ObjectEntryType*)(Interop.HeapUtil.AllocateAndClear<SharpVk.NVidia.Experimental.ObjectEntryType>(objectEntryTypes.Length).ToPointer());
+                    for(int index = 0; index < (uint)(objectEntryTypes.Length); index++)
+                    {
+                        fieldPointer[index] = objectEntryTypes[index];
+                    }
+                    marshalledObjectEntryTypes = fieldPointer;
+                }
+                else
+                {
+                    marshalledObjectEntryTypes = null;
+                }
+                if (objectIndices != null)
+                {
+                    var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(objectIndices.Length).ToPointer());
+                    for(int index = 0; index < (uint)(objectIndices.Length); index++)
+                    {
+                        fieldPointer[index] = objectIndices[index];
+                    }
+                    marshalledObjectIndices = fieldPointer;
+                }
+                else
+                {
+                    marshalledObjectIndices = null;
+                }
+                Result methodResult = Interop.Commands.vkUnregisterObjectsNVX(this.parent, this.handle, (uint)(objectEntryTypes?.Length ?? 0), marshalledObjectEntryTypes, marshalledObjectIndices);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
     }
 }

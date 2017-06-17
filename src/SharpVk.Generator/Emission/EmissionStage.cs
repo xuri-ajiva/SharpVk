@@ -13,6 +13,7 @@ namespace SharpVk.Generator.Emission
 
             services.AddSingleton<IOutputWorker, PInvokeEmitter>();
             services.AddSingleton<IOutputWorker, HandleEmitter>();
+            services.AddSingleton<IOutputWorker, HandleExtensionEmitter>();
             services.AddSingleton<IOutputWorker, StructEmitter>();
             services.AddSingleton<IOutputWorker, EnumEmitter>();
             services.AddSingleton<IOutputWorker, UnionEmitter>();

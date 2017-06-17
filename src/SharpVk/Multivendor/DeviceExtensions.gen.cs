@@ -24,46 +24,53 @@
 
 using System;
 
-namespace SharpVk.Khronos
+namespace SharpVk.Multivendor
 {
     /// <summary>
     /// 
     /// </summary>
-    public partial class DescriptorUpdateTemplate
+    public static class DeviceExtensions
     {
-        internal readonly SharpVk.Interop.Khronos.DescriptorUpdateTemplate handle; 
-        
-        private readonly SharpVk.Interop.Device parent; 
-        
-        internal DescriptorUpdateTemplate(SharpVk.Interop.Device parent, SharpVk.Interop.Khronos.DescriptorUpdateTemplate handle)
+        /// <summary>
+        /// 
+        /// </summary>
+        public static void DebugMarkerSetObjectName(this SharpVk.Device handle)
         {
-            this.handle = handle;
-            this.parent = parent;
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public static void DebugMarkerSetObjectTag(this SharpVk.Device handle)
         {
-            try
-            {
-                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
-                if (allocator != null)
-                {
-                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
-                    allocator.Value.MarshalTo(marshalledAllocator);
-                }
-                else
-                {
-                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
-                }
-                Interop.Commands.vkDestroyDescriptorUpdateTemplateKHR(this.parent, this.handle, marshalledAllocator);
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public static void DisplayPowerControl(this SharpVk.Device handle)
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public static void RegisterEvent(this SharpVk.Device handle)
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public static void RegisterDisplayEvent(this SharpVk.Device handle)
+        {
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public static void SetHdrMetadata(this SharpVk.Device handle)
+        {
         }
     }
 }

@@ -8,6 +8,8 @@ namespace SharpVk.TestHarness
     {
         static void Main(string[] args)
         {
+            var availableExtensions = Instance.EnumerateExtensionProperties(null);
+
             var instance = Instance.Create(null, null);
             
             var physicalDevice = instance.EnumeratePhysicalDevices().First();

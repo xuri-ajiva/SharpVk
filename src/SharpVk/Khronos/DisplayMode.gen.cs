@@ -40,5 +40,28 @@ namespace SharpVk.Khronos
             this.handle = handle;
             this.parent = parent;
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe SharpVk.Khronos.DisplayPlaneCapabilities GetDisplayPlaneCapabilities(uint planeIndex)
+        {
+            try
+            {
+                SharpVk.Khronos.DisplayPlaneCapabilities result = default(SharpVk.Khronos.DisplayPlaneCapabilities);
+                SharpVk.Khronos.DisplayPlaneCapabilities marshalledCapabilities = default(SharpVk.Khronos.DisplayPlaneCapabilities);
+                Result methodResult = Interop.Commands.vkGetDisplayPlaneCapabilitiesKHR(this.parent, this.handle, planeIndex, &marshalledCapabilities);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = marshalledCapabilities;
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
     }
 }
