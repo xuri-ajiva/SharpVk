@@ -34,6 +34,22 @@
         /// <summary>
         /// -
         /// </summary>
+        public static explicit operator uint(DeviceSize size)
+        {
+            return (uint)size.value;
+        }
+
+        /// <summary>
+        /// -
+        /// </summary>
+        public static explicit operator int(DeviceSize size)
+        {
+            return (int)size.value;
+        }
+
+        /// <summary>
+        /// -
+        /// </summary>
         public override string ToString()
         {
             return this.value.ToString();

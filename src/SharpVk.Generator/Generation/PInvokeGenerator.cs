@@ -10,13 +10,13 @@ namespace SharpVk.Generator.Generation
         : IWorker
     {
         private readonly IEnumerable<CommandDeclaration> commands;
-        private readonly Dictionary<string, TypeDeclaration> typeData;
+        private readonly NamespaceMap namespaceMap;
         private readonly NameLookup nameLookup;
 
-        public PInvokeGenerator(IEnumerable<CommandDeclaration> commands, Dictionary<string, TypeDeclaration> typeData, NameLookup nameLookup)
+        public PInvokeGenerator(IEnumerable<CommandDeclaration> commands, NamespaceMap namespaceMap, NameLookup nameLookup)
         {
             this.commands = commands;
-            this.typeData = typeData;
+            this.namespaceMap = namespaceMap;
             this.nameLookup = nameLookup;
         }
 
@@ -24,16 +24,34 @@ namespace SharpVk.Generator.Generation
         {
             foreach (var command in commands)
             {
-                services.AddSingleton(new PInvokeDefinition
+                if (command.Extension == null)
                 {
-                    Name = command.VkName,
-                    ReturnType = this.typeData[command.ReturnType].Name,
-                    Parameters = command.Params.Select(x => new ParamDefinition
+                    services.AddSingleton(new PInvokeDefinition
                     {
-                        Name = x.Name,
-                        Type = this.nameLookup.Lookup(x.Type, true)
-                    }).ToList()
-                });
+                        Name = command.VkName,
+                        ReturnType = this.nameLookup.Lookup(new TypeReference { VkName = command.ReturnType }, true),
+                        Parameters = command.Params.Select(x => new ParamDefinition
+                        {
+                            Name = x.Name,
+                            Type = this.nameLookup.Lookup(x.Type, true)
+                        }).ToList()
+                    });
+                }
+                else
+                {
+                    services.AddSingleton(new DelegateDefinition
+                    {
+                        Name = $"{command.HandleTypeName}{command.Name}Delegate",
+                        Namespace = this.namespaceMap.Map(command.Extension).Prepend("Interop").ToArray(),
+                        ReturnType = this.nameLookup.Lookup(new TypeReference { VkName = command.ReturnType }, true),
+                        IsUnsafe = true,
+                        Parameters = command.Params.Select(x => new ParamDefinition
+                        {
+                            Name = x.Name,
+                            Type = this.nameLookup.Lookup(x.Type, true)
+                        }).ToList()
+                    });
+                }
             }
         }
     }

@@ -24,18 +24,10 @@
 
 using System;
 
-namespace SharpVk.NVidia.Experimental
+namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
     /// 
     /// </summary>
-    public static class IndirectCommandsLayoutExtensions
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        public static void Destroy(this SharpVk.NVidia.Experimental.IndirectCommandsLayout handle)
-        {
-        }
-    }
+    public unsafe delegate SharpVk.Result VkPhysicalDeviceReleaseDisplayDelegate(SharpVk.Interop.PhysicalDevice physicalDevice, SharpVk.Interop.Khronos.Display display);
 }

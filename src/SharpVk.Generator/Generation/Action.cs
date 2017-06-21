@@ -37,6 +37,8 @@ namespace SharpVk.Generator.Generation
         public string MethodName;
         public string ReturnName;
         public string ReturnType;
+        public bool LookupDelegate;
+        public string DelegateName;
         public Action<ExpressionBuilder>[] Parameters;
     }
 

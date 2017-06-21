@@ -42,13 +42,16 @@ namespace SharpVk.Generator.Emission
                         namespaceBuilder.EmitDelegate(@delegate.ReturnType,
                                                         @delegate.Name,
                                                         Public,
-                                                        None,
+                                                        @delegate.IsUnsafe ? Unsafe : None,
                                                         parameters =>
                                                         {
-                                                            //foreach (var param in @delegate.Parameters)
-                                                            //{
-                                                            //    parameters.EmitParam(param.TypeName, param.Name);
-                                                            //}
+                                                            if (@delegate.Parameters != null)
+                                                            {
+                                                                foreach (var param in @delegate.Parameters)
+                                                                {
+                                                                    parameters.EmitParam(param.Type, param.Name);
+                                                                }
+                                                            }
                                                         },
                                                         @delegate.Comment);
                     });

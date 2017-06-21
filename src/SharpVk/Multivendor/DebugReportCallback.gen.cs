@@ -58,7 +58,8 @@ namespace SharpVk.Multivendor
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Interop.Commands.vkDestroyDebugReportCallbackEXT(this.parent, this.handle, marshalledAllocator);
+                SharpVk.Interop.Multivendor.VkDebugReportCallbackEXTDestroyDelegate commandDelegate = null;
+                commandDelegate(this.parent, this.handle, marshalledAllocator);
             }
             finally
             {

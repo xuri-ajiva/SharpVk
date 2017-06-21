@@ -58,7 +58,8 @@ namespace SharpVk.NVidia.Experimental
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Interop.Commands.vkDestroyObjectTableNVX(this.parent, this.handle, marshalledAllocator);
+                SharpVk.Interop.NVidia.Experimental.VkObjectTableNVXDestroyDelegate commandDelegate = null;
+                commandDelegate(this.parent, this.handle, marshalledAllocator);
             }
             finally
             {
@@ -115,7 +116,8 @@ namespace SharpVk.NVidia.Experimental
                 {
                     marshalledObjectIndices = null;
                 }
-                Result methodResult = Interop.Commands.vkRegisterObjectsNVX(this.parent, this.handle, (uint)(objectTableEntries?.Length ?? 0), marshalledObjectTableEntries, marshalledObjectIndices);
+                SharpVk.Interop.NVidia.Experimental.VkObjectTableNVXRegisterObjectsDelegate commandDelegate = null;
+                Result methodResult = commandDelegate(this.parent, this.handle, (uint)(objectTableEntries?.Length ?? 0), marshalledObjectTableEntries, marshalledObjectIndices);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -162,7 +164,8 @@ namespace SharpVk.NVidia.Experimental
                 {
                     marshalledObjectIndices = null;
                 }
-                Result methodResult = Interop.Commands.vkUnregisterObjectsNVX(this.parent, this.handle, (uint)(objectEntryTypes?.Length ?? 0), marshalledObjectEntryTypes, marshalledObjectIndices);
+                SharpVk.Interop.NVidia.Experimental.VkObjectTableNVXUnregisterObjectsDelegate commandDelegate = null;
+                Result methodResult = commandDelegate(this.parent, this.handle, (uint)(objectEntryTypes?.Length ?? 0), marshalledObjectEntryTypes, marshalledObjectIndices);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);

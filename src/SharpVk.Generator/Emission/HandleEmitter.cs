@@ -129,7 +129,7 @@ namespace SharpVk.Generator.Emission
                             {
                                 this.methodEmitter.Emit(typeBuilder, command);
                             }
-                        }, Public, modifiers: TypeModifier.Partial);
+                        }, Public, handle.Interfaces, modifiers: TypeModifier.Partial);
                     });
                 });
             }

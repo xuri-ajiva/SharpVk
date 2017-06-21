@@ -58,7 +58,8 @@ namespace SharpVk.Khronos
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Interop.Commands.vkDestroyDescriptorUpdateTemplateKHR(this.parent, this.handle, marshalledAllocator);
+                SharpVk.Interop.Khronos.VkDescriptorUpdateTemplateKHRDestroyDelegate commandDelegate = null;
+                commandDelegate(this.parent, this.handle, marshalledAllocator);
             }
             finally
             {

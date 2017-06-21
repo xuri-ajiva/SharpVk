@@ -1,0 +1,19 @@
+#version 450
+
+layout (local_size_x = 256) in;
+
+layout(std140, binding = 0) buffer input_buffer 
+{
+    float InData[];
+};
+
+layout(std140, binding = 1) buffer output_buffer 
+{
+    float OutData[];
+};
+
+void main() 
+{
+    uint index = gl_GlobalInvocationID.x;
+    OutData[index] = InData[index];
+}

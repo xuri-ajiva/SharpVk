@@ -7,6 +7,8 @@ namespace SharpVk.Generator.Generation
         public string Name;
         public string[] Namespace;
         public string ReturnType;
+        public bool IsUnsafe;
         public List<string> Comment;
+        public List<ParamDefinition> Parameters;
     }
 }

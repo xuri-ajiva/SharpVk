@@ -51,6 +51,13 @@ namespace SharpVk.Generator.Generation
                                         ? typeData[type.Parent]
                                         : null;
 
+                var interfaces = new List<string>();
+
+                if (commands.Any(x => x.Name == "GetProcedureAddress"))
+                {
+                    interfaces.Add("IProcLookup");
+                }
+
                 services.AddSingleton(new HandleDefinition
                 {
                     Name = type.Name,
@@ -58,7 +65,8 @@ namespace SharpVk.Generator.Generation
                     Namespace = type.Extension != null ? this.namespaceMap.Map(type.Extension).ToArray() : null,
                     ParentNamespace = parentType?.Extension != null ? this.namespaceMap.Map(parentType.Extension).ToArray() : null,
                     IsDispatch = type.Type != "VK_DEFINE_NON_DISPATCHABLE_HANDLE",
-                    Commands = commands
+                    Commands = commands,
+                    Interfaces = interfaces
                 });
             }
         }
@@ -145,21 +153,32 @@ namespace SharpVk.Generator.Generation
                 parameterIndex++;
             }
 
-            string returnType = null;
+            string invokeReturnType = null;
+            string invokeReturnName = null; ;
 
             if (command.ReturnType == "VkResult")
             {
-                returnType = this.typeData["VkResult"].Name;
+                invokeReturnType = this.typeData["VkResult"].Name;
+                invokeReturnName = "methodResult";
+            }
+            else if (this.typeData[command.ReturnType].Pattern == TypePattern.Delegate)
+            {
+                newMethod.ReturnType = "IntPtr";
+                invokeReturnName = "result";
             }
 
             newMethod.MemberActions.AddRange(marshalToActions);
+
+            string delegateName = "SharpVk.Interop." + string.Join(".", this.namespaceMap.Map(command.Extension)) + $".{command.HandleTypeName}{command.Name}Delegate";
 
             newMethod.MemberActions.Add(new InvokeAction
             {
                 TypeName = "Interop.Commands",
                 MethodName = command.VkName,
-                ReturnName = "methodResult",
-                ReturnType = returnType,
+                ReturnName = invokeReturnName,
+                ReturnType = invokeReturnType,
+                LookupDelegate = command.Extension != null,
+                DelegateName = delegateName,
                 Parameters = marshalledValues.ToArray()
             });
 
@@ -179,6 +198,7 @@ namespace SharpVk.Generator.Generation
                 {
                     TypeName = "Interop.Commands",
                     MethodName = command.VkName,
+                    LookupDelegate = command.Extension != null,
                     Parameters = marshalledValues.ToArray()
                 });
             }

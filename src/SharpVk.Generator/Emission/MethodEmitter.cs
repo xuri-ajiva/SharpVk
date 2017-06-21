@@ -149,13 +149,36 @@ namespace SharpVk.Generator.Emission
                 {
                     var paramNames = (invokeAction.Parameters ?? Enumerable.Empty<Action<ExpressionBuilder>>().ToArray());
 
-                    if (invokeAction.ReturnType != null)
+                    Action<ExpressionBuilder> invokeExpression = null;
+
+                    if (invokeAction.LookupDelegate)
                     {
-                        body.EmitVariableDeclaration(invokeAction.ReturnType, invokeAction.ReturnName, StaticCall(invokeAction.TypeName, invokeAction.MethodName, paramNames));
+                        if (invokeAction.DelegateName != null)
+                        {
+                            body.EmitVariableDeclaration(invokeAction.DelegateName, "commandDelegate", Null);
+                        }
+
+                        invokeExpression = DelegateCall(Variable("commandDelegate"), paramNames);
                     }
                     else
                     {
-                        body.EmitStaticCall(invokeAction.TypeName, invokeAction.MethodName, paramNames);
+                        invokeExpression = StaticCall(invokeAction.TypeName, invokeAction.MethodName, paramNames);
+                    }
+
+                    if (invokeAction.ReturnName != null)
+                    {
+                        if (invokeAction.ReturnType != null)
+                        {
+                            body.EmitVariableDeclaration(invokeAction.ReturnType, invokeAction.ReturnName, invokeExpression);
+                        }
+                        else
+                        {
+                            body.EmitAssignment(Variable(invokeAction.ReturnName), invokeExpression);
+                        }
+                    }
+                    else
+                    {
+                        body.EmitCallExpression(invokeExpression);
                     }
                 }
                 else if (action is OptionalAction optionalAction)

@@ -30,6 +30,7 @@ namespace SharpVk
     /// 
     /// </summary>
     public partial class Instance
+        : IProcLookup
     {
         internal readonly SharpVk.Interop.Instance handle; 
         
@@ -160,11 +161,13 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void GetProcedureAddress(string name)
+        public unsafe IntPtr GetProcedureAddress(string name)
         {
             try
             {
-                Interop.Commands.vkGetInstanceProcAddr(this.handle, Interop.HeapUtil.MarshalTo(name));
+                IntPtr result = default(IntPtr);
+                result = Interop.Commands.vkGetInstanceProcAddr(this.handle, Interop.HeapUtil.MarshalTo(name));
+                return result;
             }
             finally
             {

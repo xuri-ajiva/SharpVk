@@ -30,6 +30,7 @@ namespace SharpVk
     /// 
     /// </summary>
     public partial class Device
+        : IProcLookup
     {
         internal readonly SharpVk.Interop.Device handle; 
         
@@ -44,11 +45,13 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void GetProcedureAddress(string name)
+        public unsafe IntPtr GetProcedureAddress(string name)
         {
             try
             {
-                Interop.Commands.vkGetDeviceProcAddr(this.handle, Interop.HeapUtil.MarshalTo(name));
+                IntPtr result = default(IntPtr);
+                result = Interop.Commands.vkGetDeviceProcAddr(this.handle, Interop.HeapUtil.MarshalTo(name));
+                return result;
             }
             finally
             {

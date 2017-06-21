@@ -29,7 +29,7 @@ namespace SharpVk.Generator.Generation
                 services.AddSingleton(new DelegateDefinition
                 {
                     Name = type.Name,
-                    Namespace = type.Extension != null ? this.namespaceMap.Map(type.Extension).ToArray() : null,
+                    Namespace = this.namespaceMap.Map(type.Extension).ToArray(),
                     ReturnType = this.typeData[@delegate.ReturnType].Name
                 });
 

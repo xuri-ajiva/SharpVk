@@ -24,32 +24,10 @@
 
 using System;
 
-namespace SharpVk.NVidia.Experimental
+namespace SharpVk.Interop.Khronos.Experimental
 {
     /// <summary>
     /// 
     /// </summary>
-    public static class ObjectTableExtensions
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        public static void Destroy(this SharpVk.NVidia.Experimental.ObjectTable handle)
-        {
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public static void RegisterObjects(this SharpVk.NVidia.Experimental.ObjectTable handle)
-        {
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public static void UnregisterObjects(this SharpVk.NVidia.Experimental.ObjectTable handle)
-        {
-        }
-    }
+    public unsafe delegate void VkDeviceGetGroupPeerMemoryFeaturesDelegate(SharpVk.Interop.Device device, uint heapIndex, uint localDeviceIndex, uint remoteDeviceIndex, SharpVk.Khronos.Experimental.PeerMemoryFeatureFlags* peerMemoryFeatures);
 }
