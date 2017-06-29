@@ -33,12 +33,15 @@ namespace SharpVk.Multivendor
     {
         internal readonly SharpVk.Interop.Multivendor.DebugReportCallback handle; 
         
+        internal readonly CommandCache commandCache; 
+        
         private readonly SharpVk.Interop.Instance parent; 
         
-        internal DebugReportCallback(SharpVk.Interop.Instance parent, SharpVk.Interop.Multivendor.DebugReportCallback handle)
+        internal DebugReportCallback(SharpVk.Interop.Instance parent, SharpVk.Interop.Multivendor.DebugReportCallback handle, CommandCache commandCache)
         {
             this.handle = handle;
             this.parent = parent;
+            this.commandCache = commandCache;
         }
         
         /// <summary>

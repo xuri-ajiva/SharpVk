@@ -33,12 +33,15 @@ namespace SharpVk.NVidia.Experimental
     {
         internal readonly SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayout handle; 
         
+        internal readonly CommandCache commandCache; 
+        
         private readonly SharpVk.Interop.Device parent; 
         
-        internal IndirectCommandsLayout(SharpVk.Interop.Device parent, SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayout handle)
+        internal IndirectCommandsLayout(SharpVk.Interop.Device parent, SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayout handle, CommandCache commandCache)
         {
             this.handle = handle;
             this.parent = parent;
+            this.commandCache = commandCache;
         }
         
         /// <summary>

@@ -33,12 +33,15 @@ namespace SharpVk.Khronos
     {
         internal readonly SharpVk.Interop.Khronos.DisplayMode handle; 
         
+        internal readonly CommandCache commandCache; 
+        
         private readonly SharpVk.Interop.PhysicalDevice parent; 
         
-        internal DisplayMode(SharpVk.Interop.PhysicalDevice parent, SharpVk.Interop.Khronos.DisplayMode handle)
+        internal DisplayMode(SharpVk.Interop.PhysicalDevice parent, SharpVk.Interop.Khronos.DisplayMode handle, CommandCache commandCache)
         {
             this.handle = handle;
             this.parent = parent;
+            this.commandCache = commandCache;
         }
         
         /// <summary>

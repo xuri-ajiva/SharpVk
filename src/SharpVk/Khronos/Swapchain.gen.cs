@@ -33,12 +33,15 @@ namespace SharpVk.Khronos
     {
         internal readonly SharpVk.Interop.Khronos.Swapchain handle; 
         
+        internal readonly CommandCache commandCache; 
+        
         private readonly SharpVk.Interop.Khronos.Surface parent; 
         
-        internal Swapchain(SharpVk.Interop.Khronos.Surface parent, SharpVk.Interop.Khronos.Swapchain handle)
+        internal Swapchain(SharpVk.Interop.Khronos.Surface parent, SharpVk.Interop.Khronos.Swapchain handle, CommandCache commandCache)
         {
             this.handle = handle;
             this.parent = parent;
+            this.commandCache = commandCache;
         }
         
         /// <summary>
@@ -90,7 +93,7 @@ namespace SharpVk.Khronos
                     var fieldPointer = new SharpVk.Image[(uint)(swapchainImageCount)];
                     for(int index = 0; index < (uint)(swapchainImageCount); index++)
                     {
-                        fieldPointer[index] = new SharpVk.Image(default(Interop.Device), marshalledSwapchainImages[index]);
+                        fieldPointer[index] = new SharpVk.Image(default(Interop.Device), marshalledSwapchainImages[index], null);
                     }
                     result = fieldPointer;
                 }

@@ -33,12 +33,15 @@ namespace SharpVk
     {
         internal readonly SharpVk.Interop.RenderPass handle; 
         
+        internal readonly CommandCache commandCache; 
+        
         private readonly SharpVk.Interop.Device parent; 
         
-        internal RenderPass(SharpVk.Interop.Device parent, SharpVk.Interop.RenderPass handle)
+        internal RenderPass(SharpVk.Interop.Device parent, SharpVk.Interop.RenderPass handle, CommandCache commandCache)
         {
             this.handle = handle;
             this.parent = parent;
+            this.commandCache = commandCache;
         }
         
         /// <summary>

@@ -33,12 +33,15 @@ namespace SharpVk.NVidia.Experimental
     {
         internal readonly SharpVk.Interop.NVidia.Experimental.ObjectTable handle; 
         
+        internal readonly CommandCache commandCache; 
+        
         private readonly SharpVk.Interop.Device parent; 
         
-        internal ObjectTable(SharpVk.Interop.Device parent, SharpVk.Interop.NVidia.Experimental.ObjectTable handle)
+        internal ObjectTable(SharpVk.Interop.Device parent, SharpVk.Interop.NVidia.Experimental.ObjectTable handle, CommandCache commandCache)
         {
             this.handle = handle;
             this.parent = parent;
+            this.commandCache = commandCache;
         }
         
         /// <summary>

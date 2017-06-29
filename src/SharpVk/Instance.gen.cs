@@ -34,9 +34,12 @@ namespace SharpVk
     {
         internal readonly SharpVk.Interop.Instance handle; 
         
+        internal readonly CommandCache commandCache; 
+        
         internal Instance(SharpVk.Interop.Instance handle)
         {
             this.handle = handle;
+            this.commandCache = new CommandCache(this, "instance", null);
         }
         
         /// <summary>
@@ -142,7 +145,7 @@ namespace SharpVk
                     var fieldPointer = new SharpVk.PhysicalDevice[(uint)(physicalDeviceCount)];
                     for(int index = 0; index < (uint)(physicalDeviceCount); index++)
                     {
-                        fieldPointer[index] = new SharpVk.PhysicalDevice(this.handle, marshalledPhysicalDevices[index]);
+                        fieldPointer[index] = new SharpVk.PhysicalDevice(this.handle, marshalledPhysicalDevices[index], null);
                     }
                     result = fieldPointer;
                 }

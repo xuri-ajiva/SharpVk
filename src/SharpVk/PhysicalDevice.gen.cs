@@ -33,12 +33,15 @@ namespace SharpVk
     {
         internal readonly SharpVk.Interop.PhysicalDevice handle; 
         
+        internal readonly CommandCache commandCache; 
+        
         private readonly SharpVk.Interop.Instance parent; 
         
-        internal PhysicalDevice(SharpVk.Interop.Instance parent, SharpVk.Interop.PhysicalDevice handle)
+        internal PhysicalDevice(SharpVk.Interop.Instance parent, SharpVk.Interop.PhysicalDevice handle, CommandCache commandCache)
         {
             this.handle = handle;
             this.parent = parent;
+            this.commandCache = commandCache;
         }
         
         /// <summary>
@@ -244,7 +247,7 @@ namespace SharpVk
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                result = new SharpVk.Device(this.handle, marshalledDevice);
+                result = new SharpVk.Device(this.handle, marshalledDevice, null);
                 return result;
             }
             finally

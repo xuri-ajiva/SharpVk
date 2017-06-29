@@ -33,12 +33,15 @@ namespace SharpVk
     {
         internal readonly SharpVk.Interop.ShaderModule handle; 
         
+        internal readonly CommandCache commandCache; 
+        
         private readonly SharpVk.Interop.Device parent; 
         
-        internal ShaderModule(SharpVk.Interop.Device parent, SharpVk.Interop.ShaderModule handle)
+        internal ShaderModule(SharpVk.Interop.Device parent, SharpVk.Interop.ShaderModule handle, CommandCache commandCache)
         {
             this.handle = handle;
             this.parent = parent;
+            this.commandCache = commandCache;
         }
         
         /// <summary>

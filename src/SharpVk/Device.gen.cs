@@ -34,12 +34,15 @@ namespace SharpVk
     {
         internal readonly SharpVk.Interop.Device handle; 
         
+        internal readonly CommandCache commandCache; 
+        
         private readonly SharpVk.Interop.PhysicalDevice parent; 
         
-        internal Device(SharpVk.Interop.PhysicalDevice parent, SharpVk.Interop.Device handle)
+        internal Device(SharpVk.Interop.PhysicalDevice parent, SharpVk.Interop.Device handle, CommandCache commandCache)
         {
             this.handle = handle;
             this.parent = parent;
+            this.commandCache = new CommandCache(this, "device", commandCache);
         }
         
         /// <summary>
@@ -94,7 +97,7 @@ namespace SharpVk
                 SharpVk.Queue result = default(SharpVk.Queue);
                 SharpVk.Interop.Queue marshalledQueue = default(SharpVk.Interop.Queue);
                 Interop.Commands.vkGetDeviceQueue(this.handle, queueFamilyIndex, queueIndex, &marshalledQueue);
-                result = new SharpVk.Queue(this.handle, marshalledQueue);
+                result = new SharpVk.Queue(this.handle, marshalledQueue, null);
                 return result;
             }
             finally
@@ -152,7 +155,7 @@ namespace SharpVk
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                result = new SharpVk.DeviceMemory(this.handle, marshalledMemory);
+                result = new SharpVk.DeviceMemory(this.handle, marshalledMemory, null);
                 return result;
             }
             finally
@@ -263,7 +266,7 @@ namespace SharpVk
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                result = new SharpVk.Fence(this.handle, marshalledFence);
+                result = new SharpVk.Fence(this.handle, marshalledFence, null);
                 return result;
             }
             finally
@@ -374,7 +377,7 @@ namespace SharpVk
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                result = new SharpVk.Semaphore(this.handle, marshalledSemaphore);
+                result = new SharpVk.Semaphore(this.handle, marshalledSemaphore, null);
                 return result;
             }
             finally
@@ -419,7 +422,7 @@ namespace SharpVk
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                result = new SharpVk.Event(this.handle, marshalledEvent);
+                result = new SharpVk.Event(this.handle, marshalledEvent, null);
                 return result;
             }
             finally
@@ -474,7 +477,7 @@ namespace SharpVk
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                result = new SharpVk.QueryPool(this.handle, marshalledQueryPool);
+                result = new SharpVk.QueryPool(this.handle, marshalledQueryPool, null);
                 return result;
             }
             finally
@@ -536,7 +539,7 @@ namespace SharpVk
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                result = new SharpVk.Buffer(this.handle, marshalledBuffer);
+                result = new SharpVk.Buffer(this.handle, marshalledBuffer, null);
                 return result;
             }
             finally
@@ -585,7 +588,7 @@ namespace SharpVk
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                result = new SharpVk.BufferView(this.handle, marshalledView);
+                result = new SharpVk.BufferView(this.handle, marshalledView, null);
                 return result;
             }
             finally
@@ -654,7 +657,7 @@ namespace SharpVk
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                result = new SharpVk.Image(this.handle, marshalledImage);
+                result = new SharpVk.Image(this.handle, marshalledImage, null);
                 return result;
             }
             finally
@@ -704,7 +707,7 @@ namespace SharpVk
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                result = new SharpVk.ImageView(this.handle, marshalledView);
+                result = new SharpVk.ImageView(this.handle, marshalledView, null);
                 return result;
             }
             finally
@@ -763,7 +766,7 @@ namespace SharpVk
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                result = new SharpVk.ShaderModule(this.handle, marshalledShaderModule);
+                result = new SharpVk.ShaderModule(this.handle, marshalledShaderModule, null);
                 return result;
             }
             finally
@@ -822,7 +825,7 @@ namespace SharpVk
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                result = new SharpVk.PipelineCache(this.handle, marshalledPipelineCache);
+                result = new SharpVk.PipelineCache(this.handle, marshalledPipelineCache, null);
                 return result;
             }
             finally
@@ -877,7 +880,7 @@ namespace SharpVk
                     var fieldPointer = new SharpVk.Pipeline[(uint)(createInfoCount)];
                     for(int index = 0; index < (uint)(createInfoCount); index++)
                     {
-                        fieldPointer[index] = new SharpVk.Pipeline(this.handle, marshalledPipelines[index]);
+                        fieldPointer[index] = new SharpVk.Pipeline(this.handle, marshalledPipelines[index], null);
                     }
                     result = fieldPointer;
                 }
@@ -939,7 +942,7 @@ namespace SharpVk
                     var fieldPointer = new SharpVk.Pipeline[(uint)(createInfoCount)];
                     for(int index = 0; index < (uint)(createInfoCount); index++)
                     {
-                        fieldPointer[index] = new SharpVk.Pipeline(this.handle, marshalledPipelines[index]);
+                        fieldPointer[index] = new SharpVk.Pipeline(this.handle, marshalledPipelines[index], null);
                     }
                     result = fieldPointer;
                 }
@@ -1019,7 +1022,7 @@ namespace SharpVk
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                result = new SharpVk.PipelineLayout(this.handle, marshalledPipelineLayout);
+                result = new SharpVk.PipelineLayout(this.handle, marshalledPipelineLayout, null);
                 return result;
             }
             finally
@@ -1079,7 +1082,7 @@ namespace SharpVk
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                result = new SharpVk.Sampler(this.handle, marshalledSampler);
+                result = new SharpVk.Sampler(this.handle, marshalledSampler, null);
                 return result;
             }
             finally
@@ -1138,7 +1141,7 @@ namespace SharpVk
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                result = new SharpVk.DescriptorSetLayout(this.handle, marshalledSetLayout);
+                result = new SharpVk.DescriptorSetLayout(this.handle, marshalledSetLayout, null);
                 return result;
             }
             finally
@@ -1198,7 +1201,7 @@ namespace SharpVk
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                result = new SharpVk.DescriptorPool(this.handle, marshalledDescriptorPool);
+                result = new SharpVk.DescriptorPool(this.handle, marshalledDescriptorPool, null);
                 return result;
             }
             finally
@@ -1246,7 +1249,7 @@ namespace SharpVk
                     var fieldPointer = new SharpVk.DescriptorSet[(uint)(setLayouts.Length)];
                     for(int index = 0; index < (uint)(setLayouts.Length); index++)
                     {
-                        fieldPointer[index] = new SharpVk.DescriptorSet(default(Interop.DescriptorPool), marshalledDescriptorSets[index]);
+                        fieldPointer[index] = new SharpVk.DescriptorSet(default(Interop.DescriptorPool), marshalledDescriptorSets[index], null);
                     }
                     result = fieldPointer;
                 }
@@ -1359,7 +1362,7 @@ namespace SharpVk
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                result = new SharpVk.Framebuffer(this.handle, marshalledFramebuffer);
+                result = new SharpVk.Framebuffer(this.handle, marshalledFramebuffer, null);
                 return result;
             }
             finally
@@ -1446,7 +1449,7 @@ namespace SharpVk
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                result = new SharpVk.RenderPass(this.handle, marshalledRenderPass);
+                result = new SharpVk.RenderPass(this.handle, marshalledRenderPass, null);
                 return result;
             }
             finally
@@ -1492,7 +1495,7 @@ namespace SharpVk
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                result = new SharpVk.CommandPool(this.handle, marshalledCommandPool);
+                result = new SharpVk.CommandPool(this.handle, marshalledCommandPool, null);
                 return result;
             }
             finally
@@ -1528,7 +1531,7 @@ namespace SharpVk
                     var fieldPointer = new SharpVk.CommandBuffer[(uint)(commandBufferCount)];
                     for(int index = 0; index < (uint)(commandBufferCount); index++)
                     {
-                        fieldPointer[index] = new SharpVk.CommandBuffer(default(Interop.CommandPool), marshalledCommandBuffers[index]);
+                        fieldPointer[index] = new SharpVk.CommandBuffer(default(Interop.CommandPool), marshalledCommandBuffers[index], null);
                     }
                     result = fieldPointer;
                 }

@@ -100,6 +100,7 @@ namespace SharpVk.Generator.Emission
                         namespaceBuilder.EmitType(TypeKind.Class, handle.Name, typeBuilder =>
                         {
                             typeBuilder.EmitField(interopTypeName, "handle", Internal, MemberModifier.Readonly);
+                            typeBuilder.EmitField("CommandCache", "commandCache", Internal, MemberModifier.Readonly);
 
                             if (handle.Parent != null)
                             {
@@ -110,9 +111,21 @@ namespace SharpVk.Generator.Emission
                             {
                                 body.EmitAssignment(Member(This, "handle"), Variable("handle"));
 
+                                System.Action<ExpressionBuilder> commandCacheValue = Null;
+
                                 if (handle.Parent != null)
                                 {
                                     body.EmitAssignment(Member(This, "parent"), Variable("parent"));
+                                    commandCacheValue = Variable("commandCache");
+                                }
+
+                                if (handle.CommandCacheType != null)
+                                {
+                                    body.EmitAssignment(Member(This, "commandCache"), New("CommandCache", This, Literal(handle.CommandCacheType), commandCacheValue));
+                                }
+                                else
+                                {
+                                    body.EmitAssignment(Member(This, "commandCache"), commandCacheValue);
                                 }
                             },
                             parameters =>
@@ -123,6 +136,11 @@ namespace SharpVk.Generator.Emission
                                 }
 
                                 parameters.EmitParam(interopTypeName, "handle");
+
+                                if (handle.Parent != null)
+                                {
+                                    parameters.EmitParam("CommandCache", "commandCache");
+                                }
                             }, Internal);
 
                             foreach (var command in handle.Commands)

@@ -33,12 +33,15 @@ namespace SharpVk.Khronos
     {
         internal readonly SharpVk.Interop.Khronos.Surface handle; 
         
+        internal readonly CommandCache commandCache; 
+        
         private readonly SharpVk.Interop.Instance parent; 
         
-        internal Surface(SharpVk.Interop.Instance parent, SharpVk.Interop.Khronos.Surface handle)
+        internal Surface(SharpVk.Interop.Instance parent, SharpVk.Interop.Khronos.Surface handle, CommandCache commandCache)
         {
             this.handle = handle;
             this.parent = parent;
+            this.commandCache = commandCache;
         }
         
         /// <summary>

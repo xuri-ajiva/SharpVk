@@ -33,12 +33,15 @@ namespace SharpVk
     {
         internal readonly SharpVk.Interop.Semaphore handle; 
         
+        internal readonly CommandCache commandCache; 
+        
         private readonly SharpVk.Interop.Device parent; 
         
-        internal Semaphore(SharpVk.Interop.Device parent, SharpVk.Interop.Semaphore handle)
+        internal Semaphore(SharpVk.Interop.Device parent, SharpVk.Interop.Semaphore handle, CommandCache commandCache)
         {
             this.handle = handle;
             this.parent = parent;
+            this.commandCache = commandCache;
         }
         
         /// <summary>

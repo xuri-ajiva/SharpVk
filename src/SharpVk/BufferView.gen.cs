@@ -33,12 +33,15 @@ namespace SharpVk
     {
         internal readonly SharpVk.Interop.BufferView handle; 
         
+        internal readonly CommandCache commandCache; 
+        
         private readonly SharpVk.Interop.Device parent; 
         
-        internal BufferView(SharpVk.Interop.Device parent, SharpVk.Interop.BufferView handle)
+        internal BufferView(SharpVk.Interop.Device parent, SharpVk.Interop.BufferView handle, CommandCache commandCache)
         {
             this.handle = handle;
             this.parent = parent;
+            this.commandCache = commandCache;
         }
         
         /// <summary>

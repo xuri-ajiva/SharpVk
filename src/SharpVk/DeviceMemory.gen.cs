@@ -33,12 +33,15 @@ namespace SharpVk
     {
         internal readonly SharpVk.Interop.DeviceMemory handle; 
         
+        internal readonly CommandCache commandCache; 
+        
         private readonly SharpVk.Interop.Device parent; 
         
-        internal DeviceMemory(SharpVk.Interop.Device parent, SharpVk.Interop.DeviceMemory handle)
+        internal DeviceMemory(SharpVk.Interop.Device parent, SharpVk.Interop.DeviceMemory handle, CommandCache commandCache)
         {
             this.handle = handle;
             this.parent = parent;
+            this.commandCache = commandCache;
         }
         
         /// <summary>

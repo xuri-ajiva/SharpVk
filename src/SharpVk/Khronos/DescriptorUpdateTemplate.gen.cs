@@ -33,12 +33,15 @@ namespace SharpVk.Khronos
     {
         internal readonly SharpVk.Interop.Khronos.DescriptorUpdateTemplate handle; 
         
+        internal readonly CommandCache commandCache; 
+        
         private readonly SharpVk.Interop.Device parent; 
         
-        internal DescriptorUpdateTemplate(SharpVk.Interop.Device parent, SharpVk.Interop.Khronos.DescriptorUpdateTemplate handle)
+        internal DescriptorUpdateTemplate(SharpVk.Interop.Device parent, SharpVk.Interop.Khronos.DescriptorUpdateTemplate handle, CommandCache commandCache)
         {
             this.handle = handle;
             this.parent = parent;
+            this.commandCache = commandCache;
         }
         
         /// <summary>

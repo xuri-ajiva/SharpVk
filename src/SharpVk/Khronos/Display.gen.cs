@@ -33,9 +33,12 @@ namespace SharpVk.Khronos
     {
         internal readonly SharpVk.Interop.Khronos.Display handle; 
         
+        internal readonly CommandCache commandCache; 
+        
         internal Display(SharpVk.Interop.Khronos.Display handle)
         {
             this.handle = handle;
+            this.commandCache = null;
         }
     }
 }

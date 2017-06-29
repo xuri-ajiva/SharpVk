@@ -9,6 +9,7 @@ namespace SharpVk.Generator.Generation
         public string[] Namespace;
         public string[] ParentNamespace;
         public bool IsDispatch;
+        public string CommandCacheType;
         public List<MethodDefinition> Commands;
         public List<string> Interfaces;
     }

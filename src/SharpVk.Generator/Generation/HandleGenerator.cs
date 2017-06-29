@@ -52,10 +52,12 @@ namespace SharpVk.Generator.Generation
                                         : null;
 
                 var interfaces = new List<string>();
+                string commandCacheType = null;
 
                 if (commands.Any(x => x.Name == "GetProcedureAddress"))
                 {
                     interfaces.Add("IProcLookup");
+                    commandCacheType = type.Name.ToLower();
                 }
 
                 services.AddSingleton(new HandleDefinition
@@ -65,6 +67,7 @@ namespace SharpVk.Generator.Generation
                     Namespace = type.Extension != null ? this.namespaceMap.Map(type.Extension).ToArray() : null,
                     ParentNamespace = parentType?.Extension != null ? this.namespaceMap.Map(parentType.Extension).ToArray() : null,
                     IsDispatch = type.Type != "VK_DEFINE_NON_DISPATCHABLE_HANDLE",
+                    CommandCacheType = commandCacheType,
                     Commands = commands,
                     Interfaces = interfaces
                 });
