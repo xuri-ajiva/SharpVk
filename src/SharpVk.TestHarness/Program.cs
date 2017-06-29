@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Runtime.InteropServices;
+using SharpVk.Multivendor;
 
 namespace SharpVk.TestHarness
 {
@@ -10,7 +11,17 @@ namespace SharpVk.TestHarness
         {
             var availableExtensions = Instance.EnumerateExtensionProperties(null);
 
-            var instance = Instance.Create(null, null);
+            var availableLayers = Instance.EnumerateLayerProperties();
+
+            var instance = Instance.Create(new[] { "VK_LAYER_LUNARG_standard_validation" }, new[] { "VK_EXT_debug_report" });
+
+            var debugCallback = new DebugReportCallbackDelegate(DebugCallback);
+
+            var callbackHandle = instance.CreateDebugReportCallback(new DebugReportCallbackCreateInfo
+            {
+                Callback = debugCallback,
+                Flags = DebugReportFlags.Error | DebugReportFlags.Warning | DebugReportFlags.PerformanceWarning | DebugReportFlags.Information
+            });
 
             var physicalDevice = instance.EnumeratePhysicalDevices().First();
 
@@ -91,6 +102,13 @@ namespace SharpVk.TestHarness
             device.Destroy();
 
             instance.Destroy();
+        }
+
+        private static Bool32 DebugCallback(DebugReportFlags flags, DebugReportObjectType objectType, ulong @object, HostSize location, int messageCode, string pLayerPrefix, string pMessage, IntPtr pUserData)
+        {
+            Console.WriteLine($"{pLayerPrefix}: {pMessage}");
+
+            return false;
         }
 
         private static void TransferByCompute(Device device, int bufferSize, Buffer inBuffer, Buffer outBuffer, CommandPool commandPool, DescriptorPool descriptorPool)

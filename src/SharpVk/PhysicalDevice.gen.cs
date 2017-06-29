@@ -35,13 +35,13 @@ namespace SharpVk
         
         internal readonly CommandCache commandCache; 
         
-        private readonly SharpVk.Interop.Instance parent; 
+        internal readonly SharpVk.Instance parent; 
         
-        internal PhysicalDevice(SharpVk.Interop.Instance parent, SharpVk.Interop.PhysicalDevice handle, CommandCache commandCache)
+        internal PhysicalDevice(SharpVk.Instance parent, SharpVk.Interop.PhysicalDevice handle)
         {
             this.handle = handle;
             this.parent = parent;
-            this.commandCache = commandCache;
+            this.commandCache = parent.commandCache;
         }
         
         /// <summary>
@@ -223,7 +223,21 @@ namespace SharpVk
                     marshalledCreateInfo->QueueCreateInfos = null;
                 }
                 marshalledCreateInfo->EnabledLayerCount = (uint)(enabledLayerNames?.Length ?? 0);
+                if (enabledLayerNames != null)
+                {
+                    marshalledCreateInfo->EnabledLayerNames = Interop.HeapUtil.MarshalTo(enabledLayerNames);
+                }
+                else
+                {
+                }
                 marshalledCreateInfo->EnabledExtensionCount = (uint)(enabledExtensionNames?.Length ?? 0);
+                if (enabledExtensionNames != null)
+                {
+                    marshalledCreateInfo->EnabledExtensionNames = Interop.HeapUtil.MarshalTo(enabledExtensionNames);
+                }
+                else
+                {
+                }
                 if (enabledFeatures != null)
                 {
                     marshalledCreateInfo->EnabledFeatures = (SharpVk.PhysicalDeviceFeatures*)(Interop.HeapUtil.Allocate<SharpVk.PhysicalDeviceFeatures>());
@@ -247,7 +261,7 @@ namespace SharpVk
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                result = new SharpVk.Device(this.handle, marshalledDevice, null);
+                result = new SharpVk.Device(this, marshalledDevice);
                 return result;
             }
             finally

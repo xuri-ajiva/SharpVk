@@ -123,7 +123,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                         Type = marshalling.MarshalFromActionType,
                         NullCheckExpression = IsNotEqual(getValue(countMemberName), Literal(0)),
                         LengthExpression = getValue(countMemberName),
-                        ValueExpression = marshalling.BuildMarshalFromValueExpression(Index(Brackets(AddressOf(Brackets(getValue(source.Name + "_0")))), Variable("index")), x => Default("Interop." + this.typeData[x].Name))
+                        ValueExpression = marshalling.BuildMarshalFromValueExpression(Index(Brackets(AddressOf(Brackets(getValue(source.Name + "_0")))), Variable("index")), context.GetHandle)
                     });
                 }
 

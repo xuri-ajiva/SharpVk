@@ -108,5 +108,18 @@ namespace SharpVk
             pointer->DestinationArrayElement = this.DestinationArrayElement;
             pointer->DescriptorCount = this.DescriptorCount;
         }
+        
+        internal static unsafe CopyDescriptorSet MarshalFrom(SharpVk.Interop.CopyDescriptorSet* pointer)
+        {
+            CopyDescriptorSet result = default(CopyDescriptorSet);
+            result.SourceSet = new SharpVk.DescriptorSet(default(SharpVk.DescriptorPool), pointer->SourceSet);
+            result.SourceBinding = pointer->SourceBinding;
+            result.SourceArrayElement = pointer->SourceArrayElement;
+            result.DestinationSet = new SharpVk.DescriptorSet(default(SharpVk.DescriptorPool), pointer->DestinationSet);
+            result.DestinationBinding = pointer->DestinationBinding;
+            result.DestinationArrayElement = pointer->DestinationArrayElement;
+            result.DescriptorCount = pointer->DescriptorCount;
+            return result;
+        }
     }
 }

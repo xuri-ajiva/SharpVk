@@ -59,7 +59,7 @@ namespace SharpVk.Khronos.Experimental
                 var fieldPointer = new SharpVk.PhysicalDevice[(uint)(pointer->PhysicalDeviceCount)];
                 for(int index = 0; index < (uint)(pointer->PhysicalDeviceCount); index++)
                 {
-                    fieldPointer[index] = new SharpVk.PhysicalDevice(default(Interop.Instance), (&(pointer->PhysicalDevices_0))[index], null);
+                    fieldPointer[index] = new SharpVk.PhysicalDevice(default(SharpVk.Instance), (&(pointer->PhysicalDevices_0))[index]);
                 }
                 result.PhysicalDevices = fieldPointer;
             }

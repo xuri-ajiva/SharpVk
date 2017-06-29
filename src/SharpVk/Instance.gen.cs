@@ -74,7 +74,21 @@ namespace SharpVk
                     marshalledCreateInfo->ApplicationInfo = default(SharpVk.Interop.ApplicationInfo*);
                 }
                 marshalledCreateInfo->EnabledLayerCount = (uint)(enabledLayerNames?.Length ?? 0);
+                if (enabledLayerNames != null)
+                {
+                    marshalledCreateInfo->EnabledLayerNames = Interop.HeapUtil.MarshalTo(enabledLayerNames);
+                }
+                else
+                {
+                }
                 marshalledCreateInfo->EnabledExtensionCount = (uint)(enabledExtensionNames?.Length ?? 0);
+                if (enabledExtensionNames != null)
+                {
+                    marshalledCreateInfo->EnabledExtensionNames = Interop.HeapUtil.MarshalTo(enabledExtensionNames);
+                }
+                else
+                {
+                }
                 if (allocator != null)
                 {
                     marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
@@ -145,7 +159,7 @@ namespace SharpVk
                     var fieldPointer = new SharpVk.PhysicalDevice[(uint)(physicalDeviceCount)];
                     for(int index = 0; index < (uint)(physicalDeviceCount); index++)
                     {
-                        fieldPointer[index] = new SharpVk.PhysicalDevice(this.handle, marshalledPhysicalDevices[index], null);
+                        fieldPointer[index] = new SharpVk.PhysicalDevice(this, marshalledPhysicalDevices[index]);
                     }
                     result = fieldPointer;
                 }

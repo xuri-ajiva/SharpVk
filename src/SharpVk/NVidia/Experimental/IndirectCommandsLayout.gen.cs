@@ -35,13 +35,13 @@ namespace SharpVk.NVidia.Experimental
         
         internal readonly CommandCache commandCache; 
         
-        private readonly SharpVk.Interop.Device parent; 
+        internal readonly SharpVk.Device parent; 
         
-        internal IndirectCommandsLayout(SharpVk.Interop.Device parent, SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayout handle, CommandCache commandCache)
+        internal IndirectCommandsLayout(SharpVk.Device parent, SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayout handle)
         {
             this.handle = handle;
             this.parent = parent;
-            this.commandCache = commandCache;
+            this.commandCache = parent.commandCache;
         }
         
         /// <summary>
@@ -61,8 +61,8 @@ namespace SharpVk.NVidia.Experimental
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.NVidia.Experimental.VkIndirectCommandsLayoutNVXDestroyDelegate commandDelegate = null;
-                commandDelegate(this.parent, this.handle, marshalledAllocator);
+                SharpVk.Interop.NVidia.Experimental.VkIndirectCommandsLayoutNVXDestroyDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.Experimental.VkIndirectCommandsLayoutNVXDestroyDelegate>("vkDestroyIndirectCommandsLayoutNVX", "instance");
+                commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
             {

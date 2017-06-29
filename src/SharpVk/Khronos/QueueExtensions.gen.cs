@@ -34,8 +34,26 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public static void Present(this SharpVk.Queue handle)
+        public static unsafe void Present(this SharpVk.Queue extendedHandle, SharpVk.Khronos.PresentInfo presentInfo)
         {
+            try
+            {
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Khronos.PresentInfo* marshalledPresentInfo = default(SharpVk.Interop.Khronos.PresentInfo*);
+                commandCache = extendedHandle.commandCache;
+                marshalledPresentInfo = (SharpVk.Interop.Khronos.PresentInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.PresentInfo>());
+                presentInfo.MarshalTo(marshalledPresentInfo);
+                SharpVk.Interop.Khronos.VkQueuePresentDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkQueuePresentDelegate>("vkQueuePresentKHR", "instance");
+                Result methodResult = commandDelegate(extendedHandle.handle, marshalledPresentInfo);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
     }
 }

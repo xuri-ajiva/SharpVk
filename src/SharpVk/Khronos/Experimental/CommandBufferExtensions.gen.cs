@@ -34,15 +34,37 @@ namespace SharpVk.Khronos.Experimental
         /// <summary>
         /// 
         /// </summary>
-        public static void SetDeviceMask(this SharpVk.CommandBuffer handle)
+        public static unsafe void SetDeviceMask(this SharpVk.CommandBuffer extendedHandle, uint deviceMask)
         {
+            try
+            {
+                CommandCache commandCache = default(CommandCache);
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Khronos.Experimental.VkCommandBufferSetDeviceMaskDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.Experimental.VkCommandBufferSetDeviceMaskDelegate>("vkCmdSetDeviceMaskKHX", "instance");
+                commandDelegate(extendedHandle.handle, deviceMask);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public static void DispatchBase(this SharpVk.CommandBuffer handle)
+        public static unsafe void DispatchBase(this SharpVk.CommandBuffer extendedHandle, uint baseGroupX, uint baseGroupY, uint baseGroupZ, uint groupCountX, uint groupCountY, uint groupCountZ)
         {
+            try
+            {
+                CommandCache commandCache = default(CommandCache);
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Khronos.Experimental.VkCommandBufferDispatchBaseDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.Experimental.VkCommandBufferDispatchBaseDelegate>("vkCmdDispatchBaseKHX", "instance");
+                commandDelegate(extendedHandle.handle, baseGroupX, baseGroupY, baseGroupZ, groupCountX, groupCountY, groupCountZ);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
     }
 }

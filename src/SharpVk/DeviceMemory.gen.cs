@@ -35,13 +35,13 @@ namespace SharpVk
         
         internal readonly CommandCache commandCache; 
         
-        private readonly SharpVk.Interop.Device parent; 
+        internal readonly SharpVk.Device parent; 
         
-        internal DeviceMemory(SharpVk.Interop.Device parent, SharpVk.Interop.DeviceMemory handle, CommandCache commandCache)
+        internal DeviceMemory(SharpVk.Device parent, SharpVk.Interop.DeviceMemory handle)
         {
             this.handle = handle;
             this.parent = parent;
-            this.commandCache = commandCache;
+            this.commandCache = parent.commandCache;
         }
         
         /// <summary>
@@ -61,7 +61,7 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Interop.Commands.vkFreeMemory(this.parent, this.handle, marshalledAllocator);
+                Interop.Commands.vkFreeMemory(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
             {
@@ -87,7 +87,7 @@ namespace SharpVk
                 {
                     marshalledFlags = default(SharpVk.MemoryMapFlags);
                 }
-                Result methodResult = Interop.Commands.vkMapMemory(this.parent, this.handle, offset, size, marshalledFlags, &marshalledData);
+                Result methodResult = Interop.Commands.vkMapMemory(this.parent.handle, this.handle, offset, size, marshalledFlags, &marshalledData);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -108,7 +108,7 @@ namespace SharpVk
         {
             try
             {
-                Interop.Commands.vkUnmapMemory(this.parent, this.handle);
+                Interop.Commands.vkUnmapMemory(this.parent.handle, this.handle);
             }
             finally
             {
@@ -125,7 +125,7 @@ namespace SharpVk
             {
                 DeviceSize result = default(DeviceSize);
                 DeviceSize marshalledCommittedMemoryInBytes = default(DeviceSize);
-                Interop.Commands.vkGetDeviceMemoryCommitment(this.parent, this.handle, &marshalledCommittedMemoryInBytes);
+                Interop.Commands.vkGetDeviceMemoryCommitment(this.parent.handle, this.handle, &marshalledCommittedMemoryInBytes);
                 result = marshalledCommittedMemoryInBytes;
                 return result;
             }

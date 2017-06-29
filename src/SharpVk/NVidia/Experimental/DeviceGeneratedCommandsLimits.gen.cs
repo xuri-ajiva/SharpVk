@@ -88,5 +88,16 @@ namespace SharpVk.NVidia.Experimental
             pointer->MinSequenceIndexBufferOffsetAlignment = this.MinSequenceIndexBufferOffsetAlignment;
             pointer->MinCommandsTokenBufferOffsetAlignment = this.MinCommandsTokenBufferOffsetAlignment;
         }
+        
+        internal static unsafe DeviceGeneratedCommandsLimits MarshalFrom(SharpVk.Interop.NVidia.Experimental.DeviceGeneratedCommandsLimits* pointer)
+        {
+            DeviceGeneratedCommandsLimits result = default(DeviceGeneratedCommandsLimits);
+            result.MaxIndirectCommandsLayoutTokenCount = pointer->MaxIndirectCommandsLayoutTokenCount;
+            result.MaxObjectEntryCounts = pointer->MaxObjectEntryCounts;
+            result.MinSequenceCountBufferOffsetAlignment = pointer->MinSequenceCountBufferOffsetAlignment;
+            result.MinSequenceIndexBufferOffsetAlignment = pointer->MinSequenceIndexBufferOffsetAlignment;
+            result.MinCommandsTokenBufferOffsetAlignment = pointer->MinCommandsTokenBufferOffsetAlignment;
+            return result;
+        }
     }
 }

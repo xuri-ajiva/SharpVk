@@ -34,15 +34,53 @@ namespace SharpVk.Khronos.Experimental
         /// <summary>
         /// 
         /// </summary>
-        public static void GetWin32Handle(this SharpVk.Semaphore handle)
+        public static unsafe IntPtr GetWin32Handle(this SharpVk.Semaphore extendedHandle, SharpVk.Khronos.Experimental.ExternalSemaphoreHandleTypeFlags handleType)
         {
+            try
+            {
+                IntPtr result = default(IntPtr);
+                CommandCache commandCache = default(CommandCache);
+                IntPtr marshalledHandle = default(IntPtr);
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Khronos.Experimental.VkSemaphoreGetWin32HandleDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.Experimental.VkSemaphoreGetWin32HandleDelegate>("vkGetSemaphoreWin32HandleKHX", "instance");
+                Result methodResult = commandDelegate(extendedHandle.parent.handle, extendedHandle.handle, handleType, &marshalledHandle);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = marshalledHandle;
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public static void GetFileDescriptor(this SharpVk.Semaphore handle)
+        public static unsafe int GetFileDescriptor(this SharpVk.Semaphore extendedHandle, SharpVk.Khronos.Experimental.ExternalSemaphoreHandleTypeFlags handleType)
         {
+            try
+            {
+                int result = default(int);
+                CommandCache commandCache = default(CommandCache);
+                int marshalledFileDescriptor = default(int);
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Khronos.Experimental.VkSemaphoreGetFileDescriptorDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.Experimental.VkSemaphoreGetFileDescriptorDelegate>("vkGetSemaphoreFdKHX", "instance");
+                Result methodResult = commandDelegate(extendedHandle.parent.handle, extendedHandle.handle, handleType, &marshalledFileDescriptor);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = marshalledFileDescriptor;
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
     }
 }

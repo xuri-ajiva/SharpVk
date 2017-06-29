@@ -35,13 +35,13 @@ namespace SharpVk
         
         internal readonly CommandCache commandCache; 
         
-        private readonly SharpVk.Interop.Device parent; 
+        internal readonly SharpVk.Device parent; 
         
-        internal CommandPool(SharpVk.Interop.Device parent, SharpVk.Interop.CommandPool handle, CommandCache commandCache)
+        internal CommandPool(SharpVk.Device parent, SharpVk.Interop.CommandPool handle)
         {
             this.handle = handle;
             this.parent = parent;
-            this.commandCache = commandCache;
+            this.commandCache = parent.commandCache;
         }
         
         /// <summary>
@@ -61,7 +61,7 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Interop.Commands.vkDestroyCommandPool(this.parent, this.handle, marshalledAllocator);
+                Interop.Commands.vkDestroyCommandPool(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
             {
@@ -85,7 +85,7 @@ namespace SharpVk
                 {
                     marshalledFlags = default(SharpVk.CommandPoolResetFlags);
                 }
-                Result methodResult = Interop.Commands.vkResetCommandPool(this.parent, this.handle, marshalledFlags);
+                Result methodResult = Interop.Commands.vkResetCommandPool(this.parent.handle, this.handle, marshalledFlags);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -118,7 +118,7 @@ namespace SharpVk
                 {
                     marshalledCommandBuffers = null;
                 }
-                Interop.Commands.vkFreeCommandBuffers(this.parent, this.handle, (uint)(commandBuffers?.Length ?? 0), marshalledCommandBuffers);
+                Interop.Commands.vkFreeCommandBuffers(this.parent.handle, this.handle, (uint)(commandBuffers?.Length ?? 0), marshalledCommandBuffers);
             }
             finally
             {

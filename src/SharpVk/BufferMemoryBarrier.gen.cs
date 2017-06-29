@@ -122,5 +122,18 @@ namespace SharpVk
             pointer->Offset = this.Offset;
             pointer->Size = this.Size;
         }
+        
+        internal static unsafe BufferMemoryBarrier MarshalFrom(SharpVk.Interop.BufferMemoryBarrier* pointer)
+        {
+            BufferMemoryBarrier result = default(BufferMemoryBarrier);
+            result.SourceAccessMask = pointer->SourceAccessMask;
+            result.DestinationAccessMask = pointer->DestinationAccessMask;
+            result.SourceQueueFamilyIndex = pointer->SourceQueueFamilyIndex;
+            result.DestinationQueueFamilyIndex = pointer->DestinationQueueFamilyIndex;
+            result.Buffer = new SharpVk.Buffer(default(SharpVk.Device), pointer->Buffer);
+            result.Offset = pointer->Offset;
+            result.Size = pointer->Size;
+            return result;
+        }
     }
 }

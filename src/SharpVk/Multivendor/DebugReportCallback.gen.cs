@@ -35,13 +35,13 @@ namespace SharpVk.Multivendor
         
         internal readonly CommandCache commandCache; 
         
-        private readonly SharpVk.Interop.Instance parent; 
+        internal readonly SharpVk.Instance parent; 
         
-        internal DebugReportCallback(SharpVk.Interop.Instance parent, SharpVk.Interop.Multivendor.DebugReportCallback handle, CommandCache commandCache)
+        internal DebugReportCallback(SharpVk.Instance parent, SharpVk.Interop.Multivendor.DebugReportCallback handle)
         {
             this.handle = handle;
             this.parent = parent;
-            this.commandCache = commandCache;
+            this.commandCache = parent.commandCache;
         }
         
         /// <summary>
@@ -61,8 +61,8 @@ namespace SharpVk.Multivendor
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.Multivendor.VkDebugReportCallbackEXTDestroyDelegate commandDelegate = null;
-                commandDelegate(this.parent, this.handle, marshalledAllocator);
+                SharpVk.Interop.Multivendor.VkDebugReportCallbackEXTDestroyDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkDebugReportCallbackEXTDestroyDelegate>("vkDestroyDebugReportCallbackEXT", "instance");
+                commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
             {

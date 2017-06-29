@@ -34,8 +34,26 @@ namespace SharpVk.NVidia.Experimental
         /// <summary>
         /// 
         /// </summary>
-        public static void GetGeneratedCommandsProperties(this SharpVk.PhysicalDevice handle)
+        public static unsafe SharpVk.NVidia.Experimental.DeviceGeneratedCommandsLimits GetGeneratedCommandsProperties(this SharpVk.PhysicalDevice extendedHandle, SharpVk.NVidia.Experimental.DeviceGeneratedCommandsFeatures features)
         {
+            try
+            {
+                SharpVk.NVidia.Experimental.DeviceGeneratedCommandsLimits result = default(SharpVk.NVidia.Experimental.DeviceGeneratedCommandsLimits);
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.NVidia.Experimental.DeviceGeneratedCommandsFeatures* marshalledFeatures = default(SharpVk.Interop.NVidia.Experimental.DeviceGeneratedCommandsFeatures*);
+                SharpVk.Interop.NVidia.Experimental.DeviceGeneratedCommandsLimits marshalledLimits = default(SharpVk.Interop.NVidia.Experimental.DeviceGeneratedCommandsLimits);
+                commandCache = extendedHandle.commandCache;
+                marshalledFeatures = (SharpVk.Interop.NVidia.Experimental.DeviceGeneratedCommandsFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.Experimental.DeviceGeneratedCommandsFeatures>());
+                features.MarshalTo(marshalledFeatures);
+                SharpVk.Interop.NVidia.Experimental.VkPhysicalDeviceGetGeneratedCommandsPropertiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.Experimental.VkPhysicalDeviceGetGeneratedCommandsPropertiesDelegate>("vkGetPhysicalDeviceGeneratedCommandsPropertiesNVX", "instance");
+                commandDelegate(extendedHandle.handle, marshalledFeatures, &marshalledLimits);
+                result = SharpVk.NVidia.Experimental.DeviceGeneratedCommandsLimits.MarshalFrom(&marshalledLimits);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
     }
 }

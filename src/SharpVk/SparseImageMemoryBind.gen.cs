@@ -103,5 +103,17 @@ namespace SharpVk
                 pointer->Flags = default(SharpVk.SparseMemoryBindFlags);
             }
         }
+        
+        internal static unsafe SparseImageMemoryBind MarshalFrom(SharpVk.Interop.SparseImageMemoryBind* pointer)
+        {
+            SparseImageMemoryBind result = default(SparseImageMemoryBind);
+            result.Subresource = pointer->Subresource;
+            result.Offset = pointer->Offset;
+            result.Extent = pointer->Extent;
+            result.Memory = new SharpVk.DeviceMemory(default(SharpVk.Device), pointer->Memory);
+            result.MemoryOffset = pointer->MemoryOffset;
+            result.Flags = pointer->Flags;
+            return result;
+        }
     }
 }

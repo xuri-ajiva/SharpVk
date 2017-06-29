@@ -35,13 +35,13 @@ namespace SharpVk
         
         internal readonly CommandCache commandCache; 
         
-        private readonly SharpVk.Interop.Device parent; 
+        internal readonly SharpVk.Device parent; 
         
-        internal Buffer(SharpVk.Interop.Device parent, SharpVk.Interop.Buffer handle, CommandCache commandCache)
+        internal Buffer(SharpVk.Device parent, SharpVk.Interop.Buffer handle)
         {
             this.handle = handle;
             this.parent = parent;
-            this.commandCache = commandCache;
+            this.commandCache = parent.commandCache;
         }
         
         /// <summary>
@@ -53,7 +53,7 @@ namespace SharpVk
             {
                 SharpVk.MemoryRequirements result = default(SharpVk.MemoryRequirements);
                 SharpVk.MemoryRequirements marshalledMemoryRequirements = default(SharpVk.MemoryRequirements);
-                Interop.Commands.vkGetBufferMemoryRequirements(this.parent, this.handle, &marshalledMemoryRequirements);
+                Interop.Commands.vkGetBufferMemoryRequirements(this.parent.handle, this.handle, &marshalledMemoryRequirements);
                 result = marshalledMemoryRequirements;
                 return result;
             }
@@ -70,7 +70,7 @@ namespace SharpVk
         {
             try
             {
-                Result methodResult = Interop.Commands.vkBindBufferMemory(this.parent, this.handle, memory?.handle ?? default(SharpVk.Interop.DeviceMemory), memoryOffset);
+                Result methodResult = Interop.Commands.vkBindBufferMemory(this.parent.handle, this.handle, memory?.handle ?? default(SharpVk.Interop.DeviceMemory), memoryOffset);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -99,7 +99,7 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Interop.Commands.vkDestroyBuffer(this.parent, this.handle, marshalledAllocator);
+                Interop.Commands.vkDestroyBuffer(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
             {

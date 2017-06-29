@@ -34,8 +34,28 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public static void Trim(this SharpVk.CommandPool handle)
+        public static unsafe void Trim(this SharpVk.CommandPool extendedHandle, SharpVk.Khronos.CommandPoolTrimFlags? flags = default(SharpVk.Khronos.CommandPoolTrimFlags?))
         {
+            try
+            {
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Khronos.CommandPoolTrimFlags marshalledFlags = default(SharpVk.Khronos.CommandPoolTrimFlags);
+                commandCache = extendedHandle.commandCache;
+                if (flags != null)
+                {
+                    marshalledFlags = flags.Value;
+                }
+                else
+                {
+                    marshalledFlags = default(SharpVk.Khronos.CommandPoolTrimFlags);
+                }
+                SharpVk.Interop.Khronos.VkCommandPoolTrimDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkCommandPoolTrimDelegate>("vkTrimCommandPoolKHR", "instance");
+                commandDelegate(extendedHandle.parent.handle, extendedHandle.handle, marshalledFlags);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
     }
 }

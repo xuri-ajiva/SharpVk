@@ -35,13 +35,13 @@ namespace SharpVk
         
         internal readonly CommandCache commandCache; 
         
-        private readonly SharpVk.Interop.Device parent; 
+        internal readonly SharpVk.Device parent; 
         
-        internal Fence(SharpVk.Interop.Device parent, SharpVk.Interop.Fence handle, CommandCache commandCache)
+        internal Fence(SharpVk.Device parent, SharpVk.Interop.Fence handle)
         {
             this.handle = handle;
             this.parent = parent;
-            this.commandCache = commandCache;
+            this.commandCache = parent.commandCache;
         }
         
         /// <summary>
@@ -61,7 +61,7 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Interop.Commands.vkDestroyFence(this.parent, this.handle, marshalledAllocator);
+                Interop.Commands.vkDestroyFence(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
             {
@@ -76,7 +76,7 @@ namespace SharpVk
         {
             try
             {
-                Result methodResult = Interop.Commands.vkGetFenceStatus(this.parent, this.handle);
+                Result methodResult = Interop.Commands.vkGetFenceStatus(this.parent.handle, this.handle);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);

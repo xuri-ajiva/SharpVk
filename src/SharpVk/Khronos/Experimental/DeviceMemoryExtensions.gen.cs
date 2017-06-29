@@ -34,15 +34,53 @@ namespace SharpVk.Khronos.Experimental
         /// <summary>
         /// 
         /// </summary>
-        public static void GetWin32Handle(this SharpVk.DeviceMemory handle)
+        public static unsafe IntPtr GetWin32Handle(this SharpVk.DeviceMemory extendedHandle, SharpVk.Khronos.Experimental.ExternalMemoryHandleTypeFlags handleType)
         {
+            try
+            {
+                IntPtr result = default(IntPtr);
+                CommandCache commandCache = default(CommandCache);
+                IntPtr marshalledHandle = default(IntPtr);
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Khronos.Experimental.VkDeviceMemoryGetWin32HandleDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.Experimental.VkDeviceMemoryGetWin32HandleDelegate>("vkGetMemoryWin32HandleKHX", "instance");
+                Result methodResult = commandDelegate(extendedHandle.parent.handle, extendedHandle.handle, handleType, &marshalledHandle);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = marshalledHandle;
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public static void GetFileDescriptor(this SharpVk.DeviceMemory handle)
+        public static unsafe int GetFileDescriptor(this SharpVk.DeviceMemory extendedHandle, SharpVk.Khronos.Experimental.ExternalMemoryHandleTypeFlags handleType)
         {
+            try
+            {
+                int result = default(int);
+                CommandCache commandCache = default(CommandCache);
+                int marshalledFileDescriptor = default(int);
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Khronos.Experimental.VkDeviceMemoryGetFileDescriptorDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.Experimental.VkDeviceMemoryGetFileDescriptorDelegate>("vkGetMemoryFdKHX", "instance");
+                Result methodResult = commandDelegate(extendedHandle.parent.handle, extendedHandle.handle, handleType, &marshalledFileDescriptor);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = marshalledFileDescriptor;
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
     }
 }

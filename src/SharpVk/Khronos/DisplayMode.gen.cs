@@ -35,13 +35,13 @@ namespace SharpVk.Khronos
         
         internal readonly CommandCache commandCache; 
         
-        private readonly SharpVk.Interop.PhysicalDevice parent; 
+        internal readonly SharpVk.PhysicalDevice parent; 
         
-        internal DisplayMode(SharpVk.Interop.PhysicalDevice parent, SharpVk.Interop.Khronos.DisplayMode handle, CommandCache commandCache)
+        internal DisplayMode(SharpVk.PhysicalDevice parent, SharpVk.Interop.Khronos.DisplayMode handle)
         {
             this.handle = handle;
             this.parent = parent;
-            this.commandCache = commandCache;
+            this.commandCache = parent.commandCache;
         }
         
         /// <summary>
@@ -53,8 +53,8 @@ namespace SharpVk.Khronos
             {
                 SharpVk.Khronos.DisplayPlaneCapabilities result = default(SharpVk.Khronos.DisplayPlaneCapabilities);
                 SharpVk.Khronos.DisplayPlaneCapabilities marshalledCapabilities = default(SharpVk.Khronos.DisplayPlaneCapabilities);
-                SharpVk.Interop.Khronos.VkDisplayModeKHRGetDisplayPlaneCapabilitiesDelegate commandDelegate = null;
-                Result methodResult = commandDelegate(this.parent, this.handle, planeIndex, &marshalledCapabilities);
+                SharpVk.Interop.Khronos.VkDisplayModeKHRGetDisplayPlaneCapabilitiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkDisplayModeKHRGetDisplayPlaneCapabilitiesDelegate>("vkGetDisplayPlaneCapabilitiesKHR", "instance");
+                Result methodResult = commandDelegate(this.parent.handle, this.handle, planeIndex, &marshalledCapabilities);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);

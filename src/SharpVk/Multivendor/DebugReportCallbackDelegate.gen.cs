@@ -29,5 +29,5 @@ namespace SharpVk.Multivendor
     /// <summary>
     /// 
     /// </summary>
-    public delegate Bool32 DebugReportCallbackDelegate();
+    public delegate Bool32 DebugReportCallbackDelegate(SharpVk.Multivendor.DebugReportFlags flags, SharpVk.Multivendor.DebugReportObjectType objectType, ulong @object, HostSize location, int messageCode, string pLayerPrefix, string pMessage, IntPtr pUserData);
 }

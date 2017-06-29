@@ -29,5 +29,5 @@ namespace SharpVk
     /// <summary>
     /// 
     /// </summary>
-    public delegate void FreeFunctionDelegate();
+    public delegate void FreeFunctionDelegate(IntPtr pUserData, IntPtr pMemory);
 }

@@ -35,13 +35,13 @@ namespace SharpVk
         
         internal readonly CommandCache commandCache; 
         
-        private readonly SharpVk.Interop.Device parent; 
+        internal readonly SharpVk.Device parent; 
         
-        internal RenderPass(SharpVk.Interop.Device parent, SharpVk.Interop.RenderPass handle, CommandCache commandCache)
+        internal RenderPass(SharpVk.Device parent, SharpVk.Interop.RenderPass handle)
         {
             this.handle = handle;
             this.parent = parent;
-            this.commandCache = commandCache;
+            this.commandCache = parent.commandCache;
         }
         
         /// <summary>
@@ -61,7 +61,7 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Interop.Commands.vkDestroyRenderPass(this.parent, this.handle, marshalledAllocator);
+                Interop.Commands.vkDestroyRenderPass(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
             {
@@ -78,7 +78,7 @@ namespace SharpVk
             {
                 SharpVk.Extent2D result = default(SharpVk.Extent2D);
                 SharpVk.Extent2D marshalledGranularity = default(SharpVk.Extent2D);
-                Interop.Commands.vkGetRenderAreaGranularity(this.parent, this.handle, &marshalledGranularity);
+                Interop.Commands.vkGetRenderAreaGranularity(this.parent.handle, this.handle, &marshalledGranularity);
                 result = marshalledGranularity;
                 return result;
             }

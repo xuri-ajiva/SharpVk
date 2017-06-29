@@ -35,13 +35,13 @@ namespace SharpVk
         
         internal readonly CommandCache commandCache; 
         
-        private readonly SharpVk.Interop.Device parent; 
+        internal readonly SharpVk.Device parent; 
         
-        internal Semaphore(SharpVk.Interop.Device parent, SharpVk.Interop.Semaphore handle, CommandCache commandCache)
+        internal Semaphore(SharpVk.Device parent, SharpVk.Interop.Semaphore handle)
         {
             this.handle = handle;
             this.parent = parent;
-            this.commandCache = commandCache;
+            this.commandCache = parent.commandCache;
         }
         
         /// <summary>
@@ -61,7 +61,7 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Interop.Commands.vkDestroySemaphore(this.parent, this.handle, marshalledAllocator);
+                Interop.Commands.vkDestroySemaphore(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
             {

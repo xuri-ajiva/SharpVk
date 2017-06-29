@@ -35,13 +35,13 @@ namespace SharpVk
         
         internal readonly CommandCache commandCache; 
         
-        private readonly SharpVk.Interop.Device parent; 
+        internal readonly SharpVk.Device parent; 
         
-        internal Event(SharpVk.Interop.Device parent, SharpVk.Interop.Event handle, CommandCache commandCache)
+        internal Event(SharpVk.Device parent, SharpVk.Interop.Event handle)
         {
             this.handle = handle;
             this.parent = parent;
-            this.commandCache = commandCache;
+            this.commandCache = parent.commandCache;
         }
         
         /// <summary>
@@ -61,7 +61,7 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Interop.Commands.vkDestroyEvent(this.parent, this.handle, marshalledAllocator);
+                Interop.Commands.vkDestroyEvent(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
             {
@@ -76,7 +76,7 @@ namespace SharpVk
         {
             try
             {
-                Result methodResult = Interop.Commands.vkGetEventStatus(this.parent, this.handle);
+                Result methodResult = Interop.Commands.vkGetEventStatus(this.parent.handle, this.handle);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -95,7 +95,7 @@ namespace SharpVk
         {
             try
             {
-                Result methodResult = Interop.Commands.vkSetEvent(this.parent, this.handle);
+                Result methodResult = Interop.Commands.vkSetEvent(this.parent.handle, this.handle);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -114,7 +114,7 @@ namespace SharpVk
         {
             try
             {
-                Result methodResult = Interop.Commands.vkResetEvent(this.parent, this.handle);
+                Result methodResult = Interop.Commands.vkResetEvent(this.parent.handle, this.handle);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);

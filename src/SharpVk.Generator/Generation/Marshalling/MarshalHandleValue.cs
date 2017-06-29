@@ -53,11 +53,6 @@ namespace SharpVk.Generator.Generation.Marshalling
                     handleExpressions.Add((value, getHandle) => value);
                 }
 
-                if (typeInfo.Parent != null)
-                {
-                    handleExpressions.Add((value, getHandle) => Null);
-                }
-
                 info.BuildMarshalFromValueExpression = (value, getHandle) => New(memberType, handleExpressions.Select(x => x(value, getHandle)).ToArray());
 
                 return true;

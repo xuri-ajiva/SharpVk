@@ -91,7 +91,21 @@ namespace SharpVk
                 pointer->ApplicationInfo = default(SharpVk.Interop.ApplicationInfo*);
             }
             pointer->EnabledLayerCount = (uint)(this.EnabledLayerNames?.Length ?? 0);
+            if (this.EnabledLayerNames != null)
+            {
+                pointer->EnabledLayerNames = Interop.HeapUtil.MarshalTo(this.EnabledLayerNames);
+            }
+            else
+            {
+            }
             pointer->EnabledExtensionCount = (uint)(this.EnabledExtensionNames?.Length ?? 0);
+            if (this.EnabledExtensionNames != null)
+            {
+                pointer->EnabledExtensionNames = Interop.HeapUtil.MarshalTo(this.EnabledExtensionNames);
+            }
+            else
+            {
+            }
         }
     }
 }

@@ -48,5 +48,12 @@ namespace SharpVk.Multivendor
             pointer->Next = null;
             pointer->MaxDiscardRectangles = this.MaxDiscardRectangles;
         }
+        
+        internal static unsafe PhysicalDeviceDiscardRectangleProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceDiscardRectangleProperties* pointer)
+        {
+            PhysicalDeviceDiscardRectangleProperties result = default(PhysicalDeviceDiscardRectangleProperties);
+            result.MaxDiscardRectangles = pointer->MaxDiscardRectangles;
+            return result;
+        }
     }
 }

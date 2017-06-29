@@ -29,5 +29,5 @@ namespace SharpVk
     /// <summary>
     /// 
     /// </summary>
-    public delegate void AllocationFunctionDelegate();
+    public delegate void AllocationFunctionDelegate(IntPtr pUserData, HostSize size, HostSize alignment, SharpVk.SystemAllocationScope allocationScope);
 }

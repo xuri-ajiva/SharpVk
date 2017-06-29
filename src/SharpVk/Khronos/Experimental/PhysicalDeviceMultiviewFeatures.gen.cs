@@ -68,5 +68,14 @@ namespace SharpVk.Khronos.Experimental
             pointer->MultiviewGeometryShader = this.MultiviewGeometryShader;
             pointer->MultiviewTessellationShader = this.MultiviewTessellationShader;
         }
+        
+        internal static unsafe PhysicalDeviceMultiviewFeatures MarshalFrom(SharpVk.Interop.Khronos.Experimental.PhysicalDeviceMultiviewFeatures* pointer)
+        {
+            PhysicalDeviceMultiviewFeatures result = default(PhysicalDeviceMultiviewFeatures);
+            result.Multiview = pointer->Multiview;
+            result.MultiviewGeometryShader = pointer->MultiviewGeometryShader;
+            result.MultiviewTessellationShader = pointer->MultiviewTessellationShader;
+            return result;
+        }
     }
 }

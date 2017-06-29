@@ -35,13 +35,13 @@ namespace SharpVk
         
         internal readonly CommandCache commandCache; 
         
-        private readonly SharpVk.Interop.DescriptorPool parent; 
+        internal readonly SharpVk.DescriptorPool parent; 
         
-        internal DescriptorSet(SharpVk.Interop.DescriptorPool parent, SharpVk.Interop.DescriptorSet handle, CommandCache commandCache)
+        internal DescriptorSet(SharpVk.DescriptorPool parent, SharpVk.Interop.DescriptorSet handle)
         {
             this.handle = handle;
             this.parent = parent;
-            this.commandCache = commandCache;
+            this.commandCache = parent.commandCache;
         }
     }
 }

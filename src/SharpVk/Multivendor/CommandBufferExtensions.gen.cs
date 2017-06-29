@@ -34,29 +34,93 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public static void DebugMarkerBegin(this SharpVk.CommandBuffer handle)
+        public static unsafe void DebugMarkerBegin(this SharpVk.CommandBuffer extendedHandle, SharpVk.Multivendor.DebugMarkerMarkerInfo markerInfo)
         {
+            try
+            {
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Multivendor.DebugMarkerMarkerInfo* marshalledMarkerInfo = default(SharpVk.Interop.Multivendor.DebugMarkerMarkerInfo*);
+                commandCache = extendedHandle.commandCache;
+                marshalledMarkerInfo = (SharpVk.Interop.Multivendor.DebugMarkerMarkerInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.DebugMarkerMarkerInfo>());
+                markerInfo.MarshalTo(marshalledMarkerInfo);
+                SharpVk.Interop.Multivendor.VkCommandBufferDebugMarkerBeginDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkCommandBufferDebugMarkerBeginDelegate>("vkCmdDebugMarkerBeginEXT", "instance");
+                commandDelegate(extendedHandle.handle, marshalledMarkerInfo);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public static void DebugMarkerEnd(this SharpVk.CommandBuffer handle)
+        public static unsafe void DebugMarkerEnd(this SharpVk.CommandBuffer extendedHandle)
         {
+            try
+            {
+                CommandCache commandCache = default(CommandCache);
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Multivendor.VkCommandBufferDebugMarkerEndDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkCommandBufferDebugMarkerEndDelegate>("vkCmdDebugMarkerEndEXT", "instance");
+                commandDelegate(extendedHandle.handle);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public static void DebugMarkerInsert(this SharpVk.CommandBuffer handle)
+        public static unsafe void DebugMarkerInsert(this SharpVk.CommandBuffer extendedHandle, SharpVk.Multivendor.DebugMarkerMarkerInfo markerInfo)
         {
+            try
+            {
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Multivendor.DebugMarkerMarkerInfo* marshalledMarkerInfo = default(SharpVk.Interop.Multivendor.DebugMarkerMarkerInfo*);
+                commandCache = extendedHandle.commandCache;
+                marshalledMarkerInfo = (SharpVk.Interop.Multivendor.DebugMarkerMarkerInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.DebugMarkerMarkerInfo>());
+                markerInfo.MarshalTo(marshalledMarkerInfo);
+                SharpVk.Interop.Multivendor.VkCommandBufferDebugMarkerInsertDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkCommandBufferDebugMarkerInsertDelegate>("vkCmdDebugMarkerInsertEXT", "instance");
+                commandDelegate(extendedHandle.handle, marshalledMarkerInfo);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public static void SetDiscardRectangle(this SharpVk.CommandBuffer handle)
+        public static unsafe void SetDiscardRectangle(this SharpVk.CommandBuffer extendedHandle, uint firstDiscardRectangle, SharpVk.Rect2D[] discardRectangles)
         {
+            try
+            {
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Rect2D* marshalledDiscardRectangles = default(SharpVk.Rect2D*);
+                commandCache = extendedHandle.commandCache;
+                if (discardRectangles != null)
+                {
+                    var fieldPointer = (SharpVk.Rect2D*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Rect2D>(discardRectangles.Length).ToPointer());
+                    for(int index = 0; index < (uint)(discardRectangles.Length); index++)
+                    {
+                        fieldPointer[index] = discardRectangles[index];
+                    }
+                    marshalledDiscardRectangles = fieldPointer;
+                }
+                else
+                {
+                    marshalledDiscardRectangles = null;
+                }
+                SharpVk.Interop.Multivendor.VkCommandBufferSetDiscardRectangleDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkCommandBufferSetDiscardRectangleDelegate>("vkCmdSetDiscardRectangleEXT", "instance");
+                commandDelegate(extendedHandle.handle, firstDiscardRectangle, (uint)(discardRectangles?.Length ?? 0), marshalledDiscardRectangles);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
     }
 }

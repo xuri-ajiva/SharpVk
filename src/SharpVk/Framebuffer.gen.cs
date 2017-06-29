@@ -35,13 +35,13 @@ namespace SharpVk
         
         internal readonly CommandCache commandCache; 
         
-        private readonly SharpVk.Interop.Device parent; 
+        internal readonly SharpVk.Device parent; 
         
-        internal Framebuffer(SharpVk.Interop.Device parent, SharpVk.Interop.Framebuffer handle, CommandCache commandCache)
+        internal Framebuffer(SharpVk.Device parent, SharpVk.Interop.Framebuffer handle)
         {
             this.handle = handle;
             this.parent = parent;
-            this.commandCache = commandCache;
+            this.commandCache = parent.commandCache;
         }
         
         /// <summary>
@@ -61,7 +61,7 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Interop.Commands.vkDestroyFramebuffer(this.parent, this.handle, marshalledAllocator);
+                Interop.Commands.vkDestroyFramebuffer(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
             {

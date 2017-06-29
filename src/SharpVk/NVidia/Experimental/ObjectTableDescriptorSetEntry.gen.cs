@@ -76,5 +76,15 @@ namespace SharpVk.NVidia.Experimental
             pointer->PipelineLayout = this.PipelineLayout?.handle ?? default(SharpVk.Interop.PipelineLayout);
             pointer->DescriptorSet = this.DescriptorSet?.handle ?? default(SharpVk.Interop.DescriptorSet);
         }
+        
+        internal static unsafe ObjectTableDescriptorSetEntry MarshalFrom(SharpVk.Interop.NVidia.Experimental.ObjectTableDescriptorSetEntry* pointer)
+        {
+            ObjectTableDescriptorSetEntry result = default(ObjectTableDescriptorSetEntry);
+            result.Type = pointer->Type;
+            result.Flags = pointer->Flags;
+            result.PipelineLayout = new SharpVk.PipelineLayout(default(SharpVk.Device), pointer->PipelineLayout);
+            result.DescriptorSet = new SharpVk.DescriptorSet(default(SharpVk.DescriptorPool), pointer->DescriptorSet);
+            return result;
+        }
     }
 }

@@ -35,13 +35,13 @@ namespace SharpVk
         
         internal readonly CommandCache commandCache; 
         
-        private readonly SharpVk.Interop.Device parent; 
+        internal readonly SharpVk.Device parent; 
         
-        internal ShaderModule(SharpVk.Interop.Device parent, SharpVk.Interop.ShaderModule handle, CommandCache commandCache)
+        internal ShaderModule(SharpVk.Device parent, SharpVk.Interop.ShaderModule handle)
         {
             this.handle = handle;
             this.parent = parent;
-            this.commandCache = commandCache;
+            this.commandCache = parent.commandCache;
         }
         
         /// <summary>
@@ -61,7 +61,7 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Interop.Commands.vkDestroyShaderModule(this.parent, this.handle, marshalledAllocator);
+                Interop.Commands.vkDestroyShaderModule(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
             {

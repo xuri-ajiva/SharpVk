@@ -76,5 +76,15 @@ namespace SharpVk.NVidia.Experimental
             pointer->PipelineLayout = this.PipelineLayout?.handle ?? default(SharpVk.Interop.PipelineLayout);
             pointer->StageFlags = this.StageFlags;
         }
+        
+        internal static unsafe ObjectTablePushConstantEntry MarshalFrom(SharpVk.Interop.NVidia.Experimental.ObjectTablePushConstantEntry* pointer)
+        {
+            ObjectTablePushConstantEntry result = default(ObjectTablePushConstantEntry);
+            result.Type = pointer->Type;
+            result.Flags = pointer->Flags;
+            result.PipelineLayout = new SharpVk.PipelineLayout(default(SharpVk.Device), pointer->PipelineLayout);
+            result.StageFlags = pointer->StageFlags;
+            return result;
+        }
     }
 }

@@ -95,5 +95,16 @@ namespace SharpVk.Khronos
                 pointer->Flags = default(SharpVk.ImageCreateFlags);
             }
         }
+        
+        internal static unsafe PhysicalDeviceImageFormatInfo2 MarshalFrom(SharpVk.Interop.Khronos.PhysicalDeviceImageFormatInfo2* pointer)
+        {
+            PhysicalDeviceImageFormatInfo2 result = default(PhysicalDeviceImageFormatInfo2);
+            result.Format = pointer->Format;
+            result.Type = pointer->Type;
+            result.Tiling = pointer->Tiling;
+            result.Usage = pointer->Usage;
+            result.Flags = pointer->Flags;
+            return result;
+        }
     }
 }

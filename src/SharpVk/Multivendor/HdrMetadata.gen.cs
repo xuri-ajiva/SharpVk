@@ -118,5 +118,19 @@ namespace SharpVk.Multivendor
             pointer->MaxContentLightLevel = this.MaxContentLightLevel;
             pointer->MaxFrameAverageLightLevel = this.MaxFrameAverageLightLevel;
         }
+        
+        internal static unsafe HdrMetadata MarshalFrom(SharpVk.Interop.Multivendor.HdrMetadata* pointer)
+        {
+            HdrMetadata result = default(HdrMetadata);
+            result.DisplayPrimaryRed = pointer->DisplayPrimaryRed;
+            result.DisplayPrimaryGreen = pointer->DisplayPrimaryGreen;
+            result.DisplayPrimaryBlue = pointer->DisplayPrimaryBlue;
+            result.WhitePoint = pointer->WhitePoint;
+            result.MaxLuminance = pointer->MaxLuminance;
+            result.MinLuminance = pointer->MinLuminance;
+            result.MaxContentLightLevel = pointer->MaxContentLightLevel;
+            result.MaxFrameAverageLightLevel = pointer->MaxFrameAverageLightLevel;
+            return result;
+        }
     }
 }

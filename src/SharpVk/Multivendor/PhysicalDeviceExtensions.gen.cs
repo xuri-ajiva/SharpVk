@@ -34,29 +34,103 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public static void ReleaseDisplay(this SharpVk.PhysicalDevice handle)
+        public static unsafe void ReleaseDisplay(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.Display display)
         {
+            try
+            {
+                CommandCache commandCache = default(CommandCache);
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Multivendor.VkPhysicalDeviceReleaseDisplayDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkPhysicalDeviceReleaseDisplayDelegate>("vkReleaseDisplayEXT", "instance");
+                Result methodResult = commandDelegate(extendedHandle.handle, display?.handle ?? default(SharpVk.Interop.Khronos.Display));
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public static void AcquireXlibDisplay(this SharpVk.PhysicalDevice handle)
+        public static unsafe void AcquireXlibDisplay(this SharpVk.PhysicalDevice extendedHandle, IntPtr dpy, SharpVk.Khronos.Display display)
         {
+            try
+            {
+                CommandCache commandCache = default(CommandCache);
+                IntPtr* marshalledDpy = default(IntPtr*);
+                commandCache = extendedHandle.commandCache;
+                marshalledDpy = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
+                *marshalledDpy = dpy;
+                SharpVk.Interop.Multivendor.VkPhysicalDeviceAcquireXlibDisplayDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkPhysicalDeviceAcquireXlibDisplayDelegate>("vkAcquireXlibDisplayEXT", "instance");
+                Result methodResult = commandDelegate(extendedHandle.handle, marshalledDpy, display?.handle ?? default(SharpVk.Interop.Khronos.Display));
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public static void GetRandROutputDisplay(this SharpVk.PhysicalDevice handle)
+        public static unsafe SharpVk.Khronos.Display GetRandROutputDisplay(this SharpVk.PhysicalDevice extendedHandle, IntPtr dpy, IntPtr rrOutput)
         {
+            try
+            {
+                SharpVk.Khronos.Display result = default(SharpVk.Khronos.Display);
+                CommandCache commandCache = default(CommandCache);
+                IntPtr* marshalledDpy = default(IntPtr*);
+                SharpVk.Interop.Khronos.Display marshalledDisplay = default(SharpVk.Interop.Khronos.Display);
+                commandCache = extendedHandle.commandCache;
+                marshalledDpy = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
+                *marshalledDpy = dpy;
+                SharpVk.Interop.Multivendor.VkPhysicalDeviceGetRandROutputDisplayDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkPhysicalDeviceGetRandROutputDisplayDelegate>("vkGetRandROutputDisplayEXT", "instance");
+                Result methodResult = commandDelegate(extendedHandle.handle, marshalledDpy, rrOutput, &marshalledDisplay);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = new SharpVk.Khronos.Display(marshalledDisplay);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public static void GetSurfaceCapabilities2(this SharpVk.PhysicalDevice handle)
+        public static unsafe SharpVk.Multivendor.SurfaceCapabilities2 GetSurfaceCapabilities2(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.Surface surface)
         {
+            try
+            {
+                SharpVk.Multivendor.SurfaceCapabilities2 result = default(SharpVk.Multivendor.SurfaceCapabilities2);
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Multivendor.SurfaceCapabilities2 marshalledSurfaceCapabilities = default(SharpVk.Interop.Multivendor.SurfaceCapabilities2);
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Multivendor.VkPhysicalDeviceGetSurfaceCapabilities2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkPhysicalDeviceGetSurfaceCapabilities2Delegate>("vkGetPhysicalDeviceSurfaceCapabilities2EXT", "instance");
+                Result methodResult = commandDelegate(extendedHandle.handle, surface?.handle ?? default(SharpVk.Interop.Khronos.Surface), &marshalledSurfaceCapabilities);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = SharpVk.Multivendor.SurfaceCapabilities2.MarshalFrom(&marshalledSurfaceCapabilities);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
     }
 }

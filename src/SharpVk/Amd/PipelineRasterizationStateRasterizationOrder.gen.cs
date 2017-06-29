@@ -48,5 +48,12 @@ namespace SharpVk.Amd
             pointer->Next = null;
             pointer->RasterizationOrder = this.RasterizationOrder;
         }
+        
+        internal static unsafe PipelineRasterizationStateRasterizationOrder MarshalFrom(SharpVk.Interop.Amd.PipelineRasterizationStateRasterizationOrder* pointer)
+        {
+            PipelineRasterizationStateRasterizationOrder result = default(PipelineRasterizationStateRasterizationOrder);
+            result.RasterizationOrder = pointer->RasterizationOrder;
+            return result;
+        }
     }
 }

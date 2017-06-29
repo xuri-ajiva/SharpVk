@@ -72,5 +72,13 @@ namespace SharpVk
                 pointer->DestinationAccessMask = default(SharpVk.AccessFlags);
             }
         }
+        
+        internal static unsafe MemoryBarrier MarshalFrom(SharpVk.Interop.MemoryBarrier* pointer)
+        {
+            MemoryBarrier result = default(MemoryBarrier);
+            result.SourceAccessMask = pointer->SourceAccessMask;
+            result.DestinationAccessMask = pointer->DestinationAccessMask;
+            return result;
+        }
     }
 }

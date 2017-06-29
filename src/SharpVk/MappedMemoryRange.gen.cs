@@ -68,5 +68,14 @@ namespace SharpVk
             pointer->Offset = this.Offset;
             pointer->Size = this.Size;
         }
+        
+        internal static unsafe MappedMemoryRange MarshalFrom(SharpVk.Interop.MappedMemoryRange* pointer)
+        {
+            MappedMemoryRange result = default(MappedMemoryRange);
+            result.Memory = new SharpVk.DeviceMemory(default(SharpVk.Device), pointer->Memory);
+            result.Offset = pointer->Offset;
+            result.Size = pointer->Size;
+            return result;
+        }
     }
 }

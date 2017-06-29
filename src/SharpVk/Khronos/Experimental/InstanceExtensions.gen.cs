@@ -34,8 +34,42 @@ namespace SharpVk.Khronos.Experimental
         /// <summary>
         /// 
         /// </summary>
-        public static void EnumeratePhysicalDeviceGroups(this SharpVk.Instance handle)
+        public static unsafe SharpVk.Khronos.Experimental.PhysicalDeviceGroupProperties[] EnumeratePhysicalDeviceGroups(this SharpVk.Instance extendedHandle)
         {
+            try
+            {
+                SharpVk.Khronos.Experimental.PhysicalDeviceGroupProperties[] result = default(SharpVk.Khronos.Experimental.PhysicalDeviceGroupProperties[]);
+                uint physicalDeviceGroupCount = default(uint);
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Khronos.Experimental.PhysicalDeviceGroupProperties* marshalledPhysicalDeviceGroupProperties = default(SharpVk.Interop.Khronos.Experimental.PhysicalDeviceGroupProperties*);
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Khronos.Experimental.VkInstanceEnumeratePhysicalDeviceGroupsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.Experimental.VkInstanceEnumeratePhysicalDeviceGroupsDelegate>("vkEnumeratePhysicalDeviceGroupsKHX", "instance");
+                Result methodResult = commandDelegate(extendedHandle.handle, &physicalDeviceGroupCount, marshalledPhysicalDeviceGroupProperties);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                marshalledPhysicalDeviceGroupProperties = (SharpVk.Interop.Khronos.Experimental.PhysicalDeviceGroupProperties*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.Experimental.PhysicalDeviceGroupProperties>((uint)(physicalDeviceGroupCount)));
+                commandDelegate(extendedHandle.handle, &physicalDeviceGroupCount, marshalledPhysicalDeviceGroupProperties);
+                if (marshalledPhysicalDeviceGroupProperties != null)
+                {
+                    var fieldPointer = new SharpVk.Khronos.Experimental.PhysicalDeviceGroupProperties[(uint)(physicalDeviceGroupCount)];
+                    for(int index = 0; index < (uint)(physicalDeviceGroupCount); index++)
+                    {
+                        fieldPointer[index] = SharpVk.Khronos.Experimental.PhysicalDeviceGroupProperties.MarshalFrom(&marshalledPhysicalDeviceGroupProperties[index]);
+                    }
+                    result = fieldPointer;
+                }
+                else
+                {
+                    result = null;
+                }
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
     }
 }

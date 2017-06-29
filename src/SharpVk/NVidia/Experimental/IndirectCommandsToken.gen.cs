@@ -66,5 +66,14 @@ namespace SharpVk.NVidia.Experimental
             pointer->Buffer = this.Buffer?.handle ?? default(SharpVk.Interop.Buffer);
             pointer->Offset = this.Offset;
         }
+        
+        internal static unsafe IndirectCommandsToken MarshalFrom(SharpVk.Interop.NVidia.Experimental.IndirectCommandsToken* pointer)
+        {
+            IndirectCommandsToken result = default(IndirectCommandsToken);
+            result.TokenType = pointer->TokenType;
+            result.Buffer = new SharpVk.Buffer(default(SharpVk.Device), pointer->Buffer);
+            result.Offset = pointer->Offset;
+            return result;
+        }
     }
 }

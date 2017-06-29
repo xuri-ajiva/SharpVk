@@ -34,8 +34,27 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public static void GetCounter(this SharpVk.Khronos.Swapchain handle)
+        public static unsafe ulong GetCounter(this SharpVk.Khronos.Swapchain extendedHandle, SharpVk.Multivendor.SurfaceCounterFlags counter)
         {
+            try
+            {
+                ulong result = default(ulong);
+                CommandCache commandCache = default(CommandCache);
+                ulong marshalledCounterValue = default(ulong);
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Multivendor.VkSwapchainKHRGetCounterDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkSwapchainKHRGetCounterDelegate>("vkGetSwapchainCounterEXT", "instance");
+                Result methodResult = commandDelegate(default(Device).handle, extendedHandle.handle, counter, &marshalledCounterValue);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = marshalledCounterValue;
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
     }
 }

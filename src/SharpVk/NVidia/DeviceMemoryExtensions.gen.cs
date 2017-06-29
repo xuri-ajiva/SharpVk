@@ -34,8 +34,27 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
-        public static void GetWin32Handle(this SharpVk.DeviceMemory handle)
+        public static unsafe IntPtr GetWin32Handle(this SharpVk.DeviceMemory extendedHandle, SharpVk.NVidia.ExternalMemoryHandleTypeFlags handleType)
         {
+            try
+            {
+                IntPtr result = default(IntPtr);
+                CommandCache commandCache = default(CommandCache);
+                IntPtr marshalledHandle = default(IntPtr);
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.NVidia.VkDeviceMemoryGetWin32HandleDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.VkDeviceMemoryGetWin32HandleDelegate>("vkGetMemoryWin32HandleNV", "instance");
+                Result methodResult = commandDelegate(extendedHandle.parent.handle, extendedHandle.handle, handleType, &marshalledHandle);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = marshalledHandle;
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
     }
 }

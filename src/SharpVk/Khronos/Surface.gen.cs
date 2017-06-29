@@ -35,13 +35,13 @@ namespace SharpVk.Khronos
         
         internal readonly CommandCache commandCache; 
         
-        private readonly SharpVk.Interop.Instance parent; 
+        internal readonly SharpVk.Instance parent; 
         
-        internal Surface(SharpVk.Interop.Instance parent, SharpVk.Interop.Khronos.Surface handle, CommandCache commandCache)
+        internal Surface(SharpVk.Instance parent, SharpVk.Interop.Khronos.Surface handle)
         {
             this.handle = handle;
             this.parent = parent;
-            this.commandCache = commandCache;
+            this.commandCache = parent.commandCache;
         }
         
         /// <summary>
@@ -61,8 +61,8 @@ namespace SharpVk.Khronos
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.Khronos.VkSurfaceKHRDestroyDelegate commandDelegate = null;
-                commandDelegate(this.parent, this.handle, marshalledAllocator);
+                SharpVk.Interop.Khronos.VkSurfaceKHRDestroyDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkSurfaceKHRDestroyDelegate>("vkDestroySurfaceKHR", "instance");
+                commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
             {

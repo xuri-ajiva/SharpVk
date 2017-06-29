@@ -132,5 +132,19 @@ namespace SharpVk
             pointer->Image = this.Image?.handle ?? default(SharpVk.Interop.Image);
             pointer->SubresourceRange = this.SubresourceRange;
         }
+        
+        internal static unsafe ImageMemoryBarrier MarshalFrom(SharpVk.Interop.ImageMemoryBarrier* pointer)
+        {
+            ImageMemoryBarrier result = default(ImageMemoryBarrier);
+            result.SourceAccessMask = pointer->SourceAccessMask;
+            result.DestinationAccessMask = pointer->DestinationAccessMask;
+            result.OldLayout = pointer->OldLayout;
+            result.NewLayout = pointer->NewLayout;
+            result.SourceQueueFamilyIndex = pointer->SourceQueueFamilyIndex;
+            result.DestinationQueueFamilyIndex = pointer->DestinationQueueFamilyIndex;
+            result.Image = new SharpVk.Image(default(SharpVk.Device), pointer->Image);
+            result.SubresourceRange = pointer->SubresourceRange;
+            return result;
+        }
     }
 }

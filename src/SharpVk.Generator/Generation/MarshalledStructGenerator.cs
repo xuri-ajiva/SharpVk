@@ -93,13 +93,13 @@ namespace SharpVk.Generator.Generation
                     MemberActions = new List<MethodAction>()
                 };
 
-                if (type.IsOutputOnly)
-                {
-                    publicStruct.Methods.Add(marshalFromMethod);
-                }
-                else
+                if (!type.IsOutputOnly)
                 {
                     publicStruct.Methods.Add(marshalToMethod);
+                }
+                if (type.IsOutputOnly || (!type.Name.EndsWith("Info") && type.Members.All(this.CanMarshalFrom)))
+                {
+                    publicStruct.Methods.Add(marshalFromMethod);
                 }
 
                 typeNamespace.Insert(0, "Interop");
@@ -118,7 +118,7 @@ namespace SharpVk.Generator.Generation
                     {
                     };
 
-                    this.patternRules.ApplyFirst(type.Members, member, new MemberPatternContext(null, x => Default(this.nameLookup.Lookup(new TypeReference { VkName = x }, true))), patternInfo);
+                    this.patternRules.ApplyFirst(type.Members, member, new MemberPatternContext(null, x => Default(this.nameLookup.Lookup(new TypeReference { VkName = x }, false))), patternInfo);
 
                     marshalToMethod.MemberActions.AddRange(patternInfo.MarshalTo.Select(action => action(targetName => DerefMember(Variable("pointer"), targetName), valueName => Member(This, valueName))));
                     marshalFromMethod.MemberActions.AddRange(patternInfo.MarshalFrom.Select(action => action(targetName => Member(Variable("result"), targetName), valueName => DerefMember(Variable("pointer"), valueName))));
@@ -158,6 +158,15 @@ namespace SharpVk.Generator.Generation
 
                 services.AddSingleton(interopStruct);
             }
+        }
+
+        private bool CanMarshalFrom(MemberDeclaration param)
+        {
+            var typeData = this.typeData[param.Type.VkName];
+
+            return typeData.Pattern != TypePattern.Delegate
+                    && param.Dimensions?.FirstOrDefault()?.Type != LenType.Expression
+                    && param.Type.FixedLength.Type == FixedLengthType.None;
         }
 
         private MemberDefinition GetPublicMember(MemberDeclaration member)

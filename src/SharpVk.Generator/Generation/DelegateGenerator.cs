@@ -12,12 +12,14 @@ namespace SharpVk.Generator.Generation
         private readonly IEnumerable<DelegateDeclaration> delegates;
         private readonly Dictionary<string, TypeDeclaration> typeData;
         private readonly NamespaceMap namespaceMap;
+        private readonly NameLookup nameLookup;
 
-        public DelegateGenerator(IEnumerable<DelegateDeclaration> delegates, Dictionary<string, TypeDeclaration> typeData, NamespaceMap namespaceMap)
+        public DelegateGenerator(IEnumerable<DelegateDeclaration> delegates, Dictionary<string, TypeDeclaration> typeData, NamespaceMap namespaceMap, NameLookup nameLookup)
         {
             this.delegates = delegates;
             this.typeData = typeData;
             this.namespaceMap = namespaceMap;
+            this.nameLookup = nameLookup;
         }
 
         public void Execute(IServiceCollection services)
@@ -30,7 +32,29 @@ namespace SharpVk.Generator.Generation
                 {
                     Name = type.Name,
                     Namespace = this.namespaceMap.Map(type.Extension).ToArray(),
-                    ReturnType = this.typeData[@delegate.ReturnType].Name
+                    ReturnType = this.typeData[@delegate.ReturnType].Name,
+                    Parameters = @delegate.Params.Select(x =>
+                    {
+                        string typeName = this.nameLookup.Lookup(x.Type, true);
+
+                        if (x.Type.PointerType.IsPointer())
+                        {
+                            if (x.Type.VkName == "char")
+                            {
+                                typeName = "string";
+                            }
+                            else
+                            {
+                                typeName = "IntPtr";
+                            }
+                        }
+
+                        return new ParamDefinition
+                        {
+                            Name = x.Name,
+                            Type = typeName
+                        };
+                    }).ToList()
                 });
 
                 //services.AddSingleton(new TypeNameMapping

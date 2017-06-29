@@ -34,8 +34,40 @@ namespace SharpVk.Nintendo
         /// <summary>
         /// 
         /// </summary>
-        public static void CreateViSurface(this SharpVk.Instance handle)
+        public static unsafe SharpVk.Khronos.Surface CreateViSurface(this SharpVk.Instance extendedHandle, SharpVk.Nintendo.ViSurfaceCreateInfo createInfo, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
+            try
+            {
+                SharpVk.Khronos.Surface result = default(SharpVk.Khronos.Surface);
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Nintendo.ViSurfaceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Nintendo.ViSurfaceCreateInfo*);
+                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                SharpVk.Interop.Khronos.Surface marshalledSurface = default(SharpVk.Interop.Khronos.Surface);
+                commandCache = extendedHandle.commandCache;
+                marshalledCreateInfo = (SharpVk.Interop.Nintendo.ViSurfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Nintendo.ViSurfaceCreateInfo>());
+                createInfo.MarshalTo(marshalledCreateInfo);
+                if (allocator != null)
+                {
+                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
+                    allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                else
+                {
+                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                }
+                SharpVk.Interop.Nintendo.VkInstanceCreateViSurfaceDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Nintendo.VkInstanceCreateViSurfaceDelegate>("vkCreateViSurfaceNN", "instance");
+                Result methodResult = commandDelegate(extendedHandle.handle, marshalledCreateInfo, marshalledAllocator, &marshalledSurface);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = new SharpVk.Khronos.Surface(extendedHandle, marshalledSurface);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
     }
 }

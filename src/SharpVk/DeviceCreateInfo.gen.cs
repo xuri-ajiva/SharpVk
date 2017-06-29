@@ -105,7 +105,21 @@ namespace SharpVk
                 pointer->QueueCreateInfos = null;
             }
             pointer->EnabledLayerCount = (uint)(this.EnabledLayerNames?.Length ?? 0);
+            if (this.EnabledLayerNames != null)
+            {
+                pointer->EnabledLayerNames = Interop.HeapUtil.MarshalTo(this.EnabledLayerNames);
+            }
+            else
+            {
+            }
             pointer->EnabledExtensionCount = (uint)(this.EnabledExtensionNames?.Length ?? 0);
+            if (this.EnabledExtensionNames != null)
+            {
+                pointer->EnabledExtensionNames = Interop.HeapUtil.MarshalTo(this.EnabledExtensionNames);
+            }
+            else
+            {
+            }
             if (this.EnabledFeatures != null)
             {
                 pointer->EnabledFeatures = (SharpVk.PhysicalDeviceFeatures*)(Interop.HeapUtil.Allocate<SharpVk.PhysicalDeviceFeatures>());

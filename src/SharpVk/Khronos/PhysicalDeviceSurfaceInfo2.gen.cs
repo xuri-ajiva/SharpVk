@@ -48,5 +48,12 @@ namespace SharpVk.Khronos
             pointer->Next = null;
             pointer->Surface = this.Surface?.handle ?? default(SharpVk.Interop.Khronos.Surface);
         }
+        
+        internal static unsafe PhysicalDeviceSurfaceInfo2 MarshalFrom(SharpVk.Interop.Khronos.PhysicalDeviceSurfaceInfo2* pointer)
+        {
+            PhysicalDeviceSurfaceInfo2 result = default(PhysicalDeviceSurfaceInfo2);
+            result.Surface = new SharpVk.Khronos.Surface(default(SharpVk.Instance), pointer->Surface);
+            return result;
+        }
     }
 }

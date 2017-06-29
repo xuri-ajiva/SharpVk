@@ -155,7 +155,7 @@ namespace SharpVk.Generator.Emission
                     {
                         if (invokeAction.DelegateName != null)
                         {
-                            body.EmitVariableDeclaration(invokeAction.DelegateName, "commandDelegate", Null);
+                            body.EmitVariableDeclaration(invokeAction.DelegateName, "commandDelegate", Call(Variable("commandCache"), $"GetCommandDelegate<{invokeAction.DelegateName}>", Literal(invokeAction.MethodName), Literal("instance")));
                         }
 
                         invokeExpression = DelegateCall(Variable("commandDelegate"), paramNames);

@@ -35,13 +35,13 @@ namespace SharpVk.Khronos
         
         internal readonly CommandCache commandCache; 
         
-        private readonly SharpVk.Interop.Device parent; 
+        internal readonly SharpVk.Device parent; 
         
-        internal DescriptorUpdateTemplate(SharpVk.Interop.Device parent, SharpVk.Interop.Khronos.DescriptorUpdateTemplate handle, CommandCache commandCache)
+        internal DescriptorUpdateTemplate(SharpVk.Device parent, SharpVk.Interop.Khronos.DescriptorUpdateTemplate handle)
         {
             this.handle = handle;
             this.parent = parent;
-            this.commandCache = commandCache;
+            this.commandCache = parent.commandCache;
         }
         
         /// <summary>
@@ -61,8 +61,8 @@ namespace SharpVk.Khronos
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.Khronos.VkDescriptorUpdateTemplateKHRDestroyDelegate commandDelegate = null;
-                commandDelegate(this.parent, this.handle, marshalledAllocator);
+                SharpVk.Interop.Khronos.VkDescriptorUpdateTemplateKHRDestroyDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkDescriptorUpdateTemplateKHRDestroyDelegate>("vkDestroyDescriptorUpdateTemplateKHR", "instance");
+                commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
             {

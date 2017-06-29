@@ -74,7 +74,7 @@ namespace SharpVk.Generator.Generation
             }
         }
 
-        private MethodDefinition GenerateCommand(CommandDeclaration command, string handleTypeName, TypeDeclaration handleType)
+        public MethodDefinition GenerateCommand(CommandDeclaration command, string handleTypeName, TypeDeclaration handleType, bool isExtension = false)
         {
             var newMethod = new MethodDefinition
             {
@@ -82,24 +82,27 @@ namespace SharpVk.Generator.Generation
                 ReturnType = "void",
                 IsPublic = true,
                 IsUnsafe = true,
+                IsStatic = isExtension,
                 AllocatesUnmanagedMemory = true
             };
 
+            var handleExpression = isExtension ? Variable("extendedHandle") : This;
+
             var handleLookup = new Dictionary<string, Action<ExpressionBuilder>>
             {
-                [handleTypeName] = Member(This, "handle")
+                [handleTypeName] = handleExpression
             };
 
             if (handleType.Parent != null)
             {
-                handleLookup.Add(handleType.Parent, Member(This, "parent"));
+                handleLookup.Add(handleType.Parent, Member(handleExpression, "parent"));
             }
 
             Action<ExpressionBuilder> GetHandle(string handleName)
             {
                 if (!handleLookup.TryGetValue(handleName, out var result))
                 {
-                    return Default("Interop." + this.typeData[handleName].Name);
+                    return Default(this.typeData[handleName].Name);
                 }
 
                 return result;
@@ -118,8 +121,7 @@ namespace SharpVk.Generator.Generation
             bool lastParamReturns = !lastParam.Type.PointerType.IsConst()
                                         && (typeData[lastParam.Type.VkName].IsOutputOnly
                                             || lastParam.Type.PointerType.GetPointerCount() == 2
-                                            || typeData[lastParam.Type.VkName].Pattern != TypePattern.MarshalledStruct
-                                            || typeData[lastParam.Type.VkName].Pattern != TypePattern.NonMarshalledStruct
+                                            || (typeData[lastParam.Type.VkName].Pattern != TypePattern.MarshalledStruct && typeData[lastParam.Type.VkName].Pattern != TypePattern.NonMarshalledStruct)
                                             || lastParamLenFieldByRef
                                             || command.Verb == "get")
                                         && (command.ReturnType == "VkResult" || command.ReturnType == "void");
@@ -143,6 +145,30 @@ namespace SharpVk.Generator.Generation
             var marshalToActions = new List<MethodAction>();
 
             var marshalledValues = new List<Action<ExpressionBuilder>>();
+
+            if (isExtension)
+            {
+                newMethod.ParamActions.Add(new ParamActionDefinition
+                {
+                    Param = new ParamDefinition
+                    {
+                        Name = "extendedHandle",
+                        Type = "this " + this.nameLookup.Lookup(new TypeReference { VkName = handleTypeName }, false)
+                    }
+                });
+
+                marshalToActions.Add(new DeclarationAction
+                {
+                    MemberType = "CommandCache",
+                    MemberName = "commandCache"
+                });
+
+                marshalToActions.Add(new AssignAction
+                {
+                    TargetExpression = Variable("commandCache"),
+                    ValueExpression = Member(Variable("extendedHandle"), "commandCache")
+                });
+            }
 
             foreach (var parameter in command.Params)
             {
@@ -373,7 +399,7 @@ namespace SharpVk.Generator.Generation
             }
             else
             {
-                marshalledValues.Add(getHandle(parameter.Type.VkName));
+                marshalledValues.Add(Member(getHandle(parameter.Type.VkName), "handle"));
             }
 
             return result;

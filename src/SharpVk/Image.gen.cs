@@ -35,13 +35,13 @@ namespace SharpVk
         
         internal readonly CommandCache commandCache; 
         
-        private readonly SharpVk.Interop.Device parent; 
+        internal readonly SharpVk.Device parent; 
         
-        internal Image(SharpVk.Interop.Device parent, SharpVk.Interop.Image handle, CommandCache commandCache)
+        internal Image(SharpVk.Device parent, SharpVk.Interop.Image handle)
         {
             this.handle = handle;
             this.parent = parent;
-            this.commandCache = commandCache;
+            this.commandCache = parent.commandCache;
         }
         
         /// <summary>
@@ -53,7 +53,7 @@ namespace SharpVk
             {
                 SharpVk.MemoryRequirements result = default(SharpVk.MemoryRequirements);
                 SharpVk.MemoryRequirements marshalledMemoryRequirements = default(SharpVk.MemoryRequirements);
-                Interop.Commands.vkGetImageMemoryRequirements(this.parent, this.handle, &marshalledMemoryRequirements);
+                Interop.Commands.vkGetImageMemoryRequirements(this.parent.handle, this.handle, &marshalledMemoryRequirements);
                 result = marshalledMemoryRequirements;
                 return result;
             }
@@ -70,7 +70,7 @@ namespace SharpVk
         {
             try
             {
-                Result methodResult = Interop.Commands.vkBindImageMemory(this.parent, this.handle, memory?.handle ?? default(SharpVk.Interop.DeviceMemory), memoryOffset);
+                Result methodResult = Interop.Commands.vkBindImageMemory(this.parent.handle, this.handle, memory?.handle ?? default(SharpVk.Interop.DeviceMemory), memoryOffset);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -92,9 +92,9 @@ namespace SharpVk
                 SharpVk.SparseImageMemoryRequirements[] result = default(SharpVk.SparseImageMemoryRequirements[]);
                 uint sparseMemoryRequirementCount = default(uint);
                 SharpVk.SparseImageMemoryRequirements* marshalledSparseMemoryRequirements = default(SharpVk.SparseImageMemoryRequirements*);
-                Interop.Commands.vkGetImageSparseMemoryRequirements(this.parent, this.handle, &sparseMemoryRequirementCount, marshalledSparseMemoryRequirements);
+                Interop.Commands.vkGetImageSparseMemoryRequirements(this.parent.handle, this.handle, &sparseMemoryRequirementCount, marshalledSparseMemoryRequirements);
                 marshalledSparseMemoryRequirements = (SharpVk.SparseImageMemoryRequirements*)(Interop.HeapUtil.Allocate<SharpVk.SparseImageMemoryRequirements>((uint)(sparseMemoryRequirementCount)));
-                Interop.Commands.vkGetImageSparseMemoryRequirements(this.parent, this.handle, &sparseMemoryRequirementCount, marshalledSparseMemoryRequirements);
+                Interop.Commands.vkGetImageSparseMemoryRequirements(this.parent.handle, this.handle, &sparseMemoryRequirementCount, marshalledSparseMemoryRequirements);
                 if (marshalledSparseMemoryRequirements != null)
                 {
                     var fieldPointer = new SharpVk.SparseImageMemoryRequirements[(uint)(sparseMemoryRequirementCount)];
@@ -133,7 +133,7 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Interop.Commands.vkDestroyImage(this.parent, this.handle, marshalledAllocator);
+                Interop.Commands.vkDestroyImage(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
             {
@@ -153,7 +153,7 @@ namespace SharpVk
                 SharpVk.SubresourceLayout marshalledLayout = default(SharpVk.SubresourceLayout);
                 marshalledSubresource = (SharpVk.ImageSubresource*)(Interop.HeapUtil.Allocate<SharpVk.ImageSubresource>());
                 *marshalledSubresource = subresource;
-                Interop.Commands.vkGetImageSubresourceLayout(this.parent, this.handle, marshalledSubresource, &marshalledLayout);
+                Interop.Commands.vkGetImageSubresourceLayout(this.parent.handle, this.handle, marshalledSubresource, &marshalledLayout);
                 result = marshalledLayout;
                 return result;
             }

@@ -34,8 +34,45 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
-        public static void GetExternalImageFormatProperties(this SharpVk.PhysicalDevice handle)
+        public static unsafe SharpVk.NVidia.ExternalImageFormatProperties GetExternalImageFormatProperties(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Format format, SharpVk.ImageType type, SharpVk.ImageTiling tiling, SharpVk.ImageUsageFlags usage, SharpVk.ImageCreateFlags? flags = default(SharpVk.ImageCreateFlags?), SharpVk.NVidia.ExternalMemoryHandleTypeFlags? externalHandleType = default(SharpVk.NVidia.ExternalMemoryHandleTypeFlags?))
         {
+            try
+            {
+                SharpVk.NVidia.ExternalImageFormatProperties result = default(SharpVk.NVidia.ExternalImageFormatProperties);
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.ImageCreateFlags marshalledFlags = default(SharpVk.ImageCreateFlags);
+                SharpVk.NVidia.ExternalMemoryHandleTypeFlags marshalledExternalHandleType = default(SharpVk.NVidia.ExternalMemoryHandleTypeFlags);
+                SharpVk.NVidia.ExternalImageFormatProperties marshalledExternalImageFormatProperties = default(SharpVk.NVidia.ExternalImageFormatProperties);
+                commandCache = extendedHandle.commandCache;
+                if (flags != null)
+                {
+                    marshalledFlags = flags.Value;
+                }
+                else
+                {
+                    marshalledFlags = default(SharpVk.ImageCreateFlags);
+                }
+                if (externalHandleType != null)
+                {
+                    marshalledExternalHandleType = externalHandleType.Value;
+                }
+                else
+                {
+                    marshalledExternalHandleType = default(SharpVk.NVidia.ExternalMemoryHandleTypeFlags);
+                }
+                SharpVk.Interop.NVidia.VkPhysicalDeviceGetExternalImageFormatPropertiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.VkPhysicalDeviceGetExternalImageFormatPropertiesDelegate>("vkGetPhysicalDeviceExternalImageFormatPropertiesNV", "instance");
+                Result methodResult = commandDelegate(extendedHandle.handle, format, type, tiling, usage, marshalledFlags, marshalledExternalHandleType, &marshalledExternalImageFormatProperties);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = marshalledExternalImageFormatProperties;
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
         }
     }
 }

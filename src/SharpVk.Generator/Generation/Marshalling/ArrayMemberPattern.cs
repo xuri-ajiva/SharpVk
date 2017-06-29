@@ -41,6 +41,26 @@ namespace SharpVk.Generator.Generation.Marshalling
                         Name = source.Name,
                         Type = "string[]"
                     });
+
+
+
+                    info.MarshalTo.Add((getTarget, getValue) =>
+                    {
+                        var marshalToAction = new OptionalAction
+                        {
+                            NullCheckExpression = IsNotEqual(getValue(source.Name), Null)
+                        };
+
+                        marshalToAction.Actions.Add(new AssignAction
+                        {
+                            ValueExpression = StaticCall("Interop.HeapUtil", "MarshalTo", getValue(source.Name)),
+                            TargetExpression = getTarget(source.Name),
+                            MemberType = this.nameLookup.Lookup(source.Type, false),
+                            Type = AssignActionType.Assign
+                        });
+
+                        return marshalToAction;
+                    });
                 }
                 else if (source.Dimensions.Length == 1)
                 {

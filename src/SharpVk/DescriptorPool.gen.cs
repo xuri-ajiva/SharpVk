@@ -35,13 +35,13 @@ namespace SharpVk
         
         internal readonly CommandCache commandCache; 
         
-        private readonly SharpVk.Interop.Device parent; 
+        internal readonly SharpVk.Device parent; 
         
-        internal DescriptorPool(SharpVk.Interop.Device parent, SharpVk.Interop.DescriptorPool handle, CommandCache commandCache)
+        internal DescriptorPool(SharpVk.Device parent, SharpVk.Interop.DescriptorPool handle)
         {
             this.handle = handle;
             this.parent = parent;
-            this.commandCache = commandCache;
+            this.commandCache = parent.commandCache;
         }
         
         /// <summary>
@@ -61,7 +61,7 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Interop.Commands.vkDestroyDescriptorPool(this.parent, this.handle, marshalledAllocator);
+                Interop.Commands.vkDestroyDescriptorPool(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
             {
@@ -85,7 +85,7 @@ namespace SharpVk
                 {
                     marshalledFlags = default(SharpVk.DescriptorPoolResetFlags);
                 }
-                Result methodResult = Interop.Commands.vkResetDescriptorPool(this.parent, this.handle, marshalledFlags);
+                Result methodResult = Interop.Commands.vkResetDescriptorPool(this.parent.handle, this.handle, marshalledFlags);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -118,7 +118,7 @@ namespace SharpVk
                 {
                     marshalledDescriptorSets = null;
                 }
-                Result methodResult = Interop.Commands.vkFreeDescriptorSets(this.parent, this.handle, (uint)(descriptorSets?.Length ?? 0), marshalledDescriptorSets);
+                Result methodResult = Interop.Commands.vkFreeDescriptorSets(this.parent.handle, this.handle, (uint)(descriptorSets?.Length ?? 0), marshalledDescriptorSets);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);

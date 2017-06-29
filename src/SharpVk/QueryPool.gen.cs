@@ -35,13 +35,13 @@ namespace SharpVk
         
         internal readonly CommandCache commandCache; 
         
-        private readonly SharpVk.Interop.Device parent; 
+        internal readonly SharpVk.Device parent; 
         
-        internal QueryPool(SharpVk.Interop.Device parent, SharpVk.Interop.QueryPool handle, CommandCache commandCache)
+        internal QueryPool(SharpVk.Device parent, SharpVk.Interop.QueryPool handle)
         {
             this.handle = handle;
             this.parent = parent;
-            this.commandCache = commandCache;
+            this.commandCache = parent.commandCache;
         }
         
         /// <summary>
@@ -61,7 +61,7 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Interop.Commands.vkDestroyQueryPool(this.parent, this.handle, marshalledAllocator);
+                Interop.Commands.vkDestroyQueryPool(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
             {
@@ -99,7 +99,7 @@ namespace SharpVk
                 {
                     marshalledFlags = default(SharpVk.QueryResultFlags);
                 }
-                Result methodResult = Interop.Commands.vkGetQueryPoolResults(this.parent, this.handle, firstQuery, queryCount, (HostSize)(data?.Length ?? 0), marshalledData, stride, marshalledFlags);
+                Result methodResult = Interop.Commands.vkGetQueryPoolResults(this.parent.handle, this.handle, firstQuery, queryCount, (HostSize)(data?.Length ?? 0), marshalledData, stride, marshalledFlags);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);

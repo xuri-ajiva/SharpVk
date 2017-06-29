@@ -32,7 +32,7 @@ namespace SharpVk.Generator.Emission
 
                 string interopPath = "Interop";
                 string interopNamespace = "SharpVk.Interop";
-                string parentInteropNamespace = "SharpVk.Interop";
+                string parentNamespace = "SharpVk";
 
                 if (handle.Namespace?.Any() ?? false)
                 {
@@ -45,7 +45,7 @@ namespace SharpVk.Generator.Emission
 
                 if (handle.ParentNamespace?.Any() ?? false)
                 {
-                    parentInteropNamespace += "." + string.Join(".", handle.ParentNamespace);
+                    parentNamespace += "." + string.Join(".", handle.ParentNamespace);
                 }
 
                 string rawType = handle.IsDispatch ? "UIntPtr" : "ulong";
@@ -93,7 +93,7 @@ namespace SharpVk.Generator.Emission
                     fileBuilder.EmitUsing("System");
 
                     string interopTypeName = $"{interopNamespace}.{handle.Name}";
-                    string interopParentName = $"{parentInteropNamespace}.{handle.Parent}";
+                    string parentName = $"{parentNamespace}.{handle.Parent}";
 
                     fileBuilder.EmitNamespace(@namespace, namespaceBuilder =>
                     {
@@ -104,7 +104,7 @@ namespace SharpVk.Generator.Emission
 
                             if (handle.Parent != null)
                             {
-                                typeBuilder.EmitField(interopParentName, "parent", Private, MemberModifier.Readonly);
+                                typeBuilder.EmitField(parentName, "parent", Internal, MemberModifier.Readonly);
                             }
 
                             typeBuilder.EmitConstructor(body =>
@@ -116,7 +116,7 @@ namespace SharpVk.Generator.Emission
                                 if (handle.Parent != null)
                                 {
                                     body.EmitAssignment(Member(This, "parent"), Variable("parent"));
-                                    commandCacheValue = Variable("commandCache");
+                                    commandCacheValue = Member(Variable("parent"), "commandCache");
                                 }
 
                                 if (handle.CommandCacheType != null)
@@ -132,15 +132,10 @@ namespace SharpVk.Generator.Emission
                             {
                                 if (handle.Parent != null)
                                 {
-                                    parameters.EmitParam(interopParentName, "parent");
+                                    parameters.EmitParam(parentName, "parent");
                                 }
 
                                 parameters.EmitParam(interopTypeName, "handle");
-
-                                if (handle.Parent != null)
-                                {
-                                    parameters.EmitParam("CommandCache", "commandCache");
-                                }
                             }, Internal);
 
                             foreach (var command in handle.Commands)
