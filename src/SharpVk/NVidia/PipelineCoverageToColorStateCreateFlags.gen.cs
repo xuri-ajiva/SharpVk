@@ -22,31 +22,17 @@
 
 // This file was automatically generated and should not be edited directly.
 
-namespace SharpVk
+namespace SharpVk.NVidia
 {
     /// <summary>
     /// 
     /// </summary>
-    public enum PolygonMode
+    [System.Flags]
+    public enum PipelineCoverageToColorStateCreateFlags
     {
         /// <summary>
         /// 
         /// </summary>
-        Fill = 0, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Line = 1, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Point = 2, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        FillRectangleNv = 1000153000, 
+        None = 0, 
     }
 }

@@ -22,31 +22,31 @@
 
 // This file was automatically generated and should not be edited directly.
 
-namespace SharpVk
+using System;
+using System.Runtime.InteropServices;
+
+namespace SharpVk.Multivendor
 {
     /// <summary>
     /// 
     /// </summary>
-    public enum PolygonMode
+    [StructLayout(LayoutKind.Sequential)]
+    public struct PhysicalDeviceBlendOperationAdvancedFeatures
     {
         /// <summary>
         /// 
         /// </summary>
-        Fill = 0, 
+        public Bool32 AdvancedBlendCoherentOperations
+        {
+            get;
+            set;
+        }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        Line = 1, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Point = 2, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        FillRectangleNv = 1000153000, 
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceBlendOperationAdvancedFeatures* pointer)
+        {
+            pointer->SType = StructureType.PhysicalDeviceBlendOperationAdvancedFeaturesExt;
+            pointer->Next = null;
+            pointer->AdvancedBlendCoherentOperations = this.AdvancedBlendCoherentOperations;
+        }
     }
 }

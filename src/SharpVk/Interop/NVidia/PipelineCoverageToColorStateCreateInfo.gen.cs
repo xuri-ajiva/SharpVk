@@ -22,31 +22,40 @@
 
 // This file was automatically generated and should not be edited directly.
 
-namespace SharpVk
+using System;
+using System.Runtime.InteropServices;
+
+namespace SharpVk.Interop.NVidia
 {
     /// <summary>
     /// 
     /// </summary>
-    public enum PolygonMode
+    [StructLayout(LayoutKind.Sequential)]
+    public unsafe struct PipelineCoverageToColorStateCreateInfo
     {
         /// <summary>
         /// 
         /// </summary>
-        Fill = 0, 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
         /// </summary>
-        Line = 1, 
+        public void* Next; 
         
         /// <summary>
         /// 
         /// </summary>
-        Point = 2, 
+        public SharpVk.NVidia.PipelineCoverageToColorStateCreateFlags Flags; 
         
         /// <summary>
         /// 
         /// </summary>
-        FillRectangleNv = 1000153000, 
+        public Bool32 CoverageToColorEnable; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public uint CoverageToColorLocation; 
     }
 }

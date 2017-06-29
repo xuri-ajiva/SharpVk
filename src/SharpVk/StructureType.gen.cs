@@ -783,5 +783,40 @@ namespace SharpVk
         /// 
         /// </summary>
         MacosSurfaceCreateInfoMvk = 1000123000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceSamplerFilterMinmaxPropertiesExt = 1000130000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SamplerReductionModeCreateInfoExt = 1000130001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceBlendOperationAdvancedFeaturesExt = 1000148000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceBlendOperationAdvancedPropertiesExt = 1000148001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PipelineColorBlendAdvancedStateCreateInfoExt = 1000148002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PipelineCoverageToColorStateCreateInfoNv = 1000149000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PipelineCoverageModulationStateCreateInfoNv = 1000152000, 
     }
 }

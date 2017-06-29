@@ -22,31 +22,41 @@
 
 // This file was automatically generated and should not be edited directly.
 
-namespace SharpVk
+using System;
+using System.Runtime.InteropServices;
+
+namespace SharpVk.Multivendor
 {
     /// <summary>
     /// 
     /// </summary>
-    public enum PolygonMode
+    [StructLayout(LayoutKind.Sequential)]
+    public struct PhysicalDeviceSamplerFilterMinmaxProperties
     {
         /// <summary>
         /// 
         /// </summary>
-        Fill = 0, 
+        public Bool32 FilterMinmaxSingleComponentFormats
+        {
+            get;
+            set;
+        }
         
         /// <summary>
         /// 
         /// </summary>
-        Line = 1, 
+        public Bool32 FilterMinmaxImageComponentMapping
+        {
+            get;
+            set;
+        }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        Point = 2, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        FillRectangleNv = 1000153000, 
+        internal static unsafe PhysicalDeviceSamplerFilterMinmaxProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceSamplerFilterMinmaxProperties* pointer)
+        {
+            PhysicalDeviceSamplerFilterMinmaxProperties result = default(PhysicalDeviceSamplerFilterMinmaxProperties);
+            result.FilterMinmaxSingleComponentFormats = pointer->FilterMinmaxSingleComponentFormats;
+            result.FilterMinmaxImageComponentMapping = pointer->FilterMinmaxImageComponentMapping;
+            return result;
+        }
     }
 }

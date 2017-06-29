@@ -22,102 +22,50 @@
 
 // This file was automatically generated and should not be edited directly.
 
-namespace SharpVk
+using System;
+using System.Runtime.InteropServices;
+
+namespace SharpVk.Interop.NVidia
 {
     /// <summary>
     /// 
     /// </summary>
-    [System.Flags]
-    public enum FormatFeatureFlags
+    [StructLayout(LayoutKind.Sequential)]
+    public unsafe struct PipelineCoverageModulationStateCreateInfo
     {
         /// <summary>
         /// 
         /// </summary>
-        None = 0, 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
         /// </summary>
-        SampledImage = 1 << 0, 
+        public void* Next; 
         
         /// <summary>
         /// 
         /// </summary>
-        StorageImage = 1 << 1, 
+        public SharpVk.NVidia.PipelineCoverageModulationStateCreateFlags Flags; 
         
         /// <summary>
         /// 
         /// </summary>
-        StorageImageAtomic = 1 << 2, 
+        public SharpVk.NVidia.CoverageModulationMode CoverageModulationMode; 
         
         /// <summary>
         /// 
         /// </summary>
-        UniformTexelBuffer = 1 << 3, 
+        public Bool32 CoverageModulationTableEnable; 
         
         /// <summary>
         /// 
         /// </summary>
-        StorageTexelBuffer = 1 << 4, 
+        public uint CoverageModulationTableCount; 
         
         /// <summary>
         /// 
         /// </summary>
-        StorageTexelBufferAtomic = 1 << 5, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        VertexBuffer = 1 << 6, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        ColorAttachment = 1 << 7, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        ColorAttachmentBlend = 1 << 8, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        DepthStencilAttachment = 1 << 9, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        BlitSource = 1 << 10, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        BlitDestination = 1 << 11, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        SampledImageFilterLinear = 1 << 12, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        SampledImageFilterCubicBitImg = 1 << 13, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        TransferSourceBitKhr = 1 << 14, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        TransferDestinationBitKhr = 1 << 15, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        SampledImageFilterMinmaxBitExt = 1 << 16, 
+        public float* CoverageModulationTable; 
     }
 }

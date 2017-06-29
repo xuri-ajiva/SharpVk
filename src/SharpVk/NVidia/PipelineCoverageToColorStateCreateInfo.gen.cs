@@ -22,31 +22,65 @@
 
 // This file was automatically generated and should not be edited directly.
 
-namespace SharpVk
+using System;
+using System.Runtime.InteropServices;
+
+namespace SharpVk.NVidia
 {
     /// <summary>
     /// 
     /// </summary>
-    public enum PolygonMode
+    [StructLayout(LayoutKind.Sequential)]
+    public struct PipelineCoverageToColorStateCreateInfo
     {
         /// <summary>
         /// 
         /// </summary>
-        Fill = 0, 
+        public SharpVk.NVidia.PipelineCoverageToColorStateCreateFlags? Flags
+        {
+            get;
+            set;
+        }
         
         /// <summary>
         /// 
         /// </summary>
-        Line = 1, 
+        public Bool32 CoverageToColorEnable
+        {
+            get;
+            set;
+        }
         
         /// <summary>
         /// 
         /// </summary>
-        Point = 2, 
+        public uint? CoverageToColorLocation
+        {
+            get;
+            set;
+        }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        FillRectangleNv = 1000153000, 
+        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PipelineCoverageToColorStateCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.PipelineCoverageToColorStateCreateInfoNv;
+            pointer->Next = null;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.NVidia.PipelineCoverageToColorStateCreateFlags);
+            }
+            pointer->CoverageToColorEnable = this.CoverageToColorEnable;
+            if (this.CoverageToColorLocation != null)
+            {
+                pointer->CoverageToColorLocation = this.CoverageToColorLocation.Value;
+            }
+            else
+            {
+                pointer->CoverageToColorLocation = default(uint);
+            }
+        }
     }
 }

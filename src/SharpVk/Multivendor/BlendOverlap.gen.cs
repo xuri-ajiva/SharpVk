@@ -22,31 +22,26 @@
 
 // This file was automatically generated and should not be edited directly.
 
-namespace SharpVk
+namespace SharpVk.Multivendor
 {
     /// <summary>
     /// 
     /// </summary>
-    public enum PolygonMode
+    public enum BlendOverlap
     {
         /// <summary>
         /// 
         /// </summary>
-        Fill = 0, 
+        Uncorrelated = 0, 
         
         /// <summary>
         /// 
         /// </summary>
-        Line = 1, 
+        Disjoint = 1, 
         
         /// <summary>
         /// 
         /// </summary>
-        Point = 2, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        FillRectangleNv = 1000153000, 
+        Conjoint = 2, 
     }
 }

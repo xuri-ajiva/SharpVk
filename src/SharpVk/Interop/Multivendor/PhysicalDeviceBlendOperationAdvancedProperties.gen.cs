@@ -22,117 +22,55 @@
 
 // This file was automatically generated and should not be edited directly.
 
-namespace SharpVk
+using System;
+using System.Runtime.InteropServices;
+
+namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
     /// 
     /// </summary>
-    [System.Flags]
-    public enum AccessFlags
+    [StructLayout(LayoutKind.Sequential)]
+    public unsafe struct PhysicalDeviceBlendOperationAdvancedProperties
     {
         /// <summary>
         /// 
         /// </summary>
-        None = 0, 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
         /// </summary>
-        IndirectCommandRead = 1 << 0, 
+        public void* Next; 
         
         /// <summary>
         /// 
         /// </summary>
-        IndexRead = 1 << 1, 
+        public uint AdvancedBlendMaxColorAttachments; 
         
         /// <summary>
         /// 
         /// </summary>
-        VertexAttributeRead = 1 << 2, 
+        public Bool32 AdvancedBlendIndependentBlend; 
         
         /// <summary>
         /// 
         /// </summary>
-        UniformRead = 1 << 3, 
+        public Bool32 AdvancedBlendNonPremultipliedSourceColor; 
         
         /// <summary>
         /// 
         /// </summary>
-        InputAttachmentRead = 1 << 4, 
+        public Bool32 AdvancedBlendNonPremultipliedDestinationColor; 
         
         /// <summary>
         /// 
         /// </summary>
-        ShaderRead = 1 << 5, 
+        public Bool32 AdvancedBlendCorrelatedOverlap; 
         
         /// <summary>
         /// 
         /// </summary>
-        ShaderWrite = 1 << 6, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        ColorAttachmentRead = 1 << 7, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        ColorAttachmentWrite = 1 << 8, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        DepthStencilAttachmentRead = 1 << 9, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        DepthStencilAttachmentWrite = 1 << 10, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        TransferRead = 1 << 11, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        TransferWrite = 1 << 12, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        HostRead = 1 << 13, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        HostWrite = 1 << 14, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        MemoryRead = 1 << 15, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        MemoryWrite = 1 << 16, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        CommandProcessReadBitNvx = 1 << 17, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        CommandProcessWriteBitNvx = 1 << 18, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        ColorAttachmentReadNoncoherentBitExt = 1 << 19, 
+        public Bool32 AdvancedBlendAllOperations; 
     }
 }

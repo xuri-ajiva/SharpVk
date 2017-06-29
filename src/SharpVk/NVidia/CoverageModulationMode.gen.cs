@@ -22,31 +22,31 @@
 
 // This file was automatically generated and should not be edited directly.
 
-namespace SharpVk
+namespace SharpVk.NVidia
 {
     /// <summary>
     /// 
     /// </summary>
-    public enum PolygonMode
+    public enum CoverageModulationMode
     {
         /// <summary>
         /// 
         /// </summary>
-        Fill = 0, 
+        None = 0, 
         
         /// <summary>
         /// 
         /// </summary>
-        Line = 1, 
+        Rgb = 1, 
         
         /// <summary>
         /// 
         /// </summary>
-        Point = 2, 
+        Alpha = 2, 
         
         /// <summary>
         /// 
         /// </summary>
-        FillRectangleNv = 1000153000, 
+        Rgba = 3, 
     }
 }

@@ -22,31 +22,31 @@
 
 // This file was automatically generated and should not be edited directly.
 
-namespace SharpVk
+using System;
+using System.Runtime.InteropServices;
+
+namespace SharpVk.Multivendor
 {
     /// <summary>
     /// 
     /// </summary>
-    public enum PolygonMode
+    [StructLayout(LayoutKind.Sequential)]
+    public struct SamplerReductionModeCreateInfo
     {
         /// <summary>
         /// 
         /// </summary>
-        Fill = 0, 
+        public SharpVk.Multivendor.SamplerReductionMode ReductionMode
+        {
+            get;
+            set;
+        }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        Line = 1, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Point = 2, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        FillRectangleNv = 1000153000, 
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.SamplerReductionModeCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.SamplerReductionModeCreateInfoExt;
+            pointer->Next = null;
+            pointer->ReductionMode = this.ReductionMode;
+        }
     }
 }

@@ -22,31 +22,40 @@
 
 // This file was automatically generated and should not be edited directly.
 
-namespace SharpVk
+using System;
+using System.Runtime.InteropServices;
+
+namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
     /// 
     /// </summary>
-    public enum PolygonMode
+    [StructLayout(LayoutKind.Sequential)]
+    public unsafe struct PipelineColorBlendAdvancedStateCreateInfo
     {
         /// <summary>
         /// 
         /// </summary>
-        Fill = 0, 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
         /// </summary>
-        Line = 1, 
+        public void* Next; 
         
         /// <summary>
         /// 
         /// </summary>
-        Point = 2, 
+        public Bool32 SourcePremultiplied; 
         
         /// <summary>
         /// 
         /// </summary>
-        FillRectangleNv = 1000153000, 
+        public Bool32 DestinationPremultiplied; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.Multivendor.BlendOverlap BlendOverlap; 
     }
 }

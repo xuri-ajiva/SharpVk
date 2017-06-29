@@ -39,7 +39,7 @@ namespace SharpVk.TestHarness
 
             outBuffer.BindMemory(sharedMemory, 2048);
 
-            IntPtr inBufferPtr = sharedMemory.Map(0, 1024, MemoryMapFlags.None);
+            IntPtr inBufferPtr = sharedMemory.Map(0, 1024);
 
             Marshal.Copy(Enumerable.Range(0, 256).Select(x => x).ToArray(), 0, inBufferPtr, 256);
 
@@ -61,7 +61,7 @@ namespace SharpVk.TestHarness
 
             transferQueue.WaitIdle();
 
-            IntPtr outBufferPtr = sharedMemory.Map(2048, 1024, MemoryMapFlags.None);
+            IntPtr outBufferPtr = sharedMemory.Map(2048, 1024);
 
             for (int index = 0; index < 256; index++)
             {
