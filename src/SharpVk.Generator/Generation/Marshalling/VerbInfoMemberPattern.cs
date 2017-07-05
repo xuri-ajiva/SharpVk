@@ -69,6 +69,11 @@ namespace SharpVk.Generator.Generation.Marshalling
                         });
                     }
 
+                    foreach(var lookup in subPatternInfo.HandleLookup)
+                    {
+                        info.HandleLookup.Add((lookup.Item1, x => lookup.Item2(value => x(value.FirstToLower()))));
+                    }
+
                     info.Public.AddRange(subPatternInfo.Public.Select(x=>
                         new TypedDefinition
                         {

@@ -32,7 +32,8 @@ namespace SharpVk.Generator.Generation.Marshalling
                 info = new MarshalInfo
                 {
                     MemberType = memberType,
-                    InteropType = interopType
+                    InteropType = interopType,
+                    HandleType = type.VkName
                 };
 
                 var handleExpressions = new List<Func<Action<ExpressionBuilder>, Func<string, Action<ExpressionBuilder>>, Action<ExpressionBuilder>>>();

@@ -48,6 +48,11 @@ namespace SharpVk.Generator.Generation.Marshalling
 
             info.InteropFullType = marshalling.InteropType;
 
+            if (marshalling.HandleType != null)
+            {
+                info.HandleLookup.Add((marshalling.HandleType, getValue => getValue(source.Name)));
+            }
+
             if (source.Type.PointerType.IsPointer())
             {
                 info.InteropFullType += new string('*', source.Type.PointerType.GetPointerCount());
@@ -66,7 +71,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                     Type = marshalling.MarshalToActionType
                 };
 
-                if(isOptional)
+                if (isOptional)
                 {
                     var result = new OptionalAction
                     {

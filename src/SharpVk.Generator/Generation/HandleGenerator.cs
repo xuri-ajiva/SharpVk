@@ -172,7 +172,7 @@ namespace SharpVk.Generator.Generation
 
             foreach (var parameter in command.Params)
             {
-                var newParams = this.GenerateParameter(command, newMethod, parameter, parameterIndex, enumeratePattern, lastParamIsArray, lastParamReturns, marshalFromActions, marshalMidActions, marshalToActions, marshalledValues, GetHandle);
+                var newParams = this.GenerateParameter(command, newMethod, parameter, parameterIndex, enumeratePattern, lastParamIsArray, lastParamReturns, marshalFromActions, marshalMidActions, marshalToActions, marshalledValues, GetHandle, handleLookup);
 
                 if (newParams != null)
                 {
@@ -237,7 +237,7 @@ namespace SharpVk.Generator.Generation
             return newMethod;
         }
 
-        private IEnumerable<ParamActionDefinition> GenerateParameter(CommandDeclaration command, MethodDefinition newMethod, ParamDeclaration parameter, int parameterIndex, bool isEnumeratePattern, bool isLastParamArray, bool lastParamReturns, List<MethodAction> marshalFromActions, List<MethodAction> marshalMidActions, List<MethodAction> marshalToActions, List<Action<ExpressionBuilder>> marshalledValues, Func<string, Action<ExpressionBuilder>> getHandle)
+        private IEnumerable<ParamActionDefinition> GenerateParameter(CommandDeclaration command, MethodDefinition newMethod, ParamDeclaration parameter, int parameterIndex, bool isEnumeratePattern, bool isLastParamArray, bool lastParamReturns, List<MethodAction> marshalFromActions, List<MethodAction> marshalMidActions, List<MethodAction> marshalToActions, List<Action<ExpressionBuilder>> marshalledValues, Func<string, Action<ExpressionBuilder>> getHandle, Dictionary<string, Action<ExpressionBuilder>> handleLookup)
         {
             string paramName = parameter.Name;
             var paramType = typeData[parameter.Type.VkName];
@@ -394,6 +394,11 @@ namespace SharpVk.Generator.Generation
 
                             actionList.AddRange(newMarshalToActions);
                         }
+                    }
+
+                    foreach (var lookup in patternInfo.HandleLookup)
+                    {
+                        handleLookup[lookup.Item1] = lookup.Item2(getValue);
                     }
                 }
             }

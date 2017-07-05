@@ -1,7 +1,8 @@
-﻿using System;
+﻿using SharpVk.Multivendor;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
-using SharpVk.Multivendor;
 
 namespace SharpVk.TestHarness
 {
@@ -78,16 +79,16 @@ namespace SharpVk.TestHarness
 
             IntPtr outBufferPtr = sharedMemory.Map(outBufferOffset, bufferSize, MemoryMapFlags.None);
 
+            var values = new List<int>();
+
             for (int index = 0; index < valueCount; index++)
             {
-                Console.WriteLine(Marshal.ReadInt32(outBufferPtr, index * sizeof(int)));
+                values.Add(Marshal.ReadInt32(outBufferPtr, index * sizeof(int)));
             }
 
             sharedMemory.Unmap();
 
-            Console.WriteLine("Done");
-
-            Console.ReadLine();
+            Console.WriteLine(string.Join(", ", values));
 
             descriptorPool.Destroy();
 
@@ -101,7 +102,13 @@ namespace SharpVk.TestHarness
 
             device.Destroy();
 
+            callbackHandle.Destroy();
+
             instance.Destroy();
+
+            Console.WriteLine("Done");
+
+            Console.ReadLine();
         }
 
         private static Bool32 DebugCallback(DebugReportFlags flags, DebugReportObjectType objectType, ulong @object, HostSize location, int messageCode, string pLayerPrefix, string pMessage, IntPtr pUserData)

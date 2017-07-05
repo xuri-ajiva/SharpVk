@@ -1249,7 +1249,7 @@ namespace SharpVk
                     var fieldPointer = new SharpVk.DescriptorSet[(uint)(setLayouts.Length)];
                     for(int index = 0; index < (uint)(setLayouts.Length); index++)
                     {
-                        fieldPointer[index] = new SharpVk.DescriptorSet(default(DescriptorPool), marshalledDescriptorSets[index]);
+                        fieldPointer[index] = new SharpVk.DescriptorSet(descriptorPool, marshalledDescriptorSets[index]);
                     }
                     result = fieldPointer;
                 }
@@ -1531,7 +1531,7 @@ namespace SharpVk
                     var fieldPointer = new SharpVk.CommandBuffer[(uint)(commandBufferCount)];
                     for(int index = 0; index < (uint)(commandBufferCount); index++)
                     {
-                        fieldPointer[index] = new SharpVk.CommandBuffer(default(CommandPool), marshalledCommandBuffers[index]);
+                        fieldPointer[index] = new SharpVk.CommandBuffer(commandPool, marshalledCommandBuffers[index]);
                     }
                     result = fieldPointer;
                 }

@@ -10,6 +10,7 @@ namespace SharpVk.Generator.Generation.Marshalling
         public TypedDefinition Interop;
         public readonly List<Func<Func<string, Action<ExpressionBuilder>>, Func<string, Action<ExpressionBuilder>>, MethodAction>> MarshalTo = new List<Func<Func<string, Action<ExpressionBuilder>>, Func<string, Action<ExpressionBuilder>>, MethodAction>>();
         public readonly List<Func<Func<string, Action<ExpressionBuilder>>, Func<string, Action<ExpressionBuilder>>, MethodAction>> MarshalFrom = new List<Func<Func<string, Action<ExpressionBuilder>>, Func<string, Action<ExpressionBuilder>>, MethodAction>>();
+        public readonly List<(string, Func<Func<string, Action<ExpressionBuilder>>, Action<ExpressionBuilder>>)> HandleLookup = new List<(string, Func<Func<string, Action<ExpressionBuilder>>, Action<ExpressionBuilder>>)>();
         public string InteropFullType;
     }
 }
