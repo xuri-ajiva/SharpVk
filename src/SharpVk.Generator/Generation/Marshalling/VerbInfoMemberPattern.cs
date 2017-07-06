@@ -31,7 +31,16 @@ namespace SharpVk.Generator.Generation.Marshalling
                 this.patternRules = this.provider.GetServices<IMemberPatternRule>();
             }
 
-            if (context.MethodVerb != null && source.Dimensions == null && source.Type.VkName.ToLower().EndsWith(context.MethodVerb + "info"))
+            string verbInfoPattern = context.MethodVerb + "info";
+
+            if(context.Extension!=null)
+            {
+                verbInfoPattern += context.Extension;
+            }
+
+            verbInfoPattern = verbInfoPattern.ToLower();
+
+            if (context.MethodVerb != null && source.Dimensions == null && source.Type.VkName.ToLower().EndsWith(verbInfoPattern))
             {
                 var infoTypeData = this.typeData[source.Type.VkName];
                 var interopType = this.nameLookup.Lookup(source.Type, true);
@@ -59,7 +68,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                 {
                     var subPatternInfo = new MemberPatternInfo();
 
-                    this.patternRules.ApplyFirst(infoTypeData.Members, member, new MemberPatternContext(null, context.GetHandle), subPatternInfo);
+                    this.patternRules.ApplyFirst(infoTypeData.Members, member, new MemberPatternContext(null, infoTypeData.Extension, context.GetHandle), subPatternInfo);
 
                     foreach(var subAction in subPatternInfo.MarshalTo)
                     {

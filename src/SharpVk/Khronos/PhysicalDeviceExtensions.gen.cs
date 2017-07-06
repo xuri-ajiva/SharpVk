@@ -198,7 +198,7 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public static unsafe SharpVk.Khronos.DisplayMode CreateDisplayMode(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.Display display, SharpVk.Khronos.DisplayModeCreateInfo createInfo, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public static unsafe SharpVk.Khronos.DisplayMode CreateDisplayMode(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.Display display, SharpVk.Khronos.DisplayModeParameters parameters, SharpVk.Khronos.DisplayModeCreateFlags? flags = default(SharpVk.Khronos.DisplayModeCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
@@ -209,7 +209,17 @@ namespace SharpVk.Khronos
                 SharpVk.Interop.Khronos.DisplayMode marshalledMode = default(SharpVk.Interop.Khronos.DisplayMode);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.Khronos.DisplayModeCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.DisplayModeCreateInfo>());
-                createInfo.MarshalTo(marshalledCreateInfo);
+                marshalledCreateInfo->SType = StructureType.DisplayModeCreateInfoKhr;
+                marshalledCreateInfo->Next = null;
+                if (flags != null)
+                {
+                    marshalledCreateInfo->Flags = flags.Value;
+                }
+                else
+                {
+                    marshalledCreateInfo->Flags = default(SharpVk.Khronos.DisplayModeCreateFlags);
+                }
+                marshalledCreateInfo->Parameters = parameters;
                 if (allocator != null)
                 {
                     marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());

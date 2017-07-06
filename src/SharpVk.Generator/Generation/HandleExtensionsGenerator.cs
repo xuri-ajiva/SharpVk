@@ -35,23 +35,6 @@ namespace SharpVk.Generator.Generation
                     var methods = handle.Where(x => x.Extension?.ToLower() != handleType.Extension?.ToLower())
                                             .Select(x => this.handleGenerator.GenerateCommand(x, x.HandleTypeName, handleType, true))
                                             .ToList();
-                    //    x => new MethodDefinition
-                    //{
-                    //    Name = x.Name,
-                    //    IsPublic = true,
-                    //    IsStatic = true,
-                    //    ParamActions = new List<ParamActionDefinition>
-                    //    {
-                    //        new ParamActionDefinition
-                    //        {
-                    //            Param = new ParamDefinition
-                    //            {
-                    //                Name = "handle",
-                    //                Type = "this " + this.nameLookup.Lookup(new TypeReference{ VkName = handle.Key }, false)
-                    //            }
-                    //        }
-                    //    }
-                    //}).ToList();
 
                     if (methods.Any())
                     {

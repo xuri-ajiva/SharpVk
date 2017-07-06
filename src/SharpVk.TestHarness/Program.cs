@@ -1,4 +1,5 @@
 ﻿using SharpVk.Multivendor;
+using SharpVk.Khronos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,11 +19,7 @@ namespace SharpVk.TestHarness
 
             var debugCallback = new DebugReportCallbackDelegate(DebugCallback);
 
-            var callbackHandle = instance.CreateDebugReportCallback(new DebugReportCallbackCreateInfo
-            {
-                Callback = debugCallback,
-                Flags = DebugReportFlags.Error | DebugReportFlags.Warning | DebugReportFlags.PerformanceWarning | DebugReportFlags.Information
-            });
+            var callbackHandle = instance.CreateDebugReportCallback(debugCallback, DebugReportFlags.Error | DebugReportFlags.Warning | DebugReportFlags.PerformanceWarning | DebugReportFlags.Information);
 
             var physicalDevice = instance.EnumeratePhysicalDevices().First();
 
