@@ -70,9 +70,9 @@ namespace SharpVk.TestHarness
                 }
             });
 
-            TransferByCommand(device, bufferSize, inBuffer, outBuffer, commandPool);
+            //TransferByCommand(device, bufferSize, inBuffer, outBuffer, commandPool);
 
-            //TransferByCompute(device, bufferSize, inBuffer, outBuffer, commandPool, descriptorPool);
+            TransferByCompute(device, bufferSize, inBuffer, outBuffer, commandPool, descriptorPool);
 
             IntPtr outBufferPtr = sharedMemory.Map(outBufferOffset, bufferSize, MemoryMapFlags.None);
 
@@ -110,7 +110,10 @@ namespace SharpVk.TestHarness
 
         private static Bool32 DebugCallback(DebugReportFlags flags, DebugReportObjectType objectType, ulong @object, HostSize location, int messageCode, string pLayerPrefix, string pMessage, IntPtr pUserData)
         {
-            Console.WriteLine($"{pLayerPrefix}: {pMessage}");
+            string logMessage = $"{pLayerPrefix}: {pMessage}";
+
+            Console.WriteLine(logMessage);
+            System.Diagnostics.Debug.WriteLine(logMessage);
 
             return false;
         }
@@ -120,7 +123,7 @@ namespace SharpVk.TestHarness
             var computeShaderData = LoadShaderData(".\\Shaders\\Shader.comp.spirv", out int codeSize);
 
             var shader = device.CreateShaderModule(codeSize, computeShaderData);
-
+            
             var descriptorSetLayout = device.CreateDescriptorSetLayout(new[]
             {
                 new DescriptorSetLayoutBinding
@@ -151,7 +154,8 @@ namespace SharpVk.TestHarness
                     Stage = new PipelineShaderStageCreateInfo
                     {
                         Stage = ShaderStageFlags.Compute,
-                        Module = shader
+                        Module = shader,
+                        Name = "main"
                     }
                 }
             }).Single();
@@ -161,8 +165,6 @@ namespace SharpVk.TestHarness
             pipeline.Destroy();
 
             pipelineLayout.Destroy();
-
-            descriptorPool.FreeDescriptorSets(descriptorSets);
 
             descriptorSetLayout.Destroy();
 

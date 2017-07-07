@@ -67,7 +67,7 @@ namespace SharpVk.Interop
 
             var bytePointer = (byte*)pointer.ToPointer();
 
-            for (int offset = 0; offset < size; offset++)
+            for (int offset = 0; offset < count; offset++)
             {
                 bytePointer[offset] = 0;
             }
@@ -84,15 +84,15 @@ namespace SharpVk.Interop
         {
             if (value != null)
             {
-                int size = Encoding.ASCII.GetByteCount(value) + 1;
+                int size = Encoding.UTF8.GetByteCount(value) + 1;
 
                 IntPtr pointer = AllocateAndClear<byte>(size);
 
-                var chars = stackalloc char[size];
+                var chars = stackalloc char[value.Length];
 
                 Marshal.Copy(value.ToCharArray(), 0, new IntPtr(chars), value.Length);
 
-                Encoding.ASCII.GetBytes(chars, value.Length, (byte*)pointer.ToPointer(), size);
+                Encoding.UTF8.GetBytes(chars, value.Length, (byte*)pointer.ToPointer(), size);
 
                 return (byte*)pointer.ToPointer();
             }
