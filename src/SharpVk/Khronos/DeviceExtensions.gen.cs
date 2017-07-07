@@ -80,7 +80,7 @@ namespace SharpVk.Khronos
                     var fieldPointer = new SharpVk.Khronos.Swapchain[(uint)(swapchainCount)];
                     for(int index = 0; index < (uint)(swapchainCount); index++)
                     {
-                        fieldPointer[index] = new SharpVk.Khronos.Swapchain(default(Surface), marshalledSwapchains[index]);
+                        fieldPointer[index] = new SharpVk.Khronos.Swapchain(extendedHandle, marshalledSwapchains[index]);
                     }
                     result = fieldPointer;
                 }
@@ -162,7 +162,7 @@ namespace SharpVk.Khronos
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                result = new SharpVk.Khronos.Swapchain(surface, marshalledSwapchain);
+                result = new SharpVk.Khronos.Swapchain(extendedHandle, marshalledSwapchain);
                 return result;
             }
             finally

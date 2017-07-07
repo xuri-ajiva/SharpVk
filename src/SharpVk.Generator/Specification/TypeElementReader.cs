@@ -44,8 +44,13 @@ namespace SharpVk.Generator.Specification
                 if (parent != null)
                 {
                     parent = parent.Split(',').First();
+
+                    if (name == "VkSwapchainKHR")
+                    {
+                        parent = "VkDevice";
+                    }
                 }
-                
+
                 var newType = new TypeElement
                 {
                     VkName = name,
