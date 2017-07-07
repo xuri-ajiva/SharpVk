@@ -274,7 +274,7 @@ namespace SharpVk.Khronos
             {
                 bool result = default(bool);
                 CommandCache commandCache = default(CommandCache);
-                bool marshalledSupported = default(bool);
+                Bool32 marshalledSupported = default(Bool32);
                 commandCache = extendedHandle.commandCache;
                 SharpVk.Interop.Khronos.VkPhysicalDeviceGetSurfaceSupportDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetSurfaceSupportDelegate>("vkGetPhysicalDeviceSurfaceSupportKHR", "instance");
                 Result methodResult = commandDelegate(extendedHandle.handle, queueFamilyIndex, surface?.handle ?? default(SharpVk.Interop.Khronos.Surface), &marshalledSupported);
