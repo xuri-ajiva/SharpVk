@@ -153,7 +153,7 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 Clipped
+        public bool Clipped
         {
             get;
             set;

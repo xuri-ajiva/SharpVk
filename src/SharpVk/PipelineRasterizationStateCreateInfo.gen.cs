@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 DepthClampEnable
+        public bool DepthClampEnable
         {
             get;
             set;
@@ -54,7 +54,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 RasterizerDiscardEnable
+        public bool RasterizerDiscardEnable
         {
             get;
             set;
@@ -90,7 +90,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 DepthBiasEnable
+        public bool DepthBiasEnable
         {
             get;
             set;

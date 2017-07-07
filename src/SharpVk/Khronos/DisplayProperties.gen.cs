@@ -81,7 +81,7 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 PlaneReorderPossible
+        public bool PlaneReorderPossible
         {
             get;
             set;
@@ -90,7 +90,7 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 PersistentContent
+        public bool PersistentContent
         {
             get;
             set;

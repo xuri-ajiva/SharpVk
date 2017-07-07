@@ -63,7 +63,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 OcclusionQueryEnable
+        public bool OcclusionQueryEnable
         {
             get;
             set;

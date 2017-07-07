@@ -54,7 +54,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 SampleShadingEnable
+        public bool SampleShadingEnable
         {
             get;
             set;
@@ -81,7 +81,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 AlphaToCoverageEnable
+        public bool AlphaToCoverageEnable
         {
             get;
             set;
@@ -90,7 +90,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 AlphaToOneEnable
+        public bool AlphaToOneEnable
         {
             get;
             set;

@@ -268,13 +268,13 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public static unsafe Bool32 GetSurfaceSupport(this SharpVk.PhysicalDevice extendedHandle, uint queueFamilyIndex, SharpVk.Khronos.Surface surface)
+        public static unsafe bool GetSurfaceSupport(this SharpVk.PhysicalDevice extendedHandle, uint queueFamilyIndex, SharpVk.Khronos.Surface surface)
         {
             try
             {
-                Bool32 result = default(Bool32);
+                bool result = default(bool);
                 CommandCache commandCache = default(CommandCache);
-                Bool32 marshalledSupported = default(Bool32);
+                bool marshalledSupported = default(bool);
                 commandCache = extendedHandle.commandCache;
                 SharpVk.Interop.Khronos.VkPhysicalDeviceGetSurfaceSupportDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetSurfaceSupportDelegate>("vkGetPhysicalDeviceSurfaceSupportKHR", "instance");
                 Result methodResult = commandDelegate(extendedHandle.handle, queueFamilyIndex, surface?.handle ?? default(SharpVk.Interop.Khronos.Surface), &marshalledSupported);

@@ -36,56 +36,106 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PipelineColorBlendAttachmentState(Bool32 blendEnable, SharpVk.BlendFactor sourceColorBlendFactor, SharpVk.BlendFactor destinationColorBlendFactor, SharpVk.BlendOp colorBlendOp, SharpVk.BlendFactor sourceAlphaBlendFactor, SharpVk.BlendFactor destinationAlphaBlendFactor, SharpVk.BlendOp alphaBlendOp, SharpVk.ColorComponentFlags colorWriteMask)
+        public bool BlendEnable
         {
-            this.BlendEnable = blendEnable;
-            this.SourceColorBlendFactor = sourceColorBlendFactor;
-            this.DestinationColorBlendFactor = destinationColorBlendFactor;
-            this.ColorBlendOp = colorBlendOp;
-            this.SourceAlphaBlendFactor = sourceAlphaBlendFactor;
-            this.DestinationAlphaBlendFactor = destinationAlphaBlendFactor;
-            this.AlphaBlendOp = alphaBlendOp;
-            this.ColorWriteMask = colorWriteMask;
+            get;
+            set;
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 BlendEnable; 
+        public SharpVk.BlendFactor SourceColorBlendFactor
+        {
+            get;
+            set;
+        }
         
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.BlendFactor SourceColorBlendFactor; 
+        public SharpVk.BlendFactor DestinationColorBlendFactor
+        {
+            get;
+            set;
+        }
         
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.BlendFactor DestinationColorBlendFactor; 
+        public SharpVk.BlendOp ColorBlendOp
+        {
+            get;
+            set;
+        }
         
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.BlendOp ColorBlendOp; 
+        public SharpVk.BlendFactor SourceAlphaBlendFactor
+        {
+            get;
+            set;
+        }
         
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.BlendFactor SourceAlphaBlendFactor; 
+        public SharpVk.BlendFactor DestinationAlphaBlendFactor
+        {
+            get;
+            set;
+        }
         
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.BlendFactor DestinationAlphaBlendFactor; 
+        public SharpVk.BlendOp AlphaBlendOp
+        {
+            get;
+            set;
+        }
         
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.BlendOp AlphaBlendOp; 
+        public SharpVk.ColorComponentFlags? ColorWriteMask
+        {
+            get;
+            set;
+        }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public SharpVk.ColorComponentFlags ColorWriteMask; 
+        internal unsafe void MarshalTo(SharpVk.Interop.PipelineColorBlendAttachmentState* pointer)
+        {
+            pointer->BlendEnable = this.BlendEnable;
+            pointer->SourceColorBlendFactor = this.SourceColorBlendFactor;
+            pointer->DestinationColorBlendFactor = this.DestinationColorBlendFactor;
+            pointer->ColorBlendOp = this.ColorBlendOp;
+            pointer->SourceAlphaBlendFactor = this.SourceAlphaBlendFactor;
+            pointer->DestinationAlphaBlendFactor = this.DestinationAlphaBlendFactor;
+            pointer->AlphaBlendOp = this.AlphaBlendOp;
+            if (this.ColorWriteMask != null)
+            {
+                pointer->ColorWriteMask = this.ColorWriteMask.Value;
+            }
+            else
+            {
+                pointer->ColorWriteMask = default(SharpVk.ColorComponentFlags);
+            }
+        }
+        
+        internal static unsafe PipelineColorBlendAttachmentState MarshalFrom(SharpVk.Interop.PipelineColorBlendAttachmentState* pointer)
+        {
+            PipelineColorBlendAttachmentState result = default(PipelineColorBlendAttachmentState);
+            result.BlendEnable = pointer->BlendEnable;
+            result.SourceColorBlendFactor = pointer->SourceColorBlendFactor;
+            result.DestinationColorBlendFactor = pointer->DestinationColorBlendFactor;
+            result.ColorBlendOp = pointer->ColorBlendOp;
+            result.SourceAlphaBlendFactor = pointer->SourceAlphaBlendFactor;
+            result.DestinationAlphaBlendFactor = pointer->DestinationAlphaBlendFactor;
+            result.AlphaBlendOp = pointer->AlphaBlendOp;
+            result.ColorWriteMask = pointer->ColorWriteMask;
+            return result;
+        }
     }
 }

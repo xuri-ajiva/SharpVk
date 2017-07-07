@@ -45,7 +45,7 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 CoverageToColorEnable
+        public bool CoverageToColorEnable
         {
             get;
             set;

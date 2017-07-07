@@ -36,7 +36,7 @@ namespace SharpVk.Khronos.Experimental
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 DeviceLUIDValid
+        public bool DeviceLUIDValid
         {
             get;
             set;

@@ -45,7 +45,7 @@ namespace SharpVk.Khronos.Experimental
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 SubsetAllocation
+        public bool SubsetAllocation
         {
             get;
             set;

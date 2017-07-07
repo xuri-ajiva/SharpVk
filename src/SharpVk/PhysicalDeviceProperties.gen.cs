@@ -115,7 +115,7 @@ namespace SharpVk
             result.DeviceType = pointer->DeviceType;
             result.DeviceName = Interop.HeapUtil.MarshalStringFrom(pointer->DeviceName, Constants.MaxPhysicalDeviceNameSize, true);
             result.Limits = SharpVk.PhysicalDeviceLimits.MarshalFrom(&pointer->Limits);
-            result.SparseProperties = pointer->SparseProperties;
+            result.SparseProperties = SharpVk.PhysicalDeviceSparseProperties.MarshalFrom(&pointer->SparseProperties);
             return result;
         }
     }

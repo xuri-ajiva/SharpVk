@@ -36,7 +36,7 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 FilterMinmaxSingleComponentFormats
+        public bool FilterMinmaxSingleComponentFormats
         {
             get;
             set;
@@ -45,7 +45,7 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 FilterMinmaxImageComponentMapping
+        public bool FilterMinmaxImageComponentMapping
         {
             get;
             set;

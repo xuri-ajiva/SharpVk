@@ -36,7 +36,7 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 ViewportWScalingEnable
+        public bool ViewportWScalingEnable
         {
             get;
             set;

@@ -47,8 +47,7 @@ namespace SharpVk.Generator.Collation
 
         public string FormatName(TypeElement type)
         {
-            if (type.Category == TypeCategory.None
-                && primitiveTypes.ContainsKey(type.VkName))
+            if (primitiveTypes.ContainsKey(type.VkName))
             {
                 return primitiveTypes[type.VkName];
             }

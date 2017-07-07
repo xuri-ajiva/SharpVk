@@ -25,27 +25,37 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace SharpVk.Interop.Khronos
+namespace SharpVk.Interop
 {
     /// <summary>
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct PhysicalDeviceFeatures2
+    public unsafe struct PhysicalDeviceSparseProperties
     {
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.StructureType SType; 
+        public Bool32 ResidencyStandard2DBlockShape; 
         
         /// <summary>
         /// 
         /// </summary>
-        public void* Next; 
+        public Bool32 ResidencyStandard2DMultisampleBlockShape; 
         
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDeviceFeatures Features; 
+        public Bool32 ResidencyStandard3DBlockShape; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Bool32 ResidencyAlignedMipSize; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Bool32 ResidencyNonResidentStrict; 
     }
 }

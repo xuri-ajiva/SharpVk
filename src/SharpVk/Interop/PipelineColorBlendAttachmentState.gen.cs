@@ -25,27 +25,52 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace SharpVk.Interop.Khronos
+namespace SharpVk.Interop
 {
     /// <summary>
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct PhysicalDeviceFeatures2
+    public unsafe struct PipelineColorBlendAttachmentState
     {
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.StructureType SType; 
+        public Bool32 BlendEnable; 
         
         /// <summary>
         /// 
         /// </summary>
-        public void* Next; 
+        public SharpVk.BlendFactor SourceColorBlendFactor; 
         
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Interop.PhysicalDeviceFeatures Features; 
+        public SharpVk.BlendFactor DestinationColorBlendFactor; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.BlendOp ColorBlendOp; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.BlendFactor SourceAlphaBlendFactor; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.BlendFactor DestinationAlphaBlendFactor; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.BlendOp AlphaBlendOp; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.ColorComponentFlags ColorWriteMask; 
     }
 }

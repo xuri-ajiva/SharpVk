@@ -819,7 +819,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 TimestampComputeAndGraphics
+        public bool TimestampComputeAndGraphics
         {
             get;
             set;
@@ -891,7 +891,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 StrictLines
+        public bool StrictLines
         {
             get;
             set;
@@ -900,7 +900,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 StandardSampleLocations
+        public bool StandardSampleLocations
         {
             get;
             set;

@@ -124,9 +124,9 @@ namespace SharpVk
             try
             {
                 SharpVk.PhysicalDeviceFeatures result = default(SharpVk.PhysicalDeviceFeatures);
-                SharpVk.PhysicalDeviceFeatures marshalledFeatures = default(SharpVk.PhysicalDeviceFeatures);
+                SharpVk.Interop.PhysicalDeviceFeatures marshalledFeatures = default(SharpVk.Interop.PhysicalDeviceFeatures);
                 Interop.Commands.vkGetPhysicalDeviceFeatures(this.handle, &marshalledFeatures);
-                result = marshalledFeatures;
+                result = SharpVk.PhysicalDeviceFeatures.MarshalFrom(&marshalledFeatures);
                 return result;
             }
             finally
@@ -240,12 +240,12 @@ namespace SharpVk
                 }
                 if (enabledFeatures != null)
                 {
-                    marshalledCreateInfo->EnabledFeatures = (SharpVk.PhysicalDeviceFeatures*)(Interop.HeapUtil.Allocate<SharpVk.PhysicalDeviceFeatures>());
-                    *marshalledCreateInfo->EnabledFeatures = enabledFeatures.Value;
+                    marshalledCreateInfo->EnabledFeatures = (SharpVk.Interop.PhysicalDeviceFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceFeatures>());
+                    enabledFeatures.Value.MarshalTo(marshalledCreateInfo->EnabledFeatures);
                 }
                 else
                 {
-                    marshalledCreateInfo->EnabledFeatures = default(SharpVk.PhysicalDeviceFeatures*);
+                    marshalledCreateInfo->EnabledFeatures = default(SharpVk.Interop.PhysicalDeviceFeatures*);
                 }
                 if (allocator != null)
                 {

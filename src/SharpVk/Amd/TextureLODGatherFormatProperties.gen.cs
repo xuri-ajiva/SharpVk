@@ -36,7 +36,7 @@ namespace SharpVk.Amd
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 SupportsTextureGatherLODBias
+        public bool SupportsTextureGatherLODBias
         {
             get;
             set;

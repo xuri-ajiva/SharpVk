@@ -89,7 +89,7 @@ namespace SharpVk.Interop
         /// 
         /// </summary>
         [DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-        public static extern void vkGetPhysicalDeviceFeatures(SharpVk.Interop.PhysicalDevice physicalDevice, SharpVk.PhysicalDeviceFeatures* features);
+        public static extern void vkGetPhysicalDeviceFeatures(SharpVk.Interop.PhysicalDevice physicalDevice, SharpVk.Interop.PhysicalDeviceFeatures* features);
         
         /// <summary>
         /// 

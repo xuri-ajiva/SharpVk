@@ -54,7 +54,7 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 Persistent
+        public bool Persistent
         {
             get;
             set;

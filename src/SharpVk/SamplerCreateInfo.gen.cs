@@ -108,7 +108,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 AnisotropyEnable
+        public bool AnisotropyEnable
         {
             get;
             set;
@@ -126,7 +126,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 CompareEnable
+        public bool CompareEnable
         {
             get;
             set;
@@ -171,7 +171,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 UnnormalizedCoordinates
+        public bool UnnormalizedCoordinates
         {
             get;
             set;

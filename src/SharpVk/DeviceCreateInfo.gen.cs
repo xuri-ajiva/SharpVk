@@ -122,12 +122,12 @@ namespace SharpVk
             }
             if (this.EnabledFeatures != null)
             {
-                pointer->EnabledFeatures = (SharpVk.PhysicalDeviceFeatures*)(Interop.HeapUtil.Allocate<SharpVk.PhysicalDeviceFeatures>());
-                *pointer->EnabledFeatures = this.EnabledFeatures.Value;
+                pointer->EnabledFeatures = (SharpVk.Interop.PhysicalDeviceFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceFeatures>());
+                this.EnabledFeatures.Value.MarshalTo(pointer->EnabledFeatures);
             }
             else
             {
-                pointer->EnabledFeatures = default(SharpVk.PhysicalDeviceFeatures*);
+                pointer->EnabledFeatures = default(SharpVk.Interop.PhysicalDeviceFeatures*);
             }
         }
     }

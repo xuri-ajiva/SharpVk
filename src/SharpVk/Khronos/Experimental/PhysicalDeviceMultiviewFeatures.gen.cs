@@ -36,7 +36,7 @@ namespace SharpVk.Khronos.Experimental
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 Multiview
+        public bool Multiview
         {
             get;
             set;
@@ -45,7 +45,7 @@ namespace SharpVk.Khronos.Experimental
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 MultiviewGeometryShader
+        public bool MultiviewGeometryShader
         {
             get;
             set;
@@ -54,7 +54,7 @@ namespace SharpVk.Khronos.Experimental
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 MultiviewTessellationShader
+        public bool MultiviewTessellationShader
         {
             get;
             set;

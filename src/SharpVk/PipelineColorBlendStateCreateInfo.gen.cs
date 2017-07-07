@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 LogicOpEnable
+        public bool LogicOpEnable
         {
             get;
             set;
@@ -86,10 +86,10 @@ namespace SharpVk
             pointer->AttachmentCount = (uint)(this.Attachments?.Length ?? 0);
             if (this.Attachments != null)
             {
-                var fieldPointer = (SharpVk.PipelineColorBlendAttachmentState*)(Interop.HeapUtil.AllocateAndClear<SharpVk.PipelineColorBlendAttachmentState>(this.Attachments.Length).ToPointer());
+                var fieldPointer = (SharpVk.Interop.PipelineColorBlendAttachmentState*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.PipelineColorBlendAttachmentState>(this.Attachments.Length).ToPointer());
                 for(int index = 0; index < (uint)(this.Attachments.Length); index++)
                 {
-                    fieldPointer[index] = this.Attachments[index];
+                    this.Attachments[index].MarshalTo(&fieldPointer[index]);
                 }
                 pointer->Attachments = fieldPointer;
             }

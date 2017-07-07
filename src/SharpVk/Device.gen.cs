@@ -311,7 +311,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void WaitForFences(SharpVk.Fence[] fences, Bool32 waitAll, ulong timeout)
+        public unsafe void WaitForFences(SharpVk.Fence[] fences, bool waitAll, ulong timeout)
         {
             try
             {
@@ -1034,7 +1034,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe SharpVk.Sampler CreateSampler(SharpVk.Filter magFilter, SharpVk.Filter minFilter, SharpVk.SamplerMipmapMode mipmapMode, SharpVk.SamplerAddressMode addressModeU, SharpVk.SamplerAddressMode addressModeV, SharpVk.SamplerAddressMode addressModeW, float mipLodBias, Bool32 anisotropyEnable, float maxAnisotropy, Bool32 compareEnable, SharpVk.CompareOp compareOp, float minLod, float maxLod, SharpVk.BorderColor borderColor, Bool32 unnormalizedCoordinates, SharpVk.SamplerCreateFlags? flags = default(SharpVk.SamplerCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public unsafe SharpVk.Sampler CreateSampler(SharpVk.Filter magFilter, SharpVk.Filter minFilter, SharpVk.SamplerMipmapMode mipmapMode, SharpVk.SamplerAddressMode addressModeU, SharpVk.SamplerAddressMode addressModeV, SharpVk.SamplerAddressMode addressModeW, float mipLodBias, bool anisotropyEnable, float maxAnisotropy, bool compareEnable, SharpVk.CompareOp compareOp, float minLod, float maxLod, SharpVk.BorderColor borderColor, bool unnormalizedCoordinates, SharpVk.SamplerCreateFlags? flags = default(SharpVk.SamplerCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {

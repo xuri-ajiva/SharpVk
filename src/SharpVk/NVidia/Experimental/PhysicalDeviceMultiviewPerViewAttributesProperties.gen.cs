@@ -36,7 +36,7 @@ namespace SharpVk.NVidia.Experimental
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 PerViewPositionAllComponents
+        public bool PerViewPositionAllComponents
         {
             get;
             set;

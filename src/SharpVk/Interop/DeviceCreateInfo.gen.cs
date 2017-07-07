@@ -81,6 +81,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.PhysicalDeviceFeatures* EnabledFeatures; 
+        public SharpVk.Interop.PhysicalDeviceFeatures* EnabledFeatures; 
     }
 }

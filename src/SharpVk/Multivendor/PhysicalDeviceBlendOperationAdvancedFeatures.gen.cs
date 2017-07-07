@@ -36,7 +36,7 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 AdvancedBlendCoherentOperations
+        public bool AdvancedBlendCoherentOperations
         {
             get;
             set;

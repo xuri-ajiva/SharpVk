@@ -36,7 +36,7 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 SourcePremultiplied
+        public bool SourcePremultiplied
         {
             get;
             set;
@@ -45,7 +45,7 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 DestinationPremultiplied
+        public bool DestinationPremultiplied
         {
             get;
             set;

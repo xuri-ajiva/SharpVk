@@ -38,6 +38,11 @@ namespace SharpVk.Generator.Generation
                 return "IntPtr";
             }
 
+            if (!isInterop && type.VkName == "VkBool32")
+            {
+                return "bool";
+            }
+
             var baseName = this.nameMapping[type.VkName];
 
             if (pattern != TypePattern.Primitive)

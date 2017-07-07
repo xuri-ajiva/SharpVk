@@ -76,6 +76,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.PhysicalDeviceSparseProperties SparseProperties; 
+        public SharpVk.Interop.PhysicalDeviceSparseProperties SparseProperties; 
     }
 }

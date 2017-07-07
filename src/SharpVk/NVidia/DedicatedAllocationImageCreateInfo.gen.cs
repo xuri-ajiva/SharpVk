@@ -36,7 +36,7 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 DedicatedAllocation
+        public bool DedicatedAllocation
         {
             get;
             set;

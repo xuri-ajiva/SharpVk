@@ -54,7 +54,7 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 CoverageModulationTableEnable
+        public bool CoverageModulationTableEnable
         {
             get;
             set;

@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 DepthTestEnable
+        public bool DepthTestEnable
         {
             get;
             set;
@@ -54,7 +54,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 DepthWriteEnable
+        public bool DepthWriteEnable
         {
             get;
             set;
@@ -72,7 +72,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 DepthBoundsTestEnable
+        public bool DepthBoundsTestEnable
         {
             get;
             set;
@@ -81,7 +81,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 StencilTestEnable
+        public bool StencilTestEnable
         {
             get;
             set;

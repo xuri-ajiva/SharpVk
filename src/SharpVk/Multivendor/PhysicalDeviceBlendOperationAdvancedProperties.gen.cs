@@ -45,7 +45,7 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 AdvancedBlendIndependentBlend
+        public bool AdvancedBlendIndependentBlend
         {
             get;
             set;
@@ -54,7 +54,7 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 AdvancedBlendNonPremultipliedSourceColor
+        public bool AdvancedBlendNonPremultipliedSourceColor
         {
             get;
             set;
@@ -63,7 +63,7 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 AdvancedBlendNonPremultipliedDestinationColor
+        public bool AdvancedBlendNonPremultipliedDestinationColor
         {
             get;
             set;
@@ -72,7 +72,7 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 AdvancedBlendCorrelatedOverlap
+        public bool AdvancedBlendCorrelatedOverlap
         {
             get;
             set;
@@ -81,7 +81,7 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 AdvancedBlendAllOperations
+        public bool AdvancedBlendAllOperations
         {
             get;
             set;

@@ -66,7 +66,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.PipelineColorBlendAttachmentState* Attachments; 
+        public SharpVk.Interop.PipelineColorBlendAttachmentState* Attachments; 
         
         /// <summary>
         /// 

@@ -36,38 +36,57 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public PhysicalDeviceSparseProperties(Bool32 residencyStandard2DBlockShape, Bool32 residencyStandard2DMultisampleBlockShape, Bool32 residencyStandard3DBlockShape, Bool32 residencyAlignedMipSize, Bool32 residencyNonResidentStrict)
+        public bool ResidencyStandard2DBlockShape
         {
-            this.ResidencyStandard2DBlockShape = residencyStandard2DBlockShape;
-            this.ResidencyStandard2DMultisampleBlockShape = residencyStandard2DMultisampleBlockShape;
-            this.ResidencyStandard3DBlockShape = residencyStandard3DBlockShape;
-            this.ResidencyAlignedMipSize = residencyAlignedMipSize;
-            this.ResidencyNonResidentStrict = residencyNonResidentStrict;
+            get;
+            set;
         }
         
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 ResidencyStandard2DBlockShape; 
+        public bool ResidencyStandard2DMultisampleBlockShape
+        {
+            get;
+            set;
+        }
         
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 ResidencyStandard2DMultisampleBlockShape; 
+        public bool ResidencyStandard3DBlockShape
+        {
+            get;
+            set;
+        }
         
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 ResidencyStandard3DBlockShape; 
+        public bool ResidencyAlignedMipSize
+        {
+            get;
+            set;
+        }
         
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 ResidencyAlignedMipSize; 
+        public bool ResidencyNonResidentStrict
+        {
+            get;
+            set;
+        }
         
-        /// <summary>
-        /// 
-        /// </summary>
-        public Bool32 ResidencyNonResidentStrict; 
+        internal static unsafe PhysicalDeviceSparseProperties MarshalFrom(SharpVk.Interop.PhysicalDeviceSparseProperties* pointer)
+        {
+            PhysicalDeviceSparseProperties result = default(PhysicalDeviceSparseProperties);
+            result.ResidencyStandard2DBlockShape = pointer->ResidencyStandard2DBlockShape;
+            result.ResidencyStandard2DMultisampleBlockShape = pointer->ResidencyStandard2DMultisampleBlockShape;
+            result.ResidencyStandard3DBlockShape = pointer->ResidencyStandard3DBlockShape;
+            result.ResidencyAlignedMipSize = pointer->ResidencyAlignedMipSize;
+            result.ResidencyNonResidentStrict = pointer->ResidencyNonResidentStrict;
+            return result;
+        }
     }
 }
