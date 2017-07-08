@@ -2,6 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard1.3</TargetFramework>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Authors>FacticiusVir</Authors>
+    <Company />
+    <Version>4.0.0-dev</Version>
+    <Description />
+    <PackageLicenseUrl>https://github.com/FacticiusVir/SharpVk/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/FacticiusVir/SharpVk</PackageProjectUrl>
+    <PackageTags>Vulkan SPIR-V Spirv SharpVK 3D</PackageTags>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
