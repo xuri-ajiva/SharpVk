@@ -6,10 +6,11 @@
     <Authors>FacticiusVir</Authors>
     <Company />
     <Version>4.0.0-dev</Version>
-    <Description />
+    <Description>C# Bindings for the Vulkan API</Description>
     <PackageLicenseUrl>https://github.com/FacticiusVir/SharpVk/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/FacticiusVir/SharpVk</PackageProjectUrl>
     <PackageTags>Vulkan SPIR-V Spirv SharpVK 3D</PackageTags>
+    <Copyright>Copyright 2016 Andrew Armstrong/FacticiusVir</Copyright>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
