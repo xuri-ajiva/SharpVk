@@ -1,7 +1,5 @@
-﻿using SharpVk.Emit;
-using SharpVk.Generator.Collation;
+﻿using SharpVk.Generator.Collation;
 using SharpVk.Generator.Rules;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -73,7 +71,44 @@ namespace SharpVk.Generator.Generation.Marshalling
                                 TargetExpression = getTarget(source.Name),
                                 ValueExpression = StaticCall("Interop.HeapUtil", "MarshalStringFrom", getValue(source.Name), AsIs(length), Literal(true))
                             });
+                            break;
+                        default:
+                            if (memberType == "byte" && source.Name.ToLower().EndsWith("uid"))
+                            {
+                                info.Public.Add(new TypedDefinition
+                                {
+                                    Name = source.Name,
+                                    Type = "Guid"
+                                });
 
+                                info.MarshalFrom.Add((getTarget, getValue) => new AssignAction
+                                {
+                                    TargetExpression = getTarget(source.Name),
+                                    ValueExpression = New("Guid", StaticCall("Interop.HeapUtil", "MarshalFrom", getValue(source.Name), AsIs(length)))
+                                });
+                            }
+                            else
+                            {
+                                info.Public.Add(new TypedDefinition
+                                {
+                                    Name = source.Name,
+                                    Type = memberType + "[]"
+                                });
+
+                                info.MarshalFrom.Add((getTarget, getValue) => new AssignAction
+                                {
+                                    TargetExpression = getTarget(source.Name),
+                                    ValueExpression = StaticCall("Interop.HeapUtil", "MarshalFrom", getValue(source.Name), AsIs(length))
+                                });
+                            }
+
+                            info.MarshalTo.Add((getTarget, getValue) => new AssignAction
+                            {
+                                TargetExpression = getTarget(source.Name),
+                                ValueExpression = getValue(source.Name),
+                                Type = AssignActionType.FixedLengthMarshalTo,
+                                LengthExpression = AsIs(length)
+                            });
                             break;
                     }
                 }

@@ -36,6 +36,33 @@ namespace SharpVk.Khronos.Experimental
         /// <summary>
         /// 
         /// </summary>
+        public Guid DeviceUUID
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Guid DriverUUID
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Guid DeviceLUID
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public bool DeviceLUIDValid
         {
             get;
@@ -45,6 +72,9 @@ namespace SharpVk.Khronos.Experimental
         internal static unsafe PhysicalDeviceIDProperties MarshalFrom(SharpVk.Interop.Khronos.Experimental.PhysicalDeviceIDProperties* pointer)
         {
             PhysicalDeviceIDProperties result = default(PhysicalDeviceIDProperties);
+            result.DeviceUUID = new Guid(Interop.HeapUtil.MarshalFrom(pointer->DeviceUUID, Constants.UuidSize));
+            result.DriverUUID = new Guid(Interop.HeapUtil.MarshalFrom(pointer->DriverUUID, Constants.UuidSize));
+            result.DeviceLUID = new Guid(Interop.HeapUtil.MarshalFrom(pointer->DeviceLUID, Constants.LuidSize));
             result.DeviceLUIDValid = pointer->DeviceLUIDValid;
             return result;
         }

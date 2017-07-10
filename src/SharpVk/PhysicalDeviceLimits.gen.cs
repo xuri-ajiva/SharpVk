@@ -504,7 +504,25 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        public uint[] MaxComputeWorkGroupCount
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public uint MaxComputeWorkGroupInvocations
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public uint[] MaxComputeWorkGroupSize
         {
             get;
             set;
@@ -577,6 +595,24 @@ namespace SharpVk
         /// 
         /// </summary>
         public uint MaxViewports
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public uint[] MaxViewportDimensions
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public float[] ViewportBoundsRange
         {
             get;
             set;
@@ -873,6 +909,24 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        public float[] PointSizeRange
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public float[] LineWidthRange
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public float PointSizeGranularity
         {
             get;
@@ -988,7 +1042,9 @@ namespace SharpVk
             result.MaxFragmentDualSourceAttachments = pointer->MaxFragmentDualSourceAttachments;
             result.MaxFragmentCombinedOutputResources = pointer->MaxFragmentCombinedOutputResources;
             result.MaxComputeSharedMemorySize = pointer->MaxComputeSharedMemorySize;
+            result.MaxComputeWorkGroupCount = Interop.HeapUtil.MarshalFrom(pointer->MaxComputeWorkGroupCount, 3);
             result.MaxComputeWorkGroupInvocations = pointer->MaxComputeWorkGroupInvocations;
+            result.MaxComputeWorkGroupSize = Interop.HeapUtil.MarshalFrom(pointer->MaxComputeWorkGroupSize, 3);
             result.SubPixelPrecisionBits = pointer->SubPixelPrecisionBits;
             result.SubTexelPrecisionBits = pointer->SubTexelPrecisionBits;
             result.MipmapPrecisionBits = pointer->MipmapPrecisionBits;
@@ -997,6 +1053,8 @@ namespace SharpVk
             result.MaxSamplerLodBias = pointer->MaxSamplerLodBias;
             result.MaxSamplerAnisotropy = pointer->MaxSamplerAnisotropy;
             result.MaxViewports = pointer->MaxViewports;
+            result.MaxViewportDimensions = Interop.HeapUtil.MarshalFrom(pointer->MaxViewportDimensions, 2);
+            result.ViewportBoundsRange = Interop.HeapUtil.MarshalFrom(pointer->ViewportBoundsRange, 2);
             result.ViewportSubPixelBits = pointer->ViewportSubPixelBits;
             result.MinMemoryMapAlignment = pointer->MinMemoryMapAlignment;
             result.MinTexelBufferOffsetAlignment = pointer->MinTexelBufferOffsetAlignment;
@@ -1029,6 +1087,8 @@ namespace SharpVk
             result.MaxCullDistances = pointer->MaxCullDistances;
             result.MaxCombinedClipAndCullDistances = pointer->MaxCombinedClipAndCullDistances;
             result.DiscreteQueuePriorities = pointer->DiscreteQueuePriorities;
+            result.PointSizeRange = Interop.HeapUtil.MarshalFrom(pointer->PointSizeRange, 2);
+            result.LineWidthRange = Interop.HeapUtil.MarshalFrom(pointer->LineWidthRange, 2);
             result.PointSizeGranularity = pointer->PointSizeGranularity;
             result.LineWidthGranularity = pointer->LineWidthGranularity;
             result.StrictLines = pointer->StrictLines;

@@ -42,11 +42,21 @@ namespace SharpVk.Multivendor
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
+        public float[] Color
+        {
+            get;
+            set;
+        }
+        
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.DebugMarkerMarkerInfo* pointer)
         {
             pointer->SType = StructureType.DebugMarkerMarkerInfoExt;
             pointer->Next = null;
             pointer->MarkerName = Interop.HeapUtil.MarshalTo(this.MarkerName);
+            Interop.HeapUtil.MarshalTo(this.Color, 4, pointer->Color);
         }
     }
 }

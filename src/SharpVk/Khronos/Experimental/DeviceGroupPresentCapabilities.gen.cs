@@ -36,6 +36,15 @@ namespace SharpVk.Khronos.Experimental
         /// <summary>
         /// 
         /// </summary>
+        public uint[] PresentMask
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public SharpVk.Khronos.Experimental.DeviceGroupPresentModeFlags Modes
         {
             get;
@@ -45,6 +54,7 @@ namespace SharpVk.Khronos.Experimental
         internal static unsafe DeviceGroupPresentCapabilities MarshalFrom(SharpVk.Interop.Khronos.Experimental.DeviceGroupPresentCapabilities* pointer)
         {
             DeviceGroupPresentCapabilities result = default(DeviceGroupPresentCapabilities);
+            result.PresentMask = Interop.HeapUtil.MarshalFrom(pointer->PresentMask, Constants.MaxDeviceGroupSize);
             result.Modes = pointer->Modes;
             return result;
         }

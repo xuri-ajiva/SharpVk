@@ -238,6 +238,9 @@ namespace SharpVk.Generator.Emission
                     codeBlock.EmitAssignment(targetExpression,
                                         StaticCall(action.MemberType, "MarshalFrom", AddressOf(action.ValueExpression)));
                     break;
+                case AssignActionType.FixedLengthMarshalTo:
+                    codeBlock.EmitStaticCall("Interop.HeapUtil", "MarshalTo", action.ValueExpression, action.LengthExpression, targetExpression);
+                    break;
             }
         }
 

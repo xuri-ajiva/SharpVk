@@ -69,6 +69,15 @@ namespace SharpVk
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
+        public float[] BlendConstants
+        {
+            get;
+            set;
+        }
+        
         internal unsafe void MarshalTo(SharpVk.Interop.PipelineColorBlendStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineColorBlendStateCreateInfo;
@@ -97,6 +106,7 @@ namespace SharpVk
             {
                 pointer->Attachments = null;
             }
+            Interop.HeapUtil.MarshalTo(this.BlendConstants, 4, pointer->BlendConstants);
         }
     }
 }

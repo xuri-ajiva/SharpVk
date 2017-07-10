@@ -90,6 +90,15 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        public Guid PipelineCacheUUID
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public SharpVk.PhysicalDeviceLimits Limits
         {
             get;
@@ -114,6 +123,7 @@ namespace SharpVk
             result.DeviceID = pointer->DeviceID;
             result.DeviceType = pointer->DeviceType;
             result.DeviceName = Interop.HeapUtil.MarshalStringFrom(pointer->DeviceName, Constants.MaxPhysicalDeviceNameSize, true);
+            result.PipelineCacheUUID = new Guid(Interop.HeapUtil.MarshalFrom(pointer->PipelineCacheUUID, Constants.UuidSize));
             result.Limits = SharpVk.PhysicalDeviceLimits.MarshalFrom(&pointer->Limits);
             result.SparseProperties = SharpVk.PhysicalDeviceSparseProperties.MarshalFrom(&pointer->SparseProperties);
             return result;

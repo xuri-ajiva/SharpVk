@@ -1,5 +1,4 @@
 ﻿using SharpVk.Multivendor;
-using SharpVk.Khronos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,9 +18,11 @@ namespace SharpVk.TestHarness
 
             var debugCallback = new DebugReportCallbackDelegate(DebugCallback);
 
-            var callbackHandle = instance.CreateDebugReportCallback(debugCallback, DebugReportFlags.Error | DebugReportFlags.Warning | DebugReportFlags.PerformanceWarning | DebugReportFlags.Information);
+            var callbackHandle = instance.CreateDebugReportCallback(debugCallback, DebugReportFlags.Error | DebugReportFlags.Warning | DebugReportFlags.PerformanceWarning);
 
             var physicalDevice = instance.EnumeratePhysicalDevices().First();
+
+            var physicalDeviceProperties = physicalDevice.GetProperties();
 
             var features = physicalDevice.GetFeatures();
 
@@ -40,18 +41,18 @@ namespace SharpVk.TestHarness
                 null
             );
 
-            int valueCount = 256;
-            int bufferSize = valueCount * sizeof(int);
+            const int valueCount = 256;
+            const int bufferSize = valueCount * sizeof(int);
 
             var sharedMemory = device.AllocateMemory(1 << 20, hostVisibleMemory);
 
-            var inBuffer = device.CreateBuffer(bufferSize, BufferUsageFlags.TransferSource, SharingMode.Exclusive, new uint[] { 0 });
+            var inBuffer = device.CreateBuffer(bufferSize, BufferUsageFlags.TransferSource | BufferUsageFlags.StorageBuffer, SharingMode.Exclusive, new uint[] { 0 });
 
             inBuffer.BindMemory(sharedMemory, 0);
 
             int outBufferOffset = (int)inBuffer.GetMemoryRequirements().Size;
 
-            var outBuffer = device.CreateBuffer(bufferSize, BufferUsageFlags.TransferDestination, SharingMode.Exclusive, new uint[] { 0 });
+            var outBuffer = device.CreateBuffer(bufferSize, BufferUsageFlags.TransferDestination | BufferUsageFlags.StorageBuffer, SharingMode.Exclusive, new uint[] { 0 });
 
             outBuffer.BindMemory(sharedMemory, outBufferOffset);
 
@@ -122,10 +123,10 @@ namespace SharpVk.TestHarness
 
         private static void TransferByCompute(Device device, int bufferSize, Buffer inBuffer, Buffer outBuffer, CommandPool commandPool, DescriptorPool descriptorPool)
         {
-            var computeShaderData = LoadShaderData(".\\Shaders\\Shader.comp.spirv", out int codeSize);
+            var computeShaderData = LoadShaderData(".\\Shaders\\Shader.comp.spv", out int codeSize);
 
             var shader = device.CreateShaderModule(codeSize, computeShaderData);
-            
+
             var descriptorSetLayout = device.CreateDescriptorSetLayout(new[]
             {
                 new DescriptorSetLayoutBinding
@@ -144,7 +145,39 @@ namespace SharpVk.TestHarness
                 }
             });
 
-            var descriptorSets = device.AllocateDescriptorSets(descriptorPool, new[] { descriptorSetLayout });
+            var descriptorSet = device.AllocateDescriptorSets(descriptorPool, new[] { descriptorSetLayout }).Single();
+
+            device.UpdateDescriptorSets(new[]
+            {
+                new WriteDescriptorSet
+                {
+                    DestinationSet = descriptorSet,
+                    DescriptorType = DescriptorType.StorageBuffer,
+                    DestinationBinding = 0,
+                    BufferInfo = new []
+                    {
+                        new DescriptorBufferInfo
+                        {
+                            Buffer = inBuffer,
+                            Range = Constants.WholeSize
+                        }
+                    }
+                },
+                new WriteDescriptorSet
+                {
+                    DestinationSet = descriptorSet,
+                    DescriptorType = DescriptorType.StorageBuffer,
+                    DestinationBinding = 1,
+                    BufferInfo = new []
+                    {
+                        new DescriptorBufferInfo
+                        {
+                            Buffer = outBuffer,
+                            Range = Constants.WholeSize
+                        }
+                    }
+                }
+            }, null);
 
             var pipelineLayout = device.CreatePipelineLayout(new[] { descriptorSetLayout }, null);
 
@@ -162,7 +195,23 @@ namespace SharpVk.TestHarness
                 }
             }).Single();
 
+            var transferCommandBuffer = device.AllocateCommandBuffers(commandPool, CommandBufferLevel.Primary, 1).Single();
 
+            transferCommandBuffer.Begin(CommandBufferUsageFlags.OneTimeSubmit);
+
+            transferCommandBuffer.BindDescriptorSets(PipelineBindPoint.Compute, pipelineLayout, 0, new[] { descriptorSet }, new uint[] { });
+
+            transferCommandBuffer.BindPipeline(PipelineBindPoint.Compute, pipeline);
+
+            transferCommandBuffer.Dispatch(1, 1, 1);
+
+            transferCommandBuffer.End();
+
+            var transferQueue = device.GetQueue(0, 0);
+
+            transferQueue.Submit(new[] { new SubmitInfo { CommandBuffers = new[] { transferCommandBuffer } } }, null);
+
+            transferQueue.WaitIdle();
 
             pipeline.Destroy();
 

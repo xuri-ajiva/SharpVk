@@ -64,6 +64,7 @@ namespace SharpVk.Generator.Generation
         MarshalFrom,
         MarshalFromAddressOf,
         MarshalTo,
-        MarshalToAddressOf
+        MarshalToAddressOf,
+        FixedLengthMarshalTo
     }
 }
