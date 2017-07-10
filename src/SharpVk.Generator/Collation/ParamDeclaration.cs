@@ -10,10 +10,13 @@ namespace SharpVk.Generator.Collation
         public TypeReference Type;
         public MemberLen[] Dimensions;
         public bool IsOptional;
+        public bool NoAutoValidity;
 
         string ITypedDeclaration.Name => this.Name;
 
         bool ITypedDeclaration.IsOptional => this.IsOptional;
+
+        bool ITypedDeclaration.NoAutoValidity => this.NoAutoValidity;
 
         TypeReference ITypedDeclaration.Type => this.Type;
 

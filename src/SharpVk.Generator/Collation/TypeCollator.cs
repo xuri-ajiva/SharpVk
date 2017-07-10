@@ -81,6 +81,7 @@ namespace SharpVk.Generator.Collation
                     VkName = member.VkName,
                     Name = this.nameFormatter.FormatName(member, false),
                     IsOptional = member.IsOptional,
+                    NoAutoValidity = member.NoAutoValidity,
                     ParamName = this.nameFormatter.FormatName(member, true),
                     FixedValue = member.Values,
                     Dimensions = member.Dimensions,

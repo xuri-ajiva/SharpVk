@@ -97,7 +97,8 @@ namespace SharpVk.Generator.Collation
                             FixedLength = x.FixedLength
                         },
                         Dimensions = x.Dimensions,
-                        IsOptional = x.IsOptional
+                        IsOptional = x.IsOptional,
+                        NoAutoValidity = x.NoAutoValidity
                     }).ToList()
                 });
             }

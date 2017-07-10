@@ -54,6 +54,15 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        public uint? DiscardRectangleCount
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public SharpVk.Rect2D[] DiscardRectangles
         {
             get;
@@ -73,7 +82,14 @@ namespace SharpVk.Multivendor
                 pointer->Flags = default(SharpVk.Multivendor.PipelineDiscardRectangleStateCreateFlags);
             }
             pointer->DiscardRectangleMode = this.DiscardRectangleMode;
-            pointer->DiscardRectangleCount = (uint)(this.DiscardRectangles?.Length ?? 0);
+            if (this.DiscardRectangleCount != null)
+            {
+                pointer->DiscardRectangleCount = this.DiscardRectangleCount.Value;
+            }
+            else
+            {
+                pointer->DiscardRectangleCount = (uint)(this.DiscardRectangles?.Length ?? 0);
+            }
             if (this.DiscardRectangles != null)
             {
                 var fieldPointer = (SharpVk.Rect2D*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Rect2D>(this.DiscardRectangles.Length).ToPointer());

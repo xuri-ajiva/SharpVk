@@ -134,14 +134,14 @@ namespace SharpVk.TestHarness
                     StageFlags = ShaderStageFlags.Compute,
                     DescriptorType = DescriptorType.StorageBuffer,
                     Binding = 0,
-                    ImmutableSamplers = new Sampler[]{null}
+                    DescriptorCount = 1
                 },
                 new DescriptorSetLayoutBinding
                 {
                     StageFlags = ShaderStageFlags.Compute,
                     DescriptorType = DescriptorType.StorageBuffer,
                     Binding = 1,
-                    ImmutableSamplers = new Sampler[]{null}
+                    DescriptorCount = 1
                 }
             });
 
@@ -154,6 +154,7 @@ namespace SharpVk.TestHarness
                     DestinationSet = descriptorSet,
                     DescriptorType = DescriptorType.StorageBuffer,
                     DestinationBinding = 0,
+                    DescriptorCount = 1,
                     BufferInfo = new []
                     {
                         new DescriptorBufferInfo
@@ -168,6 +169,7 @@ namespace SharpVk.TestHarness
                     DestinationSet = descriptorSet,
                     DescriptorType = DescriptorType.StorageBuffer,
                     DestinationBinding = 1,
+                    DescriptorCount = 1,
                     BufferInfo = new []
                     {
                         new DescriptorBufferInfo

@@ -21,7 +21,7 @@ namespace SharpVk.Generator.Generation.Marshalling
 
         public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, MemberPatternContext context, MemberPatternInfo info)
         {
-            var lenExpression = new List<Func<Func<string, Action<ExpressionBuilder>>, Action<ExpressionBuilder>>>();
+            var lenExpressions = new List<(Func<Func<string, Action<ExpressionBuilder>>, Action<ExpressionBuilder>>, bool, bool)>();
 
             foreach (var otherMember in others)
             {
@@ -33,26 +33,67 @@ namespace SharpVk.Generator.Generation.Marshalling
                         {
                             if (dimension.Value is LenExpressionToken)
                             {
-                                lenExpression.Add(getValue => Coalesce(CoalesceMember(getValue(otherMember.Name), "Length"), Literal(0)));
+                                lenExpressions.Add((getValue => Coalesce(CoalesceMember(getValue(otherMember.Name), "Length"), Literal(0)), otherMember.NoAutoValidity, otherMember.IsOptional));
                             }
                         }
                     }
                 }
                 else if (otherMember.Type.FixedLength.Type != FixedLengthType.None && source.VkName == otherMember.VkName.TrimEnd('s') + "Count")
                 {
-                    lenExpression.Add(getValue => Coalesce(CoalesceMember(getValue(otherMember.Name), "Length"), Literal(0)));
+                    lenExpressions.Add((getValue => Coalesce(CoalesceMember(getValue(otherMember.Name), "Length"), Literal(0)), otherMember.NoAutoValidity, otherMember.IsOptional));
                 }
             }
 
-            if (lenExpression.Any())
+            bool isArrayLenMember = lenExpressions.Any() && (source.IsOptional || lenExpressions.Any(x => !x.Item2));
+
+            if (isArrayLenMember)
             {
-                info.MarshalTo.Add((getTarget, getValue) => new AssignAction
-                {
-                    TargetExpression = getTarget(source.Name),
-                    ValueExpression = Cast(this.nameLookup.Lookup(source.Type, false), lenExpression.First()(getValue))
-                });
+                var lenExpression = lenExpressions.Any(x => !x.Item2)
+                                        ? lenExpressions.FirstOrDefault(x => !x.Item2)
+                                        : lenExpressions.First();
+
+                MethodAction assign(Func<string, Action<ExpressionBuilder>> getTarget, Func<string, Action<ExpressionBuilder>> getValue) =>
+                    new AssignAction
+                    {
+                        TargetExpression = getTarget(source.Name),
+                        ValueExpression = Cast(this.nameLookup.Lookup(source.Type, false), lenExpression.Item1(getValue))
+                    };
 
                 string typeName = this.nameLookup.Lookup(source.Type, true);
+
+                if (source.IsOptional && lenExpressions.All(x => x.Item2) && lenExpressions.All(x => x.Item3))
+                {
+                    info.Public.Add(new TypedDefinition
+                    {
+                        Name = source.Name,
+                        Type = typeName + "?",
+                        DefaultValue = Null
+                    });
+
+                    MethodAction optionalAssign(Func<string, Action<ExpressionBuilder>> getTarget, Func<string, Action<ExpressionBuilder>> getValue)
+                    {
+                        var result = new OptionalAction
+                        {
+                            NullCheckExpression = IsNotEqual(getValue(source.Name), Null)
+                        };
+
+                        result.Actions.Add(new AssignAction
+                        {
+                            TargetExpression = getTarget(source.Name),
+                            ValueExpression = Member(getValue(source.Name), "Value")
+                        });
+
+                        result.ElseActions.Add(assign(getTarget, getValue));
+
+                        return result;
+                    }
+
+                    info.MarshalTo.Add(optionalAssign);
+                }
+                else
+                {
+                    info.MarshalTo.Add(assign);
+                }
 
                 info.Interop = new TypedDefinition
                 {
@@ -63,7 +104,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                 info.InteropFullType = typeName;
             }
 
-            return lenExpression.Any();
+            return isArrayLenMember;
         }
     }
 }

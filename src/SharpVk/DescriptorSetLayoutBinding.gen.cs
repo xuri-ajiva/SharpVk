@@ -54,6 +54,15 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        public uint? DescriptorCount
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public SharpVk.ShaderStageFlags StageFlags
         {
             get;
@@ -73,7 +82,14 @@ namespace SharpVk
         {
             pointer->Binding = this.Binding;
             pointer->DescriptorType = this.DescriptorType;
-            pointer->DescriptorCount = (uint)(this.ImmutableSamplers?.Length ?? 0);
+            if (this.DescriptorCount != null)
+            {
+                pointer->DescriptorCount = this.DescriptorCount.Value;
+            }
+            else
+            {
+                pointer->DescriptorCount = (uint)(this.ImmutableSamplers?.Length ?? 0);
+            }
             pointer->StageFlags = this.StageFlags;
             if (this.ImmutableSamplers != null)
             {

@@ -8,6 +8,8 @@
 
         bool IsOptional { get; }
 
+        bool NoAutoValidity { get; }
+
         string FixedValue { get; }
 
         TypeReference Type { get; }

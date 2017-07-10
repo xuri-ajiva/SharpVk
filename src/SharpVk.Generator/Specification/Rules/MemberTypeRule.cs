@@ -29,10 +29,8 @@ namespace SharpVk.Generator.Specification.Rules
                 var nameElement = vkMember.Element("name");
                 string vkName = nameElement.Value;
                 string memberType = vkMember.Element("type").Value;
-                string optional = vkMember.Attribute("optional")?.Value;
-                bool isOptional = optional != null
-                                    ? bool.Parse(optional)
-                                    : false;
+                bool.TryParse(vkMember.Attribute("optional")?.Value, out bool isOptional);
+                bool.TryParse(vkMember.Attribute("noautovalidity")?.Value, out bool noAutoValidity);
 
                 PointerType pointerType = PointerTypeUtil.GetFrom(nameElement.NodesBeforeSelf());
 
@@ -90,6 +88,7 @@ namespace SharpVk.Generator.Specification.Rules
                     VkName = vkName,
                     Type = memberType,
                     IsOptional = isOptional,
+                    NoAutoValidity = noAutoValidity,
                     FixedLength = fixedLength,
                     PointerType = pointerType,
                     NameParts = memberNameParts,

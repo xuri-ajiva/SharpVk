@@ -63,6 +63,15 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        public uint DescriptorCount
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public SharpVk.DescriptorType DescriptorType
         {
             get;
@@ -103,7 +112,7 @@ namespace SharpVk
             pointer->DestinationSet = this.DestinationSet?.handle ?? default(SharpVk.Interop.DescriptorSet);
             pointer->DestinationBinding = this.DestinationBinding;
             pointer->DestinationArrayElement = this.DestinationArrayElement;
-            pointer->DescriptorCount = (uint)(this.ImageInfo?.Length ?? 0);
+            pointer->DescriptorCount = this.DescriptorCount;
             pointer->DescriptorType = this.DescriptorType;
             if (this.ImageInfo != null)
             {

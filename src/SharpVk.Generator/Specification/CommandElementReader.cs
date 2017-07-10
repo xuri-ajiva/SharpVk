@@ -51,6 +51,7 @@ namespace SharpVk.Generator.Specification
                     string paramName = nameElement.Value;
                     string paramType = vkParam.Element("type").Value;
                     bool.TryParse(vkParam.Attribute("optional")?.Value, out bool isOptional);
+                    bool.TryParse(vkParam.Attribute("noAutoValidity")?.Value, out bool noAutoValidity);
 
                     var typeNodes = nameElement.NodesBeforeSelf();
                     PointerType pointerType = PointerTypeUtil.GetFrom(typeNodes);
@@ -70,6 +71,7 @@ namespace SharpVk.Generator.Specification
                         NameParts = paramNameParts,
                         Extension = paramExtension,
                         IsOptional = isOptional,
+                        NoAutoValidity = noAutoValidity,
                         Dimensions = dimensions
                     });
                 }

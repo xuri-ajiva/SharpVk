@@ -6,6 +6,7 @@
         public string VkName;
         public string Name;
         public bool IsOptional;
+        public bool NoAutoValidity;
         public string ParamName;
         public TypeReference Type;
         public string FixedValue;
@@ -16,6 +17,8 @@
         string ITypedDeclaration.Name => this.Name;
 
         bool ITypedDeclaration.IsOptional => this.IsOptional;
+
+        bool ITypedDeclaration.NoAutoValidity => this.NoAutoValidity;
 
         TypeReference ITypedDeclaration.Type => this.Type;
 

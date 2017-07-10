@@ -45,6 +45,15 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        public uint ViewportCount
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public SharpVk.NVidia.ViewportSwizzle[] ViewportSwizzles
         {
             get;
@@ -63,7 +72,7 @@ namespace SharpVk.NVidia
             {
                 pointer->Flags = default(SharpVk.NVidia.PipelineViewportSwizzleStateCreateFlags);
             }
-            pointer->ViewportCount = (uint)(this.ViewportSwizzles?.Length ?? 0);
+            pointer->ViewportCount = this.ViewportCount;
             if (this.ViewportSwizzles != null)
             {
                 var fieldPointer = (SharpVk.NVidia.ViewportSwizzle*)(Interop.HeapUtil.AllocateAndClear<SharpVk.NVidia.ViewportSwizzle>(this.ViewportSwizzles.Length).ToPointer());

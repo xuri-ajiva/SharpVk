@@ -7,5 +7,6 @@
         public FixedLengthDeclaration FixedLength;
         public MemberLen[] Dimensions;
         public PointerType PointerType;
+        public bool NoAutoValidity;
     }
 }
