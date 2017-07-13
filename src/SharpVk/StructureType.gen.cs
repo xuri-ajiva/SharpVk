@@ -547,112 +547,137 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        PhysicalDeviceExternalImageFormatInfoKhx = 1000071000, 
+        PhysicalDeviceExternalImageFormatInfoKhr = 1000071000, 
         
         /// <summary>
         /// 
         /// </summary>
-        ExternalImageFormatPropertiesKhx = 1000071001, 
+        ExternalImageFormatPropertiesKhr = 1000071001, 
         
         /// <summary>
         /// 
         /// </summary>
-        PhysicalDeviceExternalBufferInfoKhx = 1000071002, 
+        PhysicalDeviceExternalBufferInfoKhr = 1000071002, 
         
         /// <summary>
         /// 
         /// </summary>
-        ExternalBufferPropertiesKhx = 1000071003, 
+        ExternalBufferPropertiesKhr = 1000071003, 
         
         /// <summary>
         /// 
         /// </summary>
-        PhysicalDeviceIdPropertiesKhx = 1000071004, 
+        PhysicalDeviceIdPropertiesKhr = 1000071004, 
         
         /// <summary>
         /// 
         /// </summary>
-        ExternalMemoryBufferCreateInfoKhx = 1000072000, 
+        ExternalMemoryBufferCreateInfoKhr = 1000072000, 
         
         /// <summary>
         /// 
         /// </summary>
-        ExternalMemoryImageCreateInfoKhx = 1000072001, 
+        ExternalMemoryImageCreateInfoKhr = 1000072001, 
         
         /// <summary>
         /// 
         /// </summary>
-        ExportMemoryAllocateInfoKhx = 1000072002, 
+        ExportMemoryAllocateInfoKhr = 1000072002, 
         
         /// <summary>
         /// 
         /// </summary>
-        ImportMemoryWin32HandleInfoKhx = 1000073000, 
+        ImportMemoryWin32HandleInfoKhr = 1000073000, 
         
         /// <summary>
         /// 
         /// </summary>
-        ExportMemoryWin32HandleInfoKhx = 1000073001, 
+        ExportMemoryWin32HandleInfoKhr = 1000073001, 
         
         /// <summary>
         /// 
         /// </summary>
-        MemoryWin32HandlePropertiesKhx = 1000073002, 
+        MemoryWin32HandlePropertiesKhr = 1000073002, 
         
         /// <summary>
         /// 
         /// </summary>
-        ImportMemoryFileDescriptorInfoKhx = 1000074000, 
+        MemoryGetWin32HandleInfoKhr = 1000073003, 
         
         /// <summary>
         /// 
         /// </summary>
-        MemoryFileDescriptorPropertiesKhx = 1000074001, 
+        ImportMemoryFileDescriptorInfoKhr = 1000074000, 
         
         /// <summary>
         /// 
         /// </summary>
-        Win32KeyedMutexAcquireReleaseInfoKhx = 1000075000, 
+        MemoryFileDescriptorPropertiesKhr = 1000074001, 
         
         /// <summary>
         /// 
         /// </summary>
-        PhysicalDeviceExternalSemaphoreInfoKhx = 1000076000, 
+        MemoryGetFileDescriptorInfoKhr = 1000074002, 
         
         /// <summary>
         /// 
         /// </summary>
-        ExternalSemaphorePropertiesKhx = 1000076001, 
+        Win32KeyedMutexAcquireReleaseInfoKhr = 1000075000, 
         
         /// <summary>
         /// 
         /// </summary>
-        ExportSemaphoreCreateInfoKhx = 1000077000, 
+        PhysicalDeviceExternalSemaphoreInfoKhr = 1000076000, 
         
         /// <summary>
         /// 
         /// </summary>
-        ImportSemaphoreWin32HandleInfoKhx = 1000078000, 
+        ExternalSemaphorePropertiesKhr = 1000076001, 
         
         /// <summary>
         /// 
         /// </summary>
-        ExportSemaphoreWin32HandleInfoKhx = 1000078001, 
+        ExportSemaphoreCreateInfoKhr = 1000077000, 
         
         /// <summary>
         /// 
         /// </summary>
-        D3d12FenceSubmitInfoKhx = 1000078002, 
+        ImportSemaphoreWin32HandleInfoKhr = 1000078000, 
         
         /// <summary>
         /// 
         /// </summary>
-        ImportSemaphoreFileDescriptorInfoKhx = 1000079000, 
+        ExportSemaphoreWin32HandleInfoKhr = 1000078001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        D3d12FenceSubmitInfoKhr = 1000078002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SemaphoreGetWin32HandleInfoKhr = 1000078003, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ImportSemaphoreFileDescriptorInfoKhr = 1000079000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SemaphoreGetFileDescriptorInfoKhr = 1000079001, 
         
         /// <summary>
         /// 
         /// </summary>
         PhysicalDevicePushDescriptorPropertiesKhr = 1000080000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDevice16bitStorageFeaturesKhr = 1000083000, 
         
         /// <summary>
         /// 
@@ -762,6 +787,46 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        PhysicalDeviceExternalFenceInfoKhr = 1000112000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ExternalFencePropertiesKhr = 1000112001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ExportFenceCreateInfoKhr = 1000113000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ImportFenceWin32HandleInfoKhr = 1000114000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ExportFenceWin32HandleInfoKhr = 1000114001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        FenceGetWin32HandleInfoKhr = 1000114002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ImportFenceFileDescriptorInfoKhr = 1000115000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        FenceGetFileDescriptorInfoKhr = 1000115001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         PhysicalDeviceSurfaceInfo2Khr = 1000119000, 
         
         /// <summary>
@@ -777,6 +842,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        PhysicalDeviceVariablePointerFeaturesKhr = 1000120000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         IosSurfaceCreateInfoMvk = 1000122000, 
         
         /// <summary>
@@ -787,12 +857,47 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        MemoryDedicatedRequirementsKhr = 1000127000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        MemoryDedicatedAllocateInfoKhr = 1000127001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         PhysicalDeviceSamplerFilterMinmaxPropertiesExt = 1000130000, 
         
         /// <summary>
         /// 
         /// </summary>
         SamplerReductionModeCreateInfoExt = 1000130001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        BufferMemoryRequirementsInfo2Khr = 1000146000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ImageMemoryRequirementsInfo2Khr = 1000146001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ImageSparseMemoryRequirementsInfo2Khr = 1000146002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        MemoryRequirements2Khr = 1000146003, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SparseImageMemoryRequirements2Khr = 1000146004, 
         
         /// <summary>
         /// 

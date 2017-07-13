@@ -167,6 +167,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        ErrorInvalidExternalHandleKhx = -1000072003, 
+        ErrorInvalidExternalHandleKhr = -1000072003, 
     }
 }

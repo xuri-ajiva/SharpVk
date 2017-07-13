@@ -34,56 +34,6 @@ namespace SharpVk.Khronos.Experimental
         /// <summary>
         /// 
         /// </summary>
-        public static unsafe SharpVk.Khronos.Experimental.ExternalBufferProperties GetExternalBufferProperties(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.Experimental.PhysicalDeviceExternalBufferInfo externalBufferInfo)
-        {
-            try
-            {
-                SharpVk.Khronos.Experimental.ExternalBufferProperties result = default(SharpVk.Khronos.Experimental.ExternalBufferProperties);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Khronos.Experimental.PhysicalDeviceExternalBufferInfo* marshalledExternalBufferInfo = default(SharpVk.Interop.Khronos.Experimental.PhysicalDeviceExternalBufferInfo*);
-                SharpVk.Interop.Khronos.Experimental.ExternalBufferProperties marshalledExternalBufferProperties = default(SharpVk.Interop.Khronos.Experimental.ExternalBufferProperties);
-                commandCache = extendedHandle.commandCache;
-                marshalledExternalBufferInfo = (SharpVk.Interop.Khronos.Experimental.PhysicalDeviceExternalBufferInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.Experimental.PhysicalDeviceExternalBufferInfo>());
-                externalBufferInfo.MarshalTo(marshalledExternalBufferInfo);
-                SharpVk.Interop.Khronos.Experimental.VkPhysicalDeviceGetExternalBufferPropertiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.Experimental.VkPhysicalDeviceGetExternalBufferPropertiesDelegate>("vkGetPhysicalDeviceExternalBufferPropertiesKHX", "instance");
-                commandDelegate(extendedHandle.handle, marshalledExternalBufferInfo, &marshalledExternalBufferProperties);
-                result = SharpVk.Khronos.Experimental.ExternalBufferProperties.MarshalFrom(&marshalledExternalBufferProperties);
-                return result;
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public static unsafe SharpVk.Khronos.Experimental.ExternalSemaphoreProperties GetExternalSemaphoreProperties(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.Experimental.PhysicalDeviceExternalSemaphoreInfo externalSemaphoreInfo)
-        {
-            try
-            {
-                SharpVk.Khronos.Experimental.ExternalSemaphoreProperties result = default(SharpVk.Khronos.Experimental.ExternalSemaphoreProperties);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Khronos.Experimental.PhysicalDeviceExternalSemaphoreInfo* marshalledExternalSemaphoreInfo = default(SharpVk.Interop.Khronos.Experimental.PhysicalDeviceExternalSemaphoreInfo*);
-                SharpVk.Interop.Khronos.Experimental.ExternalSemaphoreProperties marshalledExternalSemaphoreProperties = default(SharpVk.Interop.Khronos.Experimental.ExternalSemaphoreProperties);
-                commandCache = extendedHandle.commandCache;
-                marshalledExternalSemaphoreInfo = (SharpVk.Interop.Khronos.Experimental.PhysicalDeviceExternalSemaphoreInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.Experimental.PhysicalDeviceExternalSemaphoreInfo>());
-                externalSemaphoreInfo.MarshalTo(marshalledExternalSemaphoreInfo);
-                SharpVk.Interop.Khronos.Experimental.VkPhysicalDeviceGetExternalSemaphorePropertiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.Experimental.VkPhysicalDeviceGetExternalSemaphorePropertiesDelegate>("vkGetPhysicalDeviceExternalSemaphorePropertiesKHX", "instance");
-                commandDelegate(extendedHandle.handle, marshalledExternalSemaphoreInfo, &marshalledExternalSemaphoreProperties);
-                result = SharpVk.Khronos.Experimental.ExternalSemaphoreProperties.MarshalFrom(&marshalledExternalSemaphoreProperties);
-                return result;
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public static unsafe SharpVk.Rect2D[] GetPresentRectangles(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.Surface surface)
         {
             try
