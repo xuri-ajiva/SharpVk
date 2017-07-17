@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
+    /// Structure describing capabilities of a surface.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct SurfaceCapabilities2

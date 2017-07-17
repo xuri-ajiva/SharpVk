@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos.Experimental
 {
     /// <summary>
-    /// 
+    /// Structure specifying how to bind a buffer to memory.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct BindBufferMemoryInfo

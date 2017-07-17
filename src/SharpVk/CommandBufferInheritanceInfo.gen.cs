@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying command buffer inheritance info.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct CommandBufferInheritanceInfo

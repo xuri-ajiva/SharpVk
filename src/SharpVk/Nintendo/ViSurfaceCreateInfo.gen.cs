@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Nintendo
 {
     /// <summary>
-    /// 
+    /// Structure specifying parameters of a newly created VI surface object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct ViSurfaceCreateInfo

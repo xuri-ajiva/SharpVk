@@ -28,7 +28,8 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying parameters of a newly created pipeline
+    /// rasterization state.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct PipelineRasterizationStateCreateInfo

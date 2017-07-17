@@ -44,6 +44,8 @@ namespace SharpVk.Generator.Emission
 
                     fileBuilder.EmitNamespace(@namespace, namespaceBuilder =>
                     {
+                        var summaryComment = !string.IsNullOrEmpty(@struct.Comment) ? new[] { @struct.Comment } : null;
+
                         namespaceBuilder.EmitType(TypeKind.Struct, @struct.Name, typeBuilder =>
                         {
                             if (@struct.Constructor != null)
@@ -82,7 +84,7 @@ namespace SharpVk.Generator.Emission
                                     this.methodEmitter.Emit(typeBuilder, method);
                                 }
                             }
-                        }, Public, null, @struct.IsUnsafe ? Unsafe : None, attributes: new[] { "StructLayout(LayoutKind.Sequential)" });
+                        }, Public, null, @struct.IsUnsafe ? Unsafe : None, attributes: new[] { "StructLayout(LayoutKind.Sequential)" }, summary: summaryComment);
                     });
                 });
             }

@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos.Experimental
 {
     /// <summary>
-    /// 
+    /// Structure containing multiview info for all subpasses.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct RenderPassMultiviewCreateInfo

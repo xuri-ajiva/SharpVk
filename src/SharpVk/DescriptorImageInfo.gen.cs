@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying descriptor image info.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DescriptorImageInfo

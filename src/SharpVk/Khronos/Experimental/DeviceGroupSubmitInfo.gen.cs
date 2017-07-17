@@ -28,7 +28,8 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos.Experimental
 {
     /// <summary>
-    /// 
+    /// Structure indicating which physical devices execute semaphore
+    /// operations and command buffers.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DeviceGroupSubmitInfo

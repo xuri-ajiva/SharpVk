@@ -28,7 +28,8 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
+    /// Structure specifying parameters of a newly created debug report
+    /// callback.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DebugReportCallbackCreateInfo

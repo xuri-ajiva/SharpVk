@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying a descriptor set layout binding.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DescriptorSetLayoutBinding

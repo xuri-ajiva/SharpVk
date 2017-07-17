@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying the allocation parameters for descriptor sets.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DescriptorSetAllocateInfo

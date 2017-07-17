@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
+    /// Import Win32 memory created on the same physical device.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct ImportMemoryWin32HandleInfo

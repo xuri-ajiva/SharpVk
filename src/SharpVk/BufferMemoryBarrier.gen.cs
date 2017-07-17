@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying a buffer memory barrier.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct BufferMemoryBarrier

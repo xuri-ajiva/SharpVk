@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying an image blit operation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct ImageBlit

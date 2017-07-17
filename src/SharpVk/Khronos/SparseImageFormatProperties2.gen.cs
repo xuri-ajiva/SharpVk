@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
+    /// Structure specifying sparse image format properties.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct SparseImageFormatProperties2

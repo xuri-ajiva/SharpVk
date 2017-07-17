@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying parameters of a newly created semaphore.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct SemaphoreCreateInfo

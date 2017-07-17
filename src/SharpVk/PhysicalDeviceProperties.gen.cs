@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying physical device properties.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct PhysicalDeviceProperties

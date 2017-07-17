@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos.Experimental
 {
     /// <summary>
-    /// 
+    /// Structure indicating which instances are bound.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DeviceGroupBindSparseInfo

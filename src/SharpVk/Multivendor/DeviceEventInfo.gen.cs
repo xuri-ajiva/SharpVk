@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
+    /// Describe a device event to create.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DeviceEventInfo

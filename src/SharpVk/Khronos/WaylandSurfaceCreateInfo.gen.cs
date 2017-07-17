@@ -28,7 +28,8 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
+    /// Structure specifying parameters of a newly created Wayland surface
+    /// object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct WaylandSurfaceCreateInfo

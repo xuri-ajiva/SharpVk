@@ -28,7 +28,8 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos.Experimental
 {
     /// <summary>
-    /// 
+    /// Structure describing multiview limits that can be supported by an
+    /// implementation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct PhysicalDeviceMultiviewProperties

@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
+    /// Structure specifying physical device memory properties.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct PhysicalDeviceMemoryProperties2

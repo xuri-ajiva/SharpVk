@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos.Experimental
 {
     /// <summary>
-    /// 
+    /// Present capabilities from other physical devices.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DeviceGroupPresentCapabilities

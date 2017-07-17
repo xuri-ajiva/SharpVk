@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
+    /// Structure specifying image format properties.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct FormatProperties2

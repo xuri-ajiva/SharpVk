@@ -55,6 +55,7 @@ namespace SharpVk.Generator.Collation
 
                 services.AddSingleton(new EnumDeclaration
                 {
+                    VkName = enumeration.VkName,
                     Name = name,
                     Extension = extension,
                     Fields = this.DeclareFields(enumeration, false, enumLookup)
@@ -80,6 +81,7 @@ namespace SharpVk.Generator.Collation
 
                 services.AddSingleton(new EnumDeclaration
                 {
+                    VkName = bitmaskType.VkName,
                     Name = name,
                     Extension = extension,
                     IsFlags = true,
@@ -132,6 +134,7 @@ namespace SharpVk.Generator.Collation
 
                     result.Add(new FieldDeclaration
                     {
+                        VkName = field.VkName,
                         Name = name,
                         Value = value
                     });
@@ -151,6 +154,7 @@ namespace SharpVk.Generator.Collation
         {
             result.Add(new FieldDeclaration
             {
+                VkName = "__none",
                 Name = "None",
                 Value = "0"
             });

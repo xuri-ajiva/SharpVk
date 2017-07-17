@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying a queue submit operation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct SubmitInfo

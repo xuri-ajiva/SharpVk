@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
-    /// 
+    /// Structure specifying parameters for the generation of commands.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct CommandProcessCommandsInfo

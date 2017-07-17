@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos.Experimental
 {
     /// <summary>
-    /// 
+    /// Structure specifying how to bind an image to memory.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct BindImageMemoryInfo

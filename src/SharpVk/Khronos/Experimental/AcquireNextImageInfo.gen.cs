@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos.Experimental
 {
     /// <summary>
-    /// 
+    /// Structure specifying parameters of the acquire.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct AcquireNextImageInfo

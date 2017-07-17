@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
+    /// Specify parameters of a command buffer marker region.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DebugMarkerMarkerInfo

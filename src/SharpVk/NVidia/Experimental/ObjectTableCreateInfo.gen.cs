@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
-    /// 
+    /// Structure specifying the parameters of a newly created object table.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct ObjectTableCreateInfo

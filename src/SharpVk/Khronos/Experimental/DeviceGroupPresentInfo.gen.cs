@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos.Experimental
 {
     /// <summary>
-    /// 
+    /// Mode and mask controlling which physical devices' images are presented.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DeviceGroupPresentInfo

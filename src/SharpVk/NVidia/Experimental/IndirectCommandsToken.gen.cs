@@ -28,7 +28,8 @@ using System.Runtime.InteropServices;
 namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
-    /// 
+    /// Structure specifying parameters for the reservation of command buffer
+    /// space.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct IndirectCommandsToken

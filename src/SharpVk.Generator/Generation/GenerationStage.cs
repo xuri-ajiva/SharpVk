@@ -13,6 +13,7 @@ namespace SharpVk.Generator.Generation
             services.AddSingleton<ParsedExpressionBuilder>();
             services.AddSingleton<ParsedExpressionTokenCheck>();
             services.AddSingleton<NamespaceMap>();
+            services.AddSingleton<CommentGenerator>();
 
             services.AddSingleton<IMarshalValueRule, MarshalVoidPointerValue>();
             services.AddSingleton<IMarshalValueRule, MarshalDelegateValue>();

@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying specialization info.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct SpecializationInfo

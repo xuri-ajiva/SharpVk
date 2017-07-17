@@ -28,7 +28,8 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying parameters of a newly created pipeline depth
+    /// stencil state.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct PipelineDepthStencilStateCreateInfo

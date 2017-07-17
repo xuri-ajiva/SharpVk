@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
+    /// Structure specifying image creation parameters.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct PhysicalDeviceImageFormatInfo2

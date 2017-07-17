@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
+    /// Structure providing information about a queue family.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct QueueFamilyProperties2

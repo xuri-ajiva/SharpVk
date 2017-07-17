@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying sparse image memory bind info.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct SparseImageMemoryBindInfo

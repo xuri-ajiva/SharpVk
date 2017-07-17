@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
+    /// Structure describing display mode properties.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DisplayModeProperties

@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos.Experimental
 {
     /// <summary>
-    /// 
+    /// Structure specifying physical device group properties.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct PhysicalDeviceGroupProperties

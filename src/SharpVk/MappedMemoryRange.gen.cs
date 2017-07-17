@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying a mapped memory range.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct MappedMemoryRange

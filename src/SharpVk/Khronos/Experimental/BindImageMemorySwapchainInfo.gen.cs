@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos.Experimental
 {
     /// <summary>
-    /// 
+    /// Structure specifying swapchain image memory to bind to.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct BindImageMemorySwapchainInfo

@@ -28,7 +28,8 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying the parameters of a descriptor set write
+    /// operation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct WriteDescriptorSet

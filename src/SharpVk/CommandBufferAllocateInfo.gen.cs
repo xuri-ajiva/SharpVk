@@ -28,7 +28,8 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying the allocation parameters for command buffer
+    /// object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct CommandBufferAllocateInfo

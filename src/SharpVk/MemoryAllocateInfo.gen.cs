@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure containing parameters of a memory allocation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct MemoryAllocateInfo

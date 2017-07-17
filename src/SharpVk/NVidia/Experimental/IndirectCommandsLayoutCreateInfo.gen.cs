@@ -28,7 +28,8 @@ using System.Runtime.InteropServices;
 namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
-    /// 
+    /// Structure specifying the parameters of a newly created indirect
+    /// commands layout object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct IndirectCommandsLayoutCreateInfo

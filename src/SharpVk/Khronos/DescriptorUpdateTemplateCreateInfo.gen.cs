@@ -28,7 +28,8 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
+    /// Structure specifying parameters of a newly created descriptor update
+    /// template.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DescriptorUpdateTemplateCreateInfo

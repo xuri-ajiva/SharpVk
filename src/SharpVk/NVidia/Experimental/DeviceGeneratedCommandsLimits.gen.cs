@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
-    /// 
+    /// Structure specifying physical device limits.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DeviceGeneratedCommandsLimits

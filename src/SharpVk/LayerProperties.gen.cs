@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying layer properties.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct LayerProperties

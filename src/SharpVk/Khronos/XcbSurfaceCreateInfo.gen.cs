@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
+    /// Structure specifying parameters of a newly created Xcb surface object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct XcbSurfaceCreateInfo

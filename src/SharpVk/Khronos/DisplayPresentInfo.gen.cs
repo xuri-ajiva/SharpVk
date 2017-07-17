@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
+    /// Structure describing parameters of a queue presentation to a swapchain.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DisplayPresentInfo

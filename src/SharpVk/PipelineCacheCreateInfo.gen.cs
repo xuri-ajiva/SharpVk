@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying parameters of a newly created pipeline cache.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct PipelineCacheCreateInfo

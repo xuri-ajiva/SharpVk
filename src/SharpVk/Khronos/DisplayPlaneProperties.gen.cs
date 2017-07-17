@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
+    /// Structure describing display plane properties.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DisplayPlaneProperties

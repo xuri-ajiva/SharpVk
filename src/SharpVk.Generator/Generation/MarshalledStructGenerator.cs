@@ -17,13 +17,15 @@ namespace SharpVk.Generator.Generation
         private readonly NameLookup nameLookup;
         private readonly IEnumerable<IMemberPatternRule> patternRules;
         private readonly NamespaceMap namespaceMap;
+        private readonly CommentGenerator commentGenerator;
 
-        public MarshalledStructGenerator(Dictionary<string, TypeDeclaration> typeData, NameLookup nameLookup, IEnumerable<IMemberPatternRule> patternRules, NamespaceMap namespaceMap)
+        public MarshalledStructGenerator(Dictionary<string, TypeDeclaration> typeData, NameLookup nameLookup, IEnumerable<IMemberPatternRule> patternRules, NamespaceMap namespaceMap, CommentGenerator commentGenerator)
         {
             this.typeData = typeData;
             this.nameLookup = nameLookup;
             this.patternRules = patternRules;
             this.namespaceMap = namespaceMap;
+            this.commentGenerator = commentGenerator;
         }
 
         public void Execute(IServiceCollection services)
@@ -42,6 +44,7 @@ namespace SharpVk.Generator.Generation
                 {
                     Name = type.Name,
                     Namespace = typeNamespace.ToArray(),
+                    Comment = this.commentGenerator.Lookup(typeItem.Key),
                     Methods = new List<MethodDefinition>(),
                     Properties = new List<MemberDefinition>()
                 };

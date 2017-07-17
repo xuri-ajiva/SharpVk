@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
+    /// Specify parameters of a tag to attach to an object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DebugMarkerObjectTagInfo

@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying the parameters of a newly created buffer object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct BufferCreateInfo

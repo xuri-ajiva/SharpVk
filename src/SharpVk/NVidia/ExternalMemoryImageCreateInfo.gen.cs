@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
+    /// Specify that an image may be backed by external memory.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct ExternalMemoryImageCreateInfo

@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
+    /// Describe the power state of a display.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DisplayPowerInfo

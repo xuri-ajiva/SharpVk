@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying a pipeline color blend attachment state.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct PipelineColorBlendAttachmentState

@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
+    /// Specify validation checks to disable for a Vulkan instance.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct ValidationFlags

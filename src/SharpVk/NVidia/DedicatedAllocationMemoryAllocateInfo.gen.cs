@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
+    /// Specify a dedicated memory allocation resource.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DedicatedAllocationMemoryAllocateInfo

@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
+    /// Specify that an image is bound to a dedicated memory resource.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DedicatedAllocationImageCreateInfo

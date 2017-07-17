@@ -28,7 +28,8 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
+    /// Structure describing push descriptor limits that can be supported by an
+    /// implementation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct PhysicalDevicePushDescriptorProperties

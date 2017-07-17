@@ -6,6 +6,7 @@ namespace SharpVk.Generator.Generation
     {
         public string Name;
         public string[] Namespace;
+        public string Comment;
         public bool IsUnsafe;
         public bool IsClass;
         public bool IsStatic;

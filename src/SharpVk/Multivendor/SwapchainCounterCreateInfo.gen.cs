@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
+    /// Specify the surface counters desired.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct SwapchainCounterCreateInfo

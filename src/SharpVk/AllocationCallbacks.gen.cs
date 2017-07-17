@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure containing callback function pointers for memory allocation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct AllocationCallbacks

@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
+    /// Use Windows keyex mutex mechanism to synchronize work.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Win32KeyedMutexAcquireReleaseInfo

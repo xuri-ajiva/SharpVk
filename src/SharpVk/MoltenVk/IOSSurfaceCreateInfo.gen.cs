@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.MoltenVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying parameters of a newly created iOS surface object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct IOSSurfaceCreateInfo

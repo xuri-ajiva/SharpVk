@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying a copy descriptor set operation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct CopyDescriptorSet

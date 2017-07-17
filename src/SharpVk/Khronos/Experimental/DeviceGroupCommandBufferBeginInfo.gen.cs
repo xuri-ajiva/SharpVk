@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos.Experimental
 {
     /// <summary>
-    /// 
+    /// Set the initial device mask for a command buffer.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DeviceGroupCommandBufferBeginInfo

@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos.Experimental
 {
     /// <summary>
-    /// 
+    /// Create a logical device from multiple physical devices.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DeviceGroupDeviceCreateInfo

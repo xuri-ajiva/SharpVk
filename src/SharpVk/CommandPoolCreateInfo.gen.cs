@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying parameters of a newly created command pool.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct CommandPoolCreateInfo

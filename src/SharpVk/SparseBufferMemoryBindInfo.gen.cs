@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying a sparse buffer memory bind operation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct SparseBufferMemoryBindInfo

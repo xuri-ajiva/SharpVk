@@ -28,7 +28,8 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos.Experimental
 {
     /// <summary>
-    /// 
+    /// Set the initial device mask and render areas for a render pass
+    /// instance.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DeviceGroupRenderPassBeginInfo

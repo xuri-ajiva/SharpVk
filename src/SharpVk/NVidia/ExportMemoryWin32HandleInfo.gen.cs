@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
+    /// Specify security attributes and access rights for Win32 memory handles.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct ExportMemoryWin32HandleInfo
