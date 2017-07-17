@@ -37,29 +37,7 @@ namespace SharpVk.Khronos
         /// <param name="extendedHandle">
         /// The Queue handle to extend.
         /// </param>
-        /// <param name="waitSemaphores">
-        /// If not Null, is an array of Semaphore objects with
-        /// waitSemaphoreCount entries, and specifies the semaphores to wait
-        /// for before issuing the present request.
-        /// </param>
-        /// <param name="swapchains">
-        /// An array of SwapchainKHR objects with swapchainCount entries. A
-        /// given swapchain must not appear in this list more than once.
-        /// </param>
-        /// <param name="imageIndices">
-        /// An array of indices into the array of each swapchain's presentable
-        /// images, with swapchainCount entries. Each entry in this array
-        /// identifies the image to present on the corresponding entry in the
-        /// pSwapchains array.
-        /// </param>
-        /// <param name="results">
-        /// An array of Result typed elements with swapchainCount entries.
-        /// Applications that do not need per-swapchain results can use Null
-        /// for pResults. If non-Null, each entry in pResults will be set to
-        /// the Result for presenting the swapchain corresponding to the same
-        /// index in pSwapchains.
-        /// </param>
-        public static unsafe void Present(this SharpVk.Queue extendedHandle, SharpVk.Semaphore[] waitSemaphores, SharpVk.Khronos.Swapchain[] swapchains, uint[] imageIndices, SharpVk.Result[] results)
+        public static unsafe void Present(this SharpVk.Queue extendedHandle, ArrayProxy<SharpVk.Semaphore>? waitSemaphores, ArrayProxy<SharpVk.Khronos.Swapchain>? swapchains, ArrayProxy<uint>? imageIndices, ArrayProxy<SharpVk.Result>? results = null)
         {
             try
             {
@@ -69,59 +47,91 @@ namespace SharpVk.Khronos
                 marshalledPresentInfo = (SharpVk.Interop.Khronos.PresentInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.PresentInfo>());
                 marshalledPresentInfo->SType = StructureType.PresentInfoKhr;
                 marshalledPresentInfo->Next = null;
-                marshalledPresentInfo->WaitSemaphoreCount = (uint)(waitSemaphores?.Length ?? 0);
-                if (waitSemaphores != null)
-                {
-                    var fieldPointer = (SharpVk.Interop.Semaphore*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Semaphore>(waitSemaphores.Length).ToPointer());
-                    for(int index = 0; index < (uint)(waitSemaphores.Length); index++)
-                    {
-                        fieldPointer[index] = waitSemaphores[index]?.handle ?? default(SharpVk.Interop.Semaphore);
-                    }
-                    marshalledPresentInfo->WaitSemaphores = fieldPointer;
-                }
-                else
+                marshalledPresentInfo->WaitSemaphoreCount = (uint)(Interop.HeapUtil.GetLength(waitSemaphores));
+                if (waitSemaphores.IsNull())
                 {
                     marshalledPresentInfo->WaitSemaphores = null;
                 }
-                marshalledPresentInfo->SwapchainCount = (uint)(swapchains?.Length ?? 0);
-                if (swapchains != null)
-                {
-                    var fieldPointer = (SharpVk.Interop.Khronos.Swapchain*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Khronos.Swapchain>(swapchains.Length).ToPointer());
-                    for(int index = 0; index < (uint)(swapchains.Length); index++)
-                    {
-                        fieldPointer[index] = swapchains[index]?.handle ?? default(SharpVk.Interop.Khronos.Swapchain);
-                    }
-                    marshalledPresentInfo->Swapchains = fieldPointer;
-                }
                 else
+                {
+                    if (waitSemaphores.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledPresentInfo->WaitSemaphores = (SharpVk.Interop.Semaphore*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Semaphore>());
+                        *(SharpVk.Interop.Semaphore*)(marshalledPresentInfo->WaitSemaphores) = waitSemaphores.Value.GetSingleValue()?.handle ?? default(SharpVk.Interop.Semaphore);
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.Interop.Semaphore*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Semaphore>(Interop.HeapUtil.GetLength(waitSemaphores.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(waitSemaphores.Value)); index++)
+                        {
+                            fieldPointer[index] = waitSemaphores.Value[index]?.handle ?? default(SharpVk.Interop.Semaphore);
+                        }
+                        marshalledPresentInfo->WaitSemaphores = fieldPointer;
+                    }
+                }
+                marshalledPresentInfo->SwapchainCount = (uint)(Interop.HeapUtil.GetLength(swapchains));
+                if (swapchains.IsNull())
                 {
                     marshalledPresentInfo->Swapchains = null;
                 }
-                if (imageIndices != null)
-                {
-                    var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(imageIndices.Length).ToPointer());
-                    for(int index = 0; index < (uint)(imageIndices.Length); index++)
-                    {
-                        fieldPointer[index] = imageIndices[index];
-                    }
-                    marshalledPresentInfo->ImageIndices = fieldPointer;
-                }
                 else
+                {
+                    if (swapchains.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledPresentInfo->Swapchains = (SharpVk.Interop.Khronos.Swapchain*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.Swapchain>());
+                        *(SharpVk.Interop.Khronos.Swapchain*)(marshalledPresentInfo->Swapchains) = swapchains.Value.GetSingleValue()?.handle ?? default(SharpVk.Interop.Khronos.Swapchain);
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.Interop.Khronos.Swapchain*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Khronos.Swapchain>(Interop.HeapUtil.GetLength(swapchains.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(swapchains.Value)); index++)
+                        {
+                            fieldPointer[index] = swapchains.Value[index]?.handle ?? default(SharpVk.Interop.Khronos.Swapchain);
+                        }
+                        marshalledPresentInfo->Swapchains = fieldPointer;
+                    }
+                }
+                if (imageIndices.IsNull())
                 {
                     marshalledPresentInfo->ImageIndices = null;
                 }
-                if (results != null)
+                else
                 {
-                    var fieldPointer = (SharpVk.Result*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Result>(results.Length).ToPointer());
-                    for(int index = 0; index < (uint)(results.Length); index++)
+                    if (imageIndices.Value.Contents == ProxyContents.Single)
                     {
-                        fieldPointer[index] = results[index];
+                        marshalledPresentInfo->ImageIndices = (uint*)(Interop.HeapUtil.Allocate<uint>());
+                        *(uint*)(marshalledPresentInfo->ImageIndices) = imageIndices.Value.GetSingleValue();
                     }
-                    marshalledPresentInfo->Results = fieldPointer;
+                    else
+                    {
+                        var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(Interop.HeapUtil.GetLength(imageIndices.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(imageIndices.Value)); index++)
+                        {
+                            fieldPointer[index] = imageIndices.Value[index];
+                        }
+                        marshalledPresentInfo->ImageIndices = fieldPointer;
+                    }
+                }
+                if (results.IsNull())
+                {
+                    marshalledPresentInfo->Results = null;
                 }
                 else
                 {
-                    marshalledPresentInfo->Results = null;
+                    if (results.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledPresentInfo->Results = (SharpVk.Result*)(Interop.HeapUtil.Allocate<SharpVk.Result>());
+                        *(SharpVk.Result*)(marshalledPresentInfo->Results) = results.Value.GetSingleValue();
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.Result*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Result>(Interop.HeapUtil.GetLength(results.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(results.Value)); index++)
+                        {
+                            fieldPointer[index] = results.Value[index];
+                        }
+                        marshalledPresentInfo->Results = fieldPointer;
+                    }
                 }
                 SharpVk.Interop.Khronos.VkQueuePresentDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkQueuePresentDelegate>("vkQueuePresentKHR", "instance");
                 Result methodResult = commandDelegate(extendedHandle.handle, marshalledPresentInfo);

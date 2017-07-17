@@ -89,7 +89,7 @@ namespace SharpVk
             {
                 pointer->Flags = default(SharpVk.RenderPassCreateFlags);
             }
-            pointer->AttachmentCount = (uint)(this.Attachments?.Length ?? 0);
+            pointer->AttachmentCount = (uint)(Interop.HeapUtil.GetLength(this.Attachments));
             if (this.Attachments != null)
             {
                 var fieldPointer = (SharpVk.AttachmentDescription*)(Interop.HeapUtil.AllocateAndClear<SharpVk.AttachmentDescription>(this.Attachments.Length).ToPointer());
@@ -103,7 +103,7 @@ namespace SharpVk
             {
                 pointer->Attachments = null;
             }
-            pointer->SubpassCount = (uint)(this.Subpasses?.Length ?? 0);
+            pointer->SubpassCount = (uint)(Interop.HeapUtil.GetLength(this.Subpasses));
             if (this.Subpasses != null)
             {
                 var fieldPointer = (SharpVk.Interop.SubpassDescription*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.SubpassDescription>(this.Subpasses.Length).ToPointer());
@@ -117,7 +117,7 @@ namespace SharpVk
             {
                 pointer->Subpasses = null;
             }
-            pointer->DependencyCount = (uint)(this.Dependencies?.Length ?? 0);
+            pointer->DependencyCount = (uint)(Interop.HeapUtil.GetLength(this.Dependencies));
             if (this.Dependencies != null)
             {
                 var fieldPointer = (SharpVk.SubpassDependency*)(Interop.HeapUtil.AllocateAndClear<SharpVk.SubpassDependency>(this.Dependencies.Length).ToPointer());

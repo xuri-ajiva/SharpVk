@@ -114,25 +114,33 @@ namespace SharpVk
         /// <summary>
         /// Combine the data stores of pipeline caches.
         /// </summary>
-        public unsafe void MergePipelineCaches(SharpVk.PipelineCache[] sourceCaches)
+        public unsafe void MergePipelineCaches(ArrayProxy<SharpVk.PipelineCache>? sourceCaches)
         {
             try
             {
                 SharpVk.Interop.PipelineCache* marshalledSourceCaches = default(SharpVk.Interop.PipelineCache*);
-                if (sourceCaches != null)
-                {
-                    var fieldPointer = (SharpVk.Interop.PipelineCache*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.PipelineCache>(sourceCaches.Length).ToPointer());
-                    for(int index = 0; index < (uint)(sourceCaches.Length); index++)
-                    {
-                        fieldPointer[index] = sourceCaches[index]?.handle ?? default(SharpVk.Interop.PipelineCache);
-                    }
-                    marshalledSourceCaches = fieldPointer;
-                }
-                else
+                if (sourceCaches.IsNull())
                 {
                     marshalledSourceCaches = null;
                 }
-                Result methodResult = Interop.Commands.vkMergePipelineCaches(this.parent.handle, this.handle, (uint)(sourceCaches?.Length ?? 0), marshalledSourceCaches);
+                else
+                {
+                    if (sourceCaches.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledSourceCaches = (SharpVk.Interop.PipelineCache*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PipelineCache>());
+                        *(SharpVk.Interop.PipelineCache*)(marshalledSourceCaches) = sourceCaches.Value.GetSingleValue()?.handle ?? default(SharpVk.Interop.PipelineCache);
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.Interop.PipelineCache*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.PipelineCache>(Interop.HeapUtil.GetLength(sourceCaches.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(sourceCaches.Value)); index++)
+                        {
+                            fieldPointer[index] = sourceCaches.Value[index]?.handle ?? default(SharpVk.Interop.PipelineCache);
+                        }
+                        marshalledSourceCaches = fieldPointer;
+                    }
+                }
+                Result methodResult = Interop.Commands.vkMergePipelineCaches(this.parent.handle, this.handle, (uint)(Interop.HeapUtil.GetLength(sourceCaches)), marshalledSourceCaches);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);

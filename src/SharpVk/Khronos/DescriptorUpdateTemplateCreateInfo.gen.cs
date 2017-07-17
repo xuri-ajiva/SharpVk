@@ -134,7 +134,7 @@ namespace SharpVk.Khronos
             {
                 pointer->Flags = default(SharpVk.Khronos.DescriptorUpdateTemplateCreateFlags);
             }
-            pointer->DescriptorUpdateEntryCount = (uint)(this.DescriptorUpdateEntries?.Length ?? 0);
+            pointer->DescriptorUpdateEntryCount = (uint)(Interop.HeapUtil.GetLength(this.DescriptorUpdateEntries));
             if (this.DescriptorUpdateEntries != null)
             {
                 var fieldPointer = (SharpVk.Khronos.DescriptorUpdateTemplateEntry*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Khronos.DescriptorUpdateTemplateEntry>(this.DescriptorUpdateEntries.Length).ToPointer());

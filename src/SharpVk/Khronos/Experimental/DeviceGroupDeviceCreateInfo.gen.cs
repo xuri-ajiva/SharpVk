@@ -50,7 +50,7 @@ namespace SharpVk.Khronos.Experimental
         {
             pointer->SType = StructureType.DeviceGroupDeviceCreateInfoKhx;
             pointer->Next = null;
-            pointer->PhysicalDeviceCount = (uint)(this.PhysicalDevices?.Length ?? 0);
+            pointer->PhysicalDeviceCount = (uint)(Interop.HeapUtil.GetLength(this.PhysicalDevices));
             if (this.PhysicalDevices != null)
             {
                 var fieldPointer = (SharpVk.Interop.PhysicalDevice*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.PhysicalDevice>(this.PhysicalDevices.Length).ToPointer());

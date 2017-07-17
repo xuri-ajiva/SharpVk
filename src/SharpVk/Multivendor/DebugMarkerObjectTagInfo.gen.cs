@@ -81,7 +81,7 @@ namespace SharpVk.Multivendor
             pointer->ObjectType = this.ObjectType;
             pointer->Object = this.Object;
             pointer->TagName = this.TagName;
-            pointer->TagSize = (HostSize)(this.Tag?.Length ?? 0);
+            pointer->TagSize = (HostSize)(Interop.HeapUtil.GetLength(this.Tag));
             if (this.Tag != null)
             {
                 var fieldPointer = (byte*)(Interop.HeapUtil.AllocateAndClear<byte>(this.Tag.Length).ToPointer());

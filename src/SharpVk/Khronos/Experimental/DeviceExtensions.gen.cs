@@ -62,28 +62,36 @@ namespace SharpVk.Khronos.Experimental
         /// <param name="extendedHandle">
         /// The Device handle to extend.
         /// </param>
-        public static unsafe void BindBufferMemory2(this SharpVk.Device extendedHandle, SharpVk.Khronos.Experimental.BindBufferMemoryInfo[] bindInfos)
+        public static unsafe void BindBufferMemory2(this SharpVk.Device extendedHandle, ArrayProxy<SharpVk.Khronos.Experimental.BindBufferMemoryInfo>? bindInfos)
         {
             try
             {
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Khronos.Experimental.BindBufferMemoryInfo* marshalledBindInfos = default(SharpVk.Interop.Khronos.Experimental.BindBufferMemoryInfo*);
                 commandCache = extendedHandle.commandCache;
-                if (bindInfos != null)
-                {
-                    var fieldPointer = (SharpVk.Interop.Khronos.Experimental.BindBufferMemoryInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Khronos.Experimental.BindBufferMemoryInfo>(bindInfos.Length).ToPointer());
-                    for(int index = 0; index < (uint)(bindInfos.Length); index++)
-                    {
-                        bindInfos[index].MarshalTo(&fieldPointer[index]);
-                    }
-                    marshalledBindInfos = fieldPointer;
-                }
-                else
+                if (bindInfos.IsNull())
                 {
                     marshalledBindInfos = null;
                 }
+                else
+                {
+                    if (bindInfos.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledBindInfos = (SharpVk.Interop.Khronos.Experimental.BindBufferMemoryInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.Experimental.BindBufferMemoryInfo>());
+                        bindInfos.Value.GetSingleValue().MarshalTo(&*(SharpVk.Interop.Khronos.Experimental.BindBufferMemoryInfo*)(marshalledBindInfos));
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.Interop.Khronos.Experimental.BindBufferMemoryInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Khronos.Experimental.BindBufferMemoryInfo>(Interop.HeapUtil.GetLength(bindInfos.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(bindInfos.Value)); index++)
+                        {
+                            bindInfos.Value[index].MarshalTo(&fieldPointer[index]);
+                        }
+                        marshalledBindInfos = fieldPointer;
+                    }
+                }
                 SharpVk.Interop.Khronos.Experimental.VkDeviceBindBufferMemory2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.Experimental.VkDeviceBindBufferMemory2Delegate>("vkBindBufferMemory2KHX", "instance");
-                Result methodResult = commandDelegate(extendedHandle.handle, (uint)(bindInfos?.Length ?? 0), marshalledBindInfos);
+                Result methodResult = commandDelegate(extendedHandle.handle, (uint)(Interop.HeapUtil.GetLength(bindInfos)), marshalledBindInfos);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -101,28 +109,36 @@ namespace SharpVk.Khronos.Experimental
         /// <param name="extendedHandle">
         /// The Device handle to extend.
         /// </param>
-        public static unsafe void BindImageMemory2(this SharpVk.Device extendedHandle, SharpVk.Khronos.Experimental.BindImageMemoryInfo[] bindInfos)
+        public static unsafe void BindImageMemory2(this SharpVk.Device extendedHandle, ArrayProxy<SharpVk.Khronos.Experimental.BindImageMemoryInfo>? bindInfos)
         {
             try
             {
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Khronos.Experimental.BindImageMemoryInfo* marshalledBindInfos = default(SharpVk.Interop.Khronos.Experimental.BindImageMemoryInfo*);
                 commandCache = extendedHandle.commandCache;
-                if (bindInfos != null)
-                {
-                    var fieldPointer = (SharpVk.Interop.Khronos.Experimental.BindImageMemoryInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Khronos.Experimental.BindImageMemoryInfo>(bindInfos.Length).ToPointer());
-                    for(int index = 0; index < (uint)(bindInfos.Length); index++)
-                    {
-                        bindInfos[index].MarshalTo(&fieldPointer[index]);
-                    }
-                    marshalledBindInfos = fieldPointer;
-                }
-                else
+                if (bindInfos.IsNull())
                 {
                     marshalledBindInfos = null;
                 }
+                else
+                {
+                    if (bindInfos.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledBindInfos = (SharpVk.Interop.Khronos.Experimental.BindImageMemoryInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.Experimental.BindImageMemoryInfo>());
+                        bindInfos.Value.GetSingleValue().MarshalTo(&*(SharpVk.Interop.Khronos.Experimental.BindImageMemoryInfo*)(marshalledBindInfos));
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.Interop.Khronos.Experimental.BindImageMemoryInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Khronos.Experimental.BindImageMemoryInfo>(Interop.HeapUtil.GetLength(bindInfos.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(bindInfos.Value)); index++)
+                        {
+                            bindInfos.Value[index].MarshalTo(&fieldPointer[index]);
+                        }
+                        marshalledBindInfos = fieldPointer;
+                    }
+                }
                 SharpVk.Interop.Khronos.Experimental.VkDeviceBindImageMemory2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.Experimental.VkDeviceBindImageMemory2Delegate>("vkBindImageMemory2KHX", "instance");
-                Result methodResult = commandDelegate(extendedHandle.handle, (uint)(bindInfos?.Length ?? 0), marshalledBindInfos);
+                Result methodResult = commandDelegate(extendedHandle.handle, (uint)(Interop.HeapUtil.GetLength(bindInfos)), marshalledBindInfos);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);

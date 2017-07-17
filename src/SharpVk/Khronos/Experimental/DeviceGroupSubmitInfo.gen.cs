@@ -75,7 +75,7 @@ namespace SharpVk.Khronos.Experimental
         {
             pointer->SType = StructureType.DeviceGroupSubmitInfoKhx;
             pointer->Next = null;
-            pointer->WaitSemaphoreCount = (uint)(this.WaitSemaphoreDeviceIndices?.Length ?? 0);
+            pointer->WaitSemaphoreCount = (uint)(Interop.HeapUtil.GetLength(this.WaitSemaphoreDeviceIndices));
             if (this.WaitSemaphoreDeviceIndices != null)
             {
                 var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.WaitSemaphoreDeviceIndices.Length).ToPointer());
@@ -89,7 +89,7 @@ namespace SharpVk.Khronos.Experimental
             {
                 pointer->WaitSemaphoreDeviceIndices = null;
             }
-            pointer->CommandBufferCount = (uint)(this.CommandBufferDeviceMasks?.Length ?? 0);
+            pointer->CommandBufferCount = (uint)(Interop.HeapUtil.GetLength(this.CommandBufferDeviceMasks));
             if (this.CommandBufferDeviceMasks != null)
             {
                 var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.CommandBufferDeviceMasks.Length).ToPointer());
@@ -103,7 +103,7 @@ namespace SharpVk.Khronos.Experimental
             {
                 pointer->CommandBufferDeviceMasks = null;
             }
-            pointer->SignalSemaphoreCount = (uint)(this.SignalSemaphoreDeviceIndices?.Length ?? 0);
+            pointer->SignalSemaphoreCount = (uint)(Interop.HeapUtil.GetLength(this.SignalSemaphoreDeviceIndices));
             if (this.SignalSemaphoreDeviceIndices != null)
             {
                 var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.SignalSemaphoreDeviceIndices.Length).ToPointer());

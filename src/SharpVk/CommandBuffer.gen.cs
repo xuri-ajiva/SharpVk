@@ -153,25 +153,33 @@ namespace SharpVk
         /// <summary>
         /// Set the viewport on a command buffer.
         /// </summary>
-        public unsafe void SetViewport(uint firstViewport, SharpVk.Viewport[] viewports)
+        public unsafe void SetViewport(uint firstViewport, ArrayProxy<SharpVk.Viewport>? viewports)
         {
             try
             {
                 SharpVk.Viewport* marshalledViewports = default(SharpVk.Viewport*);
-                if (viewports != null)
-                {
-                    var fieldPointer = (SharpVk.Viewport*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Viewport>(viewports.Length).ToPointer());
-                    for(int index = 0; index < (uint)(viewports.Length); index++)
-                    {
-                        fieldPointer[index] = viewports[index];
-                    }
-                    marshalledViewports = fieldPointer;
-                }
-                else
+                if (viewports.IsNull())
                 {
                     marshalledViewports = null;
                 }
-                Interop.Commands.vkCmdSetViewport(this.handle, firstViewport, (uint)(viewports?.Length ?? 0), marshalledViewports);
+                else
+                {
+                    if (viewports.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledViewports = (SharpVk.Viewport*)(Interop.HeapUtil.Allocate<SharpVk.Viewport>());
+                        *(SharpVk.Viewport*)(marshalledViewports) = viewports.Value.GetSingleValue();
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.Viewport*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Viewport>(Interop.HeapUtil.GetLength(viewports.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(viewports.Value)); index++)
+                        {
+                            fieldPointer[index] = viewports.Value[index];
+                        }
+                        marshalledViewports = fieldPointer;
+                    }
+                }
+                Interop.Commands.vkCmdSetViewport(this.handle, firstViewport, (uint)(Interop.HeapUtil.GetLength(viewports)), marshalledViewports);
             }
             finally
             {
@@ -182,25 +190,33 @@ namespace SharpVk
         /// <summary>
         /// Set the dynamic scissor rectangles on a command buffer.
         /// </summary>
-        public unsafe void SetScissor(uint firstScissor, SharpVk.Rect2D[] scissors)
+        public unsafe void SetScissor(uint firstScissor, ArrayProxy<SharpVk.Rect2D>? scissors)
         {
             try
             {
                 SharpVk.Rect2D* marshalledScissors = default(SharpVk.Rect2D*);
-                if (scissors != null)
-                {
-                    var fieldPointer = (SharpVk.Rect2D*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Rect2D>(scissors.Length).ToPointer());
-                    for(int index = 0; index < (uint)(scissors.Length); index++)
-                    {
-                        fieldPointer[index] = scissors[index];
-                    }
-                    marshalledScissors = fieldPointer;
-                }
-                else
+                if (scissors.IsNull())
                 {
                     marshalledScissors = null;
                 }
-                Interop.Commands.vkCmdSetScissor(this.handle, firstScissor, (uint)(scissors?.Length ?? 0), marshalledScissors);
+                else
+                {
+                    if (scissors.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledScissors = (SharpVk.Rect2D*)(Interop.HeapUtil.Allocate<SharpVk.Rect2D>());
+                        *(SharpVk.Rect2D*)(marshalledScissors) = scissors.Value.GetSingleValue();
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.Rect2D*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Rect2D>(Interop.HeapUtil.GetLength(scissors.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(scissors.Value)); index++)
+                        {
+                            fieldPointer[index] = scissors.Value[index];
+                        }
+                        marshalledScissors = fieldPointer;
+                    }
+                }
+                Interop.Commands.vkCmdSetScissor(this.handle, firstScissor, (uint)(Interop.HeapUtil.GetLength(scissors)), marshalledScissors);
             }
             finally
             {
@@ -316,39 +332,55 @@ namespace SharpVk
         /// <summary>
         /// Binds descriptor sets to a command buffer.
         /// </summary>
-        public unsafe void BindDescriptorSets(SharpVk.PipelineBindPoint pipelineBindPoint, SharpVk.PipelineLayout layout, uint firstSet, SharpVk.DescriptorSet[] descriptorSets, uint[] dynamicOffsets)
+        public unsafe void BindDescriptorSets(SharpVk.PipelineBindPoint pipelineBindPoint, SharpVk.PipelineLayout layout, uint firstSet, ArrayProxy<SharpVk.DescriptorSet>? descriptorSets, ArrayProxy<uint>? dynamicOffsets)
         {
             try
             {
                 SharpVk.Interop.DescriptorSet* marshalledDescriptorSets = default(SharpVk.Interop.DescriptorSet*);
                 uint* marshalledDynamicOffsets = default(uint*);
-                if (descriptorSets != null)
-                {
-                    var fieldPointer = (SharpVk.Interop.DescriptorSet*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.DescriptorSet>(descriptorSets.Length).ToPointer());
-                    for(int index = 0; index < (uint)(descriptorSets.Length); index++)
-                    {
-                        fieldPointer[index] = descriptorSets[index]?.handle ?? default(SharpVk.Interop.DescriptorSet);
-                    }
-                    marshalledDescriptorSets = fieldPointer;
-                }
-                else
+                if (descriptorSets.IsNull())
                 {
                     marshalledDescriptorSets = null;
                 }
-                if (dynamicOffsets != null)
-                {
-                    var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(dynamicOffsets.Length).ToPointer());
-                    for(int index = 0; index < (uint)(dynamicOffsets.Length); index++)
-                    {
-                        fieldPointer[index] = dynamicOffsets[index];
-                    }
-                    marshalledDynamicOffsets = fieldPointer;
-                }
                 else
+                {
+                    if (descriptorSets.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledDescriptorSets = (SharpVk.Interop.DescriptorSet*)(Interop.HeapUtil.Allocate<SharpVk.Interop.DescriptorSet>());
+                        *(SharpVk.Interop.DescriptorSet*)(marshalledDescriptorSets) = descriptorSets.Value.GetSingleValue()?.handle ?? default(SharpVk.Interop.DescriptorSet);
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.Interop.DescriptorSet*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.DescriptorSet>(Interop.HeapUtil.GetLength(descriptorSets.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(descriptorSets.Value)); index++)
+                        {
+                            fieldPointer[index] = descriptorSets.Value[index]?.handle ?? default(SharpVk.Interop.DescriptorSet);
+                        }
+                        marshalledDescriptorSets = fieldPointer;
+                    }
+                }
+                if (dynamicOffsets.IsNull())
                 {
                     marshalledDynamicOffsets = null;
                 }
-                Interop.Commands.vkCmdBindDescriptorSets(this.handle, pipelineBindPoint, layout?.handle ?? default(SharpVk.Interop.PipelineLayout), firstSet, (uint)(descriptorSets?.Length ?? 0), marshalledDescriptorSets, (uint)(dynamicOffsets?.Length ?? 0), marshalledDynamicOffsets);
+                else
+                {
+                    if (dynamicOffsets.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledDynamicOffsets = (uint*)(Interop.HeapUtil.Allocate<uint>());
+                        *(uint*)(marshalledDynamicOffsets) = dynamicOffsets.Value.GetSingleValue();
+                    }
+                    else
+                    {
+                        var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(Interop.HeapUtil.GetLength(dynamicOffsets.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(dynamicOffsets.Value)); index++)
+                        {
+                            fieldPointer[index] = dynamicOffsets.Value[index];
+                        }
+                        marshalledDynamicOffsets = fieldPointer;
+                    }
+                }
+                Interop.Commands.vkCmdBindDescriptorSets(this.handle, pipelineBindPoint, layout?.handle ?? default(SharpVk.Interop.PipelineLayout), firstSet, (uint)(Interop.HeapUtil.GetLength(descriptorSets)), marshalledDescriptorSets, (uint)(Interop.HeapUtil.GetLength(dynamicOffsets)), marshalledDynamicOffsets);
             }
             finally
             {
@@ -374,39 +406,55 @@ namespace SharpVk
         /// <summary>
         /// Bind vertex buffers to a command buffer.
         /// </summary>
-        public unsafe void BindVertexBuffers(uint firstBinding, SharpVk.Buffer[] buffers, DeviceSize[] offsets)
+        public unsafe void BindVertexBuffers(uint firstBinding, ArrayProxy<SharpVk.Buffer>? buffers, ArrayProxy<DeviceSize>? offsets)
         {
             try
             {
                 SharpVk.Interop.Buffer* marshalledBuffers = default(SharpVk.Interop.Buffer*);
                 DeviceSize* marshalledOffsets = default(DeviceSize*);
-                if (buffers != null)
-                {
-                    var fieldPointer = (SharpVk.Interop.Buffer*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Buffer>(buffers.Length).ToPointer());
-                    for(int index = 0; index < (uint)(buffers.Length); index++)
-                    {
-                        fieldPointer[index] = buffers[index]?.handle ?? default(SharpVk.Interop.Buffer);
-                    }
-                    marshalledBuffers = fieldPointer;
-                }
-                else
+                if (buffers.IsNull())
                 {
                     marshalledBuffers = null;
                 }
-                if (offsets != null)
-                {
-                    var fieldPointer = (DeviceSize*)(Interop.HeapUtil.AllocateAndClear<DeviceSize>(offsets.Length).ToPointer());
-                    for(int index = 0; index < (uint)(offsets.Length); index++)
-                    {
-                        fieldPointer[index] = offsets[index];
-                    }
-                    marshalledOffsets = fieldPointer;
-                }
                 else
+                {
+                    if (buffers.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledBuffers = (SharpVk.Interop.Buffer*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Buffer>());
+                        *(SharpVk.Interop.Buffer*)(marshalledBuffers) = buffers.Value.GetSingleValue()?.handle ?? default(SharpVk.Interop.Buffer);
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.Interop.Buffer*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Buffer>(Interop.HeapUtil.GetLength(buffers.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(buffers.Value)); index++)
+                        {
+                            fieldPointer[index] = buffers.Value[index]?.handle ?? default(SharpVk.Interop.Buffer);
+                        }
+                        marshalledBuffers = fieldPointer;
+                    }
+                }
+                if (offsets.IsNull())
                 {
                     marshalledOffsets = null;
                 }
-                Interop.Commands.vkCmdBindVertexBuffers(this.handle, firstBinding, (uint)(buffers?.Length ?? 0), marshalledBuffers, marshalledOffsets);
+                else
+                {
+                    if (offsets.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledOffsets = (DeviceSize*)(Interop.HeapUtil.Allocate<DeviceSize>());
+                        *(DeviceSize*)(marshalledOffsets) = offsets.Value.GetSingleValue();
+                    }
+                    else
+                    {
+                        var fieldPointer = (DeviceSize*)(Interop.HeapUtil.AllocateAndClear<DeviceSize>(Interop.HeapUtil.GetLength(offsets.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(offsets.Value)); index++)
+                        {
+                            fieldPointer[index] = offsets.Value[index];
+                        }
+                        marshalledOffsets = fieldPointer;
+                    }
+                }
+                Interop.Commands.vkCmdBindVertexBuffers(this.handle, firstBinding, (uint)(Interop.HeapUtil.GetLength(buffers)), marshalledBuffers, marshalledOffsets);
             }
             finally
             {
@@ -507,25 +555,33 @@ namespace SharpVk
         /// <summary>
         /// Copy data between buffer regions.
         /// </summary>
-        public unsafe void CopyBuffer(SharpVk.Buffer sourceBuffer, SharpVk.Buffer destinationBuffer, SharpVk.BufferCopy[] regions)
+        public unsafe void CopyBuffer(SharpVk.Buffer sourceBuffer, SharpVk.Buffer destinationBuffer, ArrayProxy<SharpVk.BufferCopy>? regions)
         {
             try
             {
                 SharpVk.BufferCopy* marshalledRegions = default(SharpVk.BufferCopy*);
-                if (regions != null)
-                {
-                    var fieldPointer = (SharpVk.BufferCopy*)(Interop.HeapUtil.AllocateAndClear<SharpVk.BufferCopy>(regions.Length).ToPointer());
-                    for(int index = 0; index < (uint)(regions.Length); index++)
-                    {
-                        fieldPointer[index] = regions[index];
-                    }
-                    marshalledRegions = fieldPointer;
-                }
-                else
+                if (regions.IsNull())
                 {
                     marshalledRegions = null;
                 }
-                Interop.Commands.vkCmdCopyBuffer(this.handle, sourceBuffer?.handle ?? default(SharpVk.Interop.Buffer), destinationBuffer?.handle ?? default(SharpVk.Interop.Buffer), (uint)(regions?.Length ?? 0), marshalledRegions);
+                else
+                {
+                    if (regions.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledRegions = (SharpVk.BufferCopy*)(Interop.HeapUtil.Allocate<SharpVk.BufferCopy>());
+                        *(SharpVk.BufferCopy*)(marshalledRegions) = regions.Value.GetSingleValue();
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.BufferCopy*)(Interop.HeapUtil.AllocateAndClear<SharpVk.BufferCopy>(Interop.HeapUtil.GetLength(regions.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(regions.Value)); index++)
+                        {
+                            fieldPointer[index] = regions.Value[index];
+                        }
+                        marshalledRegions = fieldPointer;
+                    }
+                }
+                Interop.Commands.vkCmdCopyBuffer(this.handle, sourceBuffer?.handle ?? default(SharpVk.Interop.Buffer), destinationBuffer?.handle ?? default(SharpVk.Interop.Buffer), (uint)(Interop.HeapUtil.GetLength(regions)), marshalledRegions);
             }
             finally
             {
@@ -536,25 +592,33 @@ namespace SharpVk
         /// <summary>
         /// Copy data between images.
         /// </summary>
-        public unsafe void CopyImage(SharpVk.Image sourceImage, SharpVk.ImageLayout sourceImageLayout, SharpVk.Image destinationImage, SharpVk.ImageLayout destinationImageLayout, SharpVk.ImageCopy[] regions)
+        public unsafe void CopyImage(SharpVk.Image sourceImage, SharpVk.ImageLayout sourceImageLayout, SharpVk.Image destinationImage, SharpVk.ImageLayout destinationImageLayout, ArrayProxy<SharpVk.ImageCopy>? regions)
         {
             try
             {
                 SharpVk.ImageCopy* marshalledRegions = default(SharpVk.ImageCopy*);
-                if (regions != null)
-                {
-                    var fieldPointer = (SharpVk.ImageCopy*)(Interop.HeapUtil.AllocateAndClear<SharpVk.ImageCopy>(regions.Length).ToPointer());
-                    for(int index = 0; index < (uint)(regions.Length); index++)
-                    {
-                        fieldPointer[index] = regions[index];
-                    }
-                    marshalledRegions = fieldPointer;
-                }
-                else
+                if (regions.IsNull())
                 {
                     marshalledRegions = null;
                 }
-                Interop.Commands.vkCmdCopyImage(this.handle, sourceImage?.handle ?? default(SharpVk.Interop.Image), sourceImageLayout, destinationImage?.handle ?? default(SharpVk.Interop.Image), destinationImageLayout, (uint)(regions?.Length ?? 0), marshalledRegions);
+                else
+                {
+                    if (regions.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledRegions = (SharpVk.ImageCopy*)(Interop.HeapUtil.Allocate<SharpVk.ImageCopy>());
+                        *(SharpVk.ImageCopy*)(marshalledRegions) = regions.Value.GetSingleValue();
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.ImageCopy*)(Interop.HeapUtil.AllocateAndClear<SharpVk.ImageCopy>(Interop.HeapUtil.GetLength(regions.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(regions.Value)); index++)
+                        {
+                            fieldPointer[index] = regions.Value[index];
+                        }
+                        marshalledRegions = fieldPointer;
+                    }
+                }
+                Interop.Commands.vkCmdCopyImage(this.handle, sourceImage?.handle ?? default(SharpVk.Interop.Image), sourceImageLayout, destinationImage?.handle ?? default(SharpVk.Interop.Image), destinationImageLayout, (uint)(Interop.HeapUtil.GetLength(regions)), marshalledRegions);
             }
             finally
             {
@@ -566,25 +630,33 @@ namespace SharpVk
         /// Copy regions of an image, potentially performing format
         /// conversion,.
         /// </summary>
-        public unsafe void BlitImage(SharpVk.Image sourceImage, SharpVk.ImageLayout sourceImageLayout, SharpVk.Image destinationImage, SharpVk.ImageLayout destinationImageLayout, SharpVk.ImageBlit[] regions, SharpVk.Filter filter)
+        public unsafe void BlitImage(SharpVk.Image sourceImage, SharpVk.ImageLayout sourceImageLayout, SharpVk.Image destinationImage, SharpVk.ImageLayout destinationImageLayout, ArrayProxy<SharpVk.ImageBlit>? regions, SharpVk.Filter filter)
         {
             try
             {
                 SharpVk.Interop.ImageBlit* marshalledRegions = default(SharpVk.Interop.ImageBlit*);
-                if (regions != null)
-                {
-                    var fieldPointer = (SharpVk.Interop.ImageBlit*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.ImageBlit>(regions.Length).ToPointer());
-                    for(int index = 0; index < (uint)(regions.Length); index++)
-                    {
-                        regions[index].MarshalTo(&fieldPointer[index]);
-                    }
-                    marshalledRegions = fieldPointer;
-                }
-                else
+                if (regions.IsNull())
                 {
                     marshalledRegions = null;
                 }
-                Interop.Commands.vkCmdBlitImage(this.handle, sourceImage?.handle ?? default(SharpVk.Interop.Image), sourceImageLayout, destinationImage?.handle ?? default(SharpVk.Interop.Image), destinationImageLayout, (uint)(regions?.Length ?? 0), marshalledRegions, filter);
+                else
+                {
+                    if (regions.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledRegions = (SharpVk.Interop.ImageBlit*)(Interop.HeapUtil.Allocate<SharpVk.Interop.ImageBlit>());
+                        regions.Value.GetSingleValue().MarshalTo(&*(SharpVk.Interop.ImageBlit*)(marshalledRegions));
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.Interop.ImageBlit*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.ImageBlit>(Interop.HeapUtil.GetLength(regions.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(regions.Value)); index++)
+                        {
+                            regions.Value[index].MarshalTo(&fieldPointer[index]);
+                        }
+                        marshalledRegions = fieldPointer;
+                    }
+                }
+                Interop.Commands.vkCmdBlitImage(this.handle, sourceImage?.handle ?? default(SharpVk.Interop.Image), sourceImageLayout, destinationImage?.handle ?? default(SharpVk.Interop.Image), destinationImageLayout, (uint)(Interop.HeapUtil.GetLength(regions)), marshalledRegions, filter);
             }
             finally
             {
@@ -595,25 +667,33 @@ namespace SharpVk
         /// <summary>
         /// Copy data from a buffer into an image.
         /// </summary>
-        public unsafe void CopyBufferToImage(SharpVk.Buffer sourceBuffer, SharpVk.Image destinationImage, SharpVk.ImageLayout destinationImageLayout, SharpVk.BufferImageCopy[] regions)
+        public unsafe void CopyBufferToImage(SharpVk.Buffer sourceBuffer, SharpVk.Image destinationImage, SharpVk.ImageLayout destinationImageLayout, ArrayProxy<SharpVk.BufferImageCopy>? regions)
         {
             try
             {
                 SharpVk.BufferImageCopy* marshalledRegions = default(SharpVk.BufferImageCopy*);
-                if (regions != null)
-                {
-                    var fieldPointer = (SharpVk.BufferImageCopy*)(Interop.HeapUtil.AllocateAndClear<SharpVk.BufferImageCopy>(regions.Length).ToPointer());
-                    for(int index = 0; index < (uint)(regions.Length); index++)
-                    {
-                        fieldPointer[index] = regions[index];
-                    }
-                    marshalledRegions = fieldPointer;
-                }
-                else
+                if (regions.IsNull())
                 {
                     marshalledRegions = null;
                 }
-                Interop.Commands.vkCmdCopyBufferToImage(this.handle, sourceBuffer?.handle ?? default(SharpVk.Interop.Buffer), destinationImage?.handle ?? default(SharpVk.Interop.Image), destinationImageLayout, (uint)(regions?.Length ?? 0), marshalledRegions);
+                else
+                {
+                    if (regions.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledRegions = (SharpVk.BufferImageCopy*)(Interop.HeapUtil.Allocate<SharpVk.BufferImageCopy>());
+                        *(SharpVk.BufferImageCopy*)(marshalledRegions) = regions.Value.GetSingleValue();
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.BufferImageCopy*)(Interop.HeapUtil.AllocateAndClear<SharpVk.BufferImageCopy>(Interop.HeapUtil.GetLength(regions.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(regions.Value)); index++)
+                        {
+                            fieldPointer[index] = regions.Value[index];
+                        }
+                        marshalledRegions = fieldPointer;
+                    }
+                }
+                Interop.Commands.vkCmdCopyBufferToImage(this.handle, sourceBuffer?.handle ?? default(SharpVk.Interop.Buffer), destinationImage?.handle ?? default(SharpVk.Interop.Image), destinationImageLayout, (uint)(Interop.HeapUtil.GetLength(regions)), marshalledRegions);
             }
             finally
             {
@@ -624,25 +704,33 @@ namespace SharpVk
         /// <summary>
         /// Copy image data into a buffer.
         /// </summary>
-        public unsafe void CopyImageToBuffer(SharpVk.Image sourceImage, SharpVk.ImageLayout sourceImageLayout, SharpVk.Buffer destinationBuffer, SharpVk.BufferImageCopy[] regions)
+        public unsafe void CopyImageToBuffer(SharpVk.Image sourceImage, SharpVk.ImageLayout sourceImageLayout, SharpVk.Buffer destinationBuffer, ArrayProxy<SharpVk.BufferImageCopy>? regions)
         {
             try
             {
                 SharpVk.BufferImageCopy* marshalledRegions = default(SharpVk.BufferImageCopy*);
-                if (regions != null)
-                {
-                    var fieldPointer = (SharpVk.BufferImageCopy*)(Interop.HeapUtil.AllocateAndClear<SharpVk.BufferImageCopy>(regions.Length).ToPointer());
-                    for(int index = 0; index < (uint)(regions.Length); index++)
-                    {
-                        fieldPointer[index] = regions[index];
-                    }
-                    marshalledRegions = fieldPointer;
-                }
-                else
+                if (regions.IsNull())
                 {
                     marshalledRegions = null;
                 }
-                Interop.Commands.vkCmdCopyImageToBuffer(this.handle, sourceImage?.handle ?? default(SharpVk.Interop.Image), sourceImageLayout, destinationBuffer?.handle ?? default(SharpVk.Interop.Buffer), (uint)(regions?.Length ?? 0), marshalledRegions);
+                else
+                {
+                    if (regions.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledRegions = (SharpVk.BufferImageCopy*)(Interop.HeapUtil.Allocate<SharpVk.BufferImageCopy>());
+                        *(SharpVk.BufferImageCopy*)(marshalledRegions) = regions.Value.GetSingleValue();
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.BufferImageCopy*)(Interop.HeapUtil.AllocateAndClear<SharpVk.BufferImageCopy>(Interop.HeapUtil.GetLength(regions.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(regions.Value)); index++)
+                        {
+                            fieldPointer[index] = regions.Value[index];
+                        }
+                        marshalledRegions = fieldPointer;
+                    }
+                }
+                Interop.Commands.vkCmdCopyImageToBuffer(this.handle, sourceImage?.handle ?? default(SharpVk.Interop.Image), sourceImageLayout, destinationBuffer?.handle ?? default(SharpVk.Interop.Buffer), (uint)(Interop.HeapUtil.GetLength(regions)), marshalledRegions);
             }
             finally
             {
@@ -653,25 +741,33 @@ namespace SharpVk
         /// <summary>
         /// Update a buffer's contents from host memory.
         /// </summary>
-        public unsafe void UpdateBuffer(SharpVk.Buffer destinationBuffer, DeviceSize destinationOffset, byte[] data)
+        public unsafe void UpdateBuffer(SharpVk.Buffer destinationBuffer, DeviceSize destinationOffset, ArrayProxy<byte>? data)
         {
             try
             {
                 byte* marshalledData = default(byte*);
-                if (data != null)
-                {
-                    var fieldPointer = (byte*)(Interop.HeapUtil.AllocateAndClear<byte>(data.Length).ToPointer());
-                    for(int index = 0; index < (uint)(data.Length); index++)
-                    {
-                        fieldPointer[index] = data[index];
-                    }
-                    marshalledData = fieldPointer;
-                }
-                else
+                if (data.IsNull())
                 {
                     marshalledData = null;
                 }
-                Interop.Commands.vkCmdUpdateBuffer(this.handle, destinationBuffer?.handle ?? default(SharpVk.Interop.Buffer), destinationOffset, (DeviceSize)(data?.Length ?? 0), marshalledData);
+                else
+                {
+                    if (data.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledData = (byte*)(Interop.HeapUtil.Allocate<byte>());
+                        *(byte*)(marshalledData) = data.Value.GetSingleValue();
+                    }
+                    else
+                    {
+                        var fieldPointer = (byte*)(Interop.HeapUtil.AllocateAndClear<byte>(Interop.HeapUtil.GetLength(data.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(data.Value)); index++)
+                        {
+                            fieldPointer[index] = data.Value[index];
+                        }
+                        marshalledData = fieldPointer;
+                    }
+                }
+                Interop.Commands.vkCmdUpdateBuffer(this.handle, destinationBuffer?.handle ?? default(SharpVk.Interop.Buffer), destinationOffset, (DeviceSize)(Interop.HeapUtil.GetLength(data)), marshalledData);
             }
             finally
             {
@@ -697,25 +793,33 @@ namespace SharpVk
         /// <summary>
         /// Clear regions of a color image.
         /// </summary>
-        public unsafe void ClearColorImage(SharpVk.Image image, SharpVk.ImageLayout imageLayout, SharpVk.ClearColorValue color, SharpVk.ImageSubresourceRange[] ranges)
+        public unsafe void ClearColorImage(SharpVk.Image image, SharpVk.ImageLayout imageLayout, SharpVk.ClearColorValue color, ArrayProxy<SharpVk.ImageSubresourceRange>? ranges)
         {
             try
             {
                 SharpVk.ImageSubresourceRange* marshalledRanges = default(SharpVk.ImageSubresourceRange*);
-                if (ranges != null)
-                {
-                    var fieldPointer = (SharpVk.ImageSubresourceRange*)(Interop.HeapUtil.AllocateAndClear<SharpVk.ImageSubresourceRange>(ranges.Length).ToPointer());
-                    for(int index = 0; index < (uint)(ranges.Length); index++)
-                    {
-                        fieldPointer[index] = ranges[index];
-                    }
-                    marshalledRanges = fieldPointer;
-                }
-                else
+                if (ranges.IsNull())
                 {
                     marshalledRanges = null;
                 }
-                Interop.Commands.vkCmdClearColorImage(this.handle, image?.handle ?? default(SharpVk.Interop.Image), imageLayout, default(SharpVk.Interop.ClearColorValue*), (uint)(ranges?.Length ?? 0), marshalledRanges);
+                else
+                {
+                    if (ranges.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledRanges = (SharpVk.ImageSubresourceRange*)(Interop.HeapUtil.Allocate<SharpVk.ImageSubresourceRange>());
+                        *(SharpVk.ImageSubresourceRange*)(marshalledRanges) = ranges.Value.GetSingleValue();
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.ImageSubresourceRange*)(Interop.HeapUtil.AllocateAndClear<SharpVk.ImageSubresourceRange>(Interop.HeapUtil.GetLength(ranges.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(ranges.Value)); index++)
+                        {
+                            fieldPointer[index] = ranges.Value[index];
+                        }
+                        marshalledRanges = fieldPointer;
+                    }
+                }
+                Interop.Commands.vkCmdClearColorImage(this.handle, image?.handle ?? default(SharpVk.Interop.Image), imageLayout, default(SharpVk.Interop.ClearColorValue*), (uint)(Interop.HeapUtil.GetLength(ranges)), marshalledRanges);
             }
             finally
             {
@@ -726,7 +830,7 @@ namespace SharpVk
         /// <summary>
         /// Fill regions of a combined depth/stencil image.
         /// </summary>
-        public unsafe void ClearDepthStencilImage(SharpVk.Image image, SharpVk.ImageLayout imageLayout, SharpVk.ClearDepthStencilValue depthStencil, SharpVk.ImageSubresourceRange[] ranges)
+        public unsafe void ClearDepthStencilImage(SharpVk.Image image, SharpVk.ImageLayout imageLayout, SharpVk.ClearDepthStencilValue depthStencil, ArrayProxy<SharpVk.ImageSubresourceRange>? ranges)
         {
             try
             {
@@ -734,20 +838,28 @@ namespace SharpVk
                 SharpVk.ImageSubresourceRange* marshalledRanges = default(SharpVk.ImageSubresourceRange*);
                 marshalledDepthStencil = (SharpVk.ClearDepthStencilValue*)(Interop.HeapUtil.Allocate<SharpVk.ClearDepthStencilValue>());
                 *marshalledDepthStencil = depthStencil;
-                if (ranges != null)
-                {
-                    var fieldPointer = (SharpVk.ImageSubresourceRange*)(Interop.HeapUtil.AllocateAndClear<SharpVk.ImageSubresourceRange>(ranges.Length).ToPointer());
-                    for(int index = 0; index < (uint)(ranges.Length); index++)
-                    {
-                        fieldPointer[index] = ranges[index];
-                    }
-                    marshalledRanges = fieldPointer;
-                }
-                else
+                if (ranges.IsNull())
                 {
                     marshalledRanges = null;
                 }
-                Interop.Commands.vkCmdClearDepthStencilImage(this.handle, image?.handle ?? default(SharpVk.Interop.Image), imageLayout, marshalledDepthStencil, (uint)(ranges?.Length ?? 0), marshalledRanges);
+                else
+                {
+                    if (ranges.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledRanges = (SharpVk.ImageSubresourceRange*)(Interop.HeapUtil.Allocate<SharpVk.ImageSubresourceRange>());
+                        *(SharpVk.ImageSubresourceRange*)(marshalledRanges) = ranges.Value.GetSingleValue();
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.ImageSubresourceRange*)(Interop.HeapUtil.AllocateAndClear<SharpVk.ImageSubresourceRange>(Interop.HeapUtil.GetLength(ranges.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(ranges.Value)); index++)
+                        {
+                            fieldPointer[index] = ranges.Value[index];
+                        }
+                        marshalledRanges = fieldPointer;
+                    }
+                }
+                Interop.Commands.vkCmdClearDepthStencilImage(this.handle, image?.handle ?? default(SharpVk.Interop.Image), imageLayout, marshalledDepthStencil, (uint)(Interop.HeapUtil.GetLength(ranges)), marshalledRanges);
             }
             finally
             {
@@ -758,39 +870,55 @@ namespace SharpVk
         /// <summary>
         /// Clear regions within currently bound framebuffer attachments.
         /// </summary>
-        public unsafe void ClearAttachments(SharpVk.ClearAttachment[] attachments, SharpVk.ClearRect[] rects)
+        public unsafe void ClearAttachments(ArrayProxy<SharpVk.ClearAttachment>? attachments, ArrayProxy<SharpVk.ClearRect>? rects)
         {
             try
             {
                 SharpVk.ClearAttachment* marshalledAttachments = default(SharpVk.ClearAttachment*);
                 SharpVk.ClearRect* marshalledRects = default(SharpVk.ClearRect*);
-                if (attachments != null)
-                {
-                    var fieldPointer = (SharpVk.ClearAttachment*)(Interop.HeapUtil.AllocateAndClear<SharpVk.ClearAttachment>(attachments.Length).ToPointer());
-                    for(int index = 0; index < (uint)(attachments.Length); index++)
-                    {
-                        fieldPointer[index] = attachments[index];
-                    }
-                    marshalledAttachments = fieldPointer;
-                }
-                else
+                if (attachments.IsNull())
                 {
                     marshalledAttachments = null;
                 }
-                if (rects != null)
-                {
-                    var fieldPointer = (SharpVk.ClearRect*)(Interop.HeapUtil.AllocateAndClear<SharpVk.ClearRect>(rects.Length).ToPointer());
-                    for(int index = 0; index < (uint)(rects.Length); index++)
-                    {
-                        fieldPointer[index] = rects[index];
-                    }
-                    marshalledRects = fieldPointer;
-                }
                 else
+                {
+                    if (attachments.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledAttachments = (SharpVk.ClearAttachment*)(Interop.HeapUtil.Allocate<SharpVk.ClearAttachment>());
+                        *(SharpVk.ClearAttachment*)(marshalledAttachments) = attachments.Value.GetSingleValue();
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.ClearAttachment*)(Interop.HeapUtil.AllocateAndClear<SharpVk.ClearAttachment>(Interop.HeapUtil.GetLength(attachments.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(attachments.Value)); index++)
+                        {
+                            fieldPointer[index] = attachments.Value[index];
+                        }
+                        marshalledAttachments = fieldPointer;
+                    }
+                }
+                if (rects.IsNull())
                 {
                     marshalledRects = null;
                 }
-                Interop.Commands.vkCmdClearAttachments(this.handle, (uint)(attachments?.Length ?? 0), marshalledAttachments, (uint)(rects?.Length ?? 0), marshalledRects);
+                else
+                {
+                    if (rects.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledRects = (SharpVk.ClearRect*)(Interop.HeapUtil.Allocate<SharpVk.ClearRect>());
+                        *(SharpVk.ClearRect*)(marshalledRects) = rects.Value.GetSingleValue();
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.ClearRect*)(Interop.HeapUtil.AllocateAndClear<SharpVk.ClearRect>(Interop.HeapUtil.GetLength(rects.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(rects.Value)); index++)
+                        {
+                            fieldPointer[index] = rects.Value[index];
+                        }
+                        marshalledRects = fieldPointer;
+                    }
+                }
+                Interop.Commands.vkCmdClearAttachments(this.handle, (uint)(Interop.HeapUtil.GetLength(attachments)), marshalledAttachments, (uint)(Interop.HeapUtil.GetLength(rects)), marshalledRects);
             }
             finally
             {
@@ -801,25 +929,33 @@ namespace SharpVk
         /// <summary>
         /// Resolve regions of an image.
         /// </summary>
-        public unsafe void ResolveImage(SharpVk.Image sourceImage, SharpVk.ImageLayout sourceImageLayout, SharpVk.Image destinationImage, SharpVk.ImageLayout destinationImageLayout, SharpVk.ImageResolve[] regions)
+        public unsafe void ResolveImage(SharpVk.Image sourceImage, SharpVk.ImageLayout sourceImageLayout, SharpVk.Image destinationImage, SharpVk.ImageLayout destinationImageLayout, ArrayProxy<SharpVk.ImageResolve>? regions)
         {
             try
             {
                 SharpVk.ImageResolve* marshalledRegions = default(SharpVk.ImageResolve*);
-                if (regions != null)
-                {
-                    var fieldPointer = (SharpVk.ImageResolve*)(Interop.HeapUtil.AllocateAndClear<SharpVk.ImageResolve>(regions.Length).ToPointer());
-                    for(int index = 0; index < (uint)(regions.Length); index++)
-                    {
-                        fieldPointer[index] = regions[index];
-                    }
-                    marshalledRegions = fieldPointer;
-                }
-                else
+                if (regions.IsNull())
                 {
                     marshalledRegions = null;
                 }
-                Interop.Commands.vkCmdResolveImage(this.handle, sourceImage?.handle ?? default(SharpVk.Interop.Image), sourceImageLayout, destinationImage?.handle ?? default(SharpVk.Interop.Image), destinationImageLayout, (uint)(regions?.Length ?? 0), marshalledRegions);
+                else
+                {
+                    if (regions.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledRegions = (SharpVk.ImageResolve*)(Interop.HeapUtil.Allocate<SharpVk.ImageResolve>());
+                        *(SharpVk.ImageResolve*)(marshalledRegions) = regions.Value.GetSingleValue();
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.ImageResolve*)(Interop.HeapUtil.AllocateAndClear<SharpVk.ImageResolve>(Interop.HeapUtil.GetLength(regions.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(regions.Value)); index++)
+                        {
+                            fieldPointer[index] = regions.Value[index];
+                        }
+                        marshalledRegions = fieldPointer;
+                    }
+                }
+                Interop.Commands.vkCmdResolveImage(this.handle, sourceImage?.handle ?? default(SharpVk.Interop.Image), sourceImageLayout, destinationImage?.handle ?? default(SharpVk.Interop.Image), destinationImageLayout, (uint)(Interop.HeapUtil.GetLength(regions)), marshalledRegions);
             }
             finally
             {
@@ -860,7 +996,7 @@ namespace SharpVk
         /// <summary>
         /// Wait for one or more events and insert a set of memory.
         /// </summary>
-        public unsafe void WaitEvents(SharpVk.Event[] events, SharpVk.PipelineStageFlags sourceStageMask, SharpVk.PipelineStageFlags destinationStageMask, SharpVk.MemoryBarrier[] memoryBarriers, SharpVk.BufferMemoryBarrier[] bufferMemoryBarriers, SharpVk.ImageMemoryBarrier[] imageMemoryBarriers)
+        public unsafe void WaitEvents(ArrayProxy<SharpVk.Event>? events, SharpVk.PipelineStageFlags sourceStageMask, SharpVk.PipelineStageFlags destinationStageMask, ArrayProxy<SharpVk.MemoryBarrier>? memoryBarriers, ArrayProxy<SharpVk.BufferMemoryBarrier>? bufferMemoryBarriers, ArrayProxy<SharpVk.ImageMemoryBarrier>? imageMemoryBarriers)
         {
             try
             {
@@ -868,59 +1004,91 @@ namespace SharpVk
                 SharpVk.Interop.MemoryBarrier* marshalledMemoryBarriers = default(SharpVk.Interop.MemoryBarrier*);
                 SharpVk.Interop.BufferMemoryBarrier* marshalledBufferMemoryBarriers = default(SharpVk.Interop.BufferMemoryBarrier*);
                 SharpVk.Interop.ImageMemoryBarrier* marshalledImageMemoryBarriers = default(SharpVk.Interop.ImageMemoryBarrier*);
-                if (events != null)
-                {
-                    var fieldPointer = (SharpVk.Interop.Event*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Event>(events.Length).ToPointer());
-                    for(int index = 0; index < (uint)(events.Length); index++)
-                    {
-                        fieldPointer[index] = events[index]?.handle ?? default(SharpVk.Interop.Event);
-                    }
-                    marshalledEvents = fieldPointer;
-                }
-                else
+                if (events.IsNull())
                 {
                     marshalledEvents = null;
                 }
-                if (memoryBarriers != null)
-                {
-                    var fieldPointer = (SharpVk.Interop.MemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.MemoryBarrier>(memoryBarriers.Length).ToPointer());
-                    for(int index = 0; index < (uint)(memoryBarriers.Length); index++)
-                    {
-                        memoryBarriers[index].MarshalTo(&fieldPointer[index]);
-                    }
-                    marshalledMemoryBarriers = fieldPointer;
-                }
                 else
+                {
+                    if (events.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledEvents = (SharpVk.Interop.Event*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Event>());
+                        *(SharpVk.Interop.Event*)(marshalledEvents) = events.Value.GetSingleValue()?.handle ?? default(SharpVk.Interop.Event);
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.Interop.Event*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Event>(Interop.HeapUtil.GetLength(events.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(events.Value)); index++)
+                        {
+                            fieldPointer[index] = events.Value[index]?.handle ?? default(SharpVk.Interop.Event);
+                        }
+                        marshalledEvents = fieldPointer;
+                    }
+                }
+                if (memoryBarriers.IsNull())
                 {
                     marshalledMemoryBarriers = null;
                 }
-                if (bufferMemoryBarriers != null)
-                {
-                    var fieldPointer = (SharpVk.Interop.BufferMemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.BufferMemoryBarrier>(bufferMemoryBarriers.Length).ToPointer());
-                    for(int index = 0; index < (uint)(bufferMemoryBarriers.Length); index++)
-                    {
-                        bufferMemoryBarriers[index].MarshalTo(&fieldPointer[index]);
-                    }
-                    marshalledBufferMemoryBarriers = fieldPointer;
-                }
                 else
+                {
+                    if (memoryBarriers.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledMemoryBarriers = (SharpVk.Interop.MemoryBarrier*)(Interop.HeapUtil.Allocate<SharpVk.Interop.MemoryBarrier>());
+                        memoryBarriers.Value.GetSingleValue().MarshalTo(&*(SharpVk.Interop.MemoryBarrier*)(marshalledMemoryBarriers));
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.Interop.MemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.MemoryBarrier>(Interop.HeapUtil.GetLength(memoryBarriers.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(memoryBarriers.Value)); index++)
+                        {
+                            memoryBarriers.Value[index].MarshalTo(&fieldPointer[index]);
+                        }
+                        marshalledMemoryBarriers = fieldPointer;
+                    }
+                }
+                if (bufferMemoryBarriers.IsNull())
                 {
                     marshalledBufferMemoryBarriers = null;
                 }
-                if (imageMemoryBarriers != null)
-                {
-                    var fieldPointer = (SharpVk.Interop.ImageMemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.ImageMemoryBarrier>(imageMemoryBarriers.Length).ToPointer());
-                    for(int index = 0; index < (uint)(imageMemoryBarriers.Length); index++)
-                    {
-                        imageMemoryBarriers[index].MarshalTo(&fieldPointer[index]);
-                    }
-                    marshalledImageMemoryBarriers = fieldPointer;
-                }
                 else
+                {
+                    if (bufferMemoryBarriers.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledBufferMemoryBarriers = (SharpVk.Interop.BufferMemoryBarrier*)(Interop.HeapUtil.Allocate<SharpVk.Interop.BufferMemoryBarrier>());
+                        bufferMemoryBarriers.Value.GetSingleValue().MarshalTo(&*(SharpVk.Interop.BufferMemoryBarrier*)(marshalledBufferMemoryBarriers));
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.Interop.BufferMemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.BufferMemoryBarrier>(Interop.HeapUtil.GetLength(bufferMemoryBarriers.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(bufferMemoryBarriers.Value)); index++)
+                        {
+                            bufferMemoryBarriers.Value[index].MarshalTo(&fieldPointer[index]);
+                        }
+                        marshalledBufferMemoryBarriers = fieldPointer;
+                    }
+                }
+                if (imageMemoryBarriers.IsNull())
                 {
                     marshalledImageMemoryBarriers = null;
                 }
-                Interop.Commands.vkCmdWaitEvents(this.handle, (uint)(events?.Length ?? 0), marshalledEvents, sourceStageMask, destinationStageMask, (uint)(memoryBarriers?.Length ?? 0), marshalledMemoryBarriers, (uint)(bufferMemoryBarriers?.Length ?? 0), marshalledBufferMemoryBarriers, (uint)(imageMemoryBarriers?.Length ?? 0), marshalledImageMemoryBarriers);
+                else
+                {
+                    if (imageMemoryBarriers.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledImageMemoryBarriers = (SharpVk.Interop.ImageMemoryBarrier*)(Interop.HeapUtil.Allocate<SharpVk.Interop.ImageMemoryBarrier>());
+                        imageMemoryBarriers.Value.GetSingleValue().MarshalTo(&*(SharpVk.Interop.ImageMemoryBarrier*)(marshalledImageMemoryBarriers));
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.Interop.ImageMemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.ImageMemoryBarrier>(Interop.HeapUtil.GetLength(imageMemoryBarriers.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(imageMemoryBarriers.Value)); index++)
+                        {
+                            imageMemoryBarriers.Value[index].MarshalTo(&fieldPointer[index]);
+                        }
+                        marshalledImageMemoryBarriers = fieldPointer;
+                    }
+                }
+                Interop.Commands.vkCmdWaitEvents(this.handle, (uint)(Interop.HeapUtil.GetLength(events)), marshalledEvents, sourceStageMask, destinationStageMask, (uint)(Interop.HeapUtil.GetLength(memoryBarriers)), marshalledMemoryBarriers, (uint)(Interop.HeapUtil.GetLength(bufferMemoryBarriers)), marshalledBufferMemoryBarriers, (uint)(Interop.HeapUtil.GetLength(imageMemoryBarriers)), marshalledImageMemoryBarriers);
             }
             finally
             {
@@ -931,7 +1099,7 @@ namespace SharpVk
         /// <summary>
         /// Insert a memory dependency.
         /// </summary>
-        public unsafe void PipelineBarrier(SharpVk.PipelineStageFlags sourceStageMask, SharpVk.PipelineStageFlags destinationStageMask, SharpVk.MemoryBarrier[] memoryBarriers, SharpVk.BufferMemoryBarrier[] bufferMemoryBarriers, SharpVk.ImageMemoryBarrier[] imageMemoryBarriers, SharpVk.DependencyFlags? dependencyFlags = default(SharpVk.DependencyFlags?))
+        public unsafe void PipelineBarrier(SharpVk.PipelineStageFlags sourceStageMask, SharpVk.PipelineStageFlags destinationStageMask, ArrayProxy<SharpVk.MemoryBarrier>? memoryBarriers, ArrayProxy<SharpVk.BufferMemoryBarrier>? bufferMemoryBarriers, ArrayProxy<SharpVk.ImageMemoryBarrier>? imageMemoryBarriers, SharpVk.DependencyFlags? dependencyFlags = default(SharpVk.DependencyFlags?))
         {
             try
             {
@@ -947,46 +1115,70 @@ namespace SharpVk
                 {
                     marshalledDependencyFlags = default(SharpVk.DependencyFlags);
                 }
-                if (memoryBarriers != null)
-                {
-                    var fieldPointer = (SharpVk.Interop.MemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.MemoryBarrier>(memoryBarriers.Length).ToPointer());
-                    for(int index = 0; index < (uint)(memoryBarriers.Length); index++)
-                    {
-                        memoryBarriers[index].MarshalTo(&fieldPointer[index]);
-                    }
-                    marshalledMemoryBarriers = fieldPointer;
-                }
-                else
+                if (memoryBarriers.IsNull())
                 {
                     marshalledMemoryBarriers = null;
                 }
-                if (bufferMemoryBarriers != null)
-                {
-                    var fieldPointer = (SharpVk.Interop.BufferMemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.BufferMemoryBarrier>(bufferMemoryBarriers.Length).ToPointer());
-                    for(int index = 0; index < (uint)(bufferMemoryBarriers.Length); index++)
-                    {
-                        bufferMemoryBarriers[index].MarshalTo(&fieldPointer[index]);
-                    }
-                    marshalledBufferMemoryBarriers = fieldPointer;
-                }
                 else
+                {
+                    if (memoryBarriers.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledMemoryBarriers = (SharpVk.Interop.MemoryBarrier*)(Interop.HeapUtil.Allocate<SharpVk.Interop.MemoryBarrier>());
+                        memoryBarriers.Value.GetSingleValue().MarshalTo(&*(SharpVk.Interop.MemoryBarrier*)(marshalledMemoryBarriers));
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.Interop.MemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.MemoryBarrier>(Interop.HeapUtil.GetLength(memoryBarriers.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(memoryBarriers.Value)); index++)
+                        {
+                            memoryBarriers.Value[index].MarshalTo(&fieldPointer[index]);
+                        }
+                        marshalledMemoryBarriers = fieldPointer;
+                    }
+                }
+                if (bufferMemoryBarriers.IsNull())
                 {
                     marshalledBufferMemoryBarriers = null;
                 }
-                if (imageMemoryBarriers != null)
-                {
-                    var fieldPointer = (SharpVk.Interop.ImageMemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.ImageMemoryBarrier>(imageMemoryBarriers.Length).ToPointer());
-                    for(int index = 0; index < (uint)(imageMemoryBarriers.Length); index++)
-                    {
-                        imageMemoryBarriers[index].MarshalTo(&fieldPointer[index]);
-                    }
-                    marshalledImageMemoryBarriers = fieldPointer;
-                }
                 else
+                {
+                    if (bufferMemoryBarriers.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledBufferMemoryBarriers = (SharpVk.Interop.BufferMemoryBarrier*)(Interop.HeapUtil.Allocate<SharpVk.Interop.BufferMemoryBarrier>());
+                        bufferMemoryBarriers.Value.GetSingleValue().MarshalTo(&*(SharpVk.Interop.BufferMemoryBarrier*)(marshalledBufferMemoryBarriers));
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.Interop.BufferMemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.BufferMemoryBarrier>(Interop.HeapUtil.GetLength(bufferMemoryBarriers.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(bufferMemoryBarriers.Value)); index++)
+                        {
+                            bufferMemoryBarriers.Value[index].MarshalTo(&fieldPointer[index]);
+                        }
+                        marshalledBufferMemoryBarriers = fieldPointer;
+                    }
+                }
+                if (imageMemoryBarriers.IsNull())
                 {
                     marshalledImageMemoryBarriers = null;
                 }
-                Interop.Commands.vkCmdPipelineBarrier(this.handle, sourceStageMask, destinationStageMask, marshalledDependencyFlags, (uint)(memoryBarriers?.Length ?? 0), marshalledMemoryBarriers, (uint)(bufferMemoryBarriers?.Length ?? 0), marshalledBufferMemoryBarriers, (uint)(imageMemoryBarriers?.Length ?? 0), marshalledImageMemoryBarriers);
+                else
+                {
+                    if (imageMemoryBarriers.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledImageMemoryBarriers = (SharpVk.Interop.ImageMemoryBarrier*)(Interop.HeapUtil.Allocate<SharpVk.Interop.ImageMemoryBarrier>());
+                        imageMemoryBarriers.Value.GetSingleValue().MarshalTo(&*(SharpVk.Interop.ImageMemoryBarrier*)(marshalledImageMemoryBarriers));
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.Interop.ImageMemoryBarrier*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.ImageMemoryBarrier>(Interop.HeapUtil.GetLength(imageMemoryBarriers.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(imageMemoryBarriers.Value)); index++)
+                        {
+                            imageMemoryBarriers.Value[index].MarshalTo(&fieldPointer[index]);
+                        }
+                        marshalledImageMemoryBarriers = fieldPointer;
+                    }
+                }
+                Interop.Commands.vkCmdPipelineBarrier(this.handle, sourceStageMask, destinationStageMask, marshalledDependencyFlags, (uint)(Interop.HeapUtil.GetLength(memoryBarriers)), marshalledMemoryBarriers, (uint)(Interop.HeapUtil.GetLength(bufferMemoryBarriers)), marshalledBufferMemoryBarriers, (uint)(Interop.HeapUtil.GetLength(imageMemoryBarriers)), marshalledImageMemoryBarriers);
             }
             finally
             {
@@ -1090,25 +1282,33 @@ namespace SharpVk
         /// <summary>
         /// Update the values of push constants.
         /// </summary>
-        public unsafe void PushConstants(SharpVk.PipelineLayout layout, SharpVk.ShaderStageFlags stageFlags, uint offset, byte[] values)
+        public unsafe void PushConstants(SharpVk.PipelineLayout layout, SharpVk.ShaderStageFlags stageFlags, uint offset, ArrayProxy<byte>? values)
         {
             try
             {
                 byte* marshalledValues = default(byte*);
-                if (values != null)
-                {
-                    var fieldPointer = (byte*)(Interop.HeapUtil.AllocateAndClear<byte>(values.Length).ToPointer());
-                    for(int index = 0; index < (uint)(values.Length); index++)
-                    {
-                        fieldPointer[index] = values[index];
-                    }
-                    marshalledValues = fieldPointer;
-                }
-                else
+                if (values.IsNull())
                 {
                     marshalledValues = null;
                 }
-                Interop.Commands.vkCmdPushConstants(this.handle, layout?.handle ?? default(SharpVk.Interop.PipelineLayout), stageFlags, offset, (uint)(values?.Length ?? 0), marshalledValues);
+                else
+                {
+                    if (values.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledValues = (byte*)(Interop.HeapUtil.Allocate<byte>());
+                        *(byte*)(marshalledValues) = values.Value.GetSingleValue();
+                    }
+                    else
+                    {
+                        var fieldPointer = (byte*)(Interop.HeapUtil.AllocateAndClear<byte>(Interop.HeapUtil.GetLength(values.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(values.Value)); index++)
+                        {
+                            fieldPointer[index] = values.Value[index];
+                        }
+                        marshalledValues = fieldPointer;
+                    }
+                }
+                Interop.Commands.vkCmdPushConstants(this.handle, layout?.handle ?? default(SharpVk.Interop.PipelineLayout), stageFlags, offset, (uint)(Interop.HeapUtil.GetLength(values)), marshalledValues);
             }
             finally
             {
@@ -1130,16 +1330,7 @@ namespace SharpVk
         /// The render area that is affected by the render pass instance, and
         /// is described in more detail below.
         /// </param>
-        /// <param name="clearValues">
-        /// An array of ClearValue structures that contains clear values for
-        /// each attachment, if the attachment uses a loadOp value of
-        /// VK_ATTACHMENT_LOAD_OP_CLEAR or if the attachment has a
-        /// depth/stencil format and uses a stencilLoadOp value of
-        /// VK_ATTACHMENT_LOAD_OP_CLEAR. The array is indexed by attachment
-        /// number. Only elements corresponding to cleared attachments are
-        /// used. Other elements of pClearValues are ignored.
-        /// </param>
-        public unsafe void BeginRenderPass(SharpVk.RenderPass renderPass, SharpVk.Framebuffer framebuffer, SharpVk.Rect2D renderArea, SharpVk.ClearValue[] clearValues, SharpVk.SubpassContents contents)
+        public unsafe void BeginRenderPass(SharpVk.RenderPass renderPass, SharpVk.Framebuffer framebuffer, SharpVk.Rect2D renderArea, ArrayProxy<SharpVk.ClearValue>? clearValues, SharpVk.SubpassContents contents)
         {
             try
             {
@@ -1150,19 +1341,27 @@ namespace SharpVk
                 marshalledRenderPassBegin->RenderPass = renderPass?.handle ?? default(SharpVk.Interop.RenderPass);
                 marshalledRenderPassBegin->Framebuffer = framebuffer?.handle ?? default(SharpVk.Interop.Framebuffer);
                 marshalledRenderPassBegin->RenderArea = renderArea;
-                marshalledRenderPassBegin->ClearValueCount = (uint)(clearValues?.Length ?? 0);
-                if (clearValues != null)
+                marshalledRenderPassBegin->ClearValueCount = (uint)(Interop.HeapUtil.GetLength(clearValues));
+                if (clearValues.IsNull())
                 {
-                    var fieldPointer = (SharpVk.ClearValue*)(Interop.HeapUtil.AllocateAndClear<SharpVk.ClearValue>(clearValues.Length).ToPointer());
-                    for(int index = 0; index < (uint)(clearValues.Length); index++)
-                    {
-                        fieldPointer[index] = default(SharpVk.ClearValue);
-                    }
-                    marshalledRenderPassBegin->ClearValues = fieldPointer;
+                    marshalledRenderPassBegin->ClearValues = null;
                 }
                 else
                 {
-                    marshalledRenderPassBegin->ClearValues = null;
+                    if (clearValues.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledRenderPassBegin->ClearValues = (SharpVk.ClearValue*)(Interop.HeapUtil.Allocate<SharpVk.ClearValue>());
+                        *(SharpVk.ClearValue*)(marshalledRenderPassBegin->ClearValues) = default(SharpVk.ClearValue);
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.ClearValue*)(Interop.HeapUtil.AllocateAndClear<SharpVk.ClearValue>(Interop.HeapUtil.GetLength(clearValues.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(clearValues.Value)); index++)
+                        {
+                            fieldPointer[index] = default(SharpVk.ClearValue);
+                        }
+                        marshalledRenderPassBegin->ClearValues = fieldPointer;
+                    }
                 }
                 Interop.Commands.vkCmdBeginRenderPass(this.handle, marshalledRenderPassBegin, contents);
             }
@@ -1205,25 +1404,33 @@ namespace SharpVk
         /// <summary>
         /// Execute a secondary command buffer from a primary command buffer.
         /// </summary>
-        public unsafe void ExecuteCommands(SharpVk.CommandBuffer[] commandBuffers)
+        public unsafe void ExecuteCommands(ArrayProxy<SharpVk.CommandBuffer>? commandBuffers)
         {
             try
             {
                 SharpVk.Interop.CommandBuffer* marshalledCommandBuffers = default(SharpVk.Interop.CommandBuffer*);
-                if (commandBuffers != null)
-                {
-                    var fieldPointer = (SharpVk.Interop.CommandBuffer*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.CommandBuffer>(commandBuffers.Length).ToPointer());
-                    for(int index = 0; index < (uint)(commandBuffers.Length); index++)
-                    {
-                        fieldPointer[index] = commandBuffers[index]?.handle ?? default(SharpVk.Interop.CommandBuffer);
-                    }
-                    marshalledCommandBuffers = fieldPointer;
-                }
-                else
+                if (commandBuffers.IsNull())
                 {
                     marshalledCommandBuffers = null;
                 }
-                Interop.Commands.vkCmdExecuteCommands(this.handle, (uint)(commandBuffers?.Length ?? 0), marshalledCommandBuffers);
+                else
+                {
+                    if (commandBuffers.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledCommandBuffers = (SharpVk.Interop.CommandBuffer*)(Interop.HeapUtil.Allocate<SharpVk.Interop.CommandBuffer>());
+                        *(SharpVk.Interop.CommandBuffer*)(marshalledCommandBuffers) = commandBuffers.Value.GetSingleValue()?.handle ?? default(SharpVk.Interop.CommandBuffer);
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.Interop.CommandBuffer*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.CommandBuffer>(Interop.HeapUtil.GetLength(commandBuffers.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(commandBuffers.Value)); index++)
+                        {
+                            fieldPointer[index] = commandBuffers.Value[index]?.handle ?? default(SharpVk.Interop.CommandBuffer);
+                        }
+                        marshalledCommandBuffers = fieldPointer;
+                    }
+                }
+                Interop.Commands.vkCmdExecuteCommands(this.handle, (uint)(Interop.HeapUtil.GetLength(commandBuffers)), marshalledCommandBuffers);
             }
             finally
             {

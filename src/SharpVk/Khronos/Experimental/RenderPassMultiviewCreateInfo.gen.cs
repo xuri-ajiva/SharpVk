@@ -74,7 +74,7 @@ namespace SharpVk.Khronos.Experimental
         {
             pointer->SType = StructureType.RenderPassMultiviewCreateInfoKhx;
             pointer->Next = null;
-            pointer->SubpassCount = (uint)(this.ViewMasks?.Length ?? 0);
+            pointer->SubpassCount = (uint)(Interop.HeapUtil.GetLength(this.ViewMasks));
             if (this.ViewMasks != null)
             {
                 var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.ViewMasks.Length).ToPointer());
@@ -88,7 +88,7 @@ namespace SharpVk.Khronos.Experimental
             {
                 pointer->ViewMasks = null;
             }
-            pointer->DependencyCount = (uint)(this.ViewOffsets?.Length ?? 0);
+            pointer->DependencyCount = (uint)(Interop.HeapUtil.GetLength(this.ViewOffsets));
             if (this.ViewOffsets != null)
             {
                 var fieldPointer = (int*)(Interop.HeapUtil.AllocateAndClear<int>(this.ViewOffsets.Length).ToPointer());
@@ -102,7 +102,7 @@ namespace SharpVk.Khronos.Experimental
             {
                 pointer->ViewOffsets = null;
             }
-            pointer->CorrelationMaskCount = (uint)(this.CorrelationMasks?.Length ?? 0);
+            pointer->CorrelationMaskCount = (uint)(Interop.HeapUtil.GetLength(this.CorrelationMasks));
             if (this.CorrelationMasks != null)
             {
                 var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.CorrelationMasks.Length).ToPointer());

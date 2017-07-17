@@ -60,7 +60,7 @@ namespace SharpVk
             pointer->SType = StructureType.DescriptorSetAllocateInfo;
             pointer->Next = null;
             pointer->DescriptorPool = this.DescriptorPool?.handle ?? default(SharpVk.Interop.DescriptorPool);
-            pointer->DescriptorSetCount = (uint)(this.SetLayouts?.Length ?? 0);
+            pointer->DescriptorSetCount = (uint)(Interop.HeapUtil.GetLength(this.SetLayouts));
             if (this.SetLayouts != null)
             {
                 var fieldPointer = (SharpVk.Interop.DescriptorSetLayout*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.DescriptorSetLayout>(this.SetLayouts.Length).ToPointer());

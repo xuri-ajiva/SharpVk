@@ -76,24 +76,32 @@ namespace SharpVk
         /// <summary>
         /// Copy results of queries in a query pool to a host memory region.
         /// </summary>
-        public unsafe void GetResults(uint firstQuery, uint queryCount, byte[] data, DeviceSize stride, SharpVk.QueryResultFlags? flags = default(SharpVk.QueryResultFlags?))
+        public unsafe void GetResults(uint firstQuery, uint queryCount, ArrayProxy<byte>? data, DeviceSize stride, SharpVk.QueryResultFlags? flags = default(SharpVk.QueryResultFlags?))
         {
             try
             {
                 byte* marshalledData = default(byte*);
                 SharpVk.QueryResultFlags marshalledFlags = default(SharpVk.QueryResultFlags);
-                if (data != null)
+                if (data.IsNull())
                 {
-                    var fieldPointer = (byte*)(Interop.HeapUtil.AllocateAndClear<byte>(data.Length).ToPointer());
-                    for(int index = 0; index < (uint)(data.Length); index++)
-                    {
-                        fieldPointer[index] = data[index];
-                    }
-                    marshalledData = fieldPointer;
+                    marshalledData = null;
                 }
                 else
                 {
-                    marshalledData = null;
+                    if (data.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledData = (byte*)(Interop.HeapUtil.Allocate<byte>());
+                        *(byte*)(marshalledData) = data.Value.GetSingleValue();
+                    }
+                    else
+                    {
+                        var fieldPointer = (byte*)(Interop.HeapUtil.AllocateAndClear<byte>(Interop.HeapUtil.GetLength(data.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(data.Value)); index++)
+                        {
+                            fieldPointer[index] = data.Value[index];
+                        }
+                        marshalledData = fieldPointer;
+                    }
                 }
                 if (flags != null)
                 {
@@ -103,7 +111,7 @@ namespace SharpVk
                 {
                     marshalledFlags = default(SharpVk.QueryResultFlags);
                 }
-                Result methodResult = Interop.Commands.vkGetQueryPoolResults(this.parent.handle, this.handle, firstQuery, queryCount, (HostSize)(data?.Length ?? 0), marshalledData, stride, marshalledFlags);
+                Result methodResult = Interop.Commands.vkGetQueryPoolResults(this.parent.handle, this.handle, firstQuery, queryCount, (HostSize)(Interop.HeapUtil.GetLength(data)), marshalledData, stride, marshalledFlags);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);

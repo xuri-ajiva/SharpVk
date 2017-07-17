@@ -58,7 +58,7 @@ namespace SharpVk.Khronos
         {
             pointer->SType = StructureType.D3d12FenceSubmitInfoKhr;
             pointer->Next = null;
-            pointer->WaitSemaphoreValuesCount = (uint)(this.WaitSemaphoreValues?.Length ?? 0);
+            pointer->WaitSemaphoreValuesCount = (uint)(Interop.HeapUtil.GetLength(this.WaitSemaphoreValues));
             if (this.WaitSemaphoreValues != null)
             {
                 var fieldPointer = (ulong*)(Interop.HeapUtil.AllocateAndClear<ulong>(this.WaitSemaphoreValues.Length).ToPointer());
@@ -72,7 +72,7 @@ namespace SharpVk.Khronos
             {
                 pointer->WaitSemaphoreValues = null;
             }
-            pointer->SignalSemaphoreValuesCount = (uint)(this.SignalSemaphoreValues?.Length ?? 0);
+            pointer->SignalSemaphoreValuesCount = (uint)(Interop.HeapUtil.GetLength(this.SignalSemaphoreValues));
             if (this.SignalSemaphoreValues != null)
             {
                 var fieldPointer = (ulong*)(Interop.HeapUtil.AllocateAndClear<ulong>(this.SignalSemaphoreValues.Length).ToPointer());

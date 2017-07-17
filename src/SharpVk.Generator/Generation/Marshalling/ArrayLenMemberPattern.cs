@@ -35,14 +35,14 @@ namespace SharpVk.Generator.Generation.Marshalling
                         {
                             if (dimension.Value is LenExpressionToken)
                             {
-                                lenExpressions.Add((getValue => Coalesce(CoalesceMember(getValue(otherMember.Name), "Length"), Literal(0)), otherMember.NoAutoValidity, otherMember.IsOptional));
+                                lenExpressions.Add((getValue => StaticCall("Interop.HeapUtil", "GetLength", getValue(otherMember.Name)), otherMember.NoAutoValidity, otherMember.IsOptional));
                             }
                         }
                     }
                 }
                 else if (otherMember.Type.FixedLength.Type != FixedLengthType.None && source.VkName == otherMember.VkName.TrimEnd('s') + "Count")
                 {
-                    lenExpressions.Add((getValue => Coalesce(CoalesceMember(getValue(otherMember.Name), "Length"), Literal(0)), otherMember.NoAutoValidity, otherMember.IsOptional));
+                    lenExpressions.Add((getValue => StaticCall("Interop.HeapUtil", "GetLength", getValue(otherMember.Name)), otherMember.NoAutoValidity, otherMember.IsOptional));
                 }
             }
 
@@ -77,7 +77,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                     {
                         var result = new OptionalAction
                         {
-                            NullCheckExpression = IsNotEqual(getValue(source.Name), Null)
+                            CheckExpression = IsNotEqual(getValue(source.Name), Null)
                         };
 
                         result.Actions.Add(new AssignAction

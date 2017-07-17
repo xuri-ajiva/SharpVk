@@ -69,7 +69,7 @@ namespace SharpVk
             {
                 pointer->Flags = default(SharpVk.PipelineDynamicStateCreateFlags);
             }
-            pointer->DynamicStateCount = (uint)(this.DynamicStates?.Length ?? 0);
+            pointer->DynamicStateCount = (uint)(Interop.HeapUtil.GetLength(this.DynamicStates));
             if (this.DynamicStates != null)
             {
                 var fieldPointer = (SharpVk.DynamicState*)(Interop.HeapUtil.AllocateAndClear<SharpVk.DynamicState>(this.DynamicStates.Length).ToPointer());

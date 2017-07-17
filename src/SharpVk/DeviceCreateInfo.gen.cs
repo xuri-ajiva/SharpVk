@@ -57,7 +57,7 @@ namespace SharpVk
         /// ppEnabledLayerNames is deprecated and ignored. See Device Layer
         /// Deprecation.
         /// </summary>
-        public string[] EnabledLayerNames
+        public ArrayProxy<string> EnabledLayerNames
         {
             get;
             set;
@@ -68,7 +68,7 @@ namespace SharpVk
         /// extensions to enable for the created device. See the Extensions
         /// section for further details.
         /// </summary>
-        public string[] EnabledExtensionNames
+        public ArrayProxy<string> EnabledExtensionNames
         {
             get;
             set;
@@ -100,7 +100,7 @@ namespace SharpVk
             {
                 pointer->Flags = default(SharpVk.DeviceCreateFlags);
             }
-            pointer->QueueCreateInfoCount = (uint)(this.QueueCreateInfos?.Length ?? 0);
+            pointer->QueueCreateInfoCount = (uint)(Interop.HeapUtil.GetLength(this.QueueCreateInfos));
             if (this.QueueCreateInfos != null)
             {
                 var fieldPointer = (SharpVk.Interop.DeviceQueueCreateInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.DeviceQueueCreateInfo>(this.QueueCreateInfos.Length).ToPointer());
@@ -114,22 +114,10 @@ namespace SharpVk
             {
                 pointer->QueueCreateInfos = null;
             }
-            pointer->EnabledLayerCount = (uint)(this.EnabledLayerNames?.Length ?? 0);
-            if (this.EnabledLayerNames != null)
-            {
-                pointer->EnabledLayerNames = Interop.HeapUtil.MarshalTo(this.EnabledLayerNames);
-            }
-            else
-            {
-            }
-            pointer->EnabledExtensionCount = (uint)(this.EnabledExtensionNames?.Length ?? 0);
-            if (this.EnabledExtensionNames != null)
-            {
-                pointer->EnabledExtensionNames = Interop.HeapUtil.MarshalTo(this.EnabledExtensionNames);
-            }
-            else
-            {
-            }
+            pointer->EnabledLayerCount = (uint)(Interop.HeapUtil.GetLength(this.EnabledLayerNames));
+            pointer->EnabledLayerNames = Interop.HeapUtil.MarshalTo(this.EnabledLayerNames);
+            pointer->EnabledExtensionCount = (uint)(Interop.HeapUtil.GetLength(this.EnabledExtensionNames));
+            pointer->EnabledExtensionNames = Interop.HeapUtil.MarshalTo(this.EnabledExtensionNames);
             if (this.EnabledFeatures != null)
             {
                 pointer->EnabledFeatures = (SharpVk.Interop.PhysicalDeviceFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceFeatures>());

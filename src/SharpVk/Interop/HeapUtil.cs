@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -59,6 +58,11 @@ namespace SharpVk.Interop
             return pointer;
         }
 
+        internal static IntPtr AllocateAndClear<T>(uint count)
+        {
+            return AllocateAndClear<T>((int)count);
+        }
+
         internal static IntPtr AllocateAndClear<T>(int count = 1)
         {
             uint size = SizeOfCache<T>.Value;
@@ -102,15 +106,34 @@ namespace SharpVk.Interop
             }
         }
 
-        internal static byte** MarshalTo(string[] value)
+        internal static byte** MarshalTo(ArrayProxy<string>? proxy)
         {
-            IntPtr pointer = Allocate<IntPtr>(value.Length);
+            if (!proxy.HasValue || proxy.Value.Contents == ProxyContents.Null)
+            {
+                return null;
+            }
+            else
+            {
+                var proxyValue = proxy.Value;
 
-            byte** typedPointer = (byte**)pointer.ToPointer();
+                IntPtr pointer = Allocate<IntPtr>(proxyValue.Length);
 
-            MarshalTo(value, value.Length, typedPointer);
+                byte** typedPointer = (byte**)pointer.ToPointer();
 
-            return typedPointer;
+                if (proxyValue.Contents == ProxyContents.Single)
+                {
+                    *typedPointer = MarshalTo(proxyValue.GetSingleValue());
+                }
+                else
+                {
+                    for (int index = 0; index < proxyValue.Length; index++)
+                    {
+                        typedPointer[index] = MarshalTo(proxyValue[index]);
+                    }
+                }
+
+                return typedPointer;
+            }
         }
 
         internal static string MarshalStringFrom(byte* pointer)
@@ -169,6 +192,21 @@ namespace SharpVk.Interop
             Marshal.Copy(new IntPtr(pointer), newArray, 0, length);
 
             return newArray;
+        }
+
+        internal static uint GetLength<T>(T[] value)
+        {
+            return (uint)(value?.Length ?? 0);
+        }
+
+        internal static uint GetLength<T>(ArrayProxy<T> value)
+        {
+            return (uint)value.Length;
+        }
+
+        internal static uint GetLength<T>(ArrayProxy<T>? value)
+        {
+            return (uint)(value?.Length ?? 0);
         }
 
         internal static float[] MarshalFrom(float* pointer, int length)

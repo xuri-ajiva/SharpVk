@@ -76,7 +76,7 @@ namespace SharpVk
             {
                 pointer->Flags = default(SharpVk.PipelineVertexInputStateCreateFlags);
             }
-            pointer->VertexBindingDescriptionCount = (uint)(this.VertexBindingDescriptions?.Length ?? 0);
+            pointer->VertexBindingDescriptionCount = (uint)(Interop.HeapUtil.GetLength(this.VertexBindingDescriptions));
             if (this.VertexBindingDescriptions != null)
             {
                 var fieldPointer = (SharpVk.VertexInputBindingDescription*)(Interop.HeapUtil.AllocateAndClear<SharpVk.VertexInputBindingDescription>(this.VertexBindingDescriptions.Length).ToPointer());
@@ -90,7 +90,7 @@ namespace SharpVk
             {
                 pointer->VertexBindingDescriptions = null;
             }
-            pointer->VertexAttributeDescriptionCount = (uint)(this.VertexAttributeDescriptions?.Length ?? 0);
+            pointer->VertexAttributeDescriptionCount = (uint)(Interop.HeapUtil.GetLength(this.VertexAttributeDescriptions));
             if (this.VertexAttributeDescriptions != null)
             {
                 var fieldPointer = (SharpVk.VertexInputAttributeDescription*)(Interop.HeapUtil.AllocateAndClear<SharpVk.VertexInputAttributeDescription>(this.VertexAttributeDescriptions.Length).ToPointer());

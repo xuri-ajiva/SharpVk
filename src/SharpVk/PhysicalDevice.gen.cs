@@ -192,11 +192,6 @@ namespace SharpVk
         /// <param name="flags">
         /// Reserved for future use.
         /// </param>
-        /// <param name="queueCreateInfos">
-        /// An array of DeviceQueueCreateInfo structures describing the queues
-        /// that are requested to be created along with the logical device.
-        /// Refer to the Queue Creation section below for further details.
-        /// </param>
         /// <param name="enabledLayerNames">
         /// ppEnabledLayerNames is deprecated and ignored. See Device Layer
         /// Deprecation.
@@ -215,7 +210,7 @@ namespace SharpVk
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
         /// </param>
-        public unsafe SharpVk.Device CreateDevice(SharpVk.DeviceQueueCreateInfo[] queueCreateInfos, string[] enabledLayerNames, string[] enabledExtensionNames, SharpVk.DeviceCreateFlags? flags = default(SharpVk.DeviceCreateFlags?), SharpVk.PhysicalDeviceFeatures? enabledFeatures = default(SharpVk.PhysicalDeviceFeatures?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public unsafe SharpVk.Device CreateDevice(ArrayProxy<SharpVk.DeviceQueueCreateInfo>? queueCreateInfos, ArrayProxy<string>? enabledLayerNames, ArrayProxy<string>? enabledExtensionNames, SharpVk.DeviceCreateFlags? flags = default(SharpVk.DeviceCreateFlags?), SharpVk.PhysicalDeviceFeatures? enabledFeatures = default(SharpVk.PhysicalDeviceFeatures?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
@@ -234,36 +229,32 @@ namespace SharpVk
                 {
                     marshalledCreateInfo->Flags = default(SharpVk.DeviceCreateFlags);
                 }
-                marshalledCreateInfo->QueueCreateInfoCount = (uint)(queueCreateInfos?.Length ?? 0);
-                if (queueCreateInfos != null)
-                {
-                    var fieldPointer = (SharpVk.Interop.DeviceQueueCreateInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.DeviceQueueCreateInfo>(queueCreateInfos.Length).ToPointer());
-                    for(int index = 0; index < (uint)(queueCreateInfos.Length); index++)
-                    {
-                        queueCreateInfos[index].MarshalTo(&fieldPointer[index]);
-                    }
-                    marshalledCreateInfo->QueueCreateInfos = fieldPointer;
-                }
-                else
+                marshalledCreateInfo->QueueCreateInfoCount = (uint)(Interop.HeapUtil.GetLength(queueCreateInfos));
+                if (queueCreateInfos.IsNull())
                 {
                     marshalledCreateInfo->QueueCreateInfos = null;
                 }
-                marshalledCreateInfo->EnabledLayerCount = (uint)(enabledLayerNames?.Length ?? 0);
-                if (enabledLayerNames != null)
-                {
-                    marshalledCreateInfo->EnabledLayerNames = Interop.HeapUtil.MarshalTo(enabledLayerNames);
-                }
                 else
                 {
+                    if (queueCreateInfos.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledCreateInfo->QueueCreateInfos = (SharpVk.Interop.DeviceQueueCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.DeviceQueueCreateInfo>());
+                        queueCreateInfos.Value.GetSingleValue().MarshalTo(&*(SharpVk.Interop.DeviceQueueCreateInfo*)(marshalledCreateInfo->QueueCreateInfos));
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.Interop.DeviceQueueCreateInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.DeviceQueueCreateInfo>(Interop.HeapUtil.GetLength(queueCreateInfos.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(queueCreateInfos.Value)); index++)
+                        {
+                            queueCreateInfos.Value[index].MarshalTo(&fieldPointer[index]);
+                        }
+                        marshalledCreateInfo->QueueCreateInfos = fieldPointer;
+                    }
                 }
-                marshalledCreateInfo->EnabledExtensionCount = (uint)(enabledExtensionNames?.Length ?? 0);
-                if (enabledExtensionNames != null)
-                {
-                    marshalledCreateInfo->EnabledExtensionNames = Interop.HeapUtil.MarshalTo(enabledExtensionNames);
-                }
-                else
-                {
-                }
+                marshalledCreateInfo->EnabledLayerCount = (uint)(Interop.HeapUtil.GetLength(enabledLayerNames));
+                marshalledCreateInfo->EnabledLayerNames = Interop.HeapUtil.MarshalTo(enabledLayerNames);
+                marshalledCreateInfo->EnabledExtensionCount = (uint)(Interop.HeapUtil.GetLength(enabledExtensionNames));
+                marshalledCreateInfo->EnabledExtensionNames = Interop.HeapUtil.MarshalTo(enabledExtensionNames);
                 if (enabledFeatures != null)
                 {
                     marshalledCreateInfo->EnabledFeatures = (SharpVk.Interop.PhysicalDeviceFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceFeatures>());

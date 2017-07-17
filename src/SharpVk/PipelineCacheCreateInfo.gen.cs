@@ -69,7 +69,7 @@ namespace SharpVk
             {
                 pointer->Flags = default(SharpVk.PipelineCacheCreateFlags);
             }
-            pointer->InitialDataSize = (HostSize)(this.InitialData?.Length ?? 0);
+            pointer->InitialDataSize = (HostSize)(Interop.HeapUtil.GetLength(this.InitialData));
             if (this.InitialData != null)
             {
                 var fieldPointer = (byte*)(Interop.HeapUtil.AllocateAndClear<byte>(this.InitialData.Length).ToPointer());

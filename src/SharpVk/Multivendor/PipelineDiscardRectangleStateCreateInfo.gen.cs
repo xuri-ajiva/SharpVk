@@ -91,7 +91,7 @@ namespace SharpVk.Multivendor
             }
             else
             {
-                pointer->DiscardRectangleCount = (uint)(this.DiscardRectangles?.Length ?? 0);
+                pointer->DiscardRectangleCount = (uint)(Interop.HeapUtil.GetLength(this.DiscardRectangles));
             }
             if (this.DiscardRectangles != null)
             {

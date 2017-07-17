@@ -49,7 +49,7 @@ namespace SharpVk.Khronos
         {
             pointer->SType = StructureType.PresentRegionsKhr;
             pointer->Next = null;
-            pointer->SwapchainCount = (uint)(this.Regions?.Length ?? 0);
+            pointer->SwapchainCount = (uint)(Interop.HeapUtil.GetLength(this.Regions));
             if (this.Regions != null)
             {
                 var fieldPointer = (SharpVk.Interop.Khronos.PresentRegion*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Khronos.PresentRegion>(this.Regions.Length).ToPointer());

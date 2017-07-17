@@ -47,7 +47,7 @@ namespace SharpVk.Khronos
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PresentRegion* pointer)
         {
-            pointer->RectangleCount = (uint)(this.Rectangles?.Length ?? 0);
+            pointer->RectangleCount = (uint)(Interop.HeapUtil.GetLength(this.Rectangles));
             if (this.Rectangles != null)
             {
                 var fieldPointer = (SharpVk.Khronos.RectLayer*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Khronos.RectLayer>(this.Rectangles.Length).ToPointer());

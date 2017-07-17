@@ -82,7 +82,7 @@ namespace SharpVk
             {
                 pointer->Flags = default(SharpVk.PipelineLayoutCreateFlags);
             }
-            pointer->SetLayoutCount = (uint)(this.SetLayouts?.Length ?? 0);
+            pointer->SetLayoutCount = (uint)(Interop.HeapUtil.GetLength(this.SetLayouts));
             if (this.SetLayouts != null)
             {
                 var fieldPointer = (SharpVk.Interop.DescriptorSetLayout*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.DescriptorSetLayout>(this.SetLayouts.Length).ToPointer());
@@ -96,7 +96,7 @@ namespace SharpVk
             {
                 pointer->SetLayouts = null;
             }
-            pointer->PushConstantRangeCount = (uint)(this.PushConstantRanges?.Length ?? 0);
+            pointer->PushConstantRangeCount = (uint)(Interop.HeapUtil.GetLength(this.PushConstantRanges));
             if (this.PushConstantRanges != null)
             {
                 var fieldPointer = (SharpVk.PushConstantRange*)(Interop.HeapUtil.AllocateAndClear<SharpVk.PushConstantRange>(this.PushConstantRanges.Length).ToPointer());

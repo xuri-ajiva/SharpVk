@@ -92,7 +92,7 @@ namespace SharpVk.Khronos.Experimental
             pointer->Image = this.Image?.handle ?? default(SharpVk.Interop.Image);
             pointer->Memory = this.Memory?.handle ?? default(SharpVk.Interop.DeviceMemory);
             pointer->MemoryOffset = this.MemoryOffset;
-            pointer->DeviceIndexCount = (uint)(this.DeviceIndices?.Length ?? 0);
+            pointer->DeviceIndexCount = (uint)(Interop.HeapUtil.GetLength(this.DeviceIndices));
             if (this.DeviceIndices != null)
             {
                 var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.DeviceIndices.Length).ToPointer());
@@ -106,7 +106,7 @@ namespace SharpVk.Khronos.Experimental
             {
                 pointer->DeviceIndices = null;
             }
-            pointer->SFRRectCount = (uint)(this.SFRRects?.Length ?? 0);
+            pointer->SFRRectCount = (uint)(Interop.HeapUtil.GetLength(this.SFRRects));
             if (this.SFRRects != null)
             {
                 var fieldPointer = (SharpVk.Rect2D*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Rect2D>(this.SFRRects.Length).ToPointer());

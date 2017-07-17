@@ -85,7 +85,7 @@ namespace SharpVk.Khronos
         {
             pointer->SType = StructureType.Win32KeyedMutexAcquireReleaseInfoKhr;
             pointer->Next = null;
-            pointer->AcquireCount = (uint)(this.AcquireSyncs?.Length ?? 0);
+            pointer->AcquireCount = (uint)(Interop.HeapUtil.GetLength(this.AcquireSyncs));
             if (this.AcquireSyncs != null)
             {
                 var fieldPointer = (SharpVk.Interop.DeviceMemory*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.DeviceMemory>(this.AcquireSyncs.Length).ToPointer());
@@ -125,7 +125,7 @@ namespace SharpVk.Khronos
             {
                 pointer->AcquireTimeouts = null;
             }
-            pointer->ReleaseCount = (uint)(this.ReleaseSyncs?.Length ?? 0);
+            pointer->ReleaseCount = (uint)(Interop.HeapUtil.GetLength(this.ReleaseSyncs));
             if (this.ReleaseSyncs != null)
             {
                 var fieldPointer = (SharpVk.Interop.DeviceMemory*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.DeviceMemory>(this.ReleaseSyncs.Length).ToPointer());

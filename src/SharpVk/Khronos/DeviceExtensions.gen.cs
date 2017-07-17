@@ -41,7 +41,7 @@ namespace SharpVk.Khronos
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
         /// </param>
-        public static unsafe SharpVk.Khronos.Swapchain[] CreateSharedSwapchains(this SharpVk.Device extendedHandle, SharpVk.Khronos.SwapchainCreateInfo[] createInfos, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public static unsafe SharpVk.Khronos.Swapchain[] CreateSharedSwapchains(this SharpVk.Device extendedHandle, ArrayProxy<SharpVk.Khronos.SwapchainCreateInfo>? createInfos, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
@@ -52,19 +52,27 @@ namespace SharpVk.Khronos
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Khronos.Swapchain* marshalledSwapchains = default(SharpVk.Interop.Khronos.Swapchain*);
                 commandCache = extendedHandle.commandCache;
-                swapchainCount = (uint)(createInfos?.Length ?? 0);
-                if (createInfos != null)
+                swapchainCount = (uint)(Interop.HeapUtil.GetLength(createInfos));
+                if (createInfos.IsNull())
                 {
-                    var fieldPointer = (SharpVk.Interop.Khronos.SwapchainCreateInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Khronos.SwapchainCreateInfo>(createInfos.Length).ToPointer());
-                    for(int index = 0; index < (uint)(createInfos.Length); index++)
-                    {
-                        createInfos[index].MarshalTo(&fieldPointer[index]);
-                    }
-                    marshalledCreateInfos = fieldPointer;
+                    marshalledCreateInfos = null;
                 }
                 else
                 {
-                    marshalledCreateInfos = null;
+                    if (createInfos.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledCreateInfos = (SharpVk.Interop.Khronos.SwapchainCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.SwapchainCreateInfo>());
+                        createInfos.Value.GetSingleValue().MarshalTo(&*(SharpVk.Interop.Khronos.SwapchainCreateInfo*)(marshalledCreateInfos));
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.Interop.Khronos.SwapchainCreateInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Khronos.SwapchainCreateInfo>(Interop.HeapUtil.GetLength(createInfos.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(createInfos.Value)); index++)
+                        {
+                            createInfos.Value[index].MarshalTo(&fieldPointer[index]);
+                        }
+                        marshalledCreateInfos = fieldPointer;
+                    }
                 }
                 if (allocator != null)
                 {
@@ -117,7 +125,7 @@ namespace SharpVk.Khronos
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
         /// </param>
-        public static unsafe SharpVk.Khronos.Swapchain CreateSwapchain(this SharpVk.Device extendedHandle, SharpVk.Khronos.Surface surface, uint minImageCount, SharpVk.Format imageFormat, SharpVk.Khronos.ColorSpace imageColorSpace, SharpVk.Extent2D imageExtent, uint imageArrayLayers, SharpVk.ImageUsageFlags imageUsage, SharpVk.SharingMode imageSharingMode, uint[] queueFamilyIndices, SharpVk.Khronos.SurfaceTransformFlags preTransform, SharpVk.Khronos.CompositeAlphaFlags compositeAlpha, SharpVk.Khronos.PresentMode presentMode, bool clipped, SharpVk.Khronos.Swapchain oldSwapchain, SharpVk.Khronos.SwapchainCreateFlags? flags = default(SharpVk.Khronos.SwapchainCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public static unsafe SharpVk.Khronos.Swapchain CreateSwapchain(this SharpVk.Device extendedHandle, SharpVk.Khronos.Surface surface, uint minImageCount, SharpVk.Format imageFormat, SharpVk.Khronos.ColorSpace imageColorSpace, SharpVk.Extent2D imageExtent, uint imageArrayLayers, SharpVk.ImageUsageFlags imageUsage, SharpVk.SharingMode imageSharingMode, ArrayProxy<uint>? queueFamilyIndices, SharpVk.Khronos.SurfaceTransformFlags preTransform, SharpVk.Khronos.CompositeAlphaFlags compositeAlpha, SharpVk.Khronos.PresentMode presentMode, bool clipped, SharpVk.Khronos.Swapchain oldSwapchain, SharpVk.Khronos.SwapchainCreateFlags? flags = default(SharpVk.Khronos.SwapchainCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
@@ -146,19 +154,27 @@ namespace SharpVk.Khronos
                 marshalledCreateInfo->ImageArrayLayers = imageArrayLayers;
                 marshalledCreateInfo->ImageUsage = imageUsage;
                 marshalledCreateInfo->ImageSharingMode = imageSharingMode;
-                marshalledCreateInfo->QueueFamilyIndexCount = (uint)(queueFamilyIndices?.Length ?? 0);
-                if (queueFamilyIndices != null)
+                marshalledCreateInfo->QueueFamilyIndexCount = (uint)(Interop.HeapUtil.GetLength(queueFamilyIndices));
+                if (queueFamilyIndices.IsNull())
                 {
-                    var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(queueFamilyIndices.Length).ToPointer());
-                    for(int index = 0; index < (uint)(queueFamilyIndices.Length); index++)
-                    {
-                        fieldPointer[index] = queueFamilyIndices[index];
-                    }
-                    marshalledCreateInfo->QueueFamilyIndices = fieldPointer;
+                    marshalledCreateInfo->QueueFamilyIndices = null;
                 }
                 else
                 {
-                    marshalledCreateInfo->QueueFamilyIndices = null;
+                    if (queueFamilyIndices.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledCreateInfo->QueueFamilyIndices = (uint*)(Interop.HeapUtil.Allocate<uint>());
+                        *(uint*)(marshalledCreateInfo->QueueFamilyIndices) = queueFamilyIndices.Value.GetSingleValue();
+                    }
+                    else
+                    {
+                        var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(Interop.HeapUtil.GetLength(queueFamilyIndices.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(queueFamilyIndices.Value)); index++)
+                        {
+                            fieldPointer[index] = queueFamilyIndices.Value[index];
+                        }
+                        marshalledCreateInfo->QueueFamilyIndices = fieldPointer;
+                    }
                 }
                 marshalledCreateInfo->PreTransform = preTransform;
                 marshalledCreateInfo->CompositeAlpha = compositeAlpha;
@@ -560,10 +576,6 @@ namespace SharpVk.Khronos
         /// <param name="flags">
         /// Reserved for future use.
         /// </param>
-        /// <param name="descriptorUpdateEntries">
-        /// An array of DescriptorUpdateTemplateEntryKHR structures describing
-        /// the descriptors to be updated by the descriptor update template.
-        /// </param>
         /// <param name="templateType">
         /// Specifies the type of the descriptor update template. If set to
         /// VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET_KHR it can only
@@ -604,7 +616,7 @@ namespace SharpVk.Khronos
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
         /// </param>
-        public static unsafe SharpVk.Khronos.DescriptorUpdateTemplate CreateDescriptorUpdateTemplate(this SharpVk.Device extendedHandle, SharpVk.Khronos.DescriptorUpdateTemplateEntry[] descriptorUpdateEntries, SharpVk.Khronos.DescriptorUpdateTemplateType templateType, SharpVk.DescriptorSetLayout descriptorSetLayout, SharpVk.PipelineLayout pipelineLayout, SharpVk.Khronos.DescriptorUpdateTemplateCreateFlags? flags = default(SharpVk.Khronos.DescriptorUpdateTemplateCreateFlags?), SharpVk.PipelineBindPoint? pipelineBindPoint = default(SharpVk.PipelineBindPoint?), uint? set = default(uint?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public static unsafe SharpVk.Khronos.DescriptorUpdateTemplate CreateDescriptorUpdateTemplate(this SharpVk.Device extendedHandle, ArrayProxy<SharpVk.Khronos.DescriptorUpdateTemplateEntry>? descriptorUpdateEntries, SharpVk.Khronos.DescriptorUpdateTemplateType templateType, SharpVk.DescriptorSetLayout descriptorSetLayout, SharpVk.PipelineLayout pipelineLayout, SharpVk.Khronos.DescriptorUpdateTemplateCreateFlags? flags = default(SharpVk.Khronos.DescriptorUpdateTemplateCreateFlags?), SharpVk.PipelineBindPoint? pipelineBindPoint = default(SharpVk.PipelineBindPoint?), uint? set = default(uint?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
@@ -625,19 +637,27 @@ namespace SharpVk.Khronos
                 {
                     marshalledCreateInfo->Flags = default(SharpVk.Khronos.DescriptorUpdateTemplateCreateFlags);
                 }
-                marshalledCreateInfo->DescriptorUpdateEntryCount = (uint)(descriptorUpdateEntries?.Length ?? 0);
-                if (descriptorUpdateEntries != null)
+                marshalledCreateInfo->DescriptorUpdateEntryCount = (uint)(Interop.HeapUtil.GetLength(descriptorUpdateEntries));
+                if (descriptorUpdateEntries.IsNull())
                 {
-                    var fieldPointer = (SharpVk.Khronos.DescriptorUpdateTemplateEntry*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Khronos.DescriptorUpdateTemplateEntry>(descriptorUpdateEntries.Length).ToPointer());
-                    for(int index = 0; index < (uint)(descriptorUpdateEntries.Length); index++)
-                    {
-                        fieldPointer[index] = descriptorUpdateEntries[index];
-                    }
-                    marshalledCreateInfo->DescriptorUpdateEntries = fieldPointer;
+                    marshalledCreateInfo->DescriptorUpdateEntries = null;
                 }
                 else
                 {
-                    marshalledCreateInfo->DescriptorUpdateEntries = null;
+                    if (descriptorUpdateEntries.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledCreateInfo->DescriptorUpdateEntries = (SharpVk.Khronos.DescriptorUpdateTemplateEntry*)(Interop.HeapUtil.Allocate<SharpVk.Khronos.DescriptorUpdateTemplateEntry>());
+                        *(SharpVk.Khronos.DescriptorUpdateTemplateEntry*)(marshalledCreateInfo->DescriptorUpdateEntries) = descriptorUpdateEntries.Value.GetSingleValue();
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.Khronos.DescriptorUpdateTemplateEntry*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Khronos.DescriptorUpdateTemplateEntry>(Interop.HeapUtil.GetLength(descriptorUpdateEntries.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(descriptorUpdateEntries.Value)); index++)
+                        {
+                            fieldPointer[index] = descriptorUpdateEntries.Value[index];
+                        }
+                        marshalledCreateInfo->DescriptorUpdateEntries = fieldPointer;
+                    }
                 }
                 marshalledCreateInfo->TemplateType = templateType;
                 marshalledCreateInfo->DescriptorSetLayout = descriptorSetLayout?.handle ?? default(SharpVk.Interop.DescriptorSetLayout);

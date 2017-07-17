@@ -37,28 +37,36 @@ namespace SharpVk.NVidia
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
         /// </param>
-        public static unsafe void SetViewportWScaling(this SharpVk.CommandBuffer extendedHandle, uint firstViewport, SharpVk.NVidia.ViewportWScaling[] viewportWScalings)
+        public static unsafe void SetViewportWScaling(this SharpVk.CommandBuffer extendedHandle, uint firstViewport, ArrayProxy<SharpVk.NVidia.ViewportWScaling>? viewportWScalings)
         {
             try
             {
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.NVidia.ViewportWScaling* marshalledViewportWScalings = default(SharpVk.NVidia.ViewportWScaling*);
                 commandCache = extendedHandle.commandCache;
-                if (viewportWScalings != null)
-                {
-                    var fieldPointer = (SharpVk.NVidia.ViewportWScaling*)(Interop.HeapUtil.AllocateAndClear<SharpVk.NVidia.ViewportWScaling>(viewportWScalings.Length).ToPointer());
-                    for(int index = 0; index < (uint)(viewportWScalings.Length); index++)
-                    {
-                        fieldPointer[index] = viewportWScalings[index];
-                    }
-                    marshalledViewportWScalings = fieldPointer;
-                }
-                else
+                if (viewportWScalings.IsNull())
                 {
                     marshalledViewportWScalings = null;
                 }
+                else
+                {
+                    if (viewportWScalings.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledViewportWScalings = (SharpVk.NVidia.ViewportWScaling*)(Interop.HeapUtil.Allocate<SharpVk.NVidia.ViewportWScaling>());
+                        *(SharpVk.NVidia.ViewportWScaling*)(marshalledViewportWScalings) = viewportWScalings.Value.GetSingleValue();
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.NVidia.ViewportWScaling*)(Interop.HeapUtil.AllocateAndClear<SharpVk.NVidia.ViewportWScaling>(Interop.HeapUtil.GetLength(viewportWScalings.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(viewportWScalings.Value)); index++)
+                        {
+                            fieldPointer[index] = viewportWScalings.Value[index];
+                        }
+                        marshalledViewportWScalings = fieldPointer;
+                    }
+                }
                 SharpVk.Interop.NVidia.VkCommandBufferSetViewportWScalingDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.VkCommandBufferSetViewportWScalingDelegate>("vkCmdSetViewportWScalingNV", "instance");
-                commandDelegate(extendedHandle.handle, firstViewport, (uint)(viewportWScalings?.Length ?? 0), marshalledViewportWScalings);
+                commandDelegate(extendedHandle.handle, firstViewport, (uint)(Interop.HeapUtil.GetLength(viewportWScalings)), marshalledViewportWScalings);
             }
             finally
             {

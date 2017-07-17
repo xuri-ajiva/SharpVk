@@ -86,7 +86,7 @@ namespace SharpVk.NVidia
             }
             pointer->CoverageModulationMode = this.CoverageModulationMode;
             pointer->CoverageModulationTableEnable = this.CoverageModulationTableEnable;
-            pointer->CoverageModulationTableCount = (uint)(this.CoverageModulationTable?.Length ?? 0);
+            pointer->CoverageModulationTableCount = (uint)(Interop.HeapUtil.GetLength(this.CoverageModulationTable));
             if (this.CoverageModulationTable != null)
             {
                 var fieldPointer = (float*)(Interop.HeapUtil.AllocateAndClear<float>(this.CoverageModulationTable.Length).ToPointer());

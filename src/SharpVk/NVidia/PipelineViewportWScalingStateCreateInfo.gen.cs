@@ -62,7 +62,7 @@ namespace SharpVk.NVidia
             pointer->SType = StructureType.PipelineViewportWScalingStateCreateInfoNv;
             pointer->Next = null;
             pointer->ViewportWScalingEnable = this.ViewportWScalingEnable;
-            pointer->ViewportCount = (uint)(this.ViewportWScalings?.Length ?? 0);
+            pointer->ViewportCount = (uint)(Interop.HeapUtil.GetLength(this.ViewportWScalings));
             if (this.ViewportWScalings != null)
             {
                 var fieldPointer = (SharpVk.NVidia.ViewportWScaling*)(Interop.HeapUtil.AllocateAndClear<SharpVk.NVidia.ViewportWScaling>(this.ViewportWScalings.Length).ToPointer());

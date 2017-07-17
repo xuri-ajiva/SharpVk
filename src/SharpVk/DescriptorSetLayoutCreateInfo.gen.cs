@@ -69,7 +69,7 @@ namespace SharpVk
             {
                 pointer->Flags = default(SharpVk.DescriptorSetLayoutCreateFlags);
             }
-            pointer->BindingCount = (uint)(this.Bindings?.Length ?? 0);
+            pointer->BindingCount = (uint)(Interop.HeapUtil.GetLength(this.Bindings));
             if (this.Bindings != null)
             {
                 var fieldPointer = (SharpVk.Interop.DescriptorSetLayoutBinding*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.DescriptorSetLayoutBinding>(this.Bindings.Length).ToPointer());

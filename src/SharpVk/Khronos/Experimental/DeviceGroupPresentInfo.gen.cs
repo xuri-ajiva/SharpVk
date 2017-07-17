@@ -59,7 +59,7 @@ namespace SharpVk.Khronos.Experimental
         {
             pointer->SType = StructureType.DeviceGroupPresentInfoKhx;
             pointer->Next = null;
-            pointer->SwapchainCount = (uint)(this.DeviceMasks?.Length ?? 0);
+            pointer->SwapchainCount = (uint)(Interop.HeapUtil.GetLength(this.DeviceMasks));
             if (this.DeviceMasks != null)
             {
                 var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.DeviceMasks.Length).ToPointer());

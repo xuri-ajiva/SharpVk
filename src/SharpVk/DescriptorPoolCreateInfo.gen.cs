@@ -77,7 +77,7 @@ namespace SharpVk
                 pointer->Flags = default(SharpVk.DescriptorPoolCreateFlags);
             }
             pointer->MaxSets = this.MaxSets;
-            pointer->PoolSizeCount = (uint)(this.PoolSizes?.Length ?? 0);
+            pointer->PoolSizeCount = (uint)(Interop.HeapUtil.GetLength(this.PoolSizes));
             if (this.PoolSizes != null)
             {
                 var fieldPointer = (SharpVk.DescriptorPoolSize*)(Interop.HeapUtil.AllocateAndClear<SharpVk.DescriptorPoolSize>(this.PoolSizes.Length).ToPointer());

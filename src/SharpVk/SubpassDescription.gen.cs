@@ -111,7 +111,7 @@ namespace SharpVk
                 pointer->Flags = default(SharpVk.SubpassDescriptionFlags);
             }
             pointer->PipelineBindPoint = this.PipelineBindPoint;
-            pointer->InputAttachmentCount = (uint)(this.InputAttachments?.Length ?? 0);
+            pointer->InputAttachmentCount = (uint)(Interop.HeapUtil.GetLength(this.InputAttachments));
             if (this.InputAttachments != null)
             {
                 var fieldPointer = (SharpVk.AttachmentReference*)(Interop.HeapUtil.AllocateAndClear<SharpVk.AttachmentReference>(this.InputAttachments.Length).ToPointer());
@@ -125,7 +125,7 @@ namespace SharpVk
             {
                 pointer->InputAttachments = null;
             }
-            pointer->ColorAttachmentCount = (uint)(this.ColorAttachments?.Length ?? 0);
+            pointer->ColorAttachmentCount = (uint)(Interop.HeapUtil.GetLength(this.ColorAttachments));
             if (this.ColorAttachments != null)
             {
                 var fieldPointer = (SharpVk.AttachmentReference*)(Interop.HeapUtil.AllocateAndClear<SharpVk.AttachmentReference>(this.ColorAttachments.Length).ToPointer());
@@ -161,7 +161,7 @@ namespace SharpVk
             {
                 pointer->DepthStencilAttachment = default(SharpVk.AttachmentReference*);
             }
-            pointer->PreserveAttachmentCount = (uint)(this.PreserveAttachments?.Length ?? 0);
+            pointer->PreserveAttachmentCount = (uint)(Interop.HeapUtil.GetLength(this.PreserveAttachments));
             if (this.PreserveAttachments != null)
             {
                 var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.PreserveAttachments.Length).ToPointer());

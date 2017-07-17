@@ -216,7 +216,7 @@ namespace SharpVk
             {
                 pointer->Flags = default(SharpVk.PipelineCreateFlags);
             }
-            pointer->StageCount = (uint)(this.Stages?.Length ?? 0);
+            pointer->StageCount = (uint)(Interop.HeapUtil.GetLength(this.Stages));
             if (this.Stages != null)
             {
                 var fieldPointer = (SharpVk.Interop.PipelineShaderStageCreateInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.PipelineShaderStageCreateInfo>(this.Stages.Length).ToPointer());

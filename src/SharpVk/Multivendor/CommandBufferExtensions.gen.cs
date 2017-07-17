@@ -106,28 +106,36 @@ namespace SharpVk.Multivendor
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
         /// </param>
-        public static unsafe void SetDiscardRectangle(this SharpVk.CommandBuffer extendedHandle, uint firstDiscardRectangle, SharpVk.Rect2D[] discardRectangles)
+        public static unsafe void SetDiscardRectangle(this SharpVk.CommandBuffer extendedHandle, uint firstDiscardRectangle, ArrayProxy<SharpVk.Rect2D>? discardRectangles)
         {
             try
             {
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Rect2D* marshalledDiscardRectangles = default(SharpVk.Rect2D*);
                 commandCache = extendedHandle.commandCache;
-                if (discardRectangles != null)
-                {
-                    var fieldPointer = (SharpVk.Rect2D*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Rect2D>(discardRectangles.Length).ToPointer());
-                    for(int index = 0; index < (uint)(discardRectangles.Length); index++)
-                    {
-                        fieldPointer[index] = discardRectangles[index];
-                    }
-                    marshalledDiscardRectangles = fieldPointer;
-                }
-                else
+                if (discardRectangles.IsNull())
                 {
                     marshalledDiscardRectangles = null;
                 }
+                else
+                {
+                    if (discardRectangles.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledDiscardRectangles = (SharpVk.Rect2D*)(Interop.HeapUtil.Allocate<SharpVk.Rect2D>());
+                        *(SharpVk.Rect2D*)(marshalledDiscardRectangles) = discardRectangles.Value.GetSingleValue();
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.Rect2D*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Rect2D>(Interop.HeapUtil.GetLength(discardRectangles.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(discardRectangles.Value)); index++)
+                        {
+                            fieldPointer[index] = discardRectangles.Value[index];
+                        }
+                        marshalledDiscardRectangles = fieldPointer;
+                    }
+                }
                 SharpVk.Interop.Multivendor.VkCommandBufferSetDiscardRectangleDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkCommandBufferSetDiscardRectangleDelegate>("vkCmdSetDiscardRectangleEXT", "instance");
-                commandDelegate(extendedHandle.handle, firstDiscardRectangle, (uint)(discardRectangles?.Length ?? 0), marshalledDiscardRectangles);
+                commandDelegate(extendedHandle.handle, firstDiscardRectangle, (uint)(Interop.HeapUtil.GetLength(discardRectangles)), marshalledDiscardRectangles);
             }
             finally
             {

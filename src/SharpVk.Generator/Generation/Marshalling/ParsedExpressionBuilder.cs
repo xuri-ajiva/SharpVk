@@ -52,9 +52,13 @@ namespace SharpVk.Generator.Generation.Marshalling
 
             string memberName;
 
+            bool takeLength = false;
+
             if (memberMappings.ContainsKey(member.VkName))
             {
-                memberName = memberMappings[member.VkName].Name + ".Length";
+                memberName = memberMappings[member.VkName].Name;
+
+                takeLength = true;
             }
             else
             {
@@ -70,6 +74,11 @@ namespace SharpVk.Generator.Generation.Marshalling
             else
             {
                 state.Result = Member(target, memberName);
+            }
+
+            if (takeLength)
+            {
+                state.Result = StaticCall("Interop.HeapUtil", "GetLength", state.Result);
             }
 
             state.ExpressionType = member.Type.VkName;

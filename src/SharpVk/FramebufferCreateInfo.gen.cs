@@ -109,7 +109,7 @@ namespace SharpVk
                 pointer->Flags = default(SharpVk.FramebufferCreateFlags);
             }
             pointer->RenderPass = this.RenderPass?.handle ?? default(SharpVk.Interop.RenderPass);
-            pointer->AttachmentCount = (uint)(this.Attachments?.Length ?? 0);
+            pointer->AttachmentCount = (uint)(Interop.HeapUtil.GetLength(this.Attachments));
             if (this.Attachments != null)
             {
                 var fieldPointer = (SharpVk.Interop.ImageView*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.ImageView>(this.Attachments.Length).ToPointer());

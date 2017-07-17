@@ -61,7 +61,7 @@ namespace SharpVk.Khronos.Experimental
             pointer->SType = StructureType.DeviceGroupRenderPassBeginInfoKhx;
             pointer->Next = null;
             pointer->DeviceMask = this.DeviceMask;
-            pointer->DeviceRenderAreaCount = (uint)(this.DeviceRenderAreas?.Length ?? 0);
+            pointer->DeviceRenderAreaCount = (uint)(Interop.HeapUtil.GetLength(this.DeviceRenderAreas));
             if (this.DeviceRenderAreas != null)
             {
                 var fieldPointer = (SharpVk.Rect2D*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Rect2D>(this.DeviceRenderAreas.Length).ToPointer());

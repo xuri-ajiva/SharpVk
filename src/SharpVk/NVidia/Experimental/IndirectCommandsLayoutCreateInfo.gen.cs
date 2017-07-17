@@ -74,7 +74,7 @@ namespace SharpVk.NVidia.Experimental
             pointer->Next = null;
             pointer->PipelineBindPoint = this.PipelineBindPoint;
             pointer->Flags = this.Flags;
-            pointer->TokenCount = (uint)(this.Tokens?.Length ?? 0);
+            pointer->TokenCount = (uint)(Interop.HeapUtil.GetLength(this.Tokens));
             if (this.Tokens != null)
             {
                 var fieldPointer = (SharpVk.NVidia.Experimental.IndirectCommandsLayoutToken*)(Interop.HeapUtil.AllocateAndClear<SharpVk.NVidia.Experimental.IndirectCommandsLayoutToken>(this.Tokens.Length).ToPointer());

@@ -81,7 +81,7 @@ namespace SharpVk
                 pointer->Flags = default(SharpVk.DeviceQueueCreateFlags);
             }
             pointer->QueueFamilyIndex = this.QueueFamilyIndex;
-            pointer->QueueCount = (uint)(this.QueuePriorities?.Length ?? 0);
+            pointer->QueueCount = (uint)(Interop.HeapUtil.GetLength(this.QueuePriorities));
             if (this.QueuePriorities != null)
             {
                 var fieldPointer = (float*)(Interop.HeapUtil.AllocateAndClear<float>(this.QueuePriorities.Length).ToPointer());

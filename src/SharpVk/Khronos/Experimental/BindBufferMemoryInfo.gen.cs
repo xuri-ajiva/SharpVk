@@ -82,7 +82,7 @@ namespace SharpVk.Khronos.Experimental
             pointer->Buffer = this.Buffer?.handle ?? default(SharpVk.Interop.Buffer);
             pointer->Memory = this.Memory?.handle ?? default(SharpVk.Interop.DeviceMemory);
             pointer->MemoryOffset = this.MemoryOffset;
-            pointer->DeviceIndexCount = (uint)(this.DeviceIndices?.Length ?? 0);
+            pointer->DeviceIndexCount = (uint)(Interop.HeapUtil.GetLength(this.DeviceIndices));
             if (this.DeviceIndices != null)
             {
                 var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.DeviceIndices.Length).ToPointer());

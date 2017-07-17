@@ -192,7 +192,7 @@ namespace SharpVk.Khronos
             pointer->ImageArrayLayers = this.ImageArrayLayers;
             pointer->ImageUsage = this.ImageUsage;
             pointer->ImageSharingMode = this.ImageSharingMode;
-            pointer->QueueFamilyIndexCount = (uint)(this.QueueFamilyIndices?.Length ?? 0);
+            pointer->QueueFamilyIndexCount = (uint)(Interop.HeapUtil.GetLength(this.QueueFamilyIndices));
             if (this.QueueFamilyIndices != null)
             {
                 var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.QueueFamilyIndices.Length).ToPointer());

@@ -120,36 +120,47 @@ namespace SharpVk.Generator.Emission
                 {
                     if (assignAction.IsLoop)
                     {
-                        body.EmitIfBlock(assignAction.NullCheckExpression,
-                            ifBlock =>
+                        void BuildAssignBlock(CodeBlockBuilder ifBlock)
+                        {
+                            var fieldPointerName = assignAction.FieldPointerName ?? "fieldPointer";
+
+                            if (assignAction.IsArray)
                             {
-                                if (assignAction.IsArray)
-                                {
-                                    ifBlock.EmitVariableDeclaration("var", "fieldPointer", NewArray(assignAction.MemberType, Cast("uint", assignAction.LengthExpression)));
-                                }
-                                else
-                                {
-                                    string allocationType = assignAction.MemberType.EndsWith("*")
-                                                                ? "IntPtr"
-                                                                : assignAction.MemberType;
-
-                                    ifBlock.EmitVariableDeclaration("var", "fieldPointer", Cast(assignAction.MemberType + "*", Call(StaticCall("Interop.HeapUtil", $"AllocateAndClear<{allocationType}>", assignAction.LengthExpression), "ToPointer")));
-                                }
-
-                                ifBlock.EmitForLoop(init => init.EmitVariableDeclaration("int", assignAction.IndexName, Literal(0)),
-                                                    LessThan(Variable(assignAction.IndexName), Cast("uint", assignAction.LengthExpression)),
-                                                    after => after.EmitStatement(assignAction.IndexName + "++"),
-                                                    loop =>
-                                                    {
-                                                        EmitMarshalAction(loop, assignAction, Index(Variable("fieldPointer"), Variable(assignAction.IndexName)));
-                                                    });
-
-                                ifBlock.EmitAssignment(assignAction.TargetExpression, Variable("fieldPointer"));
-                            },
-                            elseBlock =>
+                                ifBlock.EmitVariableDeclaration("var", fieldPointerName, NewArray(assignAction.MemberType, Cast("uint", assignAction.LengthExpression)));
+                            }
+                            else
                             {
-                                elseBlock.EmitAssignment(assignAction.TargetExpression, Null);
-                            });
+                                string allocationType = assignAction.MemberType.EndsWith("*")
+                                                            ? "IntPtr"
+                                                            : assignAction.MemberType;
+
+                                ifBlock.EmitVariableDeclaration("var", fieldPointerName, Cast(assignAction.MemberType + "*", Call(StaticCall("Interop.HeapUtil", $"AllocateAndClear<{allocationType}>", assignAction.LengthExpression), "ToPointer")));
+                            }
+
+                            ifBlock.EmitForLoop(init => init.EmitVariableDeclaration("int", assignAction.IndexName, Literal(0)),
+                                                LessThan(Variable(assignAction.IndexName), Cast("uint", assignAction.LengthExpression)),
+                                                after => after.EmitStatement(assignAction.IndexName + "++"),
+                                                loop =>
+                                                {
+                                                    EmitMarshalAction(loop, assignAction, Index(Variable(fieldPointerName), Variable(assignAction.IndexName)));
+                                                });
+
+                            ifBlock.EmitAssignment(assignAction.TargetExpression, Variable(fieldPointerName));
+                        }
+
+                        if (assignAction.NullCheckExpression != null)
+                        {
+                            body.EmitIfBlock(assignAction.NullCheckExpression,
+                                BuildAssignBlock,
+                                elseBlock =>
+                                {
+                                    elseBlock.EmitAssignment(assignAction.TargetExpression, Null);
+                                });
+                        }
+                        else
+                        {
+                            BuildAssignBlock(body);
+                        }
                     }
                     else
                     {
@@ -194,7 +205,7 @@ namespace SharpVk.Generator.Emission
                 }
                 else if (action is OptionalAction optionalAction)
                 {
-                    body.EmitIfBlock(optionalAction.NullCheckExpression,
+                    body.EmitIfBlock(optionalAction.CheckExpression,
                             ifBlock => EmitActions(ifBlock, optionalAction.Actions),
                             elseBlock => EmitActions(elseBlock, optionalAction.ElseActions));
                 }

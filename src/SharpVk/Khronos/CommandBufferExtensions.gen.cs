@@ -37,28 +37,36 @@ namespace SharpVk.Khronos
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
         /// </param>
-        public static unsafe void PushDescriptorSet(this SharpVk.CommandBuffer extendedHandle, SharpVk.PipelineBindPoint pipelineBindPoint, SharpVk.PipelineLayout layout, uint set, SharpVk.WriteDescriptorSet[] descriptorWrites)
+        public static unsafe void PushDescriptorSet(this SharpVk.CommandBuffer extendedHandle, SharpVk.PipelineBindPoint pipelineBindPoint, SharpVk.PipelineLayout layout, uint set, ArrayProxy<SharpVk.WriteDescriptorSet>? descriptorWrites)
         {
             try
             {
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.WriteDescriptorSet* marshalledDescriptorWrites = default(SharpVk.Interop.WriteDescriptorSet*);
                 commandCache = extendedHandle.commandCache;
-                if (descriptorWrites != null)
-                {
-                    var fieldPointer = (SharpVk.Interop.WriteDescriptorSet*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.WriteDescriptorSet>(descriptorWrites.Length).ToPointer());
-                    for(int index = 0; index < (uint)(descriptorWrites.Length); index++)
-                    {
-                        descriptorWrites[index].MarshalTo(&fieldPointer[index]);
-                    }
-                    marshalledDescriptorWrites = fieldPointer;
-                }
-                else
+                if (descriptorWrites.IsNull())
                 {
                     marshalledDescriptorWrites = null;
                 }
+                else
+                {
+                    if (descriptorWrites.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledDescriptorWrites = (SharpVk.Interop.WriteDescriptorSet*)(Interop.HeapUtil.Allocate<SharpVk.Interop.WriteDescriptorSet>());
+                        descriptorWrites.Value.GetSingleValue().MarshalTo(&*(SharpVk.Interop.WriteDescriptorSet*)(marshalledDescriptorWrites));
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.Interop.WriteDescriptorSet*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.WriteDescriptorSet>(Interop.HeapUtil.GetLength(descriptorWrites.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(descriptorWrites.Value)); index++)
+                        {
+                            descriptorWrites.Value[index].MarshalTo(&fieldPointer[index]);
+                        }
+                        marshalledDescriptorWrites = fieldPointer;
+                    }
+                }
                 SharpVk.Interop.Khronos.VkCommandBufferPushDescriptorSetDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkCommandBufferPushDescriptorSetDelegate>("vkCmdPushDescriptorSetKHR", "instance");
-                commandDelegate(extendedHandle.handle, pipelineBindPoint, layout?.handle ?? default(SharpVk.Interop.PipelineLayout), set, (uint)(descriptorWrites?.Length ?? 0), marshalledDescriptorWrites);
+                commandDelegate(extendedHandle.handle, pipelineBindPoint, layout?.handle ?? default(SharpVk.Interop.PipelineLayout), set, (uint)(Interop.HeapUtil.GetLength(descriptorWrites)), marshalledDescriptorWrites);
             }
             finally
             {

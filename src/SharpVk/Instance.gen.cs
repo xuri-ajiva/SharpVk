@@ -67,7 +67,7 @@ namespace SharpVk
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
         /// </param>
-        public static unsafe SharpVk.Instance Create(string[] enabledLayerNames, string[] enabledExtensionNames, SharpVk.InstanceCreateFlags? flags = default(SharpVk.InstanceCreateFlags?), SharpVk.ApplicationInfo? applicationInfo = default(SharpVk.ApplicationInfo?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public static unsafe SharpVk.Instance Create(ArrayProxy<string>? enabledLayerNames, ArrayProxy<string>? enabledExtensionNames, SharpVk.InstanceCreateFlags? flags = default(SharpVk.InstanceCreateFlags?), SharpVk.ApplicationInfo? applicationInfo = default(SharpVk.ApplicationInfo?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
@@ -95,22 +95,10 @@ namespace SharpVk
                 {
                     marshalledCreateInfo->ApplicationInfo = default(SharpVk.Interop.ApplicationInfo*);
                 }
-                marshalledCreateInfo->EnabledLayerCount = (uint)(enabledLayerNames?.Length ?? 0);
-                if (enabledLayerNames != null)
-                {
-                    marshalledCreateInfo->EnabledLayerNames = Interop.HeapUtil.MarshalTo(enabledLayerNames);
-                }
-                else
-                {
-                }
-                marshalledCreateInfo->EnabledExtensionCount = (uint)(enabledExtensionNames?.Length ?? 0);
-                if (enabledExtensionNames != null)
-                {
-                    marshalledCreateInfo->EnabledExtensionNames = Interop.HeapUtil.MarshalTo(enabledExtensionNames);
-                }
-                else
-                {
-                }
+                marshalledCreateInfo->EnabledLayerCount = (uint)(Interop.HeapUtil.GetLength(enabledLayerNames));
+                marshalledCreateInfo->EnabledLayerNames = Interop.HeapUtil.MarshalTo(enabledLayerNames);
+                marshalledCreateInfo->EnabledExtensionCount = (uint)(Interop.HeapUtil.GetLength(enabledExtensionNames));
+                marshalledCreateInfo->EnabledExtensionNames = Interop.HeapUtil.MarshalTo(enabledExtensionNames);
                 if (allocator != null)
                 {
                     marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());

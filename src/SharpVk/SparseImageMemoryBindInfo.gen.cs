@@ -57,7 +57,7 @@ namespace SharpVk
         internal unsafe void MarshalTo(SharpVk.Interop.SparseImageMemoryBindInfo* pointer)
         {
             pointer->Image = this.Image?.handle ?? default(SharpVk.Interop.Image);
-            pointer->BindCount = (uint)(this.Binds?.Length ?? 0);
+            pointer->BindCount = (uint)(Interop.HeapUtil.GetLength(this.Binds));
             if (this.Binds != null)
             {
                 var fieldPointer = (SharpVk.Interop.SparseImageMemoryBind*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.SparseImageMemoryBind>(this.Binds.Length).ToPointer());

@@ -45,16 +45,11 @@ namespace SharpVk.NVidia.Experimental
         /// IndirectCommandsLayoutUsageFlagBitsNVX below for a description of
         /// the supported bits.
         /// </param>
-        /// <param name="tokens">
-        /// An array describing each command token in detail. See
-        /// IndirectCommandsTokenTypeNVX and IndirectCommandsLayoutTokenNVX
-        /// below for details.
-        /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
         /// </param>
-        public static unsafe SharpVk.NVidia.Experimental.IndirectCommandsLayout CreateIndirectCommandsLayout(this SharpVk.Device extendedHandle, SharpVk.PipelineBindPoint pipelineBindPoint, SharpVk.NVidia.Experimental.IndirectCommandsLayoutUsageFlags flags, SharpVk.NVidia.Experimental.IndirectCommandsLayoutToken[] tokens, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public static unsafe SharpVk.NVidia.Experimental.IndirectCommandsLayout CreateIndirectCommandsLayout(this SharpVk.Device extendedHandle, SharpVk.PipelineBindPoint pipelineBindPoint, SharpVk.NVidia.Experimental.IndirectCommandsLayoutUsageFlags flags, ArrayProxy<SharpVk.NVidia.Experimental.IndirectCommandsLayoutToken>? tokens, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
@@ -69,19 +64,27 @@ namespace SharpVk.NVidia.Experimental
                 marshalledCreateInfo->Next = null;
                 marshalledCreateInfo->PipelineBindPoint = pipelineBindPoint;
                 marshalledCreateInfo->Flags = flags;
-                marshalledCreateInfo->TokenCount = (uint)(tokens?.Length ?? 0);
-                if (tokens != null)
+                marshalledCreateInfo->TokenCount = (uint)(Interop.HeapUtil.GetLength(tokens));
+                if (tokens.IsNull())
                 {
-                    var fieldPointer = (SharpVk.NVidia.Experimental.IndirectCommandsLayoutToken*)(Interop.HeapUtil.AllocateAndClear<SharpVk.NVidia.Experimental.IndirectCommandsLayoutToken>(tokens.Length).ToPointer());
-                    for(int index = 0; index < (uint)(tokens.Length); index++)
-                    {
-                        fieldPointer[index] = tokens[index];
-                    }
-                    marshalledCreateInfo->Tokens = fieldPointer;
+                    marshalledCreateInfo->Tokens = null;
                 }
                 else
                 {
-                    marshalledCreateInfo->Tokens = null;
+                    if (tokens.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledCreateInfo->Tokens = (SharpVk.NVidia.Experimental.IndirectCommandsLayoutToken*)(Interop.HeapUtil.Allocate<SharpVk.NVidia.Experimental.IndirectCommandsLayoutToken>());
+                        *(SharpVk.NVidia.Experimental.IndirectCommandsLayoutToken*)(marshalledCreateInfo->Tokens) = tokens.Value.GetSingleValue();
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.NVidia.Experimental.IndirectCommandsLayoutToken*)(Interop.HeapUtil.AllocateAndClear<SharpVk.NVidia.Experimental.IndirectCommandsLayoutToken>(Interop.HeapUtil.GetLength(tokens.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(tokens.Value)); index++)
+                        {
+                            fieldPointer[index] = tokens.Value[index];
+                        }
+                        marshalledCreateInfo->Tokens = fieldPointer;
+                    }
                 }
                 if (allocator != null)
                 {
@@ -113,18 +116,6 @@ namespace SharpVk.NVidia.Experimental
         /// <param name="extendedHandle">
         /// The Device handle to extend.
         /// </param>
-        /// <param name="objectEntryTypes">
-        /// An array of ObjectEntryTypeNVX providing the entry type of a given
-        /// configuration.
-        /// </param>
-        /// <param name="objectEntryCounts">
-        /// An array of counts how many objects can be registered in the table.
-        /// </param>
-        /// <param name="objectEntryUsageFlags">
-        /// An array of bitmasks describing the binding usage of the entry. See
-        /// ObjectEntryUsageFlagBitsNVX below for a description of the
-        /// supported bits.
-        /// </param>
         /// <param name="maxUniformBuffersPerDescriptor">
         /// The maximum number of VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER or
         /// VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC used by any single
@@ -154,7 +145,7 @@ namespace SharpVk.NVidia.Experimental
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
         /// </param>
-        public static unsafe SharpVk.NVidia.Experimental.ObjectTable CreateObjectTable(this SharpVk.Device extendedHandle, SharpVk.NVidia.Experimental.ObjectEntryType[] objectEntryTypes, uint[] objectEntryCounts, SharpVk.NVidia.Experimental.ObjectEntryUsageFlags[] objectEntryUsageFlags, uint maxUniformBuffersPerDescriptor, uint maxStorageBuffersPerDescriptor, uint maxStorageImagesPerDescriptor, uint maxSampledImagesPerDescriptor, uint maxPipelineLayouts, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public static unsafe SharpVk.NVidia.Experimental.ObjectTable CreateObjectTable(this SharpVk.Device extendedHandle, ArrayProxy<SharpVk.NVidia.Experimental.ObjectEntryType>? objectEntryTypes, ArrayProxy<uint>? objectEntryCounts, ArrayProxy<SharpVk.NVidia.Experimental.ObjectEntryUsageFlags>? objectEntryUsageFlags, uint maxUniformBuffersPerDescriptor, uint maxStorageBuffersPerDescriptor, uint maxStorageImagesPerDescriptor, uint maxSampledImagesPerDescriptor, uint maxPipelineLayouts, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
@@ -167,45 +158,69 @@ namespace SharpVk.NVidia.Experimental
                 marshalledCreateInfo = (SharpVk.Interop.NVidia.Experimental.ObjectTableCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.Experimental.ObjectTableCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.ObjectTableCreateInfoNvx;
                 marshalledCreateInfo->Next = null;
-                marshalledCreateInfo->ObjectCount = (uint)(objectEntryTypes?.Length ?? 0);
-                if (objectEntryTypes != null)
-                {
-                    var fieldPointer = (SharpVk.NVidia.Experimental.ObjectEntryType*)(Interop.HeapUtil.AllocateAndClear<SharpVk.NVidia.Experimental.ObjectEntryType>(objectEntryTypes.Length).ToPointer());
-                    for(int index = 0; index < (uint)(objectEntryTypes.Length); index++)
-                    {
-                        fieldPointer[index] = objectEntryTypes[index];
-                    }
-                    marshalledCreateInfo->ObjectEntryTypes = fieldPointer;
-                }
-                else
+                marshalledCreateInfo->ObjectCount = (uint)(Interop.HeapUtil.GetLength(objectEntryTypes));
+                if (objectEntryTypes.IsNull())
                 {
                     marshalledCreateInfo->ObjectEntryTypes = null;
                 }
-                if (objectEntryCounts != null)
-                {
-                    var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(objectEntryCounts.Length).ToPointer());
-                    for(int index = 0; index < (uint)(objectEntryCounts.Length); index++)
-                    {
-                        fieldPointer[index] = objectEntryCounts[index];
-                    }
-                    marshalledCreateInfo->ObjectEntryCounts = fieldPointer;
-                }
                 else
+                {
+                    if (objectEntryTypes.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledCreateInfo->ObjectEntryTypes = (SharpVk.NVidia.Experimental.ObjectEntryType*)(Interop.HeapUtil.Allocate<SharpVk.NVidia.Experimental.ObjectEntryType>());
+                        *(SharpVk.NVidia.Experimental.ObjectEntryType*)(marshalledCreateInfo->ObjectEntryTypes) = objectEntryTypes.Value.GetSingleValue();
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.NVidia.Experimental.ObjectEntryType*)(Interop.HeapUtil.AllocateAndClear<SharpVk.NVidia.Experimental.ObjectEntryType>(Interop.HeapUtil.GetLength(objectEntryTypes.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(objectEntryTypes.Value)); index++)
+                        {
+                            fieldPointer[index] = objectEntryTypes.Value[index];
+                        }
+                        marshalledCreateInfo->ObjectEntryTypes = fieldPointer;
+                    }
+                }
+                if (objectEntryCounts.IsNull())
                 {
                     marshalledCreateInfo->ObjectEntryCounts = null;
                 }
-                if (objectEntryUsageFlags != null)
+                else
                 {
-                    var fieldPointer = (SharpVk.NVidia.Experimental.ObjectEntryUsageFlags*)(Interop.HeapUtil.AllocateAndClear<SharpVk.NVidia.Experimental.ObjectEntryUsageFlags>(objectEntryUsageFlags.Length).ToPointer());
-                    for(int index = 0; index < (uint)(objectEntryUsageFlags.Length); index++)
+                    if (objectEntryCounts.Value.Contents == ProxyContents.Single)
                     {
-                        fieldPointer[index] = objectEntryUsageFlags[index];
+                        marshalledCreateInfo->ObjectEntryCounts = (uint*)(Interop.HeapUtil.Allocate<uint>());
+                        *(uint*)(marshalledCreateInfo->ObjectEntryCounts) = objectEntryCounts.Value.GetSingleValue();
                     }
-                    marshalledCreateInfo->ObjectEntryUsageFlags = fieldPointer;
+                    else
+                    {
+                        var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(Interop.HeapUtil.GetLength(objectEntryCounts.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(objectEntryCounts.Value)); index++)
+                        {
+                            fieldPointer[index] = objectEntryCounts.Value[index];
+                        }
+                        marshalledCreateInfo->ObjectEntryCounts = fieldPointer;
+                    }
+                }
+                if (objectEntryUsageFlags.IsNull())
+                {
+                    marshalledCreateInfo->ObjectEntryUsageFlags = null;
                 }
                 else
                 {
-                    marshalledCreateInfo->ObjectEntryUsageFlags = null;
+                    if (objectEntryUsageFlags.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledCreateInfo->ObjectEntryUsageFlags = (SharpVk.NVidia.Experimental.ObjectEntryUsageFlags*)(Interop.HeapUtil.Allocate<SharpVk.NVidia.Experimental.ObjectEntryUsageFlags>());
+                        *(SharpVk.NVidia.Experimental.ObjectEntryUsageFlags*)(marshalledCreateInfo->ObjectEntryUsageFlags) = objectEntryUsageFlags.Value.GetSingleValue();
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.NVidia.Experimental.ObjectEntryUsageFlags*)(Interop.HeapUtil.AllocateAndClear<SharpVk.NVidia.Experimental.ObjectEntryUsageFlags>(Interop.HeapUtil.GetLength(objectEntryUsageFlags.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(objectEntryUsageFlags.Value)); index++)
+                        {
+                            fieldPointer[index] = objectEntryUsageFlags.Value[index];
+                        }
+                        marshalledCreateInfo->ObjectEntryUsageFlags = fieldPointer;
+                    }
                 }
                 marshalledCreateInfo->MaxUniformBuffersPerDescriptor = maxUniformBuffersPerDescriptor;
                 marshalledCreateInfo->MaxStorageBuffersPerDescriptor = maxStorageBuffersPerDescriptor;

@@ -140,7 +140,7 @@ namespace SharpVk.NVidia.Experimental
             pointer->Next = null;
             pointer->ObjectTable = this.ObjectTable?.handle ?? default(SharpVk.Interop.NVidia.Experimental.ObjectTable);
             pointer->IndirectCommandsLayout = this.IndirectCommandsLayout?.handle ?? default(SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayout);
-            pointer->IndirectCommandsTokenCount = (uint)(this.IndirectCommandsTokens?.Length ?? 0);
+            pointer->IndirectCommandsTokenCount = (uint)(Interop.HeapUtil.GetLength(this.IndirectCommandsTokens));
             if (this.IndirectCommandsTokens != null)
             {
                 var fieldPointer = (SharpVk.Interop.NVidia.Experimental.IndirectCommandsToken*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.NVidia.Experimental.IndirectCommandsToken>(this.IndirectCommandsTokens.Length).ToPointer());

@@ -125,7 +125,7 @@ namespace SharpVk.NVidia.Experimental
         {
             pointer->SType = StructureType.ObjectTableCreateInfoNvx;
             pointer->Next = null;
-            pointer->ObjectCount = (uint)(this.ObjectEntryTypes?.Length ?? 0);
+            pointer->ObjectCount = (uint)(Interop.HeapUtil.GetLength(this.ObjectEntryTypes));
             if (this.ObjectEntryTypes != null)
             {
                 var fieldPointer = (SharpVk.NVidia.Experimental.ObjectEntryType*)(Interop.HeapUtil.AllocateAndClear<SharpVk.NVidia.Experimental.ObjectEntryType>(this.ObjectEntryTypes.Length).ToPointer());

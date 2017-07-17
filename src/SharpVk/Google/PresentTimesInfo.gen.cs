@@ -49,7 +49,7 @@ namespace SharpVk.Google
         {
             pointer->SType = StructureType.PresentTimesInfoGoogle;
             pointer->Next = null;
-            pointer->SwapchainCount = (uint)(this.Times?.Length ?? 0);
+            pointer->SwapchainCount = (uint)(Interop.HeapUtil.GetLength(this.Times));
             if (this.Times != null)
             {
                 var fieldPointer = (SharpVk.Google.PresentTime*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Google.PresentTime>(this.Times.Length).ToPointer());

@@ -104,25 +104,33 @@ namespace SharpVk
         /// <summary>
         /// Free one or more descriptor sets.
         /// </summary>
-        public unsafe void FreeDescriptorSets(SharpVk.DescriptorSet[] descriptorSets)
+        public unsafe void FreeDescriptorSets(ArrayProxy<SharpVk.DescriptorSet>? descriptorSets)
         {
             try
             {
                 SharpVk.Interop.DescriptorSet* marshalledDescriptorSets = default(SharpVk.Interop.DescriptorSet*);
-                if (descriptorSets != null)
-                {
-                    var fieldPointer = (SharpVk.Interop.DescriptorSet*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.DescriptorSet>(descriptorSets.Length).ToPointer());
-                    for(int index = 0; index < (uint)(descriptorSets.Length); index++)
-                    {
-                        fieldPointer[index] = descriptorSets[index]?.handle ?? default(SharpVk.Interop.DescriptorSet);
-                    }
-                    marshalledDescriptorSets = fieldPointer;
-                }
-                else
+                if (descriptorSets.IsNull())
                 {
                     marshalledDescriptorSets = null;
                 }
-                Result methodResult = Interop.Commands.vkFreeDescriptorSets(this.parent.handle, this.handle, (uint)(descriptorSets?.Length ?? 0), marshalledDescriptorSets);
+                else
+                {
+                    if (descriptorSets.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledDescriptorSets = (SharpVk.Interop.DescriptorSet*)(Interop.HeapUtil.Allocate<SharpVk.Interop.DescriptorSet>());
+                        *(SharpVk.Interop.DescriptorSet*)(marshalledDescriptorSets) = descriptorSets.Value.GetSingleValue()?.handle ?? default(SharpVk.Interop.DescriptorSet);
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.Interop.DescriptorSet*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.DescriptorSet>(Interop.HeapUtil.GetLength(descriptorSets.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(descriptorSets.Value)); index++)
+                        {
+                            fieldPointer[index] = descriptorSets.Value[index]?.handle ?? default(SharpVk.Interop.DescriptorSet);
+                        }
+                        marshalledDescriptorSets = fieldPointer;
+                    }
+                }
+                Result methodResult = Interop.Commands.vkFreeDescriptorSets(this.parent.handle, this.handle, (uint)(Interop.HeapUtil.GetLength(descriptorSets)), marshalledDescriptorSets);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);

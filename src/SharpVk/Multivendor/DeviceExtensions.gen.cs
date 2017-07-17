@@ -199,7 +199,7 @@ namespace SharpVk.Multivendor
         /// <param name="extendedHandle">
         /// The Device handle to extend.
         /// </param>
-        public static unsafe void SetHdrMetadata(this SharpVk.Device extendedHandle, SharpVk.Khronos.Swapchain[] swapchains, SharpVk.Multivendor.HdrMetadata[] metadata)
+        public static unsafe void SetHdrMetadata(this SharpVk.Device extendedHandle, ArrayProxy<SharpVk.Khronos.Swapchain>? swapchains, ArrayProxy<SharpVk.Multivendor.HdrMetadata>? metadata)
         {
             try
             {
@@ -207,34 +207,50 @@ namespace SharpVk.Multivendor
                 SharpVk.Interop.Khronos.Swapchain* marshalledSwapchains = default(SharpVk.Interop.Khronos.Swapchain*);
                 SharpVk.Interop.Multivendor.HdrMetadata* marshalledMetadata = default(SharpVk.Interop.Multivendor.HdrMetadata*);
                 commandCache = extendedHandle.commandCache;
-                if (swapchains != null)
-                {
-                    var fieldPointer = (SharpVk.Interop.Khronos.Swapchain*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Khronos.Swapchain>(swapchains.Length).ToPointer());
-                    for(int index = 0; index < (uint)(swapchains.Length); index++)
-                    {
-                        fieldPointer[index] = swapchains[index]?.handle ?? default(SharpVk.Interop.Khronos.Swapchain);
-                    }
-                    marshalledSwapchains = fieldPointer;
-                }
-                else
+                if (swapchains.IsNull())
                 {
                     marshalledSwapchains = null;
                 }
-                if (metadata != null)
-                {
-                    var fieldPointer = (SharpVk.Interop.Multivendor.HdrMetadata*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Multivendor.HdrMetadata>(metadata.Length).ToPointer());
-                    for(int index = 0; index < (uint)(metadata.Length); index++)
-                    {
-                        metadata[index].MarshalTo(&fieldPointer[index]);
-                    }
-                    marshalledMetadata = fieldPointer;
-                }
                 else
+                {
+                    if (swapchains.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledSwapchains = (SharpVk.Interop.Khronos.Swapchain*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.Swapchain>());
+                        *(SharpVk.Interop.Khronos.Swapchain*)(marshalledSwapchains) = swapchains.Value.GetSingleValue()?.handle ?? default(SharpVk.Interop.Khronos.Swapchain);
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.Interop.Khronos.Swapchain*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Khronos.Swapchain>(Interop.HeapUtil.GetLength(swapchains.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(swapchains.Value)); index++)
+                        {
+                            fieldPointer[index] = swapchains.Value[index]?.handle ?? default(SharpVk.Interop.Khronos.Swapchain);
+                        }
+                        marshalledSwapchains = fieldPointer;
+                    }
+                }
+                if (metadata.IsNull())
                 {
                     marshalledMetadata = null;
                 }
+                else
+                {
+                    if (metadata.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledMetadata = (SharpVk.Interop.Multivendor.HdrMetadata*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.HdrMetadata>());
+                        metadata.Value.GetSingleValue().MarshalTo(&*(SharpVk.Interop.Multivendor.HdrMetadata*)(marshalledMetadata));
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.Interop.Multivendor.HdrMetadata*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Multivendor.HdrMetadata>(Interop.HeapUtil.GetLength(metadata.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(metadata.Value)); index++)
+                        {
+                            metadata.Value[index].MarshalTo(&fieldPointer[index]);
+                        }
+                        marshalledMetadata = fieldPointer;
+                    }
+                }
                 SharpVk.Interop.Multivendor.VkDeviceSetHdrMetadataDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkDeviceSetHdrMetadataDelegate>("vkSetHdrMetadataEXT", "instance");
-                commandDelegate(extendedHandle.handle, (uint)(swapchains?.Length ?? 0), marshalledSwapchains, marshalledMetadata);
+                commandDelegate(extendedHandle.handle, (uint)(Interop.HeapUtil.GetLength(swapchains)), marshalledSwapchains, marshalledMetadata);
             }
             finally
             {

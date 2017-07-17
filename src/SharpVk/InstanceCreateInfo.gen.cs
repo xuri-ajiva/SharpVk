@@ -59,7 +59,7 @@ namespace SharpVk
         /// layers to enable for the created instance. See the Layers section
         /// for further details.
         /// </summary>
-        public string[] EnabledLayerNames
+        public ArrayProxy<string> EnabledLayerNames
         {
             get;
             set;
@@ -69,7 +69,7 @@ namespace SharpVk
         /// An array of enabledExtensionCount strings containing the names of
         /// extensions to enable.
         /// </summary>
-        public string[] EnabledExtensionNames
+        public ArrayProxy<string> EnabledExtensionNames
         {
             get;
             set;
@@ -99,22 +99,10 @@ namespace SharpVk
             {
                 pointer->ApplicationInfo = default(SharpVk.Interop.ApplicationInfo*);
             }
-            pointer->EnabledLayerCount = (uint)(this.EnabledLayerNames?.Length ?? 0);
-            if (this.EnabledLayerNames != null)
-            {
-                pointer->EnabledLayerNames = Interop.HeapUtil.MarshalTo(this.EnabledLayerNames);
-            }
-            else
-            {
-            }
-            pointer->EnabledExtensionCount = (uint)(this.EnabledExtensionNames?.Length ?? 0);
-            if (this.EnabledExtensionNames != null)
-            {
-                pointer->EnabledExtensionNames = Interop.HeapUtil.MarshalTo(this.EnabledExtensionNames);
-            }
-            else
-            {
-            }
+            pointer->EnabledLayerCount = (uint)(Interop.HeapUtil.GetLength(this.EnabledLayerNames));
+            pointer->EnabledLayerNames = Interop.HeapUtil.MarshalTo(this.EnabledLayerNames);
+            pointer->EnabledExtensionCount = (uint)(Interop.HeapUtil.GetLength(this.EnabledExtensionNames));
+            pointer->EnabledExtensionNames = Interop.HeapUtil.MarshalTo(this.EnabledExtensionNames);
         }
     }
 }

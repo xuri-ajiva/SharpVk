@@ -98,7 +98,7 @@ namespace SharpVk
             }
             pointer->LogicOpEnable = this.LogicOpEnable;
             pointer->LogicOp = this.LogicOp;
-            pointer->AttachmentCount = (uint)(this.Attachments?.Length ?? 0);
+            pointer->AttachmentCount = (uint)(Interop.HeapUtil.GetLength(this.Attachments));
             if (this.Attachments != null)
             {
                 var fieldPointer = (SharpVk.Interop.PipelineColorBlendAttachmentState*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.PipelineColorBlendAttachmentState>(this.Attachments.Length).ToPointer());

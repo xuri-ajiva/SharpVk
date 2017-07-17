@@ -47,25 +47,33 @@ namespace SharpVk
         /// <summary>
         /// Submits a sequence of semaphores or command buffers to a queue.
         /// </summary>
-        public unsafe void Submit(SharpVk.SubmitInfo[] submits, SharpVk.Fence fence)
+        public unsafe void Submit(ArrayProxy<SharpVk.SubmitInfo>? submits, SharpVk.Fence fence)
         {
             try
             {
                 SharpVk.Interop.SubmitInfo* marshalledSubmits = default(SharpVk.Interop.SubmitInfo*);
-                if (submits != null)
-                {
-                    var fieldPointer = (SharpVk.Interop.SubmitInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.SubmitInfo>(submits.Length).ToPointer());
-                    for(int index = 0; index < (uint)(submits.Length); index++)
-                    {
-                        submits[index].MarshalTo(&fieldPointer[index]);
-                    }
-                    marshalledSubmits = fieldPointer;
-                }
-                else
+                if (submits.IsNull())
                 {
                     marshalledSubmits = null;
                 }
-                Result methodResult = Interop.Commands.vkQueueSubmit(this.handle, (uint)(submits?.Length ?? 0), marshalledSubmits, fence?.handle ?? default(SharpVk.Interop.Fence));
+                else
+                {
+                    if (submits.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledSubmits = (SharpVk.Interop.SubmitInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.SubmitInfo>());
+                        submits.Value.GetSingleValue().MarshalTo(&*(SharpVk.Interop.SubmitInfo*)(marshalledSubmits));
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.Interop.SubmitInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.SubmitInfo>(Interop.HeapUtil.GetLength(submits.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(submits.Value)); index++)
+                        {
+                            submits.Value[index].MarshalTo(&fieldPointer[index]);
+                        }
+                        marshalledSubmits = fieldPointer;
+                    }
+                }
+                Result methodResult = Interop.Commands.vkQueueSubmit(this.handle, (uint)(Interop.HeapUtil.GetLength(submits)), marshalledSubmits, fence?.handle ?? default(SharpVk.Interop.Fence));
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -99,25 +107,33 @@ namespace SharpVk
         /// <summary>
         /// Bind device memory to a sparse resource object.
         /// </summary>
-        public unsafe void BindSparse(SharpVk.BindSparseInfo[] bindInfo, SharpVk.Fence fence)
+        public unsafe void BindSparse(ArrayProxy<SharpVk.BindSparseInfo>? bindInfo, SharpVk.Fence fence)
         {
             try
             {
                 SharpVk.Interop.BindSparseInfo* marshalledBindInfo = default(SharpVk.Interop.BindSparseInfo*);
-                if (bindInfo != null)
-                {
-                    var fieldPointer = (SharpVk.Interop.BindSparseInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.BindSparseInfo>(bindInfo.Length).ToPointer());
-                    for(int index = 0; index < (uint)(bindInfo.Length); index++)
-                    {
-                        bindInfo[index].MarshalTo(&fieldPointer[index]);
-                    }
-                    marshalledBindInfo = fieldPointer;
-                }
-                else
+                if (bindInfo.IsNull())
                 {
                     marshalledBindInfo = null;
                 }
-                Result methodResult = Interop.Commands.vkQueueBindSparse(this.handle, (uint)(bindInfo?.Length ?? 0), marshalledBindInfo, fence?.handle ?? default(SharpVk.Interop.Fence));
+                else
+                {
+                    if (bindInfo.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledBindInfo = (SharpVk.Interop.BindSparseInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.BindSparseInfo>());
+                        bindInfo.Value.GetSingleValue().MarshalTo(&*(SharpVk.Interop.BindSparseInfo*)(marshalledBindInfo));
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.Interop.BindSparseInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.BindSparseInfo>(Interop.HeapUtil.GetLength(bindInfo.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(bindInfo.Value)); index++)
+                        {
+                            bindInfo.Value[index].MarshalTo(&fieldPointer[index]);
+                        }
+                        marshalledBindInfo = fieldPointer;
+                    }
+                }
+                Result methodResult = Interop.Commands.vkQueueBindSparse(this.handle, (uint)(Interop.HeapUtil.GetLength(bindInfo)), marshalledBindInfo, fence?.handle ?? default(SharpVk.Interop.Fence));
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);

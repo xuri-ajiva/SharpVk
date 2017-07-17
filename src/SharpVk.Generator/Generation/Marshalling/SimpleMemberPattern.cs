@@ -78,7 +78,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                 {
                     var result = new OptionalAction
                     {
-                        NullCheckExpression = IsNotEqual(getValue(source.Name), Null)
+                        CheckExpression = IsNotEqual(getValue(source.Name), Null)
                     };
 
                     result.Actions.Add(assignment);

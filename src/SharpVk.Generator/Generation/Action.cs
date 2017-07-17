@@ -18,6 +18,7 @@ namespace SharpVk.Generator.Generation
         public string IndexName;
         public string MemberName;
         public string MemberType;
+        public string FieldPointerName;
         public AssignActionType Type;
         public bool IsLoop;
         public bool IsArray;
@@ -45,7 +46,7 @@ namespace SharpVk.Generator.Generation
     public class OptionalAction
         : MethodAction
     {
-        public Action<ExpressionBuilder> NullCheckExpression;
+        public Action<ExpressionBuilder> CheckExpression;
         public readonly List<MethodAction> Actions = new List<MethodAction>();
         public readonly List<MethodAction> ElseActions = new List<MethodAction>();
     }

@@ -50,7 +50,7 @@ namespace SharpVk.Multivendor
         {
             pointer->SType = StructureType.ValidationFlagsExt;
             pointer->Next = null;
-            pointer->DisabledValidationCheckCount = (uint)(this.DisabledValidationChecks?.Length ?? 0);
+            pointer->DisabledValidationCheckCount = (uint)(Interop.HeapUtil.GetLength(this.DisabledValidationChecks));
             if (this.DisabledValidationChecks != null)
             {
                 var fieldPointer = (SharpVk.Multivendor.ValidationCheck*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Multivendor.ValidationCheck>(this.DisabledValidationChecks.Length).ToPointer());

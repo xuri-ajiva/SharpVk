@@ -92,7 +92,7 @@ namespace SharpVk
         {
             pointer->SType = StructureType.BindSparseInfo;
             pointer->Next = null;
-            pointer->WaitSemaphoreCount = (uint)(this.WaitSemaphores?.Length ?? 0);
+            pointer->WaitSemaphoreCount = (uint)(Interop.HeapUtil.GetLength(this.WaitSemaphores));
             if (this.WaitSemaphores != null)
             {
                 var fieldPointer = (SharpVk.Interop.Semaphore*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Semaphore>(this.WaitSemaphores.Length).ToPointer());
@@ -106,7 +106,7 @@ namespace SharpVk
             {
                 pointer->WaitSemaphores = null;
             }
-            pointer->BufferBindCount = (uint)(this.BufferBinds?.Length ?? 0);
+            pointer->BufferBindCount = (uint)(Interop.HeapUtil.GetLength(this.BufferBinds));
             if (this.BufferBinds != null)
             {
                 var fieldPointer = (SharpVk.Interop.SparseBufferMemoryBindInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.SparseBufferMemoryBindInfo>(this.BufferBinds.Length).ToPointer());
@@ -120,7 +120,7 @@ namespace SharpVk
             {
                 pointer->BufferBinds = null;
             }
-            pointer->ImageOpaqueBindCount = (uint)(this.ImageOpaqueBinds?.Length ?? 0);
+            pointer->ImageOpaqueBindCount = (uint)(Interop.HeapUtil.GetLength(this.ImageOpaqueBinds));
             if (this.ImageOpaqueBinds != null)
             {
                 var fieldPointer = (SharpVk.Interop.SparseImageOpaqueMemoryBindInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.SparseImageOpaqueMemoryBindInfo>(this.ImageOpaqueBinds.Length).ToPointer());
@@ -134,7 +134,7 @@ namespace SharpVk
             {
                 pointer->ImageOpaqueBinds = null;
             }
-            pointer->ImageBindCount = (uint)(this.ImageBinds?.Length ?? 0);
+            pointer->ImageBindCount = (uint)(Interop.HeapUtil.GetLength(this.ImageBinds));
             if (this.ImageBinds != null)
             {
                 var fieldPointer = (SharpVk.Interop.SparseImageMemoryBindInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.SparseImageMemoryBindInfo>(this.ImageBinds.Length).ToPointer());
@@ -148,7 +148,7 @@ namespace SharpVk
             {
                 pointer->ImageBinds = null;
             }
-            pointer->SignalSemaphoreCount = (uint)(this.SignalSemaphores?.Length ?? 0);
+            pointer->SignalSemaphoreCount = (uint)(Interop.HeapUtil.GetLength(this.SignalSemaphores));
             if (this.SignalSemaphores != null)
             {
                 var fieldPointer = (SharpVk.Interop.Semaphore*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Semaphore>(this.SignalSemaphores.Length).ToPointer());

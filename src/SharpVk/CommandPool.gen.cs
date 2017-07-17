@@ -104,25 +104,33 @@ namespace SharpVk
         /// <summary>
         /// Free command buffers.
         /// </summary>
-        public unsafe void FreeCommandBuffers(SharpVk.CommandBuffer[] commandBuffers)
+        public unsafe void FreeCommandBuffers(ArrayProxy<SharpVk.CommandBuffer>? commandBuffers)
         {
             try
             {
                 SharpVk.Interop.CommandBuffer* marshalledCommandBuffers = default(SharpVk.Interop.CommandBuffer*);
-                if (commandBuffers != null)
-                {
-                    var fieldPointer = (SharpVk.Interop.CommandBuffer*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.CommandBuffer>(commandBuffers.Length).ToPointer());
-                    for(int index = 0; index < (uint)(commandBuffers.Length); index++)
-                    {
-                        fieldPointer[index] = commandBuffers[index]?.handle ?? default(SharpVk.Interop.CommandBuffer);
-                    }
-                    marshalledCommandBuffers = fieldPointer;
-                }
-                else
+                if (commandBuffers.IsNull())
                 {
                     marshalledCommandBuffers = null;
                 }
-                Interop.Commands.vkFreeCommandBuffers(this.parent.handle, this.handle, (uint)(commandBuffers?.Length ?? 0), marshalledCommandBuffers);
+                else
+                {
+                    if (commandBuffers.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledCommandBuffers = (SharpVk.Interop.CommandBuffer*)(Interop.HeapUtil.Allocate<SharpVk.Interop.CommandBuffer>());
+                        *(SharpVk.Interop.CommandBuffer*)(marshalledCommandBuffers) = commandBuffers.Value.GetSingleValue()?.handle ?? default(SharpVk.Interop.CommandBuffer);
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.Interop.CommandBuffer*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.CommandBuffer>(Interop.HeapUtil.GetLength(commandBuffers.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(commandBuffers.Value)); index++)
+                        {
+                            fieldPointer[index] = commandBuffers.Value[index]?.handle ?? default(SharpVk.Interop.CommandBuffer);
+                        }
+                        marshalledCommandBuffers = fieldPointer;
+                    }
+                }
+                Interop.Commands.vkFreeCommandBuffers(this.parent.handle, this.handle, (uint)(Interop.HeapUtil.GetLength(commandBuffers)), marshalledCommandBuffers);
             }
             finally
             {

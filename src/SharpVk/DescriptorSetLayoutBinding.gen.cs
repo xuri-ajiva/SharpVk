@@ -117,7 +117,7 @@ namespace SharpVk
             }
             else
             {
-                pointer->DescriptorCount = (uint)(this.ImmutableSamplers?.Length ?? 0);
+                pointer->DescriptorCount = (uint)(Interop.HeapUtil.GetLength(this.ImmutableSamplers));
             }
             pointer->StageFlags = this.StageFlags;
             if (this.ImmutableSamplers != null)
