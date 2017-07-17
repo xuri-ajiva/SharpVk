@@ -34,7 +34,7 @@ namespace SharpVk
     public struct MemoryAllocateInfo
     {
         /// <summary>
-        /// 
+        /// pname:allocationSize is the size of the allocation in bytes
         /// </summary>
         public DeviceSize AllocationSize
         {
@@ -43,7 +43,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:memoryTypeIndex is the memory type index, which selects the
+        /// properties of the memory to be allocated, as well as the heap the
+        /// memory will come from.
         /// </summary>
         public uint MemoryTypeIndex
         {

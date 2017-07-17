@@ -34,7 +34,9 @@ namespace SharpVk.Khronos
     public struct FormatProperties2
     {
         /// <summary>
-        /// 
+        /// pname:formatProperties is a structure of type
+        /// slink:VkFormatProperties describing features supported by the
+        /// requested format.
         /// </summary>
         public SharpVk.FormatProperties FormatProperties
         {

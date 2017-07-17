@@ -35,7 +35,7 @@ namespace SharpVk
     public struct PipelineTessellationStateCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:flags is reserved for future use.
         /// </summary>
         public SharpVk.PipelineTessellationStateCreateFlags? Flags
         {
@@ -44,7 +44,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:patchControlPoints number of control points per patch.
         /// </summary>
         public uint PatchControlPoints
         {

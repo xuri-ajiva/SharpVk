@@ -34,22 +34,25 @@ namespace SharpVk.Interop.NVidia
     public unsafe struct DedicatedAllocationMemoryAllocateInfo
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:image is sname:VK_NULL_HANDLE or a handle of an image which
+        /// this memory will be bound to.
         /// </summary>
         public SharpVk.Interop.Image Image; 
         
         /// <summary>
-        /// 
+        /// pname:buffer is sname:VK_NULL_HANDLE or a handle of a buffer which
+        /// this memory will be bound to.
         /// </summary>
         public SharpVk.Interop.Buffer Buffer; 
     }

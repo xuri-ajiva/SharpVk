@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying a subpass dependency.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct SubpassDependency
@@ -48,37 +48,45 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:srcSubpass is the subpass index of the first subpass in the
+        /// dependency, or ename:VK_SUBPASS_EXTERNAL.
         /// </summary>
         public uint SourceSubpass; 
         
         /// <summary>
-        /// 
+        /// pname:dstSubpass is the subpass index of the second subpass in the
+        /// dependency, or ename:VK_SUBPASS_EXTERNAL.
         /// </summary>
         public uint DestinationSubpass; 
         
         /// <summary>
-        /// 
+        /// pname:srcStageMask defines a
+        /// &lt;&lt;synchronization-pipeline-stages-masks, source stage
+        /// mask&gt;&gt;.
         /// </summary>
         public SharpVk.PipelineStageFlags SourceStageMask; 
         
         /// <summary>
-        /// 
+        /// pname:dstStageMask defines a
+        /// &lt;&lt;synchronization-pipeline-stages-masks, destination stage
+        /// mask&gt;&gt;.
         /// </summary>
         public SharpVk.PipelineStageFlags DestinationStageMask; 
         
         /// <summary>
-        /// 
+        /// pname:srcAccessMask defines a &lt;&lt;synchronization-access-masks,
+        /// source access mask&gt;&gt;.
         /// </summary>
         public SharpVk.AccessFlags SourceAccessMask; 
         
         /// <summary>
-        /// 
+        /// pname:dstAccessMask defines a &lt;&lt;synchronization-access-masks,
+        /// destination access mask&gt;&gt;.
         /// </summary>
         public SharpVk.AccessFlags DestinationAccessMask; 
         
         /// <summary>
-        /// 
+        /// pname:dependencyFlags is a bitmask of elink:VkDependencyFlagBits.
         /// </summary>
         public SharpVk.DependencyFlags DependencyFlags; 
     }

@@ -72,9 +72,37 @@ namespace SharpVk.Generator.Generation
             File.WriteAllText(commentCacheFilePath, JsonConvert.SerializeObject(commentInfo, Formatting.Indented));
         }
 
-        public string Lookup(string name)
+        private static string Normalise(string comment)
         {
-            return this.commentInfo[name];
+            comment = comment.Replace("&", "&amp;");
+            comment = comment.Replace("<", "&lt;");
+            comment = comment.Replace(">", "&gt;");
+
+            return comment;
+        }
+
+        public List<string> Lookup(string name)
+        {
+            var comment = this.commentInfo[name];
+
+            return string.IsNullOrEmpty(comment)
+                ? null
+                : new List<string>()
+                {
+                    Normalise(comment)
+                };
+        }
+
+        public List<string> Lookup(string name, string childName)
+        {
+            var comment = this.commentInfo[$"{name}.{childName}"];
+
+            return string.IsNullOrEmpty(comment)
+                ? null
+                : new List<string>()
+                {
+                    Normalise(comment)
+                };
         }
     }
 }

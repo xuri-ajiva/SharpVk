@@ -34,7 +34,9 @@ namespace SharpVk
     public struct BufferCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:flags is a bitmask describing additional parameters of the
+        /// buffer. See elink:VkBufferCreateFlagBits below for a description of
+        /// the supported bits.
         /// </summary>
         public SharpVk.BufferCreateFlags? Flags
         {
@@ -43,7 +45,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:size is the size in bytes of the buffer to be created.
         /// </summary>
         public DeviceSize Size
         {
@@ -52,7 +54,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:usage is a bitmask describing the allowed usages of the
+        /// buffer. See elink:VkBufferUsageFlagBits below for a description of
+        /// the supported bits.
         /// </summary>
         public SharpVk.BufferUsageFlags Usage
         {
@@ -61,7 +65,10 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:sharingMode is the sharing mode of the buffer when it will be
+        /// accessed by multiple queue families, see elink:VkSharingMode in the
+        /// &lt;&lt;resources-sharing,Resource Sharing&gt;&gt; section below
+        /// for supported values.
         /// </summary>
         public SharpVk.SharingMode SharingMode
         {
@@ -70,7 +77,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:pQueueFamilyIndices is a list of queue families that will
+        /// access this buffer (ignored if pname:sharingMode is not
+        /// ename:VK_SHARING_MODE_CONCURRENT).
         /// </summary>
         public uint[] QueueFamilyIndices
         {

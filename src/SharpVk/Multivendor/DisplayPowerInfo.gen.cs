@@ -34,7 +34,8 @@ namespace SharpVk.Multivendor
     public struct DisplayPowerInfo
     {
         /// <summary>
-        /// 
+        /// pname:powerState is the new power state of the display. Possible
+        /// values are: + --
         /// </summary>
         public SharpVk.Multivendor.DisplayPowerState PowerState
         {

@@ -34,7 +34,9 @@ namespace SharpVk.Khronos
     public struct DisplayPlaneProperties
     {
         /// <summary>
-        /// 
+        /// pname:currentDisplay is the handle of the display the plane is
+        /// currently associated with. If the plane is not currently attached
+        /// to any displays, this will be sname:VK_NULL_HANDLE.
         /// </summary>
         public SharpVk.Khronos.Display CurrentDisplay
         {
@@ -43,7 +45,10 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// pname:currentStackIndex is the current z-order of the plane. This
+        /// will be between 0 and the value returned by
+        /// fname:vkGetPhysicalDeviceDisplayPlanePropertiesKHR() in
+        /// pname:pPropertyCount.
         /// </summary>
         public uint CurrentStackIndex
         {

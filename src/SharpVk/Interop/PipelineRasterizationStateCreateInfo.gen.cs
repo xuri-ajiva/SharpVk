@@ -34,67 +34,79 @@ namespace SharpVk.Interop
     public unsafe struct PipelineRasterizationStateCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:flags is reserved for future use.
         /// </summary>
         public SharpVk.PipelineRasterizationStateCreateFlags Flags; 
         
         /// <summary>
-        /// 
+        /// pname:depthClampEnable controls whether to clamp the fragment's
+        /// depth values instead of clipping primitives to the z planes of the
+        /// frustum, as described in &lt;&lt;vertexpostproc-clipping,Primitive
+        /// Clipping&gt;&gt;.
         /// </summary>
         public Bool32 DepthClampEnable; 
         
         /// <summary>
-        /// 
+        /// pname:rasterizerDiscardEnable controls whether primitives are
+        /// discarded immediately before the rasterization stage.
         /// </summary>
         public Bool32 RasterizerDiscardEnable; 
         
         /// <summary>
-        /// 
+        /// pname:polygonMode is the triangle rendering mode. See
+        /// elink:VkPolygonMode.
         /// </summary>
         public SharpVk.PolygonMode PolygonMode; 
         
         /// <summary>
-        /// 
+        /// pname:cullMode is the triangle facing direction used for primitive
+        /// culling. See elink:VkCullModeFlagBits.
         /// </summary>
         public SharpVk.CullModeFlags CullMode; 
         
         /// <summary>
-        /// 
+        /// pname:frontFace is the front-facing triangle orientation to be used
+        /// for culling. See elink:VkFrontFace.
         /// </summary>
         public SharpVk.FrontFace FrontFace; 
         
         /// <summary>
-        /// 
+        /// pname:depthBiasEnable controls whether to bias fragment depth
+        /// values.
         /// </summary>
         public Bool32 DepthBiasEnable; 
         
         /// <summary>
-        /// 
+        /// pname:depthBiasConstantFactor is a scalar factor controlling the
+        /// constant depth value added to each fragment.
         /// </summary>
         public float DepthBiasConstantFactor; 
         
         /// <summary>
-        /// 
+        /// pname:depthBiasClamp is the maximum (or minimum) depth bias of a
+        /// fragment.
         /// </summary>
         public float DepthBiasClamp; 
         
         /// <summary>
-        /// 
+        /// pname:depthBiasSlopeFactor is a scalar factor applied to a
+        /// fragment's slope in depth bias calculations.
         /// </summary>
         public float DepthBiasSlopeFactor; 
         
         /// <summary>
-        /// 
+        /// pname:lineWidth is the width of rasterized line segments.
         /// </summary>
         public float LineWidth; 
     }

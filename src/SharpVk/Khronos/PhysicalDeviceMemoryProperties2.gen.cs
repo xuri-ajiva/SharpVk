@@ -34,7 +34,9 @@ namespace SharpVk.Khronos
     public struct PhysicalDeviceMemoryProperties2
     {
         /// <summary>
-        /// 
+        /// pname:memoryProperties is a structure of type
+        /// slink:VkPhysicalDeviceMemoryProperties which is populated with the
+        /// same values as in flink:vkGetPhysicalDeviceMemoryProperties.
         /// </summary>
         public SharpVk.PhysicalDeviceMemoryProperties MemoryProperties
         {

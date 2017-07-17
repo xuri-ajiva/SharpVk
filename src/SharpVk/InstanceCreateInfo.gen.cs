@@ -34,7 +34,7 @@ namespace SharpVk
     public struct InstanceCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:flags is reserved for future use.
         /// </summary>
         public SharpVk.InstanceCreateFlags? Flags
         {
@@ -43,7 +43,10 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:pApplicationInfo is `NULL` or a pointer to an instance of
+        /// sname:VkApplicationInfo. If not `NULL`, this information helps
+        /// implementations recognize behavior inherent to classes of
+        /// applications. slink:VkApplicationInfo is defined in detail below.
         /// </summary>
         public SharpVk.ApplicationInfo? ApplicationInfo
         {
@@ -52,7 +55,11 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:ppEnabledLayerNames is a pointer to an array of
+        /// pname:enabledLayerCount null-terminated UTF-8 strings containing
+        /// the names of layers to enable for the created instance. See the
+        /// &lt;&lt;extended-functionality-layers,Layers&gt;&gt; section for
+        /// further details.
         /// </summary>
         public string[] EnabledLayerNames
         {
@@ -61,7 +68,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:ppEnabledExtensionNames is a pointer to an array of
+        /// pname:enabledExtensionCount null-terminated UTF-8 strings
+        /// containing the names of extensions to enable.
         /// </summary>
         public string[] EnabledExtensionNames
         {

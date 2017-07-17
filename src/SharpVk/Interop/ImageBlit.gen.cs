@@ -34,7 +34,7 @@ namespace SharpVk.Interop
     public unsafe struct ImageBlit
     {
         /// <summary>
-        /// 
+        /// pname:srcSubresource is the subresource to blit from.
         /// </summary>
         public SharpVk.ImageSubresourceLayers SourceSubresource; 
         
@@ -49,7 +49,7 @@ namespace SharpVk.Interop
         public SharpVk.Offset3D SourceOffsets_1; 
         
         /// <summary>
-        /// 
+        /// pname:dstSubresource is the subresource to blit into.
         /// </summary>
         public SharpVk.ImageSubresourceLayers DestinationSubresource; 
         

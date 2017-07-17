@@ -34,7 +34,8 @@ namespace SharpVk
     public struct SubpassDescription
     {
         /// <summary>
-        /// 
+        /// pname:flags is a bitmask indicating usage of the subpass. Bits
+        /// which can: be set include: + --
         /// </summary>
         public SharpVk.SubpassDescriptionFlags? Flags
         {

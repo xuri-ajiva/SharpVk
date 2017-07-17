@@ -34,42 +34,55 @@ namespace SharpVk.Interop.Khronos.Experimental
     public unsafe struct RenderPassMultiviewCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:subpassCount is zero or is the number of subpasses in the
+        /// render pass.
         /// </summary>
         public uint SubpassCount; 
         
         /// <summary>
-        /// 
+        /// pname:pViewMasks points to an array of pname:subpassCount number of
+        /// view masks, where each mask is a bitfield of view indices
+        /// describing which views rendering is broadcast to in each subpass,
+        /// when multiview is enabled. If pname:subpassCount is zero, each view
+        /// mask is treated as zero.
         /// </summary>
         public uint* ViewMasks; 
         
         /// <summary>
-        /// 
+        /// pname:dependencyCount is zero or the number of dependencies in the
+        /// render pass.
         /// </summary>
         public uint DependencyCount; 
         
         /// <summary>
-        /// 
+        /// pname:pViewOffsets points to an array of pname:dependencyCount view
+        /// offsets, one for each dependency. If pname:dependencyCount is zero,
+        /// each dependency's view offset is treated as zero. Each view offset
+        /// controls which views in the source subpass the views in the
+        /// destination subpass depend on.
         /// </summary>
         public int* ViewOffsets; 
         
         /// <summary>
-        /// 
+        /// pname:correlationMaskCount is zero or a number of correlation
+        /// masks.
         /// </summary>
         public uint CorrelationMaskCount; 
         
         /// <summary>
-        /// 
+        /// pname:pCorrelationMasks is an array of view masks indicating sets
+        /// of views that may: be more efficient to render concurrently.
         /// </summary>
         public uint* CorrelationMasks; 
     }

@@ -34,7 +34,10 @@ namespace SharpVk.NVidia.Experimental
     public struct CommandProcessCommandsInfo
     {
         /// <summary>
-        /// 
+        /// pname:objectTable is the sname:VkObjectTableNVX to be used for the
+        /// generation process. Only registered objects at the time
+        /// flink:vkCmdReserveSpaceForCommandsNVX is called, will be taken into
+        /// account for the reservation.
         /// </summary>
         public SharpVk.NVidia.Experimental.ObjectTable ObjectTable
         {
@@ -43,7 +46,9 @@ namespace SharpVk.NVidia.Experimental
         }
         
         /// <summary>
-        /// 
+        /// pname:indirectCommandsLayout is the
+        /// sname:VkIndirectCommandsLayoutNVX that provides the command
+        /// sequence to generate.
         /// </summary>
         public SharpVk.NVidia.Experimental.IndirectCommandsLayout IndirectCommandsLayout
         {
@@ -52,7 +57,9 @@ namespace SharpVk.NVidia.Experimental
         }
         
         /// <summary>
-        /// 
+        /// pname:pIndirectCommandsTokens provides an array of
+        /// slink:VkIndirectCommandsTokenNVX that reference the input data for
+        /// each token command.
         /// </summary>
         public SharpVk.NVidia.Experimental.IndirectCommandsToken[] IndirectCommandsTokens
         {
@@ -61,7 +68,10 @@ namespace SharpVk.NVidia.Experimental
         }
         
         /// <summary>
-        /// 
+        /// pname:maxSequencesCount is the maximum number of sequences for
+        /// which command buffer space will be reserved. If
+        /// pname:sequencesCountBuffer is dlink:VK_NULL_HANDLE, this is also
+        /// the actual number of sequences generated.
         /// </summary>
         public uint MaxSequencesCount
         {
@@ -70,7 +80,10 @@ namespace SharpVk.NVidia.Experimental
         }
         
         /// <summary>
-        /// 
+        /// pname:targetCommandBuffer can: be the secondary
+        /// sname:VkCommandBuffer in which the commands should be recorded. If
+        /// pname:targetCommandBuffer is `NULL` an implicit reservation as well
+        /// as execution takes place on the processing sname:VkCommandBuffer.
         /// </summary>
         public SharpVk.CommandBuffer TargetCommandBuffer
         {
@@ -79,7 +92,8 @@ namespace SharpVk.NVidia.Experimental
         }
         
         /// <summary>
-        /// 
+        /// pname:sequencesCountBuffer can: be sname:VkBuffer from which the
+        /// actual amount of sequences is sourced from as ftext:uint32_t value.
         /// </summary>
         public SharpVk.Buffer SequencesCountBuffer
         {
@@ -88,7 +102,8 @@ namespace SharpVk.NVidia.Experimental
         }
         
         /// <summary>
-        /// 
+        /// pname:sequencesCountOffset is the byte offset into
+        /// pname:sequencesCountBuffer where the count value is stored.
         /// </summary>
         public DeviceSize? SequencesCountOffset
         {
@@ -97,7 +112,10 @@ namespace SharpVk.NVidia.Experimental
         }
         
         /// <summary>
-        /// 
+        /// pname:sequencesIndexBuffer must: be set if
+        /// pname:indirectCommandsLayout's ename:VK_INDIRECT_COMMANDS_LAYOUT_USAGE_INDEXED_SEQUENCES_BIT
+        /// is set and provides the used sequence indices as ftext:uint32_t
+        /// array. Otherwise it must: be dlink:VK_NULL_HANDLE.
         /// </summary>
         public SharpVk.Buffer SequencesIndexBuffer
         {
@@ -106,7 +124,8 @@ namespace SharpVk.NVidia.Experimental
         }
         
         /// <summary>
-        /// 
+        /// pname:sequencesIndexOffset is the byte offset into
+        /// pname:sequencesIndexBuffer where the index values start.
         /// </summary>
         public DeviceSize? SequencesIndexOffset
         {

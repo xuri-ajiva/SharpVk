@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying a three-dimensional offset.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Offset3D

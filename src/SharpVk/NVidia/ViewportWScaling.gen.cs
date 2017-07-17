@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
+    /// Structure specifying a viewport.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct ViewportWScaling
@@ -43,7 +43,8 @@ namespace SharpVk.NVidia
         }
         
         /// <summary>
-        /// 
+        /// pname:xcoeff and pname:ycoeff are the viewport's W scaling factor
+        /// for x and y respectively.
         /// </summary>
         public float Xcoeff; 
         

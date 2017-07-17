@@ -34,7 +34,7 @@ namespace SharpVk
     public struct SparseImageOpaqueMemoryBindInfo
     {
         /// <summary>
-        /// 
+        /// pname:image is the sname:VkImage object to be bound.
         /// </summary>
         public SharpVk.Image Image
         {
@@ -43,7 +43,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:pBinds is a pointer to array of sname:VkSparseMemoryBind
+        /// structures.
         /// </summary>
         public SharpVk.SparseMemoryBind[] Binds
         {

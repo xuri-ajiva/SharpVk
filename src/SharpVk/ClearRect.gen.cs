@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying a clear rectangle.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct ClearRect
@@ -44,17 +44,17 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:rect is the two-dimensional region to be cleared.
         /// </summary>
         public SharpVk.Rect2D Rect; 
         
         /// <summary>
-        /// 
+        /// pname:baseArrayLayer is the first layer to be cleared.
         /// </summary>
         public uint BaseArrayLayer; 
         
         /// <summary>
-        /// 
+        /// pname:layerCount is the number of layers to clear.
         /// </summary>
         public uint LayerCount; 
     }

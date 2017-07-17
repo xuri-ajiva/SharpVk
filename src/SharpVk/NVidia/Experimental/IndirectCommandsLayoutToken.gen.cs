@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
-    /// 
+    /// Struct specifying the details of an indirect command layout token.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct IndirectCommandsLayoutToken

@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying stencil operation state.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct StencilOpState
@@ -48,37 +48,45 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:failOp is the action performed on samples that fail the
+        /// stencil test.
         /// </summary>
         public SharpVk.StencilOp FailOp; 
         
         /// <summary>
-        /// 
+        /// pname:passOp is the action performed on samples that pass both the
+        /// depth and stencil tests.
         /// </summary>
         public SharpVk.StencilOp PassOp; 
         
         /// <summary>
-        /// 
+        /// pname:depthFailOp is the action performed on samples that pass the
+        /// stencil test and fail the depth test.
         /// </summary>
         public SharpVk.StencilOp DepthFailOp; 
         
         /// <summary>
-        /// 
+        /// pname:compareOp is the comparison operator used in the stencil
+        /// test.
         /// </summary>
         public SharpVk.CompareOp CompareOp; 
         
         /// <summary>
-        /// 
+        /// pname:compareMask selects the bits of the unsigned integer stencil
+        /// values participating in the stencil test.
         /// </summary>
         public uint CompareMask; 
         
         /// <summary>
-        /// 
+        /// pname:writeMask selects the bits of the unsigned integer stencil
+        /// values updated by the stencil test in the stencil framebuffer
+        /// attachment.
         /// </summary>
         public uint WriteMask; 
         
         /// <summary>
-        /// 
+        /// pname:reference is an integer reference value that is used in the
+        /// unsigned stencil comparison.
         /// </summary>
         public uint Reference; 
     }

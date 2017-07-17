@@ -34,7 +34,7 @@ namespace SharpVk.Khronos.Experimental
     public struct BindImageMemoryInfo
     {
         /// <summary>
-        /// 
+        /// pname:image is the image to be attached to memory.
         /// </summary>
         public SharpVk.Image Image
         {
@@ -43,7 +43,8 @@ namespace SharpVk.Khronos.Experimental
         }
         
         /// <summary>
-        /// 
+        /// pname:memory is a sname:VkDeviceMemory object describing the device
+        /// memory to attach.
         /// </summary>
         public SharpVk.DeviceMemory Memory
         {
@@ -52,7 +53,12 @@ namespace SharpVk.Khronos.Experimental
         }
         
         /// <summary>
-        /// 
+        /// pname:memoryOffset is the start offset of the region of
+        /// pname:memory which is to be bound to the image. If
+        /// pname:SFRRectCount is zero, the number of bytes returned in the
+        /// sname:VkMemoryRequirements::pname:size member in pname:memory,
+        /// starting from pname:memoryOffset bytes, will be bound to the
+        /// specified image.
         /// </summary>
         public DeviceSize MemoryOffset
         {
@@ -61,7 +67,7 @@ namespace SharpVk.Khronos.Experimental
         }
         
         /// <summary>
-        /// 
+        /// pname:pDeviceIndices is a pointer to an array of device indices.
         /// </summary>
         public uint[] DeviceIndices
         {
@@ -70,7 +76,8 @@ namespace SharpVk.Khronos.Experimental
         }
         
         /// <summary>
-        /// 
+        /// pname:pSFRRects is a pointer to an array of rectangles describing
+        /// which regions of the image are attached to each instance of memory.
         /// </summary>
         public SharpVk.Rect2D[] SFRRects
         {

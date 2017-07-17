@@ -34,22 +34,24 @@ namespace SharpVk.Interop
     public unsafe struct PipelineShaderStageCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:flags is reserved for future use.
         /// </summary>
         public SharpVk.PipelineShaderStageCreateFlags Flags; 
         
         /// <summary>
-        /// 
+        /// pname:stage names a single pipeline stage. Bits which can: be set
+        /// include: + --
         /// </summary>
         public SharpVk.ShaderStageFlags Stage; 
         

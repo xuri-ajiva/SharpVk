@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying a dispatch indirect command.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DispatchIndirectCommand
@@ -44,17 +44,20 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:x is the number of local workgroups to dispatch in the X
+        /// dimension.
         /// </summary>
         public uint X; 
         
         /// <summary>
-        /// 
+        /// pname:y is the number of local workgroups to dispatch in the Y
+        /// dimension.
         /// </summary>
         public uint Y; 
         
         /// <summary>
-        /// 
+        /// pname:z is the number of local workgroups to dispatch in the Z
+        /// dimension.
         /// </summary>
         public uint Z; 
     }

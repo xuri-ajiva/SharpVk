@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying a draw indexed indirect command.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct DrawIndexedIndirectCommand
@@ -46,27 +46,29 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:indexCount is the number of vertices to draw.
         /// </summary>
         public uint IndexCount; 
         
         /// <summary>
-        /// 
+        /// pname:instanceCount is the number of instances to draw.
         /// </summary>
         public uint InstanceCount; 
         
         /// <summary>
-        /// 
+        /// pname:firstIndex is the base index within the index buffer.
         /// </summary>
         public uint FirstIndex; 
         
         /// <summary>
-        /// 
+        /// pname:vertexOffset is the value added to the vertex index before
+        /// indexing into the vertex buffer.
         /// </summary>
         public int VertexOffset; 
         
         /// <summary>
-        /// 
+        /// pname:firstInstance is the instance ID of the first instance to
+        /// draw.
         /// </summary>
         public uint FirstInstance; 
     }

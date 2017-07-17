@@ -34,22 +34,25 @@ namespace SharpVk.Interop
     public unsafe struct MemoryAllocateInfo
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:allocationSize is the size of the allocation in bytes
         /// </summary>
         public DeviceSize AllocationSize; 
         
         /// <summary>
-        /// 
+        /// pname:memoryTypeIndex is the memory type index, which selects the
+        /// properties of the memory to be allocated, as well as the heap the
+        /// memory will come from.
         /// </summary>
         public uint MemoryTypeIndex; 
     }

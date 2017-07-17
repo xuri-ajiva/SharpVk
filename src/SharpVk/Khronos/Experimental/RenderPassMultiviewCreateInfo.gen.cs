@@ -34,7 +34,11 @@ namespace SharpVk.Khronos.Experimental
     public struct RenderPassMultiviewCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:pViewMasks points to an array of pname:subpassCount number of
+        /// view masks, where each mask is a bitfield of view indices
+        /// describing which views rendering is broadcast to in each subpass,
+        /// when multiview is enabled. If pname:subpassCount is zero, each view
+        /// mask is treated as zero.
         /// </summary>
         public uint[] ViewMasks
         {
@@ -43,7 +47,11 @@ namespace SharpVk.Khronos.Experimental
         }
         
         /// <summary>
-        /// 
+        /// pname:pViewOffsets points to an array of pname:dependencyCount view
+        /// offsets, one for each dependency. If pname:dependencyCount is zero,
+        /// each dependency's view offset is treated as zero. Each view offset
+        /// controls which views in the source subpass the views in the
+        /// destination subpass depend on.
         /// </summary>
         public int[] ViewOffsets
         {
@@ -52,7 +60,8 @@ namespace SharpVk.Khronos.Experimental
         }
         
         /// <summary>
-        /// 
+        /// pname:pCorrelationMasks is an array of view masks indicating sets
+        /// of views that may: be more efficient to render concurrently.
         /// </summary>
         public uint[] CorrelationMasks
         {

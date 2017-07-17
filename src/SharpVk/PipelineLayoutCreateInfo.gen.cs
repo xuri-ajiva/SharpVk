@@ -35,7 +35,7 @@ namespace SharpVk
     public struct PipelineLayoutCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:flags is reserved for future use.
         /// </summary>
         public SharpVk.PipelineLayoutCreateFlags? Flags
         {
@@ -44,7 +44,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:pSetLayouts is a pointer to an array of
+        /// sname:VkDescriptorSetLayout objects.
         /// </summary>
         public SharpVk.DescriptorSetLayout[] SetLayouts
         {
@@ -53,7 +54,14 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:pPushConstantRanges is a pointer to an array of
+        /// sname:VkPushConstantRange structures defining a set of push
+        /// constant ranges for use in a single pipeline layout. In addition to
+        /// descriptor set layouts, a pipeline layout also describes how many
+        /// push constants can: be accessed by each stage of the pipeline. +
+        /// [NOTE] .Note ==== Push constants represent a high speed path to
+        /// modify constant data in pipelines that is expected to outperform
+        /// memory-backed resource updates. ====
         /// </summary>
         public SharpVk.PushConstantRange[] PushConstantRanges
         {

@@ -34,22 +34,26 @@ namespace SharpVk.Interop.NVidia
     public unsafe struct ExportMemoryWin32HandleInfo
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:pAttributes is a pointer to a Windows
+        /// code:SECURITY_ATTRIBUTES structure specifying security attributes
+        /// of the handle.
         /// </summary>
         public SecurityAttributes* Attributes; 
         
         /// <summary>
-        /// 
+        /// pname:dwAccess is a code:DWORD specifying access rights of the
+        /// handle.
         /// </summary>
         public uint DwAccess; 
     }

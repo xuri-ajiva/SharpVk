@@ -131,7 +131,8 @@ namespace SharpVk.Generator.Generation
                         publicStruct.Properties.Add(new MemberDefinition
                         {
                             Name = publicMember.Name,
-                            Type = publicMember.Type
+                            Type = publicMember.Type,
+                            Comment = this.commentGenerator.Lookup(typeItem.Key, member.VkName)
                         });
                     }
 
@@ -151,7 +152,8 @@ namespace SharpVk.Generator.Generation
                         interopStruct.Fields.Add(new MemberDefinition
                         {
                             Name = patternInfo.Interop.Name,
-                            Type = patternInfo.Interop.Type
+                            Type = patternInfo.Interop.Type,
+                            Comment = this.commentGenerator.Lookup(typeItem.Key, member.VkName)
                         });
                     }
 

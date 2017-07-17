@@ -34,22 +34,25 @@ namespace SharpVk.Interop.Khronos.Experimental
     public unsafe struct DeviceGroupDeviceCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:physicalDeviceCount is the number of elements in the
+        /// pname:pPhysicalDevices array.
         /// </summary>
         public uint PhysicalDeviceCount; 
         
         /// <summary>
-        /// 
+        /// pname:pPhysicalDevices is an array of physical device handles
+        /// belonging to the same device group.
         /// </summary>
         public SharpVk.Interop.PhysicalDevice* PhysicalDevices; 
     }

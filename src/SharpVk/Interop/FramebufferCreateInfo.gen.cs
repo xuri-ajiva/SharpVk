@@ -34,37 +34,47 @@ namespace SharpVk.Interop
     public unsafe struct FramebufferCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:flags is reserved for future use.
         /// </summary>
         public SharpVk.FramebufferCreateFlags Flags; 
         
         /// <summary>
-        /// 
+        /// pname:renderPass is a render pass that defines what render passes
+        /// the framebuffer will be compatible with. See
+        /// &lt;&lt;renderpass-compatibility,Render Pass Compatibility&gt;&gt;
+        /// for details.
         /// </summary>
         public SharpVk.Interop.RenderPass RenderPass; 
         
         /// <summary>
-        /// 
+        /// pname:attachmentCount is the number of attachments.
         /// </summary>
         public uint AttachmentCount; 
         
         /// <summary>
-        /// 
+        /// pname:pAttachments is an array of sname:VkImageView handles, each
+        /// of which will be used as the corresponding attachment in a render
+        /// pass instance.
         /// </summary>
         public SharpVk.Interop.ImageView* Attachments; 
         
         /// <summary>
-        /// 
+        /// pname:width, pname:height and pname:layers define the dimensions of
+        /// the framebuffer. If the render pass uses multiview, then
+        /// pname:layers must: be one and each attachment requires a number of
+        /// layers that is greater than the maximum bit index set in the view
+        /// mask in the subpasses in which it is used.
         /// </summary>
         public uint Width; 
         

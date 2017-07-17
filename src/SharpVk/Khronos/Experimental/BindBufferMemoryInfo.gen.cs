@@ -34,7 +34,7 @@ namespace SharpVk.Khronos.Experimental
     public struct BindBufferMemoryInfo
     {
         /// <summary>
-        /// 
+        /// pname:buffer is the buffer to be attached to memory.
         /// </summary>
         public SharpVk.Buffer Buffer
         {
@@ -43,7 +43,8 @@ namespace SharpVk.Khronos.Experimental
         }
         
         /// <summary>
-        /// 
+        /// pname:memory is a sname:VkDeviceMemory object describing the device
+        /// memory to attach.
         /// </summary>
         public SharpVk.DeviceMemory Memory
         {
@@ -52,7 +53,11 @@ namespace SharpVk.Khronos.Experimental
         }
         
         /// <summary>
-        /// 
+        /// pname:memoryOffset is the start offset of the region of
+        /// pname:memory which is to be bound to the buffer. The number of
+        /// bytes returned in the sname:VkMemoryRequirements::pname:size member
+        /// in pname:memory, starting from pname:memoryOffset bytes, will be
+        /// bound to the specified buffer.
         /// </summary>
         public DeviceSize MemoryOffset
         {
@@ -61,7 +66,7 @@ namespace SharpVk.Khronos.Experimental
         }
         
         /// <summary>
-        /// 
+        /// pname:pDeviceIndices is a pointer to an array of device indices.
         /// </summary>
         public uint[] DeviceIndices
         {

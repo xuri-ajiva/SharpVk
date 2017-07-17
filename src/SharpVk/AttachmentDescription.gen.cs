@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying an attachment description.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct AttachmentDescription
@@ -50,7 +50,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:flags is a bitmask describing additional properties of the
+        /// attachment. Bits which can: be set include: + --
         /// </summary>
         public SharpVk.AttachmentDescriptionFlags Flags; 
         

@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying sparse image memory requirements.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct SparseImageMemoryRequirements
@@ -51,22 +51,33 @@ namespace SharpVk
         public SharpVk.SparseImageFormatProperties FormatProperties; 
         
         /// <summary>
-        /// 
+        /// pname:imageMipTailFirstLod is the first mip level at which image
+        /// subresources are included in the mip tail region.
         /// </summary>
         public uint ImageMipTailFirstLod; 
         
         /// <summary>
-        /// 
+        /// pname:imageMipTailSize is the memory size (in bytes) of the mip
+        /// tail region. If pname:formatProperties.flags contains
+        /// ename:VK_SPARSE_IMAGE_FORMAT_SINGLE_MIPTAIL_BIT, this is the size
+        /// of the whole mip tail, otherwise this is the size of the mip tail
+        /// of a single array layer. This value is guaranteed to be a multiple
+        /// of the sparse block size in bytes.
         /// </summary>
         public DeviceSize ImageMipTailSize; 
         
         /// <summary>
-        /// 
+        /// pname:imageMipTailOffset is the opaque memory offset used with
+        /// slink:VkSparseImageOpaqueMemoryBindInfo to bind the mip tail
+        /// region(s).
         /// </summary>
         public DeviceSize ImageMipTailOffset; 
         
         /// <summary>
-        /// 
+        /// pname:imageMipTailStride is the offset stride between each
+        /// array-layer's mip tail, if pname:formatProperties.flags does not
+        /// contain ename:VK_SPARSE_IMAGE_FORMAT_SINGLE_MIPTAIL_BIT (otherwise
+        /// the value is undefined).
         /// </summary>
         public DeviceSize ImageMipTailStride; 
     }

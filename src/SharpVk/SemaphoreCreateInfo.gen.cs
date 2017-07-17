@@ -34,7 +34,7 @@ namespace SharpVk
     public struct SemaphoreCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:flags is reserved for future use.
         /// </summary>
         public SharpVk.SemaphoreCreateFlags? Flags
         {

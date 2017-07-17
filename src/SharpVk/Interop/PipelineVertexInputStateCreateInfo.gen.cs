@@ -34,37 +34,43 @@ namespace SharpVk.Interop
     public unsafe struct PipelineVertexInputStateCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:flags is reserved for future use.
         /// </summary>
         public SharpVk.PipelineVertexInputStateCreateFlags Flags; 
         
         /// <summary>
-        /// 
+        /// pname:vertexBindingDescriptionCount is the number of vertex binding
+        /// descriptions provided in pname:pVertexBindingDescriptions.
         /// </summary>
         public uint VertexBindingDescriptionCount; 
         
         /// <summary>
-        /// 
+        /// pname:pVertexBindingDescriptions is a pointer to an array of
+        /// sname:VkVertexInputBindingDescription structures.
         /// </summary>
         public SharpVk.VertexInputBindingDescription* VertexBindingDescriptions; 
         
         /// <summary>
-        /// 
+        /// pname:vertexAttributeDescriptionCount is the number of vertex
+        /// attribute descriptions provided in
+        /// pname:pVertexAttributeDescriptions.
         /// </summary>
         public uint VertexAttributeDescriptionCount; 
         
         /// <summary>
-        /// 
+        /// pname:pVertexAttributeDescriptions is a pointer to an array of
+        /// sname:VkVertexInputAttributeDescription structures.
         /// </summary>
         public SharpVk.VertexInputAttributeDescription* VertexAttributeDescriptions; 
     }

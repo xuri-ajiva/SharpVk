@@ -34,7 +34,7 @@ namespace SharpVk.Khronos
     public struct XlibSurfaceCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:flags is reserved for future use.
         /// </summary>
         public SharpVk.Khronos.XlibSurfaceCreateFlags? Flags
         {
@@ -43,7 +43,8 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// pname:dpy is a pointer to an Xlib code:Display connection to the X
+        /// server.
         /// </summary>
         public IntPtr Dpy
         {
@@ -52,7 +53,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// pname:window is an Xlib code:Window to associate the surface with.
         /// </summary>
         public IntPtr Window
         {

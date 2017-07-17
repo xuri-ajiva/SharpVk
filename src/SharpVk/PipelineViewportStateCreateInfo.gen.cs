@@ -35,7 +35,7 @@ namespace SharpVk
     public struct PipelineViewportStateCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:flags is reserved for future use.
         /// </summary>
         public SharpVk.PipelineViewportStateCreateFlags? Flags
         {
@@ -44,7 +44,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:viewportCount is the number of viewports used by the
+        /// pipeline.
         /// </summary>
         public uint ViewportCount
         {
@@ -53,7 +54,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:pViewports is a pointer to an array of slink:VkViewport
+        /// structures, defining the viewport transforms. If the viewport state
+        /// is dynamic, this member is ignored.
         /// </summary>
         public SharpVk.Viewport[] Viewports
         {
@@ -62,7 +65,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:scissorCount is the number of
+        /// &lt;&lt;fragops-scissor,scissors&gt;&gt; and must: match the number
+        /// of viewports.
         /// </summary>
         public uint ScissorCount
         {
@@ -71,7 +76,10 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:pScissors is a pointer to an array of sname:VkRect2D
+        /// structures which define the rectangular bounds of the scissor for
+        /// the corresponding viewport. If the scissor state is dynamic, this
+        /// member is ignored.
         /// </summary>
         public SharpVk.Rect2D[] Scissors
         {

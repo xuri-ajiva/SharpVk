@@ -34,7 +34,8 @@ namespace SharpVk.Khronos.Experimental
     public struct DeviceGroupBindSparseInfo
     {
         /// <summary>
-        /// 
+        /// pname:resourceDeviceIndex is a device index indicating which
+        /// instance of the resource is bound.
         /// </summary>
         public uint ResourceDeviceIndex
         {
@@ -43,7 +44,8 @@ namespace SharpVk.Khronos.Experimental
         }
         
         /// <summary>
-        /// 
+        /// pname:memoryDeviceIndex is a device index indicating which instance
+        /// of the memory the resource instance is bound to.
         /// </summary>
         public uint MemoryDeviceIndex
         {

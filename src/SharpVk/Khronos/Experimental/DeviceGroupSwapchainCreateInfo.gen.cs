@@ -34,7 +34,8 @@ namespace SharpVk.Khronos.Experimental
     public struct DeviceGroupSwapchainCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:modes is a bitfield of modes that the swapchain can: be used
+        /// with.
         /// </summary>
         public SharpVk.Khronos.Experimental.DeviceGroupPresentModeFlags Modes
         {

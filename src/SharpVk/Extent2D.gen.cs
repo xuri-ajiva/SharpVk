@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying a two-dimensional extent.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Extent2D

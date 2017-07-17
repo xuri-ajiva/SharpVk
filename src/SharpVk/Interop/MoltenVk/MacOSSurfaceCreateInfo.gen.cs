@@ -34,22 +34,25 @@ namespace SharpVk.Interop.MoltenVk
     public unsafe struct MacOSSurfaceCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:flags is reserved for future use.
         /// </summary>
         public SharpVk.MoltenVk.MacOSSurfaceCreateFlags Flags; 
         
         /// <summary>
-        /// 
+        /// pname:pView is a reference to a code:NSView object which will
+        /// display this surface. This code:NSView must: be backed by a
+        /// code:CALayer instance of type code:CAMetalLayer.
         /// </summary>
         public void* View; 
     }

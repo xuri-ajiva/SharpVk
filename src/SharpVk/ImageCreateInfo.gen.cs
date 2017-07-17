@@ -34,7 +34,9 @@ namespace SharpVk
     public struct ImageCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:flags is a bitmask describing additional parameters of the
+        /// image. See elink:VkImageCreateFlagBits below for a description of
+        /// the supported bits.
         /// </summary>
         public SharpVk.ImageCreateFlags? Flags
         {
@@ -43,7 +45,10 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:imageType is a elink:VkImageType specifying the basic
+        /// dimensionality of the image, as described below. Layers in array
+        /// textures do not count as a dimension for the purposes of the image
+        /// type.
         /// </summary>
         public SharpVk.ImageType ImageType
         {
@@ -52,7 +57,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:format is a elink:VkFormat describing the format and type of
+        /// the data elements that will be contained in the image.
         /// </summary>
         public SharpVk.Format Format
         {
@@ -61,7 +67,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:extent is a slink:VkExtent3D describing the number of data
+        /// elements in each dimension of the base level.
         /// </summary>
         public SharpVk.Extent3D Extent
         {
@@ -70,7 +77,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:mipLevels describes the number of levels of detail available
+        /// for minified sampling of the image.
         /// </summary>
         public uint MipLevels
         {
@@ -79,7 +87,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:arrayLayers is the number of layers in the image.
         /// </summary>
         public uint ArrayLayers
         {
@@ -88,7 +96,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:samples is the number of sub-data element samples in the
+        /// image as defined in elink:VkSampleCountFlagBits. See
+        /// &lt;&lt;primsrast-multisampling,Multisampling&gt;&gt;.
         /// </summary>
         public SharpVk.SampleCountFlags Samples
         {
@@ -97,7 +107,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:tiling is a elink:VkImageTiling specifying the tiling
+        /// arrangement of the data elements in memory, as described below.
         /// </summary>
         public SharpVk.ImageTiling Tiling
         {
@@ -106,7 +117,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:usage is a bitmask describing the intended usage of the
+        /// image. See elink:VkImageUsageFlagBits below for a description of
+        /// the supported bits.
         /// </summary>
         public SharpVk.ImageUsageFlags Usage
         {
@@ -115,7 +128,10 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:sharingMode is the sharing mode of the image when it will be
+        /// accessed by multiple queue families, and must: be one of the values
+        /// described for elink:VkSharingMode in the
+        /// &lt;&lt;resources-sharing,Resource Sharing&gt;&gt; section below.
         /// </summary>
         public SharpVk.SharingMode SharingMode
         {
@@ -124,7 +140,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:pQueueFamilyIndices is a list of queue families that will
+        /// access this image (ignored if pname:sharingMode is not
+        /// ename:VK_SHARING_MODE_CONCURRENT).
         /// </summary>
         public uint[] QueueFamilyIndices
         {
@@ -133,7 +151,11 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:initialLayout selects the initial elink:VkImageLayout state
+        /// of all image subresources of the image. See
+        /// &lt;&lt;resources-image-layouts,Image Layouts&gt;&gt;.
+        /// pname:initialLayout must: be ename:VK_IMAGE_LAYOUT_UNDEFINED or
+        /// ename:VK_IMAGE_LAYOUT_PREINITIALIZED.
         /// </summary>
         public SharpVk.ImageLayout InitialLayout
         {

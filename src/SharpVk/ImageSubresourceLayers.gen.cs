@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying a image subresource layers.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct ImageSubresourceLayers
@@ -45,17 +45,19 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:aspectMask is a combination of elink:VkImageAspectFlagBits,
+        /// selecting the color, depth and/or stencil aspects to be copied.
         /// </summary>
         public SharpVk.ImageAspectFlags AspectMask; 
         
         /// <summary>
-        /// 
+        /// pname:mipLevel is the mipmap level to copy from.
         /// </summary>
         public uint MipLevel; 
         
         /// <summary>
-        /// 
+        /// pname:baseArrayLayer and pname:layerCount are the starting layer
+        /// and number of layers to copy.
         /// </summary>
         public uint BaseArrayLayer; 
         

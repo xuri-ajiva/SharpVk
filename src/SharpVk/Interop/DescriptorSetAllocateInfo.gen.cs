@@ -34,27 +34,32 @@ namespace SharpVk.Interop
     public unsafe struct DescriptorSetAllocateInfo
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:descriptorPool is the pool which the sets will be allocated
+        /// from.
         /// </summary>
         public SharpVk.Interop.DescriptorPool DescriptorPool; 
         
         /// <summary>
-        /// 
+        /// pname:descriptorSetCount determines the number of descriptor sets
+        /// to be allocated from the pool.
         /// </summary>
         public uint DescriptorSetCount; 
         
         /// <summary>
-        /// 
+        /// pname:pSetLayouts is an array of descriptor set layouts, with each
+        /// member specifying how the corresponding descriptor set is
+        /// allocated.
         /// </summary>
         public SharpVk.Interop.DescriptorSetLayout* SetLayouts; 
     }

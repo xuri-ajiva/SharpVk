@@ -34,7 +34,8 @@ namespace SharpVk.Khronos
     public struct PhysicalDeviceImageFormatInfo2
     {
         /// <summary>
-        /// 
+        /// pname:format is the image format, corresponding to
+        /// slink:VkImageCreateInfo::pname:format.
         /// </summary>
         public SharpVk.Format Format
         {
@@ -43,7 +44,8 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// pname:type is the image type, corresponding to
+        /// slink:VkImageCreateInfo::pname:imageType.
         /// </summary>
         public SharpVk.ImageType Type
         {
@@ -52,7 +54,8 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// pname:tiling is the image tiling, corresponding to
+        /// slink:VkImageCreateInfo::pname:tiling.
         /// </summary>
         public SharpVk.ImageTiling Tiling
         {
@@ -61,7 +64,8 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// pname:usage is the intended usage of the image, corresponding to
+        /// slink:VkImageCreateInfo::pname:usage.
         /// </summary>
         public SharpVk.ImageUsageFlags Usage
         {
@@ -70,7 +74,8 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// pname:flags is a bitmask describing additional parameters of the
+        /// image, corresponding to slink:VkImageCreateInfo::pname:flags.
         /// </summary>
         public SharpVk.ImageCreateFlags? Flags
         {

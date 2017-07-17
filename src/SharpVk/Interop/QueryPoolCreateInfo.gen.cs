@@ -34,22 +34,24 @@ namespace SharpVk.Interop
     public unsafe struct QueryPoolCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:flags is reserved for future use.
         /// </summary>
         public SharpVk.QueryPoolCreateFlags Flags; 
         
         /// <summary>
-        /// 
+        /// pname:queryType is the type of queries managed by the pool, and
+        /// must: be one of the values + --
         /// </summary>
         public SharpVk.QueryType QueryType; 
         

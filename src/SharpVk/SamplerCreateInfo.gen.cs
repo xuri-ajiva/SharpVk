@@ -34,7 +34,7 @@ namespace SharpVk
     public struct SamplerCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:flags is reserved for future use.
         /// </summary>
         public SharpVk.SamplerCreateFlags? Flags
         {
@@ -43,7 +43,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:magFilter is the magnification filter to apply to lookups,
+        /// and is of type: + --
         /// </summary>
         public SharpVk.Filter MagFilter
         {

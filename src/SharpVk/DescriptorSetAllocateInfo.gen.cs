@@ -34,7 +34,8 @@ namespace SharpVk
     public struct DescriptorSetAllocateInfo
     {
         /// <summary>
-        /// 
+        /// pname:descriptorPool is the pool which the sets will be allocated
+        /// from.
         /// </summary>
         public SharpVk.DescriptorPool DescriptorPool
         {
@@ -43,7 +44,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:pSetLayouts is an array of descriptor set layouts, with each
+        /// member specifying how the corresponding descriptor set is
+        /// allocated.
         /// </summary>
         public SharpVk.DescriptorSetLayout[] SetLayouts
         {

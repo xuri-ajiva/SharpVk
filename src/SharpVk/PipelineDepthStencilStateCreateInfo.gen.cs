@@ -35,7 +35,7 @@ namespace SharpVk
     public struct PipelineDepthStencilStateCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:flags is reserved for future use.
         /// </summary>
         public SharpVk.PipelineDepthStencilStateCreateFlags? Flags
         {
@@ -44,7 +44,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:depthTestEnable controls whether &lt;&lt;fragops-depth,depth
+        /// testing&gt;&gt; is enabled.
         /// </summary>
         public bool DepthTestEnable
         {
@@ -53,7 +54,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:depthWriteEnable controls whether
+        /// &lt;&lt;fragops-depth-write,depth writes&gt;&gt; are enabled.
         /// </summary>
         public bool DepthWriteEnable
         {
@@ -62,7 +64,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:depthCompareOp is the comparison operator used in the
+        /// &lt;&lt;fragops-depth,depth test&gt;&gt;.
         /// </summary>
         public SharpVk.CompareOp DepthCompareOp
         {
@@ -71,7 +74,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:depthBoundsTestEnable controls whether
+        /// &lt;&lt;fragops-dbt,depth bounds testing&gt;&gt; is enabled.
         /// </summary>
         public bool DepthBoundsTestEnable
         {
@@ -80,7 +84,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:stencilTestEnable controls whether
+        /// &lt;&lt;fragops-stencil,stencil testing&gt;&gt; is enabled.
         /// </summary>
         public bool StencilTestEnable
         {
@@ -89,7 +94,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:front and pname:back control the parameters of the
+        /// &lt;&lt;fragops-stencil,stencil test&gt;&gt;.
         /// </summary>
         public SharpVk.StencilOpState Front
         {
@@ -107,7 +113,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:minDepthBounds and pname:maxDepthBounds define the range of
+        /// values used in the &lt;&lt;fragops-dbt,depth bounds test&gt;&gt;.
         /// </summary>
         public float MinDepthBounds
         {

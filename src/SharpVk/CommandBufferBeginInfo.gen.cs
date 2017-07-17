@@ -34,7 +34,8 @@ namespace SharpVk
     public struct CommandBufferBeginInfo
     {
         /// <summary>
-        /// 
+        /// pname:flags is a bitmask indicating usage behavior for the command
+        /// buffer. Bits which can: be set include: + --
         /// </summary>
         public SharpVk.CommandBufferUsageFlags? Flags
         {

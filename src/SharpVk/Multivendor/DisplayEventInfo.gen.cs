@@ -34,7 +34,8 @@ namespace SharpVk.Multivendor
     public struct DisplayEventInfo
     {
         /// <summary>
-        /// 
+        /// pname:displayEvent specifies when the fence will be signaled.
+        /// Possible values are: + --
         /// </summary>
         public SharpVk.Multivendor.DisplayEventType DisplayEvent
         {

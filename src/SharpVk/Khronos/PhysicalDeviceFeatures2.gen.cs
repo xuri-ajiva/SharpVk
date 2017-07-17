@@ -35,7 +35,9 @@ namespace SharpVk.Khronos
     public struct PhysicalDeviceFeatures2
     {
         /// <summary>
-        /// 
+        /// pname:features is a structure of type
+        /// slink:VkPhysicalDeviceFeatures describing the fine-grained features
+        /// of the Vulkan 1.0 API.
         /// </summary>
         public SharpVk.PhysicalDeviceFeatures Features
         {

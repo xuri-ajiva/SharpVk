@@ -35,7 +35,7 @@ namespace SharpVk
     public struct PipelineVertexInputStateCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:flags is reserved for future use.
         /// </summary>
         public SharpVk.PipelineVertexInputStateCreateFlags? Flags
         {
@@ -44,7 +44,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:pVertexBindingDescriptions is a pointer to an array of
+        /// sname:VkVertexInputBindingDescription structures.
         /// </summary>
         public SharpVk.VertexInputBindingDescription[] VertexBindingDescriptions
         {
@@ -53,7 +54,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:pVertexAttributeDescriptions is a pointer to an array of
+        /// sname:VkVertexInputAttributeDescription structures.
         /// </summary>
         public SharpVk.VertexInputAttributeDescription[] VertexAttributeDescriptions
         {

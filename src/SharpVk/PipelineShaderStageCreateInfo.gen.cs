@@ -35,7 +35,7 @@ namespace SharpVk
     public struct PipelineShaderStageCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:flags is reserved for future use.
         /// </summary>
         public SharpVk.PipelineShaderStageCreateFlags? Flags
         {
@@ -44,7 +44,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:stage names a single pipeline stage. Bits which can: be set
+        /// include: + --
         /// </summary>
         public SharpVk.ShaderStageFlags Stage
         {

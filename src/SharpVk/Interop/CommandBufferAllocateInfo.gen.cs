@@ -34,22 +34,25 @@ namespace SharpVk.Interop
     public unsafe struct CommandBufferAllocateInfo
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:commandPool is the command pool from which the command
+        /// buffers are allocated.
         /// </summary>
         public SharpVk.Interop.CommandPool CommandPool; 
         
         /// <summary>
-        /// 
+        /// pname:level determines whether the command buffers are primary or
+        /// secondary command buffers. Possible values include: + --
         /// </summary>
         public SharpVk.CommandBufferLevel Level; 
         

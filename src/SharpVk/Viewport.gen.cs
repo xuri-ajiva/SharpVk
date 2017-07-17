@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying a viewport.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Viewport
@@ -47,7 +47,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:x and pname:y are the viewport's upper left corner
+        /// [eq]#(x,y)#.
         /// </summary>
         public float X; 
         
@@ -57,7 +58,8 @@ namespace SharpVk
         public float Y; 
         
         /// <summary>
-        /// 
+        /// pname:width and pname:height are the viewport's width and height,
+        /// respectively.
         /// </summary>
         public float Width; 
         
@@ -67,7 +69,9 @@ namespace SharpVk
         public float Height; 
         
         /// <summary>
-        /// 
+        /// pname:minDepth and pname:maxDepth are the depth range for the
+        /// viewport. It is valid for pname:minDepth to be greater than or
+        /// equal to pname:maxDepth.
         /// </summary>
         public float MinDepth; 
         

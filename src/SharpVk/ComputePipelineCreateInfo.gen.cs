@@ -34,7 +34,8 @@ namespace SharpVk
     public struct ComputePipelineCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:flags provides options for pipeline creation, and is of type
+        /// elink:VkPipelineCreateFlagBits.
         /// </summary>
         public SharpVk.PipelineCreateFlags? Flags
         {
@@ -43,7 +44,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:stage is a slink:VkPipelineShaderStageCreateInfo describing
+        /// the compute shader.
         /// </summary>
         public SharpVk.PipelineShaderStageCreateInfo Stage
         {
@@ -52,7 +54,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:layout is the description of binding locations used by both
+        /// the pipeline and descriptor sets used with the pipeline.
         /// </summary>
         public SharpVk.PipelineLayout Layout
         {
@@ -61,7 +64,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:basePipelineHandle is a pipeline to derive from
         /// </summary>
         public SharpVk.Pipeline BasePipelineHandle
         {
@@ -70,7 +73,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:basePipelineIndex is an index into the pname:pCreateInfos
+        /// parameter to use as a pipeline to derive from
         /// </summary>
         public int BasePipelineIndex
         {

@@ -34,7 +34,8 @@ namespace SharpVk
     public struct BufferMemoryBarrier
     {
         /// <summary>
-        /// 
+        /// pname:srcAccessMask defines a &lt;&lt;synchronization-access-masks,
+        /// source access mask&gt;&gt;.
         /// </summary>
         public SharpVk.AccessFlags? SourceAccessMask
         {
@@ -43,7 +44,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:dstAccessMask defines a &lt;&lt;synchronization-access-masks,
+        /// destination access mask&gt;&gt;.
         /// </summary>
         public SharpVk.AccessFlags? DestinationAccessMask
         {
@@ -52,7 +54,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:srcQueueFamilyIndex is the source queue family for a
+        /// &lt;&lt;synchronization-queue-transfers, queue family ownership
+        /// transfer&gt;&gt;.
         /// </summary>
         public uint SourceQueueFamilyIndex
         {
@@ -61,7 +65,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:dstQueueFamilyIndex is the destination queue family for a
+        /// &lt;&lt;synchronization-queue-transfers, queue family ownership
+        /// transfer&gt;&gt;.
         /// </summary>
         public uint DestinationQueueFamilyIndex
         {
@@ -70,7 +76,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:buffer is a handle to the buffer whose backing memory is
+        /// affected by the barrier.
         /// </summary>
         public SharpVk.Buffer Buffer
         {
@@ -79,7 +86,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:offset is an offset in bytes into the backing memory for
+        /// pname:buffer; this is relative to the base offset as bound to the
+        /// buffer (see flink:vkBindBufferMemory).
         /// </summary>
         public DeviceSize Offset
         {
@@ -88,7 +97,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:size is a size in bytes of the affected area of backing
+        /// memory for pname:buffer, or ename:VK_WHOLE_SIZE to use the range
+        /// from pname:offset to the end of the buffer.
         /// </summary>
         public DeviceSize Size
         {

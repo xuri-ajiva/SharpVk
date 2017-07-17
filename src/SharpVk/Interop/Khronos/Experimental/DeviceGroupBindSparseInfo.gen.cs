@@ -34,22 +34,25 @@ namespace SharpVk.Interop.Khronos.Experimental
     public unsafe struct DeviceGroupBindSparseInfo
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:resourceDeviceIndex is a device index indicating which
+        /// instance of the resource is bound.
         /// </summary>
         public uint ResourceDeviceIndex; 
         
         /// <summary>
-        /// 
+        /// pname:memoryDeviceIndex is a device index indicating which instance
+        /// of the memory the resource instance is bound to.
         /// </summary>
         public uint MemoryDeviceIndex; 
     }

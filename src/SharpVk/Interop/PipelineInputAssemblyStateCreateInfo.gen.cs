@@ -34,27 +34,37 @@ namespace SharpVk.Interop
     public unsafe struct PipelineInputAssemblyStateCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:flags is reserved for future use.
         /// </summary>
         public SharpVk.PipelineInputAssemblyStateCreateFlags Flags; 
         
         /// <summary>
-        /// 
+        /// pname:topology is a elink:VkPrimitiveTopology defining the
+        /// primitive topology, as described below.
         /// </summary>
         public SharpVk.PrimitiveTopology Topology; 
         
         /// <summary>
-        /// 
+        /// pname:primitiveRestartEnable controls whether a special vertex
+        /// index value is treated as restarting the assembly of primitives.
+        /// This enable only applies to indexed draws (flink:vkCmdDrawIndexed
+        /// and flink:vkCmdDrawIndexedIndirect), and the special index value is
+        /// either 0xFFFFFFFF when the pname:indexType parameter of
+        /// fname:vkCmdBindIndexBuffer is equal to ename:VK_INDEX_TYPE_UINT32,
+        /// or 0xFFFF when pname:indexType is equal to
+        /// ename:VK_INDEX_TYPE_UINT16. Primitive restart is not allowed for
+        /// "`list`" topologies.
         /// </summary>
         public Bool32 PrimitiveRestartEnable; 
     }

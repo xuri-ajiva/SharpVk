@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
+    /// Structure describing a supported swapchain format-color space pair.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct SurfaceFormat
@@ -43,12 +43,14 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// pname:format is a ename:VkFormat that is compatible with the
+        /// specified surface.
         /// </summary>
         public SharpVk.Format Format; 
         
         /// <summary>
-        /// 
+        /// pname:colorSpace is a presentation ename:VkColorSpaceKHR that is
+        /// compatible with the surface.
         /// </summary>
         public SharpVk.Khronos.ColorSpace ColorSpace; 
     }

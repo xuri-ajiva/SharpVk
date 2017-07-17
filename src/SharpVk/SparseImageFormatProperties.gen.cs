@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying sparse image format properties.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct SparseImageFormatProperties
@@ -44,17 +44,20 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:aspectMask is a bitmask of elink:VkImageAspectFlagBits
+        /// specifying which aspects of the image the properties apply to.
         /// </summary>
         public SharpVk.ImageAspectFlags AspectMask; 
         
         /// <summary>
-        /// 
+        /// pname:imageGranularity is the width, height, and depth of the
+        /// sparse image block in texels or compressed texel blocks.
         /// </summary>
         public SharpVk.Extent3D ImageGranularity; 
         
         /// <summary>
-        /// 
+        /// pname:flags is a bitmask specifying additional information about
+        /// the sparse resource. Bits which can: be set include: + --
         /// </summary>
         public SharpVk.SparseImageFormatFlags Flags; 
     }

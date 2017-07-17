@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying a image subresource.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct ImageSubresource
@@ -44,17 +44,18 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:aspectMask is a elink:VkImageAspectFlags selecting the image
+        /// _aspect_.
         /// </summary>
         public SharpVk.ImageAspectFlags AspectMask; 
         
         /// <summary>
-        /// 
+        /// pname:mipLevel selects the mipmap level.
         /// </summary>
         public uint MipLevel; 
         
         /// <summary>
-        /// 
+        /// pname:arrayLayer selects the array layer.
         /// </summary>
         public uint ArrayLayer; 
     }

@@ -34,22 +34,25 @@ namespace SharpVk.Interop.Khronos
     public unsafe struct MirSurfaceCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:flags is reserved for future use.
         /// </summary>
         public SharpVk.Khronos.MirSurfaceCreateFlags Flags; 
         
         /// <summary>
-        /// 
+        /// pname:connection and pname:surface are pointers to the
+        /// code:MirConnection and code:MirSurface for the window to associate
+        /// the surface with.
         /// </summary>
         public IntPtr* Connection; 
         

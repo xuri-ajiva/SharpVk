@@ -34,7 +34,8 @@ namespace SharpVk
     public struct ImageMemoryBarrier
     {
         /// <summary>
-        /// 
+        /// pname:srcAccessMask defines a &lt;&lt;synchronization-access-masks,
+        /// source access mask&gt;&gt;.
         /// </summary>
         public SharpVk.AccessFlags? SourceAccessMask
         {
@@ -43,7 +44,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:dstAccessMask defines a &lt;&lt;synchronization-access-masks,
+        /// destination access mask&gt;&gt;.
         /// </summary>
         public SharpVk.AccessFlags? DestinationAccessMask
         {
@@ -52,7 +54,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:oldLayout is the old layout in an
+        /// &lt;&lt;synchronization-image-layout-transitions, image layout
+        /// transition&gt;&gt;.
         /// </summary>
         public SharpVk.ImageLayout OldLayout
         {
@@ -61,7 +65,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:newLayout is the new layout in an
+        /// &lt;&lt;synchronization-image-layout-transitions, image layout
+        /// transition&gt;&gt;.
         /// </summary>
         public SharpVk.ImageLayout NewLayout
         {
@@ -70,7 +76,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:srcQueueFamilyIndex is the source queue family for a
+        /// &lt;&lt;synchronization-queue-transfers, queue family ownership
+        /// transfer&gt;&gt;.
         /// </summary>
         public uint SourceQueueFamilyIndex
         {
@@ -79,7 +87,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:dstQueueFamilyIndex is the destination queue family for a
+        /// &lt;&lt;synchronization-queue-transfers, queue family ownership
+        /// transfer&gt;&gt;.
         /// </summary>
         public uint DestinationQueueFamilyIndex
         {
@@ -88,7 +98,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:image is a handle to the image affected by this barrier.
         /// </summary>
         public SharpVk.Image Image
         {
@@ -97,7 +107,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:subresourceRange describes the &lt;&lt;resources-image-views,
+        /// image subresource range&gt;&gt; within pname:image that is affected
+        /// by this barrier.
         /// </summary>
         public SharpVk.ImageSubresourceRange SubresourceRange
         {

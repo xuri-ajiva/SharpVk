@@ -34,7 +34,8 @@ namespace SharpVk.Khronos.Experimental
     public struct ImageSwapchainCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:swapchain is dlink:VK_NULL_HANDLE or a handle of a swapchain
+        /// that the image will be bound to.
         /// </summary>
         public SharpVk.Khronos.Swapchain Swapchain
         {

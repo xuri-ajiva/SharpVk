@@ -35,7 +35,7 @@ namespace SharpVk.Khronos
     public struct AndroidSurfaceCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:flags is reserved for future use.
         /// </summary>
         public SharpVk.Khronos.AndroidSurfaceCreateFlags? Flags
         {
@@ -44,7 +44,8 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// pname:window is a pointer to the code:ANativeWindow to associate
+        /// the surface with.
         /// </summary>
         public IntPtr Window
         {

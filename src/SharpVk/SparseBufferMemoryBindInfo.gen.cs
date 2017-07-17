@@ -34,7 +34,7 @@ namespace SharpVk
     public struct SparseBufferMemoryBindInfo
     {
         /// <summary>
-        /// 
+        /// pname:buffer is the sname:VkBuffer object to be bound.
         /// </summary>
         public SharpVk.Buffer Buffer
         {
@@ -43,7 +43,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:pBinds is a pointer to array of sname:VkSparseMemoryBind
+        /// structures.
         /// </summary>
         public SharpVk.SparseMemoryBind[] Binds
         {

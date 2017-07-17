@@ -34,7 +34,7 @@ namespace SharpVk.Khronos.Experimental
     public struct BindImageMemorySwapchainInfo
     {
         /// <summary>
-        /// 
+        /// pname:swapchain is dlink:VK_NULL_HANDLE or a swapchain handle.
         /// </summary>
         public SharpVk.Khronos.Swapchain Swapchain
         {
@@ -43,7 +43,7 @@ namespace SharpVk.Khronos.Experimental
         }
         
         /// <summary>
-        /// 
+        /// pname:imageIndex is an image index within pname:swapchain.
         /// </summary>
         public uint ImageIndex
         {

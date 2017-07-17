@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying a buffer image copy operation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct BufferImageCopy
@@ -47,12 +47,18 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:bufferOffset is the offset in bytes from the start of the
+        /// buffer object where the image data is copied from or to.
         /// </summary>
         public DeviceSize BufferOffset; 
         
         /// <summary>
-        /// 
+        /// pname:bufferRowLength and pname:bufferImageHeight specify the data
+        /// in buffer memory as a subregion of a larger two- or
+        /// three-dimensional image, and control the addressing calculations of
+        /// data in buffer memory. If either of these values is zero, that
+        /// aspect of the buffer memory is considered to be tightly packed
+        /// according to the pname:imageExtent.
         /// </summary>
         public uint BufferRowLength; 
         
@@ -62,17 +68,21 @@ namespace SharpVk
         public uint BufferImageHeight; 
         
         /// <summary>
-        /// 
+        /// pname:imageSubresource is a slink:VkImageSubresourceLayers used to
+        /// specify the specific image subresources of the image used for the
+        /// source or destination image data.
         /// </summary>
         public SharpVk.ImageSubresourceLayers ImageSubresource; 
         
         /// <summary>
-        /// 
+        /// pname:imageOffset selects the initial x, y, z offsets in texels of
+        /// the sub-region of the source or destination image data.
         /// </summary>
         public SharpVk.Offset3D ImageOffset; 
         
         /// <summary>
-        /// 
+        /// pname:imageExtent is the size in texels of the image to copy in
+        /// pname:width, pname:height and pname:depth.
         /// </summary>
         public SharpVk.Extent3D ImageExtent; 
     }

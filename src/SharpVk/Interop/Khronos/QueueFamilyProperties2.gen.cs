@@ -34,17 +34,20 @@ namespace SharpVk.Interop.Khronos
     public unsafe struct QueueFamilyProperties2
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:queueFamilyProperties is a structure of type
+        /// slink:VkQueueFamilyProperties which is populated with the same
+        /// values as in flink:vkGetPhysicalDeviceQueueFamilyProperties.
         /// </summary>
         public SharpVk.QueueFamilyProperties QueueFamilyProperties; 
     }

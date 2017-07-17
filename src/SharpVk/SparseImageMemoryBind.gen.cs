@@ -34,7 +34,8 @@ namespace SharpVk
     public struct SparseImageMemoryBind
     {
         /// <summary>
-        /// 
+        /// pname:subresource is the aspectMask and region of interest in the
+        /// image.
         /// </summary>
         public SharpVk.ImageSubresource Subresource
         {
@@ -43,7 +44,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:offset are the coordinates of the first texel within the
+        /// image subresource to bind.
         /// </summary>
         public SharpVk.Offset3D Offset
         {
@@ -52,7 +54,12 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:extent is the size in texels of the region within the image
+        /// subresource to bind. The extent must: be a multiple of the sparse
+        /// image block dimensions, except when binding sparse image blocks
+        /// along the edge of an image subresource it can: instead be such that
+        /// any coordinate of [eq]#pname:offset + pname:extent# equals the
+        /// corresponding dimensions of the image subresource.
         /// </summary>
         public SharpVk.Extent3D Extent
         {
@@ -61,7 +68,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:memory is the sname:VkDeviceMemory object that the sparse
+        /// image blocks of the image are bound to. If pname:memory is
+        /// dlink:VK_NULL_HANDLE, the sparse image blocks are unbound.
         /// </summary>
         public SharpVk.DeviceMemory Memory
         {
@@ -70,7 +79,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:memoryOffset is an offset into sname:VkDeviceMemory object.
+        /// If pname:memory is dlink:VK_NULL_HANDLE, this value is ignored.
         /// </summary>
         public DeviceSize MemoryOffset
         {
@@ -79,7 +89,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:flags are sparse memory binding flags.
         /// </summary>
         public SharpVk.SparseMemoryBindFlags? Flags
         {

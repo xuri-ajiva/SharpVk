@@ -35,7 +35,7 @@ namespace SharpVk
     public struct PipelineDynamicStateCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:flags is reserved for future use.
         /// </summary>
         public SharpVk.PipelineDynamicStateCreateFlags? Flags
         {
@@ -44,7 +44,10 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:pDynamicStates is an array of elink:VkDynamicState enums
+        /// which indicate which pieces of pipeline state will use the values
+        /// from dynamic state commands rather than from the pipeline state
+        /// creation info.
         /// </summary>
         public SharpVk.DynamicState[] DynamicStates
         {

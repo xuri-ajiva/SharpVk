@@ -34,22 +34,25 @@ namespace SharpVk.Interop
     public unsafe struct SpecializationInfo
     {
         /// <summary>
-        /// 
+        /// pname:mapEntryCount is the number of entries in the
+        /// pname:pMapEntries array.
         /// </summary>
         public uint MapEntryCount; 
         
         /// <summary>
-        /// 
+        /// pname:pMapEntries is a pointer to an array of
+        /// sname:VkSpecializationMapEntry which maps constant IDs to offsets
+        /// in pname:pData.
         /// </summary>
         public SharpVk.SpecializationMapEntry* MapEntries; 
         
         /// <summary>
-        /// 
+        /// pname:dataSize is the byte size of the pname:pData buffer.
         /// </summary>
         public HostSize DataSize; 
         
         /// <summary>
-        /// 
+        /// pname:pData contains the actual constant values to specialize with.
         /// </summary>
         public void* Data; 
     }

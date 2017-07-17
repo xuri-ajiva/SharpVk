@@ -34,7 +34,12 @@ namespace SharpVk.NVidia
     public struct ExternalMemoryImageCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:handleTypes is a bitmask of
+        /// elink:VkExternalMemoryHandleTypeFlagBitsNV specifying one or more
+        /// external memory handle types. The types must: all be compatible
+        /// with each other and the other image creation parameters, as
+        /// reported by
+        /// flink:vkGetPhysicalDeviceExternalImageFormatPropertiesNV.
         /// </summary>
         public SharpVk.NVidia.ExternalMemoryHandleTypeFlags? HandleTypes
         {

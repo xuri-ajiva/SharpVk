@@ -34,52 +34,65 @@ namespace SharpVk.Interop
     public unsafe struct ImageMemoryBarrier
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:srcAccessMask defines a &lt;&lt;synchronization-access-masks,
+        /// source access mask&gt;&gt;.
         /// </summary>
         public SharpVk.AccessFlags SourceAccessMask; 
         
         /// <summary>
-        /// 
+        /// pname:dstAccessMask defines a &lt;&lt;synchronization-access-masks,
+        /// destination access mask&gt;&gt;.
         /// </summary>
         public SharpVk.AccessFlags DestinationAccessMask; 
         
         /// <summary>
-        /// 
+        /// pname:oldLayout is the old layout in an
+        /// &lt;&lt;synchronization-image-layout-transitions, image layout
+        /// transition&gt;&gt;.
         /// </summary>
         public SharpVk.ImageLayout OldLayout; 
         
         /// <summary>
-        /// 
+        /// pname:newLayout is the new layout in an
+        /// &lt;&lt;synchronization-image-layout-transitions, image layout
+        /// transition&gt;&gt;.
         /// </summary>
         public SharpVk.ImageLayout NewLayout; 
         
         /// <summary>
-        /// 
+        /// pname:srcQueueFamilyIndex is the source queue family for a
+        /// &lt;&lt;synchronization-queue-transfers, queue family ownership
+        /// transfer&gt;&gt;.
         /// </summary>
         public uint SourceQueueFamilyIndex; 
         
         /// <summary>
-        /// 
+        /// pname:dstQueueFamilyIndex is the destination queue family for a
+        /// &lt;&lt;synchronization-queue-transfers, queue family ownership
+        /// transfer&gt;&gt;.
         /// </summary>
         public uint DestinationQueueFamilyIndex; 
         
         /// <summary>
-        /// 
+        /// pname:image is a handle to the image affected by this barrier.
         /// </summary>
         public SharpVk.Interop.Image Image; 
         
         /// <summary>
-        /// 
+        /// pname:subresourceRange describes the &lt;&lt;resources-image-views,
+        /// image subresource range&gt;&gt; within pname:image that is affected
+        /// by this barrier.
         /// </summary>
         public SharpVk.ImageSubresourceRange SubresourceRange; 
     }

@@ -35,7 +35,9 @@ namespace SharpVk
     public struct DescriptorSetLayoutCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:flags provides options for descriptor set layout creation,
+        /// and is of type elink:VkDescriptorSetLayoutCreateFlags. Bits which
+        /// can: be set include: + --
         /// </summary>
         public SharpVk.DescriptorSetLayoutCreateFlags? Flags
         {

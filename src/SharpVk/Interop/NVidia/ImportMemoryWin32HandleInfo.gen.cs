@@ -34,17 +34,19 @@ namespace SharpVk.Interop.NVidia
     public unsafe struct ImportMemoryWin32HandleInfo
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:handleType is 0 or a flag specifying the type of memory
+        /// handle in pname:handle. Flags which may: be specified are: + --
         /// </summary>
         public SharpVk.NVidia.ExternalMemoryHandleTypeFlags HandleType; 
         

@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
+    /// Structure to specify X,Y chromaticity coordinates.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct XYColor

@@ -34,7 +34,9 @@ namespace SharpVk.Khronos
     public struct QueueFamilyProperties2
     {
         /// <summary>
-        /// 
+        /// pname:queueFamilyProperties is a structure of type
+        /// slink:VkQueueFamilyProperties which is populated with the same
+        /// values as in flink:vkGetPhysicalDeviceQueueFamilyProperties.
         /// </summary>
         public SharpVk.QueueFamilyProperties QueueFamilyProperties
         {

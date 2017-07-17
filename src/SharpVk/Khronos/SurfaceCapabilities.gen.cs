@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
+    /// Structure describing capabilities of a surface.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct SurfaceCapabilities
@@ -51,52 +51,92 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// pname:minImageCount is the minimum number of images the specified
+        /// device supports for a swapchain created for the surface, and will
+        /// be at least one.
         /// </summary>
         public uint MinImageCount; 
         
         /// <summary>
-        /// 
+        /// pname:maxImageCount is the maximum number of images the specified
+        /// device supports for a swapchain created for the surface, and will
+        /// be either 0, or greater than or equal to pname:minImageCount. A
+        /// value of 0 means that there is no limit on the number of images,
+        /// though there may: be limits related to the total amount of memory
+        /// used by presentable images.
         /// </summary>
         public uint MaxImageCount; 
         
         /// <summary>
-        /// 
+        /// pname:currentExtent is the current width and height of the surface,
+        /// or the special value [eq]#(0xFFFFFFFF, 0xFFFFFFFF)# indicating that
+        /// the surface size will be determined by the extent of a swapchain
+        /// targeting the surface.
         /// </summary>
         public SharpVk.Extent2D CurrentExtent; 
         
         /// <summary>
-        /// 
+        /// pname:minImageExtent contains the smallest valid swapchain extent
+        /// for the surface on the specified device. The pname:width and
+        /// pname:height of the extent will each be less than or equal to the
+        /// corresponding pname:width and pname:height of pname:currentExtent,
+        /// unless pname:currentExtent has the special value described above.
         /// </summary>
         public SharpVk.Extent2D MinImageExtent; 
         
         /// <summary>
-        /// 
+        /// pname:maxImageExtent contains the largest valid swapchain extent
+        /// for the surface on the specified device. The pname:width and
+        /// pname:height of the extent will each be greater than or equal to
+        /// the corresponding pname:width and pname:height of
+        /// pname:minImageExtent. The pname:width and pname:height of the
+        /// extent will each be greater than or equal to the corresponding
+        /// pname:width and pname:height of pname:currentExtent, unless
+        /// pname:currentExtent has the special value described above.
         /// </summary>
         public SharpVk.Extent2D MaxImageExtent; 
         
         /// <summary>
-        /// 
+        /// pname:maxImageArrayLayers is the maximum number of layers
+        /// presentable images can: have for a swapchain created for this
+        /// device and surface, and will be at least one.
         /// </summary>
         public uint MaxImageArrayLayers; 
         
         /// <summary>
-        /// 
+        /// pname:supportedTransforms is a bitmask of
+        /// elink:VkSurfaceTransformFlagBitsKHR, describing the presentation
+        /// transforms supported for the surface on the specified device, and
+        /// at least one bit will be set.
         /// </summary>
         public SharpVk.Khronos.SurfaceTransformFlags SupportedTransforms; 
         
         /// <summary>
-        /// 
+        /// pname:currentTransform is the surface's current transform relative
+        /// to the presentation engine's natural orientation, as described by
+        /// elink:VkSurfaceTransformFlagBitsKHR.
         /// </summary>
         public SharpVk.Khronos.SurfaceTransformFlags CurrentTransform; 
         
         /// <summary>
-        /// 
+        /// pname:supportedCompositeAlpha is a bitmask of
+        /// elink:VkCompositeAlphaFlagBitsKHR, representing the alpha
+        /// compositing modes supported by the presentation engine for the
+        /// surface on the specified device, and at least one bit will be set.
+        /// Opaque composition can: be achieved in any alpha compositing mode
+        /// by either using an image format that has no alpha component, or by
+        /// ensuring that all pixels in the presentable images have an alpha
+        /// value of 1.0.
         /// </summary>
         public SharpVk.Khronos.CompositeAlphaFlags SupportedCompositeAlpha; 
         
         /// <summary>
-        /// 
+        /// pname:supportedUsageFlags is a bitmask of
+        /// elink:VkImageUsageFlagBits representing the ways the application
+        /// can: use the presentable images of a swapchain created for the
+        /// surface on the specified device.
+        /// ename:VK_IMAGE_USAGE_COLOR_ATTACHMENT_BIT must: be included in the
+        /// set but implementations may: support additional usages.
         /// </summary>
         public SharpVk.ImageUsageFlags SupportedUsageFlags; 
     }

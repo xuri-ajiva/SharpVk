@@ -34,12 +34,16 @@ namespace SharpVk.Interop.Khronos
     public unsafe struct DisplayModeProperties
     {
         /// <summary>
-        /// 
+        /// pname:displayMode is a handle to the display mode described in this
+        /// structure. This handle will be valid for the lifetime of the Vulkan
+        /// instance.
         /// </summary>
         public SharpVk.Interop.Khronos.DisplayMode DisplayMode; 
         
         /// <summary>
-        /// 
+        /// pname:parameters is a sname:VkDisplayModeParametersKHR structure
+        /// describing the display parameters associated with
+        /// pname:displayMode.
         /// </summary>
         public SharpVk.Khronos.DisplayModeParameters Parameters; 
     }

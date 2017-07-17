@@ -34,7 +34,8 @@ namespace SharpVk.Multivendor
     public struct DebugMarkerObjectNameInfo
     {
         /// <summary>
-        /// 
+        /// pname:objectType is a elink:VkDebugReportObjectTypeEXT specifying
+        /// the type of the object to be named.
         /// </summary>
         public SharpVk.Multivendor.DebugReportObjectType ObjectType
         {
@@ -43,7 +44,7 @@ namespace SharpVk.Multivendor
         }
         
         /// <summary>
-        /// 
+        /// pname:object is the object to be named.
         /// </summary>
         public ulong Object
         {
@@ -52,7 +53,8 @@ namespace SharpVk.Multivendor
         }
         
         /// <summary>
-        /// 
+        /// pname:pObjectName is a null-terminated UTF-8 string specifying the
+        /// name to apply to pname:object.
         /// </summary>
         public string ObjectName
         {

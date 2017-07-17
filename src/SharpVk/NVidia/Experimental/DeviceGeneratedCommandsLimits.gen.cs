@@ -34,7 +34,8 @@ namespace SharpVk.NVidia.Experimental
     public struct DeviceGeneratedCommandsLimits
     {
         /// <summary>
-        /// 
+        /// pname:maxIndirectCommandsLayoutTokenCount the maximum number of
+        /// tokens in sname:VkIndirectCommandsLayoutNVX.
         /// </summary>
         public uint MaxIndirectCommandsLayoutTokenCount
         {
@@ -43,7 +44,8 @@ namespace SharpVk.NVidia.Experimental
         }
         
         /// <summary>
-        /// 
+        /// pname:maxObjectEntryCounts the maximum number of entries per
+        /// resource type in sname:VkObjectTableNVX.
         /// </summary>
         public uint MaxObjectEntryCounts
         {
@@ -52,7 +54,9 @@ namespace SharpVk.NVidia.Experimental
         }
         
         /// <summary>
-        /// 
+        /// pname:minSequenceCountBufferOffsetAlignment the minimum alignment
+        /// for memory addresses optionally used in
+        /// fname:vkCmdProcessCommandsNVX.
         /// </summary>
         public uint MinSequenceCountBufferOffsetAlignment
         {
@@ -61,7 +65,9 @@ namespace SharpVk.NVidia.Experimental
         }
         
         /// <summary>
-        /// 
+        /// pname:minSequenceIndexBufferOffsetAlignment the minimum alignment
+        /// for memory addresses optionally used in
+        /// fname:vkCmdProcessCommandsNVX.
         /// </summary>
         public uint MinSequenceIndexBufferOffsetAlignment
         {
@@ -70,7 +76,9 @@ namespace SharpVk.NVidia.Experimental
         }
         
         /// <summary>
-        /// 
+        /// pname:minCommandsTokenBufferOffsetAlignment the minimum alignment
+        /// for memory addresses optionally used in
+        /// fname:vkCmdProcessCommandsNVX.
         /// </summary>
         public uint MinCommandsTokenBufferOffsetAlignment
         {

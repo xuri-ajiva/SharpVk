@@ -34,52 +34,65 @@ namespace SharpVk.Interop
     public unsafe struct WriteDescriptorSet
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:dstSet is the destination descriptor set to update.
         /// </summary>
         public SharpVk.Interop.DescriptorSet DestinationSet; 
         
         /// <summary>
-        /// 
+        /// pname:dstBinding is the descriptor binding within that set.
         /// </summary>
         public uint DestinationBinding; 
         
         /// <summary>
-        /// 
+        /// pname:dstArrayElement is the starting element in that array.
         /// </summary>
         public uint DestinationArrayElement; 
         
         /// <summary>
-        /// 
+        /// pname:descriptorCount is the number of descriptors to update (the
+        /// number of elements in pname:pImageInfo, pname:pBufferInfo, or
+        /// pname:pTexelBufferView).
         /// </summary>
         public uint DescriptorCount; 
         
         /// <summary>
-        /// 
+        /// pname:descriptorType is a elink:VkDescriptorType specifying the
+        /// type of each descriptor in pname:pImageInfo, pname:pBufferInfo, or
+        /// pname:pTexelBufferView, as described below. It must: be the same
+        /// type as that specified in sname:VkDescriptorSetLayoutBinding for
+        /// pname:dstSet at pname:dstBinding. The type of the descriptor also
+        /// controls which array the descriptors are taken from.
         /// </summary>
         public SharpVk.DescriptorType DescriptorType; 
         
         /// <summary>
-        /// 
+        /// pname:pImageInfo points to an array of slink:VkDescriptorImageInfo
+        /// structures or is ignored, as described below.
         /// </summary>
         public SharpVk.Interop.DescriptorImageInfo* ImageInfo; 
         
         /// <summary>
-        /// 
+        /// pname:pBufferInfo points to an array of
+        /// slink:VkDescriptorBufferInfo structures or is ignored, as described
+        /// below.
         /// </summary>
         public SharpVk.Interop.DescriptorBufferInfo* BufferInfo; 
         
         /// <summary>
-        /// 
+        /// pname:pTexelBufferView points to an array of slink:VkBufferView
+        /// handles as described in the &lt;&lt;resources-buffer-views,Buffer
+        /// Views&gt;&gt; section or is ignored, as described below.
         /// </summary>
         public SharpVk.Interop.BufferView* TexelBufferView; 
     }

@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying a two-dimensional subregion.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct Rect2D

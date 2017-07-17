@@ -34,7 +34,10 @@ namespace SharpVk.Khronos
     public struct PresentInfo
     {
         /// <summary>
-        /// 
+        /// pname:pWaitSemaphores, if not `NULL`, is an array of
+        /// sname:VkSemaphore objects with pname:waitSemaphoreCount entries,
+        /// and specifies the semaphores to wait for before issuing the present
+        /// request.
         /// </summary>
         public SharpVk.Semaphore[] WaitSemaphores
         {
@@ -43,7 +46,9 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// pname:pSwapchains is an array of sname:VkSwapchainKHR objects with
+        /// pname:swapchainCount entries. A given swapchain must: not appear in
+        /// this list more than once.
         /// </summary>
         public SharpVk.Khronos.Swapchain[] Swapchains
         {
@@ -52,7 +57,10 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// pname:pImageIndices is an array of indices into the array of each
+        /// swapchain's presentable images, with pname:swapchainCount entries.
+        /// Each entry in this array identifies the image to present on the
+        /// corresponding entry in the pname:pSwapchains array.
         /// </summary>
         public uint[] ImageIndices
         {
@@ -61,7 +69,12 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// pname:pResults is an array of ename:VkResult typed elements with
+        /// pname:swapchainCount entries. Applications that do not need
+        /// per-swapchain results can: use `NULL` for pname:pResults. If
+        /// non-`NULL`, each entry in pname:pResults will be set to the
+        /// ename:VkResult for presenting the swapchain corresponding to the
+        /// same index in pname:pSwapchains.
         /// </summary>
         public SharpVk.Result[] Results
         {

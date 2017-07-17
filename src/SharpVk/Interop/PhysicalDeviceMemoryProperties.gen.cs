@@ -34,7 +34,8 @@ namespace SharpVk.Interop
     public unsafe struct PhysicalDeviceMemoryProperties
     {
         /// <summary>
-        /// 
+        /// pname:memoryTypeCount is the number of valid elements in the
+        /// pname:memoryTypes array.
         /// </summary>
         public uint MemoryTypeCount; 
         
@@ -199,7 +200,8 @@ namespace SharpVk.Interop
         public SharpVk.MemoryType MemoryTypes_31; 
         
         /// <summary>
-        /// 
+        /// pname:memoryHeapCount is the number of valid elements in the
+        /// pname:memoryHeaps array.
         /// </summary>
         public uint MemoryHeapCount; 
         

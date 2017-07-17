@@ -34,7 +34,16 @@ namespace SharpVk
     public struct PhysicalDeviceSparseProperties
     {
         /// <summary>
-        /// 
+        /// pname:residencyStandard2DBlockShape is ename:VK_TRUE if the
+        /// physical device will access all single-sample 2D sparse resources
+        /// using the standard sparse image block shapes (based on image
+        /// format), as described in the
+        /// &lt;&lt;sparsememory-sparseblockshapessingle,Standard Sparse Image
+        /// Block Shapes (Single Sample)&gt;&gt; table. If this property is not
+        /// supported the value returned in the pname:imageGranularity member
+        /// of the sname:VkSparseImageFormatProperties structure for
+        /// single-sample 2D images is not required: to match the standard
+        /// sparse image block dimensions listed in the table.
         /// </summary>
         public bool ResidencyStandard2DBlockShape
         {
@@ -43,7 +52,16 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:residencyStandard2DMultisampleBlockShape is ename:VK_TRUE if
+        /// the physical device will access all multisample 2D sparse resources
+        /// using the standard sparse image block shapes (based on image
+        /// format), as described in the
+        /// &lt;&lt;sparsememory-sparseblockshapesmsaa,Standard Sparse Image
+        /// Block Shapes (MSAA)&gt;&gt; table. If this property is not
+        /// supported, the value returned in the pname:imageGranularity member
+        /// of the sname:VkSparseImageFormatProperties structure for
+        /// multisample 2D images is not required: to match the standard sparse
+        /// image block dimensions listed in the table.
         /// </summary>
         public bool ResidencyStandard2DMultisampleBlockShape
         {
@@ -52,7 +70,16 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:residencyStandard3DBlockShape is ename:VK_TRUE if the
+        /// physical device will access all 3D sparse resources using the
+        /// standard sparse image block shapes (based on image format), as
+        /// described in the
+        /// &lt;&lt;sparsememory-sparseblockshapessingle,Standard Sparse Image
+        /// Block Shapes (Single Sample)&gt;&gt; table. If this property is not
+        /// supported, the value returned in the pname:imageGranularity member
+        /// of the sname:VkSparseImageFormatProperties structure for 3D images
+        /// is not required: to match the standard sparse image block
+        /// dimensions listed in the table.
         /// </summary>
         public bool ResidencyStandard3DBlockShape
         {
@@ -61,7 +88,18 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:residencyAlignedMipSize is ename:VK_TRUE if images with mip
+        /// level dimensions that are not integer multiples of the
+        /// corresponding dimensions of the sparse image block may: be placed
+        /// in the mip tail. If this property is not reported, only mip levels
+        /// with dimensions smaller than the pname:imageGranularity member of
+        /// the sname:VkSparseImageFormatProperties structure will be placed in
+        /// the mip tail. If this property is reported the implementation is
+        /// allowed to return ename:VK_SPARSE_IMAGE_FORMAT_ALIGNED_MIP_SIZE_BIT
+        /// in the pname:flags member of sname:VkSparseImageFormatProperties,
+        /// indicating that mip level dimensions that are not integer multiples
+        /// of the corresponding dimensions of the sparse image block will be
+        /// placed in the mip tail.
         /// </summary>
         public bool ResidencyAlignedMipSize
         {
@@ -70,7 +108,12 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:residencyNonResidentStrict specifies whether the physical
+        /// device can: consistently access non-resident regions of a resource.
+        /// If this property is ename:VK_TRUE, access to non-resident regions
+        /// of resources will be guaranteed to return values as if the resource
+        /// were populated with 0; writes to non-resident regions will be
+        /// discarded.
         /// </summary>
         public bool ResidencyNonResidentStrict
         {

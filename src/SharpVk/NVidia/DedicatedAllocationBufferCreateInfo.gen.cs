@@ -34,7 +34,8 @@ namespace SharpVk.NVidia
     public struct DedicatedAllocationBufferCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:dedicatedAllocation indicates whether the buffer will have a
+        /// dedicated allocation bound to it.
         /// </summary>
         public bool DedicatedAllocation
         {

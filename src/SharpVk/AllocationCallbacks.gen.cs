@@ -34,7 +34,12 @@ namespace SharpVk
     public struct AllocationCallbacks
     {
         /// <summary>
-        /// 
+        /// pname:pUserData is a value to be interpreted by the implementation
+        /// of the callbacks. When any of the callbacks in
+        /// sname:VkAllocationCallbacks are called, the Vulkan implementation
+        /// will pass this value as the first parameter to the callback. This
+        /// value can: vary each time an allocator is passed into a command,
+        /// even when the same object takes an allocator in multiple commands.
         /// </summary>
         public IntPtr? UserData
         {
@@ -43,7 +48,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:pfnAllocation is a pointer to an application-defined memory
+        /// allocation function of type tlink:PFN_vkAllocationFunction.
         /// </summary>
         public SharpVk.AllocationFunctionDelegate Allocation
         {
@@ -52,7 +58,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:pfnReallocation is a pointer to an application-defined memory
+        /// reallocation function of type tlink:PFN_vkReallocationFunction.
         /// </summary>
         public SharpVk.ReallocationFunctionDelegate Reallocation
         {
@@ -61,7 +68,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:pfnFree is a pointer to an application-defined memory free
+        /// function of type tlink:PFN_vkFreeFunction.
         /// </summary>
         public SharpVk.FreeFunctionDelegate Free
         {
@@ -70,7 +78,10 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:pfnInternalAllocation is a pointer to an application-defined
+        /// function that is called by the implementation when the
+        /// implementation makes internal allocations, and it is of type
+        /// tlink:PFN_vkInternalAllocationNotification.
         /// </summary>
         public SharpVk.InternalAllocationNotificationDelegate InternalAllocation
         {
@@ -79,7 +90,10 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:pfnInternalFree is a pointer to an application-defined
+        /// function that is called by the implementation when the
+        /// implementation frees internal allocations, and it is of type
+        /// tlink:PFN_vkInternalFreeNotification.
         /// </summary>
         public SharpVk.InternalFreeNotificationDelegate InternalFree
         {

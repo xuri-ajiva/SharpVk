@@ -35,7 +35,7 @@ namespace SharpVk.NVidia
     public struct PipelineViewportWScalingStateCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:viewportWScalingEnable is the enable for viewport W scaling
         /// </summary>
         public bool ViewportWScalingEnable
         {
@@ -44,7 +44,9 @@ namespace SharpVk.NVidia
         }
         
         /// <summary>
-        /// 
+        /// pname:viewportCount is the number of viewports used by W scaling
+        /// and must: match the number of viewports in the pipeline if viewport
+        /// W scaling is enabled.
         /// </summary>
         public uint ViewportCount
         {
@@ -53,7 +55,10 @@ namespace SharpVk.NVidia
         }
         
         /// <summary>
-        /// 
+        /// pname:pViewportWScalings is a pointer to an array of
+        /// sname:VkViewportWScalingNV structures which define the W scaling
+        /// parameters for the corresponding viewport. If the viewport W
+        /// scaling state is dynamic, this member is ignored.
         /// </summary>
         public SharpVk.NVidia.ViewportWScaling[] ViewportWScalings
         {

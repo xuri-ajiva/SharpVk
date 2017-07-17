@@ -34,7 +34,8 @@ namespace SharpVk
     public struct GraphicsPipelineCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:flags is a bitmask of elink:VkPipelineCreateFlagBits
+        /// controlling how the pipeline will be generated, as described below.
         /// </summary>
         public SharpVk.PipelineCreateFlags? Flags
         {
@@ -43,7 +44,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:pStages is an array of size pname:stageCount structures of
+        /// type slink:VkPipelineShaderStageCreateInfo describing the set of
+        /// the shader stages to be included in the graphics pipeline.
         /// </summary>
         public SharpVk.PipelineShaderStageCreateInfo[] Stages
         {
@@ -52,7 +55,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:pVertexInputState is a pointer to an instance of the
+        /// slink:VkPipelineVertexInputStateCreateInfo structure.
         /// </summary>
         public SharpVk.PipelineVertexInputStateCreateInfo VertexInputState
         {
@@ -61,7 +65,10 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:pInputAssemblyState is a pointer to an instance of the
+        /// slink:VkPipelineInputAssemblyStateCreateInfo structure which
+        /// determines input assembly behavior, as described in
+        /// &lt;&lt;drawing, Drawing Commands&gt;&gt;.
         /// </summary>
         public SharpVk.PipelineInputAssemblyStateCreateInfo InputAssemblyState
         {
@@ -70,7 +77,10 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:pTessellationState is a pointer to an instance of the
+        /// slink:VkPipelineTessellationStateCreateInfo structure, or `NULL` if
+        /// the pipeline does not include a tessellation control shader stage
+        /// and tessellation evaluation shader stage.
         /// </summary>
         public SharpVk.PipelineTessellationStateCreateInfo? TessellationState
         {
@@ -79,7 +89,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:pViewportState is a pointer to an instance of the
+        /// slink:VkPipelineViewportStateCreateInfo structure, or `NULL` if the
+        /// pipeline has rasterization disabled.
         /// </summary>
         public SharpVk.PipelineViewportStateCreateInfo? ViewportState
         {
@@ -88,7 +100,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:pRasterizationState is a pointer to an instance of the
+        /// slink:VkPipelineRasterizationStateCreateInfo structure.
         /// </summary>
         public SharpVk.PipelineRasterizationStateCreateInfo RasterizationState
         {
@@ -97,7 +110,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:pMultisampleState is a pointer to an instance of the
+        /// slink:VkPipelineMultisampleStateCreateInfo, or `NULL` if the
+        /// pipeline has rasterization disabled.
         /// </summary>
         public SharpVk.PipelineMultisampleStateCreateInfo? MultisampleState
         {
@@ -106,7 +121,11 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:pDepthStencilState is a pointer to an instance of the
+        /// slink:VkPipelineDepthStencilStateCreateInfo structure, or `NULL` if
+        /// the pipeline has rasterization disabled or if the subpass of the
+        /// render pass the pipeline is created against does not use a
+        /// depth/stencil attachment.
         /// </summary>
         public SharpVk.PipelineDepthStencilStateCreateInfo? DepthStencilState
         {
@@ -115,7 +134,11 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:pColorBlendState is a pointer to an instance of the
+        /// slink:VkPipelineColorBlendStateCreateInfo structure, or `NULL` if
+        /// the pipeline has rasterization disabled or if the subpass of the
+        /// render pass the pipeline is created against does not use any color
+        /// attachments.
         /// </summary>
         public SharpVk.PipelineColorBlendStateCreateInfo? ColorBlendState
         {
@@ -124,7 +147,11 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:pDynamicState is a pointer to
+        /// slink:VkPipelineDynamicStateCreateInfo and is used to indicate
+        /// which properties of the pipeline state object are dynamic and can:
+        /// be changed independently of the pipeline state. This can: be
+        /// `NULL`, which means no state in the pipeline is considered dynamic.
         /// </summary>
         public SharpVk.PipelineDynamicStateCreateInfo? DynamicState
         {
@@ -133,7 +160,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:layout is the description of binding locations used by both
+        /// the pipeline and descriptor sets used with the pipeline.
         /// </summary>
         public SharpVk.PipelineLayout Layout
         {
@@ -142,7 +170,11 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:renderPass is a handle to a render pass object describing the
+        /// environment in which the pipeline will be used; the pipeline must:
+        /// only be used with an instance of any render pass compatible with
+        /// the one provided. See &lt;&lt;renderpass-compatibility,Render Pass
+        /// Compatibility&gt;&gt; for more information.
         /// </summary>
         public SharpVk.RenderPass RenderPass
         {
@@ -151,7 +183,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:subpass is the index of the subpass in the render pass where
+        /// this pipeline will be used.
         /// </summary>
         public uint Subpass
         {
@@ -160,7 +193,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:basePipelineHandle is a pipeline to derive from.
         /// </summary>
         public SharpVk.Pipeline BasePipelineHandle
         {
@@ -169,7 +202,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:basePipelineIndex is an index into the pname:pCreateInfos
+        /// parameter to use as a pipeline to derive from.
         /// </summary>
         public int BasePipelineIndex
         {

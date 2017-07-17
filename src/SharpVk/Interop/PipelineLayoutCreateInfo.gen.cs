@@ -34,37 +34,48 @@ namespace SharpVk.Interop
     public unsafe struct PipelineLayoutCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:flags is reserved for future use.
         /// </summary>
         public SharpVk.PipelineLayoutCreateFlags Flags; 
         
         /// <summary>
-        /// 
+        /// pname:setLayoutCount is the number of descriptor sets included in
+        /// the pipeline layout.
         /// </summary>
         public uint SetLayoutCount; 
         
         /// <summary>
-        /// 
+        /// pname:pSetLayouts is a pointer to an array of
+        /// sname:VkDescriptorSetLayout objects.
         /// </summary>
         public SharpVk.Interop.DescriptorSetLayout* SetLayouts; 
         
         /// <summary>
-        /// 
+        /// pname:pushConstantRangeCount is the number of push constant ranges
+        /// included in the pipeline layout.
         /// </summary>
         public uint PushConstantRangeCount; 
         
         /// <summary>
-        /// 
+        /// pname:pPushConstantRanges is a pointer to an array of
+        /// sname:VkPushConstantRange structures defining a set of push
+        /// constant ranges for use in a single pipeline layout. In addition to
+        /// descriptor set layouts, a pipeline layout also describes how many
+        /// push constants can: be accessed by each stage of the pipeline. +
+        /// [NOTE] .Note ==== Push constants represent a high speed path to
+        /// modify constant data in pipelines that is expected to outperform
+        /// memory-backed resource updates. ====
         /// </summary>
         public SharpVk.PushConstantRange* PushConstantRanges; 
     }

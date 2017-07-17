@@ -34,42 +34,53 @@ namespace SharpVk.Interop
     public unsafe struct PipelineColorBlendAttachmentState
     {
         /// <summary>
-        /// 
+        /// pname:blendEnable controls whether blending is enabled for the
+        /// corresponding color attachment. If blending is not enabled, the
+        /// source fragment's color for that attachment is passed through
+        /// unmodified.
         /// </summary>
         public Bool32 BlendEnable; 
         
         /// <summary>
-        /// 
+        /// pname:srcColorBlendFactor selects which blend factor is used to
+        /// determine the source factors [eq]#(S~r~,S~g~,S~b~)#.
         /// </summary>
         public SharpVk.BlendFactor SourceColorBlendFactor; 
         
         /// <summary>
-        /// 
+        /// pname:dstColorBlendFactor selects which blend factor is used to
+        /// determine the destination factors [eq]#(D~r~,D~g~,D~b~)#.
         /// </summary>
         public SharpVk.BlendFactor DestinationColorBlendFactor; 
         
         /// <summary>
-        /// 
+        /// pname:colorBlendOp selects which blend operation is used to
+        /// calculate the RGB values to write to the color attachment.
         /// </summary>
         public SharpVk.BlendOp ColorBlendOp; 
         
         /// <summary>
-        /// 
+        /// pname:srcAlphaBlendFactor selects which blend factor is used to
+        /// determine the source factor [eq]#S~a~#.
         /// </summary>
         public SharpVk.BlendFactor SourceAlphaBlendFactor; 
         
         /// <summary>
-        /// 
+        /// pname:dstAlphaBlendFactor selects which blend factor is used to
+        /// determine the destination factor [eq]#D~a~#.
         /// </summary>
         public SharpVk.BlendFactor DestinationAlphaBlendFactor; 
         
         /// <summary>
-        /// 
+        /// pname:alphaBlendOp selects which blend operation is use to
+        /// calculate the alpha values to write to the color attachment.
         /// </summary>
         public SharpVk.BlendOp AlphaBlendOp; 
         
         /// <summary>
-        /// 
+        /// pname:colorWriteMask is a bitmask selecting which of the R, G, B,
+        /// and/or A components are enabled for writing, as described later in
+        /// this chapter.
         /// </summary>
         public SharpVk.ColorComponentFlags ColorWriteMask; 
     }

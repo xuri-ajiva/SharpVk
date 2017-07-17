@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying a buffer copy operation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct BufferCopy
@@ -44,17 +44,19 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:srcOffset is the starting offset in bytes from the start of
+        /// pname:srcBuffer.
         /// </summary>
         public DeviceSize SourceOffset; 
         
         /// <summary>
-        /// 
+        /// pname:dstOffset is the starting offset in bytes from the start of
+        /// pname:dstBuffer.
         /// </summary>
         public DeviceSize DestinationOffset; 
         
         /// <summary>
-        /// 
+        /// pname:size is the number of bytes to copy.
         /// </summary>
         public DeviceSize Size; 
     }

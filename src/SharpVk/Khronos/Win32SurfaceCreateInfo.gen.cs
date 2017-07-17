@@ -35,7 +35,7 @@ namespace SharpVk.Khronos
     public struct Win32SurfaceCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:flags is reserved for future use.
         /// </summary>
         public SharpVk.Khronos.Win32SurfaceCreateFlags? Flags
         {
@@ -44,7 +44,8 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// pname:hinstance and pname:hwnd are the Win32 code:HINSTANCE and
+        /// code:HWND for the window to associate the surface with.
         /// </summary>
         public IntPtr Hinstance
         {

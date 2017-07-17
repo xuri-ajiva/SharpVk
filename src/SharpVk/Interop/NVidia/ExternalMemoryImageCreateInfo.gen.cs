@@ -34,17 +34,23 @@ namespace SharpVk.Interop.NVidia
     public unsafe struct ExternalMemoryImageCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:handleTypes is a bitmask of
+        /// elink:VkExternalMemoryHandleTypeFlagBitsNV specifying one or more
+        /// external memory handle types. The types must: all be compatible
+        /// with each other and the other image creation parameters, as
+        /// reported by
+        /// flink:vkGetPhysicalDeviceExternalImageFormatPropertiesNV.
         /// </summary>
         public SharpVk.NVidia.ExternalMemoryHandleTypeFlags HandleTypes; 
     }

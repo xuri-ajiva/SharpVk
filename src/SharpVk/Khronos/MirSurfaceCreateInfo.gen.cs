@@ -34,7 +34,7 @@ namespace SharpVk.Khronos
     public struct MirSurfaceCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:flags is reserved for future use.
         /// </summary>
         public SharpVk.Khronos.MirSurfaceCreateFlags? Flags
         {
@@ -43,7 +43,9 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// pname:connection and pname:surface are pointers to the
+        /// code:MirConnection and code:MirSurface for the window to associate
+        /// the surface with.
         /// </summary>
         public IntPtr Connection
         {

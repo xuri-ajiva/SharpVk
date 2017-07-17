@@ -34,27 +34,33 @@ namespace SharpVk.Interop
     public unsafe struct PipelineCacheCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:flags is reserved for future use.
         /// </summary>
         public SharpVk.PipelineCacheCreateFlags Flags; 
         
         /// <summary>
-        /// 
+        /// pname:initialDataSize is the number of bytes in pname:pInitialData.
+        /// If pname:initialDataSize is zero, the pipeline cache will initially
+        /// be empty.
         /// </summary>
         public HostSize InitialDataSize; 
         
         /// <summary>
-        /// 
+        /// pname:pInitialData is a pointer to previously retrieved pipeline
+        /// cache data. If the pipeline cache data is incompatible (as defined
+        /// below) with the device, the pipeline cache will be initially empty.
+        /// If pname:initialDataSize is zero, pname:pInitialData is ignored.
         /// </summary>
         public void* InitialData; 
     }

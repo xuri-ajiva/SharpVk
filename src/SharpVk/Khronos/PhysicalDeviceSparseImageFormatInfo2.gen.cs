@@ -34,7 +34,7 @@ namespace SharpVk.Khronos
     public struct PhysicalDeviceSparseImageFormatInfo2
     {
         /// <summary>
-        /// 
+        /// pname:format is the image format.
         /// </summary>
         public SharpVk.Format Format
         {
@@ -43,7 +43,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// pname:type is the dimensionality of image.
         /// </summary>
         public SharpVk.ImageType Type
         {
@@ -52,7 +52,8 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// pname:samples is the number of samples per pixel as defined in
+        /// elink:VkSampleCountFlagBits.
         /// </summary>
         public SharpVk.SampleCountFlags Samples
         {
@@ -61,7 +62,8 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// pname:usage is a bitmask describing the intended usage of the
+        /// image.
         /// </summary>
         public SharpVk.ImageUsageFlags Usage
         {
@@ -70,7 +72,8 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// pname:tiling is the tiling arrangement of the data elements in
+        /// memory.
         /// </summary>
         public SharpVk.ImageTiling Tiling
         {

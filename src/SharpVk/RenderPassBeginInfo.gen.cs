@@ -34,7 +34,7 @@ namespace SharpVk
     public struct RenderPassBeginInfo
     {
         /// <summary>
-        /// 
+        /// pname:renderPass is the render pass to begin an instance of.
         /// </summary>
         public SharpVk.RenderPass RenderPass
         {
@@ -43,7 +43,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:framebuffer is the framebuffer containing the attachments
+        /// that are used with the render pass.
         /// </summary>
         public SharpVk.Framebuffer Framebuffer
         {
@@ -52,7 +53,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:renderArea is the render area that is affected by the render
+        /// pass instance, and is described in more detail below.
         /// </summary>
         public SharpVk.Rect2D RenderArea
         {
@@ -61,7 +63,14 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:pClearValues is an array of slink:VkClearValue structures
+        /// that contains clear values for each attachment, if the attachment
+        /// uses a pname:loadOp value of ename:VK_ATTACHMENT_LOAD_OP_CLEAR or
+        /// if the attachment has a depth/stencil format and uses a
+        /// pname:stencilLoadOp value of ename:VK_ATTACHMENT_LOAD_OP_CLEAR. The
+        /// array is indexed by attachment number. Only elements corresponding
+        /// to cleared attachments are used. Other elements of
+        /// pname:pClearValues are ignored.
         /// </summary>
         public SharpVk.ClearValue[] ClearValues
         {

@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying a image subresource range.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct ImageSubresourceRange
@@ -46,27 +46,32 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:aspectMask is a bitmask indicating which aspect(s) of the
+        /// image are included in the view. See elink:VkImageAspectFlagBits.
         /// </summary>
         public SharpVk.ImageAspectFlags AspectMask; 
         
         /// <summary>
-        /// 
+        /// pname:baseMipLevel is the first mipmap level accessible to the
+        /// view.
         /// </summary>
         public uint BaseMipLevel; 
         
         /// <summary>
-        /// 
+        /// pname:levelCount is the number of mipmap levels (starting from
+        /// pname:baseMipLevel) accessible to the view.
         /// </summary>
         public uint LevelCount; 
         
         /// <summary>
-        /// 
+        /// pname:baseArrayLayer is the first array layer accessible to the
+        /// view.
         /// </summary>
         public uint BaseArrayLayer; 
         
         /// <summary>
-        /// 
+        /// pname:layerCount is the number of array layers (starting from
+        /// pname:baseArrayLayer) accessible to the view.
         /// </summary>
         public uint LayerCount; 
     }

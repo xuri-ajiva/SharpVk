@@ -34,7 +34,7 @@ namespace SharpVk.Khronos
     public struct DisplayModeCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:flags is reserved for future use, and must: be zero.
         /// </summary>
         public SharpVk.Khronos.DisplayModeCreateFlags? Flags
         {
@@ -43,7 +43,11 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// pname:parameters is a sname:VkDisplayModeParametersKHR structure
+        /// describing the display parameters to use in creating the new mode.
+        /// If the parameters are not compatible with the specified display,
+        /// the implementation must: return
+        /// ename:VK_ERROR_INITIALIZATION_FAILED.
         /// </summary>
         public SharpVk.Khronos.DisplayModeParameters Parameters
         {

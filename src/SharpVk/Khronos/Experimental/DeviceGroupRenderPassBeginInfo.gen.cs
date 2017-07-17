@@ -35,7 +35,7 @@ namespace SharpVk.Khronos.Experimental
     public struct DeviceGroupRenderPassBeginInfo
     {
         /// <summary>
-        /// 
+        /// pname:deviceMask is the device mask for the render pass instance.
         /// </summary>
         public uint DeviceMask
         {
@@ -44,7 +44,8 @@ namespace SharpVk.Khronos.Experimental
         }
         
         /// <summary>
-        /// 
+        /// pname:pDeviceRenderAreas is an array of structures of type
+        /// slink:VkRect2D defining the render area for each physical device.
         /// </summary>
         public SharpVk.Rect2D[] DeviceRenderAreas
         {

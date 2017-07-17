@@ -34,27 +34,30 @@ namespace SharpVk.Interop.Multivendor
     public unsafe struct DebugMarkerObjectNameInfo
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:objectType is a elink:VkDebugReportObjectTypeEXT specifying
+        /// the type of the object to be named.
         /// </summary>
         public SharpVk.Multivendor.DebugReportObjectType ObjectType; 
         
         /// <summary>
-        /// 
+        /// pname:object is the object to be named.
         /// </summary>
         public ulong Object; 
         
         /// <summary>
-        /// 
+        /// pname:pObjectName is a null-terminated UTF-8 string specifying the
+        /// name to apply to pname:object.
         /// </summary>
         public byte* ObjectName; 
     }

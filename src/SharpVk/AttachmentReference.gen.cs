@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying an attachment reference.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct AttachmentReference
@@ -43,12 +43,18 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:attachment is the index of the attachment of the render pass,
+        /// and corresponds to the index of the corresponding element in the
+        /// pname:pAttachments array of the sname:VkRenderPassCreateInfo
+        /// structure. If any color or depth/stencil attachments are
+        /// ename:VK_ATTACHMENT_UNUSED, then no writes occur for those
+        /// attachments.
         /// </summary>
         public uint Attachment; 
         
         /// <summary>
-        /// 
+        /// pname:layout is a elink:VkImageLayout value specifying the layout
+        /// the attachment uses during the subpass.
         /// </summary>
         public SharpVk.ImageLayout Layout; 
     }

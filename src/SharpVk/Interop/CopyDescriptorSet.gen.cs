@@ -34,17 +34,19 @@ namespace SharpVk.Interop
     public unsafe struct CopyDescriptorSet
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:srcSet, pname:srcBinding, and pname:srcArrayElement are the
+        /// source set, binding, and array element, respectively.
         /// </summary>
         public SharpVk.Interop.DescriptorSet SourceSet; 
         
@@ -59,7 +61,8 @@ namespace SharpVk.Interop
         public uint SourceArrayElement; 
         
         /// <summary>
-        /// 
+        /// pname:dstSet, pname:dstBinding, and pname:dstArrayElement are the
+        /// destination set, binding, and array element, respectively.
         /// </summary>
         public SharpVk.Interop.DescriptorSet DestinationSet; 
         
@@ -74,7 +77,11 @@ namespace SharpVk.Interop
         public uint DestinationArrayElement; 
         
         /// <summary>
-        /// 
+        /// pname:descriptorCount is the number of descriptors to copy from the
+        /// source to destination. If pname:descriptorCount is greater than the
+        /// number of remaining array elements in the source or destination
+        /// binding, those affect consecutive bindings in a manner similar to
+        /// slink:VkWriteDescriptorSet above.
         /// </summary>
         public uint DescriptorCount; 
     }

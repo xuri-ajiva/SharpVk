@@ -34,22 +34,24 @@ namespace SharpVk.Interop.Khronos
     public unsafe struct Win32SurfaceCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:flags is reserved for future use.
         /// </summary>
         public SharpVk.Khronos.Win32SurfaceCreateFlags Flags; 
         
         /// <summary>
-        /// 
+        /// pname:hinstance and pname:hwnd are the Win32 code:HINSTANCE and
+        /// code:HWND for the window to associate the surface with.
         /// </summary>
         public IntPtr Hinstance; 
         

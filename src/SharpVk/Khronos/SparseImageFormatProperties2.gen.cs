@@ -34,7 +34,10 @@ namespace SharpVk.Khronos
     public struct SparseImageFormatProperties2
     {
         /// <summary>
-        /// 
+        /// pname:properties is a structure of type
+        /// slink:VkSparseImageFormatProperties which is populated with the
+        /// same values as in
+        /// flink:vkGetPhysicalDeviceSparseImageFormatProperties.
         /// </summary>
         public SharpVk.SparseImageFormatProperties Properties
         {

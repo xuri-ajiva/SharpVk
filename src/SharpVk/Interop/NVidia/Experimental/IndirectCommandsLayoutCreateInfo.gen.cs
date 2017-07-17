@@ -34,32 +34,38 @@ namespace SharpVk.Interop.NVidia.Experimental
     public unsafe struct IndirectCommandsLayoutCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:pipelineBindPoint is the sname:VkPipelineBindPoint that this
+        /// layout targets.
         /// </summary>
         public SharpVk.PipelineBindPoint PipelineBindPoint; 
         
         /// <summary>
-        /// 
+        /// pname:flags is a bitmask providing usage hints of this layout. See
+        /// elink:VkIndirectCommandsLayoutUsageFlagBitsNVX below for a
+        /// description of the supported bits.
         /// </summary>
         public SharpVk.NVidia.Experimental.IndirectCommandsLayoutUsageFlags Flags; 
         
         /// <summary>
-        /// 
+        /// pname:tokenCount is the length of the individual command sequnce.
         /// </summary>
         public uint TokenCount; 
         
         /// <summary>
-        /// 
+        /// pname:pTokens is an array describing each command token in detail.
+        /// See elink:VkIndirectCommandsTokenTypeNVX and
+        /// slink:VkIndirectCommandsLayoutTokenNVX below for details.
         /// </summary>
         public SharpVk.NVidia.Experimental.IndirectCommandsLayoutToken* Tokens; 
     }

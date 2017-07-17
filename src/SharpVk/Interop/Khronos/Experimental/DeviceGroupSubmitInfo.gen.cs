@@ -34,42 +34,56 @@ namespace SharpVk.Interop.Khronos.Experimental
     public unsafe struct DeviceGroupSubmitInfo
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:waitSemaphoreCount is the number of elements in the
+        /// pname:pWaitSemaphoreDeviceIndices array.
         /// </summary>
         public uint WaitSemaphoreCount; 
         
         /// <summary>
-        /// 
+        /// pname:pWaitSemaphoreDeviceIndices is an array of device indices
+        /// indicating which physical device executes the semaphore wait
+        /// operation in the corresponding element of
+        /// slink:VkSubmitInfo::pname:pWaitSemaphores.
         /// </summary>
         public uint* WaitSemaphoreDeviceIndices; 
         
         /// <summary>
-        /// 
+        /// pname:commandBufferCount is the number of elements in the
+        /// pname:pCommandBufferDeviceMasks array.
         /// </summary>
         public uint CommandBufferCount; 
         
         /// <summary>
-        /// 
+        /// pname:pCommandBufferDeviceMasks is an array of device masks
+        /// indicating which physical devices execute the command buffer in the
+        /// corresponding element of slink:VkSubmitInfo::pname:pCommandBuffers.
+        /// A physical device executes the command buffer if the corresponding
+        /// bit is set in the mask.
         /// </summary>
         public uint* CommandBufferDeviceMasks; 
         
         /// <summary>
-        /// 
+        /// pname:signalSemaphoreCount is the number of elements in the
+        /// pname:pSignalSemaphoreDeviceIndices array.
         /// </summary>
         public uint SignalSemaphoreCount; 
         
         /// <summary>
-        /// 
+        /// pname:pSignalSemaphoreDeviceIndices is an array of device indices
+        /// indicating which physical device executes the semaphore signal
+        /// operation in the corresponding element of
+        /// slink:VkSubmitInfo::pname:pSignalSemaphores.
         /// </summary>
         public uint* SignalSemaphoreDeviceIndices; 
     }

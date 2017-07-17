@@ -34,42 +34,53 @@ namespace SharpVk.Interop
     public unsafe struct InstanceCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:flags is reserved for future use.
         /// </summary>
         public SharpVk.InstanceCreateFlags Flags; 
         
         /// <summary>
-        /// 
+        /// pname:pApplicationInfo is `NULL` or a pointer to an instance of
+        /// sname:VkApplicationInfo. If not `NULL`, this information helps
+        /// implementations recognize behavior inherent to classes of
+        /// applications. slink:VkApplicationInfo is defined in detail below.
         /// </summary>
         public SharpVk.Interop.ApplicationInfo* ApplicationInfo; 
         
         /// <summary>
-        /// 
+        /// pname:enabledLayerCount is the number of global layers to enable.
         /// </summary>
         public uint EnabledLayerCount; 
         
         /// <summary>
-        /// 
+        /// pname:ppEnabledLayerNames is a pointer to an array of
+        /// pname:enabledLayerCount null-terminated UTF-8 strings containing
+        /// the names of layers to enable for the created instance. See the
+        /// &lt;&lt;extended-functionality-layers,Layers&gt;&gt; section for
+        /// further details.
         /// </summary>
         public byte** EnabledLayerNames; 
         
         /// <summary>
-        /// 
+        /// pname:enabledExtensionCount is the number of global extensions to
+        /// enable.
         /// </summary>
         public uint EnabledExtensionCount; 
         
         /// <summary>
-        /// 
+        /// pname:ppEnabledExtensionNames is a pointer to an array of
+        /// pname:enabledExtensionCount null-terminated UTF-8 strings
+        /// containing the names of extensions to enable.
         /// </summary>
         public byte** EnabledExtensionNames; 
     }

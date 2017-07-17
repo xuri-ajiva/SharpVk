@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying a memory heap.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct MemoryHeap
@@ -43,12 +43,13 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:size is the total memory size in bytes in the heap.
         /// </summary>
         public DeviceSize Size; 
         
         /// <summary>
-        /// 
+        /// pname:flags is a bitmask of attribute flags for the heap. The bits
+        /// specified in pname:flags are: + --
         /// </summary>
         public SharpVk.MemoryHeapFlags Flags; 
     }

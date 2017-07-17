@@ -34,17 +34,19 @@ namespace SharpVk.Interop.NVidia
     public unsafe struct DedicatedAllocationImageCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:dedicatedAllocation indicates whether the image will have a
+        /// dedicated allocation bound to it.
         /// </summary>
         public Bool32 DedicatedAllocation; 
     }

@@ -34,17 +34,19 @@ namespace SharpVk.Interop
     public unsafe struct SparseBufferMemoryBindInfo
     {
         /// <summary>
-        /// 
+        /// pname:buffer is the sname:VkBuffer object to be bound.
         /// </summary>
         public SharpVk.Interop.Buffer Buffer; 
         
         /// <summary>
-        /// 
+        /// pname:bindCount is the number of sname:VkSparseMemoryBind
+        /// structures in the pname:pBinds array.
         /// </summary>
         public uint BindCount; 
         
         /// <summary>
-        /// 
+        /// pname:pBinds is a pointer to array of sname:VkSparseMemoryBind
+        /// structures.
         /// </summary>
         public SharpVk.Interop.SparseMemoryBind* Binds; 
     }

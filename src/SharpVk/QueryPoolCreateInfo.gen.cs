@@ -34,7 +34,7 @@ namespace SharpVk
     public struct QueryPoolCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:flags is reserved for future use.
         /// </summary>
         public SharpVk.QueryPoolCreateFlags? Flags
         {
@@ -43,7 +43,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:queryType is the type of queries managed by the pool, and
+        /// must: be one of the values + --
         /// </summary>
         public SharpVk.QueryType QueryType
         {

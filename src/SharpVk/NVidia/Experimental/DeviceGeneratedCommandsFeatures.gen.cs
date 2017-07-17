@@ -34,7 +34,11 @@ namespace SharpVk.NVidia.Experimental
     public struct DeviceGeneratedCommandsFeatures
     {
         /// <summary>
-        /// 
+        /// pname:computeBindingPointSupport indicates whether the
+        /// sname:VkObjectTableNVX supports entries with
+        /// ename:VK_OBJECT_ENTRY_USAGE_GRAPHICS_BIT_NVX bit set and
+        /// sname:VkIndirectCommandsLayoutNVX supports
+        /// ename:VK_PIPELINE_BIND_POINT_COMPUTE.
         /// </summary>
         public bool ComputeBindingPointSupport
         {

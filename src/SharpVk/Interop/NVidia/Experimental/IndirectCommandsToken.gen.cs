@@ -34,17 +34,20 @@ namespace SharpVk.Interop.NVidia.Experimental
     public unsafe struct IndirectCommandsToken
     {
         /// <summary>
-        /// 
+        /// pname:tokenType specifies the token command type.
         /// </summary>
         public SharpVk.NVidia.Experimental.IndirectCommandsTokenType TokenType; 
         
         /// <summary>
-        /// 
+        /// pname:buffer specifies the sname:VkBuffer storing the functional
+        /// arguments for each squence. These argumetns can be written by the
+        /// device.
         /// </summary>
         public SharpVk.Interop.Buffer Buffer; 
         
         /// <summary>
-        /// 
+        /// pname:offset specified an offset into pname:buffer where the
+        /// arguments start.
         /// </summary>
         public DeviceSize Offset; 
     }

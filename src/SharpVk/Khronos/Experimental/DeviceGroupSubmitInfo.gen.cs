@@ -35,7 +35,10 @@ namespace SharpVk.Khronos.Experimental
     public struct DeviceGroupSubmitInfo
     {
         /// <summary>
-        /// 
+        /// pname:pWaitSemaphoreDeviceIndices is an array of device indices
+        /// indicating which physical device executes the semaphore wait
+        /// operation in the corresponding element of
+        /// slink:VkSubmitInfo::pname:pWaitSemaphores.
         /// </summary>
         public uint[] WaitSemaphoreDeviceIndices
         {
@@ -44,7 +47,11 @@ namespace SharpVk.Khronos.Experimental
         }
         
         /// <summary>
-        /// 
+        /// pname:pCommandBufferDeviceMasks is an array of device masks
+        /// indicating which physical devices execute the command buffer in the
+        /// corresponding element of slink:VkSubmitInfo::pname:pCommandBuffers.
+        /// A physical device executes the command buffer if the corresponding
+        /// bit is set in the mask.
         /// </summary>
         public uint[] CommandBufferDeviceMasks
         {
@@ -53,7 +60,10 @@ namespace SharpVk.Khronos.Experimental
         }
         
         /// <summary>
-        /// 
+        /// pname:pSignalSemaphoreDeviceIndices is an array of device indices
+        /// indicating which physical device executes the semaphore signal
+        /// operation in the corresponding element of
+        /// slink:VkSubmitInfo::pname:pSignalSemaphores.
         /// </summary>
         public uint[] SignalSemaphoreDeviceIndices
         {

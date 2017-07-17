@@ -34,7 +34,9 @@ namespace SharpVk
     public struct PhysicalDeviceProperties
     {
         /// <summary>
-        /// 
+        /// pname:apiVersion is the version of Vulkan supported by the device,
+        /// encoded as described in the &lt;&lt;fundamentals-versionnum,API
+        /// Version Numbers and Semantics&gt;&gt; section.
         /// </summary>
         public Version ApiVersion
         {
@@ -43,7 +45,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:driverVersion is the vendor-specified version of the driver.
         /// </summary>
         public Version DriverVersion
         {
@@ -52,7 +54,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:vendorID is a unique identifier for the _vendor_ (see below)
+        /// of the physical device.
         /// </summary>
         public uint VendorID
         {
@@ -61,7 +64,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:deviceID is a unique identifier for the physical device among
+        /// devices available from the vendor.
         /// </summary>
         public uint DeviceID
         {
@@ -70,7 +74,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:deviceType is a elink:VkPhysicalDeviceType specifying the
+        /// type of device.
         /// </summary>
         public SharpVk.PhysicalDeviceType DeviceType
         {
@@ -79,7 +84,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:deviceName is a null-terminated UTF-8 string containing the
+        /// name of the device.
         /// </summary>
         public string DeviceName
         {
@@ -88,7 +94,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:pipelineCacheUUID is an array of size ename:VK_UUID_SIZE,
+        /// containing 8-bit values that represent a universally unique
+        /// identifier for the device.
         /// </summary>
         public Guid PipelineCacheUUID
         {
@@ -97,7 +105,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:limits is the slink:VkPhysicalDeviceLimits structure which
+        /// specifies device-specific limits of the physical device. See
+        /// &lt;&lt;features-limits,Limits&gt;&gt; for details.
         /// </summary>
         public SharpVk.PhysicalDeviceLimits Limits
         {
@@ -106,7 +116,11 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:sparseProperties is the
+        /// slink:VkPhysicalDeviceSparseProperties structure which specifies
+        /// various sparse related properties of the physical device. See
+        /// &lt;&lt;sparsememory-physicalprops,Sparse Properties&gt;&gt; for
+        /// details.
         /// </summary>
         public SharpVk.PhysicalDeviceSparseProperties SparseProperties
         {

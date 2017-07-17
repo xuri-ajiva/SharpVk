@@ -34,7 +34,7 @@ namespace SharpVk
     public struct RenderPassCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:flags is reserved for future use.
         /// </summary>
         public SharpVk.RenderPassCreateFlags? Flags
         {
@@ -43,7 +43,10 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:pAttachments points to an array of pname:attachmentCount
+        /// number of slink:VkAttachmentDescription structures describing
+        /// properties of the attachments, or `NULL` if pname:attachmentCount
+        /// is zero.
         /// </summary>
         public SharpVk.AttachmentDescription[] Attachments
         {
@@ -52,7 +55,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:pSubpasses points to an array of pname:subpassCount number of
+        /// slink:VkSubpassDescription structures describing properties of the
+        /// subpasses.
         /// </summary>
         public SharpVk.SubpassDescription[] Subpasses
         {
@@ -61,7 +66,10 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:pDependencies points to an array of pname:dependencyCount
+        /// number of slink:VkSubpassDependency structures describing
+        /// dependencies between pairs of subpasses, or `NULL` if
+        /// pname:dependencyCount is zero.
         /// </summary>
         public SharpVk.SubpassDependency[] Dependencies
         {

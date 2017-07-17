@@ -34,27 +34,29 @@ namespace SharpVk.Interop.Khronos
     public unsafe struct XlibSurfaceCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:flags is reserved for future use.
         /// </summary>
         public SharpVk.Khronos.XlibSurfaceCreateFlags Flags; 
         
         /// <summary>
-        /// 
+        /// pname:dpy is a pointer to an Xlib code:Display connection to the X
+        /// server.
         /// </summary>
         public IntPtr* Dpy; 
         
         /// <summary>
-        /// 
+        /// pname:window is an Xlib code:Window to associate the surface with.
         /// </summary>
         public IntPtr Window; 
     }

@@ -34,7 +34,10 @@ namespace SharpVk
     public struct DescriptorImageInfo
     {
         /// <summary>
-        /// 
+        /// pname:sampler is a sampler handle, and is used in descriptor
+        /// updates for types ename:VK_DESCRIPTOR_TYPE_SAMPLER and
+        /// ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER if the binding
+        /// being updated does not use immutable samplers.
         /// </summary>
         public SharpVk.Sampler Sampler
         {
@@ -43,7 +46,10 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:imageView is an image view handle, and is used in descriptor
+        /// updates for types ename:VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE,
+        /// ename:VK_DESCRIPTOR_TYPE_STORAGE_IMAGE, ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER,
+        /// and ename:VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT.
         /// </summary>
         public SharpVk.ImageView ImageView
         {
@@ -52,7 +58,12 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:imageLayout is the layout that the image will be in at the
+        /// time this descriptor is accessed. pname:imageLayout is used in
+        /// descriptor updates for types
+        /// ename:VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE, ename:VK_DESCRIPTOR_TYPE_STORAGE_IMAGE,
+        /// ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, and
+        /// ename:VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT.
         /// </summary>
         public SharpVk.ImageLayout ImageLayout
         {

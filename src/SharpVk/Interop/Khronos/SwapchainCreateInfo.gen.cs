@@ -34,17 +34,19 @@ namespace SharpVk.Interop.Khronos
     public unsafe struct SwapchainCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:flags is a bitmask indicating parameters of swapchain
+        /// creation. Bits which can: be set include: + --
         /// </summary>
         public SharpVk.Khronos.SwapchainCreateFlags Flags; 
         

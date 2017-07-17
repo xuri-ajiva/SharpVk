@@ -34,7 +34,12 @@ namespace SharpVk.Khronos.Experimental
     public struct DeviceGroupPresentCapabilities
     {
         /// <summary>
-        /// 
+        /// pname:presentMask is an array of masks, where the mask at element
+        /// [eq]#i# is non-zero if physical device [eq]#i# has a presentation
+        /// engine, and where bit [eq]#j# is set in element [eq]#i# if physical
+        /// device [eq]#i# can: present swapchain images from physical device
+        /// [eq]#j#. If element [eq]#i# is non-zero, then bit [eq]#i# must: be
+        /// set.
         /// </summary>
         public uint[] PresentMask
         {
@@ -43,7 +48,8 @@ namespace SharpVk.Khronos.Experimental
         }
         
         /// <summary>
-        /// 
+        /// pname:modes is a bitmask indicating which device group presentation
+        /// modes are supported. The bits returned in pname:modes are: + --
         /// </summary>
         public SharpVk.Khronos.Experimental.DeviceGroupPresentModeFlags Modes
         {

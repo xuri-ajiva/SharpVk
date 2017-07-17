@@ -34,17 +34,19 @@ namespace SharpVk.Interop.Khronos.Experimental
     public unsafe struct DeviceGroupSwapchainCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:modes is a bitfield of modes that the swapchain can: be used
+        /// with.
         /// </summary>
         public SharpVk.Khronos.Experimental.DeviceGroupPresentModeFlags Modes; 
     }

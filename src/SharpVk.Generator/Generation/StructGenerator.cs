@@ -12,22 +12,27 @@ namespace SharpVk.Generator.Generation
         private readonly Dictionary<string, TypeDeclaration> typeData;
         private readonly NameLookup nameLookup;
         private readonly NamespaceMap namespaceMap;
+        private readonly CommentGenerator commentGenerator;
 
-        public StructGenerator(Dictionary<string, TypeDeclaration> typeData, NameLookup nameLookup, NamespaceMap namespaceMap)
+        public StructGenerator(Dictionary<string, TypeDeclaration> typeData, NameLookup nameLookup, NamespaceMap namespaceMap, CommentGenerator commentGenerator)
         {
             this.typeData = typeData;
             this.nameLookup = nameLookup;
             this.namespaceMap = namespaceMap;
+            this.commentGenerator = commentGenerator;
         }
 
         public void Execute(IServiceCollection services)
         {
-            foreach (var type in this.typeData.Values.Where(x => x.Pattern == TypePattern.NonMarshalledStruct))
+            foreach (var typeItem in this.typeData.Where(x => x.Value.Pattern == TypePattern.NonMarshalledStruct))
             {
+                var type = typeItem.Value;
+
                 services.AddSingleton(new StructDefinition
                 {
                     Name = type.Name,
                     Namespace = type.Extension != null ? this.namespaceMap.Map(type.Extension).ToArray() : null,
+                    Comment = this.commentGenerator.Lookup(typeItem.Key),
                     Constructor = new MethodDefinition
                     {
                         ParamActions = type.Members.Select(this.GetConstructorParam).ToList()
@@ -35,7 +40,8 @@ namespace SharpVk.Generator.Generation
                     Fields = type.Members.Select(x => new MemberDefinition
                     {
                         Name = x.Name,
-                        Type = this.nameLookup.Lookup(x.Type, false)
+                        Type = this.nameLookup.Lookup(x.Type, false),
+                        Comment = this.commentGenerator.Lookup(typeItem.Key, x.VkName),
                     }).ToList()
                 });
             }

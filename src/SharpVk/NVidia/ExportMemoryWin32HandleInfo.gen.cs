@@ -34,7 +34,9 @@ namespace SharpVk.NVidia
     public struct ExportMemoryWin32HandleInfo
     {
         /// <summary>
-        /// 
+        /// pname:pAttributes is a pointer to a Windows
+        /// code:SECURITY_ATTRIBUTES structure specifying security attributes
+        /// of the handle.
         /// </summary>
         public SecurityAttributes? Attributes
         {
@@ -43,7 +45,8 @@ namespace SharpVk.NVidia
         }
         
         /// <summary>
-        /// 
+        /// pname:dwAccess is a code:DWORD specifying access rights of the
+        /// handle.
         /// </summary>
         public uint? DwAccess
         {

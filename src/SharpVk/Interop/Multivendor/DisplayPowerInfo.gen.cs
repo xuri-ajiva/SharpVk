@@ -34,17 +34,19 @@ namespace SharpVk.Interop.Multivendor
     public unsafe struct DisplayPowerInfo
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:powerState is the new power state of the display. Possible
+        /// values are: + --
         /// </summary>
         public SharpVk.Multivendor.DisplayPowerState PowerState; 
     }

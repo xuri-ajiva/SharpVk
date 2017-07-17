@@ -35,7 +35,7 @@ namespace SharpVk.Khronos
     public struct DisplaySurfaceCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:flags is reserved for future use, and must: be zero.
         /// </summary>
         public SharpVk.Khronos.DisplaySurfaceCreateFlags? Flags
         {
@@ -44,7 +44,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// pname:displayMode is the mode to use when displaying this surface.
         /// </summary>
         public SharpVk.Khronos.DisplayMode DisplayMode
         {
@@ -53,7 +53,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// pname:planeIndex is the plane on which this surface appears.
         /// </summary>
         public uint PlaneIndex
         {
@@ -62,7 +62,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// pname:planeStackIndex is the z-order of the plane.
         /// </summary>
         public uint PlaneStackIndex
         {
@@ -71,7 +71,8 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// pname:transform is the transform to apply to the images as part of
+        /// the scanout operation.
         /// </summary>
         public SharpVk.Khronos.SurfaceTransformFlags Transform
         {
@@ -80,7 +81,9 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// pname:globalAlpha is the global alpha value. This value is ignored
+        /// if pname:alphaMode is not
+        /// ename:VK_DISPLAY_PLANE_ALPHA_GLOBAL_BIT_KHR.
         /// </summary>
         public float GlobalAlpha
         {
@@ -89,7 +92,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// pname:alphaMode is the type of alpha blending to use.
         /// </summary>
         public SharpVk.Khronos.DisplayPlaneAlphaFlags AlphaMode
         {

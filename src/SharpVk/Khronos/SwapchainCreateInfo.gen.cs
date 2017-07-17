@@ -34,7 +34,8 @@ namespace SharpVk.Khronos
     public struct SwapchainCreateInfo
     {
         /// <summary>
-        /// 
+        /// pname:flags is a bitmask indicating parameters of swapchain
+        /// creation. Bits which can: be set include: + --
         /// </summary>
         public SharpVk.Khronos.SwapchainCreateFlags? Flags
         {

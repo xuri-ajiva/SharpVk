@@ -34,7 +34,9 @@ namespace SharpVk.Multivendor
     public struct ValidationFlags
     {
         /// <summary>
-        /// 
+        /// pname:pDisabledValidationChecks is a pointer to an array of values
+        /// specifying the validation checks to be disabled. Checks which may:
+        /// be specified include: + --
         /// </summary>
         public SharpVk.Multivendor.ValidationCheck[] DisabledValidationChecks
         {

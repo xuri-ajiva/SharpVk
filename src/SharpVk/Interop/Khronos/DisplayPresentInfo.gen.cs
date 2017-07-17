@@ -34,27 +34,47 @@ namespace SharpVk.Interop.Khronos
     public unsafe struct DisplayPresentInfo
     {
         /// <summary>
-        /// 
+        /// pname:sType is the type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// pname:pNext is `NULL` or a pointer to an extension-specific
+        /// structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// pname:srcRect is a rectangular region of pixels to present. It
+        /// must: be a subset of the image being presented. If
+        /// sname:VkDisplayPresentInfoKHR is not specified, this region will be
+        /// assumed to be the entire presentable image.
         /// </summary>
         public SharpVk.Rect2D SourceRect; 
         
         /// <summary>
-        /// 
+        /// pname:dstRect is a rectangular region within the visible region of
+        /// the swapchain's display mode. If sname:VkDisplayPresentInfoKHR is
+        /// not specified, this region will be assumed to be the entire visible
+        /// region of the visible region of the swapchain's mode. If the
+        /// specified rectangle is a subset of the display mode's visible
+        /// region, content from display planes below the swapchain's plane
+        /// will be visible outside the rectangle. If there are no planes below
+        /// the swapchain's, the area outside the specified rectangle will be
+        /// black. If portions of the specified rectangle are outside of the
+        /// display's visible region, pixels mapping only to those portions of
+        /// the rectangle will be discarded.
         /// </summary>
         public SharpVk.Rect2D DestinationRect; 
         
         /// <summary>
-        /// 
+        /// pname:persistent: If this is ename:VK_TRUE, the display engine will
+        /// enable buffered mode on displays that support it. This allows the
+        /// display engine to stop sending content to the display until a new
+        /// image is presented. The display will instead maintain a copy of the
+        /// last presented image. This allows less power to be used, but may:
+        /// increase presentation latency. If sname:VkDisplayPresentInfoKHR is
+        /// not specified, persistent mode will not be used.
         /// </summary>
         public Bool32 Persistent; 
     }

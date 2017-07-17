@@ -34,17 +34,19 @@ namespace SharpVk.Interop
     public unsafe struct SparseImageMemoryBindInfo
     {
         /// <summary>
-        /// 
+        /// pname:image is the sname:VkImage object to be bound
         /// </summary>
         public SharpVk.Interop.Image Image; 
         
         /// <summary>
-        /// 
+        /// pname:bindCount is the number of sname:VkSparseImageMemoryBind
+        /// structures in pBinds array
         /// </summary>
         public uint BindCount; 
         
         /// <summary>
-        /// 
+        /// pname:pBinds is a pointer to array of sname:VkSparseImageMemoryBind
+        /// structures
         /// </summary>
         public SharpVk.Interop.SparseImageMemoryBind* Binds; 
     }

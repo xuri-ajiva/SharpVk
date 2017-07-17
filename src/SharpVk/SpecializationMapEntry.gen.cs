@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Structure specifying a specialization map entry.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct SpecializationMapEntry
@@ -44,17 +44,20 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// pname:constantID is the ID of the specialization constant in
+        /// SPIR-V.
         /// </summary>
         public uint ConstantID; 
         
         /// <summary>
-        /// 
+        /// pname:offset is the byte offset of the specialization constant
+        /// value within the supplied data buffer.
         /// </summary>
         public uint Offset; 
         
         /// <summary>
-        /// 
+        /// pname:size is the byte size of the specialization constant value
+        /// within the supplied data buffer.
         /// </summary>
         public HostSize Size; 
     }
