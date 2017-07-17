@@ -98,5 +98,10 @@ namespace SharpVk.Khronos
         /// 
         /// </summary>
         PassThroughExt = 1000104013, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ExtendedSrgbNonlinearExt = 1000104014, 
     }
 }

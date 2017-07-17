@@ -45,7 +45,7 @@ namespace SharpVk.Generator.Specification.Rules
                         fixedLength.Value = enumName;
                         fixedLength.Type = FixedLengthType.EnumReference;
                     }
-                    else
+                    else if(nameElement.NextNode.NodeType == System.Xml.XmlNodeType.Text)
                     {
                         fixedLength.Value = SimpleParser.ParseFixedLength(nameElement.NextNode.ToString());
                         fixedLength.Type = FixedLengthType.IntegerLiteral;
