@@ -27,7 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Opaque handle to a framebuffer object.
     /// </summary>
     public partial class Framebuffer
     {

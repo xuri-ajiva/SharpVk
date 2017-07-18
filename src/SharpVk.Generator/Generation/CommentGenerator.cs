@@ -2,6 +2,8 @@
 using SharpVk.Generator.Collation;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Xml.Linq;
 
 namespace SharpVk.Generator.Generation
 {
@@ -23,7 +25,7 @@ namespace SharpVk.Generator.Generation
                 }
             }
 
-            foreach (var typeItem in typeData)
+            foreach (var typeItem in typeData.Where(x => x.Value.Pattern != TypePattern.Primitive))
             {
                 TryAdd(typeItem.Key);
 
@@ -72,13 +74,13 @@ namespace SharpVk.Generator.Generation
             File.WriteAllText(commentCacheFilePath, JsonConvert.SerializeObject(commentInfo, Formatting.Indented));
         }
 
-        private static string Normalise(string comment)
+        private static List<string> Normalise(string comment)
         {
             comment = comment.Replace("&", "&amp;");
             comment = comment.Replace("<", "&lt;");
             comment = comment.Replace(">", "&gt;");
 
-            return comment;
+            return comment.Split('\n').ToList();
         }
 
         public List<string> Lookup(string name)
@@ -87,10 +89,7 @@ namespace SharpVk.Generator.Generation
 
             return string.IsNullOrEmpty(comment)
                 ? null
-                : new List<string>()
-                {
-                    Normalise(comment)
-                };
+                : Normalise(comment);
         }
 
         public List<string> Lookup(string name, string childName)
@@ -99,10 +98,7 @@ namespace SharpVk.Generator.Generation
 
             return string.IsNullOrEmpty(comment)
                 ? null
-                : new List<string>()
-                {
-                    Normalise(comment)
-                };
+                : Normalise(comment);
         }
     }
 }

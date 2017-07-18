@@ -27,7 +27,7 @@ using System;
 namespace SharpVk.Interop.NVidia.Experimental
 {
     /// <summary>
-    /// 
+    /// Opaque handle to an indirect commands layout object.
     /// </summary>
     public struct IndirectCommandsLayout
     {

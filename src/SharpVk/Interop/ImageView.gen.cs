@@ -27,7 +27,7 @@ using System;
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
+    /// Opaque handle to a image view object.
     /// </summary>
     public struct ImageView
     {

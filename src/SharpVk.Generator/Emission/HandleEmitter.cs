@@ -83,7 +83,7 @@ namespace SharpVk.Generator.Emission
                                 body.EmitReturn(returnValue);
                             },
                             parameters => { }, Public);
-                        }, Public);
+                        }, Public, summary: handle.Comment);
                     });
 
                 });
@@ -142,7 +142,7 @@ namespace SharpVk.Generator.Emission
                             {
                                 this.methodEmitter.Emit(typeBuilder, command);
                             }
-                        }, Public, handle.Interfaces, modifiers: TypeModifier.Partial);
+                        }, Public, handle.Interfaces, modifiers: TypeModifier.Partial, summary: handle.Comment);
                     });
                 });
             }

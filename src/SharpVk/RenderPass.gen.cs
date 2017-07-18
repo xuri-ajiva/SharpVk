@@ -27,7 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Opaque handle to a render pass object.
     /// </summary>
     public partial class RenderPass
     {

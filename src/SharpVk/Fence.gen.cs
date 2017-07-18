@@ -27,7 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Opaque handle to a fence object.
     /// </summary>
     public partial class Fence
     {

@@ -27,7 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Opaque handle to a device memory object.
     /// </summary>
     public partial class DeviceMemory
     {

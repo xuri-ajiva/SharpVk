@@ -27,7 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Opaque handle to a physical device object.
     /// </summary>
     public partial class PhysicalDevice
     {

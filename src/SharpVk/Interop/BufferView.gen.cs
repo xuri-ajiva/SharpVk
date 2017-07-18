@@ -27,7 +27,7 @@ using System;
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
+    /// Opaque handle to a buffer view object.
     /// </summary>
     public struct BufferView
     {

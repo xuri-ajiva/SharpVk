@@ -27,7 +27,7 @@ using System;
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
+    /// Opaque handle to a sampler object.
     /// </summary>
     public struct Sampler
     {

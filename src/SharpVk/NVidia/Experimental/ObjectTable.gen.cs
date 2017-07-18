@@ -27,7 +27,7 @@ using System;
 namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
-    /// 
+    /// Opaque handle to an object table.
     /// </summary>
     public partial class ObjectTable
     {

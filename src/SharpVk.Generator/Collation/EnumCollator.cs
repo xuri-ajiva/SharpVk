@@ -81,7 +81,7 @@ namespace SharpVk.Generator.Collation
 
                 services.AddSingleton(new EnumDeclaration
                 {
-                    VkName = bitmaskType.VkName,
+                    VkName = enumeration?.VkName ?? bitmaskType.VkName,
                     Name = name,
                     Extension = extension,
                     IsFlags = true,

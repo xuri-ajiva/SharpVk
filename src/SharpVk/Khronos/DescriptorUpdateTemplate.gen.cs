@@ -27,7 +27,7 @@ using System;
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
+    /// Opaque handle to a descriptor update template.
     /// </summary>
     public partial class DescriptorUpdateTemplate
     {

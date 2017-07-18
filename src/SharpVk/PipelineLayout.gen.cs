@@ -27,7 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Opaque handle to a pipeline layout object.
     /// </summary>
     public partial class PipelineLayout
     {

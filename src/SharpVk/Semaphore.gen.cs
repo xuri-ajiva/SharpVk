@@ -27,7 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Opaque handle to a semaphore object.
     /// </summary>
     public partial class Semaphore
     {

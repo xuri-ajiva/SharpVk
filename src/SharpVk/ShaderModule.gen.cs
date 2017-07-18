@@ -27,7 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Opaque handle to a shader module object.
     /// </summary>
     public partial class ShaderModule
     {

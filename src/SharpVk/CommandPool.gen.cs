@@ -27,7 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Opaque handle to a command pool object.
     /// </summary>
     public partial class CommandPool
     {

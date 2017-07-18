@@ -27,7 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Opaque handle to a instance object.
     /// </summary>
     public partial class Instance
         : IProcLookup

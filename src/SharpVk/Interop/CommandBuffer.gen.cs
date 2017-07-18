@@ -27,7 +27,7 @@ using System;
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
+    /// Opaque handle to a command buffer object.
     /// </summary>
     public struct CommandBuffer
     {

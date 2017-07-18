@@ -27,7 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Opaque handle to a descriptor set object.
     /// </summary>
     public partial class DescriptorSet
     {

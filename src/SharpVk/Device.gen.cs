@@ -27,7 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Opaque handle to a device object.
     /// </summary>
     public partial class Device
         : IProcLookup

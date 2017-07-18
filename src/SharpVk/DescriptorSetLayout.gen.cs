@@ -27,7 +27,7 @@ using System;
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Opaque handle to a descriptor set layout object.
     /// </summary>
     public partial class DescriptorSetLayout
     {

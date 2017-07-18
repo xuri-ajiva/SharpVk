@@ -27,7 +27,7 @@ using System;
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
+    /// Opaque handle to a descriptor pool object.
     /// </summary>
     public struct DescriptorPool
     {

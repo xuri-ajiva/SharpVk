@@ -27,7 +27,7 @@ using System;
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
+    /// Opaque handle to a pipeline cache object.
     /// </summary>
     public struct PipelineCache
     {

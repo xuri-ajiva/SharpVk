@@ -27,7 +27,7 @@ using System;
 namespace SharpVk.Interop
 {
     /// <summary>
-    /// 
+    /// Opaque handle to a physical device object.
     /// </summary>
     public struct PhysicalDevice
     {
