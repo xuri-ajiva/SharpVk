@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Vulkan command return codes.
     /// </summary>
     public enum Result
     {

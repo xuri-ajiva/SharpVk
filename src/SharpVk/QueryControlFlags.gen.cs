@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Bitmask specifying constraints on a query.
     /// </summary>
     [System.Flags]
     public enum QueryControlFlags

@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Interpret polygon front-facing orientation.
     /// </summary>
     public enum FrontFace
     {

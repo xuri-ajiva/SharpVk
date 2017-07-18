@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Bitmask specifying features supported by a buffer.
     /// </summary>
     [System.Flags]
     public enum FormatFeatureFlags

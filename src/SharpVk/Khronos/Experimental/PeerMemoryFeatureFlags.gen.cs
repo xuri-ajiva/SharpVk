@@ -25,7 +25,7 @@
 namespace SharpVk.Khronos.Experimental
 {
     /// <summary>
-    /// 
+    /// Bitmask specifying supported peer memory features.
     /// </summary>
     [System.Flags]
     public enum PeerMemoryFeatureFlags

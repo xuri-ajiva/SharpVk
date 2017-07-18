@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Encode pipeline cache version.
     /// </summary>
     public enum PipelineCacheHeaderVersion
     {

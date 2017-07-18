@@ -25,7 +25,7 @@
 namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
-    /// 
+    /// Enum specifying.
     /// </summary>
     public enum IndirectCommandsTokenType
     {

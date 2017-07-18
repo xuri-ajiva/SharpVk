@@ -6,6 +6,7 @@ namespace SharpVk.Generator.Generation
     {
         public string Name;
         public string[] Namespace;
+        public List<string> Comment;
         public bool IsFlags;
         public List<FieldDefinition> Fields;
     }

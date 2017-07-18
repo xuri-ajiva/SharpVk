@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Specifies the type of a descriptor in a descriptor set.
     /// </summary>
     public enum DescriptorType
     {

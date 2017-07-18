@@ -25,7 +25,7 @@
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
+    /// Events that can occur on a display object.
     /// </summary>
     public enum DisplayEventType
     {

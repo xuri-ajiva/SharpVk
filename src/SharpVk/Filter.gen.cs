@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Specify filters used for texture lookups.
     /// </summary>
     public enum Filter
     {

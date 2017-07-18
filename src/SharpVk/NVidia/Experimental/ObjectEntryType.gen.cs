@@ -25,7 +25,7 @@
 namespace SharpVk.NVidia.Experimental
 {
     /// <summary>
-    /// 
+    /// Enum specifying object table entry type.
     /// </summary>
     public enum ObjectEntryType
     {

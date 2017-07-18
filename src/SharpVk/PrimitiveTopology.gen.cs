@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Supported primitive topologies.
     /// </summary>
     public enum PrimitiveTopology
     {

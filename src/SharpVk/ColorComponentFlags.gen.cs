@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Bitmask controlling which components are written to the framebuffer.
     /// </summary>
     [System.Flags]
     public enum ColorComponentFlags

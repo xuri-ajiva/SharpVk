@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Bitmask specifying attribute flags for a heap.
     /// </summary>
     [System.Flags]
     public enum MemoryHeapFlags

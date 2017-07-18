@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Bitmask specifying which aspects of an image are included in a view.
     /// </summary>
     [System.Flags]
     public enum ImageAspectFlags

@@ -25,7 +25,7 @@
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
+    /// Specify validation checks to disable.
     /// </summary>
     public enum ValidationCheck
     {

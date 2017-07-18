@@ -25,7 +25,8 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Bitmask specifying additional information about a sparse image
+    /// resource.
     /// </summary>
     [System.Flags]
     public enum SparseImageFormatFlags

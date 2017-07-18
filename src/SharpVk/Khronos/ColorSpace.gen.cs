@@ -25,12 +25,13 @@
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
+    /// Supported color space of the presentation engine.
     /// </summary>
     public enum ColorSpace
     {
         /// <summary>
-        /// 
+        /// ename:VK_COLOR_SPACE_SRGB_NONLINEAR_KHR: The presentation engine
+        /// supports the sRGB color space.
         /// </summary>
         SrgbNonlinear = 0, 
         
@@ -45,27 +46,32 @@ namespace SharpVk.Khronos
         ExtendedSrgbLinearExt = 1000104002, 
         
         /// <summary>
-        /// 
+        /// * ename:VK_COLOR_SPACE_DCI_P3_LINEAR_EXT - supports the DCI-P3
+        /// color space and applies a linear OETF.
         /// </summary>
         DciP3LinearExt = 1000104003, 
         
         /// <summary>
-        /// 
+        /// * ename:VK_COLOR_SPACE_DCI_P3_NONLINEAR_EXT - supports the DCI-P3
+        /// color space and applies the Gamma 2.6 OETF.
         /// </summary>
         DciP3NonlinearExt = 1000104004, 
         
         /// <summary>
-        /// 
+        /// * ename:VK_COLOR_SPACE_BT709_LINEAR_EXT - supports the BT709 color
+        /// space and applies a linear OETF.
         /// </summary>
         Bt709LinearExt = 1000104005, 
         
         /// <summary>
-        /// 
+        /// * ename:VK_COLOR_SPACE_BT709_NONLINEAR_EXT - supports the BT709
+        /// color space and applies the SMPTE 170M OETF.
         /// </summary>
         Bt709NonlinearExt = 1000104006, 
         
         /// <summary>
-        /// 
+        /// * ename:VK_COLOR_SPACE_BT2020_LINEAR_EXT - supports the BT2020
+        /// color space and applies a linear OETF.
         /// </summary>
         Bt2020LinearExt = 1000104007, 
         
@@ -85,12 +91,14 @@ namespace SharpVk.Khronos
         Hdr10HlgExt = 1000104010, 
         
         /// <summary>
-        /// 
+        /// * ename:VK_COLOR_SPACE_ADOBERGB_LINEAR_EXT - supports the AdobeRGB
+        /// color space and applies a linear OETF.
         /// </summary>
         AdobergbLinearExt = 1000104011, 
         
         /// <summary>
-        /// 
+        /// * ename:VK_COLOR_SPACE_ADOBERGB_NONLINEAR_EXT - supports the
+        /// AdobeRGB color space and applies the Gamma 2.2 OETF.
         /// </summary>
         AdobergbNonlinearExt = 1000104012, 
         

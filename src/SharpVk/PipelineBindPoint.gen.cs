@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Specify the bind point of a pipeline object to a command buffer.
     /// </summary>
     public enum PipelineBindPoint
     {

@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Image view types.
     /// </summary>
     public enum ImageViewType
     {

@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Bitmask specifying usage behavior for command buffer.
     /// </summary>
     [System.Flags]
     public enum CommandBufferUsageFlags

@@ -25,7 +25,7 @@
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
+    /// Bitmask specifying events which cause a debug report callback.
     /// </summary>
     [System.Flags]
     public enum DebugReportFlags
@@ -36,27 +36,41 @@ namespace SharpVk.Multivendor
         None = 0, 
         
         /// <summary>
-        /// 
+        /// ename:VK_DEBUG_REPORT_INFORMATION_BIT_EXT indicates an
+        /// informational message such as resource details that may be handy
+        /// when debugging an application.
         /// </summary>
         Information = 1 << 0, 
         
         /// <summary>
-        /// 
+        /// ename:VK_DEBUG_REPORT_WARNING_BIT_EXT indicates use of Vulkan that
+        /// may expose an app bug. Such cases may not be immediately harmful,
+        /// such as a fragment shader outputting to a location with no
+        /// attachment. Other cases may point to behavior that is almost
+        /// certainly bad when unintended such as using an image whose memory
+        /// has not been filled. In general if you see a warning but you know
+        /// that the behavior is intended/desired, then simply ignore the
+        /// warning.
         /// </summary>
         Warning = 1 << 1, 
         
         /// <summary>
-        /// 
+        /// ename:VK_DEBUG_REPORT_PERFORMANCE_WARNING_BIT_EXT indicates a
+        /// potentially non-optimal use of Vulkan. E.g. using
+        /// flink:vkCmdClearColorImage when a RenderPass load_op would have
+        /// worked.
         /// </summary>
         PerformanceWarning = 1 << 2, 
         
         /// <summary>
-        /// 
+        /// ename:VK_DEBUG_REPORT_ERROR_BIT_EXT indicates an error that may
+        /// cause undefined results, including an application crash.
         /// </summary>
         Error = 1 << 3, 
         
         /// <summary>
-        /// 
+        /// ename:VK_DEBUG_REPORT_DEBUG_BIT_EXT indicates diagnostic
+        /// information from the loader and layers. -- +
         /// </summary>
         Debug = 1 << 4, 
     }

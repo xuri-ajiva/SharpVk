@@ -25,47 +25,52 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Stencil comparison function.
     /// </summary>
     public enum StencilOp
     {
         /// <summary>
-        /// 
+        /// ename:VK_STENCIL_OP_KEEP keeps the current value.
         /// </summary>
         Keep = 0, 
         
         /// <summary>
-        /// 
+        /// ename:VK_STENCIL_OP_ZERO sets the value to 0.
         /// </summary>
         Zero = 1, 
         
         /// <summary>
-        /// 
+        /// ename:VK_STENCIL_OP_REPLACE sets the value to pname:reference.
         /// </summary>
         Replace = 2, 
         
         /// <summary>
-        /// 
+        /// ename:VK_STENCIL_OP_INCREMENT_AND_CLAMP increments the current
+        /// value and clamps to the maximum representable unsigned value.
         /// </summary>
         IncrementAndClamp = 3, 
         
         /// <summary>
-        /// 
+        /// ename:VK_STENCIL_OP_DECREMENT_AND_CLAMP decrements the current
+        /// value and clamps to 0.
         /// </summary>
         DecrementAndClamp = 4, 
         
         /// <summary>
-        /// 
+        /// ename:VK_STENCIL_OP_INVERT bitwise-inverts the current value.
         /// </summary>
         Invert = 5, 
         
         /// <summary>
-        /// 
+        /// ename:VK_STENCIL_OP_INCREMENT_AND_WRAP increments the current value
+        /// and wraps to 0 when the maximum value would have been exceeded.
         /// </summary>
         IncrementAndWrap = 6, 
         
         /// <summary>
-        /// 
+        /// ename:VK_STENCIL_OP_DECREMENT_AND_WRAP decrements the current value
+        /// and wraps to the maximum possible value when the value would go
+        /// below 0.
         /// </summary>
         DecrementAndWrap = 7, 
     }

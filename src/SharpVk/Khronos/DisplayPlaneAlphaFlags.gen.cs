@@ -25,7 +25,7 @@
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
+    /// Alpha blending type.
     /// </summary>
     [System.Flags]
     public enum DisplayPlaneAlphaFlags
@@ -36,22 +36,32 @@ namespace SharpVk.Khronos
         None = 0, 
         
         /// <summary>
-        /// 
+        /// ename:VK_DISPLAY_PLANE_ALPHA_OPAQUE_BIT_KHR: The source image will
+        /// be treated as opaque.
         /// </summary>
         Opaque = 1 << 0, 
         
         /// <summary>
-        /// 
+        /// ename:VK_DISPLAY_PLANE_ALPHA_GLOBAL_BIT_KHR: A global alpha value
+        /// must: be specified that will be applied to all pixels in the source
+        /// image.
         /// </summary>
         Global = 1 << 1, 
         
         /// <summary>
-        /// 
+        /// ename:VK_DISPLAY_PLANE_ALPHA_PER_PIXEL_BIT_KHR: The alpha value
+        /// will be determined by the alpha channel of the source image's
+        /// pixels. If the source format contains no alpha values, no blending
+        /// will be applied. The source alpha values are not premultiplied into
+        /// the source image's other color channels.
         /// </summary>
         PerPixel = 1 << 2, 
         
         /// <summary>
-        /// 
+        /// ename:VK_DISPLAY_PLANE_ALPHA_PER_PIXEL_PREMULTIPLIED_BIT_KHR: This
+        /// is equivalent to ename:VK_DISPLAY_PLANE_ALPHA_PER_PIXEL_BIT_KHR
+        /// except the source alpha values are assumed to be premultiplied into
+        /// the source image's other color channels.
         /// </summary>
         PerPixelPremultiplied = 1 << 3, 
     }

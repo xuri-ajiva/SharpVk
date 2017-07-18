@@ -25,42 +25,51 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Specify how a component is swizzled.
     /// </summary>
     public enum ComponentSwizzle
     {
         /// <summary>
-        /// 
+        /// ename:VK_COMPONENT_SWIZZLE_IDENTITY: the component is set to the
+        /// identity swizzle.
         /// </summary>
         Identity = 0, 
         
         /// <summary>
-        /// 
+        /// ename:VK_COMPONENT_SWIZZLE_ZERO: the component is set to zero.
         /// </summary>
         Zero = 1, 
         
         /// <summary>
-        /// 
+        /// ename:VK_COMPONENT_SWIZZLE_ONE: the component is set to either 1 or
+        /// 1.0 depending on whether the type of the image view format is
+        /// integer or floating-point respectively, as determined by the
+        /// &lt;&lt;features-formats-definition,Format Definition&gt;&gt;
+        /// section for each elink:VkFormat.
         /// </summary>
         One = 2, 
         
         /// <summary>
-        /// 
+        /// ename:VK_COMPONENT_SWIZZLE_R: the component is set to the value of
+        /// the R component of the image.
         /// </summary>
         R = 3, 
         
         /// <summary>
-        /// 
+        /// ename:VK_COMPONENT_SWIZZLE_G: the component is set to the value of
+        /// the G component of the image.
         /// </summary>
         G = 4, 
         
         /// <summary>
-        /// 
+        /// ename:VK_COMPONENT_SWIZZLE_B: the component is set to the value of
+        /// the B component of the image.
         /// </summary>
         B = 5, 
         
         /// <summary>
-        /// 
+        /// ename:VK_COMPONENT_SWIZZLE_A: the component is set to the value of
+        /// the A component of the image.
         /// </summary>
         A = 6, 
     }

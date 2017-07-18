@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Framebuffer logical operations.
     /// </summary>
     public enum LogicOp
     {

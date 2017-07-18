@@ -25,12 +25,13 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Allocation type.
     /// </summary>
     public enum InternalAllocationType
     {
         /// <summary>
-        /// 
+        /// ename:VK_INTERNAL_ALLOCATION_TYPE_EXECUTABLE - The allocation is
+        /// intended for execution by the host.
         /// </summary>
         Executable = 0, 
     }

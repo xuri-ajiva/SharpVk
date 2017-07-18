@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Bitmask specifying usage behavior for a command pool.
     /// </summary>
     [System.Flags]
     public enum CommandPoolCreateFlags

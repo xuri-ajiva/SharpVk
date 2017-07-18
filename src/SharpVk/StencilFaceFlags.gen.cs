@@ -25,7 +25,8 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Bitmask specifying sets of stencil state for which to update the
+    /// compare mask.
     /// </summary>
     [System.Flags]
     public enum StencilFaceFlags

@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Bitmask specifying descriptor set layout properties.
     /// </summary>
     [System.Flags]
     public enum DescriptorSetLayoutCreateFlags

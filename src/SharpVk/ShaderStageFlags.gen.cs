@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Bitmask specifying a pipeline stage.
     /// </summary>
     [System.Flags]
     public enum ShaderStageFlags

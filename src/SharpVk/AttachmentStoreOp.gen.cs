@@ -25,7 +25,8 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Specify how contents of an attachment are treated at the end of a
+    /// subpass.
     /// </summary>
     public enum AttachmentStoreOp
     {

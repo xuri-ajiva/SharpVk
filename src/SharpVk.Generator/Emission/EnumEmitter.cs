@@ -43,9 +43,9 @@ namespace SharpVk.Generator.Emission
                         {
                             foreach (var field in @enum.Fields)
                             {
-                                enumBuilder.EmitField(field.Name, AsIs(field.Value));
+                                enumBuilder.EmitField(field.Name, AsIs(field.Value), summary: field.Comment);
                             }
-                        }, Public, attributes: attributes);
+                        }, Public, attributes: attributes, summary: @enum.Comment);
                     });
                 });
             }

@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Specify mipmap mode used for texture lookups.
     /// </summary>
     public enum SamplerMipmapMode
     {

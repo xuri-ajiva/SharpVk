@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Bitmask specifying how and when query results are returned.
     /// </summary>
     [System.Flags]
     public enum QueryResultFlags

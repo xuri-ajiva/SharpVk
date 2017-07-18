@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Specify border color used for texture lookups.
     /// </summary>
     public enum BorderColor
     {

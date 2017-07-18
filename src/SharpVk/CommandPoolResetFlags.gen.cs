@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Bitmask controlling behavior of a command pool reset.
     /// </summary>
     [System.Flags]
     public enum CommandPoolResetFlags

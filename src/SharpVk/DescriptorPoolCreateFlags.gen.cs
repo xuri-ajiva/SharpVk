@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Bitmask specifying certain supported operations on a descriptor pool.
     /// </summary>
     [System.Flags]
     public enum DescriptorPoolCreateFlags

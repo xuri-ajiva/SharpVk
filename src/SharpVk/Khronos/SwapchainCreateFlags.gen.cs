@@ -25,7 +25,7 @@
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
+    /// Bitmask controlling swapchain creation.
     /// </summary>
     [System.Flags]
     public enum SwapchainCreateFlags

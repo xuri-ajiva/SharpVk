@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Framebuffer blending factors.
     /// </summary>
     public enum BlendFactor
     {

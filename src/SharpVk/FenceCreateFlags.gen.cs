@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Bitmask specifying initial state and behavior of a fence.
     /// </summary>
     [System.Flags]
     public enum FenceCreateFlags

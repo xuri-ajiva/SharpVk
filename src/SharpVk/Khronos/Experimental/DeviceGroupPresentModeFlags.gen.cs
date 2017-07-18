@@ -25,7 +25,7 @@
 namespace SharpVk.Khronos.Experimental
 {
     /// <summary>
-    /// 
+    /// Bitmask specifying supported device group present modes.
     /// </summary>
     [System.Flags]
     public enum DeviceGroupPresentModeFlags

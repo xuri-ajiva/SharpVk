@@ -25,7 +25,7 @@
 namespace SharpVk.Khronos.Experimental
 {
     /// <summary>
-    /// 
+    /// Bitmask specifying flags for a device memory allocation.
     /// </summary>
     [System.Flags]
     public enum MemoryAllocateFlags

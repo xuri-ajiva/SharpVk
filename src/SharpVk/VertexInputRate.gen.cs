@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Specify rate at which vertex attributes are pulled from buffers.
     /// </summary>
     public enum VertexInputRate
     {

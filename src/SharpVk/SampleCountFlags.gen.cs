@@ -25,7 +25,8 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Bitmask specifying sample counts supported for an image used for
+    /// storage operations.
     /// </summary>
     [System.Flags]
     public enum SampleCountFlags

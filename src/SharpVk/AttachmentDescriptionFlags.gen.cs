@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Bitmask specifying additional properties of an attachment.
     /// </summary>
     [System.Flags]
     public enum AttachmentDescriptionFlags

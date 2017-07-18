@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Bitmask specifying usage of a subpass.
     /// </summary>
     [System.Flags]
     public enum SubpassDescriptionFlags

@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Specifies the tiling arrangement of data in an image.
     /// </summary>
     public enum ImageTiling
     {

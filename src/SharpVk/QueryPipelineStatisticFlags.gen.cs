@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Bitmask specifying queried pipeline statistics.
     /// </summary>
     [System.Flags]
     public enum QueryPipelineStatisticFlags

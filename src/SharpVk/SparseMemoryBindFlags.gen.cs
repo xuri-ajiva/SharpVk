@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Bitmask specifying usage of a sparse memory binding operation.
     /// </summary>
     [System.Flags]
     public enum SparseMemoryBindFlags

@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Specify the type of queries managed by a query pool.
     /// </summary>
     public enum QueryType
     {

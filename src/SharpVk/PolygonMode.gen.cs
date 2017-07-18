@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Control polygon rasterization mode.
     /// </summary>
     public enum PolygonMode
     {

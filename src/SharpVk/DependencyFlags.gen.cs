@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Bitmask specifying how execution and memory dependencies are formed.
     /// </summary>
     [System.Flags]
     public enum DependencyFlags
@@ -36,7 +36,7 @@ namespace SharpVk
         None = 0, 
         
         /// <summary>
-        /// 
+        /// Dependency is per pixel region 
         /// </summary>
         ByRegion = 1 << 0, 
         

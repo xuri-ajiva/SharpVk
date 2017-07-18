@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Type of index buffer indices.
     /// </summary>
     public enum IndexType
     {

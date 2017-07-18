@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Framebuffer blending operations.
     /// </summary>
     public enum BlendOp
     {

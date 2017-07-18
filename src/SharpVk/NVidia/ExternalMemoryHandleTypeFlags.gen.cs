@@ -25,7 +25,7 @@
 namespace SharpVk.NVidia
 {
     /// <summary>
-    /// 
+    /// Bitmask specifying memory handle types.
     /// </summary>
     [System.Flags]
     public enum ExternalMemoryHandleTypeFlags

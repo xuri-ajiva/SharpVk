@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Bitmask specifying properties for a memory type.
     /// </summary>
     [System.Flags]
     public enum MemoryPropertyFlags

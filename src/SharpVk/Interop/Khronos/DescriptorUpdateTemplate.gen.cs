@@ -27,7 +27,10 @@ using System;
 namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// Opaque handle to a descriptor update template.
+    /// A descriptor update template specifies a mapping from descriptor update
+    /// information in host memory to descriptors in a descriptor set. It is
+    /// designed to avoid passing redundant information to the driver when
+    /// frequently updating the same set of descriptors in descriptor sets.
     /// </summary>
     public struct DescriptorUpdateTemplate
     {

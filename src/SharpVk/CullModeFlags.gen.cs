@@ -25,7 +25,7 @@
 namespace SharpVk
 {
     /// <summary>
-    /// 
+    /// Bitmask controlling triangle culling.
     /// </summary>
     [System.Flags]
     public enum CullModeFlags
