@@ -60,6 +60,9 @@ namespace SharpVk.NVidia.Experimental
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.Experimental.ObjectTablePipelineEntry* pointer)
         {
             pointer->Type = this.Type;
@@ -67,6 +70,9 @@ namespace SharpVk.NVidia.Experimental
             pointer->Pipeline = this.Pipeline?.handle ?? default(SharpVk.Interop.Pipeline);
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe ObjectTablePipelineEntry MarshalFrom(SharpVk.Interop.NVidia.Experimental.ObjectTablePipelineEntry* pointer)
         {
             ObjectTablePipelineEntry result = default(ObjectTablePipelineEntry);

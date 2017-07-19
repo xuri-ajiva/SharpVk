@@ -133,6 +133,9 @@ namespace SharpVk.Multivendor
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe SurfaceCapabilities2 MarshalFrom(SharpVk.Interop.Multivendor.SurfaceCapabilities2* pointer)
         {
             SurfaceCapabilities2 result = default(SurfaceCapabilities2);

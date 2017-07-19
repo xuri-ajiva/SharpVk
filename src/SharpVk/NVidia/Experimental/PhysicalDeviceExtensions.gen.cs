@@ -32,7 +32,8 @@ namespace SharpVk.NVidia.Experimental
     public static class PhysicalDeviceExtensions
     {
         /// <summary>
-        /// 
+        /// Returns device-generated commands related properties of a physical
+        /// device.
         /// </summary>
         public static unsafe SharpVk.NVidia.Experimental.DeviceGeneratedCommandsLimits GetGeneratedCommandsProperties(this SharpVk.PhysicalDevice extendedHandle, SharpVk.NVidia.Experimental.DeviceGeneratedCommandsFeatures features)
         {

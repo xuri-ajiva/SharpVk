@@ -52,6 +52,9 @@ namespace SharpVk
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.SparseImageOpaqueMemoryBindInfo* pointer)
         {
             pointer->Image = this.Image?.handle ?? default(SharpVk.Interop.Image);

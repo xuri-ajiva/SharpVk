@@ -42,6 +42,9 @@ namespace SharpVk.Khronos
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe MemoryRequirements2 MarshalFrom(SharpVk.Interop.Khronos.MemoryRequirements2* pointer)
         {
             MemoryRequirements2 result = default(MemoryRequirements2);

@@ -42,6 +42,9 @@ namespace SharpVk.Khronos
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.BufferMemoryRequirementsInfo2* pointer)
         {
             pointer->SType = StructureType.BufferMemoryRequirementsInfo2Khr;
@@ -49,6 +52,9 @@ namespace SharpVk.Khronos
             pointer->Buffer = this.Buffer?.handle ?? default(SharpVk.Interop.Buffer);
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe BufferMemoryRequirementsInfo2 MarshalFrom(SharpVk.Interop.Khronos.BufferMemoryRequirementsInfo2* pointer)
         {
             BufferMemoryRequirementsInfo2 result = default(BufferMemoryRequirementsInfo2);

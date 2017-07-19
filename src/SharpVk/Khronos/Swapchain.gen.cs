@@ -45,7 +45,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Destroy a swapchain object.
         /// </summary>
         public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -71,7 +71,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Obtain the array of presentable images associated with a swapchain.
         /// </summary>
         public unsafe SharpVk.Image[] GetImages()
         {
@@ -110,7 +110,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Retrieve the index of the next available presentable image.
         /// </summary>
         public unsafe uint AcquireNextImage(ulong timeout, SharpVk.Semaphore semaphore, SharpVk.Fence fence)
         {

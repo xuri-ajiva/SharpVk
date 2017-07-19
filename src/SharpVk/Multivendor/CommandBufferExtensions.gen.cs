@@ -32,7 +32,7 @@ namespace SharpVk.Multivendor
     public static class CommandBufferExtensions
     {
         /// <summary>
-        /// 
+        /// Open a command buffer marker region.
         /// </summary>
         public static unsafe void DebugMarkerBegin(this SharpVk.CommandBuffer extendedHandle, SharpVk.Multivendor.DebugMarkerMarkerInfo markerInfo)
         {
@@ -53,7 +53,7 @@ namespace SharpVk.Multivendor
         }
         
         /// <summary>
-        /// 
+        /// Close a command buffer marker region.
         /// </summary>
         public static unsafe void DebugMarkerEnd(this SharpVk.CommandBuffer extendedHandle)
         {
@@ -71,7 +71,7 @@ namespace SharpVk.Multivendor
         }
         
         /// <summary>
-        /// 
+        /// Insert a marker label into a command buffer.
         /// </summary>
         public static unsafe void DebugMarkerInsert(this SharpVk.CommandBuffer extendedHandle, SharpVk.Multivendor.DebugMarkerMarkerInfo markerInfo)
         {

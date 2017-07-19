@@ -45,6 +45,9 @@ namespace SharpVk.Khronos
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PhysicalDeviceFeatures2* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceFeatures2Khr;
@@ -52,6 +55,9 @@ namespace SharpVk.Khronos
             this.Features.MarshalTo(&pointer->Features);
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe PhysicalDeviceFeatures2 MarshalFrom(SharpVk.Interop.Khronos.PhysicalDeviceFeatures2* pointer)
         {
             PhysicalDeviceFeatures2 result = default(PhysicalDeviceFeatures2);

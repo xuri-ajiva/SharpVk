@@ -53,6 +53,9 @@ namespace SharpVk.Khronos.Experimental
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.Experimental.DeviceGroupBindSparseInfo* pointer)
         {
             pointer->SType = StructureType.DeviceGroupBindSparseInfoKhx;

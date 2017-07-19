@@ -5,12 +5,13 @@ namespace SharpVk.Generator.Generation.Marshalling
 {
     public struct MemberPatternContext
     {
-        public MemberPatternContext(string methodVerb, string extension, Func<string, Action<ExpressionBuilder>> getHandle)
+        public MemberPatternContext(string methodVerb, string extension, Func<string, Action<ExpressionBuilder>> getHandle, string vkName)
             : this()
         {
             this.MethodVerb = methodVerb;
             this.Extension = extension;
             this.GetHandle = getHandle;
+            this.VkName = vkName;
         }
 
         public string MethodVerb
@@ -26,6 +27,12 @@ namespace SharpVk.Generator.Generation.Marshalling
         }
 
         public Func<string, Action<ExpressionBuilder>> GetHandle
+        {
+            get;
+            private set;
+        }
+
+        public string VkName
         {
             get;
             private set;

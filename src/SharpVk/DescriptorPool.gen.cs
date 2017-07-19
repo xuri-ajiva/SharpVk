@@ -45,7 +45,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Destroy a descriptor pool object.
         /// </summary>
         public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -70,7 +70,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Resets a descriptor pool object.
         /// </summary>
         public unsafe void Reset(SharpVk.DescriptorPoolResetFlags? flags = default(SharpVk.DescriptorPoolResetFlags?))
         {
@@ -98,7 +98,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Free one or more descriptor sets.
         /// </summary>
         public unsafe void FreeDescriptorSets(SharpVk.DescriptorSet[] descriptorSets)
         {

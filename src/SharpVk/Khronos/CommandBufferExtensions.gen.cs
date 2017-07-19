@@ -32,7 +32,7 @@ namespace SharpVk.Khronos
     public static class CommandBufferExtensions
     {
         /// <summary>
-        /// 
+        /// Pushes descriptor updates into a command buffer.
         /// </summary>
         public static unsafe void PushDescriptorSet(this SharpVk.CommandBuffer extendedHandle, SharpVk.PipelineBindPoint pipelineBindPoint, SharpVk.PipelineLayout layout, uint set, SharpVk.WriteDescriptorSet[] descriptorWrites)
         {
@@ -64,7 +64,8 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Pushes descriptor updates into a command buffer using a descriptor
+        /// update template.
         /// </summary>
         public static unsafe void PushDescriptorSetWithTemplate(this SharpVk.CommandBuffer extendedHandle, SharpVk.Khronos.DescriptorUpdateTemplate descriptorUpdateTemplate, SharpVk.PipelineLayout layout, uint set, IntPtr data)
         {

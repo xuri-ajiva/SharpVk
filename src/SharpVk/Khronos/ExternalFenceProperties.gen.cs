@@ -60,6 +60,9 @@ namespace SharpVk.Khronos
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe ExternalFenceProperties MarshalFrom(SharpVk.Interop.Khronos.ExternalFenceProperties* pointer)
         {
             ExternalFenceProperties result = default(ExternalFenceProperties);

@@ -111,6 +111,9 @@ namespace SharpVk
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.PipelineMultisampleStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineMultisampleStateCreateInfo;

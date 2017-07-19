@@ -78,6 +78,9 @@ namespace SharpVk.Khronos
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.Win32KeyedMutexAcquireReleaseInfo* pointer)
         {
             pointer->SType = StructureType.Win32KeyedMutexAcquireReleaseInfoKhr;

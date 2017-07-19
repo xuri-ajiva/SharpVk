@@ -44,6 +44,9 @@ namespace SharpVk.Khronos
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe PhysicalDeviceMemoryProperties2 MarshalFrom(SharpVk.Interop.Khronos.PhysicalDeviceMemoryProperties2* pointer)
         {
             PhysicalDeviceMemoryProperties2 result = default(PhysicalDeviceMemoryProperties2);

@@ -529,6 +529,9 @@ namespace SharpVk
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceFeatures* pointer)
         {
             pointer->RobustBufferAccess = this.RobustBufferAccess;
@@ -588,6 +591,9 @@ namespace SharpVk
             pointer->InheritedQueries = this.InheritedQueries;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe PhysicalDeviceFeatures MarshalFrom(SharpVk.Interop.PhysicalDeviceFeatures* pointer)
         {
             PhysicalDeviceFeatures result = default(PhysicalDeviceFeatures);

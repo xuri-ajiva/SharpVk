@@ -55,6 +55,9 @@ namespace SharpVk.Khronos
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.DisplayModeCreateInfo* pointer)
         {
             pointer->SType = StructureType.DisplayModeCreateInfoKhr;

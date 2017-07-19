@@ -42,6 +42,9 @@ namespace SharpVk.Multivendor
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceBlendOperationAdvancedFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceBlendOperationAdvancedFeaturesExt;
@@ -49,6 +52,9 @@ namespace SharpVk.Multivendor
             pointer->AdvancedBlendCoherentOperations = this.AdvancedBlendCoherentOperations;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe PhysicalDeviceBlendOperationAdvancedFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceBlendOperationAdvancedFeatures* pointer)
         {
             PhysicalDeviceBlendOperationAdvancedFeatures result = default(PhysicalDeviceBlendOperationAdvancedFeatures);

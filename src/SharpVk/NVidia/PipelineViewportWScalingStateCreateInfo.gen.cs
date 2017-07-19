@@ -66,6 +66,9 @@ namespace SharpVk.NVidia
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PipelineViewportWScalingStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineViewportWScalingStateCreateInfoNv;

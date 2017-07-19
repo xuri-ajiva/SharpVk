@@ -32,7 +32,7 @@ namespace SharpVk.Khronos
     public static class PhysicalDeviceExtensions
     {
         /// <summary>
-        /// 
+        /// Query information about the available displays.
         /// </summary>
         public static unsafe SharpVk.Khronos.DisplayProperties[] GetDisplayProperties(this SharpVk.PhysicalDevice extendedHandle)
         {
@@ -73,7 +73,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Query the plane properties.
         /// </summary>
         public static unsafe SharpVk.Khronos.DisplayPlaneProperties[] GetDisplayPlaneProperties(this SharpVk.PhysicalDevice extendedHandle)
         {
@@ -114,7 +114,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Query the list of displays a plane supports.
         /// </summary>
         public static unsafe SharpVk.Khronos.Display[] GetDisplayPlaneSupportedDisplays(this SharpVk.PhysicalDevice extendedHandle, uint planeIndex)
         {
@@ -155,7 +155,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Query the set of mode properties supported by the display.
         /// </summary>
         public static unsafe SharpVk.Khronos.DisplayModeProperties[] GetDisplayModeProperties(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.Display display)
         {
@@ -196,7 +196,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Create a display mode.
         /// </summary>
         public static unsafe SharpVk.Khronos.DisplayMode CreateDisplayMode(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.Display display, SharpVk.Khronos.DisplayModeParameters parameters, SharpVk.Khronos.DisplayModeCreateFlags? flags = default(SharpVk.Khronos.DisplayModeCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -245,7 +245,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Query physical device for presentation to Mir.
         /// </summary>
         public static unsafe void GetMirPresentationSupport(this SharpVk.PhysicalDevice extendedHandle, uint queueFamilyIndex, IntPtr connection)
         {
@@ -266,7 +266,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Query if presentation is supported.
         /// </summary>
         public static unsafe bool GetSurfaceSupport(this SharpVk.PhysicalDevice extendedHandle, uint queueFamilyIndex, SharpVk.Khronos.Surface surface)
         {
@@ -292,7 +292,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Query surface capabilities.
         /// </summary>
         public static unsafe SharpVk.Khronos.SurfaceCapabilities GetSurfaceCapabilities(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.Surface surface)
         {
@@ -318,7 +318,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Query color formats supported by surface.
         /// </summary>
         public static unsafe SharpVk.Khronos.SurfaceFormat[] GetSurfaceFormats(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.Surface surface)
         {
@@ -359,7 +359,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Query supported presentation modes.
         /// </summary>
         public static unsafe SharpVk.Khronos.PresentMode[] GetSurfacePresentModes(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.Surface surface)
         {
@@ -400,7 +400,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Query physical device for presentation to Wayland.
         /// </summary>
         public static unsafe void GetWaylandPresentationSupport(this SharpVk.PhysicalDevice extendedHandle, uint queueFamilyIndex, IntPtr display)
         {
@@ -418,7 +418,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Query queue family support for presentation on a Win32 display.
         /// </summary>
         public static unsafe void GetWin32PresentationSupport(this SharpVk.PhysicalDevice extendedHandle, uint queueFamilyIndex)
         {
@@ -436,7 +436,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Query physical device for presentation to X11 server using Xlib.
         /// </summary>
         public static unsafe void GetXlibPresentationSupport(this SharpVk.PhysicalDevice extendedHandle, uint queueFamilyIndex, IntPtr dpy, IntPtr visualID)
         {
@@ -457,7 +457,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Query physical device for presentation to X11 server using XCB.
         /// </summary>
         public static unsafe void GetXcbPresentationSupport(this SharpVk.PhysicalDevice extendedHandle, uint queueFamilyIndex, IntPtr connection, IntPtr visualId)
         {
@@ -478,7 +478,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Reports capabilities of a physical device.
         /// </summary>
         public static unsafe SharpVk.Khronos.PhysicalDeviceFeatures2 GetFeatures2(this SharpVk.PhysicalDevice extendedHandle)
         {
@@ -500,7 +500,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Returns properties of a physical device.
         /// </summary>
         public static unsafe SharpVk.Khronos.PhysicalDeviceProperties2 GetProperties2(this SharpVk.PhysicalDevice extendedHandle)
         {
@@ -522,7 +522,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Lists physical device's format capabilities.
         /// </summary>
         public static unsafe SharpVk.Khronos.FormatProperties2 GetFormatProperties2(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Format format)
         {
@@ -544,7 +544,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Lists physical device's image format capabilities.
         /// </summary>
         public static unsafe SharpVk.Khronos.ImageFormatProperties2 GetImageFormatProperties2(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.PhysicalDeviceImageFormatInfo2 imageFormatInfo)
         {
@@ -573,7 +573,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Reports properties of the queues of the specified physical device.
         /// </summary>
         public static unsafe SharpVk.Khronos.QueueFamilyProperties2[] GetQueueFamilyProperties2(this SharpVk.PhysicalDevice extendedHandle)
         {
@@ -610,7 +610,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Reports memory information for the specified physical device.
         /// </summary>
         public static unsafe SharpVk.Khronos.PhysicalDeviceMemoryProperties2 GetMemoryProperties2(this SharpVk.PhysicalDevice extendedHandle)
         {
@@ -632,7 +632,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Retrieve properties of an image format applied to sparse images.
         /// </summary>
         public static unsafe SharpVk.Khronos.SparseImageFormatProperties2[] GetSparseImageFormatProperties2(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.PhysicalDeviceSparseImageFormatInfo2 formatInfo)
         {

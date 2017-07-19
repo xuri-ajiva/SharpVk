@@ -43,7 +43,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Create a new Vulkan instance.
         /// </summary>
         public static unsafe SharpVk.Instance Create(string[] enabledLayerNames, string[] enabledExtensionNames, SharpVk.InstanceCreateFlags? flags = default(SharpVk.InstanceCreateFlags?), SharpVk.ApplicationInfo? applicationInfo = default(SharpVk.ApplicationInfo?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -113,7 +113,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Destroy an instance of Vulkan.
         /// </summary>
         public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -138,7 +138,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Enumerates the physical devices accessible to a Vulkan instance.
         /// </summary>
         public unsafe SharpVk.PhysicalDevice[] EnumeratePhysicalDevices()
         {
@@ -176,7 +176,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Return a function pointer for a command.
         /// </summary>
         public unsafe IntPtr GetProcedureAddress(string name)
         {
@@ -193,7 +193,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Returns up to requested number of global layer properties.
         /// </summary>
         public static unsafe SharpVk.LayerProperties[] EnumerateLayerProperties()
         {
@@ -231,7 +231,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Returns up to requested number of global extension properties.
         /// </summary>
         public static unsafe SharpVk.ExtensionProperties[] EnumerateExtensionProperties(string layerName)
         {

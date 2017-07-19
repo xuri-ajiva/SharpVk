@@ -32,7 +32,7 @@ namespace SharpVk.MoltenVk
     public static class InstanceExtensions
     {
         /// <summary>
-        /// 
+        /// Create a slink:VkSurfaceKHR object for an iOS UIView.
         /// </summary>
         public static unsafe SharpVk.Khronos.Surface CreateIOSSurface(this SharpVk.Instance extendedHandle, IntPtr view, SharpVk.MoltenVk.IOSSurfaceCreateFlags? flags = default(SharpVk.MoltenVk.IOSSurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -81,7 +81,7 @@ namespace SharpVk.MoltenVk
         }
         
         /// <summary>
-        /// 
+        /// Create a slink:VkSurfaceKHR object for a macOS NSView.
         /// </summary>
         public static unsafe SharpVk.Khronos.Surface CreateMacOSSurface(this SharpVk.Instance extendedHandle, IntPtr view, SharpVk.MoltenVk.MacOSSurfaceCreateFlags? flags = default(SharpVk.MoltenVk.MacOSSurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {

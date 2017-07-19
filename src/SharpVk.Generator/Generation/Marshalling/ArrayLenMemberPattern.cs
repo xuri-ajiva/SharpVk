@@ -12,11 +12,13 @@ namespace SharpVk.Generator.Generation.Marshalling
     {
         private readonly ParsedExpressionTokenCheck tokenCheck;
         private readonly NameLookup nameLookup;
+        private readonly CommentGenerator commentGenerator;
 
-        public ArrayLenMemberPattern(ParsedExpressionTokenCheck tokenCheck, NameLookup nameLookup)
+        public ArrayLenMemberPattern(ParsedExpressionTokenCheck tokenCheck, NameLookup nameLookup, CommentGenerator commentGenerator)
         {
             this.tokenCheck = tokenCheck;
             this.nameLookup = nameLookup;
+            this.commentGenerator = commentGenerator;
         }
 
         public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, MemberPatternContext context, MemberPatternInfo info)
@@ -66,6 +68,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                     info.Public.Add(new TypedDefinition
                     {
                         Name = source.Name,
+                        Comment = this.commentGenerator.Lookup(context.VkName, source.VkName),
                         Type = typeName + "?",
                         DefaultValue = Null
                     });

@@ -121,6 +121,9 @@ namespace SharpVk
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe PhysicalDeviceSparseProperties MarshalFrom(SharpVk.Interop.PhysicalDeviceSparseProperties* pointer)
         {
             PhysicalDeviceSparseProperties result = default(PhysicalDeviceSparseProperties);

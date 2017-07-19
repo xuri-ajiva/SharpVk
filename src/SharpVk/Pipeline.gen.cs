@@ -45,7 +45,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Destroy a pipeline object.
         /// </summary>
         public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {

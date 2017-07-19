@@ -69,6 +69,9 @@ namespace SharpVk.NVidia.Experimental
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.Experimental.ObjectTablePushConstantEntry* pointer)
         {
             pointer->Type = this.Type;
@@ -77,6 +80,9 @@ namespace SharpVk.NVidia.Experimental
             pointer->StageFlags = this.StageFlags;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe ObjectTablePushConstantEntry MarshalFrom(SharpVk.Interop.NVidia.Experimental.ObjectTablePushConstantEntry* pointer)
         {
             ObjectTablePushConstantEntry result = default(ObjectTablePushConstantEntry);

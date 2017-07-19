@@ -51,6 +51,9 @@ namespace SharpVk.Khronos
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.D3D12FenceSubmitInfo* pointer)
         {
             pointer->SType = StructureType.D3d12FenceSubmitInfoKhr;

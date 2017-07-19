@@ -57,6 +57,9 @@ namespace SharpVk.Khronos.Experimental
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe DeviceGroupPresentCapabilities MarshalFrom(SharpVk.Interop.Khronos.Experimental.DeviceGroupPresentCapabilities* pointer)
         {
             DeviceGroupPresentCapabilities result = default(DeviceGroupPresentCapabilities);

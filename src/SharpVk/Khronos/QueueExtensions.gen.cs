@@ -32,7 +32,7 @@ namespace SharpVk.Khronos
     public static class QueueExtensions
     {
         /// <summary>
-        /// 
+        /// Queue an image for presentation.
         /// </summary>
         public static unsafe void Present(this SharpVk.Queue extendedHandle, SharpVk.Semaphore[] waitSemaphores, SharpVk.Khronos.Swapchain[] swapchains, uint[] imageIndices, SharpVk.Result[] results)
         {

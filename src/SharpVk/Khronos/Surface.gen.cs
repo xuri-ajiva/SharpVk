@@ -45,7 +45,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Destroy a VkSurfaceKHR object.
         /// </summary>
         public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {

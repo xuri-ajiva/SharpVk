@@ -78,6 +78,9 @@ namespace SharpVk.Khronos
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe PhysicalDeviceIDProperties MarshalFrom(SharpVk.Interop.Khronos.PhysicalDeviceIDProperties* pointer)
         {
             PhysicalDeviceIDProperties result = default(PhysicalDeviceIDProperties);

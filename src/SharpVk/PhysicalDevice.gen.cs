@@ -45,7 +45,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Returns properties of a physical device.
         /// </summary>
         public unsafe SharpVk.PhysicalDeviceProperties GetProperties()
         {
@@ -64,7 +64,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Reports properties of the queues of the specified physical device.
         /// </summary>
         public unsafe SharpVk.QueueFamilyProperties[] GetQueueFamilyProperties()
         {
@@ -98,7 +98,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Reports memory information for the specified physical device.
         /// </summary>
         public unsafe SharpVk.PhysicalDeviceMemoryProperties GetMemoryProperties()
         {
@@ -117,7 +117,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Reports capabilities of a physical device.
         /// </summary>
         public unsafe SharpVk.PhysicalDeviceFeatures GetFeatures()
         {
@@ -136,7 +136,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Lists physical device's format capabilities.
         /// </summary>
         public unsafe SharpVk.FormatProperties GetFormatProperties(SharpVk.Format format)
         {
@@ -155,7 +155,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Lists physical device's image format capabilities.
         /// </summary>
         public unsafe SharpVk.ImageFormatProperties GetImageFormatProperties(SharpVk.Format format, SharpVk.ImageType type, SharpVk.ImageTiling tiling, SharpVk.ImageUsageFlags usage, SharpVk.ImageCreateFlags? flags = default(SharpVk.ImageCreateFlags?))
         {
@@ -187,7 +187,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Create a new device instance.
         /// </summary>
         public unsafe SharpVk.Device CreateDevice(SharpVk.DeviceQueueCreateInfo[] queueCreateInfos, string[] enabledLayerNames, string[] enabledExtensionNames, SharpVk.DeviceCreateFlags? flags = default(SharpVk.DeviceCreateFlags?), SharpVk.PhysicalDeviceFeatures? enabledFeatures = default(SharpVk.PhysicalDeviceFeatures?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -271,7 +271,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Returns properties of available physical device layers.
         /// </summary>
         public unsafe SharpVk.LayerProperties[] EnumerateDeviceLayerProperties()
         {
@@ -309,7 +309,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Returns properties of available physical device extensions.
         /// </summary>
         public unsafe SharpVk.ExtensionProperties[] EnumerateDeviceExtensionProperties(string layerName)
         {
@@ -347,7 +347,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Retrieve properties of an image format applied to sparse images.
         /// </summary>
         public unsafe SharpVk.SparseImageFormatProperties[] GetSparseImageFormatProperties(SharpVk.Format format, SharpVk.ImageType type, SharpVk.SampleCountFlags samples, SharpVk.ImageUsageFlags usage, SharpVk.ImageTiling tiling)
         {

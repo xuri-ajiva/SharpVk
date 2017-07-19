@@ -60,6 +60,9 @@ namespace SharpVk.NVidia.Experimental
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.Experimental.ObjectTableVertexBufferEntry* pointer)
         {
             pointer->Type = this.Type;
@@ -67,6 +70,9 @@ namespace SharpVk.NVidia.Experimental
             pointer->Buffer = this.Buffer?.handle ?? default(SharpVk.Interop.Buffer);
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe ObjectTableVertexBufferEntry MarshalFrom(SharpVk.Interop.NVidia.Experimental.ObjectTableVertexBufferEntry* pointer)
         {
             ObjectTableVertexBufferEntry result = default(ObjectTableVertexBufferEntry);

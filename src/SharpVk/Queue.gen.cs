@@ -45,7 +45,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Submits a sequence of semaphores or command buffers to a queue.
         /// </summary>
         public unsafe void Submit(SharpVk.SubmitInfo[] submits, SharpVk.Fence fence)
         {
@@ -78,7 +78,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Wait for a queue to become idle.
         /// </summary>
         public unsafe void WaitIdle()
         {
@@ -97,7 +97,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Bind device memory to a sparse resource object.
         /// </summary>
         public unsafe void BindSparse(SharpVk.BindSparseInfo[] bindInfo, SharpVk.Fence fence)
         {

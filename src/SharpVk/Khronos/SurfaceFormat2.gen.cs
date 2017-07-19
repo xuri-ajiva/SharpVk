@@ -42,6 +42,9 @@ namespace SharpVk.Khronos
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe SurfaceFormat2 MarshalFrom(SharpVk.Interop.Khronos.SurfaceFormat2* pointer)
         {
             SurfaceFormat2 result = default(SurfaceFormat2);

@@ -69,6 +69,9 @@ namespace SharpVk.NVidia.Experimental
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.Experimental.ObjectTableDescriptorSetEntry* pointer)
         {
             pointer->Type = this.Type;
@@ -77,6 +80,9 @@ namespace SharpVk.NVidia.Experimental
             pointer->DescriptorSet = this.DescriptorSet?.handle ?? default(SharpVk.Interop.DescriptorSet);
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe ObjectTableDescriptorSetEntry MarshalFrom(SharpVk.Interop.NVidia.Experimental.ObjectTableDescriptorSetEntry* pointer)
         {
             ObjectTableDescriptorSetEntry result = default(ObjectTableDescriptorSetEntry);

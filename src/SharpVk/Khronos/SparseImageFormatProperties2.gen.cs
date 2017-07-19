@@ -45,6 +45,9 @@ namespace SharpVk.Khronos
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe SparseImageFormatProperties2 MarshalFrom(SharpVk.Interop.Khronos.SparseImageFormatProperties2* pointer)
         {
             SparseImageFormatProperties2 result = default(SparseImageFormatProperties2);

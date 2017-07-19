@@ -10,10 +10,12 @@ namespace SharpVk.Generator.Generation.Marshalling
         : IMemberPatternRule
     {
         private readonly NameLookup nameLookup;
+        private readonly CommentGenerator commentGenerator;
 
-        public VersionMemberPattern(NameLookup nameLookup)
+        public VersionMemberPattern(NameLookup nameLookup, CommentGenerator commentGenerator)
         {
             this.nameLookup = nameLookup;
+            this.commentGenerator = commentGenerator;
         }
 
         public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, MemberPatternContext context, MemberPatternInfo info)
@@ -23,6 +25,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                 info.Public.Add(new TypedDefinition
                 {
                     Name = source.Name,
+                    Comment = this.commentGenerator.Lookup(context.VkName, source.VkName),
                     Type = "Version"
                 });
 

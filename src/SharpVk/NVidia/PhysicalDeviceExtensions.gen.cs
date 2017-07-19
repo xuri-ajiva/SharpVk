@@ -32,7 +32,8 @@ namespace SharpVk.NVidia
     public static class PhysicalDeviceExtensions
     {
         /// <summary>
-        /// 
+        /// Determine image capabilities compatible with external memory handle
+        /// types.
         /// </summary>
         public static unsafe SharpVk.NVidia.ExternalImageFormatProperties GetExternalImageFormatProperties(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Format format, SharpVk.ImageType type, SharpVk.ImageTiling tiling, SharpVk.ImageUsageFlags usage, SharpVk.ImageCreateFlags? flags = default(SharpVk.ImageCreateFlags?), SharpVk.NVidia.ExternalMemoryHandleTypeFlags? externalHandleType = default(SharpVk.NVidia.ExternalMemoryHandleTypeFlags?))
         {

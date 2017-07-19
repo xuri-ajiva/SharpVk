@@ -45,7 +45,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Destroy an event object.
         /// </summary>
         public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -70,7 +70,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Retrieve the status of an event object.
         /// </summary>
         public unsafe void GetStatus()
         {
@@ -89,7 +89,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Set an event to signaled state.
         /// </summary>
         public unsafe void Set()
         {
@@ -108,7 +108,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Reset an event to non-signaled state.
         /// </summary>
         public unsafe void Reset()
         {

@@ -45,7 +45,7 @@ namespace SharpVk.NVidia.Experimental
         }
         
         /// <summary>
-        /// 
+        /// Destroy a object table.
         /// </summary>
         public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {

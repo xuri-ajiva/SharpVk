@@ -178,6 +178,9 @@ namespace SharpVk
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.SamplerCreateInfo* pointer)
         {
             pointer->SType = StructureType.SamplerCreateInfo;

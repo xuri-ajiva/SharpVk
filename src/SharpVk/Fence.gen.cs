@@ -45,7 +45,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Destroy a fence object.
         /// </summary>
         public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -70,7 +70,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Return the status of a fence.
         /// </summary>
         public unsafe void GetStatus()
         {

@@ -117,6 +117,9 @@ namespace SharpVk
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.ImageMemoryBarrier* pointer)
         {
             pointer->SType = StructureType.ImageMemoryBarrier;
@@ -145,6 +148,9 @@ namespace SharpVk
             pointer->SubresourceRange = this.SubresourceRange;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe ImageMemoryBarrier MarshalFrom(SharpVk.Interop.ImageMemoryBarrier* pointer)
         {
             ImageMemoryBarrier result = default(ImageMemoryBarrier);

@@ -7,6 +7,7 @@ namespace SharpVk.Generator.Generation
     {
         public string ReturnType;
         public string Name;
+        public List<string> Comment;
         public bool IsPublic;
         public bool IsUnsafe;
         public bool IsStatic;

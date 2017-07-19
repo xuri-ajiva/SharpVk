@@ -32,7 +32,7 @@ namespace SharpVk.Multivendor
     public static class InstanceExtensions
     {
         /// <summary>
-        /// 
+        /// Create a debug report callback object.
         /// </summary>
         public static unsafe SharpVk.Multivendor.DebugReportCallback CreateDebugReportCallback(this SharpVk.Instance extendedHandle, SharpVk.Multivendor.DebugReportCallbackDelegate callback, SharpVk.Multivendor.DebugReportFlags? flags = default(SharpVk.Multivendor.DebugReportFlags?), IntPtr? userData = default(IntPtr?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {

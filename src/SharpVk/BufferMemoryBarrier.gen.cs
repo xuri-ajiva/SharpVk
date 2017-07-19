@@ -107,6 +107,9 @@ namespace SharpVk
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.BufferMemoryBarrier* pointer)
         {
             pointer->SType = StructureType.BufferMemoryBarrier;
@@ -134,6 +137,9 @@ namespace SharpVk
             pointer->Size = this.Size;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe BufferMemoryBarrier MarshalFrom(SharpVk.Interop.BufferMemoryBarrier* pointer)
         {
             BufferMemoryBarrier result = default(BufferMemoryBarrier);

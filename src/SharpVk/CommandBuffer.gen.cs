@@ -45,7 +45,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Start recording a command buffer.
         /// </summary>
         public unsafe void Begin(SharpVk.CommandBufferUsageFlags? flags = default(SharpVk.CommandBufferUsageFlags?), SharpVk.CommandBufferInheritanceInfo? inheritanceInfo = default(SharpVk.CommandBufferInheritanceInfo?))
         {
@@ -85,7 +85,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Finish recording a command buffer.
         /// </summary>
         public unsafe void End()
         {
@@ -104,7 +104,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Reset a command buffer.
         /// </summary>
         public unsafe void Reset(SharpVk.CommandBufferResetFlags? flags = default(SharpVk.CommandBufferResetFlags?))
         {
@@ -132,7 +132,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Bind a pipeline object to a command buffer.
         /// </summary>
         public unsafe void BindPipeline(SharpVk.PipelineBindPoint pipelineBindPoint, SharpVk.Pipeline pipeline)
         {
@@ -147,7 +147,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Set the viewport on a command buffer.
         /// </summary>
         public unsafe void SetViewport(uint firstViewport, SharpVk.Viewport[] viewports)
         {
@@ -176,7 +176,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Set the dynamic scissor rectangles on a command buffer.
         /// </summary>
         public unsafe void SetScissor(uint firstScissor, SharpVk.Rect2D[] scissors)
         {
@@ -205,7 +205,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Set the dynamic line width state.
         /// </summary>
         public unsafe void SetLineWidth(float lineWidth)
         {
@@ -220,7 +220,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Set the depth bias dynamic state.
         /// </summary>
         public unsafe void SetDepthBias(float depthBiasConstantFactor, float depthBiasClamp, float depthBiasSlopeFactor)
         {
@@ -235,7 +235,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Set the values of blend constants.
         /// </summary>
         public unsafe void SetBlendConstants(float blendConstants)
         {
@@ -250,7 +250,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Set the depth bounds test values for a command buffer.
         /// </summary>
         public unsafe void SetDepthBounds(float minDepthBounds, float maxDepthBounds)
         {
@@ -265,7 +265,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Set the stencil compare mask dynamic state.
         /// </summary>
         public unsafe void SetStencilCompareMask(SharpVk.StencilFaceFlags faceMask, uint compareMask)
         {
@@ -280,7 +280,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Set the stencil write mask dynamic state.
         /// </summary>
         public unsafe void SetStencilWriteMask(SharpVk.StencilFaceFlags faceMask, uint writeMask)
         {
@@ -295,7 +295,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Set the stencil reference dynamic state.
         /// </summary>
         public unsafe void SetStencilReference(SharpVk.StencilFaceFlags faceMask, uint reference)
         {
@@ -310,7 +310,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Binds descriptor sets to a command buffer.
         /// </summary>
         public unsafe void BindDescriptorSets(SharpVk.PipelineBindPoint pipelineBindPoint, SharpVk.PipelineLayout layout, uint firstSet, SharpVk.DescriptorSet[] descriptorSets, uint[] dynamicOffsets)
         {
@@ -353,7 +353,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Bind an index buffer to a command buffer.
         /// </summary>
         public unsafe void BindIndexBuffer(SharpVk.Buffer buffer, DeviceSize offset, SharpVk.IndexType indexType)
         {
@@ -368,7 +368,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Bind vertex buffers to a command buffer.
         /// </summary>
         public unsafe void BindVertexBuffers(uint firstBinding, SharpVk.Buffer[] buffers, DeviceSize[] offsets)
         {
@@ -411,7 +411,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Draw primitives.
         /// </summary>
         public unsafe void Draw(uint vertexCount, uint instanceCount, uint firstVertex, uint firstInstance)
         {
@@ -426,7 +426,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Issue an indexed draw into a command buffer.
         /// </summary>
         public unsafe void DrawIndexed(uint indexCount, uint instanceCount, uint firstIndex, int vertexOffset, uint firstInstance)
         {
@@ -441,7 +441,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Issue an indirect draw into a command buffer.
         /// </summary>
         public unsafe void DrawIndirect(SharpVk.Buffer buffer, DeviceSize offset, uint drawCount, uint stride)
         {
@@ -456,7 +456,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Perform an indexed indirect draw.
         /// </summary>
         public unsafe void DrawIndexedIndirect(SharpVk.Buffer buffer, DeviceSize offset, uint drawCount, uint stride)
         {
@@ -471,7 +471,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Dispatch compute work items.
         /// </summary>
         public unsafe void Dispatch(uint groupCountX, uint groupCountY, uint groupCountZ)
         {
@@ -486,7 +486,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Dispatch compute work items using indirect parameters.
         /// </summary>
         public unsafe void DispatchIndirect(SharpVk.Buffer buffer, DeviceSize offset)
         {
@@ -501,7 +501,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Copy data between buffer regions.
         /// </summary>
         public unsafe void CopyBuffer(SharpVk.Buffer sourceBuffer, SharpVk.Buffer destinationBuffer, SharpVk.BufferCopy[] regions)
         {
@@ -530,7 +530,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Copy data between images.
         /// </summary>
         public unsafe void CopyImage(SharpVk.Image sourceImage, SharpVk.ImageLayout sourceImageLayout, SharpVk.Image destinationImage, SharpVk.ImageLayout destinationImageLayout, SharpVk.ImageCopy[] regions)
         {
@@ -559,7 +559,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Copy regions of an image, potentially performing format
+        /// conversion,.
         /// </summary>
         public unsafe void BlitImage(SharpVk.Image sourceImage, SharpVk.ImageLayout sourceImageLayout, SharpVk.Image destinationImage, SharpVk.ImageLayout destinationImageLayout, SharpVk.ImageBlit[] regions, SharpVk.Filter filter)
         {
@@ -588,7 +589,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Copy data from a buffer into an image.
         /// </summary>
         public unsafe void CopyBufferToImage(SharpVk.Buffer sourceBuffer, SharpVk.Image destinationImage, SharpVk.ImageLayout destinationImageLayout, SharpVk.BufferImageCopy[] regions)
         {
@@ -617,7 +618,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Copy image data into a buffer.
         /// </summary>
         public unsafe void CopyImageToBuffer(SharpVk.Image sourceImage, SharpVk.ImageLayout sourceImageLayout, SharpVk.Buffer destinationBuffer, SharpVk.BufferImageCopy[] regions)
         {
@@ -646,7 +647,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Update a buffer's contents from host memory.
         /// </summary>
         public unsafe void UpdateBuffer(SharpVk.Buffer destinationBuffer, DeviceSize destinationOffset, byte[] data)
         {
@@ -675,7 +676,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Fill a region of a buffer with a fixed value.
         /// </summary>
         public unsafe void FillBuffer(SharpVk.Buffer destinationBuffer, DeviceSize destinationOffset, DeviceSize size, uint data)
         {
@@ -690,7 +691,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Clear regions of a color image.
         /// </summary>
         public unsafe void ClearColorImage(SharpVk.Image image, SharpVk.ImageLayout imageLayout, SharpVk.ClearColorValue color, SharpVk.ImageSubresourceRange[] ranges)
         {
@@ -719,7 +720,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Fill regions of a combined depth/stencil image.
         /// </summary>
         public unsafe void ClearDepthStencilImage(SharpVk.Image image, SharpVk.ImageLayout imageLayout, SharpVk.ClearDepthStencilValue depthStencil, SharpVk.ImageSubresourceRange[] ranges)
         {
@@ -751,7 +752,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Clear regions within currently bound framebuffer attachments.
         /// </summary>
         public unsafe void ClearAttachments(SharpVk.ClearAttachment[] attachments, SharpVk.ClearRect[] rects)
         {
@@ -794,7 +795,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Resolve regions of an image.
         /// </summary>
         public unsafe void ResolveImage(SharpVk.Image sourceImage, SharpVk.ImageLayout sourceImageLayout, SharpVk.Image destinationImage, SharpVk.ImageLayout destinationImageLayout, SharpVk.ImageResolve[] regions)
         {
@@ -823,7 +824,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Set an event object to signaled state.
         /// </summary>
         public unsafe void SetEvent(SharpVk.Event @event, SharpVk.PipelineStageFlags stageMask)
         {
@@ -838,7 +839,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Reset an event object to non-signaled state.
         /// </summary>
         public unsafe void ResetEvent(SharpVk.Event @event, SharpVk.PipelineStageFlags stageMask)
         {
@@ -853,7 +854,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Wait for one or more events and insert a set of memory.
         /// </summary>
         public unsafe void WaitEvents(SharpVk.Event[] events, SharpVk.PipelineStageFlags sourceStageMask, SharpVk.PipelineStageFlags destinationStageMask, SharpVk.MemoryBarrier[] memoryBarriers, SharpVk.BufferMemoryBarrier[] bufferMemoryBarriers, SharpVk.ImageMemoryBarrier[] imageMemoryBarriers)
         {
@@ -924,7 +925,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Insert a memory dependency.
         /// </summary>
         public unsafe void PipelineBarrier(SharpVk.PipelineStageFlags sourceStageMask, SharpVk.PipelineStageFlags destinationStageMask, SharpVk.MemoryBarrier[] memoryBarriers, SharpVk.BufferMemoryBarrier[] bufferMemoryBarriers, SharpVk.ImageMemoryBarrier[] imageMemoryBarriers, SharpVk.DependencyFlags? dependencyFlags = default(SharpVk.DependencyFlags?))
         {
@@ -990,7 +991,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Begin a query.
         /// </summary>
         public unsafe void BeginQuery(SharpVk.QueryPool queryPool, uint query, SharpVk.QueryControlFlags? flags = default(SharpVk.QueryControlFlags?))
         {
@@ -1014,7 +1015,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Ends a query.
         /// </summary>
         public unsafe void EndQuery(SharpVk.QueryPool queryPool, uint query)
         {
@@ -1029,7 +1030,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Reset queries in a query pool.
         /// </summary>
         public unsafe void ResetQueryPool(SharpVk.QueryPool queryPool, uint firstQuery, uint queryCount)
         {
@@ -1044,7 +1045,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Write a device timestamp into a query object.
         /// </summary>
         public unsafe void WriteTimestamp(SharpVk.PipelineStageFlags pipelineStage, SharpVk.QueryPool queryPool, uint query)
         {
@@ -1059,7 +1060,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Copy the results of queries in a query pool to a buffer object.
         /// </summary>
         public unsafe void CopyQueryPoolResults(SharpVk.QueryPool queryPool, uint firstQuery, uint queryCount, SharpVk.Buffer destinationBuffer, DeviceSize destinationOffset, DeviceSize stride, SharpVk.QueryResultFlags? flags = default(SharpVk.QueryResultFlags?))
         {
@@ -1083,7 +1084,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Update the values of push constants.
         /// </summary>
         public unsafe void PushConstants(SharpVk.PipelineLayout layout, SharpVk.ShaderStageFlags stageFlags, uint offset, byte[] values)
         {
@@ -1112,7 +1113,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Begin a new render pass.
         /// </summary>
         public unsafe void BeginRenderPass(SharpVk.RenderPass renderPass, SharpVk.Framebuffer framebuffer, SharpVk.Rect2D renderArea, SharpVk.ClearValue[] clearValues, SharpVk.SubpassContents contents)
         {
@@ -1148,7 +1149,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Transition to the next subpass of a render pass.
         /// </summary>
         public unsafe void NextSubpass(SharpVk.SubpassContents contents)
         {
@@ -1163,7 +1164,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// End the current render pass.
         /// </summary>
         public unsafe void EndRenderPass()
         {
@@ -1178,7 +1179,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Execute a secondary command buffer from a primary command buffer.
         /// </summary>
         public unsafe void ExecuteCommands(SharpVk.CommandBuffer[] commandBuffers)
         {

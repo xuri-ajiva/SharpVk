@@ -86,6 +86,9 @@ namespace SharpVk.NVidia.Experimental
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.Experimental.DeviceGeneratedCommandsLimits* pointer)
         {
             pointer->SType = StructureType.DeviceGeneratedCommandsLimitsNvx;
@@ -97,6 +100,9 @@ namespace SharpVk.NVidia.Experimental
             pointer->MinCommandsTokenBufferOffsetAlignment = this.MinCommandsTokenBufferOffsetAlignment;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe DeviceGeneratedCommandsLimits MarshalFrom(SharpVk.Interop.NVidia.Experimental.DeviceGeneratedCommandsLimits* pointer)
         {
             DeviceGeneratedCommandsLimits result = default(DeviceGeneratedCommandsLimits);

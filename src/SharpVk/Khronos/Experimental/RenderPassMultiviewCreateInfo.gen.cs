@@ -69,6 +69,9 @@ namespace SharpVk.Khronos.Experimental
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.Experimental.RenderPassMultiviewCreateInfo* pointer)
         {
             pointer->SType = StructureType.RenderPassMultiviewCreateInfoKhx;

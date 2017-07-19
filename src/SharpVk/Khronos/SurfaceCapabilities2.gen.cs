@@ -42,6 +42,9 @@ namespace SharpVk.Khronos
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe SurfaceCapabilities2 MarshalFrom(SharpVk.Interop.Khronos.SurfaceCapabilities2* pointer)
         {
             SurfaceCapabilities2 result = default(SurfaceCapabilities2);

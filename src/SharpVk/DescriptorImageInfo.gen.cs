@@ -71,6 +71,9 @@ namespace SharpVk
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.DescriptorImageInfo* pointer)
         {
             pointer->Sampler = this.Sampler?.handle ?? default(SharpVk.Interop.Sampler);

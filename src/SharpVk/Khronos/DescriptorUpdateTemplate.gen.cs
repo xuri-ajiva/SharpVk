@@ -48,7 +48,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Destroy a descriptor update template object.
         /// </summary>
         public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {

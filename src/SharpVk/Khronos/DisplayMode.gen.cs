@@ -45,7 +45,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Query capabilities of a mode and plane combination.
         /// </summary>
         public unsafe SharpVk.Khronos.DisplayPlaneCapabilities GetDisplayPlaneCapabilities(uint planeIndex)
         {

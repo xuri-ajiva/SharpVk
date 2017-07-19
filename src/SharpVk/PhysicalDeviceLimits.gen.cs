@@ -1430,6 +1430,9 @@ namespace SharpVk
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe PhysicalDeviceLimits MarshalFrom(SharpVk.Interop.PhysicalDeviceLimits* pointer)
         {
             PhysicalDeviceLimits result = default(PhysicalDeviceLimits);

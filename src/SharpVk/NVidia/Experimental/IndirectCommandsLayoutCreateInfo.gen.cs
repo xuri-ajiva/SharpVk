@@ -66,6 +66,9 @@ namespace SharpVk.NVidia.Experimental
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayoutCreateInfo* pointer)
         {
             pointer->SType = StructureType.IndirectCommandsLayoutCreateInfoNvx;

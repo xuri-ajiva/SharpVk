@@ -42,6 +42,9 @@ namespace SharpVk.Khronos
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.ImageSparseMemoryRequirementsInfo2* pointer)
         {
             pointer->SType = StructureType.ImageSparseMemoryRequirementsInfo2Khr;
@@ -49,6 +52,9 @@ namespace SharpVk.Khronos
             pointer->Image = this.Image?.handle ?? default(SharpVk.Interop.Image);
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe ImageSparseMemoryRequirementsInfo2 MarshalFrom(SharpVk.Interop.Khronos.ImageSparseMemoryRequirementsInfo2* pointer)
         {
             ImageSparseMemoryRequirementsInfo2 result = default(ImageSparseMemoryRequirementsInfo2);

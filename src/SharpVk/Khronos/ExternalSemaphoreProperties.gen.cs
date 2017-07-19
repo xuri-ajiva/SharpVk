@@ -60,6 +60,9 @@ namespace SharpVk.Khronos
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe ExternalSemaphoreProperties MarshalFrom(SharpVk.Interop.Khronos.ExternalSemaphoreProperties* pointer)
         {
             ExternalSemaphoreProperties result = default(ExternalSemaphoreProperties);

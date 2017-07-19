@@ -32,7 +32,7 @@ namespace SharpVk.Nintendo
     public static class InstanceExtensions
     {
         /// <summary>
-        /// 
+        /// Create a slink:VkSurfaceKHR object for a VI layer.
         /// </summary>
         public static unsafe SharpVk.Khronos.Surface CreateViSurface(this SharpVk.Instance extendedHandle, IntPtr window, SharpVk.Nintendo.ViSurfaceCreateFlags? flags = default(SharpVk.Nintendo.ViSurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {

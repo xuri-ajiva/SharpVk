@@ -44,6 +44,9 @@ namespace SharpVk.Khronos
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe QueueFamilyProperties2 MarshalFrom(SharpVk.Interop.Khronos.QueueFamilyProperties2* pointer)
         {
             QueueFamilyProperties2 result = default(QueueFamilyProperties2);

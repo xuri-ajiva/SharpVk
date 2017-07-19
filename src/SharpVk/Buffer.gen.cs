@@ -48,7 +48,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Returns the memory requirements for specified Vulkan object.
         /// </summary>
         public unsafe SharpVk.MemoryRequirements GetMemoryRequirements()
         {
@@ -67,7 +67,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Bind device memory to a buffer object.
         /// </summary>
         public unsafe void BindMemory(SharpVk.DeviceMemory memory, DeviceSize memoryOffset)
         {
@@ -86,7 +86,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Destroy a buffer object.
         /// </summary>
         public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {

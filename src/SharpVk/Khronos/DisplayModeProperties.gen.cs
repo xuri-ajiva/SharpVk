@@ -55,6 +55,9 @@ namespace SharpVk.Khronos
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe DisplayModeProperties MarshalFrom(SharpVk.Interop.Khronos.DisplayModeProperties* pointer)
         {
             DisplayModeProperties result = default(DisplayModeProperties);

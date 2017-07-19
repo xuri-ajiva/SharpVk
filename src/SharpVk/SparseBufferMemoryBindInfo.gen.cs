@@ -52,6 +52,9 @@ namespace SharpVk
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.SparseBufferMemoryBindInfo* pointer)
         {
             pointer->Buffer = this.Buffer?.handle ?? default(SharpVk.Interop.Buffer);

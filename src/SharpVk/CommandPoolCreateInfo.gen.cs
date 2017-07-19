@@ -53,6 +53,9 @@ namespace SharpVk
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.CommandPoolCreateInfo* pointer)
         {
             pointer->SType = StructureType.CommandPoolCreateInfo;

@@ -51,6 +51,9 @@ namespace SharpVk.Multivendor
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe PhysicalDeviceSamplerFilterMinmaxProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceSamplerFilterMinmaxProperties* pointer)
         {
             PhysicalDeviceSamplerFilterMinmaxProperties result = default(PhysicalDeviceSamplerFilterMinmaxProperties);

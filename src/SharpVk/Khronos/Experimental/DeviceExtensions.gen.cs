@@ -32,7 +32,7 @@ namespace SharpVk.Khronos.Experimental
     public static class DeviceExtensions
     {
         /// <summary>
-        /// 
+        /// Query supported peer memory features of a device.
         /// </summary>
         public static unsafe SharpVk.Khronos.Experimental.PeerMemoryFeatureFlags GetGroupPeerMemoryFeatures(this SharpVk.Device extendedHandle, uint heapIndex, uint localDeviceIndex, uint remoteDeviceIndex)
         {
@@ -54,7 +54,7 @@ namespace SharpVk.Khronos.Experimental
         }
         
         /// <summary>
-        /// 
+        /// Bind device memory to buffer objects.
         /// </summary>
         public static unsafe void BindBufferMemory2(this SharpVk.Device extendedHandle, SharpVk.Khronos.Experimental.BindBufferMemoryInfo[] bindInfos)
         {
@@ -90,7 +90,7 @@ namespace SharpVk.Khronos.Experimental
         }
         
         /// <summary>
-        /// 
+        /// Bind device memory to image objects.
         /// </summary>
         public static unsafe void BindImageMemory2(this SharpVk.Device extendedHandle, SharpVk.Khronos.Experimental.BindImageMemoryInfo[] bindInfos)
         {
@@ -126,7 +126,7 @@ namespace SharpVk.Khronos.Experimental
         }
         
         /// <summary>
-        /// 
+        /// Query present capabilities from other physical devices.
         /// </summary>
         public static unsafe SharpVk.Khronos.Experimental.DeviceGroupPresentCapabilities GetGroupPresentCapabilities(this SharpVk.Device extendedHandle)
         {
@@ -152,7 +152,7 @@ namespace SharpVk.Khronos.Experimental
         }
         
         /// <summary>
-        /// 
+        /// Query present capabilities for a surface.
         /// </summary>
         public static unsafe SharpVk.Khronos.Experimental.DeviceGroupPresentModeFlags GetGroupSurfacePresentModes(this SharpVk.Device extendedHandle, SharpVk.Khronos.Surface surface)
         {
@@ -178,7 +178,7 @@ namespace SharpVk.Khronos.Experimental
         }
         
         /// <summary>
-        /// 
+        /// Retrieve the index of the next available presentable image.
         /// </summary>
         public static unsafe uint AcquireNextImage2(this SharpVk.Device extendedHandle, SharpVk.Khronos.Experimental.AcquireNextImageInfo acquireInfo)
         {

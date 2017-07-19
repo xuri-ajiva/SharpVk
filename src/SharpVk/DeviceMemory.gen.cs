@@ -45,7 +45,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Free GPU memory.
         /// </summary>
         public unsafe void Free(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -70,7 +70,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Map a memory object into application address space.
         /// </summary>
         public unsafe IntPtr Map(DeviceSize offset, DeviceSize size, SharpVk.MemoryMapFlags? flags = default(SharpVk.MemoryMapFlags?))
         {
@@ -102,7 +102,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Unmap a previously mapped memory object.
         /// </summary>
         public unsafe void Unmap()
         {
@@ -117,7 +117,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Query the current commitment for a VkDeviceMemory.
         /// </summary>
         public unsafe DeviceSize GetCommitment()
         {

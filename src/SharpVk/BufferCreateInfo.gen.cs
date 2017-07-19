@@ -87,6 +87,9 @@ namespace SharpVk
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.BufferCreateInfo* pointer)
         {
             pointer->SType = StructureType.BufferCreateInfo;

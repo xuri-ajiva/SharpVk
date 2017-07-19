@@ -124,6 +124,9 @@ namespace SharpVk.NVidia.Experimental
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.Experimental.ObjectTableCreateInfo* pointer)
         {
             pointer->SType = StructureType.ObjectTableCreateInfoNvx;

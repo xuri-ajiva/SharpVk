@@ -42,6 +42,9 @@ namespace SharpVk.Khronos
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe SparseImageMemoryRequirements2 MarshalFrom(SharpVk.Interop.Khronos.SparseImageMemoryRequirements2* pointer)
         {
             SparseImageMemoryRequirements2 result = default(SparseImageMemoryRequirements2);

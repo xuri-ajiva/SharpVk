@@ -45,7 +45,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Destroy a render pass object.
         /// </summary>
         public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -70,7 +70,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Returns the granularity for optimal render area.
         /// </summary>
         public unsafe SharpVk.Extent2D GetRenderAreaGranularity()
         {

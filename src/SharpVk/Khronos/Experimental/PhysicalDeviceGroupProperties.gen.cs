@@ -59,6 +59,9 @@ namespace SharpVk.Khronos.Experimental
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe PhysicalDeviceGroupProperties MarshalFrom(SharpVk.Interop.Khronos.Experimental.PhysicalDeviceGroupProperties* pointer)
         {
             PhysicalDeviceGroupProperties result = default(PhysicalDeviceGroupProperties);

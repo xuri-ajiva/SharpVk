@@ -42,6 +42,9 @@ namespace SharpVk.Khronos
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PresentRegion* pointer)
         {
             pointer->RectangleCount = (uint)(this.Rectangles?.Length ?? 0);

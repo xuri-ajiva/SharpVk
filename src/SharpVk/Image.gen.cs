@@ -45,7 +45,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Returns the memory requirements for specified Vulkan object.
         /// </summary>
         public unsafe SharpVk.MemoryRequirements GetMemoryRequirements()
         {
@@ -64,7 +64,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Bind device memory to an image object.
         /// </summary>
         public unsafe void BindMemory(SharpVk.DeviceMemory memory, DeviceSize memoryOffset)
         {
@@ -83,7 +83,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Query the memory requirements for a sparse image.
         /// </summary>
         public unsafe SharpVk.SparseImageMemoryRequirements[] GetSparseMemoryRequirements()
         {
@@ -117,7 +117,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Destroy an image object.
         /// </summary>
         public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -142,7 +142,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Retrieve information about an image subresource.
         /// </summary>
         public unsafe SharpVk.SubresourceLayout GetSubresourceLayout(SharpVk.ImageSubresource subresource)
         {

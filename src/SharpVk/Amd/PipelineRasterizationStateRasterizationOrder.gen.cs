@@ -42,6 +42,9 @@ namespace SharpVk.Amd
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Amd.PipelineRasterizationStateRasterizationOrder* pointer)
         {
             pointer->SType = StructureType.PipelineRasterizationStateRasterizationOrderAmd;
@@ -49,6 +52,9 @@ namespace SharpVk.Amd
             pointer->RasterizationOrder = this.RasterizationOrder;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe PipelineRasterizationStateRasterizationOrder MarshalFrom(SharpVk.Interop.Amd.PipelineRasterizationStateRasterizationOrder* pointer)
         {
             PipelineRasterizationStateRasterizationOrder result = default(PipelineRasterizationStateRasterizationOrder);

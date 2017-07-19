@@ -42,6 +42,9 @@ namespace SharpVk.Khronos
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe ExternalImageFormatProperties MarshalFrom(SharpVk.Interop.Khronos.ExternalImageFormatProperties* pointer)
         {
             ExternalImageFormatProperties result = default(ExternalImageFormatProperties);

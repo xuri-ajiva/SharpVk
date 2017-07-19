@@ -60,6 +60,9 @@ namespace SharpVk.Khronos
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.ExportFenceWin32HandleInfo* pointer)
         {
             pointer->SType = StructureType.ExportFenceWin32HandleInfoKhr;

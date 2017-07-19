@@ -32,7 +32,7 @@ namespace SharpVk.NVidia
     public static class DeviceMemoryExtensions
     {
         /// <summary>
-        /// 
+        /// Retrieve Win32 handle to a device memory object.
         /// </summary>
         public static unsafe IntPtr GetWin32Handle(this SharpVk.DeviceMemory extendedHandle, SharpVk.NVidia.ExternalMemoryHandleTypeFlags handleType)
         {

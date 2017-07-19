@@ -101,6 +101,9 @@ namespace SharpVk
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.AllocationCallbacks* pointer)
         {
             if (this.UserData != null)

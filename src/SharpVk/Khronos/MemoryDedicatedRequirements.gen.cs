@@ -51,6 +51,9 @@ namespace SharpVk.Khronos
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe MemoryDedicatedRequirements MarshalFrom(SharpVk.Interop.Khronos.MemoryDedicatedRequirements* pointer)
         {
             MemoryDedicatedRequirements result = default(MemoryDedicatedRequirements);

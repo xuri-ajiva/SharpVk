@@ -105,6 +105,9 @@ namespace SharpVk.Multivendor
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.HdrMetadata* pointer)
         {
             pointer->SType = StructureType.HdrMetadataExt;
@@ -119,6 +122,9 @@ namespace SharpVk.Multivendor
             pointer->MaxFrameAverageLightLevel = this.MaxFrameAverageLightLevel;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe HdrMetadata MarshalFrom(SharpVk.Interop.Multivendor.HdrMetadata* pointer)
         {
             HdrMetadata result = default(HdrMetadata);

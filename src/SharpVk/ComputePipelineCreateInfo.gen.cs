@@ -82,6 +82,9 @@ namespace SharpVk
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.ComputePipelineCreateInfo* pointer)
         {
             pointer->SType = StructureType.ComputePipelineCreateInfo;

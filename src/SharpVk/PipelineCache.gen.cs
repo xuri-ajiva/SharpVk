@@ -45,7 +45,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Destroy a pipeline cache object.
         /// </summary>
         public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -70,7 +70,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Get the data store from a pipeline cache.
         /// </summary>
         public unsafe byte[] GetData()
         {
@@ -108,7 +108,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Combine the data stores of pipeline caches.
         /// </summary>
         public unsafe void MergePipelineCaches(SharpVk.PipelineCache[] sourceCaches)
         {

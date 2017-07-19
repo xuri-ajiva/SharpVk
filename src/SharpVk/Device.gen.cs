@@ -46,7 +46,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Return a function pointer for a command.
         /// </summary>
         public unsafe IntPtr GetProcedureAddress(string name)
         {
@@ -63,7 +63,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Destroy a logical device.
         /// </summary>
         public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -88,7 +88,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Get a queue handle from a device.
         /// </summary>
         public unsafe SharpVk.Queue GetQueue(uint queueFamilyIndex, uint queueIndex)
         {
@@ -107,7 +107,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Wait for a device to become idle.
         /// </summary>
         public unsafe void WaitIdle()
         {
@@ -126,7 +126,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Allocate GPU memory.
         /// </summary>
         public unsafe SharpVk.DeviceMemory AllocateMemory(DeviceSize allocationSize, uint memoryTypeIndex, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -165,7 +165,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Flush mapped memory ranges.
         /// </summary>
         public unsafe void FlushMappedMemoryRanges(SharpVk.MappedMemoryRange[] memoryRanges)
         {
@@ -198,7 +198,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Invalidate ranges of mapped memory objects.
         /// </summary>
         public unsafe void InvalidateMappedMemoryRanges(SharpVk.MappedMemoryRange[] memoryRanges)
         {
@@ -231,7 +231,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Create a new fence object.
         /// </summary>
         public unsafe SharpVk.Fence CreateFence(SharpVk.FenceCreateFlags? flags = default(SharpVk.FenceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -276,7 +276,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Resets one or more fence objects.
         /// </summary>
         public unsafe void ResetFences(SharpVk.Fence[] fences)
         {
@@ -309,7 +309,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Wait for one or more fences to become signaled.
         /// </summary>
         public unsafe void WaitForFences(SharpVk.Fence[] fences, bool waitAll, ulong timeout)
         {
@@ -342,7 +342,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Create a new queue semaphore object.
         /// </summary>
         public unsafe SharpVk.Semaphore CreateSemaphore(SharpVk.SemaphoreCreateFlags? flags = default(SharpVk.SemaphoreCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -387,7 +387,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Create a new event object.
         /// </summary>
         public unsafe SharpVk.Event CreateEvent(SharpVk.EventCreateFlags? flags = default(SharpVk.EventCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -432,7 +432,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Create a new query pool object.
         /// </summary>
         public unsafe SharpVk.QueryPool CreateQueryPool(SharpVk.QueryType queryType, uint queryCount, SharpVk.QueryPoolCreateFlags? flags = default(SharpVk.QueryPoolCreateFlags?), SharpVk.QueryPipelineStatisticFlags? pipelineStatistics = default(SharpVk.QueryPipelineStatisticFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -487,7 +487,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Create a new buffer object.
         /// </summary>
         public unsafe SharpVk.Buffer CreateBuffer(DeviceSize size, SharpVk.BufferUsageFlags usage, SharpVk.SharingMode sharingMode, uint[] queueFamilyIndices, SharpVk.BufferCreateFlags? flags = default(SharpVk.BufferCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -549,7 +549,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Create a new buffer view object.
         /// </summary>
         public unsafe SharpVk.BufferView CreateBufferView(SharpVk.Buffer buffer, SharpVk.Format format, DeviceSize offset, DeviceSize range, SharpVk.BufferViewCreateFlags? flags = default(SharpVk.BufferViewCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -598,7 +598,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Create a new image object.
         /// </summary>
         public unsafe SharpVk.Image CreateImage(SharpVk.ImageType imageType, SharpVk.Format format, SharpVk.Extent3D extent, uint mipLevels, uint arrayLayers, SharpVk.SampleCountFlags samples, SharpVk.ImageTiling tiling, SharpVk.ImageUsageFlags usage, SharpVk.SharingMode sharingMode, uint[] queueFamilyIndices, SharpVk.ImageLayout initialLayout, SharpVk.ImageCreateFlags? flags = default(SharpVk.ImageCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -667,7 +667,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Create an image view from an existing image.
         /// </summary>
         public unsafe SharpVk.ImageView CreateImageView(SharpVk.Image image, SharpVk.ImageViewType viewType, SharpVk.Format format, SharpVk.ComponentMapping components, SharpVk.ImageSubresourceRange subresourceRange, SharpVk.ImageViewCreateFlags? flags = default(SharpVk.ImageViewCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -717,7 +717,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Creates a new shader module object.
         /// </summary>
         public unsafe SharpVk.ShaderModule CreateShaderModule(HostSize codeSize, uint[] code, SharpVk.ShaderModuleCreateFlags? flags = default(SharpVk.ShaderModuleCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -776,7 +776,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Creates a new pipeline cache.
         /// </summary>
         public unsafe SharpVk.PipelineCache CreatePipelineCache(byte[] initialData, SharpVk.PipelineCacheCreateFlags? flags = default(SharpVk.PipelineCacheCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -835,7 +835,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Create graphics pipelines.
         /// </summary>
         public unsafe SharpVk.Pipeline[] CreateGraphicsPipelines(SharpVk.PipelineCache pipelineCache, SharpVk.GraphicsPipelineCreateInfo[] createInfos, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -897,7 +897,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Creates a new compute pipeline object.
         /// </summary>
         public unsafe SharpVk.Pipeline[] CreateComputePipelines(SharpVk.PipelineCache pipelineCache, SharpVk.ComputePipelineCreateInfo[] createInfos, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -959,7 +959,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Creates a new pipeline layout object.
         /// </summary>
         public unsafe SharpVk.PipelineLayout CreatePipelineLayout(SharpVk.DescriptorSetLayout[] setLayouts, SharpVk.PushConstantRange[] pushConstantRanges, SharpVk.PipelineLayoutCreateFlags? flags = default(SharpVk.PipelineLayoutCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -1032,7 +1032,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Create a new sampler object.
         /// </summary>
         public unsafe SharpVk.Sampler CreateSampler(SharpVk.Filter magFilter, SharpVk.Filter minFilter, SharpVk.SamplerMipmapMode mipmapMode, SharpVk.SamplerAddressMode addressModeU, SharpVk.SamplerAddressMode addressModeV, SharpVk.SamplerAddressMode addressModeW, float mipLodBias, bool anisotropyEnable, float maxAnisotropy, bool compareEnable, SharpVk.CompareOp compareOp, float minLod, float maxLod, SharpVk.BorderColor borderColor, bool unnormalizedCoordinates, SharpVk.SamplerCreateFlags? flags = default(SharpVk.SamplerCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -1092,7 +1092,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Create a new descriptor set layout.
         /// </summary>
         public unsafe SharpVk.DescriptorSetLayout CreateDescriptorSetLayout(SharpVk.DescriptorSetLayoutBinding[] bindings, SharpVk.DescriptorSetLayoutCreateFlags? flags = default(SharpVk.DescriptorSetLayoutCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -1151,7 +1151,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Creates a descriptor pool object.
         /// </summary>
         public unsafe SharpVk.DescriptorPool CreateDescriptorPool(uint maxSets, SharpVk.DescriptorPoolSize[] poolSizes, SharpVk.DescriptorPoolCreateFlags? flags = default(SharpVk.DescriptorPoolCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -1211,7 +1211,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Allocate one or more descriptor sets.
         /// </summary>
         public unsafe SharpVk.DescriptorSet[] AllocateDescriptorSets(SharpVk.DescriptorPool descriptorPool, SharpVk.DescriptorSetLayout[] setLayouts)
         {
@@ -1266,7 +1266,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Update the contents of a descriptor set object.
         /// </summary>
         public unsafe void UpdateDescriptorSets(SharpVk.WriteDescriptorSet[] descriptorWrites, SharpVk.CopyDescriptorSet[] descriptorCopies)
         {
@@ -1309,7 +1309,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Create a new framebuffer object.
         /// </summary>
         public unsafe SharpVk.Framebuffer CreateFramebuffer(SharpVk.RenderPass renderPass, SharpVk.ImageView[] attachments, uint width, uint height, uint layers, SharpVk.FramebufferCreateFlags? flags = default(SharpVk.FramebufferCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -1372,7 +1372,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Create a new render pass object.
         /// </summary>
         public unsafe SharpVk.RenderPass CreateRenderPass(SharpVk.AttachmentDescription[] attachments, SharpVk.SubpassDescription[] subpasses, SharpVk.SubpassDependency[] dependencies, SharpVk.RenderPassCreateFlags? flags = default(SharpVk.RenderPassCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -1459,7 +1459,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Create a new command pool object.
         /// </summary>
         public unsafe SharpVk.CommandPool CreateCommandPool(uint queueFamilyIndex, SharpVk.CommandPoolCreateFlags? flags = default(SharpVk.CommandPoolCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -1505,7 +1505,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Allocate command buffers from an existing command pool.
         /// </summary>
         public unsafe SharpVk.CommandBuffer[] AllocateCommandBuffers(SharpVk.CommandPool commandPool, SharpVk.CommandBufferLevel level, uint commandBufferCount)
         {

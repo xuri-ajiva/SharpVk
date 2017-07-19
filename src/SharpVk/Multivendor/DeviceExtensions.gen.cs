@@ -32,7 +32,7 @@ namespace SharpVk.Multivendor
     public static class DeviceExtensions
     {
         /// <summary>
-        /// 
+        /// Give a user-friendly name to an object.
         /// </summary>
         public static unsafe void DebugMarkerSetObjectName(this SharpVk.Device extendedHandle, SharpVk.Multivendor.DebugMarkerObjectNameInfo nameInfo)
         {
@@ -57,7 +57,7 @@ namespace SharpVk.Multivendor
         }
         
         /// <summary>
-        /// 
+        /// Attach arbitrary data to an object.
         /// </summary>
         public static unsafe void DebugMarkerSetObjectTag(this SharpVk.Device extendedHandle, SharpVk.Multivendor.DebugMarkerObjectTagInfo tagInfo)
         {
@@ -82,7 +82,7 @@ namespace SharpVk.Multivendor
         }
         
         /// <summary>
-        /// 
+        /// Set the power state of a display.
         /// </summary>
         public static unsafe void DisplayPowerControl(this SharpVk.Device extendedHandle, SharpVk.Khronos.Display display, SharpVk.Multivendor.DisplayPowerInfo displayPowerInfo)
         {
@@ -107,7 +107,7 @@ namespace SharpVk.Multivendor
         }
         
         /// <summary>
-        /// 
+        /// Signal a fence when a device event occurs.
         /// </summary>
         public static unsafe SharpVk.Fence RegisterEvent(this SharpVk.Device extendedHandle, SharpVk.Multivendor.DeviceEventInfo deviceEventInfo, SharpVk.AllocationCallbacks allocator)
         {
@@ -139,7 +139,7 @@ namespace SharpVk.Multivendor
         }
         
         /// <summary>
-        /// 
+        /// Signal a fence when a display event occurs.
         /// </summary>
         public static unsafe SharpVk.Fence RegisterDisplayEvent(this SharpVk.Device extendedHandle, SharpVk.Khronos.Display display, SharpVk.Multivendor.DisplayEventInfo displayEventInfo, SharpVk.AllocationCallbacks allocator)
         {

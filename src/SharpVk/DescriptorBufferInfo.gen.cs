@@ -77,6 +77,9 @@ namespace SharpVk
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.DescriptorBufferInfo* pointer)
         {
             pointer->Buffer = this.Buffer?.handle ?? default(SharpVk.Interop.Buffer);

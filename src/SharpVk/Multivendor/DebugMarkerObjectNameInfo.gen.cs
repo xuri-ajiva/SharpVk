@@ -62,6 +62,9 @@ namespace SharpVk.Multivendor
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.DebugMarkerObjectNameInfo* pointer)
         {
             pointer->SType = StructureType.DebugMarkerObjectNameInfoExt;

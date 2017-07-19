@@ -64,6 +64,9 @@ namespace SharpVk.NVidia.Experimental
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.Experimental.IndirectCommandsToken* pointer)
         {
             pointer->TokenType = this.TokenType;
@@ -71,6 +74,9 @@ namespace SharpVk.NVidia.Experimental
             pointer->Offset = this.Offset;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe IndirectCommandsToken MarshalFrom(SharpVk.Interop.NVidia.Experimental.IndirectCommandsToken* pointer)
         {
             IndirectCommandsToken result = default(IndirectCommandsToken);

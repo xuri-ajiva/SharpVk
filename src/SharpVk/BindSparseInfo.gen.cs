@@ -92,6 +92,9 @@ namespace SharpVk
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.BindSparseInfo* pointer)
         {
             pointer->SType = StructureType.BindSparseInfo;

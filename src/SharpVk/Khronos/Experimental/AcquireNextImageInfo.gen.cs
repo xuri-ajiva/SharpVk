@@ -80,6 +80,9 @@ namespace SharpVk.Khronos.Experimental
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.Experimental.AcquireNextImageInfo* pointer)
         {
             pointer->SType = StructureType.AcquireNextImageInfoKhx;

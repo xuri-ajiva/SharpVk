@@ -81,6 +81,9 @@ namespace SharpVk.Khronos
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PhysicalDeviceSparseImageFormatInfo2* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceSparseImageFormatInfo2Khr;
@@ -92,6 +95,9 @@ namespace SharpVk.Khronos
             pointer->Tiling = this.Tiling;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe PhysicalDeviceSparseImageFormatInfo2 MarshalFrom(SharpVk.Interop.Khronos.PhysicalDeviceSparseImageFormatInfo2* pointer)
         {
             PhysicalDeviceSparseImageFormatInfo2 result = default(PhysicalDeviceSparseImageFormatInfo2);

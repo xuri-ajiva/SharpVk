@@ -32,7 +32,8 @@ namespace SharpVk.Khronos.Experimental
     public static class InstanceExtensions
     {
         /// <summary>
-        /// 
+        /// Enumerates groups of physical devices that can be used to create a
+        /// single logical device.
         /// </summary>
         public static unsafe SharpVk.Khronos.Experimental.PhysicalDeviceGroupProperties[] EnumeratePhysicalDeviceGroups(this SharpVk.Instance extendedHandle)
         {

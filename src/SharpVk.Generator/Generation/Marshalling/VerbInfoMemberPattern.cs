@@ -68,7 +68,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                 {
                     var subPatternInfo = new MemberPatternInfo();
 
-                    this.patternRules.ApplyFirst(infoTypeData.Members, member, new MemberPatternContext(null, infoTypeData.Extension, context.GetHandle), subPatternInfo);
+                    this.patternRules.ApplyFirst(infoTypeData.Members, member, new MemberPatternContext(null, infoTypeData.Extension, context.GetHandle, source.Type.VkName), subPatternInfo);
 
                     foreach(var subAction in subPatternInfo.MarshalTo)
                     {

@@ -42,6 +42,9 @@ namespace SharpVk.Khronos
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe ExternalBufferProperties MarshalFrom(SharpVk.Interop.Khronos.ExternalBufferProperties* pointer)
         {
             ExternalBufferProperties result = default(ExternalBufferProperties);

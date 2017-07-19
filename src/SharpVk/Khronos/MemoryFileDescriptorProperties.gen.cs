@@ -42,6 +42,9 @@ namespace SharpVk.Khronos
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe MemoryFileDescriptorProperties MarshalFrom(SharpVk.Interop.Khronos.MemoryFileDescriptorProperties* pointer)
         {
             MemoryFileDescriptorProperties result = default(MemoryFileDescriptorProperties);

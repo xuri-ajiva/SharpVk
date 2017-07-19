@@ -44,6 +44,9 @@ namespace SharpVk.Khronos
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe FormatProperties2 MarshalFrom(SharpVk.Interop.Khronos.FormatProperties2* pointer)
         {
             FormatProperties2 result = default(FormatProperties2);

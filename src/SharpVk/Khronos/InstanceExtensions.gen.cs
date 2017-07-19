@@ -32,7 +32,7 @@ namespace SharpVk.Khronos
     public static class InstanceExtensions
     {
         /// <summary>
-        /// 
+        /// Create a slink:VkSurfaceKHR object for an Android native window.
         /// </summary>
         public static unsafe SharpVk.Khronos.Surface CreateAndroidSurface(this SharpVk.Instance extendedHandle, IntPtr window, SharpVk.Khronos.AndroidSurfaceCreateFlags? flags = default(SharpVk.Khronos.AndroidSurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -82,7 +82,8 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Create a slink:VkSurfaceKHR structure representing a display plane
+        /// and mode.
         /// </summary>
         public static unsafe SharpVk.Khronos.Surface CreateDisplayPlaneSurface(this SharpVk.Instance extendedHandle, SharpVk.Khronos.DisplayMode displayMode, uint planeIndex, uint planeStackIndex, SharpVk.Khronos.SurfaceTransformFlags transform, float globalAlpha, SharpVk.Khronos.DisplayPlaneAlphaFlags alphaMode, SharpVk.Extent2D imageExtent, SharpVk.Khronos.DisplaySurfaceCreateFlags? flags = default(SharpVk.Khronos.DisplaySurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -137,7 +138,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Create a slink:VkSurfaceKHR object for a Mir window.
         /// </summary>
         public static unsafe SharpVk.Khronos.Surface CreateMirSurface(this SharpVk.Instance extendedHandle, IntPtr connection, IntPtr mirSurface, SharpVk.Khronos.MirSurfaceCreateFlags? flags = default(SharpVk.Khronos.MirSurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -189,7 +190,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Create a slink:VkSurfaceKHR object for a Wayland window.
         /// </summary>
         public static unsafe SharpVk.Khronos.Surface CreateWaylandSurface(this SharpVk.Instance extendedHandle, IntPtr display, IntPtr surface, SharpVk.Khronos.WaylandSurfaceCreateFlags? flags = default(SharpVk.Khronos.WaylandSurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -239,7 +240,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Create a slink:VkSurfaceKHR object for an Win32 native window.
         /// </summary>
         public static unsafe SharpVk.Khronos.Surface CreateWin32Surface(this SharpVk.Instance extendedHandle, IntPtr hinstance, IntPtr hwnd, SharpVk.Khronos.Win32SurfaceCreateFlags? flags = default(SharpVk.Khronos.Win32SurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -289,7 +290,8 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Create a slink:VkSurfaceKHR object for an X11 window, using the
+        /// Xlib client-side library.
         /// </summary>
         public static unsafe SharpVk.Khronos.Surface CreateXlibSurface(this SharpVk.Instance extendedHandle, IntPtr dpy, IntPtr window, SharpVk.Khronos.XlibSurfaceCreateFlags? flags = default(SharpVk.Khronos.XlibSurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -340,7 +342,8 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Create a slink:VkSurfaceKHR object for a X11 window, using the XCB
+        /// client-side library.
         /// </summary>
         public static unsafe SharpVk.Khronos.Surface CreateXcbSurface(this SharpVk.Instance extendedHandle, IntPtr connection, IntPtr window, SharpVk.Khronos.XcbSurfaceCreateFlags? flags = default(SharpVk.Khronos.XcbSurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {

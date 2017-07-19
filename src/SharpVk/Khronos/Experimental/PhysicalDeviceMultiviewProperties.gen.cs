@@ -52,6 +52,9 @@ namespace SharpVk.Khronos.Experimental
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe PhysicalDeviceMultiviewProperties MarshalFrom(SharpVk.Interop.Khronos.Experimental.PhysicalDeviceMultiviewProperties* pointer)
         {
             PhysicalDeviceMultiviewProperties result = default(PhysicalDeviceMultiviewProperties);

@@ -32,7 +32,7 @@ namespace SharpVk.Amd
     public static class CommandBufferExtensions
     {
         /// <summary>
-        /// 
+        /// Perform an indirect draw with the draw count sourced from a buffer.
         /// </summary>
         public static unsafe void DrawIndirectCount(this SharpVk.CommandBuffer extendedHandle, SharpVk.Buffer buffer, DeviceSize offset, SharpVk.Buffer countBuffer, DeviceSize countBufferOffset, uint maxDrawCount, uint stride)
         {
@@ -50,7 +50,8 @@ namespace SharpVk.Amd
         }
         
         /// <summary>
-        /// 
+        /// Perform an indexed indirect draw with the draw count sourced from a
+        /// buffer.
         /// </summary>
         public static unsafe void DrawIndexedIndirectCount(this SharpVk.CommandBuffer extendedHandle, SharpVk.Buffer buffer, DeviceSize offset, SharpVk.Buffer countBuffer, DeviceSize countBufferOffset, uint maxDrawCount, uint stride)
         {

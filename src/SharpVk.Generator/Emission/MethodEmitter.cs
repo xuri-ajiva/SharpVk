@@ -45,7 +45,18 @@ namespace SharpVk.Generator.Emission
                                         bodyFunc(method),
                                         BuildParams(method),
                                         method.IsPublic ? Public : Internal,
-                                        modifiers);
+                                        modifiers,
+                                        summary: method.Comment,
+                                        docs: docBuilder =>
+                                        {
+                                            foreach (var action in method.ParamActions)
+                                            {
+                                                if (action.Param.Comment != null && action.Param.Comment.Any())
+                                                {
+                                                    docBuilder.EmitParam(action.Param.Type, string.Join(" ", action.Param.Comment));
+                                                }
+                                            }
+                                        });
         }
 
         private static Action<ParameterBuilder> BuildParams(MethodDefinition method)

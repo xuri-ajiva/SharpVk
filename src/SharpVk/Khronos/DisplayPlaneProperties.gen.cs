@@ -56,6 +56,9 @@ namespace SharpVk.Khronos
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe DisplayPlaneProperties MarshalFrom(SharpVk.Interop.Khronos.DisplayPlaneProperties* pointer)
         {
             DisplayPlaneProperties result = default(DisplayPlaneProperties);

@@ -60,6 +60,9 @@ namespace SharpVk.NVidia
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PipelineCoverageToColorStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineCoverageToColorStateCreateInfoNv;

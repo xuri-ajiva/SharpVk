@@ -32,7 +32,7 @@ namespace SharpVk.Khronos
     public static class CommandPoolExtensions
     {
         /// <summary>
-        /// 
+        /// Trim a command pool.
         /// </summary>
         public static unsafe void Trim(this SharpVk.CommandPool extendedHandle, SharpVk.Khronos.CommandPoolTrimFlags? flags = default(SharpVk.Khronos.CommandPoolTrimFlags?))
         {

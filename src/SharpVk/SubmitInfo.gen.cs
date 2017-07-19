@@ -79,6 +79,9 @@ namespace SharpVk
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.SubmitInfo* pointer)
         {
             pointer->SType = StructureType.SubmitInfo;

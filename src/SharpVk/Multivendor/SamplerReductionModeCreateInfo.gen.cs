@@ -42,6 +42,9 @@ namespace SharpVk.Multivendor
             set;
         }
         
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.SamplerReductionModeCreateInfo* pointer)
         {
             pointer->SType = StructureType.SamplerReductionModeCreateInfoExt;

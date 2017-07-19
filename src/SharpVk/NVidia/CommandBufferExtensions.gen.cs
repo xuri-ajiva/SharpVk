@@ -32,7 +32,7 @@ namespace SharpVk.NVidia
     public static class CommandBufferExtensions
     {
         /// <summary>
-        /// 
+        /// Set the viewport W scaling on a command buffer.
         /// </summary>
         public static unsafe void SetViewportWScaling(this SharpVk.CommandBuffer extendedHandle, uint firstViewport, SharpVk.NVidia.ViewportWScaling[] viewportWScalings)
         {

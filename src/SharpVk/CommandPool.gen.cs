@@ -45,7 +45,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Destroy a command pool object.
         /// </summary>
         public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -70,7 +70,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Reset a command pool.
         /// </summary>
         public unsafe void Reset(SharpVk.CommandPoolResetFlags? flags = default(SharpVk.CommandPoolResetFlags?))
         {
@@ -98,7 +98,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Free command buffers.
         /// </summary>
         public unsafe void FreeCommandBuffers(SharpVk.CommandBuffer[] commandBuffers)
         {
