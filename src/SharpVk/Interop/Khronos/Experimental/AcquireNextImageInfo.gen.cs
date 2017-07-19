@@ -34,42 +34,39 @@ namespace SharpVk.Interop.Khronos.Experimental
     public unsafe struct AcquireNextImageInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or a pointer to an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:swapchain is the swapchain from which an image is being
-        /// acquired.
+        /// The swapchain from which an image is being acquired.
         /// </summary>
         public SharpVk.Interop.Khronos.Swapchain Swapchain; 
         
         /// <summary>
-        /// pname:timeout indicates how long the function waits, in
-        /// nanoseconds, if no image is available.
+        /// Indicates how long the function waits, in nanoseconds, if no image
+        /// is available.
         /// </summary>
         public ulong Timeout; 
         
         /// <summary>
-        /// pname:semaphore is code:VK_NULL_HANDLE or a semaphore to signal.
+        /// Null or a semaphore to signal.
         /// </summary>
         public SharpVk.Interop.Semaphore Semaphore; 
         
         /// <summary>
-        /// pname:fence is code:VK_NULL_HANDLE or a fence to signal.
+        /// Null or a fence to signal.
         /// </summary>
         public SharpVk.Interop.Fence Fence; 
         
         /// <summary>
-        /// pname:deviceMask is a mask of physical devices for which the
-        /// swapchain image will be ready to use when the semaphore or fence is
-        /// signaled.
+        /// A mask of physical devices for which the swapchain image will be
+        /// ready to use when the semaphore or fence is signaled.
         /// </summary>
         public uint DeviceMask; 
     }

@@ -37,154 +37,122 @@ namespace SharpVk
         None = 0, 
         
         /// <summary>
-        /// ename:VK_ACCESS_INDIRECT_COMMAND_READ_BIT: Read access to an
-        /// indirect command structure read as part of an indirect drawing or
-        /// dispatch command.
+        /// Read access to an indirect command structure read as part of an
+        /// indirect drawing or dispatch command.
         /// </summary>
         IndirectCommandRead = 1 << 0, 
         
         /// <summary>
-        /// ename:VK_ACCESS_INDEX_READ_BIT: Read access to an index buffer as
-        /// part of an indexed drawing command, bound by
-        /// flink:vkCmdBindIndexBuffer.
+        /// Read access to an index buffer as part of an indexed drawing
+        /// command, bound by CommandBuffer.BindIndexBuffer.
         /// </summary>
         IndexRead = 1 << 1, 
         
         /// <summary>
-        /// ename:VK_ACCESS_VERTEX_ATTRIBUTE_READ_BIT: Read access to a vertex
-        /// buffer as part of a drawing command, bound by
-        /// flink:vkCmdBindVertexBuffers.
+        /// Read access to a vertex buffer as part of a drawing command, bound
+        /// by CommandBuffer.BindVertexBuffers.
         /// </summary>
         VertexAttributeRead = 1 << 2, 
         
         /// <summary>
-        /// ename:VK_ACCESS_UNIFORM_READ_BIT: Read access to a
-        /// &lt;&lt;descriptorsets-uniformbuffer, uniform buffer&gt;&gt;.
+        /// Read access to a uniform buffer.
         /// </summary>
         UniformRead = 1 << 3, 
         
         /// <summary>
-        /// ename:VK_ACCESS_INPUT_ATTACHMENT_READ_BIT: Read access to an
-        /// &lt;&lt;renderpass, input attachment&gt;&gt; within a renderpass
-        /// during fragment shading.
+        /// Read access to an input attachment within a renderpass during
+        /// fragment shading.
         /// </summary>
         InputAttachmentRead = 1 << 4, 
         
         /// <summary>
-        /// ename:VK_ACCESS_SHADER_READ_BIT: Read access to a
-        /// &lt;&lt;descriptorsets-storagebuffer, storage buffer&gt;&gt;,
-        /// &lt;&lt;descriptorsets-uniformtexelbuffer, uniform texel
-        /// buffer&gt;&gt;, &lt;&lt;descriptorsets-storagetexelbuffer, storage
-        /// texel buffer&gt;&gt;, &lt;&lt;descriptorsets-sampledimage, sampled
-        /// image&gt;&gt;, or &lt;&lt;descriptorsets-storageimage, storage
-        /// image&gt;&gt;.
+        /// Read access to a storage buffer, uniform texel buffer, storage
+        /// texel buffer, sampled image, or storage image.
         /// </summary>
         ShaderRead = 1 << 5, 
         
         /// <summary>
-        /// ename:VK_ACCESS_SHADER_WRITE_BIT: Write access to a
-        /// &lt;&lt;descriptorsets-storagebuffer, storage buffer&gt;&gt;,
-        /// &lt;&lt;descriptorsets-storagetexelbuffer, storage texel
-        /// buffer&gt;&gt;, or &lt;&lt;descriptorsets-storageimage, storage
-        /// image&gt;&gt;.
+        /// Write access to a storage buffer, storage texel buffer, or storage
+        /// image.
         /// </summary>
         ShaderWrite = 1 << 6, 
         
         /// <summary>
-        /// ename:VK_ACCESS_COLOR_ATTACHMENT_READ_BIT: Read access to a
-        /// &lt;&lt;renderpass, color attachment&gt;&gt;, such as via
-        /// &lt;&lt;framebuffer-blending, blending&gt;&gt;,
-        /// &lt;&lt;framebuffer-logicop, logic operations&gt;&gt;, or via
-        /// certain &lt;&lt;renderpass-load-store-ops, subpass load
-        /// operations&gt;&gt;.
+        /// Read access to a color attachment, such as via blending, logic
+        /// operations, or via certain subpass load operations.
         /// </summary>
         ColorAttachmentRead = 1 << 7, 
         
         /// <summary>
-        /// ename:VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT: Write access to a
-        /// &lt;&lt;renderpass, color or resolve attachment&gt;&gt; during a
-        /// &lt;&lt;renderpass, render pass&gt;&gt; or via certain
-        /// &lt;&lt;renderpass-load-store-ops, subpass load and store
-        /// operations&gt;&gt;.
+        /// Write access to a color or resolve attachment during a render pass
+        /// or via certain subpass load and store operations.
         /// </summary>
         ColorAttachmentWrite = 1 << 8, 
         
         /// <summary>
-        /// ename:VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_READ_BIT: Read access to a
-        /// &lt;&lt;renderpass, depth/stencil attachment&gt;&gt;, via
-        /// &lt;&lt;fragops-ds-state, depth or stencil operations&gt;&gt; or
-        /// via certain &lt;&lt;renderpass-load-store-ops, subpass load
-        /// operations&gt;&gt;.
+        /// Read access to a depth/stencil attachment, via depth or stencil
+        /// operations or via certain subpass load operations.
         /// </summary>
         DepthStencilAttachmentRead = 1 << 9, 
         
         /// <summary>
-        /// ename:VK_ACCESS_DEPTH_STENCIL_ATTACHMENT_WRITE_BIT: Write access to
-        /// a &lt;&lt;renderpass, depth/stencil attachment&gt;&gt;, via
-        /// &lt;&lt;fragops-ds-state, depth or stencil operations&gt;&gt; or
-        /// via certain &lt;&lt;renderpass-load-store-ops, subpass load and
-        /// store operations&gt;&gt;.
+        /// Write access to a depth/stencil attachment, via depth or stencil
+        /// operations or via certain subpass load and store operations.
         /// </summary>
         DepthStencilAttachmentWrite = 1 << 10, 
         
         /// <summary>
-        /// ename:VK_ACCESS_TRANSFER_READ_BIT: Read access to an image or
-        /// buffer in a &lt;&lt;copies, copy&gt;&gt; operation.
+        /// Read access to an image or buffer in a copy operation.
         /// </summary>
         TransferRead = 1 << 11, 
         
         /// <summary>
-        /// ename:VK_ACCESS_TRANSFER_WRITE_BIT: Write access to an image or
-        /// buffer in a &lt;&lt;clears, clear&gt;&gt; or &lt;&lt;copies,
-        /// copy&gt;&gt; operation.
+        /// Write access to an image or buffer in a clear or copy operation.
         /// </summary>
         TransferWrite = 1 << 12, 
         
         /// <summary>
-        /// ename:VK_ACCESS_HOST_READ_BIT: Read access by a host operation.
-        /// Accesses of this type are not performed through a resource, but
-        /// directly on memory.
+        /// Read access by a host operation. Accesses of this type are not
+        /// performed through a resource, but directly on memory.
         /// </summary>
         HostRead = 1 << 13, 
         
         /// <summary>
-        /// ename:VK_ACCESS_HOST_WRITE_BIT: Write access by a host operation.
-        /// Accesses of this type are not performed through a resource, but
-        /// directly on memory.
+        /// Write access by a host operation. Accesses of this type are not
+        /// performed through a resource, but directly on memory.
         /// </summary>
         HostWrite = 1 << 14, 
         
         /// <summary>
-        /// ename:VK_ACCESS_MEMORY_READ_BIT: Read access via non-specific
-        /// entities. These entities include the Vulkan device and host, but
-        /// may: also include entities external to the Vulkan device or
-        /// otherwise not part of the core Vulkan pipeline. When included in a
-        /// destination access mask, makes all available writes visible to all
-        /// future read accesses on entities known to the Vulkan device.
+        /// Read access via non-specific entities. These entities include the
+        /// Vulkan device and host, but may also include entities external to
+        /// the Vulkan device or otherwise not part of the core Vulkan
+        /// pipeline. When included in a destination access mask, makes all
+        /// available writes visible to all future read accesses on entities
+        /// known to the Vulkan device.
         /// </summary>
         MemoryRead = 1 << 15, 
         
         /// <summary>
-        /// ename:VK_ACCESS_MEMORY_WRITE_BIT: Write access via non-specific
-        /// entities. These entities include the Vulkan device and host, but
-        /// may: also include entities external to the Vulkan device or
-        /// otherwise not part of the core Vulkan pipeline. When included in a
-        /// source access mask, all writes that are performed by entities known
-        /// to the Vulkan device are made available. When included in a
-        /// destination access mask, makes all available writes visible to all
-        /// future write accesses on entities known to the Vulkan device.
+        /// Write access via non-specific entities. These entities include the
+        /// Vulkan device and host, but may also include entities external to
+        /// the Vulkan device or otherwise not part of the core Vulkan
+        /// pipeline. When included in a source access mask, all writes that
+        /// are performed by entities known to the Vulkan device are made
+        /// available. When included in a destination access mask, makes all
+        /// available writes visible to all future write accesses on entities
+        /// known to the Vulkan device.
         /// </summary>
         MemoryWrite = 1 << 16, 
         
         /// <summary>
-        /// ename:VK_ACCESS_COMMAND_PROCESS_READ_BIT_NVX: Reads from
-        /// sname:VkBuffer inputs to flink:vkCmdProcessCommandsNVX.
+        /// Reads from Buffer inputs to CommandBuffer.ProcessCommands.
         /// </summary>
         CommandProcessReadBitNvx = 1 << 17, 
         
         /// <summary>
-        /// ename:VK_ACCESS_COMMAND_PROCESS_WRITE_BIT_NVX: Writes to the target
-        /// command buffer in flink:vkCmdProcessCommandsNVX.
+        /// Writes to the target command buffer in
+        /// CommandBuffer.ProcessCommands.
         /// </summary>
         CommandProcessWriteBitNvx = 1 << 18, 
         
