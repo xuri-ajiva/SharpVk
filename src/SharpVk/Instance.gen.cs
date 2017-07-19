@@ -45,6 +45,27 @@ namespace SharpVk
         /// <summary>
         /// Create a new Vulkan instance.
         /// </summary>
+        /// <param name="flags">
+        /// pname:flags is reserved for future use.
+        /// </param>
+        /// <param name="applicationInfo">
+        /// pname:pApplicationInfo is `NULL` or a pointer to an instance of
+        /// sname:VkApplicationInfo. If not `NULL`, this information helps
+        /// implementations recognize behavior inherent to classes of
+        /// applications. slink:VkApplicationInfo is defined in detail below.
+        /// </param>
+        /// <param name="enabledLayerNames">
+        /// pname:ppEnabledLayerNames is a pointer to an array of
+        /// pname:enabledLayerCount null-terminated UTF-8 strings containing
+        /// the names of layers to enable for the created instance. See the
+        /// &lt;&lt;extended-functionality-layers,Layers&gt;&gt; section for
+        /// further details.
+        /// </param>
+        /// <param name="enabledExtensionNames">
+        /// pname:ppEnabledExtensionNames is a pointer to an array of
+        /// pname:enabledExtensionCount null-terminated UTF-8 strings
+        /// containing the names of extensions to enable.
+        /// </param>
         public static unsafe SharpVk.Instance Create(string[] enabledLayerNames, string[] enabledExtensionNames, SharpVk.InstanceCreateFlags? flags = default(SharpVk.InstanceCreateFlags?), SharpVk.ApplicationInfo? applicationInfo = default(SharpVk.ApplicationInfo?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try

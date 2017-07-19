@@ -34,6 +34,14 @@ namespace SharpVk.Nintendo
         /// <summary>
         /// Create a slink:VkSurfaceKHR object for a VI layer.
         /// </summary>
+        /// <param name="flags">
+        /// pname:flags is reserved for future use.
+        /// </param>
+        /// <param name="window">
+        /// pname:window is the code:nn::code:vi::code:NativeWindowHandle for
+        /// the code:nn::code:vi::code:Layer with which to associate the
+        /// surface.
+        /// </param>
         public static unsafe SharpVk.Khronos.Surface CreateViSurface(this SharpVk.Instance extendedHandle, IntPtr window, SharpVk.Nintendo.ViSurfaceCreateFlags? flags = default(SharpVk.Nintendo.ViSurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try

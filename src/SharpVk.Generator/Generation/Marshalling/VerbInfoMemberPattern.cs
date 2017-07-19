@@ -87,6 +87,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                         new TypedDefinition
                         {
                             Name = x.Name.FirstToLower(),
+                            Comment = x.Comment,
                             Type = x.Type,
                             DefaultValue = x.DefaultValue
                         }));

@@ -53,7 +53,7 @@ namespace SharpVk.Generator.Emission
                                             {
                                                 if (action.Param.Comment != null && action.Param.Comment.Any())
                                                 {
-                                                    docBuilder.EmitParam(action.Param.Type, string.Join(" ", action.Param.Comment));
+                                                    docBuilder.EmitParam(action.Param.Name, string.Join(" ", action.Param.Comment));
                                                 }
                                             }
                                         });

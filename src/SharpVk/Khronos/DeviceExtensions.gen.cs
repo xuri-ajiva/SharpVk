@@ -99,6 +99,10 @@ namespace SharpVk.Khronos
         /// <summary>
         /// Create a swapchain.
         /// </summary>
+        /// <param name="flags">
+        /// pname:flags is a bitmask indicating parameters of swapchain
+        /// creation. Bits which can: be set include: + --
+        /// </param>
         public static unsafe SharpVk.Khronos.Swapchain CreateSwapchain(this SharpVk.Device extendedHandle, SharpVk.Khronos.Surface surface, uint minImageCount, SharpVk.Format imageFormat, SharpVk.Khronos.ColorSpace imageColorSpace, SharpVk.Extent2D imageExtent, uint imageArrayLayers, SharpVk.ImageUsageFlags imageUsage, SharpVk.SharingMode imageSharingMode, uint[] queueFamilyIndices, SharpVk.Khronos.SurfaceTransformFlags preTransform, SharpVk.Khronos.CompositeAlphaFlags compositeAlpha, SharpVk.Khronos.PresentMode presentMode, bool clipped, SharpVk.Khronos.Swapchain oldSwapchain, SharpVk.Khronos.SwapchainCreateFlags? flags = default(SharpVk.Khronos.SwapchainCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
@@ -500,6 +504,57 @@ namespace SharpVk.Khronos
         /// <summary>
         /// Create a new descriptor update template.
         /// </summary>
+        /// <param name="flags">
+        /// pname:flags is reserved for future use.
+        /// </param>
+        /// <param name="descriptorUpdateEntries">
+        /// pname:pDescriptorUpdateEntries is a pointer to an array of
+        /// slink:VkDescriptorUpdateTemplateEntryKHR structures describing the
+        /// descriptors to be updated by the descriptor update template.
+        /// </param>
+        /// <param name="templateType">
+        /// pname:templateType Specifies the type of the descriptor update
+        /// template. If set to
+        /// ename:VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET_KHR it can:
+        /// only be used to update descriptor sets with a fixed
+        /// pname:descriptorSetLayout. If set to
+        /// ename:VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR it
+        /// can: only be used to push descriptor sets using the provided
+        /// pname:pipelineBindPoint, pname:pipelineLayout, and pname:set
+        /// number.
+        /// </param>
+        /// <param name="descriptorSetLayout">
+        /// pname:descriptorSetLayout is the descriptor set layout the
+        /// parameter update template will be used with. All descriptor sets
+        /// which are going to be updated through the newly created descriptor
+        /// update template must: be created with this layout.
+        /// pname:descriptorSetLayout is the descriptor set layout used to
+        /// build the descriptor update template. All descriptor sets which are
+        /// going to be updated through the newly created descriptor update
+        /// template must: be created with a layout that matches (is the same
+        /// as, or defined identically to) this layout. This parameter is
+        /// ignored if pname:templateType is not
+        /// ename:VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET_KHR.
+        /// </param>
+        /// <param name="pipelineBindPoint">
+        /// pname:pipelineBindPoint is a elink:VkPipelineBindPoint indicating
+        /// whether the descriptors will be used by graphics pipelines or
+        /// compute pipelines. This parameter is ignored if pname:templateType
+        /// is not
+        /// ename:VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR
+        /// </param>
+        /// <param name="pipelineLayout">
+        /// pname:pipelineLayout is a sname:VkPipelineLayout object used to
+        /// program the bindings. This parameter is ignored if
+        /// pname:templateType is not
+        /// ename:VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR
+        /// </param>
+        /// <param name="set">
+        /// pname:set is the set number of the descriptor set in the pipeline
+        /// layout that will be updated. This parameter is ignored if
+        /// pname:templateType is not
+        /// ename:VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR ifndef::VK_KHR_push_descriptor[]
+        /// </param>
         public static unsafe SharpVk.Khronos.DescriptorUpdateTemplate CreateDescriptorUpdateTemplate(this SharpVk.Device extendedHandle, SharpVk.Khronos.DescriptorUpdateTemplateEntry[] descriptorUpdateEntries, SharpVk.Khronos.DescriptorUpdateTemplateType templateType, SharpVk.DescriptorSetLayout descriptorSetLayout, SharpVk.PipelineLayout pipelineLayout, SharpVk.Khronos.DescriptorUpdateTemplateCreateFlags? flags = default(SharpVk.Khronos.DescriptorUpdateTemplateCreateFlags?), SharpVk.PipelineBindPoint? pipelineBindPoint = default(SharpVk.PipelineBindPoint?), uint? set = default(uint?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try

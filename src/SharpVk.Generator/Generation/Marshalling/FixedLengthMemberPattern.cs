@@ -14,13 +14,15 @@ namespace SharpVk.Generator.Generation.Marshalling
         private readonly NameLookup nameLookup;
         private readonly Dictionary<string, ConstantDeclaration> constantsLookup;
         private readonly IEnumerable<IMarshalValueRule> marshallingRules;
+        private readonly CommentGenerator commentGenerator;
 
-        public FixedLengthMemberPattern(Dictionary<string, TypeDeclaration> typeData, NameLookup nameLookup, IEnumerable<ConstantDeclaration> constants, IEnumerable<IMarshalValueRule> marshallingRules)
+        public FixedLengthMemberPattern(Dictionary<string, TypeDeclaration> typeData, NameLookup nameLookup, IEnumerable<ConstantDeclaration> constants, IEnumerable<IMarshalValueRule> marshallingRules, CommentGenerator commentGenerator)
         {
             this.typeData = typeData;
             this.nameLookup = nameLookup;
             this.constantsLookup = constants.ToDictionary(x => x.VkName);
             this.marshallingRules = marshallingRules;
+            this.commentGenerator = commentGenerator;
         }
 
         public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, MemberPatternContext context, MemberPatternInfo info)
@@ -63,6 +65,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                             info.Public.Add(new TypedDefinition
                             {
                                 Name = source.Name,
+                                Comment = this.commentGenerator.Lookup(context.VkName, source.VkName),
                                 Type = "string"
                             });
 
@@ -78,6 +81,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                                 info.Public.Add(new TypedDefinition
                                 {
                                     Name = source.Name,
+                                    Comment = this.commentGenerator.Lookup(context.VkName, source.VkName),
                                     Type = "Guid"
                                 });
 
@@ -92,6 +96,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                                 info.Public.Add(new TypedDefinition
                                 {
                                     Name = source.Name,
+                                    Comment = this.commentGenerator.Lookup(context.VkName, source.VkName),
                                     Type = memberType + "[]"
                                 });
 
@@ -143,6 +148,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                     info.Public.Add(new TypedDefinition
                     {
                         Name = name,
+                        Comment = this.commentGenerator.Lookup(context.VkName, source.VkName),
                         Type = memberType + "[]"
                     });
 

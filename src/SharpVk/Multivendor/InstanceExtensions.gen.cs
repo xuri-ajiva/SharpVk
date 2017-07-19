@@ -34,6 +34,11 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// Create a debug report callback object.
         /// </summary>
+        /// <param name="flags">
+        /// pname:flags indicate which event(s) will cause this callback to be
+        /// called. Flags are interpreted as bitmasks and multiple may be set.
+        /// Bits which can: be set include: + --
+        /// </param>
         public static unsafe SharpVk.Multivendor.DebugReportCallback CreateDebugReportCallback(this SharpVk.Instance extendedHandle, SharpVk.Multivendor.DebugReportCallbackDelegate callback, SharpVk.Multivendor.DebugReportFlags? flags = default(SharpVk.Multivendor.DebugReportFlags?), IntPtr? userData = default(IntPtr?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try

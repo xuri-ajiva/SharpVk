@@ -34,6 +34,20 @@ namespace SharpVk.NVidia.Experimental
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pipelineBindPoint">
+        /// pname:pipelineBindPoint is the sname:VkPipelineBindPoint that this
+        /// layout targets.
+        /// </param>
+        /// <param name="flags">
+        /// pname:flags is a bitmask providing usage hints of this layout. See
+        /// elink:VkIndirectCommandsLayoutUsageFlagBitsNVX below for a
+        /// description of the supported bits.
+        /// </param>
+        /// <param name="tokens">
+        /// pname:pTokens is an array describing each command token in detail.
+        /// See elink:VkIndirectCommandsTokenTypeNVX and
+        /// slink:VkIndirectCommandsLayoutTokenNVX below for details.
+        /// </param>
         public static unsafe SharpVk.NVidia.Experimental.IndirectCommandsLayout CreateIndirectCommandsLayout(this SharpVk.Device extendedHandle, SharpVk.PipelineBindPoint pipelineBindPoint, SharpVk.NVidia.Experimental.IndirectCommandsLayoutUsageFlags flags, SharpVk.NVidia.Experimental.IndirectCommandsLayoutToken[] tokens, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
@@ -90,6 +104,49 @@ namespace SharpVk.NVidia.Experimental
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="objectEntryTypes">
+        /// pname:pObjectEntryTypes is an array of elink:VkObjectEntryTypeNVX
+        /// providing the entry type of a given configuration.
+        /// </param>
+        /// <param name="objectEntryCounts">
+        /// pname:pObjectEntryCounts is an array of counts how many objects can
+        /// be registered in the table.
+        /// </param>
+        /// <param name="objectEntryUsageFlags">
+        /// pname:pObjectEntryUsageFlags is an array of bitmasks describing the
+        /// binding usage of the entry. See elink:VkObjectEntryUsageFlagBitsNVX
+        /// below for a description of the supported bits.
+        /// </param>
+        /// <param name="maxUniformBuffersPerDescriptor">
+        /// pname:maxUniformBuffersPerDescriptor is the maximum number of
+        /// ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER or
+        /// ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC used by any single
+        /// registered sname:VkDescriptorSet in this table.
+        /// </param>
+        /// <param name="maxStorageBuffersPerDescriptor">
+        /// pname:maxStorageBuffersPerDescriptor is the maximum number of
+        /// ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER or
+        /// ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC used by any single
+        /// registered sname:VkDescriptorSet in this table.
+        /// </param>
+        /// <param name="maxStorageImagesPerDescriptor">
+        /// pname:maxStorageImagesPerDescriptor is the maximum number of
+        /// ename:VK_DESCRIPTOR_TYPE_STORAGE_IMAGE or
+        /// ename:VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER used by any single
+        /// registered sname:VkDescriptorSet in this table.
+        /// </param>
+        /// <param name="maxSampledImagesPerDescriptor">
+        /// pname:maxSampledImagesPerDescriptor is the maximum number of
+        /// ename:VK_DESCRIPTOR_TYPE_SAMPLER, ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER,
+        /// ename:VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER or
+        /// ename:VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT used by any single
+        /// registered sname:VkDescriptorSet in this table.
+        /// </param>
+        /// <param name="maxPipelineLayouts">
+        /// pname:maxPipelineLayouts is the maximum number of unique
+        /// sname:VkPipelineLayout used by any registered sname:VkDescriptorSet
+        /// or sname:VkPipeline in this table.
+        /// </param>
         public static unsafe SharpVk.NVidia.Experimental.ObjectTable CreateObjectTable(this SharpVk.Device extendedHandle, SharpVk.NVidia.Experimental.ObjectEntryType[] objectEntryTypes, uint[] objectEntryCounts, SharpVk.NVidia.Experimental.ObjectEntryUsageFlags[] objectEntryUsageFlags, uint maxUniformBuffersPerDescriptor, uint maxStorageBuffersPerDescriptor, uint maxStorageImagesPerDescriptor, uint maxSampledImagesPerDescriptor, uint maxPipelineLayouts, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try

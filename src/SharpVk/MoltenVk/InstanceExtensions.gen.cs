@@ -34,6 +34,14 @@ namespace SharpVk.MoltenVk
         /// <summary>
         /// Create a slink:VkSurfaceKHR object for an iOS UIView.
         /// </summary>
+        /// <param name="flags">
+        /// pname:flags is reserved for future use.
+        /// </param>
+        /// <param name="view">
+        /// pname:pView is a reference to a code:UIView object which will
+        /// display this surface. This code:UIView must: be backed by a
+        /// code:CALayer instance of type code:CAMetalLayer.
+        /// </param>
         public static unsafe SharpVk.Khronos.Surface CreateIOSSurface(this SharpVk.Instance extendedHandle, IntPtr view, SharpVk.MoltenVk.IOSSurfaceCreateFlags? flags = default(SharpVk.MoltenVk.IOSSurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
@@ -83,6 +91,14 @@ namespace SharpVk.MoltenVk
         /// <summary>
         /// Create a slink:VkSurfaceKHR object for a macOS NSView.
         /// </summary>
+        /// <param name="flags">
+        /// pname:flags is reserved for future use.
+        /// </param>
+        /// <param name="view">
+        /// pname:pView is a reference to a code:NSView object which will
+        /// display this surface. This code:NSView must: be backed by a
+        /// code:CALayer instance of type code:CAMetalLayer.
+        /// </param>
         public static unsafe SharpVk.Khronos.Surface CreateMacOSSurface(this SharpVk.Instance extendedHandle, IntPtr view, SharpVk.MoltenVk.MacOSSurfaceCreateFlags? flags = default(SharpVk.MoltenVk.MacOSSurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
