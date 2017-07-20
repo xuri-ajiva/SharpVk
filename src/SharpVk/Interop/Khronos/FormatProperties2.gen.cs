@@ -34,20 +34,18 @@ namespace SharpVk.Interop.Khronos
     public unsafe struct FormatProperties2
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:formatProperties is a structure of type
-        /// slink:VkFormatProperties describing features supported by the
-        /// requested format.
+        /// A structure of type FormatProperties describing features supported
+        /// by the requested format.
         /// </summary>
         public SharpVk.FormatProperties FormatProperties; 
     }

@@ -34,31 +34,29 @@ namespace SharpVk.Interop
     public unsafe struct ShaderModuleCreateInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public SharpVk.ShaderModuleCreateFlags Flags; 
         
         /// <summary>
-        /// pname:codeSize is the size, in bytes, of the code pointed to by
-        /// pname:pCode.
+        /// The size, in bytes, of the code pointed to by pCode.
         /// </summary>
         public HostSize CodeSize; 
         
         /// <summary>
-        /// pname:pCode points to code that is used to create the shader
-        /// module. The type and format of the code is determined from the
-        /// content of the memory addressed by pname:pCode.
+        /// pCode points to code that is used to create the shader module. The
+        /// type and format of the code is determined from the content of the
+        /// memory addressed by pCode.
         /// </summary>
         public uint* Code; 
     }

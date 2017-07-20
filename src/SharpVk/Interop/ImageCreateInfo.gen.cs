@@ -34,101 +34,91 @@ namespace SharpVk.Interop
     public unsafe struct ImageCreateInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:flags is a bitmask describing additional parameters of the
-        /// image. See elink:VkImageCreateFlagBits below for a description of
-        /// the supported bits.
+        /// A bitmask describing additional parameters of the image. See
+        /// ImageCreateFlagBits below for a description of the supported bits.
         /// </summary>
         public SharpVk.ImageCreateFlags Flags; 
         
         /// <summary>
-        /// pname:imageType is a elink:VkImageType specifying the basic
-        /// dimensionality of the image, as described below. Layers in array
-        /// textures do not count as a dimension for the purposes of the image
-        /// type.
+        /// A ImageType specifying the basic dimensionality of the image, as
+        /// described below. Layers in array textures do not count as a
+        /// dimension for the purposes of the image type.
         /// </summary>
         public SharpVk.ImageType ImageType; 
         
         /// <summary>
-        /// pname:format is a elink:VkFormat describing the format and type of
-        /// the data elements that will be contained in the image.
+        /// A Format describing the format and type of the data elements that
+        /// will be contained in the image.
         /// </summary>
         public SharpVk.Format Format; 
         
         /// <summary>
-        /// pname:extent is a slink:VkExtent3D describing the number of data
-        /// elements in each dimension of the base level.
+        /// A Extent3D describing the number of data elements in each dimension
+        /// of the base level.
         /// </summary>
         public SharpVk.Extent3D Extent; 
         
         /// <summary>
-        /// pname:mipLevels describes the number of levels of detail available
-        /// for minified sampling of the image.
+        /// mipLevels describes the number of levels of detail available for
+        /// minified sampling of the image.
         /// </summary>
         public uint MipLevels; 
         
         /// <summary>
-        /// pname:arrayLayers is the number of layers in the image.
+        /// The number of layers in the image.
         /// </summary>
         public uint ArrayLayers; 
         
         /// <summary>
-        /// pname:samples is the number of sub-data element samples in the
-        /// image as defined in elink:VkSampleCountFlagBits. See
-        /// &lt;&lt;primsrast-multisampling,Multisampling&gt;&gt;.
+        /// The number of sub-data element samples in the image as defined in
+        /// SampleCountFlagBits. See Multisampling.
         /// </summary>
         public SharpVk.SampleCountFlags Samples; 
         
         /// <summary>
-        /// pname:tiling is a elink:VkImageTiling specifying the tiling
-        /// arrangement of the data elements in memory, as described below.
+        /// A ImageTiling specifying the tiling arrangement of the data
+        /// elements in memory, as described below.
         /// </summary>
         public SharpVk.ImageTiling Tiling; 
         
         /// <summary>
-        /// pname:usage is a bitmask describing the intended usage of the
-        /// image. See elink:VkImageUsageFlagBits below for a description of
-        /// the supported bits.
+        /// A bitmask describing the intended usage of the image. See
+        /// ImageUsageFlagBits below for a description of the supported bits.
         /// </summary>
         public SharpVk.ImageUsageFlags Usage; 
         
         /// <summary>
-        /// pname:sharingMode is the sharing mode of the image when it will be
-        /// accessed by multiple queue families, and must: be one of the values
-        /// described for elink:VkSharingMode in the
-        /// &lt;&lt;resources-sharing,Resource Sharing&gt;&gt; section below.
+        /// The sharing mode of the image when it will be accessed by multiple
+        /// queue families, and must be one of the values described for
+        /// SharingMode in the Resource Sharing section below.
         /// </summary>
         public SharpVk.SharingMode SharingMode; 
         
         /// <summary>
-        /// pname:queueFamilyIndexCount is the number of entries in the
-        /// pname:pQueueFamilyIndices array.
+        /// The number of entries in the pQueueFamilyIndices array.
         /// </summary>
         public uint QueueFamilyIndexCount; 
         
         /// <summary>
-        /// pname:pQueueFamilyIndices is a list of queue families that will
-        /// access this image (ignored if pname:sharingMode is not
-        /// ename:VK_SHARING_MODE_CONCURRENT).
+        /// A list of queue families that will access this image (ignored if
+        /// sharingMode is not VK_SHARING_MODE_CONCURRENT).
         /// </summary>
         public uint* QueueFamilyIndices; 
         
         /// <summary>
-        /// pname:initialLayout selects the initial elink:VkImageLayout state
-        /// of all image subresources of the image. See
-        /// &lt;&lt;resources-image-layouts,Image Layouts&gt;&gt;.
-        /// pname:initialLayout must: be ename:VK_IMAGE_LAYOUT_UNDEFINED or
-        /// ename:VK_IMAGE_LAYOUT_PREINITIALIZED.
+        /// initialLayout selects the initial ImageLayout state of all image
+        /// subresources of the image. See Image Layouts. initialLayout must be
+        /// VK_IMAGE_LAYOUT_UNDEFINED or VK_IMAGE_LAYOUT_PREINITIALIZED.
         /// </summary>
         public SharpVk.ImageLayout InitialLayout; 
     }

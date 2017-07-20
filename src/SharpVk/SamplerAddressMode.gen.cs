@@ -30,33 +30,29 @@ namespace SharpVk
     public enum SamplerAddressMode
     {
         /// <summary>
-        /// ename:VK_SAMPLER_ADDRESS_MODE_REPEAT indicates that the repeat wrap
-        /// mode will be used.
+        /// Indicates that the repeat wrap mode will be used.
         /// </summary>
         Repeat = 0, 
         
         /// <summary>
-        /// ename:VK_SAMPLER_ADDRESS_MODE_MIRRORED_REPEAT indicates that the
-        /// mirrored repeat wrap mode will be used.
+        /// Indicates that the mirrored repeat wrap mode will be used.
         /// </summary>
         MirroredRepeat = 1, 
         
         /// <summary>
-        /// ename:VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_EDGE indicates that the
-        /// clamp to edge wrap mode will be used.
+        /// Indicates that the clamp to edge wrap mode will be used.
         /// </summary>
         ClampToEdge = 2, 
         
         /// <summary>
-        /// ename:VK_SAMPLER_ADDRESS_MODE_CLAMP_TO_BORDER indicates that the
-        /// clamp to border wrap mode will be used.
+        /// Indicates that the clamp to border wrap mode will be used.
         /// </summary>
         ClampToBorder = 3, 
         
         /// <summary>
-        /// ename:VK_SAMPLER_ADDRESS_MODE_MIRROR_CLAMP_TO_EDGE indicates that
-        /// the mirror clamp to edge wrap mode will be used. This is only valid
-        /// if the +VK_KHR_mirror_clamp_to_edge+ extension is enabled.
+        /// Indicates that the mirror clamp to edge wrap mode will be used.
+        /// This is only valid if the "VK_KHR_mirror_clamp_to_edge" extension
+        /// is enabled.
         /// </summary>
         MirrorClampToEdgeKhr = 4, 
     }

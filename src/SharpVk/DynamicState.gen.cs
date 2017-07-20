@@ -30,99 +30,89 @@ namespace SharpVk
     public enum DynamicState
     {
         /// <summary>
-        /// ename:VK_DYNAMIC_STATE_VIEWPORT indicates that the pname:pViewports
-        /// state in sname:VkPipelineViewportStateCreateInfo will be ignored
-        /// and must: be set dynamically with flink:vkCmdSetViewport before any
-        /// draw commands. The number of viewports used by a pipeline is still
-        /// specified by the pname:viewportCount member of
-        /// sname:VkPipelineViewportStateCreateInfo.
+        /// Indicates that the pViewports state in
+        /// PipelineViewportStateCreateInfo will be ignored and must be set
+        /// dynamically with flink:vkCmdSetViewport before any draw commands.
+        /// The number of viewports used by a pipeline is still specified by
+        /// the viewportCount member of PipelineViewportStateCreateInfo.
         /// </summary>
         Viewport = 0, 
         
         /// <summary>
-        /// ename:VK_DYNAMIC_STATE_SCISSOR indicates that the pname:pScissors
-        /// state in sname:VkPipelineViewportStateCreateInfo will be ignored
-        /// and must: be set dynamically with flink:vkCmdSetScissor before any
-        /// draw commands. The number of scissor rectangles used by a pipeline
-        /// is still specified by the pname:scissorCount member of
-        /// sname:VkPipelineViewportStateCreateInfo.
+        /// Indicates that the pScissors state in
+        /// PipelineViewportStateCreateInfo will be ignored and must be set
+        /// dynamically with flink:vkCmdSetScissor before any draw commands.
+        /// The number of scissor rectangles used by a pipeline is still
+        /// specified by the scissorCount member of
+        /// PipelineViewportStateCreateInfo.
         /// </summary>
         Scissor = 1, 
         
         /// <summary>
-        /// ename:VK_DYNAMIC_STATE_LINE_WIDTH indicates that the
-        /// pname:lineWidth state in
-        /// sname:VkPipelineRasterizationStateCreateInfo will be ignored and
-        /// must: be set dynamically with flink:vkCmdSetLineWidth before any
-        /// draw commands that generate line primitives for the rasterizer.
+        /// Indicates that the lineWidth state in
+        /// PipelineRasterizationStateCreateInfo will be ignored and must be
+        /// set dynamically with flink:vkCmdSetLineWidth before any draw
+        /// commands that generate line primitives for the rasterizer.
         /// </summary>
         LineWidth = 2, 
         
         /// <summary>
-        /// ename:VK_DYNAMIC_STATE_DEPTH_BIAS indicates that the
-        /// pname:depthBiasConstantFactor, pname:depthBiasClamp and
-        /// pname:depthBiasSlopeFactor states in
-        /// sname:VkPipelineRasterizationStateCreateInfo will be ignored and
-        /// must: be set dynamically with flink:vkCmdSetDepthBias before any
-        /// draws are performed with pname:depthBiasEnable in
-        /// sname:VkPipelineRasterizationStateCreateInfo set to ename:VK_TRUE.
+        /// Indicates that the depthBiasConstantFactor, depthBiasClamp and
+        /// depthBiasSlopeFactor states in PipelineRasterizationStateCreateInfo
+        /// will be ignored and must be set dynamically with
+        /// flink:vkCmdSetDepthBias before any draws are performed with
+        /// depthBiasEnable in PipelineRasterizationStateCreateInfo set to
+        /// VK_TRUE.
         /// </summary>
         DepthBias = 3, 
         
         /// <summary>
-        /// ename:VK_DYNAMIC_STATE_BLEND_CONSTANTS indicates that the
-        /// pname:blendConstants state in
-        /// sname:VkPipelineColorBlendStateCreateInfo will be ignored and must:
-        /// be set dynamically with flink:vkCmdSetBlendConstants before any
-        /// draws are performed with a pipeline state with
-        /// sname:VkPipelineColorBlendAttachmentState member pname:blendEnable
-        /// set to ename:VK_TRUE and any of the blend functions using a
-        /// constant blend color.
+        /// Indicates that the blendConstants state in
+        /// PipelineColorBlendStateCreateInfo will be ignored and must be set
+        /// dynamically with flink:vkCmdSetBlendConstants before any draws are
+        /// performed with a pipeline state with
+        /// PipelineColorBlendAttachmentState member blendEnable set to VK_TRUE
+        /// and any of the blend functions using a constant blend color.
         /// </summary>
         BlendConstants = 4, 
         
         /// <summary>
-        /// ename:VK_DYNAMIC_STATE_DEPTH_BOUNDS indicates that the
-        /// pname:minDepthBounds and pname:maxDepthBounds states of
-        /// slink:VkPipelineDepthStencilStateCreateInfo will be ignored and
-        /// must: be set dynamically with flink:vkCmdSetDepthBounds before any
-        /// draws are performed with a pipeline state with
-        /// sname:VkPipelineDepthStencilStateCreateInfo member
-        /// pname:depthBoundsTestEnable set to ename:VK_TRUE.
+        /// Indicates that the minDepthBounds and maxDepthBounds states of
+        /// PipelineDepthStencilStateCreateInfo will be ignored and must be set
+        /// dynamically with flink:vkCmdSetDepthBounds before any draws are
+        /// performed with a pipeline state with
+        /// PipelineDepthStencilStateCreateInfo member depthBoundsTestEnable
+        /// set to VK_TRUE.
         /// </summary>
         DepthBounds = 5, 
         
         /// <summary>
-        /// ename:VK_DYNAMIC_STATE_STENCIL_COMPARE_MASK indicates that the
-        /// pname:compareMask state in
-        /// sname:VkPipelineDepthStencilStateCreateInfo for both pname:front
-        /// and pname:back will be ignored and must: be set dynamically with
+        /// Indicates that the compareMask state in
+        /// PipelineDepthStencilStateCreateInfo for both front and back will be
+        /// ignored and must be set dynamically with
         /// flink:vkCmdSetStencilCompareMask before any draws are performed
-        /// with a pipeline state with
-        /// sname:VkPipelineDepthStencilStateCreateInfo member
-        /// pname:stencilTestEnable set to ename:VK_TRUE
+        /// with a pipeline state with PipelineDepthStencilStateCreateInfo
+        /// member stencilTestEnable set to VK_TRUE
         /// </summary>
         StencilCompareMask = 6, 
         
         /// <summary>
-        /// ename:VK_DYNAMIC_STATE_STENCIL_WRITE_MASK indicates that the
-        /// pname:writeMask state in
-        /// sname:VkPipelineDepthStencilStateCreateInfo for both pname:front
-        /// and pname:back will be ignored and must: be set dynamically with
+        /// Indicates that the writeMask state in
+        /// PipelineDepthStencilStateCreateInfo for both front and back will be
+        /// ignored and must be set dynamically with
         /// flink:vkCmdSetStencilWriteMask before any draws are performed with
-        /// a pipeline state with sname:VkPipelineDepthStencilStateCreateInfo
-        /// member pname:stencilTestEnable set to ename:VK_TRUE
+        /// a pipeline state with PipelineDepthStencilStateCreateInfo member
+        /// stencilTestEnable set to VK_TRUE
         /// </summary>
         StencilWriteMask = 7, 
         
         /// <summary>
-        /// ename:VK_DYNAMIC_STATE_STENCIL_REFERENCE indicates that the
-        /// pname:reference state in
-        /// sname:VkPipelineDepthStencilStateCreateInfo for both pname:front
-        /// and pname:back will be ignored and must: be set dynamically with
+        /// Indicates that the reference state in
+        /// PipelineDepthStencilStateCreateInfo for both front and back will be
+        /// ignored and must be set dynamically with
         /// flink:vkCmdSetStencilReference before any draws are performed with
-        /// a pipeline state with sname:VkPipelineDepthStencilStateCreateInfo
-        /// member pname:stencilTestEnable set to ename:VK_TRUE
+        /// a pipeline state with PipelineDepthStencilStateCreateInfo member
+        /// stencilTestEnable set to VK_TRUE
         /// </summary>
         StencilReference = 8, 
         

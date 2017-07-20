@@ -190,34 +190,26 @@ namespace SharpVk
         /// Create a new device instance.
         /// </summary>
         /// <param name="flags">
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </param>
         /// <param name="queueCreateInfos">
-        /// pname:pQueueCreateInfos is a pointer to an array of
-        /// slink:VkDeviceQueueCreateInfo structures describing the queues that
-        /// are requested to be created along with the logical device. Refer to
-        /// the &lt;&lt;devsandqueues-queue-creation,Queue Creation&gt;&gt;
-        /// section below for further details.
+        /// An array of DeviceQueueCreateInfo structures describing the queues
+        /// that are requested to be created along with the logical device.
+        /// Refer to the Queue Creation section below for further details.
         /// </param>
         /// <param name="enabledLayerNames">
-        /// pname:ppEnabledLayerNames is deprecated and ignored. See
-        /// &lt;&lt;extended-functionality-device-layer-deprecation,Device Layer
-        /// Deprecation&gt;&gt;.
+        /// ppEnabledLayerNames is deprecated and ignored. See Device Layer
+        /// Deprecation.
         /// </param>
         /// <param name="enabledExtensionNames">
-        /// pname:ppEnabledExtensionNames is a pointer to an array of
-        /// pname:enabledExtensionCount null-terminated UTF-8 strings
-        /// containing the names of extensions to enable for the created
-        /// device. See the
-        /// &lt;&lt;extended-functionality-extensions,Extensions&gt;&gt; section
-        /// for further details.
+        /// An array of enabledExtensionCount strings containing the names of
+        /// extensions to enable for the created device. See the Extensions
+        /// section for further details.
         /// </param>
         /// <param name="enabledFeatures">
-        /// pname:pEnabledFeatures is `NULL` or a pointer to a
-        /// slink:VkPhysicalDeviceFeatures structure that contains boolean
-        /// indicators of all the features to be enabled. Refer to the
-        /// &lt;&lt;features-features,Features&gt;&gt; section for further
-        /// details.
+        /// Null or a PhysicalDeviceFeatures structure that contains boolean
+        /// indicators of all the features to be enabled. Refer to the Features
+        /// section for further details.
         /// </param>
         public unsafe SharpVk.Device CreateDevice(SharpVk.DeviceQueueCreateInfo[] queueCreateInfos, string[] enabledLayerNames, string[] enabledExtensionNames, SharpVk.DeviceCreateFlags? flags = default(SharpVk.DeviceCreateFlags?), SharpVk.PhysicalDeviceFeatures? enabledFeatures = default(SharpVk.PhysicalDeviceFeatures?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {

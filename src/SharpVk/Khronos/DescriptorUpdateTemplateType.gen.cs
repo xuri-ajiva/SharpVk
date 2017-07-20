@@ -30,15 +30,13 @@ namespace SharpVk.Khronos
     public enum DescriptorUpdateTemplateType
     {
         /// <summary>
-        /// ename:VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET_KHR
-        /// indicates that the descriptor update template will be used for
+        /// Indicates that the descriptor update template will be used for
         /// descriptor set updates only.
         /// </summary>
         DescriptorSet = 0, 
         
         /// <summary>
-        /// ename:VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR
-        /// indicates that the descriptor update template will be used for push
+        /// Indicates that the descriptor update template will be used for push
         /// descriptor updates only.
         /// </summary>
         PushDescriptors = 1, 

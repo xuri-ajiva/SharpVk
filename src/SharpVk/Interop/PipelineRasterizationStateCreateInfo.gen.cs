@@ -34,79 +34,74 @@ namespace SharpVk.Interop
     public unsafe struct PipelineRasterizationStateCreateInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public SharpVk.PipelineRasterizationStateCreateFlags Flags; 
         
         /// <summary>
-        /// pname:depthClampEnable controls whether to clamp the fragment's
-        /// depth values instead of clipping primitives to the z planes of the
-        /// frustum, as described in &lt;&lt;vertexpostproc-clipping,Primitive
-        /// Clipping&gt;&gt;.
+        /// depthClampEnable controls whether to clamp the fragment's depth
+        /// values instead of clipping primitives to the z planes of the
+        /// frustum, as described in Primitive Clipping.
         /// </summary>
         public Bool32 DepthClampEnable; 
         
         /// <summary>
-        /// pname:rasterizerDiscardEnable controls whether primitives are
-        /// discarded immediately before the rasterization stage.
+        /// rasterizerDiscardEnable controls whether primitives are discarded
+        /// immediately before the rasterization stage.
         /// </summary>
         public Bool32 RasterizerDiscardEnable; 
         
         /// <summary>
-        /// pname:polygonMode is the triangle rendering mode. See
-        /// elink:VkPolygonMode.
+        /// The triangle rendering mode. See PolygonMode.
         /// </summary>
         public SharpVk.PolygonMode PolygonMode; 
         
         /// <summary>
-        /// pname:cullMode is the triangle facing direction used for primitive
-        /// culling. See elink:VkCullModeFlagBits.
+        /// The triangle facing direction used for primitive culling. See
+        /// CullModeFlagBits.
         /// </summary>
         public SharpVk.CullModeFlags CullMode; 
         
         /// <summary>
-        /// pname:frontFace is the front-facing triangle orientation to be used
-        /// for culling. See elink:VkFrontFace.
+        /// The front-facing triangle orientation to be used for culling. See
+        /// FrontFace.
         /// </summary>
         public SharpVk.FrontFace FrontFace; 
         
         /// <summary>
-        /// pname:depthBiasEnable controls whether to bias fragment depth
-        /// values.
+        /// depthBiasEnable controls whether to bias fragment depth values.
         /// </summary>
         public Bool32 DepthBiasEnable; 
         
         /// <summary>
-        /// pname:depthBiasConstantFactor is a scalar factor controlling the
-        /// constant depth value added to each fragment.
+        /// A scalar factor controlling the constant depth value added to each
+        /// fragment.
         /// </summary>
         public float DepthBiasConstantFactor; 
         
         /// <summary>
-        /// pname:depthBiasClamp is the maximum (or minimum) depth bias of a
-        /// fragment.
+        /// The maximum (or minimum) depth bias of a fragment.
         /// </summary>
         public float DepthBiasClamp; 
         
         /// <summary>
-        /// pname:depthBiasSlopeFactor is a scalar factor applied to a
-        /// fragment's slope in depth bias calculations.
+        /// A scalar factor applied to a fragment's slope in depth bias
+        /// calculations.
         /// </summary>
         public float DepthBiasSlopeFactor; 
         
         /// <summary>
-        /// pname:lineWidth is the width of rasterized line segments.
+        /// The width of rasterized line segments.
         /// </summary>
         public float LineWidth; 
     }

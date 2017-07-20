@@ -34,9 +34,9 @@ namespace SharpVk.Khronos.Experimental
     public struct PhysicalDeviceGroupProperties
     {
         /// <summary>
-        /// pname:physicalDevices is an array of physical device handles
-        /// representing all physical devices in the group. The first
-        /// pname:physicalDeviceCount elements of the array will be valid.
+        /// An array of physical device handles representing all physical
+        /// devices in the group. The first physicalDeviceCount elements of the
+        /// array will be valid.
         /// </summary>
         public SharpVk.PhysicalDevice[] PhysicalDevices
         {
@@ -45,13 +45,12 @@ namespace SharpVk.Khronos.Experimental
         }
         
         /// <summary>
-        /// pname:subsetAllocation indicates whether logical devices created
-        /// from the group support allocating device memory on a subset of
-        /// devices, via the pname:deviceMask member of the
-        /// slink:VkMemoryAllocateFlagsInfoKHX. If this is ename:VK_FALSE, then
+        /// Indicates whether logical devices created from the group support
+        /// allocating device memory on a subset of devices, via the deviceMask
+        /// member of the MemoryAllocateFlagsInfoKHX. If this is VK_FALSE, then
         /// all device memory allocations are made across all physical devices
-        /// in the group. If pname:physicalDeviceCount is `1`, then
-        /// pname:subsetAllocation must: be ename:VK_FALSE.
+        /// in the group. If physicalDeviceCount is `1`, then subsetAllocation
+        /// must be VK_FALSE.
         /// </summary>
         public bool SubsetAllocation
         {

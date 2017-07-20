@@ -34,34 +34,32 @@ namespace SharpVk.Interop.NVidia.Experimental
     public unsafe struct CommandReserveSpaceForCommandsInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:objectTable is the sname:VkObjectTableNVX to be used for the
-        /// generation process. Only registered objects at the time
+        /// The ObjectTableNVX to be used for the generation process. Only
+        /// registered objects at the time
         /// flink:vkCmdReserveSpaceForCommandsNVX is called, will be taken into
         /// account for the reservation.
         /// </summary>
         public SharpVk.Interop.NVidia.Experimental.ObjectTable ObjectTable; 
         
         /// <summary>
-        /// pname:indirectCommandsLayout is the
-        /// sname:VkIndirectCommandsLayoutNVX that must: also be used at
-        /// generation time.
+        /// The IndirectCommandsLayoutNVX that must also be used at generation
+        /// time.
         /// </summary>
         public SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayout IndirectCommandsLayout; 
         
         /// <summary>
-        /// pname:maxSequencesCount is the maximum number of sequences for
-        /// which command buffer space will be reserved.
+        /// The maximum number of sequences for which command buffer space will
+        /// be reserved.
         /// </summary>
         public uint MaxSequencesCount; 
     }

@@ -34,54 +34,48 @@ namespace SharpVk.Interop
     public unsafe struct PipelineDepthStencilStateCreateInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public SharpVk.PipelineDepthStencilStateCreateFlags Flags; 
         
         /// <summary>
-        /// pname:depthTestEnable controls whether &lt;&lt;fragops-depth,depth
-        /// testing&gt;&gt; is enabled.
+        /// depthTestEnable controls whether depth testing is enabled.
         /// </summary>
         public Bool32 DepthTestEnable; 
         
         /// <summary>
-        /// pname:depthWriteEnable controls whether
-        /// &lt;&lt;fragops-depth-write,depth writes&gt;&gt; are enabled.
+        /// depthWriteEnable controls whether depth writes are enabled.
         /// </summary>
         public Bool32 DepthWriteEnable; 
         
         /// <summary>
-        /// pname:depthCompareOp is the comparison operator used in the
-        /// &lt;&lt;fragops-depth,depth test&gt;&gt;.
+        /// The comparison operator used in the depth test.
         /// </summary>
         public SharpVk.CompareOp DepthCompareOp; 
         
         /// <summary>
-        /// pname:depthBoundsTestEnable controls whether
-        /// &lt;&lt;fragops-dbt,depth bounds testing&gt;&gt; is enabled.
+        /// depthBoundsTestEnable controls whether depth bounds testing is
+        /// enabled.
         /// </summary>
         public Bool32 DepthBoundsTestEnable; 
         
         /// <summary>
-        /// pname:stencilTestEnable controls whether
-        /// &lt;&lt;fragops-stencil,stencil testing&gt;&gt; is enabled.
+        /// stencilTestEnable controls whether stencil testing is enabled.
         /// </summary>
         public Bool32 StencilTestEnable; 
         
         /// <summary>
-        /// pname:front and pname:back control the parameters of the
-        /// &lt;&lt;fragops-stencil,stencil test&gt;&gt;.
+        /// front and back control the parameters of the stencil test.
         /// </summary>
         public SharpVk.StencilOpState Front; 
         
@@ -91,8 +85,8 @@ namespace SharpVk.Interop
         public SharpVk.StencilOpState Back; 
         
         /// <summary>
-        /// pname:minDepthBounds and pname:maxDepthBounds define the range of
-        /// values used in the &lt;&lt;fragops-dbt,depth bounds test&gt;&gt;.
+        /// minDepthBounds and maxDepthBounds define the range of values used
+        /// in the depth bounds test.
         /// </summary>
         public float MinDepthBounds; 
         

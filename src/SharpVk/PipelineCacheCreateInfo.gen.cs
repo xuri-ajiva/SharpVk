@@ -34,7 +34,7 @@ namespace SharpVk
     public struct PipelineCacheCreateInfo
     {
         /// <summary>
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public SharpVk.PipelineCacheCreateFlags? Flags
         {
@@ -43,10 +43,10 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:pInitialData is a pointer to previously retrieved pipeline
-        /// cache data. If the pipeline cache data is incompatible (as defined
-        /// below) with the device, the pipeline cache will be initially empty.
-        /// If pname:initialDataSize is zero, pname:pInitialData is ignored.
+        /// A pointer to previously retrieved pipeline cache data. If the
+        /// pipeline cache data is incompatible (as defined below) with the
+        /// device, the pipeline cache will be initially empty. If
+        /// initialDataSize is zero, pInitialData is ignored.
         /// </summary>
         public byte[] InitialData
         {

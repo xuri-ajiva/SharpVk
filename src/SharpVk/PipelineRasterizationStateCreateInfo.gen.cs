@@ -35,7 +35,7 @@ namespace SharpVk
     public struct PipelineRasterizationStateCreateInfo
     {
         /// <summary>
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public SharpVk.PipelineRasterizationStateCreateFlags? Flags
         {
@@ -44,10 +44,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:depthClampEnable controls whether to clamp the fragment's
-        /// depth values instead of clipping primitives to the z planes of the
-        /// frustum, as described in &lt;&lt;vertexpostproc-clipping,Primitive
-        /// Clipping&gt;&gt;.
+        /// depthClampEnable controls whether to clamp the fragment's depth
+        /// values instead of clipping primitives to the z planes of the
+        /// frustum, as described in Primitive Clipping.
         /// </summary>
         public bool DepthClampEnable
         {
@@ -56,8 +55,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:rasterizerDiscardEnable controls whether primitives are
-        /// discarded immediately before the rasterization stage.
+        /// rasterizerDiscardEnable controls whether primitives are discarded
+        /// immediately before the rasterization stage.
         /// </summary>
         public bool RasterizerDiscardEnable
         {
@@ -66,8 +65,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:polygonMode is the triangle rendering mode. See
-        /// elink:VkPolygonMode.
+        /// The triangle rendering mode. See PolygonMode.
         /// </summary>
         public SharpVk.PolygonMode PolygonMode
         {
@@ -76,8 +74,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:cullMode is the triangle facing direction used for primitive
-        /// culling. See elink:VkCullModeFlagBits.
+        /// The triangle facing direction used for primitive culling. See
+        /// CullModeFlagBits.
         /// </summary>
         public SharpVk.CullModeFlags? CullMode
         {
@@ -86,8 +84,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:frontFace is the front-facing triangle orientation to be used
-        /// for culling. See elink:VkFrontFace.
+        /// The front-facing triangle orientation to be used for culling. See
+        /// FrontFace.
         /// </summary>
         public SharpVk.FrontFace FrontFace
         {
@@ -96,8 +94,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:depthBiasEnable controls whether to bias fragment depth
-        /// values.
+        /// depthBiasEnable controls whether to bias fragment depth values.
         /// </summary>
         public bool DepthBiasEnable
         {
@@ -106,8 +103,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:depthBiasConstantFactor is a scalar factor controlling the
-        /// constant depth value added to each fragment.
+        /// A scalar factor controlling the constant depth value added to each
+        /// fragment.
         /// </summary>
         public float DepthBiasConstantFactor
         {
@@ -116,8 +113,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:depthBiasClamp is the maximum (or minimum) depth bias of a
-        /// fragment.
+        /// The maximum (or minimum) depth bias of a fragment.
         /// </summary>
         public float DepthBiasClamp
         {
@@ -126,8 +122,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:depthBiasSlopeFactor is a scalar factor applied to a
-        /// fragment's slope in depth bias calculations.
+        /// A scalar factor applied to a fragment's slope in depth bias
+        /// calculations.
         /// </summary>
         public float DepthBiasSlopeFactor
         {
@@ -136,7 +132,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:lineWidth is the width of rasterized line segments.
+        /// The width of rasterized line segments.
         /// </summary>
         public float LineWidth
         {

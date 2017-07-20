@@ -34,8 +34,7 @@ namespace SharpVk.NVidia
     public struct ImportMemoryWin32HandleInfo
     {
         /// <summary>
-        /// pname:handleType is 0 or a flag specifying the type of memory
-        /// handle in pname:handle. Flags which may: be specified are: + --
+        /// A flag specifying the type of memory handle in handle.
         /// </summary>
         public SharpVk.NVidia.ExternalMemoryHandleTypeFlags? HandleType
         {

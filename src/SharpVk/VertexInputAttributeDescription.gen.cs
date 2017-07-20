@@ -45,25 +45,23 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:location is the shader binding location number for this
-        /// attribute.
+        /// The shader binding location number for this attribute.
         /// </summary>
         public uint Location; 
         
         /// <summary>
-        /// pname:binding is the binding number which this attribute takes its
-        /// data from.
+        /// The binding number which this attribute takes its data from.
         /// </summary>
         public uint Binding; 
         
         /// <summary>
-        /// pname:format is the size and type of the vertex attribute data.
+        /// The size and type of the vertex attribute data.
         /// </summary>
         public SharpVk.Format Format; 
         
         /// <summary>
-        /// pname:offset is a byte offset of this attribute relative to the
-        /// start of an element in the vertex input binding.
+        /// A byte offset of this attribute relative to the start of an element
+        /// in the vertex input binding.
         /// </summary>
         public uint Offset; 
     }

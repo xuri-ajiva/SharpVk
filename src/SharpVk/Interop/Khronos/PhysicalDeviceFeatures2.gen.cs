@@ -34,20 +34,18 @@ namespace SharpVk.Interop.Khronos
     public unsafe struct PhysicalDeviceFeatures2
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:features is a structure of type
-        /// slink:VkPhysicalDeviceFeatures describing the fine-grained features
-        /// of the Vulkan 1.0 API.
+        /// A structure of type PhysicalDeviceFeatures describing the
+        /// fine-grained features of the Vulkan 1.0 API.
         /// </summary>
         public SharpVk.Interop.PhysicalDeviceFeatures Features; 
     }

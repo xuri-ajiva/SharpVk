@@ -34,20 +34,19 @@ namespace SharpVk.Interop.Multivendor
     public unsafe struct DebugReportCallbackCreateInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:flags indicate which event(s) will cause this callback to be
+        /// flags indicate which event(s) will cause this callback to be
         /// called. Flags are interpreted as bitmasks and multiple may be set.
-        /// Bits which can: be set include: + --
+        /// Bits which can be set include: + --
         /// </summary>
         public SharpVk.Multivendor.DebugReportFlags Flags; 
         

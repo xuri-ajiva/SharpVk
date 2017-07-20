@@ -36,75 +36,66 @@ namespace SharpVk
         None = 0, 
         
         /// <summary>
-        /// ename:VK_BUFFER_USAGE_TRANSFER_SRC_BIT indicates that the buffer
-        /// can: be used as the source of a _transfer command_ (see the
-        /// definition of &lt;&lt;synchronization-pipeline-stages-transfer,
-        /// ename:VK_PIPELINE_STAGE_TRANSFER_BIT&gt;&gt;).
+        /// Indicates that the buffer can be used as the source of a _transfer
+        /// command_ (see the definition of VK_PIPELINE_STAGE_TRANSFER_BIT).
         /// </summary>
         TransferSource = 1 << 0, 
         
         /// <summary>
-        /// ename:VK_BUFFER_USAGE_TRANSFER_DST_BIT indicates that the buffer
-        /// can: be used as the destination of a transfer command.
+        /// Indicates that the buffer can be used as the destination of a
+        /// transfer command.
         /// </summary>
         TransferDestination = 1 << 1, 
         
         /// <summary>
-        /// ename:VK_BUFFER_USAGE_UNIFORM_TEXEL_BUFFER_BIT indicates that the
-        /// buffer can: be used to create a sname:VkBufferView suitable for
-        /// occupying a sname:VkDescriptorSet slot of type
-        /// ename:VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER.
+        /// Indicates that the buffer can be used to create a BufferView
+        /// suitable for occupying a DescriptorSet slot of type
+        /// VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER.
         /// </summary>
         UniformTexelBuffer = 1 << 2, 
         
         /// <summary>
-        /// ename:VK_BUFFER_USAGE_STORAGE_TEXEL_BUFFER_BIT indicates that the
-        /// buffer can: be used to create a sname:VkBufferView suitable for
-        /// occupying a sname:VkDescriptorSet slot of type
-        /// ename:VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER.
+        /// Indicates that the buffer can be used to create a BufferView
+        /// suitable for occupying a DescriptorSet slot of type
+        /// VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER.
         /// </summary>
         StorageTexelBuffer = 1 << 3, 
         
         /// <summary>
-        /// ename:VK_BUFFER_USAGE_UNIFORM_BUFFER_BIT indicates that the buffer
-        /// can: be used in a sname:VkDescriptorBufferInfo suitable for
-        /// occupying a sname:VkDescriptorSet slot either of type
-        /// ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER or
-        /// ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC.
+        /// Indicates that the buffer can be used in a DescriptorBufferInfo
+        /// suitable for occupying a DescriptorSet slot either of type
+        /// VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER or
+        /// VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC.
         /// </summary>
         UniformBuffer = 1 << 4, 
         
         /// <summary>
-        /// ename:VK_BUFFER_USAGE_STORAGE_BUFFER_BIT indicates that the buffer
-        /// can: be used in a sname:VkDescriptorBufferInfo suitable for
-        /// occupying a sname:VkDescriptorSet slot either of type
-        /// ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER or
-        /// ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC.
+        /// Indicates that the buffer can be used in a DescriptorBufferInfo
+        /// suitable for occupying a DescriptorSet slot either of type
+        /// VK_DESCRIPTOR_TYPE_STORAGE_BUFFER or
+        /// VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC.
         /// </summary>
         StorageBuffer = 1 << 5, 
         
         /// <summary>
-        /// ename:VK_BUFFER_USAGE_INDEX_BUFFER_BIT indicates that the buffer is
-        /// suitable for passing as the pname:buffer parameter to
-        /// fname:vkCmdBindIndexBuffer.
+        /// Indicates that the buffer is suitable for passing as the buffer
+        /// parameter to fname:vkCmdBindIndexBuffer.
         /// </summary>
         IndexBuffer = 1 << 6, 
         
         /// <summary>
-        /// ename:VK_BUFFER_USAGE_VERTEX_BUFFER_BIT indicates that the buffer
-        /// is suitable for passing as an element of the pname:pBuffers array
-        /// to fname:vkCmdBindVertexBuffers.
+        /// Indicates that the buffer is suitable for passing as an element of
+        /// the pBuffers array to fname:vkCmdBindVertexBuffers.
         /// </summary>
         VertexBuffer = 1 << 7, 
         
         /// <summary>
-        /// ename:VK_BUFFER_USAGE_INDIRECT_BUFFER_BIT indicates that the buffer
-        /// is suitable for passing as the pname:buffer parameter to
-        /// fname:vkCmdDrawIndirect, fname:vkCmdDrawIndexedIndirect, or
-        /// fname:vkCmdDispatchIndirect. It is also suitable for passing as the
-        /// pname:buffer member of sname:VkIndirectCommandsTokenNVX, or
-        /// pname:sequencesCountBuffer or pname:sequencesIndexBuffer member of
-        /// sname:VkCmdProcessCommandsInfoNVX
+        /// Indicates that the buffer is suitable for passing as the buffer
+        /// parameter to fname:vkCmdDrawIndirect,
+        /// fname:vkCmdDrawIndexedIndirect, or fname:vkCmdDispatchIndirect. It
+        /// is also suitable for passing as the buffer member of
+        /// IndirectCommandsTokenNVX, or sequencesCountBuffer or
+        /// sequencesIndexBuffer member of CmdProcessCommandsInfoNVX
         /// </summary>
         IndirectBuffer = 1 << 8, 
     }

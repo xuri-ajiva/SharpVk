@@ -36,14 +36,14 @@ namespace SharpVk.NVidia.Experimental
         None = 0, 
         
         /// <summary>
-        /// ename:VK_OBJECT_ENTRY_USAGE_GRAPHICS_BIT_NVX indicates that the
-        /// resource is bound to ename:VK_PIPELINE_BIND_POINT_GRAPHICS
+        /// Indicates that the resource is bound to
+        /// VK_PIPELINE_BIND_POINT_GRAPHICS
         /// </summary>
         Graphics = 1 << 0, 
         
         /// <summary>
-        /// ename:VK_OBJECT_ENTRY_USAGE_COMPUTE_BIT_NVX indicates that the
-        /// resource is bound to ename:VK_PIPELINE_BIND_POINT_COMPUTE
+        /// Indicates that the resource is bound to
+        /// VK_PIPELINE_BIND_POINT_COMPUTE
         /// </summary>
         Compute = 1 << 1, 
     }

@@ -43,8 +43,8 @@ namespace SharpVk.NVidia
         }
         
         /// <summary>
-        /// pname:xcoeff and pname:ycoeff are the viewport's W scaling factor
-        /// for x and y respectively.
+        /// xcoeff and ycoeff are the viewport's W scaling factor for x and y
+        /// respectively.
         /// </summary>
         public float Xcoeff; 
         

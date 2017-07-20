@@ -36,9 +36,9 @@ namespace SharpVk.Multivendor
         None = 0, 
         
         /// <summary>
-        /// ename:VK_SURFACE_COUNTER_VBLANK_EXT A counter incrementing once
-        /// every time a vblank period occurs on the display associated with
-        /// the surface.
+        /// VK_SURFACE_COUNTER_VBLANK_EXT A counter incrementing once every
+        /// time a vblank period occurs on the display associated with the
+        /// surface.
         /// </summary>
         Vblank = 1 << 0, 
     }

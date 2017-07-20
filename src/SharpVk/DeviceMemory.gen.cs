@@ -117,7 +117,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// Query the current commitment for a VkDeviceMemory.
+        /// Query the current commitment for a DeviceMemory.
         /// </summary>
         public unsafe DeviceSize GetCommitment()
         {

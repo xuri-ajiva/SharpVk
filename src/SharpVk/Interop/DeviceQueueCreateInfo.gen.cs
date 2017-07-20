@@ -34,43 +34,38 @@ namespace SharpVk.Interop
     public unsafe struct DeviceQueueCreateInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public SharpVk.DeviceQueueCreateFlags Flags; 
         
         /// <summary>
-        /// pname:queueFamilyIndex is an unsigned integer indicating the index
-        /// of the queue family to create on this device. This index
-        /// corresponds to the index of an element of the
-        /// pname:pQueueFamilyProperties array that was returned by
+        /// An unsigned integer indicating the index of the queue family to
+        /// create on this device. This index corresponds to the index of an
+        /// element of the pQueueFamilyProperties array that was returned by
         /// fname:vkGetPhysicalDeviceQueueFamilyProperties.
         /// </summary>
         public uint QueueFamilyIndex; 
         
         /// <summary>
-        /// pname:queueCount is an unsigned integer specifying the number of
-        /// queues to create in the queue family indicated by
-        /// pname:queueFamilyIndex.
+        /// An unsigned integer specifying the number of queues to create in
+        /// the queue family indicated by queueFamilyIndex.
         /// </summary>
         public uint QueueCount; 
         
         /// <summary>
-        /// pname:pQueuePriorities is an array of pname:queueCount normalized
-        /// floating point values, specifying priorities of work that will be
-        /// submitted to each created queue. See
-        /// &lt;&lt;devsandqueues-priority,Queue Priority&gt;&gt; for more
-        /// information.
+        /// An array of queueCount normalized floating point values, specifying
+        /// priorities of work that will be submitted to each created queue.
+        /// See Queue Priority for more information.
         /// </summary>
         public float* QueuePriorities; 
     }

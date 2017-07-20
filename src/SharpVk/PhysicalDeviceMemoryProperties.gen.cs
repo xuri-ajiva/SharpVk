@@ -34,9 +34,9 @@ namespace SharpVk
     public struct PhysicalDeviceMemoryProperties
     {
         /// <summary>
-        /// pname:memoryTypes is an array of slink:VkMemoryType structures
-        /// describing the _memory types_ that can: be used to access memory
-        /// allocated from the heaps specified by pname:memoryHeaps.
+        /// An array of MemoryType structures describing the _memory types_
+        /// that can be used to access memory allocated from the heaps
+        /// specified by memoryHeaps.
         /// </summary>
         public SharpVk.MemoryType[] MemoryTypes
         {
@@ -45,8 +45,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:memoryHeaps is an array of slink:VkMemoryHeap structures
-        /// describing the _memory heaps_ from which memory can: be allocated.
+        /// An array of MemoryHeap structures describing the _memory heaps_
+        /// from which memory can be allocated.
         /// </summary>
         public SharpVk.MemoryHeap[] MemoryHeaps
         {

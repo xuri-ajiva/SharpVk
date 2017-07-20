@@ -30,32 +30,32 @@ namespace SharpVk
     public enum PhysicalDeviceType
     {
         /// <summary>
-        /// ename:VK_PHYSICAL_DEVICE_TYPE_OTHER The device does not match any
-        /// other available types.
+        /// VK_PHYSICAL_DEVICE_TYPE_OTHER The device does not match any other
+        /// available types.
         /// </summary>
         Other = 0, 
         
         /// <summary>
-        /// ename:VK_PHYSICAL_DEVICE_TYPE_INTEGRATED_GPU The device is
-        /// typically one embedded in or tightly coupled with the host.
+        /// VK_PHYSICAL_DEVICE_TYPE_INTEGRATED_GPU The device is typically one
+        /// embedded in or tightly coupled with the host.
         /// </summary>
         IntegratedGpu = 1, 
         
         /// <summary>
-        /// ename:VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU The device is typically
-        /// a separate processor connected to the host via an interlink.
+        /// VK_PHYSICAL_DEVICE_TYPE_DISCRETE_GPU The device is typically a
+        /// separate processor connected to the host via an interlink.
         /// </summary>
         DiscreteGpu = 2, 
         
         /// <summary>
-        /// ename:VK_PHYSICAL_DEVICE_TYPE_VIRTUAL_GPU The device is typically a
+        /// VK_PHYSICAL_DEVICE_TYPE_VIRTUAL_GPU The device is typically a
         /// virtual node in a virtualization environment.
         /// </summary>
         VirtualGpu = 3, 
         
         /// <summary>
-        /// ename:VK_PHYSICAL_DEVICE_TYPE_CPU The device is typically running
-        /// on the same processors as the host.
+        /// VK_PHYSICAL_DEVICE_TYPE_CPU The device is typically running on the
+        /// same processors as the host.
         /// </summary>
         Cpu = 4, 
     }

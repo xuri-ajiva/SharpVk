@@ -34,24 +34,23 @@ namespace SharpVk.Interop.Khronos
     public unsafe struct WaylandSurfaceCreateInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public SharpVk.Khronos.WaylandSurfaceCreateFlags Flags; 
         
         /// <summary>
-        /// pname:display and pname:surface are pointers to the Wayland
-        /// code:wl_display and code:wl_surface to associate the surface with.
+        /// display and surface are pointers to the Wayland wl_display and
+        /// wl_surface to associate the surface with.
         /// </summary>
         public IntPtr Display; 
         

@@ -34,21 +34,20 @@ namespace SharpVk.Interop.Khronos
     public unsafe struct PhysicalDeviceProperties2
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:properties is a structure of type
-        /// slink:VkPhysicalDeviceProperties describing the properties of the
-        /// physical device. This structure is written with the same values as
-        /// if it were written by flink:vkGetPhysicalDeviceProperties.
+        /// A structure of type PhysicalDeviceProperties describing the
+        /// properties of the physical device. This structure is written with
+        /// the same values as if it were written by
+        /// flink:vkGetPhysicalDeviceProperties.
         /// </summary>
         public SharpVk.Interop.PhysicalDeviceProperties Properties; 
     }

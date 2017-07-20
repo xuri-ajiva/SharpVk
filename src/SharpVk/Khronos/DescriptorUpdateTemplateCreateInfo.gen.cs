@@ -35,7 +35,7 @@ namespace SharpVk.Khronos
     public struct DescriptorUpdateTemplateCreateInfo
     {
         /// <summary>
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public SharpVk.Khronos.DescriptorUpdateTemplateCreateFlags? Flags
         {
@@ -44,9 +44,8 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// pname:pDescriptorUpdateEntries is a pointer to an array of
-        /// slink:VkDescriptorUpdateTemplateEntryKHR structures describing the
-        /// descriptors to be updated by the descriptor update template.
+        /// An array of DescriptorUpdateTemplateEntryKHR structures describing
+        /// the descriptors to be updated by the descriptor update template.
         /// </summary>
         public SharpVk.Khronos.DescriptorUpdateTemplateEntry[] DescriptorUpdateEntries
         {
@@ -55,15 +54,12 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// pname:templateType Specifies the type of the descriptor update
-        /// template. If set to
-        /// ename:VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET_KHR it can:
-        /// only be used to update descriptor sets with a fixed
-        /// pname:descriptorSetLayout. If set to
-        /// ename:VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR it
-        /// can: only be used to push descriptor sets using the provided
-        /// pname:pipelineBindPoint, pname:pipelineLayout, and pname:set
-        /// number.
+        /// Specifies the type of the descriptor update template. If set to
+        /// VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET_KHR it can only
+        /// be used to update descriptor sets with a fixed descriptorSetLayout.
+        /// If set to VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR
+        /// it can only be used to push descriptor sets using the provided
+        /// pipelineBindPoint, pipelineLayout, and set number.
         /// </summary>
         public SharpVk.Khronos.DescriptorUpdateTemplateType TemplateType
         {
@@ -72,17 +68,16 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// pname:descriptorSetLayout is the descriptor set layout the
-        /// parameter update template will be used with. All descriptor sets
-        /// which are going to be updated through the newly created descriptor
-        /// update template must: be created with this layout.
-        /// pname:descriptorSetLayout is the descriptor set layout used to
-        /// build the descriptor update template. All descriptor sets which are
-        /// going to be updated through the newly created descriptor update
-        /// template must: be created with a layout that matches (is the same
-        /// as, or defined identically to) this layout. This parameter is
-        /// ignored if pname:templateType is not
-        /// ename:VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET_KHR.
+        /// The descriptor set layout the parameter update template will be
+        /// used with. All descriptor sets which are going to be updated
+        /// through the newly created descriptor update template must be
+        /// created with this layout. descriptorSetLayout is the descriptor set
+        /// layout used to build the descriptor update template. All descriptor
+        /// sets which are going to be updated through the newly created
+        /// descriptor update template must be created with a layout that
+        /// matches (is the same as, or defined identically to) this layout.
+        /// This parameter is ignored if templateType is not
+        /// VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET_KHR.
         /// </summary>
         public SharpVk.DescriptorSetLayout DescriptorSetLayout
         {
@@ -91,11 +86,10 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// pname:pipelineBindPoint is a elink:VkPipelineBindPoint indicating
-        /// whether the descriptors will be used by graphics pipelines or
-        /// compute pipelines. This parameter is ignored if pname:templateType
-        /// is not
-        /// ename:VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR
+        /// A PipelineBindPoint indicating whether the descriptors will be used
+        /// by graphics pipelines or compute pipelines. This parameter is
+        /// ignored if templateType is not
+        /// VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR
         /// </summary>
         public SharpVk.PipelineBindPoint? PipelineBindPoint
         {
@@ -104,10 +98,9 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// pname:pipelineLayout is a sname:VkPipelineLayout object used to
-        /// program the bindings. This parameter is ignored if
-        /// pname:templateType is not
-        /// ename:VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR
+        /// A PipelineLayout object used to program the bindings. This
+        /// parameter is ignored if templateType is not
+        /// VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR
         /// </summary>
         public SharpVk.PipelineLayout PipelineLayout
         {
@@ -116,10 +109,9 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// pname:set is the set number of the descriptor set in the pipeline
-        /// layout that will be updated. This parameter is ignored if
-        /// pname:templateType is not
-        /// ename:VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR ifndef::VK_KHR_push_descriptor[]
+        /// The set number of the descriptor set in the pipeline layout that
+        /// will be updated. This parameter is ignored if templateType is not
+        /// VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR ifndef::VK_KHR_push_descriptor[]
         /// </summary>
         public uint? Set
         {

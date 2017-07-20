@@ -46,17 +46,15 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:srcSubresource and pname:dstSubresource are
-        /// slink:VkImageSubresourceLayers structures specifying the image
-        /// subresources of the images used for the source and destination
-        /// image data, respectively.
+        /// srcSubresource and dstSubresource are ImageSubresourceLayers
+        /// structures specifying the image subresources of the images used for
+        /// the source and destination image data, respectively.
         /// </summary>
         public SharpVk.ImageSubresourceLayers SourceSubresource; 
         
         /// <summary>
-        /// pname:srcOffset and pname:dstOffset select the initial x, y, and z
-        /// offsets in texels of the sub-regions of the source and destination
-        /// image data.
+        /// srcOffset and dstOffset select the initial x, y, and z offsets in
+        /// texels of the sub-regions of the source and destination image data.
         /// </summary>
         public SharpVk.Offset3D SourceOffset; 
         
@@ -71,8 +69,8 @@ namespace SharpVk
         public SharpVk.Offset3D DestinationOffset; 
         
         /// <summary>
-        /// pname:extent is the size in texels of the source image to copy in
-        /// pname:width, pname:height and pname:depth.
+        /// The size in texels of the source image to copy in width, height and
+        /// depth.
         /// </summary>
         public SharpVk.Extent3D Extent; 
     }

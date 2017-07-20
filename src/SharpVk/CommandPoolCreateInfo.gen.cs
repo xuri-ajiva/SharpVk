@@ -34,9 +34,8 @@ namespace SharpVk
     public struct CommandPoolCreateInfo
     {
         /// <summary>
-        /// pname:flags is a bitmask indicating usage behavior for the pool and
-        /// command buffers allocated from it. Bits which can: be set include:
-        /// + --
+        /// A bitmask indicating usage behavior for the pool and command
+        /// buffers allocated from it. Bits which can be set include: + --
         /// </summary>
         public SharpVk.CommandPoolCreateFlags? Flags
         {

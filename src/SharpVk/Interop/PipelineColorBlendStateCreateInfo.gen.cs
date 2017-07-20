@@ -34,52 +34,46 @@ namespace SharpVk.Interop
     public unsafe struct PipelineColorBlendStateCreateInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public SharpVk.PipelineColorBlendStateCreateFlags Flags; 
         
         /// <summary>
-        /// pname:logicOpEnable controls whether to apply
-        /// &lt;&lt;framebuffer-logicop, Logical Operations&gt;&gt;.
+        /// logicOpEnable controls whether to apply Logical Operations.
         /// </summary>
         public Bool32 LogicOpEnable; 
         
         /// <summary>
-        /// pname:logicOp selects which logical operation to apply.
+        /// logicOp selects which logical operation to apply.
         /// </summary>
         public SharpVk.LogicOp LogicOp; 
         
         /// <summary>
-        /// pname:attachmentCount is the number of
-        /// sname:VkPipelineColorBlendAttachmentState elements in
-        /// pname:pAttachments. This value must: equal the
-        /// pname:colorAttachmentCount for the subpass in which this pipeline
-        /// is used.
+        /// The number of PipelineColorBlendAttachmentState elements in
+        /// pAttachments. This value must equal the colorAttachmentCount for
+        /// the subpass in which this pipeline is used.
         /// </summary>
         public uint AttachmentCount; 
         
         /// <summary>
-        /// pname:pAttachments: is a pointer to array of per target attachment
-        /// states.
+        /// pAttachments: is array of per target attachment states.
         /// </summary>
         public SharpVk.Interop.PipelineColorBlendAttachmentState* Attachments; 
         
         /// <summary>
-        /// pname:blendConstants is an array of four values used as the R, G,
-        /// B, and A components of the blend constant that are used in
-        /// blending, depending on the &lt;&lt;framebuffer-blendfactors,blend
-        /// factor&gt;&gt;.
+        /// An array of four values used as the R, G, B, and A components of
+        /// the blend constant that are used in blending, depending on the
+        /// blend factor.
         /// </summary>
         public fixed float BlendConstants[4]; 
     }

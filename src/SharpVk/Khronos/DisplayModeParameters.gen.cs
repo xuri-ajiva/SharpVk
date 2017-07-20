@@ -43,13 +43,13 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// pname:visibleRegion is the 2D extents of the visible region.
+        /// The 2D extents of the visible region.
         /// </summary>
         public SharpVk.Extent2D VisibleRegion; 
         
         /// <summary>
-        /// pname:refreshRate is a code:uint32_t that is the number of times
-        /// the display is refreshed each second multiplied by 1000.
+        /// A uint32_t that is the number of times the display is refreshed
+        /// each second multiplied by 1000.
         /// </summary>
         public uint RefreshRate; 
     }

@@ -45,30 +45,28 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:queueFlags contains flags indicating the capabilities of the
-        /// queues in this queue family.
+        /// queueFlags contains flags indicating the capabilities of the queues
+        /// in this queue family.
         /// </summary>
         public SharpVk.QueueFlags QueueFlags; 
         
         /// <summary>
-        /// pname:queueCount is the unsigned integer count of queues in this
-        /// queue family.
+        /// The unsigned integer count of queues in this queue family.
         /// </summary>
         public uint QueueCount; 
         
         /// <summary>
-        /// pname:timestampValidBits is the unsigned integer count of
-        /// meaningful bits in the timestamps written via
-        /// fname:vkCmdWriteTimestamp. The valid range for the count is 36..64
-        /// bits, or a value of 0, indicating no support for timestamps. Bits
-        /// outside the valid range are guaranteed to be zeros.
+        /// The unsigned integer count of meaningful bits in the timestamps
+        /// written via fname:vkCmdWriteTimestamp. The valid range for the
+        /// count is 36..64 bits, or a value of 0, indicating no support for
+        /// timestamps. Bits outside the valid range are guaranteed to be
+        /// zeros.
         /// </summary>
         public uint TimestampValidBits; 
         
         /// <summary>
-        /// pname:minImageTransferGranularity is the minimum granularity
-        /// supported for image transfer operations on the queues in this queue
-        /// family.
+        /// The minimum granularity supported for image transfer operations on
+        /// the queues in this queue family.
         /// </summary>
         public SharpVk.Extent3D MinImageTransferGranularity; 
     }

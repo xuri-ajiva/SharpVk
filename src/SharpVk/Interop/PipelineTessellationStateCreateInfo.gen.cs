@@ -34,23 +34,22 @@ namespace SharpVk.Interop
     public unsafe struct PipelineTessellationStateCreateInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public SharpVk.PipelineTessellationStateCreateFlags Flags; 
         
         /// <summary>
-        /// pname:patchControlPoints number of control points per patch.
+        /// patchControlPoints number of control points per patch.
         /// </summary>
         public uint PatchControlPoints; 
     }

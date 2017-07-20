@@ -44,19 +44,18 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:srcOffset is the starting offset in bytes from the start of
-        /// pname:srcBuffer.
+        /// The starting offset in bytes from the start of source buffer.
         /// </summary>
         public DeviceSize SourceOffset; 
         
         /// <summary>
-        /// pname:dstOffset is the starting offset in bytes from the start of
-        /// pname:dstBuffer.
+        /// The starting offset in bytes from the start of the destination
+        /// buffer.
         /// </summary>
         public DeviceSize DestinationOffset; 
         
         /// <summary>
-        /// pname:size is the number of bytes to copy.
+        /// The number of bytes to copy.
         /// </summary>
         public DeviceSize Size; 
     }

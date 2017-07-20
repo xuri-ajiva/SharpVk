@@ -34,29 +34,27 @@ namespace SharpVk.Interop.Khronos.Experimental
     public unsafe struct DeviceGroupPresentCapabilities
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:presentMask is an array of masks, where the mask at element
-        /// [eq]#i# is non-zero if physical device [eq]#i# has a presentation
-        /// engine, and where bit [eq]#j# is set in element [eq]#i# if physical
-        /// device [eq]#i# can: present swapchain images from physical device
-        /// [eq]#j#. If element [eq]#i# is non-zero, then bit [eq]#i# must: be
-        /// set.
+        /// An array of masks, where the mask at element [eq]#i# is non-zero if
+        /// physical device [eq]#i# has a presentation engine, and where bit
+        /// [eq]#j# is set in element [eq]#i# if physical device [eq]#i# can
+        /// present swapchain images from physical device [eq]#j#. If element
+        /// [eq]#i# is non-zero, then bit [eq]#i# must be set.
         /// </summary>
         public fixed uint PresentMask[Constants.MaxDeviceGroupSize]; 
         
         /// <summary>
-        /// pname:modes is a bitmask indicating which device group presentation
-        /// modes are supported. The bits returned in pname:modes are: + --
+        /// A bitmask indicating which device group presentation modes are
+        /// supported. The bits returned in modes are: + --
         /// </summary>
         public SharpVk.Khronos.Experimental.DeviceGroupPresentModeFlags Modes; 
     }

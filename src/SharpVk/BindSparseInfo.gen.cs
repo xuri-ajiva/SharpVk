@@ -34,11 +34,9 @@ namespace SharpVk
     public struct BindSparseInfo
     {
         /// <summary>
-        /// pname:pWaitSemaphores is a pointer to an array of semaphores upon
-        /// which to wait on before the sparse binding operations for this
-        /// batch begin execution. If semaphores to wait on are provided, they
-        /// define a &lt;&lt;synchronization-semaphores-waiting, semaphore wait
-        /// operation&gt;&gt;.
+        /// An array of semaphores upon which to wait on before the sparse
+        /// binding operations for this batch begin execution. If semaphores to
+        /// wait on are provided, they define a semaphore wait operation.
         /// </summary>
         public SharpVk.Semaphore[] WaitSemaphores
         {
@@ -47,8 +45,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:pBufferBinds is a pointer to an array of
-        /// slink:VkSparseBufferMemoryBindInfo structures.
+        /// An array of SparseBufferMemoryBindInfo structures.
         /// </summary>
         public SharpVk.SparseBufferMemoryBindInfo[] BufferBinds
         {
@@ -57,8 +54,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:pImageOpaqueBinds is a pointer to an array of
-        /// slink:VkSparseImageOpaqueMemoryBindInfo structures, indicating
+        /// An array of SparseImageOpaqueMemoryBindInfo structures, indicating
         /// opaque sparse image bindings to perform.
         /// </summary>
         public SharpVk.SparseImageOpaqueMemoryBindInfo[] ImageOpaqueBinds
@@ -68,8 +64,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:pImageBinds is a pointer to an array of
-        /// slink:VkSparseImageMemoryBindInfo structures, indicating sparse
+        /// An array of SparseImageMemoryBindInfo structures, indicating sparse
         /// image bindings to perform.
         /// </summary>
         public SharpVk.SparseImageMemoryBindInfo[] ImageBinds
@@ -79,12 +74,10 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:pSignalSemaphores is a pointer to an array of semaphores
-        /// which will be signaled when the sparse binding operations for this
-        /// batch have completed execution. If semaphores to be signaled are
-        /// provided, they define a
-        /// &lt;&lt;synchronization-semaphores-signaling, semaphore signal
-        /// operation&gt;&gt;.
+        /// An array of semaphores which will be signaled when the sparse
+        /// binding operations for this batch have completed execution. If
+        /// semaphores to be signaled are provided, they define a semaphore
+        /// signal operation.
         /// </summary>
         public SharpVk.Semaphore[] SignalSemaphores
         {

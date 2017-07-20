@@ -36,111 +36,103 @@ namespace SharpVk
         None = 0, 
         
         /// <summary>
-        /// ename:VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT: Stage of the pipeline
-        /// where any commands are initially received by the queue.
+        /// VK_PIPELINE_STAGE_TOP_OF_PIPE_BIT: Stage of the pipeline where any
+        /// commands are initially received by the queue.
         /// </summary>
         TopOfPipe = 1 << 0, 
         
         /// <summary>
-        /// ename:VK_PIPELINE_STAGE_DRAW_INDIRECT_BIT: Stage of the pipeline
-        /// where Draw/DispatchIndirect data structures are consumed. This
-        /// stage also includes reading commands written by
-        /// flink:vkCmdProcessCommandsNVX.
+        /// VK_PIPELINE_STAGE_DRAW_INDIRECT_BIT: Stage of the pipeline where
+        /// Draw/DispatchIndirect data structures are consumed. This stage also
+        /// includes reading commands written by flink:vkCmdProcessCommandsNVX.
         /// </summary>
         DrawIndirect = 1 << 1, 
         
         /// <summary>
-        /// ename:VK_PIPELINE_STAGE_VERTEX_INPUT_BIT: Stage of the pipeline
-        /// where vertex and index buffers are consumed.
+        /// VK_PIPELINE_STAGE_VERTEX_INPUT_BIT: Stage of the pipeline where
+        /// vertex and index buffers are consumed.
         /// </summary>
         VertexInput = 1 << 2, 
         
         /// <summary>
-        /// ename:VK_PIPELINE_STAGE_VERTEX_SHADER_BIT: Vertex shader stage.
+        /// VK_PIPELINE_STAGE_VERTEX_SHADER_BIT: Vertex shader stage.
         /// </summary>
         VertexShader = 1 << 3, 
         
         /// <summary>
-        /// ename:VK_PIPELINE_STAGE_TESSELLATION_CONTROL_SHADER_BIT:
         /// Tessellation control shader stage.
         /// </summary>
         TessellationControlShader = 1 << 4, 
         
         /// <summary>
-        /// ename:VK_PIPELINE_STAGE_TESSELLATION_EVALUATION_SHADER_BIT:
         /// Tessellation evaluation shader stage.
         /// </summary>
         TessellationEvaluationShader = 1 << 5, 
         
         /// <summary>
-        /// ename:VK_PIPELINE_STAGE_GEOMETRY_SHADER_BIT: Geometry shader stage.
+        /// VK_PIPELINE_STAGE_GEOMETRY_SHADER_BIT: Geometry shader stage.
         /// </summary>
         GeometryShader = 1 << 6, 
         
         /// <summary>
-        /// ename:VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT: Fragment shader stage.
+        /// VK_PIPELINE_STAGE_FRAGMENT_SHADER_BIT: Fragment shader stage.
         /// </summary>
         FragmentShader = 1 << 7, 
         
         /// <summary>
-        /// ename:VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT: Stage of the
-        /// pipeline where early fragment tests (depth and stencil tests before
-        /// fragment shading) are performed. This stage also includes
-        /// &lt;&lt;renderpass-load-store-ops, subpass load operations&gt;&gt;
-        /// for framebuffer attachments with a depth/stencil format.
+        /// VK_PIPELINE_STAGE_EARLY_FRAGMENT_TESTS_BIT: Stage of the pipeline
+        /// where early fragment tests (depth and stencil tests before fragment
+        /// shading) are performed. This stage also includes subpass load
+        /// operations for framebuffer attachments with a depth/stencil format.
         /// </summary>
         EarlyFragmentTests = 1 << 8, 
         
         /// <summary>
-        /// ename:VK_PIPELINE_STAGE_LATE_FRAGMENT_TESTS_BIT: Stage of the
-        /// pipeline where late fragment tests (depth and stencil tests after
-        /// fragment shading) are performed. This stage also includes
-        /// &lt;&lt;renderpass-load-store-ops, subpass store operations&gt;&gt;
-        /// for framebuffer attachments with a depth/stencil format.
+        /// VK_PIPELINE_STAGE_LATE_FRAGMENT_TESTS_BIT: Stage of the pipeline
+        /// where late fragment tests (depth and stencil tests after fragment
+        /// shading) are performed. This stage also includes subpass store
+        /// operations for framebuffer attachments with a depth/stencil format.
         /// </summary>
         LateFragmentTests = 1 << 9, 
         
         /// <summary>
-        /// ename:VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT: Stage of the
+        /// VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT: Stage of the
         /// pipeline after blending where the final color values are output
-        /// from the pipeline. This stage also includes
-        /// &lt;&lt;renderpass-load-store-ops, subpass load and store
-        /// operations&gt;&gt; and multisample resolve operations for
-        /// framebuffer attachments with a color format.
+        /// from the pipeline. This stage also includes subpass load and store
+        /// operations and multisample resolve operations for framebuffer
+        /// attachments with a color format.
         /// </summary>
         ColorAttachmentOutput = 1 << 10, 
         
         /// <summary>
-        /// ename:VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT: Execution of a compute
+        /// VK_PIPELINE_STAGE_COMPUTE_SHADER_BIT: Execution of a compute
         /// shader.
         /// </summary>
         ComputeShader = 1 << 11, 
         
         /// <summary>
-        /// ename:VK_PIPELINE_STAGE_TRANSFER_BIT: Execution of copy commands.
-        /// This includes the operations resulting from all &lt;&lt;copies,copy
-        /// commands&gt;&gt;, &lt;&lt;clears,clear commands&gt;&gt; (with the
-        /// exception of flink:vkCmdClearAttachments), and
+        /// VK_PIPELINE_STAGE_TRANSFER_BIT: Execution of copy commands. This
+        /// includes the operations resulting from all copy commands, clear
+        /// commands (with the exception of flink:vkCmdClearAttachments), and
         /// flink:vkCmdCopyQueryPoolResults.
         /// </summary>
         Transfer = 1 << 12, 
         
         /// <summary>
-        /// ename:VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT: Final stage in the
-        /// pipeline where operations generated by all commands complete
-        /// execution.
+        /// VK_PIPELINE_STAGE_BOTTOM_OF_PIPE_BIT: Final stage in the pipeline
+        /// where operations generated by all commands complete execution.
         /// </summary>
         BottomOfPipe = 1 << 13, 
         
         /// <summary>
-        /// ename:VK_PIPELINE_STAGE_HOST_BIT: A pseudo-stage indicating
-        /// execution on the host of reads/writes of device memory. This stage
-        /// is not invoked by any commands recorded in a command buffer.
+        /// VK_PIPELINE_STAGE_HOST_BIT: A pseudo-stage indicating execution on
+        /// the host of reads/writes of device memory. This stage is not
+        /// invoked by any commands recorded in a command buffer.
         /// </summary>
         Host = 1 << 14, 
         
         /// <summary>
-        /// ename:VK_PIPELINE_STAGE_ALL_GRAPHICS_BIT: Execution of all graphics
+        /// VK_PIPELINE_STAGE_ALL_GRAPHICS_BIT: Execution of all graphics
         /// pipeline stages. Equivalent to the logical or of:
         /// </summary>
         AllGraphics = 1 << 15, 
@@ -151,8 +143,8 @@ namespace SharpVk
         AllCommands = 1 << 16, 
         
         /// <summary>
-        /// ename:VK_PIPELINE_STAGE_COMMAND_PROCESS_BIT_NVX: Stage of the
-        /// pipeline where device-side generation of commands via
+        /// VK_PIPELINE_STAGE_COMMAND_PROCESS_BIT_NVX: Stage of the pipeline
+        /// where device-side generation of commands via
         /// flink:vkCmdProcessCommandsNVX is handled.
         /// </summary>
         CommandProcessBitNvx = 1 << 17, 

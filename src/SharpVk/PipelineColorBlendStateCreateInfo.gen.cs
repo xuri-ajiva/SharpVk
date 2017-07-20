@@ -35,7 +35,7 @@ namespace SharpVk
     public struct PipelineColorBlendStateCreateInfo
     {
         /// <summary>
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public SharpVk.PipelineColorBlendStateCreateFlags? Flags
         {
@@ -44,8 +44,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:logicOpEnable controls whether to apply
-        /// &lt;&lt;framebuffer-logicop, Logical Operations&gt;&gt;.
+        /// logicOpEnable controls whether to apply Logical Operations.
         /// </summary>
         public bool LogicOpEnable
         {
@@ -54,7 +53,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:logicOp selects which logical operation to apply.
+        /// logicOp selects which logical operation to apply.
         /// </summary>
         public SharpVk.LogicOp LogicOp
         {
@@ -63,8 +62,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:pAttachments: is a pointer to array of per target attachment
-        /// states.
+        /// pAttachments: is array of per target attachment states.
         /// </summary>
         public SharpVk.PipelineColorBlendAttachmentState[] Attachments
         {
@@ -73,10 +71,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:blendConstants is an array of four values used as the R, G,
-        /// B, and A components of the blend constant that are used in
-        /// blending, depending on the &lt;&lt;framebuffer-blendfactors,blend
-        /// factor&gt;&gt;.
+        /// An array of four values used as the R, G, B, and A components of
+        /// the blend constant that are used in blending, depending on the
+        /// blend factor.
         /// </summary>
         public float[] BlendConstants
         {

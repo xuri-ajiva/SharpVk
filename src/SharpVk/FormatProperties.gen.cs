@@ -44,19 +44,19 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:linearTilingFeatures describes the features supported by
-        /// ename:VK_IMAGE_TILING_LINEAR.
+        /// linearTilingFeatures describes the features supported by
+        /// VK_IMAGE_TILING_LINEAR.
         /// </summary>
         public SharpVk.FormatFeatureFlags LinearTilingFeatures; 
         
         /// <summary>
-        /// pname:optimalTilingFeatures describes the features supported by
-        /// ename:VK_IMAGE_TILING_OPTIMAL.
+        /// optimalTilingFeatures describes the features supported by
+        /// VK_IMAGE_TILING_OPTIMAL.
         /// </summary>
         public SharpVk.FormatFeatureFlags OptimalTilingFeatures; 
         
         /// <summary>
-        /// pname:bufferFeatures describes the features supported by buffers.
+        /// bufferFeatures describes the features supported by buffers.
         /// </summary>
         public SharpVk.FormatFeatureFlags BufferFeatures; 
     }

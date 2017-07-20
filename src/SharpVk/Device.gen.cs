@@ -129,12 +129,11 @@ namespace SharpVk
         /// Allocate GPU memory.
         /// </summary>
         /// <param name="allocationSize">
-        /// pname:allocationSize is the size of the allocation in bytes
+        /// The size of the allocation in bytes
         /// </param>
         /// <param name="memoryTypeIndex">
-        /// pname:memoryTypeIndex is the memory type index, which selects the
-        /// properties of the memory to be allocated, as well as the heap the
-        /// memory will come from.
+        /// The memory type index, which selects the properties of the memory
+        /// to be allocated, as well as the heap the memory will come from.
         /// </param>
         public unsafe SharpVk.DeviceMemory AllocateMemory(DeviceSize allocationSize, uint memoryTypeIndex, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -242,8 +241,8 @@ namespace SharpVk
         /// Create a new fence object.
         /// </summary>
         /// <param name="flags">
-        /// pname:flags defines the initial state and behavior of the fence.
-        /// Bits which can: be set include: + --
+        /// flags defines the initial state and behavior of the fence. Bits
+        /// which can be set include: + --
         /// </param>
         public unsafe SharpVk.Fence CreateFence(SharpVk.FenceCreateFlags? flags = default(SharpVk.FenceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -357,7 +356,7 @@ namespace SharpVk
         /// Create a new queue semaphore object.
         /// </summary>
         /// <param name="flags">
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </param>
         public unsafe SharpVk.Semaphore CreateSemaphore(SharpVk.SemaphoreCreateFlags? flags = default(SharpVk.SemaphoreCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -405,7 +404,7 @@ namespace SharpVk
         /// Create a new event object.
         /// </summary>
         /// <param name="flags">
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </param>
         public unsafe SharpVk.Event CreateEvent(SharpVk.EventCreateFlags? flags = default(SharpVk.EventCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -453,11 +452,10 @@ namespace SharpVk
         /// Create a new query pool object.
         /// </summary>
         /// <param name="flags">
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </param>
         /// <param name="queryType">
-        /// pname:queryType is the type of queries managed by the pool, and
-        /// must: be one of the values + --
+        /// The type of queries managed by the pool.
         /// </param>
         public unsafe SharpVk.QueryPool CreateQueryPool(SharpVk.QueryType queryType, uint queryCount, SharpVk.QueryPoolCreateFlags? flags = default(SharpVk.QueryPoolCreateFlags?), SharpVk.QueryPipelineStatisticFlags? pipelineStatistics = default(SharpVk.QueryPipelineStatisticFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -515,28 +513,21 @@ namespace SharpVk
         /// Create a new buffer object.
         /// </summary>
         /// <param name="flags">
-        /// pname:flags is a bitmask describing additional parameters of the
-        /// buffer. See elink:VkBufferCreateFlagBits below for a description of
-        /// the supported bits.
+        /// A bitmask describing additional parameters of the buffer.
         /// </param>
         /// <param name="size">
-        /// pname:size is the size in bytes of the buffer to be created.
+        /// The size in bytes of the buffer to be created.
         /// </param>
         /// <param name="usage">
-        /// pname:usage is a bitmask describing the allowed usages of the
-        /// buffer. See elink:VkBufferUsageFlagBits below for a description of
-        /// the supported bits.
+        /// A bitmask describing the allowed usages of the buffer.
         /// </param>
         /// <param name="sharingMode">
-        /// pname:sharingMode is the sharing mode of the buffer when it will be
-        /// accessed by multiple queue families, see elink:VkSharingMode in the
-        /// &lt;&lt;resources-sharing,Resource Sharing&gt;&gt; section below
-        /// for supported values.
+        /// The sharing mode of the buffer when it will be accessed by multiple
+        /// queue families.
         /// </param>
         /// <param name="queueFamilyIndices">
-        /// pname:pQueueFamilyIndices is a list of queue families that will
-        /// access this buffer (ignored if pname:sharingMode is not
-        /// ename:VK_SHARING_MODE_CONCURRENT).
+        /// A list of queue families that will access this buffer (ignored if
+        /// sharingMode is not Concurrent).
         /// </param>
         public unsafe SharpVk.Buffer CreateBuffer(DeviceSize size, SharpVk.BufferUsageFlags usage, SharpVk.SharingMode sharingMode, uint[] queueFamilyIndices, SharpVk.BufferCreateFlags? flags = default(SharpVk.BufferCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -601,26 +592,25 @@ namespace SharpVk
         /// Create a new buffer view object.
         /// </summary>
         /// <param name="flags">
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </param>
         /// <param name="buffer">
-        /// pname:buffer is a sname:VkBuffer on which the view will be created.
+        /// A Buffer on which the view will be created.
         /// </param>
         /// <param name="format">
-        /// pname:format is a elink:VkFormat describing the format of the data
-        /// elements in the buffer.
+        /// A Format describing the format of the data elements in the buffer.
         /// </param>
         /// <param name="offset">
-        /// pname:offset is an offset in bytes from the base address of the
-        /// buffer. Accesses to the buffer view from shaders use addressing
-        /// that is relative to this starting offset.
+        /// An offset in bytes from the base address of the buffer. Accesses to
+        /// the buffer view from shaders use addressing that is relative to
+        /// this starting offset.
         /// </param>
         /// <param name="range">
-        /// pname:range is a size in bytes of the buffer view. If pname:range
-        /// is equal to ename:VK_WHOLE_SIZE, the range from pname:offset to the
-        /// end of the buffer is used. If ename:VK_WHOLE_SIZE is used and the
-        /// remaining size of the buffer is not a multiple of the element size
-        /// of pname:format, then the nearest smaller multiple is used.
+        /// A size in bytes of the buffer view. If range is equal to
+        /// VK_WHOLE_SIZE, the range from offset to the end of the buffer is
+        /// used. If VK_WHOLE_SIZE is used and the remaining size of the buffer
+        /// is not a multiple of the element size of format, then the nearest
+        /// smaller multiple is used.
         /// </param>
         public unsafe SharpVk.BufferView CreateBufferView(SharpVk.Buffer buffer, SharpVk.Format format, DeviceSize offset, DeviceSize range, SharpVk.BufferViewCreateFlags? flags = default(SharpVk.BufferViewCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -672,62 +662,54 @@ namespace SharpVk
         /// Create a new image object.
         /// </summary>
         /// <param name="flags">
-        /// pname:flags is a bitmask describing additional parameters of the
-        /// image. See elink:VkImageCreateFlagBits below for a description of
-        /// the supported bits.
+        /// A bitmask describing additional parameters of the image. See
+        /// ImageCreateFlagBits below for a description of the supported bits.
         /// </param>
         /// <param name="imageType">
-        /// pname:imageType is a elink:VkImageType specifying the basic
-        /// dimensionality of the image, as described below. Layers in array
-        /// textures do not count as a dimension for the purposes of the image
-        /// type.
+        /// A ImageType specifying the basic dimensionality of the image, as
+        /// described below. Layers in array textures do not count as a
+        /// dimension for the purposes of the image type.
         /// </param>
         /// <param name="format">
-        /// pname:format is a elink:VkFormat describing the format and type of
-        /// the data elements that will be contained in the image.
+        /// A Format describing the format and type of the data elements that
+        /// will be contained in the image.
         /// </param>
         /// <param name="extent">
-        /// pname:extent is a slink:VkExtent3D describing the number of data
-        /// elements in each dimension of the base level.
+        /// A Extent3D describing the number of data elements in each dimension
+        /// of the base level.
         /// </param>
         /// <param name="mipLevels">
-        /// pname:mipLevels describes the number of levels of detail available
-        /// for minified sampling of the image.
+        /// mipLevels describes the number of levels of detail available for
+        /// minified sampling of the image.
         /// </param>
         /// <param name="arrayLayers">
-        /// pname:arrayLayers is the number of layers in the image.
+        /// The number of layers in the image.
         /// </param>
         /// <param name="samples">
-        /// pname:samples is the number of sub-data element samples in the
-        /// image as defined in elink:VkSampleCountFlagBits. See
-        /// &lt;&lt;primsrast-multisampling,Multisampling&gt;&gt;.
+        /// The number of sub-data element samples in the image as defined in
+        /// SampleCountFlagBits. See Multisampling.
         /// </param>
         /// <param name="tiling">
-        /// pname:tiling is a elink:VkImageTiling specifying the tiling
-        /// arrangement of the data elements in memory, as described below.
+        /// A ImageTiling specifying the tiling arrangement of the data
+        /// elements in memory, as described below.
         /// </param>
         /// <param name="usage">
-        /// pname:usage is a bitmask describing the intended usage of the
-        /// image. See elink:VkImageUsageFlagBits below for a description of
-        /// the supported bits.
+        /// A bitmask describing the intended usage of the image. See
+        /// ImageUsageFlagBits below for a description of the supported bits.
         /// </param>
         /// <param name="sharingMode">
-        /// pname:sharingMode is the sharing mode of the image when it will be
-        /// accessed by multiple queue families, and must: be one of the values
-        /// described for elink:VkSharingMode in the
-        /// &lt;&lt;resources-sharing,Resource Sharing&gt;&gt; section below.
+        /// The sharing mode of the image when it will be accessed by multiple
+        /// queue families, and must be one of the values described for
+        /// SharingMode in the Resource Sharing section below.
         /// </param>
         /// <param name="queueFamilyIndices">
-        /// pname:pQueueFamilyIndices is a list of queue families that will
-        /// access this image (ignored if pname:sharingMode is not
-        /// ename:VK_SHARING_MODE_CONCURRENT).
+        /// A list of queue families that will access this image (ignored if
+        /// sharingMode is not VK_SHARING_MODE_CONCURRENT).
         /// </param>
         /// <param name="initialLayout">
-        /// pname:initialLayout selects the initial elink:VkImageLayout state
-        /// of all image subresources of the image. See
-        /// &lt;&lt;resources-image-layouts,Image Layouts&gt;&gt;.
-        /// pname:initialLayout must: be ename:VK_IMAGE_LAYOUT_UNDEFINED or
-        /// ename:VK_IMAGE_LAYOUT_PREINITIALIZED.
+        /// initialLayout selects the initial ImageLayout state of all image
+        /// subresources of the image. See Image Layouts. initialLayout must be
+        /// VK_IMAGE_LAYOUT_UNDEFINED or VK_IMAGE_LAYOUT_PREINITIALIZED.
         /// </param>
         public unsafe SharpVk.Image CreateImage(SharpVk.ImageType imageType, SharpVk.Format format, SharpVk.Extent3D extent, uint mipLevels, uint arrayLayers, SharpVk.SampleCountFlags samples, SharpVk.ImageTiling tiling, SharpVk.ImageUsageFlags usage, SharpVk.SharingMode sharingMode, uint[] queueFamilyIndices, SharpVk.ImageLayout initialLayout, SharpVk.ImageCreateFlags? flags = default(SharpVk.ImageCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -799,27 +781,26 @@ namespace SharpVk
         /// Create an image view from an existing image.
         /// </summary>
         /// <param name="flags">
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </param>
         /// <param name="image">
-        /// pname:image is a sname:VkImage on which the view will be created.
+        /// A Image on which the view will be created.
         /// </param>
         /// <param name="viewType">
-        /// pname:viewType is the type of the image view.
+        /// The type of the image view.
         /// </param>
         /// <param name="format">
-        /// pname:format is a elink:VkFormat describing the format and type
-        /// used to interpret data elements in the image.
+        /// A Format describing the format and type used to interpret data
+        /// elements in the image.
         /// </param>
         /// <param name="components">
-        /// pname:components specifies a remapping of color components (or of
-        /// depth or stencil components after they have been converted into
-        /// color components). See slink:VkComponentMapping.
+        /// Specifies a remapping of color components (or of depth or stencil
+        /// components after they have been converted into color components).
+        /// See ComponentMapping.
         /// </param>
         /// <param name="subresourceRange">
-        /// pname:subresourceRange is a slink:VkImageSubresourceRange selecting
-        /// the set of mipmap levels and array layers to be accessible to the
-        /// view.
+        /// A ImageSubresourceRange selecting the set of mipmap levels and
+        /// array layers to be accessible to the view.
         /// </param>
         public unsafe SharpVk.ImageView CreateImageView(SharpVk.Image image, SharpVk.ImageViewType viewType, SharpVk.Format format, SharpVk.ComponentMapping components, SharpVk.ImageSubresourceRange subresourceRange, SharpVk.ImageViewCreateFlags? flags = default(SharpVk.ImageViewCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -872,16 +853,15 @@ namespace SharpVk
         /// Creates a new shader module object.
         /// </summary>
         /// <param name="flags">
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </param>
         /// <param name="codeSize">
-        /// pname:codeSize is the size, in bytes, of the code pointed to by
-        /// pname:pCode.
+        /// The size, in bytes, of the code pointed to by pCode.
         /// </param>
         /// <param name="code">
-        /// pname:pCode points to code that is used to create the shader
-        /// module. The type and format of the code is determined from the
-        /// content of the memory addressed by pname:pCode.
+        /// pCode points to code that is used to create the shader module. The
+        /// type and format of the code is determined from the content of the
+        /// memory addressed by pCode.
         /// </param>
         public unsafe SharpVk.ShaderModule CreateShaderModule(HostSize codeSize, uint[] code, SharpVk.ShaderModuleCreateFlags? flags = default(SharpVk.ShaderModuleCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -943,13 +923,13 @@ namespace SharpVk
         /// Creates a new pipeline cache.
         /// </summary>
         /// <param name="flags">
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </param>
         /// <param name="initialData">
-        /// pname:pInitialData is a pointer to previously retrieved pipeline
-        /// cache data. If the pipeline cache data is incompatible (as defined
-        /// below) with the device, the pipeline cache will be initially empty.
-        /// If pname:initialDataSize is zero, pname:pInitialData is ignored.
+        /// A pointer to previously retrieved pipeline cache data. If the
+        /// pipeline cache data is incompatible (as defined below) with the
+        /// device, the pipeline cache will be initially empty. If
+        /// initialDataSize is zero, pInitialData is ignored.
         /// </param>
         public unsafe SharpVk.PipelineCache CreatePipelineCache(byte[] initialData, SharpVk.PipelineCacheCreateFlags? flags = default(SharpVk.PipelineCacheCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -1135,18 +1115,16 @@ namespace SharpVk
         /// Creates a new pipeline layout object.
         /// </summary>
         /// <param name="flags">
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </param>
         /// <param name="setLayouts">
-        /// pname:pSetLayouts is a pointer to an array of
-        /// sname:VkDescriptorSetLayout objects.
+        /// An array of DescriptorSetLayout objects.
         /// </param>
         /// <param name="pushConstantRanges">
-        /// pname:pPushConstantRanges is a pointer to an array of
-        /// sname:VkPushConstantRange structures defining a set of push
+        /// An array of PushConstantRange structures defining a set of push
         /// constant ranges for use in a single pipeline layout. In addition to
         /// descriptor set layouts, a pipeline layout also describes how many
-        /// push constants can: be accessed by each stage of the pipeline. +
+        /// push constants can be accessed by each stage of the pipeline. +
         /// [NOTE] .Note ==== Push constants represent a high speed path to
         /// modify constant data in pipelines that is expected to outperform
         /// memory-backed resource updates. ====
@@ -1225,11 +1203,10 @@ namespace SharpVk
         /// Create a new sampler object.
         /// </summary>
         /// <param name="flags">
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </param>
         /// <param name="magFilter">
-        /// pname:magFilter is the magnification filter to apply to lookups,
-        /// and is of type: + --
+        /// The magnification filter to apply to lookups.
         /// </param>
         public unsafe SharpVk.Sampler CreateSampler(SharpVk.Filter magFilter, SharpVk.Filter minFilter, SharpVk.SamplerMipmapMode mipmapMode, SharpVk.SamplerAddressMode addressModeU, SharpVk.SamplerAddressMode addressModeV, SharpVk.SamplerAddressMode addressModeW, float mipLodBias, bool anisotropyEnable, float maxAnisotropy, bool compareEnable, SharpVk.CompareOp compareOp, float minLod, float maxLod, SharpVk.BorderColor borderColor, bool unnormalizedCoordinates, SharpVk.SamplerCreateFlags? flags = default(SharpVk.SamplerCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -1292,9 +1269,9 @@ namespace SharpVk
         /// Create a new descriptor set layout.
         /// </summary>
         /// <param name="flags">
-        /// pname:flags provides options for descriptor set layout creation,
-        /// and is of type elink:VkDescriptorSetLayoutCreateFlags. Bits which
-        /// can: be set include: + --
+        /// flags provides options for descriptor set layout creation, and is
+        /// of type DescriptorSetLayoutCreateFlags. Bits which can be set
+        /// include: + --
         /// </param>
         public unsafe SharpVk.DescriptorSetLayout CreateDescriptorSetLayout(SharpVk.DescriptorSetLayoutBinding[] bindings, SharpVk.DescriptorSetLayoutCreateFlags? flags = default(SharpVk.DescriptorSetLayoutCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -1356,8 +1333,8 @@ namespace SharpVk
         /// Creates a descriptor pool object.
         /// </summary>
         /// <param name="flags">
-        /// pname:flags specifies certain supported operations on the pool.
-        /// Bits which can: be set include: + --
+        /// Specifies certain supported operations on the pool. Bits which can
+        /// be set include: + --
         /// </param>
         public unsafe SharpVk.DescriptorPool CreateDescriptorPool(uint maxSets, SharpVk.DescriptorPoolSize[] poolSizes, SharpVk.DescriptorPoolCreateFlags? flags = default(SharpVk.DescriptorPoolCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -1420,13 +1397,11 @@ namespace SharpVk
         /// Allocate one or more descriptor sets.
         /// </summary>
         /// <param name="descriptorPool">
-        /// pname:descriptorPool is the pool which the sets will be allocated
-        /// from.
+        /// The pool which the sets will be allocated from.
         /// </param>
         /// <param name="setLayouts">
-        /// pname:pSetLayouts is an array of descriptor set layouts, with each
-        /// member specifying how the corresponding descriptor set is
-        /// allocated.
+        /// An array of descriptor set layouts, with each member specifying how
+        /// the corresponding descriptor set is allocated.
         /// </param>
         public unsafe SharpVk.DescriptorSet[] AllocateDescriptorSets(SharpVk.DescriptorPool descriptorPool, SharpVk.DescriptorSetLayout[] setLayouts)
         {
@@ -1527,25 +1502,22 @@ namespace SharpVk
         /// Create a new framebuffer object.
         /// </summary>
         /// <param name="flags">
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </param>
         /// <param name="renderPass">
-        /// pname:renderPass is a render pass that defines what render passes
-        /// the framebuffer will be compatible with. See
-        /// &lt;&lt;renderpass-compatibility,Render Pass Compatibility&gt;&gt;
-        /// for details.
+        /// A render pass that defines what render passes the framebuffer will
+        /// be compatible with. See Render Pass Compatibility for details.
         /// </param>
         /// <param name="attachments">
-        /// pname:pAttachments is an array of sname:VkImageView handles, each
-        /// of which will be used as the corresponding attachment in a render
-        /// pass instance.
+        /// An array of ImageView handles, each of which will be used as the
+        /// corresponding attachment in a render pass instance.
         /// </param>
         /// <param name="width">
-        /// pname:width, pname:height and pname:layers define the dimensions of
-        /// the framebuffer. If the render pass uses multiview, then
-        /// pname:layers must: be one and each attachment requires a number of
-        /// layers that is greater than the maximum bit index set in the view
-        /// mask in the subpasses in which it is used.
+        /// width, height and layers define the dimensions of the framebuffer.
+        /// If the render pass uses multiview, then layers must be one and each
+        /// attachment requires a number of layers that is greater than the
+        /// maximum bit index set in the view mask in the subpasses in which it
+        /// is used.
         /// </param>
         public unsafe SharpVk.Framebuffer CreateFramebuffer(SharpVk.RenderPass renderPass, SharpVk.ImageView[] attachments, uint width, uint height, uint layers, SharpVk.FramebufferCreateFlags? flags = default(SharpVk.FramebufferCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -1611,24 +1583,21 @@ namespace SharpVk
         /// Create a new render pass object.
         /// </summary>
         /// <param name="flags">
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </param>
         /// <param name="attachments">
-        /// pname:pAttachments points to an array of pname:attachmentCount
-        /// number of slink:VkAttachmentDescription structures describing
-        /// properties of the attachments, or `NULL` if pname:attachmentCount
-        /// is zero.
+        /// An array of attachmentCount number of AttachmentDescription
+        /// structures describing properties of the attachments, or Null if
+        /// attachmentCount is zero.
         /// </param>
         /// <param name="subpasses">
-        /// pname:pSubpasses points to an array of pname:subpassCount number of
-        /// slink:VkSubpassDescription structures describing properties of the
-        /// subpasses.
+        /// An array of SubpassDescription structures describing properties of
+        /// the subpasses.
         /// </param>
         /// <param name="dependencies">
-        /// pname:pDependencies points to an array of pname:dependencyCount
-        /// number of slink:VkSubpassDependency structures describing
-        /// dependencies between pairs of subpasses, or `NULL` if
-        /// pname:dependencyCount is zero.
+        /// An array of dependencyCount number of SubpassDependency structures
+        /// describing dependencies between pairs of subpasses, or Null if
+        /// dependencyCount is zero.
         /// </param>
         public unsafe SharpVk.RenderPass CreateRenderPass(SharpVk.AttachmentDescription[] attachments, SharpVk.SubpassDescription[] subpasses, SharpVk.SubpassDependency[] dependencies, SharpVk.RenderPassCreateFlags? flags = default(SharpVk.RenderPassCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -1718,9 +1687,8 @@ namespace SharpVk
         /// Create a new command pool object.
         /// </summary>
         /// <param name="flags">
-        /// pname:flags is a bitmask indicating usage behavior for the pool and
-        /// command buffers allocated from it. Bits which can: be set include:
-        /// + --
+        /// A bitmask indicating usage behavior for the pool and command
+        /// buffers allocated from it. Bits which can be set include: + --
         /// </param>
         public unsafe SharpVk.CommandPool CreateCommandPool(uint queueFamilyIndex, SharpVk.CommandPoolCreateFlags? flags = default(SharpVk.CommandPoolCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -1769,11 +1737,10 @@ namespace SharpVk
         /// Allocate command buffers from an existing command pool.
         /// </summary>
         /// <param name="commandPool">
-        /// pname:commandPool is the command pool from which the command
-        /// buffers are allocated.
+        /// The command pool from which the command buffers are allocated.
         /// </param>
         /// <param name="level">
-        /// pname:level determines whether the command buffers are primary or
+        /// level determines whether the command buffers are primary or
         /// secondary command buffers. Possible values include: + --
         /// </param>
         public unsafe SharpVk.CommandBuffer[] AllocateCommandBuffers(SharpVk.CommandPool commandPool, SharpVk.CommandBufferLevel level, uint commandBufferCount)

@@ -34,42 +34,40 @@ namespace SharpVk.Interop
     public unsafe struct ComputePipelineCreateInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:flags provides options for pipeline creation, and is of type
-        /// elink:VkPipelineCreateFlagBits.
+        /// flags provides options for pipeline creation, and is of type
+        /// PipelineCreateFlagBits.
         /// </summary>
         public SharpVk.PipelineCreateFlags Flags; 
         
         /// <summary>
-        /// pname:stage is a slink:VkPipelineShaderStageCreateInfo describing
-        /// the compute shader.
+        /// A PipelineShaderStageCreateInfo describing the compute shader.
         /// </summary>
         public SharpVk.Interop.PipelineShaderStageCreateInfo Stage; 
         
         /// <summary>
-        /// pname:layout is the description of binding locations used by both
-        /// the pipeline and descriptor sets used with the pipeline.
+        /// The description of binding locations used by both the pipeline and
+        /// descriptor sets used with the pipeline.
         /// </summary>
         public SharpVk.Interop.PipelineLayout Layout; 
         
         /// <summary>
-        /// pname:basePipelineHandle is a pipeline to derive from
+        /// A pipeline to derive from
         /// </summary>
         public SharpVk.Interop.Pipeline BasePipelineHandle; 
         
         /// <summary>
-        /// pname:basePipelineIndex is an index into the pname:pCreateInfos
-        /// parameter to use as a pipeline to derive from
+        /// An index into the pCreateInfos parameter to use as a pipeline to
+        /// derive from
         /// </summary>
         public int BasePipelineIndex; 
     }

@@ -34,43 +34,39 @@ namespace SharpVk.Interop
     public unsafe struct PipelineVertexInputStateCreateInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public SharpVk.PipelineVertexInputStateCreateFlags Flags; 
         
         /// <summary>
-        /// pname:vertexBindingDescriptionCount is the number of vertex binding
-        /// descriptions provided in pname:pVertexBindingDescriptions.
+        /// The number of vertex binding descriptions provided in
+        /// pVertexBindingDescriptions.
         /// </summary>
         public uint VertexBindingDescriptionCount; 
         
         /// <summary>
-        /// pname:pVertexBindingDescriptions is a pointer to an array of
-        /// sname:VkVertexInputBindingDescription structures.
+        /// An array of VertexInputBindingDescription structures.
         /// </summary>
         public SharpVk.VertexInputBindingDescription* VertexBindingDescriptions; 
         
         /// <summary>
-        /// pname:vertexAttributeDescriptionCount is the number of vertex
-        /// attribute descriptions provided in
-        /// pname:pVertexAttributeDescriptions.
+        /// The number of vertex attribute descriptions provided in
+        /// pVertexAttributeDescriptions.
         /// </summary>
         public uint VertexAttributeDescriptionCount; 
         
         /// <summary>
-        /// pname:pVertexAttributeDescriptions is a pointer to an array of
-        /// sname:VkVertexInputAttributeDescription structures.
+        /// An array of VertexInputAttributeDescription structures.
         /// </summary>
         public SharpVk.VertexInputAttributeDescription* VertexAttributeDescriptions; 
     }

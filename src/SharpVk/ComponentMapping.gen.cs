@@ -45,26 +45,26 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:r determines the component value placed in the R component of
-        /// the output vector.
+        /// r determines the component value placed in the R component of the
+        /// output vector.
         /// </summary>
         public SharpVk.ComponentSwizzle R; 
         
         /// <summary>
-        /// pname:g determines the component value placed in the G component of
-        /// the output vector.
+        /// g determines the component value placed in the G component of the
+        /// output vector.
         /// </summary>
         public SharpVk.ComponentSwizzle G; 
         
         /// <summary>
-        /// pname:b determines the component value placed in the B component of
-        /// the output vector.
+        /// b determines the component value placed in the B component of the
+        /// output vector.
         /// </summary>
         public SharpVk.ComponentSwizzle B; 
         
         /// <summary>
-        /// pname:a determines the component value placed in the A component of
-        /// the output vector.
+        /// a determines the component value placed in the A component of the
+        /// output vector.
         /// </summary>
         public SharpVk.ComponentSwizzle A; 
     }

@@ -34,43 +34,39 @@ namespace SharpVk.Interop.Khronos
     public unsafe struct PhysicalDeviceImageFormatInfo2
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:format is the image format, corresponding to
-        /// slink:VkImageCreateInfo::pname:format.
+        /// The image format, corresponding to ImageCreateInfo::format.
         /// </summary>
         public SharpVk.Format Format; 
         
         /// <summary>
-        /// pname:type is the image type, corresponding to
-        /// slink:VkImageCreateInfo::pname:imageType.
+        /// The image type, corresponding to ImageCreateInfo::imageType.
         /// </summary>
         public SharpVk.ImageType Type; 
         
         /// <summary>
-        /// pname:tiling is the image tiling, corresponding to
-        /// slink:VkImageCreateInfo::pname:tiling.
+        /// The image tiling, corresponding to ImageCreateInfo::tiling.
         /// </summary>
         public SharpVk.ImageTiling Tiling; 
         
         /// <summary>
-        /// pname:usage is the intended usage of the image, corresponding to
-        /// slink:VkImageCreateInfo::pname:usage.
+        /// The intended usage of the image, corresponding to
+        /// ImageCreateInfo::usage.
         /// </summary>
         public SharpVk.ImageUsageFlags Usage; 
         
         /// <summary>
-        /// pname:flags is a bitmask describing additional parameters of the
-        /// image, corresponding to slink:VkImageCreateInfo::pname:flags.
+        /// A bitmask describing additional parameters of the image,
+        /// corresponding to ImageCreateInfo::flags.
         /// </summary>
         public SharpVk.ImageCreateFlags Flags; 
     }

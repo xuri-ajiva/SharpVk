@@ -36,26 +36,24 @@ namespace SharpVk
         None = 0, 
         
         /// <summary>
-        /// ename:VK_BUFFER_CREATE_SPARSE_BINDING_BIT indicates that the buffer
-        /// will be backed using sparse memory binding.
+        /// Indicates that the buffer will be backed using sparse memory
+        /// binding.
         /// </summary>
         SparseBinding = 1 << 0, 
         
         /// <summary>
-        /// ename:VK_BUFFER_CREATE_SPARSE_RESIDENCY_BIT indicates that the
-        /// buffer can: be partially backed using sparse memory binding.
-        /// Buffers created with this flag must: also be created with the
-        /// ename:VK_BUFFER_CREATE_SPARSE_BINDING_BIT flag.
+        /// Indicates that the buffer can be partially backed using sparse
+        /// memory binding. Buffers created with this flag must also be created
+        /// with the CreateSparseBinding flag.
         /// </summary>
         SparseResidency = 1 << 1, 
         
         /// <summary>
-        /// ename:VK_BUFFER_CREATE_SPARSE_ALIASED_BIT indicates that the buffer
-        /// will be backed using sparse memory binding with memory ranges that
-        /// might also simultaneously be backing another buffer (or another
-        /// portion of the same buffer). Buffers created with this flag must:
-        /// also be created with the ename:VK_BUFFER_CREATE_SPARSE_BINDING_BIT
-        /// flag.
+        /// Indicates that the buffer will be backed using sparse memory
+        /// binding with memory ranges that might also simultaneously be
+        /// backing another buffer (or another portion of the same buffer).
+        /// Buffers created with this flag must also be created with the
+        /// CreateSparseBinding flag.
         /// </summary>
         SparseAliased = 1 << 2, 
     }

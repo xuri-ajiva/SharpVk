@@ -35,8 +35,7 @@ namespace SharpVk
     public struct CommandBufferAllocateInfo
     {
         /// <summary>
-        /// pname:commandPool is the command pool from which the command
-        /// buffers are allocated.
+        /// The command pool from which the command buffers are allocated.
         /// </summary>
         public SharpVk.CommandPool CommandPool
         {
@@ -45,7 +44,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:level determines whether the command buffers are primary or
+        /// level determines whether the command buffers are primary or
         /// secondary command buffers. Possible values include: + --
         /// </summary>
         public SharpVk.CommandBufferLevel Level

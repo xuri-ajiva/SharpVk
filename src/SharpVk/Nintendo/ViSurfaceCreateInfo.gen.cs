@@ -34,7 +34,7 @@ namespace SharpVk.Nintendo
     public struct ViSurfaceCreateInfo
     {
         /// <summary>
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public SharpVk.Nintendo.ViSurfaceCreateFlags? Flags
         {
@@ -43,9 +43,8 @@ namespace SharpVk.Nintendo
         }
         
         /// <summary>
-        /// pname:window is the code:nn::code:vi::code:NativeWindowHandle for
-        /// the code:nn::code:vi::code:Layer with which to associate the
-        /// surface.
+        /// The nn::vi::NativeWindowHandle for the nn::vi::Layer with which to
+        /// associate the surface.
         /// </summary>
         public IntPtr Window
         {

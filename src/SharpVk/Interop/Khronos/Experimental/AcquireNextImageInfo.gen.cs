@@ -39,7 +39,7 @@ namespace SharpVk.Interop.Khronos.Experimental
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// Null or a pointer to an extension-specific structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         

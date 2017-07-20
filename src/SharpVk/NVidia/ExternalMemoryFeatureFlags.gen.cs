@@ -36,21 +36,21 @@ namespace SharpVk.NVidia
         None = 0, 
         
         /// <summary>
-        /// ename:VK_EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT_NV: External
-        /// memory of the specified type must: be created as a dedicated
-        /// allocation when used in the manner specified.
+        /// VK_EXTERNAL_MEMORY_FEATURE_DEDICATED_ONLY_BIT_NV: External memory
+        /// of the specified type must be created as a dedicated allocation
+        /// when used in the manner specified.
         /// </summary>
         DedicatedOnly = 1 << 0, 
         
         /// <summary>
-        /// ename:VK_EXTERNAL_MEMORY_FEATURE_EXPORTABLE_BIT_NV: The
-        /// implementation supports exporting handles of the specified type.
+        /// The implementation supports exporting handles of the specified
+        /// type.
         /// </summary>
         Exportable = 1 << 1, 
         
         /// <summary>
-        /// ename:VK_EXTERNAL_MEMORY_FEATURE_IMPORTABLE_BIT_NV: The
-        /// implementation supports importing handles of the specified type.
+        /// The implementation supports importing handles of the specified
+        /// type.
         /// </summary>
         Importable = 1 << 2, 
     }

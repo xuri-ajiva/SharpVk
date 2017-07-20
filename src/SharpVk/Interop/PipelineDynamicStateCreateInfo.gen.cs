@@ -34,32 +34,29 @@ namespace SharpVk.Interop
     public unsafe struct PipelineDynamicStateCreateInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public SharpVk.PipelineDynamicStateCreateFlags Flags; 
         
         /// <summary>
-        /// pname:dynamicStateCount is the number of elements in the
-        /// pname:pDynamicStates array.
+        /// The number of elements in the pDynamicStates array.
         /// </summary>
         public uint DynamicStateCount; 
         
         /// <summary>
-        /// pname:pDynamicStates is an array of elink:VkDynamicState enums
-        /// which indicate which pieces of pipeline state will use the values
-        /// from dynamic state commands rather than from the pipeline state
-        /// creation info.
+        /// An array of DynamicState enums which indicate which pieces of
+        /// pipeline state will use the values from dynamic state commands
+        /// rather than from the pipeline state creation info.
         /// </summary>
         public SharpVk.DynamicState* DynamicStates; 
     }

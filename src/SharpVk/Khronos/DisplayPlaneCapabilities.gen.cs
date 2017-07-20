@@ -50,46 +50,43 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// pname:supportedAlpha is a bitmask of
-        /// elink:VkDisplayPlaneAlphaFlagBitsKHR describing the supported alpha
-        /// blending modes.
+        /// A bitmask of DisplayPlaneAlphaFlagBitsKHR describing the supported
+        /// alpha blending modes.
         /// </summary>
         public SharpVk.Khronos.DisplayPlaneAlphaFlags SupportedAlpha; 
         
         /// <summary>
-        /// pname:minSrcPosition is the minimum source rectangle offset
-        /// supported by this plane using the specified mode.
+        /// The minimum source rectangle offset supported by this plane using
+        /// the specified mode.
         /// </summary>
         public SharpVk.Offset2D MinSourcePosition; 
         
         /// <summary>
-        /// pname:maxSrcPosition is the maximum source rectangle offset
-        /// supported by this plane using the specified mode. The pname:x and
-        /// pname:y components of pname:maxSrcPosition must: each be greater
-        /// than or equal to the pname:x and pname:y components of
-        /// pname:minSrcPosition, respectively.
+        /// The maximum source rectangle offset supported by this plane using
+        /// the specified mode. The x and y components of maxSrcPosition must
+        /// each be greater than or equal to the x and y components of
+        /// minSrcPosition, respectively.
         /// </summary>
         public SharpVk.Offset2D MaxSourcePosition; 
         
         /// <summary>
-        /// pname:minSrcExtent is the minimum source rectangle size supported
-        /// by this plane using the specified mode.
+        /// The minimum source rectangle size supported by this plane using the
+        /// specified mode.
         /// </summary>
         public SharpVk.Extent2D MinSourceExtent; 
         
         /// <summary>
-        /// pname:maxSrcExtent is the maximum source rectangle size supported
-        /// by this plane using the specified mode.
+        /// The maximum source rectangle size supported by this plane using the
+        /// specified mode.
         /// </summary>
         public SharpVk.Extent2D MaxSourceExtent; 
         
         /// <summary>
-        /// pname:minDstPosition, pname:maxDstPosition, pname:minDstExtent,
-        /// pname:maxDstExtent all have similar semantics to their
-        /// corresponding "Src" equivalents, but apply to the output region
-        /// within the mode rather than the input region within the source
-        /// image. Unlike the "Src" offsets, pname:minDstPosition and
-        /// pname:maxDstPosition may: contain negative values.
+        /// minDstPosition, maxDstPosition, minDstExtent, maxDstExtent all have
+        /// similar semantics to their corresponding "Src" equivalents, but
+        /// apply to the output region within the mode rather than the input
+        /// region within the source image. Unlike the "Src" offsets,
+        /// minDstPosition and maxDstPosition may contain negative values.
         /// </summary>
         public SharpVk.Offset2D MinDestinationPosition; 
         

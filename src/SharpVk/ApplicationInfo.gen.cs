@@ -34,8 +34,7 @@ namespace SharpVk
     public struct ApplicationInfo
     {
         /// <summary>
-        /// pname:pApplicationName is a pointer to a null-terminated UTF-8
-        /// string containing the name of the application.
+        /// A string containing the name of the application.
         /// </summary>
         public string ApplicationName
         {
@@ -44,8 +43,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:applicationVersion is an unsigned integer variable containing
-        /// the developer-supplied version number of the application.
+        /// The developer-supplied version number of the application.
         /// </summary>
         public Version ApplicationVersion
         {
@@ -54,9 +52,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:pEngineName is a pointer to a null-terminated UTF-8 string
-        /// containing the name of the engine (if any) used to create the
-        /// application.
+        /// Astring containing the name of the engine (if any) used to create
+        /// the application.
         /// </summary>
         public string EngineName
         {
@@ -65,9 +62,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:engineVersion is an unsigned integer variable containing the
-        /// developer-supplied version number of the engine used to create the
-        /// application.
+        /// The developer-supplied version number of the engine used to create
+        /// the application.
         /// </summary>
         public Version EngineVersion
         {
@@ -76,16 +72,13 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:apiVersion is the version of the Vulkan API against which the
-        /// application expects to run, encoded as described in the
-        /// &lt;&lt;fundamentals-versionnum,API Version Numbers and
-        /// Semantics&gt;&gt; section. If pname:apiVersion is 0 the
-        /// implementation must: ignore it, otherwise if the implementation
-        /// does not support the requested pname:apiVersion it must: return
-        /// ename:VK_ERROR_INCOMPATIBLE_DRIVER. The patch version number
-        /// specified in pname:apiVersion is ignored when creating an instance
-        /// object. Only the major and minor versions of the instance must:
-        /// match those requested in pname:apiVersion.
+        /// The version of the Vulkan API against which the application expects
+        /// to run. If apiVersion is 0.0.0 the implementation must ignore it,
+        /// otherwise if the implementation does not support the requested
+        /// apiVersion it must throw IncompatibleDriverException. The patch
+        /// version number specified in apiVersion is ignored when creating an
+        /// instance object. Only the major and minor versions of the instance
+        /// must match those requested in apiVersion.
         /// </summary>
         public Version ApiVersion
         {

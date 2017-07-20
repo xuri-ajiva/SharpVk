@@ -34,48 +34,45 @@ namespace SharpVk.Interop
     public unsafe struct RenderPassBeginInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:renderPass is the render pass to begin an instance of.
+        /// The render pass to begin an instance of.
         /// </summary>
         public SharpVk.Interop.RenderPass RenderPass; 
         
         /// <summary>
-        /// pname:framebuffer is the framebuffer containing the attachments
-        /// that are used with the render pass.
+        /// The framebuffer containing the attachments that are used with the
+        /// render pass.
         /// </summary>
         public SharpVk.Interop.Framebuffer Framebuffer; 
         
         /// <summary>
-        /// pname:renderArea is the render area that is affected by the render
-        /// pass instance, and is described in more detail below.
+        /// The render area that is affected by the render pass instance, and
+        /// is described in more detail below.
         /// </summary>
         public SharpVk.Rect2D RenderArea; 
         
         /// <summary>
-        /// pname:clearValueCount is the number of elements in
-        /// pname:pClearValues.
+        /// The number of elements in pClearValues.
         /// </summary>
         public uint ClearValueCount; 
         
         /// <summary>
-        /// pname:pClearValues is an array of slink:VkClearValue structures
-        /// that contains clear values for each attachment, if the attachment
-        /// uses a pname:loadOp value of ename:VK_ATTACHMENT_LOAD_OP_CLEAR or
-        /// if the attachment has a depth/stencil format and uses a
-        /// pname:stencilLoadOp value of ename:VK_ATTACHMENT_LOAD_OP_CLEAR. The
-        /// array is indexed by attachment number. Only elements corresponding
-        /// to cleared attachments are used. Other elements of
-        /// pname:pClearValues are ignored.
+        /// An array of ClearValue structures that contains clear values for
+        /// each attachment, if the attachment uses a loadOp value of
+        /// VK_ATTACHMENT_LOAD_OP_CLEAR or if the attachment has a
+        /// depth/stencil format and uses a stencilLoadOp value of
+        /// VK_ATTACHMENT_LOAD_OP_CLEAR. The array is indexed by attachment
+        /// number. Only elements corresponding to cleared attachments are
+        /// used. Other elements of pClearValues are ignored.
         /// </summary>
         public SharpVk.ClearValue* ClearValues; 
     }

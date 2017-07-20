@@ -34,19 +34,18 @@ namespace SharpVk.Interop.Multivendor
     public unsafe struct SwapchainCounterCreateInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:surfaceCounters is a bitmask containing a bit set for each
-        /// surface counter to enable for the swapchain.
+        /// A bitmask containing a bit set for each surface counter to enable
+        /// for the swapchain.
         /// </summary>
         public SharpVk.Multivendor.SurfaceCounterFlags SurfaceCounters; 
     }

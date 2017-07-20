@@ -34,20 +34,18 @@ namespace SharpVk.Interop.Khronos
     public unsafe struct SparseImageFormatProperties2
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:properties is a structure of type
-        /// slink:VkSparseImageFormatProperties which is populated with the
-        /// same values as in
+        /// A structure of type SparseImageFormatProperties which is populated
+        /// with the same values as in
         /// flink:vkGetPhysicalDeviceSparseImageFormatProperties.
         /// </summary>
         public SharpVk.SparseImageFormatProperties Properties; 

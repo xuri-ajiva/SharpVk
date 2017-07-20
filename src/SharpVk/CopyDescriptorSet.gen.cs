@@ -34,8 +34,8 @@ namespace SharpVk
     public struct CopyDescriptorSet
     {
         /// <summary>
-        /// pname:srcSet, pname:srcBinding, and pname:srcArrayElement are the
-        /// source set, binding, and array element, respectively.
+        /// srcSet, srcBinding, and srcArrayElement are the source set,
+        /// binding, and array element, respectively.
         /// </summary>
         public SharpVk.DescriptorSet SourceSet
         {
@@ -62,8 +62,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:dstSet, pname:dstBinding, and pname:dstArrayElement are the
-        /// destination set, binding, and array element, respectively.
+        /// dstSet, dstBinding, and dstArrayElement are the destination set,
+        /// binding, and array element, respectively.
         /// </summary>
         public SharpVk.DescriptorSet DestinationSet
         {
@@ -90,11 +90,11 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:descriptorCount is the number of descriptors to copy from the
-        /// source to destination. If pname:descriptorCount is greater than the
-        /// number of remaining array elements in the source or destination
-        /// binding, those affect consecutive bindings in a manner similar to
-        /// slink:VkWriteDescriptorSet above.
+        /// The number of descriptors to copy from the source to destination.
+        /// If descriptorCount is greater than the number of remaining array
+        /// elements in the source or destination binding, those affect
+        /// consecutive bindings in a manner similar to WriteDescriptorSet
+        /// above.
         /// </summary>
         public uint DescriptorCount
         {

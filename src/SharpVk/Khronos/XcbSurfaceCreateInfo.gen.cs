@@ -34,7 +34,7 @@ namespace SharpVk.Khronos
     public struct XcbSurfaceCreateInfo
     {
         /// <summary>
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public SharpVk.Khronos.XcbSurfaceCreateFlags? Flags
         {
@@ -43,8 +43,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// pname:connection is a pointer to an code:xcb_connection_t to the X
-        /// server.
+        /// An xcb_connection_t to the X server.
         /// </summary>
         public IntPtr Connection
         {
@@ -53,8 +52,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// pname:window is the code:xcb_window_t for the X11 window to
-        /// associate the surface with.
+        /// The xcb_window_t for the X11 window to associate the surface with.
         /// </summary>
         public IntPtr Window
         {

@@ -34,8 +34,7 @@ namespace SharpVk.Khronos.Experimental
     public struct DeviceGroupCommandBufferBeginInfo
     {
         /// <summary>
-        /// pname:deviceMask is the initial value of the command buffer's
-        /// device mask.
+        /// The initial value of the command buffer's device mask.
         /// </summary>
         public uint DeviceMask
         {

@@ -34,9 +34,8 @@ namespace SharpVk.Khronos
     public struct DisplayProperties
     {
         /// <summary>
-        /// pname:display is a handle that is used to refer to the display
-        /// described here. This handle will be valid for the lifetime of the
-        /// Vulkan instance.
+        /// A handle that is used to refer to the display described here. This
+        /// handle will be valid for the lifetime of the Vulkan instance.
         /// </summary>
         public SharpVk.Khronos.Display Display
         {
@@ -45,10 +44,9 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// pname:displayName is a pointer to a NULL-terminated string
-        /// containing the name of the display. Generally, this will be the
-        /// name provided by the display's EDID. It can: be `NULL` if no
-        /// suitable name is available.
+        /// A NULL-terminated string containing the name of the display.
+        /// Generally, this will be the name provided by the display's EDID. It
+        /// can be Null if no suitable name is available.
         /// </summary>
         public string DisplayName
         {
@@ -57,8 +55,8 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// pname:physicalDimensions describes the physical width and height of
-        /// the visible portion of the display, in millimeters.
+        /// physicalDimensions describes the physical width and height of the
+        /// visible portion of the display, in millimeters.
         /// </summary>
         public SharpVk.Extent2D PhysicalDimensions
         {
@@ -67,8 +65,8 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// pname:physicalResolution describes the physical, native, or
-        /// preferred resolution of the display.
+        /// physicalResolution describes the physical, native, or preferred
+        /// resolution of the display.
         /// </summary>
         public SharpVk.Extent2D PhysicalResolution
         {

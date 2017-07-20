@@ -36,23 +36,22 @@ namespace SharpVk.Khronos
         None = 0, 
         
         /// <summary>
-        /// ename:VK_COMPOSITE_ALPHA_OPAQUE_BIT_KHR: The alpha channel, if it
-        /// exists, of the images is ignored in the compositing process.
-        /// Instead, the image is treated as if it has a constant alpha of 1.0.
+        /// The alpha channel, if it exists, of the images is ignored in the
+        /// compositing process. Instead, the image is treated as if it has a
+        /// constant alpha of 1.0.
         /// </summary>
         Opaque = 1 << 0, 
         
         /// <summary>
-        /// ename:VK_COMPOSITE_ALPHA_PRE_MULTIPLIED_BIT_KHR: The alpha channel,
-        /// if it exists, of the images is respected in the compositing
-        /// process. The non-alpha channels of the image are expected to
-        /// already be multiplied by the alpha channel by the application.
+        /// The alpha channel, if it exists, of the images is respected in the
+        /// compositing process. The non-alpha channels of the image are
+        /// expected to already be multiplied by the alpha channel by the
+        /// application.
         /// </summary>
         PreMultiplied = 1 << 1, 
         
         /// <summary>
-        /// ename:VK_COMPOSITE_ALPHA_POST_MULTIPLIED_BIT_KHR: The alpha
-        /// channel, if it exists, of the images is respected in the
+        /// The alpha channel, if it exists, of the images is respected in the
         /// compositing process. The non-alpha channels of the image are not
         /// expected to already be multiplied by the alpha channel by the
         /// application; instead, the compositor will multiply the non-alpha
@@ -61,13 +60,12 @@ namespace SharpVk.Khronos
         PostMultiplied = 1 << 2, 
         
         /// <summary>
-        /// ename:VK_COMPOSITE_ALPHA_INHERIT_BIT_KHR: The way in which the
-        /// presentation engine treats the alpha channel in the images is
-        /// unknown to the Vulkan API. Instead, the application is responsible
-        /// for setting the composite alpha blending mode using native window
-        /// system commands. If the application does not set the blending mode
-        /// using native window system commands, then a platform-specific
-        /// default will be used.
+        /// The way in which the presentation engine treats the alpha channel
+        /// in the images is unknown to the Vulkan API. Instead, the
+        /// application is responsible for setting the composite alpha blending
+        /// mode using native window system commands. If the application does
+        /// not set the blending mode using native window system commands, then
+        /// a platform-specific default will be used.
         /// </summary>
         Inherit = 1 << 3, 
     }

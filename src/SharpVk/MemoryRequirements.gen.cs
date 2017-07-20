@@ -44,22 +44,21 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:size is the size, in bytes, of the memory allocation
-        /// required: for the resource.
+        /// The size, in bytes, of the memory allocation required: for the
+        /// resource.
         /// </summary>
         public DeviceSize Size; 
         
         /// <summary>
-        /// pname:alignment is the alignment, in bytes, of the offset within
-        /// the allocation required: for the resource.
+        /// The alignment, in bytes, of the offset within the allocation
+        /// required: for the resource.
         /// </summary>
         public DeviceSize Alignment; 
         
         /// <summary>
-        /// pname:memoryTypeBits is a bitmask and contains one bit set for
-        /// every supported memory type for the resource. Bit `i` is set if and
-        /// only if the memory type `i` in the
-        /// sname:VkPhysicalDeviceMemoryProperties structure for the physical
+        /// A bitmask and contains one bit set for every supported memory type
+        /// for the resource. Bit `i` is set if and only if the memory type `i`
+        /// in the PhysicalDeviceMemoryProperties structure for the physical
         /// device is supported for the resource.
         /// </summary>
         public uint MemoryTypeBits; 

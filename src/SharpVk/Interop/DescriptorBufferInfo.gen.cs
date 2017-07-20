@@ -34,34 +34,30 @@ namespace SharpVk.Interop
     public unsafe struct DescriptorBufferInfo
     {
         /// <summary>
-        /// pname:buffer is the buffer resource.
+        /// The buffer resource.
         /// </summary>
         public SharpVk.Interop.Buffer Buffer; 
         
         /// <summary>
-        /// pname:offset is the offset in bytes from the start of pname:buffer.
-        /// Access to buffer memory via this descriptor uses addressing that is
-        /// relative to this starting offset.
+        /// The offset in bytes from the start of buffer. Access to buffer
+        /// memory via this descriptor uses addressing that is relative to this
+        /// starting offset.
         /// </summary>
         public DeviceSize Offset; 
         
         /// <summary>
-        /// pname:range is the size in bytes that is used for this descriptor
-        /// update, or ename:VK_WHOLE_SIZE to use the range from pname:offset
-        /// to the end of the buffer. + -- [NOTE] .Note ==== When using
-        /// ename:VK_WHOLE_SIZE, the effective range must: not be larger than
-        /// the maximum range for the descriptor type
-        /// (&lt;&lt;features-limits-maxUniformBufferRange, maxUniformBufferRange&gt;&gt;
-        /// or &lt;&lt;features-limits-maxStorageBufferRange,
-        /// maxStorageBufferRange&gt;&gt;). This means that ename:VK_WHOLE_SIZE
-        /// is not typically useful in the common case where uniform buffer
-        /// descriptors are suballocated from a buffer that is much larger than
-        /// pname:maxUniformBufferRange. ==== -- + For
-        /// ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC and
-        /// ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC descriptor types,
-        /// pname:offset is the base offset from which the dynamic offset is
-        /// applied and pname:range is the static size used for all dynamic
-        /// offsets.
+        /// The size in bytes that is used for this descriptor update, or
+        /// VK_WHOLE_SIZE to use the range from offset to the end of the
+        /// buffer. + -- [NOTE] .Note ==== When using VK_WHOLE_SIZE, the
+        /// effective range must not be larger than the maximum range for the
+        /// descriptor type (maxUniformBufferRange or maxStorageBufferRange).
+        /// This means that VK_WHOLE_SIZE is not typically useful in the common
+        /// case where uniform buffer descriptors are suballocated from a
+        /// buffer that is much larger than maxUniformBufferRange. ==== -- +
+        /// For VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC and
+        /// VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC descriptor types, offset
+        /// is the base offset from which the dynamic offset is applied and
+        /// range is the static size used for all dynamic offsets.
         /// </summary>
         public DeviceSize Range; 
     }

@@ -34,8 +34,8 @@ namespace SharpVk
     public struct FenceCreateInfo
     {
         /// <summary>
-        /// pname:flags defines the initial state and behavior of the fence.
-        /// Bits which can: be set include: + --
+        /// flags defines the initial state and behavior of the fence. Bits
+        /// which can be set include: + --
         /// </summary>
         public SharpVk.FenceCreateFlags? Flags
         {

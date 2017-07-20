@@ -34,19 +34,17 @@ namespace SharpVk.Interop.Khronos.Experimental
     public unsafe struct PhysicalDeviceGroupProperties
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:physicalDeviceCount is the number of physical devices in the
-        /// group.
+        /// The number of physical devices in the group.
         /// </summary>
         public uint PhysicalDeviceCount; 
         
@@ -211,13 +209,12 @@ namespace SharpVk.Interop.Khronos.Experimental
         public SharpVk.Interop.PhysicalDevice PhysicalDevices_31; 
         
         /// <summary>
-        /// pname:subsetAllocation indicates whether logical devices created
-        /// from the group support allocating device memory on a subset of
-        /// devices, via the pname:deviceMask member of the
-        /// slink:VkMemoryAllocateFlagsInfoKHX. If this is ename:VK_FALSE, then
+        /// Indicates whether logical devices created from the group support
+        /// allocating device memory on a subset of devices, via the deviceMask
+        /// member of the MemoryAllocateFlagsInfoKHX. If this is VK_FALSE, then
         /// all device memory allocations are made across all physical devices
-        /// in the group. If pname:physicalDeviceCount is `1`, then
-        /// pname:subsetAllocation must: be ename:VK_FALSE.
+        /// in the group. If physicalDeviceCount is `1`, then subsetAllocation
+        /// must be VK_FALSE.
         /// </summary>
         public Bool32 SubsetAllocation; 
     }

@@ -43,13 +43,13 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:size is the total memory size in bytes in the heap.
+        /// The total memory size in bytes in the heap.
         /// </summary>
         public DeviceSize Size; 
         
         /// <summary>
-        /// pname:flags is a bitmask of attribute flags for the heap. The bits
-        /// specified in pname:flags are: + --
+        /// A bitmask of attribute flags for the heap. The bits specified in
+        /// flags are: + --
         /// </summary>
         public SharpVk.MemoryHeapFlags Flags; 
     }

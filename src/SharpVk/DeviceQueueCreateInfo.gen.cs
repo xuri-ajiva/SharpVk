@@ -34,7 +34,7 @@ namespace SharpVk
     public struct DeviceQueueCreateInfo
     {
         /// <summary>
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public SharpVk.DeviceQueueCreateFlags? Flags
         {
@@ -43,10 +43,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:queueFamilyIndex is an unsigned integer indicating the index
-        /// of the queue family to create on this device. This index
-        /// corresponds to the index of an element of the
-        /// pname:pQueueFamilyProperties array that was returned by
+        /// An unsigned integer indicating the index of the queue family to
+        /// create on this device. This index corresponds to the index of an
+        /// element of the pQueueFamilyProperties array that was returned by
         /// fname:vkGetPhysicalDeviceQueueFamilyProperties.
         /// </summary>
         public uint QueueFamilyIndex
@@ -56,11 +55,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:pQueuePriorities is an array of pname:queueCount normalized
-        /// floating point values, specifying priorities of work that will be
-        /// submitted to each created queue. See
-        /// &lt;&lt;devsandqueues-priority,Queue Priority&gt;&gt; for more
-        /// information.
+        /// An array of queueCount normalized floating point values, specifying
+        /// priorities of work that will be submitted to each created queue.
+        /// See Queue Priority for more information.
         /// </summary>
         public float[] QueuePriorities
         {

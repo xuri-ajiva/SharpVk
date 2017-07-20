@@ -34,8 +34,8 @@ namespace SharpVk.Khronos.Experimental
     public struct DeviceGroupDeviceCreateInfo
     {
         /// <summary>
-        /// pname:pPhysicalDevices is an array of physical device handles
-        /// belonging to the same device group.
+        /// An array of physical device handles belonging to the same device
+        /// group.
         /// </summary>
         public SharpVk.PhysicalDevice[] PhysicalDevices
         {

@@ -34,8 +34,8 @@ namespace SharpVk.NVidia.Experimental
     public struct DeviceGeneratedCommandsLimits
     {
         /// <summary>
-        /// pname:maxIndirectCommandsLayoutTokenCount the maximum number of
-        /// tokens in sname:VkIndirectCommandsLayoutNVX.
+        /// maxIndirectCommandsLayoutTokenCount the maximum number of tokens in
+        /// IndirectCommandsLayoutNVX.
         /// </summary>
         public uint MaxIndirectCommandsLayoutTokenCount
         {
@@ -44,8 +44,8 @@ namespace SharpVk.NVidia.Experimental
         }
         
         /// <summary>
-        /// pname:maxObjectEntryCounts the maximum number of entries per
-        /// resource type in sname:VkObjectTableNVX.
+        /// maxObjectEntryCounts the maximum number of entries per resource
+        /// type in ObjectTableNVX.
         /// </summary>
         public uint MaxObjectEntryCounts
         {
@@ -54,9 +54,8 @@ namespace SharpVk.NVidia.Experimental
         }
         
         /// <summary>
-        /// pname:minSequenceCountBufferOffsetAlignment the minimum alignment
-        /// for memory addresses optionally used in
-        /// fname:vkCmdProcessCommandsNVX.
+        /// The minimum alignment for memory addresses optionally used in
+        /// CommandBuffer.ProcessCommands().
         /// </summary>
         public uint MinSequenceCountBufferOffsetAlignment
         {
@@ -65,9 +64,8 @@ namespace SharpVk.NVidia.Experimental
         }
         
         /// <summary>
-        /// pname:minSequenceIndexBufferOffsetAlignment the minimum alignment
-        /// for memory addresses optionally used in
-        /// fname:vkCmdProcessCommandsNVX.
+        /// The minimum alignment for memory addresses optionally used in
+        /// CommandBuffer.ProcessCommands().
         /// </summary>
         public uint MinSequenceIndexBufferOffsetAlignment
         {
@@ -76,9 +74,8 @@ namespace SharpVk.NVidia.Experimental
         }
         
         /// <summary>
-        /// pname:minCommandsTokenBufferOffsetAlignment the minimum alignment
-        /// for memory addresses optionally used in
-        /// fname:vkCmdProcessCommandsNVX.
+        /// The minimum alignment for memory addresses optionally used in
+        /// CommandBuffer.ProcessCommands().
         /// </summary>
         public uint MinCommandsTokenBufferOffsetAlignment
         {

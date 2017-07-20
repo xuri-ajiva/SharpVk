@@ -34,83 +34,71 @@ namespace SharpVk.Interop
     public unsafe struct BindSparseInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:waitSemaphoreCount is the number of semaphores upon which to
-        /// wait before executing the sparse binding operations for the batch.
+        /// The number of semaphores upon which to wait before executing the
+        /// sparse binding operations for the batch.
         /// </summary>
         public uint WaitSemaphoreCount; 
         
         /// <summary>
-        /// pname:pWaitSemaphores is a pointer to an array of semaphores upon
-        /// which to wait on before the sparse binding operations for this
-        /// batch begin execution. If semaphores to wait on are provided, they
-        /// define a &lt;&lt;synchronization-semaphores-waiting, semaphore wait
-        /// operation&gt;&gt;.
+        /// An array of semaphores upon which to wait on before the sparse
+        /// binding operations for this batch begin execution. If semaphores to
+        /// wait on are provided, they define a semaphore wait operation.
         /// </summary>
         public SharpVk.Interop.Semaphore* WaitSemaphores; 
         
         /// <summary>
-        /// pname:bufferBindCount is the number of sparse buffer bindings to
-        /// perform in the batch.
+        /// The number of sparse buffer bindings to perform in the batch.
         /// </summary>
         public uint BufferBindCount; 
         
         /// <summary>
-        /// pname:pBufferBinds is a pointer to an array of
-        /// slink:VkSparseBufferMemoryBindInfo structures.
+        /// An array of SparseBufferMemoryBindInfo structures.
         /// </summary>
         public SharpVk.Interop.SparseBufferMemoryBindInfo* BufferBinds; 
         
         /// <summary>
-        /// pname:imageOpaqueBindCount is the number of opaque sparse image
-        /// bindings to perform.
+        /// The number of opaque sparse image bindings to perform.
         /// </summary>
         public uint ImageOpaqueBindCount; 
         
         /// <summary>
-        /// pname:pImageOpaqueBinds is a pointer to an array of
-        /// slink:VkSparseImageOpaqueMemoryBindInfo structures, indicating
+        /// An array of SparseImageOpaqueMemoryBindInfo structures, indicating
         /// opaque sparse image bindings to perform.
         /// </summary>
         public SharpVk.Interop.SparseImageOpaqueMemoryBindInfo* ImageOpaqueBinds; 
         
         /// <summary>
-        /// pname:imageBindCount is the number of sparse image bindings to
-        /// perform.
+        /// The number of sparse image bindings to perform.
         /// </summary>
         public uint ImageBindCount; 
         
         /// <summary>
-        /// pname:pImageBinds is a pointer to an array of
-        /// slink:VkSparseImageMemoryBindInfo structures, indicating sparse
+        /// An array of SparseImageMemoryBindInfo structures, indicating sparse
         /// image bindings to perform.
         /// </summary>
         public SharpVk.Interop.SparseImageMemoryBindInfo* ImageBinds; 
         
         /// <summary>
-        /// pname:signalSemaphoreCount is the number of semaphores to be
-        /// signaled once the sparse binding operations specified by the
-        /// structure have completed execution.
+        /// The number of semaphores to be signaled once the sparse binding
+        /// operations specified by the structure have completed execution.
         /// </summary>
         public uint SignalSemaphoreCount; 
         
         /// <summary>
-        /// pname:pSignalSemaphores is a pointer to an array of semaphores
-        /// which will be signaled when the sparse binding operations for this
-        /// batch have completed execution. If semaphores to be signaled are
-        /// provided, they define a
-        /// &lt;&lt;synchronization-semaphores-signaling, semaphore signal
-        /// operation&gt;&gt;.
+        /// An array of semaphores which will be signaled when the sparse
+        /// binding operations for this batch have completed execution. If
+        /// semaphores to be signaled are provided, they define a semaphore
+        /// signal operation.
         /// </summary>
         public SharpVk.Interop.Semaphore* SignalSemaphores; 
     }

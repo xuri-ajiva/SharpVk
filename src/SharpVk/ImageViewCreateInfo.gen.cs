@@ -34,7 +34,7 @@ namespace SharpVk
     public struct ImageViewCreateInfo
     {
         /// <summary>
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public SharpVk.ImageViewCreateFlags? Flags
         {
@@ -43,7 +43,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:image is a sname:VkImage on which the view will be created.
+        /// A Image on which the view will be created.
         /// </summary>
         public SharpVk.Image Image
         {
@@ -52,7 +52,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:viewType is the type of the image view.
+        /// The type of the image view.
         /// </summary>
         public SharpVk.ImageViewType ViewType
         {
@@ -61,8 +61,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:format is a elink:VkFormat describing the format and type
-        /// used to interpret data elements in the image.
+        /// A Format describing the format and type used to interpret data
+        /// elements in the image.
         /// </summary>
         public SharpVk.Format Format
         {
@@ -71,9 +71,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:components specifies a remapping of color components (or of
-        /// depth or stencil components after they have been converted into
-        /// color components). See slink:VkComponentMapping.
+        /// Specifies a remapping of color components (or of depth or stencil
+        /// components after they have been converted into color components).
+        /// See ComponentMapping.
         /// </summary>
         public SharpVk.ComponentMapping Components
         {
@@ -82,9 +82,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:subresourceRange is a slink:VkImageSubresourceRange selecting
-        /// the set of mipmap levels and array layers to be accessible to the
-        /// view.
+        /// A ImageSubresourceRange selecting the set of mipmap levels and
+        /// array layers to be accessible to the view.
         /// </summary>
         public SharpVk.ImageSubresourceRange SubresourceRange
         {

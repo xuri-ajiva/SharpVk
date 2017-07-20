@@ -34,8 +34,7 @@ namespace SharpVk
     public struct BufferMemoryBarrier
     {
         /// <summary>
-        /// pname:srcAccessMask defines a &lt;&lt;synchronization-access-masks,
-        /// source access mask&gt;&gt;.
+        /// srcAccessMask defines a source access mask.
         /// </summary>
         public SharpVk.AccessFlags? SourceAccessMask
         {
@@ -44,8 +43,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:dstAccessMask defines a &lt;&lt;synchronization-access-masks,
-        /// destination access mask&gt;&gt;.
+        /// dstAccessMask defines a destination access mask.
         /// </summary>
         public SharpVk.AccessFlags? DestinationAccessMask
         {
@@ -54,9 +52,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:srcQueueFamilyIndex is the source queue family for a
-        /// &lt;&lt;synchronization-queue-transfers, queue family ownership
-        /// transfer&gt;&gt;.
+        /// The source queue family for a queue family ownership transfer.
         /// </summary>
         public uint SourceQueueFamilyIndex
         {
@@ -65,9 +61,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:dstQueueFamilyIndex is the destination queue family for a
-        /// &lt;&lt;synchronization-queue-transfers, queue family ownership
-        /// transfer&gt;&gt;.
+        /// The destination queue family for a queue family ownership transfer.
         /// </summary>
         public uint DestinationQueueFamilyIndex
         {
@@ -76,8 +70,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:buffer is a handle to the buffer whose backing memory is
-        /// affected by the barrier.
+        /// A handle to the buffer whose backing memory is affected by the
+        /// barrier.
         /// </summary>
         public SharpVk.Buffer Buffer
         {
@@ -86,9 +80,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:offset is an offset in bytes into the backing memory for
-        /// pname:buffer; this is relative to the base offset as bound to the
-        /// buffer (see flink:vkBindBufferMemory).
+        /// An offset in bytes into the backing memory for buffer; this is
+        /// relative to the base offset as bound to the buffer (see
+        /// flink:vkBindBufferMemory).
         /// </summary>
         public DeviceSize Offset
         {
@@ -97,9 +91,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:size is a size in bytes of the affected area of backing
-        /// memory for pname:buffer, or ename:VK_WHOLE_SIZE to use the range
-        /// from pname:offset to the end of the buffer.
+        /// A size in bytes of the affected area of backing memory for buffer,
+        /// or VK_WHOLE_SIZE to use the range from offset to the end of the
+        /// buffer.
         /// </summary>
         public DeviceSize Size
         {

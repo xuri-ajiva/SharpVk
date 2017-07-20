@@ -47,45 +47,41 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// pname:dstBinding is the descriptor binding to update when using
-        /// this descriptor update template.
+        /// The descriptor binding to update when using this descriptor update
+        /// template.
         /// </summary>
         public uint DestinationBinding; 
         
         /// <summary>
-        /// pname:dstArrayElement is the starting element in the array
-        /// belonging to pname:dstBinding.
+        /// The starting element in the array belonging to dstBinding.
         /// </summary>
         public uint DestinationArrayElement; 
         
         /// <summary>
-        /// pname:descriptorCount is the number of descriptors to update. If
-        /// pname:descriptorCount is greater than the number of remaining array
-        /// elements in the destination binding, those affect consecutive
-        /// bindings in a manner similar to slink:VkWriteDescriptorSet above.
+        /// The number of descriptors to update. If descriptorCount is greater
+        /// than the number of remaining array elements in the destination
+        /// binding, those affect consecutive bindings in a manner similar to
+        /// WriteDescriptorSet above.
         /// </summary>
         public uint DescriptorCount; 
         
         /// <summary>
-        /// pname:descriptorType is a elink:VkDescriptorType specifying the
-        /// type of the descriptor.
+        /// A DescriptorType specifying the type of the descriptor.
         /// </summary>
         public SharpVk.DescriptorType DescriptorType; 
         
         /// <summary>
-        /// pname:offset is the offset in bytes of the first binding in the raw
-        /// data structure.
+        /// The offset in bytes of the first binding in the raw data structure.
         /// </summary>
         public HostSize Offset; 
         
         /// <summary>
-        /// pname:stride is the stride in bytes between two consecutive array
-        /// elements of the descriptor update informations in the raw data
-        /// structure. The actual pointer ptr for each array element j of
-        /// update entry i is computed using the following formula:
-        /// [source,c++] ---------------------------------------------------
-        /// const char *ptr = (const char *)pData +
-        /// pDescriptorUpdateEntries[i].offset + j *
+        /// The stride in bytes between two consecutive array elements of the
+        /// descriptor update informations in the raw data structure. The
+        /// actual pointer ptr for each array element j of update entry i is
+        /// computed using the following formula: [source,c++]
+        /// --------------------------------------------------- const char *ptr
+        /// = (const char *)pData + pDescriptorUpdateEntries[i].offset + j *
         /// pDescriptorUpdateEntries[i].stride ---------------------------------------------------
         /// The stride is useful in case the bindings are stored in structs
         /// along with other data.

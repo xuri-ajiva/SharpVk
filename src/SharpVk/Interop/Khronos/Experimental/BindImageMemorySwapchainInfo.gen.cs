@@ -34,23 +34,22 @@ namespace SharpVk.Interop.Khronos.Experimental
     public unsafe struct BindImageMemorySwapchainInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:swapchain is dlink:VK_NULL_HANDLE or a swapchain handle.
+        /// Null or a swapchain handle.
         /// </summary>
         public SharpVk.Interop.Khronos.Swapchain Swapchain; 
         
         /// <summary>
-        /// pname:imageIndex is an image index within pname:swapchain.
+        /// An image index within swapchain.
         /// </summary>
         public uint ImageIndex; 
     }

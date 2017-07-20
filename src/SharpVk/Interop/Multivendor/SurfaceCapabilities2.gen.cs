@@ -34,13 +34,12 @@ namespace SharpVk.Interop.Multivendor
     public unsafe struct SurfaceCapabilities2
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
@@ -95,8 +94,8 @@ namespace SharpVk.Interop.Multivendor
         public SharpVk.ImageUsageFlags SupportedUsageFlags; 
         
         /// <summary>
-        /// pname:supportedSurfaceCounters is a bitfield containing one bit set
-        /// for each surface counter type supported.
+        /// A bitfield containing one bit set for each surface counter type
+        /// supported.
         /// </summary>
         public SharpVk.Multivendor.SurfaceCounterFlags SupportedSurfaceCounters; 
     }

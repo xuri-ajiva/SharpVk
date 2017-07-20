@@ -43,17 +43,16 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:depth is the clear value for the depth aspect of the
-        /// depth/stencil attachment. It is a floating-point value which is
-        /// automatically converted to the attachment's format.
+        /// The clear value for the depth aspect of the depth/stencil
+        /// attachment. It is a floating-point value which is automatically
+        /// converted to the attachment's format.
         /// </summary>
         public float Depth; 
         
         /// <summary>
-        /// pname:stencil is the clear value for the stencil aspect of the
-        /// depth/stencil attachment. It is a 32-bit integer value which is
-        /// converted to the attachment's format by taking the appropriate
-        /// number of LSBs.
+        /// The clear value for the stencil aspect of the depth/stencil
+        /// attachment. It is a 32-bit integer value which is converted to the
+        /// attachment's format by taking the appropriate number of LSBs.
         /// </summary>
         public uint Stencil; 
     }

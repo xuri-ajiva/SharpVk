@@ -34,44 +34,40 @@ namespace SharpVk.Interop.Khronos.Experimental
     public unsafe struct BindBufferMemoryInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:buffer is the buffer to be attached to memory.
+        /// The buffer to be attached to memory.
         /// </summary>
         public SharpVk.Interop.Buffer Buffer; 
         
         /// <summary>
-        /// pname:memory is a sname:VkDeviceMemory object describing the device
-        /// memory to attach.
+        /// A DeviceMemory object describing the device memory to attach.
         /// </summary>
         public SharpVk.Interop.DeviceMemory Memory; 
         
         /// <summary>
-        /// pname:memoryOffset is the start offset of the region of
-        /// pname:memory which is to be bound to the buffer. The number of
-        /// bytes returned in the sname:VkMemoryRequirements::pname:size member
-        /// in pname:memory, starting from pname:memoryOffset bytes, will be
-        /// bound to the specified buffer.
+        /// The start offset of the region of memory which is to be bound to
+        /// the buffer. The number of bytes returned in the
+        /// MemoryRequirements.size member in memory, starting from
+        /// memoryOffset bytes, will be bound to the specified buffer.
         /// </summary>
         public DeviceSize MemoryOffset; 
         
         /// <summary>
-        /// pname:deviceIndexCount is the number of elements in
-        /// pname:pDeviceIndices.
+        /// The number of elements in DeviceIndices.
         /// </summary>
         public uint DeviceIndexCount; 
         
         /// <summary>
-        /// pname:pDeviceIndices is a pointer to an array of device indices.
+        /// An array of device indices.
         /// </summary>
         public uint* DeviceIndices; 
     }

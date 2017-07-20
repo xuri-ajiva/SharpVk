@@ -35,7 +35,7 @@ namespace SharpVk
     public struct WriteDescriptorSet
     {
         /// <summary>
-        /// pname:dstSet is the destination descriptor set to update.
+        /// The destination descriptor set to update.
         /// </summary>
         public SharpVk.DescriptorSet DestinationSet
         {
@@ -44,7 +44,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:dstBinding is the descriptor binding within that set.
+        /// The descriptor binding within that set.
         /// </summary>
         public uint DestinationBinding
         {
@@ -53,7 +53,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:dstArrayElement is the starting element in that array.
+        /// The starting element in that array.
         /// </summary>
         public uint DestinationArrayElement
         {
@@ -62,9 +62,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:descriptorCount is the number of descriptors to update (the
-        /// number of elements in pname:pImageInfo, pname:pBufferInfo, or
-        /// pname:pTexelBufferView).
+        /// The number of descriptors to update (the number of elements in
+        /// pImageInfo, pBufferInfo, or pTexelBufferView).
         /// </summary>
         public uint DescriptorCount
         {
@@ -73,12 +72,12 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:descriptorType is a elink:VkDescriptorType specifying the
-        /// type of each descriptor in pname:pImageInfo, pname:pBufferInfo, or
-        /// pname:pTexelBufferView, as described below. It must: be the same
-        /// type as that specified in sname:VkDescriptorSetLayoutBinding for
-        /// pname:dstSet at pname:dstBinding. The type of the descriptor also
-        /// controls which array the descriptors are taken from.
+        /// A DescriptorType specifying the type of each descriptor in
+        /// pImageInfo, pBufferInfo, or pTexelBufferView, as described below.
+        /// It must be the same type as that specified in
+        /// DescriptorSetLayoutBinding for dstSet at dstBinding. The type of
+        /// the descriptor also controls which array the descriptors are taken
+        /// from.
         /// </summary>
         public SharpVk.DescriptorType DescriptorType
         {
@@ -87,8 +86,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:pImageInfo points to an array of slink:VkDescriptorImageInfo
-        /// structures or is ignored, as described below.
+        /// An array of DescriptorImageInfo structures or is ignored, as
+        /// described below.
         /// </summary>
         public SharpVk.DescriptorImageInfo[] ImageInfo
         {
@@ -97,9 +96,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:pBufferInfo points to an array of
-        /// slink:VkDescriptorBufferInfo structures or is ignored, as described
-        /// below.
+        /// An array of DescriptorBufferInfo structures or is ignored, as
+        /// described below.
         /// </summary>
         public SharpVk.DescriptorBufferInfo[] BufferInfo
         {
@@ -108,9 +106,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:pTexelBufferView points to an array of slink:VkBufferView
-        /// handles as described in the &lt;&lt;resources-buffer-views,Buffer
-        /// Views&gt;&gt; section or is ignored, as described below.
+        /// An array of BufferView handles as described in the Buffer Views
+        /// section or is ignored, as described below.
         /// </summary>
         public SharpVk.BufferView[] TexelBufferView
         {

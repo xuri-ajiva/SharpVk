@@ -34,8 +34,7 @@ namespace SharpVk.Multivendor
     public struct DebugMarkerMarkerInfo
     {
         /// <summary>
-        /// pname:pMarkerName is a pointer to a null-terminated UTF-8 string
-        /// that contains the name of the marker.
+        /// A string that contains the name of the marker.
         /// </summary>
         public string MarkerName
         {
@@ -44,11 +43,10 @@ namespace SharpVk.Multivendor
         }
         
         /// <summary>
-        /// pname:color is an optional RGBA color value that can be associated
-        /// with the marker. A particular implementation may: choose to ignore
-        /// this color value. The values contain RGBA values in order, in the
-        /// range 0.0 to 1.0. If all elements in pname:color are set to 0.0
-        /// then it is ignored.
+        /// An optional RGBA color value that can be associated with the
+        /// marker. A particular implementation may choose to ignore this color
+        /// value. The values contain RGBA values in order, in the range 0.0 to
+        /// 1.0. If all elements in color are set to 0.0 then it is ignored.
         /// </summary>
         public float[] Color
         {

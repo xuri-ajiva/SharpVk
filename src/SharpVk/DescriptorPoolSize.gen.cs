@@ -43,13 +43,12 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:type is the type of descriptor.
+        /// The type of descriptor.
         /// </summary>
         public SharpVk.DescriptorType Type; 
         
         /// <summary>
-        /// pname:descriptorCount is the number of descriptors of that type to
-        /// allocate.
+        /// The number of descriptors of that type to allocate.
         /// </summary>
         public uint DescriptorCount; 
     }

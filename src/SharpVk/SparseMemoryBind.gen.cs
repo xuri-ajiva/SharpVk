@@ -34,7 +34,7 @@ namespace SharpVk
     public struct SparseMemoryBind
     {
         /// <summary>
-        /// pname:resourceOffset is the offset into the resource.
+        /// The offset into the resource.
         /// </summary>
         public DeviceSize ResourceOffset
         {
@@ -43,7 +43,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:size is the size of the memory region to be bound.
+        /// The size of the memory region to be bound.
         /// </summary>
         public DeviceSize Size
         {
@@ -52,9 +52,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:memory is the sname:VkDeviceMemory object that the range of
-        /// the resource is bound to. If pname:memory is dlink:VK_NULL_HANDLE,
-        /// the range is unbound.
+        /// The DeviceMemory object that the range of the resource is bound to.
+        /// If memory is null, the range is unbound.
         /// </summary>
         public SharpVk.DeviceMemory Memory
         {
@@ -63,9 +62,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:memoryOffset is the offset into the sname:VkDeviceMemory
-        /// object to bind the resource range to. If pname:memory is
-        /// dlink:VK_NULL_HANDLE, this value is ignored.
+        /// The offset into the DeviceMemory object to bind the resource range
+        /// to. If memory is null, this value is ignored.
         /// </summary>
         public DeviceSize MemoryOffset
         {
@@ -74,8 +72,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:flags is a bitmask specifying usage of the binding operation.
-        /// Bits which can: be set include: + --
+        /// A bitmask specifying usage of the binding operation. Bits which can
+        /// be set include: + --
         /// </summary>
         public SharpVk.SparseMemoryBindFlags? Flags
         {

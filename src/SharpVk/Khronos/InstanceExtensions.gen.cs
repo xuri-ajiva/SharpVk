@@ -32,14 +32,13 @@ namespace SharpVk.Khronos
     public static class InstanceExtensions
     {
         /// <summary>
-        /// Create a slink:VkSurfaceKHR object for an Android native window.
+        /// Create a SurfaceKHR object for an Android native window.
         /// </summary>
         /// <param name="flags">
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </param>
         /// <param name="window">
-        /// pname:window is a pointer to the code:ANativeWindow to associate
-        /// the surface with.
+        /// A pointer to the ANativeWindow to associate the surface with.
         /// </param>
         public static unsafe SharpVk.Khronos.Surface CreateAndroidSurface(this SharpVk.Instance extendedHandle, IntPtr window, SharpVk.Khronos.AndroidSurfaceCreateFlags? flags = default(SharpVk.Khronos.AndroidSurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -89,32 +88,31 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// Create a slink:VkSurfaceKHR structure representing a display plane
-        /// and mode.
+        /// Create a SurfaceKHR structure representing a display plane and
+        /// mode.
         /// </summary>
         /// <param name="flags">
-        /// pname:flags is reserved for future use, and must: be zero.
+        /// Reserved for future use, and must be zero.
         /// </param>
         /// <param name="displayMode">
-        /// pname:displayMode is the mode to use when displaying this surface.
+        /// The mode to use when displaying this surface.
         /// </param>
         /// <param name="planeIndex">
-        /// pname:planeIndex is the plane on which this surface appears.
+        /// The plane on which this surface appears.
         /// </param>
         /// <param name="planeStackIndex">
-        /// pname:planeStackIndex is the z-order of the plane.
+        /// The z-order of the plane.
         /// </param>
         /// <param name="transform">
-        /// pname:transform is the transform to apply to the images as part of
-        /// the scanout operation.
+        /// The transform to apply to the images as part of the scanout
+        /// operation.
         /// </param>
         /// <param name="globalAlpha">
-        /// pname:globalAlpha is the global alpha value. This value is ignored
-        /// if pname:alphaMode is not
-        /// ename:VK_DISPLAY_PLANE_ALPHA_GLOBAL_BIT_KHR.
+        /// The global alpha value. This value is ignored if alphaMode is not
+        /// VK_DISPLAY_PLANE_ALPHA_GLOBAL_BIT_KHR.
         /// </param>
         /// <param name="alphaMode">
-        /// pname:alphaMode is the type of alpha blending to use.
+        /// The type of alpha blending to use.
         /// </param>
         public static unsafe SharpVk.Khronos.Surface CreateDisplayPlaneSurface(this SharpVk.Instance extendedHandle, SharpVk.Khronos.DisplayMode displayMode, uint planeIndex, uint planeStackIndex, SharpVk.Khronos.SurfaceTransformFlags transform, float globalAlpha, SharpVk.Khronos.DisplayPlaneAlphaFlags alphaMode, SharpVk.Extent2D imageExtent, SharpVk.Khronos.DisplaySurfaceCreateFlags? flags = default(SharpVk.Khronos.DisplaySurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -169,15 +167,14 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// Create a slink:VkSurfaceKHR object for a Mir window.
+        /// Create a SurfaceKHR object for a Mir window.
         /// </summary>
         /// <param name="flags">
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </param>
         /// <param name="connection">
-        /// pname:connection and pname:surface are pointers to the
-        /// code:MirConnection and code:MirSurface for the window to associate
-        /// the surface with.
+        /// connection and surface are pointers to the MirConnection and
+        /// MirSurface for the window to associate the surface with.
         /// </param>
         public static unsafe SharpVk.Khronos.Surface CreateMirSurface(this SharpVk.Instance extendedHandle, IntPtr connection, IntPtr mirSurface, SharpVk.Khronos.MirSurfaceCreateFlags? flags = default(SharpVk.Khronos.MirSurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -229,14 +226,14 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// Create a slink:VkSurfaceKHR object for a Wayland window.
+        /// Create a SurfaceKHR object for a Wayland window.
         /// </summary>
         /// <param name="flags">
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </param>
         /// <param name="display">
-        /// pname:display and pname:surface are pointers to the Wayland
-        /// code:wl_display and code:wl_surface to associate the surface with.
+        /// display and surface are pointers to the Wayland wl_display and
+        /// wl_surface to associate the surface with.
         /// </param>
         public static unsafe SharpVk.Khronos.Surface CreateWaylandSurface(this SharpVk.Instance extendedHandle, IntPtr display, IntPtr surface, SharpVk.Khronos.WaylandSurfaceCreateFlags? flags = default(SharpVk.Khronos.WaylandSurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -286,14 +283,14 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// Create a slink:VkSurfaceKHR object for an Win32 native window.
+        /// Create a SurfaceKHR object for an Win32 native window.
         /// </summary>
         /// <param name="flags">
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </param>
         /// <param name="hinstance">
-        /// pname:hinstance and pname:hwnd are the Win32 code:HINSTANCE and
-        /// code:HWND for the window to associate the surface with.
+        /// hinstance and hwnd are the Win32 HINSTANCE and HWND for the window
+        /// to associate the surface with.
         /// </param>
         public static unsafe SharpVk.Khronos.Surface CreateWin32Surface(this SharpVk.Instance extendedHandle, IntPtr hinstance, IntPtr hwnd, SharpVk.Khronos.Win32SurfaceCreateFlags? flags = default(SharpVk.Khronos.Win32SurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -343,18 +340,17 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// Create a slink:VkSurfaceKHR object for an X11 window, using the
-        /// Xlib client-side library.
+        /// Create a SurfaceKHR object for an X11 window, using the Xlib
+        /// client-side library.
         /// </summary>
         /// <param name="flags">
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </param>
         /// <param name="dpy">
-        /// pname:dpy is a pointer to an Xlib code:Display connection to the X
-        /// server.
+        /// An Xlib Display connection to the X server.
         /// </param>
         /// <param name="window">
-        /// pname:window is an Xlib code:Window to associate the surface with.
+        /// An Xlib Window to associate the surface with.
         /// </param>
         public static unsafe SharpVk.Khronos.Surface CreateXlibSurface(this SharpVk.Instance extendedHandle, IntPtr dpy, IntPtr window, SharpVk.Khronos.XlibSurfaceCreateFlags? flags = default(SharpVk.Khronos.XlibSurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -405,19 +401,17 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// Create a slink:VkSurfaceKHR object for a X11 window, using the XCB
+        /// Create a SurfaceKHR object for a X11 window, using the XCB
         /// client-side library.
         /// </summary>
         /// <param name="flags">
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </param>
         /// <param name="connection">
-        /// pname:connection is a pointer to an code:xcb_connection_t to the X
-        /// server.
+        /// An xcb_connection_t to the X server.
         /// </param>
         /// <param name="window">
-        /// pname:window is the code:xcb_window_t for the X11 window to
-        /// associate the surface with.
+        /// The xcb_window_t for the X11 window to associate the surface with.
         /// </param>
         public static unsafe SharpVk.Khronos.Surface CreateXcbSurface(this SharpVk.Instance extendedHandle, IntPtr connection, IntPtr window, SharpVk.Khronos.XcbSurfaceCreateFlags? flags = default(SharpVk.Khronos.XcbSurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {

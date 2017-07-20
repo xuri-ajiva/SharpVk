@@ -45,26 +45,22 @@ namespace SharpVk.NVidia
         }
         
         /// <summary>
-        /// pname:x is the swizzle operation to apply to the x component of the
-        /// primitive
+        /// The swizzle operation to apply to the x component of the primitive
         /// </summary>
         public SharpVk.NVidia.ViewportCoordinateSwizzle X; 
         
         /// <summary>
-        /// pname:y is the swizzle operation to apply to the y component of the
-        /// primitive
+        /// The swizzle operation to apply to the y component of the primitive
         /// </summary>
         public SharpVk.NVidia.ViewportCoordinateSwizzle Y; 
         
         /// <summary>
-        /// pname:z is the swizzle operation to apply to the z component of the
-        /// primitive
+        /// The swizzle operation to apply to the z component of the primitive
         /// </summary>
         public SharpVk.NVidia.ViewportCoordinateSwizzle Z; 
         
         /// <summary>
-        /// pname:w is the swizzle operation to apply to the w component of the
-        /// primitive
+        /// The swizzle operation to apply to the w component of the primitive
         /// </summary>
         public SharpVk.NVidia.ViewportCoordinateSwizzle W; 
     }

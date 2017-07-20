@@ -34,56 +34,51 @@ namespace SharpVk.Interop.Khronos.Experimental
     public unsafe struct BindImageMemoryInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:image is the image to be attached to memory.
+        /// The image to be attached to memory.
         /// </summary>
         public SharpVk.Interop.Image Image; 
         
         /// <summary>
-        /// pname:memory is a sname:VkDeviceMemory object describing the device
-        /// memory to attach.
+        /// DeviceMemory object describing the device memory to attach.
         /// </summary>
         public SharpVk.Interop.DeviceMemory Memory; 
         
         /// <summary>
-        /// pname:memoryOffset is the start offset of the region of
-        /// pname:memory which is to be bound to the image. If
-        /// pname:SFRRectCount is zero, the number of bytes returned in the
-        /// sname:VkMemoryRequirements::pname:size member in pname:memory,
-        /// starting from pname:memoryOffset bytes, will be bound to the
-        /// specified image.
+        /// The start offset of the region of memory which is to be bound to
+        /// the image. If SFRRectCount is zero, the number of bytes returned in
+        /// the MemoryRequirements::size member in memory, starting from
+        /// memoryOffset bytes, will be bound to the specified image.
         /// </summary>
         public DeviceSize MemoryOffset; 
         
         /// <summary>
-        /// pname:deviceIndexCount is the number of elements in
-        /// pname:pDeviceIndices.
+        /// The number of elements in DeviceIndices.
         /// </summary>
         public uint DeviceIndexCount; 
         
         /// <summary>
-        /// pname:pDeviceIndices is a pointer to an array of device indices.
+        /// An array of device indices.
         /// </summary>
         public uint* DeviceIndices; 
         
         /// <summary>
-        /// pname:SFRRectCount is the number of elements in pname:pSFRRects.
+        /// The number of elements in SFRRects.
         /// </summary>
         public uint SFRRectCount; 
         
         /// <summary>
-        /// pname:pSFRRects is a pointer to an array of rectangles describing
-        /// which regions of the image are attached to each instance of memory.
+        /// An array of rectangles describing which regions of the image are
+        /// attached to each instance of memory.
         /// </summary>
         public SharpVk.Rect2D* SFRRects; 
     }

@@ -34,7 +34,7 @@ namespace SharpVk
     public struct DeviceCreateInfo
     {
         /// <summary>
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public SharpVk.DeviceCreateFlags? Flags
         {
@@ -43,11 +43,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:pQueueCreateInfos is a pointer to an array of
-        /// slink:VkDeviceQueueCreateInfo structures describing the queues that
-        /// are requested to be created along with the logical device. Refer to
-        /// the &lt;&lt;devsandqueues-queue-creation,Queue Creation&gt;&gt;
-        /// section below for further details.
+        /// An array of DeviceQueueCreateInfo structures describing the queues
+        /// that are requested to be created along with the logical device.
+        /// Refer to the Queue Creation section below for further details.
         /// </summary>
         public SharpVk.DeviceQueueCreateInfo[] QueueCreateInfos
         {
@@ -56,9 +54,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:ppEnabledLayerNames is deprecated and ignored. See
-        /// &lt;&lt;extended-functionality-device-layer-deprecation,Device Layer
-        /// Deprecation&gt;&gt;.
+        /// ppEnabledLayerNames is deprecated and ignored. See Device Layer
+        /// Deprecation.
         /// </summary>
         public string[] EnabledLayerNames
         {
@@ -67,12 +64,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:ppEnabledExtensionNames is a pointer to an array of
-        /// pname:enabledExtensionCount null-terminated UTF-8 strings
-        /// containing the names of extensions to enable for the created
-        /// device. See the
-        /// &lt;&lt;extended-functionality-extensions,Extensions&gt;&gt; section
-        /// for further details.
+        /// An array of enabledExtensionCount strings containing the names of
+        /// extensions to enable for the created device. See the Extensions
+        /// section for further details.
         /// </summary>
         public string[] EnabledExtensionNames
         {
@@ -81,11 +75,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:pEnabledFeatures is `NULL` or a pointer to a
-        /// slink:VkPhysicalDeviceFeatures structure that contains boolean
-        /// indicators of all the features to be enabled. Refer to the
-        /// &lt;&lt;features-features,Features&gt;&gt; section for further
-        /// details.
+        /// Null or a PhysicalDeviceFeatures structure that contains boolean
+        /// indicators of all the features to be enabled. Refer to the Features
+        /// section for further details.
         /// </summary>
         public SharpVk.PhysicalDeviceFeatures? EnabledFeatures
         {

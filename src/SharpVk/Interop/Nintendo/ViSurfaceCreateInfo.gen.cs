@@ -34,25 +34,23 @@ namespace SharpVk.Interop.Nintendo
     public unsafe struct ViSurfaceCreateInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public SharpVk.Nintendo.ViSurfaceCreateFlags Flags; 
         
         /// <summary>
-        /// pname:window is the code:nn::code:vi::code:NativeWindowHandle for
-        /// the code:nn::code:vi::code:Layer with which to associate the
-        /// surface.
+        /// The nn::vi::NativeWindowHandle for the nn::vi::Layer with which to
+        /// associate the surface.
         /// </summary>
         public void* Window; 
     }

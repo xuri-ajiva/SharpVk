@@ -34,8 +34,8 @@ namespace SharpVk.Multivendor
     public struct SwapchainCounterCreateInfo
     {
         /// <summary>
-        /// pname:surfaceCounters is a bitmask containing a bit set for each
-        /// surface counter to enable for the swapchain.
+        /// A bitmask containing a bit set for each surface counter to enable
+        /// for the swapchain.
         /// </summary>
         public SharpVk.Multivendor.SurfaceCounterFlags? SurfaceCounters
         {

@@ -43,18 +43,16 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:attachment is the index of the attachment of the render pass,
-        /// and corresponds to the index of the corresponding element in the
-        /// pname:pAttachments array of the sname:VkRenderPassCreateInfo
-        /// structure. If any color or depth/stencil attachments are
-        /// ename:VK_ATTACHMENT_UNUSED, then no writes occur for those
-        /// attachments.
+        /// The index of the attachment of the render pass, and corresponds to
+        /// the index of the corresponding element in the attachments array of
+        /// Device.CreateRenderPass. If any color or depth/stencil attachments
+        /// are Attachment.Unused, then no writes occur for those attachments.
         /// </summary>
         public uint Attachment; 
         
         /// <summary>
-        /// pname:layout is a elink:VkImageLayout value specifying the layout
-        /// the attachment uses during the subpass.
+        /// An ImageLayout value specifying the layout the attachment uses
+        /// during the subpass.
         /// </summary>
         public SharpVk.ImageLayout Layout; 
     }

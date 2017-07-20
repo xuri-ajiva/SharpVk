@@ -34,8 +34,8 @@ namespace SharpVk.Khronos.Experimental
     public struct DeviceGroupPresentInfo
     {
         /// <summary>
-        /// pname:pDeviceMasks is an array of device masks, one for each
-        /// element of slink:VkPresentInfoKHR::pSwapchains.
+        /// An array of device masks, one for each element of
+        /// PresentInfoKHR::pSwapchains.
         /// </summary>
         public uint[] DeviceMasks
         {
@@ -44,8 +44,7 @@ namespace SharpVk.Khronos.Experimental
         }
         
         /// <summary>
-        /// pname:mode is the device group present mode that will be used for
-        /// this present.
+        /// The device group present mode that will be used for this present.
         /// </summary>
         public SharpVk.Khronos.Experimental.DeviceGroupPresentModeFlags Mode
         {

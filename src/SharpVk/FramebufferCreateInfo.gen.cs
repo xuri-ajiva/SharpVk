@@ -34,7 +34,7 @@ namespace SharpVk
     public struct FramebufferCreateInfo
     {
         /// <summary>
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public SharpVk.FramebufferCreateFlags? Flags
         {
@@ -43,10 +43,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:renderPass is a render pass that defines what render passes
-        /// the framebuffer will be compatible with. See
-        /// &lt;&lt;renderpass-compatibility,Render Pass Compatibility&gt;&gt;
-        /// for details.
+        /// A render pass that defines what render passes the framebuffer will
+        /// be compatible with. See Render Pass Compatibility for details.
         /// </summary>
         public SharpVk.RenderPass RenderPass
         {
@@ -55,9 +53,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:pAttachments is an array of sname:VkImageView handles, each
-        /// of which will be used as the corresponding attachment in a render
-        /// pass instance.
+        /// An array of ImageView handles, each of which will be used as the
+        /// corresponding attachment in a render pass instance.
         /// </summary>
         public SharpVk.ImageView[] Attachments
         {
@@ -66,11 +63,11 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:width, pname:height and pname:layers define the dimensions of
-        /// the framebuffer. If the render pass uses multiview, then
-        /// pname:layers must: be one and each attachment requires a number of
-        /// layers that is greater than the maximum bit index set in the view
-        /// mask in the subpasses in which it is used.
+        /// width, height and layers define the dimensions of the framebuffer.
+        /// If the render pass uses multiview, then layers must be one and each
+        /// attachment requires a number of layers that is greater than the
+        /// maximum bit index set in the view mask in the subpasses in which it
+        /// is used.
         /// </summary>
         public uint Width
         {

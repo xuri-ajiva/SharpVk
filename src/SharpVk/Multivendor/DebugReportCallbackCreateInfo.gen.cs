@@ -35,9 +35,9 @@ namespace SharpVk.Multivendor
     public struct DebugReportCallbackCreateInfo
     {
         /// <summary>
-        /// pname:flags indicate which event(s) will cause this callback to be
+        /// flags indicate which event(s) will cause this callback to be
         /// called. Flags are interpreted as bitmasks and multiple may be set.
-        /// Bits which can: be set include: + --
+        /// Bits which can be set include: + --
         /// </summary>
         public SharpVk.Multivendor.DebugReportFlags? Flags
         {

@@ -34,8 +34,8 @@ namespace SharpVk
     public struct DescriptorPoolCreateInfo
     {
         /// <summary>
-        /// pname:flags specifies certain supported operations on the pool.
-        /// Bits which can: be set include: + --
+        /// Specifies certain supported operations on the pool. Bits which can
+        /// be set include: + --
         /// </summary>
         public SharpVk.DescriptorPoolCreateFlags? Flags
         {

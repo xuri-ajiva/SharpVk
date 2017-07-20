@@ -34,41 +34,37 @@ namespace SharpVk.Interop.Khronos
     public unsafe struct PhysicalDeviceSparseImageFormatInfo2
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:format is the image format.
+        /// The image format.
         /// </summary>
         public SharpVk.Format Format; 
         
         /// <summary>
-        /// pname:type is the dimensionality of image.
+        /// The dimensionality of image.
         /// </summary>
         public SharpVk.ImageType Type; 
         
         /// <summary>
-        /// pname:samples is the number of samples per pixel as defined in
-        /// elink:VkSampleCountFlagBits.
+        /// The number of samples per pixel as defined in SampleCountFlagBits.
         /// </summary>
         public SharpVk.SampleCountFlags Samples; 
         
         /// <summary>
-        /// pname:usage is a bitmask describing the intended usage of the
-        /// image.
+        /// A bitmask describing the intended usage of the image.
         /// </summary>
         public SharpVk.ImageUsageFlags Usage; 
         
         /// <summary>
-        /// pname:tiling is the tiling arrangement of the data elements in
-        /// memory.
+        /// The tiling arrangement of the data elements in memory.
         /// </summary>
         public SharpVk.ImageTiling Tiling; 
     }

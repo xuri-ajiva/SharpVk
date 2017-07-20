@@ -25,7 +25,7 @@
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// Possible power states for a VkDisplay.
+    /// Possible power states for a Display.
     /// </summary>
     public enum DisplayPowerState
     {

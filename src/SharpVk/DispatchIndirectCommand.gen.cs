@@ -44,20 +44,17 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:x is the number of local workgroups to dispatch in the X
-        /// dimension.
+        /// The number of local workgroups to dispatch in the X dimension.
         /// </summary>
         public uint X; 
         
         /// <summary>
-        /// pname:y is the number of local workgroups to dispatch in the Y
-        /// dimension.
+        /// The number of local workgroups to dispatch in the Y dimension.
         /// </summary>
         public uint Y; 
         
         /// <summary>
-        /// pname:z is the number of local workgroups to dispatch in the Z
-        /// dimension.
+        /// The number of local workgroups to dispatch in the Z dimension.
         /// </summary>
         public uint Z; 
     }

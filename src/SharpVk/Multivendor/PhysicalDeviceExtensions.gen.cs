@@ -32,7 +32,7 @@ namespace SharpVk.Multivendor
     public static class PhysicalDeviceExtensions
     {
         /// <summary>
-        /// Release access to an acquired VkDisplayKHR.
+        /// Release access to an acquired Display.
         /// </summary>
         public static unsafe void ReleaseDisplay(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.Display display)
         {
@@ -79,7 +79,7 @@ namespace SharpVk.Multivendor
         }
         
         /// <summary>
-        /// Query the VkDisplayKHR corresponding to an X11 RandR Output.
+        /// Query the DisplayKHR corresponding to an X11 RandR Output.
         /// </summary>
         public static unsafe SharpVk.Khronos.Display GetRandROutputDisplay(this SharpVk.PhysicalDevice extendedHandle, IntPtr dpy, IntPtr rrOutput)
         {

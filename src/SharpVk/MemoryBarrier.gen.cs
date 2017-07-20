@@ -34,8 +34,7 @@ namespace SharpVk
     public struct MemoryBarrier
     {
         /// <summary>
-        /// pname:srcAccessMask defines a &lt;&lt;synchronization-access-masks,
-        /// source access mask&gt;&gt;.
+        /// srcAccessMask defines a source access mask.
         /// </summary>
         public SharpVk.AccessFlags? SourceAccessMask
         {
@@ -44,8 +43,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:dstAccessMask defines a &lt;&lt;synchronization-access-masks,
-        /// destination access mask&gt;&gt;.
+        /// dstAccessMask defines a destination access mask.
         /// </summary>
         public SharpVk.AccessFlags? DestinationAccessMask
         {

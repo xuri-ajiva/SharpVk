@@ -34,19 +34,18 @@ namespace SharpVk.Interop.Khronos.Experimental
     public unsafe struct ImageSwapchainCreateInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:swapchain is dlink:VK_NULL_HANDLE or a handle of a swapchain
-        /// that the image will be bound to.
+        /// swapchain is null or a handle of a swapchain that the image will be
+        /// bound to.
         /// </summary>
         public SharpVk.Interop.Khronos.Swapchain Swapchain; 
     }

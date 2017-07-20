@@ -34,22 +34,19 @@ namespace SharpVk.Interop.NVidia.Experimental
     public unsafe struct DeviceGeneratedCommandsFeatures
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:computeBindingPointSupport indicates whether the
-        /// sname:VkObjectTableNVX supports entries with
-        /// ename:VK_OBJECT_ENTRY_USAGE_GRAPHICS_BIT_NVX bit set and
-        /// sname:VkIndirectCommandsLayoutNVX supports
-        /// ename:VK_PIPELINE_BIND_POINT_COMPUTE.
+        /// Indicates whether the ObjectTableNVX supports entries with
+        /// VK_OBJECT_ENTRY_USAGE_GRAPHICS_BIT_NVX bit set and
+        /// IndirectCommandsLayoutNVX supports VK_PIPELINE_BIND_POINT_COMPUTE.
         /// </summary>
         public Bool32 ComputeBindingPointSupport; 
     }

@@ -34,28 +34,27 @@ namespace SharpVk.Interop
     public unsafe struct DescriptorImageInfo
     {
         /// <summary>
-        /// pname:sampler is a sampler handle, and is used in descriptor
-        /// updates for types ename:VK_DESCRIPTOR_TYPE_SAMPLER and
-        /// ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER if the binding
-        /// being updated does not use immutable samplers.
+        /// A sampler handle, and is used in descriptor updates for types
+        /// VK_DESCRIPTOR_TYPE_SAMPLER and
+        /// VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER if the binding being
+        /// updated does not use immutable samplers.
         /// </summary>
         public SharpVk.Interop.Sampler Sampler; 
         
         /// <summary>
-        /// pname:imageView is an image view handle, and is used in descriptor
-        /// updates for types ename:VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE,
-        /// ename:VK_DESCRIPTOR_TYPE_STORAGE_IMAGE, ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER,
-        /// and ename:VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT.
+        /// An image view handle, and is used in descriptor updates for types
+        /// VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE, VK_DESCRIPTOR_TYPE_STORAGE_IMAGE,
+        /// VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, and
+        /// VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT.
         /// </summary>
         public SharpVk.Interop.ImageView ImageView; 
         
         /// <summary>
-        /// pname:imageLayout is the layout that the image will be in at the
-        /// time this descriptor is accessed. pname:imageLayout is used in
-        /// descriptor updates for types
-        /// ename:VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE, ename:VK_DESCRIPTOR_TYPE_STORAGE_IMAGE,
-        /// ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, and
-        /// ename:VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT.
+        /// The layout that the image will be in at the time this descriptor is
+        /// accessed. imageLayout is used in descriptor updates for types
+        /// VK_DESCRIPTOR_TYPE_SAMPLED_IMAGE, VK_DESCRIPTOR_TYPE_STORAGE_IMAGE,
+        /// VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, and
+        /// VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT.
         /// </summary>
         public SharpVk.ImageLayout ImageLayout; 
     }

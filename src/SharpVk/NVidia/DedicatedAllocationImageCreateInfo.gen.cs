@@ -34,8 +34,8 @@ namespace SharpVk.NVidia
     public struct DedicatedAllocationImageCreateInfo
     {
         /// <summary>
-        /// pname:dedicatedAllocation indicates whether the image will have a
-        /// dedicated allocation bound to it.
+        /// Indicates whether the image will have a dedicated allocation bound
+        /// to it.
         /// </summary>
         public bool DedicatedAllocation
         {

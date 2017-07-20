@@ -34,7 +34,7 @@ namespace SharpVk
     public struct ImageBlit
     {
         /// <summary>
-        /// pname:srcSubresource is the subresource to blit from.
+        /// The subresource to blit from.
         /// </summary>
         public SharpVk.ImageSubresourceLayers SourceSubresource
         {
@@ -43,9 +43,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:srcOffsets is an array of two slink:VkOffset3D structures
-        /// specifying the bounds of the source region within
-        /// pname:srcSubresource.
+        /// An array of two Offset3D structures specifying the bounds of the
+        /// source region within srcSubresource.
         /// </summary>
         public SharpVk.Offset3D[] SourceOffsets
         {
@@ -54,7 +53,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:dstSubresource is the subresource to blit into.
+        /// The subresource to blit into.
         /// </summary>
         public SharpVk.ImageSubresourceLayers DestinationSubresource
         {
@@ -63,9 +62,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:dstOffsets is an array of two slink:VkOffset3D structures
-        /// specifying the bounds of the destination region within
-        /// pname:dstSubresource.
+        /// An array of two Offset3D structures specifying the bounds of the
+        /// destination region within dstSubresource.
         /// </summary>
         public SharpVk.Offset3D[] DestinationOffsets
         {

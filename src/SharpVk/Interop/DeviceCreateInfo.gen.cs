@@ -34,72 +34,60 @@ namespace SharpVk.Interop
     public unsafe struct DeviceCreateInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public SharpVk.DeviceCreateFlags Flags; 
         
         /// <summary>
-        /// pname:queueCreateInfoCount is the unsigned integer size of the
-        /// pname:pQueueCreateInfos array. Refer to the
-        /// &lt;&lt;devsandqueues-queue-creation,Queue Creation&gt;&gt; section
-        /// below for further details.
+        /// The unsigned integer size of the pQueueCreateInfos array. Refer to
+        /// the Queue Creation section below for further details.
         /// </summary>
         public uint QueueCreateInfoCount; 
         
         /// <summary>
-        /// pname:pQueueCreateInfos is a pointer to an array of
-        /// slink:VkDeviceQueueCreateInfo structures describing the queues that
-        /// are requested to be created along with the logical device. Refer to
-        /// the &lt;&lt;devsandqueues-queue-creation,Queue Creation&gt;&gt;
-        /// section below for further details.
+        /// An array of DeviceQueueCreateInfo structures describing the queues
+        /// that are requested to be created along with the logical device.
+        /// Refer to the Queue Creation section below for further details.
         /// </summary>
         public SharpVk.Interop.DeviceQueueCreateInfo* QueueCreateInfos; 
         
         /// <summary>
-        /// pname:enabledLayerCount is deprecated and ignored.
+        /// enabledLayerCount is deprecated and ignored.
         /// </summary>
         public uint EnabledLayerCount; 
         
         /// <summary>
-        /// pname:ppEnabledLayerNames is deprecated and ignored. See
-        /// &lt;&lt;extended-functionality-device-layer-deprecation,Device Layer
-        /// Deprecation&gt;&gt;.
+        /// ppEnabledLayerNames is deprecated and ignored. See Device Layer
+        /// Deprecation.
         /// </summary>
         public byte** EnabledLayerNames; 
         
         /// <summary>
-        /// pname:enabledExtensionCount is the number of device extensions to
-        /// enable.
+        /// The number of device extensions to enable.
         /// </summary>
         public uint EnabledExtensionCount; 
         
         /// <summary>
-        /// pname:ppEnabledExtensionNames is a pointer to an array of
-        /// pname:enabledExtensionCount null-terminated UTF-8 strings
-        /// containing the names of extensions to enable for the created
-        /// device. See the
-        /// &lt;&lt;extended-functionality-extensions,Extensions&gt;&gt; section
-        /// for further details.
+        /// An array of enabledExtensionCount strings containing the names of
+        /// extensions to enable for the created device. See the Extensions
+        /// section for further details.
         /// </summary>
         public byte** EnabledExtensionNames; 
         
         /// <summary>
-        /// pname:pEnabledFeatures is `NULL` or a pointer to a
-        /// slink:VkPhysicalDeviceFeatures structure that contains boolean
-        /// indicators of all the features to be enabled. Refer to the
-        /// &lt;&lt;features-features,Features&gt;&gt; section for further
-        /// details.
+        /// Null or a PhysicalDeviceFeatures structure that contains boolean
+        /// indicators of all the features to be enabled. Refer to the Features
+        /// section for further details.
         /// </summary>
         public SharpVk.Interop.PhysicalDeviceFeatures* EnabledFeatures; 
     }

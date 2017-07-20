@@ -34,11 +34,9 @@ namespace SharpVk
     public struct SubmitInfo
     {
         /// <summary>
-        /// pname:pWaitSemaphores is a pointer to an array of semaphores upon
-        /// which to wait before the command buffers for this batch begin
-        /// execution. If semaphores to wait on are provided, they define a
-        /// &lt;&lt;synchronization-semaphores-waiting, semaphore wait
-        /// operation&gt;&gt;.
+        /// An array of semaphores upon which to wait before the command
+        /// buffers for this batch begin execution. If semaphores to wait on
+        /// are provided, they define a semaphore wait operation.
         /// </summary>
         public SharpVk.Semaphore[] WaitSemaphores
         {
@@ -47,8 +45,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:pWaitDstStageMask is a pointer to an array of pipeline stages
-        /// at which each corresponding semaphore wait will occur.
+        /// An array of pipeline stages at which each corresponding semaphore
+        /// wait will occur.
         /// </summary>
         public SharpVk.PipelineStageFlags[] WaitDestinationStageMask
         {
@@ -57,8 +55,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:pCommandBuffers is a pointer to an array of command buffers
-        /// to execute in the batch.
+        /// An array of command buffers to execute in the batch.
         /// </summary>
         public SharpVk.CommandBuffer[] CommandBuffers
         {
@@ -67,11 +64,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:pSignalSemaphores is a pointer to an array of semaphores
-        /// which will be signaled when the command buffers for this batch have
-        /// completed execution. If semaphores to be signaled are provided,
-        /// they define a &lt;&lt;synchronization-semaphores-signaling,
-        /// semaphore signal operation&gt;&gt;.
+        /// An array of semaphores which will be signaled when the command
+        /// buffers for this batch have completed execution. If semaphores to
+        /// be signaled are provided, they define a semaphore signal operation.
         /// </summary>
         public SharpVk.Semaphore[] SignalSemaphores
         {

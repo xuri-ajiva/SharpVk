@@ -44,20 +44,20 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:binding is the binding number that this structure describes.
+        /// The binding number that this structure describes.
         /// </summary>
         public uint Binding; 
         
         /// <summary>
-        /// pname:stride is the distance in bytes between two consecutive
-        /// elements within the buffer.
+        /// The distance in bytes between two consecutive elements within the
+        /// buffer.
         /// </summary>
         public uint Stride; 
         
         /// <summary>
-        /// pname:inputRate specifies whether vertex attribute addressing is a
-        /// function of the vertex index or of the instance index. Possible
-        /// values include: + --
+        /// Specifies whether vertex attribute addressing is a function of the
+        /// vertex index or of the instance index. Possible values include: +
+        /// --
         /// </summary>
         public SharpVk.VertexInputRate InputRate; 
     }

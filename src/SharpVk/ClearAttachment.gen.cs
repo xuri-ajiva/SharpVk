@@ -44,32 +44,29 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:aspectMask is a mask selecting the color, depth and/or
-        /// stencil aspects of the attachment to be cleared. pname:aspectMask
-        /// can: include ename:VK_IMAGE_ASPECT_COLOR_BIT for color attachments,
-        /// ename:VK_IMAGE_ASPECT_DEPTH_BIT for depth/stencil attachments with
-        /// a depth component, and ename:VK_IMAGE_ASPECT_STENCIL_BIT for
-        /// depth/stencil attachments with a stencil component. If the
-        /// subpass's depth/stencil attachment is ename:VK_ATTACHMENT_UNUSED,
-        /// then the clear has no effect.
+        /// A mask selecting the color, depth and/or stencil aspects of the
+        /// attachment to be cleared. aspectMask can include
+        /// VK_IMAGE_ASPECT_COLOR_BIT for color attachments,
+        /// VK_IMAGE_ASPECT_DEPTH_BIT for depth/stencil attachments with a
+        /// depth component, and VK_IMAGE_ASPECT_STENCIL_BIT for depth/stencil
+        /// attachments with a stencil component. If the subpass's
+        /// depth/stencil attachment is VK_ATTACHMENT_UNUSED, then the clear
+        /// has no effect.
         /// </summary>
         public SharpVk.ImageAspectFlags AspectMask; 
         
         /// <summary>
-        /// pname:colorAttachment is only meaningful if
-        /// ename:VK_IMAGE_ASPECT_COLOR_BIT is set in pname:aspectMask, in
-        /// which case it is an index to the pname:pColorAttachments array in
-        /// the slink:VkSubpassDescription structure of the current subpass
-        /// which selects the color attachment to clear. If
-        /// pname:colorAttachment is ename:VK_ATTACHMENT_UNUSED then the clear
-        /// has no effect.
+        /// colorAttachment is only meaningful if VK_IMAGE_ASPECT_COLOR_BIT is
+        /// set in aspectMask, in which case it is an index to the
+        /// pColorAttachments array in the SubpassDescription structure of the
+        /// current subpass which selects the color attachment to clear. If
+        /// colorAttachment is VK_ATTACHMENT_UNUSED then the clear has no
+        /// effect.
         /// </summary>
         public uint ColorAttachment; 
         
         /// <summary>
-        /// pname:clearValue is the color or depth/stencil value to clear the
-        /// attachment to, as described in &lt;&lt;clears-values,Clear
-        /// Values&gt;&gt; below.
+        /// The color or depth/stencil value to clear the attachment to.
         /// </summary>
         public SharpVk.ClearValue ClearValue; 
     }

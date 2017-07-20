@@ -34,24 +34,22 @@ namespace SharpVk.Interop
     public unsafe struct SamplerCreateInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public SharpVk.SamplerCreateFlags Flags; 
         
         /// <summary>
-        /// pname:magFilter is the magnification filter to apply to lookups,
-        /// and is of type: + --
+        /// The magnification filter to apply to lookups.
         /// </summary>
         public SharpVk.Filter MagFilter; 
         

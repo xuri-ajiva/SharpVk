@@ -34,51 +34,49 @@ namespace SharpVk.Interop.Khronos
     public unsafe struct DisplaySurfaceCreateInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:flags is reserved for future use, and must: be zero.
+        /// Reserved for future use, and must be zero.
         /// </summary>
         public SharpVk.Khronos.DisplaySurfaceCreateFlags Flags; 
         
         /// <summary>
-        /// pname:displayMode is the mode to use when displaying this surface.
+        /// The mode to use when displaying this surface.
         /// </summary>
         public SharpVk.Interop.Khronos.DisplayMode DisplayMode; 
         
         /// <summary>
-        /// pname:planeIndex is the plane on which this surface appears.
+        /// The plane on which this surface appears.
         /// </summary>
         public uint PlaneIndex; 
         
         /// <summary>
-        /// pname:planeStackIndex is the z-order of the plane.
+        /// The z-order of the plane.
         /// </summary>
         public uint PlaneStackIndex; 
         
         /// <summary>
-        /// pname:transform is the transform to apply to the images as part of
-        /// the scanout operation.
+        /// The transform to apply to the images as part of the scanout
+        /// operation.
         /// </summary>
         public SharpVk.Khronos.SurfaceTransformFlags Transform; 
         
         /// <summary>
-        /// pname:globalAlpha is the global alpha value. This value is ignored
-        /// if pname:alphaMode is not
-        /// ename:VK_DISPLAY_PLANE_ALPHA_GLOBAL_BIT_KHR.
+        /// The global alpha value. This value is ignored if alphaMode is not
+        /// VK_DISPLAY_PLANE_ALPHA_GLOBAL_BIT_KHR.
         /// </summary>
         public float GlobalAlpha; 
         
         /// <summary>
-        /// pname:alphaMode is the type of alpha blending to use.
+        /// The type of alpha blending to use.
         /// </summary>
         public SharpVk.Khronos.DisplayPlaneAlphaFlags AlphaMode; 
         

@@ -36,39 +36,33 @@ namespace SharpVk
         None = 0, 
         
         /// <summary>
-        /// ename:VK_PIPELINE_CREATE_DISABLE_OPTIMIZATION_BIT specifies that
-        /// the created pipeline will not be optimized. Using this flag may:
-        /// reduce the time taken to create the pipeline.
+        /// Specifies that the created pipeline will not be optimized. Using
+        /// this flag may reduce the time taken to create the pipeline.
         /// </summary>
         DisableOptimization = 1 << 0, 
         
         /// <summary>
-        /// ename:VK_PIPELINE_CREATE_ALLOW_DERIVATIVES_BIT specifies that the
-        /// pipeline to be created is allowed to be the parent of a pipeline
-        /// that will be created in a subsequent call to
+        /// Specifies that the pipeline to be created is allowed to be the
+        /// parent of a pipeline that will be created in a subsequent call to
         /// flink:vkCreateGraphicsPipelines.
         /// </summary>
         AllowDerivatives = 1 << 1, 
         
         /// <summary>
-        /// ename:VK_PIPELINE_CREATE_DERIVATIVE_BIT specifies that the pipeline
-        /// to be created will be a child of a previously created parent
-        /// pipeline.
+        /// Specifies that the pipeline to be created will be a child of a
+        /// previously created parent pipeline.
         /// </summary>
         Derivative = 1 << 2, 
         
         /// <summary>
-        /// ename:VK_PIPELINE_CREATE_VIEW_INDEX_FROM_DEVICE_INDEX_BIT_KHX
-        /// specifies that any shader input variables decorated as
-        /// code:DeviceIndex will be assigned values as if they were decorated
-        /// as code:ViewIndex.
+        /// Specifies that any shader input variables decorated as DeviceIndex
+        /// will be assigned values as if they were decorated as ViewIndex.
         /// </summary>
         ViewIndexFromDeviceIndexBitKhx = 1 << 3, 
         
         /// <summary>
-        /// ename:VK_PIPELINE_CREATE_DISPATCH_BASE_KHX specifies that a compute
-        /// pipeline can: be used with flink:vkCmdDispatchBaseKHX with a
-        /// non-zero base workgroup.
+        /// Specifies that a compute pipeline can be used with
+        /// flink:vkCmdDispatchBaseKHX with a non-zero base workgroup.
         /// </summary>
         DispatchBaseKhx = 1 << 4, 
     }

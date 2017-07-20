@@ -34,9 +34,8 @@ namespace SharpVk.Khronos
     public struct ImageFormatProperties2
     {
         /// <summary>
-        /// pname:imageFormatProperties is an instance of a
-        /// slink:VkImageFormatProperties structure in which capabilities are
-        /// returned.
+        /// An instance of a ImageFormatProperties structure in which
+        /// capabilities are returned.
         /// </summary>
         public SharpVk.ImageFormatProperties ImageFormatProperties
         {

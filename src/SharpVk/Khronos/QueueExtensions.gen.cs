@@ -35,29 +35,26 @@ namespace SharpVk.Khronos
         /// Queue an image for presentation.
         /// </summary>
         /// <param name="waitSemaphores">
-        /// pname:pWaitSemaphores, if not `NULL`, is an array of
-        /// sname:VkSemaphore objects with pname:waitSemaphoreCount entries,
-        /// and specifies the semaphores to wait for before issuing the present
-        /// request.
+        /// If not Null, is an array of Semaphore objects with
+        /// waitSemaphoreCount entries, and specifies the semaphores to wait
+        /// for before issuing the present request.
         /// </param>
         /// <param name="swapchains">
-        /// pname:pSwapchains is an array of sname:VkSwapchainKHR objects with
-        /// pname:swapchainCount entries. A given swapchain must: not appear in
-        /// this list more than once.
+        /// An array of SwapchainKHR objects with swapchainCount entries. A
+        /// given swapchain must not appear in this list more than once.
         /// </param>
         /// <param name="imageIndices">
-        /// pname:pImageIndices is an array of indices into the array of each
-        /// swapchain's presentable images, with pname:swapchainCount entries.
-        /// Each entry in this array identifies the image to present on the
-        /// corresponding entry in the pname:pSwapchains array.
+        /// An array of indices into the array of each swapchain's presentable
+        /// images, with swapchainCount entries. Each entry in this array
+        /// identifies the image to present on the corresponding entry in the
+        /// pSwapchains array.
         /// </param>
         /// <param name="results">
-        /// pname:pResults is an array of ename:VkResult typed elements with
-        /// pname:swapchainCount entries. Applications that do not need
-        /// per-swapchain results can: use `NULL` for pname:pResults. If
-        /// non-`NULL`, each entry in pname:pResults will be set to the
-        /// ename:VkResult for presenting the swapchain corresponding to the
-        /// same index in pname:pSwapchains.
+        /// An array of Result typed elements with swapchainCount entries.
+        /// Applications that do not need per-swapchain results can use Null
+        /// for pResults. If non-Null, each entry in pResults will be set to
+        /// the Result for presenting the swapchain corresponding to the same
+        /// index in pSwapchains.
         /// </param>
         public static unsafe void Present(this SharpVk.Queue extendedHandle, SharpVk.Semaphore[] waitSemaphores, SharpVk.Khronos.Swapchain[] swapchains, uint[] imageIndices, SharpVk.Result[] results)
         {

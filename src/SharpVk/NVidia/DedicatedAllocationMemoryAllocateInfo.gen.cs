@@ -34,8 +34,8 @@ namespace SharpVk.NVidia
     public struct DedicatedAllocationMemoryAllocateInfo
     {
         /// <summary>
-        /// pname:image is sname:VK_NULL_HANDLE or a handle of an image which
-        /// this memory will be bound to.
+        /// image is null or a handle of an image which this memory will be
+        /// bound to.
         /// </summary>
         public SharpVk.Image Image
         {
@@ -44,8 +44,8 @@ namespace SharpVk.NVidia
         }
         
         /// <summary>
-        /// pname:buffer is sname:VK_NULL_HANDLE or a handle of a buffer which
-        /// this memory will be bound to.
+        /// buffer is null or a handle of a buffer which this memory will be
+        /// bound to.
         /// </summary>
         public SharpVk.Buffer Buffer
         {

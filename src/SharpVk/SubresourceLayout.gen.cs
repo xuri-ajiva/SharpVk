@@ -46,33 +46,32 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:offset is the byte offset from the start of the image where
-        /// the image subresource begins.
+        /// The byte offset from the start of the image where the image
+        /// subresource begins.
         /// </summary>
         public DeviceSize Offset; 
         
         /// <summary>
-        /// pname:size is the size in bytes of the image subresource.
-        /// pname:size includes any extra memory that is required based on
-        /// pname:rowPitch.
+        /// The size in bytes of the image subresource. size includes any extra
+        /// memory that is required based on rowPitch.
         /// </summary>
         public DeviceSize Size; 
         
         /// <summary>
-        /// pname:rowPitch describes the number of bytes between each row of
-        /// texels in an image.
+        /// rowPitch describes the number of bytes between each row of texels
+        /// in an image.
         /// </summary>
         public DeviceSize RowPitch; 
         
         /// <summary>
-        /// pname:arrayPitch describes the number of bytes between each array
-        /// layer of an image.
+        /// arrayPitch describes the number of bytes between each array layer
+        /// of an image.
         /// </summary>
         public DeviceSize ArrayPitch; 
         
         /// <summary>
-        /// pname:depthPitch describes the number of bytes between each slice
-        /// of 3D image.
+        /// depthPitch describes the number of bytes between each slice of 3D
+        /// image.
         /// </summary>
         public DeviceSize DepthPitch; 
     }

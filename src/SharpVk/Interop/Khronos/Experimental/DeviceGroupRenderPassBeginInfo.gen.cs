@@ -34,30 +34,28 @@ namespace SharpVk.Interop.Khronos.Experimental
     public unsafe struct DeviceGroupRenderPassBeginInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:deviceMask is the device mask for the render pass instance.
+        /// The device mask for the render pass instance.
         /// </summary>
         public uint DeviceMask; 
         
         /// <summary>
-        /// pname:deviceRenderAreaCount is the number of elements in the
-        /// pname:pDeviceRenderAreas array.
+        /// The number of elements in the pDeviceRenderAreas array.
         /// </summary>
         public uint DeviceRenderAreaCount; 
         
         /// <summary>
-        /// pname:pDeviceRenderAreas is an array of structures of type
-        /// slink:VkRect2D defining the render area for each physical device.
+        /// An array of structures of type Rect2D defining the render area for
+        /// each physical device.
         /// </summary>
         public SharpVk.Rect2D* DeviceRenderAreas; 
     }

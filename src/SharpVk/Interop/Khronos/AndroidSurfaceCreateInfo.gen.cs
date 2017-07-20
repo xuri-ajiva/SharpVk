@@ -34,24 +34,22 @@ namespace SharpVk.Interop.Khronos
     public unsafe struct AndroidSurfaceCreateInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public SharpVk.Khronos.AndroidSurfaceCreateFlags Flags; 
         
         /// <summary>
-        /// pname:window is a pointer to the code:ANativeWindow to associate
-        /// the surface with.
+        /// A pointer to the ANativeWindow to associate the surface with.
         /// </summary>
         public IntPtr* Window; 
     }

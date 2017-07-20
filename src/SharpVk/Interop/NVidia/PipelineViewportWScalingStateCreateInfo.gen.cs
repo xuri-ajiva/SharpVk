@@ -34,33 +34,30 @@ namespace SharpVk.Interop.NVidia
     public unsafe struct PipelineViewportWScalingStateCreateInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure
+        /// The type of this structure
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure
+        /// Null or an extension-specific structure
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:viewportWScalingEnable is the enable for viewport W scaling
+        /// The enable for viewport W scaling
         /// </summary>
         public Bool32 ViewportWScalingEnable; 
         
         /// <summary>
-        /// pname:viewportCount is the number of viewports used by W scaling
-        /// and must: match the number of viewports in the pipeline if viewport
-        /// W scaling is enabled.
+        /// The number of viewports used by W scaling and must match the number
+        /// of viewports in the pipeline if viewport W scaling is enabled.
         /// </summary>
         public uint ViewportCount; 
         
         /// <summary>
-        /// pname:pViewportWScalings is a pointer to an array of
-        /// sname:VkViewportWScalingNV structures which define the W scaling
-        /// parameters for the corresponding viewport. If the viewport W
-        /// scaling state is dynamic, this member is ignored.
+        /// An array of ViewportWScalingNV structures which define the W
+        /// scaling parameters for the corresponding viewport. If the viewport
+        /// W scaling state is dynamic, this member is ignored.
         /// </summary>
         public SharpVk.NVidia.ViewportWScaling* ViewportWScalings; 
     }

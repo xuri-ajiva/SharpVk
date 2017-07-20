@@ -124,8 +124,8 @@ namespace SharpVk.Multivendor
         }
         
         /// <summary>
-        /// pname:supportedSurfaceCounters is a bitfield containing one bit set
-        /// for each surface counter type supported.
+        /// A bitfield containing one bit set for each surface counter type
+        /// supported.
         /// </summary>
         public SharpVk.Multivendor.SurfaceCounterFlags? SupportedSurfaceCounters
         {

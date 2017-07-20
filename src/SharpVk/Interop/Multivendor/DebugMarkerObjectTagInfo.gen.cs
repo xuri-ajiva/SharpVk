@@ -34,41 +34,39 @@ namespace SharpVk.Interop.Multivendor
     public unsafe struct DebugMarkerObjectTagInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:objectType is a elink:VkDebugReportObjectTypeEXT specifying
-        /// the type of the object to be named.
+        /// A DebugReportObjectTypeEXT specifying the type of the object to be
+        /// named.
         /// </summary>
         public SharpVk.Multivendor.DebugReportObjectType ObjectType; 
         
         /// <summary>
-        /// pname:object is the object to be tagged.
+        /// The object to be tagged.
         /// </summary>
         public ulong Object; 
         
         /// <summary>
-        /// pname:tagName is a numerical identifier of the tag.
+        /// A numerical identifier of the tag.
         /// </summary>
         public ulong TagName; 
         
         /// <summary>
-        /// pname:tagSize is the number of bytes of data to attach to the
-        /// object.
+        /// The number of bytes of data to attach to the object.
         /// </summary>
         public HostSize TagSize; 
         
         /// <summary>
-        /// pname:pTag is an array of pname:tagSize bytes containing the data
-        /// to be associated with the object.
+        /// An array of tagSize bytes containing the data to be associated with
+        /// the object.
         /// </summary>
         public void* Tag; 
     }

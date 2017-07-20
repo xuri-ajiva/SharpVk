@@ -35,8 +35,8 @@ namespace SharpVk.NVidia.Experimental
     public struct CommandReserveSpaceForCommandsInfo
     {
         /// <summary>
-        /// pname:objectTable is the sname:VkObjectTableNVX to be used for the
-        /// generation process. Only registered objects at the time
+        /// The ObjectTableNVX to be used for the generation process. Only
+        /// registered objects at the time
         /// flink:vkCmdReserveSpaceForCommandsNVX is called, will be taken into
         /// account for the reservation.
         /// </summary>
@@ -47,9 +47,8 @@ namespace SharpVk.NVidia.Experimental
         }
         
         /// <summary>
-        /// pname:indirectCommandsLayout is the
-        /// sname:VkIndirectCommandsLayoutNVX that must: also be used at
-        /// generation time.
+        /// The IndirectCommandsLayoutNVX that must also be used at generation
+        /// time.
         /// </summary>
         public SharpVk.NVidia.Experimental.IndirectCommandsLayout IndirectCommandsLayout
         {
@@ -58,8 +57,8 @@ namespace SharpVk.NVidia.Experimental
         }
         
         /// <summary>
-        /// pname:maxSequencesCount is the maximum number of sequences for
-        /// which command buffer space will be reserved.
+        /// The maximum number of sequences for which command buffer space will
+        /// be reserved.
         /// </summary>
         public uint MaxSequencesCount
         {

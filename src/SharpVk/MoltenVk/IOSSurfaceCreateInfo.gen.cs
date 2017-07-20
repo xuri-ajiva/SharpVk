@@ -34,7 +34,7 @@ namespace SharpVk.MoltenVk
     public struct IOSSurfaceCreateInfo
     {
         /// <summary>
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public SharpVk.MoltenVk.IOSSurfaceCreateFlags? Flags
         {
@@ -43,9 +43,9 @@ namespace SharpVk.MoltenVk
         }
         
         /// <summary>
-        /// pname:pView is a reference to a code:UIView object which will
-        /// display this surface. This code:UIView must: be backed by a
-        /// code:CALayer instance of type code:CAMetalLayer.
+        /// A reference to a UIView object which will display this surface.
+        /// This UIView must be backed by a CALayer instance of type
+        /// CAMetalLayer.
         /// </summary>
         public IntPtr View
         {

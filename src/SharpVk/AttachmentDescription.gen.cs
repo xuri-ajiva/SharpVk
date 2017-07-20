@@ -50,8 +50,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:flags is a bitmask describing additional properties of the
-        /// attachment. Bits which can: be set include: + --
+        /// A bitmask describing additional properties of the attachment. Bits
+        /// which can be set include: + --
         /// </summary>
         public SharpVk.AttachmentDescriptionFlags Flags; 
         

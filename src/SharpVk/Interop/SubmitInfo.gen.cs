@@ -34,62 +34,54 @@ namespace SharpVk.Interop
     public unsafe struct SubmitInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:waitSemaphoreCount is the number of semaphores upon which to
-        /// wait before executing the command buffers for the batch.
+        /// The number of semaphores upon which to wait before executing the
+        /// command buffers for the batch.
         /// </summary>
         public uint WaitSemaphoreCount; 
         
         /// <summary>
-        /// pname:pWaitSemaphores is a pointer to an array of semaphores upon
-        /// which to wait before the command buffers for this batch begin
-        /// execution. If semaphores to wait on are provided, they define a
-        /// &lt;&lt;synchronization-semaphores-waiting, semaphore wait
-        /// operation&gt;&gt;.
+        /// An array of semaphores upon which to wait before the command
+        /// buffers for this batch begin execution. If semaphores to wait on
+        /// are provided, they define a semaphore wait operation.
         /// </summary>
         public SharpVk.Interop.Semaphore* WaitSemaphores; 
         
         /// <summary>
-        /// pname:pWaitDstStageMask is a pointer to an array of pipeline stages
-        /// at which each corresponding semaphore wait will occur.
+        /// An array of pipeline stages at which each corresponding semaphore
+        /// wait will occur.
         /// </summary>
         public SharpVk.PipelineStageFlags* WaitDestinationStageMask; 
         
         /// <summary>
-        /// pname:commandBufferCount is the number of command buffers to
-        /// execute in the batch.
+        /// The number of command buffers to execute in the batch.
         /// </summary>
         public uint CommandBufferCount; 
         
         /// <summary>
-        /// pname:pCommandBuffers is a pointer to an array of command buffers
-        /// to execute in the batch.
+        /// An array of command buffers to execute in the batch.
         /// </summary>
         public SharpVk.Interop.CommandBuffer* CommandBuffers; 
         
         /// <summary>
-        /// pname:signalSemaphoreCount is the number of semaphores to be
-        /// signaled once the commands specified in pname:pCommandBuffers have
-        /// completed execution.
+        /// The number of semaphores to be signaled once the commands specified
+        /// in pCommandBuffers have completed execution.
         /// </summary>
         public uint SignalSemaphoreCount; 
         
         /// <summary>
-        /// pname:pSignalSemaphores is a pointer to an array of semaphores
-        /// which will be signaled when the command buffers for this batch have
-        /// completed execution. If semaphores to be signaled are provided,
-        /// they define a &lt;&lt;synchronization-semaphores-signaling,
-        /// semaphore signal operation&gt;&gt;.
+        /// An array of semaphores which will be signaled when the command
+        /// buffers for this batch have completed execution. If semaphores to
+        /// be signaled are provided, they define a semaphore signal operation.
         /// </summary>
         public SharpVk.Interop.Semaphore* SignalSemaphores; 
     }

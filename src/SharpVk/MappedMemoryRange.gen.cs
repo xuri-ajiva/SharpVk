@@ -34,7 +34,7 @@ namespace SharpVk
     public struct MappedMemoryRange
     {
         /// <summary>
-        /// pname:memory is the memory object to which this range belongs.
+        /// The memory object to which this range belongs.
         /// </summary>
         public SharpVk.DeviceMemory Memory
         {
@@ -43,8 +43,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:offset is the zero-based byte offset from the beginning of
-        /// the memory object.
+        /// The zero-based byte offset from the beginning of the memory object.
         /// </summary>
         public DeviceSize Offset
         {
@@ -53,9 +52,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:size is either the size of range, or ename:VK_WHOLE_SIZE to
-        /// affect the range from pname:offset to the end of the current
-        /// mapping of the allocation.
+        /// size is either the size of range, or VK_WHOLE_SIZE to affect the
+        /// range from offset to the end of the current mapping of the
+        /// allocation.
         /// </summary>
         public DeviceSize Size
         {

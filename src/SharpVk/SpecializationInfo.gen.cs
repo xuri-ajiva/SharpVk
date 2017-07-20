@@ -34,9 +34,8 @@ namespace SharpVk
     public struct SpecializationInfo
     {
         /// <summary>
-        /// pname:pMapEntries is a pointer to an array of
-        /// sname:VkSpecializationMapEntry which maps constant IDs to offsets
-        /// in pname:pData.
+        /// An array of SpecializationMapEntry which maps constant IDs to
+        /// offsets in pData.
         /// </summary>
         public SharpVk.SpecializationMapEntry[] MapEntries
         {
@@ -45,7 +44,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:pData contains the actual constant values to specialize with.
+        /// pData contains the actual constant values to specialize with.
         /// </summary>
         public byte[] Data
         {

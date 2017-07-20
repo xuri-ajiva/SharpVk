@@ -43,15 +43,15 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:propertyFlags is a bitmask of properties for this memory
-        /// type. The bits specified in pname:propertyFlags are: + --
+        /// A bitmask of properties for this memory type. The bits specified in
+        /// propertyFlags are: + --
         /// </summary>
         public SharpVk.MemoryPropertyFlags PropertyFlags; 
         
         /// <summary>
-        /// pname:heapIndex describes which memory heap this memory type
-        /// corresponds to, and must: be less than pname:memoryHeapCount from
-        /// the sname:VkPhysicalDeviceMemoryProperties structure.
+        /// heapIndex describes which memory heap this memory type corresponds
+        /// to, and must be less than memoryHeapCount from the
+        /// PhysicalDeviceMemoryProperties structure.
         /// </summary>
         public uint HeapIndex; 
     }

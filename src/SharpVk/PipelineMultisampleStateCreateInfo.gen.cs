@@ -35,7 +35,7 @@ namespace SharpVk
     public struct PipelineMultisampleStateCreateInfo
     {
         /// <summary>
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public SharpVk.PipelineMultisampleStateCreateFlags? Flags
         {
@@ -44,8 +44,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:rasterizationSamples is a elink:VkSampleCountFlagBits
-        /// specifying the number of samples per pixel used in rasterization.
+        /// A SampleCountFlagBits specifying the number of samples per pixel
+        /// used in rasterization.
         /// </summary>
         public SharpVk.SampleCountFlags RasterizationSamples
         {
@@ -54,10 +54,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:sampleShadingEnable specifies that fragment shading executes
-        /// per-sample if ename:VK_TRUE, or per-fragment if ename:VK_FALSE, as
-        /// described in &lt;&lt;primsrast-sampleshading,Sample
-        /// Shading&gt;&gt;.
+        /// Specifies that fragment shading executes per-sample if VK_TRUE, or
+        /// per-fragment if VK_FALSE, as described in Sample Shading.
         /// </summary>
         public bool SampleShadingEnable
         {
@@ -66,9 +64,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:minSampleShading is the minimum fraction of sample shading,
-        /// as described in &lt;&lt;primsrast-sampleshading,Sample
-        /// Shading&gt;&gt;.
+        /// The minimum fraction of sample shading, as described in Sample
+        /// Shading.
         /// </summary>
         public float MinSampleShading
         {
@@ -77,10 +74,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:pSampleMask is a bitmask of static coverage information that
-        /// is ANDed with the coverage information generated during
-        /// rasterization, as described in &lt;&lt;fragops-samplemask,Sample
-        /// Mask&gt;&gt;.
+        /// A bitmask of static coverage information that is ANDed with the
+        /// coverage information generated during rasterization, as described
+        /// in Sample Mask.
         /// </summary>
         public SampleMask[] SampleMask
         {
@@ -89,10 +85,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:alphaToCoverageEnable controls whether a temporary coverage
-        /// value is generated based on the alpha component of the fragment's
-        /// first color output as specified in the
-        /// &lt;&lt;fragops-covg,Multisample Coverage&gt;&gt; section.
+        /// alphaToCoverageEnable controls whether a temporary coverage value
+        /// is generated based on the alpha component of the fragment's first
+        /// color output as specified in the Multisample Coverage section.
         /// </summary>
         public bool AlphaToCoverageEnable
         {
@@ -101,9 +96,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:alphaToOneEnable controls whether the alpha component of the
+        /// alphaToOneEnable controls whether the alpha component of the
         /// fragment's first color output is replaced with one as described in
-        /// &lt;&lt;fragops-covg,Multisample Coverage&gt;&gt;.
+        /// Multisample Coverage.
         /// </summary>
         public bool AlphaToOneEnable
         {

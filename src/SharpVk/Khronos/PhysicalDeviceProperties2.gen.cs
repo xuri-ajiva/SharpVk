@@ -34,10 +34,10 @@ namespace SharpVk.Khronos
     public struct PhysicalDeviceProperties2
     {
         /// <summary>
-        /// pname:properties is a structure of type
-        /// slink:VkPhysicalDeviceProperties describing the properties of the
-        /// physical device. This structure is written with the same values as
-        /// if it were written by flink:vkGetPhysicalDeviceProperties.
+        /// A structure of type PhysicalDeviceProperties describing the
+        /// properties of the physical device. This structure is written with
+        /// the same values as if it were written by
+        /// flink:vkGetPhysicalDeviceProperties.
         /// </summary>
         public SharpVk.PhysicalDeviceProperties Properties
         {

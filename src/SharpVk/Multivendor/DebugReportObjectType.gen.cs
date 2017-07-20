@@ -30,162 +30,142 @@ namespace SharpVk.Multivendor
     public enum DebugReportObjectType
     {
         /// <summary>
-        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_UNKNOWN_EXT is an unknown object.
+        /// An unknown object.
         /// </summary>
         Unknown = 0, 
         
         /// <summary>
-        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_INSTANCE_EXT is a
-        /// sname:VkInstance.
+        /// A Instance.
         /// </summary>
         Instance = 1, 
         
         /// <summary>
-        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_PHYSICAL_DEVICE_EXT is a
-        /// sname:VkPhysicalDevice.
+        /// A PhysicalDevice.
         /// </summary>
         PhysicalDevice = 2, 
         
         /// <summary>
-        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_DEVICE_EXT is a sname:VkDevice.
+        /// A Device.
         /// </summary>
         Device = 3, 
         
         /// <summary>
-        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_QUEUE_EXT is a sname:VkQueue.
+        /// A Queue.
         /// </summary>
         Queue = 4, 
         
         /// <summary>
-        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_SEMAPHORE_EXT is a
-        /// sname:VkSemaphore.
+        /// A Semaphore.
         /// </summary>
         Semaphore = 5, 
         
         /// <summary>
-        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_COMMAND_BUFFER_EXT is a
-        /// sname:VkCommandBuffer.
+        /// A CommandBuffer.
         /// </summary>
         CommandBuffer = 6, 
         
         /// <summary>
-        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_FENCE_EXT is a sname:VkFence.
+        /// A Fence.
         /// </summary>
         Fence = 7, 
         
         /// <summary>
-        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_DEVICE_MEMORY_EXT is a
-        /// sname:VkDeviceMemory.
+        /// A DeviceMemory.
         /// </summary>
         DeviceMemory = 8, 
         
         /// <summary>
-        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_BUFFER_EXT is a sname:VkBuffer.
+        /// A Buffer.
         /// </summary>
         Buffer = 9, 
         
         /// <summary>
-        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_IMAGE_EXT is a sname:VkImage.
+        /// A Image.
         /// </summary>
         Image = 10, 
         
         /// <summary>
-        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_EVENT_EXT is a sname:VkEvent.
+        /// A Event.
         /// </summary>
         Event = 11, 
         
         /// <summary>
-        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_QUERY_POOL_EXT is a
-        /// sname:VkQueryPool.
+        /// A QueryPool.
         /// </summary>
         QueryPool = 12, 
         
         /// <summary>
-        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_BUFFER_VIEW_EXT is a
-        /// sname:VkBufferView.
+        /// A BufferView.
         /// </summary>
         BufferView = 13, 
         
         /// <summary>
-        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_IMAGE_VIEW_EXT is a
-        /// sname:VkImageView.
+        /// A ImageView.
         /// </summary>
         ImageView = 14, 
         
         /// <summary>
-        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_SHADER_MODULE_EXT is a
-        /// sname:VkShaderModule.
+        /// A ShaderModule.
         /// </summary>
         ShaderModule = 15, 
         
         /// <summary>
-        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_PIPELINE_CACHE_EXT is a
-        /// sname:VkPipelineCache.
+        /// A PipelineCache.
         /// </summary>
         PipelineCache = 16, 
         
         /// <summary>
-        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_PIPELINE_LAYOUT_EXT is a
-        /// sname:VkPipelineLayout.
+        /// A PipelineLayout.
         /// </summary>
         PipelineLayout = 17, 
         
         /// <summary>
-        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_RENDER_PASS_EXT is a
-        /// sname:VkRenderPass.
+        /// A RenderPass.
         /// </summary>
         RenderPass = 18, 
         
         /// <summary>
-        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_PIPELINE_EXT is a
-        /// sname:VkPipeline.
+        /// A Pipeline.
         /// </summary>
         Pipeline = 19, 
         
         /// <summary>
-        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_SET_LAYOUT_EXT is a
-        /// sname:VkDescriptorSetLayout.
+        /// A DescriptorSetLayout.
         /// </summary>
         DescriptorSetLayout = 20, 
         
         /// <summary>
-        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_SAMPLER_EXT is a sname:VkSampler.
+        /// A Sampler.
         /// </summary>
         Sampler = 21, 
         
         /// <summary>
-        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_POOL_EXT is a
-        /// sname:VkDescriptorPool.
+        /// A DescriptorPool.
         /// </summary>
         DescriptorPool = 22, 
         
         /// <summary>
-        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_DESCRIPTOR_SET_EXT is a
-        /// sname:VkDescriptorSet.
+        /// A DescriptorSet.
         /// </summary>
         DescriptorSet = 23, 
         
         /// <summary>
-        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_FRAMEBUFFER_EXT is a
-        /// sname:VkFramebuffer.
+        /// A Framebuffer.
         /// </summary>
         Framebuffer = 24, 
         
         /// <summary>
-        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_COMMAND_POOL_EXT is a
-        /// sname:VkCommandPool.
+        /// A CommandPool.
         /// </summary>
         CommandPool = 25, 
         
         /// <summary>
-        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_SURFACE_KHR_EXT is a
-        /// sname:VkSurfaceKHR.
+        /// A SurfaceKHR.
         /// </summary>
         SurfaceKhr = 26, 
         
         /// <summary>
-        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_SWAPCHAIN_KHR_EXT is a
-        /// sname:VkSwapchainKHR.
+        /// A SwapchainKHR.
         /// </summary>
         SwapchainKhr = 27, 
         
@@ -195,26 +175,22 @@ namespace SharpVk.Multivendor
         DebugReportCallbackExt = 28, 
         
         /// <summary>
-        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_DISPLAY_KHR_EXT is a
-        /// sname:VkDisplayKHR.
+        /// A DisplayKHR.
         /// </summary>
         DisplayKhr = 29, 
         
         /// <summary>
-        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_DISPLAY_MODE_KHR_EXT is a
-        /// sname:VkDisplayModeKHR.
+        /// A DisplayModeKHR.
         /// </summary>
         DisplayModeKhr = 30, 
         
         /// <summary>
-        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_OBJECT_TABLE_NVX_EXT is a
-        /// sname:VkObjectTableNVX.
+        /// A ObjectTableNVX.
         /// </summary>
         ObjectTableNvx = 31, 
         
         /// <summary>
-        /// ename:VK_DEBUG_REPORT_OBJECT_TYPE_INDIRECT_COMMANDS_LAYOUT_NVX_EXT
-        /// is a sname:VkIndirectCommandsLayoutNVX.
+        /// A IndirectCommandsLayoutNVX.
         /// </summary>
         IndirectCommandsLayoutNvx = 32, 
         

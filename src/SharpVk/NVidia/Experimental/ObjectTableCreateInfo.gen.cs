@@ -34,8 +34,8 @@ namespace SharpVk.NVidia.Experimental
     public struct ObjectTableCreateInfo
     {
         /// <summary>
-        /// pname:pObjectEntryTypes is an array of elink:VkObjectEntryTypeNVX
-        /// providing the entry type of a given configuration.
+        /// An array of ObjectEntryTypeNVX providing the entry type of a given
+        /// configuration.
         /// </summary>
         public SharpVk.NVidia.Experimental.ObjectEntryType[] ObjectEntryTypes
         {
@@ -44,8 +44,7 @@ namespace SharpVk.NVidia.Experimental
         }
         
         /// <summary>
-        /// pname:pObjectEntryCounts is an array of counts how many objects can
-        /// be registered in the table.
+        /// An array of counts how many objects can be registered in the table.
         /// </summary>
         public uint[] ObjectEntryCounts
         {
@@ -54,9 +53,9 @@ namespace SharpVk.NVidia.Experimental
         }
         
         /// <summary>
-        /// pname:pObjectEntryUsageFlags is an array of bitmasks describing the
-        /// binding usage of the entry. See elink:VkObjectEntryUsageFlagBitsNVX
-        /// below for a description of the supported bits.
+        /// An array of bitmasks describing the binding usage of the entry. See
+        /// ObjectEntryUsageFlagBitsNVX below for a description of the
+        /// supported bits.
         /// </summary>
         public SharpVk.NVidia.Experimental.ObjectEntryUsageFlags[] ObjectEntryUsageFlags
         {
@@ -65,10 +64,9 @@ namespace SharpVk.NVidia.Experimental
         }
         
         /// <summary>
-        /// pname:maxUniformBuffersPerDescriptor is the maximum number of
-        /// ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER or
-        /// ename:VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC used by any single
-        /// registered sname:VkDescriptorSet in this table.
+        /// The maximum number of VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER or
+        /// VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER_DYNAMIC used by any single
+        /// registered DescriptorSet in this table.
         /// </summary>
         public uint MaxUniformBuffersPerDescriptor
         {
@@ -77,10 +75,9 @@ namespace SharpVk.NVidia.Experimental
         }
         
         /// <summary>
-        /// pname:maxStorageBuffersPerDescriptor is the maximum number of
-        /// ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER or
-        /// ename:VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC used by any single
-        /// registered sname:VkDescriptorSet in this table.
+        /// The maximum number of VK_DESCRIPTOR_TYPE_STORAGE_BUFFER or
+        /// VK_DESCRIPTOR_TYPE_STORAGE_BUFFER_DYNAMIC used by any single
+        /// registered DescriptorSet in this table.
         /// </summary>
         public uint MaxStorageBuffersPerDescriptor
         {
@@ -89,10 +86,9 @@ namespace SharpVk.NVidia.Experimental
         }
         
         /// <summary>
-        /// pname:maxStorageImagesPerDescriptor is the maximum number of
-        /// ename:VK_DESCRIPTOR_TYPE_STORAGE_IMAGE or
-        /// ename:VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER used by any single
-        /// registered sname:VkDescriptorSet in this table.
+        /// The maximum number of VK_DESCRIPTOR_TYPE_STORAGE_IMAGE or
+        /// VK_DESCRIPTOR_TYPE_STORAGE_TEXEL_BUFFER used by any single
+        /// registered DescriptorSet in this table.
         /// </summary>
         public uint MaxStorageImagesPerDescriptor
         {
@@ -101,11 +97,10 @@ namespace SharpVk.NVidia.Experimental
         }
         
         /// <summary>
-        /// pname:maxSampledImagesPerDescriptor is the maximum number of
-        /// ename:VK_DESCRIPTOR_TYPE_SAMPLER, ename:VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER,
-        /// ename:VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER or
-        /// ename:VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT used by any single
-        /// registered sname:VkDescriptorSet in this table.
+        /// The maximum number of VK_DESCRIPTOR_TYPE_SAMPLER,
+        /// VK_DESCRIPTOR_TYPE_COMBINED_IMAGE_SAMPLER, VK_DESCRIPTOR_TYPE_UNIFORM_TEXEL_BUFFER
+        /// or VK_DESCRIPTOR_TYPE_INPUT_ATTACHMENT used by any single
+        /// registered DescriptorSet in this table.
         /// </summary>
         public uint MaxSampledImagesPerDescriptor
         {
@@ -114,9 +109,8 @@ namespace SharpVk.NVidia.Experimental
         }
         
         /// <summary>
-        /// pname:maxPipelineLayouts is the maximum number of unique
-        /// sname:VkPipelineLayout used by any registered sname:VkDescriptorSet
-        /// or sname:VkPipeline in this table.
+        /// The maximum number of unique PipelineLayout used by any registered
+        /// DescriptorSet or Pipeline in this table.
         /// </summary>
         public uint MaxPipelineLayouts
         {

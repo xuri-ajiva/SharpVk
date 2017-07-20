@@ -34,8 +34,7 @@ namespace SharpVk
     public struct ExtensionProperties
     {
         /// <summary>
-        /// pname:extensionName is a null-terminated string specifying the name
-        /// of the extension.
+        /// A null-terminated string specifying the name of the extension.
         /// </summary>
         public string ExtensionName
         {
@@ -44,8 +43,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:specVersion is the version of this extension. It is an
-        /// integer, incremented with backward compatible changes.
+        /// The version of this extension. It is an integer, incremented with
+        /// backward compatible changes.
         /// </summary>
         public Version SpecVersion
         {

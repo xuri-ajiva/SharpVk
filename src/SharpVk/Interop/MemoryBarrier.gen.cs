@@ -34,25 +34,22 @@ namespace SharpVk.Interop
     public unsafe struct MemoryBarrier
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:srcAccessMask defines a &lt;&lt;synchronization-access-masks,
-        /// source access mask&gt;&gt;.
+        /// srcAccessMask defines a source access mask.
         /// </summary>
         public SharpVk.AccessFlags SourceAccessMask; 
         
         /// <summary>
-        /// pname:dstAccessMask defines a &lt;&lt;synchronization-access-masks,
-        /// destination access mask&gt;&gt;.
+        /// dstAccessMask defines a destination access mask.
         /// </summary>
         public SharpVk.AccessFlags DestinationAccessMask; 
     }

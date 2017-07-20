@@ -34,19 +34,17 @@ namespace SharpVk.Interop.Khronos.Experimental
     public unsafe struct DeviceGroupCommandBufferBeginInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:deviceMask is the initial value of the command buffer's
-        /// device mask.
+        /// The initial value of the command buffer's device mask.
         /// </summary>
         public uint DeviceMask; 
     }

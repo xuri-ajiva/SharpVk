@@ -199,14 +199,13 @@ namespace SharpVk.Khronos
         /// Create a display mode.
         /// </summary>
         /// <param name="flags">
-        /// pname:flags is reserved for future use, and must: be zero.
+        /// Reserved for future use, and must be zero.
         /// </param>
         /// <param name="parameters">
-        /// pname:parameters is a sname:VkDisplayModeParametersKHR structure
-        /// describing the display parameters to use in creating the new mode.
-        /// If the parameters are not compatible with the specified display,
-        /// the implementation must: return
-        /// ename:VK_ERROR_INITIALIZATION_FAILED.
+        /// A DisplayModeParametersKHR structure describing the display
+        /// parameters to use in creating the new mode. If the parameters are
+        /// not compatible with the specified display, the implementation must
+        /// return Result.ErrorINITIALIZATION_FAILED.
         /// </param>
         public static unsafe SharpVk.Khronos.DisplayMode CreateDisplayMode(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.Display display, SharpVk.Khronos.DisplayModeParameters parameters, SharpVk.Khronos.DisplayModeCreateFlags? flags = default(SharpVk.Khronos.DisplayModeCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {

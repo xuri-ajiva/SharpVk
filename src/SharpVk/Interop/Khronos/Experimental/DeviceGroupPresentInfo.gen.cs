@@ -34,31 +34,28 @@ namespace SharpVk.Interop.Khronos.Experimental
     public unsafe struct DeviceGroupPresentInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:swapchainCount is zero or the number of elements in
-        /// pname:pDeviceMasks.
+        /// swapchainCount is zero or the number of elements in pDeviceMasks.
         /// </summary>
         public uint SwapchainCount; 
         
         /// <summary>
-        /// pname:pDeviceMasks is an array of device masks, one for each
-        /// element of slink:VkPresentInfoKHR::pSwapchains.
+        /// An array of device masks, one for each element of
+        /// PresentInfoKHR::pSwapchains.
         /// </summary>
         public uint* DeviceMasks; 
         
         /// <summary>
-        /// pname:mode is the device group present mode that will be used for
-        /// this present.
+        /// The device group present mode that will be used for this present.
         /// </summary>
         public SharpVk.Khronos.Experimental.DeviceGroupPresentModeFlags Mode; 
     }

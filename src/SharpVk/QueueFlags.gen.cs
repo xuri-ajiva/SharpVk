@@ -36,29 +36,24 @@ namespace SharpVk
         None = 0, 
         
         /// <summary>
-        /// if ename:VK_QUEUE_GRAPHICS_BIT is set, then the queues in this
-        /// queue family support graphics operations.
+        /// The queues in this queue family support graphics operations.
         /// </summary>
         Graphics = 1 << 0, 
         
         /// <summary>
-        /// if ename:VK_QUEUE_COMPUTE_BIT is set, then the queues in this queue
-        /// family support compute operations.
+        /// The queues in this queue family support compute operations.
         /// </summary>
         Compute = 1 << 1, 
         
         /// <summary>
-        /// if ename:VK_QUEUE_TRANSFER_BIT is set, then the queues in this
-        /// queue family support transfer operations.
+        /// The queues in this queue family support transfer operations.
         /// </summary>
         Transfer = 1 << 2, 
         
         /// <summary>
-        /// if ename:VK_QUEUE_SPARSE_BINDING_BIT is set, then the queues in
-        /// this queue family support sparse memory management operations (see
-        /// &lt;&lt;sparsememory,Sparse Resources&gt;&gt;). If any of the
-        /// sparse resource features are enabled, then at least one queue
-        /// family must: support this bit.
+        /// The queues in this queue family support sparse memory management
+        /// operations. If any of the sparse resource features are enabled,
+        /// then at least one queue family must support this bit.
         /// </summary>
         SparseBinding = 1 << 3, 
     }

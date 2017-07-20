@@ -34,76 +34,71 @@ namespace SharpVk.Interop
     public unsafe struct CommandBufferInheritanceInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:renderPass is a sname:VkRenderPass object defining which
-        /// render passes the sname:VkCommandBuffer will be
-        /// &lt;&lt;renderpass-compatibility, compatible&gt;&gt; with and can:
-        /// be executed within. If the sname:VkCommandBuffer will not be
-        /// executed within a render pass instance, pname:renderPass is
-        /// ignored.
+        /// A RenderPass object defining which render passes the CommandBuffer
+        /// will be compatible with and can be executed within. If the
+        /// CommandBuffer will not be executed within a render pass instance,
+        /// renderPass is ignored.
         /// </summary>
         public SharpVk.Interop.RenderPass RenderPass; 
         
         /// <summary>
-        /// pname:subpass is the index of the subpass within the render pass
-        /// instance that the sname:VkCommandBuffer will be executed within. If
-        /// the sname:VkCommandBuffer will not be executed within a render pass
-        /// instance, pname:subpass is ignored.
+        /// The index of the subpass within the render pass instance that the
+        /// CommandBuffer will be executed within. If the CommandBuffer will
+        /// not be executed within a render pass instance, subpass is ignored.
         /// </summary>
         public uint Subpass; 
         
         /// <summary>
-        /// pname:framebuffer optionally refers to the sname:VkFramebuffer
-        /// object that the sname:VkCommandBuffer will be rendering to if it is
-        /// executed within a render pass instance. It can: be
-        /// dlink:VK_NULL_HANDLE if the framebuffer is not known, or if the
-        /// sname:VkCommandBuffer will not be executed within a render pass
-        /// instance. + [NOTE] .Note ==== Specifying the exact framebuffer that
-        /// the secondary command buffer will be executed with may: result in
-        /// better performance at command buffer execution time. ====
+        /// framebuffer optionally refers to the Framebuffer object that the
+        /// CommandBuffer will be rendering to if it is executed within a
+        /// render pass instance. It can be null if the framebuffer is not
+        /// known, or if the CommandBuffer will not be executed within a render
+        /// pass instance. + [NOTE] .Note ==== Specifying the exact framebuffer
+        /// that the secondary command buffer will be executed with may result
+        /// in better performance at command buffer execution time. ====
         /// </summary>
         public SharpVk.Interop.Framebuffer Framebuffer; 
         
         /// <summary>
-        /// pname:occlusionQueryEnable indicates whether the command buffer
-        /// can: be executed while an occlusion query is active in the primary
-        /// command buffer. If this is ename:VK_TRUE, then this command buffer
-        /// can: be executed whether the primary command buffer has an
-        /// occlusion query active or not. If this is ename:VK_FALSE, then the
-        /// primary command buffer must: not have an occlusion query active.
+        /// Indicates whether the command buffer can be executed while an
+        /// occlusion query is active in the primary command buffer. If this is
+        /// VK_TRUE, then this command buffer can be executed whether the
+        /// primary command buffer has an occlusion query active or not. If
+        /// this is VK_FALSE, then the primary command buffer must not have an
+        /// occlusion query active.
         /// </summary>
         public Bool32 OcclusionQueryEnable; 
         
         /// <summary>
-        /// pname:queryFlags indicates the query flags that can: be used by an
-        /// active occlusion query in the primary command buffer when this
-        /// secondary command buffer is executed. If this value includes the
-        /// ename:VK_QUERY_CONTROL_PRECISE_BIT bit, then the active query can:
-        /// return boolean results or actual sample counts. If this bit is not
-        /// set, then the active query must: not use the
-        /// ename:VK_QUERY_CONTROL_PRECISE_BIT bit.
+        /// Indicates the query flags that can be used by an active occlusion
+        /// query in the primary command buffer when this secondary command
+        /// buffer is executed. If this value includes the
+        /// VK_QUERY_CONTROL_PRECISE_BIT bit, then the active query can return
+        /// boolean results or actual sample counts. If this bit is not set,
+        /// then the active query must not use the VK_QUERY_CONTROL_PRECISE_BIT
+        /// bit.
         /// </summary>
         public SharpVk.QueryControlFlags QueryFlags; 
         
         /// <summary>
-        /// pname:pipelineStatistics indicates the set of pipeline statistics
-        /// that can: be counted by an active query in the primary command
-        /// buffer when this secondary command buffer is executed. If this
-        /// value includes a given bit, then this command buffer can: be
-        /// executed whether the primary command buffer has a pipeline
-        /// statistics query active that includes this bit or not. If this
-        /// value excludes a given bit, then the active pipeline statistics
-        /// query must: not be from a query pool that counts that statistic.
+        /// Indicates the set of pipeline statistics that can be counted by an
+        /// active query in the primary command buffer when this secondary
+        /// command buffer is executed. If this value includes a given bit,
+        /// then this command buffer can be executed whether the primary
+        /// command buffer has a pipeline statistics query active that includes
+        /// this bit or not. If this value excludes a given bit, then the
+        /// active pipeline statistics query must not be from a query pool that
+        /// counts that statistic.
         /// </summary>
         public SharpVk.QueryPipelineStatisticFlags PipelineStatistics; 
     }

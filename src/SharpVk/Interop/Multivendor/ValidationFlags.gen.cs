@@ -34,26 +34,23 @@ namespace SharpVk.Interop.Multivendor
     public unsafe struct ValidationFlags
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:disabledValidationCheckCount is the number of checks to
-        /// disable.
+        /// The number of checks to disable.
         /// </summary>
         public uint DisabledValidationCheckCount; 
         
         /// <summary>
-        /// pname:pDisabledValidationChecks is a pointer to an array of values
-        /// specifying the validation checks to be disabled. Checks which may:
-        /// be specified include: + --
+        /// An array of values specifying the validation checks to be disabled.
+        /// Checks which may be specified include: + --
         /// </summary>
         public SharpVk.Multivendor.ValidationCheck* DisabledValidationChecks; 
     }

@@ -34,7 +34,7 @@ namespace SharpVk
     public struct BufferViewCreateInfo
     {
         /// <summary>
-        /// pname:flags is reserved for future use.
+        /// Reserved for future use.
         /// </summary>
         public SharpVk.BufferViewCreateFlags? Flags
         {
@@ -43,7 +43,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:buffer is a sname:VkBuffer on which the view will be created.
+        /// A Buffer on which the view will be created.
         /// </summary>
         public SharpVk.Buffer Buffer
         {
@@ -52,8 +52,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:format is a elink:VkFormat describing the format of the data
-        /// elements in the buffer.
+        /// A Format describing the format of the data elements in the buffer.
         /// </summary>
         public SharpVk.Format Format
         {
@@ -62,9 +61,9 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:offset is an offset in bytes from the base address of the
-        /// buffer. Accesses to the buffer view from shaders use addressing
-        /// that is relative to this starting offset.
+        /// An offset in bytes from the base address of the buffer. Accesses to
+        /// the buffer view from shaders use addressing that is relative to
+        /// this starting offset.
         /// </summary>
         public DeviceSize Offset
         {
@@ -73,11 +72,11 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// pname:range is a size in bytes of the buffer view. If pname:range
-        /// is equal to ename:VK_WHOLE_SIZE, the range from pname:offset to the
-        /// end of the buffer is used. If ename:VK_WHOLE_SIZE is used and the
-        /// remaining size of the buffer is not a multiple of the element size
-        /// of pname:format, then the nearest smaller multiple is used.
+        /// A size in bytes of the buffer view. If range is equal to
+        /// VK_WHOLE_SIZE, the range from offset to the end of the buffer is
+        /// used. If VK_WHOLE_SIZE is used and the remaining size of the buffer
+        /// is not a multiple of the element size of format, then the nearest
+        /// smaller multiple is used.
         /// </summary>
         public DeviceSize Range
         {

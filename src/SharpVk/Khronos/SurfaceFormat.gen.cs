@@ -43,14 +43,12 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// pname:format is a ename:VkFormat that is compatible with the
-        /// specified surface.
+        /// A Format that is compatible with the specified surface.
         /// </summary>
         public SharpVk.Format Format; 
         
         /// <summary>
-        /// pname:colorSpace is a presentation ename:VkColorSpaceKHR that is
-        /// compatible with the surface.
+        /// A presentation ColorSpaceKHR that is compatible with the surface.
         /// </summary>
         public SharpVk.Khronos.ColorSpace ColorSpace; 
     }

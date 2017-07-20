@@ -30,45 +30,42 @@ namespace SharpVk
     public enum CompareOp
     {
         /// <summary>
-        /// ename:VK_COMPARE_OP_NEVER: the test never passes.
+        /// The test never passes.
         /// </summary>
         Never = 0, 
         
         /// <summary>
-        /// ename:VK_COMPARE_OP_LESS: the test passes when [eq]#R &lt; S#.
+        /// The test passes when [eq]#R &lt; S#.
         /// </summary>
         Less = 1, 
         
         /// <summary>
-        /// ename:VK_COMPARE_OP_EQUAL: the test passes when [eq]#R = S#.
+        /// The test passes when [eq]#R = S#.
         /// </summary>
         Equal = 2, 
         
         /// <summary>
-        /// ename:VK_COMPARE_OP_LESS_OR_EQUAL: the test passes when [eq]#R
-        /// {leq} S#.
+        /// The test passes when [eq]#R {leq} S#.
         /// </summary>
         LessOrEqual = 3, 
         
         /// <summary>
-        /// ename:VK_COMPARE_OP_GREATER: the test passes when [eq]#R &gt; S#.
+        /// The test passes when [eq]#R &gt; S#.
         /// </summary>
         Greater = 4, 
         
         /// <summary>
-        /// ename:VK_COMPARE_OP_NOT_EQUAL: the test passes when [eq]#R {neq}
-        /// S#.
+        /// The test passes when [eq]#R {neq} S#.
         /// </summary>
         NotEqual = 5, 
         
         /// <summary>
-        /// ename:VK_COMPARE_OP_GREATER_OR_EQUAL: the test passes when [eq]#R
-        /// {geq} S#.
+        /// The test passes when [eq]#R {geq} S#.
         /// </summary>
         GreaterOrEqual = 6, 
         
         /// <summary>
-        /// ename:VK_COMPARE_OP_ALWAYS: the test always passes.
+        /// The test always passes.
         /// </summary>
         Always = 7, 
     }

@@ -34,30 +34,27 @@ namespace SharpVk.Interop
     public unsafe struct LayerProperties
     {
         /// <summary>
-        /// pname:layerName is a null-terminated UTF-8 string specifying the
-        /// name of the layer. Use this name in the pname:ppEnabledLayerNames
-        /// array passed in the slink:VkInstanceCreateInfo structure to enable
-        /// this layer for an instance.
+        /// A string specifying the name of the layer. Use this name in the
+        /// ppEnabledLayerNames array passed in the InstanceCreateInfo
+        /// structure to enable this layer for an instance.
         /// </summary>
         public fixed byte LayerName[Constants.MaxExtensionNameSize]; 
         
         /// <summary>
-        /// pname:specVersion is the Vulkan version the layer was written to,
-        /// encoded as described in the &lt;&lt;fundamentals-versionnum,API
-        /// Version Numbers and Semantics&gt;&gt; section.
+        /// The Vulkan version the layer was written to, encoded as described
+        /// in the API Version Numbers and Semantics section.
         /// </summary>
         public uint SpecVersion; 
         
         /// <summary>
-        /// pname:implementationVersion is the version of this layer. It is an
-        /// integer, increasing with backward compatible changes.
+        /// The version of this layer. It is an integer, increasing with
+        /// backward compatible changes.
         /// </summary>
         public uint ImplementationVersion; 
         
         /// <summary>
-        /// pname:description is a null-terminated UTF-8 string providing
-        /// additional details that can: be used by the application to identify
-        /// the layer.
+        /// A string providing additional details that can be used by the
+        /// application to identify the layer.
         /// </summary>
         public fixed byte Description[Constants.MaxDescriptionSize]; 
     }

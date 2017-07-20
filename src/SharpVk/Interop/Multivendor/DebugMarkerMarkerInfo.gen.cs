@@ -34,28 +34,25 @@ namespace SharpVk.Interop.Multivendor
     public unsafe struct DebugMarkerMarkerInfo
     {
         /// <summary>
-        /// pname:sType is the type of this structure.
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// pname:pNext is `NULL` or a pointer to an extension-specific
-        /// structure.
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// pname:pMarkerName is a pointer to a null-terminated UTF-8 string
-        /// that contains the name of the marker.
+        /// A string that contains the name of the marker.
         /// </summary>
         public byte* MarkerName; 
         
         /// <summary>
-        /// pname:color is an optional RGBA color value that can be associated
-        /// with the marker. A particular implementation may: choose to ignore
-        /// this color value. The values contain RGBA values in order, in the
-        /// range 0.0 to 1.0. If all elements in pname:color are set to 0.0
-        /// then it is ignored.
+        /// An optional RGBA color value that can be associated with the
+        /// marker. A particular implementation may choose to ignore this color
+        /// value. The values contain RGBA values in order, in the range 0.0 to
+        /// 1.0. If all elements in color are set to 0.0 then it is ignored.
         /// </summary>
         public fixed float Color[4]; 
     }

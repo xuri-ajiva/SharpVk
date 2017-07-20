@@ -34,8 +34,8 @@ namespace SharpVk.Multivendor
     public struct DebugMarkerObjectTagInfo
     {
         /// <summary>
-        /// pname:objectType is a elink:VkDebugReportObjectTypeEXT specifying
-        /// the type of the object to be named.
+        /// A DebugReportObjectTypeEXT specifying the type of the object to be
+        /// named.
         /// </summary>
         public SharpVk.Multivendor.DebugReportObjectType ObjectType
         {
@@ -44,7 +44,7 @@ namespace SharpVk.Multivendor
         }
         
         /// <summary>
-        /// pname:object is the object to be tagged.
+        /// The object to be tagged.
         /// </summary>
         public ulong Object
         {
@@ -53,7 +53,7 @@ namespace SharpVk.Multivendor
         }
         
         /// <summary>
-        /// pname:tagName is a numerical identifier of the tag.
+        /// A numerical identifier of the tag.
         /// </summary>
         public ulong TagName
         {
@@ -62,8 +62,8 @@ namespace SharpVk.Multivendor
         }
         
         /// <summary>
-        /// pname:pTag is an array of pname:tagSize bytes containing the data
-        /// to be associated with the object.
+        /// An array of tagSize bytes containing the data to be associated with
+        /// the object.
         /// </summary>
         public byte[] Tag
         {
