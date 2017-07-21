@@ -211,6 +211,10 @@ namespace SharpVk
         /// indicators of all the features to be enabled. Refer to the Features
         /// section for further details.
         /// </param>
+        /// <param name="allocator">
+        /// An optional AllocationCallbacks instance that controls host memory
+        /// allocation.
+        /// </param>
         public unsafe SharpVk.Device CreateDevice(SharpVk.DeviceQueueCreateInfo[] queueCreateInfos, string[] enabledLayerNames, string[] enabledExtensionNames, SharpVk.DeviceCreateFlags? flags = default(SharpVk.DeviceCreateFlags?), SharpVk.PhysicalDeviceFeatures? enabledFeatures = default(SharpVk.PhysicalDeviceFeatures?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try

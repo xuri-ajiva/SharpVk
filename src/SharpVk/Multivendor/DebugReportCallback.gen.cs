@@ -47,6 +47,10 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// Destroy a debug report callback object.
         /// </summary>
+        /// <param name="allocator">
+        /// An optional AllocationCallbacks instance that controls host memory
+        /// allocation.
+        /// </param>
         public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try

@@ -63,6 +63,10 @@ namespace SharpVk
         /// An array of enabledExtensionCount strings containing the names of
         /// extensions to enable.
         /// </param>
+        /// <param name="allocator">
+        /// An optional AllocationCallbacks instance that controls host memory
+        /// allocation.
+        /// </param>
         public static unsafe SharpVk.Instance Create(string[] enabledLayerNames, string[] enabledExtensionNames, SharpVk.InstanceCreateFlags? flags = default(SharpVk.InstanceCreateFlags?), SharpVk.ApplicationInfo? applicationInfo = default(SharpVk.ApplicationInfo?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
@@ -133,6 +137,10 @@ namespace SharpVk
         /// <summary>
         /// Destroy an instance of Vulkan.
         /// </summary>
+        /// <param name="allocator">
+        /// An optional AllocationCallbacks instance that controls host memory
+        /// allocation.
+        /// </param>
         public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try

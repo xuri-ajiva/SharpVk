@@ -47,6 +47,10 @@ namespace SharpVk
         /// <summary>
         /// Free GPU memory.
         /// </summary>
+        /// <param name="allocator">
+        /// An optional AllocationCallbacks instance that controls host memory
+        /// allocation.
+        /// </param>
         public unsafe void Free(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try

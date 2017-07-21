@@ -41,6 +41,10 @@ namespace SharpVk.Nintendo
         /// The nn::vi::NativeWindowHandle for the nn::vi::Layer with which to
         /// associate the surface.
         /// </param>
+        /// <param name="allocator">
+        /// An optional AllocationCallbacks instance that controls host memory
+        /// allocation.
+        /// </param>
         public static unsafe SharpVk.Khronos.Surface CreateViSurface(this SharpVk.Instance extendedHandle, IntPtr window, SharpVk.Nintendo.ViSurfaceCreateFlags? flags = default(SharpVk.Nintendo.ViSurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
