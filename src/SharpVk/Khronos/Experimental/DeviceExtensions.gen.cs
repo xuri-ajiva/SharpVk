@@ -34,6 +34,9 @@ namespace SharpVk.Khronos.Experimental
         /// <summary>
         /// Query supported peer memory features of a device.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The Device handle to extend.
+        /// </param>
         public static unsafe SharpVk.Khronos.Experimental.PeerMemoryFeatureFlags GetGroupPeerMemoryFeatures(this SharpVk.Device extendedHandle, uint heapIndex, uint localDeviceIndex, uint remoteDeviceIndex)
         {
             try
@@ -56,6 +59,9 @@ namespace SharpVk.Khronos.Experimental
         /// <summary>
         /// Bind device memory to buffer objects.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The Device handle to extend.
+        /// </param>
         public static unsafe void BindBufferMemory2(this SharpVk.Device extendedHandle, SharpVk.Khronos.Experimental.BindBufferMemoryInfo[] bindInfos)
         {
             try
@@ -92,6 +98,9 @@ namespace SharpVk.Khronos.Experimental
         /// <summary>
         /// Bind device memory to image objects.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The Device handle to extend.
+        /// </param>
         public static unsafe void BindImageMemory2(this SharpVk.Device extendedHandle, SharpVk.Khronos.Experimental.BindImageMemoryInfo[] bindInfos)
         {
             try
@@ -128,6 +137,9 @@ namespace SharpVk.Khronos.Experimental
         /// <summary>
         /// Query present capabilities from other physical devices.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The Device handle to extend.
+        /// </param>
         public static unsafe SharpVk.Khronos.Experimental.DeviceGroupPresentCapabilities GetGroupPresentCapabilities(this SharpVk.Device extendedHandle)
         {
             try
@@ -154,6 +166,9 @@ namespace SharpVk.Khronos.Experimental
         /// <summary>
         /// Query present capabilities for a surface.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The Device handle to extend.
+        /// </param>
         public static unsafe SharpVk.Khronos.Experimental.DeviceGroupPresentModeFlags GetGroupSurfacePresentModes(this SharpVk.Device extendedHandle, SharpVk.Khronos.Surface surface)
         {
             try
@@ -180,6 +195,9 @@ namespace SharpVk.Khronos.Experimental
         /// <summary>
         /// Retrieve the index of the next available presentable image.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The Device handle to extend.
+        /// </param>
         public static unsafe uint AcquireNextImage2(this SharpVk.Device extendedHandle, SharpVk.Khronos.Experimental.AcquireNextImageInfo acquireInfo)
         {
             try

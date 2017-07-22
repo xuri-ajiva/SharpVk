@@ -34,6 +34,9 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// Create a debug report callback object.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The Instance handle to extend.
+        /// </param>
         /// <param name="flags">
         /// flags indicate which event(s) will cause this callback to be
         /// called. Flags are interpreted as bitmasks and multiple may be set.
@@ -100,6 +103,9 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The Instance handle to extend.
+        /// </param>
         public static unsafe void DebugReportMessage(this SharpVk.Instance extendedHandle, SharpVk.Multivendor.DebugReportFlags flags, SharpVk.Multivendor.DebugReportObjectType objectType, ulong @object, HostSize location, int messageCode, string layerPrefix, string message)
         {
             try

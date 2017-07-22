@@ -34,6 +34,9 @@ namespace SharpVk.Nintendo
         /// <summary>
         /// Create a SurfaceKHR object for a VI layer.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The Instance handle to extend.
+        /// </param>
         /// <param name="flags">
         /// Reserved for future use.
         /// </param>

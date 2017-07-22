@@ -34,6 +34,9 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// Give a user-friendly name to an object.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The Device handle to extend.
+        /// </param>
         public static unsafe void DebugMarkerSetObjectName(this SharpVk.Device extendedHandle, SharpVk.Multivendor.DebugMarkerObjectNameInfo nameInfo)
         {
             try
@@ -59,6 +62,9 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// Attach arbitrary data to an object.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The Device handle to extend.
+        /// </param>
         public static unsafe void DebugMarkerSetObjectTag(this SharpVk.Device extendedHandle, SharpVk.Multivendor.DebugMarkerObjectTagInfo tagInfo)
         {
             try
@@ -84,6 +90,9 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// Set the power state of a display.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The Device handle to extend.
+        /// </param>
         public static unsafe void DisplayPowerControl(this SharpVk.Device extendedHandle, SharpVk.Khronos.Display display, SharpVk.Multivendor.DisplayPowerInfo displayPowerInfo)
         {
             try
@@ -109,6 +118,9 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// Signal a fence when a device event occurs.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The Device handle to extend.
+        /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
@@ -145,6 +157,9 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// Signal a fence when a display event occurs.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The Device handle to extend.
+        /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
@@ -181,6 +196,9 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The Device handle to extend.
+        /// </param>
         public static unsafe void SetHdrMetadata(this SharpVk.Device extendedHandle, SharpVk.Khronos.Swapchain[] swapchains, SharpVk.Multivendor.HdrMetadata[] metadata)
         {
             try

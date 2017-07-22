@@ -34,6 +34,9 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// Open a command buffer marker region.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The CommandBuffer handle to extend.
+        /// </param>
         public static unsafe void DebugMarkerBegin(this SharpVk.CommandBuffer extendedHandle, SharpVk.Multivendor.DebugMarkerMarkerInfo markerInfo)
         {
             try
@@ -55,6 +58,9 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// Close a command buffer marker region.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The CommandBuffer handle to extend.
+        /// </param>
         public static unsafe void DebugMarkerEnd(this SharpVk.CommandBuffer extendedHandle)
         {
             try
@@ -73,6 +79,9 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// Insert a marker label into a command buffer.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The CommandBuffer handle to extend.
+        /// </param>
         public static unsafe void DebugMarkerInsert(this SharpVk.CommandBuffer extendedHandle, SharpVk.Multivendor.DebugMarkerMarkerInfo markerInfo)
         {
             try
@@ -94,6 +103,9 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The CommandBuffer handle to extend.
+        /// </param>
         public static unsafe void SetDiscardRectangle(this SharpVk.CommandBuffer extendedHandle, uint firstDiscardRectangle, SharpVk.Rect2D[] discardRectangles)
         {
             try

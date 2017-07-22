@@ -34,6 +34,9 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// Query the current value of a surface counter.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The Swapchain handle to extend.
+        /// </param>
         public static unsafe ulong GetCounter(this SharpVk.Khronos.Swapchain extendedHandle, SharpVk.Multivendor.SurfaceCounterFlags counter)
         {
             try

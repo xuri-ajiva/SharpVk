@@ -34,6 +34,9 @@ namespace SharpVk.Google
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The Swapchain handle to extend.
+        /// </param>
         public static unsafe SharpVk.Google.RefreshCycleDuration GetRefreshCycleDuration(this SharpVk.Khronos.Swapchain extendedHandle)
         {
             try
@@ -60,6 +63,9 @@ namespace SharpVk.Google
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The Swapchain handle to extend.
+        /// </param>
         public static unsafe SharpVk.Google.PastPresentationTiming[] GetPastPresentationTiming(this SharpVk.Khronos.Swapchain extendedHandle)
         {
             try

@@ -159,12 +159,18 @@ namespace SharpVk.Generator.Generation
 
             if (isExtension)
             {
+                var extendedHandleType = this.nameLookup.Lookup(new TypeReference { VkName = handleTypeName }, false);
+
                 newMethod.ParamActions.Add(new ParamActionDefinition
                 {
                     Param = new ParamDefinition
                     {
                         Name = "extendedHandle",
-                        Type = "this " + this.nameLookup.Lookup(new TypeReference { VkName = handleTypeName }, false)
+                        Type = "this " + extendedHandleType,
+                        Comment = new List<string>
+                        {
+                            $"The {handleType.Name} handle to extend."
+                        }
                     }
                 });
 

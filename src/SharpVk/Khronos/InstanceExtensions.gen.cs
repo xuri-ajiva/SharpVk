@@ -34,6 +34,9 @@ namespace SharpVk.Khronos
         /// <summary>
         /// Create a SurfaceKHR object for an Android native window.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The Instance handle to extend.
+        /// </param>
         /// <param name="flags">
         /// Reserved for future use.
         /// </param>
@@ -95,6 +98,9 @@ namespace SharpVk.Khronos
         /// Create a SurfaceKHR structure representing a display plane and
         /// mode.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The Instance handle to extend.
+        /// </param>
         /// <param name="flags">
         /// Reserved for future use, and must be zero.
         /// </param>
@@ -177,6 +183,9 @@ namespace SharpVk.Khronos
         /// <summary>
         /// Create a SurfaceKHR object for a Mir window.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The Instance handle to extend.
+        /// </param>
         /// <param name="flags">
         /// Reserved for future use.
         /// </param>
@@ -240,6 +249,9 @@ namespace SharpVk.Khronos
         /// <summary>
         /// Create a SurfaceKHR object for a Wayland window.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The Instance handle to extend.
+        /// </param>
         /// <param name="flags">
         /// Reserved for future use.
         /// </param>
@@ -301,6 +313,9 @@ namespace SharpVk.Khronos
         /// <summary>
         /// Create a SurfaceKHR object for an Win32 native window.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The Instance handle to extend.
+        /// </param>
         /// <param name="flags">
         /// Reserved for future use.
         /// </param>
@@ -363,6 +378,9 @@ namespace SharpVk.Khronos
         /// Create a SurfaceKHR object for an X11 window, using the Xlib
         /// client-side library.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The Instance handle to extend.
+        /// </param>
         /// <param name="flags">
         /// Reserved for future use.
         /// </param>
@@ -428,6 +446,9 @@ namespace SharpVk.Khronos
         /// Create a SurfaceKHR object for a X11 window, using the XCB
         /// client-side library.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The Instance handle to extend.
+        /// </param>
         /// <param name="flags">
         /// Reserved for future use.
         /// </param>

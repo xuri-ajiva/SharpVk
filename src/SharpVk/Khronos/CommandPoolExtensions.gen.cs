@@ -34,6 +34,9 @@ namespace SharpVk.Khronos
         /// <summary>
         /// Trim a command pool.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The CommandPool handle to extend.
+        /// </param>
         public static unsafe void Trim(this SharpVk.CommandPool extendedHandle, SharpVk.Khronos.CommandPoolTrimFlags? flags = default(SharpVk.Khronos.CommandPoolTrimFlags?))
         {
             try

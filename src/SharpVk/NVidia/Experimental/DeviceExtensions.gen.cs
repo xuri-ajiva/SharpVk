@@ -34,6 +34,9 @@ namespace SharpVk.NVidia.Experimental
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The Device handle to extend.
+        /// </param>
         /// <param name="pipelineBindPoint">
         /// The PipelineBindPoint that this layout targets.
         /// </param>
@@ -107,6 +110,9 @@ namespace SharpVk.NVidia.Experimental
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The Device handle to extend.
+        /// </param>
         /// <param name="objectEntryTypes">
         /// An array of ObjectEntryTypeNVX providing the entry type of a given
         /// configuration.

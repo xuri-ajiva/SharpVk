@@ -34,6 +34,9 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// Release access to an acquired Display.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The PhysicalDevice handle to extend.
+        /// </param>
         public static unsafe void ReleaseDisplay(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.Display display)
         {
             try
@@ -56,6 +59,9 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// Acquire access to a Display using Xlib.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The PhysicalDevice handle to extend.
+        /// </param>
         public static unsafe void AcquireXlibDisplay(this SharpVk.PhysicalDevice extendedHandle, IntPtr dpy, SharpVk.Khronos.Display display)
         {
             try
@@ -81,6 +87,9 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// Query the DisplayKHR corresponding to an X11 RandR Output.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The PhysicalDevice handle to extend.
+        /// </param>
         public static unsafe SharpVk.Khronos.Display GetRandROutputDisplay(this SharpVk.PhysicalDevice extendedHandle, IntPtr dpy, IntPtr rrOutput)
         {
             try
@@ -110,6 +119,9 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// Query surface capabilities.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The PhysicalDevice handle to extend.
+        /// </param>
         public static unsafe SharpVk.Multivendor.SurfaceCapabilities2 GetSurfaceCapabilities2(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.Surface surface)
         {
             try

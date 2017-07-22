@@ -34,6 +34,9 @@ namespace SharpVk.Khronos
         /// <summary>
         /// Queue an image for presentation.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The Queue handle to extend.
+        /// </param>
         /// <param name="waitSemaphores">
         /// If not Null, is an array of Semaphore objects with
         /// waitSemaphoreCount entries, and specifies the semaphores to wait

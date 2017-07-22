@@ -34,6 +34,9 @@ namespace SharpVk.Khronos.Experimental
         /// <summary>
         /// Modify device mask of a command buffer.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The CommandBuffer handle to extend.
+        /// </param>
         public static unsafe void SetDeviceMask(this SharpVk.CommandBuffer extendedHandle, uint deviceMask)
         {
             try
@@ -52,6 +55,9 @@ namespace SharpVk.Khronos.Experimental
         /// <summary>
         /// Dispatch compute work items.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The CommandBuffer handle to extend.
+        /// </param>
         public static unsafe void DispatchBase(this SharpVk.CommandBuffer extendedHandle, uint baseGroupX, uint baseGroupY, uint baseGroupZ, uint groupCountX, uint groupCountY, uint groupCountZ)
         {
             try

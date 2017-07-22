@@ -34,6 +34,9 @@ namespace SharpVk.MoltenVk
         /// <summary>
         /// Create a SurfaceKHR object for an iOS UIView.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The Instance handle to extend.
+        /// </param>
         /// <param name="flags">
         /// Reserved for future use.
         /// </param>
@@ -95,6 +98,9 @@ namespace SharpVk.MoltenVk
         /// <summary>
         /// Create a SurfaceKHR object for a macOS NSView.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The Instance handle to extend.
+        /// </param>
         /// <param name="flags">
         /// Reserved for future use.
         /// </param>

@@ -34,6 +34,9 @@ namespace SharpVk.Khronos.Experimental
         /// <summary>
         /// Query present rectangles for a surface on a physical device.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The PhysicalDevice handle to extend.
+        /// </param>
         public static unsafe SharpVk.Rect2D[] GetPresentRectangles(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.Surface surface)
         {
             try

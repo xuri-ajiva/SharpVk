@@ -34,6 +34,9 @@ namespace SharpVk.Khronos
         /// <summary>
         /// Pushes descriptor updates into a command buffer.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The CommandBuffer handle to extend.
+        /// </param>
         public static unsafe void PushDescriptorSet(this SharpVk.CommandBuffer extendedHandle, SharpVk.PipelineBindPoint pipelineBindPoint, SharpVk.PipelineLayout layout, uint set, SharpVk.WriteDescriptorSet[] descriptorWrites)
         {
             try
@@ -67,6 +70,9 @@ namespace SharpVk.Khronos
         /// Pushes descriptor updates into a command buffer using a descriptor
         /// update template.
         /// </summary>
+        /// <param name="extendedHandle">
+        /// The CommandBuffer handle to extend.
+        /// </param>
         public static unsafe void PushDescriptorSetWithTemplate(this SharpVk.CommandBuffer extendedHandle, SharpVk.Khronos.DescriptorUpdateTemplate descriptorUpdateTemplate, SharpVk.PipelineLayout layout, uint set, IntPtr data)
         {
             try
