@@ -116,6 +116,16 @@ namespace SharpVk.Khronos
         /// <summary>
         /// Retrieve the index of the next available presentable image.
         /// </summary>
+        /// <param name="timeout">
+        /// Indicates how long the function waits, in nanoseconds, if no image
+        /// is available.
+        /// </param>
+        /// <param name="semaphore">
+        /// Null or a semaphore to signal.
+        /// </param>
+        /// <param name="fence">
+        /// Null or a fence to signal.
+        /// </param>
         public unsafe uint AcquireNextImage(ulong timeout, SharpVk.Semaphore semaphore, SharpVk.Fence fence)
         {
             try

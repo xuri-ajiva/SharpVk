@@ -50,48 +50,58 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// A bitmask describing additional properties of the attachment. Bits
-        /// which can be set include: + --
+        /// A bitmask describing additional properties of the attachment.
         /// </summary>
         public SharpVk.AttachmentDescriptionFlags Flags; 
         
         /// <summary>
-        /// 
+        /// A Format value specifying the format of the image that will be used
+        /// for the attachment.
         /// </summary>
         public SharpVk.Format Format; 
         
         /// <summary>
-        /// 
+        /// The number of samples of the image as defined in SampleCountFlags.
         /// </summary>
         public SharpVk.SampleCountFlags Samples; 
         
         /// <summary>
-        /// 
+        /// An AttachmentLoadOp value specifying how the contents of color and
+        /// depth components of the attachment are treated at the beginning of
+        /// the subpass where it is first used.
         /// </summary>
         public SharpVk.AttachmentLoadOp LoadOp; 
         
         /// <summary>
-        /// 
+        /// An AttachmentStoreOp value specifying how the contents of color and
+        /// depth components of the attachment are treated at the end of the
+        /// subpass where it is last used.
         /// </summary>
         public SharpVk.AttachmentStoreOp StoreOp; 
         
         /// <summary>
-        /// 
+        /// An AttachmentLoadOp value specifying how the contents of stencil
+        /// components of the attachment are treated at the beginning of the
+        /// subpass where it is first used.
         /// </summary>
         public SharpVk.AttachmentLoadOp StencilLoadOp; 
         
         /// <summary>
-        /// 
+        /// An AttachmentStoreOp value specifying how the contents of stencil
+        /// components of the attachment are treated at the end of the last
+        /// subpass where it is used.
         /// </summary>
         public SharpVk.AttachmentStoreOp StencilStoreOp; 
         
         /// <summary>
-        /// 
+        /// The layout the attachment image subresource will be in when a
+        /// render pass instance begins.
         /// </summary>
         public SharpVk.ImageLayout InitialLayout; 
         
         /// <summary>
-        /// 
+        /// The layout the attachment image subresource will be transitioned to
+        /// when a render pass instance ends.
         /// </summary>
         public SharpVk.ImageLayout FinalLayout; 
     }

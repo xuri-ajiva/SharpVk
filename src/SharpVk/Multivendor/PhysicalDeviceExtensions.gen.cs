@@ -62,6 +62,12 @@ namespace SharpVk.Multivendor
         /// <param name="extendedHandle">
         /// The PhysicalDevice handle to extend.
         /// </param>
+        /// <param name="dpy">
+        /// A connection to the X11 server that currently owns the display.
+        /// </param>
+        /// <param name="display">
+        /// The display the caller wishes to control in Vulkan.
+        /// </param>
         public static unsafe void AcquireXlibDisplay(this SharpVk.PhysicalDevice extendedHandle, IntPtr dpy, SharpVk.Khronos.Display display)
         {
             try
