@@ -157,11 +157,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        NvExtension1ErrorNv = -1000013000, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
         ErrorOutOfPoolMemoryKhr = -1000069000, 
         
         /// <summary>

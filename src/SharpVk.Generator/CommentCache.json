@@ -3614,7 +3614,6 @@
   "VkResult.VK_EVENT_SET": "",
   "VkResult.VK_INCOMPLETE": "",
   "VkResult.VK_NOT_READY": "",
-  "VkResult.VK_NV_EXTENSION_1_ERROR": "",
   "VkResult.VK_SUBOPTIMAL_KHR": "",
   "VkResult.VK_SUCCESS": "",
   "VkResult.VK_TIMEOUT": "",

@@ -101,8 +101,6 @@ namespace SharpVk
                     return new ValidationFailedExtException();
                 case Result.ErrorInvalidShaderNv:
                     return new InvalidShaderNvException();
-                case Result.NvExtension1ErrorNv:
-                    return new NvExtension1ErrorNvException();
                 case Result.ErrorOutOfPoolMemoryKhr:
                     return new OutOfPoolMemoryKhrException();
                 case Result.ErrorInvalidExternalHandleKhr:
@@ -445,23 +443,6 @@ namespace SharpVk
         /// The Vulkan result code represented by this exception.
         /// </summary>
         public override Result ResultCode => Result.ErrorInvalidShaderNv;
-    }
-    
-    /// <summary>
-    /// 
-    /// </summary>
-    public class NvExtension1ErrorNvException
-        : SharpVkException
-    {
-        internal NvExtension1ErrorNvException()
-            : base("")
-        {
-        }
-        
-        /// <summary>
-        /// The Vulkan result code represented by this exception.
-        /// </summary>
-        public override Result ResultCode => Result.NvExtension1ErrorNv;
     }
     
     /// <summary>
