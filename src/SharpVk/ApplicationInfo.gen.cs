@@ -94,7 +94,10 @@ namespace SharpVk
             pointer->SType = StructureType.ApplicationInfo;
             pointer->Next = null;
             pointer->ApplicationName = Interop.HeapUtil.MarshalTo(this.ApplicationName);
+            pointer->ApplicationVersion = (uint)(this.ApplicationVersion);
             pointer->EngineName = Interop.HeapUtil.MarshalTo(this.EngineName);
+            pointer->EngineVersion = (uint)(this.EngineVersion);
+            pointer->ApiVersion = (uint)(this.ApiVersion);
         }
     }
 }

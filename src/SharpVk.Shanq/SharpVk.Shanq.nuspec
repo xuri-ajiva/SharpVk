@@ -12,7 +12,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Linq to SPIR-V shader generation</description>
     <!--<releaseNotes>Summary of changes made in this release of the package.</releaseNotes>-->
-    <copyright>Copyright 2016 Andrew Armstrong/FacticiusVir</copyright>
+    <copyright>Copyright 2017 Andrew Armstrong/FacticiusVir</copyright>
     <tags>Vulkan SPIR-V Spirv SharpVK Shanq 3D</tags>
     <dependencies>
       <dependency id="SharpVk" version="$version$" />

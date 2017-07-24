@@ -44,28 +44,10 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// The number of viewports used by the pipeline.
-        /// </summary>
-        public uint ViewportCount
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
         /// An array of Viewport structures, defining the viewport transforms.
         /// If the viewport state is dynamic, this member is ignored.
         /// </summary>
         public SharpVk.Viewport[] Viewports
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// The number of scissors and must match the number of viewports.
-        /// </summary>
-        public uint ScissorCount
         {
             get;
             set;
@@ -97,7 +79,7 @@ namespace SharpVk
             {
                 pointer->Flags = default(SharpVk.PipelineViewportStateCreateFlags);
             }
-            pointer->ViewportCount = this.ViewportCount;
+            pointer->ViewportCount = (uint)(this.Viewports?.Length ?? 0);
             if (this.Viewports != null)
             {
                 var fieldPointer = (SharpVk.Viewport*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Viewport>(this.Viewports.Length).ToPointer());
@@ -111,7 +93,7 @@ namespace SharpVk
             {
                 pointer->Viewports = null;
             }
-            pointer->ScissorCount = this.ScissorCount;
+            pointer->ScissorCount = (uint)(this.Scissors?.Length ?? 0);
             if (this.Scissors != null)
             {
                 var fieldPointer = (SharpVk.Rect2D*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Rect2D>(this.Scissors.Length).ToPointer());

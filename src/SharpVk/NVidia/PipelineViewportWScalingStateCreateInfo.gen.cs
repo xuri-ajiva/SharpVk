@@ -44,16 +44,6 @@ namespace SharpVk.NVidia
         }
         
         /// <summary>
-        /// The number of viewports used by W scaling and must match the number
-        /// of viewports in the pipeline if viewport W scaling is enabled.
-        /// </summary>
-        public uint ViewportCount
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
         /// An array of ViewportWScalingNV structures which define the W
         /// scaling parameters for the corresponding viewport. If the viewport
         /// W scaling state is dynamic, this member is ignored.
@@ -72,7 +62,7 @@ namespace SharpVk.NVidia
             pointer->SType = StructureType.PipelineViewportWScalingStateCreateInfoNv;
             pointer->Next = null;
             pointer->ViewportWScalingEnable = this.ViewportWScalingEnable;
-            pointer->ViewportCount = this.ViewportCount;
+            pointer->ViewportCount = (uint)(this.ViewportWScalings?.Length ?? 0);
             if (this.ViewportWScalings != null)
             {
                 var fieldPointer = (SharpVk.NVidia.ViewportWScaling*)(Interop.HeapUtil.AllocateAndClear<SharpVk.NVidia.ViewportWScaling>(this.ViewportWScalings.Length).ToPointer());

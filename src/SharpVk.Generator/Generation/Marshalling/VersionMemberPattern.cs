@@ -35,6 +35,12 @@ namespace SharpVk.Generator.Generation.Marshalling
                     TargetExpression = getTarget(source.Name),
                 });
 
+                info.MarshalTo.Add((getTarget, getValue) => new AssignAction
+                {
+                    ValueExpression = Cast("uint", getValue(source.Name)),
+                    TargetExpression = getTarget(source.Name),
+                });
+
                 string typeName = this.nameLookup.Lookup(source.Type, true);
 
                 info.Interop = new TypedDefinition
