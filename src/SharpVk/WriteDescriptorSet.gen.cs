@@ -62,6 +62,16 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// The number of descriptors to update (the number of elements in
+        /// pImageInfo, pBufferInfo, or pTexelBufferView).
+        /// </summary>
+        public uint DescriptorCount
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
         /// A DescriptorType specifying the type of each descriptor in
         /// pImageInfo, pBufferInfo, or pTexelBufferView, as described below.
         /// It must be the same type as that specified in
@@ -115,7 +125,7 @@ namespace SharpVk
             pointer->DestinationSet = this.DestinationSet?.handle ?? default(SharpVk.Interop.DescriptorSet);
             pointer->DestinationBinding = this.DestinationBinding;
             pointer->DestinationArrayElement = this.DestinationArrayElement;
-            pointer->DescriptorCount = (uint)(this.ImageInfo?.Length ?? 0);
+            pointer->DescriptorCount = this.DescriptorCount;
             pointer->DescriptorType = this.DescriptorType;
             if (this.ImageInfo != null)
             {

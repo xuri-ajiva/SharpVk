@@ -46,7 +46,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                 }
             }
 
-            bool isArrayLenMember = lenExpressions.Any();
+            bool isArrayLenMember = lenExpressions.Any() && !(source.VkName == "descriptorCount" && context.VkName == "VkWriteDescriptorSet");
 
             if (isArrayLenMember)
             {
@@ -63,7 +63,7 @@ namespace SharpVk.Generator.Generation.Marshalling
 
                 string typeName = this.nameLookup.Lookup(source.Type, true);
 
-                if (source.IsOptional && (lenExpressions.All(x => x.Item2 && x.Item3) || (source.VkName == "descriptorCount" && context.VkName == "VkDescriptorSetLayoutBinding")))
+                if (source.IsOptional && (lenExpressions.All(x => x.Item2 && x.Item3)))
                 {
                     info.Public.Add(new TypedDefinition
                     {
