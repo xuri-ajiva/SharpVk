@@ -198,5 +198,10 @@ namespace SharpVk
         /// 
         /// </summary>
         IndirectCommandsLayoutNvx = 1000086001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ValidationCacheExt = 1000160000, 
     }
 }

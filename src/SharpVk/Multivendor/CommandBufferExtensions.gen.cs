@@ -142,5 +142,29 @@ namespace SharpVk.Multivendor
                 Interop.HeapUtil.FreeAll();
             }
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The CommandBuffer handle to extend.
+        /// </param>
+        public static unsafe void SetSampleLocations(this SharpVk.CommandBuffer extendedHandle, SharpVk.Multivendor.SampleLocationsInfo sampleLocationsInfo)
+        {
+            try
+            {
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Multivendor.SampleLocationsInfo* marshalledSampleLocationsInfo = default(SharpVk.Interop.Multivendor.SampleLocationsInfo*);
+                commandCache = extendedHandle.commandCache;
+                marshalledSampleLocationsInfo = (SharpVk.Interop.Multivendor.SampleLocationsInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.SampleLocationsInfo>());
+                sampleLocationsInfo.MarshalTo(marshalledSampleLocationsInfo);
+                SharpVk.Interop.Multivendor.VkCommandBufferSetSampleLocationsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkCommandBufferSetSampleLocationsDelegate>("vkCmdSetSampleLocationsEXT", "instance");
+                commandDelegate(extendedHandle.handle, marshalledSampleLocationsInfo);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
     }
 }

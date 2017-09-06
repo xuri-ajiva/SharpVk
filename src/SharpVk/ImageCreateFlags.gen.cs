@@ -82,5 +82,10 @@ namespace SharpVk
         /// VK_IMAGE_VIEW_TYPE_2D or VK_IMAGE_VIEW_TYPE_2D_ARRAY.
         /// </summary>
         ImageCreate2dArrayCompatibleBitKhr = 1 << 5, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SampleLocationsCompatibleDepthBitExt = 1 << 12, 
     }
 }

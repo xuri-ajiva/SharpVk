@@ -171,7 +171,8 @@ namespace SharpVk.Generator.Generation
 
             return typeData.Pattern != TypePattern.Delegate
                     && param.Dimensions?.FirstOrDefault()?.Type != LenType.Expression
-                    && param.Type.FixedLength.Type == FixedLengthType.None;
+                    && param.Type.FixedLength.Type == FixedLengthType.None
+                    && !typeData.Name.EndsWith("Info");
         }
 
         private MemberDefinition GetPublicMember(MemberDeclaration member)

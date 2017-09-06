@@ -150,5 +150,30 @@ namespace SharpVk.Multivendor
                 Interop.HeapUtil.FreeAll();
             }
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The PhysicalDevice handle to extend.
+        /// </param>
+        public static unsafe SharpVk.Multivendor.MultisampleProperties GetMultisampleProperties(this SharpVk.PhysicalDevice extendedHandle, SharpVk.SampleCountFlags samples)
+        {
+            try
+            {
+                SharpVk.Multivendor.MultisampleProperties result = default(SharpVk.Multivendor.MultisampleProperties);
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Multivendor.MultisampleProperties marshalledMultisampleProperties = default(SharpVk.Interop.Multivendor.MultisampleProperties);
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Multivendor.VkPhysicalDeviceGetMultisamplePropertiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkPhysicalDeviceGetMultisamplePropertiesDelegate>("vkGetPhysicalDeviceMultisamplePropertiesEXT", "instance");
+                commandDelegate(extendedHandle.handle, samples, &marshalledMultisampleProperties);
+                result = SharpVk.Multivendor.MultisampleProperties.MarshalFrom(&marshalledMultisampleProperties);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
     }
 }

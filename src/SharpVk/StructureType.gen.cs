@@ -497,6 +497,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        AcquireNextImageInfoKhx = 1000060010, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         DeviceGroupPresentCapabilitiesKhx = 1000060007, 
         
         /// <summary>
@@ -508,11 +513,6 @@ namespace SharpVk
         /// 
         /// </summary>
         BindImageMemorySwapchainInfoKhx = 1000060009, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        AcquireNextImageInfoKhx = 1000060010, 
         
         /// <summary>
         /// 
@@ -877,6 +877,31 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        SampleLocationsInfoExt = 1000143000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        RenderPassSampleLocationsBeginInfoExt = 1000143001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PipelineSampleLocationsStateCreateInfoExt = 1000143002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceSampleLocationsPropertiesExt = 1000143003, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        MultisamplePropertiesExt = 1000143004, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         BufferMemoryRequirementsInfo2Khr = 1000146000, 
         
         /// <summary>
@@ -923,5 +948,15 @@ namespace SharpVk
         /// 
         /// </summary>
         PipelineCoverageModulationStateCreateInfoNv = 1000152000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ValidationCacheCreateInfoExt = 1000160000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ShaderModuleValidationCacheCreateInfoExt = 1000160001, 
     }
 }

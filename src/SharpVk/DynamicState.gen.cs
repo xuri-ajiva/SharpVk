@@ -125,5 +125,10 @@ namespace SharpVk
         /// 
         /// </summary>
         DiscardRectangleExt = 1000099000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SampleLocationsExt = 1000143000, 
     }
 }
