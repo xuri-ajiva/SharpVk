@@ -45,6 +45,11 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.Interop.BufferView RawHandle => this.handle;
+        
+        /// <summary>
         /// Destroy a buffer view object.
         /// </summary>
         /// <param name="allocator">

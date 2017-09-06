@@ -45,6 +45,11 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.Interop.Khronos.DisplayMode RawHandle => this.handle;
+        
+        /// <summary>
         /// Query capabilities of a mode and plane combination.
         /// </summary>
         public unsafe SharpVk.Khronos.DisplayPlaneCapabilities GetDisplayPlaneCapabilities(uint planeIndex)

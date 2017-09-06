@@ -45,6 +45,11 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.Interop.PipelineCache RawHandle => this.handle;
+        
+        /// <summary>
         /// Destroy a pipeline cache object.
         /// </summary>
         /// <param name="allocator">

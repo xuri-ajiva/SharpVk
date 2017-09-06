@@ -40,5 +40,10 @@ namespace SharpVk.Khronos
             this.handle = handle;
             this.commandCache = null;
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.Interop.Khronos.Display RawHandle => this.handle;
     }
 }

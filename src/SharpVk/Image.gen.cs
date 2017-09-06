@@ -45,6 +45,11 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.Interop.Image RawHandle => this.handle;
+        
+        /// <summary>
         /// Returns the memory requirements for specified Vulkan object.
         /// </summary>
         public unsafe SharpVk.MemoryRequirements GetMemoryRequirements()

@@ -45,6 +45,11 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.Interop.DescriptorPool RawHandle => this.handle;
+        
+        /// <summary>
         /// Destroy a descriptor pool object.
         /// </summary>
         /// <param name="allocator">

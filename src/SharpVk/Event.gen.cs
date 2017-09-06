@@ -45,6 +45,11 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.Interop.Event RawHandle => this.handle;
+        
+        /// <summary>
         /// Destroy an event object.
         /// </summary>
         /// <param name="allocator">

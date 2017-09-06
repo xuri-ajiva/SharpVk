@@ -45,6 +45,11 @@ namespace SharpVk.NVidia.Experimental
         }
         
         /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.Interop.NVidia.Experimental.ObjectTable RawHandle => this.handle;
+        
+        /// <summary>
         /// Destroy a object table.
         /// </summary>
         /// <param name="allocator">

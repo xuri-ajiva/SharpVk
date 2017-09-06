@@ -45,6 +45,11 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.Interop.QueryPool RawHandle => this.handle;
+        
+        /// <summary>
         /// Destroy a query pool object.
         /// </summary>
         /// <param name="allocator">

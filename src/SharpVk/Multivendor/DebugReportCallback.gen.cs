@@ -45,6 +45,11 @@ namespace SharpVk.Multivendor
         }
         
         /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.Interop.Multivendor.DebugReportCallback RawHandle => this.handle;
+        
+        /// <summary>
         /// Destroy a debug report callback object.
         /// </summary>
         /// <param name="allocator">

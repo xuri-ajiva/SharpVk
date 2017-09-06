@@ -45,6 +45,11 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.Interop.Semaphore RawHandle => this.handle;
+        
+        /// <summary>
         /// Destroy a semaphore object.
         /// </summary>
         /// <param name="allocator">

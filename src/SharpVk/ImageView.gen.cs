@@ -45,6 +45,11 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.Interop.ImageView RawHandle => this.handle;
+        
+        /// <summary>
         /// Destroy an image view object.
         /// </summary>
         /// <param name="allocator">

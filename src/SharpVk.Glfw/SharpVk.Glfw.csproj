@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <Version>0.4.0-dev3</Version>
+    <Authors>FacticiusVir</Authors>
+    <Company />
+    <Product />
+    <Description>GLFW3 Bindings for C#</Description>
+    <Copyright>Copyright 2017 Andrew Armstrong/FacticiusVir</Copyright>
+    <PackageTags>Vulkan SharpVk Glfw 3D</PackageTags>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <DocumentationFile>bin\Release\netstandard1.3\SharpVk.Glfw.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <DocumentationFile>bin\Debug\netstandard1.3\SharpVk.Glfw.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SharpVk\SharpVk.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="glfw3.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

@@ -43,6 +43,11 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.Interop.Instance RawHandle => this.handle;
+        
+        /// <summary>
         /// Create a new Vulkan instance.
         /// </summary>
         /// <param name="flags">

@@ -43,5 +43,10 @@ namespace SharpVk
             this.parent = parent;
             this.commandCache = parent.commandCache;
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.Interop.DescriptorSet RawHandle => this.handle;
     }
 }

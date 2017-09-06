@@ -46,6 +46,11 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.Interop.Device RawHandle => this.handle;
+        
+        /// <summary>
         /// Return a function pointer for a command.
         /// </summary>
         public unsafe IntPtr GetProcedureAddress(string name)

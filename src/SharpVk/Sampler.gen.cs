@@ -45,6 +45,11 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.Interop.Sampler RawHandle => this.handle;
+        
+        /// <summary>
         /// Destroy a sampler object.
         /// </summary>
         /// <param name="allocator">

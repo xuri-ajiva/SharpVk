@@ -45,6 +45,11 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.Interop.Khronos.Swapchain RawHandle => this.handle;
+        
+        /// <summary>
         /// Destroy a swapchain object.
         /// </summary>
         /// <param name="allocator">

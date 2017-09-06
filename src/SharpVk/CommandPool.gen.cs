@@ -45,6 +45,11 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.Interop.CommandPool RawHandle => this.handle;
+        
+        /// <summary>
         /// Destroy a command pool object.
         /// </summary>
         /// <param name="allocator">

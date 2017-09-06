@@ -45,6 +45,11 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.Interop.DescriptorSetLayout RawHandle => this.handle;
+        
+        /// <summary>
         /// Destroy a descriptor set layout object.
         /// </summary>
         /// <param name="allocator">

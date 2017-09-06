@@ -45,6 +45,11 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.Interop.PipelineLayout RawHandle => this.handle;
+        
+        /// <summary>
         /// Destroy a pipeline layout object.
         /// </summary>
         /// <param name="allocator">

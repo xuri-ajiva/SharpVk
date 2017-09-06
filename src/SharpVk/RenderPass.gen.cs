@@ -45,6 +45,11 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.Interop.RenderPass RawHandle => this.handle;
+        
+        /// <summary>
         /// Destroy a render pass object.
         /// </summary>
         /// <param name="allocator">

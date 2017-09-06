@@ -45,6 +45,11 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.Interop.CommandBuffer RawHandle => this.handle;
+        
+        /// <summary>
         /// Start recording a command buffer.
         /// </summary>
         /// <param name="flags">

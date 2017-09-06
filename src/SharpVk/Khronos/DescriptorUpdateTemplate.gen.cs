@@ -48,6 +48,11 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.Interop.Khronos.DescriptorUpdateTemplate RawHandle => this.handle;
+        
+        /// <summary>
         /// Destroy a descriptor update template object.
         /// </summary>
         /// <param name="allocator">

@@ -45,6 +45,11 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.Interop.Fence RawHandle => this.handle;
+        
+        /// <summary>
         /// Destroy a fence object.
         /// </summary>
         /// <param name="allocator">

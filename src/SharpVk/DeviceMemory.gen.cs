@@ -45,6 +45,11 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.Interop.DeviceMemory RawHandle => this.handle;
+        
+        /// <summary>
         /// Free GPU memory.
         /// </summary>
         /// <param name="allocator">

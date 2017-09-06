@@ -45,6 +45,11 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.Interop.Framebuffer RawHandle => this.handle;
+        
+        /// <summary>
         /// Destroy a framebuffer object.
         /// </summary>
         /// <param name="allocator">

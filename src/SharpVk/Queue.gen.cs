@@ -45,6 +45,11 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.Interop.Queue RawHandle => this.handle;
+        
+        /// <summary>
         /// Submits a sequence of semaphores or command buffers to a queue.
         /// </summary>
         public unsafe void Submit(ArrayProxy<SharpVk.SubmitInfo>? submits, SharpVk.Fence fence)

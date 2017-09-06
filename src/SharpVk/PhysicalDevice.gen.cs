@@ -45,6 +45,11 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.Interop.PhysicalDevice RawHandle => this.handle;
+        
+        /// <summary>
         /// Returns properties of a physical device.
         /// </summary>
         public unsafe SharpVk.PhysicalDeviceProperties GetProperties()

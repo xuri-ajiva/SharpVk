@@ -45,6 +45,11 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.Interop.ShaderModule RawHandle => this.handle;
+        
+        /// <summary>
         /// Destroy a shader module module.
         /// </summary>
         /// <param name="allocator">

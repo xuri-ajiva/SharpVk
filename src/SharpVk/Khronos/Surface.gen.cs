@@ -45,6 +45,11 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.Interop.Khronos.Surface RawHandle => this.handle;
+        
+        /// <summary>
         /// Destroy a SurfaceKHR object.
         /// </summary>
         /// <param name="allocator">
