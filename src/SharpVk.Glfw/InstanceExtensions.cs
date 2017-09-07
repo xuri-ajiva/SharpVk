@@ -15,7 +15,7 @@ namespace SharpVk.Glfw
         /// <returns></returns>
         public unsafe static Surface CreateGlfw3Surface(this Instance instance, WindowHandle windowHandle)
         {
-            Result result = Glfw3.glfwCreateWindowSurface(instance.RawHandle, windowHandle, null, out ulong surfaceHandle);
+            Result result = Glfw3.CreateWindowSurface(instance.RawHandle, windowHandle, null, out ulong surfaceHandle);
 
             if (SharpVkException.IsError(result))
             {
@@ -33,7 +33,7 @@ namespace SharpVk.Glfw
         /// <returns></returns>
         public unsafe static Surface CreateGlfw3Surface(this Instance instance, Window window)
         {
-            Result result = Glfw3.glfwCreateWindowSurface(instance.RawHandle, window.handle, null, out ulong surfaceHandle);
+            Result result = Glfw3.CreateWindowSurface(instance.RawHandle, window.handle, null, out ulong surfaceHandle);
 
             if (SharpVkException.IsError(result))
             {

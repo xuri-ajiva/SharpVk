@@ -14,6 +14,6 @@ namespace SharpVk.Glfw
             this.handle = Glfw3.CreateWindow(width, height, title, IntPtr.Zero, IntPtr.Zero);
         }
 
-        public bool ShouldClose => Glfw3.glfwWindowShouldClose(this.handle);
+        public bool ShouldClose => Glfw3.WindowShouldClose(this.handle);
     }
 }

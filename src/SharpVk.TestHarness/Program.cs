@@ -26,7 +26,7 @@ namespace SharpVk.TestHarness
 
             var features = physicalDevice.GetFeatures();
 
-            uint hostVisibleMemory = physicalDevice.GetMemoryProperties().MemoryTypes.Select((x, index) => (x, (uint)index)).First(x => x.Item1.PropertyFlags.HasFlag(MemoryPropertyFlags.HostVisible | MemoryPropertyFlags.HostCoherent)).Item2;
+            uint hostVisibleMemory = physicalDevice.GetMemoryProperties().MemoryTypes.Select((x, index) => (Type: x, Index: (uint)index)).First(x => x.Type.PropertyFlags.HasFlag(MemoryPropertyFlags.HostVisible | MemoryPropertyFlags.HostCoherent)).Index;
 
             var device = physicalDevice.CreateDevice(
                 new DeviceQueueCreateInfo
