@@ -22,52 +22,36 @@
 
 // This file was automatically generated and should not be edited directly.
 
-namespace SharpVk
+namespace SharpVk.Khronos
 {
     /// <summary>
-    /// Bitmask specifying which aspects of an image are included in a view.
+    /// 
     /// </summary>
-    [System.Flags]
-    public enum ImageAspectFlags
+    public enum SamplerYcbcrModelConversion
     {
         /// <summary>
         /// 
         /// </summary>
-        None = 0, 
+        RgbIdentity = 0, 
         
         /// <summary>
         /// 
         /// </summary>
-        Color = 1 << 0, 
+        YcbcrIdentity = 1, 
         
         /// <summary>
         /// 
         /// </summary>
-        Depth = 1 << 1, 
+        Ycbcr709 = 2, 
         
         /// <summary>
         /// 
         /// </summary>
-        Stencil = 1 << 2, 
+        Ycbcr601 = 3, 
         
         /// <summary>
         /// 
         /// </summary>
-        Metadata = 1 << 3, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Plane0BitKhr = 1 << 4, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Plane1BitKhr = 1 << 5, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Plane2BitKhr = 1 << 6, 
+        Ycbcr2020 = 4, 
     }
 }

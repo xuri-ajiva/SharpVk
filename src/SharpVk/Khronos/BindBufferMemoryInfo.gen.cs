@@ -25,7 +25,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace SharpVk.Khronos.Experimental
+namespace SharpVk.Khronos
 {
     /// <summary>
     /// Structure specifying how to bind a buffer to memory.
@@ -64,38 +64,15 @@ namespace SharpVk.Khronos.Experimental
         }
         
         /// <summary>
-        /// An array of device indices.
-        /// </summary>
-        public uint[] DeviceIndices
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
         /// 
         /// </summary>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.Experimental.BindBufferMemoryInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.BindBufferMemoryInfo* pointer)
         {
-            pointer->SType = StructureType.BindBufferMemoryInfoKhx;
+            pointer->SType = StructureType.BindBufferMemoryInfoKhr;
             pointer->Next = null;
             pointer->Buffer = this.Buffer?.handle ?? default(SharpVk.Interop.Buffer);
             pointer->Memory = this.Memory?.handle ?? default(SharpVk.Interop.DeviceMemory);
             pointer->MemoryOffset = this.MemoryOffset;
-            pointer->DeviceIndexCount = (uint)(Interop.HeapUtil.GetLength(this.DeviceIndices));
-            if (this.DeviceIndices != null)
-            {
-                var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(this.DeviceIndices.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.DeviceIndices.Length); index++)
-                {
-                    fieldPointer[index] = this.DeviceIndices[index];
-                }
-                pointer->DeviceIndices = fieldPointer;
-            }
-            else
-            {
-                pointer->DeviceIndices = null;
-            }
         }
     }
 }

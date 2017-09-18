@@ -22,52 +22,57 @@
 
 // This file was automatically generated and should not be edited directly.
 
-namespace SharpVk
+using System;
+using System.Runtime.InteropServices;
+
+namespace SharpVk.Khronos
 {
     /// <summary>
-    /// Bitmask specifying which aspects of an image are included in a view.
+    /// Structure specifying how to bind an image to memory.
     /// </summary>
-    [System.Flags]
-    public enum ImageAspectFlags
+    [StructLayout(LayoutKind.Sequential)]
+    public struct BindImageMemoryInfo
     {
         /// <summary>
-        /// 
+        /// The image to be attached to memory.
         /// </summary>
-        None = 0, 
+        public SharpVk.Image Image
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// DeviceMemory object describing the device memory to attach.
+        /// </summary>
+        public SharpVk.DeviceMemory Memory
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// The start offset of the region of memory which is to be bound to
+        /// the image. If SFRRectCount is zero, the number of bytes returned in
+        /// the MemoryRequirements::size member in memory, starting from
+        /// memoryOffset bytes, will be bound to the specified image.
+        /// </summary>
+        public DeviceSize MemoryOffset
+        {
+            get;
+            set;
+        }
         
         /// <summary>
         /// 
         /// </summary>
-        Color = 1 << 0, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Depth = 1 << 1, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Stencil = 1 << 2, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Metadata = 1 << 3, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Plane0BitKhr = 1 << 4, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Plane1BitKhr = 1 << 5, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Plane2BitKhr = 1 << 6, 
+        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.BindImageMemoryInfo* pointer)
+        {
+            pointer->SType = StructureType.BindImageMemoryInfoKhr;
+            pointer->Next = null;
+            pointer->Image = this.Image?.handle ?? default(SharpVk.Interop.Image);
+            pointer->Memory = this.Memory?.handle ?? default(SharpVk.Interop.DeviceMemory);
+            pointer->MemoryOffset = this.MemoryOffset;
+        }
     }
 }

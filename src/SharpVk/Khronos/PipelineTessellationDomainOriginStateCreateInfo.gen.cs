@@ -23,11 +23,33 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
+using System.Runtime.InteropServices;
 
-namespace SharpVk.Interop.Khronos.Experimental
+namespace SharpVk.Khronos
 {
     /// <summary>
     /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceBindBufferMemory2Delegate(SharpVk.Interop.Device device, uint bindInfoCount, SharpVk.Interop.Khronos.Experimental.BindBufferMemoryInfo* bindInfos);
+    [StructLayout(LayoutKind.Sequential)]
+    public struct PipelineTessellationDomainOriginStateCreateInfo
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.Khronos.TessellationDomainOrigin DomainOrigin
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PipelineTessellationDomainOriginStateCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.PipelineTessellationDomainOriginStateCreateInfoKhr;
+            pointer->Next = null;
+            pointer->DomainOrigin = this.DomainOrigin;
+        }
+    }
 }

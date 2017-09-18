@@ -86,6 +86,26 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        BlockTexelViewCompatibleBitKhr = 1 << 7, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ExtendedUsageBitKhr = 1 << 8, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         SampleLocationsCompatibleDepthBitExt = 1 << 12, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DisjointBitKhr = 1 << 9, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        AliasBitKhr = 1 << 10, 
     }
 }

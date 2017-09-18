@@ -28,41 +28,11 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos.Experimental
 {
     /// <summary>
-    /// Structure specifying how to bind an image to memory.
+    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct BindImageMemoryInfo
+    public struct BindBufferMemoryDeviceGroupInfo
     {
-        /// <summary>
-        /// The image to be attached to memory.
-        /// </summary>
-        public SharpVk.Image Image
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// DeviceMemory object describing the device memory to attach.
-        /// </summary>
-        public SharpVk.DeviceMemory Memory
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// The start offset of the region of memory which is to be bound to
-        /// the image. If SFRRectCount is zero, the number of bytes returned in
-        /// the MemoryRequirements::size member in memory, starting from
-        /// memoryOffset bytes, will be bound to the specified image.
-        /// </summary>
-        public DeviceSize MemoryOffset
-        {
-            get;
-            set;
-        }
-        
         /// <summary>
         /// An array of device indices.
         /// </summary>
@@ -73,25 +43,12 @@ namespace SharpVk.Khronos.Experimental
         }
         
         /// <summary>
-        /// An array of rectangles describing which regions of the image are
-        /// attached to each instance of memory.
-        /// </summary>
-        public SharpVk.Rect2D[] SFRRects
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
         /// 
         /// </summary>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.Experimental.BindImageMemoryInfo* pointer)
+        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.Experimental.BindBufferMemoryDeviceGroupInfo* pointer)
         {
-            pointer->SType = StructureType.BindImageMemoryInfoKhx;
+            pointer->SType = StructureType.BindBufferMemoryDeviceGroupInfoKhx;
             pointer->Next = null;
-            pointer->Image = this.Image?.handle ?? default(SharpVk.Interop.Image);
-            pointer->Memory = this.Memory?.handle ?? default(SharpVk.Interop.DeviceMemory);
-            pointer->MemoryOffset = this.MemoryOffset;
             pointer->DeviceIndexCount = (uint)(Interop.HeapUtil.GetLength(this.DeviceIndices));
             if (this.DeviceIndices != null)
             {
@@ -105,20 +62,6 @@ namespace SharpVk.Khronos.Experimental
             else
             {
                 pointer->DeviceIndices = null;
-            }
-            pointer->SFRRectCount = (uint)(Interop.HeapUtil.GetLength(this.SFRRects));
-            if (this.SFRRects != null)
-            {
-                var fieldPointer = (SharpVk.Rect2D*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Rect2D>(this.SFRRects.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.SFRRects.Length); index++)
-                {
-                    fieldPointer[index] = this.SFRRects[index];
-                }
-                pointer->SFRRects = fieldPointer;
-            }
-            else
-            {
-                pointer->SFRRects = null;
             }
         }
     }

@@ -22,52 +22,44 @@
 
 // This file was automatically generated and should not be edited directly.
 
-namespace SharpVk
+using System;
+using System.Runtime.InteropServices;
+
+namespace SharpVk.Khronos
 {
     /// <summary>
-    /// Bitmask specifying which aspects of an image are included in a view.
+    /// 
     /// </summary>
-    [System.Flags]
-    public enum ImageAspectFlags
+    [StructLayout(LayoutKind.Sequential)]
+    public struct PhysicalDeviceSamplerYcbcrConversionFeatures
     {
         /// <summary>
         /// 
         /// </summary>
-        None = 0, 
+        public bool SamplerYcbcrConversion
+        {
+            get;
+            set;
+        }
         
         /// <summary>
         /// 
         /// </summary>
-        Color = 1 << 0, 
+        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PhysicalDeviceSamplerYcbcrConversionFeatures* pointer)
+        {
+            pointer->SType = StructureType.PhysicalDeviceSamplerYcbcrConversionFeaturesKhr;
+            pointer->Next = null;
+            pointer->SamplerYcbcrConversion = this.SamplerYcbcrConversion;
+        }
         
         /// <summary>
         /// 
         /// </summary>
-        Depth = 1 << 1, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Stencil = 1 << 2, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Metadata = 1 << 3, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Plane0BitKhr = 1 << 4, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Plane1BitKhr = 1 << 5, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Plane2BitKhr = 1 << 6, 
+        internal static unsafe PhysicalDeviceSamplerYcbcrConversionFeatures MarshalFrom(SharpVk.Interop.Khronos.PhysicalDeviceSamplerYcbcrConversionFeatures* pointer)
+        {
+            PhysicalDeviceSamplerYcbcrConversionFeatures result = default(PhysicalDeviceSamplerYcbcrConversionFeatures);
+            result.SamplerYcbcrConversion = pointer->SamplerYcbcrConversion;
+            return result;
+        }
     }
 }

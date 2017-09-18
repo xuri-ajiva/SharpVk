@@ -25,66 +25,43 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace SharpVk
+namespace SharpVk.Interop.Khronos.Experimental
 {
     /// <summary>
-    /// Structure specifying stencil operation state.
+    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct StencilOpState
+    public unsafe struct BindImageMemoryDeviceGroupInfo
     {
         /// <summary>
-        /// 
+        /// The type of this structure.
         /// </summary>
-        public StencilOpState(SharpVk.StencilOp failOp, SharpVk.StencilOp passOp, SharpVk.StencilOp depthFailOp, SharpVk.CompareOp compareOp, uint compareMask, uint writeMask, uint reference)
-        {
-            this.FailOp = failOp;
-            this.PassOp = passOp;
-            this.DepthFailOp = depthFailOp;
-            this.CompareOp = compareOp;
-            this.CompareMask = compareMask;
-            this.WriteMask = writeMask;
-            this.Reference = reference;
-        }
+        public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// The action performed on samples that fail the stencil test.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public SharpVk.StencilOp FailOp; 
+        public void* Next; 
         
         /// <summary>
-        /// The action performed on samples that pass both the depth and
-        /// stencil tests.
+        /// The number of elements in DeviceIndices.
         /// </summary>
-        public SharpVk.StencilOp PassOp; 
+        public uint DeviceIndexCount; 
         
         /// <summary>
-        /// The action performed on samples that pass the stencil test and fail
-        /// the depth test.
+        /// An array of device indices.
         /// </summary>
-        public SharpVk.StencilOp DepthFailOp; 
+        public uint* DeviceIndices; 
         
         /// <summary>
-        /// The comparison operator used in the stencil test.
+        /// The number of elements in SFRRects.
         /// </summary>
-        public SharpVk.CompareOp CompareOp; 
+        public uint SFRRectCount; 
         
         /// <summary>
-        /// Selects the bits of the unsigned integer stencil values
-        /// participating in the stencil test.
+        /// An array of rectangles describing which regions of the image are
+        /// attached to each instance of memory.
         /// </summary>
-        public uint CompareMask; 
-        
-        /// <summary>
-        /// Selects the bits of the unsigned integer stencil values updated by
-        /// the stencil test in the stencil framebuffer attachment.
-        /// </summary>
-        public uint WriteMask; 
-        
-        /// <summary>
-        /// An integer reference value that is used in the unsigned stencil
-        /// comparison.
-        /// </summary>
-        public uint Reference; 
+        public SharpVk.Rect2D* SFRRects; 
     }
 }

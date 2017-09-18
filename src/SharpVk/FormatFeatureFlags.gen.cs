@@ -119,5 +119,40 @@ namespace SharpVk
         /// 
         /// </summary>
         SampledImageFilterMinmaxBitExt = 1 << 16, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        MidpointChromaSamplesBitKhr = 1 << 17, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SampledImageYcbcrConversionLinearFilterBitKhr = 1 << 18, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SampledImageYcbcrConversionSeparateReconstructionFilterBitKhr = 1 << 19, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SampledImageYcbcrConversionChromaReconstructionExplicitBitKhr = 1 << 20, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SampledImageYcbcrConversionChromaReconstructionExplicitForceableBitKhr = 1 << 21, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DisjointBitKhr = 1 << 22, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        CositedChromaSamplesBitKhr = 1 << 23, 
     }
 }

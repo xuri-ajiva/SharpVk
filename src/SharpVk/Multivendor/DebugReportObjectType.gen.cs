@@ -203,5 +203,10 @@ namespace SharpVk.Multivendor
         /// 
         /// </summary>
         DescriptorUpdateTemplateKhrKhr = 1000085000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SamplerYcbcrConversionKhrKhr = 1000156000, 
     }
 }

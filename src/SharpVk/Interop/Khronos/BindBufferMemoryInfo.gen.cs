@@ -22,52 +22,43 @@
 
 // This file was automatically generated and should not be edited directly.
 
-namespace SharpVk
+using System;
+using System.Runtime.InteropServices;
+
+namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// Bitmask specifying which aspects of an image are included in a view.
+    /// 
     /// </summary>
-    [System.Flags]
-    public enum ImageAspectFlags
+    [StructLayout(LayoutKind.Sequential)]
+    public unsafe struct BindBufferMemoryInfo
     {
         /// <summary>
-        /// 
+        /// The type of this structure.
         /// </summary>
-        None = 0, 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// Null or an extension-specific structure.
         /// </summary>
-        Color = 1 << 0, 
+        public void* Next; 
         
         /// <summary>
-        /// 
+        /// The buffer to be attached to memory.
         /// </summary>
-        Depth = 1 << 1, 
+        public SharpVk.Interop.Buffer Buffer; 
         
         /// <summary>
-        /// 
+        /// A DeviceMemory object describing the device memory to attach.
         /// </summary>
-        Stencil = 1 << 2, 
+        public SharpVk.Interop.DeviceMemory Memory; 
         
         /// <summary>
-        /// 
+        /// The start offset of the region of memory which is to be bound to
+        /// the buffer. The number of bytes returned in the
+        /// MemoryRequirements.size member in memory, starting from
+        /// memoryOffset bytes, will be bound to the specified buffer.
         /// </summary>
-        Metadata = 1 << 3, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Plane0BitKhr = 1 << 4, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Plane1BitKhr = 1 << 5, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Plane2BitKhr = 1 << 6, 
+        public DeviceSize MemoryOffset; 
     }
 }

@@ -25,66 +25,101 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace SharpVk
+namespace SharpVk.Khronos
 {
     /// <summary>
-    /// Structure specifying stencil operation state.
+    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct StencilOpState
+    public struct SamplerYcbcrConversionCreateInfo
     {
         /// <summary>
         /// 
         /// </summary>
-        public StencilOpState(SharpVk.StencilOp failOp, SharpVk.StencilOp passOp, SharpVk.StencilOp depthFailOp, SharpVk.CompareOp compareOp, uint compareMask, uint writeMask, uint reference)
+        public SharpVk.Format Format
         {
-            this.FailOp = failOp;
-            this.PassOp = passOp;
-            this.DepthFailOp = depthFailOp;
-            this.CompareOp = compareOp;
-            this.CompareMask = compareMask;
-            this.WriteMask = writeMask;
-            this.Reference = reference;
+            get;
+            set;
         }
         
         /// <summary>
-        /// The action performed on samples that fail the stencil test.
+        /// 
         /// </summary>
-        public SharpVk.StencilOp FailOp; 
+        public SharpVk.Khronos.SamplerYcbcrModelConversion YcbcrModel
+        {
+            get;
+            set;
+        }
         
         /// <summary>
-        /// The action performed on samples that pass both the depth and
-        /// stencil tests.
+        /// 
         /// </summary>
-        public SharpVk.StencilOp PassOp; 
+        public SharpVk.Khronos.SamplerYcbcrRange YcbcrRange
+        {
+            get;
+            set;
+        }
         
         /// <summary>
-        /// The action performed on samples that pass the stencil test and fail
-        /// the depth test.
+        /// 
         /// </summary>
-        public SharpVk.StencilOp DepthFailOp; 
+        public SharpVk.ComponentMapping Components
+        {
+            get;
+            set;
+        }
         
         /// <summary>
-        /// The comparison operator used in the stencil test.
+        /// 
         /// </summary>
-        public SharpVk.CompareOp CompareOp; 
+        public SharpVk.Khronos.ChromaLocation XChromaOffset
+        {
+            get;
+            set;
+        }
         
         /// <summary>
-        /// Selects the bits of the unsigned integer stencil values
-        /// participating in the stencil test.
+        /// 
         /// </summary>
-        public uint CompareMask; 
+        public SharpVk.Khronos.ChromaLocation YChromaOffset
+        {
+            get;
+            set;
+        }
         
         /// <summary>
-        /// Selects the bits of the unsigned integer stencil values updated by
-        /// the stencil test in the stencil framebuffer attachment.
+        /// 
         /// </summary>
-        public uint WriteMask; 
+        public SharpVk.Filter ChromaFilter
+        {
+            get;
+            set;
+        }
         
         /// <summary>
-        /// An integer reference value that is used in the unsigned stencil
-        /// comparison.
+        /// 
         /// </summary>
-        public uint Reference; 
+        public bool ForceExplicitReconstruction
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.SamplerYcbcrConversionCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.SamplerYcbcrConversionCreateInfoKhr;
+            pointer->Next = null;
+            pointer->Format = this.Format;
+            pointer->YcbcrModel = this.YcbcrModel;
+            pointer->YcbcrRange = this.YcbcrRange;
+            pointer->Components = this.Components;
+            pointer->XChromaOffset = this.XChromaOffset;
+            pointer->YChromaOffset = this.YChromaOffset;
+            pointer->ChromaFilter = this.ChromaFilter;
+            pointer->ForceExplicitReconstruction = this.ForceExplicitReconstruction;
+        }
     }
 }

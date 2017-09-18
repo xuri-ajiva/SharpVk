@@ -31,7 +31,7 @@ namespace SharpVk.Interop.Khronos.Experimental
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct BindBufferMemoryInfo
+    public unsafe struct BindBufferMemoryDeviceGroupInfo
     {
         /// <summary>
         /// The type of this structure.
@@ -42,24 +42,6 @@ namespace SharpVk.Interop.Khronos.Experimental
         /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
-        
-        /// <summary>
-        /// The buffer to be attached to memory.
-        /// </summary>
-        public SharpVk.Interop.Buffer Buffer; 
-        
-        /// <summary>
-        /// A DeviceMemory object describing the device memory to attach.
-        /// </summary>
-        public SharpVk.Interop.DeviceMemory Memory; 
-        
-        /// <summary>
-        /// The start offset of the region of memory which is to be bound to
-        /// the buffer. The number of bytes returned in the
-        /// MemoryRequirements.size member in memory, starting from
-        /// memoryOffset bytes, will be bound to the specified buffer.
-        /// </summary>
-        public DeviceSize MemoryOffset; 
         
         /// <summary>
         /// The number of elements in DeviceIndices.

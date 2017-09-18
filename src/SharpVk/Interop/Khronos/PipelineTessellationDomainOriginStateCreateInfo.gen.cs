@@ -22,52 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-namespace SharpVk
+using System;
+using System.Runtime.InteropServices;
+
+namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// Bitmask specifying which aspects of an image are included in a view.
+    /// 
     /// </summary>
-    [System.Flags]
-    public enum ImageAspectFlags
+    [StructLayout(LayoutKind.Sequential)]
+    public unsafe struct PipelineTessellationDomainOriginStateCreateInfo
     {
         /// <summary>
         /// 
         /// </summary>
-        None = 0, 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
         /// </summary>
-        Color = 1 << 0, 
+        public void* Next; 
         
         /// <summary>
         /// 
         /// </summary>
-        Depth = 1 << 1, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Stencil = 1 << 2, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Metadata = 1 << 3, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Plane0BitKhr = 1 << 4, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Plane1BitKhr = 1 << 5, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Plane2BitKhr = 1 << 6, 
+        public SharpVk.Khronos.TessellationDomainOrigin DomainOrigin; 
     }
 }

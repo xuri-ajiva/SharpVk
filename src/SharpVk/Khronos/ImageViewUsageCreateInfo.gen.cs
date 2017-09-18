@@ -23,11 +23,33 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
+using System.Runtime.InteropServices;
 
-namespace SharpVk.Interop.Khronos.Experimental
+namespace SharpVk.Khronos
 {
     /// <summary>
     /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceBindImageMemory2Delegate(SharpVk.Interop.Device device, uint bindInfoCount, SharpVk.Interop.Khronos.Experimental.BindImageMemoryInfo* bindInfos);
+    [StructLayout(LayoutKind.Sequential)]
+    public struct ImageViewUsageCreateInfo
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.ImageUsageFlags Usage
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.ImageViewUsageCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.ImageViewUsageCreateInfoKhr;
+            pointer->Next = null;
+            pointer->Usage = this.Usage;
+        }
+    }
 }

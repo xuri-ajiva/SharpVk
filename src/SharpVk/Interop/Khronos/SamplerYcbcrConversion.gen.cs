@@ -22,52 +22,36 @@
 
 // This file was automatically generated and should not be edited directly.
 
-namespace SharpVk
+using System;
+
+namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// Bitmask specifying which aspects of an image are included in a view.
+    /// 
     /// </summary>
-    [System.Flags]
-    public enum ImageAspectFlags
+    public struct SamplerYcbcrConversion
     {
-        /// <summary>
-        /// 
-        /// </summary>
-        None = 0, 
+        internal ulong handle; 
         
         /// <summary>
         /// 
         /// </summary>
-        Color = 1 << 0, 
+        public SamplerYcbcrConversion(ulong handle)
+        {
+            this.handle = handle;
+        }
         
         /// <summary>
         /// 
         /// </summary>
-        Depth = 1 << 1, 
+        public SamplerYcbcrConversion Null => new SamplerYcbcrConversion(default(ulong));
         
         /// <summary>
         /// 
         /// </summary>
-        Stencil = 1 << 2, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Metadata = 1 << 3, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Plane0BitKhr = 1 << 4, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Plane1BitKhr = 1 << 5, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Plane2BitKhr = 1 << 6, 
+        public ulong ToUInt64()
+        {
+            return this.handle;
+        }
     }
 }

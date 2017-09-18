@@ -25,7 +25,7 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace SharpVk.Interop.Khronos.Experimental
+namespace SharpVk.Interop.Khronos
 {
     /// <summary>
     /// 
@@ -60,26 +60,5 @@ namespace SharpVk.Interop.Khronos.Experimental
         /// memoryOffset bytes, will be bound to the specified image.
         /// </summary>
         public DeviceSize MemoryOffset; 
-        
-        /// <summary>
-        /// The number of elements in DeviceIndices.
-        /// </summary>
-        public uint DeviceIndexCount; 
-        
-        /// <summary>
-        /// An array of device indices.
-        /// </summary>
-        public uint* DeviceIndices; 
-        
-        /// <summary>
-        /// The number of elements in SFRRects.
-        /// </summary>
-        public uint SFRRectCount; 
-        
-        /// <summary>
-        /// An array of rectangles describing which regions of the image are
-        /// attached to each instance of memory.
-        /// </summary>
-        public SharpVk.Rect2D* SFRRects; 
     }
 }

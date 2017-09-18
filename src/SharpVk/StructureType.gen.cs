@@ -467,16 +467,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        BindBufferMemoryInfoKhx = 1000060001, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        BindImageMemoryInfoKhx = 1000060002, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
         DeviceGroupRenderPassBeginInfoKhx = 1000060003, 
         
         /// <summary>
@@ -498,6 +488,16 @@ namespace SharpVk
         /// 
         /// </summary>
         AcquireNextImageInfoKhx = 1000060010, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        BindBufferMemoryDeviceGroupInfoKhx = 1000060013, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        BindImageMemoryDeviceGroupInfoKhx = 1000060014, 
         
         /// <summary>
         /// 
@@ -827,6 +827,26 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        PhysicalDevicePointClippingPropertiesKhr = 1000117000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        RenderPassInputAttachmentAspectCreateInfoKhr = 1000117001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ImageViewUsageCreateInfoKhr = 1000117002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PipelineTessellationDomainOriginStateCreateInfoKhr = 1000117003, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         PhysicalDeviceSurfaceInfo2Khr = 1000119000, 
         
         /// <summary>
@@ -927,6 +947,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        ImageFormatListCreateInfoKhr = 1000147000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         PhysicalDeviceBlendOperationAdvancedFeaturesExt = 1000148000, 
         
         /// <summary>
@@ -948,6 +973,46 @@ namespace SharpVk
         /// 
         /// </summary>
         PipelineCoverageModulationStateCreateInfoNv = 1000152000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SamplerYcbcrConversionCreateInfoKhr = 1000156000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SamplerYcbcrConversionInfoKhr = 1000156001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        BindImagePlaneMemoryInfoKhr = 1000156002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ImagePlaneMemoryRequirementsInfoKhr = 1000156003, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceSamplerYcbcrConversionFeaturesKhr = 1000156004, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SamplerYcbcrConversionImageFormatPropertiesKhr = 1000156005, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        BindBufferMemoryInfoKhr = 1000157000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        BindImageMemoryInfoKhr = 1000157001, 
         
         /// <summary>
         /// 

@@ -202,6 +202,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        SamplerYcbcrConversionKhr = 1000156000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         ValidationCacheExt = 1000160000, 
     }
 }

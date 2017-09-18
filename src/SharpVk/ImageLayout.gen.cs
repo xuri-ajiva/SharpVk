@@ -129,5 +129,15 @@ namespace SharpVk
         /// 
         /// </summary>
         SharedPresentKhr = 1000111000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DepthReadOnlyStencilAttachmentOptimalKhr = 1000117000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DepthAttachmentStencilReadOnlyOptimalKhr = 1000117001, 
     }
 }

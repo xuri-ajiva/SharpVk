@@ -22,52 +22,47 @@
 
 // This file was automatically generated and should not be edited directly.
 
-namespace SharpVk
+using System;
+using System.Runtime.InteropServices;
+
+namespace SharpVk.Khronos
 {
     /// <summary>
-    /// Bitmask specifying which aspects of an image are included in a view.
+    /// 
     /// </summary>
-    [System.Flags]
-    public enum ImageAspectFlags
+    [StructLayout(LayoutKind.Sequential)]
+    public struct RenderPassInputAttachmentAspectCreateInfo
     {
         /// <summary>
         /// 
         /// </summary>
-        None = 0, 
+        public SharpVk.Khronos.InputAttachmentAspectReference[] AspectReferences
+        {
+            get;
+            set;
+        }
         
         /// <summary>
         /// 
         /// </summary>
-        Color = 1 << 0, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Depth = 1 << 1, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Stencil = 1 << 2, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Metadata = 1 << 3, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Plane0BitKhr = 1 << 4, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Plane1BitKhr = 1 << 5, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Plane2BitKhr = 1 << 6, 
+        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.RenderPassInputAttachmentAspectCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.RenderPassInputAttachmentAspectCreateInfoKhr;
+            pointer->Next = null;
+            pointer->AspectReferenceCount = (uint)(Interop.HeapUtil.GetLength(this.AspectReferences));
+            if (this.AspectReferences != null)
+            {
+                var fieldPointer = (SharpVk.Khronos.InputAttachmentAspectReference*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Khronos.InputAttachmentAspectReference>(this.AspectReferences.Length).ToPointer());
+                for(int index = 0; index < (uint)(this.AspectReferences.Length); index++)
+                {
+                    fieldPointer[index] = this.AspectReferences[index];
+                }
+                pointer->AspectReferences = fieldPointer;
+            }
+            else
+            {
+                pointer->AspectReferences = null;
+            }
+        }
     }
 }
