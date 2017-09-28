@@ -755,7 +755,7 @@ namespace SharpVk.Interop
         /// 
         /// </summary>
         [DllImport(VulkanDll, CallingConvention = CallingConvention.Winapi)]
-        public static extern void vkCmdClearColorImage(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.Interop.Image image, SharpVk.ImageLayout imageLayout, SharpVk.Interop.ClearColorValue* color, uint rangeCount, SharpVk.ImageSubresourceRange* ranges);
+        public static extern void vkCmdClearColorImage(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.Interop.Image image, SharpVk.ImageLayout imageLayout, SharpVk.ClearColorValue* color, uint rangeCount, SharpVk.ImageSubresourceRange* ranges);
         
         /// <summary>
         /// 

@@ -652,7 +652,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        D3d12FenceSubmitInfo = 1000078002, 
+        D3D12FenceSubmitInfo = 1000078002, 
         
         /// <summary>
         /// 

@@ -53,21 +53,21 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        D3d11Texture = 1 << 3, 
+        D3D11Texture = 1 << 3, 
         
         /// <summary>
         /// 
         /// </summary>
-        D3d11TextureKmt = 1 << 4, 
+        D3D11TextureKmt = 1 << 4, 
         
         /// <summary>
         /// 
         /// </summary>
-        D3d12Heap = 1 << 5, 
+        D3D12Heap = 1 << 5, 
         
         /// <summary>
         /// 
         /// </summary>
-        D3d12Resource = 1 << 6, 
+        D3D12Resource = 1 << 6, 
     }
 }

@@ -19,15 +19,21 @@ namespace SharpVk.Generator.Specification
                                                         .Text();
 
         private static readonly Parser<string> keywordPart = Parse.String("2D")
-                                                        .Or(Parse.String("3D"))
-                                                        .Or(Parse.String("ETC2"))
-                                                        .Or(Parse.String("ASTC_LDR"))
-                                                        .Or(Parse.String("BC"))
-                                                        .Or(Parse.String("ID"))
-                                                        .Or(Parse.String("UUID"))
-                                                        .Or(Parse.String("RandR"))
-                                                        .Or(Parse.String("SMPTE2086"))
-                                                        .Text();
+                                                                    .Or(Parse.String("3D"))
+                                                                    .Or(Parse.String("ETC2"))
+                                                                    .Or(Parse.String("ASTC_LDR"))
+                                                                    .Or(Parse.String("BC"))
+                                                                    .Or(Parse.String("ID"))
+                                                                    .Or(Parse.String("UUID"))
+                                                                    .Or(Parse.String("RandR"))
+                                                                    .Or(Parse.String("SMPTE2086"))
+                                                                    .Text();
+
+        private static readonly Parser<string> alphanumericPair = from head in Parse.Letter
+                                                                  from tail in Parse.Digit.AtLeastOnce()
+                                                                  select new string(new[] { head }.Concat(tail).ToArray()).ToLower();
+
+        private static readonly Parser<IEnumerable<string>> alphanumericSequence = alphanumericPair.AtLeastOnce();
 
         private static readonly Parser<IEnumerable<string>> nameParts = from first in firstPart
                                                                         from parts in keywordPart
@@ -97,7 +103,48 @@ namespace SharpVk.Generator.Specification
                 fieldNameParts = fieldNameParts.Take(fieldNameParts.Count() - 1);
             }
 
-            return fieldNameParts;
+            var fieldNameSubParts = fieldNameParts.SelectMany(x =>
+            {
+                var parseResult = alphanumericSequence.TryParse(x);
+
+                if (parseResult.WasSuccessful)
+                {
+                    return parseResult.Value;
+                }
+                else
+                {
+                    if (x.EndsWith("pack16") && x.Length > 6)
+                    {
+                        return new[] { x.Substring(0, x.Length - 6), "pack16" };
+                    }
+                    else
+                    {
+                        switch (x)
+                        {
+                            case "uint":
+                                return new[] { "u", "int" };
+                            case "unorm":
+                                return new[] { "u", "norm" };
+                            case "uscaled":
+                                return new[] { "u", "scaled" };
+                            case "sint":
+                                return new[] { "s", "int" };
+                            case "snorm":
+                                return new[] { "s", "norm" };
+                            case "sscaled":
+                                return new[] { "s", "scaled" };
+                            case "ufloat":
+                                return new[] { "u", "float" };
+                            case "sfloat":
+                                return new[] { "s", "float" };
+                            default:
+                                return new[] { x };
+                        }
+                    }
+                }
+            });
+
+            return fieldNameSubParts;
         }
 
         private static string[] SplitSnakeCase(string value)

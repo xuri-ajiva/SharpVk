@@ -53,7 +53,7 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        D3d12Fence = 1 << 3, 
+        D3D12Fence = 1 << 3, 
         
         /// <summary>
         /// 

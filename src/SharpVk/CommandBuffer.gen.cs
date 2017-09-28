@@ -802,9 +802,9 @@ namespace SharpVk
         {
             try
             {
-                SharpVk.Interop.ClearColorValue* marshalledColor = default(SharpVk.Interop.ClearColorValue*);
+                SharpVk.ClearColorValue* marshalledColor = default(SharpVk.ClearColorValue*);
                 SharpVk.ImageSubresourceRange* marshalledRanges = default(SharpVk.ImageSubresourceRange*);
-                marshalledColor = (SharpVk.Interop.ClearColorValue*)(Interop.HeapUtil.Allocate<SharpVk.Interop.ClearColorValue>());
+                marshalledColor = (SharpVk.ClearColorValue*)(Interop.HeapUtil.Allocate<SharpVk.ClearColorValue>());
                 *marshalledColor = color;
                 if (ranges.IsNull())
                 {

@@ -47,7 +47,7 @@ namespace SharpVk.Generator.Generation
 
             if (pattern != TypePattern.Primitive)
             {
-                if (isInterop && typeData[type.VkName].RequiresMarshalling)
+                if (isInterop && pattern != TypePattern.Union && typeData[type.VkName].RequiresMarshalling)
                 {
                     baseName = "Interop." + baseName;
                 }

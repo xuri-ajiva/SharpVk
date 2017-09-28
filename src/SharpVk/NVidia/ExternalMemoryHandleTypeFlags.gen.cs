@@ -48,11 +48,11 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
-        D3d11Image = 1 << 2, 
+        D3D11Image = 1 << 2, 
         
         /// <summary>
         /// 
         /// </summary>
-        D3d11ImageKmt = 1 << 3, 
+        D3D11ImageKmt = 1 << 3, 
     }
 }
