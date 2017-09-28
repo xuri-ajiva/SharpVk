@@ -802,7 +802,10 @@ namespace SharpVk
         {
             try
             {
+                SharpVk.Interop.ClearColorValue* marshalledColor = default(SharpVk.Interop.ClearColorValue*);
                 SharpVk.ImageSubresourceRange* marshalledRanges = default(SharpVk.ImageSubresourceRange*);
+                marshalledColor = (SharpVk.Interop.ClearColorValue*)(Interop.HeapUtil.Allocate<SharpVk.Interop.ClearColorValue>());
+                *marshalledColor = color;
                 if (ranges.IsNull())
                 {
                     marshalledRanges = null;
@@ -824,7 +827,7 @@ namespace SharpVk
                         marshalledRanges = fieldPointer;
                     }
                 }
-                Interop.Commands.vkCmdClearColorImage(this.handle, image?.handle ?? default(SharpVk.Interop.Image), imageLayout, default(SharpVk.Interop.ClearColorValue*), (uint)(Interop.HeapUtil.GetLength(ranges)), marshalledRanges);
+                Interop.Commands.vkCmdClearColorImage(this.handle, image?.handle ?? default(SharpVk.Interop.Image), imageLayout, marshalledColor, (uint)(Interop.HeapUtil.GetLength(ranges)), marshalledRanges);
             }
             finally
             {
@@ -1356,14 +1359,14 @@ namespace SharpVk
                     if (clearValues.Value.Contents == ProxyContents.Single)
                     {
                         marshalledRenderPassBegin->ClearValues = (SharpVk.ClearValue*)(Interop.HeapUtil.Allocate<SharpVk.ClearValue>());
-                        *(SharpVk.ClearValue*)(marshalledRenderPassBegin->ClearValues) = default(SharpVk.ClearValue);
+                        *(SharpVk.ClearValue*)(marshalledRenderPassBegin->ClearValues) = clearValues.Value.GetSingleValue();
                     }
                     else
                     {
                         var fieldPointer = (SharpVk.ClearValue*)(Interop.HeapUtil.AllocateAndClear<SharpVk.ClearValue>(Interop.HeapUtil.GetLength(clearValues.Value)).ToPointer());
                         for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(clearValues.Value)); index++)
                         {
-                            fieldPointer[index] = default(SharpVk.ClearValue);
+                            fieldPointer[index] = clearValues.Value[index];
                         }
                         marshalledRenderPassBegin->ClearValues = fieldPointer;
                     }

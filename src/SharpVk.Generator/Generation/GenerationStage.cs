@@ -18,7 +18,6 @@ namespace SharpVk.Generator.Generation
             services.AddSingleton<IMarshalValueRule, MarshalVoidPointerValue>();
             services.AddSingleton<IMarshalValueRule, MarshalDelegateValue>();
             services.AddSingleton<IMarshalValueRule, MarshalHandleValue>();
-            services.AddSingleton<IMarshalValueRule, MarshalUnionValue>();
             services.AddSingleton<IMarshalValueRule, MarshalStructValue>();
             services.AddSingleton<IMarshalValueRule, MarshalPointerValue>();
             services.AddSingleton<IMarshalValueRule, MarshalSimpleValue>();
