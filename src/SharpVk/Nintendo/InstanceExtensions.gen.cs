@@ -59,7 +59,7 @@ namespace SharpVk.Nintendo
                 SharpVk.Interop.Khronos.Surface marshalledSurface = default(SharpVk.Interop.Khronos.Surface);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.Nintendo.ViSurfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Nintendo.ViSurfaceCreateInfo>());
-                marshalledCreateInfo->SType = StructureType.ViSurfaceCreateInfoNn;
+                marshalledCreateInfo->SType = StructureType.ViSurfaceCreateInfo;
                 marshalledCreateInfo->Next = null;
                 if (flags != null)
                 {

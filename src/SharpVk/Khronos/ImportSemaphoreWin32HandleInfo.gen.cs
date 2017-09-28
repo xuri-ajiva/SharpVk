@@ -83,7 +83,7 @@ namespace SharpVk.Khronos
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.ImportSemaphoreWin32HandleInfo* pointer)
         {
-            pointer->SType = StructureType.ImportSemaphoreWin32HandleInfoKhr;
+            pointer->SType = StructureType.ImportSemaphoreWin32HandleInfo;
             pointer->Next = null;
             pointer->Semaphore = this.Semaphore?.handle ?? default(SharpVk.Interop.Semaphore);
             if (this.Flags != null)

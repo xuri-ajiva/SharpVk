@@ -72,7 +72,7 @@ namespace SharpVk.Khronos.Experimental
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.Experimental.RenderPassMultiviewCreateInfo* pointer)
         {
-            pointer->SType = StructureType.RenderPassMultiviewCreateInfoKhx;
+            pointer->SType = StructureType.RenderPassMultiviewCreateInfo;
             pointer->Next = null;
             pointer->SubpassCount = (uint)(Interop.HeapUtil.GetLength(this.ViewMasks));
             if (this.ViewMasks != null)

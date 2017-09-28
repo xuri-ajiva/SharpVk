@@ -74,7 +74,7 @@ namespace SharpVk.Khronos
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PhysicalDevice16BitStorageFeatures* pointer)
         {
-            pointer->SType = StructureType.PhysicalDevice16bitStorageFeaturesKhr;
+            pointer->SType = StructureType.PhysicalDevice16bitStorageFeatures;
             pointer->Next = null;
             pointer->StorageBuffer16BitAccess = this.StorageBuffer16BitAccess;
             pointer->UniformAndStorageBuffer16BitAccess = this.UniformAndStorageBuffer16BitAccess;

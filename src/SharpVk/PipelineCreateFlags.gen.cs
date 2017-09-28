@@ -58,12 +58,12 @@ namespace SharpVk
         /// Specifies that any shader input variables decorated as DeviceIndex
         /// will be assigned values as if they were decorated as ViewIndex.
         /// </summary>
-        ViewIndexFromDeviceIndexBitKhx = 1 << 3, 
+        ViewIndexFromDeviceIndex = 1 << 3, 
         
         /// <summary>
         /// Specifies that a compute pipeline can be used with
         /// flink:vkCmdDispatchBaseKHX with a non-zero base workgroup.
         /// </summary>
-        DispatchBaseKhx = 1 << 4, 
+        DispatchBase = 1 << 4, 
     }
 }

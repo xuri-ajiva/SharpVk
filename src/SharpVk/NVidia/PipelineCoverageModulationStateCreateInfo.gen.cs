@@ -74,7 +74,7 @@ namespace SharpVk.NVidia
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PipelineCoverageModulationStateCreateInfo* pointer)
         {
-            pointer->SType = StructureType.PipelineCoverageModulationStateCreateInfoNv;
+            pointer->SType = StructureType.PipelineCoverageModulationStateCreateInfo;
             pointer->Next = null;
             if (this.Flags != null)
             {

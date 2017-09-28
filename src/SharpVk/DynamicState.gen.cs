@@ -119,16 +119,16 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        ViewportWScalingNv = 1000087000, 
+        ViewportWScaling = 1000087000, 
         
         /// <summary>
         /// 
         /// </summary>
-        DiscardRectangleExt = 1000099000, 
+        DiscardRectangle = 1000099000, 
         
         /// <summary>
         /// 
         /// </summary>
-        SampleLocationsExt = 1000143000, 
+        SampleLocations = 1000143000, 
     }
 }

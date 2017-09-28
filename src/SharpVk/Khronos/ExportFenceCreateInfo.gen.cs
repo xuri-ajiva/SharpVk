@@ -47,7 +47,7 @@ namespace SharpVk.Khronos
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.ExportFenceCreateInfo* pointer)
         {
-            pointer->SType = StructureType.ExportFenceCreateInfoKhr;
+            pointer->SType = StructureType.ExportFenceCreateInfo;
             pointer->Next = null;
             if (this.HandleTypes != null)
             {

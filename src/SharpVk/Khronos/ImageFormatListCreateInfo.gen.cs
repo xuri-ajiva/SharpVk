@@ -47,7 +47,7 @@ namespace SharpVk.Khronos
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.ImageFormatListCreateInfo* pointer)
         {
-            pointer->SType = StructureType.ImageFormatListCreateInfoKhr;
+            pointer->SType = StructureType.ImageFormatListCreateInfo;
             pointer->Next = null;
             pointer->ViewFormatCount = (uint)(Interop.HeapUtil.GetLength(this.ViewFormats));
             if (this.ViewFormats != null)

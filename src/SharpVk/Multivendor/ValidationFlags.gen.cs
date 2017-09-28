@@ -48,7 +48,7 @@ namespace SharpVk.Multivendor
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.ValidationFlags* pointer)
         {
-            pointer->SType = StructureType.ValidationFlagsExt;
+            pointer->SType = StructureType.ValidationFlags;
             pointer->Next = null;
             pointer->DisabledValidationCheckCount = (uint)(Interop.HeapUtil.GetLength(this.DisabledValidationChecks));
             if (this.DisabledValidationChecks != null)

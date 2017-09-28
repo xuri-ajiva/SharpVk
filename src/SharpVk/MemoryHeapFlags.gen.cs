@@ -43,6 +43,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        MultiInstanceBitKhx = 1 << 1, 
+        MultiInstance = 1 << 1, 
     }
 }

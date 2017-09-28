@@ -47,7 +47,7 @@ namespace SharpVk.Khronos
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PhysicalDeviceExternalImageFormatInfo* pointer)
         {
-            pointer->SType = StructureType.PhysicalDeviceExternalImageFormatInfoKhr;
+            pointer->SType = StructureType.PhysicalDeviceExternalImageFormatInfo;
             pointer->Next = null;
             if (this.HandleType != null)
             {

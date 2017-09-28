@@ -45,7 +45,7 @@ namespace SharpVk.Khronos
                 SharpVk.Interop.Khronos.PresentInfo* marshalledPresentInfo = default(SharpVk.Interop.Khronos.PresentInfo*);
                 commandCache = extendedHandle.commandCache;
                 marshalledPresentInfo = (SharpVk.Interop.Khronos.PresentInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.PresentInfo>());
-                marshalledPresentInfo->SType = StructureType.PresentInfoKhr;
+                marshalledPresentInfo->SType = StructureType.PresentInfo;
                 marshalledPresentInfo->Next = null;
                 marshalledPresentInfo->WaitSemaphoreCount = (uint)(Interop.HeapUtil.GetLength(waitSemaphores));
                 if (waitSemaphores.IsNull())

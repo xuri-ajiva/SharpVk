@@ -47,7 +47,7 @@ namespace SharpVk.Multivendor
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.DeviceEventInfo* pointer)
         {
-            pointer->SType = StructureType.DeviceEventInfoExt;
+            pointer->SType = StructureType.DeviceEventInfo;
             pointer->Next = null;
             pointer->DeviceEvent = this.DeviceEvent;
         }

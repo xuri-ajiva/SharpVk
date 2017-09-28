@@ -47,7 +47,7 @@ namespace SharpVk.Multivendor
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.DisplayPowerInfo* pointer)
         {
-            pointer->SType = StructureType.DisplayPowerInfoExt;
+            pointer->SType = StructureType.DisplayPowerInfo;
             pointer->Next = null;
             pointer->PowerState = this.PowerState;
         }

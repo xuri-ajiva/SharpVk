@@ -47,7 +47,7 @@ namespace SharpVk.Khronos
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PhysicalDeviceSurfaceInfo2* pointer)
         {
-            pointer->SType = StructureType.PhysicalDeviceSurfaceInfo2Khr;
+            pointer->SType = StructureType.PhysicalDeviceSurfaceInfo2;
             pointer->Next = null;
             pointer->Surface = this.Surface?.handle ?? default(SharpVk.Interop.Khronos.Surface);
         }

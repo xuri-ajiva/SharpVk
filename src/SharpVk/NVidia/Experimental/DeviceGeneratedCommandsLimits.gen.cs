@@ -88,7 +88,7 @@ namespace SharpVk.NVidia.Experimental
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.Experimental.DeviceGeneratedCommandsLimits* pointer)
         {
-            pointer->SType = StructureType.DeviceGeneratedCommandsLimitsNvx;
+            pointer->SType = StructureType.DeviceGeneratedCommandsLimits;
             pointer->Next = null;
             pointer->MaxIndirectCommandsLayoutTokenCount = this.MaxIndirectCommandsLayoutTokenCount;
             pointer->MaxObjectEntryCounts = this.MaxObjectEntryCounts;

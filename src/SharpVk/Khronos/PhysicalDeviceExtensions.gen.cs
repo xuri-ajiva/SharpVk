@@ -237,7 +237,7 @@ namespace SharpVk.Khronos
                 SharpVk.Interop.Khronos.DisplayMode marshalledMode = default(SharpVk.Interop.Khronos.DisplayMode);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.Khronos.DisplayModeCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.DisplayModeCreateInfo>());
-                marshalledCreateInfo->SType = StructureType.DisplayModeCreateInfoKhr;
+                marshalledCreateInfo->SType = StructureType.DisplayModeCreateInfo;
                 marshalledCreateInfo->Next = null;
                 if (flags != null)
                 {

@@ -56,7 +56,7 @@ namespace SharpVk.NVidia
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PipelineViewportSwizzleStateCreateInfo* pointer)
         {
-            pointer->SType = StructureType.PipelineViewportSwizzleStateCreateInfoNv;
+            pointer->SType = StructureType.PipelineViewportSwizzleStateCreateInfo;
             pointer->Next = null;
             if (this.Flags != null)
             {

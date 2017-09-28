@@ -74,7 +74,7 @@ namespace SharpVk.Multivendor
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PipelineDiscardRectangleStateCreateInfo* pointer)
         {
-            pointer->SType = StructureType.PipelineDiscardRectangleStateCreateInfoExt;
+            pointer->SType = StructureType.PipelineDiscardRectangleStateCreateInfo;
             pointer->Next = null;
             if (this.Flags != null)
             {

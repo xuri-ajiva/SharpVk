@@ -60,7 +60,7 @@ namespace SharpVk.MoltenVk
                 SharpVk.Interop.Khronos.Surface marshalledSurface = default(SharpVk.Interop.Khronos.Surface);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.MoltenVk.IOSSurfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.MoltenVk.IOSSurfaceCreateInfo>());
-                marshalledCreateInfo->SType = StructureType.IosSurfaceCreateInfoMvk;
+                marshalledCreateInfo->SType = StructureType.IosSurfaceCreateInfo;
                 marshalledCreateInfo->Next = null;
                 if (flags != null)
                 {
@@ -124,7 +124,7 @@ namespace SharpVk.MoltenVk
                 SharpVk.Interop.Khronos.Surface marshalledSurface = default(SharpVk.Interop.Khronos.Surface);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.MoltenVk.MacOSSurfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.MoltenVk.MacOSSurfaceCreateInfo>());
-                marshalledCreateInfo->SType = StructureType.MacosSurfaceCreateInfoMvk;
+                marshalledCreateInfo->SType = StructureType.MacosSurfaceCreateInfo;
                 marshalledCreateInfo->Next = null;
                 if (flags != null)
                 {

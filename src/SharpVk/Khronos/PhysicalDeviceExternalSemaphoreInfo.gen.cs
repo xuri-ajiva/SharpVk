@@ -47,7 +47,7 @@ namespace SharpVk.Khronos
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PhysicalDeviceExternalSemaphoreInfo* pointer)
         {
-            pointer->SType = StructureType.PhysicalDeviceExternalSemaphoreInfoKhr;
+            pointer->SType = StructureType.PhysicalDeviceExternalSemaphoreInfo;
             pointer->Next = null;
             pointer->HandleType = this.HandleType;
         }

@@ -54,6 +54,6 @@ namespace SharpVk
         /// This is only valid if the "VK_KHR_mirror_clamp_to_edge" extension
         /// is enabled.
         /// </summary>
-        MirrorClampToEdgeKhr = 4, 
+        MirrorClampToEdge = 4, 
     }
 }

@@ -48,7 +48,7 @@ namespace SharpVk.Khronos.Experimental
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.Experimental.ImageSwapchainCreateInfo* pointer)
         {
-            pointer->SType = StructureType.ImageSwapchainCreateInfoKhx;
+            pointer->SType = StructureType.ImageSwapchainCreateInfo;
             pointer->Next = null;
             pointer->Swapchain = this.Swapchain?.handle ?? default(SharpVk.Interop.Khronos.Swapchain);
         }

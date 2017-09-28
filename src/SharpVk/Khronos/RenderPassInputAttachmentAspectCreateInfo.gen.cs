@@ -47,7 +47,7 @@ namespace SharpVk.Khronos
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.RenderPassInputAttachmentAspectCreateInfo* pointer)
         {
-            pointer->SType = StructureType.RenderPassInputAttachmentAspectCreateInfoKhr;
+            pointer->SType = StructureType.RenderPassInputAttachmentAspectCreateInfo;
             pointer->Next = null;
             pointer->AspectReferenceCount = (uint)(Interop.HeapUtil.GetLength(this.AspectReferences));
             if (this.AspectReferences != null)

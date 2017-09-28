@@ -47,7 +47,7 @@ namespace SharpVk.Khronos
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.ImagePlaneMemoryRequirementsInfo* pointer)
         {
-            pointer->SType = StructureType.ImagePlaneMemoryRequirementsInfoKhr;
+            pointer->SType = StructureType.ImagePlaneMemoryRequirementsInfo;
             pointer->Next = null;
             pointer->PlaneAspect = this.PlaneAspect;
         }

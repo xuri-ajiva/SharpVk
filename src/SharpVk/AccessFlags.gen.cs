@@ -148,17 +148,17 @@ namespace SharpVk
         /// <summary>
         /// Reads from Buffer inputs to CommandBuffer.ProcessCommands.
         /// </summary>
-        CommandProcessReadBitNvx = 1 << 17, 
+        CommandProcessRead = 1 << 17, 
         
         /// <summary>
         /// Writes to the target command buffer in
         /// CommandBuffer.ProcessCommands.
         /// </summary>
-        CommandProcessWriteBitNvx = 1 << 18, 
+        CommandProcessWrite = 1 << 18, 
         
         /// <summary>
         /// 
         /// </summary>
-        ColorAttachmentReadNoncoherentBitExt = 1 << 19, 
+        ColorAttachmentReadNoncoherent = 1 << 19, 
     }
 }

@@ -110,7 +110,7 @@ namespace SharpVk.Khronos
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.SamplerYcbcrConversionCreateInfo* pointer)
         {
-            pointer->SType = StructureType.SamplerYcbcrConversionCreateInfoKhr;
+            pointer->SType = StructureType.SamplerYcbcrConversionCreateInfo;
             pointer->Next = null;
             pointer->Format = this.Format;
             pointer->YcbcrModel = this.YcbcrModel;

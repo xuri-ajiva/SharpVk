@@ -48,7 +48,7 @@ namespace SharpVk.Multivendor
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.DisplayEventInfo* pointer)
         {
-            pointer->SType = StructureType.DisplayEventInfoExt;
+            pointer->SType = StructureType.DisplayEventInfo;
             pointer->Next = null;
             pointer->DisplayEvent = this.DisplayEvent;
         }

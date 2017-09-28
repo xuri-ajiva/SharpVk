@@ -58,16 +58,16 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        Plane0BitKhr = 1 << 4, 
+        Plane0 = 1 << 4, 
         
         /// <summary>
         /// 
         /// </summary>
-        Plane1BitKhr = 1 << 5, 
+        Plane1 = 1 << 5, 
         
         /// <summary>
         /// 
         /// </summary>
-        Plane2BitKhr = 1 << 6, 
+        Plane2 = 1 << 6, 
     }
 }

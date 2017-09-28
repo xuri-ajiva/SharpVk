@@ -47,7 +47,7 @@ namespace SharpVk.Multivendor
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.ShaderModuleValidationCacheCreateInfo* pointer)
         {
-            pointer->SType = StructureType.ShaderModuleValidationCacheCreateInfoExt;
+            pointer->SType = StructureType.ShaderModuleValidationCacheCreateInfo;
             pointer->Next = null;
             pointer->ValidationCache = this.ValidationCache?.handle ?? default(SharpVk.Interop.Multivendor.ValidationCache);
         }

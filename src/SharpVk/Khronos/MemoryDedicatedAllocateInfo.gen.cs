@@ -56,7 +56,7 @@ namespace SharpVk.Khronos
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.MemoryDedicatedAllocateInfo* pointer)
         {
-            pointer->SType = StructureType.MemoryDedicatedAllocateInfoKhr;
+            pointer->SType = StructureType.MemoryDedicatedAllocateInfo;
             pointer->Next = null;
             pointer->Image = this.Image?.handle ?? default(SharpVk.Interop.Image);
             pointer->Buffer = this.Buffer?.handle ?? default(SharpVk.Interop.Buffer);

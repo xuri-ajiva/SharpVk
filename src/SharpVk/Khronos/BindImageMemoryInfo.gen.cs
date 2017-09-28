@@ -68,7 +68,7 @@ namespace SharpVk.Khronos
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.BindImageMemoryInfo* pointer)
         {
-            pointer->SType = StructureType.BindImageMemoryInfoKhr;
+            pointer->SType = StructureType.BindImageMemoryInfo;
             pointer->Next = null;
             pointer->Image = this.Image?.handle ?? default(SharpVk.Interop.Image);
             pointer->Memory = this.Memory?.handle ?? default(SharpVk.Interop.DeviceMemory);

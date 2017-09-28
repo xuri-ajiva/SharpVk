@@ -66,7 +66,7 @@ namespace SharpVk.Khronos.Experimental
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.Experimental.PhysicalDeviceMultiviewFeatures* pointer)
         {
-            pointer->SType = StructureType.PhysicalDeviceMultiviewFeaturesKhx;
+            pointer->SType = StructureType.PhysicalDeviceMultiviewFeatures;
             pointer->Next = null;
             pointer->Multiview = this.Multiview;
             pointer->MultiviewGeometryShader = this.MultiviewGeometryShader;

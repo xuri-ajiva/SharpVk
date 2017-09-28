@@ -60,7 +60,7 @@ namespace SharpVk.Generator.Collation
                     Extension = extension,
                     Fields = this.DeclareFields(enumeration, false, enumLookup)
                 });
-                
+
                 services.AddSingleton(new TypeNameMapping
                 {
                     VkName = enumeration.VkName,
@@ -87,7 +87,7 @@ namespace SharpVk.Generator.Collation
                     IsFlags = true,
                     Fields = this.DeclareFields(enumeration, true, enumLookup)
                 });
-                
+
                 if (enumeration != null)
                 {
                     services.AddSingleton(new TypeNameMapping
@@ -122,9 +122,16 @@ namespace SharpVk.Generator.Collation
                     AddNoneField(result);
                 }
 
+                var fieldNameLookup = enumeration.Fields.Values.ToDictionary(x => x.VkName, x => this.nameFormatter.FormatName(enumeration, x, x.IsBitmask));
+                var fieldNameCount = fieldNameLookup.Values.GroupBy(x => x).ToDictionary(x => x.Key, x => x.Count());
+
                 foreach (var field in enumeration.Fields.Values)
                 {
-                    var name = this.nameFormatter.FormatName(enumeration, field, field.IsBitmask);
+                    var name = fieldNameLookup[field.VkName];
+                    if (fieldNameCount[name] > 1)
+                    {
+                        name += field.Extension;
+                    }
                     string value = field.Value;
 
                     if (field.IsBitmask)
@@ -136,6 +143,7 @@ namespace SharpVk.Generator.Collation
                     {
                         VkName = field.VkName,
                         Name = name,
+                        Extension = field.Extension,
                         Value = value
                     });
 

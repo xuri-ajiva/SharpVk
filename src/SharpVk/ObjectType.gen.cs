@@ -162,51 +162,51 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        SurfaceKhr = 1000000000, 
+        Surface = 1000000000, 
         
         /// <summary>
         /// 
         /// </summary>
-        SwapchainKhr = 1000001000, 
+        Swapchain = 1000001000, 
         
         /// <summary>
         /// 
         /// </summary>
-        DisplayKhr = 1000002000, 
+        Display = 1000002000, 
         
         /// <summary>
         /// 
         /// </summary>
-        DisplayModeKhr = 1000002001, 
+        DisplayMode = 1000002001, 
         
         /// <summary>
         /// 
         /// </summary>
-        DebugReportCallbackExt = 1000011000, 
+        DebugReportCallback = 1000011000, 
         
         /// <summary>
         /// 
         /// </summary>
-        DescriptorUpdateTemplateKhr = 1000085000, 
+        DescriptorUpdateTemplate = 1000085000, 
         
         /// <summary>
         /// 
         /// </summary>
-        ObjectTableNvx = 1000086000, 
+        ObjectTable = 1000086000, 
         
         /// <summary>
         /// 
         /// </summary>
-        IndirectCommandsLayoutNvx = 1000086001, 
+        IndirectCommandsLayout = 1000086001, 
         
         /// <summary>
         /// 
         /// </summary>
-        SamplerYcbcrConversionKhr = 1000156000, 
+        SamplerYcbcrConversion = 1000156000, 
         
         /// <summary>
         /// 
         /// </summary>
-        ValidationCacheExt = 1000160000, 
+        ValidationCache = 1000160000, 
     }
 }

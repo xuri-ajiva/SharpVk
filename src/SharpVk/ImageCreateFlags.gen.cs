@@ -75,37 +75,37 @@ namespace SharpVk
         /// into flink:vkBindImageMemory2KHX. This flag also has the effect of
         /// making the image use the standard sparse image block dimensions.
         /// </summary>
-        BindSfrBitKhx = 1 << 6, 
+        BindSfr = 1 << 6, 
         
         /// <summary>
         /// Indicates that the image can be used to create a ImageView of type
         /// VK_IMAGE_VIEW_TYPE_2D or VK_IMAGE_VIEW_TYPE_2D_ARRAY.
         /// </summary>
-        ImageCreate2dArrayCompatibleBitKhr = 1 << 5, 
+        ImageCreate2dArrayCompatible = 1 << 5, 
         
         /// <summary>
         /// 
         /// </summary>
-        BlockTexelViewCompatibleBitKhr = 1 << 7, 
+        BlockTexelViewCompatible = 1 << 7, 
         
         /// <summary>
         /// 
         /// </summary>
-        ExtendedUsageBitKhr = 1 << 8, 
+        ExtendedUsage = 1 << 8, 
         
         /// <summary>
         /// 
         /// </summary>
-        SampleLocationsCompatibleDepthBitExt = 1 << 12, 
+        SampleLocationsCompatibleDepth = 1 << 12, 
         
         /// <summary>
         /// 
         /// </summary>
-        DisjointBitKhr = 1 << 9, 
+        Disjoint = 1 << 9, 
         
         /// <summary>
         /// 
         /// </summary>
-        AliasBitKhr = 1 << 10, 
+        Alias = 1 << 10, 
     }
 }

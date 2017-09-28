@@ -47,6 +47,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        FillRectangleNv = 1000153000, 
+        FillRectangle = 1000153000, 
     }
 }

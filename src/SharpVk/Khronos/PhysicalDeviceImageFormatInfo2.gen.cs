@@ -85,7 +85,7 @@ namespace SharpVk.Khronos
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PhysicalDeviceImageFormatInfo2* pointer)
         {
-            pointer->SType = StructureType.PhysicalDeviceImageFormatInfo2Khr;
+            pointer->SType = StructureType.PhysicalDeviceImageFormatInfo2;
             pointer->Next = null;
             pointer->Format = this.Format;
             pointer->Type = this.Type;

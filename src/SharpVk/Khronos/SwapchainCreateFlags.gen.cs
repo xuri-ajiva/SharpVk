@@ -38,6 +38,6 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        BindSfrBitKhx = 1 << 0, 
+        BindSfr = 1 << 0, 
     }
 }

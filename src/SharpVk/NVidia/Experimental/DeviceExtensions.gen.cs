@@ -60,7 +60,7 @@ namespace SharpVk.NVidia.Experimental
                 SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayout marshalledIndirectCommandsLayout = default(SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayout);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayoutCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayoutCreateInfo>());
-                marshalledCreateInfo->SType = StructureType.IndirectCommandsLayoutCreateInfoNvx;
+                marshalledCreateInfo->SType = StructureType.IndirectCommandsLayoutCreateInfo;
                 marshalledCreateInfo->Next = null;
                 marshalledCreateInfo->PipelineBindPoint = pipelineBindPoint;
                 marshalledCreateInfo->Flags = flags;
@@ -156,7 +156,7 @@ namespace SharpVk.NVidia.Experimental
                 SharpVk.Interop.NVidia.Experimental.ObjectTable marshalledObjectTable = default(SharpVk.Interop.NVidia.Experimental.ObjectTable);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.NVidia.Experimental.ObjectTableCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.Experimental.ObjectTableCreateInfo>());
-                marshalledCreateInfo->SType = StructureType.ObjectTableCreateInfoNvx;
+                marshalledCreateInfo->SType = StructureType.ObjectTableCreateInfo;
                 marshalledCreateInfo->Next = null;
                 marshalledCreateInfo->ObjectCount = (uint)(Interop.HeapUtil.GetLength(objectEntryTypes));
                 if (objectEntryTypes.IsNull())

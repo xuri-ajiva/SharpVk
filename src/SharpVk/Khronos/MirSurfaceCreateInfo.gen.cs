@@ -66,7 +66,7 @@ namespace SharpVk.Khronos
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.MirSurfaceCreateInfo* pointer)
         {
-            pointer->SType = StructureType.MirSurfaceCreateInfoKhr;
+            pointer->SType = StructureType.MirSurfaceCreateInfo;
             pointer->Next = null;
             if (this.Flags != null)
             {

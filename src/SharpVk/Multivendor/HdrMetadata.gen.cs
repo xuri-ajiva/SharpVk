@@ -110,7 +110,7 @@ namespace SharpVk.Multivendor
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.HdrMetadata* pointer)
         {
-            pointer->SType = StructureType.HdrMetadataExt;
+            pointer->SType = StructureType.HdrMetadata;
             pointer->Next = null;
             pointer->DisplayPrimaryRed = this.DisplayPrimaryRed;
             pointer->DisplayPrimaryGreen = this.DisplayPrimaryGreen;

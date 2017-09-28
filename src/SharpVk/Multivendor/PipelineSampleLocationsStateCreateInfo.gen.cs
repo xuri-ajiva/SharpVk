@@ -56,7 +56,7 @@ namespace SharpVk.Multivendor
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PipelineSampleLocationsStateCreateInfo* pointer)
         {
-            pointer->SType = StructureType.PipelineSampleLocationsStateCreateInfoExt;
+            pointer->SType = StructureType.PipelineSampleLocationsStateCreateInfo;
             pointer->Next = null;
             pointer->SampleLocationsEnable = this.SampleLocationsEnable;
             this.SampleLocationsInfo.MarshalTo(&pointer->SampleLocationsInfo);

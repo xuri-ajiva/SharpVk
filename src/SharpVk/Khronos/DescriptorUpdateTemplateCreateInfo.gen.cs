@@ -124,7 +124,7 @@ namespace SharpVk.Khronos
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.DescriptorUpdateTemplateCreateInfo* pointer)
         {
-            pointer->SType = StructureType.DescriptorUpdateTemplateCreateInfoKhr;
+            pointer->SType = StructureType.DescriptorUpdateTemplateCreateInfo;
             pointer->Next = null;
             if (this.Flags != null)
             {

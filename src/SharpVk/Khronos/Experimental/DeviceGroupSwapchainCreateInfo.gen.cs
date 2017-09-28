@@ -47,7 +47,7 @@ namespace SharpVk.Khronos.Experimental
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.Experimental.DeviceGroupSwapchainCreateInfo* pointer)
         {
-            pointer->SType = StructureType.DeviceGroupSwapchainCreateInfoKhx;
+            pointer->SType = StructureType.DeviceGroupSwapchainCreateInfo;
             pointer->Next = null;
             pointer->Modes = this.Modes;
         }

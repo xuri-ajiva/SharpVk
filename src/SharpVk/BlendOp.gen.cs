@@ -57,231 +57,231 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        ZeroExt = 1000148000, 
+        Zero = 1000148000, 
         
         /// <summary>
         /// 
         /// </summary>
-        SourceExt = 1000148001, 
+        Source = 1000148001, 
         
         /// <summary>
         /// 
         /// </summary>
-        DestinationExt = 1000148002, 
+        Destination = 1000148002, 
         
         /// <summary>
         /// 
         /// </summary>
-        SourceOverExt = 1000148003, 
+        SourceOver = 1000148003, 
         
         /// <summary>
         /// 
         /// </summary>
-        DestinationOverExt = 1000148004, 
+        DestinationOver = 1000148004, 
         
         /// <summary>
         /// 
         /// </summary>
-        SourceInExt = 1000148005, 
+        SourceIn = 1000148005, 
         
         /// <summary>
         /// 
         /// </summary>
-        DestinationInExt = 1000148006, 
+        DestinationIn = 1000148006, 
         
         /// <summary>
         /// 
         /// </summary>
-        SourceOutExt = 1000148007, 
+        SourceOut = 1000148007, 
         
         /// <summary>
         /// 
         /// </summary>
-        DestinationOutExt = 1000148008, 
+        DestinationOut = 1000148008, 
         
         /// <summary>
         /// 
         /// </summary>
-        SourceAtopExt = 1000148009, 
+        SourceAtop = 1000148009, 
         
         /// <summary>
         /// 
         /// </summary>
-        DestinationAtopExt = 1000148010, 
+        DestinationAtop = 1000148010, 
         
         /// <summary>
         /// 
         /// </summary>
-        XorExt = 1000148011, 
+        Xor = 1000148011, 
         
         /// <summary>
         /// 
         /// </summary>
-        MultiplyExt = 1000148012, 
+        Multiply = 1000148012, 
         
         /// <summary>
         /// 
         /// </summary>
-        ScreenExt = 1000148013, 
+        Screen = 1000148013, 
         
         /// <summary>
         /// 
         /// </summary>
-        OverlayExt = 1000148014, 
+        Overlay = 1000148014, 
         
         /// <summary>
         /// 
         /// </summary>
-        DarkenExt = 1000148015, 
+        Darken = 1000148015, 
         
         /// <summary>
         /// 
         /// </summary>
-        LightenExt = 1000148016, 
+        Lighten = 1000148016, 
         
         /// <summary>
         /// 
         /// </summary>
-        ColordodgeExt = 1000148017, 
+        Colordodge = 1000148017, 
         
         /// <summary>
         /// 
         /// </summary>
-        ColorburnExt = 1000148018, 
+        Colorburn = 1000148018, 
         
         /// <summary>
         /// 
         /// </summary>
-        HardlightExt = 1000148019, 
+        Hardlight = 1000148019, 
         
         /// <summary>
         /// 
         /// </summary>
-        SoftlightExt = 1000148020, 
+        Softlight = 1000148020, 
         
         /// <summary>
         /// 
         /// </summary>
-        DifferenceExt = 1000148021, 
+        Difference = 1000148021, 
         
         /// <summary>
         /// 
         /// </summary>
-        ExclusionExt = 1000148022, 
+        Exclusion = 1000148022, 
         
         /// <summary>
         /// 
         /// </summary>
-        InvertExt = 1000148023, 
+        Invert = 1000148023, 
         
         /// <summary>
         /// 
         /// </summary>
-        InvertRgbExt = 1000148024, 
+        InvertRgb = 1000148024, 
         
         /// <summary>
         /// 
         /// </summary>
-        LineardodgeExt = 1000148025, 
+        Lineardodge = 1000148025, 
         
         /// <summary>
         /// 
         /// </summary>
-        LinearburnExt = 1000148026, 
+        Linearburn = 1000148026, 
         
         /// <summary>
         /// 
         /// </summary>
-        VividlightExt = 1000148027, 
+        Vividlight = 1000148027, 
         
         /// <summary>
         /// 
         /// </summary>
-        LinearlightExt = 1000148028, 
+        Linearlight = 1000148028, 
         
         /// <summary>
         /// 
         /// </summary>
-        PinlightExt = 1000148029, 
+        Pinlight = 1000148029, 
         
         /// <summary>
         /// 
         /// </summary>
-        HardmixExt = 1000148030, 
+        Hardmix = 1000148030, 
         
         /// <summary>
         /// 
         /// </summary>
-        HslHueExt = 1000148031, 
+        HslHue = 1000148031, 
         
         /// <summary>
         /// 
         /// </summary>
-        HslSaturationExt = 1000148032, 
+        HslSaturation = 1000148032, 
         
         /// <summary>
         /// 
         /// </summary>
-        HslColorExt = 1000148033, 
+        HslColor = 1000148033, 
         
         /// <summary>
         /// 
         /// </summary>
-        HslLuminosityExt = 1000148034, 
+        HslLuminosity = 1000148034, 
         
         /// <summary>
         /// 
         /// </summary>
-        PlusExt = 1000148035, 
+        Plus = 1000148035, 
         
         /// <summary>
         /// 
         /// </summary>
-        PlusClampedExt = 1000148036, 
+        PlusClamped = 1000148036, 
         
         /// <summary>
         /// 
         /// </summary>
-        PlusClampedAlphaExt = 1000148037, 
+        PlusClampedAlpha = 1000148037, 
         
         /// <summary>
         /// 
         /// </summary>
-        PlusDarkerExt = 1000148038, 
+        PlusDarker = 1000148038, 
         
         /// <summary>
         /// 
         /// </summary>
-        MinusExt = 1000148039, 
+        Minus = 1000148039, 
         
         /// <summary>
         /// 
         /// </summary>
-        MinusClampedExt = 1000148040, 
+        MinusClamped = 1000148040, 
         
         /// <summary>
         /// 
         /// </summary>
-        ContrastExt = 1000148041, 
+        Contrast = 1000148041, 
         
         /// <summary>
         /// 
         /// </summary>
-        InvertOvgExt = 1000148042, 
+        InvertOvg = 1000148042, 
         
         /// <summary>
         /// 
         /// </summary>
-        RedExt = 1000148043, 
+        Red = 1000148043, 
         
         /// <summary>
         /// 
         /// </summary>
-        GreenExt = 1000148044, 
+        Green = 1000148044, 
         
         /// <summary>
         /// 
         /// </summary>
-        BlueExt = 1000148045, 
+        Blue = 1000148045, 
     }
 }

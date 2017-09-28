@@ -57,7 +57,7 @@ namespace SharpVk.Multivendor
                 SharpVk.Interop.Multivendor.DebugReportCallback marshalledCallback = default(SharpVk.Interop.Multivendor.DebugReportCallback);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.Multivendor.DebugReportCallbackCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.DebugReportCallbackCreateInfo>());
-                marshalledCreateInfo->SType = StructureType.DebugReportCallbackCreateInfoExt;
+                marshalledCreateInfo->SType = StructureType.DebugReportCallbackCreateInfo;
                 marshalledCreateInfo->Next = null;
                 if (flags != null)
                 {

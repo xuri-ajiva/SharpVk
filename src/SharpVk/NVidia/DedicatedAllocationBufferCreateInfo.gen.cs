@@ -48,7 +48,7 @@ namespace SharpVk.NVidia
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.DedicatedAllocationBufferCreateInfo* pointer)
         {
-            pointer->SType = StructureType.DedicatedAllocationBufferCreateInfoNv;
+            pointer->SType = StructureType.DedicatedAllocationBufferCreateInfo;
             pointer->Next = null;
             pointer->DedicatedAllocation = this.DedicatedAllocation;
         }

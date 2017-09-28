@@ -123,21 +123,21 @@ namespace SharpVk
         /// and must be transitioned away from this layout after calling
         /// flink:vkAcquireNextImageKHR.
         /// </summary>
-        PresentSourceKhr = 1000001002, 
+        PresentSource = 1000001002, 
         
         /// <summary>
         /// 
         /// </summary>
-        SharedPresentKhr = 1000111000, 
+        SharedPresent = 1000111000, 
         
         /// <summary>
         /// 
         /// </summary>
-        DepthReadOnlyStencilAttachmentOptimalKhr = 1000117000, 
+        DepthReadOnlyStencilAttachmentOptimal = 1000117000, 
         
         /// <summary>
         /// 
         /// </summary>
-        DepthAttachmentStencilReadOnlyOptimalKhr = 1000117001, 
+        DepthAttachmentStencilReadOnlyOptimal = 1000117001, 
     }
 }

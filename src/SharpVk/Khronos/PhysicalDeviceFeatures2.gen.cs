@@ -49,7 +49,7 @@ namespace SharpVk.Khronos
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PhysicalDeviceFeatures2* pointer)
         {
-            pointer->SType = StructureType.PhysicalDeviceFeatures2Khr;
+            pointer->SType = StructureType.PhysicalDeviceFeatures2;
             pointer->Next = null;
             this.Features.MarshalTo(&pointer->Features);
         }

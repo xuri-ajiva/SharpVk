@@ -47,7 +47,7 @@ namespace SharpVk.Khronos.Experimental
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.Experimental.BindBufferMemoryDeviceGroupInfo* pointer)
         {
-            pointer->SType = StructureType.BindBufferMemoryDeviceGroupInfoKhx;
+            pointer->SType = StructureType.BindBufferMemoryDeviceGroupInfo;
             pointer->Next = null;
             pointer->DeviceIndexCount = (uint)(Interop.HeapUtil.GetLength(this.DeviceIndices));
             if (this.DeviceIndices != null)

@@ -56,7 +56,7 @@ namespace SharpVk.Khronos.Experimental
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.Experimental.MemoryAllocateFlagsInfo* pointer)
         {
-            pointer->SType = StructureType.MemoryAllocateFlagsInfoKhx;
+            pointer->SType = StructureType.MemoryAllocateFlagsInfo;
             pointer->Next = null;
             if (this.Flags != null)
             {

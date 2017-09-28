@@ -57,7 +57,7 @@ namespace SharpVk.Khronos.Experimental
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.Experimental.DeviceGroupPresentInfo* pointer)
         {
-            pointer->SType = StructureType.DeviceGroupPresentInfoKhx;
+            pointer->SType = StructureType.DeviceGroupPresentInfo;
             pointer->Next = null;
             pointer->SwapchainCount = (uint)(Interop.HeapUtil.GetLength(this.DeviceMasks));
             if (this.DeviceMasks != null)

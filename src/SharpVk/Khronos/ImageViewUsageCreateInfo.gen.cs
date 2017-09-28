@@ -47,7 +47,7 @@ namespace SharpVk.Khronos
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.ImageViewUsageCreateInfo* pointer)
         {
-            pointer->SType = StructureType.ImageViewUsageCreateInfoKhr;
+            pointer->SType = StructureType.ImageViewUsageCreateInfo;
             pointer->Next = null;
             pointer->Usage = this.Usage;
         }

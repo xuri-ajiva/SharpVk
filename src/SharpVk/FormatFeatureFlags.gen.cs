@@ -103,56 +103,56 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        SampledImageFilterCubicBitImg = 1 << 13, 
+        SampledImageFilterCubic = 1 << 13, 
         
         /// <summary>
         /// 
         /// </summary>
-        TransferSourceBitKhr = 1 << 14, 
+        TransferSource = 1 << 14, 
         
         /// <summary>
         /// 
         /// </summary>
-        TransferDestinationBitKhr = 1 << 15, 
+        TransferDestination = 1 << 15, 
         
         /// <summary>
         /// 
         /// </summary>
-        SampledImageFilterMinmaxBitExt = 1 << 16, 
+        SampledImageFilterMinmax = 1 << 16, 
         
         /// <summary>
         /// 
         /// </summary>
-        MidpointChromaSamplesBitKhr = 1 << 17, 
+        MidpointChromaSamples = 1 << 17, 
         
         /// <summary>
         /// 
         /// </summary>
-        SampledImageYcbcrConversionLinearFilterBitKhr = 1 << 18, 
+        SampledImageYcbcrConversionLinearFilter = 1 << 18, 
         
         /// <summary>
         /// 
         /// </summary>
-        SampledImageYcbcrConversionSeparateReconstructionFilterBitKhr = 1 << 19, 
+        SampledImageYcbcrConversionSeparateReconstructionFilter = 1 << 19, 
         
         /// <summary>
         /// 
         /// </summary>
-        SampledImageYcbcrConversionChromaReconstructionExplicitBitKhr = 1 << 20, 
+        SampledImageYcbcrConversionChromaReconstructionExplicit = 1 << 20, 
         
         /// <summary>
         /// 
         /// </summary>
-        SampledImageYcbcrConversionChromaReconstructionExplicitForceableBitKhr = 1 << 21, 
+        SampledImageYcbcrConversionChromaReconstructionExplicitForceable = 1 << 21, 
         
         /// <summary>
         /// 
         /// </summary>
-        DisjointBitKhr = 1 << 22, 
+        Disjoint = 1 << 22, 
         
         /// <summary>
         /// 
         /// </summary>
-        CositedChromaSamplesBitKhr = 1 << 23, 
+        CositedChromaSamples = 1 << 23, 
     }
 }

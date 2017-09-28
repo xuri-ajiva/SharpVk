@@ -82,11 +82,11 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        SharedDemandRefreshKhr = 1000111000, 
+        SharedDemandRefresh = 1000111000, 
         
         /// <summary>
         /// 
         /// </summary>
-        SharedContinuousRefreshKhr = 1000111001, 
+        SharedContinuousRefresh = 1000111001, 
     }
 }

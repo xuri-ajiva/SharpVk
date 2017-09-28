@@ -70,7 +70,7 @@ namespace SharpVk.NVidia.Experimental
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayoutCreateInfo* pointer)
         {
-            pointer->SType = StructureType.IndirectCommandsLayoutCreateInfoNvx;
+            pointer->SType = StructureType.IndirectCommandsLayoutCreateInfo;
             pointer->Next = null;
             pointer->PipelineBindPoint = this.PipelineBindPoint;
             pointer->Flags = this.Flags;

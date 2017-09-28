@@ -48,7 +48,7 @@ namespace SharpVk.Multivendor
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.SwapchainCounterCreateInfo* pointer)
         {
-            pointer->SType = StructureType.SwapchainCounterCreateInfoExt;
+            pointer->SType = StructureType.SwapchainCounterCreateInfo;
             pointer->Next = null;
             if (this.SurfaceCounters != null)
             {

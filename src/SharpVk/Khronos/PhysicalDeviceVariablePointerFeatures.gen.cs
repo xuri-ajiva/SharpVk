@@ -56,7 +56,7 @@ namespace SharpVk.Khronos
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PhysicalDeviceVariablePointerFeatures* pointer)
         {
-            pointer->SType = StructureType.PhysicalDeviceVariablePointerFeaturesKhr;
+            pointer->SType = StructureType.PhysicalDeviceVariablePointerFeatures;
             pointer->Next = null;
             pointer->VariablePointersStorageBuffer = this.VariablePointersStorageBuffer;
             pointer->VariablePointers = this.VariablePointers;

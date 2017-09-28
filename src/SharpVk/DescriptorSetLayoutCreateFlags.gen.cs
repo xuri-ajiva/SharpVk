@@ -38,6 +38,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        PushDescriptorBitKhr = 1 << 0, 
+        PushDescriptor = 1 << 0, 
     }
 }

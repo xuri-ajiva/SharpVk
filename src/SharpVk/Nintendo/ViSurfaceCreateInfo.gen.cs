@@ -57,7 +57,7 @@ namespace SharpVk.Nintendo
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Nintendo.ViSurfaceCreateInfo* pointer)
         {
-            pointer->SType = StructureType.ViSurfaceCreateInfoNn;
+            pointer->SType = StructureType.ViSurfaceCreateInfo;
             pointer->Next = null;
             if (this.Flags != null)
             {

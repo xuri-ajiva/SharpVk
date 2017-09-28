@@ -43,11 +43,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        ViewLocalBitKhx = 1 << 1, 
+        ViewLocal = 1 << 1, 
         
         /// <summary>
         /// 
         /// </summary>
-        DeviceGroupBitKhx = 1 << 2, 
+        DeviceGroup = 1 << 2, 
     }
 }

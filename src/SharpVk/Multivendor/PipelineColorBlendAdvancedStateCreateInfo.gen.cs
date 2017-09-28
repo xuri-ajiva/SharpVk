@@ -65,7 +65,7 @@ namespace SharpVk.Multivendor
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PipelineColorBlendAdvancedStateCreateInfo* pointer)
         {
-            pointer->SType = StructureType.PipelineColorBlendAdvancedStateCreateInfoExt;
+            pointer->SType = StructureType.PipelineColorBlendAdvancedStateCreateInfo;
             pointer->Next = null;
             pointer->SourcePremultiplied = this.SourcePremultiplied;
             pointer->DestinationPremultiplied = this.DestinationPremultiplied;

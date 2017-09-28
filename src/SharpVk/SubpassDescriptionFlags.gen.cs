@@ -38,11 +38,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        PerViewAttributesBitNvx = 1 << 0, 
+        PerViewAttributes = 1 << 0, 
         
         /// <summary>
         /// 
         /// </summary>
-        PerViewPositionXOnlyBitNvx = 1 << 1, 
+        PerViewPositionXOnly = 1 << 1, 
     }
 }

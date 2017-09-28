@@ -121,14 +121,15 @@ namespace SharpVk.Generator.Specification
                         value = -value;
                     }
 
-                    var nameParts = this.nameParser.ParseEnumField(vkName, extendedEnum.NameParts).Concat(new[] { extensionSuffix });
+                    var nameParts = this.nameParser.ParseEnumField(vkName, extendedEnum.NameParts);
 
                     extendedEnum.Fields.Add(vkName, new EnumField
                     {
                         VkName = vkName,
                         Value = value.ToString(),
                         NameParts = nameParts.ToArray(),
-                        IsBitmask = isBitmask
+                        IsBitmask = isBitmask,
+                        Extension = extensionSuffix
                     });
                 }
             }

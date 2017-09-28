@@ -56,7 +56,7 @@ namespace SharpVk.Khronos
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.ImportMemoryFileDescriptorInfo* pointer)
         {
-            pointer->SType = StructureType.ImportMemoryFileDescriptorInfoKhr;
+            pointer->SType = StructureType.ImportMemoryFileDescriptorInfo;
             pointer->Next = null;
             if (this.HandleType != null)
             {

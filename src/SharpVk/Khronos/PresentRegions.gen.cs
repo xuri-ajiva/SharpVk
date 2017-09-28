@@ -47,7 +47,7 @@ namespace SharpVk.Khronos
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PresentRegions* pointer)
         {
-            pointer->SType = StructureType.PresentRegionsKhr;
+            pointer->SType = StructureType.PresentRegions;
             pointer->Next = null;
             pointer->SwapchainCount = (uint)(Interop.HeapUtil.GetLength(this.Regions));
             if (this.Regions != null)

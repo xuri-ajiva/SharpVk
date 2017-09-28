@@ -147,6 +147,6 @@ namespace SharpVk
         /// where device-side generation of commands via
         /// flink:vkCmdProcessCommandsNVX is handled.
         /// </summary>
-        CommandProcessBitNvx = 1 << 17, 
+        CommandProcess = 1 << 17, 
     }
 }

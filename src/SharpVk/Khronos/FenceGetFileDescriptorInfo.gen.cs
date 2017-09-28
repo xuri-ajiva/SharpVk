@@ -56,7 +56,7 @@ namespace SharpVk.Khronos
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.FenceGetFileDescriptorInfo* pointer)
         {
-            pointer->SType = StructureType.FenceGetFileDescriptorInfoKhr;
+            pointer->SType = StructureType.FenceGetFileDescriptorInfo;
             pointer->Next = null;
             pointer->Fence = this.Fence?.handle ?? default(SharpVk.Interop.Fence);
             pointer->HandleType = this.HandleType;

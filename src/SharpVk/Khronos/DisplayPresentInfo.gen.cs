@@ -84,7 +84,7 @@ namespace SharpVk.Khronos
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.DisplayPresentInfo* pointer)
         {
-            pointer->SType = StructureType.DisplayPresentInfoKhr;
+            pointer->SType = StructureType.DisplayPresentInfo;
             pointer->Next = null;
             pointer->SourceRect = this.SourceRect;
             pointer->DestinationRect = this.DestinationRect;

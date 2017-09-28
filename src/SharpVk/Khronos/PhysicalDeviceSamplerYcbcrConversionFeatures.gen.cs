@@ -47,7 +47,7 @@ namespace SharpVk.Khronos
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PhysicalDeviceSamplerYcbcrConversionFeatures* pointer)
         {
-            pointer->SType = StructureType.PhysicalDeviceSamplerYcbcrConversionFeaturesKhr;
+            pointer->SType = StructureType.PhysicalDeviceSamplerYcbcrConversionFeatures;
             pointer->Next = null;
             pointer->SamplerYcbcrConversion = this.SamplerYcbcrConversion;
         }

@@ -56,7 +56,7 @@ namespace SharpVk.Khronos
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.D3D12FenceSubmitInfo* pointer)
         {
-            pointer->SType = StructureType.D3d12FenceSubmitInfoKhr;
+            pointer->SType = StructureType.D3d12FenceSubmitInfo;
             pointer->Next = null;
             pointer->WaitSemaphoreValuesCount = (uint)(Interop.HeapUtil.GetLength(this.WaitSemaphoreValues));
             if (this.WaitSemaphoreValues != null)

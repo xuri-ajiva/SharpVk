@@ -123,7 +123,7 @@ namespace SharpVk.NVidia.Experimental
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.Experimental.ObjectTableCreateInfo* pointer)
         {
-            pointer->SType = StructureType.ObjectTableCreateInfoNvx;
+            pointer->SType = StructureType.ObjectTableCreateInfo;
             pointer->Next = null;
             pointer->ObjectCount = (uint)(Interop.HeapUtil.GetLength(this.ObjectEntryTypes));
             if (this.ObjectEntryTypes != null)

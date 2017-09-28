@@ -174,7 +174,7 @@ namespace SharpVk.Khronos
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.SwapchainCreateInfo* pointer)
         {
-            pointer->SType = StructureType.SwapchainCreateInfoKhr;
+            pointer->SType = StructureType.SwapchainCreateInfo;
             pointer->Next = null;
             if (this.Flags != null)
             {

@@ -47,7 +47,7 @@ namespace SharpVk.Google
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Google.PresentTimesInfo* pointer)
         {
-            pointer->SType = StructureType.PresentTimesInfoGoogle;
+            pointer->SType = StructureType.PresentTimesInfo;
             pointer->Next = null;
             pointer->SwapchainCount = (uint)(Interop.HeapUtil.GetLength(this.Times));
             if (this.Times != null)

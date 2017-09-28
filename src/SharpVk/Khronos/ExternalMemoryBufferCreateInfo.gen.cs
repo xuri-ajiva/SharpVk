@@ -47,7 +47,7 @@ namespace SharpVk.Khronos
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.ExternalMemoryBufferCreateInfo* pointer)
         {
-            pointer->SType = StructureType.ExternalMemoryBufferCreateInfoKhr;
+            pointer->SType = StructureType.ExternalMemoryBufferCreateInfo;
             pointer->Next = null;
             if (this.HandleTypes != null)
             {

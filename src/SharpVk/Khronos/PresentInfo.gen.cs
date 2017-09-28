@@ -84,7 +84,7 @@ namespace SharpVk.Khronos
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PresentInfo* pointer)
         {
-            pointer->SType = StructureType.PresentInfoKhr;
+            pointer->SType = StructureType.PresentInfo;
             pointer->Next = null;
             pointer->WaitSemaphoreCount = (uint)(Interop.HeapUtil.GetLength(this.WaitSemaphores));
             if (this.WaitSemaphores != null)

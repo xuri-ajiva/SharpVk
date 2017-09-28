@@ -289,7 +289,7 @@ namespace SharpVk.Multivendor
                 SharpVk.Interop.Multivendor.ValidationCache marshalledValidationCache = default(SharpVk.Interop.Multivendor.ValidationCache);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.Multivendor.ValidationCacheCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.ValidationCacheCreateInfo>());
-                marshalledCreateInfo->SType = StructureType.ValidationCacheCreateInfoExt;
+                marshalledCreateInfo->SType = StructureType.ValidationCacheCreateInfo;
                 marshalledCreateInfo->Next = null;
                 if (flags != null)
                 {

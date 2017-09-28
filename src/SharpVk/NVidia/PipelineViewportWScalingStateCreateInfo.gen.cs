@@ -59,7 +59,7 @@ namespace SharpVk.NVidia
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PipelineViewportWScalingStateCreateInfo* pointer)
         {
-            pointer->SType = StructureType.PipelineViewportWScalingStateCreateInfoNv;
+            pointer->SType = StructureType.PipelineViewportWScalingStateCreateInfo;
             pointer->Next = null;
             pointer->ViewportWScalingEnable = this.ViewportWScalingEnable;
             pointer->ViewportCount = (uint)(Interop.HeapUtil.GetLength(this.ViewportWScalings));

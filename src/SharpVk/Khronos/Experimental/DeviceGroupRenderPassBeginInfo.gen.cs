@@ -58,7 +58,7 @@ namespace SharpVk.Khronos.Experimental
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.Experimental.DeviceGroupRenderPassBeginInfo* pointer)
         {
-            pointer->SType = StructureType.DeviceGroupRenderPassBeginInfoKhx;
+            pointer->SType = StructureType.DeviceGroupRenderPassBeginInfo;
             pointer->Next = null;
             pointer->DeviceMask = this.DeviceMask;
             pointer->DeviceRenderAreaCount = (uint)(Interop.HeapUtil.GetLength(this.DeviceRenderAreas));

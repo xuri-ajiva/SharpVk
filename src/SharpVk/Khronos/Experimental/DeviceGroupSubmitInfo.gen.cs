@@ -73,7 +73,7 @@ namespace SharpVk.Khronos.Experimental
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.Experimental.DeviceGroupSubmitInfo* pointer)
         {
-            pointer->SType = StructureType.DeviceGroupSubmitInfoKhx;
+            pointer->SType = StructureType.DeviceGroupSubmitInfo;
             pointer->Next = null;
             pointer->WaitSemaphoreCount = (uint)(Interop.HeapUtil.GetLength(this.WaitSemaphoreDeviceIndices));
             if (this.WaitSemaphoreDeviceIndices != null)

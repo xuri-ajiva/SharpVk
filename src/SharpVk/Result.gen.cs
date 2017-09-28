@@ -122,46 +122,46 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        ErrorSurfaceLostKhr = -1000000000, 
+        ErrorSurfaceLost = -1000000000, 
         
         /// <summary>
         /// 
         /// </summary>
-        ErrorNativeWindowInUseKhr = -1000000001, 
+        ErrorNativeWindowInUse = -1000000001, 
         
         /// <summary>
         /// 
         /// </summary>
-        SuboptimalKhr = 1000001003, 
+        Suboptimal = 1000001003, 
         
         /// <summary>
         /// 
         /// </summary>
-        ErrorOutOfDateKhr = -1000001004, 
+        ErrorOutOfDate = -1000001004, 
         
         /// <summary>
         /// 
         /// </summary>
-        ErrorIncompatibleDisplayKhr = -1000003001, 
+        ErrorIncompatibleDisplay = -1000003001, 
         
         /// <summary>
         /// 
         /// </summary>
-        ErrorValidationFailedExt = -1000011001, 
+        ErrorValidationFailed = -1000011001, 
         
         /// <summary>
         /// 
         /// </summary>
-        ErrorInvalidShaderNv = -1000012000, 
+        ErrorInvalidShader = -1000012000, 
         
         /// <summary>
         /// 
         /// </summary>
-        ErrorOutOfPoolMemoryKhr = -1000069000, 
+        ErrorOutOfPoolMemory = -1000069000, 
         
         /// <summary>
         /// 
         /// </summary>
-        ErrorInvalidExternalHandleKhr = -1000072003, 
+        ErrorInvalidExternalHandle = -1000072003, 
     }
 }

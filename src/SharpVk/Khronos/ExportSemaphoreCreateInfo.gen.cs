@@ -47,7 +47,7 @@ namespace SharpVk.Khronos
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.ExportSemaphoreCreateInfo* pointer)
         {
-            pointer->SType = StructureType.ExportSemaphoreCreateInfoKhr;
+            pointer->SType = StructureType.ExportSemaphoreCreateInfo;
             pointer->Next = null;
             if (this.HandleTypes != null)
             {

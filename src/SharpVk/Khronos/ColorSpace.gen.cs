@@ -37,71 +37,71 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        DisplayP3NonlinearExt = 1000104001, 
+        DisplayP3Nonlinear = 1000104001, 
         
         /// <summary>
         /// 
         /// </summary>
-        ExtendedSrgbLinearExt = 1000104002, 
+        ExtendedSrgbLinear = 1000104002, 
         
         /// <summary>
         /// Supports the DCI-P3 color space and applies a linear OETF.
         /// </summary>
-        DciP3LinearExt = 1000104003, 
+        DciP3Linear = 1000104003, 
         
         /// <summary>
         /// Supports the DCI-P3 color space and applies the Gamma 2.6 OETF.
         /// </summary>
-        DciP3NonlinearExt = 1000104004, 
+        DciP3Nonlinear = 1000104004, 
         
         /// <summary>
         /// Supports the BT709 color space and applies a linear OETF.
         /// </summary>
-        Bt709LinearExt = 1000104005, 
+        Bt709Linear = 1000104005, 
         
         /// <summary>
         /// Supports the BT709 color space and applies the SMPTE 170M OETF.
         /// </summary>
-        Bt709NonlinearExt = 1000104006, 
+        Bt709Nonlinear = 1000104006, 
         
         /// <summary>
         /// Supports the BT2020 color space and applies a linear OETF.
         /// </summary>
-        Bt2020LinearExt = 1000104007, 
+        Bt2020Linear = 1000104007, 
         
         /// <summary>
         /// 
         /// </summary>
-        Hdr10St2084Ext = 1000104008, 
+        Hdr10St2084 = 1000104008, 
         
         /// <summary>
         /// 
         /// </summary>
-        DolbyvisionExt = 1000104009, 
+        Dolbyvision = 1000104009, 
         
         /// <summary>
         /// 
         /// </summary>
-        Hdr10HlgExt = 1000104010, 
+        Hdr10Hlg = 1000104010, 
         
         /// <summary>
         /// Supports the AdobeRGB color space and applies a linear OETF.
         /// </summary>
-        AdobergbLinearExt = 1000104011, 
+        AdobergbLinear = 1000104011, 
         
         /// <summary>
         /// Supports the AdobeRGB color space and applies the Gamma 2.2 OETF.
         /// </summary>
-        AdobergbNonlinearExt = 1000104012, 
+        AdobergbNonlinear = 1000104012, 
         
         /// <summary>
         /// 
         /// </summary>
-        PassThroughExt = 1000104013, 
+        PassThrough = 1000104013, 
         
         /// <summary>
         /// 
         /// </summary>
-        ExtendedSrgbNonlinearExt = 1000104014, 
+        ExtendedSrgbNonlinear = 1000104014, 
     }
 }

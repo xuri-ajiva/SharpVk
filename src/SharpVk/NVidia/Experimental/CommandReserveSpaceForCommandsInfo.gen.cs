@@ -71,7 +71,7 @@ namespace SharpVk.NVidia.Experimental
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.Experimental.CommandReserveSpaceForCommandsInfo* pointer)
         {
-            pointer->SType = StructureType.CommandReserveSpaceForCommandsInfoNvx;
+            pointer->SType = StructureType.CommandReserveSpaceForCommandsInfo;
             pointer->Next = null;
             pointer->ObjectTable = this.ObjectTable?.handle ?? default(SharpVk.Interop.NVidia.Experimental.ObjectTable);
             pointer->IndirectCommandsLayout = this.IndirectCommandsLayout?.handle ?? default(SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayout);

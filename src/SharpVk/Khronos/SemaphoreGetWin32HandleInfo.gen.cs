@@ -56,7 +56,7 @@ namespace SharpVk.Khronos
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.SemaphoreGetWin32HandleInfo* pointer)
         {
-            pointer->SType = StructureType.SemaphoreGetWin32HandleInfoKhr;
+            pointer->SType = StructureType.SemaphoreGetWin32HandleInfo;
             pointer->Next = null;
             pointer->Semaphore = this.Semaphore?.handle ?? default(SharpVk.Interop.Semaphore);
             pointer->HandleType = this.HandleType;

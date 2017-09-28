@@ -68,7 +68,7 @@ namespace SharpVk.Multivendor
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.DebugReportCallbackCreateInfo* pointer)
         {
-            pointer->SType = StructureType.DebugReportCallbackCreateInfoExt;
+            pointer->SType = StructureType.DebugReportCallbackCreateInfo;
             pointer->Next = null;
             if (this.Flags != null)
             {

@@ -1419,211 +1419,211 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        Pvrtc12bppUnormBlockImg = 1000054000, 
+        Pvrtc12bppUnormBlock = 1000054000, 
         
         /// <summary>
         /// 
         /// </summary>
-        Pvrtc14bppUnormBlockImg = 1000054001, 
+        Pvrtc14bppUnormBlock = 1000054001, 
         
         /// <summary>
         /// 
         /// </summary>
-        Pvrtc22bppUnormBlockImg = 1000054002, 
+        Pvrtc22bppUnormBlock = 1000054002, 
         
         /// <summary>
         /// 
         /// </summary>
-        Pvrtc24bppUnormBlockImg = 1000054003, 
+        Pvrtc24bppUnormBlock = 1000054003, 
         
         /// <summary>
         /// 
         /// </summary>
-        Pvrtc12bppSrgbBlockImg = 1000054004, 
+        Pvrtc12bppSrgbBlock = 1000054004, 
         
         /// <summary>
         /// 
         /// </summary>
-        Pvrtc14bppSrgbBlockImg = 1000054005, 
+        Pvrtc14bppSrgbBlock = 1000054005, 
         
         /// <summary>
         /// 
         /// </summary>
-        Pvrtc22bppSrgbBlockImg = 1000054006, 
+        Pvrtc22bppSrgbBlock = 1000054006, 
         
         /// <summary>
         /// 
         /// </summary>
-        Pvrtc24bppSrgbBlockImg = 1000054007, 
+        Pvrtc24bppSrgbBlock = 1000054007, 
         
         /// <summary>
         /// 
         /// </summary>
-        G8b8g8r8422UnormKhr = 1000156000, 
+        G8b8g8r8422Unorm = 1000156000, 
         
         /// <summary>
         /// 
         /// </summary>
-        B8g8r8g8422UnormKhr = 1000156001, 
+        B8g8r8g8422Unorm = 1000156001, 
         
         /// <summary>
         /// 
         /// </summary>
-        G8B8R83plane420UnormKhr = 1000156002, 
+        G8B8R83plane420Unorm = 1000156002, 
         
         /// <summary>
         /// 
         /// </summary>
-        G8B8r82plane420UnormKhr = 1000156003, 
+        G8B8r82plane420Unorm = 1000156003, 
         
         /// <summary>
         /// 
         /// </summary>
-        G8B8R83plane422UnormKhr = 1000156004, 
+        G8B8R83plane422Unorm = 1000156004, 
         
         /// <summary>
         /// 
         /// </summary>
-        G8B8r82plane422UnormKhr = 1000156005, 
+        G8B8r82plane422Unorm = 1000156005, 
         
         /// <summary>
         /// 
         /// </summary>
-        G8B8R83plane444UnormKhr = 1000156006, 
+        G8B8R83plane444Unorm = 1000156006, 
         
         /// <summary>
         /// 
         /// </summary>
-        R10x6UnormPack16Khr = 1000156007, 
+        R10x6UnormPack16 = 1000156007, 
         
         /// <summary>
         /// 
         /// </summary>
-        R10x6g10x6Unorm2pack16Khr = 1000156008, 
+        R10x6g10x6Unorm2pack16 = 1000156008, 
         
         /// <summary>
         /// 
         /// </summary>
-        R10x6g10x6b10x6a10x6Unorm4pack16Khr = 1000156009, 
+        R10x6g10x6b10x6a10x6Unorm4pack16 = 1000156009, 
         
         /// <summary>
         /// 
         /// </summary>
-        G10x6b10x6g10x6r10x6422Unorm4pack16Khr = 1000156010, 
+        G10x6b10x6g10x6r10x6422Unorm4pack16 = 1000156010, 
         
         /// <summary>
         /// 
         /// </summary>
-        B10x6g10x6r10x6g10x6422Unorm4pack16Khr = 1000156011, 
+        B10x6g10x6r10x6g10x6422Unorm4pack16 = 1000156011, 
         
         /// <summary>
         /// 
         /// </summary>
-        G10x6B10x6R10x63plane420Unorm3pack16Khr = 1000156012, 
+        G10x6B10x6R10x63plane420Unorm3pack16 = 1000156012, 
         
         /// <summary>
         /// 
         /// </summary>
-        G10x6B10x6r10x62plane420Unorm3pack16Khr = 1000156013, 
+        G10x6B10x6r10x62plane420Unorm3pack16 = 1000156013, 
         
         /// <summary>
         /// 
         /// </summary>
-        G10x6B10x6R10x63plane422Unorm3pack16Khr = 1000156014, 
+        G10x6B10x6R10x63plane422Unorm3pack16 = 1000156014, 
         
         /// <summary>
         /// 
         /// </summary>
-        G10x6B10x6r10x62plane422Unorm3pack16Khr = 1000156015, 
+        G10x6B10x6r10x62plane422Unorm3pack16 = 1000156015, 
         
         /// <summary>
         /// 
         /// </summary>
-        G10x6B10x6R10x63plane444Unorm3pack16Khr = 1000156016, 
+        G10x6B10x6R10x63plane444Unorm3pack16 = 1000156016, 
         
         /// <summary>
         /// 
         /// </summary>
-        R12x4UnormPack16Khr = 1000156017, 
+        R12x4UnormPack16 = 1000156017, 
         
         /// <summary>
         /// 
         /// </summary>
-        R12x4g12x4Unorm2pack16Khr = 1000156018, 
+        R12x4g12x4Unorm2pack16 = 1000156018, 
         
         /// <summary>
         /// 
         /// </summary>
-        R12x4g12x4b12x4a12x4Unorm4pack16Khr = 1000156019, 
+        R12x4g12x4b12x4a12x4Unorm4pack16 = 1000156019, 
         
         /// <summary>
         /// 
         /// </summary>
-        G12x4b12x4g12x4r12x4422Unorm4pack16Khr = 1000156020, 
+        G12x4b12x4g12x4r12x4422Unorm4pack16 = 1000156020, 
         
         /// <summary>
         /// 
         /// </summary>
-        B12x4g12x4r12x4g12x4422Unorm4pack16Khr = 1000156021, 
+        B12x4g12x4r12x4g12x4422Unorm4pack16 = 1000156021, 
         
         /// <summary>
         /// 
         /// </summary>
-        G12x4B12x4R12x43plane420Unorm3pack16Khr = 1000156022, 
+        G12x4B12x4R12x43plane420Unorm3pack16 = 1000156022, 
         
         /// <summary>
         /// 
         /// </summary>
-        G12x4B12x4r12x42plane420Unorm3pack16Khr = 1000156023, 
+        G12x4B12x4r12x42plane420Unorm3pack16 = 1000156023, 
         
         /// <summary>
         /// 
         /// </summary>
-        G12x4B12x4R12x43plane422Unorm3pack16Khr = 1000156024, 
+        G12x4B12x4R12x43plane422Unorm3pack16 = 1000156024, 
         
         /// <summary>
         /// 
         /// </summary>
-        G12x4B12x4r12x42plane422Unorm3pack16Khr = 1000156025, 
+        G12x4B12x4r12x42plane422Unorm3pack16 = 1000156025, 
         
         /// <summary>
         /// 
         /// </summary>
-        G12x4B12x4R12x43plane444Unorm3pack16Khr = 1000156026, 
+        G12x4B12x4R12x43plane444Unorm3pack16 = 1000156026, 
         
         /// <summary>
         /// 
         /// </summary>
-        G16b16g16r16422UnormKhr = 1000156027, 
+        G16b16g16r16422Unorm = 1000156027, 
         
         /// <summary>
         /// 
         /// </summary>
-        B16g16r16g16422UnormKhr = 1000156028, 
+        B16g16r16g16422Unorm = 1000156028, 
         
         /// <summary>
         /// 
         /// </summary>
-        G16B16R163plane420UnormKhr = 1000156029, 
+        G16B16R163plane420Unorm = 1000156029, 
         
         /// <summary>
         /// 
         /// </summary>
-        G16B16r162plane420UnormKhr = 1000156030, 
+        G16B16r162plane420Unorm = 1000156030, 
         
         /// <summary>
         /// 
         /// </summary>
-        G16B16R163plane422UnormKhr = 1000156031, 
+        G16B16R163plane422Unorm = 1000156031, 
         
         /// <summary>
         /// 
         /// </summary>
-        G16B16r162plane422UnormKhr = 1000156032, 
+        G16B16r162plane422Unorm = 1000156032, 
         
         /// <summary>
         /// 
         /// </summary>
-        G16B16R163plane444UnormKhr = 1000156033, 
+        G16B16R163plane444Unorm = 1000156033, 
     }
 }

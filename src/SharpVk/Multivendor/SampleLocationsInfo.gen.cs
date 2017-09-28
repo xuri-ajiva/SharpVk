@@ -65,7 +65,7 @@ namespace SharpVk.Multivendor
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.SampleLocationsInfo* pointer)
         {
-            pointer->SType = StructureType.SampleLocationsInfoExt;
+            pointer->SType = StructureType.SampleLocationsInfo;
             pointer->Next = null;
             pointer->SampleLocationsPerPixel = this.SampleLocationsPerPixel;
             pointer->SampleLocationGridSize = this.SampleLocationGridSize;

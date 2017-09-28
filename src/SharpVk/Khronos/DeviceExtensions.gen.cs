@@ -136,7 +136,7 @@ namespace SharpVk.Khronos
                 SharpVk.Interop.Khronos.Swapchain marshalledSwapchain = default(SharpVk.Interop.Khronos.Swapchain);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.Khronos.SwapchainCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.SwapchainCreateInfo>());
-                marshalledCreateInfo->SType = StructureType.SwapchainCreateInfoKhr;
+                marshalledCreateInfo->SType = StructureType.SwapchainCreateInfo;
                 marshalledCreateInfo->Next = null;
                 if (flags != null)
                 {
@@ -721,7 +721,7 @@ namespace SharpVk.Khronos
                 SharpVk.Interop.Khronos.DescriptorUpdateTemplate marshalledDescriptorUpdateTemplate = default(SharpVk.Interop.Khronos.DescriptorUpdateTemplate);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.Khronos.DescriptorUpdateTemplateCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.DescriptorUpdateTemplateCreateInfo>());
-                marshalledCreateInfo->SType = StructureType.DescriptorUpdateTemplateCreateInfoKhr;
+                marshalledCreateInfo->SType = StructureType.DescriptorUpdateTemplateCreateInfo;
                 marshalledCreateInfo->Next = null;
                 if (flags != null)
                 {
@@ -933,7 +933,7 @@ namespace SharpVk.Khronos
                 SharpVk.Interop.Khronos.SamplerYcbcrConversion marshalledYcbcrConversion = default(SharpVk.Interop.Khronos.SamplerYcbcrConversion);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.Khronos.SamplerYcbcrConversionCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.SamplerYcbcrConversionCreateInfo>());
-                marshalledCreateInfo->SType = StructureType.SamplerYcbcrConversionCreateInfoKhr;
+                marshalledCreateInfo->SType = StructureType.SamplerYcbcrConversionCreateInfo;
                 marshalledCreateInfo->Next = null;
                 marshalledCreateInfo->Format = format;
                 marshalledCreateInfo->YcbcrModel = ycbcrModel;

@@ -74,7 +74,7 @@ namespace SharpVk.Khronos
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.ImportSemaphoreFileDescriptorInfo* pointer)
         {
-            pointer->SType = StructureType.ImportSemaphoreFileDescriptorInfoKhr;
+            pointer->SType = StructureType.ImportSemaphoreFileDescriptorInfo;
             pointer->Next = null;
             pointer->Semaphore = this.Semaphore?.handle ?? default(SharpVk.Interop.Semaphore);
             if (this.Flags != null)

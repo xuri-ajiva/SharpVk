@@ -47,7 +47,7 @@ namespace SharpVk.Khronos
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PipelineTessellationDomainOriginStateCreateInfo* pointer)
         {
-            pointer->SType = StructureType.PipelineTessellationDomainOriginStateCreateInfoKhr;
+            pointer->SType = StructureType.PipelineTessellationDomainOriginStateCreateInfo;
             pointer->Next = null;
             pointer->DomainOrigin = this.DomainOrigin;
         }

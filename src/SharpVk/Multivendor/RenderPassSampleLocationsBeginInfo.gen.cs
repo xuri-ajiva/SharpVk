@@ -56,7 +56,7 @@ namespace SharpVk.Multivendor
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.RenderPassSampleLocationsBeginInfo* pointer)
         {
-            pointer->SType = StructureType.RenderPassSampleLocationsBeginInfoExt;
+            pointer->SType = StructureType.RenderPassSampleLocationsBeginInfo;
             pointer->Next = null;
             pointer->AttachmentInitialSampleLocationsCount = (uint)(Interop.HeapUtil.GetLength(this.AttachmentInitialSampleLocations));
             if (this.AttachmentInitialSampleLocations != null)

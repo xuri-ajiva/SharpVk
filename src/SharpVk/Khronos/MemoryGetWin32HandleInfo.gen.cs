@@ -56,7 +56,7 @@ namespace SharpVk.Khronos
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.MemoryGetWin32HandleInfo* pointer)
         {
-            pointer->SType = StructureType.MemoryGetWin32HandleInfoKhr;
+            pointer->SType = StructureType.MemoryGetWin32HandleInfo;
             pointer->Next = null;
             pointer->Memory = this.Memory?.handle ?? default(SharpVk.Interop.DeviceMemory);
             pointer->HandleType = this.HandleType;

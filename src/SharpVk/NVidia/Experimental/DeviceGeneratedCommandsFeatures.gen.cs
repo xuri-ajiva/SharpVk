@@ -49,7 +49,7 @@ namespace SharpVk.NVidia.Experimental
         /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.Experimental.DeviceGeneratedCommandsFeatures* pointer)
         {
-            pointer->SType = StructureType.DeviceGeneratedCommandsFeaturesNvx;
+            pointer->SType = StructureType.DeviceGeneratedCommandsFeatures;
             pointer->Next = null;
             pointer->ComputeBindingPointSupport = this.ComputeBindingPointSupport;
         }
