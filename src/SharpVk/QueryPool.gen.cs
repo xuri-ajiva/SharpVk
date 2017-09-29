@@ -30,6 +30,7 @@ namespace SharpVk
     /// Opaque handle to a query pool object.
     /// </summary>
     public partial class QueryPool
+        : IDisposable
     {
         internal readonly SharpVk.Interop.QueryPool handle; 
         
@@ -126,6 +127,14 @@ namespace SharpVk
             {
                 Interop.HeapUtil.FreeAll();
             }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+            this.Destroy();
         }
     }
 }

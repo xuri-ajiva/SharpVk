@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying the parameters of a newly created image object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct ImageCreateInfo
+    public partial struct ImageCreateInfo
     {
         /// <summary>
         /// A bitmask describing additional parameters of the image. See

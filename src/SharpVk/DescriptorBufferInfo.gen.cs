@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying descriptor buffer info.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DescriptorBufferInfo
+    public partial struct DescriptorBufferInfo
     {
         /// <summary>
         /// The buffer resource.

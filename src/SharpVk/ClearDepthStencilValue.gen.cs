@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying a clear depth stencil value.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct ClearDepthStencilValue
+    public partial struct ClearDepthStencilValue
     {
         /// <summary>
         /// 

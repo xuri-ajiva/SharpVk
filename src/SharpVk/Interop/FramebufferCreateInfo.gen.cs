@@ -31,7 +31,7 @@ namespace SharpVk.Interop
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct FramebufferCreateInfo
+    public unsafe partial struct FramebufferCreateInfo
     {
         /// <summary>
         /// The type of this structure.

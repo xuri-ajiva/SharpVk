@@ -31,7 +31,7 @@ namespace SharpVk.Khronos
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PhysicalDevice16BitStorageFeatures
+    public partial struct PhysicalDevice16BitStorageFeatures
     {
         /// <summary>
         /// 

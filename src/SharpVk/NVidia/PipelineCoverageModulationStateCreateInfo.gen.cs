@@ -31,7 +31,7 @@ namespace SharpVk.NVidia
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PipelineCoverageModulationStateCreateInfo
+    public partial struct PipelineCoverageModulationStateCreateInfo
     {
         /// <summary>
         /// 

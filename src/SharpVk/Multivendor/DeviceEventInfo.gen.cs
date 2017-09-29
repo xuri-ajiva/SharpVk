@@ -31,7 +31,7 @@ namespace SharpVk.Multivendor
     /// Describe a device event to create.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DeviceEventInfo
+    public partial struct DeviceEventInfo
     {
         /// <summary>
         /// 

@@ -32,7 +32,7 @@ namespace SharpVk.NVidia.Experimental
     /// space.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct CommandReserveSpaceForCommandsInfo
+    public partial struct CommandReserveSpaceForCommandsInfo
     {
         /// <summary>
         /// The ObjectTableNVX to be used for the generation process. Only

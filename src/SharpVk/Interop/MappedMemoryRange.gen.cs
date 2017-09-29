@@ -31,7 +31,7 @@ namespace SharpVk.Interop
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct MappedMemoryRange
+    public unsafe partial struct MappedMemoryRange
     {
         /// <summary>
         /// The type of this structure.

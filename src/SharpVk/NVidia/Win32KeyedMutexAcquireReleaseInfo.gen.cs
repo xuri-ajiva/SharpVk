@@ -31,7 +31,7 @@ namespace SharpVk.NVidia
     /// Use Windows keyex mutex mechanism to synchronize work.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Win32KeyedMutexAcquireReleaseInfo
+    public partial struct Win32KeyedMutexAcquireReleaseInfo
     {
         /// <summary>
         /// 

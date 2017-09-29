@@ -31,7 +31,7 @@ namespace SharpVk.NVidia
     /// Specify that a buffer is bound to a dedicated memory resource.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DedicatedAllocationBufferCreateInfo
+    public partial struct DedicatedAllocationBufferCreateInfo
     {
         /// <summary>
         /// Indicates whether the buffer will have a dedicated allocation bound

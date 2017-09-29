@@ -30,6 +30,7 @@ namespace SharpVk
     /// Opaque handle to a command pool object.
     /// </summary>
     public partial class CommandPool
+        : IDisposable
     {
         internal readonly SharpVk.Interop.CommandPool handle; 
         
@@ -141,6 +142,14 @@ namespace SharpVk
             {
                 Interop.HeapUtil.FreeAll();
             }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+            this.Destroy();
         }
     }
 }

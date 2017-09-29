@@ -31,7 +31,7 @@ namespace SharpVk.Interop
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct AllocationCallbacks
+    public unsafe partial struct AllocationCallbacks
     {
         /// <summary>
         /// A value to be interpreted by the implementation of the callbacks.

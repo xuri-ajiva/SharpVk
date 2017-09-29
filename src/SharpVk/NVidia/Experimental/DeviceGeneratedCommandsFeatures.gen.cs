@@ -31,7 +31,7 @@ namespace SharpVk.NVidia.Experimental
     /// Structure specifying physical device support.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DeviceGeneratedCommandsFeatures
+    public partial struct DeviceGeneratedCommandsFeatures
     {
         /// <summary>
         /// Indicates whether the ObjectTableNVX supports entries with

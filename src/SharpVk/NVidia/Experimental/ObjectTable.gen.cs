@@ -30,6 +30,7 @@ namespace SharpVk.NVidia.Experimental
     /// Opaque handle to an object table.
     /// </summary>
     public partial class ObjectTable
+        : IDisposable
     {
         internal readonly SharpVk.Interop.NVidia.Experimental.ObjectTable handle; 
         
@@ -212,6 +213,14 @@ namespace SharpVk.NVidia.Experimental
             {
                 Interop.HeapUtil.FreeAll();
             }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+            this.Destroy();
         }
     }
 }

@@ -30,6 +30,7 @@ namespace SharpVk.Multivendor
     /// 
     /// </summary>
     public partial class DebugReportCallback
+        : IDisposable
     {
         internal readonly SharpVk.Interop.Multivendor.DebugReportCallback handle; 
         
@@ -77,6 +78,14 @@ namespace SharpVk.Multivendor
             {
                 Interop.HeapUtil.FreeAll();
             }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+            this.Destroy();
         }
     }
 }

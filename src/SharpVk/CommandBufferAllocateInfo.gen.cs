@@ -32,7 +32,7 @@ namespace SharpVk
     /// object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct CommandBufferAllocateInfo
+    public partial struct CommandBufferAllocateInfo
     {
         /// <summary>
         /// The command pool from which the command buffers are allocated.

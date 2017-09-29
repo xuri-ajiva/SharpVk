@@ -31,7 +31,7 @@ namespace SharpVk.Khronos.Experimental
     /// Structure containing multiview info for all subpasses.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct RenderPassMultiviewCreateInfo
+    public partial struct RenderPassMultiviewCreateInfo
     {
         /// <summary>
         /// An array of view masks, where each mask is a bitfield of view

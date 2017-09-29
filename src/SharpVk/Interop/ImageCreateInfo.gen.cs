@@ -31,7 +31,7 @@ namespace SharpVk.Interop
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct ImageCreateInfo
+    public unsafe partial struct ImageCreateInfo
     {
         /// <summary>
         /// The type of this structure.

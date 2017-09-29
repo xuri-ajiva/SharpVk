@@ -31,7 +31,7 @@ namespace SharpVk.Khronos
     /// Structure specifying how to bind an image to memory.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct BindImageMemoryInfo
+    public partial struct BindImageMemoryInfo
     {
         /// <summary>
         /// The image to be attached to memory.

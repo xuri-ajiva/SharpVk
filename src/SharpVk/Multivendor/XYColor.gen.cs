@@ -31,7 +31,7 @@ namespace SharpVk.Multivendor
     /// Structure to specify X,Y chromaticity coordinates.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct XYColor
+    public partial struct XYColor
     {
         /// <summary>
         /// 

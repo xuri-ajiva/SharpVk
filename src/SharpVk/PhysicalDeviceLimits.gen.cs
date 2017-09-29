@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure reporting implementation-dependent physical device limits.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PhysicalDeviceLimits
+    public partial struct PhysicalDeviceLimits
     {
         /// <summary>
         /// The maximum dimension (width) of an image created with an imageType

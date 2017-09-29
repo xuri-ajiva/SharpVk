@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying physical device properties.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PhysicalDeviceProperties
+    public partial struct PhysicalDeviceProperties
     {
         /// <summary>
         /// The version of Vulkan supported by the device, encoded as described

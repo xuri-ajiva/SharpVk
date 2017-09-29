@@ -31,7 +31,7 @@ namespace SharpVk.NVidia
     /// Specify a dedicated memory allocation resource.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DedicatedAllocationMemoryAllocateInfo
+    public partial struct DedicatedAllocationMemoryAllocateInfo
     {
         /// <summary>
         /// image is null or a handle of an image which this memory will be

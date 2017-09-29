@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying parameters of a newly created render pass.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct RenderPassCreateInfo
+    public partial struct RenderPassCreateInfo
     {
         /// <summary>
         /// Reserved for future use.

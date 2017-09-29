@@ -32,7 +32,7 @@ namespace SharpVk.NVidia.Experimental
     /// commands layout object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct IndirectCommandsLayoutCreateInfo
+    public partial struct IndirectCommandsLayoutCreateInfo
     {
         /// <summary>
         /// The PipelineBindPoint that this layout targets.

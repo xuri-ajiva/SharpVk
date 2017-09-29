@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying an attachment description.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct AttachmentDescription
+    public partial struct AttachmentDescription
     {
         /// <summary>
         /// 

@@ -31,7 +31,7 @@ namespace SharpVk.Interop.Khronos
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct PresentInfo
+    public unsafe partial struct PresentInfo
     {
         /// <summary>
         /// The type of this structure.

@@ -31,7 +31,7 @@ namespace SharpVk.Multivendor
     /// Specify parameters of a name to give to an object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DebugMarkerObjectNameInfo
+    public partial struct DebugMarkerObjectNameInfo
     {
         /// <summary>
         /// A DebugReportObjectTypeEXT specifying the type of the object to be

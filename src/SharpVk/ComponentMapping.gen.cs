@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying a color component mapping.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct ComponentMapping
+    public partial struct ComponentMapping
     {
         /// <summary>
         /// 

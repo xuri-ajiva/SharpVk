@@ -31,7 +31,7 @@ namespace SharpVk.Interop
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct LayerProperties
+    public unsafe partial struct LayerProperties
     {
         /// <summary>
         /// A string specifying the name of the layer. Use this name in the

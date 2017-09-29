@@ -31,7 +31,7 @@ namespace SharpVk.NVidia.Experimental
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct ObjectTableEntry
+    public partial struct ObjectTableEntry
     {
         /// <summary>
         /// 

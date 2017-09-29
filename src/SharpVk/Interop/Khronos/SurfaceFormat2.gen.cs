@@ -31,7 +31,7 @@ namespace SharpVk.Interop.Khronos
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct SurfaceFormat2
+    public unsafe partial struct SurfaceFormat2
     {
         /// <summary>
         /// 

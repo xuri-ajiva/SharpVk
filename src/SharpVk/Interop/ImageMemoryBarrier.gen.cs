@@ -31,7 +31,7 @@ namespace SharpVk.Interop
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct ImageMemoryBarrier
+    public unsafe partial struct ImageMemoryBarrier
     {
         /// <summary>
         /// The type of this structure.

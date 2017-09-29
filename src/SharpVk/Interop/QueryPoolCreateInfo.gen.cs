@@ -31,7 +31,7 @@ namespace SharpVk.Interop
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct QueryPoolCreateInfo
+    public unsafe partial struct QueryPoolCreateInfo
     {
         /// <summary>
         /// The type of this structure.

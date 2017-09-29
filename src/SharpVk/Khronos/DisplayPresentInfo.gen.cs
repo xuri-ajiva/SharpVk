@@ -31,7 +31,7 @@ namespace SharpVk.Khronos
     /// Structure describing parameters of a queue presentation to a swapchain.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DisplayPresentInfo
+    public partial struct DisplayPresentInfo
     {
         /// <summary>
         /// A rectangular region of pixels to present. It must be a subset of

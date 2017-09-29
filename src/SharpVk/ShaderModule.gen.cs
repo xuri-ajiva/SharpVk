@@ -30,6 +30,7 @@ namespace SharpVk
     /// Opaque handle to a shader module object.
     /// </summary>
     public partial class ShaderModule
+        : IDisposable
     {
         internal readonly SharpVk.Interop.ShaderModule handle; 
         
@@ -76,6 +77,14 @@ namespace SharpVk
             {
                 Interop.HeapUtil.FreeAll();
             }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+            this.Destroy();
         }
     }
 }

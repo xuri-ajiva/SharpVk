@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying a mapped memory range.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct MappedMemoryRange
+    public partial struct MappedMemoryRange
     {
         /// <summary>
         /// The memory object to which this range belongs.

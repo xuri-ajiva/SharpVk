@@ -31,7 +31,7 @@ namespace SharpVk.Interop
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct SparseImageMemoryBindInfo
+    public unsafe partial struct SparseImageMemoryBindInfo
     {
         /// <summary>
         /// The Image object to be bound

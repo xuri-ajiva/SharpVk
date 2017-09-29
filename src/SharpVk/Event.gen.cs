@@ -30,6 +30,7 @@ namespace SharpVk
     /// Opaque handle to a event object.
     /// </summary>
     public partial class Event
+        : IDisposable
     {
         internal readonly SharpVk.Interop.Event handle; 
         
@@ -133,6 +134,14 @@ namespace SharpVk
             {
                 Interop.HeapUtil.FreeAll();
             }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+            this.Destroy();
         }
     }
 }

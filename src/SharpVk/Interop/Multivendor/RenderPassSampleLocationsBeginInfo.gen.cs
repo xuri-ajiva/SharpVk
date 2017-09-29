@@ -31,7 +31,7 @@ namespace SharpVk.Interop.Multivendor
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct RenderPassSampleLocationsBeginInfo
+    public unsafe partial struct RenderPassSampleLocationsBeginInfo
     {
         /// <summary>
         /// 

@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure containing parameters of a memory allocation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct MemoryAllocateInfo
+    public partial struct MemoryAllocateInfo
     {
         /// <summary>
         /// The size of the allocation in bytes

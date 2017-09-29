@@ -31,7 +31,7 @@ namespace SharpVk.Interop
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct WriteDescriptorSet
+    public unsafe partial struct WriteDescriptorSet
     {
         /// <summary>
         /// The type of this structure.

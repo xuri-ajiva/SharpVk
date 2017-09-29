@@ -31,7 +31,7 @@ namespace SharpVk.Interop.Khronos
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct MemoryRequirements2
+    public unsafe partial struct MemoryRequirements2
     {
         /// <summary>
         /// 

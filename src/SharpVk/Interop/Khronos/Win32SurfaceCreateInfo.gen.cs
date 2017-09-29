@@ -31,7 +31,7 @@ namespace SharpVk.Interop.Khronos
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct Win32SurfaceCreateInfo
+    public unsafe partial struct Win32SurfaceCreateInfo
     {
         /// <summary>
         /// The type of this structure.
@@ -49,13 +49,12 @@ namespace SharpVk.Interop.Khronos
         public SharpVk.Khronos.Win32SurfaceCreateFlags Flags; 
         
         /// <summary>
-        /// hinstance and hwnd are the Win32 HINSTANCE and HWND for the window
-        /// to associate the surface with.
+        /// Win32 HINSTANCE for the window to associate the surface with.
         /// </summary>
         public IntPtr Hinstance; 
         
         /// <summary>
-        /// 
+        /// Win32 HWND for the window to associate the surface with.
         /// </summary>
         public IntPtr Hwnd; 
     }

@@ -31,7 +31,7 @@ namespace SharpVk.Khronos.Experimental
     /// Set the initial device mask for a command buffer.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DeviceGroupCommandBufferBeginInfo
+    public partial struct DeviceGroupCommandBufferBeginInfo
     {
         /// <summary>
         /// The initial value of the command buffer's device mask.

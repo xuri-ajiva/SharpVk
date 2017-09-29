@@ -81,7 +81,7 @@ namespace SharpVk.Generator.Emission
                                     this.methodEmitter.Emit(typeBuilder, method);
                                 }
                             }
-                        }, Public, null, @struct.IsUnsafe ? Unsafe : None, attributes: new[] { "StructLayout(LayoutKind.Sequential)" }, summary: @struct.Comment?.ToArray());
+                        }, Public, null, @struct.IsUnsafe ? Unsafe | Partial : Partial, attributes: new[] { "StructLayout(LayoutKind.Sequential)" }, summary: @struct.Comment?.ToArray());
                     });
                 });
             }

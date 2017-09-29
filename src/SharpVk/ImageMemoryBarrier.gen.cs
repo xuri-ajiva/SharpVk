@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying the parameters of an image memory barrier.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct ImageMemoryBarrier
+    public partial struct ImageMemoryBarrier
     {
         /// <summary>
         /// srcAccessMask defines a source access mask.

@@ -31,7 +31,7 @@ namespace SharpVk.Interop.Khronos.Experimental
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct BindImageMemorySwapchainInfo
+    public unsafe partial struct BindImageMemorySwapchainInfo
     {
         /// <summary>
         /// The type of this structure.

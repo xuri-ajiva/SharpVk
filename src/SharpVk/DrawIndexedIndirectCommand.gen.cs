@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying a draw indexed indirect command.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DrawIndexedIndirectCommand
+    public partial struct DrawIndexedIndirectCommand
     {
         /// <summary>
         /// 

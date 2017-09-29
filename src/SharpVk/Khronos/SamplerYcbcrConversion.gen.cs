@@ -30,6 +30,7 @@ namespace SharpVk.Khronos
     /// 
     /// </summary>
     public partial class SamplerYcbcrConversion
+        : IDisposable
     {
         internal readonly SharpVk.Interop.Khronos.SamplerYcbcrConversion handle; 
         
@@ -73,6 +74,14 @@ namespace SharpVk.Khronos
             {
                 Interop.HeapUtil.FreeAll();
             }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+            this.Destroy();
         }
     }
 }

@@ -31,7 +31,7 @@ namespace SharpVk.Khronos
     /// Structure specifying parameters of a newly created Xcb surface object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct XcbSurfaceCreateInfo
+    public partial struct XcbSurfaceCreateInfo
     {
         /// <summary>
         /// Reserved for future use.

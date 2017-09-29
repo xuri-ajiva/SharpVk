@@ -31,7 +31,7 @@ namespace SharpVk.Interop
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct SpecializationInfo
+    public unsafe partial struct SpecializationInfo
     {
         /// <summary>
         /// The number of entries in the pMapEntries array.

@@ -31,7 +31,7 @@ namespace SharpVk.Interop.NVidia.Experimental
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct DeviceGeneratedCommandsFeatures
+    public unsafe partial struct DeviceGeneratedCommandsFeatures
     {
         /// <summary>
         /// The type of this structure.

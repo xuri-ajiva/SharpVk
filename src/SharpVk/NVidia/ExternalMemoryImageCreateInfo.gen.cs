@@ -31,7 +31,7 @@ namespace SharpVk.NVidia
     /// Specify that an image may be backed by external memory.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct ExternalMemoryImageCreateInfo
+    public partial struct ExternalMemoryImageCreateInfo
     {
         /// <summary>
         /// A bitmask of ExternalMemoryHandleTypeFlagBitsNV specifying one or

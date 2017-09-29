@@ -31,7 +31,7 @@ namespace SharpVk.Interop.NVidia
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct ExternalMemoryImageCreateInfo
+    public unsafe partial struct ExternalMemoryImageCreateInfo
     {
         /// <summary>
         /// The type of this structure.

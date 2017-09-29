@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying a viewport.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Viewport
+    public partial struct Viewport
     {
         /// <summary>
         /// 

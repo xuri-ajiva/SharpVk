@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying physical device sparse memory properties.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PhysicalDeviceSparseProperties
+    public partial struct PhysicalDeviceSparseProperties
     {
         /// <summary>
         /// residencyStandard2DBlockShape is VK_TRUE if the physical device

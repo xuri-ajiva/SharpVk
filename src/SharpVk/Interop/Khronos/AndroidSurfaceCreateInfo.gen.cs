@@ -31,7 +31,7 @@ namespace SharpVk.Interop.Khronos
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct AndroidSurfaceCreateInfo
+    public unsafe partial struct AndroidSurfaceCreateInfo
     {
         /// <summary>
         /// The type of this structure.

@@ -32,7 +32,7 @@ namespace SharpVk.Multivendor
     /// callback.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DebugReportCallbackCreateInfo
+    public partial struct DebugReportCallbackCreateInfo
     {
         /// <summary>
         /// flags indicate which event(s) will cause this callback to be

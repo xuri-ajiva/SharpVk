@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying an image resolve operation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct ImageResolve
+    public partial struct ImageResolve
     {
         /// <summary>
         /// 

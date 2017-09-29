@@ -32,7 +32,7 @@ namespace SharpVk.Khronos.Experimental
     /// operations and command buffers.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DeviceGroupSubmitInfo
+    public partial struct DeviceGroupSubmitInfo
     {
         /// <summary>
         /// An array of device indices indicating which physical device

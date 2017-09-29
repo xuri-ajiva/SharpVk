@@ -31,7 +31,7 @@ namespace SharpVk.Interop
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct SemaphoreCreateInfo
+    public unsafe partial struct SemaphoreCreateInfo
     {
         /// <summary>
         /// The type of this structure.

@@ -31,7 +31,7 @@ namespace SharpVk.NVidia.Experimental
     /// Structure specifying physical device limits.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DeviceGeneratedCommandsLimits
+    public partial struct DeviceGeneratedCommandsLimits
     {
         /// <summary>
         /// maxIndirectCommandsLayoutTokenCount the maximum number of tokens in

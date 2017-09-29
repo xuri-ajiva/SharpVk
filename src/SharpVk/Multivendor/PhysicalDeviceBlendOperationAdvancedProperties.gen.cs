@@ -31,7 +31,7 @@ namespace SharpVk.Multivendor
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PhysicalDeviceBlendOperationAdvancedProperties
+    public partial struct PhysicalDeviceBlendOperationAdvancedProperties
     {
         /// <summary>
         /// 

@@ -31,7 +31,7 @@ namespace SharpVk.Multivendor
     /// Describe the power state of a display.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DisplayPowerInfo
+    public partial struct DisplayPowerInfo
     {
         /// <summary>
         /// The new power state of the display. Possible values are: + --

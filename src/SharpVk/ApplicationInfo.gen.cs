@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying application info.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct ApplicationInfo
+    public partial struct ApplicationInfo
     {
         /// <summary>
         /// A string containing the name of the application.

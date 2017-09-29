@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying a pipeline color blend attachment state.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PipelineColorBlendAttachmentState
+    public partial struct PipelineColorBlendAttachmentState
     {
         /// <summary>
         /// blendEnable controls whether blending is enabled for the

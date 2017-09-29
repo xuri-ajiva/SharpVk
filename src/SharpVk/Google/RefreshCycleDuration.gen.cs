@@ -31,7 +31,7 @@ namespace SharpVk.Google
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct RefreshCycleDuration
+    public partial struct RefreshCycleDuration
     {
         /// <summary>
         /// 

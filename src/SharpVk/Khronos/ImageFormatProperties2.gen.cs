@@ -31,7 +31,7 @@ namespace SharpVk.Khronos
     /// Structure specifying a image format properties.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct ImageFormatProperties2
+    public partial struct ImageFormatProperties2
     {
         /// <summary>
         /// An instance of a ImageFormatProperties structure in which

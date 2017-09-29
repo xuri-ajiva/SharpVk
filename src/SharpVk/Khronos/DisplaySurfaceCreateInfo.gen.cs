@@ -32,7 +32,7 @@ namespace SharpVk.Khronos
     /// surface object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DisplaySurfaceCreateInfo
+    public partial struct DisplaySurfaceCreateInfo
     {
         /// <summary>
         /// Reserved for future use, and must be zero.

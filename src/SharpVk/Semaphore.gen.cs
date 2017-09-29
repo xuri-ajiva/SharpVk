@@ -30,6 +30,7 @@ namespace SharpVk
     /// Opaque handle to a semaphore object.
     /// </summary>
     public partial class Semaphore
+        : IDisposable
     {
         internal readonly SharpVk.Interop.Semaphore handle; 
         
@@ -76,6 +77,14 @@ namespace SharpVk
             {
                 Interop.HeapUtil.FreeAll();
             }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+            this.Destroy();
         }
     }
 }

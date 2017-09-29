@@ -32,7 +32,7 @@ namespace SharpVk
     /// stencil state.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PipelineDepthStencilStateCreateInfo
+    public partial struct PipelineDepthStencilStateCreateInfo
     {
         /// <summary>
         /// Reserved for future use.

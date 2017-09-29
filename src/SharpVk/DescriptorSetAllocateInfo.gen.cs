@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying the allocation parameters for descriptor sets.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DescriptorSetAllocateInfo
+    public partial struct DescriptorSetAllocateInfo
     {
         /// <summary>
         /// The pool which the sets will be allocated from.

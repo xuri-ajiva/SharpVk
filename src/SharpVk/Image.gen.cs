@@ -30,6 +30,7 @@ namespace SharpVk
     /// Opaque handle to a image object.
     /// </summary>
     public partial class Image
+        : IDisposable
     {
         internal readonly SharpVk.Interop.Image handle; 
         
@@ -170,6 +171,14 @@ namespace SharpVk
             {
                 Interop.HeapUtil.FreeAll();
             }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+            this.Destroy();
         }
     }
 }

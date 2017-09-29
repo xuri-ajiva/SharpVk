@@ -31,7 +31,7 @@ namespace SharpVk.Multivendor
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct SamplerReductionModeCreateInfo
+    public partial struct SamplerReductionModeCreateInfo
     {
         /// <summary>
         /// 

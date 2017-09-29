@@ -31,7 +31,7 @@ namespace SharpVk.Interop
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct DescriptorSetAllocateInfo
+    public unsafe partial struct DescriptorSetAllocateInfo
     {
         /// <summary>
         /// The type of this structure.

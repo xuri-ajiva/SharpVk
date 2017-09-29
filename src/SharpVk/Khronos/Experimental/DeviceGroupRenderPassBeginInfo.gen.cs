@@ -32,7 +32,7 @@ namespace SharpVk.Khronos.Experimental
     /// instance.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DeviceGroupRenderPassBeginInfo
+    public partial struct DeviceGroupRenderPassBeginInfo
     {
         /// <summary>
         /// The device mask for the render pass instance.

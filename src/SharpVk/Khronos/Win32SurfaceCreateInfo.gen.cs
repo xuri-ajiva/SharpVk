@@ -32,7 +32,7 @@ namespace SharpVk.Khronos
     /// object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Win32SurfaceCreateInfo
+    public partial struct Win32SurfaceCreateInfo
     {
         /// <summary>
         /// Reserved for future use.
@@ -44,8 +44,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// hinstance and hwnd are the Win32 HINSTANCE and HWND for the window
-        /// to associate the surface with.
+        /// Win32 HINSTANCE for the window to associate the surface with.
         /// </summary>
         public IntPtr Hinstance
         {
@@ -54,7 +53,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Win32 HWND for the window to associate the surface with.
         /// </summary>
         public IntPtr Hwnd
         {

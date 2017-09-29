@@ -31,7 +31,7 @@ namespace SharpVk.NVidia.Experimental
     /// Structure specifying parameters for the generation of commands.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct CommandProcessCommandsInfo
+    public partial struct CommandProcessCommandsInfo
     {
         /// <summary>
         /// The ObjectTableNVX to be used for the generation process. Only

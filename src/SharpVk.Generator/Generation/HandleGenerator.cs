@@ -69,6 +69,24 @@ namespace SharpVk.Generator.Generation
                     commandCacheType = type.Name.ToLower();
                 }
 
+                if (commands.Any(x => x.Name == "Destroy"))
+                {
+                    interfaces.Add("IDisposable");
+                    commands.Add(new MethodDefinition
+                    {
+                        IsPublic = true,
+                        Name = "Dispose",
+                        ParamActions = new List<ParamActionDefinition>(),
+                        MemberActions = new List<MethodAction>()
+                        {
+                            new InvokeAction
+                            {
+                                MethodName = "Destroy"
+                            }
+                        }
+                    });
+                }
+
                 services.AddSingleton(new HandleDefinition
                 {
                     Name = type.Name,

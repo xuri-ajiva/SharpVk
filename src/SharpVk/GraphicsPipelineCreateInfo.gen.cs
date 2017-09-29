@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying parameters of a newly created graphics pipeline.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct GraphicsPipelineCreateInfo
+    public partial struct GraphicsPipelineCreateInfo
     {
         /// <summary>
         /// A bitmask of PipelineCreateFlagBits controlling how the pipeline

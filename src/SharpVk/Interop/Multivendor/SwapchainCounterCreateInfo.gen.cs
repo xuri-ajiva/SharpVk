@@ -31,7 +31,7 @@ namespace SharpVk.Interop.Multivendor
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct SwapchainCounterCreateInfo
+    public unsafe partial struct SwapchainCounterCreateInfo
     {
         /// <summary>
         /// The type of this structure.

@@ -31,7 +31,7 @@ namespace SharpVk.Khronos.Experimental
     /// Structure specifying parameters of the acquire.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct AcquireNextImageInfo
+    public partial struct AcquireNextImageInfo
     {
         /// <summary>
         /// The swapchain from which an image is being acquired.

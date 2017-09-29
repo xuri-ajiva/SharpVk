@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying sparse image opaque memory bind info.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct SparseImageOpaqueMemoryBindInfo
+    public partial struct SparseImageOpaqueMemoryBindInfo
     {
         /// <summary>
         /// The Image object to be bound.

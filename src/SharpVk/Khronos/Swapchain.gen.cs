@@ -30,6 +30,7 @@ namespace SharpVk.Khronos
     /// 
     /// </summary>
     public partial class Swapchain
+        : IDisposable
     {
         internal readonly SharpVk.Interop.Khronos.Swapchain handle; 
         
@@ -170,6 +171,14 @@ namespace SharpVk.Khronos
             {
                 Interop.HeapUtil.FreeAll();
             }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+            this.Destroy();
         }
     }
 }

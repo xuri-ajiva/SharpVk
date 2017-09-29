@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying a sparse buffer memory bind operation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct SparseBufferMemoryBindInfo
+    public partial struct SparseBufferMemoryBindInfo
     {
         /// <summary>
         /// The Buffer object to be bound.

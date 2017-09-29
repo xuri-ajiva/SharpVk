@@ -31,7 +31,7 @@ namespace SharpVk.Interop.NVidia.Experimental
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct IndirectCommandsToken
+    public unsafe partial struct IndirectCommandsToken
     {
         /// <summary>
         /// Specifies the token command type.

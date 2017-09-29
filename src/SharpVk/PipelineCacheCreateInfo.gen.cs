@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying parameters of a newly created pipeline cache.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PipelineCacheCreateInfo
+    public partial struct PipelineCacheCreateInfo
     {
         /// <summary>
         /// Reserved for future use.

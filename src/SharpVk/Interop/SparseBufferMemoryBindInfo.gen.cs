@@ -31,7 +31,7 @@ namespace SharpVk.Interop
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct SparseBufferMemoryBindInfo
+    public unsafe partial struct SparseBufferMemoryBindInfo
     {
         /// <summary>
         /// The Buffer object to be bound.

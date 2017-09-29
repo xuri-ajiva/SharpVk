@@ -31,7 +31,7 @@ namespace SharpVk.Khronos
     /// Structure specifying parameters of a newly created swapchain object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct SwapchainCreateInfo
+    public partial struct SwapchainCreateInfo
     {
         /// <summary>
         /// A bitmask indicating parameters of swapchain creation. Bits which

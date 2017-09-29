@@ -31,7 +31,7 @@ namespace SharpVk.Khronos
     /// Structure specifying how to bind a buffer to memory.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct BindBufferMemoryInfo
+    public partial struct BindBufferMemoryInfo
     {
         /// <summary>
         /// The buffer to be attached to memory.

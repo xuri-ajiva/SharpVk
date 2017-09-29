@@ -31,7 +31,7 @@ namespace SharpVk.Khronos
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PhysicalDeviceSurfaceInfo2
+    public partial struct PhysicalDeviceSurfaceInfo2
     {
         /// <summary>
         /// 

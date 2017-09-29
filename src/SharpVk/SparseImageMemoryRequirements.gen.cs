@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying sparse image memory requirements.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct SparseImageMemoryRequirements
+    public partial struct SparseImageMemoryRequirements
     {
         /// <summary>
         /// 

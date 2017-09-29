@@ -30,6 +30,7 @@ namespace SharpVk.NVidia.Experimental
     /// Opaque handle to an indirect commands layout object.
     /// </summary>
     public partial class IndirectCommandsLayout
+        : IDisposable
     {
         internal readonly SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayout handle; 
         
@@ -77,6 +78,14 @@ namespace SharpVk.NVidia.Experimental
             {
                 Interop.HeapUtil.FreeAll();
             }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+            this.Destroy();
         }
     }
 }

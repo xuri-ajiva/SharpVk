@@ -31,7 +31,7 @@ namespace SharpVk.Interop.Khronos.Experimental
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct DeviceGroupCommandBufferBeginInfo
+    public unsafe partial struct DeviceGroupCommandBufferBeginInfo
     {
         /// <summary>
         /// The type of this structure.

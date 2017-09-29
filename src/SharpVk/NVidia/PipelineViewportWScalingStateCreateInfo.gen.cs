@@ -32,7 +32,7 @@ namespace SharpVk.NVidia
     /// scaling state.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PipelineViewportWScalingStateCreateInfo
+    public partial struct PipelineViewportWScalingStateCreateInfo
     {
         /// <summary>
         /// The enable for viewport W scaling

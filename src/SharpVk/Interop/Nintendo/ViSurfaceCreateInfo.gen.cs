@@ -31,7 +31,7 @@ namespace SharpVk.Interop.Nintendo
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct ViSurfaceCreateInfo
+    public unsafe partial struct ViSurfaceCreateInfo
     {
         /// <summary>
         /// The type of this structure.

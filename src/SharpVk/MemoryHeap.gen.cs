@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying a memory heap.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct MemoryHeap
+    public partial struct MemoryHeap
     {
         /// <summary>
         /// 

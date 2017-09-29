@@ -32,7 +32,7 @@ namespace SharpVk
     /// tessellation state.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PipelineTessellationStateCreateInfo
+    public partial struct PipelineTessellationStateCreateInfo
     {
         /// <summary>
         /// Reserved for future use.

@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying a sparse memory bind operation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct SparseMemoryBind
+    public partial struct SparseMemoryBind
     {
         /// <summary>
         /// The offset into the resource.

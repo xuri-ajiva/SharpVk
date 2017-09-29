@@ -31,7 +31,7 @@ namespace SharpVk.Interop.Khronos
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct FormatProperties2
+    public unsafe partial struct FormatProperties2
     {
         /// <summary>
         /// The type of this structure.

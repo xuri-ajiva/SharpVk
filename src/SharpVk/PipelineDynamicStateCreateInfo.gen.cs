@@ -32,7 +32,7 @@ namespace SharpVk
     /// state.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PipelineDynamicStateCreateInfo
+    public partial struct PipelineDynamicStateCreateInfo
     {
         /// <summary>
         /// Reserved for future use.

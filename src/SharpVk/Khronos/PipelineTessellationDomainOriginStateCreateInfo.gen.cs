@@ -31,7 +31,7 @@ namespace SharpVk.Khronos
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PipelineTessellationDomainOriginStateCreateInfo
+    public partial struct PipelineTessellationDomainOriginStateCreateInfo
     {
         /// <summary>
         /// 

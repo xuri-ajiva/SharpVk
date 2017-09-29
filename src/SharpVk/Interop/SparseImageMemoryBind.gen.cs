@@ -31,7 +31,7 @@ namespace SharpVk.Interop
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct SparseImageMemoryBind
+    public unsafe partial struct SparseImageMemoryBind
     {
         /// <summary>
         /// The aspectMask and region of interest in the image.

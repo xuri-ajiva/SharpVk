@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying parameters of a newly created image view.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct ImageViewCreateInfo
+    public partial struct ImageViewCreateInfo
     {
         /// <summary>
         /// Reserved for future use.

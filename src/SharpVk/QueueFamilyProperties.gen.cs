@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure providing information about a queue family.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct QueueFamilyProperties
+    public partial struct QueueFamilyProperties
     {
         /// <summary>
         /// 

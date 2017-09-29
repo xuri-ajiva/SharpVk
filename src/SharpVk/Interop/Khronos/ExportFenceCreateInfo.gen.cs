@@ -31,7 +31,7 @@ namespace SharpVk.Interop.Khronos
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct ExportFenceCreateInfo
+    public unsafe partial struct ExportFenceCreateInfo
     {
         /// <summary>
         /// 

@@ -31,7 +31,7 @@ namespace SharpVk.NVidia
     /// Import Win32 memory created on the same physical device.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct ImportMemoryWin32HandleInfo
+    public partial struct ImportMemoryWin32HandleInfo
     {
         /// <summary>
         /// A flag specifying the type of memory handle in handle.

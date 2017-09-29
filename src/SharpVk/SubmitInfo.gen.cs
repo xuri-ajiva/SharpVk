@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying a queue submit operation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct SubmitInfo
+    public partial struct SubmitInfo
     {
         /// <summary>
         /// An array of semaphores upon which to wait before the command

@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying an image copy operation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct ImageCopy
+    public partial struct ImageCopy
     {
         /// <summary>
         /// 

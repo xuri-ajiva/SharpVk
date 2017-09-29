@@ -31,7 +31,7 @@ namespace SharpVk.Khronos
     /// Structure describing parameters of a queue presentation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PresentInfo
+    public partial struct PresentInfo
     {
         /// <summary>
         /// If not Null, is an array of Semaphore objects with

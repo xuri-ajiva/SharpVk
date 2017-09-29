@@ -31,7 +31,7 @@ namespace SharpVk.Khronos
     /// Structure describing capabilities of a surface.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct SurfaceCapabilities
+    public partial struct SurfaceCapabilities
     {
         /// <summary>
         /// 

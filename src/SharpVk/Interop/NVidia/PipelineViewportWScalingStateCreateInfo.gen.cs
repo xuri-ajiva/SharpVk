@@ -31,7 +31,7 @@ namespace SharpVk.Interop.NVidia
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct PipelineViewportWScalingStateCreateInfo
+    public unsafe partial struct PipelineViewportWScalingStateCreateInfo
     {
         /// <summary>
         /// The type of this structure

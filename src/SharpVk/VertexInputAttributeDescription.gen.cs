@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying vertex input attribute description.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct VertexInputAttributeDescription
+    public partial struct VertexInputAttributeDescription
     {
         /// <summary>
         /// 

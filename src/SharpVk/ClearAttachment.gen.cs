@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying a clear attachment.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct ClearAttachment
+    public partial struct ClearAttachment
     {
         /// <summary>
         /// 

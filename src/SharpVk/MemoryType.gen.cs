@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying memory type.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct MemoryType
+    public partial struct MemoryType
     {
         /// <summary>
         /// 

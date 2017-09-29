@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying a copy descriptor set operation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct CopyDescriptorSet
+    public partial struct CopyDescriptorSet
     {
         /// <summary>
         /// srcSet, srcBinding, and srcArrayElement are the source set,

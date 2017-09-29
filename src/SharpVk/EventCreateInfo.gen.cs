@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying parameters of a newly created event.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct EventCreateInfo
+    public partial struct EventCreateInfo
     {
         /// <summary>
         /// Reserved for future use.

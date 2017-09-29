@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying parameters of a newly created sampler.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct SamplerCreateInfo
+    public partial struct SamplerCreateInfo
     {
         /// <summary>
         /// Reserved for future use.

@@ -31,7 +31,7 @@ namespace SharpVk.Multivendor
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PhysicalDeviceSampleLocationsProperties
+    public partial struct PhysicalDeviceSampleLocationsProperties
     {
         /// <summary>
         /// 

@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying the parameters of a newly created buffer object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct BufferCreateInfo
+    public partial struct BufferCreateInfo
     {
         /// <summary>
         /// A bitmask describing additional parameters of the buffer.

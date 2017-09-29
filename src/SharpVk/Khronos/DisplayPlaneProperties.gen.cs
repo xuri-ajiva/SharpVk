@@ -31,7 +31,7 @@ namespace SharpVk.Khronos
     /// Structure describing display plane properties.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DisplayPlaneProperties
+    public partial struct DisplayPlaneProperties
     {
         /// <summary>
         /// The handle of the display the plane is currently associated with.

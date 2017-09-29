@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying descriptor pool size.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DescriptorPoolSize
+    public partial struct DescriptorPoolSize
     {
         /// <summary>
         /// 

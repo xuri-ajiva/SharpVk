@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying memory requirements.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct MemoryRequirements
+    public partial struct MemoryRequirements
     {
         /// <summary>
         /// 

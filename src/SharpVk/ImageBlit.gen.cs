@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying an image blit operation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct ImageBlit
+    public partial struct ImageBlit
     {
         /// <summary>
         /// The subresource to blit from.

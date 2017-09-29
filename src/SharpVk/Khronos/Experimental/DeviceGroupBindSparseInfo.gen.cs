@@ -31,7 +31,7 @@ namespace SharpVk.Khronos.Experimental
     /// Structure indicating which instances are bound.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DeviceGroupBindSparseInfo
+    public partial struct DeviceGroupBindSparseInfo
     {
         /// <summary>
         /// A device index indicating which instance of the resource is bound.

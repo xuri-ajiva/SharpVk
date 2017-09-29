@@ -31,7 +31,7 @@ namespace SharpVk.Khronos
     /// Structure describing an available display device.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DisplayProperties
+    public partial struct DisplayProperties
     {
         /// <summary>
         /// A handle that is used to refer to the display described here. This

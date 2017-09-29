@@ -31,7 +31,7 @@ namespace SharpVk.Interop.Khronos
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct Win32KeyedMutexAcquireReleaseInfo
+    public unsafe partial struct Win32KeyedMutexAcquireReleaseInfo
     {
         /// <summary>
         /// 

@@ -31,7 +31,7 @@ namespace SharpVk.Multivendor
     /// Structure describing capabilities of a surface.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct SurfaceCapabilities2
+    public partial struct SurfaceCapabilities2
     {
         /// <summary>
         /// 

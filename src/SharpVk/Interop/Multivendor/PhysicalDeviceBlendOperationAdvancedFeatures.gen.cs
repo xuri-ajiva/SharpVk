@@ -31,7 +31,7 @@ namespace SharpVk.Interop.Multivendor
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct PhysicalDeviceBlendOperationAdvancedFeatures
+    public unsafe partial struct PhysicalDeviceBlendOperationAdvancedFeatures
     {
         /// <summary>
         /// 

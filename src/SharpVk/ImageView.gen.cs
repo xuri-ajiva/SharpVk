@@ -30,6 +30,7 @@ namespace SharpVk
     /// Opaque handle to a image view object.
     /// </summary>
     public partial class ImageView
+        : IDisposable
     {
         internal readonly SharpVk.Interop.ImageView handle; 
         
@@ -76,6 +77,14 @@ namespace SharpVk
             {
                 Interop.HeapUtil.FreeAll();
             }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+            this.Destroy();
         }
     }
 }

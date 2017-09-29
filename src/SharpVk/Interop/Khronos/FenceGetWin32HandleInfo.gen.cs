@@ -31,7 +31,7 @@ namespace SharpVk.Interop.Khronos
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct FenceGetWin32HandleInfo
+    public unsafe partial struct FenceGetWin32HandleInfo
     {
         /// <summary>
         /// 

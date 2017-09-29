@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying a subpass dependency.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct SubpassDependency
+    public partial struct SubpassDependency
     {
         /// <summary>
         /// 

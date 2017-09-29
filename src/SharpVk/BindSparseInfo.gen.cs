@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying a sparse binding operation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct BindSparseInfo
+    public partial struct BindSparseInfo
     {
         /// <summary>
         /// An array of semaphores upon which to wait on before the sparse

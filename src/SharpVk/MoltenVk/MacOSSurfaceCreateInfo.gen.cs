@@ -32,7 +32,7 @@ namespace SharpVk.MoltenVk
     /// object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct MacOSSurfaceCreateInfo
+    public partial struct MacOSSurfaceCreateInfo
     {
         /// <summary>
         /// Reserved for future use.

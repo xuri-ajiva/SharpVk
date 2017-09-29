@@ -31,7 +31,7 @@ namespace SharpVk.Khronos
     /// Structure specifying image creation parameters.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PhysicalDeviceImageFormatInfo2
+    public partial struct PhysicalDeviceImageFormatInfo2
     {
         /// <summary>
         /// The image format, corresponding to ImageCreateInfo::format.

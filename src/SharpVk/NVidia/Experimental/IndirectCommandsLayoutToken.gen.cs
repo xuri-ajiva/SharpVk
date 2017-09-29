@@ -31,7 +31,7 @@ namespace SharpVk.NVidia.Experimental
     /// Struct specifying the details of an indirect command layout token.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct IndirectCommandsLayoutToken
+    public partial struct IndirectCommandsLayoutToken
     {
         /// <summary>
         /// 

@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying parameters of a newly created framebuffer.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct FramebufferCreateInfo
+    public partial struct FramebufferCreateInfo
     {
         /// <summary>
         /// Reserved for future use.

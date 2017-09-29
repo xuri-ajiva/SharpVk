@@ -31,7 +31,7 @@ namespace SharpVk.NVidia
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PipelineViewportSwizzleStateCreateInfo
+    public partial struct PipelineViewportSwizzleStateCreateInfo
     {
         /// <summary>
         /// 

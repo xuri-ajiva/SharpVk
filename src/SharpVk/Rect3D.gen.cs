@@ -31,7 +31,7 @@ namespace SharpVk
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Rect3D
+    public partial struct Rect3D
     {
         /// <summary>
         /// 

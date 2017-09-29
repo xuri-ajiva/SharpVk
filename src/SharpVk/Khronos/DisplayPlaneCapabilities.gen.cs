@@ -31,7 +31,7 @@ namespace SharpVk.Khronos
     /// Structure describing capabilities of a mode and plane combination.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DisplayPlaneCapabilities
+    public partial struct DisplayPlaneCapabilities
     {
         /// <summary>
         /// 

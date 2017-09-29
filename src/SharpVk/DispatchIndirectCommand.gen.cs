@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying a dispatch indirect command.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DispatchIndirectCommand
+    public partial struct DispatchIndirectCommand
     {
         /// <summary>
         /// 

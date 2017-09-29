@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying stencil operation state.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct StencilOpState
+    public partial struct StencilOpState
     {
         /// <summary>
         /// 

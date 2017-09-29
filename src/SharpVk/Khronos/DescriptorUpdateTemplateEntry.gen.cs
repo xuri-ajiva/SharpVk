@@ -31,7 +31,7 @@ namespace SharpVk.Khronos
     /// Describes a single descriptor update of the descriptor update template.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DescriptorUpdateTemplateEntry
+    public partial struct DescriptorUpdateTemplateEntry
     {
         /// <summary>
         /// 

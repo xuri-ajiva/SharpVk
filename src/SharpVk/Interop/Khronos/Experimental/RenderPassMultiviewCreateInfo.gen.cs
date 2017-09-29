@@ -31,7 +31,7 @@ namespace SharpVk.Interop.Khronos.Experimental
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct RenderPassMultiviewCreateInfo
+    public unsafe partial struct RenderPassMultiviewCreateInfo
     {
         /// <summary>
         /// The type of this structure.

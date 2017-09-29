@@ -31,7 +31,7 @@ namespace SharpVk.Khronos
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PhysicalDeviceSamplerYcbcrConversionFeatures
+    public partial struct PhysicalDeviceSamplerYcbcrConversionFeatures
     {
         /// <summary>
         /// 

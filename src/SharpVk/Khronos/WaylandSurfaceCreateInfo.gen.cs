@@ -32,7 +32,7 @@ namespace SharpVk.Khronos
     /// object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct WaylandSurfaceCreateInfo
+    public partial struct WaylandSurfaceCreateInfo
     {
         /// <summary>
         /// Reserved for future use.

@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying parameters of a newly created fence.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct FenceCreateInfo
+    public partial struct FenceCreateInfo
     {
         /// <summary>
         /// flags defines the initial state and behavior of the fence. Bits

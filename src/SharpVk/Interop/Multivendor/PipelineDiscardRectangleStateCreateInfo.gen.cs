@@ -31,7 +31,7 @@ namespace SharpVk.Interop.Multivendor
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct PipelineDiscardRectangleStateCreateInfo
+    public unsafe partial struct PipelineDiscardRectangleStateCreateInfo
     {
         /// <summary>
         /// 

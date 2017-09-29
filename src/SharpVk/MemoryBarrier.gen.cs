@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying a global memory barrier.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct MemoryBarrier
+    public partial struct MemoryBarrier
     {
         /// <summary>
         /// srcAccessMask defines a source access mask.

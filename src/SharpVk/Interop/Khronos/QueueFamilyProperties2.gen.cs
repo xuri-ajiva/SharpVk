@@ -31,7 +31,7 @@ namespace SharpVk.Interop.Khronos
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct QueueFamilyProperties2
+    public unsafe partial struct QueueFamilyProperties2
     {
         /// <summary>
         /// The type of this structure.

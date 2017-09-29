@@ -31,7 +31,7 @@ namespace SharpVk.Amd
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct TextureLODGatherFormatProperties
+    public partial struct TextureLODGatherFormatProperties
     {
         /// <summary>
         /// 

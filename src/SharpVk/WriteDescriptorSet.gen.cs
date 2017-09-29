@@ -32,7 +32,7 @@ namespace SharpVk
     /// operation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct WriteDescriptorSet
+    public partial struct WriteDescriptorSet
     {
         /// <summary>
         /// The destination descriptor set to update.

@@ -31,7 +31,7 @@ namespace SharpVk.Interop.NVidia.Experimental
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct ObjectTableDescriptorSetEntry
+    public unsafe partial struct ObjectTableDescriptorSetEntry
     {
         /// <summary>
         /// 

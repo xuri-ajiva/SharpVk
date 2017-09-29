@@ -31,7 +31,7 @@ namespace SharpVk.Interop
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct PhysicalDeviceLimits
+    public unsafe partial struct PhysicalDeviceLimits
     {
         /// <summary>
         /// The maximum dimension (width) of an image created with an imageType

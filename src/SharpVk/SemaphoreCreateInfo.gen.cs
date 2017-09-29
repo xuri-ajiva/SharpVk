@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying parameters of a newly created semaphore.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct SemaphoreCreateInfo
+    public partial struct SemaphoreCreateInfo
     {
         /// <summary>
         /// Reserved for future use.

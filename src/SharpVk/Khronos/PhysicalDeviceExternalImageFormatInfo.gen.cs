@@ -31,7 +31,7 @@ namespace SharpVk.Khronos
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PhysicalDeviceExternalImageFormatInfo
+    public partial struct PhysicalDeviceExternalImageFormatInfo
     {
         /// <summary>
         /// 

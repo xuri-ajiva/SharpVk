@@ -31,7 +31,7 @@ namespace SharpVk.Multivendor
     /// Specify parameters of a command buffer marker region.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DebugMarkerMarkerInfo
+    public partial struct DebugMarkerMarkerInfo
     {
         /// <summary>
         /// A string that contains the name of the marker.

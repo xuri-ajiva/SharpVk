@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying parameters of a newly created command pool.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct CommandPoolCreateInfo
+    public partial struct CommandPoolCreateInfo
     {
         /// <summary>
         /// A bitmask indicating usage behavior for the pool and command

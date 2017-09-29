@@ -31,7 +31,7 @@ namespace SharpVk.Interop
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct ShaderModuleCreateInfo
+    public unsafe partial struct ShaderModuleCreateInfo
     {
         /// <summary>
         /// The type of this structure.

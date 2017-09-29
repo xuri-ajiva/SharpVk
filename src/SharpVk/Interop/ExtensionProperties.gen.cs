@@ -31,7 +31,7 @@ namespace SharpVk.Interop
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct ExtensionProperties
+    public unsafe partial struct ExtensionProperties
     {
         /// <summary>
         /// A null-terminated string specifying the name of the extension.

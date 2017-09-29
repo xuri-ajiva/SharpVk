@@ -31,7 +31,7 @@ namespace SharpVk.Khronos.Experimental
     /// Mode and mask controlling which physical devices' images are presented.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DeviceGroupPresentInfo
+    public partial struct DeviceGroupPresentInfo
     {
         /// <summary>
         /// An array of device masks, one for each element of

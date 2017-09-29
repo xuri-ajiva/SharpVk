@@ -31,7 +31,7 @@ namespace SharpVk.Multivendor
     /// Specify parameters of a tag to attach to an object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DebugMarkerObjectTagInfo
+    public partial struct DebugMarkerObjectTagInfo
     {
         /// <summary>
         /// A DebugReportObjectTypeEXT specifying the type of the object to be

@@ -31,7 +31,7 @@ namespace SharpVk.Interop.Khronos
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct ExportSemaphoreWin32HandleInfo
+    public unsafe partial struct ExportSemaphoreWin32HandleInfo
     {
         /// <summary>
         /// 

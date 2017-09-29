@@ -31,7 +31,7 @@ namespace SharpVk.Nintendo
     /// Structure specifying parameters of a newly created VI surface object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct ViSurfaceCreateInfo
+    public partial struct ViSurfaceCreateInfo
     {
         /// <summary>
         /// Reserved for future use.

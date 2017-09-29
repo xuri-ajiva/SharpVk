@@ -32,7 +32,7 @@ namespace SharpVk.Khronos
     /// object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct AndroidSurfaceCreateInfo
+    public partial struct AndroidSurfaceCreateInfo
     {
         /// <summary>
         /// Reserved for future use.

@@ -31,7 +31,7 @@ namespace SharpVk.Interop
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct PhysicalDeviceMemoryProperties
+    public unsafe partial struct PhysicalDeviceMemoryProperties
     {
         /// <summary>
         /// The number of valid elements in the memoryTypes array.

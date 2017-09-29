@@ -31,7 +31,7 @@ namespace SharpVk.Khronos.Experimental
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct MemoryAllocateFlagsInfo
+    public partial struct MemoryAllocateFlagsInfo
     {
         /// <summary>
         /// 

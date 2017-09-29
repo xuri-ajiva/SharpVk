@@ -32,7 +32,7 @@ namespace SharpVk.NVidia.Experimental
     /// implementation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PhysicalDeviceMultiviewPerViewAttributesProperties
+    public partial struct PhysicalDeviceMultiviewPerViewAttributesProperties
     {
         /// <summary>
         /// 

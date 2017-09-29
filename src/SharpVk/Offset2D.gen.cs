@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying a two-dimensional offset.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Offset2D
+    public partial struct Offset2D
     {
         /// <summary>
         /// 

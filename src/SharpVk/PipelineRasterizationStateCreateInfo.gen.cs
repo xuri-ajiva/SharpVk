@@ -32,7 +32,7 @@ namespace SharpVk
     /// rasterization state.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PipelineRasterizationStateCreateInfo
+    public partial struct PipelineRasterizationStateCreateInfo
     {
         /// <summary>
         /// Reserved for future use.

@@ -31,7 +31,7 @@ namespace SharpVk.Multivendor
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PipelineSampleLocationsStateCreateInfo
+    public partial struct PipelineSampleLocationsStateCreateInfo
     {
         /// <summary>
         /// 

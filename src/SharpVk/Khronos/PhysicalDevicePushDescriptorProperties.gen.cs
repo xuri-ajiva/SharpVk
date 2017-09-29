@@ -32,7 +32,7 @@ namespace SharpVk.Khronos
     /// implementation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PhysicalDevicePushDescriptorProperties
+    public partial struct PhysicalDevicePushDescriptorProperties
     {
         /// <summary>
         /// 

@@ -31,7 +31,7 @@ namespace SharpVk.Multivendor
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct SampleLocationsInfo
+    public partial struct SampleLocationsInfo
     {
         /// <summary>
         /// 

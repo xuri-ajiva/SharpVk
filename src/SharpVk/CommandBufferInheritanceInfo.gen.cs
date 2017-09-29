@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying command buffer inheritance info.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct CommandBufferInheritanceInfo
+    public partial struct CommandBufferInheritanceInfo
     {
         /// <summary>
         /// A RenderPass object defining which render passes the CommandBuffer

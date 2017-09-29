@@ -30,6 +30,7 @@ namespace SharpVk
     /// Opaque handle to a pipeline layout object.
     /// </summary>
     public partial class PipelineLayout
+        : IDisposable
     {
         internal readonly SharpVk.Interop.PipelineLayout handle; 
         
@@ -76,6 +77,14 @@ namespace SharpVk
             {
                 Interop.HeapUtil.FreeAll();
             }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+            this.Destroy();
         }
     }
 }

@@ -31,7 +31,7 @@ namespace SharpVk.NVidia
     /// Specify security attributes and access rights for Win32 memory handles.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct ExportMemoryWin32HandleInfo
+    public partial struct ExportMemoryWin32HandleInfo
     {
         /// <summary>
         /// A Windows SECURITY_ATTRIBUTES structure specifying security

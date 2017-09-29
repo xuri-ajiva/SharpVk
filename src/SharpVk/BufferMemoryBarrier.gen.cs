@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying a buffer memory barrier.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct BufferMemoryBarrier
+    public partial struct BufferMemoryBarrier
     {
         /// <summary>
         /// srcAccessMask defines a source access mask.

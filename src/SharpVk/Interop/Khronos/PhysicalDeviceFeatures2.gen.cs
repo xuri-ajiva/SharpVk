@@ -31,7 +31,7 @@ namespace SharpVk.Interop.Khronos
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct PhysicalDeviceFeatures2
+    public unsafe partial struct PhysicalDeviceFeatures2
     {
         /// <summary>
         /// The type of this structure.

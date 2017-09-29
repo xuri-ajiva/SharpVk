@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying parameters of a newly created buffer view.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct BufferViewCreateInfo
+    public partial struct BufferViewCreateInfo
     {
         /// <summary>
         /// Reserved for future use.

@@ -31,7 +31,7 @@ namespace SharpVk.Interop.Khronos
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct SwapchainCreateInfo
+    public unsafe partial struct SwapchainCreateInfo
     {
         /// <summary>
         /// The type of this structure.

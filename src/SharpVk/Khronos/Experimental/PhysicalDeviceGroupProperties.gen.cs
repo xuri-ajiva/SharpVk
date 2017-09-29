@@ -31,7 +31,7 @@ namespace SharpVk.Khronos.Experimental
     /// Structure specifying physical device group properties.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PhysicalDeviceGroupProperties
+    public partial struct PhysicalDeviceGroupProperties
     {
         /// <summary>
         /// An array of physical device handles representing all physical

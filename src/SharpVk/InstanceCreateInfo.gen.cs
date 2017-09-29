@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying parameters of a newly created instance.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct InstanceCreateInfo
+    public partial struct InstanceCreateInfo
     {
         /// <summary>
         /// Reserved for future use.

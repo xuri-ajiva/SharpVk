@@ -31,7 +31,7 @@ namespace SharpVk.Interop.Multivendor
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct DebugMarkerObjectTagInfo
+    public unsafe partial struct DebugMarkerObjectTagInfo
     {
         /// <summary>
         /// The type of this structure.

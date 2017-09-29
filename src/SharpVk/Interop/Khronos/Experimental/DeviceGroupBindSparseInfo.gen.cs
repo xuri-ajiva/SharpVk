@@ -31,7 +31,7 @@ namespace SharpVk.Interop.Khronos.Experimental
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct DeviceGroupBindSparseInfo
+    public unsafe partial struct DeviceGroupBindSparseInfo
     {
         /// <summary>
         /// The type of this structure.

@@ -31,7 +31,7 @@ namespace SharpVk.Khronos
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct MemoryWin32HandleProperties
+    public partial struct MemoryWin32HandleProperties
     {
         /// <summary>
         /// 

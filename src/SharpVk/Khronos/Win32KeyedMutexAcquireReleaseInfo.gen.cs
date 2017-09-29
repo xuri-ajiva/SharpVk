@@ -31,7 +31,7 @@ namespace SharpVk.Khronos
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Win32KeyedMutexAcquireReleaseInfo
+    public partial struct Win32KeyedMutexAcquireReleaseInfo
     {
         /// <summary>
         /// 

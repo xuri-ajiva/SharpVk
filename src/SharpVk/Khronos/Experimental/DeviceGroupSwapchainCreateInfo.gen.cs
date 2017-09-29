@@ -31,7 +31,7 @@ namespace SharpVk.Khronos.Experimental
     /// Structure specifying parameters of a newly created swapchain object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DeviceGroupSwapchainCreateInfo
+    public partial struct DeviceGroupSwapchainCreateInfo
     {
         /// <summary>
         /// A bitfield of modes that the swapchain can be used with.

@@ -31,7 +31,7 @@ namespace SharpVk.Interop
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct ImageBlit
+    public unsafe partial struct ImageBlit
     {
         /// <summary>
         /// The subresource to blit from.

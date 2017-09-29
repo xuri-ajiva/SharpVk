@@ -33,6 +33,7 @@ namespace SharpVk
     /// as parameters to certain commands.
     /// </summary>
     public partial class Buffer
+        : IDisposable
     {
         internal readonly SharpVk.Interop.Buffer handle; 
         
@@ -117,6 +118,14 @@ namespace SharpVk
             {
                 Interop.HeapUtil.FreeAll();
             }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+            this.Destroy();
         }
     }
 }

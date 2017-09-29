@@ -33,6 +33,7 @@ namespace SharpVk.Khronos
     /// frequently updating the same set of descriptors in descriptor sets.
     /// </summary>
     public partial class DescriptorUpdateTemplate
+        : IDisposable
     {
         internal readonly SharpVk.Interop.Khronos.DescriptorUpdateTemplate handle; 
         
@@ -80,6 +81,14 @@ namespace SharpVk.Khronos
             {
                 Interop.HeapUtil.FreeAll();
             }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+            this.Destroy();
         }
     }
 }

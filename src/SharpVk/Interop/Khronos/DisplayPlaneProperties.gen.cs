@@ -31,7 +31,7 @@ namespace SharpVk.Interop.Khronos
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct DisplayPlaneProperties
+    public unsafe partial struct DisplayPlaneProperties
     {
         /// <summary>
         /// The handle of the display the plane is currently associated with.

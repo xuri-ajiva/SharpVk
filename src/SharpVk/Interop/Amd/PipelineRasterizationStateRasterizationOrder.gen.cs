@@ -31,7 +31,7 @@ namespace SharpVk.Interop.Amd
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct PipelineRasterizationStateRasterizationOrder
+    public unsafe partial struct PipelineRasterizationStateRasterizationOrder
     {
         /// <summary>
         /// 

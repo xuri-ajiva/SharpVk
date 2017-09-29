@@ -30,6 +30,7 @@ namespace SharpVk.Khronos
     /// 
     /// </summary>
     public partial class Surface
+        : IDisposable
     {
         internal readonly SharpVk.Interop.Khronos.Surface handle; 
         
@@ -77,6 +78,14 @@ namespace SharpVk.Khronos
             {
                 Interop.HeapUtil.FreeAll();
             }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+            this.Destroy();
         }
     }
 }

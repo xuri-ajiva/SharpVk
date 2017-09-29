@@ -32,7 +32,7 @@ namespace SharpVk.Khronos.Experimental
     /// implementation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PhysicalDeviceMultiviewFeatures
+    public partial struct PhysicalDeviceMultiviewFeatures
     {
         /// <summary>
         /// 

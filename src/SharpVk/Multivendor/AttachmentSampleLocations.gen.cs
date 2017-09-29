@@ -31,7 +31,7 @@ namespace SharpVk.Multivendor
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct AttachmentSampleLocations
+    public partial struct AttachmentSampleLocations
     {
         /// <summary>
         /// 

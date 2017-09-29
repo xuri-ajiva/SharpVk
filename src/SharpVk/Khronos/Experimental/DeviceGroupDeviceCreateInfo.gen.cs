@@ -31,7 +31,7 @@ namespace SharpVk.Khronos.Experimental
     /// Create a logical device from multiple physical devices.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DeviceGroupDeviceCreateInfo
+    public partial struct DeviceGroupDeviceCreateInfo
     {
         /// <summary>
         /// An array of physical device handles belonging to the same device

@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying a clear rectangle.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct ClearRect
+    public partial struct ClearRect
     {
         /// <summary>
         /// 

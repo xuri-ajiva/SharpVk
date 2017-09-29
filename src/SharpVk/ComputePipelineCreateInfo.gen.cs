@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying parameters of a newly created compute pipeline.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct ComputePipelineCreateInfo
+    public partial struct ComputePipelineCreateInfo
     {
         /// <summary>
         /// flags provides options for pipeline creation, and is of type

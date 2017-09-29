@@ -31,7 +31,7 @@ namespace SharpVk.Interop.Google
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct PresentTimesInfo
+    public unsafe partial struct PresentTimesInfo
     {
         /// <summary>
         /// 

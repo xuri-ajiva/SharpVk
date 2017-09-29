@@ -31,7 +31,7 @@ namespace SharpVk.Khronos.Experimental
     /// Present capabilities from other physical devices.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DeviceGroupPresentCapabilities
+    public partial struct DeviceGroupPresentCapabilities
     {
         /// <summary>
         /// An array of masks, where the mask at element [eq]#i# is non-zero if

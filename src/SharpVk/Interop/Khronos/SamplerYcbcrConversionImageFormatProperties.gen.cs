@@ -31,7 +31,7 @@ namespace SharpVk.Interop.Khronos
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct SamplerYcbcrConversionImageFormatProperties
+    public unsafe partial struct SamplerYcbcrConversionImageFormatProperties
     {
         /// <summary>
         /// 

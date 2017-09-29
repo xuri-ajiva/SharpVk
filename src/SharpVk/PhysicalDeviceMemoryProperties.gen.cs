@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying physical device memory properties.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PhysicalDeviceMemoryProperties
+    public partial struct PhysicalDeviceMemoryProperties
     {
         /// <summary>
         /// An array of MemoryType structures describing the _memory types_

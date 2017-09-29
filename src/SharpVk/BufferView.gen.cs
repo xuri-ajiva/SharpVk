@@ -30,6 +30,7 @@ namespace SharpVk
     /// Opaque handle to a buffer view object.
     /// </summary>
     public partial class BufferView
+        : IDisposable
     {
         internal readonly SharpVk.Interop.BufferView handle; 
         
@@ -76,6 +77,14 @@ namespace SharpVk
             {
                 Interop.HeapUtil.FreeAll();
             }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+            this.Destroy();
         }
     }
 }

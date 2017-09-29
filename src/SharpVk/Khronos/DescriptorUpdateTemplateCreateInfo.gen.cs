@@ -32,7 +32,7 @@ namespace SharpVk.Khronos
     /// template.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DescriptorUpdateTemplateCreateInfo
+    public partial struct DescriptorUpdateTemplateCreateInfo
     {
         /// <summary>
         /// Reserved for future use.

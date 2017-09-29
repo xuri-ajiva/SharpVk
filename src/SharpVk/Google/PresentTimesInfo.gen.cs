@@ -31,7 +31,7 @@ namespace SharpVk.Google
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PresentTimesInfo
+    public partial struct PresentTimesInfo
     {
         /// <summary>
         /// 

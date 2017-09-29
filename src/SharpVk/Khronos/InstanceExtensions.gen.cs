@@ -320,8 +320,10 @@ namespace SharpVk.Khronos
         /// Reserved for future use.
         /// </param>
         /// <param name="hinstance">
-        /// hinstance and hwnd are the Win32 HINSTANCE and HWND for the window
-        /// to associate the surface with.
+        /// Win32 HINSTANCE for the window to associate the surface with.
+        /// </param>
+        /// <param name="hwnd">
+        /// Win32 HWND for the window to associate the surface with.
         /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory

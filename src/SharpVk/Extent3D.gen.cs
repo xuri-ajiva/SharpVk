@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying a three-dimensional extent.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Extent3D
+    public partial struct Extent3D
     {
         /// <summary>
         /// 

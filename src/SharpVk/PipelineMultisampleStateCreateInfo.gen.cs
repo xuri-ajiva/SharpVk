@@ -32,7 +32,7 @@ namespace SharpVk
     /// state.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PipelineMultisampleStateCreateInfo
+    public partial struct PipelineMultisampleStateCreateInfo
     {
         /// <summary>
         /// Reserved for future use.

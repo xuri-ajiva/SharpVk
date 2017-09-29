@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying parameters of a newly created descriptor pool.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DescriptorPoolCreateInfo
+    public partial struct DescriptorPoolCreateInfo
     {
         /// <summary>
         /// Specifies certain supported operations on the pool. Bits which can

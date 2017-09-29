@@ -31,7 +31,7 @@ namespace SharpVk.Khronos
     /// Structure describing display parameters associated with a display mode.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DisplayModeParameters
+    public partial struct DisplayModeParameters
     {
         /// <summary>
         /// 

@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying a command buffer begin operation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct CommandBufferBeginInfo
+    public partial struct CommandBufferBeginInfo
     {
         /// <summary>
         /// A bitmask indicating usage behavior for the command buffer. Bits

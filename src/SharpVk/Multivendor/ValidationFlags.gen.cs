@@ -31,7 +31,7 @@ namespace SharpVk.Multivendor
     /// Specify validation checks to disable for a Vulkan instance.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct ValidationFlags
+    public partial struct ValidationFlags
     {
         /// <summary>
         /// An array of values specifying the validation checks to be disabled.

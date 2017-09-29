@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying a descriptor set layout binding.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DescriptorSetLayoutBinding
+    public partial struct DescriptorSetLayoutBinding
     {
         /// <summary>
         /// The binding number of this entry and corresponds to a resource of

@@ -31,7 +31,7 @@ namespace SharpVk.Khronos.Experimental
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct BindBufferMemoryDeviceGroupInfo
+    public partial struct BindBufferMemoryDeviceGroupInfo
     {
         /// <summary>
         /// An array of device indices.

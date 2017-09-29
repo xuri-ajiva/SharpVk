@@ -31,7 +31,7 @@ namespace SharpVk.Interop
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct DescriptorSetLayoutBinding
+    public unsafe partial struct DescriptorSetLayoutBinding
     {
         /// <summary>
         /// The binding number of this entry and corresponds to a resource of

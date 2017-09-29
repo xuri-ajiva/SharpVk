@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying parameters of a newly created shader module.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct ShaderModuleCreateInfo
+    public partial struct ShaderModuleCreateInfo
     {
         /// <summary>
         /// Reserved for future use.

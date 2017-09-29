@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying subresource layout.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct SubresourceLayout
+    public partial struct SubresourceLayout
     {
         /// <summary>
         /// 

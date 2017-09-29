@@ -31,7 +31,7 @@ namespace SharpVk.Interop.Khronos
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct MirSurfaceCreateInfo
+    public unsafe partial struct MirSurfaceCreateInfo
     {
         /// <summary>
         /// The type of this structure.

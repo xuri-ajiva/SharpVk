@@ -31,7 +31,7 @@ namespace SharpVk.Interop
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct DescriptorBufferInfo
+    public unsafe partial struct DescriptorBufferInfo
     {
         /// <summary>
         /// The buffer resource.

@@ -31,7 +31,7 @@ namespace SharpVk.Khronos
     /// Structure specifying sparse image format inputs.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PhysicalDeviceSparseImageFormatInfo2
+    public partial struct PhysicalDeviceSparseImageFormatInfo2
     {
         /// <summary>
         /// The image format.

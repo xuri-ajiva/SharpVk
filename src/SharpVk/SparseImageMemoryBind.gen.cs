@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying sparse image memory bind.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct SparseImageMemoryBind
+    public partial struct SparseImageMemoryBind
     {
         /// <summary>
         /// The aspectMask and region of interest in the image.

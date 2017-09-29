@@ -31,7 +31,7 @@ namespace SharpVk.NVidia
     /// Specify that an image is bound to a dedicated memory resource.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DedicatedAllocationImageCreateInfo
+    public partial struct DedicatedAllocationImageCreateInfo
     {
         /// <summary>
         /// Indicates whether the image will have a dedicated allocation bound

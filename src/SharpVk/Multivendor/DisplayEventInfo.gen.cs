@@ -31,7 +31,7 @@ namespace SharpVk.Multivendor
     /// Describe a display event to create.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DisplayEventInfo
+    public partial struct DisplayEventInfo
     {
         /// <summary>
         /// Specifies when the fence will be signaled. Possible values are: +

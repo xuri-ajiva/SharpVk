@@ -182,6 +182,10 @@ namespace SharpVk.Generator.Emission
 
                         invokeExpression = DelegateCall(Variable("commandDelegate"), paramNames);
                     }
+                    else if(invokeAction.TypeName == null)
+                    {
+                        invokeExpression = Call(This, invokeAction.MethodName, paramNames);
+                    }
                     else
                     {
                         invokeExpression = StaticCall(invokeAction.TypeName, invokeAction.MethodName, paramNames);

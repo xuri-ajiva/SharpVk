@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying a image subresource.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct ImageSubresource
+    public partial struct ImageSubresource
     {
         /// <summary>
         /// 

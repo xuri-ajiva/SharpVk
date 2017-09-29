@@ -31,7 +31,7 @@ namespace SharpVk.NVidia.Experimental
     /// Structure specifying the parameters of a newly created object table.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct ObjectTableCreateInfo
+    public partial struct ObjectTableCreateInfo
     {
         /// <summary>
         /// An array of ObjectEntryTypeNVX providing the entry type of a given

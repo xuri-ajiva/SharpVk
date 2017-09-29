@@ -32,7 +32,7 @@ namespace SharpVk
     /// object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PipelineLayoutCreateInfo
+    public partial struct PipelineLayoutCreateInfo
     {
         /// <summary>
         /// Reserved for future use.

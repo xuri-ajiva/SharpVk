@@ -31,7 +31,7 @@ namespace SharpVk.NVidia
     /// Structure specifying a viewport.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct ViewportWScaling
+    public partial struct ViewportWScaling
     {
         /// <summary>
         /// 

@@ -31,7 +31,7 @@ namespace SharpVk.NVidia
     /// Structure specifying external image format properties.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct ExternalImageFormatProperties
+    public partial struct ExternalImageFormatProperties
     {
         /// <summary>
         /// 

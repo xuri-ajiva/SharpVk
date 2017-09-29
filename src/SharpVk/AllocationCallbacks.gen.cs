@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure containing callback function pointers for memory allocation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct AllocationCallbacks
+    public partial struct AllocationCallbacks
     {
         /// <summary>
         /// A value to be interpreted by the implementation of the callbacks.

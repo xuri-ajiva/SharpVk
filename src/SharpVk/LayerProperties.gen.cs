@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying layer properties.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct LayerProperties
+    public partial struct LayerProperties
     {
         /// <summary>
         /// A string specifying the name of the layer. Use this name in the

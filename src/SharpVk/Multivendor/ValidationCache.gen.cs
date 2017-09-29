@@ -30,6 +30,7 @@ namespace SharpVk.Multivendor
     /// 
     /// </summary>
     public partial class ValidationCache
+        : IDisposable
     {
         internal readonly SharpVk.Interop.Multivendor.ValidationCache handle; 
         
@@ -154,6 +155,14 @@ namespace SharpVk.Multivendor
             {
                 Interop.HeapUtil.FreeAll();
             }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+            this.Destroy();
         }
     }
 }

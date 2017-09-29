@@ -31,7 +31,7 @@ namespace SharpVk.Khronos
     /// Structure providing information about a queue family.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct QueueFamilyProperties2
+    public partial struct QueueFamilyProperties2
     {
         /// <summary>
         /// A structure of type QueueFamilyProperties which is populated with

@@ -31,7 +31,7 @@ namespace SharpVk.Interop.Khronos
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct PresentRegions
+    public unsafe partial struct PresentRegions
     {
         /// <summary>
         /// 

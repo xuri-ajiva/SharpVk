@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying parameters of a newly created device.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DeviceCreateInfo
+    public partial struct DeviceCreateInfo
     {
         /// <summary>
         /// Reserved for future use.

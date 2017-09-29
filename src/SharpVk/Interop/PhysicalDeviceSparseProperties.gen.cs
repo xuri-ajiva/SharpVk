@@ -31,7 +31,7 @@ namespace SharpVk.Interop
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct PhysicalDeviceSparseProperties
+    public unsafe partial struct PhysicalDeviceSparseProperties
     {
         /// <summary>
         /// residencyStandard2DBlockShape is VK_TRUE if the physical device

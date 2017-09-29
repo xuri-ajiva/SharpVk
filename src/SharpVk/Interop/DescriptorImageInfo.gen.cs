@@ -31,7 +31,7 @@ namespace SharpVk.Interop
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct DescriptorImageInfo
+    public unsafe partial struct DescriptorImageInfo
     {
         /// <summary>
         /// A sampler handle, and is used in descriptor updates for types

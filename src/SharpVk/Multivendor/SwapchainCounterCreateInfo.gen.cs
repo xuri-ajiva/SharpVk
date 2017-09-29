@@ -31,7 +31,7 @@ namespace SharpVk.Multivendor
     /// Specify the surface counters desired.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct SwapchainCounterCreateInfo
+    public partial struct SwapchainCounterCreateInfo
     {
         /// <summary>
         /// A bitmask containing a bit set for each surface counter to enable

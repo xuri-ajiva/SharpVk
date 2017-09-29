@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying a image format properties.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct ImageFormatProperties
+    public partial struct ImageFormatProperties
     {
         /// <summary>
         /// 

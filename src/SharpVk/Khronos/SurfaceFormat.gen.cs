@@ -31,7 +31,7 @@ namespace SharpVk.Khronos
     /// Structure describing a supported swapchain format-color space pair.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct SurfaceFormat
+    public partial struct SurfaceFormat
     {
         /// <summary>
         /// 

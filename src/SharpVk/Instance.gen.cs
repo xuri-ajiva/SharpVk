@@ -30,7 +30,7 @@ namespace SharpVk
     /// Opaque handle to a instance object.
     /// </summary>
     public partial class Instance
-        : IProcLookup
+        : IProcLookup, IDisposable
     {
         internal readonly SharpVk.Interop.Instance handle; 
         
@@ -285,6 +285,14 @@ namespace SharpVk
             {
                 Interop.HeapUtil.FreeAll();
             }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+            this.Destroy();
         }
     }
 }

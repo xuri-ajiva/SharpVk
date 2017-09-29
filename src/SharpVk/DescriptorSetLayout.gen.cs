@@ -30,6 +30,7 @@ namespace SharpVk
     /// Opaque handle to a descriptor set layout object.
     /// </summary>
     public partial class DescriptorSetLayout
+        : IDisposable
     {
         internal readonly SharpVk.Interop.DescriptorSetLayout handle; 
         
@@ -76,6 +77,14 @@ namespace SharpVk
             {
                 Interop.HeapUtil.FreeAll();
             }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+            this.Destroy();
         }
     }
 }

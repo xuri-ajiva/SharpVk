@@ -31,7 +31,7 @@ namespace SharpVk.Khronos
     /// Structure specifying parameters of a newly created Mir surface object.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct MirSurfaceCreateInfo
+    public partial struct MirSurfaceCreateInfo
     {
         /// <summary>
         /// Reserved for future use.

@@ -32,7 +32,7 @@ namespace SharpVk
     /// layout.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DescriptorSetLayoutCreateInfo
+    public partial struct DescriptorSetLayoutCreateInfo
     {
         /// <summary>
         /// flags provides options for descriptor set layout creation, and is

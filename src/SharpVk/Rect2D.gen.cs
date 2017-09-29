@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying a two-dimensional subregion.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct Rect2D
+    public partial struct Rect2D
     {
         /// <summary>
         /// 

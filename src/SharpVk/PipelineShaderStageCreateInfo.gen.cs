@@ -32,7 +32,7 @@ namespace SharpVk
     /// stage.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PipelineShaderStageCreateInfo
+    public partial struct PipelineShaderStageCreateInfo
     {
         /// <summary>
         /// Reserved for future use.

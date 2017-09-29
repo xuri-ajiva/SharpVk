@@ -31,7 +31,7 @@ namespace SharpVk.Khronos
     /// Structure specifying sparse image format properties.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct SparseImageFormatProperties2
+    public partial struct SparseImageFormatProperties2
     {
         /// <summary>
         /// A structure of type SparseImageFormatProperties which is populated

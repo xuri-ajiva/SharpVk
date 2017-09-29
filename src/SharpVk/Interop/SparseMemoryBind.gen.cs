@@ -31,7 +31,7 @@ namespace SharpVk.Interop
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct SparseMemoryBind
+    public unsafe partial struct SparseMemoryBind
     {
         /// <summary>
         /// The offset into the resource.

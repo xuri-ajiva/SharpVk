@@ -31,7 +31,7 @@ namespace SharpVk.Interop
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct PhysicalDeviceFeatures
+    public unsafe partial struct PhysicalDeviceFeatures
     {
         /// <summary>
         /// 

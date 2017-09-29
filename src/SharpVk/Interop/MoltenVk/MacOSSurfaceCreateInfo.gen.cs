@@ -31,7 +31,7 @@ namespace SharpVk.Interop.MoltenVk
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct MacOSSurfaceCreateInfo
+    public unsafe partial struct MacOSSurfaceCreateInfo
     {
         /// <summary>
         /// The type of this structure.

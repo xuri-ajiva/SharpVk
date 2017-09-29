@@ -30,6 +30,7 @@ namespace SharpVk
     /// Opaque handle to a sampler object.
     /// </summary>
     public partial class Sampler
+        : IDisposable
     {
         internal readonly SharpVk.Interop.Sampler handle; 
         
@@ -76,6 +77,14 @@ namespace SharpVk
             {
                 Interop.HeapUtil.FreeAll();
             }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+            this.Destroy();
         }
     }
 }

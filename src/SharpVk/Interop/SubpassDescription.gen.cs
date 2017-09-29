@@ -31,7 +31,7 @@ namespace SharpVk.Interop
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct SubpassDescription
+    public unsafe partial struct SubpassDescription
     {
         /// <summary>
         /// A bitmask indicating usage of the subpass. Bits which can be set

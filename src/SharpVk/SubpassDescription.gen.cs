@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying a subpass description.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct SubpassDescription
+    public partial struct SubpassDescription
     {
         /// <summary>
         /// A bitmask indicating usage of the subpass. Bits which can be set

@@ -31,7 +31,7 @@ namespace SharpVk.Interop.Multivendor
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct DeviceEventInfo
+    public unsafe partial struct DeviceEventInfo
     {
         /// <summary>
         /// The type of this structure.

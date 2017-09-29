@@ -31,7 +31,7 @@ namespace SharpVk.Interop.NVidia.Experimental
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct CommandReserveSpaceForCommandsInfo
+    public unsafe partial struct CommandReserveSpaceForCommandsInfo
     {
         /// <summary>
         /// The type of this structure.

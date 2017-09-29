@@ -30,6 +30,7 @@ namespace SharpVk
     /// Opaque handle to a framebuffer object.
     /// </summary>
     public partial class Framebuffer
+        : IDisposable
     {
         internal readonly SharpVk.Interop.Framebuffer handle; 
         
@@ -76,6 +77,14 @@ namespace SharpVk
             {
                 Interop.HeapUtil.FreeAll();
             }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+            this.Destroy();
         }
     }
 }

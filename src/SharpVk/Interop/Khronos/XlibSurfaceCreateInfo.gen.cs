@@ -31,7 +31,7 @@ namespace SharpVk.Interop.Khronos
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct XlibSurfaceCreateInfo
+    public unsafe partial struct XlibSurfaceCreateInfo
     {
         /// <summary>
         /// The type of this structure.

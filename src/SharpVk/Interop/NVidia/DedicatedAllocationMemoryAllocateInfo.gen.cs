@@ -31,7 +31,7 @@ namespace SharpVk.Interop.NVidia
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct DedicatedAllocationMemoryAllocateInfo
+    public unsafe partial struct DedicatedAllocationMemoryAllocateInfo
     {
         /// <summary>
         /// The type of this structure.

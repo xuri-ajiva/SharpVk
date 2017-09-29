@@ -31,7 +31,7 @@ namespace SharpVk.NVidia
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct ExportMemoryAllocateInfo
+    public partial struct ExportMemoryAllocateInfo
     {
         /// <summary>
         /// 

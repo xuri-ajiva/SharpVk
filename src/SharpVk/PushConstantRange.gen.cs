@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying a push constant range.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PushConstantRange
+    public partial struct PushConstantRange
     {
         /// <summary>
         /// 

@@ -31,7 +31,7 @@ namespace SharpVk.Multivendor
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PipelineColorBlendAdvancedStateCreateInfo
+    public partial struct PipelineColorBlendAdvancedStateCreateInfo
     {
         /// <summary>
         /// 

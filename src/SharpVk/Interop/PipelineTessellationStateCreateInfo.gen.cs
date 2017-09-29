@@ -31,7 +31,7 @@ namespace SharpVk.Interop
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct PipelineTessellationStateCreateInfo
+    public unsafe partial struct PipelineTessellationStateCreateInfo
     {
         /// <summary>
         /// The type of this structure.

@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying parameters of a newly created query pool.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct QueryPoolCreateInfo
+    public partial struct QueryPoolCreateInfo
     {
         /// <summary>
         /// Reserved for future use.

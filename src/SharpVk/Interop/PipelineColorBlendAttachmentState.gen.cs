@@ -31,7 +31,7 @@ namespace SharpVk.Interop
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct PipelineColorBlendAttachmentState
+    public unsafe partial struct PipelineColorBlendAttachmentState
     {
         /// <summary>
         /// blendEnable controls whether blending is enabled for the

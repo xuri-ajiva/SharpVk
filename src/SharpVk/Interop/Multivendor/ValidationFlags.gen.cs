@@ -31,7 +31,7 @@ namespace SharpVk.Interop.Multivendor
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct ValidationFlags
+    public unsafe partial struct ValidationFlags
     {
         /// <summary>
         /// The type of this structure.

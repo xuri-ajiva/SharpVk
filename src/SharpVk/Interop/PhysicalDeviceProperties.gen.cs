@@ -31,7 +31,7 @@ namespace SharpVk.Interop
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe struct PhysicalDeviceProperties
+    public unsafe partial struct PhysicalDeviceProperties
     {
         /// <summary>
         /// The version of Vulkan supported by the device, encoded as described

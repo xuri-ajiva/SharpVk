@@ -31,7 +31,7 @@ namespace SharpVk.NVidia
     /// Structure specifying a viewport swizzle.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct ViewportSwizzle
+    public partial struct ViewportSwizzle
     {
         /// <summary>
         /// 

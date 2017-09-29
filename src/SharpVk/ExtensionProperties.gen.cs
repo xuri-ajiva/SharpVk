@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying a extension properties.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct ExtensionProperties
+    public partial struct ExtensionProperties
     {
         /// <summary>
         /// A null-terminated string specifying the name of the extension.

@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying descriptor image info.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct DescriptorImageInfo
+    public partial struct DescriptorImageInfo
     {
         /// <summary>
         /// A sampler handle, and is used in descriptor updates for types

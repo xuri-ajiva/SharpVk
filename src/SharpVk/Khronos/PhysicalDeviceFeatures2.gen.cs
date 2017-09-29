@@ -32,7 +32,7 @@ namespace SharpVk.Khronos
     /// an implementation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PhysicalDeviceFeatures2
+    public partial struct PhysicalDeviceFeatures2
     {
         /// <summary>
         /// A structure of type PhysicalDeviceFeatures describing the

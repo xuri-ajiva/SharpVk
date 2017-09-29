@@ -30,6 +30,7 @@ namespace SharpVk
     /// Opaque handle to a render pass object.
     /// </summary>
     public partial class RenderPass
+        : IDisposable
     {
         internal readonly SharpVk.Interop.RenderPass handle; 
         
@@ -95,6 +96,14 @@ namespace SharpVk
             {
                 Interop.HeapUtil.FreeAll();
             }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+            this.Destroy();
         }
     }
 }

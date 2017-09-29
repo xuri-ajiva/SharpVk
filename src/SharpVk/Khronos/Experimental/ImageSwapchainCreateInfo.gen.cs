@@ -31,7 +31,7 @@ namespace SharpVk.Khronos.Experimental
     /// Specify that an image will be bound to swapchain memory.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct ImageSwapchainCreateInfo
+    public partial struct ImageSwapchainCreateInfo
     {
         /// <summary>
         /// swapchain is null or a handle of a swapchain that the image will be

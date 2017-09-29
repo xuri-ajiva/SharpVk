@@ -32,7 +32,7 @@ namespace SharpVk
     /// an implementation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct PhysicalDeviceFeatures
+    public partial struct PhysicalDeviceFeatures
     {
         /// <summary>
         /// 

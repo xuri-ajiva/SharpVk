@@ -31,7 +31,7 @@ namespace SharpVk
     /// Structure specifying a specialization map entry.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public struct SpecializationMapEntry
+    public partial struct SpecializationMapEntry
     {
         /// <summary>
         /// 

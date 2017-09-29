@@ -30,6 +30,7 @@ namespace SharpVk
     /// Opaque handle to a descriptor pool object.
     /// </summary>
     public partial class DescriptorPool
+        : IDisposable
     {
         internal readonly SharpVk.Interop.DescriptorPool handle; 
         
@@ -145,6 +146,14 @@ namespace SharpVk
             {
                 Interop.HeapUtil.FreeAll();
             }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+            this.Destroy();
         }
     }
 }

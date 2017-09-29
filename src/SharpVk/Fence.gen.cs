@@ -30,6 +30,7 @@ namespace SharpVk
     /// Opaque handle to a fence object.
     /// </summary>
     public partial class Fence
+        : IDisposable
     {
         internal readonly SharpVk.Interop.Fence handle; 
         
@@ -95,6 +96,14 @@ namespace SharpVk
             {
                 Interop.HeapUtil.FreeAll();
             }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void Dispose()
+        {
+            this.Destroy();
         }
     }
 }
