@@ -16,11 +16,13 @@ namespace SharpVk.Shanq
     {
         private readonly ExecutionModel model;
         private readonly Stream outputStream;
+        private readonly IVectorTypeLibrary vectorLibrary;
 
-        public ShanqQueryExecutor(ExecutionModel model, Stream outputStream)
+        public ShanqQueryExecutor(ExecutionModel model, Stream outputStream, IVectorTypeLibrary vectorLibrary)
         {
             this.model = model;
             this.outputStream = outputStream;
+            this.vectorLibrary = vectorLibrary;
         }
 
         public IEnumerable<T> ExecuteCollection<T>(QueryModel queryModel)
@@ -31,7 +33,7 @@ namespace SharpVk.Shanq
             file.AddHeaderStatement(file.GetNextResultId(), Op.OpExtInstImport, "GLSL.std.450");
             file.AddHeaderStatement(Op.OpMemoryModel, AddressingModel.Logical, MemoryModel.GLSL450);
 
-            var expressionVisitor = new ShanqExpressionVisitor(file);
+            var expressionVisitor = new ShanqExpressionVisitor(file, this.vectorLibrary);
 
             ResultId voidId = expressionVisitor.Visit(Expression.Constant(typeof(void)));
             ResultId actionId = expressionVisitor.Visit(Expression.Constant(typeof(Action)));
@@ -121,7 +123,7 @@ namespace SharpVk.Shanq
                 {
                     expressionVisitor.AddBinding(field, Tuple.Create(uniformVariableId, fieldIndex));
 
-                    if (ShanqExpressionVisitor.IsMatrixType(field.FieldType))
+                    if (this.vectorLibrary.IsMatrixType(field.FieldType))
                     {
                         //HACK Should adapt to different matrix formats
                         file.AddAnnotationStatement(Op.OpMemberDecorate, structureTypeId, fieldIndex, Decoration.ColMajor);

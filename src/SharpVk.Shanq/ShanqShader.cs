@@ -18,9 +18,9 @@ namespace SharpVk.Shanq
     {
         private readonly ShanqQueryExecutor executor;
 
-        public ShanqFactory(ExecutionModel model, Stream outputStream)
+        public ShanqFactory(ExecutionModel model, Stream outputStream, IVectorTypeLibrary vectorLibrary)
         {
-            this.executor = new ShanqQueryExecutor(model, outputStream);
+            this.executor = new ShanqQueryExecutor(model, outputStream, vectorLibrary);
         }
 
         public IQueryable<T> GetBinding<T>()
@@ -36,33 +36,33 @@ namespace SharpVk.Shanq
 
     public static class ShanqShader
     {
-        public static void Create<TOutput>(ExecutionModel model, Stream outputStream, Func<IShanqFactory, IQueryable<TOutput>> shaderFunction)
+        public static void Create<TOutput>(ExecutionModel model, Stream outputStream, IVectorTypeLibrary vectorLibrary, Func<IShanqFactory, IQueryable<TOutput>> shaderFunction)
         {
-            var factory = new ShanqFactory(model, outputStream);
+            var factory = new ShanqFactory(model, outputStream, vectorLibrary);
 
             shaderFunction(factory).ToArray();
         }
 
-        public static void CreateFragment<TOutput>(Stream outputStream, Func<IShanqFactory, IQueryable<TOutput>> shaderFunction)
+        public static void CreateFragment<TOutput>(Stream outputStream, IVectorTypeLibrary vectorLibrary, Func<IShanqFactory, IQueryable<TOutput>> shaderFunction)
         {
-            Create(ExecutionModel.Fragment, outputStream, shaderFunction);
+            Create(ExecutionModel.Fragment, outputStream, vectorLibrary, shaderFunction);
         }
 
-        public static ShaderModule CreateVertexModule<TOutput>(Device device, Func<IShanqFactory, IQueryable<TOutput>> shaderFunction)
+        public static ShaderModule CreateVertexModule<TOutput>(Device device, IVectorTypeLibrary vectorLibrary, Func<IShanqFactory, IQueryable<TOutput>> shaderFunction)
         {
-            return CreateModule(device, ExecutionModel.Vertex, shaderFunction);
+            return CreateModule(device, vectorLibrary, ExecutionModel.Vertex, shaderFunction);
         }
 
-        public static ShaderModule CreateFragmentModule<TOutput>(Device device, Func<IShanqFactory, IQueryable<TOutput>> shaderFunction)
+        public static ShaderModule CreateFragmentModule<TOutput>(Device device, IVectorTypeLibrary vectorLibrary, Func<IShanqFactory, IQueryable<TOutput>> shaderFunction)
         {
-            return CreateModule(device, ExecutionModel.Fragment, shaderFunction);
+            return CreateModule(device, vectorLibrary, ExecutionModel.Fragment, shaderFunction);
         }
 
-        private static ShaderModule CreateModule<TOutput>(Device device, ExecutionModel model, Func<IShanqFactory, IQueryable<TOutput>> shaderFunction)
+        private static ShaderModule CreateModule<TOutput>(Device device, IVectorTypeLibrary vectorLibrary, ExecutionModel model, Func<IShanqFactory, IQueryable<TOutput>> shaderFunction)
         {
             var shaderStream = new MemoryStream();
 
-            Create(model, shaderStream, shaderFunction);
+            Create(model, shaderStream, vectorLibrary, shaderFunction);
 
             int shaderLength = (int)shaderStream.Length;
 

@@ -1,5 +1,4 @@
-﻿using GlmSharp;
-using Remotion.Linq.Clauses.Expressions;
+﻿using Remotion.Linq.Clauses.Expressions;
 using SharpVk.Spirv;
 using System;
 using System.Collections;
@@ -12,13 +11,15 @@ namespace SharpVk.Shanq
 {
     internal class ShanqExpressionVisitor
     {
+        private readonly SpirvFile file;
+        private readonly IVectorTypeLibrary vectorLibrary;
+
         private Dictionary<ExpressionType, Func<Expression, ResultId>> expressionVisitors = new Dictionary<ExpressionType, Func<Expression, ResultId>>();
         private Dictionary<SpirvStatement, ResultId> expressionResults = new Dictionary<SpirvStatement, ResultId>();
-        private readonly SpirvFile file;
         private Dictionary<FieldInfo, ResultId> inputMappings = new Dictionary<FieldInfo, ResultId>();
         private Dictionary<FieldInfo, Tuple<ResultId, int>> bindingMappings = new Dictionary<FieldInfo, Tuple<ResultId, int>>();
 
-        public ShanqExpressionVisitor(SpirvFile file)
+        public ShanqExpressionVisitor(SpirvFile file, IVectorTypeLibrary vectorLibrary)
         {
             var visitMethods = this.GetType()
                                     .GetMethods(BindingFlags.NonPublic | BindingFlags.Instance)
@@ -32,6 +33,7 @@ namespace SharpVk.Shanq
             }
 
             this.file = file;
+            this.vectorLibrary = vectorLibrary;
         }
 
         public void AddInputMapping(FieldInfo field, ResultId resultId)
@@ -90,15 +92,15 @@ namespace SharpVk.Shanq
         {
             Op multiplicationOp;
 
-            if (IsVectorType(expression.Left.Type) && !IsVectorType(expression.Right.Type))
+            if (this.vectorLibrary.IsVectorType(expression.Left.Type) && !this.vectorLibrary.IsVectorType(expression.Right.Type))
             {
-                if (!IsFloatingPoint(GetVectorElementType(expression.Left.Type))
+                if (!IsFloatingPoint(this.vectorLibrary.GetVectorElementType(expression.Left.Type))
                         || !IsFloatingPoint(GetElementType(expression.Right.Type)))
                 {
                     throw new NotSupportedException();
                 }
 
-                if (IsMatrixType(expression.Right.Type))
+                if (this.vectorLibrary.IsMatrixType(expression.Right.Type))
                 {
                     multiplicationOp = Op.OpVectorTimesMatrix;
                 }
@@ -107,18 +109,18 @@ namespace SharpVk.Shanq
                     multiplicationOp = Op.OpVectorTimesScalar;
                 }
             }
-            else if (IsMatrixType(expression.Left.Type))
+            else if (this.vectorLibrary.IsMatrixType(expression.Left.Type))
             {
                 if (!IsFloatingPoint(GetElementType(expression.Right.Type)))
                 {
                     throw new NotSupportedException();
                 }
 
-                if (IsVectorType(expression.Right.Type))
+                if (this.vectorLibrary.IsVectorType(expression.Right.Type))
                 {
                     multiplicationOp = Op.OpMatrixTimesVector;
                 }
-                else if (IsMatrixType(expression.Right.Type))
+                else if (this.vectorLibrary.IsMatrixType(expression.Right.Type))
                 {
                     multiplicationOp = Op.OpMatrixTimesMatrix;
                 }
@@ -189,7 +191,7 @@ namespace SharpVk.Shanq
             {
                 var targetType = expression.Expression.Type;
 
-                if (IsVectorType(targetType))
+                if (this.vectorLibrary.IsVectorType(targetType))
                 {
                     string name;
                     Type type;
@@ -290,7 +292,7 @@ namespace SharpVk.Shanq
         {
             SpirvStatement statement;
 
-            if (IsVectorType(expression.Type))
+            if (this.vectorLibrary.IsVectorType(expression.Type))
             {
                 var operands = new[] { this.Visit(Expression.Constant(expression.Type)) }
                                     .Concat(this.ExpandNewArguments(expression.Arguments));
@@ -315,11 +317,11 @@ namespace SharpVk.Shanq
             {
                 ResultId argumentId = this.Visit(argument);
 
-                if (IsVectorType(argument.Type))
+                if (this.vectorLibrary.IsVectorType(argument.Type))
                 {
-                    ResultId typeId = this.Visit(Expression.Constant(GetVectorElementType(argument.Type)));
+                    ResultId typeId = this.Visit(Expression.Constant(this.vectorLibrary.GetVectorElementType(argument.Type)));
 
-                    for (int index = 0; index < GetVectorLength(argument.Type); index++)
+                    for (int index = 0; index < this.vectorLibrary.GetVectorLength(argument.Type); index++)
                     {
                         ResultId fieldId = this.file.GetNextResultId();
 
@@ -340,7 +342,7 @@ namespace SharpVk.Shanq
         {
             SpirvStatement statement;
 
-            if (IsVectorType(expression.Type))
+            if (this.vectorLibrary.IsVectorType(expression.Type))
             {
                 var operands = new object[] { expression.Type }
                                     .Concat(((IEnumerable)expression.Value).OfType<object>())
@@ -352,19 +354,19 @@ namespace SharpVk.Shanq
             {
                 Type value = (Type)expression.Value;
 
-                if (IsMatrixType(value))
+                if (this.vectorLibrary.IsMatrixType(value))
                 {
-                    Type rowType = GetMatrixRowType(value);
-                    int[] dimensions = GetMatrixDimensions(value);
+                    Type rowType = this.vectorLibrary.GetMatrixRowType(value);
+                    int[] dimensions = this.vectorLibrary.GetMatrixDimensions(value);
                     
                     ResultId rowTypeId = this.Visit(Expression.Constant(rowType));
 
                     statement = new SpirvStatement(Op.OpTypeMatrix, rowTypeId, dimensions[0]);
                 }
-                else if (IsVectorType(value))
+                else if (this.vectorLibrary.IsVectorType(value))
                 {
-                    Type elementType = GetVectorElementType(value);
-                    int length = GetVectorLength(value);
+                    Type elementType = this.vectorLibrary.GetVectorElementType(value);
+                    int length = this.vectorLibrary.GetVectorLength(value);
 
                     ResultId elementTypeId = this.Visit(Expression.Constant(elementType));
 
@@ -441,12 +443,12 @@ namespace SharpVk.Shanq
             return resultId;
         }
 
-        private static Op SelectByType(Type type, Op floatingPointOp, Op integerOp)
+        private Op SelectByType(Type type, Op floatingPointOp, Op integerOp)
         {
             return SelectByType(type, floatingPointOp, integerOp, integerOp);
         }
 
-        private static Op SelectByType(Type type, Op floatingPointOp, Op signedIntegerOp, Op unsignedIntegerOp)
+        private Op SelectByType(Type type, Op floatingPointOp, Op signedIntegerOp, Op unsignedIntegerOp)
         {
             type = GetElementType(type);
 
@@ -501,17 +503,17 @@ namespace SharpVk.Shanq
             return value.GetInterfaces().Contains(tupleInterface);
         }
 
-        private static Type GetElementType(Type type)
+        private Type GetElementType(Type type)
         {
             if (type.IsPrimitive)
             {
                 return type;
             }
-            else if (IsVectorType(type))
+            else if (this.vectorLibrary.IsVectorType(type))
             {
-                return GetVectorElementType(type);
+                return this.vectorLibrary.GetVectorElementType(type);
             }
-            else if (IsMatrixType(type))
+            else if (this.vectorLibrary.IsMatrixType(type))
             {
                 return typeof(float);
             }
@@ -520,52 +522,7 @@ namespace SharpVk.Shanq
                 throw new NotSupportedException();
             }
         }
-
-        private static Type GetMatrixRowType(Type value)
-        {
-            return value.GetProperty("Row0").PropertyType;
-        }
-
-        private static Type GetVectorElementType(Type value)
-        {
-            return value.GetField("x").FieldType;
-        }
-
-        private static int GetVectorLength(Type value)
-        {
-            return ((IEnumerable)value.GetProperty("Zero")
-                                .GetValue(null))
-                                .OfType<object>()
-                                .Count();
-        }
-
-        private static int[] GetMatrixDimensions(Type value)
-        {
-            var identity = value.GetProperty("Identity")
-                                .GetValue(null);
-
-            var values = (float[,])value.GetProperty("Values")
-                                        .GetValue(identity);
-
-            return new[]
-            {
-                values.GetLength(0),
-                values.GetLength(1)
-            };
-        }
-
-        private static bool IsVectorType(Type type)
-        {
-            return type.Assembly == typeof(vec3).Assembly
-                && type.Name.Contains("vec");
-        }
-
-        public static bool IsMatrixType(Type type)
-        {
-            return type.Assembly == typeof(mat4).Assembly
-                && type.Name.Contains("mat");
-        }
-
+        
         private class NodeTypeAttribute
             : Attribute
         {

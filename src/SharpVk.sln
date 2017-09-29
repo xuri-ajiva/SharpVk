@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpVk.Generator", "SharpVk.Generator\SharpVk.Generator.csproj", "{9D9A80D4-9F65-427A-A69A-F3EB68AD33DA}"
 EndProject
@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpVk", "SharpVk\SharpVk.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpVk.TestHarness", "SharpVk.TestHarness\SharpVk.TestHarness.csproj", "{71B61E91-401B-4B2C-95DF-CA3C7CB75A45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpVk.Shanq", "SharpVk.Shanq\SharpVk.Shanq.csproj", "{6DC5E1D5-2186-4AA4-9C49-90DA7458EE85}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpVk.Glfw", "SharpVk.Glfw\SharpVk.Glfw.csproj", "{511C738C-4A86-4ECD-8324-0A74D4271971}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpVk.Glfw", "SharpVk.Glfw\SharpVk.Glfw.csproj", "{511C738C-4A86-4ECD-8324-0A74D4271971}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpVk.Shanq", "SharpVk.Shanq\SharpVk.Shanq.csproj", "{16995309-D068-4678-9CF8-5313D1ACF316}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,16 +37,19 @@ Global
 		{71B61E91-401B-4B2C-95DF-CA3C7CB75A45}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71B61E91-401B-4B2C-95DF-CA3C7CB75A45}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71B61E91-401B-4B2C-95DF-CA3C7CB75A45}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6DC5E1D5-2186-4AA4-9C49-90DA7458EE85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6DC5E1D5-2186-4AA4-9C49-90DA7458EE85}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6DC5E1D5-2186-4AA4-9C49-90DA7458EE85}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6DC5E1D5-2186-4AA4-9C49-90DA7458EE85}.Release|Any CPU.Build.0 = Release|Any CPU
 		{511C738C-4A86-4ECD-8324-0A74D4271971}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{511C738C-4A86-4ECD-8324-0A74D4271971}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{511C738C-4A86-4ECD-8324-0A74D4271971}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{511C738C-4A86-4ECD-8324-0A74D4271971}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16995309-D068-4678-9CF8-5313D1ACF316}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16995309-D068-4678-9CF8-5313D1ACF316}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16995309-D068-4678-9CF8-5313D1ACF316}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16995309-D068-4678-9CF8-5313D1ACF316}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {340A3EE2-89A2-47A1-B432-78CD5FE221C6}
 	EndGlobalSection
 EndGlobal
