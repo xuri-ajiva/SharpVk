@@ -2,7 +2,7 @@
 using SharpVk.Generator.Generation;
 using SharpVk.Generator.Pipeline;
 using System.Collections.Generic;
-
+using System.Linq;
 using static SharpVk.Emit.AccessModifier;
 using static SharpVk.Emit.ExpressionBuilder;
 using static SharpVk.Emit.TypeModifier;
@@ -23,19 +23,36 @@ namespace SharpVk.Generator.Emission
 
         public void Execute()
         {
-            this.builderFactory.Generate("Constants", fileBuilder =>
+            var constantNamespaces = this.constants.GroupBy(x => string.Join(".", x.Namespace.Prepend("SharpVk")));
+
+            foreach (var constantNamespace in constantNamespaces)
             {
-                fileBuilder.EmitNamespace("SharpVk", namespaceBuilder =>
+                var constantGroups = constantNamespace.GroupBy(x => x.ConstantGroup);
+
+                var subfolder = string.Join("\\", constantNamespace.First().Namespace);
+
+                if (string.IsNullOrWhiteSpace(subfolder))
                 {
-                    namespaceBuilder.EmitType(TypeKind.Class, "Constants", typeBuilder =>
+                    subfolder = null;
+                }
+
+                foreach (var constantGroup in constantGroups)
+                {
+                    this.builderFactory.Generate(constantGroup.Key, subfolder, fileBuilder =>
                     {
-                        foreach(var constant in this.constants)
+                        fileBuilder.EmitNamespace(constantNamespace.Key, namespaceBuilder =>
                         {
-                            typeBuilder.EmitField(constant.Type, constant.Name, Public, MemberModifier.Const, AsIs(constant.Value));
-                        }
-                    }, Public, modifiers: Static);
-                });
-            });
+                            namespaceBuilder.EmitType(TypeKind.Class, constantGroup.Key, typeBuilder =>
+                            {
+                                foreach (var constant in constantGroup)
+                                {
+                                    typeBuilder.EmitField(constant.Type, constant.Name, Public, MemberModifier.Const, AsIs(constant.Value));
+                                }
+                            }, Public, modifiers: Static);
+                        });
+                    });
+                }
+            }
         }
     }
 }

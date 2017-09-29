@@ -14,6 +14,8 @@ namespace SharpVk.Generator.Collation
             services.AddSingleton<IWorker, EnumCollator>();
             services.AddSingleton<IWorker, DelegateCollator>();
             services.AddSingleton<IWorker, ConstantCollator>();
+            services.AddSingleton<IWorker, PassthroughWorker<ExtensionInfo>>();
+            services.AddSingleton<IWorker, ExtensionCollator>();
         }
     }
 }

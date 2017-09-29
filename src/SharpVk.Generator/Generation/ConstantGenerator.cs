@@ -61,6 +61,8 @@ namespace SharpVk.Generator.Generation
 
                 services.AddSingleton(new ConstantDefinition
                 {
+                    ConstantGroup = "Constants",
+                    Namespace = new string[] { },
                     Type = type,
                     Name = constant.Name,
                     Value = constant.Value

@@ -16,6 +16,7 @@ namespace SharpVk.Generator.Specification
             services.AddSingleton<IWorker, TypeElementReader>();
             services.AddSingleton<IWorker, EnumElementReader>();
             services.AddSingleton<IWorker, CommandElementReader>();
+            services.AddSingleton<IWorker, ExtensionSet>();
         }
     }
 }

@@ -14,7 +14,7 @@ namespace SharpVk.TestHarness
 
             var availableLayers = Instance.EnumerateLayerProperties();
 
-            var instance = Instance.Create("VK_LAYER_LUNARG_standard_validation", "VK_EXT_debug_report");
+            var instance = Instance.Create("VK_LAYER_LUNARG_standard_validation", ExtExtensions.DebugReport);
 
             var debugCallback = new DebugReportCallbackDelegate(DebugCallback);
 

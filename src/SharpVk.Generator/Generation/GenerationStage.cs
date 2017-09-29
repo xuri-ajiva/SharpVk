@@ -42,6 +42,7 @@ namespace SharpVk.Generator.Generation
             services.AddSingleton<IWorker, HandleExtensionsGenerator>();
             services.AddSingleton<IWorker, ConstantGenerator>();
             services.AddSingleton<IWorker, ExceptionGenerator>();
+            services.AddSingleton<IWorker, ExtensionConstantGenerator>();
         }
     }
 }
