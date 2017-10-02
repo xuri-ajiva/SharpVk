@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpVk.Generator", "SharpVk.Generator\SharpVk.Generator.csproj", "{9D9A80D4-9F65-427A-A69A-F3EB68AD33DA}"
 EndProject
@@ -13,7 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpVk.TestHarness", "Shar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpVk.Glfw", "SharpVk.Glfw\SharpVk.Glfw.csproj", "{511C738C-4A86-4ECD-8324-0A74D4271971}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpVk.Shanq", "SharpVk.Shanq\SharpVk.Shanq.csproj", "{16995309-D068-4678-9CF8-5313D1ACF316}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpVk.Shanq", "SharpVk.Shanq\SharpVk.Shanq.csproj", "{16995309-D068-4678-9CF8-5313D1ACF316}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpVk.Shanq.GlmSharp", "SharpVk.Shanq.GlmSharp\SharpVk.Shanq.GlmSharp.csproj", "{F1B3E324-8B08-478F-B31A-E8FE4B57965E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpVk.Shanq.Numerics", "SharpVk.Shanq.Numerics\SharpVk.Shanq.Numerics.csproj", "{D90DEB1F-CE8F-47C6-B85E-A910F2832B66}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,14 @@ Global
 		{16995309-D068-4678-9CF8-5313D1ACF316}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16995309-D068-4678-9CF8-5313D1ACF316}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{16995309-D068-4678-9CF8-5313D1ACF316}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1B3E324-8B08-478F-B31A-E8FE4B57965E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1B3E324-8B08-478F-B31A-E8FE4B57965E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1B3E324-8B08-478F-B31A-E8FE4B57965E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1B3E324-8B08-478F-B31A-E8FE4B57965E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D90DEB1F-CE8F-47C6-B85E-A910F2832B66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D90DEB1F-CE8F-47C6-B85E-A910F2832B66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D90DEB1F-CE8F-47C6-B85E-A910F2832B66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D90DEB1F-CE8F-47C6-B85E-A910F2832B66}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
