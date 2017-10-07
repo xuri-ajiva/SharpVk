@@ -1,26 +1,30 @@
 ﻿using SharpVk.Emit;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace SharpVk.Generator.Emission
 {
     public class FileBuilderFactory
     {
+        private readonly List<string> modifiedFiles = new List<string>();
+
         public void Generate(string fileName, Action<FileBuilder> build)
         {
             this.Generate(fileName, null, build);
         }
 
-        public void Generate(string fileName, string subFolder, Action<FileBuilder> build)
+        public void Generate(string filename, string subFolder, Action<FileBuilder> build)
         {
             string folderPath = "..\\SharpVk";
+            string fullFilename = $"{filename}.gen.cs";
 
             if (subFolder != null)
             {
                 folderPath = Path.Combine(folderPath, subFolder);
             }
 
-            using (var builder = new FileBuilder(folderPath, $"{fileName}.gen.cs"))
+            using (var builder = new FileBuilder(folderPath, fullFilename))
             {
                 builder.EmitComment($@"The MIT License (MIT)
 
@@ -47,7 +51,11 @@ SOFTWARE.");
                 builder.EmitComment("This file was automatically generated and should not be edited directly.");
 
                 build(builder);
+
+                this.modifiedFiles.Add(builder.FilePath);
             }
         }
+
+        public IEnumerable<string> ModifiedFiles => this.modifiedFiles;
     }
 }

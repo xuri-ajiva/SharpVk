@@ -79,45 +79,6 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public unsafe byte[] GetData()
-        {
-            try
-            {
-                byte[] result = default(byte[]);
-                HostSize dataSize = default(HostSize);
-                byte* marshalledData = default(byte*);
-                SharpVk.Interop.Multivendor.VkValidationCacheEXTGetDataDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkValidationCacheEXTGetDataDelegate>("vkGetValidationCacheDataEXT", "instance");
-                Result methodResult = commandDelegate(this.parent.handle, this.handle, &dataSize, marshalledData);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
-                marshalledData = (byte*)(Interop.HeapUtil.Allocate<byte>((uint)(dataSize)));
-                commandDelegate(this.parent.handle, this.handle, &dataSize, marshalledData);
-                if (marshalledData != null)
-                {
-                    var fieldPointer = new byte[(uint)(dataSize)];
-                    for(int index = 0; index < (uint)(dataSize); index++)
-                    {
-                        fieldPointer[index] = marshalledData[index];
-                    }
-                    result = fieldPointer;
-                }
-                else
-                {
-                    result = null;
-                }
-                return result;
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public unsafe void MergeValidationCaches(ArrayProxy<SharpVk.Multivendor.ValidationCache>? sourceCaches)
         {
             try
@@ -150,6 +111,45 @@ namespace SharpVk.Multivendor
                 {
                     throw SharpVkException.Create(methodResult);
                 }
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe byte[] GetData()
+        {
+            try
+            {
+                byte[] result = default(byte[]);
+                HostSize dataSize = default(HostSize);
+                byte* marshalledData = default(byte*);
+                SharpVk.Interop.Multivendor.VkValidationCacheEXTGetDataDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkValidationCacheEXTGetDataDelegate>("vkGetValidationCacheDataEXT", "instance");
+                Result methodResult = commandDelegate(this.parent.handle, this.handle, &dataSize, marshalledData);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                marshalledData = (byte*)(Interop.HeapUtil.Allocate<byte>((uint)(dataSize)));
+                commandDelegate(this.parent.handle, this.handle, &dataSize, marshalledData);
+                if (marshalledData != null)
+                {
+                    var fieldPointer = new byte[(uint)(dataSize)];
+                    for(int index = 0; index < (uint)(dataSize); index++)
+                    {
+                        fieldPointer[index] = marshalledData[index];
+                    }
+                    result = fieldPointer;
+                }
+                else
+                {
+                    result = null;
+                }
+                return result;
             }
             finally
             {

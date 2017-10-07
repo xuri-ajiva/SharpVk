@@ -54,25 +54,6 @@ namespace SharpVk
         public SharpVk.Interop.Buffer RawHandle => this.handle;
         
         /// <summary>
-        /// Returns the memory requirements for specified Vulkan object.
-        /// </summary>
-        public unsafe SharpVk.MemoryRequirements GetMemoryRequirements()
-        {
-            try
-            {
-                SharpVk.MemoryRequirements result = default(SharpVk.MemoryRequirements);
-                SharpVk.MemoryRequirements marshalledMemoryRequirements = default(SharpVk.MemoryRequirements);
-                Interop.Commands.vkGetBufferMemoryRequirements(this.parent.handle, this.handle, &marshalledMemoryRequirements);
-                result = marshalledMemoryRequirements;
-                return result;
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
         /// Bind device memory to a buffer object.
         /// </summary>
         public unsafe void BindMemory(SharpVk.DeviceMemory memory, DeviceSize memoryOffset)
@@ -84,6 +65,25 @@ namespace SharpVk
                 {
                     throw SharpVkException.Create(methodResult);
                 }
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// Returns the memory requirements for specified Vulkan object.
+        /// </summary>
+        public unsafe SharpVk.MemoryRequirements GetMemoryRequirements()
+        {
+            try
+            {
+                SharpVk.MemoryRequirements result = default(SharpVk.MemoryRequirements);
+                SharpVk.MemoryRequirements marshalledMemoryRequirements = default(SharpVk.MemoryRequirements);
+                Interop.Commands.vkGetBufferMemoryRequirements(this.parent.handle, this.handle, &marshalledMemoryRequirements);
+                result = marshalledMemoryRequirements;
+                return result;
             }
             finally
             {

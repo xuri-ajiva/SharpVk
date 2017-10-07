@@ -32,69 +32,6 @@ namespace SharpVk.Khronos
     public static class InstanceExtensions
     {
         /// <summary>
-        /// Create a SurfaceKHR object for an Android native window.
-        /// </summary>
-        /// <param name="extendedHandle">
-        /// The Instance handle to extend.
-        /// </param>
-        /// <param name="flags">
-        /// Reserved for future use.
-        /// </param>
-        /// <param name="window">
-        /// A pointer to the ANativeWindow to associate the surface with.
-        /// </param>
-        /// <param name="allocator">
-        /// An optional AllocationCallbacks instance that controls host memory
-        /// allocation.
-        /// </param>
-        public static unsafe SharpVk.Khronos.Surface CreateAndroidSurface(this SharpVk.Instance extendedHandle, IntPtr window, SharpVk.Khronos.AndroidSurfaceCreateFlags? flags = default(SharpVk.Khronos.AndroidSurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
-        {
-            try
-            {
-                SharpVk.Khronos.Surface result = default(SharpVk.Khronos.Surface);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Khronos.AndroidSurfaceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Khronos.AndroidSurfaceCreateInfo*);
-                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
-                SharpVk.Interop.Khronos.Surface marshalledSurface = default(SharpVk.Interop.Khronos.Surface);
-                commandCache = extendedHandle.commandCache;
-                marshalledCreateInfo = (SharpVk.Interop.Khronos.AndroidSurfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.AndroidSurfaceCreateInfo>());
-                marshalledCreateInfo->SType = StructureType.AndroidSurfaceCreateInfo;
-                marshalledCreateInfo->Next = null;
-                if (flags != null)
-                {
-                    marshalledCreateInfo->Flags = flags.Value;
-                }
-                else
-                {
-                    marshalledCreateInfo->Flags = default(SharpVk.Khronos.AndroidSurfaceCreateFlags);
-                }
-                marshalledCreateInfo->Window = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
-                *marshalledCreateInfo->Window = window;
-                if (allocator != null)
-                {
-                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
-                    allocator.Value.MarshalTo(marshalledAllocator);
-                }
-                else
-                {
-                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
-                }
-                SharpVk.Interop.Khronos.VkInstanceCreateAndroidSurfaceDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkInstanceCreateAndroidSurfaceDelegate>("vkCreateAndroidSurfaceKHR", "instance");
-                Result methodResult = commandDelegate(extendedHandle.handle, marshalledCreateInfo, marshalledAllocator, &marshalledSurface);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
-                result = new SharpVk.Khronos.Surface(extendedHandle, marshalledSurface);
-                return result;
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
         /// Create a SurfaceKHR structure representing a display plane and
         /// mode.
         /// </summary>
@@ -166,202 +103,6 @@ namespace SharpVk.Khronos
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
                 SharpVk.Interop.Khronos.VkInstanceCreateDisplayPlaneSurfaceDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkInstanceCreateDisplayPlaneSurfaceDelegate>("vkCreateDisplayPlaneSurfaceKHR", "instance");
-                Result methodResult = commandDelegate(extendedHandle.handle, marshalledCreateInfo, marshalledAllocator, &marshalledSurface);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
-                result = new SharpVk.Khronos.Surface(extendedHandle, marshalledSurface);
-                return result;
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
-        /// Create a SurfaceKHR object for a Mir window.
-        /// </summary>
-        /// <param name="extendedHandle">
-        /// The Instance handle to extend.
-        /// </param>
-        /// <param name="flags">
-        /// Reserved for future use.
-        /// </param>
-        /// <param name="connection">
-        /// connection and surface are pointers to the MirConnection and
-        /// MirSurface for the window to associate the surface with.
-        /// </param>
-        /// <param name="allocator">
-        /// An optional AllocationCallbacks instance that controls host memory
-        /// allocation.
-        /// </param>
-        public static unsafe SharpVk.Khronos.Surface CreateMirSurface(this SharpVk.Instance extendedHandle, IntPtr connection, IntPtr mirSurface, SharpVk.Khronos.MirSurfaceCreateFlags? flags = default(SharpVk.Khronos.MirSurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
-        {
-            try
-            {
-                SharpVk.Khronos.Surface result = default(SharpVk.Khronos.Surface);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Khronos.MirSurfaceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Khronos.MirSurfaceCreateInfo*);
-                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
-                SharpVk.Interop.Khronos.Surface marshalledSurface = default(SharpVk.Interop.Khronos.Surface);
-                commandCache = extendedHandle.commandCache;
-                marshalledCreateInfo = (SharpVk.Interop.Khronos.MirSurfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.MirSurfaceCreateInfo>());
-                marshalledCreateInfo->SType = StructureType.MirSurfaceCreateInfo;
-                marshalledCreateInfo->Next = null;
-                if (flags != null)
-                {
-                    marshalledCreateInfo->Flags = flags.Value;
-                }
-                else
-                {
-                    marshalledCreateInfo->Flags = default(SharpVk.Khronos.MirSurfaceCreateFlags);
-                }
-                marshalledCreateInfo->Connection = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
-                *marshalledCreateInfo->Connection = connection;
-                marshalledCreateInfo->MirSurface = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
-                *marshalledCreateInfo->MirSurface = mirSurface;
-                if (allocator != null)
-                {
-                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
-                    allocator.Value.MarshalTo(marshalledAllocator);
-                }
-                else
-                {
-                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
-                }
-                SharpVk.Interop.Khronos.VkInstanceCreateMirSurfaceDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkInstanceCreateMirSurfaceDelegate>("vkCreateMirSurfaceKHR", "instance");
-                Result methodResult = commandDelegate(extendedHandle.handle, marshalledCreateInfo, marshalledAllocator, &marshalledSurface);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
-                result = new SharpVk.Khronos.Surface(extendedHandle, marshalledSurface);
-                return result;
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
-        /// Create a SurfaceKHR object for a Wayland window.
-        /// </summary>
-        /// <param name="extendedHandle">
-        /// The Instance handle to extend.
-        /// </param>
-        /// <param name="flags">
-        /// Reserved for future use.
-        /// </param>
-        /// <param name="display">
-        /// display and surface are pointers to the Wayland wl_display and
-        /// wl_surface to associate the surface with.
-        /// </param>
-        /// <param name="allocator">
-        /// An optional AllocationCallbacks instance that controls host memory
-        /// allocation.
-        /// </param>
-        public static unsafe SharpVk.Khronos.Surface CreateWaylandSurface(this SharpVk.Instance extendedHandle, IntPtr display, IntPtr surface, SharpVk.Khronos.WaylandSurfaceCreateFlags? flags = default(SharpVk.Khronos.WaylandSurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
-        {
-            try
-            {
-                SharpVk.Khronos.Surface result = default(SharpVk.Khronos.Surface);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Khronos.WaylandSurfaceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Khronos.WaylandSurfaceCreateInfo*);
-                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
-                SharpVk.Interop.Khronos.Surface marshalledSurface = default(SharpVk.Interop.Khronos.Surface);
-                commandCache = extendedHandle.commandCache;
-                marshalledCreateInfo = (SharpVk.Interop.Khronos.WaylandSurfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.WaylandSurfaceCreateInfo>());
-                marshalledCreateInfo->SType = StructureType.WaylandSurfaceCreateInfo;
-                marshalledCreateInfo->Next = null;
-                if (flags != null)
-                {
-                    marshalledCreateInfo->Flags = flags.Value;
-                }
-                else
-                {
-                    marshalledCreateInfo->Flags = default(SharpVk.Khronos.WaylandSurfaceCreateFlags);
-                }
-                marshalledCreateInfo->Display = display;
-                marshalledCreateInfo->Surface = surface;
-                if (allocator != null)
-                {
-                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
-                    allocator.Value.MarshalTo(marshalledAllocator);
-                }
-                else
-                {
-                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
-                }
-                SharpVk.Interop.Khronos.VkInstanceCreateWaylandSurfaceDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkInstanceCreateWaylandSurfaceDelegate>("vkCreateWaylandSurfaceKHR", "instance");
-                Result methodResult = commandDelegate(extendedHandle.handle, marshalledCreateInfo, marshalledAllocator, &marshalledSurface);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
-                result = new SharpVk.Khronos.Surface(extendedHandle, marshalledSurface);
-                return result;
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
-        /// Create a SurfaceKHR object for an Win32 native window.
-        /// </summary>
-        /// <param name="extendedHandle">
-        /// The Instance handle to extend.
-        /// </param>
-        /// <param name="flags">
-        /// Reserved for future use.
-        /// </param>
-        /// <param name="hinstance">
-        /// Win32 HINSTANCE for the window to associate the surface with.
-        /// </param>
-        /// <param name="hwnd">
-        /// Win32 HWND for the window to associate the surface with.
-        /// </param>
-        /// <param name="allocator">
-        /// An optional AllocationCallbacks instance that controls host memory
-        /// allocation.
-        /// </param>
-        public static unsafe SharpVk.Khronos.Surface CreateWin32Surface(this SharpVk.Instance extendedHandle, IntPtr hinstance, IntPtr hwnd, SharpVk.Khronos.Win32SurfaceCreateFlags? flags = default(SharpVk.Khronos.Win32SurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
-        {
-            try
-            {
-                SharpVk.Khronos.Surface result = default(SharpVk.Khronos.Surface);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Khronos.Win32SurfaceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Khronos.Win32SurfaceCreateInfo*);
-                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
-                SharpVk.Interop.Khronos.Surface marshalledSurface = default(SharpVk.Interop.Khronos.Surface);
-                commandCache = extendedHandle.commandCache;
-                marshalledCreateInfo = (SharpVk.Interop.Khronos.Win32SurfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.Win32SurfaceCreateInfo>());
-                marshalledCreateInfo->SType = StructureType.Win32SurfaceCreateInfo;
-                marshalledCreateInfo->Next = null;
-                if (flags != null)
-                {
-                    marshalledCreateInfo->Flags = flags.Value;
-                }
-                else
-                {
-                    marshalledCreateInfo->Flags = default(SharpVk.Khronos.Win32SurfaceCreateFlags);
-                }
-                marshalledCreateInfo->Hinstance = hinstance;
-                marshalledCreateInfo->Hwnd = hwnd;
-                if (allocator != null)
-                {
-                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
-                    allocator.Value.MarshalTo(marshalledAllocator);
-                }
-                else
-                {
-                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
-                }
-                SharpVk.Interop.Khronos.VkInstanceCreateWin32SurfaceDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkInstanceCreateWin32SurfaceDelegate>("vkCreateWin32SurfaceKHR", "instance");
                 Result methodResult = commandDelegate(extendedHandle.handle, marshalledCreateInfo, marshalledAllocator, &marshalledSurface);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -498,6 +239,265 @@ namespace SharpVk.Khronos
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
                 SharpVk.Interop.Khronos.VkInstanceCreateXcbSurfaceDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkInstanceCreateXcbSurfaceDelegate>("vkCreateXcbSurfaceKHR", "instance");
+                Result methodResult = commandDelegate(extendedHandle.handle, marshalledCreateInfo, marshalledAllocator, &marshalledSurface);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = new SharpVk.Khronos.Surface(extendedHandle, marshalledSurface);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// Create a SurfaceKHR object for a Wayland window.
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The Instance handle to extend.
+        /// </param>
+        /// <param name="flags">
+        /// Reserved for future use.
+        /// </param>
+        /// <param name="display">
+        /// display and surface are pointers to the Wayland wl_display and
+        /// wl_surface to associate the surface with.
+        /// </param>
+        /// <param name="allocator">
+        /// An optional AllocationCallbacks instance that controls host memory
+        /// allocation.
+        /// </param>
+        public static unsafe SharpVk.Khronos.Surface CreateWaylandSurface(this SharpVk.Instance extendedHandle, IntPtr display, IntPtr surface, SharpVk.Khronos.WaylandSurfaceCreateFlags? flags = default(SharpVk.Khronos.WaylandSurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        {
+            try
+            {
+                SharpVk.Khronos.Surface result = default(SharpVk.Khronos.Surface);
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Khronos.WaylandSurfaceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Khronos.WaylandSurfaceCreateInfo*);
+                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                SharpVk.Interop.Khronos.Surface marshalledSurface = default(SharpVk.Interop.Khronos.Surface);
+                commandCache = extendedHandle.commandCache;
+                marshalledCreateInfo = (SharpVk.Interop.Khronos.WaylandSurfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.WaylandSurfaceCreateInfo>());
+                marshalledCreateInfo->SType = StructureType.WaylandSurfaceCreateInfo;
+                marshalledCreateInfo->Next = null;
+                if (flags != null)
+                {
+                    marshalledCreateInfo->Flags = flags.Value;
+                }
+                else
+                {
+                    marshalledCreateInfo->Flags = default(SharpVk.Khronos.WaylandSurfaceCreateFlags);
+                }
+                marshalledCreateInfo->Display = display;
+                marshalledCreateInfo->Surface = surface;
+                if (allocator != null)
+                {
+                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
+                    allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                else
+                {
+                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                }
+                SharpVk.Interop.Khronos.VkInstanceCreateWaylandSurfaceDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkInstanceCreateWaylandSurfaceDelegate>("vkCreateWaylandSurfaceKHR", "instance");
+                Result methodResult = commandDelegate(extendedHandle.handle, marshalledCreateInfo, marshalledAllocator, &marshalledSurface);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = new SharpVk.Khronos.Surface(extendedHandle, marshalledSurface);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// Create a SurfaceKHR object for a Mir window.
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The Instance handle to extend.
+        /// </param>
+        /// <param name="flags">
+        /// Reserved for future use.
+        /// </param>
+        /// <param name="connection">
+        /// connection and surface are pointers to the MirConnection and
+        /// MirSurface for the window to associate the surface with.
+        /// </param>
+        /// <param name="allocator">
+        /// An optional AllocationCallbacks instance that controls host memory
+        /// allocation.
+        /// </param>
+        public static unsafe SharpVk.Khronos.Surface CreateMirSurface(this SharpVk.Instance extendedHandle, IntPtr connection, IntPtr mirSurface, SharpVk.Khronos.MirSurfaceCreateFlags? flags = default(SharpVk.Khronos.MirSurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        {
+            try
+            {
+                SharpVk.Khronos.Surface result = default(SharpVk.Khronos.Surface);
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Khronos.MirSurfaceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Khronos.MirSurfaceCreateInfo*);
+                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                SharpVk.Interop.Khronos.Surface marshalledSurface = default(SharpVk.Interop.Khronos.Surface);
+                commandCache = extendedHandle.commandCache;
+                marshalledCreateInfo = (SharpVk.Interop.Khronos.MirSurfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.MirSurfaceCreateInfo>());
+                marshalledCreateInfo->SType = StructureType.MirSurfaceCreateInfo;
+                marshalledCreateInfo->Next = null;
+                if (flags != null)
+                {
+                    marshalledCreateInfo->Flags = flags.Value;
+                }
+                else
+                {
+                    marshalledCreateInfo->Flags = default(SharpVk.Khronos.MirSurfaceCreateFlags);
+                }
+                marshalledCreateInfo->Connection = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
+                *marshalledCreateInfo->Connection = connection;
+                marshalledCreateInfo->MirSurface = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
+                *marshalledCreateInfo->MirSurface = mirSurface;
+                if (allocator != null)
+                {
+                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
+                    allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                else
+                {
+                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                }
+                SharpVk.Interop.Khronos.VkInstanceCreateMirSurfaceDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkInstanceCreateMirSurfaceDelegate>("vkCreateMirSurfaceKHR", "instance");
+                Result methodResult = commandDelegate(extendedHandle.handle, marshalledCreateInfo, marshalledAllocator, &marshalledSurface);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = new SharpVk.Khronos.Surface(extendedHandle, marshalledSurface);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// Create a SurfaceKHR object for an Android native window.
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The Instance handle to extend.
+        /// </param>
+        /// <param name="flags">
+        /// Reserved for future use.
+        /// </param>
+        /// <param name="window">
+        /// A pointer to the ANativeWindow to associate the surface with.
+        /// </param>
+        /// <param name="allocator">
+        /// An optional AllocationCallbacks instance that controls host memory
+        /// allocation.
+        /// </param>
+        public static unsafe SharpVk.Khronos.Surface CreateAndroidSurface(this SharpVk.Instance extendedHandle, IntPtr window, SharpVk.Khronos.AndroidSurfaceCreateFlags? flags = default(SharpVk.Khronos.AndroidSurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        {
+            try
+            {
+                SharpVk.Khronos.Surface result = default(SharpVk.Khronos.Surface);
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Khronos.AndroidSurfaceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Khronos.AndroidSurfaceCreateInfo*);
+                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                SharpVk.Interop.Khronos.Surface marshalledSurface = default(SharpVk.Interop.Khronos.Surface);
+                commandCache = extendedHandle.commandCache;
+                marshalledCreateInfo = (SharpVk.Interop.Khronos.AndroidSurfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.AndroidSurfaceCreateInfo>());
+                marshalledCreateInfo->SType = StructureType.AndroidSurfaceCreateInfo;
+                marshalledCreateInfo->Next = null;
+                if (flags != null)
+                {
+                    marshalledCreateInfo->Flags = flags.Value;
+                }
+                else
+                {
+                    marshalledCreateInfo->Flags = default(SharpVk.Khronos.AndroidSurfaceCreateFlags);
+                }
+                marshalledCreateInfo->Window = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
+                *marshalledCreateInfo->Window = window;
+                if (allocator != null)
+                {
+                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
+                    allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                else
+                {
+                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                }
+                SharpVk.Interop.Khronos.VkInstanceCreateAndroidSurfaceDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkInstanceCreateAndroidSurfaceDelegate>("vkCreateAndroidSurfaceKHR", "instance");
+                Result methodResult = commandDelegate(extendedHandle.handle, marshalledCreateInfo, marshalledAllocator, &marshalledSurface);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = new SharpVk.Khronos.Surface(extendedHandle, marshalledSurface);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// Create a SurfaceKHR object for an Win32 native window.
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The Instance handle to extend.
+        /// </param>
+        /// <param name="flags">
+        /// Reserved for future use.
+        /// </param>
+        /// <param name="hinstance">
+        /// Win32 HINSTANCE for the window to associate the surface with.
+        /// </param>
+        /// <param name="hwnd">
+        /// Win32 HWND for the window to associate the surface with.
+        /// </param>
+        /// <param name="allocator">
+        /// An optional AllocationCallbacks instance that controls host memory
+        /// allocation.
+        /// </param>
+        public static unsafe SharpVk.Khronos.Surface CreateWin32Surface(this SharpVk.Instance extendedHandle, IntPtr hinstance, IntPtr hwnd, SharpVk.Khronos.Win32SurfaceCreateFlags? flags = default(SharpVk.Khronos.Win32SurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        {
+            try
+            {
+                SharpVk.Khronos.Surface result = default(SharpVk.Khronos.Surface);
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Khronos.Win32SurfaceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Khronos.Win32SurfaceCreateInfo*);
+                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                SharpVk.Interop.Khronos.Surface marshalledSurface = default(SharpVk.Interop.Khronos.Surface);
+                commandCache = extendedHandle.commandCache;
+                marshalledCreateInfo = (SharpVk.Interop.Khronos.Win32SurfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.Win32SurfaceCreateInfo>());
+                marshalledCreateInfo->SType = StructureType.Win32SurfaceCreateInfo;
+                marshalledCreateInfo->Next = null;
+                if (flags != null)
+                {
+                    marshalledCreateInfo->Flags = flags.Value;
+                }
+                else
+                {
+                    marshalledCreateInfo->Flags = default(SharpVk.Khronos.Win32SurfaceCreateFlags);
+                }
+                marshalledCreateInfo->Hinstance = hinstance;
+                marshalledCreateInfo->Hwnd = hwnd;
+                if (allocator != null)
+                {
+                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
+                    allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                else
+                {
+                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                }
+                SharpVk.Interop.Khronos.VkInstanceCreateWin32SurfaceDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkInstanceCreateWin32SurfaceDelegate>("vkCreateWin32SurfaceKHR", "instance");
                 Result methodResult = commandDelegate(extendedHandle.handle, marshalledCreateInfo, marshalledAllocator, &marshalledSurface);
                 if (SharpVkException.IsError(methodResult))
                 {

@@ -212,44 +212,6 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// Returns up to requested number of global layer properties.
-        /// </summary>
-        public static unsafe SharpVk.LayerProperties[] EnumerateLayerProperties()
-        {
-            try
-            {
-                SharpVk.LayerProperties[] result = default(SharpVk.LayerProperties[]);
-                uint propertyCount = default(uint);
-                SharpVk.Interop.LayerProperties* marshalledProperties = default(SharpVk.Interop.LayerProperties*);
-                Result methodResult = Interop.Commands.vkEnumerateInstanceLayerProperties(&propertyCount, marshalledProperties);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
-                marshalledProperties = (SharpVk.Interop.LayerProperties*)(Interop.HeapUtil.Allocate<SharpVk.Interop.LayerProperties>((uint)(propertyCount)));
-                Interop.Commands.vkEnumerateInstanceLayerProperties(&propertyCount, marshalledProperties);
-                if (marshalledProperties != null)
-                {
-                    var fieldPointer = new SharpVk.LayerProperties[(uint)(propertyCount)];
-                    for(int index = 0; index < (uint)(propertyCount); index++)
-                    {
-                        fieldPointer[index] = SharpVk.LayerProperties.MarshalFrom(&marshalledProperties[index]);
-                    }
-                    result = fieldPointer;
-                }
-                else
-                {
-                    result = null;
-                }
-                return result;
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
         /// Returns up to requested number of global extension properties.
         /// </summary>
         public static unsafe SharpVk.ExtensionProperties[] EnumerateExtensionProperties(string layerName)
@@ -272,6 +234,44 @@ namespace SharpVk
                     for(int index = 0; index < (uint)(propertyCount); index++)
                     {
                         fieldPointer[index] = SharpVk.ExtensionProperties.MarshalFrom(&marshalledProperties[index]);
+                    }
+                    result = fieldPointer;
+                }
+                else
+                {
+                    result = null;
+                }
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// Returns up to requested number of global layer properties.
+        /// </summary>
+        public static unsafe SharpVk.LayerProperties[] EnumerateLayerProperties()
+        {
+            try
+            {
+                SharpVk.LayerProperties[] result = default(SharpVk.LayerProperties[]);
+                uint propertyCount = default(uint);
+                SharpVk.Interop.LayerProperties* marshalledProperties = default(SharpVk.Interop.LayerProperties*);
+                Result methodResult = Interop.Commands.vkEnumerateInstanceLayerProperties(&propertyCount, marshalledProperties);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                marshalledProperties = (SharpVk.Interop.LayerProperties*)(Interop.HeapUtil.Allocate<SharpVk.Interop.LayerProperties>((uint)(propertyCount)));
+                Interop.Commands.vkEnumerateInstanceLayerProperties(&propertyCount, marshalledProperties);
+                if (marshalledProperties != null)
+                {
+                    var fieldPointer = new SharpVk.LayerProperties[(uint)(propertyCount)];
+                    for(int index = 0; index < (uint)(propertyCount); index++)
+                    {
+                        fieldPointer[index] = SharpVk.LayerProperties.MarshalFrom(&marshalledProperties[index]);
                     }
                     result = fieldPointer;
                 }

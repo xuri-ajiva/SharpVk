@@ -50,6 +50,76 @@ namespace SharpVk
         public SharpVk.Interop.PhysicalDevice RawHandle => this.handle;
         
         /// <summary>
+        /// Reports capabilities of a physical device.
+        /// </summary>
+        public unsafe SharpVk.PhysicalDeviceFeatures GetFeatures()
+        {
+            try
+            {
+                SharpVk.PhysicalDeviceFeatures result = default(SharpVk.PhysicalDeviceFeatures);
+                SharpVk.Interop.PhysicalDeviceFeatures marshalledFeatures = default(SharpVk.Interop.PhysicalDeviceFeatures);
+                Interop.Commands.vkGetPhysicalDeviceFeatures(this.handle, &marshalledFeatures);
+                result = SharpVk.PhysicalDeviceFeatures.MarshalFrom(&marshalledFeatures);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// Lists physical device's format capabilities.
+        /// </summary>
+        public unsafe SharpVk.FormatProperties GetFormatProperties(SharpVk.Format format)
+        {
+            try
+            {
+                SharpVk.FormatProperties result = default(SharpVk.FormatProperties);
+                SharpVk.FormatProperties marshalledFormatProperties = default(SharpVk.FormatProperties);
+                Interop.Commands.vkGetPhysicalDeviceFormatProperties(this.handle, format, &marshalledFormatProperties);
+                result = marshalledFormatProperties;
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// Lists physical device's image format capabilities.
+        /// </summary>
+        public unsafe SharpVk.ImageFormatProperties GetImageFormatProperties(SharpVk.Format format, SharpVk.ImageType type, SharpVk.ImageTiling tiling, SharpVk.ImageUsageFlags usage, SharpVk.ImageCreateFlags? flags = default(SharpVk.ImageCreateFlags?))
+        {
+            try
+            {
+                SharpVk.ImageFormatProperties result = default(SharpVk.ImageFormatProperties);
+                SharpVk.ImageCreateFlags marshalledFlags = default(SharpVk.ImageCreateFlags);
+                SharpVk.ImageFormatProperties marshalledImageFormatProperties = default(SharpVk.ImageFormatProperties);
+                if (flags != null)
+                {
+                    marshalledFlags = flags.Value;
+                }
+                else
+                {
+                    marshalledFlags = default(SharpVk.ImageCreateFlags);
+                }
+                Result methodResult = Interop.Commands.vkGetPhysicalDeviceImageFormatProperties(this.handle, format, type, tiling, usage, marshalledFlags, &marshalledImageFormatProperties);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = marshalledImageFormatProperties;
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
         /// Returns properties of a physical device.
         /// </summary>
         public unsafe SharpVk.PhysicalDeviceProperties GetProperties()
@@ -113,76 +183,6 @@ namespace SharpVk
                 SharpVk.Interop.PhysicalDeviceMemoryProperties marshalledMemoryProperties = default(SharpVk.Interop.PhysicalDeviceMemoryProperties);
                 Interop.Commands.vkGetPhysicalDeviceMemoryProperties(this.handle, &marshalledMemoryProperties);
                 result = SharpVk.PhysicalDeviceMemoryProperties.MarshalFrom(&marshalledMemoryProperties);
-                return result;
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
-        /// Reports capabilities of a physical device.
-        /// </summary>
-        public unsafe SharpVk.PhysicalDeviceFeatures GetFeatures()
-        {
-            try
-            {
-                SharpVk.PhysicalDeviceFeatures result = default(SharpVk.PhysicalDeviceFeatures);
-                SharpVk.Interop.PhysicalDeviceFeatures marshalledFeatures = default(SharpVk.Interop.PhysicalDeviceFeatures);
-                Interop.Commands.vkGetPhysicalDeviceFeatures(this.handle, &marshalledFeatures);
-                result = SharpVk.PhysicalDeviceFeatures.MarshalFrom(&marshalledFeatures);
-                return result;
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
-        /// Lists physical device's format capabilities.
-        /// </summary>
-        public unsafe SharpVk.FormatProperties GetFormatProperties(SharpVk.Format format)
-        {
-            try
-            {
-                SharpVk.FormatProperties result = default(SharpVk.FormatProperties);
-                SharpVk.FormatProperties marshalledFormatProperties = default(SharpVk.FormatProperties);
-                Interop.Commands.vkGetPhysicalDeviceFormatProperties(this.handle, format, &marshalledFormatProperties);
-                result = marshalledFormatProperties;
-                return result;
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
-        /// Lists physical device's image format capabilities.
-        /// </summary>
-        public unsafe SharpVk.ImageFormatProperties GetImageFormatProperties(SharpVk.Format format, SharpVk.ImageType type, SharpVk.ImageTiling tiling, SharpVk.ImageUsageFlags usage, SharpVk.ImageCreateFlags? flags = default(SharpVk.ImageCreateFlags?))
-        {
-            try
-            {
-                SharpVk.ImageFormatProperties result = default(SharpVk.ImageFormatProperties);
-                SharpVk.ImageCreateFlags marshalledFlags = default(SharpVk.ImageCreateFlags);
-                SharpVk.ImageFormatProperties marshalledImageFormatProperties = default(SharpVk.ImageFormatProperties);
-                if (flags != null)
-                {
-                    marshalledFlags = flags.Value;
-                }
-                else
-                {
-                    marshalledFlags = default(SharpVk.ImageCreateFlags);
-                }
-                Result methodResult = Interop.Commands.vkGetPhysicalDeviceImageFormatProperties(this.handle, format, type, tiling, usage, marshalledFlags, &marshalledImageFormatProperties);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
-                result = marshalledImageFormatProperties;
                 return result;
             }
             finally
@@ -293,44 +293,6 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// Returns properties of available physical device layers.
-        /// </summary>
-        public unsafe SharpVk.LayerProperties[] EnumerateDeviceLayerProperties()
-        {
-            try
-            {
-                SharpVk.LayerProperties[] result = default(SharpVk.LayerProperties[]);
-                uint propertyCount = default(uint);
-                SharpVk.Interop.LayerProperties* marshalledProperties = default(SharpVk.Interop.LayerProperties*);
-                Result methodResult = Interop.Commands.vkEnumerateDeviceLayerProperties(this.handle, &propertyCount, marshalledProperties);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
-                marshalledProperties = (SharpVk.Interop.LayerProperties*)(Interop.HeapUtil.Allocate<SharpVk.Interop.LayerProperties>((uint)(propertyCount)));
-                Interop.Commands.vkEnumerateDeviceLayerProperties(this.handle, &propertyCount, marshalledProperties);
-                if (marshalledProperties != null)
-                {
-                    var fieldPointer = new SharpVk.LayerProperties[(uint)(propertyCount)];
-                    for(int index = 0; index < (uint)(propertyCount); index++)
-                    {
-                        fieldPointer[index] = SharpVk.LayerProperties.MarshalFrom(&marshalledProperties[index]);
-                    }
-                    result = fieldPointer;
-                }
-                else
-                {
-                    result = null;
-                }
-                return result;
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
         /// Returns properties of available physical device extensions.
         /// </summary>
         public unsafe SharpVk.ExtensionProperties[] EnumerateDeviceExtensionProperties(string layerName)
@@ -353,6 +315,44 @@ namespace SharpVk
                     for(int index = 0; index < (uint)(propertyCount); index++)
                     {
                         fieldPointer[index] = SharpVk.ExtensionProperties.MarshalFrom(&marshalledProperties[index]);
+                    }
+                    result = fieldPointer;
+                }
+                else
+                {
+                    result = null;
+                }
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// Returns properties of available physical device layers.
+        /// </summary>
+        public unsafe SharpVk.LayerProperties[] EnumerateDeviceLayerProperties()
+        {
+            try
+            {
+                SharpVk.LayerProperties[] result = default(SharpVk.LayerProperties[]);
+                uint propertyCount = default(uint);
+                SharpVk.Interop.LayerProperties* marshalledProperties = default(SharpVk.Interop.LayerProperties*);
+                Result methodResult = Interop.Commands.vkEnumerateDeviceLayerProperties(this.handle, &propertyCount, marshalledProperties);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                marshalledProperties = (SharpVk.Interop.LayerProperties*)(Interop.HeapUtil.Allocate<SharpVk.Interop.LayerProperties>((uint)(propertyCount)));
+                Interop.Commands.vkEnumerateDeviceLayerProperties(this.handle, &propertyCount, marshalledProperties);
+                if (marshalledProperties != null)
+                {
+                    var fieldPointer = new SharpVk.LayerProperties[(uint)(propertyCount)];
+                    for(int index = 0; index < (uint)(propertyCount); index++)
+                    {
+                        fieldPointer[index] = SharpVk.LayerProperties.MarshalFrom(&marshalledProperties[index]);
                     }
                     result = fieldPointer;
                 }

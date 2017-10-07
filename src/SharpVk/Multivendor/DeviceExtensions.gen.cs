@@ -32,34 +32,6 @@ namespace SharpVk.Multivendor
     public static class DeviceExtensions
     {
         /// <summary>
-        /// Give a user-friendly name to an object.
-        /// </summary>
-        /// <param name="extendedHandle">
-        /// The Device handle to extend.
-        /// </param>
-        public static unsafe void DebugMarkerSetObjectName(this SharpVk.Device extendedHandle, SharpVk.Multivendor.DebugMarkerObjectNameInfo nameInfo)
-        {
-            try
-            {
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Multivendor.DebugMarkerObjectNameInfo* marshalledNameInfo = default(SharpVk.Interop.Multivendor.DebugMarkerObjectNameInfo*);
-                commandCache = extendedHandle.commandCache;
-                marshalledNameInfo = (SharpVk.Interop.Multivendor.DebugMarkerObjectNameInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.DebugMarkerObjectNameInfo>());
-                nameInfo.MarshalTo(marshalledNameInfo);
-                SharpVk.Interop.Multivendor.VkDeviceDebugMarkerSetObjectNameDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkDeviceDebugMarkerSetObjectNameDelegate>("vkDebugMarkerSetObjectNameEXT", "instance");
-                Result methodResult = commandDelegate(extendedHandle.handle, marshalledNameInfo);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
         /// Attach arbitrary data to an object.
         /// </summary>
         /// <param name="extendedHandle">
@@ -76,6 +48,34 @@ namespace SharpVk.Multivendor
                 tagInfo.MarshalTo(marshalledTagInfo);
                 SharpVk.Interop.Multivendor.VkDeviceDebugMarkerSetObjectTagDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkDeviceDebugMarkerSetObjectTagDelegate>("vkDebugMarkerSetObjectTagEXT", "instance");
                 Result methodResult = commandDelegate(extendedHandle.handle, marshalledTagInfo);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// Give a user-friendly name to an object.
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The Device handle to extend.
+        /// </param>
+        public static unsafe void DebugMarkerSetObjectName(this SharpVk.Device extendedHandle, SharpVk.Multivendor.DebugMarkerObjectNameInfo nameInfo)
+        {
+            try
+            {
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Multivendor.DebugMarkerObjectNameInfo* marshalledNameInfo = default(SharpVk.Interop.Multivendor.DebugMarkerObjectNameInfo*);
+                commandCache = extendedHandle.commandCache;
+                marshalledNameInfo = (SharpVk.Interop.Multivendor.DebugMarkerObjectNameInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.DebugMarkerObjectNameInfo>());
+                nameInfo.MarshalTo(marshalledNameInfo);
+                SharpVk.Interop.Multivendor.VkDeviceDebugMarkerSetObjectNameDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkDeviceDebugMarkerSetObjectNameDelegate>("vkDebugMarkerSetObjectNameEXT", "instance");
+                Result methodResult = commandDelegate(extendedHandle.handle, marshalledNameInfo);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);

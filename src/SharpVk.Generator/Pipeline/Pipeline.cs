@@ -53,14 +53,19 @@ namespace SharpVk.Generator.Pipeline
             outputStage.Configure(services);
 
             var outputProvider = services.BuildServiceProvider();
-
-            var outputs = outputProvider.GetServices<IOutputWorker>();
-
-            foreach (var output in outputs)
+            
+            foreach (var output in outputProvider.GetServices<IOutputWorker>())
             {
                 Console.WriteLine($"Running: {output.GetType().Name}");
 
                 output.Execute();
+            }
+            
+            foreach (var cleanup in outputProvider.GetServices<ICleanupWorker>())
+            {
+                Console.WriteLine($"Running: {cleanup.GetType().Name}");
+
+                cleanup.Execute();
             }
         }
     }

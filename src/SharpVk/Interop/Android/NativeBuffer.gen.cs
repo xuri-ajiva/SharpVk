@@ -25,31 +25,42 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace SharpVk
+namespace SharpVk.Interop.Android
 {
     /// <summary>
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct Rect3D
+    public unsafe partial struct NativeBuffer
     {
         /// <summary>
         /// 
         /// </summary>
-        public Rect3D(SharpVk.Offset3D offset, SharpVk.Extent3D extent)
-        {
-            this.Offset = offset;
-            this.Extent = extent;
-        }
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Offset3D Offset; 
+        public void* Next; 
         
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Extent3D Extent; 
+        public void* Handle; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Stride; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Format; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public int Usage; 
     }
 }

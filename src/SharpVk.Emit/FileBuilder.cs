@@ -14,7 +14,7 @@ namespace SharpVk.Emit
         private bool hasFirstParagraph = false;
         private bool previousParagraphWasNamespace = false;
 
-        private static List<string> paths = new List<string>();
+        public string FilePath { get; }
 
         public FileBuilder(string folderPath, string fileName)
         {
@@ -23,17 +23,13 @@ namespace SharpVk.Emit
                 Directory.CreateDirectory(folderPath);
             }
 
-            var filePath = Path.Combine(folderPath, fileName);
+            this.FilePath = Path.Combine(folderPath, fileName);
 
-            Debug.Assert(!paths.Contains(filePath), "File should not be written twice.");
-
-            paths.Add(filePath);
-
-            if (File.Exists(filePath))
+            if (File.Exists(this.FilePath))
             {
                 try
                 {
-                    File.Delete(filePath);
+                    File.Delete(this.FilePath);
                 }
                 catch
                 {
@@ -41,7 +37,7 @@ namespace SharpVk.Emit
                 }
             }
 
-            this.fileWriter = new IndentedTextWriter(new StreamWriter(File.OpenWrite(filePath)));
+            this.fileWriter = new IndentedTextWriter(new StreamWriter(File.OpenWrite(this.FilePath)));
         }
 
         public void EmitComment(string comment)

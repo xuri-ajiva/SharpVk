@@ -22,76 +22,77 @@
 
 // This file was automatically generated and should not be edited directly.
 
-namespace SharpVk.Amd
+using System;
+using System.Runtime.InteropServices;
+
+namespace SharpVk.Android
 {
     /// <summary>
     /// 
     /// </summary>
-    public static class AmdExtensions
+    [StructLayout(LayoutKind.Sequential)]
+    public partial struct NativeBuffer
     {
         /// <summary>
         /// 
         /// </summary>
-        public const string RasterizationOrder = "VK_AMD_rasterization_order"; 
+        public IntPtr Handle
+        {
+            get;
+            set;
+        }
         
         /// <summary>
         /// 
         /// </summary>
-        public const string ShaderTrinaryMinmax = "VK_AMD_shader_trinary_minmax"; 
+        public int Stride
+        {
+            get;
+            set;
+        }
         
         /// <summary>
         /// 
         /// </summary>
-        public const string ShaderExplicitVertexParameter = "VK_AMD_shader_explicit_vertex_parameter"; 
+        public int Format
+        {
+            get;
+            set;
+        }
         
         /// <summary>
         /// 
         /// </summary>
-        public const string GcnShader = "VK_AMD_gcn_shader"; 
+        public int Usage
+        {
+            get;
+            set;
+        }
         
         /// <summary>
         /// 
         /// </summary>
-        public const string DrawIndirectCount = "VK_AMD_draw_indirect_count"; 
+        internal unsafe void MarshalTo(SharpVk.Interop.Android.NativeBuffer* pointer)
+        {
+            pointer->SType = StructureType.NativeBuffer;
+            pointer->Next = null;
+            pointer->Handle = this.Handle.ToPointer();
+            pointer->Stride = this.Stride;
+            pointer->Format = this.Format;
+            pointer->Usage = this.Usage;
+        }
         
         /// <summary>
         /// 
         /// </summary>
-        public const string NegativeViewportHeight = "VK_AMD_negative_viewport_height"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string GpuShaderHalfFloat = "VK_AMD_gpu_shader_half_float"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string ShaderBallot = "VK_AMD_shader_ballot"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string TextureGatherBiasLod = "VK_AMD_texture_gather_bias_lod"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string ShaderImageLoadStoreLod = "VK_AMD_shader_image_load_store_lod"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string GpuShaderInt16 = "VK_AMD_gpu_shader_int16"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string MixedAttachmentSamples = "VK_AMD_mixed_attachment_samples"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string ShaderFragmentMask = "VK_AMD_shader_fragment_mask"; 
+        internal static unsafe NativeBuffer MarshalFrom(SharpVk.Interop.Android.NativeBuffer* pointer)
+        {
+            NativeBuffer result = default(NativeBuffer);
+            result.Handle = new IntPtr(pointer->Handle);
+            result.Stride = pointer->Stride;
+            result.Format = pointer->Format;
+            result.Usage = pointer->Usage;
+            return result;
+        }
     }
 }

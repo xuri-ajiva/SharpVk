@@ -61,6 +61,6 @@ namespace SharpVk.Interop.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Interop.Multivendor.SubpassSampleLocations* SubpassSampleLocations; 
+        public SharpVk.Interop.Multivendor.SubpassSampleLocations* PostSubpassSampleLocations; 
     }
 }

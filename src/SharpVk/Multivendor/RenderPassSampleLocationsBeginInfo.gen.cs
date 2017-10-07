@@ -45,7 +45,7 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Multivendor.SubpassSampleLocations[] SubpassSampleLocations
+        public SharpVk.Multivendor.SubpassSampleLocations[] PostSubpassSampleLocations
         {
             get;
             set;
@@ -72,19 +72,19 @@ namespace SharpVk.Multivendor
             {
                 pointer->AttachmentInitialSampleLocations = null;
             }
-            pointer->PostSubpassSampleLocationsCount = (uint)(Interop.HeapUtil.GetLength(this.SubpassSampleLocations));
-            if (this.SubpassSampleLocations != null)
+            pointer->PostSubpassSampleLocationsCount = (uint)(Interop.HeapUtil.GetLength(this.PostSubpassSampleLocations));
+            if (this.PostSubpassSampleLocations != null)
             {
-                var fieldPointer = (SharpVk.Interop.Multivendor.SubpassSampleLocations*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Multivendor.SubpassSampleLocations>(this.SubpassSampleLocations.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.SubpassSampleLocations.Length); index++)
+                var fieldPointer = (SharpVk.Interop.Multivendor.SubpassSampleLocations*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Multivendor.SubpassSampleLocations>(this.PostSubpassSampleLocations.Length).ToPointer());
+                for(int index = 0; index < (uint)(this.PostSubpassSampleLocations.Length); index++)
                 {
-                    this.SubpassSampleLocations[index].MarshalTo(&fieldPointer[index]);
+                    this.PostSubpassSampleLocations[index].MarshalTo(&fieldPointer[index]);
                 }
-                pointer->SubpassSampleLocations = fieldPointer;
+                pointer->PostSubpassSampleLocations = fieldPointer;
             }
             else
             {
-                pointer->SubpassSampleLocations = null;
+                pointer->PostSubpassSampleLocations = null;
             }
         }
     }

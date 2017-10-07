@@ -332,6 +332,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        NativeBuffer = 1000010000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         DebugReportCallbackCreateInfo = 1000011000, 
         
         /// <summary>
