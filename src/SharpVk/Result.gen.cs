@@ -163,5 +163,10 @@ namespace SharpVk
         /// 
         /// </summary>
         ErrorInvalidExternalHandle = -1000072003, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ErrorNotPermitted = -1000174001, 
     }
 }

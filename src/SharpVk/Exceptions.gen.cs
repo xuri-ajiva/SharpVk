@@ -105,6 +105,8 @@ namespace SharpVk
                     return new OutOfPoolMemoryException();
                 case Result.ErrorInvalidExternalHandle:
                     return new InvalidExternalHandleException();
+                case Result.ErrorNotPermitted:
+                    return new NotPermittedException();
             }
             return new UnknownSharpVkException(resultCode);
         }
@@ -477,5 +479,22 @@ namespace SharpVk
         /// The Vulkan result code represented by this exception.
         /// </summary>
         public override Result ResultCode => Result.ErrorInvalidExternalHandle;
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    public class NotPermittedException
+        : SharpVkException
+    {
+        internal NotPermittedException()
+            : base("")
+        {
+        }
+        
+        /// <summary>
+        /// The Vulkan result code represented by this exception.
+        /// </summary>
+        public override Result ResultCode => Result.ErrorNotPermitted;
     }
 }

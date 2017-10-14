@@ -1028,5 +1028,10 @@ namespace SharpVk
         /// 
         /// </summary>
         ShaderModuleValidationCacheCreateInfo = 1000160001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DeviceQueueGlobalPriorityCreateInfo = 1000174000, 
     }
 }

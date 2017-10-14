@@ -128,5 +128,10 @@ namespace SharpVk.Multivendor
         /// 
         /// </summary>
         public const string ShaderViewportIndexLayer = "VK_EXT_shader_viewport_index_layer"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string GlobalPriority = "VK_EXT_global_priority"; 
     }
 }
