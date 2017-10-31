@@ -22,81 +22,52 @@
 
 // This file was automatically generated and should not be edited directly.
 
+using System;
+using System.Runtime.InteropServices;
+
 namespace SharpVk.Amd
 {
     /// <summary>
     /// 
     /// </summary>
-    public static class AmdExtensions
+    [StructLayout(LayoutKind.Sequential)]
+    public partial struct ShaderResourceUsage
     {
         /// <summary>
         /// 
         /// </summary>
-        public const string RasterizationOrder = "VK_AMD_rasterization_order"; 
+        public ShaderResourceUsage(uint numUsedVgprs, uint numUsedSgprs, uint ldsSizePerLocalWorkGroup, HostSize ldsUsageSizeInBytes, HostSize scratchMemUsageInBytes)
+        {
+            this.NumUsedVgprs = numUsedVgprs;
+            this.NumUsedSgprs = numUsedSgprs;
+            this.LdsSizePerLocalWorkGroup = ldsSizePerLocalWorkGroup;
+            this.LdsUsageSizeInBytes = ldsUsageSizeInBytes;
+            this.ScratchMemUsageInBytes = scratchMemUsageInBytes;
+        }
         
         /// <summary>
         /// 
         /// </summary>
-        public const string ShaderTrinaryMinmax = "VK_AMD_shader_trinary_minmax"; 
+        public uint NumUsedVgprs; 
         
         /// <summary>
         /// 
         /// </summary>
-        public const string ShaderExplicitVertexParameter = "VK_AMD_shader_explicit_vertex_parameter"; 
+        public uint NumUsedSgprs; 
         
         /// <summary>
         /// 
         /// </summary>
-        public const string GcnShader = "VK_AMD_gcn_shader"; 
+        public uint LdsSizePerLocalWorkGroup; 
         
         /// <summary>
         /// 
         /// </summary>
-        public const string DrawIndirectCount = "VK_AMD_draw_indirect_count"; 
+        public HostSize LdsUsageSizeInBytes; 
         
         /// <summary>
         /// 
         /// </summary>
-        public const string NegativeViewportHeight = "VK_AMD_negative_viewport_height"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string GpuShaderHalfFloat = "VK_AMD_gpu_shader_half_float"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string ShaderBallot = "VK_AMD_shader_ballot"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string TextureGatherBiasLod = "VK_AMD_texture_gather_bias_lod"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string ShaderInfo = "VK_AMD_shader_info"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string ShaderImageLoadStoreLod = "VK_AMD_shader_image_load_store_lod"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string GpuShaderInt16 = "VK_AMD_gpu_shader_int16"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string MixedAttachmentSamples = "VK_AMD_mixed_attachment_samples"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string ShaderFragmentMask = "VK_AMD_shader_fragment_mask"; 
+        public HostSize ScratchMemUsageInBytes; 
     }
 }

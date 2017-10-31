@@ -25,18 +25,18 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace SharpVk.Android
+namespace SharpVk.Amd
 {
     /// <summary>
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct NativeBuffer
+    public partial struct ShaderStatisticsInfo
     {
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Handle
+        public SharpVk.ShaderStageFlags ShaderStageMask
         {
             get;
             set;
@@ -45,7 +45,7 @@ namespace SharpVk.Android
         /// <summary>
         /// 
         /// </summary>
-        public int Stride
+        public SharpVk.Amd.ShaderResourceUsage ResourceUsage
         {
             get;
             set;
@@ -54,7 +54,7 @@ namespace SharpVk.Android
         /// <summary>
         /// 
         /// </summary>
-        public int Format
+        public uint NumPhysicalVgprs
         {
             get;
             set;
@@ -63,7 +63,7 @@ namespace SharpVk.Android
         /// <summary>
         /// 
         /// </summary>
-        public int Usage
+        public uint NumPhysicalSgprs
         {
             get;
             set;
@@ -72,26 +72,43 @@ namespace SharpVk.Android
         /// <summary>
         /// 
         /// </summary>
-        internal unsafe void MarshalTo(SharpVk.Interop.Android.NativeBuffer* pointer)
+        public uint NumAvailableVgprs
         {
-            pointer->SType = StructureType.NativeBuffer;
-            pointer->Next = null;
-            pointer->Handle = this.Handle.ToPointer();
-            pointer->Stride = this.Stride;
-            pointer->Format = this.Format;
-            pointer->Usage = this.Usage;
+            get;
+            set;
         }
         
         /// <summary>
         /// 
         /// </summary>
-        internal static unsafe NativeBuffer MarshalFrom(SharpVk.Interop.Android.NativeBuffer* pointer)
+        public uint NumAvailableSgprs
         {
-            NativeBuffer result = default(NativeBuffer);
-            result.Handle = new IntPtr(pointer->Handle);
-            result.Stride = pointer->Stride;
-            result.Format = pointer->Format;
-            result.Usage = pointer->Usage;
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public uint[] ComputeWorkGroupSize
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        internal static unsafe ShaderStatisticsInfo MarshalFrom(SharpVk.Interop.Amd.ShaderStatisticsInfo* pointer)
+        {
+            ShaderStatisticsInfo result = default(ShaderStatisticsInfo);
+            result.ShaderStageMask = pointer->ShaderStageMask;
+            result.ResourceUsage = pointer->ResourceUsage;
+            result.NumPhysicalVgprs = pointer->NumPhysicalVgprs;
+            result.NumPhysicalSgprs = pointer->NumPhysicalSgprs;
+            result.NumAvailableVgprs = pointer->NumAvailableVgprs;
+            result.NumAvailableSgprs = pointer->NumAvailableSgprs;
+            result.ComputeWorkGroupSize = Interop.HeapUtil.MarshalFrom(pointer->ComputeWorkGroupSize, 3);
             return result;
         }
     }
