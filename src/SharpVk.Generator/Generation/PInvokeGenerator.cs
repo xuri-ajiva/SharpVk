@@ -37,21 +37,19 @@ namespace SharpVk.Generator.Generation
                         }).ToList()
                     });
                 }
-                else
+
+                services.AddSingleton(new DelegateDefinition
                 {
-                    services.AddSingleton(new DelegateDefinition
+                    Name = $"{command.HandleTypeName}{command.Name}Delegate",
+                    Namespace = this.namespaceMap.Map(command.Extension).Prepend("Interop").ToArray(),
+                    ReturnType = this.nameLookup.Lookup(new TypeReference { VkName = command.ReturnType }, true),
+                    IsUnsafe = true,
+                    Parameters = command.Params.Select(x => new ParamDefinition
                     {
-                        Name = $"{command.HandleTypeName}{command.Name}Delegate",
-                        Namespace = this.namespaceMap.Map(command.Extension).Prepend("Interop").ToArray(),
-                        ReturnType = this.nameLookup.Lookup(new TypeReference { VkName = command.ReturnType }, true),
-                        IsUnsafe = true,
-                        Parameters = command.Params.Select(x => new ParamDefinition
-                        {
-                            Name = x.Name,
-                            Type = this.nameLookup.Lookup(x.Type, true)
-                        }).ToList()
-                    });
-                }
+                        Name = x.Name,
+                        Type = this.nameLookup.Lookup(x.Type, true)
+                    }).ToList()
+                });
             }
         }
     }
