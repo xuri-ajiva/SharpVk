@@ -71,7 +71,7 @@ namespace SharpVk.NVidia.Experimental
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.NVidia.Experimental.VkObjectTableNVXDestroyDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.Experimental.VkObjectTableNVXDestroyDelegate>("vkDestroyObjectTableNVX", "instance");
+                SharpVk.Interop.NVidia.Experimental.VkObjectTableNVXDestroyDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.Experimental.VkObjectTableNVXDestroyDelegate>("vkDestroyObjectTableNVX", "device");
                 commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
@@ -138,7 +138,7 @@ namespace SharpVk.NVidia.Experimental
                         marshalledObjectIndices = fieldPointer;
                     }
                 }
-                SharpVk.Interop.NVidia.Experimental.VkObjectTableNVXRegisterObjectsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.Experimental.VkObjectTableNVXRegisterObjectsDelegate>("vkRegisterObjectsNVX", "instance");
+                SharpVk.Interop.NVidia.Experimental.VkObjectTableNVXRegisterObjectsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.Experimental.VkObjectTableNVXRegisterObjectsDelegate>("vkRegisterObjectsNVX", "device");
                 Result methodResult = commandDelegate(this.parent.handle, this.handle, (uint)(Interop.HeapUtil.GetLength(objectTableEntries)), marshalledObjectTableEntries, marshalledObjectIndices);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -202,7 +202,7 @@ namespace SharpVk.NVidia.Experimental
                         marshalledObjectIndices = fieldPointer;
                     }
                 }
-                SharpVk.Interop.NVidia.Experimental.VkObjectTableNVXUnregisterObjectsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.Experimental.VkObjectTableNVXUnregisterObjectsDelegate>("vkUnregisterObjectsNVX", "instance");
+                SharpVk.Interop.NVidia.Experimental.VkObjectTableNVXUnregisterObjectsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.Experimental.VkObjectTableNVXUnregisterObjectsDelegate>("vkUnregisterObjectsNVX", "device");
                 Result methodResult = commandDelegate(this.parent.handle, this.handle, (uint)(Interop.HeapUtil.GetLength(objectEntryTypes)), marshalledObjectEntryTypes, marshalledObjectIndices);
                 if (SharpVkException.IsError(methodResult))
                 {

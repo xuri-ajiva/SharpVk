@@ -5,5 +5,6 @@
         public string Name;
         public int SpecVersion;
         public string Extension;
+        public string Scope;
     }
 }

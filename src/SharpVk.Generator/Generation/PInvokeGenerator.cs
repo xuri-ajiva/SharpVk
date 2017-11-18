@@ -24,7 +24,7 @@ namespace SharpVk.Generator.Generation
         {
             foreach (var command in commands)
             {
-                if (command.Extension == null)
+                if (command.ExtensionNamespace == null)
                 {
                     services.AddSingleton(new PInvokeDefinition
                     {
@@ -41,7 +41,7 @@ namespace SharpVk.Generator.Generation
                 services.AddSingleton(new DelegateDefinition
                 {
                     Name = $"{command.HandleTypeName}{command.Name}Delegate",
-                    Namespace = this.namespaceMap.Map(command.Extension).Prepend("Interop").ToArray(),
+                    Namespace = this.namespaceMap.Map(command.ExtensionNamespace).Prepend("Interop").ToArray(),
                     ReturnType = this.nameLookup.Lookup(new TypeReference { VkName = command.ReturnType }, true),
                     IsUnsafe = true,
                     Parameters = command.Params.Select(x => new ParamDefinition

@@ -71,7 +71,8 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Interop.Commands.vkDestroyEvent(this.parent.handle, this.handle, marshalledAllocator);
+                SharpVk.Interop.VkEventDestroyDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkEventDestroyDelegate>("vkDestroyEvent", "");
+                commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
             {
@@ -86,7 +87,8 @@ namespace SharpVk
         {
             try
             {
-                Result methodResult = Interop.Commands.vkGetEventStatus(this.parent.handle, this.handle);
+                SharpVk.Interop.VkEventGetStatusDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkEventGetStatusDelegate>("vkGetEventStatus", "");
+                Result methodResult = commandDelegate(this.parent.handle, this.handle);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -105,7 +107,8 @@ namespace SharpVk
         {
             try
             {
-                Result methodResult = Interop.Commands.vkSetEvent(this.parent.handle, this.handle);
+                SharpVk.Interop.VkEventSetDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkEventSetDelegate>("vkSetEvent", "");
+                Result methodResult = commandDelegate(this.parent.handle, this.handle);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -124,7 +127,8 @@ namespace SharpVk
         {
             try
             {
-                Result methodResult = Interop.Commands.vkResetEvent(this.parent.handle, this.handle);
+                SharpVk.Interop.VkEventResetDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkEventResetDelegate>("vkResetEvent", "");
+                Result methodResult = commandDelegate(this.parent.handle, this.handle);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);

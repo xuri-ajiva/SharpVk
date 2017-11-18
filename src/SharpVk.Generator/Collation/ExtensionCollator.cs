@@ -28,6 +28,12 @@ namespace SharpVk.Generator.Collation
                     VkName = extension.Name,
                     OutputName = outputName
                 });
+
+                services.AddSingleton(new ExtensionDeclaration
+                {
+                    Name = extension.Name,
+                    Scope = extension.Scope
+                });
             }
         }
     }

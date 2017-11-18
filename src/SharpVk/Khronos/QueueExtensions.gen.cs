@@ -133,7 +133,7 @@ namespace SharpVk.Khronos
                         marshalledPresentInfo->Results = fieldPointer;
                     }
                 }
-                SharpVk.Interop.Khronos.VkQueuePresentDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkQueuePresentDelegate>("vkQueuePresentKHR", "instance");
+                SharpVk.Interop.Khronos.VkQueuePresentDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkQueuePresentDelegate>("vkQueuePresentKHR", "device");
                 Result methodResult = commandDelegate(extendedHandle.handle, marshalledPresentInfo);
                 if (SharpVkException.IsError(methodResult))
                 {

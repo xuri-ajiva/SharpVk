@@ -46,7 +46,7 @@ namespace SharpVk.Khronos.Experimental
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Rect2D* marshalledRects = default(SharpVk.Rect2D*);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Khronos.Experimental.VkPhysicalDeviceGetPresentRectanglesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.Experimental.VkPhysicalDeviceGetPresentRectanglesDelegate>("vkGetPhysicalDevicePresentRectanglesKHX", "instance");
+                SharpVk.Interop.Khronos.Experimental.VkPhysicalDeviceGetPresentRectanglesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.Experimental.VkPhysicalDeviceGetPresentRectanglesDelegate>("vkGetPhysicalDevicePresentRectanglesKHX", "device");
                 Result methodResult = commandDelegate(extendedHandle.handle, surface?.handle ?? default(SharpVk.Interop.Khronos.Surface), &rectCount, marshalledRects);
                 if (SharpVkException.IsError(methodResult))
                 {

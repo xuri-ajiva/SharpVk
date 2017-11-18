@@ -46,7 +46,7 @@ namespace SharpVk.Multivendor
                 commandCache = extendedHandle.commandCache;
                 marshalledTagInfo = (SharpVk.Interop.Multivendor.DebugMarkerObjectTagInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.DebugMarkerObjectTagInfo>());
                 tagInfo.MarshalTo(marshalledTagInfo);
-                SharpVk.Interop.Multivendor.VkDeviceDebugMarkerSetObjectTagDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkDeviceDebugMarkerSetObjectTagDelegate>("vkDebugMarkerSetObjectTagEXT", "instance");
+                SharpVk.Interop.Multivendor.VkDeviceDebugMarkerSetObjectTagDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkDeviceDebugMarkerSetObjectTagDelegate>("vkDebugMarkerSetObjectTagEXT", "device");
                 Result methodResult = commandDelegate(extendedHandle.handle, marshalledTagInfo);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -74,7 +74,7 @@ namespace SharpVk.Multivendor
                 commandCache = extendedHandle.commandCache;
                 marshalledNameInfo = (SharpVk.Interop.Multivendor.DebugMarkerObjectNameInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.DebugMarkerObjectNameInfo>());
                 nameInfo.MarshalTo(marshalledNameInfo);
-                SharpVk.Interop.Multivendor.VkDeviceDebugMarkerSetObjectNameDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkDeviceDebugMarkerSetObjectNameDelegate>("vkDebugMarkerSetObjectNameEXT", "instance");
+                SharpVk.Interop.Multivendor.VkDeviceDebugMarkerSetObjectNameDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkDeviceDebugMarkerSetObjectNameDelegate>("vkDebugMarkerSetObjectNameEXT", "device");
                 Result methodResult = commandDelegate(extendedHandle.handle, marshalledNameInfo);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -102,7 +102,7 @@ namespace SharpVk.Multivendor
                 commandCache = extendedHandle.commandCache;
                 marshalledDisplayPowerInfo = (SharpVk.Interop.Multivendor.DisplayPowerInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.DisplayPowerInfo>());
                 displayPowerInfo.MarshalTo(marshalledDisplayPowerInfo);
-                SharpVk.Interop.Multivendor.VkDeviceDisplayPowerControlDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkDeviceDisplayPowerControlDelegate>("vkDisplayPowerControlEXT", "instance");
+                SharpVk.Interop.Multivendor.VkDeviceDisplayPowerControlDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkDeviceDisplayPowerControlDelegate>("vkDisplayPowerControlEXT", "device");
                 Result methodResult = commandDelegate(extendedHandle.handle, display?.handle ?? default(SharpVk.Interop.Khronos.Display), marshalledDisplayPowerInfo);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -146,7 +146,7 @@ namespace SharpVk.Multivendor
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.Multivendor.VkDeviceRegisterEventDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkDeviceRegisterEventDelegate>("vkRegisterDeviceEventEXT", "instance");
+                SharpVk.Interop.Multivendor.VkDeviceRegisterEventDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkDeviceRegisterEventDelegate>("vkRegisterDeviceEventEXT", "device");
                 Result methodResult = commandDelegate(extendedHandle.handle, marshalledDeviceEventInfo, marshalledAllocator, &marshalledFence);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -192,7 +192,7 @@ namespace SharpVk.Multivendor
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.Multivendor.VkDeviceRegisterDisplayEventDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkDeviceRegisterDisplayEventDelegate>("vkRegisterDisplayEventEXT", "instance");
+                SharpVk.Interop.Multivendor.VkDeviceRegisterDisplayEventDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkDeviceRegisterDisplayEventDelegate>("vkRegisterDisplayEventEXT", "device");
                 Result methodResult = commandDelegate(extendedHandle.handle, display?.handle ?? default(SharpVk.Interop.Khronos.Display), marshalledDisplayEventInfo, marshalledAllocator, &marshalledFence);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -263,7 +263,7 @@ namespace SharpVk.Multivendor
                         marshalledMetadata = fieldPointer;
                     }
                 }
-                SharpVk.Interop.Multivendor.VkDeviceSetHdrMetadataDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkDeviceSetHdrMetadataDelegate>("vkSetHdrMetadataEXT", "instance");
+                SharpVk.Interop.Multivendor.VkDeviceSetHdrMetadataDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkDeviceSetHdrMetadataDelegate>("vkSetHdrMetadataEXT", "device");
                 commandDelegate(extendedHandle.handle, (uint)(Interop.HeapUtil.GetLength(swapchains)), marshalledSwapchains, marshalledMetadata);
             }
             finally
@@ -330,7 +330,7 @@ namespace SharpVk.Multivendor
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.Multivendor.VkDeviceCreateValidationCacheDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkDeviceCreateValidationCacheDelegate>("vkCreateValidationCacheEXT", "instance");
+                SharpVk.Interop.Multivendor.VkDeviceCreateValidationCacheDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkDeviceCreateValidationCacheDelegate>("vkCreateValidationCacheEXT", "device");
                 Result methodResult = commandDelegate(extendedHandle.handle, marshalledCreateInfo, marshalledAllocator, &marshalledValidationCache);
                 if (SharpVkException.IsError(methodResult))
                 {

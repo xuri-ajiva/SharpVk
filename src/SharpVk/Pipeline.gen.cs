@@ -71,7 +71,8 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Interop.Commands.vkDestroyPipeline(this.parent.handle, this.handle, marshalledAllocator);
+                SharpVk.Interop.VkPipelineDestroyDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkPipelineDestroyDelegate>("vkDestroyPipeline", "");
+                commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
             {

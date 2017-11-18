@@ -78,7 +78,8 @@ namespace SharpVk
                         marshalledSubmits = fieldPointer;
                     }
                 }
-                Result methodResult = Interop.Commands.vkQueueSubmit(this.handle, (uint)(Interop.HeapUtil.GetLength(submits)), marshalledSubmits, fence?.handle ?? default(SharpVk.Interop.Fence));
+                SharpVk.Interop.VkQueueSubmitDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkQueueSubmitDelegate>("vkQueueSubmit", "");
+                Result methodResult = commandDelegate(this.handle, (uint)(Interop.HeapUtil.GetLength(submits)), marshalledSubmits, fence?.handle ?? default(SharpVk.Interop.Fence));
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -97,7 +98,8 @@ namespace SharpVk
         {
             try
             {
-                Result methodResult = Interop.Commands.vkQueueWaitIdle(this.handle);
+                SharpVk.Interop.VkQueueWaitIdleDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkQueueWaitIdleDelegate>("vkQueueWaitIdle", "");
+                Result methodResult = commandDelegate(this.handle);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -138,7 +140,8 @@ namespace SharpVk
                         marshalledBindInfo = fieldPointer;
                     }
                 }
-                Result methodResult = Interop.Commands.vkQueueBindSparse(this.handle, (uint)(Interop.HeapUtil.GetLength(bindInfo)), marshalledBindInfo, fence?.handle ?? default(SharpVk.Interop.Fence));
+                SharpVk.Interop.VkQueueBindSparseDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkQueueBindSparseDelegate>("vkQueueBindSparse", "");
+                Result methodResult = commandDelegate(this.handle, (uint)(Interop.HeapUtil.GetLength(bindInfo)), marshalledBindInfo, fence?.handle ?? default(SharpVk.Interop.Fence));
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);

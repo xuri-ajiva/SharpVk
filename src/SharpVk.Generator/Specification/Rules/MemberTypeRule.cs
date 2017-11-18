@@ -22,7 +22,7 @@ namespace SharpVk.Generator.Specification.Rules
                 return false;
             }
 
-            type.NameParts = this.nameParser.GetNameParts(type.VkName, out type.Extension);
+            type.NameParts = this.nameParser.GetNameParts(type.VkName, out type.ExtensionNamespace);
 
             foreach (var vkMember in typeXml.Elements("member"))
             {
@@ -92,7 +92,7 @@ namespace SharpVk.Generator.Specification.Rules
                     FixedLength = fixedLength,
                     PointerType = pointerType,
                     NameParts = memberNameParts,
-                    Extension = memberExtension,
+                    ExtensionNamespace = memberExtension,
                     Dimensions = dimensions,
                     Values = values
                 };

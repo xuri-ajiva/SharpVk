@@ -71,7 +71,8 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Interop.Commands.vkDestroyCommandPool(this.parent.handle, this.handle, marshalledAllocator);
+                SharpVk.Interop.VkCommandPoolDestroyDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandPoolDestroyDelegate>("vkDestroyCommandPool", "");
+                commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
             {
@@ -95,7 +96,8 @@ namespace SharpVk
                 {
                     marshalledFlags = default(SharpVk.CommandPoolResetFlags);
                 }
-                Result methodResult = Interop.Commands.vkResetCommandPool(this.parent.handle, this.handle, marshalledFlags);
+                SharpVk.Interop.VkCommandPoolResetDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandPoolResetDelegate>("vkResetCommandPool", "");
+                Result methodResult = commandDelegate(this.parent.handle, this.handle, marshalledFlags);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -136,7 +138,8 @@ namespace SharpVk
                         marshalledCommandBuffers = fieldPointer;
                     }
                 }
-                Interop.Commands.vkFreeCommandBuffers(this.parent.handle, this.handle, (uint)(Interop.HeapUtil.GetLength(commandBuffers)), marshalledCommandBuffers);
+                SharpVk.Interop.VkCommandPoolFreeCommandBuffersDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandPoolFreeCommandBuffersDelegate>("vkFreeCommandBuffers", "");
+                commandDelegate(this.parent.handle, this.handle, (uint)(Interop.HeapUtil.GetLength(commandBuffers)), marshalledCommandBuffers);
             }
             finally
             {

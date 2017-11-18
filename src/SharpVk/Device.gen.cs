@@ -58,7 +58,8 @@ namespace SharpVk
             try
             {
                 IntPtr result = default(IntPtr);
-                result = Interop.Commands.vkGetDeviceProcAddr(this.handle, Interop.HeapUtil.MarshalTo(name));
+                SharpVk.Interop.VkDeviceGetProcedureAddressDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceGetProcedureAddressDelegate>("vkGetDeviceProcAddr", "");
+                result = commandDelegate(this.handle, Interop.HeapUtil.MarshalTo(name));
                 return result;
             }
             finally
@@ -88,7 +89,8 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Interop.Commands.vkDestroyDevice(this.handle, marshalledAllocator);
+                SharpVk.Interop.VkDeviceDestroyDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceDestroyDelegate>("vkDestroyDevice", "");
+                commandDelegate(this.handle, marshalledAllocator);
             }
             finally
             {
@@ -105,7 +107,8 @@ namespace SharpVk
             {
                 SharpVk.Queue result = default(SharpVk.Queue);
                 SharpVk.Interop.Queue marshalledQueue = default(SharpVk.Interop.Queue);
-                Interop.Commands.vkGetDeviceQueue(this.handle, queueFamilyIndex, queueIndex, &marshalledQueue);
+                SharpVk.Interop.VkDeviceGetQueueDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceGetQueueDelegate>("vkGetDeviceQueue", "");
+                commandDelegate(this.handle, queueFamilyIndex, queueIndex, &marshalledQueue);
                 result = new SharpVk.Queue(this, marshalledQueue);
                 return result;
             }
@@ -122,7 +125,8 @@ namespace SharpVk
         {
             try
             {
-                Result methodResult = Interop.Commands.vkDeviceWaitIdle(this.handle);
+                SharpVk.Interop.VkDeviceWaitIdleDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceWaitIdleDelegate>("vkDeviceWaitIdle", "");
+                Result methodResult = commandDelegate(this.handle);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -170,7 +174,8 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Result methodResult = Interop.Commands.vkAllocateMemory(this.handle, marshalledAllocateInfo, marshalledAllocator, &marshalledMemory);
+                SharpVk.Interop.VkDeviceAllocateMemoryDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceAllocateMemoryDelegate>("vkAllocateMemory", "");
+                Result methodResult = commandDelegate(this.handle, marshalledAllocateInfo, marshalledAllocator, &marshalledMemory);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -213,7 +218,8 @@ namespace SharpVk
                         marshalledMemoryRanges = fieldPointer;
                     }
                 }
-                Result methodResult = Interop.Commands.vkFlushMappedMemoryRanges(this.handle, (uint)(Interop.HeapUtil.GetLength(memoryRanges)), marshalledMemoryRanges);
+                SharpVk.Interop.VkDeviceFlushMappedMemoryRangesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceFlushMappedMemoryRangesDelegate>("vkFlushMappedMemoryRanges", "");
+                Result methodResult = commandDelegate(this.handle, (uint)(Interop.HeapUtil.GetLength(memoryRanges)), marshalledMemoryRanges);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -254,7 +260,8 @@ namespace SharpVk
                         marshalledMemoryRanges = fieldPointer;
                     }
                 }
-                Result methodResult = Interop.Commands.vkInvalidateMappedMemoryRanges(this.handle, (uint)(Interop.HeapUtil.GetLength(memoryRanges)), marshalledMemoryRanges);
+                SharpVk.Interop.VkDeviceInvalidateMappedMemoryRangesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceInvalidateMappedMemoryRangesDelegate>("vkInvalidateMappedMemoryRanges", "");
+                Result methodResult = commandDelegate(this.handle, (uint)(Interop.HeapUtil.GetLength(memoryRanges)), marshalledMemoryRanges);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -305,7 +312,8 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Result methodResult = Interop.Commands.vkCreateFence(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledFence);
+                SharpVk.Interop.VkDeviceCreateFenceDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceCreateFenceDelegate>("vkCreateFence", "");
+                Result methodResult = commandDelegate(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledFence);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -348,7 +356,8 @@ namespace SharpVk
                         marshalledFences = fieldPointer;
                     }
                 }
-                Result methodResult = Interop.Commands.vkResetFences(this.handle, (uint)(Interop.HeapUtil.GetLength(fences)), marshalledFences);
+                SharpVk.Interop.VkDeviceResetFencesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceResetFencesDelegate>("vkResetFences", "");
+                Result methodResult = commandDelegate(this.handle, (uint)(Interop.HeapUtil.GetLength(fences)), marshalledFences);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -389,7 +398,8 @@ namespace SharpVk
                         marshalledFences = fieldPointer;
                     }
                 }
-                Result methodResult = Interop.Commands.vkWaitForFences(this.handle, (uint)(Interop.HeapUtil.GetLength(fences)), marshalledFences, waitAll, timeout);
+                SharpVk.Interop.VkDeviceWaitForFencesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceWaitForFencesDelegate>("vkWaitForFences", "");
+                Result methodResult = commandDelegate(this.handle, (uint)(Interop.HeapUtil.GetLength(fences)), marshalledFences, waitAll, timeout);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -439,7 +449,8 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Result methodResult = Interop.Commands.vkCreateSemaphore(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledSemaphore);
+                SharpVk.Interop.VkDeviceCreateSemaphoreDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceCreateSemaphoreDelegate>("vkCreateSemaphore", "");
+                Result methodResult = commandDelegate(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledSemaphore);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -491,7 +502,8 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Result methodResult = Interop.Commands.vkCreateEvent(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledEvent);
+                SharpVk.Interop.VkDeviceCreateEventDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceCreateEventDelegate>("vkCreateEvent", "");
+                Result methodResult = commandDelegate(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledEvent);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -556,7 +568,8 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Result methodResult = Interop.Commands.vkCreateQueryPool(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledQueryPool);
+                SharpVk.Interop.VkDeviceCreateQueryPoolDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceCreateQueryPoolDelegate>("vkCreateQueryPool", "");
+                Result methodResult = commandDelegate(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledQueryPool);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -643,7 +656,8 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Result methodResult = Interop.Commands.vkCreateBuffer(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledBuffer);
+                SharpVk.Interop.VkDeviceCreateBufferDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceCreateBufferDelegate>("vkCreateBuffer", "");
+                Result methodResult = commandDelegate(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledBuffer);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -717,7 +731,8 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Result methodResult = Interop.Commands.vkCreateBufferView(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledView);
+                SharpVk.Interop.VkDeviceCreateBufferViewDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceCreateBufferViewDelegate>("vkCreateBufferView", "");
+                Result methodResult = commandDelegate(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledView);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -844,7 +859,8 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Result methodResult = Interop.Commands.vkCreateImage(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledImage);
+                SharpVk.Interop.VkDeviceCreateImageDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceCreateImageDelegate>("vkCreateImage", "");
+                Result methodResult = commandDelegate(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledImage);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -920,7 +936,8 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Result methodResult = Interop.Commands.vkCreateImageView(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledView);
+                SharpVk.Interop.VkDeviceCreateImageViewDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceCreateImageViewDelegate>("vkCreateImageView", "");
+                Result methodResult = commandDelegate(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledView);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -997,7 +1014,8 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Result methodResult = Interop.Commands.vkCreateShaderModule(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledShaderModule);
+                SharpVk.Interop.VkDeviceCreateShaderModuleDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceCreateShaderModuleDelegate>("vkCreateShaderModule", "");
+                Result methodResult = commandDelegate(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledShaderModule);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -1071,7 +1089,8 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Result methodResult = Interop.Commands.vkCreatePipelineCache(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledPipelineCache);
+                SharpVk.Interop.VkDeviceCreatePipelineCacheDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceCreatePipelineCacheDelegate>("vkCreatePipelineCache", "");
+                Result methodResult = commandDelegate(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledPipelineCache);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -1133,7 +1152,8 @@ namespace SharpVk
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
                 marshalledPipelines = (SharpVk.Interop.Pipeline*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Pipeline>(createInfoCount));
-                Result methodResult = Interop.Commands.vkCreateGraphicsPipelines(this.handle, pipelineCache?.handle ?? default(SharpVk.Interop.PipelineCache), createInfoCount, marshalledCreateInfos, marshalledAllocator, marshalledPipelines);
+                SharpVk.Interop.VkDeviceCreateGraphicsPipelinesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceCreateGraphicsPipelinesDelegate>("vkCreateGraphicsPipelines", "");
+                Result methodResult = commandDelegate(this.handle, pipelineCache?.handle ?? default(SharpVk.Interop.PipelineCache), createInfoCount, marshalledCreateInfos, marshalledAllocator, marshalledPipelines);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -1207,7 +1227,8 @@ namespace SharpVk
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
                 marshalledPipelines = (SharpVk.Interop.Pipeline*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Pipeline>(createInfoCount));
-                Result methodResult = Interop.Commands.vkCreateComputePipelines(this.handle, pipelineCache?.handle ?? default(SharpVk.Interop.PipelineCache), createInfoCount, marshalledCreateInfos, marshalledAllocator, marshalledPipelines);
+                SharpVk.Interop.VkDeviceCreateComputePipelinesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceCreateComputePipelinesDelegate>("vkCreateComputePipelines", "");
+                Result methodResult = commandDelegate(this.handle, pipelineCache?.handle ?? default(SharpVk.Interop.PipelineCache), createInfoCount, marshalledCreateInfos, marshalledAllocator, marshalledPipelines);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -1315,7 +1336,8 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Result methodResult = Interop.Commands.vkCreatePipelineLayout(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledPipelineLayout);
+                SharpVk.Interop.VkDeviceCreatePipelineLayoutDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceCreatePipelineLayoutDelegate>("vkCreatePipelineLayout", "");
+                Result methodResult = commandDelegate(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledPipelineLayout);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -1385,7 +1407,8 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Result methodResult = Interop.Commands.vkCreateSampler(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledSampler);
+                SharpVk.Interop.VkDeviceCreateSamplerDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceCreateSamplerDelegate>("vkCreateSampler", "");
+                Result methodResult = commandDelegate(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledSampler);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -1461,7 +1484,8 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Result methodResult = Interop.Commands.vkCreateDescriptorSetLayout(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledSetLayout);
+                SharpVk.Interop.VkDeviceCreateDescriptorSetLayoutDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceCreateDescriptorSetLayoutDelegate>("vkCreateDescriptorSetLayout", "");
+                Result methodResult = commandDelegate(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledSetLayout);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -1537,7 +1561,8 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Result methodResult = Interop.Commands.vkCreateDescriptorPool(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledDescriptorPool);
+                SharpVk.Interop.VkDeviceCreateDescriptorPoolDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceCreateDescriptorPoolDelegate>("vkCreateDescriptorPool", "");
+                Result methodResult = commandDelegate(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledDescriptorPool);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -1591,7 +1616,8 @@ namespace SharpVk
                     }
                 }
                 marshalledDescriptorSets = (SharpVk.Interop.DescriptorSet*)(Interop.HeapUtil.Allocate<SharpVk.Interop.DescriptorSet>(Interop.HeapUtil.GetLength(setLayouts)));
-                Result methodResult = Interop.Commands.vkAllocateDescriptorSets(this.handle, marshalledAllocateInfo, marshalledDescriptorSets);
+                SharpVk.Interop.VkDeviceAllocateDescriptorSetsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceAllocateDescriptorSetsDelegate>("vkAllocateDescriptorSets", "");
+                Result methodResult = commandDelegate(this.handle, marshalledAllocateInfo, marshalledDescriptorSets);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -1668,7 +1694,8 @@ namespace SharpVk
                         marshalledDescriptorCopies = fieldPointer;
                     }
                 }
-                Interop.Commands.vkUpdateDescriptorSets(this.handle, (uint)(Interop.HeapUtil.GetLength(descriptorWrites)), marshalledDescriptorWrites, (uint)(Interop.HeapUtil.GetLength(descriptorCopies)), marshalledDescriptorCopies);
+                SharpVk.Interop.VkDeviceUpdateDescriptorSetsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceUpdateDescriptorSetsDelegate>("vkUpdateDescriptorSets", "");
+                commandDelegate(this.handle, (uint)(Interop.HeapUtil.GetLength(descriptorWrites)), marshalledDescriptorWrites, (uint)(Interop.HeapUtil.GetLength(descriptorCopies)), marshalledDescriptorCopies);
             }
             finally
             {
@@ -1751,7 +1778,8 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Result methodResult = Interop.Commands.vkCreateFramebuffer(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledFramebuffer);
+                SharpVk.Interop.VkDeviceCreateFramebufferDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceCreateFramebufferDelegate>("vkCreateFramebuffer", "");
+                Result methodResult = commandDelegate(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledFramebuffer);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -1869,7 +1897,8 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Result methodResult = Interop.Commands.vkCreateRenderPass(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledRenderPass);
+                SharpVk.Interop.VkDeviceCreateRenderPassDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceCreateRenderPassDelegate>("vkCreateRenderPass", "");
+                Result methodResult = commandDelegate(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledRenderPass);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -1923,7 +1952,8 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Result methodResult = Interop.Commands.vkCreateCommandPool(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledCommandPool);
+                SharpVk.Interop.VkDeviceCreateCommandPoolDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceCreateCommandPoolDelegate>("vkCreateCommandPool", "");
+                Result methodResult = commandDelegate(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledCommandPool);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -1961,7 +1991,8 @@ namespace SharpVk
                 marshalledAllocateInfo->Level = level;
                 marshalledAllocateInfo->CommandBufferCount = commandBufferCount;
                 marshalledCommandBuffers = (SharpVk.Interop.CommandBuffer*)(Interop.HeapUtil.Allocate<SharpVk.Interop.CommandBuffer>(commandBufferCount));
-                Result methodResult = Interop.Commands.vkAllocateCommandBuffers(this.handle, marshalledAllocateInfo, marshalledCommandBuffers);
+                SharpVk.Interop.VkDeviceAllocateCommandBuffersDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceAllocateCommandBuffersDelegate>("vkAllocateCommandBuffers", "");
+                Result methodResult = commandDelegate(this.handle, marshalledAllocateInfo, marshalledCommandBuffers);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);

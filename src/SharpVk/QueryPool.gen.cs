@@ -71,7 +71,8 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Interop.Commands.vkDestroyQueryPool(this.parent.handle, this.handle, marshalledAllocator);
+                SharpVk.Interop.VkQueryPoolDestroyDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkQueryPoolDestroyDelegate>("vkDestroyQueryPool", "");
+                commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
             {
@@ -117,7 +118,8 @@ namespace SharpVk
                 {
                     marshalledFlags = default(SharpVk.QueryResultFlags);
                 }
-                Result methodResult = Interop.Commands.vkGetQueryPoolResults(this.parent.handle, this.handle, firstQuery, queryCount, (HostSize)(Interop.HeapUtil.GetLength(data)), marshalledData, stride, marshalledFlags);
+                SharpVk.Interop.VkQueryPoolGetResultsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkQueryPoolGetResultsDelegate>("vkGetQueryPoolResults", "");
+                Result methodResult = commandDelegate(this.parent.handle, this.handle, firstQuery, queryCount, (HostSize)(Interop.HeapUtil.GetLength(data)), marshalledData, stride, marshalledFlags);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);

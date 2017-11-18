@@ -71,7 +71,8 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Interop.Commands.vkDestroyDescriptorSetLayout(this.parent.handle, this.handle, marshalledAllocator);
+                SharpVk.Interop.VkDescriptorSetLayoutDestroyDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDescriptorSetLayoutDestroyDelegate>("vkDestroyDescriptorSetLayout", "");
+                commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
             {

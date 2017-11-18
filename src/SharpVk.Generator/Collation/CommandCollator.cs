@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SharpVk.Generator.Pipeline;
+using SharpVk.Generator.Specification;
 using SharpVk.Generator.Specification.Elements;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +11,14 @@ namespace SharpVk.Generator.Collation
         : IWorker
     {
         private readonly IEnumerable<CommandElement> commands;
+        private readonly Dictionary<string, CommandRequirement> requirements;
         private readonly NameFormatter nameFormatter;
         private readonly Dictionary<string, TypeElement> typeData;
 
-        public CommandCollator(IEnumerable<CommandElement> commands, NameFormatter nameFormatter, IEnumerable<TypeElement> types)
+        public CommandCollator(IEnumerable<CommandElement> commands, IEnumerable<CommandRequirement> requirements, NameFormatter nameFormatter, IEnumerable<TypeElement> types)
         {
             this.commands = commands;
+            this.requirements = requirements.ToDictionary(x => x.CommandName);
             this.nameFormatter = nameFormatter;
             this.typeData = types.ToDictionary(x => x.VkName);
         }
@@ -71,18 +74,21 @@ namespace SharpVk.Generator.Collation
                     }
                 }).ToArray();
 
-                var handleTypeName = handleParams.Any()
-                                        ? handleParams.Last().Type
-                                        : IsHandle(command.Params.Last())
-                                            ? command.Params.Last().Type
-                                            : "VkInstance";
-                
+                string handleTypeName = handleParams.Any()
+                                            ? handleParams.Last().Type
+                                            : IsHandle(command.Params.Last())
+                                                ? command.Params.Last().Type
+                                                : "VkInstance";
+
+                this.requirements.TryGetValue(command.VkName, out var commandRequirement);
+
                 services.AddSingleton(new CommandDeclaration
                 {
                     VkName = command.VkName,
                     Name = this.nameFormatter.FormatName(command, typeData[handleTypeName]),
                     Verb = command.Verb,
-                    Extension = command.Extension,
+                    ExtensionNamespace = command.ExtensionNamespace,
+                    Extension = commandRequirement?.ExtensionName,
                     HandleTypeName = handleTypeName,
                     HandleParamsCount = handleParams.Length,
                     ReturnType = command.Type,

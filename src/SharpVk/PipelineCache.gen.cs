@@ -71,7 +71,8 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Interop.Commands.vkDestroyPipelineCache(this.parent.handle, this.handle, marshalledAllocator);
+                SharpVk.Interop.VkPipelineCacheDestroyDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkPipelineCacheDestroyDelegate>("vkDestroyPipelineCache", "");
+                commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
             {
@@ -89,13 +90,14 @@ namespace SharpVk
                 byte[] result = default(byte[]);
                 HostSize dataSize = default(HostSize);
                 byte* marshalledData = default(byte*);
-                Result methodResult = Interop.Commands.vkGetPipelineCacheData(this.parent.handle, this.handle, &dataSize, marshalledData);
+                SharpVk.Interop.VkPipelineCacheGetDataDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkPipelineCacheGetDataDelegate>("vkGetPipelineCacheData", "");
+                Result methodResult = commandDelegate(this.parent.handle, this.handle, &dataSize, marshalledData);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
                 }
                 marshalledData = (byte*)(Interop.HeapUtil.Allocate<byte>((uint)(dataSize)));
-                Interop.Commands.vkGetPipelineCacheData(this.parent.handle, this.handle, &dataSize, marshalledData);
+                commandDelegate(this.parent.handle, this.handle, &dataSize, marshalledData);
                 if (marshalledData != null)
                 {
                     var fieldPointer = new byte[(uint)(dataSize)];
@@ -146,7 +148,8 @@ namespace SharpVk
                         marshalledSourceCaches = fieldPointer;
                     }
                 }
-                Result methodResult = Interop.Commands.vkMergePipelineCaches(this.parent.handle, this.handle, (uint)(Interop.HeapUtil.GetLength(sourceCaches)), marshalledSourceCaches);
+                SharpVk.Interop.VkPipelineCacheMergePipelineCachesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkPipelineCacheMergePipelineCachesDelegate>("vkMergePipelineCaches", "");
+                Result methodResult = commandDelegate(this.parent.handle, this.handle, (uint)(Interop.HeapUtil.GetLength(sourceCaches)), marshalledSourceCaches);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);

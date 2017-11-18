@@ -65,7 +65,7 @@ namespace SharpVk.Khronos
                         marshalledDescriptorWrites = fieldPointer;
                     }
                 }
-                SharpVk.Interop.Khronos.VkCommandBufferPushDescriptorSetDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkCommandBufferPushDescriptorSetDelegate>("vkCmdPushDescriptorSetKHR", "instance");
+                SharpVk.Interop.Khronos.VkCommandBufferPushDescriptorSetDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkCommandBufferPushDescriptorSetDelegate>("vkCmdPushDescriptorSetKHR", "device");
                 commandDelegate(extendedHandle.handle, pipelineBindPoint, layout?.handle ?? default(SharpVk.Interop.PipelineLayout), set, (uint)(Interop.HeapUtil.GetLength(descriptorWrites)), marshalledDescriptorWrites);
             }
             finally
@@ -87,7 +87,7 @@ namespace SharpVk.Khronos
             {
                 CommandCache commandCache = default(CommandCache);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Khronos.VkCommandBufferPushDescriptorSetWithTemplateDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkCommandBufferPushDescriptorSetWithTemplateDelegate>("vkCmdPushDescriptorSetWithTemplateKHR", "instance");
+                SharpVk.Interop.Khronos.VkCommandBufferPushDescriptorSetWithTemplateDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkCommandBufferPushDescriptorSetWithTemplateDelegate>("vkCmdPushDescriptorSetWithTemplateKHR", "device");
                 commandDelegate(extendedHandle.handle, descriptorUpdateTemplate?.handle ?? default(SharpVk.Interop.Khronos.DescriptorUpdateTemplate), layout?.handle ?? default(SharpVk.Interop.PipelineLayout), set, data.ToPointer());
             }
             finally

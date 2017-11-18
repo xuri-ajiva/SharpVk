@@ -165,7 +165,7 @@ namespace SharpVk.Multivendor
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Multivendor.MultisampleProperties marshalledMultisampleProperties = default(SharpVk.Interop.Multivendor.MultisampleProperties);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Multivendor.VkPhysicalDeviceGetMultisamplePropertiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkPhysicalDeviceGetMultisamplePropertiesDelegate>("vkGetPhysicalDeviceMultisamplePropertiesEXT", "instance");
+                SharpVk.Interop.Multivendor.VkPhysicalDeviceGetMultisamplePropertiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkPhysicalDeviceGetMultisamplePropertiesDelegate>("vkGetPhysicalDeviceMultisamplePropertiesEXT", "device");
                 commandDelegate(extendedHandle.handle, samples, &marshalledMultisampleProperties);
                 result = SharpVk.Multivendor.MultisampleProperties.MarshalFrom(&marshalledMultisampleProperties);
                 return result;

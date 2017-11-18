@@ -19,6 +19,7 @@ namespace SharpVk.Generator.Generation
         private readonly Dictionary<string, TypeDeclaration> typeData;
         private readonly NameLookup nameLookup;
         private readonly Dictionary<string, IEnumerable<CommandDeclaration>> commands;
+        private readonly Dictionary<string, ExtensionDeclaration> extensions;
         private readonly IEnumerable<IMarshalValueRule> marshallingRules;
         private readonly IEnumerable<IMemberPatternRule> memberPatternRules;
         private readonly ParsedExpressionTokenCheck tokenCheck;
@@ -28,6 +29,7 @@ namespace SharpVk.Generator.Generation
         public HandleGenerator(Dictionary<string, TypeDeclaration> typeData,
                                 NameLookup nameLookup,
                                 IEnumerable<CommandDeclaration> commands,
+                                IEnumerable<ExtensionDeclaration> extensions,
                                 IEnumerable<IMarshalValueRule> marshallingRules,
                                 IEnumerable<IMemberPatternRule> memberPatternRules,
                                 ParsedExpressionTokenCheck tokenCheck,
@@ -37,6 +39,7 @@ namespace SharpVk.Generator.Generation
             this.typeData = typeData;
             this.nameLookup = nameLookup;
             this.commands = commands.GroupBy(x => x.HandleTypeName).ToDictionary(x => x.Key, x => x.AsEnumerable());
+            this.extensions = extensions.ToDictionary(x => x.Name);
             this.marshallingRules = marshallingRules;
             this.memberPatternRules = memberPatternRules;
             this.tokenCheck = tokenCheck;
@@ -52,7 +55,7 @@ namespace SharpVk.Generator.Generation
 
                 var commands = this.commands.ContainsKey(typePair.Key)
                                         ? this.commands[typePair.Key]
-                                            .Where(x => x.Extension?.ToLower() == type.Extension?.ToLower())
+                                            .Where(x => x.ExtensionNamespace?.ToLower() == type.Extension?.ToLower())
                                             .Select(x => GenerateCommand(x, typePair.Key, typePair.Value)).ToList()
                                         : new List<MethodDefinition>();
 
@@ -155,19 +158,27 @@ namespace SharpVk.Generator.Generation
                                             || command.Verb == "get")
                                         && (command.ReturnType == "VkResult" || command.ReturnType == "void");
 
+            newMethod.ParamActions = new List<ParamActionDefinition>();
+            newMethod.MemberActions = new List<MethodAction>();
+
             if (command.HandleParamsCount == 0)
             {
                 Debug.Assert(lastParamReturns);
 
                 newMethod.IsStatic = true;
+                newMethod.ParamActions.Add(new ParamActionDefinition
+                {
+                    Param = new ParamDefinition
+                    {
+                        Type = "CommandCache",
+                        Name = "commandCache"
+                    }
+                });
             }
 
             bool enumeratePattern = command.Verb == "enumerate" || (lastParamIsArray && lastParamLenFieldByRef);
 
             int parameterIndex = 0;
-
-            newMethod.ParamActions = new List<ParamActionDefinition>();
-            newMethod.MemberActions = new List<MethodAction>();
 
             var marshalFromActions = new List<MethodAction>();
             var marshalMidActions = new List<MethodAction>();
@@ -233,7 +244,8 @@ namespace SharpVk.Generator.Generation
 
             newMethod.MemberActions.AddRange(marshalToActions);
 
-            string delegateName = "SharpVk.Interop." + string.Join(".", this.namespaceMap.Map(command.Extension)) + $".{command.HandleTypeName}{command.Name}Delegate";
+            string delegateName = string.Join(".", new[] { "SharpVk", "Interop" }.Concat(this.namespaceMap.Map(command.ExtensionNamespace))) + $".{command.HandleTypeName}{command.Name}Delegate";
+            string lookupScope = command.Extension != null ? this.extensions[command.Extension].Scope : "";
 
             newMethod.MemberActions.Add(new InvokeAction
             {
@@ -241,8 +253,9 @@ namespace SharpVk.Generator.Generation
                 MethodName = command.VkName,
                 ReturnName = invokeReturnName,
                 ReturnType = invokeReturnType,
-                LookupDelegate = command.Extension != null,
+                LookupDelegate = true,
                 DelegateName = delegateName,
+                LookupScope = lookupScope,
                 Parameters = marshalledValues.ToArray()
             });
 
@@ -262,7 +275,7 @@ namespace SharpVk.Generator.Generation
                 {
                     TypeName = "Interop.Commands",
                     MethodName = command.VkName,
-                    LookupDelegate = command.Extension != null,
+                    LookupDelegate = true,
                     Parameters = marshalledValues.ToArray()
                 });
             }
@@ -298,7 +311,7 @@ namespace SharpVk.Generator.Generation
 
                     var patternInfo = new MemberPatternInfo();
 
-                    this.memberPatternRules.ApplyFirst(command.Params, command.Params.Last(), new MemberPatternContext(command.Verb, true, command.Extension, getHandle, command.VkName), patternInfo);
+                    this.memberPatternRules.ApplyFirst(command.Params, command.Params.Last(), new MemberPatternContext(command.Verb, true, command.ExtensionNamespace, getHandle, command.VkName), patternInfo);
 
                     string marshalledName = GetMarshalledName(patternInfo.Interop.Name);
 
@@ -316,7 +329,7 @@ namespace SharpVk.Generator.Generation
                     {
                         var patternInfo = new MemberPatternInfo();
 
-                        this.memberPatternRules.ApplyFirst(command.Params, parameter, new MemberPatternContext(command.Verb, true, command.Extension, getHandle, command.VkName), patternInfo);
+                        this.memberPatternRules.ApplyFirst(command.Params, parameter, new MemberPatternContext(command.Verb, true, command.ExtensionNamespace, getHandle, command.VkName), patternInfo);
 
                         string marshalledName = GetMarshalledName(patternInfo.Interop.Name);
 
@@ -359,7 +372,7 @@ namespace SharpVk.Generator.Generation
                             VkName = parameter.VkName
                         };
 
-                        this.memberPatternRules.ApplyFirst(command.Params, effectiveParam, new MemberPatternContext(command.Verb, true, command.Extension, getHandle, command.VkName), patternInfo);
+                        this.memberPatternRules.ApplyFirst(command.Params, effectiveParam, new MemberPatternContext(command.Verb, true, command.ExtensionNamespace, getHandle, command.VkName), patternInfo);
 
                         string marshalledName = GetMarshalledName(patternInfo.Interop.Name);
 
@@ -380,7 +393,7 @@ namespace SharpVk.Generator.Generation
                 {
                     var patternInfo = new MemberPatternInfo();
 
-                    this.memberPatternRules.ApplyFirst(command.Params, parameter, new MemberPatternContext(command.Verb, true, command.Extension, getHandle, command.VkName), patternInfo);
+                    this.memberPatternRules.ApplyFirst(command.Params, parameter, new MemberPatternContext(command.Verb, true, command.ExtensionNamespace, getHandle, command.VkName), patternInfo);
 
                     var actionList = marshalToActions;
 

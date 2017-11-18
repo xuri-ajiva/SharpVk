@@ -118,6 +118,10 @@ namespace SharpVk.Generator.Emission
                                     body.EmitAssignment(Member(This, "parent"), Variable("parent"));
                                     commandCacheValue = Member(Variable("parent"), "commandCache");
                                 }
+                                else if (handle.Commands.Any())
+                                {
+                                    commandCacheValue = Variable("commandCache");
+                                }
 
                                 if (handle.CommandCacheType != null)
                                 {
@@ -133,6 +137,10 @@ namespace SharpVk.Generator.Emission
                                 if (handle.Parent != null)
                                 {
                                     parameters.EmitParam(parentName, "parent");
+                                }
+                                else if (handle.Commands.Any())
+                                {
+                                    parameters.EmitParam("CommandCache", "commandCache");
                                 }
 
                                 parameters.EmitParam(interopTypeName, "handle");

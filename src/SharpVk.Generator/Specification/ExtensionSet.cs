@@ -64,12 +64,24 @@ namespace SharpVk.Generator.Specification
 
                     int specVersion = int.Parse(specVersionElement.Attribute("value").Value);
 
+                    string scope = vkExtension.Attribute("type")?.Value ?? "instance";
+
                     services.AddSingleton(new ExtensionInfo
                     {
                         Name = name,
                         SpecVersion = specVersion,
-                        Extension = extensionSuffix
+                        Extension = extensionSuffix,
+                        Scope = scope
                     });
+
+                    foreach (var command in vkExtension.Elements("require").SelectMany(x => x.Elements("command")))
+                    {
+                        services.AddSingleton(new CommandRequirement
+                        {
+                            CommandName = command.Attribute("name").Value,
+                            ExtensionName = name
+                        });
+                    }
                 }
             }
         }

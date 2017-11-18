@@ -65,7 +65,7 @@ namespace SharpVk.NVidia
                         marshalledViewportWScalings = fieldPointer;
                     }
                 }
-                SharpVk.Interop.NVidia.VkCommandBufferSetViewportWScalingDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.VkCommandBufferSetViewportWScalingDelegate>("vkCmdSetViewportWScalingNV", "instance");
+                SharpVk.Interop.NVidia.VkCommandBufferSetViewportWScalingDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.VkCommandBufferSetViewportWScalingDelegate>("vkCmdSetViewportWScalingNV", "device");
                 commandDelegate(extendedHandle.handle, firstViewport, (uint)(Interop.HeapUtil.GetLength(viewportWScalings)), marshalledViewportWScalings);
             }
             finally

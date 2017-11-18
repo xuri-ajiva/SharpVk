@@ -42,6 +42,14 @@ namespace SharpVk.Generator.Generation.Marshalling
                 {
                     handleExpressions.Add((value, getHandle) => getHandle(typeInfo.Parent));
                 }
+                else
+                {
+                    //HACK
+                    if (typeInfo.Name == "Instance")
+                    {
+                        handleExpressions.Add((value, getHandle) => Variable("commandCache"));
+                    }
+                }
 
                 if (type.PointerType.IsPointer())
                 {

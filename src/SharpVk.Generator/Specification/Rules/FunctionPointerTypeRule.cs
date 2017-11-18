@@ -34,7 +34,7 @@ namespace SharpVk.Generator.Specification.Rules
 
             type.Type = returnType;
             
-            type.NameParts = this.nameParser.ParseFunctionPointer(type.VkName, out type.Extension);
+            type.NameParts = this.nameParser.ParseFunctionPointer(type.VkName, out type.ExtensionNamespace);
 
             var functionTail = typeXml.Element("name").NodesAfterSelf();
 

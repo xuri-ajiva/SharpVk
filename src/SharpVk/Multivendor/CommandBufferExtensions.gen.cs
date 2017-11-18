@@ -46,7 +46,7 @@ namespace SharpVk.Multivendor
                 commandCache = extendedHandle.commandCache;
                 marshalledMarkerInfo = (SharpVk.Interop.Multivendor.DebugMarkerMarkerInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.DebugMarkerMarkerInfo>());
                 markerInfo.MarshalTo(marshalledMarkerInfo);
-                SharpVk.Interop.Multivendor.VkCommandBufferDebugMarkerBeginDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkCommandBufferDebugMarkerBeginDelegate>("vkCmdDebugMarkerBeginEXT", "instance");
+                SharpVk.Interop.Multivendor.VkCommandBufferDebugMarkerBeginDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkCommandBufferDebugMarkerBeginDelegate>("vkCmdDebugMarkerBeginEXT", "device");
                 commandDelegate(extendedHandle.handle, marshalledMarkerInfo);
             }
             finally
@@ -67,7 +67,7 @@ namespace SharpVk.Multivendor
             {
                 CommandCache commandCache = default(CommandCache);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Multivendor.VkCommandBufferDebugMarkerEndDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkCommandBufferDebugMarkerEndDelegate>("vkCmdDebugMarkerEndEXT", "instance");
+                SharpVk.Interop.Multivendor.VkCommandBufferDebugMarkerEndDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkCommandBufferDebugMarkerEndDelegate>("vkCmdDebugMarkerEndEXT", "device");
                 commandDelegate(extendedHandle.handle);
             }
             finally
@@ -91,7 +91,7 @@ namespace SharpVk.Multivendor
                 commandCache = extendedHandle.commandCache;
                 marshalledMarkerInfo = (SharpVk.Interop.Multivendor.DebugMarkerMarkerInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.DebugMarkerMarkerInfo>());
                 markerInfo.MarshalTo(marshalledMarkerInfo);
-                SharpVk.Interop.Multivendor.VkCommandBufferDebugMarkerInsertDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkCommandBufferDebugMarkerInsertDelegate>("vkCmdDebugMarkerInsertEXT", "instance");
+                SharpVk.Interop.Multivendor.VkCommandBufferDebugMarkerInsertDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkCommandBufferDebugMarkerInsertDelegate>("vkCmdDebugMarkerInsertEXT", "device");
                 commandDelegate(extendedHandle.handle, marshalledMarkerInfo);
             }
             finally
@@ -134,7 +134,7 @@ namespace SharpVk.Multivendor
                         marshalledDiscardRectangles = fieldPointer;
                     }
                 }
-                SharpVk.Interop.Multivendor.VkCommandBufferSetDiscardRectangleDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkCommandBufferSetDiscardRectangleDelegate>("vkCmdSetDiscardRectangleEXT", "instance");
+                SharpVk.Interop.Multivendor.VkCommandBufferSetDiscardRectangleDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkCommandBufferSetDiscardRectangleDelegate>("vkCmdSetDiscardRectangleEXT", "device");
                 commandDelegate(extendedHandle.handle, firstDiscardRectangle, (uint)(Interop.HeapUtil.GetLength(discardRectangles)), marshalledDiscardRectangles);
             }
             finally
@@ -158,7 +158,7 @@ namespace SharpVk.Multivendor
                 commandCache = extendedHandle.commandCache;
                 marshalledSampleLocationsInfo = (SharpVk.Interop.Multivendor.SampleLocationsInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.SampleLocationsInfo>());
                 sampleLocationsInfo.MarshalTo(marshalledSampleLocationsInfo);
-                SharpVk.Interop.Multivendor.VkCommandBufferSetSampleLocationsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkCommandBufferSetSampleLocationsDelegate>("vkCmdSetSampleLocationsEXT", "instance");
+                SharpVk.Interop.Multivendor.VkCommandBufferSetSampleLocationsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkCommandBufferSetSampleLocationsDelegate>("vkCmdSetSampleLocationsEXT", "device");
                 commandDelegate(extendedHandle.handle, marshalledSampleLocationsInfo);
             }
             finally

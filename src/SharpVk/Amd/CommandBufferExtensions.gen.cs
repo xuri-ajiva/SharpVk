@@ -43,7 +43,7 @@ namespace SharpVk.Amd
             {
                 CommandCache commandCache = default(CommandCache);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Amd.VkCommandBufferDrawIndirectCountDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Amd.VkCommandBufferDrawIndirectCountDelegate>("vkCmdDrawIndirectCountAMD", "instance");
+                SharpVk.Interop.Amd.VkCommandBufferDrawIndirectCountDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Amd.VkCommandBufferDrawIndirectCountDelegate>("vkCmdDrawIndirectCountAMD", "device");
                 commandDelegate(extendedHandle.handle, buffer?.handle ?? default(SharpVk.Interop.Buffer), offset, countBuffer?.handle ?? default(SharpVk.Interop.Buffer), countBufferOffset, maxDrawCount, stride);
             }
             finally
@@ -65,7 +65,7 @@ namespace SharpVk.Amd
             {
                 CommandCache commandCache = default(CommandCache);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Amd.VkCommandBufferDrawIndexedIndirectCountDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Amd.VkCommandBufferDrawIndexedIndirectCountDelegate>("vkCmdDrawIndexedIndirectCountAMD", "instance");
+                SharpVk.Interop.Amd.VkCommandBufferDrawIndexedIndirectCountDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Amd.VkCommandBufferDrawIndexedIndirectCountDelegate>("vkCmdDrawIndexedIndirectCountAMD", "device");
                 commandDelegate(extendedHandle.handle, buffer?.handle ?? default(SharpVk.Interop.Buffer), offset, countBuffer?.handle ?? default(SharpVk.Interop.Buffer), countBufferOffset, maxDrawCount, stride);
             }
             finally

@@ -52,7 +52,7 @@ namespace SharpVk.Khronos
                 {
                     marshalledFlags = default(SharpVk.Khronos.CommandPoolTrimFlags);
                 }
-                SharpVk.Interop.Khronos.VkCommandPoolTrimDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkCommandPoolTrimDelegate>("vkTrimCommandPoolKHR", "instance");
+                SharpVk.Interop.Khronos.VkCommandPoolTrimDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkCommandPoolTrimDelegate>("vkTrimCommandPoolKHR", "device");
                 commandDelegate(extendedHandle.parent.handle, extendedHandle.handle, marshalledFlags);
             }
             finally

@@ -31,7 +31,7 @@ namespace SharpVk.Generator.Collation
                                     {
                                         Name = this.nameFormatter.FormatName(x),
                                         Parent = x.Parent,
-                                        Extension = x.Extension?.FirstToUpper(),
+                                        Extension = x.ExtensionNamespace?.FirstToUpper(),
                                         Pattern = x.Category.MapToPattern(),
                                         Members = GetMembers(x).ToList(),
                                         Type = x.Type,

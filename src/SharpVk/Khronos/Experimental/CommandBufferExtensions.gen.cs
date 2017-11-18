@@ -43,7 +43,7 @@ namespace SharpVk.Khronos.Experimental
             {
                 CommandCache commandCache = default(CommandCache);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Khronos.Experimental.VkCommandBufferSetDeviceMaskDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.Experimental.VkCommandBufferSetDeviceMaskDelegate>("vkCmdSetDeviceMaskKHX", "instance");
+                SharpVk.Interop.Khronos.Experimental.VkCommandBufferSetDeviceMaskDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.Experimental.VkCommandBufferSetDeviceMaskDelegate>("vkCmdSetDeviceMaskKHX", "device");
                 commandDelegate(extendedHandle.handle, deviceMask);
             }
             finally
@@ -64,7 +64,7 @@ namespace SharpVk.Khronos.Experimental
             {
                 CommandCache commandCache = default(CommandCache);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Khronos.Experimental.VkCommandBufferDispatchBaseDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.Experimental.VkCommandBufferDispatchBaseDelegate>("vkCmdDispatchBaseKHX", "instance");
+                SharpVk.Interop.Khronos.Experimental.VkCommandBufferDispatchBaseDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.Experimental.VkCommandBufferDispatchBaseDelegate>("vkCmdDispatchBaseKHX", "device");
                 commandDelegate(extendedHandle.handle, baseGroupX, baseGroupY, baseGroupZ, groupCountX, groupCountY, groupCountZ);
             }
             finally

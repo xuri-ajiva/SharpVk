@@ -26,13 +26,13 @@ namespace SharpVk.Generator.Generation
 
         public void Execute(IServiceCollection services)
         {
-            foreach (var extension in this.commands.Where(x => x.Extension != null).GroupBy(x => x.Extension))
+            foreach (var extension in this.commands.Where(x => x.ExtensionNamespace != null).GroupBy(x => x.ExtensionNamespace))
             {
                 foreach (var handle in extension.GroupBy(x => x.HandleTypeName))
                 {
                     var handleType = this.typeData[handle.Key];
 
-                    var methods = handle.Where(x => x.Extension?.ToLower() != handleType.Extension?.ToLower())
+                    var methods = handle.Where(x => x.ExtensionNamespace?.ToLower() != handleType.Extension?.ToLower())
                                             .Select(x => this.handleGenerator.GenerateCommand(x, x.HandleTypeName, handleType, true))
                                             .ToList();
 

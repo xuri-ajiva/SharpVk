@@ -71,7 +71,8 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Interop.Commands.vkDestroyRenderPass(this.parent.handle, this.handle, marshalledAllocator);
+                SharpVk.Interop.VkRenderPassDestroyDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkRenderPassDestroyDelegate>("vkDestroyRenderPass", "");
+                commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
             {
@@ -88,7 +89,8 @@ namespace SharpVk
             {
                 SharpVk.Extent2D result = default(SharpVk.Extent2D);
                 SharpVk.Extent2D marshalledGranularity = default(SharpVk.Extent2D);
-                Interop.Commands.vkGetRenderAreaGranularity(this.parent.handle, this.handle, &marshalledGranularity);
+                SharpVk.Interop.VkRenderPassGetRenderAreaGranularityDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkRenderPassGetRenderAreaGranularityDelegate>("vkGetRenderAreaGranularity", "");
+                commandDelegate(this.parent.handle, this.handle, &marshalledGranularity);
                 result = marshalledGranularity;
                 return result;
             }

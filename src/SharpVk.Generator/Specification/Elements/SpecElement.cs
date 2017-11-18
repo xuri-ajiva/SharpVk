@@ -7,7 +7,7 @@ namespace SharpVk.Generator.Specification.Elements
         public string VkName;
         public string Type;
         public string[] NameParts;
-        public string Extension;
+        public string ExtensionNamespace;
         public List<string> Comment;
     }
 }

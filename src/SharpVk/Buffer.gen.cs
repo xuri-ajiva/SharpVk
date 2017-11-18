@@ -60,7 +60,8 @@ namespace SharpVk
         {
             try
             {
-                Result methodResult = Interop.Commands.vkBindBufferMemory(this.parent.handle, this.handle, memory?.handle ?? default(SharpVk.Interop.DeviceMemory), memoryOffset);
+                SharpVk.Interop.VkBufferBindMemoryDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkBufferBindMemoryDelegate>("vkBindBufferMemory", "");
+                Result methodResult = commandDelegate(this.parent.handle, this.handle, memory?.handle ?? default(SharpVk.Interop.DeviceMemory), memoryOffset);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -81,7 +82,8 @@ namespace SharpVk
             {
                 SharpVk.MemoryRequirements result = default(SharpVk.MemoryRequirements);
                 SharpVk.MemoryRequirements marshalledMemoryRequirements = default(SharpVk.MemoryRequirements);
-                Interop.Commands.vkGetBufferMemoryRequirements(this.parent.handle, this.handle, &marshalledMemoryRequirements);
+                SharpVk.Interop.VkBufferGetMemoryRequirementsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkBufferGetMemoryRequirementsDelegate>("vkGetBufferMemoryRequirements", "");
+                commandDelegate(this.parent.handle, this.handle, &marshalledMemoryRequirements);
                 result = marshalledMemoryRequirements;
                 return result;
             }
@@ -112,7 +114,8 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Interop.Commands.vkDestroyBuffer(this.parent.handle, this.handle, marshalledAllocator);
+                SharpVk.Interop.VkBufferDestroyDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkBufferDestroyDelegate>("vkDestroyBuffer", "");
+                commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
             {

@@ -65,7 +65,7 @@ namespace SharpVk.Generator.Specification
                 if (!this.typeExtensions.ApplyFirst(vkType, newType, target))
                 {
                     newType.NameParts = new[] { name };
-                    newType.Extension = null;
+                    newType.ExtensionNamespace = null;
                 }
 
                 target.AddSingleton(newType);

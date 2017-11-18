@@ -71,7 +71,8 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Interop.Commands.vkDestroyFence(this.parent.handle, this.handle, marshalledAllocator);
+                SharpVk.Interop.VkFenceDestroyDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkFenceDestroyDelegate>("vkDestroyFence", "");
+                commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
             {
@@ -86,7 +87,8 @@ namespace SharpVk
         {
             try
             {
-                Result methodResult = Interop.Commands.vkGetFenceStatus(this.parent.handle, this.handle);
+                SharpVk.Interop.VkFenceGetStatusDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkFenceGetStatusDelegate>("vkGetFenceStatus", "");
+                Result methodResult = commandDelegate(this.parent.handle, this.handle);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);

@@ -51,7 +51,7 @@ namespace SharpVk.Generator.Collation
                 var enumeration = this.enums[enumType];
 
                 string name = this.nameFormatter.FormatName(enumeration);
-                string extension = enumeration.Extension?.FirstToUpper();
+                string extension = enumeration.ExtensionNamespace?.FirstToUpper();
 
                 services.AddSingleton(new EnumDeclaration
                 {
@@ -77,7 +77,7 @@ namespace SharpVk.Generator.Collation
                                         : null;
 
                 string name = this.nameFormatter.FormatName(bitmaskType);
-                string extension = bitmaskType.Extension?.FirstToUpper();
+                string extension = bitmaskType.ExtensionNamespace?.FirstToUpper();
 
                 services.AddSingleton(new EnumDeclaration
                 {
@@ -130,7 +130,7 @@ namespace SharpVk.Generator.Collation
                     var name = fieldNameLookup[field.VkName];
                     if (fieldNameCount[name] > 1)
                     {
-                        name += field.Extension;
+                        name += field.ExtensionNamespace;
                     }
                     string value = field.Value;
 
@@ -143,7 +143,7 @@ namespace SharpVk.Generator.Collation
                     {
                         VkName = field.VkName,
                         Name = name,
-                        Extension = field.Extension,
+                        Extension = field.ExtensionNamespace,
                         Value = value
                     });
 

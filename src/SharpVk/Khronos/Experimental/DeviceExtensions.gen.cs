@@ -45,7 +45,7 @@ namespace SharpVk.Khronos.Experimental
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Khronos.Experimental.PeerMemoryFeatureFlags marshalledPeerMemoryFeatures = default(SharpVk.Khronos.Experimental.PeerMemoryFeatureFlags);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Khronos.Experimental.VkDeviceGetGroupPeerMemoryFeaturesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.Experimental.VkDeviceGetGroupPeerMemoryFeaturesDelegate>("vkGetDeviceGroupPeerMemoryFeaturesKHX", "instance");
+                SharpVk.Interop.Khronos.Experimental.VkDeviceGetGroupPeerMemoryFeaturesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.Experimental.VkDeviceGetGroupPeerMemoryFeaturesDelegate>("vkGetDeviceGroupPeerMemoryFeaturesKHX", "device");
                 commandDelegate(extendedHandle.handle, heapIndex, localDeviceIndex, remoteDeviceIndex, &marshalledPeerMemoryFeatures);
                 result = marshalledPeerMemoryFeatures;
                 return result;
@@ -70,7 +70,7 @@ namespace SharpVk.Khronos.Experimental
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Khronos.Experimental.DeviceGroupPresentCapabilities marshalledDeviceGroupPresentCapabilities = default(SharpVk.Interop.Khronos.Experimental.DeviceGroupPresentCapabilities);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Khronos.Experimental.VkDeviceGetGroupPresentCapabilitiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.Experimental.VkDeviceGetGroupPresentCapabilitiesDelegate>("vkGetDeviceGroupPresentCapabilitiesKHX", "instance");
+                SharpVk.Interop.Khronos.Experimental.VkDeviceGetGroupPresentCapabilitiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.Experimental.VkDeviceGetGroupPresentCapabilitiesDelegate>("vkGetDeviceGroupPresentCapabilitiesKHX", "device");
                 Result methodResult = commandDelegate(extendedHandle.handle, &marshalledDeviceGroupPresentCapabilities);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -99,7 +99,7 @@ namespace SharpVk.Khronos.Experimental
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Khronos.Experimental.DeviceGroupPresentModeFlags marshalledModes = default(SharpVk.Khronos.Experimental.DeviceGroupPresentModeFlags);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Khronos.Experimental.VkDeviceGetGroupSurfacePresentModesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.Experimental.VkDeviceGetGroupSurfacePresentModesDelegate>("vkGetDeviceGroupSurfacePresentModesKHX", "instance");
+                SharpVk.Interop.Khronos.Experimental.VkDeviceGetGroupSurfacePresentModesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.Experimental.VkDeviceGetGroupSurfacePresentModesDelegate>("vkGetDeviceGroupSurfacePresentModesKHX", "device");
                 Result methodResult = commandDelegate(extendedHandle.handle, surface?.handle ?? default(SharpVk.Interop.Khronos.Surface), &marshalledModes);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -131,7 +131,7 @@ namespace SharpVk.Khronos.Experimental
                 commandCache = extendedHandle.commandCache;
                 marshalledAcquireInfo = (SharpVk.Interop.Khronos.Experimental.AcquireNextImageInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.Experimental.AcquireNextImageInfo>());
                 acquireInfo.MarshalTo(marshalledAcquireInfo);
-                SharpVk.Interop.Khronos.Experimental.VkDeviceAcquireNextImage2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.Experimental.VkDeviceAcquireNextImage2Delegate>("vkAcquireNextImage2KHX", "instance");
+                SharpVk.Interop.Khronos.Experimental.VkDeviceAcquireNextImage2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.Experimental.VkDeviceAcquireNextImage2Delegate>("vkAcquireNextImage2KHX", "device");
                 Result methodResult = commandDelegate(extendedHandle.handle, marshalledAcquireInfo, &marshalledImageIndex);
                 if (SharpVkException.IsError(methodResult))
                 {

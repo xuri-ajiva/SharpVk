@@ -37,7 +37,7 @@ namespace SharpVk.Generator.Specification
                     VkName = name,
                     Type = type,
                     NameParts = nameParts,
-                    Extension = extension
+                    ExtensionNamespace = extension
                 };
 
                 foreach (var vkField in vkEnum.Elements("enum"))
@@ -129,7 +129,7 @@ namespace SharpVk.Generator.Specification
                         Value = value.ToString(),
                         NameParts = nameParts.ToArray(),
                         IsBitmask = isBitmask,
-                        Extension = extensionSuffix
+                        ExtensionNamespace = extensionSuffix
                     });
                 }
             }

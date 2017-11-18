@@ -45,7 +45,7 @@ namespace SharpVk.Multivendor
                 CommandCache commandCache = default(CommandCache);
                 ulong marshalledCounterValue = default(ulong);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Multivendor.VkSwapchainKHRGetCounterDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkSwapchainKHRGetCounterDelegate>("vkGetSwapchainCounterEXT", "instance");
+                SharpVk.Interop.Multivendor.VkSwapchainKHRGetCounterDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkSwapchainKHRGetCounterDelegate>("vkGetSwapchainCounterEXT", "device");
                 Result methodResult = commandDelegate(extendedHandle.parent.handle, extendedHandle.handle, counter, &marshalledCounterValue);
                 if (SharpVkException.IsError(methodResult))
                 {

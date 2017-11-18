@@ -71,7 +71,8 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                Interop.Commands.vkDestroyDescriptorPool(this.parent.handle, this.handle, marshalledAllocator);
+                SharpVk.Interop.VkDescriptorPoolDestroyDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDescriptorPoolDestroyDelegate>("vkDestroyDescriptorPool", "");
+                commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
             {
@@ -95,7 +96,8 @@ namespace SharpVk
                 {
                     marshalledFlags = default(SharpVk.DescriptorPoolResetFlags);
                 }
-                Result methodResult = Interop.Commands.vkResetDescriptorPool(this.parent.handle, this.handle, marshalledFlags);
+                SharpVk.Interop.VkDescriptorPoolResetDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDescriptorPoolResetDelegate>("vkResetDescriptorPool", "");
+                Result methodResult = commandDelegate(this.parent.handle, this.handle, marshalledFlags);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -136,7 +138,8 @@ namespace SharpVk
                         marshalledDescriptorSets = fieldPointer;
                     }
                 }
-                Result methodResult = Interop.Commands.vkFreeDescriptorSets(this.parent.handle, this.handle, (uint)(Interop.HeapUtil.GetLength(descriptorSets)), marshalledDescriptorSets);
+                SharpVk.Interop.VkDescriptorPoolFreeDescriptorSetsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDescriptorPoolFreeDescriptorSetsDelegate>("vkFreeDescriptorSets", "");
+                Result methodResult = commandDelegate(this.parent.handle, this.handle, (uint)(Interop.HeapUtil.GetLength(descriptorSets)), marshalledDescriptorSets);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);

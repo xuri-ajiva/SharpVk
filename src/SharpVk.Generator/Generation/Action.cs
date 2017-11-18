@@ -40,6 +40,7 @@ namespace SharpVk.Generator.Generation
         public string ReturnType;
         public bool LookupDelegate;
         public string DelegateName;
+        public string LookupScope;
         public Action<ExpressionBuilder>[] Parameters;
     }
 

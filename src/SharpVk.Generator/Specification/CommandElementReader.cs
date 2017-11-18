@@ -40,7 +40,7 @@ namespace SharpVk.Generator.Specification
                     VkName = name,
                     Type = type,
                     NameParts = nameParts,
-                    Extension = extension,
+                    ExtensionNamespace = extension,
                     Verb = verb,
                     SuccessCodes = successCodes
                 };
@@ -72,7 +72,7 @@ namespace SharpVk.Generator.Specification
                         Type = paramType,
                         PointerType = pointerType,
                         NameParts = paramNameParts,
-                        Extension = paramExtension,
+                        ExtensionNamespace = paramExtension,
                         IsOptional = isOptional,
                         NoAutoValidity = noAutoValidity,
                         Dimensions = dimensions

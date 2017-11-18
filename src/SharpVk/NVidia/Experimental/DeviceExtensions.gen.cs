@@ -95,7 +95,7 @@ namespace SharpVk.NVidia.Experimental
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.NVidia.Experimental.VkDeviceCreateIndirectCommandsLayoutDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.Experimental.VkDeviceCreateIndirectCommandsLayoutDelegate>("vkCreateIndirectCommandsLayoutNVX", "instance");
+                SharpVk.Interop.NVidia.Experimental.VkDeviceCreateIndirectCommandsLayoutDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.Experimental.VkDeviceCreateIndirectCommandsLayoutDelegate>("vkCreateIndirectCommandsLayoutNVX", "device");
                 Result methodResult = commandDelegate(extendedHandle.handle, marshalledCreateInfo, marshalledAllocator, &marshalledIndirectCommandsLayout);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -236,7 +236,7 @@ namespace SharpVk.NVidia.Experimental
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.NVidia.Experimental.VkDeviceCreateObjectTableDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.Experimental.VkDeviceCreateObjectTableDelegate>("vkCreateObjectTableNVX", "instance");
+                SharpVk.Interop.NVidia.Experimental.VkDeviceCreateObjectTableDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.Experimental.VkDeviceCreateObjectTableDelegate>("vkCreateObjectTableNVX", "device");
                 Result methodResult = commandDelegate(extendedHandle.handle, marshalledCreateInfo, marshalledAllocator, &marshalledObjectTable);
                 if (SharpVkException.IsError(methodResult))
                 {

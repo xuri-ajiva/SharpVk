@@ -67,7 +67,7 @@ namespace SharpVk.Khronos
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.Khronos.VkSamplerYcbcrConversionKHRDestroyDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkSamplerYcbcrConversionKHRDestroyDelegate>("vkDestroySamplerYcbcrConversionKHR", "instance");
+                SharpVk.Interop.Khronos.VkSamplerYcbcrConversionKHRDestroyDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkSamplerYcbcrConversionKHRDestroyDelegate>("vkDestroySamplerYcbcrConversionKHR", "device");
                 commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
