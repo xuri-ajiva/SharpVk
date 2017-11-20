@@ -2,6 +2,15 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.4.0-dev4</Version>
+    <Authors>FacticiusVir</Authors>
+    <Company>FacticiusVir</Company>
+    <Description>System.Numerics type mappings for SharpVk Shanq.</Description>
+    <Copyright>Copyright 2017 Andrew Armstrong/FacticiusVir</Copyright>
+    <PackageLicenseUrl>https://github.com/FacticiusVir/SharpVk/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/FacticiusVir/SharpVk</PackageProjectUrl>
+    <PackageTags>Vulkan SPIR-V Spirv SharpVK Shanq 3D</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
