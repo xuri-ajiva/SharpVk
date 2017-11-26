@@ -48,11 +48,10 @@ namespace SharpVk.Shanq
 
         public ResultId Visit(Expression expression)
         {
-            Func<Expression, ResultId> visit;
 
-            if (!this.expressionVisitors.TryGetValue(expression.NodeType, out visit))
+            if (!this.expressionVisitors.TryGetValue(expression.NodeType, out var visit))
             {
-                throw new NotImplementedException();
+                throw new NotImplementedException($"{expression} not implemented.");
             }
             else
             {
@@ -65,7 +64,7 @@ namespace SharpVk.Shanq
         {
             if (GetElementType(expression.Type) != typeof(float))
             {
-                throw new NotSupportedException();
+                throw new NotSupportedException($"Expressions of type {expression.Type} are not supported.");
             }
 
             return VisitUnary(expression, Op.OpFNegate);
@@ -97,7 +96,7 @@ namespace SharpVk.Shanq
                 if (!IsFloatingPoint(this.vectorLibrary.GetVectorElementType(expression.Left.Type))
                         || !IsFloatingPoint(GetElementType(expression.Right.Type)))
                 {
-                    throw new NotSupportedException();
+                    throw new NotSupportedException("Vector by scalar multiplication is only supported for floating point types.");
                 }
 
                 if (this.vectorLibrary.IsMatrixType(expression.Right.Type))
@@ -113,7 +112,7 @@ namespace SharpVk.Shanq
             {
                 if (!IsFloatingPoint(GetElementType(expression.Right.Type)))
                 {
-                    throw new NotSupportedException();
+                    throw new NotSupportedException("Matrix by scalar multiplication is only supported for floating point types.");
                 }
 
                 if (this.vectorLibrary.IsVectorType(expression.Right.Type))
@@ -193,9 +192,7 @@ namespace SharpVk.Shanq
 
                 if (this.vectorLibrary.IsVectorType(targetType))
                 {
-                    string name;
-                    Type type;
-                    GetMemberData(expression, out name, out type);
+                    GetMemberData(expression, out string name, out var type);
 
                     int fieldIndex;
 
@@ -233,7 +230,7 @@ namespace SharpVk.Shanq
                 }
                 else
                 {
-                    throw new NotImplementedException();
+                    throw new NotImplementedException("Member access is only implemented for vector types.");
                 }
             }
         }
@@ -301,7 +298,7 @@ namespace SharpVk.Shanq
             }
             else
             {
-                throw new NotImplementedException();
+                throw new NotImplementedException("New expressions are only implemented for vector types.");
             }
 
             ResultId resultId = this.file.GetNextResultId();
@@ -358,7 +355,7 @@ namespace SharpVk.Shanq
                 {
                     Type rowType = this.vectorLibrary.GetMatrixRowType(value);
                     int[] dimensions = this.vectorLibrary.GetMatrixDimensions(value);
-                    
+
                     ResultId rowTypeId = this.Visit(Expression.Constant(rowType));
 
                     statement = new SpirvStatement(Op.OpTypeMatrix, rowTypeId, dimensions[0]);
@@ -420,7 +417,7 @@ namespace SharpVk.Shanq
                 }
                 else
                 {
-                    throw new NotImplementedException();
+                    throw new NotImplementedException($"Constants of type {value} are not implemented.");
                 }
             }
             else
@@ -466,7 +463,7 @@ namespace SharpVk.Shanq
             }
             else
             {
-                throw new NotSupportedException();
+                throw new NotSupportedException($"Operations of type {type} are not supported.");
             }
         }
 
@@ -498,9 +495,7 @@ namespace SharpVk.Shanq
 
         private bool IsTupleType(Type value)
         {
-            Type tupleInterface = typeof(Tuple).Assembly.GetType("System.ITuple");
-
-            return value.GetInterfaces().Contains(tupleInterface);
+            return value.GetInterfaces().Any(x => x.Name == "ITuple");
         }
 
         private Type GetElementType(Type type)
@@ -519,10 +514,10 @@ namespace SharpVk.Shanq
             }
             else
             {
-                throw new NotSupportedException();
+                throw new NotSupportedException($"Type {type} is not supported for this expression.");
             }
         }
-        
+
         private class NodeTypeAttribute
             : Attribute
         {
