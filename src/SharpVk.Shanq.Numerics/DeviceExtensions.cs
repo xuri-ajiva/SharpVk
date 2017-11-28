@@ -10,7 +10,7 @@ namespace SharpVk.Shanq.Numerics
             return ShanqShader.CreateVertexModule(device, VectorTypeLibrary.Instance, shaderFunction);
         }
 
-        public static ShaderModule CreateFragmentModule<TOutput>(this Device device, IVectorTypeLibrary vectorLibrary, Func<IShanqFactory, IQueryable<TOutput>> shaderFunction)
+        public static ShaderModule CreateFragmentModule<TOutput>(this Device device, Func<IShanqFactory, IQueryable<TOutput>> shaderFunction)
         {
             return ShanqShader.CreateFragmentModule(device, VectorTypeLibrary.Instance, shaderFunction);
         }

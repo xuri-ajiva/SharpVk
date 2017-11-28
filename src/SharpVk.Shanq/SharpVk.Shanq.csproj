@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>0.4.0-dev4</Version>
+    <Version>0.4.0-dev5</Version>
     <Authors>FacticiusVir</Authors>
     <Company>FacticiusVir</Company>
     <Description>Linq to SPIR-V shader generation</Description>
