@@ -1,16 +1,17 @@
 ## General Backlog
-- [ ] GetFenceStatus & WaitForFence return result as non-error VkResult codes - these need handling and returning
-  - [x] Throw exceptions for error VkResult codes
-- [ ] Check for not-null on non-optional parameters
-- [x] AllocationCallbacks should be stored in ancestor Instance & referenced from there
-- [x] Non-Dispatchable handles should be fixed to 64-bit, to prevent stack mismatches on x86 builds
 - [ ] Flags vs FlagBits may indicate a set of flags versus an individual flag value - needs investigation
-- [x] Prettify Public API Methods (Issue #5)
+- [ ] GetFenceStatus & WaitForFence return result as non-error VkResult codes - these need handling and returning
+- [ ] Check for not-null on non-optional parameters
+- Archive
+  - [x] Throw exceptions for error VkResult codes
+  - [x] AllocationCallbacks should be stored in ancestor Instance & referenced from there
+  - [x] Non-Dispatchable handles should be fixed to 64-bit, to prevent stack mismatches on x86 builds
+  - [x] Prettify Public API Methods (Issue #5)
     - [x] Correctly handle Cmd prefix
-- [x] Implement IDispose pattern for handles with Destroy command
-- [ ] Move Extension objects into a new namespace
-- [x] Generate all supported extensions
-- [x] Generate Pfn_* delegates and define a procedure for hooking Debug callbacks
-- [ ] Pull list of "known extensions" from spec instead of using hard-coded array in SpecParser
-- [ ] Collapse *Info structures into method parameters
-- [x] Generate Extension name constants
+  - [x] Implement IDispose pattern for handles with Destroy command
+  - [x] Move Extension objects into a new namespace
+  - [x] Generate all supported extensions
+  - [x] Generate Pfn_* delegates and define a procedure for hooking Debug callbacks
+  - [x] Pull list of "known extensions" from spec instead of using hard-coded array in SpecParser
+  - [x] Collapse *Info structures into method parameters
+  - [x] Generate Extension name constants
