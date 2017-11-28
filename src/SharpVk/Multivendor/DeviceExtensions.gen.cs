@@ -344,5 +344,34 @@ namespace SharpVk.Multivendor
                 Interop.HeapUtil.FreeAll();
             }
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The Device handle to extend.
+        /// </param>
+        public static unsafe SharpVk.Multivendor.MemoryHostPointerProperties GetMemoryHostPointerProperties(this SharpVk.Device extendedHandle, SharpVk.Khronos.ExternalMemoryHandleTypeFlags handleType, IntPtr hostPointer)
+        {
+            try
+            {
+                SharpVk.Multivendor.MemoryHostPointerProperties result = default(SharpVk.Multivendor.MemoryHostPointerProperties);
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Multivendor.MemoryHostPointerProperties marshalledMemoryHostPointerProperties = default(SharpVk.Interop.Multivendor.MemoryHostPointerProperties);
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Multivendor.VkDeviceGetMemoryHostPointerPropertiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkDeviceGetMemoryHostPointerPropertiesDelegate>("vkGetMemoryHostPointerPropertiesEXT", "device");
+                Result methodResult = commandDelegate(extendedHandle.handle, handleType, hostPointer.ToPointer(), &marshalledMemoryHostPointerProperties);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = SharpVk.Multivendor.MemoryHostPointerProperties.MarshalFrom(&marshalledMemoryHostPointerProperties);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
     }
 }

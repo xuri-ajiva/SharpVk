@@ -97,6 +97,16 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        public const string ExternalMemoryDmaBuf = "VK_EXT_external_memory_dma_buf"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string QueueFamilyForeign = "VK_EXT_queue_family_foreign"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public const string SamplerFilterMinmax = "VK_EXT_sampler_filter_minmax"; 
         
         /// <summary>
@@ -133,5 +143,10 @@ namespace SharpVk.Multivendor
         /// 
         /// </summary>
         public const string GlobalPriority = "VK_EXT_global_priority"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string ExternalMemoryHost = "VK_EXT_external_memory_host"; 
     }
 }

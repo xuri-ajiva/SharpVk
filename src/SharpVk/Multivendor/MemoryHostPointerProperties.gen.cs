@@ -22,67 +22,44 @@
 
 // This file was automatically generated and should not be edited directly.
 
-namespace SharpVk.Khronos
+using System;
+using System.Runtime.InteropServices;
+
+namespace SharpVk.Multivendor
 {
     /// <summary>
     /// 
     /// </summary>
-    [System.Flags]
-    public enum ExternalMemoryHandleTypeFlags
+    [StructLayout(LayoutKind.Sequential)]
+    public partial struct MemoryHostPointerProperties
     {
         /// <summary>
         /// 
         /// </summary>
-        None = 0, 
+        public uint MemoryTypeBits
+        {
+            get;
+            set;
+        }
         
         /// <summary>
         /// 
         /// </summary>
-        OpaqueFileDescriptor = 1 << 0, 
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.MemoryHostPointerProperties* pointer)
+        {
+            pointer->SType = StructureType.MemoryHostPointerProperties;
+            pointer->Next = null;
+            pointer->MemoryTypeBits = this.MemoryTypeBits;
+        }
         
         /// <summary>
         /// 
         /// </summary>
-        OpaqueWin32 = 1 << 1, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        OpaqueWin32Kmt = 1 << 2, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        D3D11Texture = 1 << 3, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        D3D11TextureKmt = 1 << 4, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        D3D12Heap = 1 << 5, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        D3D12Resource = 1 << 6, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        DmaBuf = 1 << 9, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        HostAllocation = 1 << 7, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        HostMappedForeignMemory = 1 << 8, 
+        internal static unsafe MemoryHostPointerProperties MarshalFrom(SharpVk.Interop.Multivendor.MemoryHostPointerProperties* pointer)
+        {
+            MemoryHostPointerProperties result = default(MemoryHostPointerProperties);
+            result.MemoryTypeBits = pointer->MemoryTypeBits;
+            return result;
+        }
     }
 }

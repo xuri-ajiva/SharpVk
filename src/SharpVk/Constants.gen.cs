@@ -112,6 +112,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        public const uint QueueFamilyForeign = ~0U-2; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public const uint SubpassExternal = ~0U; 
         
         /// <summary>

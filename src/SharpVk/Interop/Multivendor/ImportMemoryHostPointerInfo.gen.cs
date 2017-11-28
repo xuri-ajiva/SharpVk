@@ -22,67 +22,35 @@
 
 // This file was automatically generated and should not be edited directly.
 
-namespace SharpVk.Khronos
+using System;
+using System.Runtime.InteropServices;
+
+namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
     /// 
     /// </summary>
-    [System.Flags]
-    public enum ExternalMemoryHandleTypeFlags
+    [StructLayout(LayoutKind.Sequential)]
+    public unsafe partial struct ImportMemoryHostPointerInfo
     {
         /// <summary>
         /// 
         /// </summary>
-        None = 0, 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
         /// </summary>
-        OpaqueFileDescriptor = 1 << 0, 
+        public void* Next; 
         
         /// <summary>
         /// 
         /// </summary>
-        OpaqueWin32 = 1 << 1, 
+        public SharpVk.Khronos.ExternalMemoryHandleTypeFlags HandleType; 
         
         /// <summary>
         /// 
         /// </summary>
-        OpaqueWin32Kmt = 1 << 2, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        D3D11Texture = 1 << 3, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        D3D11TextureKmt = 1 << 4, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        D3D12Heap = 1 << 5, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        D3D12Resource = 1 << 6, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        DmaBuf = 1 << 9, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        HostAllocation = 1 << 7, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        HostMappedForeignMemory = 1 << 8, 
+        public void* HostPointer; 
     }
 }

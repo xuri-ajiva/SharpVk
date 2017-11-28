@@ -1033,5 +1033,20 @@ namespace SharpVk
         /// 
         /// </summary>
         DeviceQueueGlobalPriorityCreateInfo = 1000174000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ImportMemoryHostPointerInfo = 1000178000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        MemoryHostPointerProperties = 1000178001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceExternalMemoryHostProperties = 1000178002, 
     }
 }
