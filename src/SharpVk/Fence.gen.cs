@@ -83,16 +83,18 @@ namespace SharpVk
         /// <summary>
         /// Return the status of a fence.
         /// </summary>
-        public unsafe void GetStatus()
+        public unsafe Result GetStatus()
         {
             try
             {
+                Result result = default(Result);
                 SharpVk.Interop.VkFenceGetStatusDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkFenceGetStatusDelegate>("vkGetFenceStatus", "");
-                Result methodResult = commandDelegate(this.parent.handle, this.handle);
-                if (SharpVkException.IsError(methodResult))
+                result = commandDelegate(this.parent.handle, this.handle);
+                if (SharpVkException.IsError(result))
                 {
-                    throw SharpVkException.Create(methodResult);
+                    throw SharpVkException.Create(result);
                 }
+                return result;
             }
             finally
             {

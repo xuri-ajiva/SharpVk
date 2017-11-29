@@ -60,7 +60,7 @@ namespace SharpVk.Generator.Collation
                     {
                         return true;
                     }
-                    else if(x.IsOptional && command.Verb == "create")
+                    else if (x.IsOptional && command.Verb == "create")
                     {
                         return false;
                     }
@@ -92,6 +92,7 @@ namespace SharpVk.Generator.Collation
                     HandleTypeName = handleTypeName,
                     HandleParamsCount = handleParams.Length,
                     ReturnType = command.Type,
+                    MultipleSuccessCodes = command.SuccessCodes?.Length > 1,
                     Params = command.Params.Select(x => new ParamDeclaration
                     {
                         VkName = x.VkName,

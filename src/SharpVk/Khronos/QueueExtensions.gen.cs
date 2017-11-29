@@ -37,10 +37,11 @@ namespace SharpVk.Khronos
         /// <param name="extendedHandle">
         /// The Queue handle to extend.
         /// </param>
-        public static unsafe void Present(this SharpVk.Queue extendedHandle, ArrayProxy<SharpVk.Semaphore>? waitSemaphores, ArrayProxy<SharpVk.Khronos.Swapchain>? swapchains, ArrayProxy<uint>? imageIndices, ArrayProxy<SharpVk.Result>? results = null)
+        public static unsafe Result Present(this SharpVk.Queue extendedHandle, ArrayProxy<SharpVk.Semaphore>? waitSemaphores, ArrayProxy<SharpVk.Khronos.Swapchain>? swapchains, ArrayProxy<uint>? imageIndices, ArrayProxy<SharpVk.Result>? results = null)
         {
             try
             {
+                Result result = default(Result);
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Khronos.PresentInfo* marshalledPresentInfo = default(SharpVk.Interop.Khronos.PresentInfo*);
                 commandCache = extendedHandle.commandCache;
@@ -134,11 +135,12 @@ namespace SharpVk.Khronos
                     }
                 }
                 SharpVk.Interop.Khronos.VkQueuePresentDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkQueuePresentDelegate>("vkQueuePresentKHR", "device");
-                Result methodResult = commandDelegate(extendedHandle.handle, marshalledPresentInfo);
-                if (SharpVkException.IsError(methodResult))
+                result = commandDelegate(extendedHandle.handle, marshalledPresentInfo);
+                if (SharpVkException.IsError(result))
                 {
-                    throw SharpVkException.Create(methodResult);
+                    throw SharpVkException.Create(result);
                 }
+                return result;
             }
             finally
             {

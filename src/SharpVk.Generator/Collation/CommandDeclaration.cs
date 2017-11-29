@@ -12,6 +12,7 @@ namespace SharpVk.Generator.Collation
         public string HandleTypeName;
         public int HandleParamsCount;
         public string ReturnType;
+        public bool MultipleSuccessCodes;
         public List<ParamDeclaration> Params;
     }
 }

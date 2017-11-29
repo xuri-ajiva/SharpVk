@@ -83,10 +83,11 @@ namespace SharpVk
         /// <summary>
         /// Copy results of queries in a query pool to a host memory region.
         /// </summary>
-        public unsafe void GetResults(uint firstQuery, uint queryCount, ArrayProxy<byte>? data, DeviceSize stride, SharpVk.QueryResultFlags? flags = default(SharpVk.QueryResultFlags?))
+        public unsafe Result GetResults(uint firstQuery, uint queryCount, ArrayProxy<byte>? data, DeviceSize stride, SharpVk.QueryResultFlags? flags = default(SharpVk.QueryResultFlags?))
         {
             try
             {
+                Result result = default(Result);
                 byte* marshalledData = default(byte*);
                 SharpVk.QueryResultFlags marshalledFlags = default(SharpVk.QueryResultFlags);
                 if (data.IsNull())
@@ -119,11 +120,12 @@ namespace SharpVk
                     marshalledFlags = default(SharpVk.QueryResultFlags);
                 }
                 SharpVk.Interop.VkQueryPoolGetResultsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkQueryPoolGetResultsDelegate>("vkGetQueryPoolResults", "");
-                Result methodResult = commandDelegate(this.parent.handle, this.handle, firstQuery, queryCount, (HostSize)(Interop.HeapUtil.GetLength(data)), marshalledData, stride, marshalledFlags);
-                if (SharpVkException.IsError(methodResult))
+                result = commandDelegate(this.parent.handle, this.handle, firstQuery, queryCount, (HostSize)(Interop.HeapUtil.GetLength(data)), marshalledData, stride, marshalledFlags);
+                if (SharpVkException.IsError(result))
                 {
-                    throw SharpVkException.Create(methodResult);
+                    throw SharpVkException.Create(result);
                 }
+                return result;
             }
             finally
             {

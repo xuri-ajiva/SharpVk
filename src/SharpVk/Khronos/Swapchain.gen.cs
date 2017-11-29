@@ -156,16 +156,18 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public unsafe void GetStatus()
+        public unsafe Result GetStatus()
         {
             try
             {
+                Result result = default(Result);
                 SharpVk.Interop.Khronos.VkSwapchainKHRGetStatusDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkSwapchainKHRGetStatusDelegate>("vkGetSwapchainStatusKHR", "device");
-                Result methodResult = commandDelegate(this.parent.handle, this.handle);
-                if (SharpVkException.IsError(methodResult))
+                result = commandDelegate(this.parent.handle, this.handle);
+                if (SharpVkException.IsError(result))
                 {
-                    throw SharpVkException.Create(methodResult);
+                    throw SharpVkException.Create(result);
                 }
+                return result;
             }
             finally
             {

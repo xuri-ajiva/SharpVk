@@ -233,8 +233,16 @@ namespace SharpVk.Generator.Generation
 
             if (command.ReturnType == "VkResult")
             {
-                invokeReturnType = this.typeData["VkResult"].Name;
-                invokeReturnName = "methodResult";
+                if (command.MultipleSuccessCodes && newMethod.ReturnType == "void")
+                {
+                    newMethod.ReturnType = this.typeData["VkResult"].Name;
+                    invokeReturnName = "result";
+                }
+                else
+                {
+                    invokeReturnType = this.typeData["VkResult"].Name;
+                    invokeReturnName = "methodResult";
+                }
             }
             else if (this.typeData[command.ReturnType].Pattern == TypePattern.Delegate)
             {
@@ -263,7 +271,7 @@ namespace SharpVk.Generator.Generation
             {
                 newMethod.MemberActions.Add(new ValidateAction
                 {
-                    VariableName = "methodResult"
+                    VariableName = invokeReturnName
                 });
             }
 

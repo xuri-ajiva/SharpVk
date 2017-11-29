@@ -372,10 +372,11 @@ namespace SharpVk
         /// <summary>
         /// Wait for one or more fences to become signaled.
         /// </summary>
-        public unsafe void WaitForFences(ArrayProxy<SharpVk.Fence>? fences, bool waitAll, ulong timeout)
+        public unsafe Result WaitForFences(ArrayProxy<SharpVk.Fence>? fences, bool waitAll, ulong timeout)
         {
             try
             {
+                Result result = default(Result);
                 SharpVk.Interop.Fence* marshalledFences = default(SharpVk.Interop.Fence*);
                 if (fences.IsNull())
                 {
@@ -399,11 +400,12 @@ namespace SharpVk
                     }
                 }
                 SharpVk.Interop.VkDeviceWaitForFencesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceWaitForFencesDelegate>("vkWaitForFences", "");
-                Result methodResult = commandDelegate(this.handle, (uint)(Interop.HeapUtil.GetLength(fences)), marshalledFences, waitAll, timeout);
-                if (SharpVkException.IsError(methodResult))
+                result = commandDelegate(this.handle, (uint)(Interop.HeapUtil.GetLength(fences)), marshalledFences, waitAll, timeout);
+                if (SharpVkException.IsError(result))
                 {
-                    throw SharpVkException.Create(methodResult);
+                    throw SharpVkException.Create(result);
                 }
+                return result;
             }
             finally
             {
