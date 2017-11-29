@@ -1,6 +1,6 @@
 ## General Backlog
 - [ ] Flags vs FlagBits may indicate a set of flags versus an individual flag value - needs investigation
-- [ ] GetFenceStatus & WaitForFence return result as non-error VkResult codes - these need handling and returning
+- [x] GetFenceStatus & WaitForFence return result as non-error VkResult codes - these need handling and returning
 - [ ] Check for not-null on non-optional parameters
 - Archive
   - [x] Throw exceptions for error VkResult codes
