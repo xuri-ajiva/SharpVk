@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>0.4.0-dev5</Version>
+    <Version>0.4.0</Version>
     <Authors>FacticiusVir</Authors>
     <Company>FacticiusVir</Company>
     <Description>Linq to SPIR-V shader generation</Description>
@@ -10,6 +10,7 @@
     <Copyright>Copyright 2017 Andrew Armstrong/FacticiusVir</Copyright>
     <PackageLicenseUrl>https://github.com/FacticiusVir/SharpVk/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/FacticiusVir/SharpVk</PackageProjectUrl>
+    <PackageIconUrl>https://github.com/FacticiusVir/SharpVk/blob/master/images/SharpVk.png</PackageIconUrl>
   </PropertyGroup>
 
   <ItemGroup>

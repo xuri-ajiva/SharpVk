@@ -8,15 +8,14 @@
     <owners>FacticiusVir</owners>
     <licenseUrl>https://github.com/FacticiusVir/SharpVk/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/FacticiusVir/SharpVk</projectUrl>
-    <!--<iconUrl></iconUrl>-->
+    <iconUrl>https://github.com/FacticiusVir/SharpVk/blob/master/images/SharpVk.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>GlmSharp type mappings for SharpVk Shanq</description>
     <!--<releaseNotes>Summary of changes made in this release of the package.</releaseNotes>-->
     <copyright>Copyright 2017 Andrew Armstrong/FacticiusVir</copyright>
     <tags>Vulkan SPIR-V Spirv SharpVK Shanq 3D</tags>
     <dependencies>
-      <dependency id="SharpVk" version="0.4.0-dev4" />
-      <!--<dependency id="SharpVk" version="$version$" />-->
+      <dependency id="SharpVk" version="$version$" />
       <dependency id="SharpVk.Shanq" version="$version$" />
     </dependencies>
   </metadata>
