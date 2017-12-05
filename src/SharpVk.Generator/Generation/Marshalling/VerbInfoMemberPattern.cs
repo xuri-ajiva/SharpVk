@@ -99,18 +99,58 @@ namespace SharpVk.Generator.Generation.Marshalling
                 {
                     var extendType = this.typeData[extendStruct];
 
-                    string typeNamespace = "SharpVk";
+                    string typeNamespace = "";
 
                     if (extendType.Extension != null)
                     {
                         typeNamespace += "." + string.Join(".", this.namespaceMap.Map(extendType.Extension));
                     }
 
+                    string paramName = extendType.Name.FirstToLower() + extendType.Extension;
+
                     info.Public.Add(new TypedDefinition
                     {
-                        Name = extendType.Name.FirstToLower() + extendType.Extension,
-                        Type = $"{typeNamespace}.{extendType.Name}?",
+                        Name = paramName,
+                        Type = $"SharpVk{typeNamespace}.{extendType.Name}?",
                         DefaultValue = Null
+                    });
+
+
+                    info.MarshalTo.Add((getTarget, getValue) =>
+                    {
+                        var extendMarshalAction = new OptionalAction
+                        {
+                            CheckExpression = IsNotEqual(Variable(paramName), Null),
+                            Priority = -1
+                        };
+
+                        extendMarshalAction.Actions.AddRange(new MethodAction[]
+                        {
+                            new DeclarationAction
+                            {
+                                MemberType = $"SharpVk.Interop{typeNamespace}.{extendType.Name}*",
+                                MemberName = "extensionPointer"
+                            },
+                            new AssignAction
+                            {
+                                TargetExpression = Variable("extensionPointer"),
+                                ValueExpression = Member(Variable(paramName), "Value"),
+                                MemberType = $"SharpVk.Interop{typeNamespace}.{extendType.Name}",
+                                Type = AssignActionType.MarshalTo
+                            },
+                            new AssignAction
+                            {
+                                TargetExpression = DerefMember(Variable("extensionPointer"), "Next"),
+                                ValueExpression = Variable("nextPointer")
+                            },
+                            new AssignAction
+                            {
+                                ValueExpression = Variable("extensionPointer"),
+                                TargetExpression = Variable("nextPointer")
+                            }
+                        });
+
+                        return extendMarshalAction;
                     });
                 }
 

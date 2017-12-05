@@ -20,11 +20,28 @@ namespace SharpVk.Generator.Generation.Marshalling
         {
             if (source.Name == "Next")
             {
-                info.MarshalTo.Add((getTarget, getValue) => new AssignAction
+                if (context.IsMethod)
                 {
-                    ValueExpression = Null,
-                    TargetExpression = getTarget(source.Name)
-                });
+                    info.MarshalTo.Add((getTarget, getValue) => new DeclarationAction
+                    {
+                        MemberType = "void*",
+                        MemberName = "nextPointer"
+                    });
+
+                    info.MarshalTo.Add((getTarget, getValue) => new AssignAction
+                    {
+                        ValueExpression = Variable("nextPointer"),
+                        TargetExpression = getTarget(source.Name)
+                    });
+                }
+                else
+                {
+                    info.MarshalTo.Add((getTarget, getValue) => new AssignAction
+                    {
+                        ValueExpression = Null,
+                        TargetExpression = getTarget(source.Name)
+                    });
+                }
 
                 string typeName = this.nameLookup.Lookup(source.Type, true);
 

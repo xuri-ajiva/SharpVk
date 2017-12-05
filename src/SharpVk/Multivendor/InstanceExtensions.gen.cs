@@ -53,12 +53,13 @@ namespace SharpVk.Multivendor
                 SharpVk.Multivendor.DebugReportCallback result = default(SharpVk.Multivendor.DebugReportCallback);
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Multivendor.DebugReportCallbackCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Multivendor.DebugReportCallbackCreateInfo*);
+                void* nextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Multivendor.DebugReportCallback marshalledCallback = default(SharpVk.Interop.Multivendor.DebugReportCallback);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.Multivendor.DebugReportCallbackCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.DebugReportCallbackCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.DebugReportCallbackCreateInfo;
-                marshalledCreateInfo->Next = null;
+                marshalledCreateInfo->Next = nextPointer;
                 if (flags != null)
                 {
                     marshalledCreateInfo->Flags = flags.Value;

@@ -56,12 +56,13 @@ namespace SharpVk.MoltenVk
                 SharpVk.Khronos.Surface result = default(SharpVk.Khronos.Surface);
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.MoltenVk.IOSSurfaceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.MoltenVk.IOSSurfaceCreateInfo*);
+                void* nextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Khronos.Surface marshalledSurface = default(SharpVk.Interop.Khronos.Surface);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.MoltenVk.IOSSurfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.MoltenVk.IOSSurfaceCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.IosSurfaceCreateInfo;
-                marshalledCreateInfo->Next = null;
+                marshalledCreateInfo->Next = nextPointer;
                 if (flags != null)
                 {
                     marshalledCreateInfo->Flags = flags.Value;
@@ -120,12 +121,13 @@ namespace SharpVk.MoltenVk
                 SharpVk.Khronos.Surface result = default(SharpVk.Khronos.Surface);
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.MoltenVk.MacOSSurfaceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.MoltenVk.MacOSSurfaceCreateInfo*);
+                void* nextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Khronos.Surface marshalledSurface = default(SharpVk.Interop.Khronos.Surface);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.MoltenVk.MacOSSurfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.MoltenVk.MacOSSurfaceCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.MacosSurfaceCreateInfo;
-                marshalledCreateInfo->Next = null;
+                marshalledCreateInfo->Next = nextPointer;
                 if (flags != null)
                 {
                     marshalledCreateInfo->Flags = flags.Value;

@@ -78,11 +78,28 @@ namespace SharpVk
             {
                 SharpVk.Instance result = default(SharpVk.Instance);
                 SharpVk.Interop.InstanceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.InstanceCreateInfo*);
+                void* nextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Instance marshalledInstance = default(SharpVk.Interop.Instance);
+                if (debugReportCallbackCreateInfoExt != null)
+                {
+                    SharpVk.Interop.Multivendor.DebugReportCallbackCreateInfo* extensionPointer = default(SharpVk.Interop.Multivendor.DebugReportCallbackCreateInfo*);
+                    extensionPointer = (SharpVk.Interop.Multivendor.DebugReportCallbackCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.DebugReportCallbackCreateInfo>());
+                    debugReportCallbackCreateInfoExt.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = nextPointer;
+                    nextPointer = extensionPointer;
+                }
+                if (validationFlagsExt != null)
+                {
+                    SharpVk.Interop.Multivendor.ValidationFlags* extensionPointer = default(SharpVk.Interop.Multivendor.ValidationFlags*);
+                    extensionPointer = (SharpVk.Interop.Multivendor.ValidationFlags*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.ValidationFlags>());
+                    validationFlagsExt.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = nextPointer;
+                    nextPointer = extensionPointer;
+                }
                 marshalledCreateInfo = (SharpVk.Interop.InstanceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.InstanceCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.InstanceCreateInfo;
-                marshalledCreateInfo->Next = null;
+                marshalledCreateInfo->Next = nextPointer;
                 if (flags != null)
                 {
                     marshalledCreateInfo->Flags = flags.Value;

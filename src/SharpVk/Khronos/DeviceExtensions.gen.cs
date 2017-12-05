@@ -52,12 +52,29 @@ namespace SharpVk.Khronos
                 SharpVk.Khronos.Swapchain result = default(SharpVk.Khronos.Swapchain);
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Khronos.SwapchainCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Khronos.SwapchainCreateInfo*);
+                void* nextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Khronos.Swapchain marshalledSwapchain = default(SharpVk.Interop.Khronos.Swapchain);
+                if (swapchainCounterCreateInfoExt != null)
+                {
+                    SharpVk.Interop.Multivendor.SwapchainCounterCreateInfo* extensionPointer = default(SharpVk.Interop.Multivendor.SwapchainCounterCreateInfo*);
+                    extensionPointer = (SharpVk.Interop.Multivendor.SwapchainCounterCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.SwapchainCounterCreateInfo>());
+                    swapchainCounterCreateInfoExt.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = nextPointer;
+                    nextPointer = extensionPointer;
+                }
+                if (deviceGroupSwapchainCreateInfoKhx != null)
+                {
+                    SharpVk.Interop.Khronos.Experimental.DeviceGroupSwapchainCreateInfo* extensionPointer = default(SharpVk.Interop.Khronos.Experimental.DeviceGroupSwapchainCreateInfo*);
+                    extensionPointer = (SharpVk.Interop.Khronos.Experimental.DeviceGroupSwapchainCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.Experimental.DeviceGroupSwapchainCreateInfo>());
+                    deviceGroupSwapchainCreateInfoKhx.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = nextPointer;
+                    nextPointer = extensionPointer;
+                }
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.Khronos.SwapchainCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.SwapchainCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.SwapchainCreateInfo;
-                marshalledCreateInfo->Next = null;
+                marshalledCreateInfo->Next = nextPointer;
                 if (flags != null)
                 {
                     marshalledCreateInfo->Flags = flags.Value;
@@ -503,12 +520,13 @@ namespace SharpVk.Khronos
                 SharpVk.Khronos.DescriptorUpdateTemplate result = default(SharpVk.Khronos.DescriptorUpdateTemplate);
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Khronos.DescriptorUpdateTemplateCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Khronos.DescriptorUpdateTemplateCreateInfo*);
+                void* nextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Khronos.DescriptorUpdateTemplate marshalledDescriptorUpdateTemplate = default(SharpVk.Interop.Khronos.DescriptorUpdateTemplate);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.Khronos.DescriptorUpdateTemplateCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.DescriptorUpdateTemplateCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.DescriptorUpdateTemplateCreateInfo;
-                marshalledCreateInfo->Next = null;
+                marshalledCreateInfo->Next = nextPointer;
                 if (flags != null)
                 {
                     marshalledCreateInfo->Flags = flags.Value;
@@ -835,12 +853,13 @@ namespace SharpVk.Khronos
                 SharpVk.Khronos.SamplerYcbcrConversion result = default(SharpVk.Khronos.SamplerYcbcrConversion);
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Khronos.SamplerYcbcrConversionCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Khronos.SamplerYcbcrConversionCreateInfo*);
+                void* nextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Khronos.SamplerYcbcrConversion marshalledYcbcrConversion = default(SharpVk.Interop.Khronos.SamplerYcbcrConversion);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.Khronos.SamplerYcbcrConversionCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.SamplerYcbcrConversionCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.SamplerYcbcrConversionCreateInfo;
-                marshalledCreateInfo->Next = null;
+                marshalledCreateInfo->Next = nextPointer;
                 marshalledCreateInfo->Format = format;
                 marshalledCreateInfo->YcbcrModel = ycbcrModel;
                 marshalledCreateInfo->YcbcrRange = ycbcrRange;

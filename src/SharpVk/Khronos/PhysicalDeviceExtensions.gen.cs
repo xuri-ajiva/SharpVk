@@ -379,12 +379,13 @@ namespace SharpVk.Khronos
                 SharpVk.Khronos.DisplayMode result = default(SharpVk.Khronos.DisplayMode);
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Khronos.DisplayModeCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Khronos.DisplayModeCreateInfo*);
+                void* nextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Khronos.DisplayMode marshalledMode = default(SharpVk.Interop.Khronos.DisplayMode);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.Khronos.DisplayModeCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.DisplayModeCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.DisplayModeCreateInfo;
-                marshalledCreateInfo->Next = null;
+                marshalledCreateInfo->Next = nextPointer;
                 if (flags != null)
                 {
                     marshalledCreateInfo->Flags = flags.Value;

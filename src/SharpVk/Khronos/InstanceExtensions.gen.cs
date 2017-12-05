@@ -72,12 +72,13 @@ namespace SharpVk.Khronos
                 SharpVk.Khronos.Surface result = default(SharpVk.Khronos.Surface);
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Khronos.DisplaySurfaceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Khronos.DisplaySurfaceCreateInfo*);
+                void* nextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Khronos.Surface marshalledSurface = default(SharpVk.Interop.Khronos.Surface);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.Khronos.DisplaySurfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.DisplaySurfaceCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.DisplaySurfaceCreateInfo;
-                marshalledCreateInfo->Next = null;
+                marshalledCreateInfo->Next = nextPointer;
                 if (flags != null)
                 {
                     marshalledCreateInfo->Flags = flags.Value;
@@ -144,12 +145,13 @@ namespace SharpVk.Khronos
                 SharpVk.Khronos.Surface result = default(SharpVk.Khronos.Surface);
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Khronos.XlibSurfaceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Khronos.XlibSurfaceCreateInfo*);
+                void* nextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Khronos.Surface marshalledSurface = default(SharpVk.Interop.Khronos.Surface);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.Khronos.XlibSurfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.XlibSurfaceCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.XlibSurfaceCreateInfo;
-                marshalledCreateInfo->Next = null;
+                marshalledCreateInfo->Next = nextPointer;
                 if (flags != null)
                 {
                     marshalledCreateInfo->Flags = flags.Value;
@@ -212,12 +214,13 @@ namespace SharpVk.Khronos
                 SharpVk.Khronos.Surface result = default(SharpVk.Khronos.Surface);
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Khronos.XcbSurfaceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Khronos.XcbSurfaceCreateInfo*);
+                void* nextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Khronos.Surface marshalledSurface = default(SharpVk.Interop.Khronos.Surface);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.Khronos.XcbSurfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.XcbSurfaceCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.XcbSurfaceCreateInfo;
-                marshalledCreateInfo->Next = null;
+                marshalledCreateInfo->Next = nextPointer;
                 if (flags != null)
                 {
                     marshalledCreateInfo->Flags = flags.Value;
@@ -277,12 +280,13 @@ namespace SharpVk.Khronos
                 SharpVk.Khronos.Surface result = default(SharpVk.Khronos.Surface);
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Khronos.WaylandSurfaceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Khronos.WaylandSurfaceCreateInfo*);
+                void* nextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Khronos.Surface marshalledSurface = default(SharpVk.Interop.Khronos.Surface);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.Khronos.WaylandSurfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.WaylandSurfaceCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.WaylandSurfaceCreateInfo;
-                marshalledCreateInfo->Next = null;
+                marshalledCreateInfo->Next = nextPointer;
                 if (flags != null)
                 {
                     marshalledCreateInfo->Flags = flags.Value;
@@ -341,12 +345,13 @@ namespace SharpVk.Khronos
                 SharpVk.Khronos.Surface result = default(SharpVk.Khronos.Surface);
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Khronos.MirSurfaceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Khronos.MirSurfaceCreateInfo*);
+                void* nextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Khronos.Surface marshalledSurface = default(SharpVk.Interop.Khronos.Surface);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.Khronos.MirSurfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.MirSurfaceCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.MirSurfaceCreateInfo;
-                marshalledCreateInfo->Next = null;
+                marshalledCreateInfo->Next = nextPointer;
                 if (flags != null)
                 {
                     marshalledCreateInfo->Flags = flags.Value;
@@ -406,12 +411,13 @@ namespace SharpVk.Khronos
                 SharpVk.Khronos.Surface result = default(SharpVk.Khronos.Surface);
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Khronos.AndroidSurfaceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Khronos.AndroidSurfaceCreateInfo*);
+                void* nextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Khronos.Surface marshalledSurface = default(SharpVk.Interop.Khronos.Surface);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.Khronos.AndroidSurfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.AndroidSurfaceCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.AndroidSurfaceCreateInfo;
-                marshalledCreateInfo->Next = null;
+                marshalledCreateInfo->Next = nextPointer;
                 if (flags != null)
                 {
                     marshalledCreateInfo->Flags = flags.Value;
@@ -472,12 +478,13 @@ namespace SharpVk.Khronos
                 SharpVk.Khronos.Surface result = default(SharpVk.Khronos.Surface);
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Khronos.Win32SurfaceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Khronos.Win32SurfaceCreateInfo*);
+                void* nextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Khronos.Surface marshalledSurface = default(SharpVk.Interop.Khronos.Surface);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.Khronos.Win32SurfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.Win32SurfaceCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.Win32SurfaceCreateInfo;
-                marshalledCreateInfo->Next = null;
+                marshalledCreateInfo->Next = nextPointer;
                 if (flags != null)
                 {
                     marshalledCreateInfo->Flags = flags.Value;

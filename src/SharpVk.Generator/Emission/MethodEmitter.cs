@@ -114,7 +114,7 @@ namespace SharpVk.Generator.Emission
                 body.EmitVariableDeclaration(action.MemberType, action.MemberName, Default(action.MemberType));
             }
 
-            foreach (var action in actions)
+            foreach (var action in actions.OrderBy(x => x.Priority))
             {
                 if (action is AssignAction assignAction)
                 {
@@ -209,9 +209,17 @@ namespace SharpVk.Generator.Emission
                 }
                 else if (action is OptionalAction optionalAction)
                 {
-                    body.EmitIfBlock(optionalAction.CheckExpression,
-                            ifBlock => EmitActions(ifBlock, optionalAction.Actions),
-                            elseBlock => EmitActions(elseBlock, optionalAction.ElseActions));
+                    if (optionalAction.ElseActions.Any())
+                    {
+                        body.EmitIfBlock(optionalAction.CheckExpression,
+                                ifBlock => EmitActions(ifBlock, optionalAction.Actions),
+                                elseBlock => EmitActions(elseBlock, optionalAction.ElseActions));
+                    }
+                    else
+                    {
+                        body.EmitIfBlock(optionalAction.CheckExpression,
+                                ifBlock => EmitActions(ifBlock, optionalAction.Actions));
+                    }
                 }
                 else if (action is ValidateAction validationAction)
                 {

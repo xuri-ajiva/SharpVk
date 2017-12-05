@@ -17,9 +17,14 @@ namespace SharpVk.TestHarness
 
             var debugCallback = new DebugReportCallbackDelegate(DebugCallback);
 
-            var instance = Instance.Create("VK_LAYER_LUNARG_standard_validation", ExtExtensions.DebugReport);
+            var instance = Instance.Create("VK_LAYER_LUNARG_standard_validation", ExtExtensions.DebugReport,
+                debugReportCallbackCreateInfoExt: new DebugReportCallbackCreateInfo
+                {
+                    Callback = debugCallback,
+                    Flags = DebugReportFlags.Error | DebugReportFlags.Warning | DebugReportFlags.PerformanceWarning | DebugReportFlags.Information
+                });
 
-            //var callbackHandle = instance.CreateDebugReportCallback(debugCallback, DebugReportFlags.Error | DebugReportFlags.Warning | DebugReportFlags.PerformanceWarning | DebugReportFlags.Information);
+            var callbackHandle = instance.CreateDebugReportCallback(debugCallback, DebugReportFlags.Error | DebugReportFlags.Warning | DebugReportFlags.PerformanceWarning | DebugReportFlags.Information);
 
             var physicalDevice = instance.EnumeratePhysicalDevices().First();
 
@@ -93,7 +98,7 @@ namespace SharpVk.TestHarness
 
             device.Destroy();
 
-            //callbackHandle.Destroy();
+            callbackHandle.Destroy();
 
             instance.Destroy();
 

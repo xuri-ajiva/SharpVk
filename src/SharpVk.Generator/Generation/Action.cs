@@ -6,6 +6,7 @@ namespace SharpVk.Generator.Generation
 {
     public abstract class MethodAction
     {
+        public int Priority = 0;
     }
 
     public class AssignAction

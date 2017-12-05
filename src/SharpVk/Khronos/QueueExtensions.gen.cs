@@ -44,10 +44,43 @@ namespace SharpVk.Khronos
                 Result result = default(Result);
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Khronos.PresentInfo* marshalledPresentInfo = default(SharpVk.Interop.Khronos.PresentInfo*);
+                void* nextPointer = default(void*);
+                if (displayPresentInfoKhr != null)
+                {
+                    SharpVk.Interop.Khronos.DisplayPresentInfo* extensionPointer = default(SharpVk.Interop.Khronos.DisplayPresentInfo*);
+                    extensionPointer = (SharpVk.Interop.Khronos.DisplayPresentInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.DisplayPresentInfo>());
+                    displayPresentInfoKhr.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = nextPointer;
+                    nextPointer = extensionPointer;
+                }
+                if (presentRegionsKhr != null)
+                {
+                    SharpVk.Interop.Khronos.PresentRegions* extensionPointer = default(SharpVk.Interop.Khronos.PresentRegions*);
+                    extensionPointer = (SharpVk.Interop.Khronos.PresentRegions*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.PresentRegions>());
+                    presentRegionsKhr.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = nextPointer;
+                    nextPointer = extensionPointer;
+                }
+                if (deviceGroupPresentInfoKhx != null)
+                {
+                    SharpVk.Interop.Khronos.Experimental.DeviceGroupPresentInfo* extensionPointer = default(SharpVk.Interop.Khronos.Experimental.DeviceGroupPresentInfo*);
+                    extensionPointer = (SharpVk.Interop.Khronos.Experimental.DeviceGroupPresentInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.Experimental.DeviceGroupPresentInfo>());
+                    deviceGroupPresentInfoKhx.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = nextPointer;
+                    nextPointer = extensionPointer;
+                }
+                if (presentTimesInfoGoogle != null)
+                {
+                    SharpVk.Interop.Google.PresentTimesInfo* extensionPointer = default(SharpVk.Interop.Google.PresentTimesInfo*);
+                    extensionPointer = (SharpVk.Interop.Google.PresentTimesInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Google.PresentTimesInfo>());
+                    presentTimesInfoGoogle.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = nextPointer;
+                    nextPointer = extensionPointer;
+                }
                 commandCache = extendedHandle.commandCache;
                 marshalledPresentInfo = (SharpVk.Interop.Khronos.PresentInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.PresentInfo>());
                 marshalledPresentInfo->SType = StructureType.PresentInfo;
-                marshalledPresentInfo->Next = null;
+                marshalledPresentInfo->Next = nextPointer;
                 marshalledPresentInfo->WaitSemaphoreCount = (uint)(Interop.HeapUtil.GetLength(waitSemaphores));
                 if (waitSemaphores.IsNull())
                 {

@@ -285,12 +285,13 @@ namespace SharpVk.Multivendor
                 SharpVk.Multivendor.ValidationCache result = default(SharpVk.Multivendor.ValidationCache);
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Multivendor.ValidationCacheCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Multivendor.ValidationCacheCreateInfo*);
+                void* nextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Multivendor.ValidationCache marshalledValidationCache = default(SharpVk.Interop.Multivendor.ValidationCache);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.Multivendor.ValidationCacheCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.ValidationCacheCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.ValidationCacheCreateInfo;
-                marshalledCreateInfo->Next = null;
+                marshalledCreateInfo->Next = nextPointer;
                 if (flags != null)
                 {
                     marshalledCreateInfo->Flags = flags.Value;

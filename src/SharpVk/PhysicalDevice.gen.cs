@@ -227,11 +227,28 @@ namespace SharpVk
             {
                 SharpVk.Device result = default(SharpVk.Device);
                 SharpVk.Interop.DeviceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.DeviceCreateInfo*);
+                void* nextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Device marshalledDevice = default(SharpVk.Interop.Device);
+                if (physicalDeviceFeatures2Khr != null)
+                {
+                    SharpVk.Interop.Khronos.PhysicalDeviceFeatures2* extensionPointer = default(SharpVk.Interop.Khronos.PhysicalDeviceFeatures2*);
+                    extensionPointer = (SharpVk.Interop.Khronos.PhysicalDeviceFeatures2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.PhysicalDeviceFeatures2>());
+                    physicalDeviceFeatures2Khr.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = nextPointer;
+                    nextPointer = extensionPointer;
+                }
+                if (deviceGroupDeviceCreateInfoKhx != null)
+                {
+                    SharpVk.Interop.Khronos.Experimental.DeviceGroupDeviceCreateInfo* extensionPointer = default(SharpVk.Interop.Khronos.Experimental.DeviceGroupDeviceCreateInfo*);
+                    extensionPointer = (SharpVk.Interop.Khronos.Experimental.DeviceGroupDeviceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.Experimental.DeviceGroupDeviceCreateInfo>());
+                    deviceGroupDeviceCreateInfoKhx.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = nextPointer;
+                    nextPointer = extensionPointer;
+                }
                 marshalledCreateInfo = (SharpVk.Interop.DeviceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.DeviceCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.DeviceCreateInfo;
-                marshalledCreateInfo->Next = null;
+                marshalledCreateInfo->Next = nextPointer;
                 if (flags != null)
                 {
                     marshalledCreateInfo->Flags = flags.Value;
