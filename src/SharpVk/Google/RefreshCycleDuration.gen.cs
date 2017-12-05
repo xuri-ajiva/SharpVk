@@ -36,6 +36,11 @@ namespace SharpVk.Google
         /// <summary>
         /// 
         /// </summary>
+        public static RefreshCycleDuration Zero => new RefreshCycleDuration();
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public RefreshCycleDuration(ulong refreshDuration)
         {
             this.RefreshDuration = refreshDuration;

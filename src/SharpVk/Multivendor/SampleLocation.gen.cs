@@ -36,6 +36,11 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        public static SampleLocation Zero => new SampleLocation();
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public SampleLocation(float x, float y)
         {
             this.X = x;

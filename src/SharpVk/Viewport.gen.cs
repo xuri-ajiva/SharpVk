@@ -36,6 +36,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        public static Viewport Zero => new Viewport();
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public Viewport(float x, float y, float width, float height, float minDepth, float maxDepth)
         {
             this.X = x;

@@ -36,6 +36,11 @@ namespace SharpVk.Google
         /// <summary>
         /// 
         /// </summary>
+        public static PastPresentationTiming Zero => new PastPresentationTiming();
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public PastPresentationTiming(uint presentID, ulong desiredPresentTime, ulong actualPresentTime, ulong earliestPresentTime, ulong presentMargin)
         {
             this.PresentID = presentID;

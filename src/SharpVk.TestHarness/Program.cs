@@ -1,5 +1,4 @@
-﻿using SharpVk.Khronos;
-using SharpVk.Multivendor;
+﻿using SharpVk.Multivendor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,15 +15,16 @@ namespace SharpVk.TestHarness
             var availableLayers = Instance.EnumerateLayerProperties();
 
             var debugCallback = new DebugReportCallbackDelegate(DebugCallback);
+            DebugReportFlags debugFlags = DebugReportFlags.Error | DebugReportFlags.Warning | DebugReportFlags.PerformanceWarning | DebugReportFlags.Information;
 
             var instance = Instance.Create("VK_LAYER_LUNARG_standard_validation", ExtExtensions.DebugReport,
                 debugReportCallbackCreateInfoExt: new DebugReportCallbackCreateInfo
                 {
                     Callback = debugCallback,
-                    Flags = DebugReportFlags.Error | DebugReportFlags.Warning | DebugReportFlags.PerformanceWarning | DebugReportFlags.Information
+                    Flags = debugFlags
                 });
 
-            var callbackHandle = instance.CreateDebugReportCallback(debugCallback, DebugReportFlags.Error | DebugReportFlags.Warning | DebugReportFlags.PerformanceWarning | DebugReportFlags.Information);
+            var callbackHandle = instance.CreateDebugReportCallback(debugCallback, debugFlags);
 
             var physicalDevice = instance.EnumeratePhysicalDevices().First();
 

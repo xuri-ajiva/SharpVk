@@ -36,6 +36,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        public static ClearDepthStencilValue Zero => new ClearDepthStencilValue();
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public ClearDepthStencilValue(float depth, uint stencil)
         {
             this.Depth = depth;

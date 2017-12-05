@@ -36,6 +36,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        public static Extent3D Zero => new Extent3D();
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public Extent3D(uint width, uint height, uint depth)
         {
             this.Width = width;

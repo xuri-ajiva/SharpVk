@@ -36,6 +36,11 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        public static XYColor Zero => new XYColor();
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public XYColor(float x, float y)
         {
             this.X = x;

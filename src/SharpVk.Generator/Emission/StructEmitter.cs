@@ -45,6 +45,11 @@ namespace SharpVk.Generator.Emission
                     {
                         namespaceBuilder.EmitType(TypeKind.Struct, @struct.Name, typeBuilder =>
                         {
+                            if (@struct.HasZero)
+                            {
+                                typeBuilder.EmitProperty(@struct.Name, "Zero", ExpressionBuilder.New(@struct.Name), Public, MemberModifier.Static);
+                            }
+
                             if (@struct.Constructor != null)
                             {
                                 this.methodEmitter.EmitConstructor(typeBuilder, @struct.Constructor);

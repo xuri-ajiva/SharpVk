@@ -36,6 +36,11 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        public static ViewportWScaling Zero => new ViewportWScaling();
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public ViewportWScaling(float xcoeff, float ycoeff)
         {
             this.Xcoeff = xcoeff;

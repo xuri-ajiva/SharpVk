@@ -33,6 +33,7 @@ namespace SharpVk.Generator.Generation
                     Name = type.Name,
                     Namespace = type.Extension != null ? this.namespaceMap.Map(type.Extension).ToArray() : null,
                     Comment = this.commentGenerator.Lookup(typeItem.Key),
+                    HasZero = type.Members.All(IsNumeric),
                     Constructor = new MethodDefinition
                     {
                         ParamActions = type.Members.Select(this.GetConstructorParam).ToList()
@@ -45,6 +46,14 @@ namespace SharpVk.Generator.Generation
                     }).ToList()
                 });
             }
+        }
+
+        private static string[] NumericsTypes = new[] { "uint32_t", "uint64_t", "float" };
+
+        private static bool IsNumeric(MemberDeclaration member)
+        {
+            return !member.RequiresMarshalling
+                        & NumericsTypes.Contains(member.Type.VkName);
         }
 
         private ParamActionDefinition GetConstructorParam(MemberDeclaration member)

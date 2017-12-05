@@ -36,6 +36,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        public static Extent2D Zero => new Extent2D();
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public Extent2D(uint width, uint height)
         {
             this.Width = width;

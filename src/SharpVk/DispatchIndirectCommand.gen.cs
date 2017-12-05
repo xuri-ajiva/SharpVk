@@ -36,6 +36,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        public static DispatchIndirectCommand Zero => new DispatchIndirectCommand();
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public DispatchIndirectCommand(uint x, uint y, uint z)
         {
             this.X = x;
