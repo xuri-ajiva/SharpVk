@@ -8,7 +8,7 @@
     <owners>FacticiusVir</owners>
     <licenseUrl>https://github.com/FacticiusVir/SharpVk/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/FacticiusVir/SharpVk</projectUrl>
-    <iconUrl>https://github.com/FacticiusVir/SharpVk/blob/master/images/SharpVk.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/FacticiusVir/SharpVk/master/images/SharpVk.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>GlmSharp type mappings for SharpVk Shanq</description>
     <!--<releaseNotes>Summary of changes made in this release of the package.</releaseNotes>-->
