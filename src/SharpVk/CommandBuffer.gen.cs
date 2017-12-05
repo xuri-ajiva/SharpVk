@@ -56,7 +56,7 @@ namespace SharpVk
         /// A bitmask indicating usage behavior for the command buffer. Bits
         /// which can be set include: + --
         /// </param>
-        public unsafe void Begin(SharpVk.CommandBufferUsageFlags? flags = default(SharpVk.CommandBufferUsageFlags?), SharpVk.CommandBufferInheritanceInfo? inheritanceInfo = default(SharpVk.CommandBufferInheritanceInfo?))
+        public unsafe void Begin(SharpVk.CommandBufferUsageFlags? flags = default(SharpVk.CommandBufferUsageFlags?), SharpVk.CommandBufferInheritanceInfo? inheritanceInfo = default(SharpVk.CommandBufferInheritanceInfo?), SharpVk.Khronos.Experimental.DeviceGroupCommandBufferBeginInfo? deviceGroupCommandBufferBeginInfoKhx = null)
         {
             try
             {
@@ -1381,7 +1381,7 @@ namespace SharpVk
         /// The render area that is affected by the render pass instance, and
         /// is described in more detail below.
         /// </param>
-        public unsafe void BeginRenderPass(SharpVk.RenderPass renderPass, SharpVk.Framebuffer framebuffer, SharpVk.Rect2D renderArea, ArrayProxy<SharpVk.ClearValue>? clearValues, SharpVk.SubpassContents contents)
+        public unsafe void BeginRenderPass(SharpVk.RenderPass renderPass, SharpVk.Framebuffer framebuffer, SharpVk.Rect2D renderArea, ArrayProxy<SharpVk.ClearValue>? clearValues, SharpVk.SubpassContents contents, SharpVk.Khronos.Experimental.DeviceGroupRenderPassBeginInfo? deviceGroupRenderPassBeginInfoKhx = null, SharpVk.Multivendor.RenderPassSampleLocationsBeginInfo? renderPassSampleLocationsBeginInfoExt = null)
         {
             try
             {

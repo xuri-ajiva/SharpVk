@@ -31,6 +31,7 @@ namespace SharpVk.Generator.Specification
                 Enum.TryParse(vkType.Attribute("category")?.Value, out TypeCategory category);
                 string requires = vkType.Attribute("requires")?.Value;
                 string parent = vkType.Attribute("parent")?.Value;
+                string extends = vkType.Attribute("structextends")?.Value;
                 bool.TryParse(vkType.Attribute("returnedonly")?.Value, out bool isReturnedOnly);
                 bool isTypePointer = false;
 
@@ -59,7 +60,8 @@ namespace SharpVk.Generator.Specification
                     Parent = parent,
                     IsReturnedOnly = isReturnedOnly,
                     Type = type,
-                    IsTypePointer = isTypePointer
+                    IsTypePointer = isTypePointer,
+                    Extends = extends
                 };
 
                 if (!this.typeExtensions.ApplyFirst(vkType, newType, target))

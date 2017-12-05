@@ -13,14 +13,16 @@ namespace SharpVk.Generator.Generation.Marshalling
     {
         private readonly Dictionary<string, TypeDeclaration> typeData;
         private readonly NameLookup nameLookup;
+        private readonly NamespaceMap namespaceMap;
         private readonly IServiceProvider provider;
 
         private IEnumerable<IMemberPatternRule> patternRules;
 
-        public VerbInfoMemberPattern(Dictionary<string, TypeDeclaration> typeData, NameLookup nameLookup, IServiceProvider provider)
+        public VerbInfoMemberPattern(Dictionary<string, TypeDeclaration> typeData, NameLookup nameLookup, NamespaceMap namespaceMap, IServiceProvider provider)
         {
             this.typeData = typeData;
             this.nameLookup = nameLookup;
+            this.namespaceMap = namespaceMap;
             this.provider = provider;
         }
 
@@ -33,7 +35,7 @@ namespace SharpVk.Generator.Generation.Marshalling
 
             string verbInfoPattern = context.MethodVerb + "info";
 
-            if(context.Extension!=null)
+            if (context.Extension != null)
             {
                 verbInfoPattern += context.Extension;
             }
@@ -68,9 +70,9 @@ namespace SharpVk.Generator.Generation.Marshalling
                 {
                     var subPatternInfo = new MemberPatternInfo();
 
-                    this.patternRules.ApplyFirst(infoTypeData.Members, member, new MemberPatternContext(null, true,  infoTypeData.Extension, context.GetHandle, source.Type.VkName), subPatternInfo);
+                    this.patternRules.ApplyFirst(infoTypeData.Members, member, new MemberPatternContext(null, true, infoTypeData.Extension, context.GetHandle, source.Type.VkName), subPatternInfo);
 
-                    foreach(var subAction in subPatternInfo.MarshalTo)
+                    foreach (var subAction in subPatternInfo.MarshalTo)
                     {
                         info.MarshalTo.Add((getTarget, getValue) =>
                         {
@@ -78,12 +80,12 @@ namespace SharpVk.Generator.Generation.Marshalling
                         });
                     }
 
-                    foreach(var lookup in subPatternInfo.HandleLookup)
+                    foreach (var lookup in subPatternInfo.HandleLookup)
                     {
                         info.HandleLookup.Add((lookup.Item1, x => lookup.Item2(value => x(value.FirstToLower()))));
                     }
 
-                    info.Public.AddRange(subPatternInfo.Public.Select(x=>
+                    info.Public.AddRange(subPatternInfo.Public.Select(x =>
                         new TypedDefinition
                         {
                             Name = x.Name.FirstToLower(),
@@ -91,6 +93,25 @@ namespace SharpVk.Generator.Generation.Marshalling
                             Type = x.Type,
                             DefaultValue = x.DefaultValue
                         }));
+                }
+
+                foreach (var extendStruct in infoTypeData.ExtendTypes)
+                {
+                    var extendType = this.typeData[extendStruct];
+
+                    string typeNamespace = "SharpVk";
+
+                    if (extendType.Extension != null)
+                    {
+                        typeNamespace += "." + string.Join(".", this.namespaceMap.Map(extendType.Extension));
+                    }
+
+                    info.Public.Add(new TypedDefinition
+                    {
+                        Name = extendType.Name.FirstToLower() + extendType.Extension,
+                        Type = $"{typeNamespace}.{extendType.Name}?",
+                        DefaultValue = Null
+                    });
                 }
 
                 return true;

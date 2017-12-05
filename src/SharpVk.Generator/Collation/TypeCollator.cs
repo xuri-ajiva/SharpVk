@@ -34,6 +34,7 @@ namespace SharpVk.Generator.Collation
                                         Extension = x.ExtensionNamespace?.FirstToUpper(),
                                         Pattern = x.Category.MapToPattern(),
                                         Members = GetMembers(x).ToList(),
+                                        ExtendTypes = this.types.Where(y => y.Extends == x.VkName).Select(y => y.VkName).ToList(),
                                         Type = x.Type,
                                         IsOutputOnly = x.IsReturnedOnly
                                     });
@@ -59,7 +60,7 @@ namespace SharpVk.Generator.Collation
             foreach (var type in typeData)
             {
                 var name = type.Value.Name;
-                
+
                 services.AddSingleton(new TypeNameMapping
                 {
                     VkName = type.Key,

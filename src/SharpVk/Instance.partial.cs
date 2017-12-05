@@ -23,13 +23,17 @@
         /// An array of enabledExtensionCount strings containing the names of
         /// extensions to enable.
         /// </param>
+        /// <param name="debugReportCallbackCreateInfoExt">
+        /// </param>
+        /// <param name="validationFlagsExt">
+        /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
         /// </param>
-        public static unsafe SharpVk.Instance Create(ArrayProxy<string>? enabledLayerNames, ArrayProxy<string>? enabledExtensionNames, SharpVk.InstanceCreateFlags? flags = default(SharpVk.InstanceCreateFlags?), SharpVk.ApplicationInfo? applicationInfo = default(SharpVk.ApplicationInfo?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public static unsafe SharpVk.Instance Create(ArrayProxy<string>? enabledLayerNames, ArrayProxy<string>? enabledExtensionNames, SharpVk.InstanceCreateFlags? flags = null, SharpVk.ApplicationInfo? applicationInfo = null, SharpVk.Multivendor.DebugReportCallbackCreateInfo? debugReportCallbackCreateInfoExt = null, SharpVk.Multivendor.ValidationFlags? validationFlagsExt = null, AllocationCallbacks? allocator = null)
         {
-            return Instance.Create(new CommandCache(new SharpVk.Interop.NativeLibrary(), "", null), enabledLayerNames, enabledExtensionNames, flags, applicationInfo, allocator);
+            return Instance.Create(new CommandCache(new SharpVk.Interop.NativeLibrary(), "", null), enabledLayerNames, enabledExtensionNames, flags, applicationInfo, debugReportCallbackCreateInfoExt, validationFlagsExt, allocator);
         }
 
         /// <summary>
