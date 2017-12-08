@@ -106,6 +106,8 @@ namespace SharpVk.Multivendor
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
         /// </param>
+        /// <param name="discardRectangles">
+        /// </param>
         public static unsafe void SetDiscardRectangle(this SharpVk.CommandBuffer extendedHandle, uint firstDiscardRectangle, ArrayProxy<SharpVk.Rect2D>? discardRectangles)
         {
             try

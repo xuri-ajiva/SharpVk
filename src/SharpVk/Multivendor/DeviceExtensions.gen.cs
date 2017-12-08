@@ -213,6 +213,10 @@ namespace SharpVk.Multivendor
         /// <param name="extendedHandle">
         /// The Device handle to extend.
         /// </param>
+        /// <param name="swapchains">
+        /// </param>
+        /// <param name="metadata">
+        /// </param>
         public static unsafe void SetHdrMetadata(this SharpVk.Device extendedHandle, ArrayProxy<SharpVk.Khronos.Swapchain>? swapchains, ArrayProxy<SharpVk.Multivendor.HdrMetadata>? metadata)
         {
             try
@@ -277,6 +281,8 @@ namespace SharpVk.Multivendor
         /// </summary>
         /// <param name="extendedHandle">
         /// The Device handle to extend.
+        /// </param>
+        /// <param name="initialData">
         /// </param>
         public static unsafe SharpVk.Multivendor.ValidationCache CreateValidationCache(this SharpVk.Device extendedHandle, ArrayProxy<byte>? initialData, SharpVk.Multivendor.ValidationCacheCreateFlags? flags = default(SharpVk.Multivendor.ValidationCacheCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {

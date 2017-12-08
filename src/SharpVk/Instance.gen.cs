@@ -68,6 +68,12 @@ namespace SharpVk
         /// An array of enabledExtensionCount strings containing the names of
         /// extensions to enable.
         /// </param>
+        /// <param name="debugReportCallbackCreateInfoExt">
+        /// Extension struct
+        /// </param>
+        /// <param name="validationFlagsExt">
+        /// Extension struct
+        /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.

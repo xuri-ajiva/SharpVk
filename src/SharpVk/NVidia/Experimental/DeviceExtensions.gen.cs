@@ -45,6 +45,8 @@ namespace SharpVk.NVidia.Experimental
         /// IndirectCommandsLayoutUsageFlagBitsNVX below for a description of
         /// the supported bits.
         /// </param>
+        /// <param name="tokens">
+        /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
@@ -116,6 +118,12 @@ namespace SharpVk.NVidia.Experimental
         /// </summary>
         /// <param name="extendedHandle">
         /// The Device handle to extend.
+        /// </param>
+        /// <param name="objectEntryTypes">
+        /// </param>
+        /// <param name="objectEntryCounts">
+        /// </param>
+        /// <param name="objectEntryUsageFlags">
         /// </param>
         /// <param name="maxUniformBuffersPerDescriptor">
         /// The maximum number of VK_DESCRIPTOR_TYPE_UNIFORM_BUFFER or

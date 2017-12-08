@@ -83,6 +83,10 @@ namespace SharpVk.NVidia.Experimental
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="objectTableEntries">
+        /// </param>
+        /// <param name="objectIndices">
+        /// </param>
         public unsafe void RegisterObjects(ArrayProxy<SharpVk.NVidia.Experimental.ObjectTableEntry>? objectTableEntries, ArrayProxy<uint>? objectIndices)
         {
             try
@@ -154,6 +158,10 @@ namespace SharpVk.NVidia.Experimental
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="objectEntryTypes">
+        /// </param>
+        /// <param name="objectIndices">
+        /// </param>
         public unsafe void UnregisterObjects(ArrayProxy<SharpVk.NVidia.Experimental.ObjectEntryType>? objectEntryTypes, ArrayProxy<uint>? objectIndices)
         {
             try

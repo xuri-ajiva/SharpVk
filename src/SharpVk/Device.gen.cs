@@ -148,6 +148,39 @@ namespace SharpVk
         /// The memory type index, which selects the properties of the memory
         /// to be allocated, as well as the heap the memory will come from.
         /// </param>
+        /// <param name="dedicatedAllocationMemoryAllocateInfoNv">
+        /// Extension struct
+        /// </param>
+        /// <param name="exportMemoryAllocateInfoNv">
+        /// Extension struct
+        /// </param>
+        /// <param name="importMemoryWin32HandleInfoNv">
+        /// Extension struct
+        /// </param>
+        /// <param name="exportMemoryWin32HandleInfoNv">
+        /// Extension struct
+        /// </param>
+        /// <param name="exportMemoryAllocateInfoKhr">
+        /// Extension struct
+        /// </param>
+        /// <param name="importMemoryWin32HandleInfoKhr">
+        /// Extension struct
+        /// </param>
+        /// <param name="exportMemoryWin32HandleInfoKhr">
+        /// Extension struct
+        /// </param>
+        /// <param name="importMemoryFileDescriptorInfoKhr">
+        /// Extension struct
+        /// </param>
+        /// <param name="memoryAllocateFlagsInfoKhx">
+        /// Extension struct
+        /// </param>
+        /// <param name="memoryDedicatedAllocateInfoKhr">
+        /// Extension struct
+        /// </param>
+        /// <param name="importMemoryHostPointerInfoExt">
+        /// Extension struct
+        /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
@@ -281,6 +314,8 @@ namespace SharpVk
         /// <summary>
         /// Flush mapped memory ranges.
         /// </summary>
+        /// <param name="memoryRanges">
+        /// </param>
         public unsafe void FlushMappedMemoryRanges(ArrayProxy<SharpVk.MappedMemoryRange>? memoryRanges)
         {
             try
@@ -323,6 +358,8 @@ namespace SharpVk
         /// <summary>
         /// Invalidate ranges of mapped memory objects.
         /// </summary>
+        /// <param name="memoryRanges">
+        /// </param>
         public unsafe void InvalidateMappedMemoryRanges(ArrayProxy<SharpVk.MappedMemoryRange>? memoryRanges)
         {
             try
@@ -368,6 +405,12 @@ namespace SharpVk
         /// <param name="flags">
         /// flags defines the initial state and behavior of the fence. Bits
         /// which can be set include: + --
+        /// </param>
+        /// <param name="exportFenceCreateInfoKhr">
+        /// Extension struct
+        /// </param>
+        /// <param name="exportFenceWin32HandleInfoKhr">
+        /// Extension struct
         /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
@@ -436,6 +479,8 @@ namespace SharpVk
         /// <summary>
         /// Resets one or more fence objects.
         /// </summary>
+        /// <param name="fences">
+        /// </param>
         public unsafe void ResetFences(ArrayProxy<SharpVk.Fence>? fences)
         {
             try
@@ -478,6 +523,8 @@ namespace SharpVk
         /// <summary>
         /// Wait for one or more fences to become signaled.
         /// </summary>
+        /// <param name="fences">
+        /// </param>
         public unsafe Result WaitForFences(ArrayProxy<SharpVk.Fence>? fences, bool waitAll, ulong timeout)
         {
             try
@@ -524,6 +571,12 @@ namespace SharpVk
         /// </summary>
         /// <param name="flags">
         /// Reserved for future use.
+        /// </param>
+        /// <param name="exportSemaphoreCreateInfoKhr">
+        /// Extension struct
+        /// </param>
+        /// <param name="exportSemaphoreWin32HandleInfoKhr">
+        /// Extension struct
         /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
@@ -725,6 +778,14 @@ namespace SharpVk
         /// <param name="sharingMode">
         /// The sharing mode of the buffer when it will be accessed by multiple
         /// queue families.
+        /// </param>
+        /// <param name="queueFamilyIndices">
+        /// </param>
+        /// <param name="dedicatedAllocationBufferCreateInfoNv">
+        /// Extension struct
+        /// </param>
+        /// <param name="externalMemoryBufferCreateInfoKhr">
+        /// Extension struct
         /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
@@ -935,10 +996,27 @@ namespace SharpVk
         /// queue families, and must be one of the values described for
         /// SharingMode in the Resource Sharing section below.
         /// </param>
+        /// <param name="queueFamilyIndices">
+        /// </param>
         /// <param name="initialLayout">
         /// initialLayout selects the initial ImageLayout state of all image
         /// subresources of the image. See Image Layouts. initialLayout must be
         /// VK_IMAGE_LAYOUT_UNDEFINED or VK_IMAGE_LAYOUT_PREINITIALIZED.
+        /// </param>
+        /// <param name="dedicatedAllocationImageCreateInfoNv">
+        /// Extension struct
+        /// </param>
+        /// <param name="externalMemoryImageCreateInfoNv">
+        /// Extension struct
+        /// </param>
+        /// <param name="externalMemoryImageCreateInfoKhr">
+        /// Extension struct
+        /// </param>
+        /// <param name="imageSwapchainCreateInfoKhx">
+        /// Extension struct
+        /// </param>
+        /// <param name="imageFormatListCreateInfoKhr">
+        /// Extension struct
         /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
@@ -1085,6 +1163,9 @@ namespace SharpVk
         /// A ImageSubresourceRange selecting the set of mipmap levels and
         /// array layers to be accessible to the view.
         /// </param>
+        /// <param name="imageViewUsageCreateInfoKhr">
+        /// Extension struct
+        /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
@@ -1154,6 +1235,11 @@ namespace SharpVk
         /// </param>
         /// <param name="codeSize">
         /// The size, in bytes, of the code pointed to by pCode.
+        /// </param>
+        /// <param name="code">
+        /// </param>
+        /// <param name="shaderModuleValidationCacheCreateInfoExt">
+        /// Extension struct
         /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
@@ -1239,6 +1325,8 @@ namespace SharpVk
         /// <param name="flags">
         /// Reserved for future use.
         /// </param>
+        /// <param name="initialData">
+        /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
@@ -1312,6 +1400,8 @@ namespace SharpVk
         /// <summary>
         /// Create graphics pipelines.
         /// </summary>
+        /// <param name="createInfos">
+        /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
@@ -1385,8 +1475,231 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// Create graphics pipelines.
+        /// </summary>
+        /// <param name="flags">
+        /// A bitmask of PipelineCreateFlagBits controlling how the pipeline
+        /// will be generated, as described below.
+        /// </param>
+        /// <param name="stages">
+        /// </param>
+        /// <param name="vertexInputState">
+        /// An instance of the PipelineVertexInputStateCreateInfo structure.
+        /// </param>
+        /// <param name="inputAssemblyState">
+        /// An instance of the PipelineInputAssemblyStateCreateInfo structure
+        /// which determines input assembly behavior, as described in Drawing
+        /// Commands.
+        /// </param>
+        /// <param name="tessellationState">
+        /// An instance of the PipelineTessellationStateCreateInfo structure,
+        /// or Null if the pipeline does not include a tessellation control
+        /// shader stage and tessellation evaluation shader stage.
+        /// </param>
+        /// <param name="viewportState">
+        /// An instance of the PipelineViewportStateCreateInfo structure, or
+        /// Null if the pipeline has rasterization disabled.
+        /// </param>
+        /// <param name="rasterizationState">
+        /// An instance of the PipelineRasterizationStateCreateInfo structure.
+        /// </param>
+        /// <param name="multisampleState">
+        /// An instance of the PipelineMultisampleStateCreateInfo, or Null if
+        /// the pipeline has rasterization disabled.
+        /// </param>
+        /// <param name="depthStencilState">
+        /// An instance of the PipelineDepthStencilStateCreateInfo structure,
+        /// or Null if the pipeline has rasterization disabled or if the
+        /// subpass of the render pass the pipeline is created against does not
+        /// use a depth/stencil attachment.
+        /// </param>
+        /// <param name="colorBlendState">
+        /// An instance of the PipelineColorBlendStateCreateInfo structure, or
+        /// Null if the pipeline has rasterization disabled or if the subpass
+        /// of the render pass the pipeline is created against does not use any
+        /// color attachments.
+        /// </param>
+        /// <param name="dynamicState">
+        /// A pointer to PipelineDynamicStateCreateInfo and is used to indicate
+        /// which properties of the pipeline state object are dynamic and can
+        /// be changed independently of the pipeline state. This can be Null,
+        /// which means no state in the pipeline is considered dynamic.
+        /// </param>
+        /// <param name="layout">
+        /// The description of binding locations used by both the pipeline and
+        /// descriptor sets used with the pipeline.
+        /// </param>
+        /// <param name="renderPass">
+        /// A handle to a render pass object describing the environment in
+        /// which the pipeline will be used; the pipeline must only be used
+        /// with an instance of any render pass compatible with the one
+        /// provided. See Render Pass Compatibility for more information.
+        /// </param>
+        /// <param name="subpass">
+        /// The index of the subpass in the render pass where this pipeline
+        /// will be used.
+        /// </param>
+        /// <param name="basePipelineHandle">
+        /// A pipeline to derive from.
+        /// </param>
+        /// <param name="basePipelineIndex">
+        /// An index into the pCreateInfos parameter to use as a pipeline to
+        /// derive from.
+        /// </param>
+        /// <param name="pipelineDiscardRectangleStateCreateInfoExt">
+        /// Extension struct
+        /// </param>
+        /// <param name="allocator">
+        /// An optional AllocationCallbacks instance that controls host memory
+        /// allocation.
+        /// </param>
+        public unsafe SharpVk.Pipeline CreateGraphicsPipeline(SharpVk.PipelineCache pipelineCache, ArrayProxy<SharpVk.PipelineShaderStageCreateInfo>? stages, SharpVk.PipelineVertexInputStateCreateInfo vertexInputState, SharpVk.PipelineInputAssemblyStateCreateInfo inputAssemblyState, SharpVk.PipelineRasterizationStateCreateInfo rasterizationState, SharpVk.PipelineLayout layout, SharpVk.RenderPass renderPass, uint subpass, SharpVk.Pipeline basePipelineHandle, int basePipelineIndex, SharpVk.PipelineCreateFlags? flags = default(SharpVk.PipelineCreateFlags?), SharpVk.PipelineTessellationStateCreateInfo? tessellationState = default(SharpVk.PipelineTessellationStateCreateInfo?), SharpVk.PipelineViewportStateCreateInfo? viewportState = default(SharpVk.PipelineViewportStateCreateInfo?), SharpVk.PipelineMultisampleStateCreateInfo? multisampleState = default(SharpVk.PipelineMultisampleStateCreateInfo?), SharpVk.PipelineDepthStencilStateCreateInfo? depthStencilState = default(SharpVk.PipelineDepthStencilStateCreateInfo?), SharpVk.PipelineColorBlendStateCreateInfo? colorBlendState = default(SharpVk.PipelineColorBlendStateCreateInfo?), SharpVk.PipelineDynamicStateCreateInfo? dynamicState = default(SharpVk.PipelineDynamicStateCreateInfo?), SharpVk.Multivendor.PipelineDiscardRectangleStateCreateInfo? pipelineDiscardRectangleStateCreateInfoExt = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        {
+            try
+            {
+                SharpVk.Pipeline result = default(SharpVk.Pipeline);
+                uint createInfoCount = default(uint);
+                SharpVk.Interop.GraphicsPipelineCreateInfo* marshalledCreateInfos = default(SharpVk.Interop.GraphicsPipelineCreateInfo*);
+                void* nextPointer = default(void*);
+                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                SharpVk.Interop.Pipeline* marshalledPipelines = default(SharpVk.Interop.Pipeline*);
+                if (pipelineDiscardRectangleStateCreateInfoExt != null)
+                {
+                    SharpVk.Interop.Multivendor.PipelineDiscardRectangleStateCreateInfo* extensionPointer = default(SharpVk.Interop.Multivendor.PipelineDiscardRectangleStateCreateInfo*);
+                    extensionPointer = (SharpVk.Interop.Multivendor.PipelineDiscardRectangleStateCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.PipelineDiscardRectangleStateCreateInfo>());
+                    pipelineDiscardRectangleStateCreateInfoExt.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = nextPointer;
+                    nextPointer = extensionPointer;
+                }
+                createInfoCount = 1;
+                marshalledCreateInfos = (SharpVk.Interop.GraphicsPipelineCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.GraphicsPipelineCreateInfo>());
+                marshalledCreateInfos->SType = StructureType.GraphicsPipelineCreateInfo;
+                marshalledCreateInfos->Next = nextPointer;
+                if (flags != null)
+                {
+                    marshalledCreateInfos->Flags = flags.Value;
+                }
+                else
+                {
+                    marshalledCreateInfos->Flags = default(SharpVk.PipelineCreateFlags);
+                }
+                marshalledCreateInfos->StageCount = (uint)(Interop.HeapUtil.GetLength(stages));
+                if (stages.IsNull())
+                {
+                    marshalledCreateInfos->Stages = null;
+                }
+                else
+                {
+                    if (stages.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledCreateInfos->Stages = (SharpVk.Interop.PipelineShaderStageCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PipelineShaderStageCreateInfo>());
+                        stages.Value.GetSingleValue().MarshalTo(&*(SharpVk.Interop.PipelineShaderStageCreateInfo*)(marshalledCreateInfos->Stages));
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.Interop.PipelineShaderStageCreateInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.PipelineShaderStageCreateInfo>(Interop.HeapUtil.GetLength(stages.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(stages.Value)); index++)
+                        {
+                            stages.Value[index].MarshalTo(&fieldPointer[index]);
+                        }
+                        marshalledCreateInfos->Stages = fieldPointer;
+                    }
+                }
+                marshalledCreateInfos->VertexInputState = (SharpVk.Interop.PipelineVertexInputStateCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PipelineVertexInputStateCreateInfo>());
+                vertexInputState.MarshalTo(marshalledCreateInfos->VertexInputState);
+                marshalledCreateInfos->InputAssemblyState = (SharpVk.Interop.PipelineInputAssemblyStateCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PipelineInputAssemblyStateCreateInfo>());
+                inputAssemblyState.MarshalTo(marshalledCreateInfos->InputAssemblyState);
+                if (tessellationState != null)
+                {
+                    marshalledCreateInfos->TessellationState = (SharpVk.Interop.PipelineTessellationStateCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PipelineTessellationStateCreateInfo>());
+                    tessellationState.Value.MarshalTo(marshalledCreateInfos->TessellationState);
+                }
+                else
+                {
+                    marshalledCreateInfos->TessellationState = default(SharpVk.Interop.PipelineTessellationStateCreateInfo*);
+                }
+                if (viewportState != null)
+                {
+                    marshalledCreateInfos->ViewportState = (SharpVk.Interop.PipelineViewportStateCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PipelineViewportStateCreateInfo>());
+                    viewportState.Value.MarshalTo(marshalledCreateInfos->ViewportState);
+                }
+                else
+                {
+                    marshalledCreateInfos->ViewportState = default(SharpVk.Interop.PipelineViewportStateCreateInfo*);
+                }
+                marshalledCreateInfos->RasterizationState = (SharpVk.Interop.PipelineRasterizationStateCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PipelineRasterizationStateCreateInfo>());
+                rasterizationState.MarshalTo(marshalledCreateInfos->RasterizationState);
+                if (multisampleState != null)
+                {
+                    marshalledCreateInfos->MultisampleState = (SharpVk.Interop.PipelineMultisampleStateCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PipelineMultisampleStateCreateInfo>());
+                    multisampleState.Value.MarshalTo(marshalledCreateInfos->MultisampleState);
+                }
+                else
+                {
+                    marshalledCreateInfos->MultisampleState = default(SharpVk.Interop.PipelineMultisampleStateCreateInfo*);
+                }
+                if (depthStencilState != null)
+                {
+                    marshalledCreateInfos->DepthStencilState = (SharpVk.Interop.PipelineDepthStencilStateCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PipelineDepthStencilStateCreateInfo>());
+                    depthStencilState.Value.MarshalTo(marshalledCreateInfos->DepthStencilState);
+                }
+                else
+                {
+                    marshalledCreateInfos->DepthStencilState = default(SharpVk.Interop.PipelineDepthStencilStateCreateInfo*);
+                }
+                if (colorBlendState != null)
+                {
+                    marshalledCreateInfos->ColorBlendState = (SharpVk.Interop.PipelineColorBlendStateCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PipelineColorBlendStateCreateInfo>());
+                    colorBlendState.Value.MarshalTo(marshalledCreateInfos->ColorBlendState);
+                }
+                else
+                {
+                    marshalledCreateInfos->ColorBlendState = default(SharpVk.Interop.PipelineColorBlendStateCreateInfo*);
+                }
+                if (dynamicState != null)
+                {
+                    marshalledCreateInfos->DynamicState = (SharpVk.Interop.PipelineDynamicStateCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PipelineDynamicStateCreateInfo>());
+                    dynamicState.Value.MarshalTo(marshalledCreateInfos->DynamicState);
+                }
+                else
+                {
+                    marshalledCreateInfos->DynamicState = default(SharpVk.Interop.PipelineDynamicStateCreateInfo*);
+                }
+                marshalledCreateInfos->Layout = layout?.handle ?? default(SharpVk.Interop.PipelineLayout);
+                marshalledCreateInfos->RenderPass = renderPass?.handle ?? default(SharpVk.Interop.RenderPass);
+                marshalledCreateInfos->Subpass = subpass;
+                marshalledCreateInfos->BasePipelineHandle = basePipelineHandle?.handle ?? default(SharpVk.Interop.Pipeline);
+                marshalledCreateInfos->BasePipelineIndex = basePipelineIndex;
+                if (allocator != null)
+                {
+                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
+                    allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                else
+                {
+                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                }
+                marshalledPipelines = (SharpVk.Interop.Pipeline*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Pipeline>(1));
+                SharpVk.Interop.VkDeviceCreateGraphicsPipelinesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceCreateGraphicsPipelinesDelegate>("vkCreateGraphicsPipelines", "");
+                Result methodResult = commandDelegate(this.handle, pipelineCache?.handle ?? default(SharpVk.Interop.PipelineCache), createInfoCount, marshalledCreateInfos, marshalledAllocator, marshalledPipelines);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = new SharpVk.Pipeline(this, *marshalledPipelines);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
         /// Creates a new compute pipeline object.
         /// </summary>
+        /// <param name="createInfos">
+        /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
@@ -1460,10 +1773,90 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// Creates a new compute pipeline object.
+        /// </summary>
+        /// <param name="flags">
+        /// flags provides options for pipeline creation, and is of type
+        /// PipelineCreateFlagBits.
+        /// </param>
+        /// <param name="stage">
+        /// A PipelineShaderStageCreateInfo describing the compute shader.
+        /// </param>
+        /// <param name="layout">
+        /// The description of binding locations used by both the pipeline and
+        /// descriptor sets used with the pipeline.
+        /// </param>
+        /// <param name="basePipelineHandle">
+        /// A pipeline to derive from
+        /// </param>
+        /// <param name="basePipelineIndex">
+        /// An index into the pCreateInfos parameter to use as a pipeline to
+        /// derive from
+        /// </param>
+        /// <param name="allocator">
+        /// An optional AllocationCallbacks instance that controls host memory
+        /// allocation.
+        /// </param>
+        public unsafe SharpVk.Pipeline CreateComputePipeline(SharpVk.PipelineCache pipelineCache, SharpVk.PipelineShaderStageCreateInfo stage, SharpVk.PipelineLayout layout, SharpVk.Pipeline basePipelineHandle, int basePipelineIndex, SharpVk.PipelineCreateFlags? flags = default(SharpVk.PipelineCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        {
+            try
+            {
+                SharpVk.Pipeline result = default(SharpVk.Pipeline);
+                uint createInfoCount = default(uint);
+                SharpVk.Interop.ComputePipelineCreateInfo* marshalledCreateInfos = default(SharpVk.Interop.ComputePipelineCreateInfo*);
+                void* nextPointer = default(void*);
+                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                SharpVk.Interop.Pipeline* marshalledPipelines = default(SharpVk.Interop.Pipeline*);
+                createInfoCount = 1;
+                marshalledCreateInfos = (SharpVk.Interop.ComputePipelineCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.ComputePipelineCreateInfo>());
+                marshalledCreateInfos->SType = StructureType.ComputePipelineCreateInfo;
+                marshalledCreateInfos->Next = nextPointer;
+                if (flags != null)
+                {
+                    marshalledCreateInfos->Flags = flags.Value;
+                }
+                else
+                {
+                    marshalledCreateInfos->Flags = default(SharpVk.PipelineCreateFlags);
+                }
+                stage.MarshalTo(&marshalledCreateInfos->Stage);
+                marshalledCreateInfos->Layout = layout?.handle ?? default(SharpVk.Interop.PipelineLayout);
+                marshalledCreateInfos->BasePipelineHandle = basePipelineHandle?.handle ?? default(SharpVk.Interop.Pipeline);
+                marshalledCreateInfos->BasePipelineIndex = basePipelineIndex;
+                if (allocator != null)
+                {
+                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
+                    allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                else
+                {
+                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                }
+                marshalledPipelines = (SharpVk.Interop.Pipeline*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Pipeline>(1));
+                SharpVk.Interop.VkDeviceCreateComputePipelinesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceCreateComputePipelinesDelegate>("vkCreateComputePipelines", "");
+                Result methodResult = commandDelegate(this.handle, pipelineCache?.handle ?? default(SharpVk.Interop.PipelineCache), createInfoCount, marshalledCreateInfos, marshalledAllocator, marshalledPipelines);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = new SharpVk.Pipeline(this, *marshalledPipelines);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
         /// Creates a new pipeline layout object.
         /// </summary>
         /// <param name="flags">
         /// Reserved for future use.
+        /// </param>
+        /// <param name="setLayouts">
+        /// </param>
+        /// <param name="pushConstantRanges">
         /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
@@ -1566,6 +1959,9 @@ namespace SharpVk
         /// <param name="magFilter">
         /// The magnification filter to apply to lookups.
         /// </param>
+        /// <param name="samplerReductionModeCreateInfoExt">
+        /// Extension struct
+        /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
@@ -1645,6 +2041,8 @@ namespace SharpVk
         /// of type DescriptorSetLayoutCreateFlags. Bits which can be set
         /// include: + --
         /// </param>
+        /// <param name="bindings">
+        /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
@@ -1721,6 +2119,8 @@ namespace SharpVk
         /// <param name="flags">
         /// Specifies certain supported operations on the pool. Bits which can
         /// be set include: + --
+        /// </param>
+        /// <param name="poolSizes">
         /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
@@ -1799,6 +2199,8 @@ namespace SharpVk
         /// <param name="descriptorPool">
         /// The pool which the sets will be allocated from.
         /// </param>
+        /// <param name="setLayouts">
+        /// </param>
         public unsafe SharpVk.DescriptorSet[] AllocateDescriptorSets(SharpVk.DescriptorPool descriptorPool, ArrayProxy<SharpVk.DescriptorSetLayout>? setLayouts)
         {
             try
@@ -1862,8 +2264,53 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// Allocate one or more descriptor sets.
+        /// </summary>
+        /// <param name="descriptorPool">
+        /// The pool which the sets will be allocated from.
+        /// </param>
+        /// <param name="setLayouts">
+        /// An array of descriptor set layouts, with each member specifying how
+        /// the corresponding descriptor set is allocated.
+        /// </param>
+        public unsafe SharpVk.DescriptorSet AllocateDescriptorSet(SharpVk.DescriptorPool descriptorPool, SharpVk.DescriptorSetLayout setLayouts)
+        {
+            try
+            {
+                SharpVk.DescriptorSet result = default(SharpVk.DescriptorSet);
+                SharpVk.Interop.DescriptorSetAllocateInfo* marshalledAllocateInfo = default(SharpVk.Interop.DescriptorSetAllocateInfo*);
+                void* nextPointer = default(void*);
+                SharpVk.Interop.DescriptorSet* marshalledDescriptorSets = default(SharpVk.Interop.DescriptorSet*);
+                marshalledAllocateInfo = (SharpVk.Interop.DescriptorSetAllocateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.DescriptorSetAllocateInfo>());
+                marshalledAllocateInfo->SType = StructureType.DescriptorSetAllocateInfo;
+                marshalledAllocateInfo->Next = nextPointer;
+                marshalledAllocateInfo->DescriptorPool = descriptorPool?.handle ?? default(SharpVk.Interop.DescriptorPool);
+                marshalledAllocateInfo->DescriptorSetCount = 1;
+                marshalledAllocateInfo->SetLayouts = (SharpVk.Interop.DescriptorSetLayout*)(Interop.HeapUtil.Allocate<SharpVk.Interop.DescriptorSetLayout>());
+                *marshalledAllocateInfo->SetLayouts = setLayouts.handle;
+                marshalledDescriptorSets = (SharpVk.Interop.DescriptorSet*)(Interop.HeapUtil.Allocate<SharpVk.Interop.DescriptorSet>(1));
+                SharpVk.Interop.VkDeviceAllocateDescriptorSetsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceAllocateDescriptorSetsDelegate>("vkAllocateDescriptorSets", "");
+                Result methodResult = commandDelegate(this.handle, marshalledAllocateInfo, marshalledDescriptorSets);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = new SharpVk.DescriptorSet(descriptorPool, *marshalledDescriptorSets);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
         /// Update the contents of a descriptor set object.
         /// </summary>
+        /// <param name="descriptorWrites">
+        /// </param>
+        /// <param name="descriptorCopies">
+        /// </param>
         public unsafe void UpdateDescriptorSets(ArrayProxy<SharpVk.WriteDescriptorSet>? descriptorWrites, ArrayProxy<SharpVk.CopyDescriptorSet>? descriptorCopies)
         {
             try
@@ -1930,6 +2377,8 @@ namespace SharpVk
         /// <param name="renderPass">
         /// A render pass that defines what render passes the framebuffer will
         /// be compatible with. See Render Pass Compatibility for details.
+        /// </param>
+        /// <param name="attachments">
         /// </param>
         /// <param name="width">
         /// width, height and layers define the dimensions of the framebuffer.
@@ -2017,6 +2466,18 @@ namespace SharpVk
         /// </summary>
         /// <param name="flags">
         /// Reserved for future use.
+        /// </param>
+        /// <param name="attachments">
+        /// </param>
+        /// <param name="subpasses">
+        /// </param>
+        /// <param name="dependencies">
+        /// </param>
+        /// <param name="renderPassMultiviewCreateInfoKhx">
+        /// Extension struct
+        /// </param>
+        /// <param name="renderPassInputAttachmentAspectCreateInfoKhr">
+        /// Extension struct
         /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
@@ -2248,6 +2709,46 @@ namespace SharpVk
                 {
                     result = null;
                 }
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// Allocate command buffers from an existing command pool.
+        /// </summary>
+        /// <param name="commandPool">
+        /// The command pool from which the command buffers are allocated.
+        /// </param>
+        /// <param name="level">
+        /// level determines whether the command buffers are primary or
+        /// secondary command buffers. Possible values include: + --
+        /// </param>
+        public unsafe SharpVk.CommandBuffer AllocateCommandBuffer(SharpVk.CommandPool commandPool, SharpVk.CommandBufferLevel level)
+        {
+            try
+            {
+                SharpVk.CommandBuffer result = default(SharpVk.CommandBuffer);
+                SharpVk.Interop.CommandBufferAllocateInfo* marshalledAllocateInfo = default(SharpVk.Interop.CommandBufferAllocateInfo*);
+                void* nextPointer = default(void*);
+                SharpVk.Interop.CommandBuffer* marshalledCommandBuffers = default(SharpVk.Interop.CommandBuffer*);
+                marshalledAllocateInfo = (SharpVk.Interop.CommandBufferAllocateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.CommandBufferAllocateInfo>());
+                marshalledAllocateInfo->SType = StructureType.CommandBufferAllocateInfo;
+                marshalledAllocateInfo->Next = nextPointer;
+                marshalledAllocateInfo->CommandPool = commandPool?.handle ?? default(SharpVk.Interop.CommandPool);
+                marshalledAllocateInfo->Level = level;
+                marshalledAllocateInfo->CommandBufferCount = 1;
+                marshalledCommandBuffers = (SharpVk.Interop.CommandBuffer*)(Interop.HeapUtil.Allocate<SharpVk.Interop.CommandBuffer>(1));
+                SharpVk.Interop.VkDeviceAllocateCommandBuffersDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceAllocateCommandBuffersDelegate>("vkAllocateCommandBuffers", "");
+                Result methodResult = commandDelegate(this.handle, marshalledAllocateInfo, marshalledCommandBuffers);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = new SharpVk.CommandBuffer(commandPool, *marshalledCommandBuffers);
                 return result;
             }
             finally

@@ -37,6 +37,8 @@ namespace SharpVk.NVidia
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
         /// </param>
+        /// <param name="viewportWScalings">
+        /// </param>
         public static unsafe void SetViewportWScaling(this SharpVk.CommandBuffer extendedHandle, uint firstViewport, ArrayProxy<SharpVk.NVidia.ViewportWScaling>? viewportWScalings)
         {
             try

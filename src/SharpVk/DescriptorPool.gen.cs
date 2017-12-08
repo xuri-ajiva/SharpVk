@@ -112,6 +112,8 @@ namespace SharpVk
         /// <summary>
         /// Free one or more descriptor sets.
         /// </summary>
+        /// <param name="descriptorSets">
+        /// </param>
         public unsafe void FreeDescriptorSets(ArrayProxy<SharpVk.DescriptorSet>? descriptorSets)
         {
             try

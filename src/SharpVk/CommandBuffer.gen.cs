@@ -56,6 +56,9 @@ namespace SharpVk
         /// A bitmask indicating usage behavior for the command buffer. Bits
         /// which can be set include: + --
         /// </param>
+        /// <param name="deviceGroupCommandBufferBeginInfoKhx">
+        /// Extension struct
+        /// </param>
         public unsafe void Begin(SharpVk.CommandBufferUsageFlags? flags = default(SharpVk.CommandBufferUsageFlags?), SharpVk.CommandBufferInheritanceInfo? inheritanceInfo = default(SharpVk.CommandBufferInheritanceInfo?), SharpVk.Khronos.Experimental.DeviceGroupCommandBufferBeginInfo? deviceGroupCommandBufferBeginInfoKhx = null)
         {
             try
@@ -171,6 +174,8 @@ namespace SharpVk
         /// <summary>
         /// Set the viewport on a command buffer.
         /// </summary>
+        /// <param name="viewports">
+        /// </param>
         public unsafe void SetViewport(uint firstViewport, ArrayProxy<SharpVk.Viewport>? viewports)
         {
             try
@@ -209,6 +214,8 @@ namespace SharpVk
         /// <summary>
         /// Set the dynamic scissor rectangles on a command buffer.
         /// </summary>
+        /// <param name="scissors">
+        /// </param>
         public unsafe void SetScissor(uint firstScissor, ArrayProxy<SharpVk.Rect2D>? scissors)
         {
             try
@@ -359,6 +366,10 @@ namespace SharpVk
         /// <summary>
         /// Binds descriptor sets to a command buffer.
         /// </summary>
+        /// <param name="descriptorSets">
+        /// </param>
+        /// <param name="dynamicOffsets">
+        /// </param>
         public unsafe void BindDescriptorSets(SharpVk.PipelineBindPoint pipelineBindPoint, SharpVk.PipelineLayout layout, uint firstSet, ArrayProxy<SharpVk.DescriptorSet>? descriptorSets, ArrayProxy<uint>? dynamicOffsets)
         {
             try
@@ -435,6 +446,10 @@ namespace SharpVk
         /// <summary>
         /// Bind vertex buffers to a command buffer.
         /// </summary>
+        /// <param name="buffers">
+        /// </param>
+        /// <param name="offsets">
+        /// </param>
         public unsafe void BindVertexBuffers(uint firstBinding, ArrayProxy<SharpVk.Buffer>? buffers, ArrayProxy<DeviceSize>? offsets)
         {
             try
@@ -591,6 +606,8 @@ namespace SharpVk
         /// <summary>
         /// Copy data between buffer regions.
         /// </summary>
+        /// <param name="regions">
+        /// </param>
         public unsafe void CopyBuffer(SharpVk.Buffer sourceBuffer, SharpVk.Buffer destinationBuffer, ArrayProxy<SharpVk.BufferCopy>? regions)
         {
             try
@@ -629,6 +646,8 @@ namespace SharpVk
         /// <summary>
         /// Copy data between images.
         /// </summary>
+        /// <param name="regions">
+        /// </param>
         public unsafe void CopyImage(SharpVk.Image sourceImage, SharpVk.ImageLayout sourceImageLayout, SharpVk.Image destinationImage, SharpVk.ImageLayout destinationImageLayout, ArrayProxy<SharpVk.ImageCopy>? regions)
         {
             try
@@ -668,6 +687,8 @@ namespace SharpVk
         /// Copy regions of an image, potentially performing format
         /// conversion,.
         /// </summary>
+        /// <param name="regions">
+        /// </param>
         public unsafe void BlitImage(SharpVk.Image sourceImage, SharpVk.ImageLayout sourceImageLayout, SharpVk.Image destinationImage, SharpVk.ImageLayout destinationImageLayout, ArrayProxy<SharpVk.ImageBlit>? regions, SharpVk.Filter filter)
         {
             try
@@ -706,6 +727,8 @@ namespace SharpVk
         /// <summary>
         /// Copy data from a buffer into an image.
         /// </summary>
+        /// <param name="regions">
+        /// </param>
         public unsafe void CopyBufferToImage(SharpVk.Buffer sourceBuffer, SharpVk.Image destinationImage, SharpVk.ImageLayout destinationImageLayout, ArrayProxy<SharpVk.BufferImageCopy>? regions)
         {
             try
@@ -744,6 +767,8 @@ namespace SharpVk
         /// <summary>
         /// Copy image data into a buffer.
         /// </summary>
+        /// <param name="regions">
+        /// </param>
         public unsafe void CopyImageToBuffer(SharpVk.Image sourceImage, SharpVk.ImageLayout sourceImageLayout, SharpVk.Buffer destinationBuffer, ArrayProxy<SharpVk.BufferImageCopy>? regions)
         {
             try
@@ -782,6 +807,8 @@ namespace SharpVk
         /// <summary>
         /// Update a buffer's contents from host memory.
         /// </summary>
+        /// <param name="data">
+        /// </param>
         public unsafe void UpdateBuffer(SharpVk.Buffer destinationBuffer, DeviceSize destinationOffset, ArrayProxy<byte>? data)
         {
             try
@@ -836,6 +863,8 @@ namespace SharpVk
         /// <summary>
         /// Clear regions of a color image.
         /// </summary>
+        /// <param name="ranges">
+        /// </param>
         public unsafe void ClearColorImage(SharpVk.Image image, SharpVk.ImageLayout imageLayout, SharpVk.ClearColorValue color, ArrayProxy<SharpVk.ImageSubresourceRange>? ranges)
         {
             try
@@ -877,6 +906,8 @@ namespace SharpVk
         /// <summary>
         /// Fill regions of a combined depth/stencil image.
         /// </summary>
+        /// <param name="ranges">
+        /// </param>
         public unsafe void ClearDepthStencilImage(SharpVk.Image image, SharpVk.ImageLayout imageLayout, SharpVk.ClearDepthStencilValue depthStencil, ArrayProxy<SharpVk.ImageSubresourceRange>? ranges)
         {
             try
@@ -918,6 +949,10 @@ namespace SharpVk
         /// <summary>
         /// Clear regions within currently bound framebuffer attachments.
         /// </summary>
+        /// <param name="attachments">
+        /// </param>
+        /// <param name="rects">
+        /// </param>
         public unsafe void ClearAttachments(ArrayProxy<SharpVk.ClearAttachment>? attachments, ArrayProxy<SharpVk.ClearRect>? rects)
         {
             try
@@ -978,6 +1013,8 @@ namespace SharpVk
         /// <summary>
         /// Resolve regions of an image.
         /// </summary>
+        /// <param name="regions">
+        /// </param>
         public unsafe void ResolveImage(SharpVk.Image sourceImage, SharpVk.ImageLayout sourceImageLayout, SharpVk.Image destinationImage, SharpVk.ImageLayout destinationImageLayout, ArrayProxy<SharpVk.ImageResolve>? regions)
         {
             try
@@ -1048,6 +1085,14 @@ namespace SharpVk
         /// <summary>
         /// Wait for one or more events and insert a set of memory.
         /// </summary>
+        /// <param name="events">
+        /// </param>
+        /// <param name="memoryBarriers">
+        /// </param>
+        /// <param name="bufferMemoryBarriers">
+        /// </param>
+        /// <param name="imageMemoryBarriers">
+        /// </param>
         public unsafe void WaitEvents(ArrayProxy<SharpVk.Event>? events, SharpVk.PipelineStageFlags sourceStageMask, SharpVk.PipelineStageFlags destinationStageMask, ArrayProxy<SharpVk.MemoryBarrier>? memoryBarriers, ArrayProxy<SharpVk.BufferMemoryBarrier>? bufferMemoryBarriers, ArrayProxy<SharpVk.ImageMemoryBarrier>? imageMemoryBarriers)
         {
             try
@@ -1152,6 +1197,12 @@ namespace SharpVk
         /// <summary>
         /// Insert a memory dependency.
         /// </summary>
+        /// <param name="memoryBarriers">
+        /// </param>
+        /// <param name="bufferMemoryBarriers">
+        /// </param>
+        /// <param name="imageMemoryBarriers">
+        /// </param>
         public unsafe void PipelineBarrier(SharpVk.PipelineStageFlags sourceStageMask, SharpVk.PipelineStageFlags destinationStageMask, ArrayProxy<SharpVk.MemoryBarrier>? memoryBarriers, ArrayProxy<SharpVk.BufferMemoryBarrier>? bufferMemoryBarriers, ArrayProxy<SharpVk.ImageMemoryBarrier>? imageMemoryBarriers, SharpVk.DependencyFlags? dependencyFlags = default(SharpVk.DependencyFlags?))
         {
             try
@@ -1341,6 +1392,8 @@ namespace SharpVk
         /// <summary>
         /// Update the values of push constants.
         /// </summary>
+        /// <param name="values">
+        /// </param>
         public unsafe void PushConstants(SharpVk.PipelineLayout layout, SharpVk.ShaderStageFlags stageFlags, uint offset, ArrayProxy<byte>? values)
         {
             try
@@ -1389,6 +1442,14 @@ namespace SharpVk
         /// <param name="renderArea">
         /// The render area that is affected by the render pass instance, and
         /// is described in more detail below.
+        /// </param>
+        /// <param name="clearValues">
+        /// </param>
+        /// <param name="deviceGroupRenderPassBeginInfoKhx">
+        /// Extension struct
+        /// </param>
+        /// <param name="renderPassSampleLocationsBeginInfoExt">
+        /// Extension struct
         /// </param>
         public unsafe void BeginRenderPass(SharpVk.RenderPass renderPass, SharpVk.Framebuffer framebuffer, SharpVk.Rect2D renderArea, ArrayProxy<SharpVk.ClearValue>? clearValues, SharpVk.SubpassContents contents, SharpVk.Khronos.Experimental.DeviceGroupRenderPassBeginInfo? deviceGroupRenderPassBeginInfoKhx = null, SharpVk.Multivendor.RenderPassSampleLocationsBeginInfo? renderPassSampleLocationsBeginInfoExt = null)
         {
@@ -1484,6 +1545,8 @@ namespace SharpVk
         /// <summary>
         /// Execute a secondary command buffer from a primary command buffer.
         /// </summary>
+        /// <param name="commandBuffers">
+        /// </param>
         public unsafe void ExecuteCommands(ArrayProxy<SharpVk.CommandBuffer>? commandBuffers)
         {
             try

@@ -112,6 +112,8 @@ namespace SharpVk
         /// <summary>
         /// Free command buffers.
         /// </summary>
+        /// <param name="commandBuffers">
+        /// </param>
         public unsafe void FreeCommandBuffers(ArrayProxy<SharpVk.CommandBuffer>? commandBuffers)
         {
             try

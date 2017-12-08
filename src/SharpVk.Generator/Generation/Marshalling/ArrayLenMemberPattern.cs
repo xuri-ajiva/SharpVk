@@ -24,9 +24,12 @@ namespace SharpVk.Generator.Generation.Marshalling
         public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, MemberPatternContext context, MemberPatternInfo info)
         {
             var lenExpressions = new List<(Func<Func<string, Action<ExpressionBuilder>>, Action<ExpressionBuilder>>, bool, bool)>();
+            bool isLenOfLastMember = false;
 
             foreach (var otherMember in others)
             {
+                bool isLastMember = otherMember.VkName == others.Last().VkName;
+
                 if (otherMember.Dimensions != null)
                 {
                     foreach (var dimension in otherMember.Dimensions)
@@ -36,6 +39,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                             if (dimension.Value is LenExpressionToken)
                             {
                                 lenExpressions.Add((getValue => StaticCall("Interop.HeapUtil", "GetLength", getValue(otherMember.Name)), otherMember.NoAutoValidity, otherMember.IsOptional));
+                                isLenOfLastMember |= isLastMember;
                             }
                         }
                     }
@@ -43,60 +47,17 @@ namespace SharpVk.Generator.Generation.Marshalling
                 else if (otherMember.Type.FixedLength.Type != FixedLengthType.None && source.VkName == otherMember.VkName.TrimEnd('s') + "Count")
                 {
                     lenExpressions.Add((getValue => StaticCall("Interop.HeapUtil", "GetLength", getValue(otherMember.Name)), otherMember.NoAutoValidity, otherMember.IsOptional));
+                    isLenOfLastMember |= isLastMember;
                 }
             }
 
-            bool isArrayLenMember = lenExpressions.Any() && !(source.VkName == "descriptorCount" && context.VkName == "VkWriteDescriptorSet");
+            bool isArrayLenMember = lenExpressions.Any()
+                                        && !(source.VkName == "descriptorCount" && context.VkName == "VkWriteDescriptorSet")
+                                        && !(isLenOfLastMember && context.HasReturnValue && lenExpressions.Count == 1 && !context.IsBatchSingleMethod);
 
             if (isArrayLenMember)
             {
-                var lenExpression = lenExpressions.Any(x => !x.Item2)
-                                        ? lenExpressions.FirstOrDefault(x => !x.Item2)
-                                        : lenExpressions.First();
-
-                MethodAction assign(Func<string, Action<ExpressionBuilder>> getTarget, Func<string, Action<ExpressionBuilder>> getValue) =>
-                    new AssignAction
-                    {
-                        TargetExpression = getTarget(source.Name),
-                        ValueExpression = Cast(this.nameLookup.Lookup(source.Type, false), lenExpression.Item1(getValue))
-                    };
-
                 string typeName = this.nameLookup.Lookup(source.Type, true);
-
-                if (source.IsOptional && (lenExpressions.All(x => x.Item2 && x.Item3)))
-                {
-                    info.Public.Add(new TypedDefinition
-                    {
-                        Name = source.Name,
-                        Comment = this.commentGenerator.Lookup(context.VkName, source.VkName),
-                        Type = typeName + "?",
-                        DefaultValue = Null
-                    });
-
-                    MethodAction optionalAssign(Func<string, Action<ExpressionBuilder>> getTarget, Func<string, Action<ExpressionBuilder>> getValue)
-                    {
-                        var result = new OptionalAction
-                        {
-                            CheckExpression = IsNotEqual(getValue(source.Name), Null)
-                        };
-
-                        result.Actions.Add(new AssignAction
-                        {
-                            TargetExpression = getTarget(source.Name),
-                            ValueExpression = Member(getValue(source.Name), "Value")
-                        });
-
-                        result.ElseActions.Add(assign(getTarget, getValue));
-
-                        return result;
-                    }
-
-                    info.MarshalTo.Add(optionalAssign);
-                }
-                else
-                {
-                    info.MarshalTo.Add(assign);
-                }
 
                 info.Interop = new TypedDefinition
                 {
@@ -105,6 +66,63 @@ namespace SharpVk.Generator.Generation.Marshalling
                 };
 
                 info.InteropFullType = typeName;
+
+                if (context.IsBatchSingleMethod && isLenOfLastMember)
+                {
+                    info.MarshalTo.Add((getTarget, geValue) => new AssignAction
+                    {
+                        TargetExpression = getTarget(source.Name),
+                        ValueExpression = Literal(1)
+                    });
+                }
+                else
+                {
+                    var lenExpression = lenExpressions.Any(x => !x.Item2)
+                                            ? lenExpressions.First(x => !x.Item2)
+                                            : lenExpressions.First();
+
+                    MethodAction assign(Func<string, Action<ExpressionBuilder>> getTarget, Func<string, Action<ExpressionBuilder>> getValue) =>
+                        new AssignAction
+                        {
+                            TargetExpression = getTarget(source.Name),
+                            ValueExpression = Cast(this.nameLookup.Lookup(source.Type, false), lenExpression.Item1(getValue))
+                        };
+
+                    if (source.IsOptional && (lenExpressions.All(x => x.Item2 && x.Item3)))
+                    {
+                        info.Public.Add(new TypedDefinition
+                        {
+                            Name = source.Name,
+                            Comment = this.commentGenerator.Lookup(context.VkName, source.VkName),
+                            Type = typeName + "?",
+                            DefaultValue = Null
+                        });
+
+                        MethodAction optionalAssign(Func<string, Action<ExpressionBuilder>> getTarget, Func<string, Action<ExpressionBuilder>> getValue)
+                        {
+                            var result = new OptionalAction
+                            {
+                                CheckExpression = IsNotEqual(getValue(source.Name), Null)
+                            };
+
+                            result.Actions.Add(new AssignAction
+                            {
+                                TargetExpression = getTarget(source.Name),
+                                ValueExpression = Member(getValue(source.Name), "Value")
+                            });
+
+                            result.ElseActions.Add(assign(getTarget, getValue));
+
+                            return result;
+                        }
+
+                        info.MarshalTo.Add(optionalAssign);
+                    }
+                    else
+                    {
+                        info.MarshalTo.Add(assign);
+                    }
+                }
             }
 
             return isArrayLenMember;

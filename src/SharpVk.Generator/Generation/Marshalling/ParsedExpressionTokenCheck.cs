@@ -8,6 +8,7 @@ namespace SharpVk.Generator.Generation.Marshalling
         public void Visit(LenExpressionReference reference, TokenCheckResult state)
         {
             reference.LeftOperand.Visit(this, state);
+            reference.RightOperand.Visit(this, state);
         }
 
         public void Visit(LenExpressionToken token, TokenCheckResult state)
@@ -41,6 +42,7 @@ namespace SharpVk.Generator.Generation.Marshalling
             return result.Found;
         }
     }
+
     public class TokenCheckResult
     {
         public string Token;

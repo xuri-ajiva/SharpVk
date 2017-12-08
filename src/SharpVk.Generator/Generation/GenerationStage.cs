@@ -12,6 +12,7 @@ namespace SharpVk.Generator.Generation
             services.AddSingleton<NameLookup>();
             services.AddSingleton<ParsedExpressionBuilder>();
             services.AddSingleton<ParsedExpressionTokenCheck>();
+            services.AddSingleton<ParsedExpressionEqualityCheck>();
             services.AddSingleton<NamespaceMap>();
             services.AddSingleton<CommentGenerator>();
 
@@ -24,6 +25,7 @@ namespace SharpVk.Generator.Generation
 
             services.AddSingleton<IMemberPatternRule, VerbInfoMemberPattern>();
             services.AddSingleton<IMemberPatternRule, FixedLengthMemberPattern>();
+            services.AddSingleton<IMemberPatternRule, ArraySingularMemberPattern>();
             services.AddSingleton<IMemberPatternRule, ArrayMemberPattern>();
             services.AddSingleton<IMemberPatternRule, ArrayLenMemberPattern>();
             services.AddSingleton<IMemberPatternRule, FixedValueMemberPattern>();

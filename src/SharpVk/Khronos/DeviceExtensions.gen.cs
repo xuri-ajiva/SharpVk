@@ -41,6 +41,14 @@ namespace SharpVk.Khronos
         /// A bitmask indicating parameters of swapchain creation. Bits which
         /// can be set include: + --
         /// </param>
+        /// <param name="queueFamilyIndices">
+        /// </param>
+        /// <param name="swapchainCounterCreateInfoExt">
+        /// Extension struct
+        /// </param>
+        /// <param name="deviceGroupSwapchainCreateInfoKhx">
+        /// Extension struct
+        /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
@@ -148,6 +156,8 @@ namespace SharpVk.Khronos
         /// <param name="extendedHandle">
         /// The Device handle to extend.
         /// </param>
+        /// <param name="createInfos">
+        /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
@@ -214,6 +224,128 @@ namespace SharpVk.Khronos
                 {
                     result = null;
                 }
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// Create multiple swapchains that share presentable images.
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The Device handle to extend.
+        /// </param>
+        /// <param name="flags">
+        /// A bitmask indicating parameters of swapchain creation. Bits which
+        /// can be set include: + --
+        /// </param>
+        /// <param name="queueFamilyIndices">
+        /// </param>
+        /// <param name="swapchainCounterCreateInfoExt">
+        /// Extension struct
+        /// </param>
+        /// <param name="deviceGroupSwapchainCreateInfoKhx">
+        /// Extension struct
+        /// </param>
+        /// <param name="allocator">
+        /// An optional AllocationCallbacks instance that controls host memory
+        /// allocation.
+        /// </param>
+        public static unsafe SharpVk.Khronos.Swapchain CreateSharedSwapchain(this SharpVk.Device extendedHandle, SharpVk.Khronos.Surface surface, uint minImageCount, SharpVk.Format imageFormat, SharpVk.Khronos.ColorSpace imageColorSpace, SharpVk.Extent2D imageExtent, uint imageArrayLayers, SharpVk.ImageUsageFlags imageUsage, SharpVk.SharingMode imageSharingMode, ArrayProxy<uint>? queueFamilyIndices, SharpVk.Khronos.SurfaceTransformFlags preTransform, SharpVk.Khronos.CompositeAlphaFlags compositeAlpha, SharpVk.Khronos.PresentMode presentMode, bool clipped, SharpVk.Khronos.Swapchain oldSwapchain, SharpVk.Khronos.SwapchainCreateFlags? flags = default(SharpVk.Khronos.SwapchainCreateFlags?), SharpVk.Multivendor.SwapchainCounterCreateInfo? swapchainCounterCreateInfoExt = null, SharpVk.Khronos.Experimental.DeviceGroupSwapchainCreateInfo? deviceGroupSwapchainCreateInfoKhx = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        {
+            try
+            {
+                SharpVk.Khronos.Swapchain result = default(SharpVk.Khronos.Swapchain);
+                CommandCache commandCache = default(CommandCache);
+                uint swapchainCount = default(uint);
+                SharpVk.Interop.Khronos.SwapchainCreateInfo* marshalledCreateInfos = default(SharpVk.Interop.Khronos.SwapchainCreateInfo*);
+                void* nextPointer = default(void*);
+                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                SharpVk.Interop.Khronos.Swapchain* marshalledSwapchains = default(SharpVk.Interop.Khronos.Swapchain*);
+                if (swapchainCounterCreateInfoExt != null)
+                {
+                    SharpVk.Interop.Multivendor.SwapchainCounterCreateInfo* extensionPointer = default(SharpVk.Interop.Multivendor.SwapchainCounterCreateInfo*);
+                    extensionPointer = (SharpVk.Interop.Multivendor.SwapchainCounterCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.SwapchainCounterCreateInfo>());
+                    swapchainCounterCreateInfoExt.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = nextPointer;
+                    nextPointer = extensionPointer;
+                }
+                if (deviceGroupSwapchainCreateInfoKhx != null)
+                {
+                    SharpVk.Interop.Khronos.Experimental.DeviceGroupSwapchainCreateInfo* extensionPointer = default(SharpVk.Interop.Khronos.Experimental.DeviceGroupSwapchainCreateInfo*);
+                    extensionPointer = (SharpVk.Interop.Khronos.Experimental.DeviceGroupSwapchainCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.Experimental.DeviceGroupSwapchainCreateInfo>());
+                    deviceGroupSwapchainCreateInfoKhx.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = nextPointer;
+                    nextPointer = extensionPointer;
+                }
+                commandCache = extendedHandle.commandCache;
+                swapchainCount = 1;
+                marshalledCreateInfos = (SharpVk.Interop.Khronos.SwapchainCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.SwapchainCreateInfo>());
+                marshalledCreateInfos->SType = StructureType.SwapchainCreateInfo;
+                marshalledCreateInfos->Next = nextPointer;
+                if (flags != null)
+                {
+                    marshalledCreateInfos->Flags = flags.Value;
+                }
+                else
+                {
+                    marshalledCreateInfos->Flags = default(SharpVk.Khronos.SwapchainCreateFlags);
+                }
+                marshalledCreateInfos->Surface = surface?.handle ?? default(SharpVk.Interop.Khronos.Surface);
+                marshalledCreateInfos->MinImageCount = minImageCount;
+                marshalledCreateInfos->ImageFormat = imageFormat;
+                marshalledCreateInfos->ImageColorSpace = imageColorSpace;
+                marshalledCreateInfos->ImageExtent = imageExtent;
+                marshalledCreateInfos->ImageArrayLayers = imageArrayLayers;
+                marshalledCreateInfos->ImageUsage = imageUsage;
+                marshalledCreateInfos->ImageSharingMode = imageSharingMode;
+                marshalledCreateInfos->QueueFamilyIndexCount = (uint)(Interop.HeapUtil.GetLength(queueFamilyIndices));
+                if (queueFamilyIndices.IsNull())
+                {
+                    marshalledCreateInfos->QueueFamilyIndices = null;
+                }
+                else
+                {
+                    if (queueFamilyIndices.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledCreateInfos->QueueFamilyIndices = (uint*)(Interop.HeapUtil.Allocate<uint>());
+                        *(uint*)(marshalledCreateInfos->QueueFamilyIndices) = queueFamilyIndices.Value.GetSingleValue();
+                    }
+                    else
+                    {
+                        var fieldPointer = (uint*)(Interop.HeapUtil.AllocateAndClear<uint>(Interop.HeapUtil.GetLength(queueFamilyIndices.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(queueFamilyIndices.Value)); index++)
+                        {
+                            fieldPointer[index] = queueFamilyIndices.Value[index];
+                        }
+                        marshalledCreateInfos->QueueFamilyIndices = fieldPointer;
+                    }
+                }
+                marshalledCreateInfos->PreTransform = preTransform;
+                marshalledCreateInfos->CompositeAlpha = compositeAlpha;
+                marshalledCreateInfos->PresentMode = presentMode;
+                marshalledCreateInfos->Clipped = clipped;
+                marshalledCreateInfos->OldSwapchain = oldSwapchain?.handle ?? default(SharpVk.Interop.Khronos.Swapchain);
+                if (allocator != null)
+                {
+                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
+                    allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                else
+                {
+                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                }
+                marshalledSwapchains = (SharpVk.Interop.Khronos.Swapchain*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.Swapchain>(1));
+                SharpVk.Interop.Khronos.VkDeviceCreateSharedSwapchainsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkDeviceCreateSharedSwapchainsDelegate>("vkCreateSharedSwapchainsKHR", "device");
+                Result methodResult = commandDelegate(extendedHandle.handle, swapchainCount, marshalledCreateInfos, marshalledAllocator, marshalledSwapchains);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = new SharpVk.Khronos.Swapchain(extendedHandle, *marshalledSwapchains);
                 return result;
             }
             finally
@@ -472,6 +604,8 @@ namespace SharpVk.Khronos
         /// </param>
         /// <param name="flags">
         /// Reserved for future use.
+        /// </param>
+        /// <param name="descriptorUpdateEntries">
         /// </param>
         /// <param name="templateType">
         /// Specifies the type of the descriptor update template. If set to
@@ -898,6 +1032,8 @@ namespace SharpVk.Khronos
         /// <param name="extendedHandle">
         /// The Device handle to extend.
         /// </param>
+        /// <param name="bindInfos">
+        /// </param>
         public static unsafe void BindBufferMemory2(this SharpVk.Device extendedHandle, ArrayProxy<SharpVk.Khronos.BindBufferMemoryInfo>? bindInfos)
         {
             try
@@ -944,6 +1080,8 @@ namespace SharpVk.Khronos
         /// </summary>
         /// <param name="extendedHandle">
         /// The Device handle to extend.
+        /// </param>
+        /// <param name="bindInfos">
         /// </param>
         public static unsafe void BindImageMemory2(this SharpVk.Device extendedHandle, ArrayProxy<SharpVk.Khronos.BindImageMemoryInfo>? bindInfos)
         {

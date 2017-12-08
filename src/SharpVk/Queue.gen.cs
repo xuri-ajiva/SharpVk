@@ -52,6 +52,8 @@ namespace SharpVk
         /// <summary>
         /// Submits a sequence of semaphores or command buffers to a queue.
         /// </summary>
+        /// <param name="submits">
+        /// </param>
         public unsafe void Submit(ArrayProxy<SharpVk.SubmitInfo>? submits, SharpVk.Fence fence)
         {
             try
@@ -114,6 +116,8 @@ namespace SharpVk
         /// <summary>
         /// Bind device memory to a sparse resource object.
         /// </summary>
+        /// <param name="bindInfo">
+        /// </param>
         public unsafe void BindSparse(ArrayProxy<SharpVk.BindSparseInfo>? bindInfo, SharpVk.Fence fence)
         {
             try

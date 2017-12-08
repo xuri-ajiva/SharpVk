@@ -37,6 +37,26 @@ namespace SharpVk.Khronos
         /// <param name="extendedHandle">
         /// The Queue handle to extend.
         /// </param>
+        /// <param name="waitSemaphores">
+        /// </param>
+        /// <param name="swapchains">
+        /// </param>
+        /// <param name="imageIndices">
+        /// </param>
+        /// <param name="results">
+        /// </param>
+        /// <param name="displayPresentInfoKhr">
+        /// Extension struct
+        /// </param>
+        /// <param name="presentRegionsKhr">
+        /// Extension struct
+        /// </param>
+        /// <param name="deviceGroupPresentInfoKhx">
+        /// Extension struct
+        /// </param>
+        /// <param name="presentTimesInfoGoogle">
+        /// Extension struct
+        /// </param>
         public static unsafe Result Present(this SharpVk.Queue extendedHandle, ArrayProxy<SharpVk.Semaphore>? waitSemaphores, ArrayProxy<SharpVk.Khronos.Swapchain>? swapchains, ArrayProxy<uint>? imageIndices, ArrayProxy<SharpVk.Result>? results = null, SharpVk.Khronos.DisplayPresentInfo? displayPresentInfoKhr = null, SharpVk.Khronos.PresentRegions? presentRegionsKhr = null, SharpVk.Khronos.Experimental.DeviceGroupPresentInfo? deviceGroupPresentInfoKhx = null, SharpVk.Google.PresentTimesInfo? presentTimesInfoGoogle = null)
         {
             try

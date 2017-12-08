@@ -203,6 +203,8 @@ namespace SharpVk
         /// <param name="flags">
         /// Reserved for future use.
         /// </param>
+        /// <param name="queueCreateInfos">
+        /// </param>
         /// <param name="enabledLayerNames">
         /// ppEnabledLayerNames is deprecated and ignored. See Device Layer
         /// Deprecation.
@@ -216,6 +218,12 @@ namespace SharpVk
         /// Null or a PhysicalDeviceFeatures structure that contains boolean
         /// indicators of all the features to be enabled. Refer to the Features
         /// section for further details.
+        /// </param>
+        /// <param name="physicalDeviceFeatures2Khr">
+        /// Extension struct
+        /// </param>
+        /// <param name="deviceGroupDeviceCreateInfoKhx">
+        /// Extension struct
         /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory

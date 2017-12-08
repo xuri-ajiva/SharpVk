@@ -37,6 +37,8 @@ namespace SharpVk.Khronos
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
         /// </param>
+        /// <param name="descriptorWrites">
+        /// </param>
         public static unsafe void PushDescriptorSet(this SharpVk.CommandBuffer extendedHandle, SharpVk.PipelineBindPoint pipelineBindPoint, SharpVk.PipelineLayout layout, uint set, ArrayProxy<SharpVk.WriteDescriptorSet>? descriptorWrites)
         {
             try

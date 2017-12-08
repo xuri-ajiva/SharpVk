@@ -27,7 +27,7 @@ namespace SharpVk.Generator.Generation.Marshalling
             if (typePattern == TypePattern.Handle)
             {
                 string memberType = this.nameLookup.Lookup(type, false);
-                var interopType = this.nameLookup.Lookup(type, true);
+                var interopType = this.nameLookup.Lookup(type, true, false);
 
                 info = new MarshalInfo
                 {
@@ -53,7 +53,8 @@ namespace SharpVk.Generator.Generation.Marshalling
 
                 if (type.PointerType.IsPointer())
                 {
-                    info.BuildMarshalToValueExpression = (value, getHandle) => AddressOf(Member(value, "handle"));
+                    info.BuildMarshalToValueExpression = (value, getHandle) => Member(value, "handle");
+                    info.MarshalToActionType = AssignActionType.AllocAndAssign;
                     handleExpressions.Add((value, getHandle) => Deref(value));
                 }
                 else

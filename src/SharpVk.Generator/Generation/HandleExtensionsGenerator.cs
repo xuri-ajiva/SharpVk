@@ -33,7 +33,7 @@ namespace SharpVk.Generator.Generation
                     var handleType = this.typeData[handle.Key];
 
                     var methods = handle.Where(x => x.ExtensionNamespace?.ToLower() != handleType.Extension?.ToLower())
-                                            .Select(x => this.handleGenerator.GenerateCommand(x, x.HandleTypeName, handleType, true))
+                                            .SelectMany(x => this.handleGenerator.GenerateCommand(x, x.HandleTypeName, handleType, true))
                                             .ToList();
 
                     if (methods.Any())

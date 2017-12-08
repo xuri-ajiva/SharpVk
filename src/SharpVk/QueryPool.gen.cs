@@ -83,6 +83,8 @@ namespace SharpVk
         /// <summary>
         /// Copy results of queries in a query pool to a host memory region.
         /// </summary>
+        /// <param name="data">
+        /// </param>
         public unsafe Result GetResults(uint firstQuery, uint queryCount, ArrayProxy<byte>? data, DeviceSize stride, SharpVk.QueryResultFlags? flags = default(SharpVk.QueryResultFlags?))
         {
             try

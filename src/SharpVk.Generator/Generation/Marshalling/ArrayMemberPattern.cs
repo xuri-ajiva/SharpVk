@@ -14,13 +14,15 @@ namespace SharpVk.Generator.Generation.Marshalling
         private readonly IEnumerable<IMarshalValueRule> marshallingRules;
         private readonly NameLookup nameLookup;
         private readonly ParsedExpressionBuilder expressionBuilder;
+        private readonly ParsedExpressionEqualityCheck expressionEqualityCheck;
         private readonly CommentGenerator commentGenerator;
 
-        public ArrayMemberPattern(IEnumerable<IMarshalValueRule> marshallingRules, NameLookup nameLookup, ParsedExpressionBuilder expressionBuilder, CommentGenerator commentGenerator)
+        public ArrayMemberPattern(IEnumerable<IMarshalValueRule> marshallingRules, NameLookup nameLookup, ParsedExpressionBuilder expressionBuilder, ParsedExpressionEqualityCheck expressionEqualityCheck, CommentGenerator commentGenerator)
         {
             this.marshallingRules = marshallingRules;
             this.nameLookup = nameLookup;
             this.expressionBuilder = expressionBuilder;
+            this.expressionEqualityCheck = expressionEqualityCheck;
             this.commentGenerator = commentGenerator;
         }
 
@@ -112,7 +114,6 @@ namespace SharpVk.Generator.Generation.Marshalling
                             }
 
                             var marshalling = this.marshallingRules.ApplyFirst(elementType);
-                            //var singleValueMarshalling = this.marshallingRules.ApplyFirst(source.Type);
 
                             info.InteropFullType = marshalling.InteropType;
 
@@ -129,6 +130,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                                 {
                                     Name = source.Name,
                                     Type = $"ArrayProxy<{marshalling.MemberType}>?",
+                                    Comment = new[] { "" }.ToList(),
                                     DefaultValue = source.IsOptional ? Null : null
                                 });
 
@@ -158,7 +160,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                                         LengthExpression = StaticCall("Interop.HeapUtil", "GetLength", proxyValue),
                                         ValueExpression = marshalling.BuildMarshalToValueExpression(Index(proxyValue, Variable("index")), context.GetHandle)
                                     };
-                                    
+
                                     isSingleOptional.Actions.Add(new AssignAction
                                     {
                                         Type = AssignActionType.Alloc,
@@ -262,6 +264,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                                 LengthExpression = lenValue,
                                 ValueExpression = marshalling.BuildMarshalFromValueExpression(Index(getValue(source.Name), Variable("index")), context.GetHandle)
                             });
+
                             break;
                     }
                 }

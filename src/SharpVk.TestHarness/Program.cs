@@ -84,7 +84,7 @@ namespace SharpVk.TestHarness
 
             sharedMemory.Unmap();
 
-            Console.WriteLine(string.Join(", ", values));
+            Console.WriteLine(string.Join(", ", values.Select(x => x.ToString("000"))));
 
             descriptorPool.Destroy();
 
@@ -179,19 +179,14 @@ namespace SharpVk.TestHarness
 
             var pipelineLayout = device.CreatePipelineLayout(descriptorSetLayout, null);
 
-            var pipeline = device.CreateComputePipelines(null,
-                new ComputePipelineCreateInfo
-                {
-                    Layout = pipelineLayout,
-                    Stage = new PipelineShaderStageCreateInfo
-                    {
-                        Stage = ShaderStageFlags.Compute,
-                        Module = shader,
-                        Name = "main"
-                    }
-                }).Single();
+            var pipeline = device.CreateComputePipeline(null, new PipelineShaderStageCreateInfo
+            {
+                Stage = ShaderStageFlags.Compute,
+                Module = shader,
+                Name = "main"
+            }, pipelineLayout, null, -1);
 
-            var transferCommandBuffer = device.AllocateCommandBuffers(commandPool, CommandBufferLevel.Primary, 1).Single();
+            var transferCommandBuffer = device.AllocateCommandBuffer(commandPool, CommandBufferLevel.Primary);
 
             transferCommandBuffer.Begin(CommandBufferUsageFlags.OneTimeSubmit);
 

@@ -15,15 +15,17 @@ namespace SharpVk.Generator.Generation.Marshalling
         private readonly NameLookup nameLookup;
         private readonly NamespaceMap namespaceMap;
         private readonly IServiceProvider provider;
+        private readonly CommentGenerator commentGenerator;
 
         private IEnumerable<IMemberPatternRule> patternRules;
 
-        public VerbInfoMemberPattern(Dictionary<string, TypeDeclaration> typeData, NameLookup nameLookup, NamespaceMap namespaceMap, IServiceProvider provider)
+        public VerbInfoMemberPattern(Dictionary<string, TypeDeclaration> typeData, NameLookup nameLookup, NamespaceMap namespaceMap, IServiceProvider provider, CommentGenerator commentGenerator)
         {
             this.typeData = typeData;
             this.nameLookup = nameLookup;
             this.namespaceMap = namespaceMap;
             this.provider = provider;
+            this.commentGenerator = commentGenerator;
         }
 
         public bool Apply(IEnumerable<ITypedDeclaration> others, ITypedDeclaration source, MemberPatternContext context, MemberPatternInfo info)
@@ -70,7 +72,20 @@ namespace SharpVk.Generator.Generation.Marshalling
                 {
                     var subPatternInfo = new MemberPatternInfo();
 
-                    this.patternRules.ApplyFirst(infoTypeData.Members, member, new MemberPatternContext(null, true, infoTypeData.Extension, context.GetHandle, source.Type.VkName), subPatternInfo);
+                    var relativeOthers = others.Select(x =>
+                    {
+                        if (x.Dimensions?.Any() ?? false)
+                            if (x.Dimensions[0].Value is LenExpressionReference lenRef)
+                                if (lenRef.LeftOperand is LenExpressionToken lenLeftToken
+                                && lenLeftToken.Value == source.VkName)
+                                {
+                                    return new WrappedTypedDeclaration(x, new[] { new MemberLen { Type = LenType.Expression, Value = lenRef.RightOperand } });
+                                }
+
+                        return x;
+                    });
+
+                    this.patternRules.ApplyFirst(infoTypeData.Members.Concat(relativeOthers), member, new MemberPatternContext(null, true, context.IsBatchSingleMethod, context.HasReturnValue, infoTypeData.Extension, context.GetHandle, source.Type.VkName), subPatternInfo);
 
                     foreach (var subAction in subPatternInfo.MarshalTo)
                     {
@@ -112,6 +127,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                     {
                         Name = paramName,
                         Type = $"SharpVk{typeNamespace}.{extendType.Name}?",
+                        Comment = new[] { "Extension struct" }.ToList(),
                         DefaultValue = Null
                     });
 
