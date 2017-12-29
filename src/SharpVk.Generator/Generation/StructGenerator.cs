@@ -48,7 +48,7 @@ namespace SharpVk.Generator.Generation
             }
         }
 
-        private static string[] NumericsTypes = new[] { "uint32_t", "uint64_t", "float" };
+        private static string[] NumericsTypes = new[] { "uint32_t", "uint64_t", "int32_t", "int64_t", "float" };
 
         private static bool IsNumeric(MemberDeclaration member)
         {

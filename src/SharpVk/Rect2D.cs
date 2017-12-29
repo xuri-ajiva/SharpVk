@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2018
+// Copyright (c) Andrew Armstrong/FacticiusVir 2017
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,47 +20,38 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-// This file was automatically generated and should not be edited directly.
-
-using System;
-using System.Runtime.InteropServices;
 
 namespace SharpVk
 {
-    /// <summary>
-    /// Structure specifying a three-dimensional offset.
-    /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public partial struct Offset3D
+    public partial struct Rect2D
     {
         /// <summary>
         /// 
         /// </summary>
-        public static Offset3D Zero => new Offset3D();
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Offset3D(int x, int y, int z)
+        /// <param name="extent"></param>
+        public Rect2D(Extent2D extent)
+            : this(Offset2D.Zero, extent)
         {
-            this.X = x;
-            this.Y = y;
-            this.Z = z;
         }
-        
+
         /// <summary>
         /// 
         /// </summary>
-        public int X; 
-        
+        public float Top => this.Offset.Y;
+
         /// <summary>
         /// 
         /// </summary>
-        public int Y; 
-        
+        public float Bottom => this.Offset.Y + this.Extent.Height;
+
         /// <summary>
         /// 
         /// </summary>
-        public int Z; 
+        public float Left => this.Offset.X;
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public float Right => this.Offset.X + this.Extent.Width;        
     }
 }

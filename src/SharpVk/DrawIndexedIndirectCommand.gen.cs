@@ -36,6 +36,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        public static DrawIndexedIndirectCommand Zero => new DrawIndexedIndirectCommand();
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public DrawIndexedIndirectCommand(uint indexCount, uint instanceCount, uint firstIndex, int vertexOffset, uint firstInstance)
         {
             this.IndexCount = indexCount;

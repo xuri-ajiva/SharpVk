@@ -36,6 +36,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        public static Offset2D Zero => new Offset2D();
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public Offset2D(int x, int y)
         {
             this.X = x;
