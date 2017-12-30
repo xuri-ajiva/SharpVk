@@ -10,7 +10,9 @@ namespace SharpVk.Shanq
     {
         IQueryable<T> GetInput<T>();
 
-        IQueryable<T> GetBinding<T>();
+        IQueryable<T> GetBinding<T>(int binding);
+
+        IQueryable<Sampler2d<T, V>> GetSampler2d<T, V>(int binding, int descriptorSet);
     }
 
     internal class ShanqFactory
@@ -23,14 +25,19 @@ namespace SharpVk.Shanq
             this.executor = new ShanqQueryExecutor(model, outputStream, vectorLibrary);
         }
 
-        public IQueryable<T> GetBinding<T>()
+        public IQueryable<T> GetBinding<T>(int binding)
         {
-            return new ShanqQueryable<T>(QueryableOrigin.Binding, QueryParser.CreateDefault(), this.executor);
+            return new ShanqQueryable<T>(QueryableOrigin.Binding, QueryParser.CreateDefault(), this.executor, binding);
         }
 
         public IQueryable<T> GetInput<T>()
         {
             return new ShanqQueryable<T>(QueryableOrigin.Input, QueryParser.CreateDefault(), this.executor);
+        }
+
+        public IQueryable<Sampler2d<T, V>> GetSampler2d<T, V>(int binding, int descriptorSet)
+        {
+            return new ShanqQueryable<Sampler2d<T, V>>(QueryableOrigin.Sampler, QueryParser.CreateDefault(), this.executor, binding, descriptorSet);
         }
     }
 

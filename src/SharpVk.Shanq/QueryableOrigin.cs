@@ -3,6 +3,7 @@
     internal enum QueryableOrigin
     {
         Input,
-        Binding
+        Binding,
+        Sampler
     }
 }

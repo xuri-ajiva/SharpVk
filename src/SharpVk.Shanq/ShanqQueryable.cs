@@ -16,14 +16,28 @@ namespace SharpVk.Shanq
             this.executor = (ShanqQueryExecutor)((QueryProviderBase)provider).Executor;
         }
 
-        public ShanqQueryable(QueryableOrigin origin, IQueryParser queryParser, IQueryExecutor executor)
+        public ShanqQueryable(QueryableOrigin origin, IQueryParser queryParser, IQueryExecutor executor, int binding = 0, int descriptorSet = 0)
             : base(new DefaultQueryProvider(typeof(ShanqQueryable<>), queryParser, executor))
         {
             this.Origin = origin;
+            this.Binding = binding;
+            this.DescriptorSet = descriptorSet;
             this.executor = (ShanqQueryExecutor)executor;
         }
 
         public QueryableOrigin Origin
+        {
+            get;
+            private set;
+        }
+
+        public int Binding
+        {
+            get;
+            private set;
+        }
+
+        public int DescriptorSet
         {
             get;
             private set;
@@ -33,6 +47,16 @@ namespace SharpVk.Shanq
     internal interface IShanqQueryable
     {
         QueryableOrigin Origin
+        {
+            get;
+        }
+
+        int Binding
+        {
+            get;
+        }
+
+        int DescriptorSet
         {
             get;
         }

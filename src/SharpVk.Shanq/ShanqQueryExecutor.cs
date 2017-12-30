@@ -72,7 +72,8 @@ namespace SharpVk.Shanq
                                     .Concat(queryModel.BodyClauses.OfType<AdditionalFromClause>());
 
             var inputTypes = new List<Type>();
-            var bindingTypes = new List<Type>();
+            var bindingTypes = new List<(Type, int, int)>();
+            var samplerTypes = new List<(IFromClause, int, int)>();
 
             foreach (var clause in fromClauses)
             {
@@ -84,7 +85,10 @@ namespace SharpVk.Shanq
                         inputTypes.Add(clause.ItemType);
                         break;
                     case QueryableOrigin.Binding:
-                        bindingTypes.Add(clause.ItemType);
+                        bindingTypes.Add((clause.ItemType, queryable.Binding, queryable.DescriptorSet));
+                        break;
+                    case QueryableOrigin.Sampler:
+                        samplerTypes.Add((clause, queryable.Binding, queryable.DescriptorSet));
                         break;
                 }
             }
@@ -105,7 +109,7 @@ namespace SharpVk.Shanq
                 }
             }
 
-            foreach (var type in bindingTypes)
+            foreach (var (type, binding, descriptorSet) in bindingTypes)
             {
                 ResultId structureTypeId = expressionVisitor.Visit(Expression.Constant(type));
                 var pointerType = typeof(InputPointer<>).MakeGenericType(type);
@@ -114,8 +118,8 @@ namespace SharpVk.Shanq
 
                 file.AddGlobalStatement(uniformVariableId, Op.OpVariable, uniformPointerId, StorageClass.Uniform);
                 file.AddAnnotationStatement(Op.OpDecorate, structureTypeId, Decoration.Block);
-                file.AddAnnotationStatement(Op.OpDecorate, uniformVariableId, Decoration.DescriptorSet, 0);
-                file.AddAnnotationStatement(Op.OpDecorate, uniformVariableId, Decoration.Binding, 0);
+                file.AddAnnotationStatement(Op.OpDecorate, uniformVariableId, Decoration.DescriptorSet, descriptorSet);
+                file.AddAnnotationStatement(Op.OpDecorate, uniformVariableId, Decoration.Binding, binding);
 
                 int fieldIndex = 0;
 
@@ -135,15 +139,31 @@ namespace SharpVk.Shanq
                 }
             }
 
+            foreach (var (clause, binding, descriptorSet) in samplerTypes)
+            {
+                var type = clause.ItemType;
+
+                ResultId structureTypeId = expressionVisitor.Visit(Expression.Constant(type));
+                var pointerType = typeof(UniformConstantPointer<>).MakeGenericType(type);
+                ResultId uniformPointerId = expressionVisitor.Visit(Expression.Constant(pointerType));
+                ResultId uniformVariableId = file.GetNextResultId();
+
+                file.AddGlobalStatement(uniformVariableId, Op.OpVariable, uniformPointerId, StorageClass.UniformConstant);
+                file.AddAnnotationStatement(Op.OpDecorate, uniformVariableId, Decoration.DescriptorSet, descriptorSet);
+                file.AddAnnotationStatement(Op.OpDecorate, uniformVariableId, Decoration.Binding, binding);
+
+                expressionVisitor.AddSampler(clause, uniformVariableId);
+            }
+
             var entryPointParameters = fieldMapping.Select(x => x.Value).Distinct().ToList();
 
             if (hasBuiltInOutput)
             {
-                var builtInFields = resultType.GetFields().Select(x => new { Field = x, BuiltIn = x.GetCustomAttribute<BuiltInAttribute>()?.BuiltIn })
+                var builtInFields = resultType.GetFields().Select(x => new { Field = x, x.GetCustomAttribute<BuiltInAttribute>()?.BuiltIn })
                                                             .Where(x => x.BuiltIn != null);
 
                 var structureType = GetTupleType(builtInFields.Count()).MakeGenericType(builtInFields.Select(x => x.Field.FieldType).ToArray());
-                ResultId structureTypeId = expressionVisitor.Visit(Expression.Constant(structureType)); ;
+                ResultId structureTypeId = expressionVisitor.Visit(Expression.Constant(structureType));
 
                 var structurePointerType = typeof(OutputPointer<>).MakeGenericType(structureType);
                 ResultId structurePointerId = expressionVisitor.Visit(Expression.Constant(structurePointerType));
@@ -153,7 +173,7 @@ namespace SharpVk.Shanq
 
                 file.AddAnnotationStatement(Op.OpDecorate, structureTypeId, Decoration.Block);
 
-                foreach (var field in builtInFields.Select((x, y) => new { Index = y, Field = x.Field, Value = x.BuiltIn.Value }))
+                foreach (var field in builtInFields.Select((x, y) => new { Index = y, x.Field, x.BuiltIn.Value }))
                 {
                     file.AddAnnotationStatement(Op.OpMemberDecorate, structureTypeId, field.Index, Decoration.BuiltIn, field.Value);
                     builtinList.Add(field.Field, Tuple.Create(structurePointerId, outputVariableId, field.Index));

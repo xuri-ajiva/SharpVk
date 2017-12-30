@@ -1,4 +1,5 @@
-﻿using Remotion.Linq.Clauses.Expressions;
+﻿using Remotion.Linq.Clauses;
+using Remotion.Linq.Clauses.Expressions;
 using SharpVk.Spirv;
 using System;
 using System.Collections;
@@ -18,6 +19,7 @@ namespace SharpVk.Shanq
         private Dictionary<SpirvStatement, ResultId> expressionResults = new Dictionary<SpirvStatement, ResultId>();
         private Dictionary<FieldInfo, ResultId> inputMappings = new Dictionary<FieldInfo, ResultId>();
         private Dictionary<FieldInfo, Tuple<ResultId, int>> bindingMappings = new Dictionary<FieldInfo, Tuple<ResultId, int>>();
+        private Dictionary<IFromClause, ResultId> samplerMappings = new Dictionary<IFromClause, ResultId>();
 
         public ShanqExpressionVisitor(SpirvFile file, IVectorTypeLibrary vectorLibrary)
         {
@@ -46,6 +48,11 @@ namespace SharpVk.Shanq
             this.bindingMappings.Add(field, binding);
         }
 
+        public void AddSampler(IFromClause clause, ResultId resultId)
+        {
+            this.samplerMappings.Add(clause, resultId);
+        }
+
         public ResultId Visit(Expression expression)
         {
 
@@ -56,6 +63,40 @@ namespace SharpVk.Shanq
             else
             {
                 return visit(expression);
+            }
+        }
+
+        [NodeType(ExpressionType.Call)]
+        private ResultId VisitCall(MethodCallExpression expression)
+        {
+            var methodDeclaringType = expression.Method.DeclaringType;
+
+            if (IsSampler(methodDeclaringType))
+            {
+                var sourceReference = (QuerySourceReferenceExpression)expression.Object;
+                ResultId samplerTypeId = this.Visit(Expression.Constant(expression.Object.Type));
+                ResultId samplerId = this.samplerMappings[(IFromClause)sourceReference.ReferencedQuerySource];
+                ResultId loadedSamplerId = this.file.GetNextResultId();
+                this.file.AddFunctionStatement(loadedSamplerId, Op.OpLoad, samplerTypeId, samplerId);
+
+                if (expression.Method.Name == nameof(Sampler2d<float, float>.Sample))
+                {
+                    ResultId resultTypeId = this.Visit(Expression.Constant(expression.Method.ReturnType));
+
+                    ResultId coordId = this.Visit(expression.Arguments[0]);
+
+                    ResultId sampleId = this.file.GetNextResultId();
+
+                    this.file.AddFunctionStatement(sampleId, Op.OpImageSampleImplicitLod, resultTypeId, loadedSamplerId, coordId);
+
+                    return sampleId;
+                }
+
+                throw new NotImplementedException();
+            }
+            else
+            {
+                throw new NotImplementedException();
             }
         }
 
@@ -349,76 +390,7 @@ namespace SharpVk.Shanq
             }
             else if (typeof(Type).IsAssignableFrom(expression.Type))
             {
-                Type value = (Type)expression.Value;
-
-                if (this.vectorLibrary.IsMatrixType(value))
-                {
-                    Type rowType = this.vectorLibrary.GetMatrixRowType(value);
-                    int[] dimensions = this.vectorLibrary.GetMatrixDimensions(value);
-
-                    ResultId rowTypeId = this.Visit(Expression.Constant(rowType));
-
-                    statement = new SpirvStatement(Op.OpTypeMatrix, rowTypeId, dimensions[0]);
-                }
-                else if (this.vectorLibrary.IsVectorType(value))
-                {
-                    Type elementType = this.vectorLibrary.GetVectorElementType(value);
-                    int length = this.vectorLibrary.GetVectorLength(value);
-
-                    ResultId elementTypeId = this.Visit(Expression.Constant(elementType));
-
-                    statement = new SpirvStatement(Op.OpTypeVector, elementTypeId, length);
-                }
-                else if (typeof(Delegate).IsAssignableFrom(value))
-                {
-                    var returnType = value.GetMethod("Invoke").ReturnType;
-
-                    ResultId returnTypeId = this.Visit(Expression.Constant(returnType));
-
-                    if (value.GetMethod("Invoke").GetParameters().Length > 0)
-                    {
-                        throw new NotImplementedException();
-                    }
-
-                    statement = new SpirvStatement(Op.OpTypeFunction, returnTypeId);
-                }
-                else if (value.BaseType.IsGenericType && value.BaseType.GetGenericTypeDefinition() == typeof(Pointer<>))
-                {
-                    StorageClass storage = (StorageClass)value.GetProperty("Storage").GetValue(null);
-                    ResultId typeId = this.Visit(Expression.Constant(value.GetGenericArguments()[0]));
-
-                    statement = new SpirvStatement(Op.OpTypePointer, storage, typeId);
-                }
-                else if (IsTupleType(value))
-                {
-                    var fieldTypes = value.GetGenericArguments();
-
-                    var fieldTypeIds = fieldTypes.Select(x => (object)this.Visit(Expression.Constant(x))).ToArray();
-
-                    statement = new SpirvStatement(Op.OpTypeStruct, fieldTypeIds);
-                }
-                else if (value == typeof(float))
-                {
-                    statement = new SpirvStatement(Op.OpTypeFloat, 32);
-                }
-                else if (value == typeof(int))
-                {
-                    statement = new SpirvStatement(Op.OpTypeInt, 32, 1);
-                }
-                else if (value == typeof(void))
-                {
-                    statement = new SpirvStatement(Op.OpTypeVoid);
-                }
-                else if (value.IsValueType)
-                {
-                    var fieldTypeIds = value.GetFields().Select(x => (object)this.Visit(Expression.Constant(x.FieldType))).ToArray();
-
-                    statement = new SpirvStatement(Op.OpTypeStruct, fieldTypeIds);
-                }
-                else
-                {
-                    throw new NotImplementedException($"Constants of type {value} are not implemented.");
-                }
+                statement = VisitTypeConstant(expression);
             }
             else
             {
@@ -426,9 +398,8 @@ namespace SharpVk.Shanq
                 statement = new SpirvStatement(Op.OpConstant, typeOperand, expression.Value);
             }
 
-            ResultId resultId;
 
-            if (!this.expressionResults.TryGetValue(statement, out resultId))
+            if (!this.expressionResults.TryGetValue(statement, out ResultId resultId))
             {
                 resultId = this.file.GetNextResultId();
 
@@ -438,6 +409,102 @@ namespace SharpVk.Shanq
             }
 
             return resultId;
+        }
+
+        private SpirvStatement VisitTypeConstant(ConstantExpression expression)
+        {
+            Type value = (Type)expression.Value;
+
+            if (this.vectorLibrary.IsMatrixType(value))
+            {
+                Type rowType = this.vectorLibrary.GetMatrixRowType(value);
+                int[] dimensions = this.vectorLibrary.GetMatrixDimensions(value);
+
+                ResultId rowTypeId = this.Visit(Expression.Constant(rowType));
+
+                return new SpirvStatement(Op.OpTypeMatrix, rowTypeId, dimensions[0]);
+            }
+            else if (this.vectorLibrary.IsVectorType(value))
+            {
+                Type elementType = this.vectorLibrary.GetVectorElementType(value);
+                int length = this.vectorLibrary.GetVectorLength(value);
+
+                ResultId elementTypeId = this.Visit(Expression.Constant(elementType));
+
+                return new SpirvStatement(Op.OpTypeVector, elementTypeId, length);
+            }
+            else if (typeof(Delegate).IsAssignableFrom(value))
+            {
+                var returnType = value.GetMethod("Invoke").ReturnType;
+
+                ResultId returnTypeId = this.Visit(Expression.Constant(returnType));
+
+                if (value.GetMethod("Invoke").GetParameters().Length > 0)
+                {
+                    throw new NotImplementedException();
+                }
+
+                return new SpirvStatement(Op.OpTypeFunction, returnTypeId);
+            }
+            else if (value.BaseType.IsGenericType && value.BaseType.GetGenericTypeDefinition() == typeof(Pointer<>))
+            {
+                StorageClass storage = (StorageClass)value.GetProperty("Storage").GetValue(null);
+                ResultId typeId = this.Visit(Expression.Constant(value.GetGenericArguments()[0]));
+
+                return new SpirvStatement(Op.OpTypePointer, storage, typeId);
+            }
+            else if (IsTupleType(value))
+            {
+                var fieldTypes = value.GetGenericArguments();
+
+                var fieldTypeIds = fieldTypes.Select(x => (object)this.Visit(Expression.Constant(x))).ToArray();
+
+                return new SpirvStatement(Op.OpTypeStruct, fieldTypeIds);
+            }
+            else if (value == typeof(float))
+            {
+                return new SpirvStatement(Op.OpTypeFloat, 32);
+            }
+            else if (value == typeof(int))
+            {
+                return new SpirvStatement(Op.OpTypeInt, 32, 1);
+            }
+            else if (value == typeof(void))
+            {
+                return new SpirvStatement(Op.OpTypeVoid);
+            }
+            else if (value.IsValueType)
+            {
+                var fieldTypeIds = value.GetFields().Select(x => (object)this.Visit(Expression.Constant(x.FieldType))).ToArray();
+
+                return new SpirvStatement(Op.OpTypeStruct, fieldTypeIds);
+            }
+            else if (IsSampler(value))
+            {
+                ResultId imageTypeId = this.Visit(Expression.Constant(typeof(ImageType2d<>).MakeGenericType(value.GetGenericArguments()[0])));
+
+                return new SpirvStatement(Op.OpTypeSampledImage, imageTypeId);
+            }
+            else if (IsImage(value))
+            {
+                ResultId pixelTypeId = this.Visit(Expression.Constant(this.vectorLibrary.GetVectorElementType(value.GetGenericArguments()[0])));
+
+                return new SpirvStatement(Op.OpTypeImage, pixelTypeId, Dim.Dim2D, 0, 0, 0, 1, ImageFormat.Unknown);
+            }
+            else
+            {
+                throw new NotImplementedException($"Constants of type {value} are not implemented.");
+            }
+        }
+
+        private static bool IsSampler(Type type)
+        {
+            return type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Sampler2d<,>);
+        }
+
+        private static bool IsImage(Type type)
+        {
+            return type.IsGenericType && type.GetGenericTypeDefinition() == typeof(ImageType2d<>);
         }
 
         private Op SelectByType(Type type, Op floatingPointOp, Op integerOp)
