@@ -87,6 +87,11 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        public const string ConservativeRasterization = "VK_EXT_conservative_rasterization"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public const string SwapchainColorspace = "VK_EXT_swapchain_colorspace"; 
         
         /// <summary>

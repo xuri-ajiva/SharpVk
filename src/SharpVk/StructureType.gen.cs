@@ -782,6 +782,16 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        PhysicalDeviceConservativeRasterizationProperties = 1000101000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PipelineRasterizationConservativeStateCreateInfo = 1000101001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         HdrMetadata = 1000105000, 
         
         /// <summary>
