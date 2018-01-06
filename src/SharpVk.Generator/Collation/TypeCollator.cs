@@ -25,6 +25,32 @@ namespace SharpVk.Generator.Collation
 
         public void Execute(IServiceCollection services)
         {
+            var extendTypes = this.types.ToDictionary(x => x.VkName, x => this.types.Where(y => y.Extends == x.VkName).Select(y => y.VkName).ToList());
+
+            bool updated = true;
+
+            while (updated)
+            {
+                updated = false;
+
+                foreach (var type in extendTypes.Keys)
+                {
+                    var extendTypeList = extendTypes[type];
+
+                    foreach (var extendType in extendTypeList.ToArray())
+                    {
+                        foreach (var subExtendType in extendTypes[extendType])
+                        {
+                            if (!extendTypeList.Contains(subExtendType) && subExtendType != type)
+                            {
+                                extendTypeList.Add(subExtendType);
+                                updated = true;
+                            }
+                        }
+                    }
+                }
+            }
+
             var typeData = this.types
                                     .Where(x => x.Category != TypeCategory.define && x.Category != TypeCategory.include)
                                     .ToDictionary(x => x.VkName, x => new TypeDeclaration
@@ -34,7 +60,7 @@ namespace SharpVk.Generator.Collation
                                         Extension = x.ExtensionNamespace?.FirstToUpper(),
                                         Pattern = x.Category.MapToPattern(),
                                         Members = GetMembers(x).ToList(),
-                                        ExtendTypes = this.types.Where(y => y.Extends == x.VkName).Select(y => y.VkName).ToList(),
+                                        ExtendTypes = extendTypes[x.VkName].ToList(),
                                         Type = x.Type,
                                         IsOutputOnly = x.IsReturnedOnly
                                     });
