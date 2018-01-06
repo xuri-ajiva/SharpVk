@@ -523,18 +523,20 @@ namespace SharpVk.VertexBuffers
                                                                       });
 
             this.fragShader = this.device.CreateFragmentModule(shanq => from input in shanq.GetInput<FragmentInput>()
-                                                                        select new FragmentOutput
-                                                                        {
-                                                                            Colour = new vec4(input.Uv, 1, 1)
-                                                                        });
-
-            this.fragShader = this.device.CreateFragmentModule(shanq => from input in shanq.GetInput<FragmentInput>()
                                                                         from texture in shanq.GetSampler2d<vec4>(1, 0)
                                                                         select new FragmentOutput
                                                                         {
-                                                                            Colour = texture.Sample(input.Uv)
+                                                                            Colour = texture.Sample(input.Uv),
+                                                                            FragDepth = input.FragCoord.z
                                                                         });
         }
+
+        public struct SpriteData
+        {
+            public mat4 Transform;
+            public vec2 AtlasPosition;
+            public vec2 Size;
+        };
 
         private void CreateGraphicsPipeline()
         {
@@ -747,7 +749,7 @@ namespace SharpVk.VertexBuffers
 
                 commandBuffer.BeginRenderPass(this.renderPass,
                                                 this.frameBuffers[index],
-                                                new Rect2D(new Offset2D(), this.swapChainExtent),
+                                                new Rect2D(this.swapChainExtent),
                                                 new ClearValue[1],
                                                 SubpassContents.Inline);
 
@@ -962,7 +964,7 @@ namespace SharpVk.VertexBuffers
                 }
             };
 
-            transferBuffers[0].CopyImage(sourceImage, ImageLayout.TransferSourceOptimal, destinationImage, ImageLayout.TransferDestinationOptimal, new[] { region });
+            transferBuffers[0].CopyImage(sourceImage, ImageLayout.TransferSourceOptimal, destinationImage, ImageLayout.TransferDestinationOptimal, region);
 
             this.EndSingleTimeCommand(transferBuffers);
         }
@@ -1096,12 +1098,18 @@ namespace SharpVk.VertexBuffers
         {
             [Location(0)]
             public vec2 Uv;
+
+            [BuiltIn(BuiltIn.FragCoord)]
+            public vec4 FragCoord;
         }
 
         private struct FragmentOutput
         {
             [Location(0)]
             public vec4 Colour;
+
+            [BuiltIn(BuiltIn.FragDepth)]
+            public float FragDepth;
         }
 
         private struct Vertex

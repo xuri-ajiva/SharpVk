@@ -48,6 +48,8 @@ namespace SharpVk.Shanq
             var bindingMapping = new Dictionary<FieldInfo, Tuple<ResultId, int>>();
             var builtinList = new Dictionary<FieldInfo, Tuple<ResultId, ResultId, int>>();
 
+            var executionModes = new List<ExecutionMode>();
+
             bool hasBuiltInOutput = false;
 
             var resultType = typeof(T);
@@ -65,7 +67,14 @@ namespace SharpVk.Shanq
                     fieldMapping.Add(field, outputVariableId);
                 }
 
-                hasBuiltInOutput |= field.GetCustomAttribute<BuiltInAttribute>() != null;
+                var builtInAttr = field.GetCustomAttribute<BuiltInAttribute>();
+
+                hasBuiltInOutput |= builtInAttr != null;
+
+                if (builtInAttr?.BuiltIn == BuiltIn.FragDepth)
+                {
+                    executionModes.Add(ExecutionMode.DepthReplacing);
+                }
             }
 
             var fromClauses = new FromClauseBase[] { queryModel.MainFromClause }
@@ -95,7 +104,7 @@ namespace SharpVk.Shanq
 
             foreach (var field in inputTypes.SelectMany(type => type.GetFields()))
             {
-                if (field.GetCustomAttribute<LocationAttribute>() != null)
+                if (field.GetCustomAttribute<LocationAttribute>() != null || field.GetCustomAttribute<BuiltInAttribute>() != null)
                 {
                     var pointerType = typeof(InputPointer<>).MakeGenericType(field.FieldType);
                     ResultId inputPointerId = expressionVisitor.Visit(Expression.Constant(pointerType));
@@ -112,7 +121,7 @@ namespace SharpVk.Shanq
             foreach (var (type, binding, descriptorSet) in bindingTypes)
             {
                 ResultId structureTypeId = expressionVisitor.Visit(Expression.Constant(type));
-                var pointerType = typeof(InputPointer<>).MakeGenericType(type);
+                var pointerType = typeof(UniformPointer<>).MakeGenericType(type);
                 ResultId uniformPointerId = expressionVisitor.Visit(Expression.Constant(pointerType));
                 ResultId uniformVariableId = file.GetNextResultId();
 
@@ -123,7 +132,7 @@ namespace SharpVk.Shanq
 
                 int fieldIndex = 0;
 
-                foreach (var field in type.GetFields())
+                foreach (var field in type.GetFieldsByOffset())
                 {
                     expressionVisitor.AddBinding(field, Tuple.Create(uniformVariableId, fieldIndex));
 
@@ -159,7 +168,7 @@ namespace SharpVk.Shanq
 
             if (hasBuiltInOutput)
             {
-                var builtInFields = resultType.GetFields().Select(x => new { Field = x, x.GetCustomAttribute<BuiltInAttribute>()?.BuiltIn })
+                var builtInFields = resultType.GetFieldsByOffset().Select(x => new { Field = x, x.GetCustomAttribute<BuiltInAttribute>()?.BuiltIn })
                                                             .Where(x => x.BuiltIn != null);
 
                 var structureType = GetTupleType(builtInFields.Count()).MakeGenericType(builtInFields.Select(x => x.Field.FieldType).ToArray());
@@ -185,7 +194,11 @@ namespace SharpVk.Shanq
             file.AddHeaderStatement(Op.OpEntryPoint, new object[] { this.model, entryPointerFunctionId, "main" }.Concat(entryPointParameters.Cast<object>()).ToArray());
             if (this.model == ExecutionModel.Fragment)
             {
-                file.AddHeaderStatement(Op.OpExecutionMode, entryPointerFunctionId, ExecutionMode.OriginUpperLeft);
+                executionModes.Add(ExecutionMode.OriginUpperLeft);
+            }
+            foreach (var mode in executionModes)
+            {
+                file.AddHeaderStatement(Op.OpExecutionMode, entryPointerFunctionId, mode);
             }
 
             foreach (var mapping in fieldMapping)
@@ -195,6 +208,12 @@ namespace SharpVk.Shanq
                     var attribute = mapping.Key.GetCustomAttribute<LocationAttribute>();
 
                     file.AddAnnotationStatement(Op.OpDecorate, mapping.Value, Decoration.Location, attribute.LocationIndex);
+                }
+                else if (mapping.Key.GetCustomAttribute<BuiltInAttribute>() != null)
+                {
+                    var attribute = mapping.Key.GetCustomAttribute<BuiltInAttribute>();
+
+                    file.AddAnnotationStatement(Op.OpDecorate, mapping.Value, Decoration.BuiltIn, attribute.BuiltIn);
                 }
             }
 

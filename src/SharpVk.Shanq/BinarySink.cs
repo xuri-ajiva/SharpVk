@@ -23,14 +23,16 @@ namespace SharpVk.Spirv
 
         public void AddStatement(ResultId? resultId, SpirvStatement statement)
         {
+            //string fileLocation = this.file.BaseStream.Position.ToString().PadLeft(4, '0');
+
             //if (resultId.HasValue)
             //{
-            //    Console.Write($" {resultId.Value}".PadRight(5));
+            //    Console.Write($"{fileLocation} {resultId.Value}".PadRight(9));
             //    Console.Write(" = ");
             //}
             //else
             //{
-            //    Console.Write("        ");
+            //    Console.Write(fileLocation.PadRight(12));
             //}
 
             //Console.WriteLine(statement);

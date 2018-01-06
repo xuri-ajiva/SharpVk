@@ -475,7 +475,7 @@ namespace SharpVk.Shanq
             }
             else if (value.IsValueType)
             {
-                var fieldTypeIds = value.GetFields().Select(x => (object)this.Visit(Expression.Constant(x.FieldType))).ToArray();
+                var fieldTypeIds = value.GetFieldsByOffset().Select(x => (object)this.Visit(Expression.Constant(x.FieldType))).ToArray();
 
                 return new SpirvStatement(Op.OpTypeStruct, fieldTypeIds);
             }
