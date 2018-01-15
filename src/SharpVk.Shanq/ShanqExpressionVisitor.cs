@@ -66,6 +66,35 @@ namespace SharpVk.Shanq
             }
         }
 
+        [NodeType(ExpressionType.Convert)]
+        private ResultId VisitConvert(UnaryExpression expression)
+        {
+            var mapping = new Dictionary<(Type, Type), Op>
+            {
+                [(typeof(float), typeof(int))] = Op.OpConvertFToS,
+                [(typeof(float), typeof(uint))] = Op.OpConvertFToU,
+                [(typeof(int), typeof(float))] = Op.OpConvertSToF,
+                [(typeof(uint), typeof(float))] = Op.OpConvertSToF,
+                [(typeof(int), typeof(uint))] = Op.OpSConvert,
+                [(typeof(uint), typeof(int))] = Op.OpUConvert,
+            };
+
+            if (mapping.TryGetValue((expression.Operand.Type, expression.Type), out Op convertOp))
+            {
+                ResultId result = this.file.GetNextResultId();
+
+                var subExpressionId = this.Visit(expression.Operand);
+
+                this.file.AddFunctionStatement(result, convertOp, this.Visit(Expression.Constant(expression.Type)), subExpressionId);
+
+                return result;
+            }
+            else
+            {
+                throw new NotImplementedException($"Conversion from {expression.Operand.Type} to {expression.Type} not implemented.");
+            }
+        }
+
         [NodeType(ExpressionType.Call)]
         private ResultId VisitCall(MethodCallExpression expression)
         {

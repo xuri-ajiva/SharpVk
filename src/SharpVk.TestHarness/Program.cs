@@ -284,7 +284,7 @@ namespace SharpVk.VertexBuffers
                     ApiVersion = new Version(1, 0, 0)
                 });
 
-            instance.CreateDebugReportCallback(DebugReportDelegate, DebugReportFlags.Error | DebugReportFlags.Warning);
+            instance.CreateDebugReportCallback(DebugReportDelegate, DebugReportFlags.Error | DebugReportFlags.Warning | DebugReportFlags.Information | DebugReportFlags.Debug);
         }
 
         private static readonly DebugReportCallbackDelegate DebugReportDelegate = DebugReport;
@@ -512,14 +512,14 @@ namespace SharpVk.VertexBuffers
                                                         }
                                                     });
         }
-
+        
         private void CreateShaderModules()
         {
             this.vertShader = this.device.CreateVertexModule(shanq => from input in shanq.GetInput<Vertex>()
                                                                       select new VertexOutput
                                                                       {
                                                                           Uv = input.Uv,
-                                                                          Position = new vec4(input.Position, 0, 1)
+                                                                          Position = new vec4(input.Position, (float)input.Test, 1)
                                                                       });
 
             this.fragShader = this.device.CreateFragmentModule(shanq => from input in shanq.GetInput<FragmentInput>()
@@ -1118,6 +1118,7 @@ namespace SharpVk.VertexBuffers
             {
                 this.Position = position;
                 this.Uv = uv;
+                this.Test = 0;
             }
 
             [Location(0)]
@@ -1125,6 +1126,9 @@ namespace SharpVk.VertexBuffers
 
             [Location(1)]
             public vec2 Uv;
+
+            [Location(3)]
+            public int Test;
 
             public static VertexInputBindingDescription GetBindingDescription()
             {
