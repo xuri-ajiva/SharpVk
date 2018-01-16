@@ -197,7 +197,7 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        ValidationCache = 33, 
+        ValidationCacheExt = 33, 
         
         /// <summary>
         /// 

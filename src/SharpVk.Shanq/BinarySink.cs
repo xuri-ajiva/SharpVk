@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -24,17 +23,17 @@ namespace SharpVk.Spirv
 
         public void AddStatement(ResultId? resultId, SpirvStatement statement)
         {
-            if (resultId.HasValue)
-            {
-                Console.Write($" {resultId.Value}".PadRight(5));
-                Console.Write(" = ");
-            }
-            else
-            {
-                Console.Write("        ");
-            }
+            //if (resultId.HasValue)
+            //{
+            //    Console.Write($" {resultId.Value}".PadRight(5));
+            //    Console.Write(" = ");
+            //}
+            //else
+            //{
+            //    Console.Write("        ");
+            //}
 
-            Console.WriteLine(statement);
+            //Console.WriteLine(statement);
 
             var opCode = OpCode.Lookup[statement.Op];
 

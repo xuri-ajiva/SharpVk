@@ -1147,7 +1147,7 @@
   "VkDebugReportObjectTypeEXT.VK_DEBUG_REPORT_OBJECT_TYPE_SURFACE_KHR_EXT": "A SurfaceKHR.",
   "VkDebugReportObjectTypeEXT.VK_DEBUG_REPORT_OBJECT_TYPE_SWAPCHAIN_KHR_EXT": "A SwapchainKHR.",
   "VkDebugReportObjectTypeEXT.VK_DEBUG_REPORT_OBJECT_TYPE_UNKNOWN_EXT": "An unknown object.",
-  "VkDebugReportObjectTypeEXT.VK_DEBUG_REPORT_OBJECT_TYPE_VALIDATION_CACHE_EXT": "",
+  "VkDebugReportObjectTypeEXT.VK_DEBUG_REPORT_OBJECT_TYPE_VALIDATION_CACHE_EXT_EXT": "",
   "VkDedicatedAllocationBufferCreateInfoNV": "Specify that a buffer is bound to a dedicated memory resource.",
   "VkDedicatedAllocationBufferCreateInfoNV.dedicatedAllocation": "Indicates whether the buffer will have a dedicated allocation bound to it.",
   "VkDedicatedAllocationBufferCreateInfoNV.pNext": "Null or an extension-specific structure.",
