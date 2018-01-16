@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
@@ -19,6 +18,19 @@ namespace SharpVk
             this.host = host;
             this.type = type;
             this.parent = parent;
+        }
+
+        /// <summary>
+        /// Creates a new instance of CommandCache using the given IProcLookup
+        /// instance to load unmanaged Vulkan function pointers.
+        /// </summary>
+        /// <param name="procLookup">
+        /// An implementation of IProcLookup that can load the core Vulkan
+        /// commands.
+        /// </param>
+        public CommandCache(IProcLookup procLookup)
+            : this(procLookup, "", null)
+        {
         }
 
         /// <summary>
@@ -49,7 +61,7 @@ namespace SharpVk
                     return (T)this.commands[name];
                 }
             }
-            
+
             T commandDelegate = Marshal.GetDelegateForFunctionPointer<T>(this.host.GetProcedureAddress(name));
 
             lock (this.commands)
@@ -66,18 +78,5 @@ namespace SharpVk
 
             return commandDelegate;
         }
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public interface IProcLookup
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns></returns>
-        IntPtr GetProcedureAddress(string name);
     }
 }
