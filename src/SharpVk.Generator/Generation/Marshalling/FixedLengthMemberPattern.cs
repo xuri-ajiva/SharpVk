@@ -166,6 +166,19 @@ namespace SharpVk.Generator.Generation.Marshalling
                         LengthExpression = getValue(countMemberName),
                         ValueExpression = marshalling.BuildMarshalFromValueExpression(Index(Brackets(AddressOf(Brackets(getValue(source.Name + "_0")))), Variable("index")), context.GetHandle)
                     });
+
+                    for (int index = 0; index < count; index++)
+                    {
+                        string targetFieldName = source.Name + "_" + index;
+                        int valueIndex = index;
+
+                        info.MarshalTo.Add((getTarget, getValue) => new AssignAction
+                        {
+                            TargetExpression = getTarget(targetFieldName),
+                            Type = marshalling.MarshalToActionType,
+                            ValueExpression = marshalling.BuildMarshalToValueExpression(Index(getValue(source.Name), Literal(valueIndex)), context.GetHandle)
+                        });
+                    }
                 }
 
                 return true;
