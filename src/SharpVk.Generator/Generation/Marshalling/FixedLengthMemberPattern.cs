@@ -167,18 +167,28 @@ namespace SharpVk.Generator.Generation.Marshalling
                         ValueExpression = marshalling.BuildMarshalFromValueExpression(Index(Brackets(AddressOf(Brackets(getValue(source.Name + "_0")))), Variable("index")), context.GetHandle)
                     });
 
-                    for (int index = 0; index < count; index++)
+                    info.MarshalTo.Add((getTarget, getValue) =>
                     {
-                        string targetFieldName = source.Name + "_" + index;
-                        int valueIndex = index;
-
-                        info.MarshalTo.Add((getTarget, getValue) => new AssignAction
+                        var marshalToAction = new OptionalAction
                         {
-                            TargetExpression = getTarget(targetFieldName),
-                            Type = marshalling.MarshalToActionType,
-                            ValueExpression = marshalling.BuildMarshalToValueExpression(Index(getValue(source.Name), Literal(valueIndex)), context.GetHandle)
-                        });
-                    }
+                            CheckExpression = LogicalAnd(IsNotEqual(getValue(source.Name), Null), GreaterThanEqualTo(Member(getValue(source.Name), "Length"), Literal(count)))
+                        };
+
+                        for (int index = 0; index < count; index++)
+                        {
+                            string targetFieldName = source.Name + "_" + index;
+                            int valueIndex = index;
+
+                            marshalToAction.Actions.Add(new AssignAction
+                            {
+                                TargetExpression = getTarget(targetFieldName),
+                                Type = marshalling.MarshalToActionType,
+                                ValueExpression = marshalling.BuildMarshalToValueExpression(Index(getValue(source.Name), Literal(valueIndex)), context.GetHandle)
+                            });
+                        }
+
+                        return marshalToAction;
+                    });
                 }
 
                 return true;

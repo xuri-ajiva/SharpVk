@@ -230,11 +230,38 @@ namespace SharpVk.Emit
             right(this.GetSubBuilder());
         }
 
+        public void EmitGreaterThan(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)
+        {
+            left(this.GetSubBuilder());
+
+            this.writer.Write(" > ");
+
+            right(this.GetSubBuilder());
+        }
+
+        public void EmitGreaterThanEqualTo(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)
+        {
+            left(this.GetSubBuilder());
+
+            this.writer.Write(" >= ");
+
+            right(this.GetSubBuilder());
+        }
+
         public void EmitLessThan(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)
         {
             left(this.GetSubBuilder());
 
             this.writer.Write(" < ");
+
+            right(this.GetSubBuilder());
+        }
+
+        public void EmitLessThanEqualTo(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)
+        {
+            left(this.GetSubBuilder());
+
+            this.writer.Write(" <= ");
 
             right(this.GetSubBuilder());
         }
@@ -280,6 +307,15 @@ namespace SharpVk.Emit
             this.writer.Write("!");
 
             target(this.GetSubBuilder());
+        }
+
+        public void EmitLogicalAnd(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)
+        {
+            left(this.GetSubBuilder());
+
+            this.writer.Write(" && ");
+
+            right(this.GetSubBuilder());
         }
 
         public void EmitEnumField(string type, string field)
@@ -457,9 +493,24 @@ namespace SharpVk.Emit
             return builder => builder.EmitIsNotEqual(left, right);
         }
 
+        public static Action<ExpressionBuilder> GreaterThan(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)
+        {
+            return builder => builder.EmitGreaterThan(left, right);
+        }
+
+        public static Action<ExpressionBuilder> GreaterThanEqualTo(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)
+        {
+            return builder => builder.EmitGreaterThanEqualTo(left, right);
+        }
+
         public static Action<ExpressionBuilder> LessThan(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)
         {
             return builder => builder.EmitLessThan(left, right);
+        }
+
+        public static Action<ExpressionBuilder> LessThanEqualTo(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)
+        {
+            return builder => builder.EmitLessThanEqualTo(left, right);
         }
 
         public static Action<ExpressionBuilder> ShiftLeft(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)
@@ -485,6 +536,11 @@ namespace SharpVk.Emit
         public static Action<ExpressionBuilder> Not(Action<ExpressionBuilder> target)
         {
             return builder => builder.EmitNot(target);
+        }
+
+        public static Action<ExpressionBuilder> LogicalAnd(Action<ExpressionBuilder> left, Action<ExpressionBuilder> right)
+        {
+            return builder => builder.EmitLogicalAnd(left, right);
         }
 
         public static Action<ExpressionBuilder> EnumField(string type, string field)

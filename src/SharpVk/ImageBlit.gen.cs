@@ -77,11 +77,17 @@ namespace SharpVk
         internal unsafe void MarshalTo(SharpVk.Interop.ImageBlit* pointer)
         {
             pointer->SourceSubresource = this.SourceSubresource;
-            pointer->SourceOffsets_0 = this.SourceOffsets[0];
-            pointer->SourceOffsets_1 = this.SourceOffsets[1];
+            if (this.SourceOffsets != null && this.SourceOffsets.Length >= 2)
+            {
+                pointer->SourceOffsets_0 = this.SourceOffsets[0];
+                pointer->SourceOffsets_1 = this.SourceOffsets[1];
+            }
             pointer->DestinationSubresource = this.DestinationSubresource;
-            pointer->DestinationOffsets_0 = this.DestinationOffsets[0];
-            pointer->DestinationOffsets_1 = this.DestinationOffsets[1];
+            if (this.DestinationOffsets != null && this.DestinationOffsets.Length >= 2)
+            {
+                pointer->DestinationOffsets_0 = this.DestinationOffsets[0];
+                pointer->DestinationOffsets_1 = this.DestinationOffsets[1];
+            }
         }
     }
 }
