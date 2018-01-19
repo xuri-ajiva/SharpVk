@@ -50,7 +50,7 @@ namespace SharpVk.Emit
             bool isFirstElement = true;
             foreach (var element in elements)
             {
-                if(!isFirstElement)
+                if (!isFirstElement)
                 {
                     this.writer.WriteLine(",");
                 }
@@ -83,12 +83,19 @@ namespace SharpVk.Emit
             this.EmitArguments(arguments);
             this.writer.Write(")");
         }
-        
+
         public void EmitNewArray(string name, params Action<ExpressionBuilder>[] arguments)
         {
             this.writer.Write($"new {name}[");
             this.EmitArguments(arguments);
             this.writer.Write("]");
+        }
+
+        public void EmitNewValueTuple(params Action<ExpressionBuilder>[] items)
+        {
+            this.writer.Write("(");
+            this.EmitArguments(items);
+            this.writer.Write(")");
         }
 
         public void EmitDefault(string type)
@@ -395,6 +402,11 @@ namespace SharpVk.Emit
         public static Action<ExpressionBuilder> NewArray(string name, params Action<ExpressionBuilder>[] arguments)
         {
             return builder => builder.EmitNewArray(name, arguments);
+        }
+
+        public static Action<ExpressionBuilder> NewValueTuple(params Action<ExpressionBuilder>[] items)
+        {
+            return builder => builder.EmitNewValueTuple(items);
         }
 
         public static Action<ExpressionBuilder> Default(string type)

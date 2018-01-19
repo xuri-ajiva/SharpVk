@@ -46,7 +46,7 @@ namespace SharpVk
         /// An array of two Offset3D structures specifying the bounds of the
         /// source region within srcSubresource.
         /// </summary>
-        public SharpVk.Offset3D[] SourceOffsets
+        public (SharpVk.Offset3D, SharpVk.Offset3D) SourceOffsets
         {
             get;
             set;
@@ -65,7 +65,7 @@ namespace SharpVk
         /// An array of two Offset3D structures specifying the bounds of the
         /// destination region within dstSubresource.
         /// </summary>
-        public SharpVk.Offset3D[] DestinationOffsets
+        public (SharpVk.Offset3D, SharpVk.Offset3D) DestinationOffsets
         {
             get;
             set;
@@ -77,17 +77,11 @@ namespace SharpVk
         internal unsafe void MarshalTo(SharpVk.Interop.ImageBlit* pointer)
         {
             pointer->SourceSubresource = this.SourceSubresource;
-            if (this.SourceOffsets != null && this.SourceOffsets.Length >= 2)
-            {
-                pointer->SourceOffsets_0 = this.SourceOffsets[0];
-                pointer->SourceOffsets_1 = this.SourceOffsets[1];
-            }
+            pointer->SourceOffsets_0 = this.SourceOffsets.Item1;
+            pointer->SourceOffsets_1 = this.SourceOffsets.Item2;
             pointer->DestinationSubresource = this.DestinationSubresource;
-            if (this.DestinationOffsets != null && this.DestinationOffsets.Length >= 2)
-            {
-                pointer->DestinationOffsets_0 = this.DestinationOffsets[0];
-                pointer->DestinationOffsets_1 = this.DestinationOffsets[1];
-            }
+            pointer->DestinationOffsets_0 = this.DestinationOffsets.Item1;
+            pointer->DestinationOffsets_1 = this.DestinationOffsets.Item2;
         }
     }
 }

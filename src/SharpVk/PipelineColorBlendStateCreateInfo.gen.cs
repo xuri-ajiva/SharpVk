@@ -75,7 +75,7 @@ namespace SharpVk
         /// the blend constant that are used in blending, depending on the
         /// blend factor.
         /// </summary>
-        public float[] BlendConstants
+        public (float, float, float, float) BlendConstants
         {
             get;
             set;
@@ -112,7 +112,10 @@ namespace SharpVk
             {
                 pointer->Attachments = null;
             }
-            Interop.HeapUtil.MarshalTo(this.BlendConstants, 4, pointer->BlendConstants);
+            pointer->BlendConstants[0] = this.BlendConstants.Item1;
+            pointer->BlendConstants[1] = this.BlendConstants.Item2;
+            pointer->BlendConstants[2] = this.BlendConstants.Item3;
+            pointer->BlendConstants[3] = this.BlendConstants.Item4;
         }
     }
 }

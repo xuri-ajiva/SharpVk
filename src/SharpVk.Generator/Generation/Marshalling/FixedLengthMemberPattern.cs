@@ -90,6 +90,43 @@ namespace SharpVk.Generator.Generation.Marshalling
                                     TargetExpression = getTarget(source.Name),
                                     ValueExpression = New("Guid", StaticCall("Interop.HeapUtil", "MarshalFrom", getValue(source.Name), AsIs(length)))
                                 });
+
+                                info.MarshalTo.Add((getTarget, getValue) => new AssignAction
+                                {
+                                    TargetExpression = getTarget(source.Name),
+                                    ValueExpression = getValue(source.Name),
+                                    Type = AssignActionType.FixedLengthMarshalTo,
+                                    LengthExpression = AsIs(length)
+                                });
+                            }
+                            else if(int.TryParse(length, out int count))
+                            {
+                                info.Public.Add(new TypedDefinition
+                                {
+                                    Name = source.Name,
+                                    Comment = this.commentGenerator.Lookup(context.VkName, source.VkName),
+                                    Type = "(" + string.Join(", ", Enumerable.Repeat(memberType, count)) + ")"
+                                });
+
+                                info.MarshalFrom.Add((getTarget, getValue) => new AssignAction
+                                {
+                                    TargetExpression = getTarget(source.Name),
+                                    Type = AssignActionType.Assign,
+                                    ValueExpression = NewValueTuple(Enumerable.Range(0, count).Select(x => Index(getValue(source.Name), Literal(x))).ToArray())
+                                });
+
+                                for (int index = 0; index < count; index++)
+                                {
+                                    string valueFieldName = "Item" + (index + 1);
+                                    int fieldIndex = index;
+
+                                    info.MarshalTo.Add((getTarget, getValue) => new AssignAction
+                                    {
+                                        TargetExpression = Index(getTarget(source.Name), Literal(fieldIndex)),
+                                        Type = AssignActionType.Assign,
+                                        ValueExpression = Member(getValue(source.Name), valueFieldName)
+                                    });
+                                }
                             }
                             else
                             {
@@ -105,15 +142,15 @@ namespace SharpVk.Generator.Generation.Marshalling
                                     TargetExpression = getTarget(source.Name),
                                     ValueExpression = StaticCall("Interop.HeapUtil", "MarshalFrom", getValue(source.Name), AsIs(length))
                                 });
-                            }
 
-                            info.MarshalTo.Add((getTarget, getValue) => new AssignAction
-                            {
-                                TargetExpression = getTarget(source.Name),
-                                ValueExpression = getValue(source.Name),
-                                Type = AssignActionType.FixedLengthMarshalTo,
-                                LengthExpression = AsIs(length)
-                            });
+                                info.MarshalTo.Add((getTarget, getValue) => new AssignAction
+                                {
+                                    TargetExpression = getTarget(source.Name),
+                                    ValueExpression = getValue(source.Name),
+                                    Type = AssignActionType.FixedLengthMarshalTo,
+                                    LengthExpression = AsIs(length)
+                                });
+                            }
                             break;
                     }
                 }
@@ -145,50 +182,82 @@ namespace SharpVk.Generator.Generation.Marshalling
                         Repeats = count
                     };
 
-                    info.Public.Add(new TypedDefinition
+                    if (count > 8)
                     {
-                        Name = name,
-                        Comment = this.commentGenerator.Lookup(context.VkName, source.VkName),
-                        Type = memberType + "[]"
-                    });
-
-                    string countMemberName = source.Name.TrimEnd('s') + "Count";
-
-                    info.MarshalFrom.Add((getTarget, getValue) => new AssignAction
-                    {
-                        TargetExpression = getTarget(source.Name),
-                        MemberType = memberType,
-                        IsLoop = true,
-                        IsArray = true,
-                        IndexName = "index",
-                        Type = marshalling.MarshalFromActionType,
-                        NullCheckExpression = IsNotEqual(getValue(countMemberName), Literal(0)),
-                        LengthExpression = getValue(countMemberName),
-                        ValueExpression = marshalling.BuildMarshalFromValueExpression(Index(Brackets(AddressOf(Brackets(getValue(source.Name + "_0")))), Variable("index")), context.GetHandle)
-                    });
-
-                    info.MarshalTo.Add((getTarget, getValue) =>
-                    {
-                        var marshalToAction = new OptionalAction
+                        info.Public.Add(new TypedDefinition
                         {
-                            CheckExpression = LogicalAnd(IsNotEqual(getValue(source.Name), Null), GreaterThanEqualTo(Member(getValue(source.Name), "Length"), Literal(count)))
-                        };
+                            Name = name,
+                            Comment = this.commentGenerator.Lookup(context.VkName, source.VkName),
+                            Type = memberType + "[]"
+                        });
+
+                        string countMemberName = source.Name.TrimEnd('s') + "Count";
+
+                        info.MarshalFrom.Add((getTarget, getValue) => new AssignAction
+                        {
+                            TargetExpression = getTarget(source.Name),
+                            MemberType = memberType,
+                            IsLoop = true,
+                            IsArray = true,
+                            IndexName = "index",
+                            Type = marshalling.MarshalFromActionType,
+                            NullCheckExpression = IsNotEqual(getValue(countMemberName), Literal(0)),
+                            LengthExpression = getValue(countMemberName),
+                            ValueExpression = marshalling.BuildMarshalFromValueExpression(Index(Brackets(AddressOf(Brackets(getValue(source.Name + "_0")))), Variable("index")), context.GetHandle)
+                        });
+
+                        info.MarshalTo.Add((getTarget, getValue) =>
+                        {
+                            var marshalToAction = new OptionalAction
+                            {
+                                CheckExpression = LogicalAnd(IsNotEqual(getValue(source.Name), Null), GreaterThanEqualTo(Member(getValue(source.Name), "Length"), Literal(count)))
+                            };
+
+                            for (int index = 0; index < count; index++)
+                            {
+                                string targetFieldName = source.Name + "_" + index;
+                                int valueIndex = index;
+
+                                marshalToAction.Actions.Add(new AssignAction
+                                {
+                                    TargetExpression = getTarget(targetFieldName),
+                                    Type = marshalling.MarshalToActionType,
+                                    ValueExpression = marshalling.BuildMarshalToValueExpression(Index(getValue(source.Name), Literal(valueIndex)), context.GetHandle)
+                                });
+                            }
+
+                            return marshalToAction;
+                        });
+                    }
+                    else
+                    {
+                        info.Public.Add(new TypedDefinition
+                        {
+                            Name = name,
+                            Comment = this.commentGenerator.Lookup(context.VkName, source.VkName),
+                            Type = "(" + string.Join(", ", Enumerable.Repeat(memberType, count)) + ")"
+                        });
+
+                        info.MarshalFrom.Add((getTarget, getValue) => new AssignAction
+                        {
+                            TargetExpression = getTarget(source.Name),
+                            Type = AssignActionType.Assign,
+                            ValueExpression = NewValueTuple(Enumerable.Range(0, count).Select(x => getValue(source.Name + "_" + x)).ToArray())
+                        });
 
                         for (int index = 0; index < count; index++)
                         {
                             string targetFieldName = source.Name + "_" + index;
-                            int valueIndex = index;
+                            string valueFieldName = "Item" + (index + 1);
 
-                            marshalToAction.Actions.Add(new AssignAction
+                            info.MarshalTo.Add((getTarget, getValue) => new AssignAction
                             {
                                 TargetExpression = getTarget(targetFieldName),
                                 Type = marshalling.MarshalToActionType,
-                                ValueExpression = marshalling.BuildMarshalToValueExpression(Index(getValue(source.Name), Literal(valueIndex)), context.GetHandle)
+                                ValueExpression = marshalling.BuildMarshalToValueExpression(Member(getValue(source.Name), valueFieldName), context.GetHandle)
                             });
                         }
-
-                        return marshalToAction;
-                    });
+                    }
                 }
 
                 return true;

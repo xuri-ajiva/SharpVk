@@ -398,9 +398,9 @@ namespace SharpVk.VertexBuffers
             {
                 for (var x = 0; x < textureWidth; x++)
                 {
-                    rgbaBytes[i++] = 255;
-                    rgbaBytes[i++] = 255;
-                    rgbaBytes[i++] = 255;
+                    rgbaBytes[i++] = (byte)(x % 256);
+                    rgbaBytes[i++] = 0;
+                    rgbaBytes[i++] = (byte)(y % 256);
                     rgbaBytes[i++] = 255;
                 }
             }
@@ -621,7 +621,7 @@ namespace SharpVk.VertexBuffers
                             },
                             LogicOpEnable = false,
                             LogicOp = LogicOp.Copy,
-                            BlendConstants = new float[] { 0, 0, 0, 0 }
+                            BlendConstants = (0, 0, 0, 0)
                         },
                         Stages = new[]
                         {

@@ -90,7 +90,7 @@ namespace SharpVk.Amd
         /// <summary>
         /// 
         /// </summary>
-        public uint[] ComputeWorkGroupSize
+        public (uint, uint, uint) ComputeWorkGroupSize
         {
             get;
             set;
@@ -108,7 +108,7 @@ namespace SharpVk.Amd
             result.NumPhysicalSgprs = pointer->NumPhysicalSgprs;
             result.NumAvailableVgprs = pointer->NumAvailableVgprs;
             result.NumAvailableSgprs = pointer->NumAvailableSgprs;
-            result.ComputeWorkGroupSize = Interop.HeapUtil.MarshalFrom(pointer->ComputeWorkGroupSize, 3);
+            result.ComputeWorkGroupSize = (pointer->ComputeWorkGroupSize[0], pointer->ComputeWorkGroupSize[1], pointer->ComputeWorkGroupSize[2]);
             return result;
         }
     }

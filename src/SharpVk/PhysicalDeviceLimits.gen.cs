@@ -714,7 +714,7 @@ namespace SharpVk
         /// parameters to the dispatch commands must be less than or equal to
         /// the corresponding limit. See &lt;&lt;dispatch.
         /// </summary>
-        public uint[] MaxComputeWorkGroupCount
+        public (uint, uint, uint) MaxComputeWorkGroupCount
         {
             get;
             set;
@@ -741,7 +741,7 @@ namespace SharpVk
         /// by the object decorated by the WorkgroupSize decoration in shader
         /// modules must be less than or equal to the corresponding limit.
         /// </summary>
-        public uint[] MaxComputeWorkGroupSize
+        public (uint, uint, uint) MaxComputeWorkGroupSize
         {
             get;
             set;
@@ -852,7 +852,7 @@ namespace SharpVk
         /// image which can be created and used as a framebuffer attachment.
         /// See Controlling the Viewport.
         /// </summary>
-        public uint[] MaxViewportDimensions
+        public (uint, uint) MaxViewportDimensions
         {
             get;
             set;
@@ -874,7 +874,7 @@ namespace SharpVk
         /// smallest possible number of bits ends up with the specified range.
         /// ==== --
         /// </summary>
-        public float[] ViewportBoundsRange
+        public (float, float) ViewportBoundsRange
         {
             get;
             set;
@@ -1262,7 +1262,7 @@ namespace SharpVk
         /// sizes for points. Values written to variables decorated with the
         /// PointSize built-in decoration are clamped to this range.
         /// </summary>
-        public float[] PointSizeRange
+        public (float, float) PointSizeRange
         {
             get;
             set;
@@ -1274,7 +1274,7 @@ namespace SharpVk
         /// PipelineRasterizationStateCreateInfo or the lineWidth parameter to
         /// fname:vkCmdSetLineWidth are clamped to this range.
         /// </summary>
-        public float[] LineWidthRange
+        public (float, float) LineWidthRange
         {
             get;
             set;
@@ -1426,9 +1426,9 @@ namespace SharpVk
             result.MaxFragmentDualSourceAttachments = pointer->MaxFragmentDualSourceAttachments;
             result.MaxFragmentCombinedOutputResources = pointer->MaxFragmentCombinedOutputResources;
             result.MaxComputeSharedMemorySize = pointer->MaxComputeSharedMemorySize;
-            result.MaxComputeWorkGroupCount = Interop.HeapUtil.MarshalFrom(pointer->MaxComputeWorkGroupCount, 3);
+            result.MaxComputeWorkGroupCount = (pointer->MaxComputeWorkGroupCount[0], pointer->MaxComputeWorkGroupCount[1], pointer->MaxComputeWorkGroupCount[2]);
             result.MaxComputeWorkGroupInvocations = pointer->MaxComputeWorkGroupInvocations;
-            result.MaxComputeWorkGroupSize = Interop.HeapUtil.MarshalFrom(pointer->MaxComputeWorkGroupSize, 3);
+            result.MaxComputeWorkGroupSize = (pointer->MaxComputeWorkGroupSize[0], pointer->MaxComputeWorkGroupSize[1], pointer->MaxComputeWorkGroupSize[2]);
             result.SubPixelPrecisionBits = pointer->SubPixelPrecisionBits;
             result.SubTexelPrecisionBits = pointer->SubTexelPrecisionBits;
             result.MipmapPrecisionBits = pointer->MipmapPrecisionBits;
@@ -1437,8 +1437,8 @@ namespace SharpVk
             result.MaxSamplerLodBias = pointer->MaxSamplerLodBias;
             result.MaxSamplerAnisotropy = pointer->MaxSamplerAnisotropy;
             result.MaxViewports = pointer->MaxViewports;
-            result.MaxViewportDimensions = Interop.HeapUtil.MarshalFrom(pointer->MaxViewportDimensions, 2);
-            result.ViewportBoundsRange = Interop.HeapUtil.MarshalFrom(pointer->ViewportBoundsRange, 2);
+            result.MaxViewportDimensions = (pointer->MaxViewportDimensions[0], pointer->MaxViewportDimensions[1]);
+            result.ViewportBoundsRange = (pointer->ViewportBoundsRange[0], pointer->ViewportBoundsRange[1]);
             result.ViewportSubPixelBits = pointer->ViewportSubPixelBits;
             result.MinMemoryMapAlignment = pointer->MinMemoryMapAlignment;
             result.MinTexelBufferOffsetAlignment = pointer->MinTexelBufferOffsetAlignment;
@@ -1471,8 +1471,8 @@ namespace SharpVk
             result.MaxCullDistances = pointer->MaxCullDistances;
             result.MaxCombinedClipAndCullDistances = pointer->MaxCombinedClipAndCullDistances;
             result.DiscreteQueuePriorities = pointer->DiscreteQueuePriorities;
-            result.PointSizeRange = Interop.HeapUtil.MarshalFrom(pointer->PointSizeRange, 2);
-            result.LineWidthRange = Interop.HeapUtil.MarshalFrom(pointer->LineWidthRange, 2);
+            result.PointSizeRange = (pointer->PointSizeRange[0], pointer->PointSizeRange[1]);
+            result.LineWidthRange = (pointer->LineWidthRange[0], pointer->LineWidthRange[1]);
             result.PointSizeGranularity = pointer->PointSizeGranularity;
             result.LineWidthGranularity = pointer->LineWidthGranularity;
             result.StrictLines = pointer->StrictLines;

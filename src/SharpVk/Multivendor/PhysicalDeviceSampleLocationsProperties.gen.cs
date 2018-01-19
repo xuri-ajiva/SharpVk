@@ -54,7 +54,7 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public float[] SampleLocationCoordinateRange
+        public (float, float) SampleLocationCoordinateRange
         {
             get;
             set;
@@ -86,7 +86,7 @@ namespace SharpVk.Multivendor
             PhysicalDeviceSampleLocationsProperties result = default(PhysicalDeviceSampleLocationsProperties);
             result.SampleLocationSampleCounts = pointer->SampleLocationSampleCounts;
             result.MaxSampleLocationGridSize = pointer->MaxSampleLocationGridSize;
-            result.SampleLocationCoordinateRange = Interop.HeapUtil.MarshalFrom(pointer->SampleLocationCoordinateRange, 2);
+            result.SampleLocationCoordinateRange = (pointer->SampleLocationCoordinateRange[0], pointer->SampleLocationCoordinateRange[1]);
             result.SampleLocationSubPixelBits = pointer->SampleLocationSubPixelBits;
             result.VariableSampleLocations = pointer->VariableSampleLocations;
             return result;

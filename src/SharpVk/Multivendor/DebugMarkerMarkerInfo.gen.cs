@@ -48,7 +48,7 @@ namespace SharpVk.Multivendor
         /// value. The values contain RGBA values in order, in the range 0.0 to
         /// 1.0. If all elements in color are set to 0.0 then it is ignored.
         /// </summary>
-        public float[] Color
+        public (float, float, float, float) Color
         {
             get;
             set;
@@ -62,7 +62,10 @@ namespace SharpVk.Multivendor
             pointer->SType = StructureType.DebugMarkerMarkerInfo;
             pointer->Next = null;
             pointer->MarkerName = Interop.HeapUtil.MarshalTo(this.MarkerName);
-            Interop.HeapUtil.MarshalTo(this.Color, 4, pointer->Color);
+            pointer->Color[0] = this.Color.Item1;
+            pointer->Color[1] = this.Color.Item2;
+            pointer->Color[2] = this.Color.Item3;
+            pointer->Color[3] = this.Color.Item4;
         }
     }
 }
