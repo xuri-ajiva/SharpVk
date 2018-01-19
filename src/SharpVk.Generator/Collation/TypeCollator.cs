@@ -27,29 +27,29 @@ namespace SharpVk.Generator.Collation
         {
             var extendTypes = this.types.ToDictionary(x => x.VkName, x => this.types.Where(y => y.Extends == x.VkName).Select(y => y.VkName).ToList());
 
-            bool updated = true;
+            //bool updated = true;
 
-            while (updated)
-            {
-                updated = false;
+            //while (updated)
+            //{
+            //    updated = false;
 
-                foreach (var type in extendTypes.Keys)
-                {
-                    var extendTypeList = extendTypes[type];
+            //    foreach (var type in extendTypes.Keys)
+            //    {
+            //        var extendTypeList = extendTypes[type];
 
-                    foreach (var extendType in extendTypeList.ToArray())
-                    {
-                        foreach (var subExtendType in extendTypes[extendType])
-                        {
-                            if (!extendTypeList.Contains(subExtendType) && subExtendType != type)
-                            {
-                                extendTypeList.Add(subExtendType);
-                                updated = true;
-                            }
-                        }
-                    }
-                }
-            }
+            //        foreach (var extendType in extendTypeList.ToArray())
+            //        {
+            //            foreach (var subExtendType in extendTypes[extendType])
+            //            {
+            //                if (!extendTypeList.Contains(subExtendType) && subExtendType != type)
+            //                {
+            //                    extendTypeList.Add(subExtendType);
+            //                    updated = true;
+            //                }
+            //            }
+            //        }
+            //    }
+            //}
 
             var typeData = this.types
                                     .Where(x => x.Category != TypeCategory.define && x.Category != TypeCategory.include)

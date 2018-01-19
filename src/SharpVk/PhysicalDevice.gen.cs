@@ -225,14 +225,11 @@ namespace SharpVk
         /// <param name="deviceGroupDeviceCreateInfoKhx">
         /// Extension struct
         /// </param>
-        /// <param name="physicalDeviceBlendOperationAdvancedFeaturesExt">
-        /// Extension struct
-        /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
         /// </param>
-        public unsafe SharpVk.Device CreateDevice(ArrayProxy<SharpVk.DeviceQueueCreateInfo>? queueCreateInfos, ArrayProxy<string>? enabledLayerNames, ArrayProxy<string>? enabledExtensionNames, SharpVk.DeviceCreateFlags? flags = default(SharpVk.DeviceCreateFlags?), SharpVk.PhysicalDeviceFeatures? enabledFeatures = default(SharpVk.PhysicalDeviceFeatures?), SharpVk.Khronos.PhysicalDeviceFeatures2? physicalDeviceFeatures2Khr = null, SharpVk.Khronos.Experimental.DeviceGroupDeviceCreateInfo? deviceGroupDeviceCreateInfoKhx = null, SharpVk.Multivendor.PhysicalDeviceBlendOperationAdvancedFeatures? physicalDeviceBlendOperationAdvancedFeaturesExt = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public unsafe SharpVk.Device CreateDevice(ArrayProxy<SharpVk.DeviceQueueCreateInfo>? queueCreateInfos, ArrayProxy<string>? enabledLayerNames, ArrayProxy<string>? enabledExtensionNames, SharpVk.DeviceCreateFlags? flags = default(SharpVk.DeviceCreateFlags?), SharpVk.PhysicalDeviceFeatures? enabledFeatures = default(SharpVk.PhysicalDeviceFeatures?), SharpVk.Khronos.PhysicalDeviceFeatures2? physicalDeviceFeatures2Khr = null, SharpVk.Khronos.Experimental.DeviceGroupDeviceCreateInfo? deviceGroupDeviceCreateInfoKhx = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
@@ -254,14 +251,6 @@ namespace SharpVk
                     SharpVk.Interop.Khronos.Experimental.DeviceGroupDeviceCreateInfo* extensionPointer = default(SharpVk.Interop.Khronos.Experimental.DeviceGroupDeviceCreateInfo*);
                     extensionPointer = (SharpVk.Interop.Khronos.Experimental.DeviceGroupDeviceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.Experimental.DeviceGroupDeviceCreateInfo>());
                     deviceGroupDeviceCreateInfoKhx.Value.MarshalTo(extensionPointer);
-                    extensionPointer->Next = nextPointer;
-                    nextPointer = extensionPointer;
-                }
-                if (physicalDeviceBlendOperationAdvancedFeaturesExt != null)
-                {
-                    SharpVk.Interop.Multivendor.PhysicalDeviceBlendOperationAdvancedFeatures* extensionPointer = default(SharpVk.Interop.Multivendor.PhysicalDeviceBlendOperationAdvancedFeatures*);
-                    extensionPointer = (SharpVk.Interop.Multivendor.PhysicalDeviceBlendOperationAdvancedFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.PhysicalDeviceBlendOperationAdvancedFeatures>());
-                    physicalDeviceBlendOperationAdvancedFeaturesExt.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = nextPointer;
                     nextPointer = extensionPointer;
                 }
