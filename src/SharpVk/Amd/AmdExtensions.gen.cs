@@ -98,5 +98,10 @@ namespace SharpVk.Amd
         /// 
         /// </summary>
         public const string ShaderFragmentMask = "VK_AMD_shader_fragment_mask"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string BufferMarker = "VK_AMD_buffer_marker"; 
     }
 }
