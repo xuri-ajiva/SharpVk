@@ -9,14 +9,7 @@ namespace SharpVk.Generator
     {
         public void Configure(IServiceCollection services)
         {
-            string tempFilePath = Path.Combine(Path.GetTempPath(), "SharpVk");
-
-            if (!Directory.Exists(tempFilePath))
-            {
-                Directory.CreateDirectory(tempFilePath);
-            }
-
-            services.AddSingleton<IVkXmlCache>(new VkXmlCache(tempFilePath));
+            services.AddSingleton<IVkXmlCache>(new VkXmlCache("."));
         }
     }
 }
