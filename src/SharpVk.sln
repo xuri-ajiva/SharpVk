@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpVk.Generator", "SharpVk.Generator\SharpVk.Generator.csproj", "{9D9A80D4-9F65-427A-A69A-F3EB68AD33DA}"
 EndProject
@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpVk.Shanq", "SharpVk.Sh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpVk.Shanq.GlmSharp", "SharpVk.Shanq.GlmSharp\SharpVk.Shanq.GlmSharp.csproj", "{F1B3E324-8B08-478F-B31A-E8FE4B57965E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpVk.Shanq.Numerics", "SharpVk.Shanq.Numerics\SharpVk.Shanq.Numerics.csproj", "{D90DEB1F-CE8F-47C6-B85E-A910F2832B66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SharpVk.Shanq.Numerics", "SharpVk.Shanq.Numerics\SharpVk.Shanq.Numerics.csproj", "{D90DEB1F-CE8F-47C6-B85E-A910F2832B66}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharpVk.Tests", "SharpVk.Tests\SharpVk.Tests.csproj", "{53C2948A-807D-4649-A8C9-433C7AD2BD18}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{D90DEB1F-CE8F-47C6-B85E-A910F2832B66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D90DEB1F-CE8F-47C6-B85E-A910F2832B66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D90DEB1F-CE8F-47C6-B85E-A910F2832B66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53C2948A-807D-4649-A8C9-433C7AD2BD18}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53C2948A-807D-4649-A8C9-433C7AD2BD18}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53C2948A-807D-4649-A8C9-433C7AD2BD18}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53C2948A-807D-4649-A8C9-433C7AD2BD18}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
