@@ -50,7 +50,7 @@ namespace SharpVk.Generator.Specification
                     if (value == null)
                     {
                         isBitmask = false;
-                        value = vkField.Attribute("value").Value;
+                        value = vkField.Attribute("value")?.Value;
 
                         // Special case for mapping C "unsigned long long"
                         // (64-bit unsigned integer) to C# UInt64
@@ -59,7 +59,7 @@ namespace SharpVk.Generator.Specification
                             value = "(~0UL)";
                         }
 
-                        value = value.Trim('(', ')');
+                        value = value?.Trim('(', ')');
                     }
 
                     IEnumerable<string> fieldNameParts = this.nameParser.ParseEnumField(fieldName, nameParts);
@@ -97,7 +97,7 @@ namespace SharpVk.Generator.Specification
                     string vkName = vkExtensionEnum.Attribute("name").Value;
                     var extendedEnum = enums[vkExtensionEnum.Attribute("extends").Value];
 
-                    int value;
+                    int? value = null;
                     bool isBitmask = false;
 
                     if (vkExtensionEnum.Attribute("offset") != null)
@@ -111,7 +111,7 @@ namespace SharpVk.Generator.Specification
                         value = int.Parse(vkExtensionEnum.Attribute("bitpos").Value);
                         isBitmask = true;
                     }
-                    else
+                    else if (vkExtensionEnum.Attribute("value") != null)
                     {
                         value = int.Parse(vkExtensionEnum.Attribute("value").Value);
                     }
@@ -123,14 +123,14 @@ namespace SharpVk.Generator.Specification
 
                     var nameParts = this.nameParser.ParseEnumField(vkName, extendedEnum.NameParts);
 
-                    extendedEnum.Fields.Add(vkName, new EnumField
+                    extendedEnum.Fields[vkName]= new EnumField
                     {
                         VkName = vkName,
-                        Value = value.ToString(),
+                        Value = value?.ToString(),
                         NameParts = nameParts.ToArray(),
                         IsBitmask = isBitmask,
                         ExtensionNamespace = extensionSuffix
-                    });
+                    };
                 }
             }
 

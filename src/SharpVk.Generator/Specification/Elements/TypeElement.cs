@@ -8,6 +8,7 @@ namespace SharpVk.Generator.Specification.Elements
         public TypeCategory Category;
         public string Requires;
         public string Parent;
+        public string Alias;
         public bool IsReturnedOnly;
         public bool IsTypePointer;
         public string Extends;

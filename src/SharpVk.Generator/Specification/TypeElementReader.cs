@@ -32,6 +32,7 @@ namespace SharpVk.Generator.Specification
                 string requires = vkType.Attribute("requires")?.Value;
                 string parent = vkType.Attribute("parent")?.Value;
                 string extends = vkType.Attribute("structextends")?.Value;
+                string alias = vkType.Attribute("alias")?.Value;
                 bool.TryParse(vkType.Attribute("returnedonly")?.Value, out bool isReturnedOnly);
                 bool isTypePointer = false;
 
@@ -61,7 +62,8 @@ namespace SharpVk.Generator.Specification
                     IsReturnedOnly = isReturnedOnly,
                     Type = type,
                     IsTypePointer = isTypePointer,
-                    Extends = extends
+                    Extends = extends,
+                    Alias = alias
                 };
 
                 if (!this.typeExtensions.ApplyFirst(vkType, newType, target))
