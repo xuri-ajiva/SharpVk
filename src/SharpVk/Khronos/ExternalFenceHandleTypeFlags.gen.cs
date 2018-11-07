@@ -34,25 +34,5 @@ namespace SharpVk.Khronos
         /// 
         /// </summary>
         None = 0, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        OpaqueFileDescriptor = 1 << 0, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        OpaqueWin32 = 1 << 1, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        OpaqueWin32Kmt = 1 << 2, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        SyncFileDescriptor = 1 << 3, 
     }
 }

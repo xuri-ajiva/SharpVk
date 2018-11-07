@@ -9,7 +9,7 @@ namespace SharpVk.Generator
     {
         public void Configure(IServiceCollection services)
         {
-            services.AddSingleton<IVkXmlCache>(new VkXmlCache("."));
+            services.AddSingleton<IVkXmlCache>(new VkXmlCache("../../../"));
         }
     }
 }

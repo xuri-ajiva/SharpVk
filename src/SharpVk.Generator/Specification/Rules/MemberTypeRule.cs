@@ -79,7 +79,9 @@ namespace SharpVk.Generator.Specification.Rules
                     if (vkMember.NextNode != null)
                     {
                         // Split on spaces and skip "Must" & "be"
-                        values = ((XComment)vkMember.NextNode).Value.Trim().Split(' ')[2];
+                        //values = ((XComment)vkMember.NextNode).Value.Trim().Split(' ')[2];
+
+                        System.Console.WriteLine(vkMember);
                     }
                 }
 

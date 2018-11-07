@@ -77,8 +77,10 @@ namespace SharpVk.Khronos
             {
                 pointer->Flags = default(SharpVk.Khronos.WaylandSurfaceCreateFlags);
             }
-            pointer->Display = this.Display;
-            pointer->Surface = this.Surface;
+            pointer->Display = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
+            *pointer->Display = this.Display;
+            pointer->Surface = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
+            *pointer->Surface = this.Surface;
         }
     }
 }

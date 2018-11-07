@@ -42,7 +42,7 @@ namespace SharpVk.Generator.Collation
                     VkName = param.Type,
                     PointerType = param.PointerType
                 },
-                Name = this.nameFormatter.FormatName(param, true)
+                Name = this.nameFormatter.FormatName(param, null, true)
             };
         }
     }

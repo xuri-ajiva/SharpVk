@@ -45,7 +45,7 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Khronos.SemaphoreImportFlags? Flags
+        public SharpVk.SemaphoreImportFlags? Flags
         {
             get;
             set;
@@ -54,7 +54,7 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Khronos.ExternalSemaphoreHandleTypeFlags HandleType
+        public SharpVk.ExternalSemaphoreHandleTypeFlags HandleType
         {
             get;
             set;
@@ -83,7 +83,7 @@ namespace SharpVk.Khronos
             }
             else
             {
-                pointer->Flags = default(SharpVk.Khronos.SemaphoreImportFlags);
+                pointer->Flags = default(SharpVk.SemaphoreImportFlags);
             }
             pointer->HandleType = this.HandleType;
             pointer->FileDescriptor = this.FileDescriptor;

@@ -9,7 +9,7 @@ namespace SharpVk.Generator.Generation
 {
     public class CommentGenerator
     {
-        private const string commentCacheFilePath = ".\\CommentCache.json";
+        private const string commentCacheFilePath = "..\\..\\..\\CommentCache.json";
 
         private readonly SortedDictionary<string, string> commentInfo;
 

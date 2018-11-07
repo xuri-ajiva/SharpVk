@@ -46,14 +46,14 @@ namespace SharpVk.Khronos
         /// <param name="swapchainCounterCreateInfoExt">
         /// Extension struct
         /// </param>
-        /// <param name="deviceGroupSwapchainCreateInfoKhx">
+        /// <param name="deviceGroupSwapchainCreateInfoKhr">
         /// Extension struct
         /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
         /// </param>
-        public static unsafe SharpVk.Khronos.Swapchain CreateSwapchain(this SharpVk.Device extendedHandle, SharpVk.Khronos.Surface surface, uint minImageCount, SharpVk.Format imageFormat, SharpVk.Khronos.ColorSpace imageColorSpace, SharpVk.Extent2D imageExtent, uint imageArrayLayers, SharpVk.ImageUsageFlags imageUsage, SharpVk.SharingMode imageSharingMode, ArrayProxy<uint>? queueFamilyIndices, SharpVk.Khronos.SurfaceTransformFlags preTransform, SharpVk.Khronos.CompositeAlphaFlags compositeAlpha, SharpVk.Khronos.PresentMode presentMode, bool clipped, SharpVk.Khronos.Swapchain oldSwapchain, SharpVk.Khronos.SwapchainCreateFlags? flags = default(SharpVk.Khronos.SwapchainCreateFlags?), SharpVk.Multivendor.SwapchainCounterCreateInfo? swapchainCounterCreateInfoExt = null, SharpVk.Khronos.Experimental.DeviceGroupSwapchainCreateInfo? deviceGroupSwapchainCreateInfoKhx = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public static unsafe SharpVk.Khronos.Swapchain CreateSwapchain(this SharpVk.Device extendedHandle, SharpVk.Khronos.Surface surface, uint minImageCount, SharpVk.Format imageFormat, SharpVk.Khronos.ColorSpace imageColorSpace, SharpVk.Extent2D imageExtent, uint imageArrayLayers, SharpVk.ImageUsageFlags imageUsage, SharpVk.SharingMode imageSharingMode, ArrayProxy<uint>? queueFamilyIndices, SharpVk.Khronos.SurfaceTransformFlags preTransform, SharpVk.Khronos.CompositeAlphaFlags compositeAlpha, SharpVk.Khronos.PresentMode presentMode, bool clipped, SharpVk.Khronos.Swapchain oldSwapchain, SharpVk.Khronos.SwapchainCreateFlags? flags = default(SharpVk.Khronos.SwapchainCreateFlags?), SharpVk.Multivendor.SwapchainCounterCreateInfo? swapchainCounterCreateInfoExt = null, SharpVk.Khronos.DeviceGroupSwapchainCreateInfo? deviceGroupSwapchainCreateInfoKhr = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
@@ -71,11 +71,11 @@ namespace SharpVk.Khronos
                     extensionPointer->Next = nextPointer;
                     nextPointer = extensionPointer;
                 }
-                if (deviceGroupSwapchainCreateInfoKhx != null)
+                if (deviceGroupSwapchainCreateInfoKhr != null)
                 {
-                    SharpVk.Interop.Khronos.Experimental.DeviceGroupSwapchainCreateInfo* extensionPointer = default(SharpVk.Interop.Khronos.Experimental.DeviceGroupSwapchainCreateInfo*);
-                    extensionPointer = (SharpVk.Interop.Khronos.Experimental.DeviceGroupSwapchainCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.Experimental.DeviceGroupSwapchainCreateInfo>());
-                    deviceGroupSwapchainCreateInfoKhx.Value.MarshalTo(extensionPointer);
+                    SharpVk.Interop.Khronos.DeviceGroupSwapchainCreateInfo* extensionPointer = default(SharpVk.Interop.Khronos.DeviceGroupSwapchainCreateInfo*);
+                    extensionPointer = (SharpVk.Interop.Khronos.DeviceGroupSwapchainCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.DeviceGroupSwapchainCreateInfo>());
+                    deviceGroupSwapchainCreateInfoKhr.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = nextPointer;
                     nextPointer = extensionPointer;
                 }
@@ -142,6 +142,96 @@ namespace SharpVk.Khronos
                     throw SharpVkException.Create(methodResult);
                 }
                 result = new SharpVk.Khronos.Swapchain(extendedHandle, marshalledSwapchain);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The Device handle to extend.
+        /// </param>
+        public static unsafe SharpVk.Khronos.DeviceGroupPresentCapabilities GetGroupPresentCapabilities(this SharpVk.Device extendedHandle)
+        {
+            try
+            {
+                SharpVk.Khronos.DeviceGroupPresentCapabilities result = default(SharpVk.Khronos.DeviceGroupPresentCapabilities);
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Khronos.DeviceGroupPresentCapabilities marshalledDeviceGroupPresentCapabilities = default(SharpVk.Interop.Khronos.DeviceGroupPresentCapabilities);
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Khronos.VkDeviceGetGroupPresentCapabilitiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkDeviceGetGroupPresentCapabilitiesDelegate>("vkGetDeviceGroupPresentCapabilitiesKHR", "device");
+                Result methodResult = commandDelegate(extendedHandle.handle, &marshalledDeviceGroupPresentCapabilities);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = SharpVk.Khronos.DeviceGroupPresentCapabilities.MarshalFrom(&marshalledDeviceGroupPresentCapabilities);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The Device handle to extend.
+        /// </param>
+        public static unsafe SharpVk.Khronos.DeviceGroupPresentModeFlags GetGroupSurfacePresentModes(this SharpVk.Device extendedHandle, SharpVk.Khronos.Surface surface)
+        {
+            try
+            {
+                SharpVk.Khronos.DeviceGroupPresentModeFlags result = default(SharpVk.Khronos.DeviceGroupPresentModeFlags);
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Khronos.DeviceGroupPresentModeFlags marshalledModes = default(SharpVk.Khronos.DeviceGroupPresentModeFlags);
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Khronos.VkDeviceGetGroupSurfacePresentModesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkDeviceGetGroupSurfacePresentModesDelegate>("vkGetDeviceGroupSurfacePresentModesKHR", "device");
+                Result methodResult = commandDelegate(extendedHandle.handle, surface?.handle ?? default(SharpVk.Interop.Khronos.Surface), &marshalledModes);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = marshalledModes;
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The Device handle to extend.
+        /// </param>
+        public static unsafe uint AcquireNextImage2(this SharpVk.Device extendedHandle, SharpVk.Khronos.AcquireNextImageInfo acquireInfo)
+        {
+            try
+            {
+                uint result = default(uint);
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Khronos.AcquireNextImageInfo* marshalledAcquireInfo = default(SharpVk.Interop.Khronos.AcquireNextImageInfo*);
+                uint marshalledImageIndex = default(uint);
+                commandCache = extendedHandle.commandCache;
+                marshalledAcquireInfo = (SharpVk.Interop.Khronos.AcquireNextImageInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.AcquireNextImageInfo>());
+                acquireInfo.MarshalTo(marshalledAcquireInfo);
+                SharpVk.Interop.Khronos.VkDeviceAcquireNextImage2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkDeviceAcquireNextImage2Delegate>("vkAcquireNextImage2KHR", "device");
+                Result methodResult = commandDelegate(extendedHandle.handle, marshalledAcquireInfo, &marshalledImageIndex);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = marshalledImageIndex;
                 return result;
             }
             finally
@@ -247,14 +337,14 @@ namespace SharpVk.Khronos
         /// <param name="swapchainCounterCreateInfoExt">
         /// Extension struct
         /// </param>
-        /// <param name="deviceGroupSwapchainCreateInfoKhx">
+        /// <param name="deviceGroupSwapchainCreateInfoKhr">
         /// Extension struct
         /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
         /// </param>
-        public static unsafe SharpVk.Khronos.Swapchain CreateSharedSwapchain(this SharpVk.Device extendedHandle, SharpVk.Khronos.Surface surface, uint minImageCount, SharpVk.Format imageFormat, SharpVk.Khronos.ColorSpace imageColorSpace, SharpVk.Extent2D imageExtent, uint imageArrayLayers, SharpVk.ImageUsageFlags imageUsage, SharpVk.SharingMode imageSharingMode, ArrayProxy<uint>? queueFamilyIndices, SharpVk.Khronos.SurfaceTransformFlags preTransform, SharpVk.Khronos.CompositeAlphaFlags compositeAlpha, SharpVk.Khronos.PresentMode presentMode, bool clipped, SharpVk.Khronos.Swapchain oldSwapchain, SharpVk.Khronos.SwapchainCreateFlags? flags = default(SharpVk.Khronos.SwapchainCreateFlags?), SharpVk.Multivendor.SwapchainCounterCreateInfo? swapchainCounterCreateInfoExt = null, SharpVk.Khronos.Experimental.DeviceGroupSwapchainCreateInfo? deviceGroupSwapchainCreateInfoKhx = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public static unsafe SharpVk.Khronos.Swapchain CreateSharedSwapchain(this SharpVk.Device extendedHandle, SharpVk.Khronos.Surface surface, uint minImageCount, SharpVk.Format imageFormat, SharpVk.Khronos.ColorSpace imageColorSpace, SharpVk.Extent2D imageExtent, uint imageArrayLayers, SharpVk.ImageUsageFlags imageUsage, SharpVk.SharingMode imageSharingMode, ArrayProxy<uint>? queueFamilyIndices, SharpVk.Khronos.SurfaceTransformFlags preTransform, SharpVk.Khronos.CompositeAlphaFlags compositeAlpha, SharpVk.Khronos.PresentMode presentMode, bool clipped, SharpVk.Khronos.Swapchain oldSwapchain, SharpVk.Khronos.SwapchainCreateFlags? flags = default(SharpVk.Khronos.SwapchainCreateFlags?), SharpVk.Multivendor.SwapchainCounterCreateInfo? swapchainCounterCreateInfoExt = null, SharpVk.Khronos.DeviceGroupSwapchainCreateInfo? deviceGroupSwapchainCreateInfoKhr = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
@@ -273,11 +363,11 @@ namespace SharpVk.Khronos
                     extensionPointer->Next = nextPointer;
                     nextPointer = extensionPointer;
                 }
-                if (deviceGroupSwapchainCreateInfoKhx != null)
+                if (deviceGroupSwapchainCreateInfoKhr != null)
                 {
-                    SharpVk.Interop.Khronos.Experimental.DeviceGroupSwapchainCreateInfo* extensionPointer = default(SharpVk.Interop.Khronos.Experimental.DeviceGroupSwapchainCreateInfo*);
-                    extensionPointer = (SharpVk.Interop.Khronos.Experimental.DeviceGroupSwapchainCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.Experimental.DeviceGroupSwapchainCreateInfo>());
-                    deviceGroupSwapchainCreateInfoKhx.Value.MarshalTo(extensionPointer);
+                    SharpVk.Interop.Khronos.DeviceGroupSwapchainCreateInfo* extensionPointer = default(SharpVk.Interop.Khronos.DeviceGroupSwapchainCreateInfo*);
+                    extensionPointer = (SharpVk.Interop.Khronos.DeviceGroupSwapchainCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.DeviceGroupSwapchainCreateInfo>());
+                    deviceGroupSwapchainCreateInfoKhr.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = nextPointer;
                     nextPointer = extensionPointer;
                 }
@@ -392,7 +482,7 @@ namespace SharpVk.Khronos
         /// <param name="extendedHandle">
         /// The Device handle to extend.
         /// </param>
-        public static unsafe SharpVk.Khronos.MemoryWin32HandleProperties GetMemoryWin32HandleProperties(this SharpVk.Device extendedHandle, SharpVk.Khronos.ExternalMemoryHandleTypeFlags handleType, IntPtr handle)
+        public static unsafe SharpVk.Khronos.MemoryWin32HandleProperties GetMemoryWin32HandleProperties(this SharpVk.Device extendedHandle, SharpVk.ExternalMemoryHandleTypeFlags handleType, IntPtr handle)
         {
             try
             {
@@ -453,7 +543,7 @@ namespace SharpVk.Khronos
         /// <param name="extendedHandle">
         /// The Device handle to extend.
         /// </param>
-        public static unsafe SharpVk.Khronos.MemoryFileDescriptorProperties GetMemoryFileDescriptorProperties(this SharpVk.Device extendedHandle, SharpVk.Khronos.ExternalMemoryHandleTypeFlags handleType, int fileDescriptor)
+        public static unsafe SharpVk.Khronos.MemoryFileDescriptorProperties GetMemoryFileDescriptorProperties(this SharpVk.Device extendedHandle, SharpVk.ExternalMemoryHandleTypeFlags handleType, int fileDescriptor)
         {
             try
             {
@@ -597,119 +687,23 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// Create a new descriptor update template.
+        /// 
         /// </summary>
         /// <param name="extendedHandle">
         /// The Device handle to extend.
         /// </param>
-        /// <param name="flags">
-        /// Reserved for future use.
-        /// </param>
-        /// <param name="descriptorUpdateEntries">
-        /// </param>
-        /// <param name="templateType">
-        /// Specifies the type of the descriptor update template. If set to
-        /// VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET_KHR it can only
-        /// be used to update descriptor sets with a fixed descriptorSetLayout.
-        /// If set to VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR
-        /// it can only be used to push descriptor sets using the provided
-        /// pipelineBindPoint, pipelineLayout, and set number.
-        /// </param>
-        /// <param name="descriptorSetLayout">
-        /// The descriptor set layout the parameter update template will be
-        /// used with. All descriptor sets which are going to be updated
-        /// through the newly created descriptor update template must be
-        /// created with this layout. descriptorSetLayout is the descriptor set
-        /// layout used to build the descriptor update template. All descriptor
-        /// sets which are going to be updated through the newly created
-        /// descriptor update template must be created with a layout that
-        /// matches (is the same as, or defined identically to) this layout.
-        /// This parameter is ignored if templateType is not
-        /// VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_DESCRIPTOR_SET_KHR.
-        /// </param>
-        /// <param name="pipelineBindPoint">
-        /// A PipelineBindPoint indicating whether the descriptors will be used
-        /// by graphics pipelines or compute pipelines. This parameter is
-        /// ignored if templateType is not
-        /// VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR
-        /// </param>
-        /// <param name="pipelineLayout">
-        /// A PipelineLayout object used to program the bindings. This
-        /// parameter is ignored if templateType is not
-        /// VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR
-        /// </param>
-        /// <param name="set">
-        /// The set number of the descriptor set in the pipeline layout that
-        /// will be updated. This parameter is ignored if templateType is not
-        /// VK_DESCRIPTOR_UPDATE_TEMPLATE_TYPE_PUSH_DESCRIPTORS_KHR ifndef::VK_KHR_push_descriptor[]
-        /// </param>
-        /// <param name="allocator">
-        /// An optional AllocationCallbacks instance that controls host memory
-        /// allocation.
-        /// </param>
-        public static unsafe SharpVk.Khronos.DescriptorUpdateTemplate CreateDescriptorUpdateTemplate(this SharpVk.Device extendedHandle, ArrayProxy<SharpVk.Khronos.DescriptorUpdateTemplateEntry>? descriptorUpdateEntries, SharpVk.Khronos.DescriptorUpdateTemplateType templateType, SharpVk.DescriptorSetLayout descriptorSetLayout, SharpVk.PipelineLayout pipelineLayout, SharpVk.Khronos.DescriptorUpdateTemplateCreateFlags? flags = default(SharpVk.Khronos.DescriptorUpdateTemplateCreateFlags?), SharpVk.PipelineBindPoint? pipelineBindPoint = default(SharpVk.PipelineBindPoint?), uint? set = default(uint?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public static unsafe SharpVk.RenderPass CreateRenderPass2(this SharpVk.Device extendedHandle, SharpVk.Khronos.RenderPassCreateInfo2 createInfo, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
-                SharpVk.Khronos.DescriptorUpdateTemplate result = default(SharpVk.Khronos.DescriptorUpdateTemplate);
+                SharpVk.RenderPass result = default(SharpVk.RenderPass);
                 CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Khronos.DescriptorUpdateTemplateCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Khronos.DescriptorUpdateTemplateCreateInfo*);
-                void* nextPointer = default(void*);
+                SharpVk.Interop.Khronos.RenderPassCreateInfo2* marshalledCreateInfo = default(SharpVk.Interop.Khronos.RenderPassCreateInfo2*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
-                SharpVk.Interop.Khronos.DescriptorUpdateTemplate marshalledDescriptorUpdateTemplate = default(SharpVk.Interop.Khronos.DescriptorUpdateTemplate);
+                SharpVk.Interop.RenderPass marshalledRenderPass = default(SharpVk.Interop.RenderPass);
                 commandCache = extendedHandle.commandCache;
-                marshalledCreateInfo = (SharpVk.Interop.Khronos.DescriptorUpdateTemplateCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.DescriptorUpdateTemplateCreateInfo>());
-                marshalledCreateInfo->SType = StructureType.DescriptorUpdateTemplateCreateInfo;
-                marshalledCreateInfo->Next = nextPointer;
-                if (flags != null)
-                {
-                    marshalledCreateInfo->Flags = flags.Value;
-                }
-                else
-                {
-                    marshalledCreateInfo->Flags = default(SharpVk.Khronos.DescriptorUpdateTemplateCreateFlags);
-                }
-                marshalledCreateInfo->DescriptorUpdateEntryCount = (uint)(Interop.HeapUtil.GetLength(descriptorUpdateEntries));
-                if (descriptorUpdateEntries.IsNull())
-                {
-                    marshalledCreateInfo->DescriptorUpdateEntries = null;
-                }
-                else
-                {
-                    if (descriptorUpdateEntries.Value.Contents == ProxyContents.Single)
-                    {
-                        marshalledCreateInfo->DescriptorUpdateEntries = (SharpVk.Khronos.DescriptorUpdateTemplateEntry*)(Interop.HeapUtil.Allocate<SharpVk.Khronos.DescriptorUpdateTemplateEntry>());
-                        *(SharpVk.Khronos.DescriptorUpdateTemplateEntry*)(marshalledCreateInfo->DescriptorUpdateEntries) = descriptorUpdateEntries.Value.GetSingleValue();
-                    }
-                    else
-                    {
-                        var fieldPointer = (SharpVk.Khronos.DescriptorUpdateTemplateEntry*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Khronos.DescriptorUpdateTemplateEntry>(Interop.HeapUtil.GetLength(descriptorUpdateEntries.Value)).ToPointer());
-                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(descriptorUpdateEntries.Value)); index++)
-                        {
-                            fieldPointer[index] = descriptorUpdateEntries.Value[index];
-                        }
-                        marshalledCreateInfo->DescriptorUpdateEntries = fieldPointer;
-                    }
-                }
-                marshalledCreateInfo->TemplateType = templateType;
-                marshalledCreateInfo->DescriptorSetLayout = descriptorSetLayout?.handle ?? default(SharpVk.Interop.DescriptorSetLayout);
-                if (pipelineBindPoint != null)
-                {
-                    marshalledCreateInfo->PipelineBindPoint = pipelineBindPoint.Value;
-                }
-                else
-                {
-                    marshalledCreateInfo->PipelineBindPoint = default(SharpVk.PipelineBindPoint);
-                }
-                marshalledCreateInfo->PipelineLayout = pipelineLayout?.handle ?? default(SharpVk.Interop.PipelineLayout);
-                if (set != null)
-                {
-                    marshalledCreateInfo->Set = set.Value;
-                }
-                else
-                {
-                    marshalledCreateInfo->Set = default(uint);
-                }
+                marshalledCreateInfo = (SharpVk.Interop.Khronos.RenderPassCreateInfo2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.RenderPassCreateInfo2>());
+                createInfo.MarshalTo(marshalledCreateInfo);
                 if (allocator != null)
                 {
                     marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
@@ -719,35 +713,14 @@ namespace SharpVk.Khronos
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.Khronos.VkDeviceCreateDescriptorUpdateTemplateDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkDeviceCreateDescriptorUpdateTemplateDelegate>("vkCreateDescriptorUpdateTemplateKHR", "device");
-                Result methodResult = commandDelegate(extendedHandle.handle, marshalledCreateInfo, marshalledAllocator, &marshalledDescriptorUpdateTemplate);
+                SharpVk.Interop.Khronos.VkDeviceCreateRenderPass2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkDeviceCreateRenderPass2Delegate>("vkCreateRenderPass2KHR", "device");
+                Result methodResult = commandDelegate(extendedHandle.handle, marshalledCreateInfo, marshalledAllocator, &marshalledRenderPass);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                result = new SharpVk.Khronos.DescriptorUpdateTemplate(extendedHandle, marshalledDescriptorUpdateTemplate);
+                result = new SharpVk.RenderPass(extendedHandle, marshalledRenderPass);
                 return result;
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="extendedHandle">
-        /// The Device handle to extend.
-        /// </param>
-        public static unsafe void UpdateDescriptorSetWithTemplate(this SharpVk.Device extendedHandle, SharpVk.DescriptorSet descriptorSet, SharpVk.Khronos.DescriptorUpdateTemplate descriptorUpdateTemplate, IntPtr data)
-        {
-            try
-            {
-                CommandCache commandCache = default(CommandCache);
-                commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Khronos.VkDeviceUpdateDescriptorSetWithTemplateDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkDeviceUpdateDescriptorSetWithTemplateDelegate>("vkUpdateDescriptorSetWithTemplateKHR", "device");
-                commandDelegate(extendedHandle.handle, descriptorSet?.handle ?? default(SharpVk.Interop.DescriptorSet), descriptorUpdateTemplate?.handle ?? default(SharpVk.Interop.Khronos.DescriptorUpdateTemplate), data.ToPointer());
             }
             finally
             {
@@ -868,255 +841,6 @@ namespace SharpVk.Khronos
                 }
                 result = marshalledFileDescriptor;
                 return result;
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="extendedHandle">
-        /// The Device handle to extend.
-        /// </param>
-        public static unsafe SharpVk.Khronos.MemoryRequirements2 GetImageMemoryRequirements2(this SharpVk.Device extendedHandle, SharpVk.Khronos.ImageMemoryRequirementsInfo2 info)
-        {
-            try
-            {
-                SharpVk.Khronos.MemoryRequirements2 result = default(SharpVk.Khronos.MemoryRequirements2);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Khronos.ImageMemoryRequirementsInfo2* marshalledInfo = default(SharpVk.Interop.Khronos.ImageMemoryRequirementsInfo2*);
-                SharpVk.Interop.Khronos.MemoryRequirements2 marshalledMemoryRequirements = default(SharpVk.Interop.Khronos.MemoryRequirements2);
-                commandCache = extendedHandle.commandCache;
-                marshalledInfo = (SharpVk.Interop.Khronos.ImageMemoryRequirementsInfo2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.ImageMemoryRequirementsInfo2>());
-                info.MarshalTo(marshalledInfo);
-                SharpVk.Interop.Khronos.VkDeviceGetImageMemoryRequirements2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkDeviceGetImageMemoryRequirements2Delegate>("vkGetImageMemoryRequirements2KHR", "device");
-                commandDelegate(extendedHandle.handle, marshalledInfo, &marshalledMemoryRequirements);
-                result = SharpVk.Khronos.MemoryRequirements2.MarshalFrom(&marshalledMemoryRequirements);
-                return result;
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="extendedHandle">
-        /// The Device handle to extend.
-        /// </param>
-        public static unsafe SharpVk.Khronos.MemoryRequirements2 GetBufferMemoryRequirements2(this SharpVk.Device extendedHandle, SharpVk.Khronos.BufferMemoryRequirementsInfo2 info)
-        {
-            try
-            {
-                SharpVk.Khronos.MemoryRequirements2 result = default(SharpVk.Khronos.MemoryRequirements2);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Khronos.BufferMemoryRequirementsInfo2* marshalledInfo = default(SharpVk.Interop.Khronos.BufferMemoryRequirementsInfo2*);
-                SharpVk.Interop.Khronos.MemoryRequirements2 marshalledMemoryRequirements = default(SharpVk.Interop.Khronos.MemoryRequirements2);
-                commandCache = extendedHandle.commandCache;
-                marshalledInfo = (SharpVk.Interop.Khronos.BufferMemoryRequirementsInfo2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.BufferMemoryRequirementsInfo2>());
-                info.MarshalTo(marshalledInfo);
-                SharpVk.Interop.Khronos.VkDeviceGetBufferMemoryRequirements2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkDeviceGetBufferMemoryRequirements2Delegate>("vkGetBufferMemoryRequirements2KHR", "device");
-                commandDelegate(extendedHandle.handle, marshalledInfo, &marshalledMemoryRequirements);
-                result = SharpVk.Khronos.MemoryRequirements2.MarshalFrom(&marshalledMemoryRequirements);
-                return result;
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="extendedHandle">
-        /// The Device handle to extend.
-        /// </param>
-        public static unsafe SharpVk.Khronos.SparseImageMemoryRequirements2[] GetImageSparseMemoryRequirements2(this SharpVk.Device extendedHandle, SharpVk.Khronos.ImageSparseMemoryRequirementsInfo2 info)
-        {
-            try
-            {
-                SharpVk.Khronos.SparseImageMemoryRequirements2[] result = default(SharpVk.Khronos.SparseImageMemoryRequirements2[]);
-                uint sparseMemoryRequirementCount = default(uint);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Khronos.ImageSparseMemoryRequirementsInfo2* marshalledInfo = default(SharpVk.Interop.Khronos.ImageSparseMemoryRequirementsInfo2*);
-                SharpVk.Interop.Khronos.SparseImageMemoryRequirements2* marshalledSparseMemoryRequirements = default(SharpVk.Interop.Khronos.SparseImageMemoryRequirements2*);
-                commandCache = extendedHandle.commandCache;
-                marshalledInfo = (SharpVk.Interop.Khronos.ImageSparseMemoryRequirementsInfo2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.ImageSparseMemoryRequirementsInfo2>());
-                info.MarshalTo(marshalledInfo);
-                SharpVk.Interop.Khronos.VkDeviceGetImageSparseMemoryRequirements2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkDeviceGetImageSparseMemoryRequirements2Delegate>("vkGetImageSparseMemoryRequirements2KHR", "device");
-                commandDelegate(extendedHandle.handle, marshalledInfo, &sparseMemoryRequirementCount, marshalledSparseMemoryRequirements);
-                marshalledSparseMemoryRequirements = (SharpVk.Interop.Khronos.SparseImageMemoryRequirements2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.SparseImageMemoryRequirements2>((uint)(sparseMemoryRequirementCount)));
-                commandDelegate(extendedHandle.handle, marshalledInfo, &sparseMemoryRequirementCount, marshalledSparseMemoryRequirements);
-                if (marshalledSparseMemoryRequirements != null)
-                {
-                    var fieldPointer = new SharpVk.Khronos.SparseImageMemoryRequirements2[(uint)(sparseMemoryRequirementCount)];
-                    for(int index = 0; index < (uint)(sparseMemoryRequirementCount); index++)
-                    {
-                        fieldPointer[index] = SharpVk.Khronos.SparseImageMemoryRequirements2.MarshalFrom(&marshalledSparseMemoryRequirements[index]);
-                    }
-                    result = fieldPointer;
-                }
-                else
-                {
-                    result = null;
-                }
-                return result;
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="extendedHandle">
-        /// The Device handle to extend.
-        /// </param>
-        public static unsafe SharpVk.Khronos.SamplerYcbcrConversion CreateSamplerYcbcrConversion(this SharpVk.Device extendedHandle, SharpVk.Format format, SharpVk.Khronos.SamplerYcbcrModelConversion ycbcrModel, SharpVk.Khronos.SamplerYcbcrRange ycbcrRange, SharpVk.ComponentMapping components, SharpVk.Khronos.ChromaLocation xChromaOffset, SharpVk.Khronos.ChromaLocation yChromaOffset, SharpVk.Filter chromaFilter, bool forceExplicitReconstruction, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
-        {
-            try
-            {
-                SharpVk.Khronos.SamplerYcbcrConversion result = default(SharpVk.Khronos.SamplerYcbcrConversion);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Khronos.SamplerYcbcrConversionCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Khronos.SamplerYcbcrConversionCreateInfo*);
-                void* nextPointer = default(void*);
-                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
-                SharpVk.Interop.Khronos.SamplerYcbcrConversion marshalledYcbcrConversion = default(SharpVk.Interop.Khronos.SamplerYcbcrConversion);
-                commandCache = extendedHandle.commandCache;
-                marshalledCreateInfo = (SharpVk.Interop.Khronos.SamplerYcbcrConversionCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.SamplerYcbcrConversionCreateInfo>());
-                marshalledCreateInfo->SType = StructureType.SamplerYcbcrConversionCreateInfo;
-                marshalledCreateInfo->Next = nextPointer;
-                marshalledCreateInfo->Format = format;
-                marshalledCreateInfo->YcbcrModel = ycbcrModel;
-                marshalledCreateInfo->YcbcrRange = ycbcrRange;
-                marshalledCreateInfo->Components = components;
-                marshalledCreateInfo->XChromaOffset = xChromaOffset;
-                marshalledCreateInfo->YChromaOffset = yChromaOffset;
-                marshalledCreateInfo->ChromaFilter = chromaFilter;
-                marshalledCreateInfo->ForceExplicitReconstruction = forceExplicitReconstruction;
-                if (allocator != null)
-                {
-                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
-                    allocator.Value.MarshalTo(marshalledAllocator);
-                }
-                else
-                {
-                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
-                }
-                SharpVk.Interop.Khronos.VkDeviceCreateSamplerYcbcrConversionDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkDeviceCreateSamplerYcbcrConversionDelegate>("vkCreateSamplerYcbcrConversionKHR", "device");
-                Result methodResult = commandDelegate(extendedHandle.handle, marshalledCreateInfo, marshalledAllocator, &marshalledYcbcrConversion);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
-                result = new SharpVk.Khronos.SamplerYcbcrConversion(extendedHandle, marshalledYcbcrConversion);
-                return result;
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
-        /// Bind device memory to buffer objects.
-        /// </summary>
-        /// <param name="extendedHandle">
-        /// The Device handle to extend.
-        /// </param>
-        /// <param name="bindInfos">
-        /// </param>
-        public static unsafe void BindBufferMemory2(this SharpVk.Device extendedHandle, ArrayProxy<SharpVk.Khronos.BindBufferMemoryInfo>? bindInfos)
-        {
-            try
-            {
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Khronos.BindBufferMemoryInfo* marshalledBindInfos = default(SharpVk.Interop.Khronos.BindBufferMemoryInfo*);
-                commandCache = extendedHandle.commandCache;
-                if (bindInfos.IsNull())
-                {
-                    marshalledBindInfos = null;
-                }
-                else
-                {
-                    if (bindInfos.Value.Contents == ProxyContents.Single)
-                    {
-                        marshalledBindInfos = (SharpVk.Interop.Khronos.BindBufferMemoryInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.BindBufferMemoryInfo>());
-                        bindInfos.Value.GetSingleValue().MarshalTo(&*(SharpVk.Interop.Khronos.BindBufferMemoryInfo*)(marshalledBindInfos));
-                    }
-                    else
-                    {
-                        var fieldPointer = (SharpVk.Interop.Khronos.BindBufferMemoryInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Khronos.BindBufferMemoryInfo>(Interop.HeapUtil.GetLength(bindInfos.Value)).ToPointer());
-                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(bindInfos.Value)); index++)
-                        {
-                            bindInfos.Value[index].MarshalTo(&fieldPointer[index]);
-                        }
-                        marshalledBindInfos = fieldPointer;
-                    }
-                }
-                SharpVk.Interop.Khronos.VkDeviceBindBufferMemory2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkDeviceBindBufferMemory2Delegate>("vkBindBufferMemory2KHR", "device");
-                Result methodResult = commandDelegate(extendedHandle.handle, (uint)(Interop.HeapUtil.GetLength(bindInfos)), marshalledBindInfos);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
-        /// Bind device memory to image objects.
-        /// </summary>
-        /// <param name="extendedHandle">
-        /// The Device handle to extend.
-        /// </param>
-        /// <param name="bindInfos">
-        /// </param>
-        public static unsafe void BindImageMemory2(this SharpVk.Device extendedHandle, ArrayProxy<SharpVk.Khronos.BindImageMemoryInfo>? bindInfos)
-        {
-            try
-            {
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Khronos.BindImageMemoryInfo* marshalledBindInfos = default(SharpVk.Interop.Khronos.BindImageMemoryInfo*);
-                commandCache = extendedHandle.commandCache;
-                if (bindInfos.IsNull())
-                {
-                    marshalledBindInfos = null;
-                }
-                else
-                {
-                    if (bindInfos.Value.Contents == ProxyContents.Single)
-                    {
-                        marshalledBindInfos = (SharpVk.Interop.Khronos.BindImageMemoryInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.BindImageMemoryInfo>());
-                        bindInfos.Value.GetSingleValue().MarshalTo(&*(SharpVk.Interop.Khronos.BindImageMemoryInfo*)(marshalledBindInfos));
-                    }
-                    else
-                    {
-                        var fieldPointer = (SharpVk.Interop.Khronos.BindImageMemoryInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Khronos.BindImageMemoryInfo>(Interop.HeapUtil.GetLength(bindInfos.Value)).ToPointer());
-                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(bindInfos.Value)); index++)
-                        {
-                            bindInfos.Value[index].MarshalTo(&fieldPointer[index]);
-                        }
-                        marshalledBindInfos = fieldPointer;
-                    }
-                }
-                SharpVk.Interop.Khronos.VkDeviceBindImageMemory2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkDeviceBindImageMemory2Delegate>("vkBindImageMemory2KHR", "device");
-                Result methodResult = commandDelegate(extendedHandle.handle, (uint)(Interop.HeapUtil.GetLength(bindInfos)), marshalledBindInfos);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
             }
             finally
             {

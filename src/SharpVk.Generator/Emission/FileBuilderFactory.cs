@@ -16,7 +16,7 @@ namespace SharpVk.Generator.Emission
 
         public void Generate(string filename, string subFolder, Action<FileBuilder> build)
         {
-            string folderPath = "..\\SharpVk";
+            string folderPath = "..\\..\\..\\..\\SharpVk";
             string fullFilename = $"{filename}.gen.cs";
 
             if (subFolder != null)

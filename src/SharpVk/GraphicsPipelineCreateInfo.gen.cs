@@ -57,7 +57,7 @@ namespace SharpVk
         /// <summary>
         /// An instance of the PipelineVertexInputStateCreateInfo structure.
         /// </summary>
-        public SharpVk.PipelineVertexInputStateCreateInfo VertexInputState
+        public SharpVk.PipelineVertexInputStateCreateInfo? VertexInputState
         {
             get;
             set;
@@ -68,7 +68,7 @@ namespace SharpVk
         /// which determines input assembly behavior, as described in Drawing
         /// Commands.
         /// </summary>
-        public SharpVk.PipelineInputAssemblyStateCreateInfo InputAssemblyState
+        public SharpVk.PipelineInputAssemblyStateCreateInfo? InputAssemblyState
         {
             get;
             set;
@@ -230,10 +230,24 @@ namespace SharpVk
             {
                 pointer->Stages = null;
             }
-            pointer->VertexInputState = (SharpVk.Interop.PipelineVertexInputStateCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PipelineVertexInputStateCreateInfo>());
-            this.VertexInputState.MarshalTo(pointer->VertexInputState);
-            pointer->InputAssemblyState = (SharpVk.Interop.PipelineInputAssemblyStateCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PipelineInputAssemblyStateCreateInfo>());
-            this.InputAssemblyState.MarshalTo(pointer->InputAssemblyState);
+            if (this.VertexInputState != null)
+            {
+                pointer->VertexInputState = (SharpVk.Interop.PipelineVertexInputStateCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PipelineVertexInputStateCreateInfo>());
+                this.VertexInputState.Value.MarshalTo(pointer->VertexInputState);
+            }
+            else
+            {
+                pointer->VertexInputState = default(SharpVk.Interop.PipelineVertexInputStateCreateInfo*);
+            }
+            if (this.InputAssemblyState != null)
+            {
+                pointer->InputAssemblyState = (SharpVk.Interop.PipelineInputAssemblyStateCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PipelineInputAssemblyStateCreateInfo>());
+                this.InputAssemblyState.Value.MarshalTo(pointer->InputAssemblyState);
+            }
+            else
+            {
+                pointer->InputAssemblyState = default(SharpVk.Interop.PipelineInputAssemblyStateCreateInfo*);
+            }
             if (this.TessellationState != null)
             {
                 pointer->TessellationState = (SharpVk.Interop.PipelineTessellationStateCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PipelineTessellationStateCreateInfo>());

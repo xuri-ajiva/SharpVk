@@ -34,10 +34,5 @@ namespace SharpVk.Khronos
         /// 
         /// </summary>
         None = 0, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Temporary = 1 << 0, 
     }
 }

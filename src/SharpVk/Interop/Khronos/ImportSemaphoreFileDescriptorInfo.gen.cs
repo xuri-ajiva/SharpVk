@@ -51,12 +51,12 @@ namespace SharpVk.Interop.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Khronos.SemaphoreImportFlags Flags; 
+        public SharpVk.SemaphoreImportFlags Flags; 
         
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Khronos.ExternalSemaphoreHandleTypeFlags HandleType; 
+        public SharpVk.ExternalSemaphoreHandleTypeFlags HandleType; 
         
         /// <summary>
         /// 

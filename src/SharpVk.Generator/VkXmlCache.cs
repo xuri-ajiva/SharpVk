@@ -35,7 +35,7 @@ namespace SharpVk.Generator
                 {
                     Directory.CreateDirectory(Path.GetDirectoryName(tempFile));
 
-                    var vkXmlRequest = WebRequest.Create("https://raw.githubusercontent.com/KhronosGroup/Vulkan-Docs/master/src/spec/vk.xml");
+                    var vkXmlRequest = WebRequest.Create("https://raw.githubusercontent.com/KhronosGroup/Vulkan-Docs/master/xml/vk.xml");
 
                     using (var vkXmlResponse = vkXmlRequest.GetResponseAsync().Result)
                     {

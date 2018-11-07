@@ -38,6 +38,7 @@ namespace SharpVk.Generator.Specification
 
         private static readonly Parser<LenExpression> latexPrimaryExpression = ((Parser<LenExpression>)latexToken)
                                                                                                                                     .Or(latexToken.Contained(Parse.String("\\mathit{"), Parse.String("}")))
+                                                                                                                                    .Or(latexToken.Contained(Parse.String("\\textrm{"), Parse.String("}")))
                                                                                                                                     .Or(integerLiteral)
                                                                                                                                     .Or(latexUnaryOperatorExpression);
 

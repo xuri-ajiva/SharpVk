@@ -36,6 +36,11 @@ namespace SharpVk.Generator.Specification
                 bool.TryParse(vkType.Attribute("returnedonly")?.Value, out bool isReturnedOnly);
                 bool isTypePointer = false;
 
+                if (category == TypeCategory.define && vkType.DescendantNodes().First().ToString() == "struct ")
+                {
+                    category = TypeCategory.basetype;
+                }
+
                 string type = vkType.Element("type")?.Value;
 
                 if (type == "VK_MAKE_VERSION")

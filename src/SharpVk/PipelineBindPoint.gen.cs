@@ -38,5 +38,10 @@ namespace SharpVk
         /// 
         /// </summary>
         Compute = 1, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        RayTracing = 1000165000, 
     }
 }

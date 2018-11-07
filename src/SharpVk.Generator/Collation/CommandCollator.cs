@@ -18,7 +18,7 @@ namespace SharpVk.Generator.Collation
         public CommandCollator(IEnumerable<CommandElement> commands, IEnumerable<CommandRequirement> requirements, NameFormatter nameFormatter, IEnumerable<TypeElement> types)
         {
             this.commands = commands;
-            this.requirements = requirements.ToDictionary(x => x.CommandName);
+            this.requirements = requirements.Distinct().ToDictionary(x => x.CommandName);
             this.nameFormatter = nameFormatter;
             this.typeData = types.ToDictionary(x => x.VkName);
         }
@@ -96,7 +96,7 @@ namespace SharpVk.Generator.Collation
                     Params = command.Params.Select(x => new ParamDeclaration
                     {
                         VkName = x.VkName,
-                        Name = this.nameFormatter.FormatName(x, true),
+                        Name = this.nameFormatter.FormatName(x, null, true),
                         Type = new TypeReference
                         {
                             VkName = x.Type,

@@ -29,5 +29,5 @@ namespace SharpVk.Interop.Khronos
     /// <summary>
     /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferPushDescriptorSetWithTemplateDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.Interop.Khronos.DescriptorUpdateTemplate descriptorUpdateTemplate, SharpVk.Interop.PipelineLayout layout, uint set, void* data);
+    public unsafe delegate void VkCommandBufferPushDescriptorSetWithTemplateDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.Interop.DescriptorUpdateTemplate descriptorUpdateTemplate, SharpVk.Interop.PipelineLayout layout, uint set, void* data);
 }

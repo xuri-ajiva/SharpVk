@@ -30,6 +30,11 @@ namespace SharpVk.Interop
             }
         }
 
+        internal static IntPtr Allocate<T>(HostSize count)
+        {
+            return Allocate<T>((uint)count);
+        }
+
         internal static IntPtr Allocate<T>(int count)
         {
             return Allocate<T>((uint)count);

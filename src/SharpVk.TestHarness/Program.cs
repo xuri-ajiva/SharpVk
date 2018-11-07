@@ -280,8 +280,8 @@ namespace SharpVk.VertexBuffers
                     ApplicationName = "Vertex Buffers",
                     ApplicationVersion = new Version(1, 0, 0),
                     EngineName = "SharpVk",
-                    EngineVersion = new Version(0, 4, 0),
-                    ApiVersion = new Version(1, 0, 0)
+                    EngineVersion = new Version(1, 0, 0),
+                    ApiVersion = new Version(1, 1, 0)
                 });
 
             instance.CreateDebugReportCallback(DebugReportDelegate, DebugReportFlags.Error | DebugReportFlags.Warning | DebugReportFlags.Information | DebugReportFlags.Debug);

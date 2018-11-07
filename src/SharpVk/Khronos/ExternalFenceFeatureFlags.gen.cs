@@ -34,15 +34,5 @@ namespace SharpVk.Khronos
         /// 
         /// </summary>
         None = 0, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Exportable = 1 << 0, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Importable = 1 << 1, 
     }
 }

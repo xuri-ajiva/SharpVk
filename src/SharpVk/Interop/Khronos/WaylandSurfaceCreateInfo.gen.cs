@@ -52,11 +52,11 @@ namespace SharpVk.Interop.Khronos
         /// display and surface are pointers to the Wayland wl_display and
         /// wl_surface to associate the surface with.
         /// </summary>
-        public IntPtr Display; 
+        public IntPtr* Display; 
         
         /// <summary>
         /// 
         /// </summary>
-        public IntPtr Surface; 
+        public IntPtr* Surface; 
     }
 }

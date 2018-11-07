@@ -83,5 +83,15 @@ namespace SharpVk
         /// 
         /// </summary>
         InputAttachment = 10, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        InlineUniformBlock = 1000138000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        AccelerationStructure = 1000165000, 
     }
 }

@@ -178,6 +178,50 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The PhysicalDevice handle to extend.
+        /// </param>
+        public static unsafe SharpVk.Rect2D[] GetPresentRectangles(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.Surface surface)
+        {
+            try
+            {
+                SharpVk.Rect2D[] result = default(SharpVk.Rect2D[]);
+                uint rectCount = default(uint);
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Rect2D* marshalledRects = default(SharpVk.Rect2D*);
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Khronos.VkPhysicalDeviceGetPresentRectanglesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetPresentRectanglesDelegate>("vkGetPhysicalDevicePresentRectanglesKHR", "device");
+                Result methodResult = commandDelegate(extendedHandle.handle, surface?.handle ?? default(SharpVk.Interop.Khronos.Surface), &rectCount, marshalledRects);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                marshalledRects = (SharpVk.Rect2D*)(Interop.HeapUtil.Allocate<SharpVk.Rect2D>((uint)(rectCount)));
+                commandDelegate(extendedHandle.handle, surface?.handle ?? default(SharpVk.Interop.Khronos.Surface), &rectCount, marshalledRects);
+                if (marshalledRects != null)
+                {
+                    var fieldPointer = new SharpVk.Rect2D[(uint)(rectCount)];
+                    for(int index = 0; index < (uint)(rectCount); index++)
+                    {
+                        fieldPointer[index] = marshalledRects[index];
+                    }
+                    result = fieldPointer;
+                }
+                else
+                {
+                    result = null;
+                }
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
         /// Query information about the available displays.
         /// </summary>
         /// <param name="extendedHandle">
@@ -478,33 +522,12 @@ namespace SharpVk.Khronos
             try
             {
                 CommandCache commandCache = default(CommandCache);
+                IntPtr* marshalledDisplay = default(IntPtr*);
                 commandCache = extendedHandle.commandCache;
+                marshalledDisplay = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
+                *marshalledDisplay = display;
                 SharpVk.Interop.Khronos.VkPhysicalDeviceGetWaylandPresentationSupportDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetWaylandPresentationSupportDelegate>("vkGetPhysicalDeviceWaylandPresentationSupportKHR", "instance");
-                commandDelegate(extendedHandle.handle, queueFamilyIndex, display);
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
-        /// Query physical device for presentation to Mir.
-        /// </summary>
-        /// <param name="extendedHandle">
-        /// The PhysicalDevice handle to extend.
-        /// </param>
-        public static unsafe void GetMirPresentationSupport(this SharpVk.PhysicalDevice extendedHandle, uint queueFamilyIndex, IntPtr connection)
-        {
-            try
-            {
-                CommandCache commandCache = default(CommandCache);
-                IntPtr* marshalledConnection = default(IntPtr*);
-                commandCache = extendedHandle.commandCache;
-                marshalledConnection = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
-                *marshalledConnection = connection;
-                SharpVk.Interop.Khronos.VkPhysicalDeviceGetMirPresentationSupportDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetMirPresentationSupportDelegate>("vkGetPhysicalDeviceMirPresentationSupportKHR", "instance");
-                commandDelegate(extendedHandle.handle, queueFamilyIndex, marshalledConnection);
+                commandDelegate(extendedHandle.handle, queueFamilyIndex, marshalledDisplay);
             }
             finally
             {
@@ -526,305 +549,6 @@ namespace SharpVk.Khronos
                 commandCache = extendedHandle.commandCache;
                 SharpVk.Interop.Khronos.VkPhysicalDeviceGetWin32PresentationSupportDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetWin32PresentationSupportDelegate>("vkGetPhysicalDeviceWin32PresentationSupportKHR", "instance");
                 commandDelegate(extendedHandle.handle, queueFamilyIndex);
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
-        /// Reports capabilities of a physical device.
-        /// </summary>
-        /// <param name="extendedHandle">
-        /// The PhysicalDevice handle to extend.
-        /// </param>
-        public static unsafe SharpVk.Khronos.PhysicalDeviceFeatures2 GetFeatures2(this SharpVk.PhysicalDevice extendedHandle)
-        {
-            try
-            {
-                SharpVk.Khronos.PhysicalDeviceFeatures2 result = default(SharpVk.Khronos.PhysicalDeviceFeatures2);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Khronos.PhysicalDeviceFeatures2 marshalledFeatures = default(SharpVk.Interop.Khronos.PhysicalDeviceFeatures2);
-                commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Khronos.VkPhysicalDeviceGetFeatures2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetFeatures2Delegate>("vkGetPhysicalDeviceFeatures2KHR", "instance");
-                commandDelegate(extendedHandle.handle, &marshalledFeatures);
-                result = SharpVk.Khronos.PhysicalDeviceFeatures2.MarshalFrom(&marshalledFeatures);
-                return result;
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
-        /// Returns properties of a physical device.
-        /// </summary>
-        /// <param name="extendedHandle">
-        /// The PhysicalDevice handle to extend.
-        /// </param>
-        public static unsafe SharpVk.Khronos.PhysicalDeviceProperties2 GetProperties2(this SharpVk.PhysicalDevice extendedHandle)
-        {
-            try
-            {
-                SharpVk.Khronos.PhysicalDeviceProperties2 result = default(SharpVk.Khronos.PhysicalDeviceProperties2);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Khronos.PhysicalDeviceProperties2 marshalledProperties = default(SharpVk.Interop.Khronos.PhysicalDeviceProperties2);
-                commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Khronos.VkPhysicalDeviceGetProperties2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetProperties2Delegate>("vkGetPhysicalDeviceProperties2KHR", "instance");
-                commandDelegate(extendedHandle.handle, &marshalledProperties);
-                result = SharpVk.Khronos.PhysicalDeviceProperties2.MarshalFrom(&marshalledProperties);
-                return result;
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
-        /// Lists physical device's format capabilities.
-        /// </summary>
-        /// <param name="extendedHandle">
-        /// The PhysicalDevice handle to extend.
-        /// </param>
-        public static unsafe SharpVk.Khronos.FormatProperties2 GetFormatProperties2(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Format format)
-        {
-            try
-            {
-                SharpVk.Khronos.FormatProperties2 result = default(SharpVk.Khronos.FormatProperties2);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Khronos.FormatProperties2 marshalledFormatProperties = default(SharpVk.Interop.Khronos.FormatProperties2);
-                commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Khronos.VkPhysicalDeviceGetFormatProperties2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetFormatProperties2Delegate>("vkGetPhysicalDeviceFormatProperties2KHR", "instance");
-                commandDelegate(extendedHandle.handle, format, &marshalledFormatProperties);
-                result = SharpVk.Khronos.FormatProperties2.MarshalFrom(&marshalledFormatProperties);
-                return result;
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
-        /// Lists physical device's image format capabilities.
-        /// </summary>
-        /// <param name="extendedHandle">
-        /// The PhysicalDevice handle to extend.
-        /// </param>
-        public static unsafe SharpVk.Khronos.ImageFormatProperties2 GetImageFormatProperties2(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.PhysicalDeviceImageFormatInfo2 imageFormatInfo)
-        {
-            try
-            {
-                SharpVk.Khronos.ImageFormatProperties2 result = default(SharpVk.Khronos.ImageFormatProperties2);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Khronos.PhysicalDeviceImageFormatInfo2* marshalledImageFormatInfo = default(SharpVk.Interop.Khronos.PhysicalDeviceImageFormatInfo2*);
-                SharpVk.Interop.Khronos.ImageFormatProperties2 marshalledImageFormatProperties = default(SharpVk.Interop.Khronos.ImageFormatProperties2);
-                commandCache = extendedHandle.commandCache;
-                marshalledImageFormatInfo = (SharpVk.Interop.Khronos.PhysicalDeviceImageFormatInfo2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.PhysicalDeviceImageFormatInfo2>());
-                imageFormatInfo.MarshalTo(marshalledImageFormatInfo);
-                SharpVk.Interop.Khronos.VkPhysicalDeviceGetImageFormatProperties2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetImageFormatProperties2Delegate>("vkGetPhysicalDeviceImageFormatProperties2KHR", "instance");
-                Result methodResult = commandDelegate(extendedHandle.handle, marshalledImageFormatInfo, &marshalledImageFormatProperties);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
-                result = SharpVk.Khronos.ImageFormatProperties2.MarshalFrom(&marshalledImageFormatProperties);
-                return result;
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
-        /// Reports properties of the queues of the specified physical device.
-        /// </summary>
-        /// <param name="extendedHandle">
-        /// The PhysicalDevice handle to extend.
-        /// </param>
-        public static unsafe SharpVk.Khronos.QueueFamilyProperties2[] GetQueueFamilyProperties2(this SharpVk.PhysicalDevice extendedHandle)
-        {
-            try
-            {
-                SharpVk.Khronos.QueueFamilyProperties2[] result = default(SharpVk.Khronos.QueueFamilyProperties2[]);
-                uint queueFamilyPropertyCount = default(uint);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Khronos.QueueFamilyProperties2* marshalledQueueFamilyProperties = default(SharpVk.Interop.Khronos.QueueFamilyProperties2*);
-                commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Khronos.VkPhysicalDeviceGetQueueFamilyProperties2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetQueueFamilyProperties2Delegate>("vkGetPhysicalDeviceQueueFamilyProperties2KHR", "instance");
-                commandDelegate(extendedHandle.handle, &queueFamilyPropertyCount, marshalledQueueFamilyProperties);
-                marshalledQueueFamilyProperties = (SharpVk.Interop.Khronos.QueueFamilyProperties2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.QueueFamilyProperties2>((uint)(queueFamilyPropertyCount)));
-                commandDelegate(extendedHandle.handle, &queueFamilyPropertyCount, marshalledQueueFamilyProperties);
-                if (marshalledQueueFamilyProperties != null)
-                {
-                    var fieldPointer = new SharpVk.Khronos.QueueFamilyProperties2[(uint)(queueFamilyPropertyCount)];
-                    for(int index = 0; index < (uint)(queueFamilyPropertyCount); index++)
-                    {
-                        fieldPointer[index] = SharpVk.Khronos.QueueFamilyProperties2.MarshalFrom(&marshalledQueueFamilyProperties[index]);
-                    }
-                    result = fieldPointer;
-                }
-                else
-                {
-                    result = null;
-                }
-                return result;
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
-        /// Reports memory information for the specified physical device.
-        /// </summary>
-        /// <param name="extendedHandle">
-        /// The PhysicalDevice handle to extend.
-        /// </param>
-        public static unsafe SharpVk.Khronos.PhysicalDeviceMemoryProperties2 GetMemoryProperties2(this SharpVk.PhysicalDevice extendedHandle)
-        {
-            try
-            {
-                SharpVk.Khronos.PhysicalDeviceMemoryProperties2 result = default(SharpVk.Khronos.PhysicalDeviceMemoryProperties2);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Khronos.PhysicalDeviceMemoryProperties2 marshalledMemoryProperties = default(SharpVk.Interop.Khronos.PhysicalDeviceMemoryProperties2);
-                commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Khronos.VkPhysicalDeviceGetMemoryProperties2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetMemoryProperties2Delegate>("vkGetPhysicalDeviceMemoryProperties2KHR", "instance");
-                commandDelegate(extendedHandle.handle, &marshalledMemoryProperties);
-                result = SharpVk.Khronos.PhysicalDeviceMemoryProperties2.MarshalFrom(&marshalledMemoryProperties);
-                return result;
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
-        /// Retrieve properties of an image format applied to sparse images.
-        /// </summary>
-        /// <param name="extendedHandle">
-        /// The PhysicalDevice handle to extend.
-        /// </param>
-        public static unsafe SharpVk.Khronos.SparseImageFormatProperties2[] GetSparseImageFormatProperties2(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.PhysicalDeviceSparseImageFormatInfo2 formatInfo)
-        {
-            try
-            {
-                SharpVk.Khronos.SparseImageFormatProperties2[] result = default(SharpVk.Khronos.SparseImageFormatProperties2[]);
-                uint propertyCount = default(uint);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Khronos.PhysicalDeviceSparseImageFormatInfo2* marshalledFormatInfo = default(SharpVk.Interop.Khronos.PhysicalDeviceSparseImageFormatInfo2*);
-                SharpVk.Interop.Khronos.SparseImageFormatProperties2* marshalledProperties = default(SharpVk.Interop.Khronos.SparseImageFormatProperties2*);
-                commandCache = extendedHandle.commandCache;
-                marshalledFormatInfo = (SharpVk.Interop.Khronos.PhysicalDeviceSparseImageFormatInfo2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.PhysicalDeviceSparseImageFormatInfo2>());
-                formatInfo.MarshalTo(marshalledFormatInfo);
-                SharpVk.Interop.Khronos.VkPhysicalDeviceGetSparseImageFormatProperties2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetSparseImageFormatProperties2Delegate>("vkGetPhysicalDeviceSparseImageFormatProperties2KHR", "instance");
-                commandDelegate(extendedHandle.handle, marshalledFormatInfo, &propertyCount, marshalledProperties);
-                marshalledProperties = (SharpVk.Interop.Khronos.SparseImageFormatProperties2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.SparseImageFormatProperties2>((uint)(propertyCount)));
-                commandDelegate(extendedHandle.handle, marshalledFormatInfo, &propertyCount, marshalledProperties);
-                if (marshalledProperties != null)
-                {
-                    var fieldPointer = new SharpVk.Khronos.SparseImageFormatProperties2[(uint)(propertyCount)];
-                    for(int index = 0; index < (uint)(propertyCount); index++)
-                    {
-                        fieldPointer[index] = SharpVk.Khronos.SparseImageFormatProperties2.MarshalFrom(&marshalledProperties[index]);
-                    }
-                    result = fieldPointer;
-                }
-                else
-                {
-                    result = null;
-                }
-                return result;
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="extendedHandle">
-        /// The PhysicalDevice handle to extend.
-        /// </param>
-        public static unsafe SharpVk.Khronos.ExternalBufferProperties GetExternalBufferProperties(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.PhysicalDeviceExternalBufferInfo externalBufferInfo)
-        {
-            try
-            {
-                SharpVk.Khronos.ExternalBufferProperties result = default(SharpVk.Khronos.ExternalBufferProperties);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Khronos.PhysicalDeviceExternalBufferInfo* marshalledExternalBufferInfo = default(SharpVk.Interop.Khronos.PhysicalDeviceExternalBufferInfo*);
-                SharpVk.Interop.Khronos.ExternalBufferProperties marshalledExternalBufferProperties = default(SharpVk.Interop.Khronos.ExternalBufferProperties);
-                commandCache = extendedHandle.commandCache;
-                marshalledExternalBufferInfo = (SharpVk.Interop.Khronos.PhysicalDeviceExternalBufferInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.PhysicalDeviceExternalBufferInfo>());
-                externalBufferInfo.MarshalTo(marshalledExternalBufferInfo);
-                SharpVk.Interop.Khronos.VkPhysicalDeviceGetExternalBufferPropertiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetExternalBufferPropertiesDelegate>("vkGetPhysicalDeviceExternalBufferPropertiesKHR", "instance");
-                commandDelegate(extendedHandle.handle, marshalledExternalBufferInfo, &marshalledExternalBufferProperties);
-                result = SharpVk.Khronos.ExternalBufferProperties.MarshalFrom(&marshalledExternalBufferProperties);
-                return result;
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="extendedHandle">
-        /// The PhysicalDevice handle to extend.
-        /// </param>
-        public static unsafe SharpVk.Khronos.ExternalSemaphoreProperties GetExternalSemaphoreProperties(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.PhysicalDeviceExternalSemaphoreInfo externalSemaphoreInfo)
-        {
-            try
-            {
-                SharpVk.Khronos.ExternalSemaphoreProperties result = default(SharpVk.Khronos.ExternalSemaphoreProperties);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Khronos.PhysicalDeviceExternalSemaphoreInfo* marshalledExternalSemaphoreInfo = default(SharpVk.Interop.Khronos.PhysicalDeviceExternalSemaphoreInfo*);
-                SharpVk.Interop.Khronos.ExternalSemaphoreProperties marshalledExternalSemaphoreProperties = default(SharpVk.Interop.Khronos.ExternalSemaphoreProperties);
-                commandCache = extendedHandle.commandCache;
-                marshalledExternalSemaphoreInfo = (SharpVk.Interop.Khronos.PhysicalDeviceExternalSemaphoreInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.PhysicalDeviceExternalSemaphoreInfo>());
-                externalSemaphoreInfo.MarshalTo(marshalledExternalSemaphoreInfo);
-                SharpVk.Interop.Khronos.VkPhysicalDeviceGetExternalSemaphorePropertiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetExternalSemaphorePropertiesDelegate>("vkGetPhysicalDeviceExternalSemaphorePropertiesKHR", "instance");
-                commandDelegate(extendedHandle.handle, marshalledExternalSemaphoreInfo, &marshalledExternalSemaphoreProperties);
-                result = SharpVk.Khronos.ExternalSemaphoreProperties.MarshalFrom(&marshalledExternalSemaphoreProperties);
-                return result;
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="extendedHandle">
-        /// The PhysicalDevice handle to extend.
-        /// </param>
-        public static unsafe SharpVk.Khronos.ExternalFenceProperties GetExternalFenceProperties(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.PhysicalDeviceExternalFenceInfo externalFenceInfo)
-        {
-            try
-            {
-                SharpVk.Khronos.ExternalFenceProperties result = default(SharpVk.Khronos.ExternalFenceProperties);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Khronos.PhysicalDeviceExternalFenceInfo* marshalledExternalFenceInfo = default(SharpVk.Interop.Khronos.PhysicalDeviceExternalFenceInfo*);
-                SharpVk.Interop.Khronos.ExternalFenceProperties marshalledExternalFenceProperties = default(SharpVk.Interop.Khronos.ExternalFenceProperties);
-                commandCache = extendedHandle.commandCache;
-                marshalledExternalFenceInfo = (SharpVk.Interop.Khronos.PhysicalDeviceExternalFenceInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.PhysicalDeviceExternalFenceInfo>());
-                externalFenceInfo.MarshalTo(marshalledExternalFenceInfo);
-                SharpVk.Interop.Khronos.VkPhysicalDeviceGetExternalFencePropertiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetExternalFencePropertiesDelegate>("vkGetPhysicalDeviceExternalFencePropertiesKHR", "instance");
-                commandDelegate(extendedHandle.handle, marshalledExternalFenceInfo, &marshalledExternalFenceProperties);
-                result = SharpVk.Khronos.ExternalFenceProperties.MarshalFrom(&marshalledExternalFenceProperties);
-                return result;
             }
             finally
             {
@@ -903,6 +627,170 @@ namespace SharpVk.Khronos
                 {
                     result = null;
                 }
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The PhysicalDevice handle to extend.
+        /// </param>
+        public static unsafe SharpVk.Khronos.DisplayProperties2[] GetDisplayProperties2(this SharpVk.PhysicalDevice extendedHandle)
+        {
+            try
+            {
+                SharpVk.Khronos.DisplayProperties2[] result = default(SharpVk.Khronos.DisplayProperties2[]);
+                uint propertyCount = default(uint);
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Khronos.DisplayProperties2* marshalledProperties = default(SharpVk.Interop.Khronos.DisplayProperties2*);
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Khronos.VkPhysicalDeviceGetDisplayProperties2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetDisplayProperties2Delegate>("vkGetPhysicalDeviceDisplayProperties2KHR", "instance");
+                Result methodResult = commandDelegate(extendedHandle.handle, &propertyCount, marshalledProperties);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                marshalledProperties = (SharpVk.Interop.Khronos.DisplayProperties2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.DisplayProperties2>((uint)(propertyCount)));
+                commandDelegate(extendedHandle.handle, &propertyCount, marshalledProperties);
+                if (marshalledProperties != null)
+                {
+                    var fieldPointer = new SharpVk.Khronos.DisplayProperties2[(uint)(propertyCount)];
+                    for(int index = 0; index < (uint)(propertyCount); index++)
+                    {
+                        fieldPointer[index] = SharpVk.Khronos.DisplayProperties2.MarshalFrom(&marshalledProperties[index]);
+                    }
+                    result = fieldPointer;
+                }
+                else
+                {
+                    result = null;
+                }
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The PhysicalDevice handle to extend.
+        /// </param>
+        public static unsafe SharpVk.Khronos.DisplayPlaneProperties2[] GetDisplayPlaneProperties2(this SharpVk.PhysicalDevice extendedHandle)
+        {
+            try
+            {
+                SharpVk.Khronos.DisplayPlaneProperties2[] result = default(SharpVk.Khronos.DisplayPlaneProperties2[]);
+                uint propertyCount = default(uint);
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Khronos.DisplayPlaneProperties2* marshalledProperties = default(SharpVk.Interop.Khronos.DisplayPlaneProperties2*);
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Khronos.VkPhysicalDeviceGetDisplayPlaneProperties2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetDisplayPlaneProperties2Delegate>("vkGetPhysicalDeviceDisplayPlaneProperties2KHR", "instance");
+                Result methodResult = commandDelegate(extendedHandle.handle, &propertyCount, marshalledProperties);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                marshalledProperties = (SharpVk.Interop.Khronos.DisplayPlaneProperties2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.DisplayPlaneProperties2>((uint)(propertyCount)));
+                commandDelegate(extendedHandle.handle, &propertyCount, marshalledProperties);
+                if (marshalledProperties != null)
+                {
+                    var fieldPointer = new SharpVk.Khronos.DisplayPlaneProperties2[(uint)(propertyCount)];
+                    for(int index = 0; index < (uint)(propertyCount); index++)
+                    {
+                        fieldPointer[index] = SharpVk.Khronos.DisplayPlaneProperties2.MarshalFrom(&marshalledProperties[index]);
+                    }
+                    result = fieldPointer;
+                }
+                else
+                {
+                    result = null;
+                }
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The PhysicalDevice handle to extend.
+        /// </param>
+        public static unsafe SharpVk.Khronos.DisplayModeProperties2[] GetDisplayModeProperties2(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.Display display)
+        {
+            try
+            {
+                SharpVk.Khronos.DisplayModeProperties2[] result = default(SharpVk.Khronos.DisplayModeProperties2[]);
+                uint propertyCount = default(uint);
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Khronos.DisplayModeProperties2* marshalledProperties = default(SharpVk.Interop.Khronos.DisplayModeProperties2*);
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Khronos.VkPhysicalDeviceGetDisplayModeProperties2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetDisplayModeProperties2Delegate>("vkGetDisplayModeProperties2KHR", "instance");
+                Result methodResult = commandDelegate(extendedHandle.handle, display?.handle ?? default(SharpVk.Interop.Khronos.Display), &propertyCount, marshalledProperties);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                marshalledProperties = (SharpVk.Interop.Khronos.DisplayModeProperties2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.DisplayModeProperties2>((uint)(propertyCount)));
+                commandDelegate(extendedHandle.handle, display?.handle ?? default(SharpVk.Interop.Khronos.Display), &propertyCount, marshalledProperties);
+                if (marshalledProperties != null)
+                {
+                    var fieldPointer = new SharpVk.Khronos.DisplayModeProperties2[(uint)(propertyCount)];
+                    for(int index = 0; index < (uint)(propertyCount); index++)
+                    {
+                        fieldPointer[index] = SharpVk.Khronos.DisplayModeProperties2.MarshalFrom(&marshalledProperties[index]);
+                    }
+                    result = fieldPointer;
+                }
+                else
+                {
+                    result = null;
+                }
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The PhysicalDevice handle to extend.
+        /// </param>
+        public static unsafe SharpVk.Khronos.DisplayPlaneCapabilities2 GetDisplayPlaneCapabilities2(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.DisplayPlaneInfo2 displayPlaneInfo)
+        {
+            try
+            {
+                SharpVk.Khronos.DisplayPlaneCapabilities2 result = default(SharpVk.Khronos.DisplayPlaneCapabilities2);
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Khronos.DisplayPlaneInfo2* marshalledDisplayPlaneInfo = default(SharpVk.Interop.Khronos.DisplayPlaneInfo2*);
+                SharpVk.Interop.Khronos.DisplayPlaneCapabilities2 marshalledCapabilities = default(SharpVk.Interop.Khronos.DisplayPlaneCapabilities2);
+                commandCache = extendedHandle.commandCache;
+                marshalledDisplayPlaneInfo = (SharpVk.Interop.Khronos.DisplayPlaneInfo2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.DisplayPlaneInfo2>());
+                displayPlaneInfo.MarshalTo(marshalledDisplayPlaneInfo);
+                SharpVk.Interop.Khronos.VkPhysicalDeviceGetDisplayPlaneCapabilities2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetDisplayPlaneCapabilities2Delegate>("vkGetDisplayPlaneCapabilities2KHR", "instance");
+                Result methodResult = commandDelegate(extendedHandle.handle, marshalledDisplayPlaneInfo, &marshalledCapabilities);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = SharpVk.Khronos.DisplayPlaneCapabilities2.MarshalFrom(&marshalledCapabilities);
                 return result;
             }
             finally

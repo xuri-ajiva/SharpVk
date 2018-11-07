@@ -130,5 +130,20 @@ namespace SharpVk
         /// 
         /// </summary>
         SampleLocations = 1000143000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ViewportShadingRatePalette = 1000164004, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ViewportCoarseSampleOrder = 1000164006, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ExclusiveScissor = 1000205001, 
     }
 }

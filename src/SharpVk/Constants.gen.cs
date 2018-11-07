@@ -123,5 +123,20 @@ namespace SharpVk
         /// 
         /// </summary>
         public const int MaxDeviceGroupSize = 32; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const int MaxDriverNameSize = 256; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const int MaxDriverInfoSize = 256; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const uint ShaderUnused = ~0U; 
     }
 }

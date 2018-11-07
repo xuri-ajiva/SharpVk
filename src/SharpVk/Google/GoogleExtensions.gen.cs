@@ -33,5 +33,15 @@ namespace SharpVk.Google
         /// 
         /// </summary>
         public const string DisplayTiming = "VK_GOOGLE_display_timing"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string HlslFunctionality1 = "VK_GOOGLE_hlsl_functionality1"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string DecorateString = "VK_GOOGLE_decorate_string"; 
     }
 }

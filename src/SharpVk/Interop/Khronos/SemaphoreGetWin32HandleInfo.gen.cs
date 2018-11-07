@@ -51,6 +51,6 @@ namespace SharpVk.Interop.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Khronos.ExternalSemaphoreHandleTypeFlags HandleType; 
+        public SharpVk.ExternalSemaphoreHandleTypeFlags HandleType; 
     }
 }

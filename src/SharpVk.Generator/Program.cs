@@ -12,10 +12,10 @@ namespace SharpVk.Generator
         {
             var pipeline = PipelineBuilder.Create<LoadXmlStage>()
                                             .Extend<SpecParserStage>()
-                                            //.Extend<CollationStage>()
-                                            //.Extend<GenerationStage>()
-                                            //.Extend<EmissionStage>()
-                                            .Extend<NullStage>()
+                                            .Extend<CollationStage>()
+                                            .Extend<GenerationStage>()
+                                            .Extend<EmissionStage>()
+                                            //.Extend<NullStage>()
                                             .Build();
 
             pipeline.Run();

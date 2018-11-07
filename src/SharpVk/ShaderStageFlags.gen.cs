@@ -74,5 +74,45 @@ namespace SharpVk
         /// 
         /// </summary>
         All = 0x7FFFFFFF, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Raygen = 1 << 8, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        AnyHit = 1 << 9, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ClosestHit = 1 << 10, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Miss = 1 << 11, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Intersection = 1 << 12, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Callable = 1 << 13, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Task = 1 << 6, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Mesh = 1 << 7, 
     }
 }

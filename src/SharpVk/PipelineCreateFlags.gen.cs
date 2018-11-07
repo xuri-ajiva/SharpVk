@@ -55,15 +55,8 @@ namespace SharpVk
         Derivative = 1 << 2, 
         
         /// <summary>
-        /// Specifies that any shader input variables decorated as DeviceIndex
-        /// will be assigned values as if they were decorated as ViewIndex.
+        /// 
         /// </summary>
-        ViewIndexFromDeviceIndex = 1 << 3, 
-        
-        /// <summary>
-        /// Specifies that a compute pipeline can be used with
-        /// flink:vkCmdDispatchBaseKHX with a non-zero base workgroup.
-        /// </summary>
-        DispatchBase = 1 << 4, 
+        DeferCompile = 1 << 5, 
     }
 }

@@ -157,12 +157,12 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        ErrorOutOfPoolMemory = -1000069000, 
+        ErrorInvalidDrmFormatModifierPlaneLayout = -1000158000, 
         
         /// <summary>
         /// 
         /// </summary>
-        ErrorInvalidExternalHandle = -1000072003, 
+        ErrorFragmentation = -1000161000, 
         
         /// <summary>
         /// 

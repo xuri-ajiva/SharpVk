@@ -52,11 +52,6 @@ namespace SharpVk.Amd
         /// <summary>
         /// 
         /// </summary>
-        public const string DrawIndirectCount = "VK_AMD_draw_indirect_count"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public const string NegativeViewportHeight = "VK_AMD_negative_viewport_height"; 
         
         /// <summary>
@@ -103,5 +98,15 @@ namespace SharpVk.Amd
         /// 
         /// </summary>
         public const string BufferMarker = "VK_AMD_buffer_marker"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string ShaderCoreProperties = "VK_AMD_shader_core_properties"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string MemoryOverallocationBehavior = "VK_AMD_memory_overallocation_behavior"; 
     }
 }

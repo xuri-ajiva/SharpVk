@@ -24,6 +24,10 @@ namespace SharpVk.Generator.Specification
 
             foreach (var vkCommand in this.xmlCache.GetVkXml().Element("registry").Element("commands").Elements("command"))
             {
+                if (vkCommand.Element("proto") == null)
+                {
+                    continue;
+                }
                 string name = vkCommand.Element("proto").Element("name").Value;
                 string type = vkCommand.Element("proto").Element("type").Value;
 
@@ -57,7 +61,7 @@ namespace SharpVk.Generator.Specification
                     bool.TryParse(vkParam.Attribute("noAutoValidity")?.Value, out bool noAutoValidity);
 
                     var typeNodes = nameElement.NodesBeforeSelf();
-                    PointerType pointerType = PointerTypeUtil.GetFrom(typeNodes);
+                    var pointerType = PointerTypeUtil.GetFrom(typeNodes);
 
                     var lenField = vkParam.Attribute("len");
                     var dimensions = lenField != null
@@ -87,7 +91,7 @@ namespace SharpVk.Generator.Specification
 
             foreach (var extension in this.xmlCache.GetVkXml().Element("registry").Element("extensions").Elements("extension"))
             {
-                if (extension.Attribute("supported").Value == "vulkan")
+                if (extension.Attribute("supported").Value == "vulkan" && extension.Attribute("promotedto") == null)
                 {
                     foreach (var commandRequirement in extension.Elements("require").SelectMany(x => x.Elements("command")))
                     {

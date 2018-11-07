@@ -42,7 +42,7 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public const string DebugMarker = "VK_EXT_debug_marker"; 
+        public const string TransformFeedback = "VK_EXT_transform_feedback"; 
         
         /// <summary>
         /// 
@@ -58,6 +58,16 @@ namespace SharpVk.Multivendor
         /// 
         /// </summary>
         public const string ShaderSubgroupVote = "VK_EXT_shader_subgroup_vote"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string AstcDecodeMode = "VK_EXT_astc_decode_mode"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string ConditionalRendering = "VK_EXT_conditional_rendering"; 
         
         /// <summary>
         /// 
@@ -112,7 +122,17 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        public const string DebugUtils = "VK_EXT_debug_utils"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public const string SamplerFilterMinmax = "VK_EXT_sampler_filter_minmax"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string InlineUniformBlock = "VK_EXT_inline_uniform_block"; 
         
         /// <summary>
         /// 
@@ -137,7 +157,17 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        public const string ImageDrmFormatModifier = "VK_EXT_image_drm_format_modifier"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public const string ValidationCache = "VK_EXT_validation_cache"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string DescriptorIndexing = "VK_EXT_descriptor_indexing"; 
         
         /// <summary>
         /// 
@@ -153,5 +183,20 @@ namespace SharpVk.Multivendor
         /// 
         /// </summary>
         public const string ExternalMemoryHost = "VK_EXT_external_memory_host"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string CalibratedTimestamps = "VK_EXT_calibrated_timestamps"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string VertexAttributeDivisor = "VK_EXT_vertex_attribute_divisor"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string PciBusInfo = "VK_EXT_pci_bus_info"; 
     }
 }

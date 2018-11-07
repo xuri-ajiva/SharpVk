@@ -74,11 +74,14 @@ namespace SharpVk
         /// <param name="validationFlagsExt">
         /// Extension struct
         /// </param>
+        /// <param name="debugUtilsMessengerCreateInfoExt">
+        /// Extension struct
+        /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
         /// </param>
-        public static unsafe SharpVk.Instance Create(CommandCache commandCache, ArrayProxy<string>? enabledLayerNames, ArrayProxy<string>? enabledExtensionNames, SharpVk.InstanceCreateFlags? flags = default(SharpVk.InstanceCreateFlags?), SharpVk.ApplicationInfo? applicationInfo = default(SharpVk.ApplicationInfo?), SharpVk.Multivendor.DebugReportCallbackCreateInfo? debugReportCallbackCreateInfoExt = null, SharpVk.Multivendor.ValidationFlags? validationFlagsExt = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public static unsafe SharpVk.Instance Create(CommandCache commandCache, ArrayProxy<string>? enabledLayerNames, ArrayProxy<string>? enabledExtensionNames, SharpVk.InstanceCreateFlags? flags = default(SharpVk.InstanceCreateFlags?), SharpVk.ApplicationInfo? applicationInfo = default(SharpVk.ApplicationInfo?), SharpVk.Multivendor.DebugReportCallbackCreateInfo? debugReportCallbackCreateInfoExt = null, SharpVk.Multivendor.ValidationFlags? validationFlagsExt = null, SharpVk.Multivendor.DebugUtilsMessengerCreateInfo? debugUtilsMessengerCreateInfoExt = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
@@ -100,6 +103,14 @@ namespace SharpVk
                     SharpVk.Interop.Multivendor.ValidationFlags* extensionPointer = default(SharpVk.Interop.Multivendor.ValidationFlags*);
                     extensionPointer = (SharpVk.Interop.Multivendor.ValidationFlags*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.ValidationFlags>());
                     validationFlagsExt.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = nextPointer;
+                    nextPointer = extensionPointer;
+                }
+                if (debugUtilsMessengerCreateInfoExt != null)
+                {
+                    SharpVk.Interop.Multivendor.DebugUtilsMessengerCreateInfo* extensionPointer = default(SharpVk.Interop.Multivendor.DebugUtilsMessengerCreateInfo*);
+                    extensionPointer = (SharpVk.Interop.Multivendor.DebugUtilsMessengerCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.DebugUtilsMessengerCreateInfo>());
+                    debugUtilsMessengerCreateInfoExt.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = nextPointer;
                     nextPointer = extensionPointer;
                 }

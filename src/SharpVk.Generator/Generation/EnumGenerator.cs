@@ -30,7 +30,7 @@ namespace SharpVk.Generator.Generation
                     Namespace = enumeration.Extension != null ? this.namespaceMap.Map(enumeration.Extension).ToArray() : null,
                     Comment = this.commentGenerator.Lookup(enumeration.VkName),
                     IsFlags = enumeration.IsFlags,
-                    Fields = enumeration.Fields.Select(x => new FieldDefinition
+                    Fields = enumeration.Fields.Where(x => x.Value != null).Select(x => new FieldDefinition
                     {
                         Name = x.Name,
                         Comment = this.commentGenerator.Lookup(enumeration.VkName, x.VkName),

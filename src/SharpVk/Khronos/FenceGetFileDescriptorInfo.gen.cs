@@ -45,7 +45,7 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Khronos.ExternalFenceHandleTypeFlags HandleType
+        public SharpVk.ExternalFenceHandleTypeFlags HandleType
         {
             get;
             set;

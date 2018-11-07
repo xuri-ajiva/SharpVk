@@ -19,7 +19,7 @@ namespace SharpVk.Generator.Emission
         {
             var folderPaths = new Stack<string>();
 
-            folderPaths.Push("..\\SharpVk");
+            folderPaths.Push("..\\..\\..\\..\\SharpVk");
 
             while (folderPaths.Any())
             {

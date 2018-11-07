@@ -108,51 +108,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        TransferSource = 1 << 14, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        TransferDestination = 1 << 15, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
         SampledImageFilterMinmax = 1 << 16, 
         
         /// <summary>
         /// 
         /// </summary>
-        MidpointChromaSamples = 1 << 17, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        SampledImageYcbcrConversionLinearFilter = 1 << 18, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        SampledImageYcbcrConversionSeparateReconstructionFilter = 1 << 19, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        SampledImageYcbcrConversionChromaReconstructionExplicit = 1 << 20, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        SampledImageYcbcrConversionChromaReconstructionExplicitForceable = 1 << 21, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Disjoint = 1 << 22, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        CositedChromaSamples = 1 << 23, 
+        Reserved24 = 1 << 24, 
     }
 }

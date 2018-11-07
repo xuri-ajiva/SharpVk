@@ -13,10 +13,11 @@ namespace SharpVk.Generator.Collation
             {"char", "byte"},
             {"float", "float"},
             {"uint8_t", "byte"},
+            {"uint16_t", "ushort"},
             {"uint32_t", "uint"},
+            {"uint64_t", "ulong"},
             {"int", "int"},
             {"DWORD", "uint"},
-            {"uint64_t", "ulong"},
             {"int32_t", "int"},
             {"size_t", "HostSize"},
             {"HINSTANCE", "IntPtr" },
@@ -24,6 +25,7 @@ namespace SharpVk.Generator.Collation
             {"HANDLE", "IntPtr" },
             {"SECURITY_ATTRIBUTES", "SecurityAttributes" },
             {"ANativeWindow", "IntPtr" },
+            {"AHardwareBuffer", "IntPtr" },
             {"Display", "IntPtr" },
             {"VisualID", "IntPtr" },
             {"Window", "IntPtr" },
@@ -35,7 +37,8 @@ namespace SharpVk.Generator.Collation
             {"xcb_visualid_t", "IntPtr" },
             {"xcb_window_t", "IntPtr" },
             {"RROutput", "IntPtr" },
-            {"LPCWSTR", "IntPtr" }
+            {"LPCWSTR", "IntPtr" },
+            {"zx_handle_t", "uint" }
         };
 
         private static readonly string[] digitsSuffix = new[] { "flags", "flag", "type", "bits", "bit" };
@@ -67,7 +70,7 @@ namespace SharpVk.Generator.Collation
             return JoinNameParts(field.NameParts);
         }
 
-        public string FormatName(ChildElement member, bool isCamelCase)
+        public string FormatName(ChildElement member, string typeName, bool isCamelCase)
         {
             var nameParts = member.NameParts.AsEnumerable();
 
@@ -78,9 +81,19 @@ namespace SharpVk.Generator.Collation
 
             var result = JoinNameParts(nameParts);
 
-            return isCamelCase
-                ? Normalise(result.FirstToLower())
-                : result;
+            if (isCamelCase)
+            {
+                return Normalise(result.FirstToLower());
+            }
+
+            if (result == typeName)
+            {
+                return nameParts.Last().FirstToUpper() + "Value";
+            }
+            else
+            {
+                return result;
+            }
         }
 
         public string FormatName(CommandElement command, TypeElement handleType)

@@ -101,10 +101,10 @@ namespace SharpVk
                     return new ValidationFailedException();
                 case Result.ErrorInvalidShader:
                     return new InvalidShaderException();
-                case Result.ErrorOutOfPoolMemory:
-                    return new OutOfPoolMemoryException();
-                case Result.ErrorInvalidExternalHandle:
-                    return new InvalidExternalHandleException();
+                case Result.ErrorInvalidDrmFormatModifierPlaneLayout:
+                    return new InvalidDrmFormatModifierPlaneLayoutException();
+                case Result.ErrorFragmentation:
+                    return new FragmentationException();
                 case Result.ErrorNotPermitted:
                     return new NotPermittedException();
             }
@@ -450,10 +450,10 @@ namespace SharpVk
     /// <summary>
     /// 
     /// </summary>
-    public class OutOfPoolMemoryException
+    public class InvalidDrmFormatModifierPlaneLayoutException
         : SharpVkException
     {
-        internal OutOfPoolMemoryException()
+        internal InvalidDrmFormatModifierPlaneLayoutException()
             : base("")
         {
         }
@@ -461,16 +461,16 @@ namespace SharpVk
         /// <summary>
         /// The Vulkan result code represented by this exception.
         /// </summary>
-        public override Result ResultCode => Result.ErrorOutOfPoolMemory;
+        public override Result ResultCode => Result.ErrorInvalidDrmFormatModifierPlaneLayout;
     }
     
     /// <summary>
     /// 
     /// </summary>
-    public class InvalidExternalHandleException
+    public class FragmentationException
         : SharpVkException
     {
-        internal InvalidExternalHandleException()
+        internal FragmentationException()
             : base("")
         {
         }
@@ -478,7 +478,7 @@ namespace SharpVk
         /// <summary>
         /// The Vulkan result code represented by this exception.
         /// </summary>
-        public override Result ResultCode => Result.ErrorInvalidExternalHandle;
+        public override Result ResultCode => Result.ErrorFragmentation;
     }
     
     /// <summary>

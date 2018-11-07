@@ -56,20 +56,20 @@ namespace SharpVk
         /// A bitmask indicating usage behavior for the command buffer. Bits
         /// which can be set include: + --
         /// </param>
-        /// <param name="deviceGroupCommandBufferBeginInfoKhx">
+        /// <param name="deviceGroupCommandBufferBeginInfo">
         /// Extension struct
         /// </param>
-        public unsafe void Begin(SharpVk.CommandBufferUsageFlags? flags = default(SharpVk.CommandBufferUsageFlags?), SharpVk.CommandBufferInheritanceInfo? inheritanceInfo = default(SharpVk.CommandBufferInheritanceInfo?), SharpVk.Khronos.Experimental.DeviceGroupCommandBufferBeginInfo? deviceGroupCommandBufferBeginInfoKhx = null)
+        public unsafe void Begin(SharpVk.CommandBufferUsageFlags? flags = default(SharpVk.CommandBufferUsageFlags?), SharpVk.CommandBufferInheritanceInfo? inheritanceInfo = default(SharpVk.CommandBufferInheritanceInfo?), SharpVk.DeviceGroupCommandBufferBeginInfo? deviceGroupCommandBufferBeginInfo = null)
         {
             try
             {
                 SharpVk.Interop.CommandBufferBeginInfo* marshalledBeginInfo = default(SharpVk.Interop.CommandBufferBeginInfo*);
                 void* nextPointer = default(void*);
-                if (deviceGroupCommandBufferBeginInfoKhx != null)
+                if (deviceGroupCommandBufferBeginInfo != null)
                 {
-                    SharpVk.Interop.Khronos.Experimental.DeviceGroupCommandBufferBeginInfo* extensionPointer = default(SharpVk.Interop.Khronos.Experimental.DeviceGroupCommandBufferBeginInfo*);
-                    extensionPointer = (SharpVk.Interop.Khronos.Experimental.DeviceGroupCommandBufferBeginInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.Experimental.DeviceGroupCommandBufferBeginInfo>());
-                    deviceGroupCommandBufferBeginInfoKhx.Value.MarshalTo(extensionPointer);
+                    SharpVk.Interop.DeviceGroupCommandBufferBeginInfo* extensionPointer = default(SharpVk.Interop.DeviceGroupCommandBufferBeginInfo*);
+                    extensionPointer = (SharpVk.Interop.DeviceGroupCommandBufferBeginInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.DeviceGroupCommandBufferBeginInfo>());
+                    deviceGroupCommandBufferBeginInfo.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = nextPointer;
                     nextPointer = extensionPointer;
                 }
@@ -1445,23 +1445,23 @@ namespace SharpVk
         /// </param>
         /// <param name="clearValues">
         /// </param>
-        /// <param name="deviceGroupRenderPassBeginInfoKhx">
+        /// <param name="deviceGroupRenderPassBeginInfo">
         /// Extension struct
         /// </param>
         /// <param name="renderPassSampleLocationsBeginInfoExt">
         /// Extension struct
         /// </param>
-        public unsafe void BeginRenderPass(SharpVk.RenderPass renderPass, SharpVk.Framebuffer framebuffer, SharpVk.Rect2D renderArea, ArrayProxy<SharpVk.ClearValue>? clearValues, SharpVk.SubpassContents contents, SharpVk.Khronos.Experimental.DeviceGroupRenderPassBeginInfo? deviceGroupRenderPassBeginInfoKhx = null, SharpVk.Multivendor.RenderPassSampleLocationsBeginInfo? renderPassSampleLocationsBeginInfoExt = null)
+        public unsafe void BeginRenderPass(SharpVk.RenderPass renderPass, SharpVk.Framebuffer framebuffer, SharpVk.Rect2D renderArea, ArrayProxy<SharpVk.ClearValue>? clearValues, SharpVk.SubpassContents contents, SharpVk.DeviceGroupRenderPassBeginInfo? deviceGroupRenderPassBeginInfo = null, SharpVk.Multivendor.RenderPassSampleLocationsBeginInfo? renderPassSampleLocationsBeginInfoExt = null)
         {
             try
             {
                 SharpVk.Interop.RenderPassBeginInfo* marshalledRenderPassBegin = default(SharpVk.Interop.RenderPassBeginInfo*);
                 void* nextPointer = default(void*);
-                if (deviceGroupRenderPassBeginInfoKhx != null)
+                if (deviceGroupRenderPassBeginInfo != null)
                 {
-                    SharpVk.Interop.Khronos.Experimental.DeviceGroupRenderPassBeginInfo* extensionPointer = default(SharpVk.Interop.Khronos.Experimental.DeviceGroupRenderPassBeginInfo*);
-                    extensionPointer = (SharpVk.Interop.Khronos.Experimental.DeviceGroupRenderPassBeginInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.Experimental.DeviceGroupRenderPassBeginInfo>());
-                    deviceGroupRenderPassBeginInfoKhx.Value.MarshalTo(extensionPointer);
+                    SharpVk.Interop.DeviceGroupRenderPassBeginInfo* extensionPointer = default(SharpVk.Interop.DeviceGroupRenderPassBeginInfo*);
+                    extensionPointer = (SharpVk.Interop.DeviceGroupRenderPassBeginInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.DeviceGroupRenderPassBeginInfo>());
+                    deviceGroupRenderPassBeginInfo.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = nextPointer;
                     nextPointer = extensionPointer;
                 }

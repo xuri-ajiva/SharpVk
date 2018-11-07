@@ -52,18 +52,25 @@ namespace SharpVk.Generator.Collation
             //}
 
             var typeData = this.types
-                                    .Where(x => x.Category != TypeCategory.define && x.Category != TypeCategory.include)
+                                    .Where(x => x.Category != TypeCategory.define
+                                            && x.Category != TypeCategory.include
+                                            && x.Alias == null)
                                     .ToDictionary(x => x.VkName, x => new TypeDeclaration
                                     {
                                         Name = this.nameFormatter.FormatName(x),
                                         Parent = x.Parent,
                                         Extension = x.ExtensionNamespace?.FirstToUpper(),
                                         Pattern = x.Category.MapToPattern(),
-                                        Members = GetMembers(x).ToList(),
+                                        Members = this.GetMembers(x, this.nameFormatter.FormatName(x)).ToList(),
                                         ExtendTypes = extendTypes[x.VkName].ToList(),
                                         Type = x.Type,
                                         IsOutputOnly = x.IsReturnedOnly
                                     });
+
+            foreach (var type in this.types.Where(x => x.Alias != null))
+            {
+                typeData.Add(type.VkName, typeData[type.Alias]);
+            }
 
             bool newInteropTypes = true;
 
@@ -85,7 +92,7 @@ namespace SharpVk.Generator.Collation
 
             foreach (var type in typeData)
             {
-                var name = type.Value.Name;
+                string name = type.Value.Name;
 
                 services.AddSingleton(new TypeNameMapping
                 {
@@ -99,17 +106,17 @@ namespace SharpVk.Generator.Collation
             services.AddSingleton(typeData);
         }
 
-        private IEnumerable<MemberDeclaration> GetMembers(TypeElement type)
+        private IEnumerable<MemberDeclaration> GetMembers(TypeElement type, string typeName)
         {
             foreach (var member in type.Members)
             {
                 yield return new MemberDeclaration
                 {
                     VkName = member.VkName,
-                    Name = this.nameFormatter.FormatName(member, false),
+                    Name = this.nameFormatter.FormatName(member, typeName, false),
                     IsOptional = member.IsOptional,
                     NoAutoValidity = member.NoAutoValidity,
-                    ParamName = this.nameFormatter.FormatName(member, true),
+                    ParamName = this.nameFormatter.FormatName(member, typeName, true),
                     FixedValue = member.Values,
                     Dimensions = member.Dimensions,
                     Type = new TypeReference

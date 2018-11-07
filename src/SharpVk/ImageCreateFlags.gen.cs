@@ -70,28 +70,9 @@ namespace SharpVk
         CubeCompatible = 1 << 4, 
         
         /// <summary>
-        /// Indicates that the image can be used with a non-zero value of the
-        /// SFRRectCount member of the BindImageMemoryInfoKHX structure passed
-        /// into flink:vkBindImageMemory2KHX. This flag also has the effect of
-        /// making the image use the standard sparse image block dimensions.
-        /// </summary>
-        BindSfr = 1 << 6, 
-        
-        /// <summary>
-        /// Indicates that the image can be used to create a ImageView of type
-        /// VK_IMAGE_VIEW_TYPE_2D or VK_IMAGE_VIEW_TYPE_2D_ARRAY.
-        /// </summary>
-        ImageCreate2dArrayCompatible = 1 << 5, 
-        
-        /// <summary>
         /// 
         /// </summary>
-        BlockTexelViewCompatible = 1 << 7, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        ExtendedUsage = 1 << 8, 
+        CornerSampled = 1 << 13, 
         
         /// <summary>
         /// 
@@ -101,11 +82,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        Disjoint = 1 << 9, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Alias = 1 << 10, 
+        Reserved14 = 1 << 14, 
     }
 }

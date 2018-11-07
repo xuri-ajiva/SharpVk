@@ -121,5 +121,92 @@ namespace SharpVk.Multivendor
                 Interop.HeapUtil.FreeAll();
             }
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The Instance handle to extend.
+        /// </param>
+        public static unsafe SharpVk.Multivendor.DebugUtilsMessenger CreateDebugUtilsMessenger(this SharpVk.Instance extendedHandle, SharpVk.Multivendor.DebugUtilsMessageSeverityFlags messageSeverity, SharpVk.Multivendor.DebugUtilsMessageTypeFlags messageType, SharpVk.Multivendor.DebugUtilsMessengerCallbackDelegate userCallback, SharpVk.Multivendor.DebugUtilsMessengerCreateFlags? flags = default(SharpVk.Multivendor.DebugUtilsMessengerCreateFlags?), IntPtr? userData = default(IntPtr?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        {
+            try
+            {
+                SharpVk.Multivendor.DebugUtilsMessenger result = default(SharpVk.Multivendor.DebugUtilsMessenger);
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Multivendor.DebugUtilsMessengerCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Multivendor.DebugUtilsMessengerCreateInfo*);
+                void* nextPointer = default(void*);
+                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                SharpVk.Interop.Multivendor.DebugUtilsMessenger marshalledMessenger = default(SharpVk.Interop.Multivendor.DebugUtilsMessenger);
+                commandCache = extendedHandle.commandCache;
+                marshalledCreateInfo = (SharpVk.Interop.Multivendor.DebugUtilsMessengerCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.DebugUtilsMessengerCreateInfo>());
+                marshalledCreateInfo->SType = StructureType.DebugUtilsMessengerCreateInfo;
+                marshalledCreateInfo->Next = nextPointer;
+                if (flags != null)
+                {
+                    marshalledCreateInfo->Flags = flags.Value;
+                }
+                else
+                {
+                    marshalledCreateInfo->Flags = default(SharpVk.Multivendor.DebugUtilsMessengerCreateFlags);
+                }
+                marshalledCreateInfo->MessageSeverity = messageSeverity;
+                marshalledCreateInfo->MessageType = messageType;
+                marshalledCreateInfo->UserCallback = System.Runtime.InteropServices.Marshal.GetFunctionPointerForDelegate(userCallback);
+                if (userData != null)
+                {
+                    marshalledCreateInfo->UserData = userData.Value.ToPointer();
+                }
+                else
+                {
+                    marshalledCreateInfo->UserData = default(void*);
+                }
+                if (allocator != null)
+                {
+                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
+                    allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                else
+                {
+                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                }
+                SharpVk.Interop.Multivendor.VkInstanceCreateDebugUtilsMessengerDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkInstanceCreateDebugUtilsMessengerDelegate>("vkCreateDebugUtilsMessengerEXT", "instance");
+                Result methodResult = commandDelegate(extendedHandle.handle, marshalledCreateInfo, marshalledAllocator, &marshalledMessenger);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = new SharpVk.Multivendor.DebugUtilsMessenger(extendedHandle, marshalledMessenger);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The Instance handle to extend.
+        /// </param>
+        public static unsafe void SubmitDebugUtilsMessage(this SharpVk.Instance extendedHandle, SharpVk.Multivendor.DebugUtilsMessageSeverityFlags messageSeverity, SharpVk.Multivendor.DebugUtilsMessageTypeFlags messageTypes, SharpVk.Multivendor.DebugUtilsMessengerCallbackData callbackData)
+        {
+            try
+            {
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Multivendor.DebugUtilsMessengerCallbackData* marshalledCallbackData = default(SharpVk.Interop.Multivendor.DebugUtilsMessengerCallbackData*);
+                commandCache = extendedHandle.commandCache;
+                marshalledCallbackData = (SharpVk.Interop.Multivendor.DebugUtilsMessengerCallbackData*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.DebugUtilsMessengerCallbackData>());
+                callbackData.MarshalTo(marshalledCallbackData);
+                SharpVk.Interop.Multivendor.VkInstanceSubmitDebugUtilsMessageDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkInstanceSubmitDebugUtilsMessageDelegate>("vkSubmitDebugUtilsMessageEXT", "instance");
+                commandDelegate(extendedHandle.handle, messageSeverity, messageTypes, marshalledCallbackData);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
     }
 }

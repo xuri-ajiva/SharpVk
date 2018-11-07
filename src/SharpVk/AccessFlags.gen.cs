@@ -146,6 +146,26 @@ namespace SharpVk
         MemoryWrite = 1 << 16, 
         
         /// <summary>
+        /// 
+        /// </summary>
+        TransformFeedbackWrite = 1 << 25, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        TransformFeedbackCounterRead = 1 << 26, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        TransformFeedbackCounterWrite = 1 << 27, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ConditionalRenderingRead = 1 << 20, 
+        
+        /// <summary>
         /// Reads from Buffer inputs to CommandBuffer.ProcessCommands.
         /// </summary>
         CommandProcessRead = 1 << 17, 
@@ -160,5 +180,25 @@ namespace SharpVk
         /// 
         /// </summary>
         ColorAttachmentReadNoncoherent = 1 << 19, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ShadingRateImageRead = 1 << 23, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        AccelerationStructureRead = 1 << 21, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        AccelerationStructureWrite = 1 << 22, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Reserved24 = 1 << 24, 
     }
 }

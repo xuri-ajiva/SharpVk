@@ -187,11 +187,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        DescriptorUpdateTemplate = 1000085000, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
         ObjectTable = 1000086000, 
         
         /// <summary>
@@ -202,11 +197,16 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        SamplerYcbcrConversion = 1000156000, 
+        DebugUtilsMessenger = 1000128000, 
         
         /// <summary>
         /// 
         /// </summary>
         ValidationCache = 1000160000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        AccelerationStructure = 1000165000, 
     }
 }

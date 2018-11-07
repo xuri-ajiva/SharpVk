@@ -219,17 +219,20 @@ namespace SharpVk
         /// indicators of all the features to be enabled. Refer to the Features
         /// section for further details.
         /// </param>
-        /// <param name="physicalDeviceFeatures2Khr">
+        /// <param name="physicalDeviceFeatures2">
         /// Extension struct
         /// </param>
-        /// <param name="deviceGroupDeviceCreateInfoKhx">
+        /// <param name="deviceGroupDeviceCreateInfo">
+        /// Extension struct
+        /// </param>
+        /// <param name="deviceMemoryOverallocationCreateInfoAmd">
         /// Extension struct
         /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
         /// </param>
-        public unsafe SharpVk.Device CreateDevice(ArrayProxy<SharpVk.DeviceQueueCreateInfo>? queueCreateInfos, ArrayProxy<string>? enabledLayerNames, ArrayProxy<string>? enabledExtensionNames, SharpVk.DeviceCreateFlags? flags = default(SharpVk.DeviceCreateFlags?), SharpVk.PhysicalDeviceFeatures? enabledFeatures = default(SharpVk.PhysicalDeviceFeatures?), SharpVk.Khronos.PhysicalDeviceFeatures2? physicalDeviceFeatures2Khr = null, SharpVk.Khronos.Experimental.DeviceGroupDeviceCreateInfo? deviceGroupDeviceCreateInfoKhx = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public unsafe SharpVk.Device CreateDevice(ArrayProxy<SharpVk.DeviceQueueCreateInfo>? queueCreateInfos, ArrayProxy<string>? enabledLayerNames, ArrayProxy<string>? enabledExtensionNames, SharpVk.DeviceCreateFlags? flags = default(SharpVk.DeviceCreateFlags?), SharpVk.PhysicalDeviceFeatures? enabledFeatures = default(SharpVk.PhysicalDeviceFeatures?), SharpVk.PhysicalDeviceFeatures2? physicalDeviceFeatures2 = null, SharpVk.DeviceGroupDeviceCreateInfo? deviceGroupDeviceCreateInfo = null, SharpVk.Amd.DeviceMemoryOverallocationCreateInfo? deviceMemoryOverallocationCreateInfoAmd = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
@@ -238,19 +241,27 @@ namespace SharpVk
                 void* nextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Device marshalledDevice = default(SharpVk.Interop.Device);
-                if (physicalDeviceFeatures2Khr != null)
+                if (physicalDeviceFeatures2 != null)
                 {
-                    SharpVk.Interop.Khronos.PhysicalDeviceFeatures2* extensionPointer = default(SharpVk.Interop.Khronos.PhysicalDeviceFeatures2*);
-                    extensionPointer = (SharpVk.Interop.Khronos.PhysicalDeviceFeatures2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.PhysicalDeviceFeatures2>());
-                    physicalDeviceFeatures2Khr.Value.MarshalTo(extensionPointer);
+                    SharpVk.Interop.PhysicalDeviceFeatures2* extensionPointer = default(SharpVk.Interop.PhysicalDeviceFeatures2*);
+                    extensionPointer = (SharpVk.Interop.PhysicalDeviceFeatures2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceFeatures2>());
+                    physicalDeviceFeatures2.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = nextPointer;
                     nextPointer = extensionPointer;
                 }
-                if (deviceGroupDeviceCreateInfoKhx != null)
+                if (deviceGroupDeviceCreateInfo != null)
                 {
-                    SharpVk.Interop.Khronos.Experimental.DeviceGroupDeviceCreateInfo* extensionPointer = default(SharpVk.Interop.Khronos.Experimental.DeviceGroupDeviceCreateInfo*);
-                    extensionPointer = (SharpVk.Interop.Khronos.Experimental.DeviceGroupDeviceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.Experimental.DeviceGroupDeviceCreateInfo>());
-                    deviceGroupDeviceCreateInfoKhx.Value.MarshalTo(extensionPointer);
+                    SharpVk.Interop.DeviceGroupDeviceCreateInfo* extensionPointer = default(SharpVk.Interop.DeviceGroupDeviceCreateInfo*);
+                    extensionPointer = (SharpVk.Interop.DeviceGroupDeviceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.DeviceGroupDeviceCreateInfo>());
+                    deviceGroupDeviceCreateInfo.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = nextPointer;
+                    nextPointer = extensionPointer;
+                }
+                if (deviceMemoryOverallocationCreateInfoAmd != null)
+                {
+                    SharpVk.Interop.Amd.DeviceMemoryOverallocationCreateInfo* extensionPointer = default(SharpVk.Interop.Amd.DeviceMemoryOverallocationCreateInfo*);
+                    extensionPointer = (SharpVk.Interop.Amd.DeviceMemoryOverallocationCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Amd.DeviceMemoryOverallocationCreateInfo>());
+                    deviceMemoryOverallocationCreateInfoAmd.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = nextPointer;
                     nextPointer = extensionPointer;
                 }

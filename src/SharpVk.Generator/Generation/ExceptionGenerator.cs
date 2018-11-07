@@ -23,11 +23,11 @@ namespace SharpVk.Generator.Generation
         public void Execute(IServiceCollection services)
         {
             foreach (var error in this.resultEnum.Fields
-                                        .Where(x => int.Parse(x.Value) < 0))
+                                        .Where(x => x.Value != null && int.Parse(x.Value) < 0))
             {
                 string errorName = error.Name + "Exception";
 
-                if(errorName.StartsWith("Error"))
+                if (errorName.StartsWith("Error"))
                 {
                     errorName = errorName.Substring(5);
                 }

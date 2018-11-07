@@ -54,13 +54,13 @@ namespace SharpVk.Generator.Specification
 
                 var nameParts = name.Split('_');
 
-                if (vkExtension.Attribute("supported").Value == "vulkan")
+                if (vkExtension.Attribute("supported").Value == "vulkan" && vkExtension.Attribute("promotedto") == null)
                 {
                     string extensionSuffix = nameParts[1].ToLower();
 
                     var enums = vkExtension.Elements("require").SelectMany(x => x.Elements("enum"));
 
-                    var specVersionElement = enums.Single(x => x.Attribute("name").Value.EndsWith("SPEC_VERSION"));
+                    var specVersionElement = enums.Last(x => x.Attribute("name").Value.EndsWith("SPEC_VERSION"));
 
                     int specVersion = int.Parse(specVersionElement.Attribute("value").Value);
 

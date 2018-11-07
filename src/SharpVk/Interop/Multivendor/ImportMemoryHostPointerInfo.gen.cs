@@ -46,7 +46,7 @@ namespace SharpVk.Interop.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Khronos.ExternalMemoryHandleTypeFlags HandleType; 
+        public SharpVk.ExternalMemoryHandleTypeFlags HandleType; 
         
         /// <summary>
         /// 

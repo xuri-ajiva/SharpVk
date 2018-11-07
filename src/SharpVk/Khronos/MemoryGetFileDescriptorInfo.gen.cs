@@ -45,7 +45,7 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Khronos.ExternalMemoryHandleTypeFlags HandleType
+        public SharpVk.ExternalMemoryHandleTypeFlags HandleType
         {
             get;
             set;

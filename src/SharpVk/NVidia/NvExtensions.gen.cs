@@ -42,6 +42,11 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        public const string CornerSampledImage = "VK_NV_corner_sampled_image"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public const string ExternalMemoryCapabilities = "VK_NV_external_memory_capabilities"; 
         
         /// <summary>
@@ -53,11 +58,6 @@ namespace SharpVk.NVidia
         /// 
         /// </summary>
         public const string ExternalMemoryWin32 = "VK_NV_external_memory_win32"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string Win32KeyedMutex = "VK_NV_win32_keyed_mutex"; 
         
         /// <summary>
         /// 
@@ -98,5 +98,55 @@ namespace SharpVk.NVidia
         /// 
         /// </summary>
         public const string FillRectangle = "VK_NV_fill_rectangle"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string ShadingRateImage = "VK_NV_shading_rate_image"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string RayTracing = "VK_NV_ray_tracing"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string RepresentativeFragmentTest = "VK_NV_representative_fragment_test"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string ShaderSubgroupPartitioned = "VK_NV_shader_subgroup_partitioned"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string ComputeShaderDerivatives = "VK_NV_compute_shader_derivatives"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string MeshShader = "VK_NV_mesh_shader"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string FragmentShaderBarycentric = "VK_NV_fragment_shader_barycentric"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string ShaderImageFootprint = "VK_NV_shader_image_footprint"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string ScissorExclusive = "VK_NV_scissor_exclusive"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string DeviceDiagnosticCheckpoints = "VK_NV_device_diagnostic_checkpoints"; 
     }
 }

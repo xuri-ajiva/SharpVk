@@ -175,5 +175,49 @@ namespace SharpVk.Multivendor
                 Interop.HeapUtil.FreeAll();
             }
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The PhysicalDevice handle to extend.
+        /// </param>
+        public static unsafe SharpVk.Multivendor.TimeDomain[] GetCalibrateableTimeDomains(this SharpVk.PhysicalDevice extendedHandle)
+        {
+            try
+            {
+                SharpVk.Multivendor.TimeDomain[] result = default(SharpVk.Multivendor.TimeDomain[]);
+                uint timeDomainCount = default(uint);
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Multivendor.TimeDomain* marshalledTimeDomains = default(SharpVk.Multivendor.TimeDomain*);
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Multivendor.VkPhysicalDeviceGetCalibrateableTimeDomainsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkPhysicalDeviceGetCalibrateableTimeDomainsDelegate>("vkGetPhysicalDeviceCalibrateableTimeDomainsEXT", "device");
+                Result methodResult = commandDelegate(extendedHandle.handle, &timeDomainCount, marshalledTimeDomains);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                marshalledTimeDomains = (SharpVk.Multivendor.TimeDomain*)(Interop.HeapUtil.Allocate<SharpVk.Multivendor.TimeDomain>((uint)(timeDomainCount)));
+                commandDelegate(extendedHandle.handle, &timeDomainCount, marshalledTimeDomains);
+                if (marshalledTimeDomains != null)
+                {
+                    var fieldPointer = new SharpVk.Multivendor.TimeDomain[(uint)(timeDomainCount)];
+                    for(int index = 0; index < (uint)(timeDomainCount); index++)
+                    {
+                        fieldPointer[index] = marshalledTimeDomains[index];
+                    }
+                    result = fieldPointer;
+                }
+                else
+                {
+                    result = null;
+                }
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
     }
 }

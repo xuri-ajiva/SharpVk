@@ -45,7 +45,7 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Khronos.FenceImportFlags? Flags
+        public SharpVk.FenceImportFlags? Flags
         {
             get;
             set;
@@ -54,7 +54,7 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Khronos.ExternalFenceHandleTypeFlags? HandleType
+        public SharpVk.ExternalFenceHandleTypeFlags? HandleType
         {
             get;
             set;
@@ -92,7 +92,7 @@ namespace SharpVk.Khronos
             }
             else
             {
-                pointer->Flags = default(SharpVk.Khronos.FenceImportFlags);
+                pointer->Flags = default(SharpVk.FenceImportFlags);
             }
             if (this.HandleType != null)
             {
@@ -100,7 +100,7 @@ namespace SharpVk.Khronos
             }
             else
             {
-                pointer->HandleType = default(SharpVk.Khronos.ExternalFenceHandleTypeFlags);
+                pointer->HandleType = default(SharpVk.ExternalFenceHandleTypeFlags);
             }
             if (this.Handle != null)
             {

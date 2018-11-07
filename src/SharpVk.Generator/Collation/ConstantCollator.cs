@@ -22,12 +22,15 @@ namespace SharpVk.Generator.Collation
         {
             foreach (var field in constantsEnum.Fields.Values)
             {
-                services.AddSingleton(new ConstantDeclaration
+                if (field.Value != null)
                 {
-                    VkName = field.VkName,
-                    Name = this.nameFormatter.FormatName(field),
-                    Value = field.Value
-                });
+                    services.AddSingleton(new ConstantDeclaration
+                    {
+                        VkName = field.VkName,
+                        Name = this.nameFormatter.FormatName(field),
+                        Value = field.Value
+                    });
+                }
             }
         }
     }

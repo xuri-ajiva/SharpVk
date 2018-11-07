@@ -51,12 +51,12 @@ namespace SharpVk.Interop.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Khronos.FenceImportFlags Flags; 
+        public SharpVk.FenceImportFlags Flags; 
         
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Khronos.ExternalFenceHandleTypeFlags HandleType; 
+        public SharpVk.ExternalFenceHandleTypeFlags HandleType; 
         
         /// <summary>
         /// 

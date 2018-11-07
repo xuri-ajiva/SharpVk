@@ -76,7 +76,8 @@
     public enum LenOperatorType
     {
         Divide,
-        Ceiling
+        Ceiling,
+        Remainder
     }
 
     public interface ILenExpressionVisitor<T>

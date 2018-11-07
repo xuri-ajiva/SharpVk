@@ -38,6 +38,11 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        BindSfr = 1 << 0, 
+        SplitInstanceBindRegions = 1 << 0, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Protected = 1 << 1, 
     }
 }

@@ -51,13 +51,13 @@ namespace SharpVk.Khronos
         /// <param name="presentRegionsKhr">
         /// Extension struct
         /// </param>
-        /// <param name="deviceGroupPresentInfoKhx">
+        /// <param name="deviceGroupPresentInfoKhr">
         /// Extension struct
         /// </param>
         /// <param name="presentTimesInfoGoogle">
         /// Extension struct
         /// </param>
-        public static unsafe Result Present(this SharpVk.Queue extendedHandle, ArrayProxy<SharpVk.Semaphore>? waitSemaphores, ArrayProxy<SharpVk.Khronos.Swapchain>? swapchains, ArrayProxy<uint>? imageIndices, ArrayProxy<SharpVk.Result>? results = null, SharpVk.Khronos.DisplayPresentInfo? displayPresentInfoKhr = null, SharpVk.Khronos.PresentRegions? presentRegionsKhr = null, SharpVk.Khronos.Experimental.DeviceGroupPresentInfo? deviceGroupPresentInfoKhx = null, SharpVk.Google.PresentTimesInfo? presentTimesInfoGoogle = null)
+        public static unsafe Result Present(this SharpVk.Queue extendedHandle, ArrayProxy<SharpVk.Semaphore>? waitSemaphores, ArrayProxy<SharpVk.Khronos.Swapchain>? swapchains, ArrayProxy<uint>? imageIndices, ArrayProxy<SharpVk.Result>? results = null, SharpVk.Khronos.DisplayPresentInfo? displayPresentInfoKhr = null, SharpVk.Khronos.PresentRegions? presentRegionsKhr = null, SharpVk.Khronos.DeviceGroupPresentInfo? deviceGroupPresentInfoKhr = null, SharpVk.Google.PresentTimesInfo? presentTimesInfoGoogle = null)
         {
             try
             {
@@ -81,11 +81,11 @@ namespace SharpVk.Khronos
                     extensionPointer->Next = nextPointer;
                     nextPointer = extensionPointer;
                 }
-                if (deviceGroupPresentInfoKhx != null)
+                if (deviceGroupPresentInfoKhr != null)
                 {
-                    SharpVk.Interop.Khronos.Experimental.DeviceGroupPresentInfo* extensionPointer = default(SharpVk.Interop.Khronos.Experimental.DeviceGroupPresentInfo*);
-                    extensionPointer = (SharpVk.Interop.Khronos.Experimental.DeviceGroupPresentInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.Experimental.DeviceGroupPresentInfo>());
-                    deviceGroupPresentInfoKhx.Value.MarshalTo(extensionPointer);
+                    SharpVk.Interop.Khronos.DeviceGroupPresentInfo* extensionPointer = default(SharpVk.Interop.Khronos.DeviceGroupPresentInfo*);
+                    extensionPointer = (SharpVk.Interop.Khronos.DeviceGroupPresentInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.DeviceGroupPresentInfo>());
+                    deviceGroupPresentInfoKhr.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = nextPointer;
                     nextPointer = extensionPointer;
                 }

@@ -83,14 +83,139 @@ namespace SharpVk.Khronos
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
         /// </param>
-        public static unsafe void PushDescriptorSetWithTemplate(this SharpVk.CommandBuffer extendedHandle, SharpVk.Khronos.DescriptorUpdateTemplate descriptorUpdateTemplate, SharpVk.PipelineLayout layout, uint set, IntPtr data)
+        public static unsafe void PushDescriptorSetWithTemplate(this SharpVk.CommandBuffer extendedHandle, SharpVk.DescriptorUpdateTemplate descriptorUpdateTemplate, SharpVk.PipelineLayout layout, uint set, IntPtr data)
         {
             try
             {
                 CommandCache commandCache = default(CommandCache);
                 commandCache = extendedHandle.commandCache;
                 SharpVk.Interop.Khronos.VkCommandBufferPushDescriptorSetWithTemplateDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkCommandBufferPushDescriptorSetWithTemplateDelegate>("vkCmdPushDescriptorSetWithTemplateKHR", "device");
-                commandDelegate(extendedHandle.handle, descriptorUpdateTemplate?.handle ?? default(SharpVk.Interop.Khronos.DescriptorUpdateTemplate), layout?.handle ?? default(SharpVk.Interop.PipelineLayout), set, data.ToPointer());
+                commandDelegate(extendedHandle.handle, descriptorUpdateTemplate?.handle ?? default(SharpVk.Interop.DescriptorUpdateTemplate), layout?.handle ?? default(SharpVk.Interop.PipelineLayout), set, data.ToPointer());
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The CommandBuffer handle to extend.
+        /// </param>
+        public static unsafe void BeginRenderPass2(this SharpVk.CommandBuffer extendedHandle, SharpVk.RenderPassBeginInfo renderPassBegin, SharpVk.SubpassContents contents)
+        {
+            try
+            {
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.RenderPassBeginInfo* marshalledRenderPassBegin = default(SharpVk.Interop.RenderPassBeginInfo*);
+                SharpVk.Interop.Khronos.SubpassBeginInfo* marshalledSubpassBeginInfo = default(SharpVk.Interop.Khronos.SubpassBeginInfo*);
+                void* nextPointer = default(void*);
+                commandCache = extendedHandle.commandCache;
+                marshalledRenderPassBegin = (SharpVk.Interop.RenderPassBeginInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.RenderPassBeginInfo>());
+                renderPassBegin.MarshalTo(marshalledRenderPassBegin);
+                marshalledSubpassBeginInfo = (SharpVk.Interop.Khronos.SubpassBeginInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.SubpassBeginInfo>());
+                marshalledSubpassBeginInfo->SType = StructureType.SubpassBeginInfo;
+                marshalledSubpassBeginInfo->Next = nextPointer;
+                marshalledSubpassBeginInfo->Contents = contents;
+                SharpVk.Interop.Khronos.VkCommandBufferBeginRenderPass2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkCommandBufferBeginRenderPass2Delegate>("vkCmdBeginRenderPass2KHR", "device");
+                commandDelegate(extendedHandle.handle, marshalledRenderPassBegin, marshalledSubpassBeginInfo);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The CommandBuffer handle to extend.
+        /// </param>
+        public static unsafe void NextSubpass2(this SharpVk.CommandBuffer extendedHandle, SharpVk.Khronos.SubpassBeginInfo subpassBeginInfo, SharpVk.Khronos.SubpassEndInfo subpassEndInfo)
+        {
+            try
+            {
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Khronos.SubpassBeginInfo* marshalledSubpassBeginInfo = default(SharpVk.Interop.Khronos.SubpassBeginInfo*);
+                SharpVk.Interop.Khronos.SubpassEndInfo* marshalledSubpassEndInfo = default(SharpVk.Interop.Khronos.SubpassEndInfo*);
+                commandCache = extendedHandle.commandCache;
+                marshalledSubpassBeginInfo = (SharpVk.Interop.Khronos.SubpassBeginInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.SubpassBeginInfo>());
+                subpassBeginInfo.MarshalTo(marshalledSubpassBeginInfo);
+                marshalledSubpassEndInfo = (SharpVk.Interop.Khronos.SubpassEndInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.SubpassEndInfo>());
+                subpassEndInfo.MarshalTo(marshalledSubpassEndInfo);
+                SharpVk.Interop.Khronos.VkCommandBufferNextSubpass2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkCommandBufferNextSubpass2Delegate>("vkCmdNextSubpass2KHR", "device");
+                commandDelegate(extendedHandle.handle, marshalledSubpassBeginInfo, marshalledSubpassEndInfo);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The CommandBuffer handle to extend.
+        /// </param>
+        public static unsafe void EndRenderPass2(this SharpVk.CommandBuffer extendedHandle)
+        {
+            try
+            {
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Khronos.SubpassEndInfo* subpassEndInfo = default(SharpVk.Interop.Khronos.SubpassEndInfo*);
+                void* nextPointer = default(void*);
+                commandCache = extendedHandle.commandCache;
+                subpassEndInfo = (SharpVk.Interop.Khronos.SubpassEndInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.SubpassEndInfo>());
+                subpassEndInfo->SType = StructureType.SubpassEndInfo;
+                subpassEndInfo->Next = nextPointer;
+                SharpVk.Interop.Khronos.VkCommandBufferEndRenderPass2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkCommandBufferEndRenderPass2Delegate>("vkCmdEndRenderPass2KHR", "device");
+                commandDelegate(extendedHandle.handle, subpassEndInfo);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The CommandBuffer handle to extend.
+        /// </param>
+        public static unsafe void DrawIndirectCount(this SharpVk.CommandBuffer extendedHandle, SharpVk.Buffer buffer, DeviceSize offset, SharpVk.Buffer countBuffer, DeviceSize countBufferOffset, uint maxDrawCount, uint stride)
+        {
+            try
+            {
+                CommandCache commandCache = default(CommandCache);
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Khronos.VkCommandBufferDrawIndirectCountDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkCommandBufferDrawIndirectCountDelegate>("vkCmdDrawIndirectCountKHR", "device");
+                commandDelegate(extendedHandle.handle, buffer?.handle ?? default(SharpVk.Interop.Buffer), offset, countBuffer?.handle ?? default(SharpVk.Interop.Buffer), countBufferOffset, maxDrawCount, stride);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The CommandBuffer handle to extend.
+        /// </param>
+        public static unsafe void DrawIndexedIndirectCount(this SharpVk.CommandBuffer extendedHandle, SharpVk.Buffer buffer, DeviceSize offset, SharpVk.Buffer countBuffer, DeviceSize countBufferOffset, uint maxDrawCount, uint stride)
+        {
+            try
+            {
+                CommandCache commandCache = default(CommandCache);
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Khronos.VkCommandBufferDrawIndexedIndirectCountDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkCommandBufferDrawIndexedIndirectCountDelegate>("vkCmdDrawIndexedIndirectCountKHR", "device");
+                commandDelegate(extendedHandle.handle, buffer?.handle ?? default(SharpVk.Interop.Buffer), offset, countBuffer?.handle ?? default(SharpVk.Interop.Buffer), countBufferOffset, maxDrawCount, stride);
             }
             finally
             {

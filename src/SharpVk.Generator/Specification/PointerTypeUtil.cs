@@ -16,15 +16,17 @@ namespace SharpVk.Generator.Specification
                 case "@":
                     return PointerType.Value;
                 case "const @":
-                case "struct @*":
-                    // struct {type}* is a syntactic quirk of C structs with no
-                    // typedef; treat them like regular const pointers.
                     return PointerType.ConstValue;
                 case "@*":
                     return PointerType.Pointer;
                 case "@**":
                     return PointerType.DoublePointer;
                 case "const @*":
+                case "struct @*":
+                // struct {type}* is a syntactic quirk of C structs with no
+                // typedef; treat them like regular const pointers.
+                case "const struct @*":
+                case "struct @**":
                     return PointerType.ConstPointer;
                 case "const @* const*":
                     return PointerType.DoubleConstPointer;

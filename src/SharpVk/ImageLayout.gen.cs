@@ -133,11 +133,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        DepthReadOnlyStencilAttachmentOptimal = 1000117000, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        DepthAttachmentStencilReadOnlyOptimal = 1000117001, 
+        ShadingRateOptimal = 1000164003, 
     }
 }

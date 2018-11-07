@@ -36,7 +36,7 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.Khronos.ExternalMemoryHandleTypeFlags? HandleType
+        public SharpVk.ExternalMemoryHandleTypeFlags? HandleType
         {
             get;
             set;
@@ -73,7 +73,7 @@ namespace SharpVk.Khronos
             }
             else
             {
-                pointer->HandleType = default(SharpVk.Khronos.ExternalMemoryHandleTypeFlags);
+                pointer->HandleType = default(SharpVk.ExternalMemoryHandleTypeFlags);
             }
             if (this.Handle != null)
             {

@@ -143,10 +143,50 @@ namespace SharpVk
         AllCommands = 1 << 16, 
         
         /// <summary>
+        /// 
+        /// </summary>
+        TransformFeedback = 1 << 24, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ConditionalRendering = 1 << 18, 
+        
+        /// <summary>
         /// VK_PIPELINE_STAGE_COMMAND_PROCESS_BIT_NVX: Stage of the pipeline
         /// where device-side generation of commands via
         /// flink:vkCmdProcessCommandsNVX is handled.
         /// </summary>
         CommandProcess = 1 << 17, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ShadingRateImage = 1 << 22, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        RayTracingShader = 1 << 21, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        AccelerationStructureBuild = 1 << 25, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        TaskShader = 1 << 19, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        MeshShader = 1 << 20, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Reserved23 = 1 << 23, 
     }
 }

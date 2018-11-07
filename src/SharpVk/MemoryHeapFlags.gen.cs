@@ -39,10 +39,5 @@ namespace SharpVk
         /// 
         /// </summary>
         DeviceLocal = 1 << 0, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        MultiInstance = 1 << 1, 
     }
 }

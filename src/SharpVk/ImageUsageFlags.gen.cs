@@ -92,5 +92,15 @@ namespace SharpVk
         /// framebuffer.
         /// </summary>
         InputAttachment = 1 << 7, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ShadingRateImage = 1 << 8, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Reserved9 = 1 << 9, 
     }
 }

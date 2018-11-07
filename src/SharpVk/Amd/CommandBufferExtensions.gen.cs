@@ -32,49 +32,6 @@ namespace SharpVk.Amd
     public static class CommandBufferExtensions
     {
         /// <summary>
-        /// Perform an indirect draw with the draw count sourced from a buffer.
-        /// </summary>
-        /// <param name="extendedHandle">
-        /// The CommandBuffer handle to extend.
-        /// </param>
-        public static unsafe void DrawIndirectCount(this SharpVk.CommandBuffer extendedHandle, SharpVk.Buffer buffer, DeviceSize offset, SharpVk.Buffer countBuffer, DeviceSize countBufferOffset, uint maxDrawCount, uint stride)
-        {
-            try
-            {
-                CommandCache commandCache = default(CommandCache);
-                commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Amd.VkCommandBufferDrawIndirectCountDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Amd.VkCommandBufferDrawIndirectCountDelegate>("vkCmdDrawIndirectCountAMD", "device");
-                commandDelegate(extendedHandle.handle, buffer?.handle ?? default(SharpVk.Interop.Buffer), offset, countBuffer?.handle ?? default(SharpVk.Interop.Buffer), countBufferOffset, maxDrawCount, stride);
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
-        /// Perform an indexed indirect draw with the draw count sourced from a
-        /// buffer.
-        /// </summary>
-        /// <param name="extendedHandle">
-        /// The CommandBuffer handle to extend.
-        /// </param>
-        public static unsafe void DrawIndexedIndirectCount(this SharpVk.CommandBuffer extendedHandle, SharpVk.Buffer buffer, DeviceSize offset, SharpVk.Buffer countBuffer, DeviceSize countBufferOffset, uint maxDrawCount, uint stride)
-        {
-            try
-            {
-                CommandCache commandCache = default(CommandCache);
-                commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Amd.VkCommandBufferDrawIndexedIndirectCountDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Amd.VkCommandBufferDrawIndexedIndirectCountDelegate>("vkCmdDrawIndexedIndirectCountAMD", "device");
-                commandDelegate(extendedHandle.handle, buffer?.handle ?? default(SharpVk.Interop.Buffer), offset, countBuffer?.handle ?? default(SharpVk.Interop.Buffer), countBufferOffset, maxDrawCount, stride);
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
         /// Execute a pipelined write of a marker value into a buffer.
         /// </summary>
         /// <param name="extendedHandle">

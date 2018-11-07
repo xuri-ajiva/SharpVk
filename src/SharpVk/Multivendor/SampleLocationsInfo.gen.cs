@@ -36,7 +36,7 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.SampleCountFlags SampleLocationsPerPixel
+        public SharpVk.SampleCountFlags? SampleLocationsPerPixel
         {
             get;
             set;
@@ -67,7 +67,14 @@ namespace SharpVk.Multivendor
         {
             pointer->SType = StructureType.SampleLocationsInfo;
             pointer->Next = null;
-            pointer->SampleLocationsPerPixel = this.SampleLocationsPerPixel;
+            if (this.SampleLocationsPerPixel != null)
+            {
+                pointer->SampleLocationsPerPixel = this.SampleLocationsPerPixel.Value;
+            }
+            else
+            {
+                pointer->SampleLocationsPerPixel = default(SharpVk.SampleCountFlags);
+            }
             pointer->SampleLocationGridSize = this.SampleLocationGridSize;
             pointer->SampleLocationsCount = (uint)(Interop.HeapUtil.GetLength(this.SampleLocations));
             if (this.SampleLocations != null)

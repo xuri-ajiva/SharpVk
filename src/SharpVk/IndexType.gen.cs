@@ -38,5 +38,10 @@ namespace SharpVk
         /// 
         /// </summary>
         Uint32 = 1, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        None = 1000165000, 
     }
 }

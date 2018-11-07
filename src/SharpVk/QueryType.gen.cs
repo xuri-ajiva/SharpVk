@@ -43,5 +43,15 @@ namespace SharpVk
         /// 
         /// </summary>
         Timestamp = 2, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        TransformFeedbackStream = 1000028004, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        AccelerationStructureCompactedSize = 1000165000, 
     }
 }

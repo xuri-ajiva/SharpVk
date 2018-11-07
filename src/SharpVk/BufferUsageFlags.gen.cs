@@ -98,5 +98,25 @@ namespace SharpVk
         /// sequencesIndexBuffer member of CmdProcessCommandsInfoNVX
         /// </summary>
         IndirectBuffer = 1 << 8, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        TransformFeedbackBuffer = 1 << 11, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        TransformFeedbackCounterBuffer = 1 << 12, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ConditionalRendering = 1 << 9, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        RayTracing = 1 << 10, 
     }
 }
