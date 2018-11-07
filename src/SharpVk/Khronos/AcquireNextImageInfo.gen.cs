@@ -28,13 +28,13 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
+    /// Structure specifying parameters of the acquire.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct AcquireNextImageInfo
     {
         /// <summary>
-        /// 
+        /// The swapchain from which an image is being acquired.
         /// </summary>
         public SharpVk.Khronos.Swapchain Swapchain
         {
@@ -43,7 +43,8 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Indicates how long the function waits, in nanoseconds, if no image
+        /// is available.
         /// </summary>
         public ulong Timeout
         {
@@ -52,7 +53,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Null or a semaphore to signal.
         /// </summary>
         public SharpVk.Semaphore Semaphore
         {
@@ -61,7 +62,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Null or a fence to signal.
         /// </summary>
         public SharpVk.Fence Fence
         {
@@ -70,7 +71,8 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// A mask of physical devices for which the swapchain image will be
+        /// ready to use when the semaphore or fence is signaled.
         /// </summary>
         public uint DeviceMask
         {

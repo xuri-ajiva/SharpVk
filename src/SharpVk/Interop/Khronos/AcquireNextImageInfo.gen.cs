@@ -34,37 +34,39 @@ namespace SharpVk.Interop.Khronos
     public unsafe partial struct AcquireNextImageInfo
     {
         /// <summary>
-        /// 
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// The swapchain from which an image is being acquired.
         /// </summary>
         public SharpVk.Interop.Khronos.Swapchain Swapchain; 
         
         /// <summary>
-        /// 
+        /// Indicates how long the function waits, in nanoseconds, if no image
+        /// is available.
         /// </summary>
         public ulong Timeout; 
         
         /// <summary>
-        /// 
+        /// Null or a semaphore to signal.
         /// </summary>
         public SharpVk.Interop.Semaphore Semaphore; 
         
         /// <summary>
-        /// 
+        /// Null or a fence to signal.
         /// </summary>
         public SharpVk.Interop.Fence Fence; 
         
         /// <summary>
-        /// 
+        /// A mask of physical devices for which the swapchain image will be
+        /// ready to use when the semaphore or fence is signaled.
         /// </summary>
         public uint DeviceMask; 
     }

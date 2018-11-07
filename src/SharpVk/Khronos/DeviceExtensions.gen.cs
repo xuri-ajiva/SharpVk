@@ -209,7 +209,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Retrieve the index of the next available presentable image.
         /// </summary>
         /// <param name="extendedHandle">
         /// The Device handle to extend.
