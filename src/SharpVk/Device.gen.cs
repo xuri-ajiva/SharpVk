@@ -2860,6 +2860,381 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="bindInfos">
+        /// </param>
+        public unsafe void BindBufferMemory2(ArrayProxy<SharpVk.BindBufferMemoryInfo>? bindInfos)
+        {
+            try
+            {
+                SharpVk.Interop.BindBufferMemoryInfo* marshalledBindInfos = default(SharpVk.Interop.BindBufferMemoryInfo*);
+                if (bindInfos.IsNull())
+                {
+                    marshalledBindInfos = null;
+                }
+                else
+                {
+                    if (bindInfos.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledBindInfos = (SharpVk.Interop.BindBufferMemoryInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.BindBufferMemoryInfo>());
+                        bindInfos.Value.GetSingleValue().MarshalTo(&*(SharpVk.Interop.BindBufferMemoryInfo*)(marshalledBindInfos));
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.Interop.BindBufferMemoryInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.BindBufferMemoryInfo>(Interop.HeapUtil.GetLength(bindInfos.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(bindInfos.Value)); index++)
+                        {
+                            bindInfos.Value[index].MarshalTo(&fieldPointer[index]);
+                        }
+                        marshalledBindInfos = fieldPointer;
+                    }
+                }
+                SharpVk.Interop.VkDeviceBindBufferMemory2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceBindBufferMemory2Delegate>("vkBindBufferMemory2", "");
+                Result methodResult = commandDelegate(this.handle, (uint)(Interop.HeapUtil.GetLength(bindInfos)), marshalledBindInfos);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bindInfos">
+        /// </param>
+        public unsafe void BindImageMemory2(ArrayProxy<SharpVk.BindImageMemoryInfo>? bindInfos)
+        {
+            try
+            {
+                SharpVk.Interop.BindImageMemoryInfo* marshalledBindInfos = default(SharpVk.Interop.BindImageMemoryInfo*);
+                if (bindInfos.IsNull())
+                {
+                    marshalledBindInfos = null;
+                }
+                else
+                {
+                    if (bindInfos.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledBindInfos = (SharpVk.Interop.BindImageMemoryInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.BindImageMemoryInfo>());
+                        bindInfos.Value.GetSingleValue().MarshalTo(&*(SharpVk.Interop.BindImageMemoryInfo*)(marshalledBindInfos));
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.Interop.BindImageMemoryInfo*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.BindImageMemoryInfo>(Interop.HeapUtil.GetLength(bindInfos.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(bindInfos.Value)); index++)
+                        {
+                            bindInfos.Value[index].MarshalTo(&fieldPointer[index]);
+                        }
+                        marshalledBindInfos = fieldPointer;
+                    }
+                }
+                SharpVk.Interop.VkDeviceBindImageMemory2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceBindImageMemory2Delegate>("vkBindImageMemory2", "");
+                Result methodResult = commandDelegate(this.handle, (uint)(Interop.HeapUtil.GetLength(bindInfos)), marshalledBindInfos);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe SharpVk.PeerMemoryFeatureFlags GetGroupPeerMemoryFeatures(uint heapIndex, uint localDeviceIndex, uint remoteDeviceIndex)
+        {
+            try
+            {
+                SharpVk.PeerMemoryFeatureFlags result = default(SharpVk.PeerMemoryFeatureFlags);
+                SharpVk.PeerMemoryFeatureFlags marshalledPeerMemoryFeatures = default(SharpVk.PeerMemoryFeatureFlags);
+                SharpVk.Interop.VkDeviceGetGroupPeerMemoryFeaturesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceGetGroupPeerMemoryFeaturesDelegate>("vkGetDeviceGroupPeerMemoryFeatures", "");
+                commandDelegate(this.handle, heapIndex, localDeviceIndex, remoteDeviceIndex, &marshalledPeerMemoryFeatures);
+                result = marshalledPeerMemoryFeatures;
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe SharpVk.MemoryRequirements2 GetImageMemoryRequirements2(SharpVk.ImageMemoryRequirementsInfo2 info)
+        {
+            try
+            {
+                SharpVk.MemoryRequirements2 result = default(SharpVk.MemoryRequirements2);
+                SharpVk.Interop.ImageMemoryRequirementsInfo2* marshalledInfo = default(SharpVk.Interop.ImageMemoryRequirementsInfo2*);
+                SharpVk.Interop.MemoryRequirements2 marshalledMemoryRequirements = default(SharpVk.Interop.MemoryRequirements2);
+                marshalledInfo = (SharpVk.Interop.ImageMemoryRequirementsInfo2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.ImageMemoryRequirementsInfo2>());
+                info.MarshalTo(marshalledInfo);
+                SharpVk.Interop.VkDeviceGetImageMemoryRequirements2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceGetImageMemoryRequirements2Delegate>("vkGetImageMemoryRequirements2", "");
+                commandDelegate(this.handle, marshalledInfo, &marshalledMemoryRequirements);
+                result = SharpVk.MemoryRequirements2.MarshalFrom(&marshalledMemoryRequirements);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe SharpVk.MemoryRequirements2 GetBufferMemoryRequirements2(SharpVk.BufferMemoryRequirementsInfo2 info)
+        {
+            try
+            {
+                SharpVk.MemoryRequirements2 result = default(SharpVk.MemoryRequirements2);
+                SharpVk.Interop.BufferMemoryRequirementsInfo2* marshalledInfo = default(SharpVk.Interop.BufferMemoryRequirementsInfo2*);
+                SharpVk.Interop.MemoryRequirements2 marshalledMemoryRequirements = default(SharpVk.Interop.MemoryRequirements2);
+                marshalledInfo = (SharpVk.Interop.BufferMemoryRequirementsInfo2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.BufferMemoryRequirementsInfo2>());
+                info.MarshalTo(marshalledInfo);
+                SharpVk.Interop.VkDeviceGetBufferMemoryRequirements2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceGetBufferMemoryRequirements2Delegate>("vkGetBufferMemoryRequirements2", "");
+                commandDelegate(this.handle, marshalledInfo, &marshalledMemoryRequirements);
+                result = SharpVk.MemoryRequirements2.MarshalFrom(&marshalledMemoryRequirements);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe SharpVk.SparseImageMemoryRequirements2[] GetImageSparseMemoryRequirements2(SharpVk.ImageSparseMemoryRequirementsInfo2 info)
+        {
+            try
+            {
+                SharpVk.SparseImageMemoryRequirements2[] result = default(SharpVk.SparseImageMemoryRequirements2[]);
+                uint sparseMemoryRequirementCount = default(uint);
+                SharpVk.Interop.ImageSparseMemoryRequirementsInfo2* marshalledInfo = default(SharpVk.Interop.ImageSparseMemoryRequirementsInfo2*);
+                SharpVk.Interop.SparseImageMemoryRequirements2* marshalledSparseMemoryRequirements = default(SharpVk.Interop.SparseImageMemoryRequirements2*);
+                marshalledInfo = (SharpVk.Interop.ImageSparseMemoryRequirementsInfo2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.ImageSparseMemoryRequirementsInfo2>());
+                info.MarshalTo(marshalledInfo);
+                SharpVk.Interop.VkDeviceGetImageSparseMemoryRequirements2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceGetImageSparseMemoryRequirements2Delegate>("vkGetImageSparseMemoryRequirements2", "");
+                commandDelegate(this.handle, marshalledInfo, &sparseMemoryRequirementCount, marshalledSparseMemoryRequirements);
+                marshalledSparseMemoryRequirements = (SharpVk.Interop.SparseImageMemoryRequirements2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.SparseImageMemoryRequirements2>((uint)(sparseMemoryRequirementCount)));
+                commandDelegate(this.handle, marshalledInfo, &sparseMemoryRequirementCount, marshalledSparseMemoryRequirements);
+                if (marshalledSparseMemoryRequirements != null)
+                {
+                    var fieldPointer = new SharpVk.SparseImageMemoryRequirements2[(uint)(sparseMemoryRequirementCount)];
+                    for(int index = 0; index < (uint)(sparseMemoryRequirementCount); index++)
+                    {
+                        fieldPointer[index] = SharpVk.SparseImageMemoryRequirements2.MarshalFrom(&marshalledSparseMemoryRequirements[index]);
+                    }
+                    result = fieldPointer;
+                }
+                else
+                {
+                    result = null;
+                }
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe SharpVk.Queue GetQueue2(SharpVk.DeviceQueueInfo2 queueInfo)
+        {
+            try
+            {
+                SharpVk.Queue result = default(SharpVk.Queue);
+                SharpVk.Interop.DeviceQueueInfo2* marshalledQueueInfo = default(SharpVk.Interop.DeviceQueueInfo2*);
+                SharpVk.Interop.Queue marshalledQueue = default(SharpVk.Interop.Queue);
+                marshalledQueueInfo = (SharpVk.Interop.DeviceQueueInfo2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.DeviceQueueInfo2>());
+                queueInfo.MarshalTo(marshalledQueueInfo);
+                SharpVk.Interop.VkDeviceGetQueue2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceGetQueue2Delegate>("vkGetDeviceQueue2", "");
+                commandDelegate(this.handle, marshalledQueueInfo, &marshalledQueue);
+                result = new SharpVk.Queue(this, marshalledQueue);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe SharpVk.SamplerYcbcrConversion CreateSamplerYcbcrConversion(SharpVk.Format format, SharpVk.SamplerYcbcrModelConversion ycbcrModel, SharpVk.SamplerYcbcrRange ycbcrRange, SharpVk.ComponentMapping components, SharpVk.ChromaLocation xChromaOffset, SharpVk.ChromaLocation yChromaOffset, SharpVk.Filter chromaFilter, bool forceExplicitReconstruction, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        {
+            try
+            {
+                SharpVk.SamplerYcbcrConversion result = default(SharpVk.SamplerYcbcrConversion);
+                SharpVk.Interop.SamplerYcbcrConversionCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.SamplerYcbcrConversionCreateInfo*);
+                void* nextPointer = default(void*);
+                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                SharpVk.Interop.SamplerYcbcrConversion marshalledYcbcrConversion = default(SharpVk.Interop.SamplerYcbcrConversion);
+                marshalledCreateInfo = (SharpVk.Interop.SamplerYcbcrConversionCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.SamplerYcbcrConversionCreateInfo>());
+                marshalledCreateInfo->Next = nextPointer;
+                marshalledCreateInfo->Format = format;
+                marshalledCreateInfo->YcbcrModel = ycbcrModel;
+                marshalledCreateInfo->YcbcrRange = ycbcrRange;
+                marshalledCreateInfo->Components = components;
+                marshalledCreateInfo->XChromaOffset = xChromaOffset;
+                marshalledCreateInfo->YChromaOffset = yChromaOffset;
+                marshalledCreateInfo->ChromaFilter = chromaFilter;
+                marshalledCreateInfo->ForceExplicitReconstruction = forceExplicitReconstruction;
+                if (allocator != null)
+                {
+                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
+                    allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                else
+                {
+                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                }
+                SharpVk.Interop.VkDeviceCreateSamplerYcbcrConversionDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceCreateSamplerYcbcrConversionDelegate>("vkCreateSamplerYcbcrConversion", "");
+                Result methodResult = commandDelegate(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledYcbcrConversion);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = new SharpVk.SamplerYcbcrConversion(this, marshalledYcbcrConversion);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="descriptorUpdateEntries">
+        /// </param>
+        public unsafe SharpVk.DescriptorUpdateTemplate CreateDescriptorUpdateTemplate(ArrayProxy<SharpVk.DescriptorUpdateTemplateEntry>? descriptorUpdateEntries, SharpVk.DescriptorUpdateTemplateType templateType, SharpVk.DescriptorSetLayout descriptorSetLayout, SharpVk.PipelineBindPoint pipelineBindPoint, SharpVk.PipelineLayout pipelineLayout, uint set, SharpVk.DescriptorUpdateTemplateCreateFlags? flags = default(SharpVk.DescriptorUpdateTemplateCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        {
+            try
+            {
+                SharpVk.DescriptorUpdateTemplate result = default(SharpVk.DescriptorUpdateTemplate);
+                SharpVk.Interop.DescriptorUpdateTemplateCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.DescriptorUpdateTemplateCreateInfo*);
+                void* nextPointer = default(void*);
+                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                SharpVk.Interop.DescriptorUpdateTemplate marshalledDescriptorUpdateTemplate = default(SharpVk.Interop.DescriptorUpdateTemplate);
+                marshalledCreateInfo = (SharpVk.Interop.DescriptorUpdateTemplateCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.DescriptorUpdateTemplateCreateInfo>());
+                marshalledCreateInfo->Next = nextPointer;
+                if (flags != null)
+                {
+                    marshalledCreateInfo->Flags = flags.Value;
+                }
+                else
+                {
+                    marshalledCreateInfo->Flags = default(SharpVk.DescriptorUpdateTemplateCreateFlags);
+                }
+                marshalledCreateInfo->DescriptorUpdateEntryCount = (uint)(Interop.HeapUtil.GetLength(descriptorUpdateEntries));
+                if (descriptorUpdateEntries.IsNull())
+                {
+                    marshalledCreateInfo->DescriptorUpdateEntries = null;
+                }
+                else
+                {
+                    if (descriptorUpdateEntries.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledCreateInfo->DescriptorUpdateEntries = (SharpVk.DescriptorUpdateTemplateEntry*)(Interop.HeapUtil.Allocate<SharpVk.DescriptorUpdateTemplateEntry>());
+                        *(SharpVk.DescriptorUpdateTemplateEntry*)(marshalledCreateInfo->DescriptorUpdateEntries) = descriptorUpdateEntries.Value.GetSingleValue();
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.DescriptorUpdateTemplateEntry*)(Interop.HeapUtil.AllocateAndClear<SharpVk.DescriptorUpdateTemplateEntry>(Interop.HeapUtil.GetLength(descriptorUpdateEntries.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(descriptorUpdateEntries.Value)); index++)
+                        {
+                            fieldPointer[index] = descriptorUpdateEntries.Value[index];
+                        }
+                        marshalledCreateInfo->DescriptorUpdateEntries = fieldPointer;
+                    }
+                }
+                marshalledCreateInfo->TemplateType = templateType;
+                marshalledCreateInfo->DescriptorSetLayout = descriptorSetLayout?.handle ?? default(SharpVk.Interop.DescriptorSetLayout);
+                marshalledCreateInfo->PipelineBindPoint = pipelineBindPoint;
+                marshalledCreateInfo->PipelineLayout = pipelineLayout?.handle ?? default(SharpVk.Interop.PipelineLayout);
+                marshalledCreateInfo->Set = set;
+                if (allocator != null)
+                {
+                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
+                    allocator.Value.MarshalTo(marshalledAllocator);
+                }
+                else
+                {
+                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
+                }
+                SharpVk.Interop.VkDeviceCreateDescriptorUpdateTemplateDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceCreateDescriptorUpdateTemplateDelegate>("vkCreateDescriptorUpdateTemplate", "");
+                Result methodResult = commandDelegate(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledDescriptorUpdateTemplate);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = new SharpVk.DescriptorUpdateTemplate(this, marshalledDescriptorUpdateTemplate);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe void UpdateDescriptorSetWithTemplate(SharpVk.DescriptorSet descriptorSet, SharpVk.DescriptorUpdateTemplate descriptorUpdateTemplate, IntPtr data)
+        {
+            try
+            {
+                SharpVk.Interop.VkDeviceUpdateDescriptorSetWithTemplateDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceUpdateDescriptorSetWithTemplateDelegate>("vkUpdateDescriptorSetWithTemplate", "");
+                commandDelegate(this.handle, descriptorSet?.handle ?? default(SharpVk.Interop.DescriptorSet), descriptorUpdateTemplate?.handle ?? default(SharpVk.Interop.DescriptorUpdateTemplate), data.ToPointer());
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe SharpVk.DescriptorSetLayoutSupport GetDescriptorSetLayoutSupport(SharpVk.DescriptorSetLayoutCreateInfo createInfo)
+        {
+            try
+            {
+                SharpVk.DescriptorSetLayoutSupport result = default(SharpVk.DescriptorSetLayoutSupport);
+                SharpVk.Interop.DescriptorSetLayoutCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.DescriptorSetLayoutCreateInfo*);
+                SharpVk.Interop.DescriptorSetLayoutSupport marshalledSupport = default(SharpVk.Interop.DescriptorSetLayoutSupport);
+                marshalledCreateInfo = (SharpVk.Interop.DescriptorSetLayoutCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.DescriptorSetLayoutCreateInfo>());
+                createInfo.MarshalTo(marshalledCreateInfo);
+                SharpVk.Interop.VkDeviceGetDescriptorSetLayoutSupportDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceGetDescriptorSetLayoutSupportDelegate>("vkGetDescriptorSetLayoutSupport", "");
+                commandDelegate(this.handle, marshalledCreateInfo, &marshalledSupport);
+                result = SharpVk.DescriptorSetLayoutSupport.MarshalFrom(&marshalledSupport);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public void Dispose()
         {
             this.Destroy();

@@ -33,6 +33,31 @@ namespace SharpVk
         {
         }
 
+        public bool IsCommandAvailable(string name, string type)
+        {
+            if (type != this.type)
+            {
+                if (this.parent != null)
+                {
+                    return this.parent.IsCommandAvailable(name, type);
+                }
+                else
+                {
+                    return false;
+                }
+            }
+
+            lock (this.commands)
+            {
+                if (this.commands.ContainsKey(name))
+                {
+                    return true;
+                }
+            }
+
+            return this.host.GetProcedureAddress(name) != System.IntPtr.Zero;
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -50,7 +75,7 @@ namespace SharpVk
                 }
                 else
                 {
-                    return default(T);
+                    return default;
                 }
             }
 
@@ -62,7 +87,7 @@ namespace SharpVk
                 }
             }
 
-            T commandDelegate = Marshal.GetDelegateForFunctionPointer<T>(this.host.GetProcedureAddress(name));
+            var commandDelegate = Marshal.GetDelegateForFunctionPointer<T>(this.host.GetProcedureAddress(name));
 
             lock (this.commands)
             {

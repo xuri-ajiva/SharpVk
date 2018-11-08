@@ -15,6 +15,8 @@ namespace SharpVk
         {
             try
             {
+                var version = Instance.EnumerateVersion();
+
                 Glfw3.Init();
 
                 var callback = new CharDelegate((handle, codepoint) => Console.WriteLine(codepoint));

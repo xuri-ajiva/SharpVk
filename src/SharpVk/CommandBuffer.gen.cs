@@ -1581,5 +1581,37 @@ namespace SharpVk
                 Interop.HeapUtil.FreeAll();
             }
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe void SetDeviceMask(uint deviceMask)
+        {
+            try
+            {
+                SharpVk.Interop.VkCommandBufferSetDeviceMaskDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferSetDeviceMaskDelegate>("vkCmdSetDeviceMask", "");
+                commandDelegate(this.handle, deviceMask);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe void DispatchBase(uint baseGroupX, uint baseGroupY, uint baseGroupZ, uint groupCountX, uint groupCountY, uint groupCountZ)
+        {
+            try
+            {
+                SharpVk.Interop.VkCommandBufferDispatchBaseDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferDispatchBaseDelegate>("vkCmdDispatchBase", "");
+                commandDelegate(this.handle, baseGroupX, baseGroupY, baseGroupZ, groupCountX, groupCountY, groupCountZ);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
     }
 }

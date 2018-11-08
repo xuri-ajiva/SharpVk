@@ -152,6 +152,31 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        public unsafe void Trim(SharpVk.CommandPoolTrimFlags? flags = default(SharpVk.CommandPoolTrimFlags?))
+        {
+            try
+            {
+                SharpVk.CommandPoolTrimFlags marshalledFlags = default(SharpVk.CommandPoolTrimFlags);
+                if (flags != null)
+                {
+                    marshalledFlags = flags.Value;
+                }
+                else
+                {
+                    marshalledFlags = default(SharpVk.CommandPoolTrimFlags);
+                }
+                SharpVk.Interop.VkCommandPoolTrimDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandPoolTrimDelegate>("vkTrimCommandPool", "");
+                commandDelegate(this.parent.handle, this.handle, marshalledFlags);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public void Dispose()
         {
             this.Destroy();

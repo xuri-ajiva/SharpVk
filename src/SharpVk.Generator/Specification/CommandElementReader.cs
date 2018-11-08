@@ -84,7 +84,7 @@ namespace SharpVk.Generator.Specification
                 }
             }
 
-            foreach (var commandRequirement in this.xmlCache.GetVkXml().Element("registry").Element("feature").Elements("require").SelectMany(x => x.Elements("command")))
+            foreach (var commandRequirement in this.xmlCache.GetVkXml().Element("registry").Elements("feature").SelectMany(feature => feature.Elements("require").SelectMany(x => x.Elements("command"))))
             {
                 services.AddSingleton(newCommands[commandRequirement.Attribute("name").Value]);
             }

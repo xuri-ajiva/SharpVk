@@ -45,6 +45,24 @@
         }
 
         /// <summary>
+        /// Returns up to requested number of global extension properties.
+        /// </summary>
+        public static unsafe Version EnumerateVersion()
+        {
+            var commandCache = new CommandCache(new SharpVk.Interop.NativeLibrary(), "", null);
+
+            if (commandCache.IsCommandAvailable("vkEnumerateInstanceVersion", ""))
+            {
+                return Instance.EnumerateVersion(commandCache);
+            }
+            else
+            {
+                // API v1.0 does not support EnumerateVersion command
+                return new Version(1, 0, 0);
+            }
+        }
+
+        /// <summary>
         /// Returns up to requested number of global layer properties.
         /// </summary>
         public static unsafe SharpVk.LayerProperties[] EnumerateLayerProperties()

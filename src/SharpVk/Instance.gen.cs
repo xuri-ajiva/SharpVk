@@ -330,6 +330,70 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        public static unsafe Version EnumerateVersion(CommandCache commandCache)
+        {
+            try
+            {
+                Version result = default(Version);
+                uint marshalledApiVersion = default(uint);
+                SharpVk.Interop.VkInstanceEnumerateVersionDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkInstanceEnumerateVersionDelegate>("vkEnumerateInstanceVersion", "");
+                Result methodResult = commandDelegate(&marshalledApiVersion);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                commandDelegate(&marshalledApiVersion);
+                result = (Version)(marshalledApiVersion);
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe SharpVk.PhysicalDeviceGroupProperties[] EnumeratePhysicalDeviceGroups()
+        {
+            try
+            {
+                SharpVk.PhysicalDeviceGroupProperties[] result = default(SharpVk.PhysicalDeviceGroupProperties[]);
+                uint physicalDeviceGroupCount = default(uint);
+                SharpVk.Interop.PhysicalDeviceGroupProperties* marshalledPhysicalDeviceGroupProperties = default(SharpVk.Interop.PhysicalDeviceGroupProperties*);
+                SharpVk.Interop.VkInstanceEnumeratePhysicalDeviceGroupsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkInstanceEnumeratePhysicalDeviceGroupsDelegate>("vkEnumeratePhysicalDeviceGroups", "");
+                Result methodResult = commandDelegate(this.handle, &physicalDeviceGroupCount, marshalledPhysicalDeviceGroupProperties);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                marshalledPhysicalDeviceGroupProperties = (SharpVk.Interop.PhysicalDeviceGroupProperties*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceGroupProperties>((uint)(physicalDeviceGroupCount)));
+                commandDelegate(this.handle, &physicalDeviceGroupCount, marshalledPhysicalDeviceGroupProperties);
+                if (marshalledPhysicalDeviceGroupProperties != null)
+                {
+                    var fieldPointer = new SharpVk.PhysicalDeviceGroupProperties[(uint)(physicalDeviceGroupCount)];
+                    for(int index = 0; index < (uint)(physicalDeviceGroupCount); index++)
+                    {
+                        fieldPointer[index] = SharpVk.PhysicalDeviceGroupProperties.MarshalFrom(&marshalledPhysicalDeviceGroupProperties[index]);
+                    }
+                    result = fieldPointer;
+                }
+                else
+                {
+                    result = null;
+                }
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public void Dispose()
         {
             this.Destroy();
