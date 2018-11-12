@@ -125,7 +125,7 @@ namespace SharpVk.Generator.Generation
                                             || command.Verb == "get")
                                         && (command.ReturnType == "VkResult" || command.ReturnType == "void");
 
-            bool enumeratePattern = command.Verb == "enumerate" || (lastParamIsArray && lastParamLenFieldByRef);
+            bool enumeratePattern = (command.Verb == "enumerate" && lastParamIsArray) || (lastParamIsArray && lastParamLenFieldByRef);
             bool isBatchMethod = lastParamIsArray && !enumeratePattern && lastParam.Type.VkName != "void";
 
             yield return this.GenerateCommandVariant(command, handleTypeName, handleType, isExtension, enumeratePattern, lastParamIsArray, lastParamReturns, false);

@@ -342,7 +342,6 @@ namespace SharpVk
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                commandDelegate(&marshalledApiVersion);
                 result = (Version)(marshalledApiVersion);
                 return result;
             }
