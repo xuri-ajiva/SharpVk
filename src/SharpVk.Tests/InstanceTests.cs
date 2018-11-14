@@ -98,6 +98,71 @@ namespace SharpVk.Tests
             EnumerateGivenExtensions(null, new ExtensionProperties[] { });
         }
 
+        [TestMethod]
+        public void ShouldEnumerateExtensionsForLayer()
+        {
+            EnumerateGivenExtensions("Test Layer", new ExtensionProperties[] { });
+        }
+
+        [TestMethod]
+        public void ShouldCreate()
+        {
+            var mockLookup = new MockLookup();
+            var commandCache = new CommandCache(mockLookup);
+
+            int callCount = 0;
+
+            string[] layers = new[] { "Layer" };
+            string[] extensions = new[] { "Extension" };
+
+            var applicationInfo = new ApplicationInfo
+            {
+                ApiVersion = new Version(1, 1, 0),
+                ApplicationName = "App Name",
+                ApplicationVersion = new Version(1, 2, 3),
+                EngineName = "Engine Name",
+                EngineVersion = new Version(1, 2, 3)
+            };
+
+            var handle = new UIntPtr(12345678);
+
+            Result CreateInstance(Interop.InstanceCreateInfo* createInfo, Interop.AllocationCallbacks* allocator, Interop.Instance* instance)
+            {
+                callCount++;
+
+                Assert.AreNotEqual(IntPtr.Zero, new IntPtr(createInfo));
+
+                Assert.AreEqual((uint)extensions.Length, createInfo->EnabledExtensionCount);
+                Assert.AreEqual(extensions[0], GetNullTerminatedString(createInfo->EnabledExtensionNames[0]));
+                Assert.AreEqual((uint)layers.Length, createInfo->EnabledLayerCount);
+                Assert.AreEqual(layers[0], GetNullTerminatedString(createInfo->EnabledLayerNames[0]));
+                Assert.AreEqual(InstanceCreateFlags.None, createInfo->Flags);
+                Assert.AreEqual(IntPtr.Zero, new IntPtr(createInfo->Next));
+                Assert.AreEqual(StructureType.InstanceCreateInfo, createInfo->SType);
+
+                Assert.AreEqual(applicationInfo.ApplicationName, GetNullTerminatedString(createInfo->ApplicationInfo->ApplicationName));
+                Assert.AreEqual(applicationInfo.ApplicationVersion, createInfo->ApplicationInfo->ApplicationVersion);
+                Assert.AreEqual(applicationInfo.EngineName, GetNullTerminatedString(createInfo->ApplicationInfo->EngineName));
+                Assert.AreEqual(applicationInfo.EngineVersion, createInfo->ApplicationInfo->EngineVersion);
+                Assert.AreEqual(applicationInfo.ApiVersion, createInfo->ApplicationInfo->ApiVersion);
+                
+                Assert.AreEqual(IntPtr.Zero, new IntPtr(allocator));
+
+                Assert.AreNotEqual(IntPtr.Zero, new IntPtr(instance));
+
+                *instance = new Interop.Instance(handle);
+
+                return Result.Success;
+            }
+
+            mockLookup.AddProcedure("vkCreateInstance", new Interop.VkInstanceCreateDelegate(CreateInstance));
+
+            var result = Instance.Create(commandCache, layers, extensions, applicationInfo: applicationInfo);
+
+            Assert.AreEqual(1, callCount);
+            Assert.AreEqual(handle.ToUInt64(), result.RawHandle.ToUInt64());
+        }
+
         private static void EnumerateGivenExtensions(string layer, ExtensionProperties[] extensions)
         {
             var mockLookup = new MockLookup();
@@ -105,9 +170,17 @@ namespace SharpVk.Tests
 
             int callCount = 0;
 
-            Result EnumerateInstanceExtensionProperties(byte* layerName, uint* propertyCount, SharpVk.Interop.ExtensionProperties* properties)
+            Result EnumerateInstanceExtensionProperties(byte* layerName, uint* propertyCount, Interop.ExtensionProperties* properties)
             {
                 callCount++;
+
+                if (layer != null)
+                {
+                    for (int index = 0; index < layer.Length; index++)
+                    {
+                        Assert.AreEqual((byte)layer[index], layerName[index]);
+                    }
+                }
 
                 Assert.IsFalse(propertyCount == null);
 
@@ -200,6 +273,15 @@ namespace SharpVk.Tests
             targetSpan.Fill(0);
 
             Encoding.ASCII.GetBytes(value.AsSpan(), targetSpan);
+        }
+
+        private static string GetNullTerminatedString(byte* target)
+        {
+            int length = 0;
+
+            while (target[length] != 0) length++;
+
+            return Encoding.ASCII.GetString(target, length);
         }
     }
 }
