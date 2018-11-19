@@ -198,5 +198,15 @@ namespace SharpVk.Multivendor
         /// 
         /// </summary>
         public const string PciBusInfo = "VK_EXT_pci_bus_info"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string ScalarBlockLayout = "VK_EXT_scalar_block_layout"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string SeparateStencilUsage = "VK_EXT_separate_stencil_usage"; 
     }
 }

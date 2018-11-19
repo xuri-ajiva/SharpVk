@@ -25,7 +25,7 @@ namespace SharpVk.Generator.Collation
 
         public void Execute(IServiceCollection services)
         {
-            var extendTypes = this.types.ToDictionary(x => x.VkName, x => this.types.Where(y => y.Extends == x.VkName).Select(y => y.VkName).ToList());
+            var extendTypes = this.types.ToDictionary(x => x.VkName, x => this.types.Where(y => y.Extends?.Contains(x.VkName) ?? false).Select(y => y.VkName).ToList());
 
             //bool updated = true;
 
@@ -63,6 +63,7 @@ namespace SharpVk.Generator.Collation
                                         Pattern = x.Category.MapToPattern(),
                                         Members = this.GetMembers(x, this.nameFormatter.FormatName(x)).ToList(),
                                         ExtendTypes = extendTypes[x.VkName].ToList(),
+                                        Extends = x.Extends,
                                         Type = x.Type,
                                         IsOutputOnly = x.IsReturnedOnly
                                     });

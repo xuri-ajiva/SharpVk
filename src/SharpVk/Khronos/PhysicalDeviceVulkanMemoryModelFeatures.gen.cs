@@ -54,6 +54,17 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
+        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PhysicalDeviceVulkanMemoryModelFeatures* pointer)
+        {
+            pointer->SType = StructureType.PhysicalDeviceVulkanMemoryModelFeatures;
+            pointer->Next = null;
+            pointer->VulkanMemoryModel = this.VulkanMemoryModel;
+            pointer->VulkanMemoryModelDeviceScope = this.VulkanMemoryModelDeviceScope;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         internal static unsafe PhysicalDeviceVulkanMemoryModelFeatures MarshalFrom(SharpVk.Interop.Khronos.PhysicalDeviceVulkanMemoryModelFeatures* pointer)
         {
             PhysicalDeviceVulkanMemoryModelFeatures result = default(PhysicalDeviceVulkanMemoryModelFeatures);

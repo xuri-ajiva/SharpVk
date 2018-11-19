@@ -94,6 +94,36 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        Reserved13 = 1 << 13, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Reserved14 = 1 << 14, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Reserved15 = 1 << 15, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Reserved10 = 1 << 10, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Reserved11 = 1 << 11, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Reserved12 = 1 << 12, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         ShadingRateImage = 1 << 8, 
         
         /// <summary>

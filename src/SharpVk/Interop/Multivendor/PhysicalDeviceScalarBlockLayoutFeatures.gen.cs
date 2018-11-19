@@ -25,52 +25,27 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace SharpVk.Multivendor
+namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceInlineUniformBlockFeatures
+    public unsafe partial struct PhysicalDeviceScalarBlockLayoutFeatures
     {
         /// <summary>
         /// 
         /// </summary>
-        public bool InlineUniformBlock
-        {
-            get;
-            set;
-        }
+        public SharpVk.StructureType SType; 
         
         /// <summary>
         /// 
         /// </summary>
-        public bool DescriptorBindingInlineUniformBlockUpdateAfterBind
-        {
-            get;
-            set;
-        }
+        public void* Next; 
         
         /// <summary>
         /// 
         /// </summary>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceInlineUniformBlockFeatures* pointer)
-        {
-            pointer->SType = StructureType.PhysicalDeviceInlineUniformBlockFeatures;
-            pointer->Next = null;
-            pointer->InlineUniformBlock = this.InlineUniformBlock;
-            pointer->DescriptorBindingInlineUniformBlockUpdateAfterBind = this.DescriptorBindingInlineUniformBlockUpdateAfterBind;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        internal static unsafe PhysicalDeviceInlineUniformBlockFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceInlineUniformBlockFeatures* pointer)
-        {
-            PhysicalDeviceInlineUniformBlockFeatures result = default(PhysicalDeviceInlineUniformBlockFeatures);
-            result.InlineUniformBlock = pointer->InlineUniformBlock;
-            result.DescriptorBindingInlineUniformBlockUpdateAfterBind = pointer->DescriptorBindingInlineUniformBlockUpdateAfterBind;
-            return result;
-        }
+        public Bool32 ScalarBlockLayout; 
     }
 }

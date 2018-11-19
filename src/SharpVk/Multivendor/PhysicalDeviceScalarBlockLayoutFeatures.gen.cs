@@ -31,12 +31,12 @@ namespace SharpVk.Multivendor
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceInlineUniformBlockFeatures
+    public partial struct PhysicalDeviceScalarBlockLayoutFeatures
     {
         /// <summary>
         /// 
         /// </summary>
-        public bool InlineUniformBlock
+        public bool ScalarBlockLayout
         {
             get;
             set;
@@ -45,31 +45,20 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public bool DescriptorBindingInlineUniformBlockUpdateAfterBind
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceScalarBlockLayoutFeatures* pointer)
         {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceInlineUniformBlockFeatures* pointer)
-        {
-            pointer->SType = StructureType.PhysicalDeviceInlineUniformBlockFeatures;
+            pointer->SType = StructureType.PhysicalDeviceScalarBlockLayoutFeatures;
             pointer->Next = null;
-            pointer->InlineUniformBlock = this.InlineUniformBlock;
-            pointer->DescriptorBindingInlineUniformBlockUpdateAfterBind = this.DescriptorBindingInlineUniformBlockUpdateAfterBind;
+            pointer->ScalarBlockLayout = this.ScalarBlockLayout;
         }
         
         /// <summary>
         /// 
         /// </summary>
-        internal static unsafe PhysicalDeviceInlineUniformBlockFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceInlineUniformBlockFeatures* pointer)
+        internal static unsafe PhysicalDeviceScalarBlockLayoutFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceScalarBlockLayoutFeatures* pointer)
         {
-            PhysicalDeviceInlineUniformBlockFeatures result = default(PhysicalDeviceInlineUniformBlockFeatures);
-            result.InlineUniformBlock = pointer->InlineUniformBlock;
-            result.DescriptorBindingInlineUniformBlockUpdateAfterBind = pointer->DescriptorBindingInlineUniformBlockUpdateAfterBind;
+            PhysicalDeviceScalarBlockLayoutFeatures result = default(PhysicalDeviceScalarBlockLayoutFeatures);
+            result.ScalarBlockLayout = pointer->ScalarBlockLayout;
             return result;
         }
     }

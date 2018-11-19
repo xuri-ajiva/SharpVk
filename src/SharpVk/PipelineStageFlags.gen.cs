@@ -141,6 +141,16 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        Reserved27 = 1 << 27, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Reserved26 = 1 << 26, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         TransformFeedback = 1 << 24, 
         
         /// <summary>

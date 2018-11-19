@@ -31,7 +31,7 @@ namespace SharpVk.Generator.Specification
                 Enum.TryParse(vkType.Attribute("category")?.Value, out TypeCategory category);
                 string requires = vkType.Attribute("requires")?.Value;
                 string parent = vkType.Attribute("parent")?.Value;
-                string extends = vkType.Attribute("structextends")?.Value;
+                var extends = vkType.Attribute("structextends")?.Value?.Split(',')?.Select(x => x.Trim())?.ToList();
                 string alias = vkType.Attribute("alias")?.Value;
                 bool.TryParse(vkType.Attribute("returnedonly")?.Value, out bool isReturnedOnly);
                 bool isTypePointer = false;

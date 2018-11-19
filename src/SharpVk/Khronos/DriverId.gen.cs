@@ -73,5 +73,10 @@ namespace SharpVk.Khronos
         /// 
         /// </summary>
         ArmProprietary = 9, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        GooglePastel = 10, 
     }
 }

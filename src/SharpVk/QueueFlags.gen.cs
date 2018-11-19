@@ -56,5 +56,15 @@ namespace SharpVk
         /// then at least one queue family must support this bit.
         /// </summary>
         SparseBinding = 1 << 3, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Reserved6 = 1 << 6, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Reserved5 = 1 << 5, 
     }
 }

@@ -1026,17 +1026,26 @@ namespace SharpVk
         /// <param name="imageSwapchainCreateInfoKhr">
         /// Extension struct
         /// </param>
+        /// <param name="imageFormatListCreateInfoKhr">
+        /// Extension struct
+        /// </param>
+        /// <param name="externalFormatAndroid">
+        /// Extension struct
+        /// </param>
         /// <param name="imageDrmFormatModifierListCreateInfoExt">
         /// Extension struct
         /// </param>
         /// <param name="imageDrmFormatModifierExplicitCreateInfoExt">
         /// Extension struct
         /// </param>
+        /// <param name="imageStencilUsageCreateInfoExt">
+        /// Extension struct
+        /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
         /// </param>
-        public unsafe SharpVk.Image CreateImage(SharpVk.ImageType imageType, SharpVk.Format format, SharpVk.Extent3D extent, uint mipLevels, uint arrayLayers, SharpVk.SampleCountFlags samples, SharpVk.ImageTiling tiling, SharpVk.ImageUsageFlags usage, SharpVk.SharingMode sharingMode, ArrayProxy<uint>? queueFamilyIndices, SharpVk.ImageLayout initialLayout, SharpVk.ImageCreateFlags? flags = default(SharpVk.ImageCreateFlags?), SharpVk.NVidia.DedicatedAllocationImageCreateInfo? dedicatedAllocationImageCreateInfoNv = null, SharpVk.NVidia.ExternalMemoryImageCreateInfo? externalMemoryImageCreateInfoNv = null, SharpVk.ExternalMemoryImageCreateInfo? externalMemoryImageCreateInfo = null, SharpVk.Khronos.ImageSwapchainCreateInfo? imageSwapchainCreateInfoKhr = null, SharpVk.Multivendor.ImageDrmFormatModifierListCreateInfo? imageDrmFormatModifierListCreateInfoExt = null, SharpVk.Multivendor.ImageDrmFormatModifierExplicitCreateInfo? imageDrmFormatModifierExplicitCreateInfoExt = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public unsafe SharpVk.Image CreateImage(SharpVk.ImageType imageType, SharpVk.Format format, SharpVk.Extent3D extent, uint mipLevels, uint arrayLayers, SharpVk.SampleCountFlags samples, SharpVk.ImageTiling tiling, SharpVk.ImageUsageFlags usage, SharpVk.SharingMode sharingMode, ArrayProxy<uint>? queueFamilyIndices, SharpVk.ImageLayout initialLayout, SharpVk.ImageCreateFlags? flags = default(SharpVk.ImageCreateFlags?), SharpVk.NVidia.DedicatedAllocationImageCreateInfo? dedicatedAllocationImageCreateInfoNv = null, SharpVk.NVidia.ExternalMemoryImageCreateInfo? externalMemoryImageCreateInfoNv = null, SharpVk.ExternalMemoryImageCreateInfo? externalMemoryImageCreateInfo = null, SharpVk.Khronos.ImageSwapchainCreateInfo? imageSwapchainCreateInfoKhr = null, SharpVk.Khronos.ImageFormatListCreateInfo? imageFormatListCreateInfoKhr = null, SharpVk.Android.ExternalFormat? externalFormatAndroid = null, SharpVk.Multivendor.ImageDrmFormatModifierListCreateInfo? imageDrmFormatModifierListCreateInfoExt = null, SharpVk.Multivendor.ImageDrmFormatModifierExplicitCreateInfo? imageDrmFormatModifierExplicitCreateInfoExt = null, SharpVk.Multivendor.ImageStencilUsageCreateInfo? imageStencilUsageCreateInfoExt = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
@@ -1077,6 +1086,22 @@ namespace SharpVk
                     extensionPointer->Next = nextPointer;
                     nextPointer = extensionPointer;
                 }
+                if (imageFormatListCreateInfoKhr != null)
+                {
+                    SharpVk.Interop.Khronos.ImageFormatListCreateInfo* extensionPointer = default(SharpVk.Interop.Khronos.ImageFormatListCreateInfo*);
+                    extensionPointer = (SharpVk.Interop.Khronos.ImageFormatListCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.ImageFormatListCreateInfo>());
+                    imageFormatListCreateInfoKhr.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = nextPointer;
+                    nextPointer = extensionPointer;
+                }
+                if (externalFormatAndroid != null)
+                {
+                    SharpVk.Interop.Android.ExternalFormat* extensionPointer = default(SharpVk.Interop.Android.ExternalFormat*);
+                    extensionPointer = (SharpVk.Interop.Android.ExternalFormat*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Android.ExternalFormat>());
+                    externalFormatAndroid.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = nextPointer;
+                    nextPointer = extensionPointer;
+                }
                 if (imageDrmFormatModifierListCreateInfoExt != null)
                 {
                     SharpVk.Interop.Multivendor.ImageDrmFormatModifierListCreateInfo* extensionPointer = default(SharpVk.Interop.Multivendor.ImageDrmFormatModifierListCreateInfo*);
@@ -1090,6 +1115,14 @@ namespace SharpVk
                     SharpVk.Interop.Multivendor.ImageDrmFormatModifierExplicitCreateInfo* extensionPointer = default(SharpVk.Interop.Multivendor.ImageDrmFormatModifierExplicitCreateInfo*);
                     extensionPointer = (SharpVk.Interop.Multivendor.ImageDrmFormatModifierExplicitCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.ImageDrmFormatModifierExplicitCreateInfo>());
                     imageDrmFormatModifierExplicitCreateInfoExt.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = nextPointer;
+                    nextPointer = extensionPointer;
+                }
+                if (imageStencilUsageCreateInfoExt != null)
+                {
+                    SharpVk.Interop.Multivendor.ImageStencilUsageCreateInfo* extensionPointer = default(SharpVk.Interop.Multivendor.ImageStencilUsageCreateInfo*);
+                    extensionPointer = (SharpVk.Interop.Multivendor.ImageStencilUsageCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.ImageStencilUsageCreateInfo>());
+                    imageStencilUsageCreateInfoExt.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = nextPointer;
                     nextPointer = extensionPointer;
                 }
@@ -1187,6 +1220,9 @@ namespace SharpVk
         /// <param name="imageViewUsageCreateInfo">
         /// Extension struct
         /// </param>
+        /// <param name="samplerYcbcrConversionInfo">
+        /// Extension struct
+        /// </param>
         /// <param name="imageViewASTCDecodeModeExt">
         /// Extension struct
         /// </param>
@@ -1194,7 +1230,7 @@ namespace SharpVk
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
         /// </param>
-        public unsafe SharpVk.ImageView CreateImageView(SharpVk.Image image, SharpVk.ImageViewType viewType, SharpVk.Format format, SharpVk.ComponentMapping components, SharpVk.ImageSubresourceRange subresourceRange, SharpVk.ImageViewCreateFlags? flags = default(SharpVk.ImageViewCreateFlags?), SharpVk.ImageViewUsageCreateInfo? imageViewUsageCreateInfo = null, SharpVk.Multivendor.ImageViewASTCDecodeMode? imageViewASTCDecodeModeExt = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public unsafe SharpVk.ImageView CreateImageView(SharpVk.Image image, SharpVk.ImageViewType viewType, SharpVk.Format format, SharpVk.ComponentMapping components, SharpVk.ImageSubresourceRange subresourceRange, SharpVk.ImageViewCreateFlags? flags = default(SharpVk.ImageViewCreateFlags?), SharpVk.ImageViewUsageCreateInfo? imageViewUsageCreateInfo = null, SharpVk.SamplerYcbcrConversionInfo? samplerYcbcrConversionInfo = null, SharpVk.Multivendor.ImageViewASTCDecodeMode? imageViewASTCDecodeModeExt = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
@@ -1208,6 +1244,14 @@ namespace SharpVk
                     SharpVk.Interop.ImageViewUsageCreateInfo* extensionPointer = default(SharpVk.Interop.ImageViewUsageCreateInfo*);
                     extensionPointer = (SharpVk.Interop.ImageViewUsageCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.ImageViewUsageCreateInfo>());
                     imageViewUsageCreateInfo.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = nextPointer;
+                    nextPointer = extensionPointer;
+                }
+                if (samplerYcbcrConversionInfo != null)
+                {
+                    SharpVk.Interop.SamplerYcbcrConversionInfo* extensionPointer = default(SharpVk.Interop.SamplerYcbcrConversionInfo*);
+                    extensionPointer = (SharpVk.Interop.SamplerYcbcrConversionInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.SamplerYcbcrConversionInfo>());
+                    samplerYcbcrConversionInfo.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = nextPointer;
                     nextPointer = extensionPointer;
                 }
@@ -2015,6 +2059,9 @@ namespace SharpVk
         /// <param name="magFilter">
         /// The magnification filter to apply to lookups.
         /// </param>
+        /// <param name="samplerYcbcrConversionInfo">
+        /// Extension struct
+        /// </param>
         /// <param name="samplerReductionModeCreateInfoExt">
         /// Extension struct
         /// </param>
@@ -2022,7 +2069,7 @@ namespace SharpVk
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
         /// </param>
-        public unsafe SharpVk.Sampler CreateSampler(SharpVk.Filter magFilter, SharpVk.Filter minFilter, SharpVk.SamplerMipmapMode mipmapMode, SharpVk.SamplerAddressMode addressModeU, SharpVk.SamplerAddressMode addressModeV, SharpVk.SamplerAddressMode addressModeW, float mipLodBias, bool anisotropyEnable, float maxAnisotropy, bool compareEnable, SharpVk.CompareOp compareOp, float minLod, float maxLod, SharpVk.BorderColor borderColor, bool unnormalizedCoordinates, SharpVk.SamplerCreateFlags? flags = default(SharpVk.SamplerCreateFlags?), SharpVk.Multivendor.SamplerReductionModeCreateInfo? samplerReductionModeCreateInfoExt = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public unsafe SharpVk.Sampler CreateSampler(SharpVk.Filter magFilter, SharpVk.Filter minFilter, SharpVk.SamplerMipmapMode mipmapMode, SharpVk.SamplerAddressMode addressModeU, SharpVk.SamplerAddressMode addressModeV, SharpVk.SamplerAddressMode addressModeW, float mipLodBias, bool anisotropyEnable, float maxAnisotropy, bool compareEnable, SharpVk.CompareOp compareOp, float minLod, float maxLod, SharpVk.BorderColor borderColor, bool unnormalizedCoordinates, SharpVk.SamplerCreateFlags? flags = default(SharpVk.SamplerCreateFlags?), SharpVk.SamplerYcbcrConversionInfo? samplerYcbcrConversionInfo = null, SharpVk.Multivendor.SamplerReductionModeCreateInfo? samplerReductionModeCreateInfoExt = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
@@ -2031,6 +2078,14 @@ namespace SharpVk
                 void* nextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Sampler marshalledSampler = default(SharpVk.Interop.Sampler);
+                if (samplerYcbcrConversionInfo != null)
+                {
+                    SharpVk.Interop.SamplerYcbcrConversionInfo* extensionPointer = default(SharpVk.Interop.SamplerYcbcrConversionInfo*);
+                    extensionPointer = (SharpVk.Interop.SamplerYcbcrConversionInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.SamplerYcbcrConversionInfo>());
+                    samplerYcbcrConversionInfo.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = nextPointer;
+                    nextPointer = extensionPointer;
+                }
                 if (samplerReductionModeCreateInfoExt != null)
                 {
                     SharpVk.Interop.Multivendor.SamplerReductionModeCreateInfo* extensionPointer = default(SharpVk.Interop.Multivendor.SamplerReductionModeCreateInfo*);
@@ -3075,7 +3130,10 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public unsafe SharpVk.SamplerYcbcrConversion CreateSamplerYcbcrConversion(SharpVk.Format format, SharpVk.SamplerYcbcrModelConversion ycbcrModel, SharpVk.SamplerYcbcrRange ycbcrRange, SharpVk.ComponentMapping components, SharpVk.ChromaLocation xChromaOffset, SharpVk.ChromaLocation yChromaOffset, SharpVk.Filter chromaFilter, bool forceExplicitReconstruction, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        /// <param name="externalFormatAndroid">
+        /// Extension struct
+        /// </param>
+        public unsafe SharpVk.SamplerYcbcrConversion CreateSamplerYcbcrConversion(SharpVk.Format format, SharpVk.SamplerYcbcrModelConversion ycbcrModel, SharpVk.SamplerYcbcrRange ycbcrRange, SharpVk.ComponentMapping components, SharpVk.ChromaLocation xChromaOffset, SharpVk.ChromaLocation yChromaOffset, SharpVk.Filter chromaFilter, bool forceExplicitReconstruction, SharpVk.Android.ExternalFormat? externalFormatAndroid = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
@@ -3084,6 +3142,14 @@ namespace SharpVk
                 void* nextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.SamplerYcbcrConversion marshalledYcbcrConversion = default(SharpVk.Interop.SamplerYcbcrConversion);
+                if (externalFormatAndroid != null)
+                {
+                    SharpVk.Interop.Android.ExternalFormat* extensionPointer = default(SharpVk.Interop.Android.ExternalFormat*);
+                    extensionPointer = (SharpVk.Interop.Android.ExternalFormat*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Android.ExternalFormat>());
+                    externalFormatAndroid.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = nextPointer;
+                    nextPointer = extensionPointer;
+                }
                 marshalledCreateInfo = (SharpVk.Interop.SamplerYcbcrConversionCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.SamplerYcbcrConversionCreateInfo>());
                 marshalledCreateInfo->Next = nextPointer;
                 marshalledCreateInfo->Format = format;

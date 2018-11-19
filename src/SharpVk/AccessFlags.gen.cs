@@ -148,6 +148,26 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        Reserved30 = 1 << 30, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Reserved31 = 1 << 31, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Reserved28 = 1 << 28, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Reserved29 = 1 << 29, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         TransformFeedbackWrite = 1 << 25, 
         
         /// <summary>

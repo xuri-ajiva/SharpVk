@@ -47,6 +47,16 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        Reserved8 = 1000023008, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Reserved4 = 1000024004, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         TransformFeedbackStream = 1000028004, 
         
         /// <summary>

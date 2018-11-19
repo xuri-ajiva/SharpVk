@@ -1193,5 +1193,15 @@ namespace SharpVk
         /// 
         /// </summary>
         ImagepipeSurfaceCreateInfo = 1000214000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceScalarBlockLayoutFeatures = 1000221000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ImageStencilUsageCreateInfo = 1000246000, 
     }
 }

@@ -2,10 +2,9 @@
 using SharpVk.Generator.Collation;
 using SharpVk.Generator.Generation.Marshalling;
 using SharpVk.Generator.Pipeline;
+using SharpVk.Generator.Rules;
 using System.Collections.Generic;
 using System.Linq;
-using SharpVk.Generator.Rules;
-
 using static SharpVk.Emit.ExpressionBuilder;
 
 namespace SharpVk.Generator.Generation
@@ -96,10 +95,11 @@ namespace SharpVk.Generator.Generation
                     MemberActions = new List<MethodAction>()
                 };
 
-                if (!type.IsOutputOnly)
+                if (!type.IsOutputOnly || (type.Extends?.Any(x => !this.typeData[x].IsOutputOnly) ?? false))
                 {
                     publicStruct.Methods.Add(marshalToMethod);
                 }
+
                 if (type.IsOutputOnly || (!type.Name.EndsWith("Info") && type.Members.All(this.CanMarshalFrom)))
                 {
                     publicStruct.Methods.Add(marshalFromMethod);

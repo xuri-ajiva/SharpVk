@@ -13,6 +13,7 @@ namespace SharpVk.Generator.Collation
         public TypePattern Pattern;
         public List<MemberDeclaration> Members;
         public List<string> ExtendTypes;
+        public List<string> Extends;
 
         public bool RequiresMarshalling => this.Pattern.RequiresMarshalling() || this.Members.Any(x => x.RequiresMarshalling) || this.Name == "Bool32";
     }
