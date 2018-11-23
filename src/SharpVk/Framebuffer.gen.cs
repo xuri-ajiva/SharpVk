@@ -71,7 +71,7 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.VkFramebufferDestroyDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkFramebufferDestroyDelegate>("vkDestroyFramebuffer", "");
+                SharpVk.Interop.VkFramebufferDestroyDelegate commandDelegate = commandCache.Cache.vkDestroyFramebuffer;
                 commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally

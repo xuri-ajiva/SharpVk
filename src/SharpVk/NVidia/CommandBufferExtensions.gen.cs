@@ -67,7 +67,7 @@ namespace SharpVk.NVidia
                         marshalledViewportWScalings = fieldPointer;
                     }
                 }
-                SharpVk.Interop.NVidia.VkCommandBufferSetViewportWScalingDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.VkCommandBufferSetViewportWScalingDelegate>("vkCmdSetViewportWScalingNV", "device");
+                SharpVk.Interop.NVidia.VkCommandBufferSetViewportWScalingDelegate commandDelegate = commandCache.Cache.vkCmdSetViewportWScalingNV;
                 commandDelegate(extendedHandle.handle, firstViewport, (uint)(Interop.HeapUtil.GetLength(viewportWScalings)), marshalledViewportWScalings);
             }
             finally
@@ -88,7 +88,7 @@ namespace SharpVk.NVidia
             {
                 CommandCache commandCache = default(CommandCache);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.NVidia.VkCommandBufferBindShadingRateImageDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.VkCommandBufferBindShadingRateImageDelegate>("vkCmdBindShadingRateImageNV", "device");
+                SharpVk.Interop.NVidia.VkCommandBufferBindShadingRateImageDelegate commandDelegate = commandCache.Cache.vkCmdBindShadingRateImageNV;
                 commandDelegate(extendedHandle.handle, imageView?.handle ?? default(SharpVk.Interop.ImageView), imageLayout);
             }
             finally
@@ -133,7 +133,7 @@ namespace SharpVk.NVidia
                         marshalledShadingRatePalettes = fieldPointer;
                     }
                 }
-                SharpVk.Interop.NVidia.VkCommandBufferSetViewportShadingRatePaletteDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.VkCommandBufferSetViewportShadingRatePaletteDelegate>("vkCmdSetViewportShadingRatePaletteNV", "device");
+                SharpVk.Interop.NVidia.VkCommandBufferSetViewportShadingRatePaletteDelegate commandDelegate = commandCache.Cache.vkCmdSetViewportShadingRatePaletteNV;
                 commandDelegate(extendedHandle.handle, firstViewport, (uint)(Interop.HeapUtil.GetLength(shadingRatePalettes)), marshalledShadingRatePalettes);
             }
             finally
@@ -178,7 +178,7 @@ namespace SharpVk.NVidia
                         marshalledCustomSampleOrders = fieldPointer;
                     }
                 }
-                SharpVk.Interop.NVidia.VkCommandBufferSetCoarseSampleOrderDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.VkCommandBufferSetCoarseSampleOrderDelegate>("vkCmdSetCoarseSampleOrderNV", "device");
+                SharpVk.Interop.NVidia.VkCommandBufferSetCoarseSampleOrderDelegate commandDelegate = commandCache.Cache.vkCmdSetCoarseSampleOrderNV;
                 commandDelegate(extendedHandle.handle, sampleOrderType, (uint)(Interop.HeapUtil.GetLength(customSampleOrders)), marshalledCustomSampleOrders);
             }
             finally
@@ -202,7 +202,7 @@ namespace SharpVk.NVidia
                 commandCache = extendedHandle.commandCache;
                 marshalledInfo = (SharpVk.Interop.NVidia.AccelerationStructureInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.AccelerationStructureInfo>());
                 info.MarshalTo(marshalledInfo);
-                SharpVk.Interop.NVidia.VkCommandBufferBuildAccelerationStructureDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.VkCommandBufferBuildAccelerationStructureDelegate>("vkCmdBuildAccelerationStructureNV", "device");
+                SharpVk.Interop.NVidia.VkCommandBufferBuildAccelerationStructureDelegate commandDelegate = commandCache.Cache.vkCmdBuildAccelerationStructureNV;
                 commandDelegate(extendedHandle.handle, marshalledInfo, instanceData?.handle ?? default(SharpVk.Interop.Buffer), instanceOffset, update, destination?.handle ?? default(SharpVk.Interop.NVidia.AccelerationStructure), source?.handle ?? default(SharpVk.Interop.NVidia.AccelerationStructure), scratch?.handle ?? default(SharpVk.Interop.Buffer), scratchOffset);
             }
             finally
@@ -223,7 +223,7 @@ namespace SharpVk.NVidia
             {
                 CommandCache commandCache = default(CommandCache);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.NVidia.VkCommandBufferCopyAccelerationStructureDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.VkCommandBufferCopyAccelerationStructureDelegate>("vkCmdCopyAccelerationStructureNV", "device");
+                SharpVk.Interop.NVidia.VkCommandBufferCopyAccelerationStructureDelegate commandDelegate = commandCache.Cache.vkCmdCopyAccelerationStructureNV;
                 commandDelegate(extendedHandle.handle, destination?.handle ?? default(SharpVk.Interop.NVidia.AccelerationStructure), source?.handle ?? default(SharpVk.Interop.NVidia.AccelerationStructure), mode);
             }
             finally
@@ -244,7 +244,7 @@ namespace SharpVk.NVidia
             {
                 CommandCache commandCache = default(CommandCache);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.NVidia.VkCommandBufferTraceRaysDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.VkCommandBufferTraceRaysDelegate>("vkCmdTraceRaysNV", "device");
+                SharpVk.Interop.NVidia.VkCommandBufferTraceRaysDelegate commandDelegate = commandCache.Cache.vkCmdTraceRaysNV;
                 commandDelegate(extendedHandle.handle, raygenShaderBindingTableBuffer?.handle ?? default(SharpVk.Interop.Buffer), raygenShaderBindingOffset, missShaderBindingTableBuffer?.handle ?? default(SharpVk.Interop.Buffer), missShaderBindingOffset, missShaderBindingStride, hitShaderBindingTableBuffer?.handle ?? default(SharpVk.Interop.Buffer), hitShaderBindingOffset, hitShaderBindingStride, callableShaderBindingTableBuffer?.handle ?? default(SharpVk.Interop.Buffer), callableShaderBindingOffset, callableShaderBindingStride, width, height, depth);
             }
             finally
@@ -289,7 +289,7 @@ namespace SharpVk.NVidia
                         marshalledAccelerationStructures = fieldPointer;
                     }
                 }
-                SharpVk.Interop.NVidia.VkCommandBufferWriteAccelerationStructuresPropertiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.VkCommandBufferWriteAccelerationStructuresPropertiesDelegate>("vkCmdWriteAccelerationStructuresPropertiesNV", "device");
+                SharpVk.Interop.NVidia.VkCommandBufferWriteAccelerationStructuresPropertiesDelegate commandDelegate = commandCache.Cache.vkCmdWriteAccelerationStructuresPropertiesNV;
                 commandDelegate(extendedHandle.handle, (uint)(Interop.HeapUtil.GetLength(accelerationStructures)), marshalledAccelerationStructures, queryType, queryPool?.handle ?? default(SharpVk.Interop.QueryPool), firstQuery);
             }
             finally
@@ -310,7 +310,7 @@ namespace SharpVk.NVidia
             {
                 CommandCache commandCache = default(CommandCache);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.NVidia.VkCommandBufferDrawMeshTasksDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.VkCommandBufferDrawMeshTasksDelegate>("vkCmdDrawMeshTasksNV", "device");
+                SharpVk.Interop.NVidia.VkCommandBufferDrawMeshTasksDelegate commandDelegate = commandCache.Cache.vkCmdDrawMeshTasksNV;
                 commandDelegate(extendedHandle.handle, taskCount, firstTask);
             }
             finally
@@ -331,7 +331,7 @@ namespace SharpVk.NVidia
             {
                 CommandCache commandCache = default(CommandCache);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.NVidia.VkCommandBufferDrawMeshTasksIndirectDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.VkCommandBufferDrawMeshTasksIndirectDelegate>("vkCmdDrawMeshTasksIndirectNV", "device");
+                SharpVk.Interop.NVidia.VkCommandBufferDrawMeshTasksIndirectDelegate commandDelegate = commandCache.Cache.vkCmdDrawMeshTasksIndirectNV;
                 commandDelegate(extendedHandle.handle, buffer?.handle ?? default(SharpVk.Interop.Buffer), offset, drawCount, stride);
             }
             finally
@@ -352,7 +352,7 @@ namespace SharpVk.NVidia
             {
                 CommandCache commandCache = default(CommandCache);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.NVidia.VkCommandBufferDrawMeshTasksIndirectCountDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.VkCommandBufferDrawMeshTasksIndirectCountDelegate>("vkCmdDrawMeshTasksIndirectCountNV", "device");
+                SharpVk.Interop.NVidia.VkCommandBufferDrawMeshTasksIndirectCountDelegate commandDelegate = commandCache.Cache.vkCmdDrawMeshTasksIndirectCountNV;
                 commandDelegate(extendedHandle.handle, buffer?.handle ?? default(SharpVk.Interop.Buffer), offset, countBuffer?.handle ?? default(SharpVk.Interop.Buffer), countBufferOffset, maxDrawCount, stride);
             }
             finally
@@ -397,7 +397,7 @@ namespace SharpVk.NVidia
                         marshalledExclusiveScissors = fieldPointer;
                     }
                 }
-                SharpVk.Interop.NVidia.VkCommandBufferSetExclusiveScissorDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.VkCommandBufferSetExclusiveScissorDelegate>("vkCmdSetExclusiveScissorNV", "device");
+                SharpVk.Interop.NVidia.VkCommandBufferSetExclusiveScissorDelegate commandDelegate = commandCache.Cache.vkCmdSetExclusiveScissorNV;
                 commandDelegate(extendedHandle.handle, firstExclusiveScissor, (uint)(Interop.HeapUtil.GetLength(exclusiveScissors)), marshalledExclusiveScissors);
             }
             finally
@@ -418,7 +418,7 @@ namespace SharpVk.NVidia
             {
                 CommandCache commandCache = default(CommandCache);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.NVidia.VkCommandBufferSetCheckpointDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.VkCommandBufferSetCheckpointDelegate>("vkCmdSetCheckpointNV", "device");
+                SharpVk.Interop.NVidia.VkCommandBufferSetCheckpointDelegate commandDelegate = commandCache.Cache.vkCmdSetCheckpointNV;
                 commandDelegate(extendedHandle.handle, checkpointMarker.ToPointer());
             }
             finally

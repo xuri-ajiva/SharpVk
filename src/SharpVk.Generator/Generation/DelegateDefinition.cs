@@ -10,5 +10,7 @@ namespace SharpVk.Generator.Generation
         public bool IsUnsafe;
         public List<string> Comment;
         public List<ParamDefinition> Parameters;
+        public string VkName;
+        public string LookupScope;
     }
 }

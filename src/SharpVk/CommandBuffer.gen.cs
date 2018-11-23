@@ -93,7 +93,7 @@ namespace SharpVk
                 {
                     marshalledBeginInfo->InheritanceInfo = default(SharpVk.Interop.CommandBufferInheritanceInfo*);
                 }
-                SharpVk.Interop.VkCommandBufferBeginDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferBeginDelegate>("vkBeginCommandBuffer", "");
+                SharpVk.Interop.VkCommandBufferBeginDelegate commandDelegate = commandCache.Cache.vkBeginCommandBuffer;
                 Result methodResult = commandDelegate(this.handle, marshalledBeginInfo);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -113,7 +113,7 @@ namespace SharpVk
         {
             try
             {
-                SharpVk.Interop.VkCommandBufferEndDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferEndDelegate>("vkEndCommandBuffer", "");
+                SharpVk.Interop.VkCommandBufferEndDelegate commandDelegate = commandCache.Cache.vkEndCommandBuffer;
                 Result methodResult = commandDelegate(this.handle);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -142,7 +142,7 @@ namespace SharpVk
                 {
                     marshalledFlags = default(SharpVk.CommandBufferResetFlags);
                 }
-                SharpVk.Interop.VkCommandBufferResetDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferResetDelegate>("vkResetCommandBuffer", "");
+                SharpVk.Interop.VkCommandBufferResetDelegate commandDelegate = commandCache.Cache.vkResetCommandBuffer;
                 Result methodResult = commandDelegate(this.handle, marshalledFlags);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -162,7 +162,7 @@ namespace SharpVk
         {
             try
             {
-                SharpVk.Interop.VkCommandBufferBindPipelineDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferBindPipelineDelegate>("vkCmdBindPipeline", "");
+                SharpVk.Interop.VkCommandBufferBindPipelineDelegate commandDelegate = commandCache.Cache.vkCmdBindPipeline;
                 commandDelegate(this.handle, pipelineBindPoint, pipeline?.handle ?? default(SharpVk.Interop.Pipeline));
             }
             finally
@@ -202,7 +202,7 @@ namespace SharpVk
                         marshalledViewports = fieldPointer;
                     }
                 }
-                SharpVk.Interop.VkCommandBufferSetViewportDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferSetViewportDelegate>("vkCmdSetViewport", "");
+                SharpVk.Interop.VkCommandBufferSetViewportDelegate commandDelegate = commandCache.Cache.vkCmdSetViewport;
                 commandDelegate(this.handle, firstViewport, (uint)(Interop.HeapUtil.GetLength(viewports)), marshalledViewports);
             }
             finally
@@ -242,7 +242,7 @@ namespace SharpVk
                         marshalledScissors = fieldPointer;
                     }
                 }
-                SharpVk.Interop.VkCommandBufferSetScissorDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferSetScissorDelegate>("vkCmdSetScissor", "");
+                SharpVk.Interop.VkCommandBufferSetScissorDelegate commandDelegate = commandCache.Cache.vkCmdSetScissor;
                 commandDelegate(this.handle, firstScissor, (uint)(Interop.HeapUtil.GetLength(scissors)), marshalledScissors);
             }
             finally
@@ -258,7 +258,7 @@ namespace SharpVk
         {
             try
             {
-                SharpVk.Interop.VkCommandBufferSetLineWidthDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferSetLineWidthDelegate>("vkCmdSetLineWidth", "");
+                SharpVk.Interop.VkCommandBufferSetLineWidthDelegate commandDelegate = commandCache.Cache.vkCmdSetLineWidth;
                 commandDelegate(this.handle, lineWidth);
             }
             finally
@@ -274,7 +274,7 @@ namespace SharpVk
         {
             try
             {
-                SharpVk.Interop.VkCommandBufferSetDepthBiasDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferSetDepthBiasDelegate>("vkCmdSetDepthBias", "");
+                SharpVk.Interop.VkCommandBufferSetDepthBiasDelegate commandDelegate = commandCache.Cache.vkCmdSetDepthBias;
                 commandDelegate(this.handle, depthBiasConstantFactor, depthBiasClamp, depthBiasSlopeFactor);
             }
             finally
@@ -290,7 +290,7 @@ namespace SharpVk
         {
             try
             {
-                SharpVk.Interop.VkCommandBufferSetBlendConstantsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferSetBlendConstantsDelegate>("vkCmdSetBlendConstants", "");
+                SharpVk.Interop.VkCommandBufferSetBlendConstantsDelegate commandDelegate = commandCache.Cache.vkCmdSetBlendConstants;
                 commandDelegate(this.handle, blendConstants);
             }
             finally
@@ -306,7 +306,7 @@ namespace SharpVk
         {
             try
             {
-                SharpVk.Interop.VkCommandBufferSetDepthBoundsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferSetDepthBoundsDelegate>("vkCmdSetDepthBounds", "");
+                SharpVk.Interop.VkCommandBufferSetDepthBoundsDelegate commandDelegate = commandCache.Cache.vkCmdSetDepthBounds;
                 commandDelegate(this.handle, minDepthBounds, maxDepthBounds);
             }
             finally
@@ -322,7 +322,7 @@ namespace SharpVk
         {
             try
             {
-                SharpVk.Interop.VkCommandBufferSetStencilCompareMaskDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferSetStencilCompareMaskDelegate>("vkCmdSetStencilCompareMask", "");
+                SharpVk.Interop.VkCommandBufferSetStencilCompareMaskDelegate commandDelegate = commandCache.Cache.vkCmdSetStencilCompareMask;
                 commandDelegate(this.handle, faceMask, compareMask);
             }
             finally
@@ -338,7 +338,7 @@ namespace SharpVk
         {
             try
             {
-                SharpVk.Interop.VkCommandBufferSetStencilWriteMaskDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferSetStencilWriteMaskDelegate>("vkCmdSetStencilWriteMask", "");
+                SharpVk.Interop.VkCommandBufferSetStencilWriteMaskDelegate commandDelegate = commandCache.Cache.vkCmdSetStencilWriteMask;
                 commandDelegate(this.handle, faceMask, writeMask);
             }
             finally
@@ -354,7 +354,7 @@ namespace SharpVk
         {
             try
             {
-                SharpVk.Interop.VkCommandBufferSetStencilReferenceDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferSetStencilReferenceDelegate>("vkCmdSetStencilReference", "");
+                SharpVk.Interop.VkCommandBufferSetStencilReferenceDelegate commandDelegate = commandCache.Cache.vkCmdSetStencilReference;
                 commandDelegate(this.handle, faceMask, reference);
             }
             finally
@@ -418,7 +418,7 @@ namespace SharpVk
                         marshalledDynamicOffsets = fieldPointer;
                     }
                 }
-                SharpVk.Interop.VkCommandBufferBindDescriptorSetsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferBindDescriptorSetsDelegate>("vkCmdBindDescriptorSets", "");
+                SharpVk.Interop.VkCommandBufferBindDescriptorSetsDelegate commandDelegate = commandCache.Cache.vkCmdBindDescriptorSets;
                 commandDelegate(this.handle, pipelineBindPoint, layout?.handle ?? default(SharpVk.Interop.PipelineLayout), firstSet, (uint)(Interop.HeapUtil.GetLength(descriptorSets)), marshalledDescriptorSets, (uint)(Interop.HeapUtil.GetLength(dynamicOffsets)), marshalledDynamicOffsets);
             }
             finally
@@ -434,7 +434,7 @@ namespace SharpVk
         {
             try
             {
-                SharpVk.Interop.VkCommandBufferBindIndexBufferDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferBindIndexBufferDelegate>("vkCmdBindIndexBuffer", "");
+                SharpVk.Interop.VkCommandBufferBindIndexBufferDelegate commandDelegate = commandCache.Cache.vkCmdBindIndexBuffer;
                 commandDelegate(this.handle, buffer?.handle ?? default(SharpVk.Interop.Buffer), offset, indexType);
             }
             finally
@@ -498,7 +498,7 @@ namespace SharpVk
                         marshalledOffsets = fieldPointer;
                     }
                 }
-                SharpVk.Interop.VkCommandBufferBindVertexBuffersDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferBindVertexBuffersDelegate>("vkCmdBindVertexBuffers", "");
+                SharpVk.Interop.VkCommandBufferBindVertexBuffersDelegate commandDelegate = commandCache.Cache.vkCmdBindVertexBuffers;
                 commandDelegate(this.handle, firstBinding, (uint)(Interop.HeapUtil.GetLength(buffers)), marshalledBuffers, marshalledOffsets);
             }
             finally
@@ -514,7 +514,7 @@ namespace SharpVk
         {
             try
             {
-                SharpVk.Interop.VkCommandBufferDrawDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferDrawDelegate>("vkCmdDraw", "");
+                SharpVk.Interop.VkCommandBufferDrawDelegate commandDelegate = commandCache.Cache.vkCmdDraw;
                 commandDelegate(this.handle, vertexCount, instanceCount, firstVertex, firstInstance);
             }
             finally
@@ -530,7 +530,7 @@ namespace SharpVk
         {
             try
             {
-                SharpVk.Interop.VkCommandBufferDrawIndexedDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferDrawIndexedDelegate>("vkCmdDrawIndexed", "");
+                SharpVk.Interop.VkCommandBufferDrawIndexedDelegate commandDelegate = commandCache.Cache.vkCmdDrawIndexed;
                 commandDelegate(this.handle, indexCount, instanceCount, firstIndex, vertexOffset, firstInstance);
             }
             finally
@@ -546,7 +546,7 @@ namespace SharpVk
         {
             try
             {
-                SharpVk.Interop.VkCommandBufferDrawIndirectDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferDrawIndirectDelegate>("vkCmdDrawIndirect", "");
+                SharpVk.Interop.VkCommandBufferDrawIndirectDelegate commandDelegate = commandCache.Cache.vkCmdDrawIndirect;
                 commandDelegate(this.handle, buffer?.handle ?? default(SharpVk.Interop.Buffer), offset, drawCount, stride);
             }
             finally
@@ -562,7 +562,7 @@ namespace SharpVk
         {
             try
             {
-                SharpVk.Interop.VkCommandBufferDrawIndexedIndirectDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferDrawIndexedIndirectDelegate>("vkCmdDrawIndexedIndirect", "");
+                SharpVk.Interop.VkCommandBufferDrawIndexedIndirectDelegate commandDelegate = commandCache.Cache.vkCmdDrawIndexedIndirect;
                 commandDelegate(this.handle, buffer?.handle ?? default(SharpVk.Interop.Buffer), offset, drawCount, stride);
             }
             finally
@@ -578,7 +578,7 @@ namespace SharpVk
         {
             try
             {
-                SharpVk.Interop.VkCommandBufferDispatchDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferDispatchDelegate>("vkCmdDispatch", "");
+                SharpVk.Interop.VkCommandBufferDispatchDelegate commandDelegate = commandCache.Cache.vkCmdDispatch;
                 commandDelegate(this.handle, groupCountX, groupCountY, groupCountZ);
             }
             finally
@@ -594,7 +594,7 @@ namespace SharpVk
         {
             try
             {
-                SharpVk.Interop.VkCommandBufferDispatchIndirectDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferDispatchIndirectDelegate>("vkCmdDispatchIndirect", "");
+                SharpVk.Interop.VkCommandBufferDispatchIndirectDelegate commandDelegate = commandCache.Cache.vkCmdDispatchIndirect;
                 commandDelegate(this.handle, buffer?.handle ?? default(SharpVk.Interop.Buffer), offset);
             }
             finally
@@ -634,7 +634,7 @@ namespace SharpVk
                         marshalledRegions = fieldPointer;
                     }
                 }
-                SharpVk.Interop.VkCommandBufferCopyBufferDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferCopyBufferDelegate>("vkCmdCopyBuffer", "");
+                SharpVk.Interop.VkCommandBufferCopyBufferDelegate commandDelegate = commandCache.Cache.vkCmdCopyBuffer;
                 commandDelegate(this.handle, sourceBuffer?.handle ?? default(SharpVk.Interop.Buffer), destinationBuffer?.handle ?? default(SharpVk.Interop.Buffer), (uint)(Interop.HeapUtil.GetLength(regions)), marshalledRegions);
             }
             finally
@@ -674,7 +674,7 @@ namespace SharpVk
                         marshalledRegions = fieldPointer;
                     }
                 }
-                SharpVk.Interop.VkCommandBufferCopyImageDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferCopyImageDelegate>("vkCmdCopyImage", "");
+                SharpVk.Interop.VkCommandBufferCopyImageDelegate commandDelegate = commandCache.Cache.vkCmdCopyImage;
                 commandDelegate(this.handle, sourceImage?.handle ?? default(SharpVk.Interop.Image), sourceImageLayout, destinationImage?.handle ?? default(SharpVk.Interop.Image), destinationImageLayout, (uint)(Interop.HeapUtil.GetLength(regions)), marshalledRegions);
             }
             finally
@@ -715,7 +715,7 @@ namespace SharpVk
                         marshalledRegions = fieldPointer;
                     }
                 }
-                SharpVk.Interop.VkCommandBufferBlitImageDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferBlitImageDelegate>("vkCmdBlitImage", "");
+                SharpVk.Interop.VkCommandBufferBlitImageDelegate commandDelegate = commandCache.Cache.vkCmdBlitImage;
                 commandDelegate(this.handle, sourceImage?.handle ?? default(SharpVk.Interop.Image), sourceImageLayout, destinationImage?.handle ?? default(SharpVk.Interop.Image), destinationImageLayout, (uint)(Interop.HeapUtil.GetLength(regions)), marshalledRegions, filter);
             }
             finally
@@ -755,7 +755,7 @@ namespace SharpVk
                         marshalledRegions = fieldPointer;
                     }
                 }
-                SharpVk.Interop.VkCommandBufferCopyBufferToImageDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferCopyBufferToImageDelegate>("vkCmdCopyBufferToImage", "");
+                SharpVk.Interop.VkCommandBufferCopyBufferToImageDelegate commandDelegate = commandCache.Cache.vkCmdCopyBufferToImage;
                 commandDelegate(this.handle, sourceBuffer?.handle ?? default(SharpVk.Interop.Buffer), destinationImage?.handle ?? default(SharpVk.Interop.Image), destinationImageLayout, (uint)(Interop.HeapUtil.GetLength(regions)), marshalledRegions);
             }
             finally
@@ -795,7 +795,7 @@ namespace SharpVk
                         marshalledRegions = fieldPointer;
                     }
                 }
-                SharpVk.Interop.VkCommandBufferCopyImageToBufferDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferCopyImageToBufferDelegate>("vkCmdCopyImageToBuffer", "");
+                SharpVk.Interop.VkCommandBufferCopyImageToBufferDelegate commandDelegate = commandCache.Cache.vkCmdCopyImageToBuffer;
                 commandDelegate(this.handle, sourceImage?.handle ?? default(SharpVk.Interop.Image), sourceImageLayout, destinationBuffer?.handle ?? default(SharpVk.Interop.Buffer), (uint)(Interop.HeapUtil.GetLength(regions)), marshalledRegions);
             }
             finally
@@ -835,7 +835,7 @@ namespace SharpVk
                         marshalledData = fieldPointer;
                     }
                 }
-                SharpVk.Interop.VkCommandBufferUpdateBufferDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferUpdateBufferDelegate>("vkCmdUpdateBuffer", "");
+                SharpVk.Interop.VkCommandBufferUpdateBufferDelegate commandDelegate = commandCache.Cache.vkCmdUpdateBuffer;
                 commandDelegate(this.handle, destinationBuffer?.handle ?? default(SharpVk.Interop.Buffer), destinationOffset, (DeviceSize)(Interop.HeapUtil.GetLength(data)), marshalledData);
             }
             finally
@@ -851,7 +851,7 @@ namespace SharpVk
         {
             try
             {
-                SharpVk.Interop.VkCommandBufferFillBufferDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferFillBufferDelegate>("vkCmdFillBuffer", "");
+                SharpVk.Interop.VkCommandBufferFillBufferDelegate commandDelegate = commandCache.Cache.vkCmdFillBuffer;
                 commandDelegate(this.handle, destinationBuffer?.handle ?? default(SharpVk.Interop.Buffer), destinationOffset, size, data);
             }
             finally
@@ -894,7 +894,7 @@ namespace SharpVk
                         marshalledRanges = fieldPointer;
                     }
                 }
-                SharpVk.Interop.VkCommandBufferClearColorImageDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferClearColorImageDelegate>("vkCmdClearColorImage", "");
+                SharpVk.Interop.VkCommandBufferClearColorImageDelegate commandDelegate = commandCache.Cache.vkCmdClearColorImage;
                 commandDelegate(this.handle, image?.handle ?? default(SharpVk.Interop.Image), imageLayout, marshalledColor, (uint)(Interop.HeapUtil.GetLength(ranges)), marshalledRanges);
             }
             finally
@@ -937,7 +937,7 @@ namespace SharpVk
                         marshalledRanges = fieldPointer;
                     }
                 }
-                SharpVk.Interop.VkCommandBufferClearDepthStencilImageDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferClearDepthStencilImageDelegate>("vkCmdClearDepthStencilImage", "");
+                SharpVk.Interop.VkCommandBufferClearDepthStencilImageDelegate commandDelegate = commandCache.Cache.vkCmdClearDepthStencilImage;
                 commandDelegate(this.handle, image?.handle ?? default(SharpVk.Interop.Image), imageLayout, marshalledDepthStencil, (uint)(Interop.HeapUtil.GetLength(ranges)), marshalledRanges);
             }
             finally
@@ -1001,7 +1001,7 @@ namespace SharpVk
                         marshalledRects = fieldPointer;
                     }
                 }
-                SharpVk.Interop.VkCommandBufferClearAttachmentsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferClearAttachmentsDelegate>("vkCmdClearAttachments", "");
+                SharpVk.Interop.VkCommandBufferClearAttachmentsDelegate commandDelegate = commandCache.Cache.vkCmdClearAttachments;
                 commandDelegate(this.handle, (uint)(Interop.HeapUtil.GetLength(attachments)), marshalledAttachments, (uint)(Interop.HeapUtil.GetLength(rects)), marshalledRects);
             }
             finally
@@ -1041,7 +1041,7 @@ namespace SharpVk
                         marshalledRegions = fieldPointer;
                     }
                 }
-                SharpVk.Interop.VkCommandBufferResolveImageDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferResolveImageDelegate>("vkCmdResolveImage", "");
+                SharpVk.Interop.VkCommandBufferResolveImageDelegate commandDelegate = commandCache.Cache.vkCmdResolveImage;
                 commandDelegate(this.handle, sourceImage?.handle ?? default(SharpVk.Interop.Image), sourceImageLayout, destinationImage?.handle ?? default(SharpVk.Interop.Image), destinationImageLayout, (uint)(Interop.HeapUtil.GetLength(regions)), marshalledRegions);
             }
             finally
@@ -1057,7 +1057,7 @@ namespace SharpVk
         {
             try
             {
-                SharpVk.Interop.VkCommandBufferSetEventDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferSetEventDelegate>("vkCmdSetEvent", "");
+                SharpVk.Interop.VkCommandBufferSetEventDelegate commandDelegate = commandCache.Cache.vkCmdSetEvent;
                 commandDelegate(this.handle, @event?.handle ?? default(SharpVk.Interop.Event), stageMask);
             }
             finally
@@ -1073,7 +1073,7 @@ namespace SharpVk
         {
             try
             {
-                SharpVk.Interop.VkCommandBufferResetEventDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferResetEventDelegate>("vkCmdResetEvent", "");
+                SharpVk.Interop.VkCommandBufferResetEventDelegate commandDelegate = commandCache.Cache.vkCmdResetEvent;
                 commandDelegate(this.handle, @event?.handle ?? default(SharpVk.Interop.Event), stageMask);
             }
             finally
@@ -1185,7 +1185,7 @@ namespace SharpVk
                         marshalledImageMemoryBarriers = fieldPointer;
                     }
                 }
-                SharpVk.Interop.VkCommandBufferWaitEventsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferWaitEventsDelegate>("vkCmdWaitEvents", "");
+                SharpVk.Interop.VkCommandBufferWaitEventsDelegate commandDelegate = commandCache.Cache.vkCmdWaitEvents;
                 commandDelegate(this.handle, (uint)(Interop.HeapUtil.GetLength(events)), marshalledEvents, sourceStageMask, destinationStageMask, (uint)(Interop.HeapUtil.GetLength(memoryBarriers)), marshalledMemoryBarriers, (uint)(Interop.HeapUtil.GetLength(bufferMemoryBarriers)), marshalledBufferMemoryBarriers, (uint)(Interop.HeapUtil.GetLength(imageMemoryBarriers)), marshalledImageMemoryBarriers);
             }
             finally
@@ -1282,7 +1282,7 @@ namespace SharpVk
                         marshalledImageMemoryBarriers = fieldPointer;
                     }
                 }
-                SharpVk.Interop.VkCommandBufferPipelineBarrierDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferPipelineBarrierDelegate>("vkCmdPipelineBarrier", "");
+                SharpVk.Interop.VkCommandBufferPipelineBarrierDelegate commandDelegate = commandCache.Cache.vkCmdPipelineBarrier;
                 commandDelegate(this.handle, sourceStageMask, destinationStageMask, marshalledDependencyFlags, (uint)(Interop.HeapUtil.GetLength(memoryBarriers)), marshalledMemoryBarriers, (uint)(Interop.HeapUtil.GetLength(bufferMemoryBarriers)), marshalledBufferMemoryBarriers, (uint)(Interop.HeapUtil.GetLength(imageMemoryBarriers)), marshalledImageMemoryBarriers);
             }
             finally
@@ -1307,7 +1307,7 @@ namespace SharpVk
                 {
                     marshalledFlags = default(SharpVk.QueryControlFlags);
                 }
-                SharpVk.Interop.VkCommandBufferBeginQueryDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferBeginQueryDelegate>("vkCmdBeginQuery", "");
+                SharpVk.Interop.VkCommandBufferBeginQueryDelegate commandDelegate = commandCache.Cache.vkCmdBeginQuery;
                 commandDelegate(this.handle, queryPool?.handle ?? default(SharpVk.Interop.QueryPool), query, marshalledFlags);
             }
             finally
@@ -1323,7 +1323,7 @@ namespace SharpVk
         {
             try
             {
-                SharpVk.Interop.VkCommandBufferEndQueryDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferEndQueryDelegate>("vkCmdEndQuery", "");
+                SharpVk.Interop.VkCommandBufferEndQueryDelegate commandDelegate = commandCache.Cache.vkCmdEndQuery;
                 commandDelegate(this.handle, queryPool?.handle ?? default(SharpVk.Interop.QueryPool), query);
             }
             finally
@@ -1339,7 +1339,7 @@ namespace SharpVk
         {
             try
             {
-                SharpVk.Interop.VkCommandBufferResetQueryPoolDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferResetQueryPoolDelegate>("vkCmdResetQueryPool", "");
+                SharpVk.Interop.VkCommandBufferResetQueryPoolDelegate commandDelegate = commandCache.Cache.vkCmdResetQueryPool;
                 commandDelegate(this.handle, queryPool?.handle ?? default(SharpVk.Interop.QueryPool), firstQuery, queryCount);
             }
             finally
@@ -1355,7 +1355,7 @@ namespace SharpVk
         {
             try
             {
-                SharpVk.Interop.VkCommandBufferWriteTimestampDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferWriteTimestampDelegate>("vkCmdWriteTimestamp", "");
+                SharpVk.Interop.VkCommandBufferWriteTimestampDelegate commandDelegate = commandCache.Cache.vkCmdWriteTimestamp;
                 commandDelegate(this.handle, pipelineStage, queryPool?.handle ?? default(SharpVk.Interop.QueryPool), query);
             }
             finally
@@ -1380,7 +1380,7 @@ namespace SharpVk
                 {
                     marshalledFlags = default(SharpVk.QueryResultFlags);
                 }
-                SharpVk.Interop.VkCommandBufferCopyQueryPoolResultsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferCopyQueryPoolResultsDelegate>("vkCmdCopyQueryPoolResults", "");
+                SharpVk.Interop.VkCommandBufferCopyQueryPoolResultsDelegate commandDelegate = commandCache.Cache.vkCmdCopyQueryPoolResults;
                 commandDelegate(this.handle, queryPool?.handle ?? default(SharpVk.Interop.QueryPool), firstQuery, queryCount, destinationBuffer?.handle ?? default(SharpVk.Interop.Buffer), destinationOffset, stride, marshalledFlags);
             }
             finally
@@ -1420,7 +1420,7 @@ namespace SharpVk
                         marshalledValues = fieldPointer;
                     }
                 }
-                SharpVk.Interop.VkCommandBufferPushConstantsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferPushConstantsDelegate>("vkCmdPushConstants", "");
+                SharpVk.Interop.VkCommandBufferPushConstantsDelegate commandDelegate = commandCache.Cache.vkCmdPushConstants;
                 commandDelegate(this.handle, layout?.handle ?? default(SharpVk.Interop.PipelineLayout), stageFlags, offset, (uint)(Interop.HeapUtil.GetLength(values)), marshalledValues);
             }
             finally
@@ -1501,7 +1501,7 @@ namespace SharpVk
                         marshalledRenderPassBegin->ClearValues = fieldPointer;
                     }
                 }
-                SharpVk.Interop.VkCommandBufferBeginRenderPassDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferBeginRenderPassDelegate>("vkCmdBeginRenderPass", "");
+                SharpVk.Interop.VkCommandBufferBeginRenderPassDelegate commandDelegate = commandCache.Cache.vkCmdBeginRenderPass;
                 commandDelegate(this.handle, marshalledRenderPassBegin, contents);
             }
             finally
@@ -1517,7 +1517,7 @@ namespace SharpVk
         {
             try
             {
-                SharpVk.Interop.VkCommandBufferNextSubpassDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferNextSubpassDelegate>("vkCmdNextSubpass", "");
+                SharpVk.Interop.VkCommandBufferNextSubpassDelegate commandDelegate = commandCache.Cache.vkCmdNextSubpass;
                 commandDelegate(this.handle, contents);
             }
             finally
@@ -1533,7 +1533,7 @@ namespace SharpVk
         {
             try
             {
-                SharpVk.Interop.VkCommandBufferEndRenderPassDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferEndRenderPassDelegate>("vkCmdEndRenderPass", "");
+                SharpVk.Interop.VkCommandBufferEndRenderPassDelegate commandDelegate = commandCache.Cache.vkCmdEndRenderPass;
                 commandDelegate(this.handle);
             }
             finally
@@ -1573,7 +1573,7 @@ namespace SharpVk
                         marshalledCommandBuffers = fieldPointer;
                     }
                 }
-                SharpVk.Interop.VkCommandBufferExecuteCommandsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferExecuteCommandsDelegate>("vkCmdExecuteCommands", "");
+                SharpVk.Interop.VkCommandBufferExecuteCommandsDelegate commandDelegate = commandCache.Cache.vkCmdExecuteCommands;
                 commandDelegate(this.handle, (uint)(Interop.HeapUtil.GetLength(commandBuffers)), marshalledCommandBuffers);
             }
             finally
@@ -1589,7 +1589,7 @@ namespace SharpVk
         {
             try
             {
-                SharpVk.Interop.VkCommandBufferSetDeviceMaskDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferSetDeviceMaskDelegate>("vkCmdSetDeviceMask", "");
+                SharpVk.Interop.VkCommandBufferSetDeviceMaskDelegate commandDelegate = commandCache.Cache.vkCmdSetDeviceMask;
                 commandDelegate(this.handle, deviceMask);
             }
             finally
@@ -1605,7 +1605,7 @@ namespace SharpVk
         {
             try
             {
-                SharpVk.Interop.VkCommandBufferDispatchBaseDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkCommandBufferDispatchBaseDelegate>("vkCmdDispatchBase", "");
+                SharpVk.Interop.VkCommandBufferDispatchBaseDelegate commandDelegate = commandCache.Cache.vkCmdDispatchBase;
                 commandDelegate(this.handle, baseGroupX, baseGroupY, baseGroupZ, groupCountX, groupCountY, groupCountZ);
             }
             finally

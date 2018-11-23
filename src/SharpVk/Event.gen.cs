@@ -71,7 +71,7 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.VkEventDestroyDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkEventDestroyDelegate>("vkDestroyEvent", "");
+                SharpVk.Interop.VkEventDestroyDelegate commandDelegate = commandCache.Cache.vkDestroyEvent;
                 commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
@@ -88,7 +88,7 @@ namespace SharpVk
             try
             {
                 Result result = default(Result);
-                SharpVk.Interop.VkEventGetStatusDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkEventGetStatusDelegate>("vkGetEventStatus", "");
+                SharpVk.Interop.VkEventGetStatusDelegate commandDelegate = commandCache.Cache.vkGetEventStatus;
                 result = commandDelegate(this.parent.handle, this.handle);
                 if (SharpVkException.IsError(result))
                 {
@@ -109,7 +109,7 @@ namespace SharpVk
         {
             try
             {
-                SharpVk.Interop.VkEventSetDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkEventSetDelegate>("vkSetEvent", "");
+                SharpVk.Interop.VkEventSetDelegate commandDelegate = commandCache.Cache.vkSetEvent;
                 Result methodResult = commandDelegate(this.parent.handle, this.handle);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -129,7 +129,7 @@ namespace SharpVk
         {
             try
             {
-                SharpVk.Interop.VkEventResetDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkEventResetDelegate>("vkResetEvent", "");
+                SharpVk.Interop.VkEventResetDelegate commandDelegate = commandCache.Cache.vkResetEvent;
                 Result methodResult = commandDelegate(this.parent.handle, this.handle);
                 if (SharpVkException.IsError(methodResult))
                 {

@@ -46,7 +46,7 @@ namespace SharpVk.Amd
                 CommandCache commandCache = default(CommandCache);
                 byte* marshalledInfo = default(byte*);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Amd.VkPipelineGetShaderInfoDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Amd.VkPipelineGetShaderInfoDelegate>("vkGetShaderInfoAMD", "device");
+                SharpVk.Interop.Amd.VkPipelineGetShaderInfoDelegate commandDelegate = commandCache.Cache.vkGetShaderInfoAMD;
                 Result methodResult = commandDelegate(extendedHandle.parent.handle, extendedHandle.handle, shaderStage, infoType, &infoSize, marshalledInfo);
                 if (SharpVkException.IsError(methodResult))
                 {

@@ -45,7 +45,7 @@ namespace SharpVk.Khronos
                 CommandCache commandCache = default(CommandCache);
                 Bool32 marshalledSupported = default(Bool32);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Khronos.VkPhysicalDeviceGetSurfaceSupportDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetSurfaceSupportDelegate>("vkGetPhysicalDeviceSurfaceSupportKHR", "instance");
+                SharpVk.Interop.Khronos.VkPhysicalDeviceGetSurfaceSupportDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceSurfaceSupportKHR;
                 Result methodResult = commandDelegate(extendedHandle.handle, queueFamilyIndex, surface?.handle ?? default(SharpVk.Interop.Khronos.Surface), &marshalledSupported);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -74,7 +74,7 @@ namespace SharpVk.Khronos
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Khronos.SurfaceCapabilities marshalledSurfaceCapabilities = default(SharpVk.Khronos.SurfaceCapabilities);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Khronos.VkPhysicalDeviceGetSurfaceCapabilitiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetSurfaceCapabilitiesDelegate>("vkGetPhysicalDeviceSurfaceCapabilitiesKHR", "instance");
+                SharpVk.Interop.Khronos.VkPhysicalDeviceGetSurfaceCapabilitiesDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceSurfaceCapabilitiesKHR;
                 Result methodResult = commandDelegate(extendedHandle.handle, surface?.handle ?? default(SharpVk.Interop.Khronos.Surface), &marshalledSurfaceCapabilities);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -104,7 +104,7 @@ namespace SharpVk.Khronos
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Khronos.SurfaceFormat* marshalledSurfaceFormats = default(SharpVk.Khronos.SurfaceFormat*);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Khronos.VkPhysicalDeviceGetSurfaceFormatsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetSurfaceFormatsDelegate>("vkGetPhysicalDeviceSurfaceFormatsKHR", "instance");
+                SharpVk.Interop.Khronos.VkPhysicalDeviceGetSurfaceFormatsDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceSurfaceFormatsKHR;
                 Result methodResult = commandDelegate(extendedHandle.handle, surface?.handle ?? default(SharpVk.Interop.Khronos.Surface), &surfaceFormatCount, marshalledSurfaceFormats);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -148,7 +148,7 @@ namespace SharpVk.Khronos
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Khronos.PresentMode* marshalledPresentModes = default(SharpVk.Khronos.PresentMode*);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Khronos.VkPhysicalDeviceGetSurfacePresentModesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetSurfacePresentModesDelegate>("vkGetPhysicalDeviceSurfacePresentModesKHR", "instance");
+                SharpVk.Interop.Khronos.VkPhysicalDeviceGetSurfacePresentModesDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceSurfacePresentModesKHR;
                 Result methodResult = commandDelegate(extendedHandle.handle, surface?.handle ?? default(SharpVk.Interop.Khronos.Surface), &presentModeCount, marshalledPresentModes);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -192,7 +192,7 @@ namespace SharpVk.Khronos
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Rect2D* marshalledRects = default(SharpVk.Rect2D*);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Khronos.VkPhysicalDeviceGetPresentRectanglesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetPresentRectanglesDelegate>("vkGetPhysicalDevicePresentRectanglesKHR", "device");
+                SharpVk.Interop.Khronos.VkPhysicalDeviceGetPresentRectanglesDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDevicePresentRectanglesKHR;
                 Result methodResult = commandDelegate(extendedHandle.handle, surface?.handle ?? default(SharpVk.Interop.Khronos.Surface), &rectCount, marshalledRects);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -236,7 +236,7 @@ namespace SharpVk.Khronos
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Khronos.DisplayProperties* marshalledProperties = default(SharpVk.Interop.Khronos.DisplayProperties*);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Khronos.VkPhysicalDeviceGetDisplayPropertiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetDisplayPropertiesDelegate>("vkGetPhysicalDeviceDisplayPropertiesKHR", "instance");
+                SharpVk.Interop.Khronos.VkPhysicalDeviceGetDisplayPropertiesDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceDisplayPropertiesKHR;
                 Result methodResult = commandDelegate(extendedHandle.handle, &propertyCount, marshalledProperties);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -280,7 +280,7 @@ namespace SharpVk.Khronos
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Khronos.DisplayPlaneProperties* marshalledProperties = default(SharpVk.Interop.Khronos.DisplayPlaneProperties*);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Khronos.VkPhysicalDeviceGetDisplayPlanePropertiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetDisplayPlanePropertiesDelegate>("vkGetPhysicalDeviceDisplayPlanePropertiesKHR", "instance");
+                SharpVk.Interop.Khronos.VkPhysicalDeviceGetDisplayPlanePropertiesDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceDisplayPlanePropertiesKHR;
                 Result methodResult = commandDelegate(extendedHandle.handle, &propertyCount, marshalledProperties);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -324,7 +324,7 @@ namespace SharpVk.Khronos
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Khronos.Display* marshalledDisplays = default(SharpVk.Interop.Khronos.Display*);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Khronos.VkPhysicalDeviceGetDisplayPlaneSupportedDisplaysDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetDisplayPlaneSupportedDisplaysDelegate>("vkGetDisplayPlaneSupportedDisplaysKHR", "instance");
+                SharpVk.Interop.Khronos.VkPhysicalDeviceGetDisplayPlaneSupportedDisplaysDelegate commandDelegate = commandCache.Cache.vkGetDisplayPlaneSupportedDisplaysKHR;
                 Result methodResult = commandDelegate(extendedHandle.handle, planeIndex, &displayCount, marshalledDisplays);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -368,7 +368,7 @@ namespace SharpVk.Khronos
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Khronos.DisplayModeProperties* marshalledProperties = default(SharpVk.Interop.Khronos.DisplayModeProperties*);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Khronos.VkPhysicalDeviceGetDisplayModePropertiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetDisplayModePropertiesDelegate>("vkGetDisplayModePropertiesKHR", "instance");
+                SharpVk.Interop.Khronos.VkPhysicalDeviceGetDisplayModePropertiesDelegate commandDelegate = commandCache.Cache.vkGetDisplayModePropertiesKHR;
                 Result methodResult = commandDelegate(extendedHandle.handle, display?.handle ?? default(SharpVk.Interop.Khronos.Display), &propertyCount, marshalledProperties);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -448,7 +448,7 @@ namespace SharpVk.Khronos
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.Khronos.VkPhysicalDeviceCreateDisplayModeDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceCreateDisplayModeDelegate>("vkCreateDisplayModeKHR", "instance");
+                SharpVk.Interop.Khronos.VkPhysicalDeviceCreateDisplayModeDelegate commandDelegate = commandCache.Cache.vkCreateDisplayModeKHR;
                 Result methodResult = commandDelegate(extendedHandle.handle, display?.handle ?? default(SharpVk.Interop.Khronos.Display), marshalledCreateInfo, marshalledAllocator, &marshalledMode);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -478,7 +478,7 @@ namespace SharpVk.Khronos
                 commandCache = extendedHandle.commandCache;
                 marshalledDpy = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
                 *marshalledDpy = dpy;
-                SharpVk.Interop.Khronos.VkPhysicalDeviceGetXlibPresentationSupportDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetXlibPresentationSupportDelegate>("vkGetPhysicalDeviceXlibPresentationSupportKHR", "instance");
+                SharpVk.Interop.Khronos.VkPhysicalDeviceGetXlibPresentationSupportDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceXlibPresentationSupportKHR;
                 commandDelegate(extendedHandle.handle, queueFamilyIndex, marshalledDpy, visualID);
             }
             finally
@@ -502,7 +502,7 @@ namespace SharpVk.Khronos
                 commandCache = extendedHandle.commandCache;
                 marshalledConnection = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
                 *marshalledConnection = connection;
-                SharpVk.Interop.Khronos.VkPhysicalDeviceGetXcbPresentationSupportDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetXcbPresentationSupportDelegate>("vkGetPhysicalDeviceXcbPresentationSupportKHR", "instance");
+                SharpVk.Interop.Khronos.VkPhysicalDeviceGetXcbPresentationSupportDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceXcbPresentationSupportKHR;
                 commandDelegate(extendedHandle.handle, queueFamilyIndex, marshalledConnection, visualId);
             }
             finally
@@ -526,7 +526,7 @@ namespace SharpVk.Khronos
                 commandCache = extendedHandle.commandCache;
                 marshalledDisplay = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
                 *marshalledDisplay = display;
-                SharpVk.Interop.Khronos.VkPhysicalDeviceGetWaylandPresentationSupportDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetWaylandPresentationSupportDelegate>("vkGetPhysicalDeviceWaylandPresentationSupportKHR", "instance");
+                SharpVk.Interop.Khronos.VkPhysicalDeviceGetWaylandPresentationSupportDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceWaylandPresentationSupportKHR;
                 commandDelegate(extendedHandle.handle, queueFamilyIndex, marshalledDisplay);
             }
             finally
@@ -547,7 +547,7 @@ namespace SharpVk.Khronos
             {
                 CommandCache commandCache = default(CommandCache);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Khronos.VkPhysicalDeviceGetWin32PresentationSupportDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetWin32PresentationSupportDelegate>("vkGetPhysicalDeviceWin32PresentationSupportKHR", "instance");
+                SharpVk.Interop.Khronos.VkPhysicalDeviceGetWin32PresentationSupportDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceWin32PresentationSupportKHR;
                 commandDelegate(extendedHandle.handle, queueFamilyIndex);
             }
             finally
@@ -573,7 +573,7 @@ namespace SharpVk.Khronos
                 commandCache = extendedHandle.commandCache;
                 marshalledSurfaceInfo = (SharpVk.Interop.Khronos.PhysicalDeviceSurfaceInfo2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.PhysicalDeviceSurfaceInfo2>());
                 surfaceInfo.MarshalTo(marshalledSurfaceInfo);
-                SharpVk.Interop.Khronos.VkPhysicalDeviceGetSurfaceCapabilities2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetSurfaceCapabilities2Delegate>("vkGetPhysicalDeviceSurfaceCapabilities2KHR", "instance");
+                SharpVk.Interop.Khronos.VkPhysicalDeviceGetSurfaceCapabilities2Delegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceSurfaceCapabilities2KHR;
                 Result methodResult = commandDelegate(extendedHandle.handle, marshalledSurfaceInfo, &marshalledSurfaceCapabilities);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -606,7 +606,7 @@ namespace SharpVk.Khronos
                 commandCache = extendedHandle.commandCache;
                 marshalledSurfaceInfo = (SharpVk.Interop.Khronos.PhysicalDeviceSurfaceInfo2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.PhysicalDeviceSurfaceInfo2>());
                 surfaceInfo.MarshalTo(marshalledSurfaceInfo);
-                SharpVk.Interop.Khronos.VkPhysicalDeviceGetSurfaceFormats2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetSurfaceFormats2Delegate>("vkGetPhysicalDeviceSurfaceFormats2KHR", "instance");
+                SharpVk.Interop.Khronos.VkPhysicalDeviceGetSurfaceFormats2Delegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceSurfaceFormats2KHR;
                 Result methodResult = commandDelegate(extendedHandle.handle, marshalledSurfaceInfo, &surfaceFormatCount, marshalledSurfaceFormats);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -650,7 +650,7 @@ namespace SharpVk.Khronos
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Khronos.DisplayProperties2* marshalledProperties = default(SharpVk.Interop.Khronos.DisplayProperties2*);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Khronos.VkPhysicalDeviceGetDisplayProperties2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetDisplayProperties2Delegate>("vkGetPhysicalDeviceDisplayProperties2KHR", "instance");
+                SharpVk.Interop.Khronos.VkPhysicalDeviceGetDisplayProperties2Delegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceDisplayProperties2KHR;
                 Result methodResult = commandDelegate(extendedHandle.handle, &propertyCount, marshalledProperties);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -694,7 +694,7 @@ namespace SharpVk.Khronos
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Khronos.DisplayPlaneProperties2* marshalledProperties = default(SharpVk.Interop.Khronos.DisplayPlaneProperties2*);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Khronos.VkPhysicalDeviceGetDisplayPlaneProperties2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetDisplayPlaneProperties2Delegate>("vkGetPhysicalDeviceDisplayPlaneProperties2KHR", "instance");
+                SharpVk.Interop.Khronos.VkPhysicalDeviceGetDisplayPlaneProperties2Delegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceDisplayPlaneProperties2KHR;
                 Result methodResult = commandDelegate(extendedHandle.handle, &propertyCount, marshalledProperties);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -738,7 +738,7 @@ namespace SharpVk.Khronos
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Khronos.DisplayModeProperties2* marshalledProperties = default(SharpVk.Interop.Khronos.DisplayModeProperties2*);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Khronos.VkPhysicalDeviceGetDisplayModeProperties2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetDisplayModeProperties2Delegate>("vkGetDisplayModeProperties2KHR", "instance");
+                SharpVk.Interop.Khronos.VkPhysicalDeviceGetDisplayModeProperties2Delegate commandDelegate = commandCache.Cache.vkGetDisplayModeProperties2KHR;
                 Result methodResult = commandDelegate(extendedHandle.handle, display?.handle ?? default(SharpVk.Interop.Khronos.Display), &propertyCount, marshalledProperties);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -784,7 +784,7 @@ namespace SharpVk.Khronos
                 commandCache = extendedHandle.commandCache;
                 marshalledDisplayPlaneInfo = (SharpVk.Interop.Khronos.DisplayPlaneInfo2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.DisplayPlaneInfo2>());
                 displayPlaneInfo.MarshalTo(marshalledDisplayPlaneInfo);
-                SharpVk.Interop.Khronos.VkPhysicalDeviceGetDisplayPlaneCapabilities2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkPhysicalDeviceGetDisplayPlaneCapabilities2Delegate>("vkGetDisplayPlaneCapabilities2KHR", "instance");
+                SharpVk.Interop.Khronos.VkPhysicalDeviceGetDisplayPlaneCapabilities2Delegate commandDelegate = commandCache.Cache.vkGetDisplayPlaneCapabilities2KHR;
                 Result methodResult = commandDelegate(extendedHandle.handle, marshalledDisplayPlaneInfo, &marshalledCapabilities);
                 if (SharpVkException.IsError(methodResult))
                 {

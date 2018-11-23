@@ -48,7 +48,7 @@ namespace SharpVk.NVidia
                 commandCache = extendedHandle.commandCache;
                 marshalledDataSize = dataSize;
                 marshalledData = (byte*)(Interop.HeapUtil.Allocate<byte>(dataSize));
-                SharpVk.Interop.NVidia.VkPipelineGetRayTracingShaderGroupHandlesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.VkPipelineGetRayTracingShaderGroupHandlesDelegate>("vkGetRayTracingShaderGroupHandlesNV", "device");
+                SharpVk.Interop.NVidia.VkPipelineGetRayTracingShaderGroupHandlesDelegate commandDelegate = commandCache.Cache.vkGetRayTracingShaderGroupHandlesNV;
                 Result methodResult = commandDelegate(extendedHandle.parent.handle, extendedHandle.handle, firstGroup, groupCount, marshalledDataSize, marshalledData);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -87,7 +87,7 @@ namespace SharpVk.NVidia
             {
                 CommandCache commandCache = default(CommandCache);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.NVidia.VkPipelineCompileDeferredDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.VkPipelineCompileDeferredDelegate>("vkCompileDeferredNV", "device");
+                SharpVk.Interop.NVidia.VkPipelineCompileDeferredDelegate commandDelegate = commandCache.Cache.vkCompileDeferredNV;
                 Result methodResult = commandDelegate(extendedHandle.parent.handle, extendedHandle.handle, shader);
                 if (SharpVkException.IsError(methodResult))
                 {

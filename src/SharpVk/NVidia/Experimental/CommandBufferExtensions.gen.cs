@@ -46,7 +46,7 @@ namespace SharpVk.NVidia.Experimental
                 commandCache = extendedHandle.commandCache;
                 marshalledProcessCommandsInfo = (SharpVk.Interop.NVidia.Experimental.CommandProcessCommandsInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.Experimental.CommandProcessCommandsInfo>());
                 processCommandsInfo.MarshalTo(marshalledProcessCommandsInfo);
-                SharpVk.Interop.NVidia.Experimental.VkCommandBufferProcessCommandsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.Experimental.VkCommandBufferProcessCommandsDelegate>("vkCmdProcessCommandsNVX", "device");
+                SharpVk.Interop.NVidia.Experimental.VkCommandBufferProcessCommandsDelegate commandDelegate = commandCache.Cache.vkCmdProcessCommandsNVX;
                 commandDelegate(extendedHandle.handle, marshalledProcessCommandsInfo);
             }
             finally
@@ -70,7 +70,7 @@ namespace SharpVk.NVidia.Experimental
                 commandCache = extendedHandle.commandCache;
                 marshalledReserveSpaceInfo = (SharpVk.Interop.NVidia.Experimental.CommandReserveSpaceForCommandsInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.Experimental.CommandReserveSpaceForCommandsInfo>());
                 reserveSpaceInfo.MarshalTo(marshalledReserveSpaceInfo);
-                SharpVk.Interop.NVidia.Experimental.VkCommandBufferReserveSpaceForCommandsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.Experimental.VkCommandBufferReserveSpaceForCommandsDelegate>("vkCmdReserveSpaceForCommandsNVX", "device");
+                SharpVk.Interop.NVidia.Experimental.VkCommandBufferReserveSpaceForCommandsDelegate commandDelegate = commandCache.Cache.vkCmdReserveSpaceForCommandsNVX;
                 commandDelegate(extendedHandle.handle, marshalledReserveSpaceInfo);
             }
             finally

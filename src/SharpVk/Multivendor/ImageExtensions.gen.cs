@@ -45,7 +45,7 @@ namespace SharpVk.Multivendor
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Multivendor.ImageDrmFormatModifierProperties marshalledProperties = default(SharpVk.Interop.Multivendor.ImageDrmFormatModifierProperties);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Multivendor.VkImageGetDrmFormatModifierPropertiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkImageGetDrmFormatModifierPropertiesDelegate>("vkGetImageDrmFormatModifierPropertiesEXT", "device");
+                SharpVk.Interop.Multivendor.VkImageGetDrmFormatModifierPropertiesDelegate commandDelegate = commandCache.Cache.vkGetImageDrmFormatModifierPropertiesEXT;
                 Result methodResult = commandDelegate(extendedHandle.parent.handle, extendedHandle.handle, &marshalledProperties);
                 if (SharpVkException.IsError(methodResult))
                 {

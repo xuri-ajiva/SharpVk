@@ -71,7 +71,7 @@ namespace SharpVk.Khronos
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.Khronos.VkSwapchainKHRDestroyDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkSwapchainKHRDestroyDelegate>("vkDestroySwapchainKHR", "device");
+                SharpVk.Interop.Khronos.VkSwapchainKHRDestroyDelegate commandDelegate = commandCache.Cache.vkDestroySwapchainKHR;
                 commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
@@ -90,7 +90,7 @@ namespace SharpVk.Khronos
                 SharpVk.Image[] result = default(SharpVk.Image[]);
                 uint swapchainImageCount = default(uint);
                 SharpVk.Interop.Image* marshalledSwapchainImages = default(SharpVk.Interop.Image*);
-                SharpVk.Interop.Khronos.VkSwapchainKHRGetImagesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkSwapchainKHRGetImagesDelegate>("vkGetSwapchainImagesKHR", "device");
+                SharpVk.Interop.Khronos.VkSwapchainKHRGetImagesDelegate commandDelegate = commandCache.Cache.vkGetSwapchainImagesKHR;
                 Result methodResult = commandDelegate(this.parent.handle, this.handle, &swapchainImageCount, marshalledSwapchainImages);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -138,7 +138,7 @@ namespace SharpVk.Khronos
             {
                 uint result = default(uint);
                 uint marshalledImageIndex = default(uint);
-                SharpVk.Interop.Khronos.VkSwapchainKHRAcquireNextImageDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkSwapchainKHRAcquireNextImageDelegate>("vkAcquireNextImageKHR", "device");
+                SharpVk.Interop.Khronos.VkSwapchainKHRAcquireNextImageDelegate commandDelegate = commandCache.Cache.vkAcquireNextImageKHR;
                 Result methodResult = commandDelegate(this.parent.handle, this.handle, timeout, semaphore?.handle ?? default(SharpVk.Interop.Semaphore), fence?.handle ?? default(SharpVk.Interop.Fence), &marshalledImageIndex);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -161,7 +161,7 @@ namespace SharpVk.Khronos
             try
             {
                 Result result = default(Result);
-                SharpVk.Interop.Khronos.VkSwapchainKHRGetStatusDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkSwapchainKHRGetStatusDelegate>("vkGetSwapchainStatusKHR", "device");
+                SharpVk.Interop.Khronos.VkSwapchainKHRGetStatusDelegate commandDelegate = commandCache.Cache.vkGetSwapchainStatusKHR;
                 result = commandDelegate(this.parent.handle, this.handle);
                 if (SharpVkException.IsError(result))
                 {

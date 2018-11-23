@@ -43,7 +43,7 @@ namespace SharpVk.Multivendor
             {
                 CommandCache commandCache = default(CommandCache);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Multivendor.VkPhysicalDeviceReleaseDisplayDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkPhysicalDeviceReleaseDisplayDelegate>("vkReleaseDisplayEXT", "instance");
+                SharpVk.Interop.Multivendor.VkPhysicalDeviceReleaseDisplayDelegate commandDelegate = commandCache.Cache.vkReleaseDisplayEXT;
                 Result methodResult = commandDelegate(extendedHandle.handle, display?.handle ?? default(SharpVk.Interop.Khronos.Display));
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -77,7 +77,7 @@ namespace SharpVk.Multivendor
                 commandCache = extendedHandle.commandCache;
                 marshalledDpy = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
                 *marshalledDpy = dpy;
-                SharpVk.Interop.Multivendor.VkPhysicalDeviceAcquireXlibDisplayDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkPhysicalDeviceAcquireXlibDisplayDelegate>("vkAcquireXlibDisplayEXT", "instance");
+                SharpVk.Interop.Multivendor.VkPhysicalDeviceAcquireXlibDisplayDelegate commandDelegate = commandCache.Cache.vkAcquireXlibDisplayEXT;
                 Result methodResult = commandDelegate(extendedHandle.handle, marshalledDpy, display?.handle ?? default(SharpVk.Interop.Khronos.Display));
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -107,7 +107,7 @@ namespace SharpVk.Multivendor
                 commandCache = extendedHandle.commandCache;
                 marshalledDpy = (IntPtr*)(Interop.HeapUtil.Allocate<IntPtr>());
                 *marshalledDpy = dpy;
-                SharpVk.Interop.Multivendor.VkPhysicalDeviceGetRandROutputDisplayDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkPhysicalDeviceGetRandROutputDisplayDelegate>("vkGetRandROutputDisplayEXT", "instance");
+                SharpVk.Interop.Multivendor.VkPhysicalDeviceGetRandROutputDisplayDelegate commandDelegate = commandCache.Cache.vkGetRandROutputDisplayEXT;
                 Result methodResult = commandDelegate(extendedHandle.handle, marshalledDpy, rrOutput, &marshalledDisplay);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -136,7 +136,7 @@ namespace SharpVk.Multivendor
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Multivendor.SurfaceCapabilities2 marshalledSurfaceCapabilities = default(SharpVk.Interop.Multivendor.SurfaceCapabilities2);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Multivendor.VkPhysicalDeviceGetSurfaceCapabilities2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkPhysicalDeviceGetSurfaceCapabilities2Delegate>("vkGetPhysicalDeviceSurfaceCapabilities2EXT", "instance");
+                SharpVk.Interop.Multivendor.VkPhysicalDeviceGetSurfaceCapabilities2Delegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceSurfaceCapabilities2EXT;
                 Result methodResult = commandDelegate(extendedHandle.handle, surface?.handle ?? default(SharpVk.Interop.Khronos.Surface), &marshalledSurfaceCapabilities);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -165,7 +165,7 @@ namespace SharpVk.Multivendor
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Multivendor.MultisampleProperties marshalledMultisampleProperties = default(SharpVk.Interop.Multivendor.MultisampleProperties);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Multivendor.VkPhysicalDeviceGetMultisamplePropertiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkPhysicalDeviceGetMultisamplePropertiesDelegate>("vkGetPhysicalDeviceMultisamplePropertiesEXT", "device");
+                SharpVk.Interop.Multivendor.VkPhysicalDeviceGetMultisamplePropertiesDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceMultisamplePropertiesEXT;
                 commandDelegate(extendedHandle.handle, samples, &marshalledMultisampleProperties);
                 result = SharpVk.Multivendor.MultisampleProperties.MarshalFrom(&marshalledMultisampleProperties);
                 return result;
@@ -191,7 +191,7 @@ namespace SharpVk.Multivendor
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Multivendor.TimeDomain* marshalledTimeDomains = default(SharpVk.Multivendor.TimeDomain*);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Multivendor.VkPhysicalDeviceGetCalibrateableTimeDomainsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkPhysicalDeviceGetCalibrateableTimeDomainsDelegate>("vkGetPhysicalDeviceCalibrateableTimeDomainsEXT", "device");
+                SharpVk.Interop.Multivendor.VkPhysicalDeviceGetCalibrateableTimeDomainsDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceCalibrateableTimeDomainsEXT;
                 Result methodResult = commandDelegate(extendedHandle.handle, &timeDomainCount, marshalledTimeDomains);
                 if (SharpVkException.IsError(methodResult))
                 {

@@ -67,7 +67,7 @@ namespace SharpVk.Khronos
                         marshalledDescriptorWrites = fieldPointer;
                     }
                 }
-                SharpVk.Interop.Khronos.VkCommandBufferPushDescriptorSetDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkCommandBufferPushDescriptorSetDelegate>("vkCmdPushDescriptorSetKHR", "device");
+                SharpVk.Interop.Khronos.VkCommandBufferPushDescriptorSetDelegate commandDelegate = commandCache.Cache.vkCmdPushDescriptorSetKHR;
                 commandDelegate(extendedHandle.handle, pipelineBindPoint, layout?.handle ?? default(SharpVk.Interop.PipelineLayout), set, (uint)(Interop.HeapUtil.GetLength(descriptorWrites)), marshalledDescriptorWrites);
             }
             finally
@@ -89,7 +89,7 @@ namespace SharpVk.Khronos
             {
                 CommandCache commandCache = default(CommandCache);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Khronos.VkCommandBufferPushDescriptorSetWithTemplateDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkCommandBufferPushDescriptorSetWithTemplateDelegate>("vkCmdPushDescriptorSetWithTemplateKHR", "device");
+                SharpVk.Interop.Khronos.VkCommandBufferPushDescriptorSetWithTemplateDelegate commandDelegate = commandCache.Cache.vkCmdPushDescriptorSetWithTemplateKHR;
                 commandDelegate(extendedHandle.handle, descriptorUpdateTemplate?.handle ?? default(SharpVk.Interop.DescriptorUpdateTemplate), layout?.handle ?? default(SharpVk.Interop.PipelineLayout), set, data.ToPointer());
             }
             finally
@@ -119,7 +119,7 @@ namespace SharpVk.Khronos
                 marshalledSubpassBeginInfo->SType = StructureType.SubpassBeginInfo;
                 marshalledSubpassBeginInfo->Next = nextPointer;
                 marshalledSubpassBeginInfo->Contents = contents;
-                SharpVk.Interop.Khronos.VkCommandBufferBeginRenderPass2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkCommandBufferBeginRenderPass2Delegate>("vkCmdBeginRenderPass2KHR", "device");
+                SharpVk.Interop.Khronos.VkCommandBufferBeginRenderPass2Delegate commandDelegate = commandCache.Cache.vkCmdBeginRenderPass2KHR;
                 commandDelegate(extendedHandle.handle, marshalledRenderPassBegin, marshalledSubpassBeginInfo);
             }
             finally
@@ -146,7 +146,7 @@ namespace SharpVk.Khronos
                 subpassBeginInfo.MarshalTo(marshalledSubpassBeginInfo);
                 marshalledSubpassEndInfo = (SharpVk.Interop.Khronos.SubpassEndInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.SubpassEndInfo>());
                 subpassEndInfo.MarshalTo(marshalledSubpassEndInfo);
-                SharpVk.Interop.Khronos.VkCommandBufferNextSubpass2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkCommandBufferNextSubpass2Delegate>("vkCmdNextSubpass2KHR", "device");
+                SharpVk.Interop.Khronos.VkCommandBufferNextSubpass2Delegate commandDelegate = commandCache.Cache.vkCmdNextSubpass2KHR;
                 commandDelegate(extendedHandle.handle, marshalledSubpassBeginInfo, marshalledSubpassEndInfo);
             }
             finally
@@ -172,7 +172,7 @@ namespace SharpVk.Khronos
                 subpassEndInfo = (SharpVk.Interop.Khronos.SubpassEndInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.SubpassEndInfo>());
                 subpassEndInfo->SType = StructureType.SubpassEndInfo;
                 subpassEndInfo->Next = nextPointer;
-                SharpVk.Interop.Khronos.VkCommandBufferEndRenderPass2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkCommandBufferEndRenderPass2Delegate>("vkCmdEndRenderPass2KHR", "device");
+                SharpVk.Interop.Khronos.VkCommandBufferEndRenderPass2Delegate commandDelegate = commandCache.Cache.vkCmdEndRenderPass2KHR;
                 commandDelegate(extendedHandle.handle, subpassEndInfo);
             }
             finally
@@ -193,7 +193,7 @@ namespace SharpVk.Khronos
             {
                 CommandCache commandCache = default(CommandCache);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Khronos.VkCommandBufferDrawIndirectCountDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkCommandBufferDrawIndirectCountDelegate>("vkCmdDrawIndirectCountKHR", "device");
+                SharpVk.Interop.Khronos.VkCommandBufferDrawIndirectCountDelegate commandDelegate = commandCache.Cache.vkCmdDrawIndirectCountKHR;
                 commandDelegate(extendedHandle.handle, buffer?.handle ?? default(SharpVk.Interop.Buffer), offset, countBuffer?.handle ?? default(SharpVk.Interop.Buffer), countBufferOffset, maxDrawCount, stride);
             }
             finally
@@ -214,7 +214,7 @@ namespace SharpVk.Khronos
             {
                 CommandCache commandCache = default(CommandCache);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Khronos.VkCommandBufferDrawIndexedIndirectCountDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkCommandBufferDrawIndexedIndirectCountDelegate>("vkCmdDrawIndexedIndirectCountKHR", "device");
+                SharpVk.Interop.Khronos.VkCommandBufferDrawIndexedIndirectCountDelegate commandDelegate = commandCache.Cache.vkCmdDrawIndexedIndirectCountKHR;
                 commandDelegate(extendedHandle.handle, buffer?.handle ?? default(SharpVk.Interop.Buffer), offset, countBuffer?.handle ?? default(SharpVk.Interop.Buffer), countBufferOffset, maxDrawCount, stride);
             }
             finally

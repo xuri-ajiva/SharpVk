@@ -80,7 +80,7 @@ namespace SharpVk.Nintendo
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.Nintendo.VkInstanceCreateViSurfaceDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Nintendo.VkInstanceCreateViSurfaceDelegate>("vkCreateViSurfaceNN", "instance");
+                SharpVk.Interop.Nintendo.VkInstanceCreateViSurfaceDelegate commandDelegate = commandCache.Cache.vkCreateViSurfaceNN;
                 Result methodResult = commandDelegate(extendedHandle.handle, marshalledCreateInfo, marshalledAllocator, &marshalledSurface);
                 if (SharpVkException.IsError(methodResult))
                 {

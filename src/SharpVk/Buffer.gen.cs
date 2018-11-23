@@ -60,7 +60,7 @@ namespace SharpVk
         {
             try
             {
-                SharpVk.Interop.VkBufferBindMemoryDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkBufferBindMemoryDelegate>("vkBindBufferMemory", "");
+                SharpVk.Interop.VkBufferBindMemoryDelegate commandDelegate = commandCache.Cache.vkBindBufferMemory;
                 Result methodResult = commandDelegate(this.parent.handle, this.handle, memory?.handle ?? default(SharpVk.Interop.DeviceMemory), memoryOffset);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -82,7 +82,7 @@ namespace SharpVk
             {
                 SharpVk.MemoryRequirements result = default(SharpVk.MemoryRequirements);
                 SharpVk.MemoryRequirements marshalledMemoryRequirements = default(SharpVk.MemoryRequirements);
-                SharpVk.Interop.VkBufferGetMemoryRequirementsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkBufferGetMemoryRequirementsDelegate>("vkGetBufferMemoryRequirements", "");
+                SharpVk.Interop.VkBufferGetMemoryRequirementsDelegate commandDelegate = commandCache.Cache.vkGetBufferMemoryRequirements;
                 commandDelegate(this.parent.handle, this.handle, &marshalledMemoryRequirements);
                 result = marshalledMemoryRequirements;
                 return result;
@@ -114,7 +114,7 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.VkBufferDestroyDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkBufferDestroyDelegate>("vkDestroyBuffer", "");
+                SharpVk.Interop.VkBufferDestroyDelegate commandDelegate = commandCache.Cache.vkDestroyBuffer;
                 commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally

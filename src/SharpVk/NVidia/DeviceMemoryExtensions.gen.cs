@@ -45,7 +45,7 @@ namespace SharpVk.NVidia
                 CommandCache commandCache = default(CommandCache);
                 IntPtr marshalledHandle = default(IntPtr);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.NVidia.VkDeviceMemoryGetWin32HandleDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.VkDeviceMemoryGetWin32HandleDelegate>("vkGetMemoryWin32HandleNV", "device");
+                SharpVk.Interop.NVidia.VkDeviceMemoryGetWin32HandleDelegate commandDelegate = commandCache.Cache.vkGetMemoryWin32HandleNV;
                 Result methodResult = commandDelegate(extendedHandle.parent.handle, extendedHandle.handle, handleType, &marshalledHandle);
                 if (SharpVkException.IsError(methodResult))
                 {

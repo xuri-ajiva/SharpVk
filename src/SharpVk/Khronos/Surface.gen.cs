@@ -71,7 +71,7 @@ namespace SharpVk.Khronos
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.Khronos.VkSurfaceKHRDestroyDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkSurfaceKHRDestroyDelegate>("vkDestroySurfaceKHR", "instance");
+                SharpVk.Interop.Khronos.VkSurfaceKHRDestroyDelegate commandDelegate = commandCache.Cache.vkDestroySurfaceKHR;
                 commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally

@@ -45,7 +45,7 @@ namespace SharpVk.Google
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Google.RefreshCycleDuration marshalledDisplayTimingProperties = default(SharpVk.Google.RefreshCycleDuration);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Google.VkSwapchainKHRGetRefreshCycleDurationDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Google.VkSwapchainKHRGetRefreshCycleDurationDelegate>("vkGetRefreshCycleDurationGOOGLE", "device");
+                SharpVk.Interop.Google.VkSwapchainKHRGetRefreshCycleDurationDelegate commandDelegate = commandCache.Cache.vkGetRefreshCycleDurationGOOGLE;
                 Result methodResult = commandDelegate(extendedHandle.parent.handle, extendedHandle.handle, &marshalledDisplayTimingProperties);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -75,7 +75,7 @@ namespace SharpVk.Google
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Google.PastPresentationTiming* marshalledPresentationTimings = default(SharpVk.Google.PastPresentationTiming*);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Google.VkSwapchainKHRGetPastPresentationTimingDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Google.VkSwapchainKHRGetPastPresentationTimingDelegate>("vkGetPastPresentationTimingGOOGLE", "device");
+                SharpVk.Interop.Google.VkSwapchainKHRGetPastPresentationTimingDelegate commandDelegate = commandCache.Cache.vkGetPastPresentationTimingGOOGLE;
                 Result methodResult = commandDelegate(extendedHandle.parent.handle, extendedHandle.handle, &presentationTimingCount, marshalledPresentationTimings);
                 if (SharpVkException.IsError(methodResult))
                 {

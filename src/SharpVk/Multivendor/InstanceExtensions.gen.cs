@@ -86,7 +86,7 @@ namespace SharpVk.Multivendor
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.Multivendor.VkInstanceCreateDebugReportCallbackDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkInstanceCreateDebugReportCallbackDelegate>("vkCreateDebugReportCallbackEXT", "instance");
+                SharpVk.Interop.Multivendor.VkInstanceCreateDebugReportCallbackDelegate commandDelegate = commandCache.Cache.vkCreateDebugReportCallbackEXT;
                 Result methodResult = commandDelegate(extendedHandle.handle, marshalledCreateInfo, marshalledAllocator, &marshalledCallback);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -113,7 +113,7 @@ namespace SharpVk.Multivendor
             {
                 CommandCache commandCache = default(CommandCache);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Multivendor.VkInstanceDebugReportMessageDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkInstanceDebugReportMessageDelegate>("vkDebugReportMessageEXT", "instance");
+                SharpVk.Interop.Multivendor.VkInstanceDebugReportMessageDelegate commandDelegate = commandCache.Cache.vkDebugReportMessageEXT;
                 commandDelegate(extendedHandle.handle, flags, objectType, @object, location, messageCode, Interop.HeapUtil.MarshalTo(layerPrefix), Interop.HeapUtil.MarshalTo(message));
             }
             finally
@@ -170,7 +170,7 @@ namespace SharpVk.Multivendor
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.Multivendor.VkInstanceCreateDebugUtilsMessengerDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkInstanceCreateDebugUtilsMessengerDelegate>("vkCreateDebugUtilsMessengerEXT", "instance");
+                SharpVk.Interop.Multivendor.VkInstanceCreateDebugUtilsMessengerDelegate commandDelegate = commandCache.Cache.vkCreateDebugUtilsMessengerEXT;
                 Result methodResult = commandDelegate(extendedHandle.handle, marshalledCreateInfo, marshalledAllocator, &marshalledMessenger);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -200,7 +200,7 @@ namespace SharpVk.Multivendor
                 commandCache = extendedHandle.commandCache;
                 marshalledCallbackData = (SharpVk.Interop.Multivendor.DebugUtilsMessengerCallbackData*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.DebugUtilsMessengerCallbackData>());
                 callbackData.MarshalTo(marshalledCallbackData);
-                SharpVk.Interop.Multivendor.VkInstanceSubmitDebugUtilsMessageDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkInstanceSubmitDebugUtilsMessageDelegate>("vkSubmitDebugUtilsMessageEXT", "instance");
+                SharpVk.Interop.Multivendor.VkInstanceSubmitDebugUtilsMessageDelegate commandDelegate = commandCache.Cache.vkSubmitDebugUtilsMessageEXT;
                 commandDelegate(extendedHandle.handle, messageSeverity, messageTypes, marshalledCallbackData);
             }
             finally

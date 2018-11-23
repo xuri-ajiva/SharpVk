@@ -58,7 +58,7 @@ namespace SharpVk
             {
                 SharpVk.PhysicalDeviceFeatures result = default(SharpVk.PhysicalDeviceFeatures);
                 SharpVk.Interop.PhysicalDeviceFeatures marshalledFeatures = default(SharpVk.Interop.PhysicalDeviceFeatures);
-                SharpVk.Interop.VkPhysicalDeviceGetFeaturesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkPhysicalDeviceGetFeaturesDelegate>("vkGetPhysicalDeviceFeatures", "");
+                SharpVk.Interop.VkPhysicalDeviceGetFeaturesDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceFeatures;
                 commandDelegate(this.handle, &marshalledFeatures);
                 result = SharpVk.PhysicalDeviceFeatures.MarshalFrom(&marshalledFeatures);
                 return result;
@@ -78,7 +78,7 @@ namespace SharpVk
             {
                 SharpVk.FormatProperties result = default(SharpVk.FormatProperties);
                 SharpVk.FormatProperties marshalledFormatProperties = default(SharpVk.FormatProperties);
-                SharpVk.Interop.VkPhysicalDeviceGetFormatPropertiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkPhysicalDeviceGetFormatPropertiesDelegate>("vkGetPhysicalDeviceFormatProperties", "");
+                SharpVk.Interop.VkPhysicalDeviceGetFormatPropertiesDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceFormatProperties;
                 commandDelegate(this.handle, format, &marshalledFormatProperties);
                 result = marshalledFormatProperties;
                 return result;
@@ -107,7 +107,7 @@ namespace SharpVk
                 {
                     marshalledFlags = default(SharpVk.ImageCreateFlags);
                 }
-                SharpVk.Interop.VkPhysicalDeviceGetImageFormatPropertiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkPhysicalDeviceGetImageFormatPropertiesDelegate>("vkGetPhysicalDeviceImageFormatProperties", "");
+                SharpVk.Interop.VkPhysicalDeviceGetImageFormatPropertiesDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceImageFormatProperties;
                 Result methodResult = commandDelegate(this.handle, format, type, tiling, usage, marshalledFlags, &marshalledImageFormatProperties);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -131,7 +131,7 @@ namespace SharpVk
             {
                 SharpVk.PhysicalDeviceProperties result = default(SharpVk.PhysicalDeviceProperties);
                 SharpVk.Interop.PhysicalDeviceProperties marshalledProperties = default(SharpVk.Interop.PhysicalDeviceProperties);
-                SharpVk.Interop.VkPhysicalDeviceGetPropertiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkPhysicalDeviceGetPropertiesDelegate>("vkGetPhysicalDeviceProperties", "");
+                SharpVk.Interop.VkPhysicalDeviceGetPropertiesDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceProperties;
                 commandDelegate(this.handle, &marshalledProperties);
                 result = SharpVk.PhysicalDeviceProperties.MarshalFrom(&marshalledProperties);
                 return result;
@@ -152,7 +152,7 @@ namespace SharpVk
                 SharpVk.QueueFamilyProperties[] result = default(SharpVk.QueueFamilyProperties[]);
                 uint queueFamilyPropertyCount = default(uint);
                 SharpVk.QueueFamilyProperties* marshalledQueueFamilyProperties = default(SharpVk.QueueFamilyProperties*);
-                SharpVk.Interop.VkPhysicalDeviceGetQueueFamilyPropertiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkPhysicalDeviceGetQueueFamilyPropertiesDelegate>("vkGetPhysicalDeviceQueueFamilyProperties", "");
+                SharpVk.Interop.VkPhysicalDeviceGetQueueFamilyPropertiesDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceQueueFamilyProperties;
                 commandDelegate(this.handle, &queueFamilyPropertyCount, marshalledQueueFamilyProperties);
                 marshalledQueueFamilyProperties = (SharpVk.QueueFamilyProperties*)(Interop.HeapUtil.Allocate<SharpVk.QueueFamilyProperties>((uint)(queueFamilyPropertyCount)));
                 commandDelegate(this.handle, &queueFamilyPropertyCount, marshalledQueueFamilyProperties);
@@ -186,7 +186,7 @@ namespace SharpVk
             {
                 SharpVk.PhysicalDeviceMemoryProperties result = default(SharpVk.PhysicalDeviceMemoryProperties);
                 SharpVk.Interop.PhysicalDeviceMemoryProperties marshalledMemoryProperties = default(SharpVk.Interop.PhysicalDeviceMemoryProperties);
-                SharpVk.Interop.VkPhysicalDeviceGetMemoryPropertiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkPhysicalDeviceGetMemoryPropertiesDelegate>("vkGetPhysicalDeviceMemoryProperties", "");
+                SharpVk.Interop.VkPhysicalDeviceGetMemoryPropertiesDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceMemoryProperties;
                 commandDelegate(this.handle, &marshalledMemoryProperties);
                 result = SharpVk.PhysicalDeviceMemoryProperties.MarshalFrom(&marshalledMemoryProperties);
                 return result;
@@ -592,7 +592,7 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.VkPhysicalDeviceCreateDeviceDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkPhysicalDeviceCreateDeviceDelegate>("vkCreateDevice", "");
+                SharpVk.Interop.VkPhysicalDeviceCreateDeviceDelegate commandDelegate = commandCache.Cache.vkCreateDevice;
                 Result methodResult = commandDelegate(this.handle, marshalledCreateInfo, marshalledAllocator, &marshalledDevice);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -617,7 +617,7 @@ namespace SharpVk
                 SharpVk.ExtensionProperties[] result = default(SharpVk.ExtensionProperties[]);
                 uint propertyCount = default(uint);
                 SharpVk.Interop.ExtensionProperties* marshalledProperties = default(SharpVk.Interop.ExtensionProperties*);
-                SharpVk.Interop.VkPhysicalDeviceEnumerateDeviceExtensionPropertiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkPhysicalDeviceEnumerateDeviceExtensionPropertiesDelegate>("vkEnumerateDeviceExtensionProperties", "");
+                SharpVk.Interop.VkPhysicalDeviceEnumerateDeviceExtensionPropertiesDelegate commandDelegate = commandCache.Cache.vkEnumerateDeviceExtensionProperties;
                 Result methodResult = commandDelegate(this.handle, Interop.HeapUtil.MarshalTo(layerName), &propertyCount, marshalledProperties);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -656,7 +656,7 @@ namespace SharpVk
                 SharpVk.LayerProperties[] result = default(SharpVk.LayerProperties[]);
                 uint propertyCount = default(uint);
                 SharpVk.Interop.LayerProperties* marshalledProperties = default(SharpVk.Interop.LayerProperties*);
-                SharpVk.Interop.VkPhysicalDeviceEnumerateDeviceLayerPropertiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkPhysicalDeviceEnumerateDeviceLayerPropertiesDelegate>("vkEnumerateDeviceLayerProperties", "");
+                SharpVk.Interop.VkPhysicalDeviceEnumerateDeviceLayerPropertiesDelegate commandDelegate = commandCache.Cache.vkEnumerateDeviceLayerProperties;
                 Result methodResult = commandDelegate(this.handle, &propertyCount, marshalledProperties);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -695,7 +695,7 @@ namespace SharpVk
                 SharpVk.SparseImageFormatProperties[] result = default(SharpVk.SparseImageFormatProperties[]);
                 uint propertyCount = default(uint);
                 SharpVk.SparseImageFormatProperties* marshalledProperties = default(SharpVk.SparseImageFormatProperties*);
-                SharpVk.Interop.VkPhysicalDeviceGetSparseImageFormatPropertiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkPhysicalDeviceGetSparseImageFormatPropertiesDelegate>("vkGetPhysicalDeviceSparseImageFormatProperties", "");
+                SharpVk.Interop.VkPhysicalDeviceGetSparseImageFormatPropertiesDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceSparseImageFormatProperties;
                 commandDelegate(this.handle, format, type, samples, usage, tiling, &propertyCount, marshalledProperties);
                 marshalledProperties = (SharpVk.SparseImageFormatProperties*)(Interop.HeapUtil.Allocate<SharpVk.SparseImageFormatProperties>((uint)(propertyCount)));
                 commandDelegate(this.handle, format, type, samples, usage, tiling, &propertyCount, marshalledProperties);
@@ -729,7 +729,7 @@ namespace SharpVk
             {
                 SharpVk.PhysicalDeviceFeatures2 result = default(SharpVk.PhysicalDeviceFeatures2);
                 SharpVk.Interop.PhysicalDeviceFeatures2 marshalledFeatures = default(SharpVk.Interop.PhysicalDeviceFeatures2);
-                SharpVk.Interop.VkPhysicalDeviceGetFeatures2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkPhysicalDeviceGetFeatures2Delegate>("vkGetPhysicalDeviceFeatures2", "");
+                SharpVk.Interop.VkPhysicalDeviceGetFeatures2Delegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceFeatures2;
                 commandDelegate(this.handle, &marshalledFeatures);
                 result = SharpVk.PhysicalDeviceFeatures2.MarshalFrom(&marshalledFeatures);
                 return result;
@@ -749,7 +749,7 @@ namespace SharpVk
             {
                 SharpVk.PhysicalDeviceProperties2 result = default(SharpVk.PhysicalDeviceProperties2);
                 SharpVk.Interop.PhysicalDeviceProperties2 marshalledProperties = default(SharpVk.Interop.PhysicalDeviceProperties2);
-                SharpVk.Interop.VkPhysicalDeviceGetProperties2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkPhysicalDeviceGetProperties2Delegate>("vkGetPhysicalDeviceProperties2", "");
+                SharpVk.Interop.VkPhysicalDeviceGetProperties2Delegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceProperties2;
                 commandDelegate(this.handle, &marshalledProperties);
                 result = SharpVk.PhysicalDeviceProperties2.MarshalFrom(&marshalledProperties);
                 return result;
@@ -769,7 +769,7 @@ namespace SharpVk
             {
                 SharpVk.FormatProperties2 result = default(SharpVk.FormatProperties2);
                 SharpVk.Interop.FormatProperties2 marshalledFormatProperties = default(SharpVk.Interop.FormatProperties2);
-                SharpVk.Interop.VkPhysicalDeviceGetFormatProperties2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkPhysicalDeviceGetFormatProperties2Delegate>("vkGetPhysicalDeviceFormatProperties2", "");
+                SharpVk.Interop.VkPhysicalDeviceGetFormatProperties2Delegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceFormatProperties2;
                 commandDelegate(this.handle, format, &marshalledFormatProperties);
                 result = SharpVk.FormatProperties2.MarshalFrom(&marshalledFormatProperties);
                 return result;
@@ -792,7 +792,7 @@ namespace SharpVk
                 SharpVk.Interop.ImageFormatProperties2 marshalledImageFormatProperties = default(SharpVk.Interop.ImageFormatProperties2);
                 marshalledImageFormatInfo = (SharpVk.Interop.PhysicalDeviceImageFormatInfo2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceImageFormatInfo2>());
                 imageFormatInfo.MarshalTo(marshalledImageFormatInfo);
-                SharpVk.Interop.VkPhysicalDeviceGetImageFormatProperties2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkPhysicalDeviceGetImageFormatProperties2Delegate>("vkGetPhysicalDeviceImageFormatProperties2", "");
+                SharpVk.Interop.VkPhysicalDeviceGetImageFormatProperties2Delegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceImageFormatProperties2;
                 Result methodResult = commandDelegate(this.handle, marshalledImageFormatInfo, &marshalledImageFormatProperties);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -817,7 +817,7 @@ namespace SharpVk
                 SharpVk.QueueFamilyProperties2[] result = default(SharpVk.QueueFamilyProperties2[]);
                 uint queueFamilyPropertyCount = default(uint);
                 SharpVk.Interop.QueueFamilyProperties2* marshalledQueueFamilyProperties = default(SharpVk.Interop.QueueFamilyProperties2*);
-                SharpVk.Interop.VkPhysicalDeviceGetQueueFamilyProperties2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkPhysicalDeviceGetQueueFamilyProperties2Delegate>("vkGetPhysicalDeviceQueueFamilyProperties2", "");
+                SharpVk.Interop.VkPhysicalDeviceGetQueueFamilyProperties2Delegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceQueueFamilyProperties2;
                 commandDelegate(this.handle, &queueFamilyPropertyCount, marshalledQueueFamilyProperties);
                 marshalledQueueFamilyProperties = (SharpVk.Interop.QueueFamilyProperties2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.QueueFamilyProperties2>((uint)(queueFamilyPropertyCount)));
                 commandDelegate(this.handle, &queueFamilyPropertyCount, marshalledQueueFamilyProperties);
@@ -851,7 +851,7 @@ namespace SharpVk
             {
                 SharpVk.PhysicalDeviceMemoryProperties2 result = default(SharpVk.PhysicalDeviceMemoryProperties2);
                 SharpVk.Interop.PhysicalDeviceMemoryProperties2 marshalledMemoryProperties = default(SharpVk.Interop.PhysicalDeviceMemoryProperties2);
-                SharpVk.Interop.VkPhysicalDeviceGetMemoryProperties2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkPhysicalDeviceGetMemoryProperties2Delegate>("vkGetPhysicalDeviceMemoryProperties2", "");
+                SharpVk.Interop.VkPhysicalDeviceGetMemoryProperties2Delegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceMemoryProperties2;
                 commandDelegate(this.handle, &marshalledMemoryProperties);
                 result = SharpVk.PhysicalDeviceMemoryProperties2.MarshalFrom(&marshalledMemoryProperties);
                 return result;
@@ -875,7 +875,7 @@ namespace SharpVk
                 SharpVk.Interop.SparseImageFormatProperties2* marshalledProperties = default(SharpVk.Interop.SparseImageFormatProperties2*);
                 marshalledFormatInfo = (SharpVk.Interop.PhysicalDeviceSparseImageFormatInfo2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceSparseImageFormatInfo2>());
                 formatInfo.MarshalTo(marshalledFormatInfo);
-                SharpVk.Interop.VkPhysicalDeviceGetSparseImageFormatProperties2Delegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkPhysicalDeviceGetSparseImageFormatProperties2Delegate>("vkGetPhysicalDeviceSparseImageFormatProperties2", "");
+                SharpVk.Interop.VkPhysicalDeviceGetSparseImageFormatProperties2Delegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceSparseImageFormatProperties2;
                 commandDelegate(this.handle, marshalledFormatInfo, &propertyCount, marshalledProperties);
                 marshalledProperties = (SharpVk.Interop.SparseImageFormatProperties2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.SparseImageFormatProperties2>((uint)(propertyCount)));
                 commandDelegate(this.handle, marshalledFormatInfo, &propertyCount, marshalledProperties);
@@ -912,7 +912,7 @@ namespace SharpVk
                 SharpVk.Interop.ExternalBufferProperties marshalledExternalBufferProperties = default(SharpVk.Interop.ExternalBufferProperties);
                 marshalledExternalBufferInfo = (SharpVk.Interop.PhysicalDeviceExternalBufferInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceExternalBufferInfo>());
                 externalBufferInfo.MarshalTo(marshalledExternalBufferInfo);
-                SharpVk.Interop.VkPhysicalDeviceGetExternalBufferPropertiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkPhysicalDeviceGetExternalBufferPropertiesDelegate>("vkGetPhysicalDeviceExternalBufferProperties", "");
+                SharpVk.Interop.VkPhysicalDeviceGetExternalBufferPropertiesDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceExternalBufferProperties;
                 commandDelegate(this.handle, marshalledExternalBufferInfo, &marshalledExternalBufferProperties);
                 result = SharpVk.ExternalBufferProperties.MarshalFrom(&marshalledExternalBufferProperties);
                 return result;
@@ -935,7 +935,7 @@ namespace SharpVk
                 SharpVk.Interop.ExternalFenceProperties marshalledExternalFenceProperties = default(SharpVk.Interop.ExternalFenceProperties);
                 marshalledExternalFenceInfo = (SharpVk.Interop.PhysicalDeviceExternalFenceInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceExternalFenceInfo>());
                 externalFenceInfo.MarshalTo(marshalledExternalFenceInfo);
-                SharpVk.Interop.VkPhysicalDeviceGetExternalFencePropertiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkPhysicalDeviceGetExternalFencePropertiesDelegate>("vkGetPhysicalDeviceExternalFenceProperties", "");
+                SharpVk.Interop.VkPhysicalDeviceGetExternalFencePropertiesDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceExternalFenceProperties;
                 commandDelegate(this.handle, marshalledExternalFenceInfo, &marshalledExternalFenceProperties);
                 result = SharpVk.ExternalFenceProperties.MarshalFrom(&marshalledExternalFenceProperties);
                 return result;
@@ -958,7 +958,7 @@ namespace SharpVk
                 SharpVk.Interop.ExternalSemaphoreProperties marshalledExternalSemaphoreProperties = default(SharpVk.Interop.ExternalSemaphoreProperties);
                 marshalledExternalSemaphoreInfo = (SharpVk.Interop.PhysicalDeviceExternalSemaphoreInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceExternalSemaphoreInfo>());
                 externalSemaphoreInfo.MarshalTo(marshalledExternalSemaphoreInfo);
-                SharpVk.Interop.VkPhysicalDeviceGetExternalSemaphorePropertiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkPhysicalDeviceGetExternalSemaphorePropertiesDelegate>("vkGetPhysicalDeviceExternalSemaphoreProperties", "");
+                SharpVk.Interop.VkPhysicalDeviceGetExternalSemaphorePropertiesDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceExternalSemaphoreProperties;
                 commandDelegate(this.handle, marshalledExternalSemaphoreInfo, &marshalledExternalSemaphoreProperties);
                 result = SharpVk.ExternalSemaphoreProperties.MarshalFrom(&marshalledExternalSemaphoreProperties);
                 return result;

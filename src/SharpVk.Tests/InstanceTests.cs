@@ -52,6 +52,8 @@ namespace SharpVk.Tests
 
             mockLookup.AddProcedure("vkEnumerateInstanceVersion", new SharpVk.Interop.VkInstanceEnumerateVersionDelegate(EnumerateInstanceVersion));
 
+            commandCache.Initialise();
+
             var result = Instance.EnumerateVersion(commandCache);
 
             Assert.AreEqual(1, callCount);
@@ -155,7 +157,12 @@ namespace SharpVk.Tests
                 return Result.Success;
             }
 
+            IntPtr GetProc(Interop.Instance instance, byte* name) => mockLookup.GetProcedureAddress(GetNullTerminatedString(name));
+
             mockLookup.AddProcedure("vkCreateInstance", new Interop.VkInstanceCreateDelegate(CreateInstance));
+            mockLookup.AddProcedure("vkGetInstanceProcAddr", new Interop.VkInstanceGetProcedureAddressDelegate(GetProc));
+
+            commandCache.Initialise();
 
             var result = Instance.Create(commandCache, layers, extensions, applicationInfo: applicationInfo);
 
@@ -204,6 +211,8 @@ namespace SharpVk.Tests
 
             mockLookup.AddProcedure("vkEnumerateInstanceExtensionProperties", new SharpVk.Interop.VkInstanceEnumerateExtensionPropertiesDelegate(EnumerateInstanceExtensionProperties));
 
+            commandCache.Initialise();
+
             var result = Instance.EnumerateExtensionProperties(commandCache, layer);
 
             Assert.AreEqual(2, callCount);
@@ -251,6 +260,8 @@ namespace SharpVk.Tests
             }
 
             mockLookup.AddProcedure("vkEnumerateInstanceLayerProperties", new SharpVk.Interop.VkInstanceEnumerateLayerPropertiesDelegate(EnumerateInstanceLayerProperties));
+
+            commandCache.Initialise();
 
             var result = Instance.EnumerateLayerProperties(commandCache);
 

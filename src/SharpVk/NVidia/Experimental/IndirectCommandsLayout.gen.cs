@@ -71,7 +71,7 @@ namespace SharpVk.NVidia.Experimental
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.NVidia.Experimental.VkIndirectCommandsLayoutNVXDestroyDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.Experimental.VkIndirectCommandsLayoutNVXDestroyDelegate>("vkDestroyIndirectCommandsLayoutNVX", "device");
+                SharpVk.Interop.NVidia.Experimental.VkIndirectCommandsLayoutNVXDestroyDelegate commandDelegate = commandCache.Cache.vkDestroyIndirectCommandsLayoutNVX;
                 commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally

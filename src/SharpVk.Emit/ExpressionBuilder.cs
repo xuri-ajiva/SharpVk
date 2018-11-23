@@ -125,6 +125,13 @@ namespace SharpVk.Emit
             this.writer.Write(")");
         }
 
+        public void EmitCastAs(string type, Action<ExpressionBuilder> target)
+        {
+            this.writer.Write($"((");
+            target(this.GetSubBuilder());
+            this.writer.Write(") as {type})");
+        }
+
         public void EmitStaticCall(string type, string method, params Action<ExpressionBuilder>[] arguments)
         {
             this.writer.Write($"{type}.{method}(");
@@ -156,11 +163,14 @@ namespace SharpVk.Emit
             this.writer.Write(")");
         }
 
-        public void EmitMember(Action<ExpressionBuilder> target, string member)
+        public void EmitMember(Action<ExpressionBuilder> target, params string[] members)
         {
             target(this.GetSubBuilder());
 
-            this.writer.Write($".{member}");
+            foreach (var member in members)
+            {
+                this.writer.Write($".{member}");
+            }
         }
 
         public void EmitCoalesceMember(Action<ExpressionBuilder> target, string member)
@@ -440,6 +450,11 @@ namespace SharpVk.Emit
             return builder => builder.EmitCast(type, target);
         }
 
+        public static Action<ExpressionBuilder> CastAs(string type, Action<ExpressionBuilder> target)
+        {
+            return builder => builder.EmitCastAs(type, target);
+        }
+
         public static Action<ExpressionBuilder> StaticCall(string type, string method, params Action<ExpressionBuilder>[] arguments)
         {
             return builder => builder.EmitStaticCall(type, method, arguments);
@@ -460,9 +475,9 @@ namespace SharpVk.Emit
             return builder => builder.EmitIndex(target, index);
         }
 
-        public static Action<ExpressionBuilder> Member(Action<ExpressionBuilder> target, string member)
+        public static Action<ExpressionBuilder> Member(Action<ExpressionBuilder> target, params string[] members)
         {
-            return builder => builder.EmitMember(target, member);
+            return builder => builder.EmitMember(target, members);
         }
 
         public static Action<ExpressionBuilder> CoalesceMember(Action<ExpressionBuilder> target, string member)

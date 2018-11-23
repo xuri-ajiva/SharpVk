@@ -67,7 +67,7 @@ namespace SharpVk.Multivendor
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.Multivendor.VkValidationCacheEXTDestroyDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkValidationCacheEXTDestroyDelegate>("vkDestroyValidationCacheEXT", "device");
+                SharpVk.Interop.Multivendor.VkValidationCacheEXTDestroyDelegate commandDelegate = commandCache.Cache.vkDestroyValidationCacheEXT;
                 commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
@@ -107,7 +107,7 @@ namespace SharpVk.Multivendor
                         marshalledSourceCaches = fieldPointer;
                     }
                 }
-                SharpVk.Interop.Multivendor.VkValidationCacheEXTMergeValidationCachesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkValidationCacheEXTMergeValidationCachesDelegate>("vkMergeValidationCachesEXT", "device");
+                SharpVk.Interop.Multivendor.VkValidationCacheEXTMergeValidationCachesDelegate commandDelegate = commandCache.Cache.vkMergeValidationCachesEXT;
                 Result methodResult = commandDelegate(this.parent.handle, this.handle, (uint)(Interop.HeapUtil.GetLength(sourceCaches)), marshalledSourceCaches);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -130,7 +130,7 @@ namespace SharpVk.Multivendor
                 byte[] result = default(byte[]);
                 HostSize dataSize = default(HostSize);
                 byte* marshalledData = default(byte*);
-                SharpVk.Interop.Multivendor.VkValidationCacheEXTGetDataDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkValidationCacheEXTGetDataDelegate>("vkGetValidationCacheDataEXT", "device");
+                SharpVk.Interop.Multivendor.VkValidationCacheEXTGetDataDelegate commandDelegate = commandCache.Cache.vkGetValidationCacheDataEXT;
                 Result methodResult = commandDelegate(this.parent.handle, this.handle, &dataSize, marshalledData);
                 if (SharpVkException.IsError(methodResult))
                 {

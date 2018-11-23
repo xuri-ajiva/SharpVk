@@ -58,7 +58,7 @@ namespace SharpVk.Khronos
             {
                 SharpVk.Khronos.DisplayPlaneCapabilities result = default(SharpVk.Khronos.DisplayPlaneCapabilities);
                 SharpVk.Khronos.DisplayPlaneCapabilities marshalledCapabilities = default(SharpVk.Khronos.DisplayPlaneCapabilities);
-                SharpVk.Interop.Khronos.VkDisplayModeKHRGetDisplayPlaneCapabilitiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Khronos.VkDisplayModeKHRGetDisplayPlaneCapabilitiesDelegate>("vkGetDisplayPlaneCapabilitiesKHR", "instance");
+                SharpVk.Interop.Khronos.VkDisplayModeKHRGetDisplayPlaneCapabilitiesDelegate commandDelegate = commandCache.Cache.vkGetDisplayPlaneCapabilitiesKHR;
                 Result methodResult = commandDelegate(this.parent.handle, this.handle, planeIndex, &marshalledCapabilities);
                 if (SharpVkException.IsError(methodResult))
                 {

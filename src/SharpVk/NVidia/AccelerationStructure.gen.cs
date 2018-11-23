@@ -67,7 +67,7 @@ namespace SharpVk.NVidia
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.NVidia.VkAccelerationStructureNVDestroyDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.VkAccelerationStructureNVDestroyDelegate>("vkDestroyAccelerationStructureNV", "device");
+                SharpVk.Interop.NVidia.VkAccelerationStructureNVDestroyDelegate commandDelegate = commandCache.Cache.vkDestroyAccelerationStructureNV;
                 commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
@@ -88,7 +88,7 @@ namespace SharpVk.NVidia
                 byte* marshalledData = default(byte*);
                 marshalledDataSize = dataSize;
                 marshalledData = (byte*)(Interop.HeapUtil.Allocate<byte>(dataSize));
-                SharpVk.Interop.NVidia.VkAccelerationStructureNVGetHandleDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.VkAccelerationStructureNVGetHandleDelegate>("vkGetAccelerationStructureHandleNV", "device");
+                SharpVk.Interop.NVidia.VkAccelerationStructureNVGetHandleDelegate commandDelegate = commandCache.Cache.vkGetAccelerationStructureHandleNV;
                 Result methodResult = commandDelegate(this.parent.handle, this.handle, marshalledDataSize, marshalledData);
                 if (SharpVkException.IsError(methodResult))
                 {

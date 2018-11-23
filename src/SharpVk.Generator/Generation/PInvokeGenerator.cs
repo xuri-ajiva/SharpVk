@@ -9,12 +9,14 @@ namespace SharpVk.Generator.Generation
     public class PInvokeGenerator
         : IWorker
     {
+        private readonly Dictionary<string, ExtensionDeclaration> extensions;
         private readonly IEnumerable<CommandDeclaration> commands;
         private readonly NamespaceMap namespaceMap;
         private readonly NameLookup nameLookup;
 
-        public PInvokeGenerator(IEnumerable<CommandDeclaration> commands, NamespaceMap namespaceMap, NameLookup nameLookup)
+        public PInvokeGenerator(IEnumerable<CommandDeclaration> commands, IEnumerable<ExtensionDeclaration> extensions, NamespaceMap namespaceMap, NameLookup nameLookup)
         {
+            this.extensions = extensions.ToDictionary(x => x.Name);
             this.commands = commands;
             this.namespaceMap = namespaceMap;
             this.nameLookup = nameLookup;
@@ -22,7 +24,7 @@ namespace SharpVk.Generator.Generation
 
         public void Execute(IServiceCollection services)
         {
-            foreach (var command in commands)
+            foreach (var command in this.commands)
             {
                 if (command.ExtensionNamespace == null)
                 {
@@ -48,7 +50,9 @@ namespace SharpVk.Generator.Generation
                     {
                         Name = x.Name,
                         Type = this.nameLookup.Lookup(x.Type, true)
-                    }).ToList()
+                    }).ToList(),
+                    VkName = command.VkName,
+                    LookupScope = command.Extension != null ? this.extensions[command.Extension].Scope : ""
                 });
             }
         }

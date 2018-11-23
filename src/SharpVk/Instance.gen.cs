@@ -40,6 +40,7 @@ namespace SharpVk
         {
             this.handle = handle;
             this.commandCache = new CommandCache(this, "instance", commandCache);
+            this.commandCache.Initialise();
         }
         
         /// <summary>
@@ -147,7 +148,7 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.VkInstanceCreateDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkInstanceCreateDelegate>("vkCreateInstance", "");
+                SharpVk.Interop.VkInstanceCreateDelegate commandDelegate = commandCache.Cache.vkCreateInstance;
                 Result methodResult = commandDelegate(marshalledCreateInfo, marshalledAllocator, &marshalledInstance);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -183,7 +184,7 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.VkInstanceDestroyDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkInstanceDestroyDelegate>("vkDestroyInstance", "");
+                SharpVk.Interop.VkInstanceDestroyDelegate commandDelegate = commandCache.Cache.vkDestroyInstance;
                 commandDelegate(this.handle, marshalledAllocator);
             }
             finally
@@ -202,7 +203,7 @@ namespace SharpVk
                 SharpVk.PhysicalDevice[] result = default(SharpVk.PhysicalDevice[]);
                 uint physicalDeviceCount = default(uint);
                 SharpVk.Interop.PhysicalDevice* marshalledPhysicalDevices = default(SharpVk.Interop.PhysicalDevice*);
-                SharpVk.Interop.VkInstanceEnumeratePhysicalDevicesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkInstanceEnumeratePhysicalDevicesDelegate>("vkEnumeratePhysicalDevices", "");
+                SharpVk.Interop.VkInstanceEnumeratePhysicalDevicesDelegate commandDelegate = commandCache.Cache.vkEnumeratePhysicalDevices;
                 Result methodResult = commandDelegate(this.handle, &physicalDeviceCount, marshalledPhysicalDevices);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -239,7 +240,7 @@ namespace SharpVk
             try
             {
                 IntPtr result = default(IntPtr);
-                SharpVk.Interop.VkInstanceGetProcedureAddressDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkInstanceGetProcedureAddressDelegate>("vkGetInstanceProcAddr", "");
+                SharpVk.Interop.VkInstanceGetProcedureAddressDelegate commandDelegate = commandCache.Cache.vkGetInstanceProcAddr;
                 result = commandDelegate(this.handle, Interop.HeapUtil.MarshalTo(name));
                 return result;
             }
@@ -259,7 +260,7 @@ namespace SharpVk
                 SharpVk.ExtensionProperties[] result = default(SharpVk.ExtensionProperties[]);
                 uint propertyCount = default(uint);
                 SharpVk.Interop.ExtensionProperties* marshalledProperties = default(SharpVk.Interop.ExtensionProperties*);
-                SharpVk.Interop.VkInstanceEnumerateExtensionPropertiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkInstanceEnumerateExtensionPropertiesDelegate>("vkEnumerateInstanceExtensionProperties", "");
+                SharpVk.Interop.VkInstanceEnumerateExtensionPropertiesDelegate commandDelegate = commandCache.Cache.vkEnumerateInstanceExtensionProperties;
                 Result methodResult = commandDelegate(Interop.HeapUtil.MarshalTo(layerName), &propertyCount, marshalledProperties);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -298,7 +299,7 @@ namespace SharpVk
                 SharpVk.LayerProperties[] result = default(SharpVk.LayerProperties[]);
                 uint propertyCount = default(uint);
                 SharpVk.Interop.LayerProperties* marshalledProperties = default(SharpVk.Interop.LayerProperties*);
-                SharpVk.Interop.VkInstanceEnumerateLayerPropertiesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkInstanceEnumerateLayerPropertiesDelegate>("vkEnumerateInstanceLayerProperties", "");
+                SharpVk.Interop.VkInstanceEnumerateLayerPropertiesDelegate commandDelegate = commandCache.Cache.vkEnumerateInstanceLayerProperties;
                 Result methodResult = commandDelegate(&propertyCount, marshalledProperties);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -336,7 +337,7 @@ namespace SharpVk
             {
                 Version result = default(Version);
                 uint marshalledApiVersion = default(uint);
-                SharpVk.Interop.VkInstanceEnumerateVersionDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkInstanceEnumerateVersionDelegate>("vkEnumerateInstanceVersion", "");
+                SharpVk.Interop.VkInstanceEnumerateVersionDelegate commandDelegate = commandCache.Cache.vkEnumerateInstanceVersion;
                 Result methodResult = commandDelegate(&marshalledApiVersion);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -361,7 +362,7 @@ namespace SharpVk
                 SharpVk.PhysicalDeviceGroupProperties[] result = default(SharpVk.PhysicalDeviceGroupProperties[]);
                 uint physicalDeviceGroupCount = default(uint);
                 SharpVk.Interop.PhysicalDeviceGroupProperties* marshalledPhysicalDeviceGroupProperties = default(SharpVk.Interop.PhysicalDeviceGroupProperties*);
-                SharpVk.Interop.VkInstanceEnumeratePhysicalDeviceGroupsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkInstanceEnumeratePhysicalDeviceGroupsDelegate>("vkEnumeratePhysicalDeviceGroups", "");
+                SharpVk.Interop.VkInstanceEnumeratePhysicalDeviceGroupsDelegate commandDelegate = commandCache.Cache.vkEnumeratePhysicalDeviceGroups;
                 Result methodResult = commandDelegate(this.handle, &physicalDeviceGroupCount, marshalledPhysicalDeviceGroupProperties);
                 if (SharpVkException.IsError(methodResult))
                 {

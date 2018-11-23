@@ -67,7 +67,7 @@ namespace SharpVk.Multivendor
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.Multivendor.VkDebugUtilsMessengerEXTDestroyDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkDebugUtilsMessengerEXTDestroyDelegate>("vkDestroyDebugUtilsMessengerEXT", "instance");
+                SharpVk.Interop.Multivendor.VkDebugUtilsMessengerEXTDestroyDelegate commandDelegate = commandCache.Cache.vkDestroyDebugUtilsMessengerEXT;
                 commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally

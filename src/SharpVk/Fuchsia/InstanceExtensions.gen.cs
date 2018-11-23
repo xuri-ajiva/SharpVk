@@ -69,7 +69,7 @@ namespace SharpVk.Fuchsia
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.Fuchsia.VkInstanceCreateImagePipeSurfaceDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Fuchsia.VkInstanceCreateImagePipeSurfaceDelegate>("vkCreateImagePipeSurfaceFUCHSIA", "instance");
+                SharpVk.Interop.Fuchsia.VkInstanceCreateImagePipeSurfaceDelegate commandDelegate = commandCache.Cache.vkCreateImagePipeSurfaceFUCHSIA;
                 Result methodResult = commandDelegate(extendedHandle.handle, marshalledCreateInfo, marshalledAllocator, &marshalledSurface);
                 if (SharpVkException.IsError(methodResult))
                 {

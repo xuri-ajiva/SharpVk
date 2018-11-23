@@ -57,7 +57,7 @@ namespace SharpVk
         {
             try
             {
-                SharpVk.Interop.VkImageBindMemoryDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkImageBindMemoryDelegate>("vkBindImageMemory", "");
+                SharpVk.Interop.VkImageBindMemoryDelegate commandDelegate = commandCache.Cache.vkBindImageMemory;
                 Result methodResult = commandDelegate(this.parent.handle, this.handle, memory?.handle ?? default(SharpVk.Interop.DeviceMemory), memoryOffset);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -79,7 +79,7 @@ namespace SharpVk
             {
                 SharpVk.MemoryRequirements result = default(SharpVk.MemoryRequirements);
                 SharpVk.MemoryRequirements marshalledMemoryRequirements = default(SharpVk.MemoryRequirements);
-                SharpVk.Interop.VkImageGetMemoryRequirementsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkImageGetMemoryRequirementsDelegate>("vkGetImageMemoryRequirements", "");
+                SharpVk.Interop.VkImageGetMemoryRequirementsDelegate commandDelegate = commandCache.Cache.vkGetImageMemoryRequirements;
                 commandDelegate(this.parent.handle, this.handle, &marshalledMemoryRequirements);
                 result = marshalledMemoryRequirements;
                 return result;
@@ -100,7 +100,7 @@ namespace SharpVk
                 SharpVk.SparseImageMemoryRequirements[] result = default(SharpVk.SparseImageMemoryRequirements[]);
                 uint sparseMemoryRequirementCount = default(uint);
                 SharpVk.SparseImageMemoryRequirements* marshalledSparseMemoryRequirements = default(SharpVk.SparseImageMemoryRequirements*);
-                SharpVk.Interop.VkImageGetSparseMemoryRequirementsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkImageGetSparseMemoryRequirementsDelegate>("vkGetImageSparseMemoryRequirements", "");
+                SharpVk.Interop.VkImageGetSparseMemoryRequirementsDelegate commandDelegate = commandCache.Cache.vkGetImageSparseMemoryRequirements;
                 commandDelegate(this.parent.handle, this.handle, &sparseMemoryRequirementCount, marshalledSparseMemoryRequirements);
                 marshalledSparseMemoryRequirements = (SharpVk.SparseImageMemoryRequirements*)(Interop.HeapUtil.Allocate<SharpVk.SparseImageMemoryRequirements>((uint)(sparseMemoryRequirementCount)));
                 commandDelegate(this.parent.handle, this.handle, &sparseMemoryRequirementCount, marshalledSparseMemoryRequirements);
@@ -146,7 +146,7 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.VkImageDestroyDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkImageDestroyDelegate>("vkDestroyImage", "");
+                SharpVk.Interop.VkImageDestroyDelegate commandDelegate = commandCache.Cache.vkDestroyImage;
                 commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
@@ -167,7 +167,7 @@ namespace SharpVk
                 SharpVk.SubresourceLayout marshalledLayout = default(SharpVk.SubresourceLayout);
                 marshalledSubresource = (SharpVk.ImageSubresource*)(Interop.HeapUtil.Allocate<SharpVk.ImageSubresource>());
                 *marshalledSubresource = subresource;
-                SharpVk.Interop.VkImageGetSubresourceLayoutDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkImageGetSubresourceLayoutDelegate>("vkGetImageSubresourceLayout", "");
+                SharpVk.Interop.VkImageGetSubresourceLayoutDelegate commandDelegate = commandCache.Cache.vkGetImageSubresourceLayout;
                 commandDelegate(this.parent.handle, this.handle, marshalledSubresource, &marshalledLayout);
                 result = marshalledLayout;
                 return result;

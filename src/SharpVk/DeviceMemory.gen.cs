@@ -70,7 +70,7 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.VkDeviceMemoryFreeDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceMemoryFreeDelegate>("vkFreeMemory", "");
+                SharpVk.Interop.VkDeviceMemoryFreeDelegate commandDelegate = commandCache.Cache.vkFreeMemory;
                 commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
@@ -97,7 +97,7 @@ namespace SharpVk
                 {
                     marshalledFlags = default(SharpVk.MemoryMapFlags);
                 }
-                SharpVk.Interop.VkDeviceMemoryMapDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceMemoryMapDelegate>("vkMapMemory", "");
+                SharpVk.Interop.VkDeviceMemoryMapDelegate commandDelegate = commandCache.Cache.vkMapMemory;
                 Result methodResult = commandDelegate(this.parent.handle, this.handle, offset, size, marshalledFlags, &marshalledData);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -119,7 +119,7 @@ namespace SharpVk
         {
             try
             {
-                SharpVk.Interop.VkDeviceMemoryUnmapDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceMemoryUnmapDelegate>("vkUnmapMemory", "");
+                SharpVk.Interop.VkDeviceMemoryUnmapDelegate commandDelegate = commandCache.Cache.vkUnmapMemory;
                 commandDelegate(this.parent.handle, this.handle);
             }
             finally
@@ -137,7 +137,7 @@ namespace SharpVk
             {
                 DeviceSize result = default(DeviceSize);
                 DeviceSize marshalledCommittedMemoryInBytes = default(DeviceSize);
-                SharpVk.Interop.VkDeviceMemoryGetCommitmentDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDeviceMemoryGetCommitmentDelegate>("vkGetDeviceMemoryCommitment", "");
+                SharpVk.Interop.VkDeviceMemoryGetCommitmentDelegate commandDelegate = commandCache.Cache.vkGetDeviceMemoryCommitment;
                 commandDelegate(this.parent.handle, this.handle, &marshalledCommittedMemoryInBytes);
                 result = marshalledCommittedMemoryInBytes;
                 return result;

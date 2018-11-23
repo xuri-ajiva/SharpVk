@@ -111,7 +111,7 @@ namespace SharpVk.Generator.Emission
                             {
                                 body.EmitAssignment(Member(This, "handle"), Variable("handle"));
 
-                                System.Action<ExpressionBuilder> commandCacheValue = Null;
+                                var commandCacheValue = Null;
 
                                 if (handle.Parent != null)
                                 {
@@ -126,6 +126,7 @@ namespace SharpVk.Generator.Emission
                                 if (handle.CommandCacheType != null)
                                 {
                                     body.EmitAssignment(Member(This, "commandCache"), New("CommandCache", This, Literal(handle.CommandCacheType), commandCacheValue));
+                                    body.EmitCall(Member(This, "commandCache"), "Initialise");
                                 }
                                 else
                                 {

@@ -71,7 +71,7 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.VkSemaphoreDestroyDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkSemaphoreDestroyDelegate>("vkDestroySemaphore", "");
+                SharpVk.Interop.VkSemaphoreDestroyDelegate commandDelegate = commandCache.Cache.vkDestroySemaphore;
                 commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally

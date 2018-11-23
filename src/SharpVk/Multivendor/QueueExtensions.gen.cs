@@ -46,7 +46,7 @@ namespace SharpVk.Multivendor
                 commandCache = extendedHandle.commandCache;
                 marshalledLabelInfo = (SharpVk.Interop.Multivendor.DebugUtilsLabel*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.DebugUtilsLabel>());
                 labelInfo.MarshalTo(marshalledLabelInfo);
-                SharpVk.Interop.Multivendor.VkQueueBeginDebugUtilsLabelDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkQueueBeginDebugUtilsLabelDelegate>("vkQueueBeginDebugUtilsLabelEXT", "instance");
+                SharpVk.Interop.Multivendor.VkQueueBeginDebugUtilsLabelDelegate commandDelegate = commandCache.Cache.vkQueueBeginDebugUtilsLabelEXT;
                 commandDelegate(extendedHandle.handle, marshalledLabelInfo);
             }
             finally
@@ -67,7 +67,7 @@ namespace SharpVk.Multivendor
             {
                 CommandCache commandCache = default(CommandCache);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Multivendor.VkQueueEndDebugUtilsLabelDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkQueueEndDebugUtilsLabelDelegate>("vkQueueEndDebugUtilsLabelEXT", "instance");
+                SharpVk.Interop.Multivendor.VkQueueEndDebugUtilsLabelDelegate commandDelegate = commandCache.Cache.vkQueueEndDebugUtilsLabelEXT;
                 commandDelegate(extendedHandle.handle);
             }
             finally
@@ -91,7 +91,7 @@ namespace SharpVk.Multivendor
                 commandCache = extendedHandle.commandCache;
                 marshalledLabelInfo = (SharpVk.Interop.Multivendor.DebugUtilsLabel*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.DebugUtilsLabel>());
                 labelInfo.MarshalTo(marshalledLabelInfo);
-                SharpVk.Interop.Multivendor.VkQueueInsertDebugUtilsLabelDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Multivendor.VkQueueInsertDebugUtilsLabelDelegate>("vkQueueInsertDebugUtilsLabelEXT", "instance");
+                SharpVk.Interop.Multivendor.VkQueueInsertDebugUtilsLabelDelegate commandDelegate = commandCache.Cache.vkQueueInsertDebugUtilsLabelEXT;
                 commandDelegate(extendedHandle.handle, marshalledLabelInfo);
             }
             finally

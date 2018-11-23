@@ -46,7 +46,7 @@ namespace SharpVk.NVidia
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.NVidia.CheckpointData* marshalledCheckpointData = default(SharpVk.Interop.NVidia.CheckpointData*);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.NVidia.VkQueueGetCheckpointDataDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.VkQueueGetCheckpointDataDelegate>("vkGetQueueCheckpointDataNV", "device");
+                SharpVk.Interop.NVidia.VkQueueGetCheckpointDataDelegate commandDelegate = commandCache.Cache.vkGetQueueCheckpointDataNV;
                 commandDelegate(extendedHandle.handle, &checkpointDataCount, marshalledCheckpointData);
                 marshalledCheckpointData = (SharpVk.Interop.NVidia.CheckpointData*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.CheckpointData>((uint)(checkpointDataCount)));
                 commandDelegate(extendedHandle.handle, &checkpointDataCount, marshalledCheckpointData);

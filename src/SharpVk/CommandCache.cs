@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk
@@ -8,17 +8,29 @@ namespace SharpVk
     /// </summary>
     public class CommandCache
     {
-        private readonly Dictionary<string, object> commands = new Dictionary<string, object>();
         private readonly IProcLookup host;
         private readonly string type;
         private readonly CommandCache parent;
+
+        private CommandCacheStruct cache;
 
         internal CommandCache(IProcLookup host, string type, CommandCache parent)
         {
             this.host = host;
             this.type = type;
             this.parent = parent;
+            this.cache = parent?.cache ?? default;
         }
+
+        /// <summary>
+        /// Build cache of function pointers from IProcLookup host.
+        /// </summary>
+        public void Initialise()
+        {
+            this.cache = new CommandCacheStruct(this);
+        }
+
+        internal CommandCacheStruct Cache => this.cache;
 
         /// <summary>
         /// Creates a new instance of CommandCache using the given IProcLookup
@@ -47,14 +59,6 @@ namespace SharpVk
                 }
             }
 
-            lock (this.commands)
-            {
-                if (this.commands.ContainsKey(name))
-                {
-                    return true;
-                }
-            }
-
             return this.host.GetProcedureAddress(name) != System.IntPtr.Zero;
         }
 
@@ -79,29 +83,16 @@ namespace SharpVk
                 }
             }
 
-            lock (this.commands)
+            var functionPointer = this.host.GetProcedureAddress(name);
+
+            if (functionPointer == IntPtr.Zero)
             {
-                if (this.commands.ContainsKey(name))
-                {
-                    return (T)this.commands[name];
-                }
+                return default;
             }
-
-            var commandDelegate = Marshal.GetDelegateForFunctionPointer<T>(this.host.GetProcedureAddress(name));
-
-            lock (this.commands)
+            else
             {
-                if (this.commands.ContainsKey(name))
-                {
-                    return (T)this.commands[name];
-                }
-                else
-                {
-                    this.commands[name] = commandDelegate;
-                }
+                return Marshal.GetDelegateForFunctionPointer<T>(functionPointer);
             }
-
-            return commandDelegate;
         }
     }
 }

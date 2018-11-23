@@ -57,7 +57,7 @@ namespace SharpVk.Amd
             {
                 CommandCache commandCache = default(CommandCache);
                 commandCache = extendedHandle.commandCache;
-                SharpVk.Interop.Amd.VkCommandBufferWriteBufferMarkerDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.Amd.VkCommandBufferWriteBufferMarkerDelegate>("vkCmdWriteBufferMarkerAMD", "device");
+                SharpVk.Interop.Amd.VkCommandBufferWriteBufferMarkerDelegate commandDelegate = commandCache.Cache.vkCmdWriteBufferMarkerAMD;
                 commandDelegate(extendedHandle.handle, pipelineStage, destinationBuffer?.handle ?? default(SharpVk.Interop.Buffer), destinationOffset, marker);
             }
             finally

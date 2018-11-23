@@ -71,7 +71,7 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.VkDescriptorPoolDestroyDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDescriptorPoolDestroyDelegate>("vkDestroyDescriptorPool", "");
+                SharpVk.Interop.VkDescriptorPoolDestroyDelegate commandDelegate = commandCache.Cache.vkDestroyDescriptorPool;
                 commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
@@ -96,7 +96,7 @@ namespace SharpVk
                 {
                     marshalledFlags = default(SharpVk.DescriptorPoolResetFlags);
                 }
-                SharpVk.Interop.VkDescriptorPoolResetDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDescriptorPoolResetDelegate>("vkResetDescriptorPool", "");
+                SharpVk.Interop.VkDescriptorPoolResetDelegate commandDelegate = commandCache.Cache.vkResetDescriptorPool;
                 Result methodResult = commandDelegate(this.parent.handle, this.handle, marshalledFlags);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -140,7 +140,7 @@ namespace SharpVk
                         marshalledDescriptorSets = fieldPointer;
                     }
                 }
-                SharpVk.Interop.VkDescriptorPoolFreeDescriptorSetsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkDescriptorPoolFreeDescriptorSetsDelegate>("vkFreeDescriptorSets", "");
+                SharpVk.Interop.VkDescriptorPoolFreeDescriptorSetsDelegate commandDelegate = commandCache.Cache.vkFreeDescriptorSets;
                 Result methodResult = commandDelegate(this.parent.handle, this.handle, (uint)(Interop.HeapUtil.GetLength(descriptorSets)), marshalledDescriptorSets);
                 if (SharpVkException.IsError(methodResult))
                 {

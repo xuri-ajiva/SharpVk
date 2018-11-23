@@ -80,7 +80,7 @@ namespace SharpVk
                         marshalledSubmits = fieldPointer;
                     }
                 }
-                SharpVk.Interop.VkQueueSubmitDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkQueueSubmitDelegate>("vkQueueSubmit", "");
+                SharpVk.Interop.VkQueueSubmitDelegate commandDelegate = commandCache.Cache.vkQueueSubmit;
                 Result methodResult = commandDelegate(this.handle, (uint)(Interop.HeapUtil.GetLength(submits)), marshalledSubmits, fence?.handle ?? default(SharpVk.Interop.Fence));
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -100,7 +100,7 @@ namespace SharpVk
         {
             try
             {
-                SharpVk.Interop.VkQueueWaitIdleDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkQueueWaitIdleDelegate>("vkQueueWaitIdle", "");
+                SharpVk.Interop.VkQueueWaitIdleDelegate commandDelegate = commandCache.Cache.vkQueueWaitIdle;
                 Result methodResult = commandDelegate(this.handle);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -144,7 +144,7 @@ namespace SharpVk
                         marshalledBindInfo = fieldPointer;
                     }
                 }
-                SharpVk.Interop.VkQueueBindSparseDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkQueueBindSparseDelegate>("vkQueueBindSparse", "");
+                SharpVk.Interop.VkQueueBindSparseDelegate commandDelegate = commandCache.Cache.vkQueueBindSparse;
                 Result methodResult = commandDelegate(this.handle, (uint)(Interop.HeapUtil.GetLength(bindInfo)), marshalledBindInfo, fence?.handle ?? default(SharpVk.Interop.Fence));
                 if (SharpVkException.IsError(methodResult))
                 {

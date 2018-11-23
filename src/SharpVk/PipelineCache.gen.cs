@@ -71,7 +71,7 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.VkPipelineCacheDestroyDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkPipelineCacheDestroyDelegate>("vkDestroyPipelineCache", "");
+                SharpVk.Interop.VkPipelineCacheDestroyDelegate commandDelegate = commandCache.Cache.vkDestroyPipelineCache;
                 commandDelegate(this.parent.handle, this.handle, marshalledAllocator);
             }
             finally
@@ -90,7 +90,7 @@ namespace SharpVk
                 byte[] result = default(byte[]);
                 HostSize dataSize = default(HostSize);
                 byte* marshalledData = default(byte*);
-                SharpVk.Interop.VkPipelineCacheGetDataDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkPipelineCacheGetDataDelegate>("vkGetPipelineCacheData", "");
+                SharpVk.Interop.VkPipelineCacheGetDataDelegate commandDelegate = commandCache.Cache.vkGetPipelineCacheData;
                 Result methodResult = commandDelegate(this.parent.handle, this.handle, &dataSize, marshalledData);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -150,7 +150,7 @@ namespace SharpVk
                         marshalledSourceCaches = fieldPointer;
                     }
                 }
-                SharpVk.Interop.VkPipelineCacheMergePipelineCachesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.VkPipelineCacheMergePipelineCachesDelegate>("vkMergePipelineCaches", "");
+                SharpVk.Interop.VkPipelineCacheMergePipelineCachesDelegate commandDelegate = commandCache.Cache.vkMergePipelineCaches;
                 Result methodResult = commandDelegate(this.parent.handle, this.handle, (uint)(Interop.HeapUtil.GetLength(sourceCaches)), marshalledSourceCaches);
                 if (SharpVkException.IsError(methodResult))
                 {

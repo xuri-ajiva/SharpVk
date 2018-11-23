@@ -33,7 +33,10 @@
         /// </param>
         public static unsafe SharpVk.Instance Create(ArrayProxy<string>? enabledLayerNames, ArrayProxy<string>? enabledExtensionNames, SharpVk.InstanceCreateFlags? flags = null, SharpVk.ApplicationInfo? applicationInfo = null, SharpVk.Multivendor.DebugReportCallbackCreateInfo? debugReportCallbackCreateInfoExt = null, SharpVk.Multivendor.ValidationFlags? validationFlagsExt = null, AllocationCallbacks? allocator = null)
         {
-            return Instance.Create(new CommandCache(new SharpVk.Interop.NativeLibrary(), "", null), enabledLayerNames, enabledExtensionNames, flags, applicationInfo, debugReportCallbackCreateInfoExt, validationFlagsExt, allocator: allocator);
+            var cache = new CommandCache(new SharpVk.Interop.NativeLibrary());
+            cache.Initialise();
+
+            return Instance.Create(cache, enabledLayerNames, enabledExtensionNames, flags, applicationInfo, debugReportCallbackCreateInfoExt, validationFlagsExt, allocator: allocator);
         }
 
         /// <summary>
@@ -41,7 +44,10 @@
         /// </summary>
         public static unsafe SharpVk.ExtensionProperties[] EnumerateExtensionProperties(string layerName)
         {
-            return Instance.EnumerateExtensionProperties(new CommandCache(new SharpVk.Interop.NativeLibrary(), "", null), layerName);
+            var cache = new CommandCache(new SharpVk.Interop.NativeLibrary());
+            cache.Initialise();
+
+            return Instance.EnumerateExtensionProperties(cache, layerName);
         }
 
         /// <summary>
@@ -49,7 +55,9 @@
         /// </summary>
         public static unsafe Version EnumerateVersion()
         {
-            var commandCache = new CommandCache(new SharpVk.Interop.NativeLibrary(), "", null);
+            var commandCache = new CommandCache(new SharpVk.Interop.NativeLibrary());
+
+            commandCache.Initialise();
 
             if (commandCache.IsCommandAvailable("vkEnumerateInstanceVersion", ""))
             {
@@ -67,7 +75,10 @@
         /// </summary>
         public static unsafe SharpVk.LayerProperties[] EnumerateLayerProperties()
         {
-            return Instance.EnumerateLayerProperties(new CommandCache(new SharpVk.Interop.NativeLibrary(), "", null));
+            var cache = new CommandCache(new SharpVk.Interop.NativeLibrary());
+            cache.Initialise();
+
+            return Instance.EnumerateLayerProperties(cache);
         }
     }
 }

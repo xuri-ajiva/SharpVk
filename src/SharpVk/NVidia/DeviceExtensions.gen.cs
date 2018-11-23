@@ -62,7 +62,7 @@ namespace SharpVk.NVidia
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                SharpVk.Interop.NVidia.VkDeviceCreateAccelerationStructureDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.VkDeviceCreateAccelerationStructureDelegate>("vkCreateAccelerationStructureNV", "device");
+                SharpVk.Interop.NVidia.VkDeviceCreateAccelerationStructureDelegate commandDelegate = commandCache.Cache.vkCreateAccelerationStructureNV;
                 Result methodResult = commandDelegate(extendedHandle.handle, marshalledCreateInfo, marshalledAllocator, &marshalledAccelerationStructure);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -94,7 +94,7 @@ namespace SharpVk.NVidia
                 commandCache = extendedHandle.commandCache;
                 marshalledInfo = (SharpVk.Interop.NVidia.AccelerationStructureMemoryRequirementsInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.AccelerationStructureMemoryRequirementsInfo>());
                 info.MarshalTo(marshalledInfo);
-                SharpVk.Interop.NVidia.VkDeviceGetAccelerationStructureMemoryRequirementsDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.VkDeviceGetAccelerationStructureMemoryRequirementsDelegate>("vkGetAccelerationStructureMemoryRequirementsNV", "device");
+                SharpVk.Interop.NVidia.VkDeviceGetAccelerationStructureMemoryRequirementsDelegate commandDelegate = commandCache.Cache.vkGetAccelerationStructureMemoryRequirementsNV;
                 commandDelegate(extendedHandle.handle, marshalledInfo, &marshalledMemoryRequirements);
                 result = SharpVk.MemoryRequirements2.MarshalFrom(&marshalledMemoryRequirements);
                 return result;
@@ -141,7 +141,7 @@ namespace SharpVk.NVidia
                         marshalledBindInfos = fieldPointer;
                     }
                 }
-                SharpVk.Interop.NVidia.VkDeviceBindAccelerationStructureMemoryDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.VkDeviceBindAccelerationStructureMemoryDelegate>("vkBindAccelerationStructureMemoryNV", "device");
+                SharpVk.Interop.NVidia.VkDeviceBindAccelerationStructureMemoryDelegate commandDelegate = commandCache.Cache.vkBindAccelerationStructureMemoryNV;
                 Result methodResult = commandDelegate(extendedHandle.handle, (uint)(Interop.HeapUtil.GetLength(bindInfos)), marshalledBindInfos);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -205,7 +205,7 @@ namespace SharpVk.NVidia
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
                 marshalledPipelines = (SharpVk.Interop.Pipeline*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Pipeline>(createInfoCount));
-                SharpVk.Interop.NVidia.VkDeviceCreateRayTracingPipelinesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.VkDeviceCreateRayTracingPipelinesDelegate>("vkCreateRayTracingPipelinesNV", "device");
+                SharpVk.Interop.NVidia.VkDeviceCreateRayTracingPipelinesDelegate commandDelegate = commandCache.Cache.vkCreateRayTracingPipelinesNV;
                 Result methodResult = commandDelegate(extendedHandle.handle, pipelineCache?.handle ?? default(SharpVk.Interop.PipelineCache), createInfoCount, marshalledCreateInfos, marshalledAllocator, marshalledPipelines);
                 if (SharpVkException.IsError(methodResult))
                 {
@@ -324,7 +324,7 @@ namespace SharpVk.NVidia
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
                 marshalledPipelines = (SharpVk.Interop.Pipeline*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Pipeline>(1));
-                SharpVk.Interop.NVidia.VkDeviceCreateRayTracingPipelinesDelegate commandDelegate = commandCache.GetCommandDelegate<SharpVk.Interop.NVidia.VkDeviceCreateRayTracingPipelinesDelegate>("vkCreateRayTracingPipelinesNV", "device");
+                SharpVk.Interop.NVidia.VkDeviceCreateRayTracingPipelinesDelegate commandDelegate = commandCache.Cache.vkCreateRayTracingPipelinesNV;
                 Result methodResult = commandDelegate(extendedHandle.handle, pipelineCache?.handle ?? default(SharpVk.Interop.PipelineCache), createInfoCount, marshalledCreateInfos, marshalledAllocator, marshalledPipelines);
                 if (SharpVkException.IsError(methodResult))
                 {
