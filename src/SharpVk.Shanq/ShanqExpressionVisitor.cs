@@ -24,17 +24,17 @@ namespace SharpVk.Shanq
             [typeof(byte)] = (Op.OpTypeInt, new[] { 8, 0 }),
             [typeof(double)] = (Op.OpTypeFloat, new[] { 64 }),
             [typeof(float)] = (Op.OpTypeFloat, new[] { 32 }),
-            [typeof(void)] = (Op.OpTypeFloat, new int[0])
+            [typeof(void)] = (Op.OpTypeVoid, new int[0])
         };
 
         private readonly SpirvFile file;
         private readonly IVectorTypeLibrary vectorLibrary;
 
-        private Dictionary<ExpressionType, Func<Expression, ResultId>> expressionVisitors = new Dictionary<ExpressionType, Func<Expression, ResultId>>();
-        private Dictionary<SpirvStatement, ResultId> expressionResults = new Dictionary<SpirvStatement, ResultId>();
-        private Dictionary<FieldInfo, ResultId> inputMappings = new Dictionary<FieldInfo, ResultId>();
-        private Dictionary<FieldInfo, Tuple<ResultId, int>> bindingMappings = new Dictionary<FieldInfo, Tuple<ResultId, int>>();
-        private Dictionary<IFromClause, ResultId> samplerMappings = new Dictionary<IFromClause, ResultId>();
+        private readonly Dictionary<ExpressionType, Func<Expression, ResultId>> expressionVisitors = new Dictionary<ExpressionType, Func<Expression, ResultId>>();
+        private readonly Dictionary<SpirvStatement, ResultId> expressionResults = new Dictionary<SpirvStatement, ResultId>();
+        private readonly Dictionary<FieldInfo, ResultId> inputMappings = new Dictionary<FieldInfo, ResultId>();
+        private readonly Dictionary<FieldInfo, Tuple<ResultId, int>> bindingMappings = new Dictionary<FieldInfo, Tuple<ResultId, int>>();
+        private readonly Dictionary<IFromClause, ResultId> samplerMappings = new Dictionary<IFromClause, ResultId>();
 
         public ShanqExpressionVisitor(SpirvFile file, IVectorTypeLibrary vectorLibrary)
         {
@@ -94,9 +94,9 @@ namespace SharpVk.Shanq
                 [(typeof(uint), typeof(int))] = Op.OpUConvert,
             };
 
-            if (mapping.TryGetValue((expression.Operand.Type, expression.Type), out Op convertOp))
+            if (mapping.TryGetValue((expression.Operand.Type, expression.Type), out var convertOp))
             {
-                ResultId result = this.file.GetNextResultId();
+                var result = this.file.GetNextResultId();
 
                 var subExpressionId = this.Visit(expression.Operand);
 
@@ -118,18 +118,18 @@ namespace SharpVk.Shanq
             if (IsSampler(methodDeclaringType))
             {
                 var sourceReference = (QuerySourceReferenceExpression)expression.Object;
-                ResultId samplerTypeId = this.Visit(Expression.Constant(expression.Object.Type));
-                ResultId samplerId = this.samplerMappings[(IFromClause)sourceReference.ReferencedQuerySource];
-                ResultId loadedSamplerId = this.file.GetNextResultId();
+                var samplerTypeId = this.Visit(Expression.Constant(expression.Object.Type));
+                var samplerId = this.samplerMappings[(IFromClause)sourceReference.ReferencedQuerySource];
+                var loadedSamplerId = this.file.GetNextResultId();
                 this.file.AddFunctionStatement(loadedSamplerId, Op.OpLoad, samplerTypeId, samplerId);
 
                 if (expression.Method.Name == nameof(Sampler2d<float, float>.Sample))
                 {
-                    ResultId resultTypeId = this.Visit(Expression.Constant(expression.Method.ReturnType));
+                    var resultTypeId = this.Visit(Expression.Constant(expression.Method.ReturnType));
 
-                    ResultId coordId = this.Visit(expression.Arguments[0]);
+                    var coordId = this.Visit(expression.Arguments[0]);
 
-                    ResultId sampleId = this.file.GetNextResultId();
+                    var sampleId = this.file.GetNextResultId();
 
                     this.file.AddFunctionStatement(sampleId, Op.OpImageSampleImplicitLod, resultTypeId, loadedSamplerId, coordId);
 
@@ -149,28 +149,28 @@ namespace SharpVk.Shanq
         [NodeType(ExpressionType.Negate)]
         private ResultId VisitNegate(UnaryExpression expression)
         {
-            if (GetElementType(expression.Type) != typeof(float))
+            if (this.GetElementType(expression.Type) != typeof(float))
             {
                 throw new NotSupportedException($"Expressions of type {expression.Type} are not supported.");
             }
 
-            return VisitUnary(expression, Op.OpFNegate);
+            return this.VisitUnary(expression, Op.OpFNegate);
         }
 
         [NodeType(ExpressionType.Add)]
         private ResultId VisitAdd(BinaryExpression expression)
         {
-            Op additionOp = SelectByType(expression.Type, Op.OpFAdd, Op.OpIAdd);
+            var additionOp = this.SelectByType(expression.Type, Op.OpFAdd, Op.OpIAdd);
 
-            return VisitBinary(expression, additionOp);
+            return this.VisitBinary(expression, additionOp);
         }
 
         [NodeType(ExpressionType.Subtract)]
         private ResultId VisitSubtract(BinaryExpression expression)
         {
-            Op subtractionOp = SelectByType(expression.Type, Op.OpFSub, Op.OpISub);
+            var subtractionOp = this.SelectByType(expression.Type, Op.OpFSub, Op.OpISub);
 
-            return VisitBinary(expression, subtractionOp);
+            return this.VisitBinary(expression, subtractionOp);
         }
 
         [NodeType(ExpressionType.Multiply)]
@@ -181,7 +181,7 @@ namespace SharpVk.Shanq
             if (this.vectorLibrary.IsVectorType(expression.Left.Type) && !this.vectorLibrary.IsVectorType(expression.Right.Type))
             {
                 if (!IsFloatingPoint(this.vectorLibrary.GetVectorElementType(expression.Left.Type))
-                        || !IsFloatingPoint(GetElementType(expression.Right.Type)))
+                        || !IsFloatingPoint(this.GetElementType(expression.Right.Type)))
                 {
                     throw new NotSupportedException("Vector by scalar multiplication is only supported for floating point types.");
                 }
@@ -197,7 +197,7 @@ namespace SharpVk.Shanq
             }
             else if (this.vectorLibrary.IsMatrixType(expression.Left.Type))
             {
-                if (!IsFloatingPoint(GetElementType(expression.Right.Type)))
+                if (!IsFloatingPoint(this.GetElementType(expression.Right.Type)))
                 {
                     throw new NotSupportedException("Matrix by scalar multiplication is only supported for floating point types.");
                 }
@@ -217,34 +217,34 @@ namespace SharpVk.Shanq
             }
             else
             {
-                multiplicationOp = SelectByType(expression.Type, Op.OpFMul, Op.OpIMul);
+                multiplicationOp = this.SelectByType(expression.Type, Op.OpFMul, Op.OpIMul);
             }
 
-            return VisitBinary(expression, multiplicationOp);
+            return this.VisitBinary(expression, multiplicationOp);
         }
 
         [NodeType(ExpressionType.Modulo)]
         private ResultId VisitModulo(BinaryExpression expression)
         {
-            Op moduloOp = SelectByType(expression.Type, Op.OpFMod, Op.OpSMod, Op.OpUMod);
+            var moduloOp = this.SelectByType(expression.Type, Op.OpFMod, Op.OpSMod, Op.OpUMod);
 
-            return VisitBinary(expression, moduloOp);
+            return this.VisitBinary(expression, moduloOp);
         }
 
         [NodeType(ExpressionType.Divide)]
         private ResultId VisitDivide(BinaryExpression expression)
         {
-            Op divisionOp = SelectByType(expression.Type, Op.OpFDiv, Op.OpSDiv, Op.OpUDiv);
+            var divisionOp = this.SelectByType(expression.Type, Op.OpFDiv, Op.OpSDiv, Op.OpUDiv);
 
-            return VisitBinary(expression, divisionOp);
+            return this.VisitBinary(expression, divisionOp);
         }
 
         private ResultId VisitUnary(UnaryExpression expression, Op unaryOp)
         {
-            ResultId resultTypeId = this.Visit(Expression.Constant(expression.Type));
+            var resultTypeId = this.Visit(Expression.Constant(expression.Type));
 
-            ResultId operand = this.Visit(expression.Operand);
-            ResultId result = this.file.GetNextResultId();
+            var operand = this.Visit(expression.Operand);
+            var result = this.file.GetNextResultId();
 
             this.file.AddFunctionStatement(result, unaryOp, resultTypeId, operand);
 
@@ -253,10 +253,10 @@ namespace SharpVk.Shanq
 
         private ResultId VisitBinary(BinaryExpression expression, Op binaryOp)
         {
-            ResultId resultTypeId = this.Visit(Expression.Constant(expression.Type));
+            var resultTypeId = this.Visit(Expression.Constant(expression.Type));
 
-            ResultId left = this.Visit(expression.Left);
-            ResultId right = this.Visit(expression.Right);
+            var left = this.Visit(expression.Left);
+            var right = this.Visit(expression.Right);
 
             if (this.vectorLibrary.IsVectorType(expression.Left.Type) && !this.vectorLibrary.IsVectorType(expression.Right.Type))
             {
@@ -268,7 +268,7 @@ namespace SharpVk.Shanq
                 this.file.AddFunctionStatement(right, statement);
             }
 
-            ResultId result = this.file.GetNextResultId();
+            var result = this.file.GetNextResultId();
 
             this.file.AddFunctionStatement(result, binaryOp, resultTypeId, left, right);
 
@@ -296,11 +296,11 @@ namespace SharpVk.Shanq
 
                     if (fieldIndices.Count() == 1)
                     {
-                        ResultId targetId = this.Visit(expression.Expression);
+                        var targetId = this.Visit(expression.Expression);
 
-                        ResultId typeId = this.Visit(Expression.Constant(type));
+                        var typeId = this.Visit(Expression.Constant(type));
 
-                        ResultId accessId = this.file.GetNextResultId();
+                        var accessId = this.file.GetNextResultId();
 
                         this.file.AddFunctionStatement(accessId, Op.OpCompositeExtract, typeId, targetId, fieldIndices.First());
 
@@ -337,13 +337,13 @@ namespace SharpVk.Shanq
 
         private ResultId GetInputId(FieldInfo fieldInfo)
         {
-            ResultId typeId = this.Visit(Expression.Constant(fieldInfo.FieldType));
+            var typeId = this.Visit(Expression.Constant(fieldInfo.FieldType));
 
             if (this.inputMappings.ContainsKey(fieldInfo))
             {
-                ResultId fieldId = this.inputMappings[fieldInfo];
+                var fieldId = this.inputMappings[fieldInfo];
 
-                ResultId resultId = this.file.GetNextResultId();
+                var resultId = this.file.GetNextResultId();
 
                 this.file.AddFunctionStatement(resultId, Op.OpLoad, typeId, fieldId);
 
@@ -351,15 +351,15 @@ namespace SharpVk.Shanq
             }
             else
             {
-                ResultId pointerTypeId = this.Visit(Expression.Constant(typeof(UniformPointer<>).MakeGenericType(fieldInfo.FieldType)));
+                var pointerTypeId = this.Visit(Expression.Constant(typeof(UniformPointer<>).MakeGenericType(fieldInfo.FieldType)));
 
                 var binding = this.bindingMappings[fieldInfo];
 
-                ResultId accessId = this.file.GetNextResultId();
+                var accessId = this.file.GetNextResultId();
 
                 this.file.AddFunctionStatement(accessId, Op.OpAccessChain, pointerTypeId, binding.Item1, this.Visit(Expression.Constant(binding.Item2)));
 
-                ResultId resultId = this.file.GetNextResultId();
+                var resultId = this.file.GetNextResultId();
 
                 this.file.AddFunctionStatement(resultId, Op.OpLoad, typeId, accessId);
 
@@ -384,7 +384,7 @@ namespace SharpVk.Shanq
                 throw new NotImplementedException("New expressions are only implemented for vector types.");
             }
 
-            ResultId resultId = this.file.GetNextResultId();
+            var resultId = this.file.GetNextResultId();
 
             this.file.AddFunctionStatement(resultId, statement);
 
@@ -395,15 +395,15 @@ namespace SharpVk.Shanq
         {
             foreach (var argument in arguments)
             {
-                ResultId argumentId = this.Visit(argument);
+                var argumentId = this.Visit(argument);
 
                 if (this.vectorLibrary.IsVectorType(argument.Type))
                 {
-                    ResultId typeId = this.Visit(Expression.Constant(this.vectorLibrary.GetVectorElementType(argument.Type)));
+                    var typeId = this.Visit(Expression.Constant(this.vectorLibrary.GetVectorElementType(argument.Type)));
 
                     for (int index = 0; index < this.vectorLibrary.GetVectorLength(argument.Type); index++)
                     {
-                        ResultId fieldId = this.file.GetNextResultId();
+                        var fieldId = this.file.GetNextResultId();
 
                         this.file.AddFunctionStatement(fieldId, Op.OpCompositeExtract, typeId, argumentId, index);
 
@@ -432,16 +432,16 @@ namespace SharpVk.Shanq
             }
             else if (typeof(Type).IsAssignableFrom(expression.Type))
             {
-                statement = VisitTypeConstant(expression);
+                statement = this.VisitTypeConstant(expression);
             }
             else
             {
-                ResultId typeOperand = this.Visit(Expression.Constant(expression.Type));
+                var typeOperand = this.Visit(Expression.Constant(expression.Type));
                 statement = new SpirvStatement(Op.OpConstant, typeOperand, expression.Value);
             }
 
 
-            if (!this.expressionResults.TryGetValue(statement, out ResultId resultId))
+            if (!this.expressionResults.TryGetValue(statement, out var resultId))
             {
                 resultId = this.file.GetNextResultId();
 
@@ -455,23 +455,23 @@ namespace SharpVk.Shanq
 
         private SpirvStatement VisitTypeConstant(ConstantExpression expression)
         {
-            Type value = (Type)expression.Value;
+            var value = (Type)expression.Value;
 
             if (this.vectorLibrary.IsMatrixType(value))
             {
-                Type rowType = this.vectorLibrary.GetMatrixRowType(value);
+                var rowType = this.vectorLibrary.GetMatrixRowType(value);
                 int[] dimensions = this.vectorLibrary.GetMatrixDimensions(value);
 
-                ResultId rowTypeId = this.Visit(Expression.Constant(rowType));
+                var rowTypeId = this.Visit(Expression.Constant(rowType));
 
                 return new SpirvStatement(Op.OpTypeMatrix, rowTypeId, dimensions[0]);
             }
             else if (this.vectorLibrary.IsVectorType(value))
             {
-                Type elementType = this.vectorLibrary.GetVectorElementType(value);
+                var elementType = this.vectorLibrary.GetVectorElementType(value);
                 int length = this.vectorLibrary.GetVectorLength(value);
 
-                ResultId elementTypeId = this.Visit(Expression.Constant(elementType));
+                var elementTypeId = this.Visit(Expression.Constant(elementType));
 
                 return new SpirvStatement(Op.OpTypeVector, elementTypeId, length);
             }
@@ -479,7 +479,7 @@ namespace SharpVk.Shanq
             {
                 var returnType = value.GetMethod("Invoke").ReturnType;
 
-                ResultId returnTypeId = this.Visit(Expression.Constant(returnType));
+                var returnTypeId = this.Visit(Expression.Constant(returnType));
 
                 if (value.GetMethod("Invoke").GetParameters().Length > 0)
                 {
@@ -490,16 +490,16 @@ namespace SharpVk.Shanq
             }
             else if (value.BaseType.IsGenericType && value.BaseType.GetGenericTypeDefinition() == typeof(Pointer<>))
             {
-                StorageClass storage = (StorageClass)value.GetProperty("Storage").GetValue(null);
-                ResultId typeId = this.Visit(Expression.Constant(value.GetGenericArguments()[0]));
+                var storage = (StorageClass)value.GetProperty("Storage").GetValue(null);
+                var typeId = this.Visit(Expression.Constant(value.GetGenericArguments()[0]));
 
                 return new SpirvStatement(Op.OpTypePointer, storage, typeId);
             }
-            else if (IsTupleType(value))
+            else if (this.IsTupleType(value))
             {
                 var fieldTypes = value.GetGenericArguments();
 
-                var fieldTypeIds = fieldTypes.Select(x => (object)this.Visit(Expression.Constant(x))).ToArray();
+                object[] fieldTypeIds = fieldTypes.Select(x => (object)this.Visit(Expression.Constant(x))).ToArray();
 
                 return new SpirvStatement(Op.OpTypeStruct, fieldTypeIds);
             }
@@ -509,19 +509,19 @@ namespace SharpVk.Shanq
             }
             else if (value.IsValueType)
             {
-                var fieldTypeIds = value.GetFieldsByOffset().Select(x => (object)this.Visit(Expression.Constant(x.FieldType))).ToArray();
+                object[] fieldTypeIds = value.GetFieldsByOffset().Select(x => (object)this.Visit(Expression.Constant(x.FieldType))).ToArray();
 
                 return new SpirvStatement(Op.OpTypeStruct, fieldTypeIds);
             }
             else if (IsSampler(value))
             {
-                ResultId imageTypeId = this.Visit(Expression.Constant(typeof(ImageType2d<>).MakeGenericType(value.GetGenericArguments()[0])));
+                var imageTypeId = this.Visit(Expression.Constant(typeof(ImageType2d<>).MakeGenericType(value.GetGenericArguments()[0])));
 
                 return new SpirvStatement(Op.OpTypeSampledImage, imageTypeId);
             }
             else if (IsImage(value))
             {
-                ResultId pixelTypeId = this.Visit(Expression.Constant(this.vectorLibrary.GetVectorElementType(value.GetGenericArguments()[0])));
+                var pixelTypeId = this.Visit(Expression.Constant(this.vectorLibrary.GetVectorElementType(value.GetGenericArguments()[0])));
 
                 return new SpirvStatement(Op.OpTypeImage, pixelTypeId, Dim.Dim2D, 0, 0, 0, 1, ImageFormat.Unknown);
             }
@@ -543,12 +543,12 @@ namespace SharpVk.Shanq
 
         private Op SelectByType(Type type, Op floatingPointOp, Op integerOp)
         {
-            return SelectByType(type, floatingPointOp, integerOp, integerOp);
+            return this.SelectByType(type, floatingPointOp, integerOp, integerOp);
         }
 
         private Op SelectByType(Type type, Op floatingPointOp, Op signedIntegerOp, Op unsignedIntegerOp)
         {
-            type = GetElementType(type);
+            type = this.GetElementType(type);
 
             if (IsFloatingPoint(type))
             {
