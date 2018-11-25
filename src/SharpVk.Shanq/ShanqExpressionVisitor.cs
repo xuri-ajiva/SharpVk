@@ -505,7 +505,7 @@ namespace SharpVk.Shanq
             }
             else if (primitiveTypeMapping.TryGetValue(value, out var mapping))
             {
-                return new SpirvStatement(mapping.TypeOp, mapping.Operands);
+                return new SpirvStatement(mapping.TypeOp, mapping.Operands.Cast<object>().ToArray());
             }
             else if (value.IsValueType)
             {
