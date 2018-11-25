@@ -20,6 +20,11 @@ namespace SharpVk.Spirv
         /// </param>
         public SpirvStatement(Op op, params object[] operands)
         {
+            if (operands.Any(x => x.GetType().IsArray))
+            {
+                throw new ArgumentException("Array passed as operand");
+            }
+
             this.Op = op;
             this.Operands = operands;
         }
@@ -50,7 +55,7 @@ namespace SharpVk.Spirv
         /// </returns>
         public override string ToString()
         {
-            return this.Op + this.Operands.Select(x => " " + FormatOperand(x)).Aggregate("", (x, y) => x + y);
+            return this.Op + this.Operands.Select(x => " " + this.FormatOperand(x)).Aggregate("", (x, y) => x + y);
         }
 
         private string FormatOperand(object operand)

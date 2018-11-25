@@ -428,7 +428,7 @@ namespace SharpVk.Shanq
                                     .Concat(((IEnumerable)expression.Value).OfType<object>())
                                     .Select(x => (object)this.Visit(Expression.Constant(x)));
 
-                statement = new SpirvStatement(Op.OpConstantComposite, operands.ToArray());
+                statement = new SpirvStatement(Op.OpConstantComposite, operands.Cast<Object>().ToArray());
             }
             else if (typeof(Type).IsAssignableFrom(expression.Type))
             {
