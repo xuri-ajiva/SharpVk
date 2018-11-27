@@ -128,5 +128,10 @@ namespace SharpVk
         /// 
         /// </summary>
         ShadingRateOptimal = 1000164003, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        FragmentDensityMapOptimal = 1000218000, 
     }
 }

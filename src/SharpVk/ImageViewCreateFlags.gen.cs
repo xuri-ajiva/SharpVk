@@ -34,5 +34,10 @@ namespace SharpVk
         /// 
         /// </summary>
         None = 0, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        FragmentDensityMapDynamic = 1 << 0, 
     }
 }

@@ -22,30 +22,34 @@
 
 // This file was automatically generated and should not be edited directly.
 
-namespace SharpVk
+using System;
+using System.Runtime.InteropServices;
+
+namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// Bits specifying additional parameters of a sampler.
+    /// 
     /// </summary>
-    [System.Flags]
-    public enum SamplerCreateFlags
+    [StructLayout(LayoutKind.Sequential)]
+    public partial struct RenderPassFragmentDensityMapCreateInfo
     {
         /// <summary>
         /// 
         /// </summary>
-        None = 0, 
+        public SharpVk.AttachmentReference FragmentDensityMapAttachment
+        {
+            get;
+            set;
+        }
         
         /// <summary>
-        /// Specifies that the sampler will read from an image created with
-        /// flags containing ImageCreateFlags.Subsampled.
+        /// 
         /// </summary>
-        Subsampled = 1 << 0, 
-        
-        /// <summary>
-        /// Specifies that the implementation may use approximations when
-        /// reconstructing a full color value for texture access from a
-        /// subsampled image.
-        /// </summary>
-        SubsampledCoarseReconstruction = 1 << 1, 
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.RenderPassFragmentDensityMapCreateInfo* pointer)
+        {
+            pointer->SType = StructureType.RenderPassFragmentDensityMapCreateInfo;
+            pointer->Next = null;
+            pointer->FragmentDensityMapAttachment = this.FragmentDensityMapAttachment;
+        }
     }
 }

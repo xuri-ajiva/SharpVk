@@ -82,6 +82,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        Reserved14 = 1 << 14, 
+        Subsampled = 1 << 14, 
     }
 }

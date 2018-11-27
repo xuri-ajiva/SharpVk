@@ -172,6 +172,11 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
+        public const string SwapchainMutableFormat = "VK_KHR_swapchain_mutable_format"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public const string VulkanMemoryModel = "VK_KHR_vulkan_memory_model"; 
     }
 }

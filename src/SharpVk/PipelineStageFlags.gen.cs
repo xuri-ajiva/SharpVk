@@ -190,8 +190,9 @@ namespace SharpVk
         MeshShader = 1 << 20, 
         
         /// <summary>
-        /// 
+        /// Specifies the stage of the pipeline where the fragment density map
+        /// is read to generate the fragment areas.
         /// </summary>
-        Reserved23 = 1 << 23, 
+        FragmentDensityProcess = 1 << 23, 
     }
 }

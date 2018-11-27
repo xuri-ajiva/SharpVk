@@ -22,30 +22,54 @@
 
 // This file was automatically generated and should not be edited directly.
 
-namespace SharpVk
+using System;
+using System.Runtime.InteropServices;
+
+namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// Bits specifying additional parameters of a sampler.
+    /// 
     /// </summary>
-    [System.Flags]
-    public enum SamplerCreateFlags
+    [StructLayout(LayoutKind.Sequential)]
+    public partial struct PhysicalDeviceFragmentDensityMapProperties
     {
         /// <summary>
         /// 
         /// </summary>
-        None = 0, 
+        public SharpVk.Extent2D MinFragmentDensityTexelSize
+        {
+            get;
+            set;
+        }
         
         /// <summary>
-        /// Specifies that the sampler will read from an image created with
-        /// flags containing ImageCreateFlags.Subsampled.
+        /// 
         /// </summary>
-        Subsampled = 1 << 0, 
+        public SharpVk.Extent2D MaxFragmentDensityTexelSize
+        {
+            get;
+            set;
+        }
         
         /// <summary>
-        /// Specifies that the implementation may use approximations when
-        /// reconstructing a full color value for texture access from a
-        /// subsampled image.
+        /// 
         /// </summary>
-        SubsampledCoarseReconstruction = 1 << 1, 
+        public bool FragmentDensityInvocations
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        internal static unsafe PhysicalDeviceFragmentDensityMapProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceFragmentDensityMapProperties* pointer)
+        {
+            PhysicalDeviceFragmentDensityMapProperties result = default(PhysicalDeviceFragmentDensityMapProperties);
+            result.MinFragmentDensityTexelSize = pointer->MinFragmentDensityTexelSize;
+            result.MaxFragmentDensityTexelSize = pointer->MaxFragmentDensityTexelSize;
+            result.FragmentDensityInvocations = pointer->FragmentDensityInvocations;
+            return result;
+        }
     }
 }

@@ -1197,6 +1197,21 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        PhysicalDeviceFragmentDensityMapFeatures = 1000218000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceFragmentDensityMapProperties = 1000218001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        RenderPassFragmentDensityMapCreateInfo = 1000218002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         PhysicalDeviceScalarBlockLayoutFeatures = 1000221000, 
         
         /// <summary>

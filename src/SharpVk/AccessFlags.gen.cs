@@ -217,8 +217,9 @@ namespace SharpVk
         AccelerationStructureWrite = 1 << 22, 
         
         /// <summary>
-        /// 
+        /// Specifies read access to a fragment density map attachment during
+        /// dynamic fragment density map operations.
         /// </summary>
-        Reserved24 = 1 << 24, 
+        FragmentDensityMapRead = 1 << 24, 
     }
 }

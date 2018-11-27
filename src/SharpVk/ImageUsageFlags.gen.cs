@@ -129,6 +129,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        Reserved9 = 1 << 9, 
+        FragmentDensityMap = 1 << 9, 
     }
 }

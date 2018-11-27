@@ -202,6 +202,11 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        public const string FragmentDensityMap = "VK_EXT_fragment_density_map"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public const string ScalarBlockLayout = "VK_EXT_scalar_block_layout"; 
         
         /// <summary>

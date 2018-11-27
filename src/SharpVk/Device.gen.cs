@@ -2635,11 +2635,14 @@ namespace SharpVk
         /// <param name="renderPassInputAttachmentAspectCreateInfo">
         /// Extension struct
         /// </param>
+        /// <param name="renderPassFragmentDensityMapCreateInfoExt">
+        /// Extension struct
+        /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
         /// </param>
-        public unsafe SharpVk.RenderPass CreateRenderPass(ArrayProxy<SharpVk.AttachmentDescription>? attachments, ArrayProxy<SharpVk.SubpassDescription>? subpasses, ArrayProxy<SharpVk.SubpassDependency>? dependencies, SharpVk.RenderPassCreateFlags? flags = default(SharpVk.RenderPassCreateFlags?), SharpVk.RenderPassMultiviewCreateInfo? renderPassMultiviewCreateInfo = null, SharpVk.RenderPassInputAttachmentAspectCreateInfo? renderPassInputAttachmentAspectCreateInfo = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public unsafe SharpVk.RenderPass CreateRenderPass(ArrayProxy<SharpVk.AttachmentDescription>? attachments, ArrayProxy<SharpVk.SubpassDescription>? subpasses, ArrayProxy<SharpVk.SubpassDependency>? dependencies, SharpVk.RenderPassCreateFlags? flags = default(SharpVk.RenderPassCreateFlags?), SharpVk.RenderPassMultiviewCreateInfo? renderPassMultiviewCreateInfo = null, SharpVk.RenderPassInputAttachmentAspectCreateInfo? renderPassInputAttachmentAspectCreateInfo = null, SharpVk.Multivendor.RenderPassFragmentDensityMapCreateInfo? renderPassFragmentDensityMapCreateInfoExt = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
@@ -2661,6 +2664,14 @@ namespace SharpVk
                     SharpVk.Interop.RenderPassInputAttachmentAspectCreateInfo* extensionPointer = default(SharpVk.Interop.RenderPassInputAttachmentAspectCreateInfo*);
                     extensionPointer = (SharpVk.Interop.RenderPassInputAttachmentAspectCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.RenderPassInputAttachmentAspectCreateInfo>());
                     renderPassInputAttachmentAspectCreateInfo.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = nextPointer;
+                    nextPointer = extensionPointer;
+                }
+                if (renderPassFragmentDensityMapCreateInfoExt != null)
+                {
+                    SharpVk.Interop.Multivendor.RenderPassFragmentDensityMapCreateInfo* extensionPointer = default(SharpVk.Interop.Multivendor.RenderPassFragmentDensityMapCreateInfo*);
+                    extensionPointer = (SharpVk.Interop.Multivendor.RenderPassFragmentDensityMapCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.RenderPassFragmentDensityMapCreateInfo>());
+                    renderPassFragmentDensityMapCreateInfoExt.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = nextPointer;
                     nextPointer = extensionPointer;
                 }
