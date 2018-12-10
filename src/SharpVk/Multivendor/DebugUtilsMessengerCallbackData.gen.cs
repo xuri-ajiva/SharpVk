@@ -72,25 +72,7 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public uint? QueueLabelCount
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public SharpVk.Multivendor.DebugUtilsLabel[] QueueLabels
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public uint? CommandBufLabelCount
         {
             get;
             set;
@@ -139,14 +121,7 @@ namespace SharpVk.Multivendor
                 pointer->MessageIdNumber = default(int);
             }
             pointer->Message = Interop.HeapUtil.MarshalTo(this.Message);
-            if (this.QueueLabelCount != null)
-            {
-                pointer->QueueLabelCount = this.QueueLabelCount.Value;
-            }
-            else
-            {
-                pointer->QueueLabelCount = (uint)(Interop.HeapUtil.GetLength(this.QueueLabels));
-            }
+            pointer->QueueLabelCount = (uint)(Interop.HeapUtil.GetLength(this.QueueLabels));
             if (this.QueueLabels != null)
             {
                 var fieldPointer = (SharpVk.Interop.Multivendor.DebugUtilsLabel*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Multivendor.DebugUtilsLabel>(this.QueueLabels.Length).ToPointer());
@@ -160,14 +135,7 @@ namespace SharpVk.Multivendor
             {
                 pointer->QueueLabels = null;
             }
-            if (this.CommandBufLabelCount != null)
-            {
-                pointer->CommandBufLabelCount = this.CommandBufLabelCount.Value;
-            }
-            else
-            {
-                pointer->CommandBufLabelCount = (uint)(Interop.HeapUtil.GetLength(this.CommandBufLabels));
-            }
+            pointer->CommandBufLabelCount = (uint)(Interop.HeapUtil.GetLength(this.CommandBufLabels));
             if (this.CommandBufLabels != null)
             {
                 var fieldPointer = (SharpVk.Interop.Multivendor.DebugUtilsLabel*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Interop.Multivendor.DebugUtilsLabel>(this.CommandBufLabels.Length).ToPointer());

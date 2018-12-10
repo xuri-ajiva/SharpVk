@@ -562,6 +562,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        PhysicalDeviceFloat16Int8Features = 1000082000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         PresentRegions = 1000084000, 
         
         /// <summary>
@@ -1133,6 +1138,11 @@ namespace SharpVk
         /// 
         /// </summary>
         PhysicalDeviceDriverProperties = 1000196000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceFloatControlsProperties = 1000197000, 
         
         /// <summary>
         /// 

@@ -112,6 +112,11 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
+        public const string ShaderFloat16Int8 = "VK_KHR_shader_float16_int8"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public const string IncrementalPresent = "VK_KHR_incremental_present"; 
         
         /// <summary>
@@ -168,6 +173,11 @@ namespace SharpVk.Khronos
         /// 
         /// </summary>
         public const string DriverProperties = "VK_KHR_driver_properties"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string ShaderFloatControls = "VK_KHR_shader_float_controls"; 
         
         /// <summary>
         /// 
