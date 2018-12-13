@@ -302,13 +302,32 @@ namespace SharpVk.Shanq
 
                         var accessId = this.file.GetNextResultId();
 
-                        this.file.AddFunctionStatement(accessId, Op.OpCompositeExtract, typeId, targetId, fieldIndices.First());
+                        this.file.AddFunctionStatement(accessId, Op.OpCompositeExtract, typeId, targetId, fieldIndices.Single());
 
                         return accessId;
                     }
                     else
                     {
-                        throw new NotImplementedException();
+                        var targetId = this.Visit(expression.Expression);
+
+                        var typeId = this.Visit(Expression.Constant(type));
+
+                        var elementType = this.Visit(Expression.Constant(this.vectorLibrary.GetVectorElementType(type)));
+
+                        var componentIds = fieldIndices.Select(index =>
+                        {
+                            var accessId = this.file.GetNextResultId();
+
+                            this.file.AddFunctionStatement(accessId, Op.OpCompositeExtract, typeId, targetId, index);
+
+                            return accessId;
+                        }).ToArray();
+
+                        var compositeId = this.file.GetNextResultId();
+
+                        this.file.AddFunctionStatement(compositeId, Op.OpCompositeConstruct, new[] { typeId }.Concat(componentIds).Cast<object>().ToArray());
+
+                        return compositeId;
                     }
                 }
                 else
