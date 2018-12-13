@@ -318,7 +318,7 @@ namespace SharpVk.Shanq
                         {
                             var accessId = this.file.GetNextResultId();
 
-                            this.file.AddFunctionStatement(accessId, Op.OpCompositeExtract, typeId, targetId, index);
+                            this.file.AddFunctionStatement(accessId, Op.OpCompositeExtract, elementType, targetId, index);
 
                             return accessId;
                         }).ToArray();
