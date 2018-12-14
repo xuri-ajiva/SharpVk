@@ -262,7 +262,9 @@ namespace SharpVk.Shanq
             {
                 int length = this.vectorLibrary.GetVectorLength(expression.Left.Type);
 
-                var statement = new SpirvStatement(Op.OpCompositeConstruct, Enumerable.Repeat<object>(right, length).ToArray());
+                var resultType = this.Visit(Expression.Constant(expression.Left.Type));
+
+                var statement = new SpirvStatement(Op.OpCompositeConstruct, new object[] { resultType }.Concat(Enumerable.Repeat<object>(right, length)).ToArray());
                 right = this.file.GetNextResultId();
 
                 this.file.AddFunctionStatement(right, statement);
