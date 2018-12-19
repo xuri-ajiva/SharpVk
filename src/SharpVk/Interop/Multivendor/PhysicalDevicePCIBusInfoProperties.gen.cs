@@ -34,33 +34,33 @@ namespace SharpVk.Interop.Multivendor
     public unsafe partial struct PhysicalDevicePCIBusInfoProperties
     {
         /// <summary>
-        /// 
+        /// The type of this structure
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// Null or a pointer to an extension-specific structure
         /// </summary>
         public void* Next; 
         
         /// <summary>
-        /// 
+        /// The PCI bus domain
         /// </summary>
-        public ushort PciDomain; 
+        public uint PciDomain; 
         
         /// <summary>
-        /// 
+        /// The PCI bus identifier
         /// </summary>
-        public byte PciBus; 
+        public uint PciBus; 
         
         /// <summary>
-        /// 
+        /// The PCI device identifier
         /// </summary>
-        public byte PciDevice; 
+        public uint PciDevice; 
         
         /// <summary>
-        /// 
+        /// The PCI device function identifier
         /// </summary>
-        public byte PciFunction; 
+        public uint PciFunction; 
     }
 }

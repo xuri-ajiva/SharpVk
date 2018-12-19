@@ -28,42 +28,42 @@ using System.Runtime.InteropServices;
 namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
+    /// The PCI bus information of a physical device
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public partial struct PhysicalDevicePCIBusInfoProperties
     {
         /// <summary>
-        /// 
+        /// The PCI bus domain
         /// </summary>
-        public ushort PciDomain
+        public uint PciDomain
         {
             get;
             set;
         }
         
         /// <summary>
-        /// 
+        /// The PCI bus identifier
         /// </summary>
-        public byte PciBus
+        public uint PciBus
         {
             get;
             set;
         }
         
         /// <summary>
-        /// 
+        /// The PCI device identifier
         /// </summary>
-        public byte PciDevice
+        public uint PciDevice
         {
             get;
             set;
         }
         
         /// <summary>
-        /// 
+        /// The PCI device function identifier
         /// </summary>
-        public byte PciFunction
+        public uint PciFunction
         {
             get;
             set;
