@@ -1,16 +1,16 @@
 namespace SharpVk.Glfw
 {
     /// <summary>
-    /// The function signature for keyboard key callback functions.
+    /// The function signature for scroll callback functions.
     /// </summary>
     /// <param name="window">
     /// The window that received the event.
     /// </param>
-    /// <param name="xoffset">
-    /// Scroll x amount
+    /// <param name="xOffset">
+    /// The scroll offset along the x-axis.
     /// </param>
-    /// <param name="yoffset">
-    /// Scroll y amount
+    /// <param name="yOffset">
+    /// The scroll offset along the y-axis.
     /// </param>
-    public delegate void ScrollDelegate(WindowHandle window, double xoffset, double yoffset);
+    public delegate void ScrollDelegate(WindowHandle window, double xOffset, double yOffset);
 }

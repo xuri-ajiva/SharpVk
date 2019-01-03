@@ -361,7 +361,7 @@ namespace SharpVk.Glfw
         public static extern InputAction GetKey(WindowHandle window, Key key);
 
         [DllImport(GlfwDll, CallingConvention = CallingConvention.Cdecl, EntryPoint = "glfwGetMouseButton")]
-        public static extern InputAction GetMouseButton(WindowHandle window, int button);
+        public static extern InputAction GetMouseButton(WindowHandle window, MouseButton button);
 
         [DllImport(GlfwDll, CallingConvention = CallingConvention.Cdecl, EntryPoint = "glfwGetCursorPos")]
         public static extern void GetCursorPosition(WindowHandle window, out double xPosition, out double yPosition);
@@ -376,39 +376,46 @@ namespace SharpVk.Glfw
         public static extern KeyDelegate SetCharCallback(WindowHandle window, CharDelegate callback);
 
         /// <summary>
-        /// Sets a callback for Mouse movement events.
-        /// Use this for full mouse path resolution between PollEvents() calls.
-        ///
-        /// From GLFW Documentation: The callback functions receives the cursor position, measured in screen coordinates 
-        /// but relative to the top-left corner of the window client area. On platforms that provide it, the full sub-pixel
-        /// cursor position is passed on.
+        /// <para>Sets a callback for Mouse movement events. Use this for full
+        /// mouse path resolution between PollEvents() calls.</para>
+        /// <para>From GLFW Documentation: The callback functions receives the
+        /// cursor position, measured in screen coordinates but relative to the
+        /// top-left corner of the window client area. On platforms that
+        /// provide it, the full sub-pixel cursor position is passed on.</para>
         /// </summary>
         /// <returns>
-        /// The Callback set
+        /// The previously set callback, or NULL if no callback was set or the
+        /// library had not been initialized.
         /// </returns>
         [DllImport(GlfwDll, CallingConvention = CallingConvention.Cdecl, EntryPoint = "glfwSetCursorPosCallback")]
         public static extern CursorPosDelegate SetCursorPosCallback(WindowHandle window, CursorPosDelegate callback);
 
         /// <summary>
-        /// Sets a Callback for Button Events (i.e. clicks)
-        /// This also detects mouse press and release events done between PollEvents() calls.
-        /// From GLFW Documentation: Whenever you poll state, you risk missing the state change you are looking for. 
-        /// If a pressed mouse button is released again before you poll its state, you will have missed the button press.
-        /// The recommended solution for this is to use a mouse button callback, but there is also the GLFW_STICKY_MOUSE_BUTTONS input mode.
+        /// <para>Sets a Callback for Button Events (i.e. clicks). This also
+        /// detects mouse press and release events done between PollEvents()
+        /// calls.</para>
+        /// <para>From GLFW Documentation: Whenever you poll state, you risk
+        /// missing the state change you are looking for. If a pressed mouse
+        /// button is released again before you poll its state, you will have
+        /// missed the button press. The recommended solution for this is to
+        /// use a mouse button callback, but there is also the
+        /// GLFW_STICKY_MOUSE_BUTTONS input mode.</para>
         /// </summary>
         /// <returns>
-        /// The Callback set
+        /// The previously set callback, or NULL if no callback was set or the
+        /// library had not been initialized.
         /// </returns>
         [DllImport(GlfwDll, CallingConvention = CallingConvention.Cdecl, EntryPoint = "glfwSetMouseButtonCallback")]
         public static extern MouseButtonDelegate SetMouseButtonPosCallback(WindowHandle window, MouseButtonDelegate callback);
-       
+
         /// <summary>
         /// Sets a Callback for Mouse Scrolling Events. (i.e. scroll wheel)
         /// There is no polling support for this, so if youre interested in the wheel, you have to set this callback
         /// NOTE: your normal desktop mouse variant likely only reports Y-Coordinate
         /// </summary>
         /// <returns>
-        /// The Callback set
+        /// The previously set callback, or NULL if no callback was set or the
+        /// library had not been initialized.
         /// </returns>
         [DllImport(GlfwDll, CallingConvention = CallingConvention.Cdecl, EntryPoint = "glfwSetScrollCallback")]
         public static extern ScrollDelegate SetScrollCallback(WindowHandle window, ScrollDelegate callback);

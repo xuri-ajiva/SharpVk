@@ -77,7 +77,7 @@ namespace SharpVk.Glfw
             }
         }
 
-        public InputAction GetMouseButtonState(int mouseButton)
+        public InputAction GetMouseButtonState(MouseButton mouseButton)
         {
             try
             {
