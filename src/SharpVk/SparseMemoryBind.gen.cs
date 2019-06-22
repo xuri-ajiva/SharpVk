@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// The offset into the resource.
         /// </summary>
-        public DeviceSize ResourceOffset
+        public ulong ResourceOffset
         {
             get;
             set;
@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// The size of the memory region to be bound.
         /// </summary>
-        public DeviceSize Size
+        public ulong Size
         {
             get;
             set;
@@ -65,7 +65,7 @@ namespace SharpVk
         /// The offset into the DeviceMemory object to bind the resource range
         /// to. If memory is null, this value is ignored.
         /// </summary>
-        public DeviceSize MemoryOffset
+        public ulong MemoryOffset
         {
             get;
             set;

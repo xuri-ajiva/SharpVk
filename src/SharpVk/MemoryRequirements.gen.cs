@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public MemoryRequirements(DeviceSize size, DeviceSize alignment, uint memoryTypeBits)
+        public MemoryRequirements(ulong size, ulong alignment, uint memoryTypeBits)
         {
             this.Size = size;
             this.Alignment = alignment;
@@ -47,13 +47,13 @@ namespace SharpVk
         /// The size, in bytes, of the memory allocation required: for the
         /// resource.
         /// </summary>
-        public DeviceSize Size; 
+        public ulong Size; 
         
         /// <summary>
         /// The alignment, in bytes, of the offset within the allocation
         /// required: for the resource.
         /// </summary>
-        public DeviceSize Alignment; 
+        public ulong Alignment; 
         
         /// <summary>
         /// A bitmask and contains one bit set for every supported memory type

@@ -166,14 +166,14 @@ namespace SharpVk.Khronos
             try
             {
                 CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Khronos.SubpassEndInfo* subpassEndInfo = default(SharpVk.Interop.Khronos.SubpassEndInfo*);
+                SharpVk.Interop.Khronos.SubpassEndInfo* marshalledSubpassEndInfo = default(SharpVk.Interop.Khronos.SubpassEndInfo*);
                 void* nextPointer = default(void*);
                 commandCache = extendedHandle.commandCache;
-                subpassEndInfo = (SharpVk.Interop.Khronos.SubpassEndInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.SubpassEndInfo>());
-                subpassEndInfo->SType = StructureType.SubpassEndInfo;
-                subpassEndInfo->Next = nextPointer;
+                marshalledSubpassEndInfo = (SharpVk.Interop.Khronos.SubpassEndInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.SubpassEndInfo>());
+                marshalledSubpassEndInfo->SType = StructureType.SubpassEndInfo;
+                marshalledSubpassEndInfo->Next = nextPointer;
                 SharpVk.Interop.Khronos.VkCommandBufferEndRenderPass2Delegate commandDelegate = commandCache.Cache.vkCmdEndRenderPass2KHR;
-                commandDelegate(extendedHandle.handle, subpassEndInfo);
+                commandDelegate(extendedHandle.handle, marshalledSubpassEndInfo);
             }
             finally
             {
@@ -187,7 +187,7 @@ namespace SharpVk.Khronos
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
         /// </param>
-        public static unsafe void DrawIndirectCount(this SharpVk.CommandBuffer extendedHandle, SharpVk.Buffer buffer, DeviceSize offset, SharpVk.Buffer countBuffer, DeviceSize countBufferOffset, uint maxDrawCount, uint stride)
+        public static unsafe void DrawIndirectCount(this SharpVk.CommandBuffer extendedHandle, SharpVk.Buffer buffer, ulong offset, SharpVk.Buffer countBuffer, ulong countBufferOffset, uint maxDrawCount, uint stride)
         {
             try
             {
@@ -208,7 +208,7 @@ namespace SharpVk.Khronos
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
         /// </param>
-        public static unsafe void DrawIndexedIndirectCount(this SharpVk.CommandBuffer extendedHandle, SharpVk.Buffer buffer, DeviceSize offset, SharpVk.Buffer countBuffer, DeviceSize countBufferOffset, uint maxDrawCount, uint stride)
+        public static unsafe void DrawIndexedIndirectCount(this SharpVk.CommandBuffer extendedHandle, SharpVk.Buffer buffer, ulong offset, SharpVk.Buffer countBuffer, ulong countBufferOffset, uint maxDrawCount, uint stride)
         {
             try
             {

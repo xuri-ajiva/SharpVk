@@ -108,23 +108,6 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PhysicalDeviceRayTracingProperties* pointer)
-        {
-            pointer->SType = StructureType.PhysicalDeviceRayTracingProperties;
-            pointer->Next = null;
-            pointer->ShaderGroupHandleSize = this.ShaderGroupHandleSize;
-            pointer->MaxRecursionDepth = this.MaxRecursionDepth;
-            pointer->MaxShaderGroupStride = this.MaxShaderGroupStride;
-            pointer->ShaderGroupBaseAlignment = this.ShaderGroupBaseAlignment;
-            pointer->MaxGeometryCount = this.MaxGeometryCount;
-            pointer->MaxInstanceCount = this.MaxInstanceCount;
-            pointer->MaxTriangleCount = this.MaxTriangleCount;
-            pointer->MaxDescriptorSetAccelerationStructures = this.MaxDescriptorSetAccelerationStructures;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         internal static unsafe PhysicalDeviceRayTracingProperties MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceRayTracingProperties* pointer)
         {
             PhysicalDeviceRayTracingProperties result = default(PhysicalDeviceRayTracingProperties);

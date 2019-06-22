@@ -34,12 +34,12 @@ namespace SharpVk.Interop.NVidia.Experimental
     public unsafe partial struct PhysicalDeviceMultiviewPerViewAttributesProperties
     {
         /// <summary>
-        /// 
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         

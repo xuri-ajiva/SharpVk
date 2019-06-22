@@ -29,5 +29,5 @@ namespace SharpVk.Interop
     /// <summary>
     /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkQueryPoolGetResultsDelegate(SharpVk.Interop.Device device, SharpVk.Interop.QueryPool queryPool, uint firstQuery, uint queryCount, HostSize dataSize, void* data, DeviceSize stride, SharpVk.QueryResultFlags flags);
+    public unsafe delegate SharpVk.Result VkQueryPoolGetResultsDelegate(SharpVk.Interop.Device device, SharpVk.Interop.QueryPool queryPool, uint firstQuery, uint queryCount, HostSize dataSize, void* data, ulong stride, SharpVk.QueryResultFlags flags);
 }

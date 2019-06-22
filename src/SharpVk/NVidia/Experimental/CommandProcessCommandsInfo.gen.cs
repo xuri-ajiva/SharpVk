@@ -103,7 +103,7 @@ namespace SharpVk.NVidia.Experimental
         /// The byte offset into sequencesCountBuffer where the count value is
         /// stored.
         /// </summary>
-        public DeviceSize? SequencesCountOffset
+        public ulong? SequencesCountOffset
         {
             get;
             set;
@@ -125,7 +125,7 @@ namespace SharpVk.NVidia.Experimental
         /// The byte offset into sequencesIndexBuffer where the index values
         /// start.
         /// </summary>
-        public DeviceSize? SequencesIndexOffset
+        public ulong? SequencesIndexOffset
         {
             get;
             set;
@@ -163,7 +163,7 @@ namespace SharpVk.NVidia.Experimental
             }
             else
             {
-                pointer->SequencesCountOffset = default(DeviceSize);
+                pointer->SequencesCountOffset = default(ulong);
             }
             pointer->SequencesIndexBuffer = this.SequencesIndexBuffer?.handle ?? default(SharpVk.Interop.Buffer);
             if (this.SequencesIndexOffset != null)
@@ -172,7 +172,7 @@ namespace SharpVk.NVidia.Experimental
             }
             else
             {
-                pointer->SequencesIndexOffset = default(DeviceSize);
+                pointer->SequencesIndexOffset = default(ulong);
             }
         }
     }

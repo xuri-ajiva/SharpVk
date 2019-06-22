@@ -34,12 +34,12 @@ namespace SharpVk.Interop.Khronos
     public unsafe partial struct PhysicalDeviceDriverProperties
     {
         /// <summary>
-        /// 
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         

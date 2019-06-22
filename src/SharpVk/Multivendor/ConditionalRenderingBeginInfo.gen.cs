@@ -45,7 +45,7 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public DeviceSize Offset
+        public ulong Offset
         {
             get;
             set;

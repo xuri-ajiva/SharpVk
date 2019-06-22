@@ -36,12 +36,12 @@ namespace SharpVk.Interop
         /// <summary>
         /// The offset into the resource.
         /// </summary>
-        public DeviceSize ResourceOffset; 
+        public ulong ResourceOffset; 
         
         /// <summary>
         /// The size of the memory region to be bound.
         /// </summary>
-        public DeviceSize Size; 
+        public ulong Size; 
         
         /// <summary>
         /// The DeviceMemory object that the range of the resource is bound to.
@@ -53,7 +53,7 @@ namespace SharpVk.Interop
         /// The offset into the DeviceMemory object to bind the resource range
         /// to. If memory is null, this value is ignored.
         /// </summary>
-        public DeviceSize MemoryOffset; 
+        public ulong MemoryOffset; 
         
         /// <summary>
         /// A bitmask specifying usage of the binding operation. Bits which can

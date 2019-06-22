@@ -36,20 +36,10 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public DeviceSize MinImportedHostPointerAlignment
+        public ulong MinImportedHostPointerAlignment
         {
             get;
             set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceExternalMemoryHostProperties* pointer)
-        {
-            pointer->SType = StructureType.PhysicalDeviceExternalMemoryHostProperties;
-            pointer->Next = null;
-            pointer->MinImportedHostPointerAlignment = this.MinImportedHostPointerAlignment;
         }
         
         /// <summary>

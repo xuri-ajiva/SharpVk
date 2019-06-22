@@ -23,29 +23,11 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
-using System.Runtime.InteropServices;
 
-namespace SharpVk.Interop
+namespace SharpVk.Interop.Amd
 {
     /// <summary>
     /// 
     /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceShaderDrawParameterFeatures
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        public SharpVk.StructureType SType; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public void* Next; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Bool32 ShaderDrawParameters; 
-    }
+    public unsafe delegate void VkSwapchainKHRSetLocalDimmingDelegate(SharpVk.Interop.Device device, SharpVk.Interop.Khronos.Swapchain swapChain, Bool32 localDimmingEnable);
 }

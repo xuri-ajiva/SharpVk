@@ -42,22 +42,22 @@ namespace SharpVk.Amd
             try
             {
                 byte[] result = default(byte[]);
-                HostSize infoSize = default(HostSize);
+                HostSize marshalledInfoSize = default(HostSize);
                 CommandCache commandCache = default(CommandCache);
                 byte* marshalledInfo = default(byte*);
                 commandCache = extendedHandle.commandCache;
                 SharpVk.Interop.Amd.VkPipelineGetShaderInfoDelegate commandDelegate = commandCache.Cache.vkGetShaderInfoAMD;
-                Result methodResult = commandDelegate(extendedHandle.parent.handle, extendedHandle.handle, shaderStage, infoType, &infoSize, marshalledInfo);
+                Result methodResult = commandDelegate(extendedHandle.parent.handle, extendedHandle.handle, shaderStage, infoType, &marshalledInfoSize, marshalledInfo);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                marshalledInfo = (byte*)(Interop.HeapUtil.Allocate<byte>((uint)(infoSize)));
-                commandDelegate(extendedHandle.parent.handle, extendedHandle.handle, shaderStage, infoType, &infoSize, marshalledInfo);
+                marshalledInfo = (byte*)(Interop.HeapUtil.Allocate<byte>((uint)(marshalledInfoSize)));
+                commandDelegate(extendedHandle.parent.handle, extendedHandle.handle, shaderStage, infoType, &marshalledInfoSize, marshalledInfo);
                 if (marshalledInfo != null)
                 {
-                    var fieldPointer = new byte[(uint)(infoSize)];
-                    for(int index = 0; index < (uint)(infoSize); index++)
+                    var fieldPointer = new byte[(uint)(marshalledInfoSize)];
+                    for(int index = 0; index < (uint)(marshalledInfoSize); index++)
                     {
                         fieldPointer[index] = marshalledInfo[index];
                     }

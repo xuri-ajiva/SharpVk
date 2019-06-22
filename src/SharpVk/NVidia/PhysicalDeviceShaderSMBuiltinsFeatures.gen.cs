@@ -25,18 +25,18 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace SharpVk
+namespace SharpVk.NVidia
 {
     /// <summary>
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceVariablePointerFeatures
+    public partial struct PhysicalDeviceShaderSMBuiltinsFeatures
     {
         /// <summary>
         /// 
         /// </summary>
-        public bool VariablePointersStorageBuffer
+        public bool ShaderSMBuiltins
         {
             get;
             set;
@@ -45,30 +45,20 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public bool VariablePointers
+        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PhysicalDeviceShaderSMBuiltinsFeatures* pointer)
         {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceVariablePointerFeatures* pointer)
-        {
+            pointer->SType = StructureType.PhysicalDeviceShaderSmBuiltinsFeatures;
             pointer->Next = null;
-            pointer->VariablePointersStorageBuffer = this.VariablePointersStorageBuffer;
-            pointer->VariablePointers = this.VariablePointers;
+            pointer->ShaderSMBuiltins = this.ShaderSMBuiltins;
         }
         
         /// <summary>
         /// 
         /// </summary>
-        internal static unsafe PhysicalDeviceVariablePointerFeatures MarshalFrom(SharpVk.Interop.PhysicalDeviceVariablePointerFeatures* pointer)
+        internal static unsafe PhysicalDeviceShaderSMBuiltinsFeatures MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceShaderSMBuiltinsFeatures* pointer)
         {
-            PhysicalDeviceVariablePointerFeatures result = default(PhysicalDeviceVariablePointerFeatures);
-            result.VariablePointersStorageBuffer = pointer->VariablePointersStorageBuffer;
-            result.VariablePointers = pointer->VariablePointers;
+            PhysicalDeviceShaderSMBuiltinsFeatures result = default(PhysicalDeviceShaderSMBuiltinsFeatures);
+            result.ShaderSMBuiltins = pointer->ShaderSMBuiltins;
             return result;
         }
     }

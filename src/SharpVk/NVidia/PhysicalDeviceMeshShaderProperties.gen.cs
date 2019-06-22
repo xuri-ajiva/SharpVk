@@ -153,27 +153,23 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
-        internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PhysicalDeviceMeshShaderProperties* pointer)
+        internal static unsafe PhysicalDeviceMeshShaderProperties MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceMeshShaderProperties* pointer)
         {
-            pointer->SType = StructureType.PhysicalDeviceMeshShaderProperties;
-            pointer->Next = null;
-            pointer->MaxDrawMeshTasksCount = this.MaxDrawMeshTasksCount;
-            pointer->MaxTaskWorkGroupInvocations = this.MaxTaskWorkGroupInvocations;
-            pointer->MaxTaskWorkGroupSize[0] = this.MaxTaskWorkGroupSize.Item1;
-            pointer->MaxTaskWorkGroupSize[1] = this.MaxTaskWorkGroupSize.Item2;
-            pointer->MaxTaskWorkGroupSize[2] = this.MaxTaskWorkGroupSize.Item3;
-            pointer->MaxTaskTotalMemorySize = this.MaxTaskTotalMemorySize;
-            pointer->MaxTaskOutputCount = this.MaxTaskOutputCount;
-            pointer->MaxMeshWorkGroupInvocations = this.MaxMeshWorkGroupInvocations;
-            pointer->MaxMeshWorkGroupSize[0] = this.MaxMeshWorkGroupSize.Item1;
-            pointer->MaxMeshWorkGroupSize[1] = this.MaxMeshWorkGroupSize.Item2;
-            pointer->MaxMeshWorkGroupSize[2] = this.MaxMeshWorkGroupSize.Item3;
-            pointer->MaxMeshTotalMemorySize = this.MaxMeshTotalMemorySize;
-            pointer->MaxMeshOutputVertices = this.MaxMeshOutputVertices;
-            pointer->MaxMeshOutputPrimitives = this.MaxMeshOutputPrimitives;
-            pointer->MaxMeshMultiviewViewCount = this.MaxMeshMultiviewViewCount;
-            pointer->MeshOutputPerVertexGranularity = this.MeshOutputPerVertexGranularity;
-            pointer->MeshOutputPerPrimitiveGranularity = this.MeshOutputPerPrimitiveGranularity;
+            PhysicalDeviceMeshShaderProperties result = default(PhysicalDeviceMeshShaderProperties);
+            result.MaxDrawMeshTasksCount = pointer->MaxDrawMeshTasksCount;
+            result.MaxTaskWorkGroupInvocations = pointer->MaxTaskWorkGroupInvocations;
+            result.MaxTaskWorkGroupSize = (pointer->MaxTaskWorkGroupSize[0], pointer->MaxTaskWorkGroupSize[1], pointer->MaxTaskWorkGroupSize[2]);
+            result.MaxTaskTotalMemorySize = pointer->MaxTaskTotalMemorySize;
+            result.MaxTaskOutputCount = pointer->MaxTaskOutputCount;
+            result.MaxMeshWorkGroupInvocations = pointer->MaxMeshWorkGroupInvocations;
+            result.MaxMeshWorkGroupSize = (pointer->MaxMeshWorkGroupSize[0], pointer->MaxMeshWorkGroupSize[1], pointer->MaxMeshWorkGroupSize[2]);
+            result.MaxMeshTotalMemorySize = pointer->MaxMeshTotalMemorySize;
+            result.MaxMeshOutputVertices = pointer->MaxMeshOutputVertices;
+            result.MaxMeshOutputPrimitives = pointer->MaxMeshOutputPrimitives;
+            result.MaxMeshMultiviewViewCount = pointer->MaxMeshMultiviewViewCount;
+            result.MeshOutputPerVertexGranularity = pointer->MeshOutputPerVertexGranularity;
+            result.MeshOutputPerPrimitiveGranularity = pointer->MeshOutputPerPrimitiveGranularity;
+            return result;
         }
     }
 }

@@ -241,6 +241,19 @@ namespace SharpVk.Interop
             return newArray;
         }
 
+        internal static ulong[] MarshalFrom(ulong* pointer, int length)
+        {
+            var newArray = new ulong[length];
+
+            // Marshal.Copy doesn't support uints for some reason...
+            for (int index = 0; index < length; index++)
+            {
+                newArray[index] = *(pointer + length);
+            }
+
+            return newArray;
+        }
+
         internal static byte* MarshalTo(byte[] value)
         {
             byte* pointer = (byte*)Allocate<byte>(value.Length).ToPointer();

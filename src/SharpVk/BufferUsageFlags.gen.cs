@@ -102,12 +102,22 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        Reserved14 = 1 << 14, 
+        Reserved15 = 1 << 15, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Reserved16 = 1 << 16, 
         
         /// <summary>
         /// 
         /// </summary>
         Reserved13 = 1 << 13, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Reserved14 = 1 << 14, 
         
         /// <summary>
         /// 
@@ -125,8 +135,16 @@ namespace SharpVk
         ConditionalRendering = 1 << 9, 
         
         /// <summary>
-        /// 
+        /// Specifies that the buffer is suitable for use in vkCmdTraceRaysNV
+        /// and vkCmdBuildAccelerationStructureNV.
         /// </summary>
         RayTracing = 1 << 10, 
+        
+        /// <summary>
+        /// Specifies that the buffer can be used to retrieve a buffer device
+        /// address via vkGetBufferDeviceAddressEXT and use that address to
+        /// access the buffer’s memory from a shader.
+        /// </summary>
+        ShaderDeviceAddress = 1 << 17, 
     }
 }

@@ -182,11 +182,26 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
+        public const string DepthStencilResolve = "VK_KHR_depth_stencil_resolve"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public const string SwapchainMutableFormat = "VK_KHR_swapchain_mutable_format"; 
         
         /// <summary>
         /// 
         /// </summary>
         public const string VulkanMemoryModel = "VK_KHR_vulkan_memory_model"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string SurfaceProtectedCapabilities = "VK_KHR_surface_protected_capabilities"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string UniformBufferStandardLayout = "VK_KHR_uniform_buffer_standard_layout"; 
     }
 }

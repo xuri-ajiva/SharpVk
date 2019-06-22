@@ -29,5 +29,5 @@ namespace SharpVk.Interop.Multivendor
     /// <summary>
     /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferBindTransformFeedbackBuffersDelegate(SharpVk.Interop.CommandBuffer commandBuffer, uint firstBinding, uint bindingCount, SharpVk.Interop.Buffer* buffers, DeviceSize* offsets, DeviceSize* sizes);
+    public unsafe delegate void VkCommandBufferBindTransformFeedbackBuffersDelegate(SharpVk.Interop.CommandBuffer commandBuffer, uint firstBinding, uint bindingCount, SharpVk.Interop.Buffer* buffers, ulong* offsets, ulong* sizes);
 }

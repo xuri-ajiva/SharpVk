@@ -119,7 +119,7 @@ namespace SharpVk.Interop
         /// offsets in the same DeviceMemory object without aliasing. See
         /// Buffer-Image Granularity for more details.
         /// </summary>
-        public DeviceSize BufferImageGranularity; 
+        public ulong BufferImageGranularity; 
         
         /// <summary>
         /// The total amount of address space available, in bytes, for sparse
@@ -127,7 +127,7 @@ namespace SharpVk.Interop
         /// all sparse resources, regardless of whether any memory is bound to
         /// them.
         /// </summary>
-        public DeviceSize SparseAddressSpaceSize; 
+        public ulong SparseAddressSpaceSize; 
         
         /// <summary>
         /// The maximum number of descriptor sets that can be simultaneously
@@ -639,7 +639,7 @@ namespace SharpVk.Interop
         /// the BufferCreateInfo structure, the offset must be an integer
         /// multiple of this limit.
         /// </summary>
-        public DeviceSize MinTexelBufferOffsetAlignment; 
+        public ulong MinTexelBufferOffsetAlignment; 
         
         /// <summary>
         /// minUniformBufferOffsetAlignment is the minimum required: alignment,
@@ -650,7 +650,7 @@ namespace SharpVk.Interop
         /// Similarly, dynamic offsets for uniform buffers must be multiples of
         /// this limit.
         /// </summary>
-        public DeviceSize MinUniformBufferOffsetAlignment; 
+        public ulong MinUniformBufferOffsetAlignment; 
         
         /// <summary>
         /// minStorageBufferOffsetAlignment is the minimum required: alignment,
@@ -661,7 +661,7 @@ namespace SharpVk.Interop
         /// Similarly, dynamic offsets for storage buffers must be multiples of
         /// this limit.
         /// </summary>
-        public DeviceSize MinStorageBufferOffsetAlignment; 
+        public ulong MinStorageBufferOffsetAlignment; 
         
         /// <summary>
         /// The minimum offset value for the ConstOffset image operand of any
@@ -917,7 +917,7 @@ namespace SharpVk.Interop
         /// requirements are still enforced, this is just an additional
         /// alignment recommendation for optimal performance and power.
         /// </summary>
-        public DeviceSize OptimalBufferCopyOffsetAlignment; 
+        public ulong OptimalBufferCopyOffsetAlignment; 
         
         /// <summary>
         /// optimalBufferCopyRowPitchAlignment is the optimal buffer row pitch
@@ -928,12 +928,12 @@ namespace SharpVk.Interop
         /// are still enforced, this is just an additional alignment
         /// recommendation for optimal performance and power.
         /// </summary>
-        public DeviceSize OptimalBufferCopyRowPitchAlignment; 
+        public ulong OptimalBufferCopyRowPitchAlignment; 
         
         /// <summary>
         /// The size and alignment in bytes that bounds concurrent access to
         /// host-mapped device memory.
         /// </summary>
-        public DeviceSize NonCoherentAtomSize; 
+        public ulong NonCoherentAtomSize; 
     }
 }

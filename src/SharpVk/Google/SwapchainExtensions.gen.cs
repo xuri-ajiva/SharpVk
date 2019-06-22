@@ -71,22 +71,22 @@ namespace SharpVk.Google
             try
             {
                 SharpVk.Google.PastPresentationTiming[] result = default(SharpVk.Google.PastPresentationTiming[]);
-                uint presentationTimingCount = default(uint);
+                uint marshalledPresentationTimingCount = default(uint);
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Google.PastPresentationTiming* marshalledPresentationTimings = default(SharpVk.Google.PastPresentationTiming*);
                 commandCache = extendedHandle.commandCache;
                 SharpVk.Interop.Google.VkSwapchainKHRGetPastPresentationTimingDelegate commandDelegate = commandCache.Cache.vkGetPastPresentationTimingGOOGLE;
-                Result methodResult = commandDelegate(extendedHandle.parent.handle, extendedHandle.handle, &presentationTimingCount, marshalledPresentationTimings);
+                Result methodResult = commandDelegate(extendedHandle.parent.handle, extendedHandle.handle, &marshalledPresentationTimingCount, marshalledPresentationTimings);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                marshalledPresentationTimings = (SharpVk.Google.PastPresentationTiming*)(Interop.HeapUtil.Allocate<SharpVk.Google.PastPresentationTiming>((uint)(presentationTimingCount)));
-                commandDelegate(extendedHandle.parent.handle, extendedHandle.handle, &presentationTimingCount, marshalledPresentationTimings);
+                marshalledPresentationTimings = (SharpVk.Google.PastPresentationTiming*)(Interop.HeapUtil.Allocate<SharpVk.Google.PastPresentationTiming>((uint)(marshalledPresentationTimingCount)));
+                commandDelegate(extendedHandle.parent.handle, extendedHandle.handle, &marshalledPresentationTimingCount, marshalledPresentationTimings);
                 if (marshalledPresentationTimings != null)
                 {
-                    var fieldPointer = new SharpVk.Google.PastPresentationTiming[(uint)(presentationTimingCount)];
-                    for(int index = 0; index < (uint)(presentationTimingCount); index++)
+                    var fieldPointer = new SharpVk.Google.PastPresentationTiming[(uint)(marshalledPresentationTimingCount)];
+                    for(int index = 0; index < (uint)(marshalledPresentationTimingCount); index++)
                     {
                         fieldPointer[index] = marshalledPresentationTimings[index];
                     }

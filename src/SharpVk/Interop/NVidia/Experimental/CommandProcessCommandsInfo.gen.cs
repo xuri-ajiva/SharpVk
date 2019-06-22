@@ -94,7 +94,7 @@ namespace SharpVk.Interop.NVidia.Experimental
         /// The byte offset into sequencesCountBuffer where the count value is
         /// stored.
         /// </summary>
-        public DeviceSize SequencesCountOffset; 
+        public ulong SequencesCountOffset; 
         
         /// <summary>
         /// sequencesIndexBuffer must be set if indirectCommandsLayout's
@@ -108,6 +108,6 @@ namespace SharpVk.Interop.NVidia.Experimental
         /// The byte offset into sequencesIndexBuffer where the index values
         /// start.
         /// </summary>
-        public DeviceSize SequencesIndexOffset; 
+        public ulong SequencesIndexOffset; 
     }
 }

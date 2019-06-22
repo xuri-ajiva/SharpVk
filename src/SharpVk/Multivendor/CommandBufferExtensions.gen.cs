@@ -43,14 +43,14 @@ namespace SharpVk.Multivendor
         /// </param>
         /// <param name="sizes">
         /// </param>
-        public static unsafe void BindTransformFeedbackBuffers(this SharpVk.CommandBuffer extendedHandle, uint firstBinding, ArrayProxy<SharpVk.Buffer>? buffers, ArrayProxy<DeviceSize>? offsets, ArrayProxy<DeviceSize>? sizes = null)
+        public static unsafe void BindTransformFeedbackBuffers(this SharpVk.CommandBuffer extendedHandle, uint firstBinding, ArrayProxy<SharpVk.Buffer>? buffers, ArrayProxy<ulong>? offsets, ArrayProxy<ulong>? sizes = null)
         {
             try
             {
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Buffer* marshalledBuffers = default(SharpVk.Interop.Buffer*);
-                DeviceSize* marshalledOffsets = default(DeviceSize*);
-                DeviceSize* marshalledSizes = default(DeviceSize*);
+                ulong* marshalledOffsets = default(ulong*);
+                ulong* marshalledSizes = default(ulong*);
                 commandCache = extendedHandle.commandCache;
                 if (buffers.IsNull())
                 {
@@ -81,12 +81,12 @@ namespace SharpVk.Multivendor
                 {
                     if (offsets.Value.Contents == ProxyContents.Single)
                     {
-                        marshalledOffsets = (DeviceSize*)(Interop.HeapUtil.Allocate<DeviceSize>());
-                        *(DeviceSize*)(marshalledOffsets) = offsets.Value.GetSingleValue();
+                        marshalledOffsets = (ulong*)(Interop.HeapUtil.Allocate<ulong>());
+                        *(ulong*)(marshalledOffsets) = offsets.Value.GetSingleValue();
                     }
                     else
                     {
-                        var fieldPointer = (DeviceSize*)(Interop.HeapUtil.AllocateAndClear<DeviceSize>(Interop.HeapUtil.GetLength(offsets.Value)).ToPointer());
+                        var fieldPointer = (ulong*)(Interop.HeapUtil.AllocateAndClear<ulong>(Interop.HeapUtil.GetLength(offsets.Value)).ToPointer());
                         for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(offsets.Value)); index++)
                         {
                             fieldPointer[index] = offsets.Value[index];
@@ -102,12 +102,12 @@ namespace SharpVk.Multivendor
                 {
                     if (sizes.Value.Contents == ProxyContents.Single)
                     {
-                        marshalledSizes = (DeviceSize*)(Interop.HeapUtil.Allocate<DeviceSize>());
-                        *(DeviceSize*)(marshalledSizes) = sizes.Value.GetSingleValue();
+                        marshalledSizes = (ulong*)(Interop.HeapUtil.Allocate<ulong>());
+                        *(ulong*)(marshalledSizes) = sizes.Value.GetSingleValue();
                     }
                     else
                     {
-                        var fieldPointer = (DeviceSize*)(Interop.HeapUtil.AllocateAndClear<DeviceSize>(Interop.HeapUtil.GetLength(sizes.Value)).ToPointer());
+                        var fieldPointer = (ulong*)(Interop.HeapUtil.AllocateAndClear<ulong>(Interop.HeapUtil.GetLength(sizes.Value)).ToPointer());
                         for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(sizes.Value)); index++)
                         {
                             fieldPointer[index] = sizes.Value[index];
@@ -134,13 +134,13 @@ namespace SharpVk.Multivendor
         /// </param>
         /// <param name="counterBufferOffsets">
         /// </param>
-        public static unsafe void BeginTransformFeedback(this SharpVk.CommandBuffer extendedHandle, uint firstCounterBuffer, ArrayProxy<SharpVk.Buffer>? counterBuffers = null, ArrayProxy<DeviceSize>? counterBufferOffsets = null)
+        public static unsafe void BeginTransformFeedback(this SharpVk.CommandBuffer extendedHandle, uint firstCounterBuffer, ArrayProxy<SharpVk.Buffer>? counterBuffers, ArrayProxy<ulong>? counterBufferOffsets = null)
         {
             try
             {
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Buffer* marshalledCounterBuffers = default(SharpVk.Interop.Buffer*);
-                DeviceSize* marshalledCounterBufferOffsets = default(DeviceSize*);
+                ulong* marshalledCounterBufferOffsets = default(ulong*);
                 commandCache = extendedHandle.commandCache;
                 if (counterBuffers.IsNull())
                 {
@@ -171,12 +171,12 @@ namespace SharpVk.Multivendor
                 {
                     if (counterBufferOffsets.Value.Contents == ProxyContents.Single)
                     {
-                        marshalledCounterBufferOffsets = (DeviceSize*)(Interop.HeapUtil.Allocate<DeviceSize>());
-                        *(DeviceSize*)(marshalledCounterBufferOffsets) = counterBufferOffsets.Value.GetSingleValue();
+                        marshalledCounterBufferOffsets = (ulong*)(Interop.HeapUtil.Allocate<ulong>());
+                        *(ulong*)(marshalledCounterBufferOffsets) = counterBufferOffsets.Value.GetSingleValue();
                     }
                     else
                     {
-                        var fieldPointer = (DeviceSize*)(Interop.HeapUtil.AllocateAndClear<DeviceSize>(Interop.HeapUtil.GetLength(counterBufferOffsets.Value)).ToPointer());
+                        var fieldPointer = (ulong*)(Interop.HeapUtil.AllocateAndClear<ulong>(Interop.HeapUtil.GetLength(counterBufferOffsets.Value)).ToPointer());
                         for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(counterBufferOffsets.Value)); index++)
                         {
                             fieldPointer[index] = counterBufferOffsets.Value[index];
@@ -203,13 +203,13 @@ namespace SharpVk.Multivendor
         /// </param>
         /// <param name="counterBufferOffsets">
         /// </param>
-        public static unsafe void EndTransformFeedback(this SharpVk.CommandBuffer extendedHandle, uint firstCounterBuffer, ArrayProxy<SharpVk.Buffer>? counterBuffers = null, ArrayProxy<DeviceSize>? counterBufferOffsets = null)
+        public static unsafe void EndTransformFeedback(this SharpVk.CommandBuffer extendedHandle, uint firstCounterBuffer, ArrayProxy<SharpVk.Buffer>? counterBuffers, ArrayProxy<ulong>? counterBufferOffsets = null)
         {
             try
             {
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Buffer* marshalledCounterBuffers = default(SharpVk.Interop.Buffer*);
-                DeviceSize* marshalledCounterBufferOffsets = default(DeviceSize*);
+                ulong* marshalledCounterBufferOffsets = default(ulong*);
                 commandCache = extendedHandle.commandCache;
                 if (counterBuffers.IsNull())
                 {
@@ -240,12 +240,12 @@ namespace SharpVk.Multivendor
                 {
                     if (counterBufferOffsets.Value.Contents == ProxyContents.Single)
                     {
-                        marshalledCounterBufferOffsets = (DeviceSize*)(Interop.HeapUtil.Allocate<DeviceSize>());
-                        *(DeviceSize*)(marshalledCounterBufferOffsets) = counterBufferOffsets.Value.GetSingleValue();
+                        marshalledCounterBufferOffsets = (ulong*)(Interop.HeapUtil.Allocate<ulong>());
+                        *(ulong*)(marshalledCounterBufferOffsets) = counterBufferOffsets.Value.GetSingleValue();
                     }
                     else
                     {
-                        var fieldPointer = (DeviceSize*)(Interop.HeapUtil.AllocateAndClear<DeviceSize>(Interop.HeapUtil.GetLength(counterBufferOffsets.Value)).ToPointer());
+                        var fieldPointer = (ulong*)(Interop.HeapUtil.AllocateAndClear<ulong>(Interop.HeapUtil.GetLength(counterBufferOffsets.Value)).ToPointer());
                         for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(counterBufferOffsets.Value)); index++)
                         {
                             fieldPointer[index] = counterBufferOffsets.Value[index];
@@ -319,7 +319,7 @@ namespace SharpVk.Multivendor
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
         /// </param>
-        public static unsafe void DrawIndirectByteCount(this SharpVk.CommandBuffer extendedHandle, uint instanceCount, uint firstInstance, SharpVk.Buffer counterBuffer, DeviceSize counterBufferOffset, uint counterOffset, uint vertexStride)
+        public static unsafe void DrawIndirectByteCount(this SharpVk.CommandBuffer extendedHandle, uint instanceCount, uint firstInstance, SharpVk.Buffer counterBuffer, ulong counterBufferOffset, uint counterOffset, uint vertexStride)
         {
             try
             {
@@ -340,7 +340,7 @@ namespace SharpVk.Multivendor
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
         /// </param>
-        public static unsafe void BeginConditionalRendering(this SharpVk.CommandBuffer extendedHandle, SharpVk.Buffer buffer, DeviceSize offset, SharpVk.Multivendor.ConditionalRenderingFlags? flags = default(SharpVk.Multivendor.ConditionalRenderingFlags?))
+        public static unsafe void BeginConditionalRendering(this SharpVk.CommandBuffer extendedHandle, SharpVk.Buffer buffer, ulong offset, SharpVk.Multivendor.ConditionalRenderingFlags? flags = default(SharpVk.Multivendor.ConditionalRenderingFlags?))
         {
             try
             {

@@ -29,5 +29,5 @@ namespace SharpVk.Interop
     /// <summary>
     /// 
     /// </summary>
-    public unsafe delegate SharpVk.Result VkDeviceMemoryMapDelegate(SharpVk.Interop.Device device, SharpVk.Interop.DeviceMemory memory, DeviceSize offset, DeviceSize size, SharpVk.MemoryMapFlags flags, void** data);
+    public unsafe delegate SharpVk.Result VkDeviceMemoryMapDelegate(SharpVk.Interop.Device device, SharpVk.Interop.DeviceMemory memory, ulong offset, ulong size, SharpVk.MemoryMapFlags flags, void** data);
 }

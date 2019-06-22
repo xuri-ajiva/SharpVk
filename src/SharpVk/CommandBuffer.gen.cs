@@ -430,7 +430,7 @@ namespace SharpVk
         /// <summary>
         /// Bind an index buffer to a command buffer.
         /// </summary>
-        public unsafe void BindIndexBuffer(SharpVk.Buffer buffer, DeviceSize offset, SharpVk.IndexType indexType)
+        public unsafe void BindIndexBuffer(SharpVk.Buffer buffer, ulong offset, SharpVk.IndexType indexType)
         {
             try
             {
@@ -450,12 +450,12 @@ namespace SharpVk
         /// </param>
         /// <param name="offsets">
         /// </param>
-        public unsafe void BindVertexBuffers(uint firstBinding, ArrayProxy<SharpVk.Buffer>? buffers, ArrayProxy<DeviceSize>? offsets)
+        public unsafe void BindVertexBuffers(uint firstBinding, ArrayProxy<SharpVk.Buffer>? buffers, ArrayProxy<ulong>? offsets)
         {
             try
             {
                 SharpVk.Interop.Buffer* marshalledBuffers = default(SharpVk.Interop.Buffer*);
-                DeviceSize* marshalledOffsets = default(DeviceSize*);
+                ulong* marshalledOffsets = default(ulong*);
                 if (buffers.IsNull())
                 {
                     marshalledBuffers = null;
@@ -485,12 +485,12 @@ namespace SharpVk
                 {
                     if (offsets.Value.Contents == ProxyContents.Single)
                     {
-                        marshalledOffsets = (DeviceSize*)(Interop.HeapUtil.Allocate<DeviceSize>());
-                        *(DeviceSize*)(marshalledOffsets) = offsets.Value.GetSingleValue();
+                        marshalledOffsets = (ulong*)(Interop.HeapUtil.Allocate<ulong>());
+                        *(ulong*)(marshalledOffsets) = offsets.Value.GetSingleValue();
                     }
                     else
                     {
-                        var fieldPointer = (DeviceSize*)(Interop.HeapUtil.AllocateAndClear<DeviceSize>(Interop.HeapUtil.GetLength(offsets.Value)).ToPointer());
+                        var fieldPointer = (ulong*)(Interop.HeapUtil.AllocateAndClear<ulong>(Interop.HeapUtil.GetLength(offsets.Value)).ToPointer());
                         for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(offsets.Value)); index++)
                         {
                             fieldPointer[index] = offsets.Value[index];
@@ -542,7 +542,7 @@ namespace SharpVk
         /// <summary>
         /// Issue an indirect draw into a command buffer.
         /// </summary>
-        public unsafe void DrawIndirect(SharpVk.Buffer buffer, DeviceSize offset, uint drawCount, uint stride)
+        public unsafe void DrawIndirect(SharpVk.Buffer buffer, ulong offset, uint drawCount, uint stride)
         {
             try
             {
@@ -558,7 +558,7 @@ namespace SharpVk
         /// <summary>
         /// Perform an indexed indirect draw.
         /// </summary>
-        public unsafe void DrawIndexedIndirect(SharpVk.Buffer buffer, DeviceSize offset, uint drawCount, uint stride)
+        public unsafe void DrawIndexedIndirect(SharpVk.Buffer buffer, ulong offset, uint drawCount, uint stride)
         {
             try
             {
@@ -590,7 +590,7 @@ namespace SharpVk
         /// <summary>
         /// Dispatch compute work items using indirect parameters.
         /// </summary>
-        public unsafe void DispatchIndirect(SharpVk.Buffer buffer, DeviceSize offset)
+        public unsafe void DispatchIndirect(SharpVk.Buffer buffer, ulong offset)
         {
             try
             {
@@ -809,7 +809,7 @@ namespace SharpVk
         /// </summary>
         /// <param name="data">
         /// </param>
-        public unsafe void UpdateBuffer(SharpVk.Buffer destinationBuffer, DeviceSize destinationOffset, ArrayProxy<byte>? data)
+        public unsafe void UpdateBuffer(SharpVk.Buffer destinationBuffer, ulong destinationOffset, ArrayProxy<byte>? data)
         {
             try
             {
@@ -836,7 +836,7 @@ namespace SharpVk
                     }
                 }
                 SharpVk.Interop.VkCommandBufferUpdateBufferDelegate commandDelegate = commandCache.Cache.vkCmdUpdateBuffer;
-                commandDelegate(this.handle, destinationBuffer?.handle ?? default(SharpVk.Interop.Buffer), destinationOffset, (DeviceSize)(Interop.HeapUtil.GetLength(data)), marshalledData);
+                commandDelegate(this.handle, destinationBuffer?.handle ?? default(SharpVk.Interop.Buffer), destinationOffset, (ulong)(Interop.HeapUtil.GetLength(data)), marshalledData);
             }
             finally
             {
@@ -847,7 +847,7 @@ namespace SharpVk
         /// <summary>
         /// Fill a region of a buffer with a fixed value.
         /// </summary>
-        public unsafe void FillBuffer(SharpVk.Buffer destinationBuffer, DeviceSize destinationOffset, DeviceSize size, uint data)
+        public unsafe void FillBuffer(SharpVk.Buffer destinationBuffer, ulong destinationOffset, ulong size, uint data)
         {
             try
             {
@@ -1367,7 +1367,7 @@ namespace SharpVk
         /// <summary>
         /// Copy the results of queries in a query pool to a buffer object.
         /// </summary>
-        public unsafe void CopyQueryPoolResults(SharpVk.QueryPool queryPool, uint firstQuery, uint queryCount, SharpVk.Buffer destinationBuffer, DeviceSize destinationOffset, DeviceSize stride, SharpVk.QueryResultFlags? flags = default(SharpVk.QueryResultFlags?))
+        public unsafe void CopyQueryPoolResults(SharpVk.QueryPool queryPool, uint firstQuery, uint queryCount, SharpVk.Buffer destinationBuffer, ulong destinationOffset, ulong stride, SharpVk.QueryResultFlags? flags = default(SharpVk.QueryResultFlags?))
         {
             try
             {

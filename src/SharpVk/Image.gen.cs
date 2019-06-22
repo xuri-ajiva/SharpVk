@@ -53,7 +53,7 @@ namespace SharpVk
         /// <summary>
         /// Bind device memory to an image object.
         /// </summary>
-        public unsafe void BindMemory(SharpVk.DeviceMemory memory, DeviceSize memoryOffset)
+        public unsafe void BindMemory(SharpVk.DeviceMemory memory, ulong memoryOffset)
         {
             try
             {
@@ -98,16 +98,16 @@ namespace SharpVk
             try
             {
                 SharpVk.SparseImageMemoryRequirements[] result = default(SharpVk.SparseImageMemoryRequirements[]);
-                uint sparseMemoryRequirementCount = default(uint);
+                uint marshalledSparseMemoryRequirementCount = default(uint);
                 SharpVk.SparseImageMemoryRequirements* marshalledSparseMemoryRequirements = default(SharpVk.SparseImageMemoryRequirements*);
                 SharpVk.Interop.VkImageGetSparseMemoryRequirementsDelegate commandDelegate = commandCache.Cache.vkGetImageSparseMemoryRequirements;
-                commandDelegate(this.parent.handle, this.handle, &sparseMemoryRequirementCount, marshalledSparseMemoryRequirements);
-                marshalledSparseMemoryRequirements = (SharpVk.SparseImageMemoryRequirements*)(Interop.HeapUtil.Allocate<SharpVk.SparseImageMemoryRequirements>((uint)(sparseMemoryRequirementCount)));
-                commandDelegate(this.parent.handle, this.handle, &sparseMemoryRequirementCount, marshalledSparseMemoryRequirements);
+                commandDelegate(this.parent.handle, this.handle, &marshalledSparseMemoryRequirementCount, marshalledSparseMemoryRequirements);
+                marshalledSparseMemoryRequirements = (SharpVk.SparseImageMemoryRequirements*)(Interop.HeapUtil.Allocate<SharpVk.SparseImageMemoryRequirements>((uint)(marshalledSparseMemoryRequirementCount)));
+                commandDelegate(this.parent.handle, this.handle, &marshalledSparseMemoryRequirementCount, marshalledSparseMemoryRequirements);
                 if (marshalledSparseMemoryRequirements != null)
                 {
-                    var fieldPointer = new SharpVk.SparseImageMemoryRequirements[(uint)(sparseMemoryRequirementCount)];
-                    for(int index = 0; index < (uint)(sparseMemoryRequirementCount); index++)
+                    var fieldPointer = new SharpVk.SparseImageMemoryRequirements[(uint)(marshalledSparseMemoryRequirementCount)];
+                    for(int index = 0; index < (uint)(marshalledSparseMemoryRequirementCount); index++)
                     {
                         fieldPointer[index] = marshalledSparseMemoryRequirements[index];
                     }

@@ -29,5 +29,5 @@ namespace SharpVk.Interop
     /// <summary>
     /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferUpdateBufferDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.Interop.Buffer destinationBuffer, DeviceSize destinationOffset, DeviceSize dataSize, void* data);
+    public unsafe delegate void VkCommandBufferUpdateBufferDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.Interop.Buffer destinationBuffer, ulong destinationOffset, ulong dataSize, void* data);
 }

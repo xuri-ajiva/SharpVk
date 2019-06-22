@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public BufferImageCopy(DeviceSize bufferOffset, uint bufferRowLength, uint bufferImageHeight, SharpVk.ImageSubresourceLayers imageSubresource, SharpVk.Offset3D imageOffset, SharpVk.Extent3D imageExtent)
+        public BufferImageCopy(ulong bufferOffset, uint bufferRowLength, uint bufferImageHeight, SharpVk.ImageSubresourceLayers imageSubresource, SharpVk.Offset3D imageOffset, SharpVk.Extent3D imageExtent)
         {
             this.BufferOffset = bufferOffset;
             this.BufferRowLength = bufferRowLength;
@@ -50,7 +50,7 @@ namespace SharpVk
         /// The offset in bytes from the start of the buffer object where the
         /// image data is copied from or to.
         /// </summary>
-        public DeviceSize BufferOffset; 
+        public ulong BufferOffset; 
         
         /// <summary>
         /// bufferRowLength and bufferImageHeight specify the data in buffer

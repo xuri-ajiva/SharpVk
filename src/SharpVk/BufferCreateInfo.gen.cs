@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// The size in bytes of the buffer to be created.
         /// </summary>
-        public DeviceSize Size
+        public ulong Size
         {
             get;
             set;

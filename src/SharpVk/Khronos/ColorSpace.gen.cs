@@ -35,19 +35,22 @@ namespace SharpVk.Khronos
         SrgbNonlinear = 0, 
         
         /// <summary>
-        /// 
+        /// Specifies support for the Display-P3 color space to be displayed
+        /// using an sRGB-like EOTF.
         /// </summary>
         DisplayP3Nonlinear = 1000104001, 
         
         /// <summary>
-        /// 
+        /// Specifies support for the extended sRGB color space to be displayed
+        /// using a linear EOTF.
         /// </summary>
         ExtendedSrgbLinear = 1000104002, 
         
         /// <summary>
-        /// Supports the DCI-P3 color space and applies a linear OETF.
+        /// Specifies support for the Display-P3 color space to be displayed
+        /// using a linear EOTF
         /// </summary>
-        DciP3Linear = 1000104003, 
+        DisplayP3Linear = 1000104003, 
         
         /// <summary>
         /// Supports the DCI-P3 color space and applies the Gamma 2.6 OETF.
@@ -70,17 +73,20 @@ namespace SharpVk.Khronos
         Bt2020Linear = 1000104007, 
         
         /// <summary>
-        /// 
+        /// Specifies support for the HDR10 (BT2020 color) space to be
+        /// displayed using the SMPTE ST2084 Perceptual Quantizer (PQ) EOTF.
         /// </summary>
         Hdr10St2084 = 1000104008, 
         
         /// <summary>
-        /// 
+        /// Specifies support for the Dolby Vision (BT2020 color space),
+        /// proprietary encoding, to be displayed using the SMPTE ST2084 EOTF.
         /// </summary>
         Dolbyvision = 1000104009, 
         
         /// <summary>
-        /// 
+        /// Specifies support for the HDR10 (BT2020 color space) to be
+        /// displayed using the Hybrid Log Gamma (HLG) EOTF.
         /// </summary>
         Hdr10Hlg = 1000104010, 
         
@@ -95,13 +101,22 @@ namespace SharpVk.Khronos
         AdobergbNonlinear = 1000104012, 
         
         /// <summary>
-        /// 
+        /// Specifies that color components are used “as is”. This is intended
+        /// to allow applications to supply data for color spaces not described
+        /// here.
         /// </summary>
         PassThrough = 1000104013, 
         
         /// <summary>
-        /// 
+        /// Specifies support for the extended sRGB color space to be displayed
+        /// using an sRGB EOTF.
         /// </summary>
         ExtendedSrgbNonlinear = 1000104014, 
+        
+        /// <summary>
+        /// Support for the Display-P3 color space to be displayed using a
+        /// linear EOTF
+        /// </summary>
+        DisplayNative = 1000213000, 
     }
 }

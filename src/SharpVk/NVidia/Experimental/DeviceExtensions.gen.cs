@@ -32,6 +32,33 @@ namespace SharpVk.NVidia.Experimental
     public static class DeviceExtensions
     {
         /// <summary>
+        /// Get the handle for an image view for a specific descriptor type
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The Device handle to extend.
+        /// </param>
+        /// <param name="info">
+        /// Describes the image view to query and type of handle.
+        /// </param>
+        public static unsafe void GetImageViewHandle(this SharpVk.Device extendedHandle, SharpVk.NVidia.Experimental.ImageViewHandleInfo info)
+        {
+            try
+            {
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.NVidia.Experimental.ImageViewHandleInfo* marshalledInfo = default(SharpVk.Interop.NVidia.Experimental.ImageViewHandleInfo*);
+                commandCache = extendedHandle.commandCache;
+                marshalledInfo = (SharpVk.Interop.NVidia.Experimental.ImageViewHandleInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.Experimental.ImageViewHandleInfo>());
+                info.MarshalTo(marshalledInfo);
+                SharpVk.Interop.NVidia.Experimental.VkDeviceGetImageViewHandleDelegate commandDelegate = commandCache.Cache.vkGetImageViewHandleNVX;
+                commandDelegate(extendedHandle.handle, marshalledInfo);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="extendedHandle">

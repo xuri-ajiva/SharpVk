@@ -51,7 +51,7 @@ namespace SharpVk.Amd
         /// <param name="marker">
         /// The 32-bit value of the marker.
         /// </param>
-        public static unsafe void WriteBufferMarker(this SharpVk.CommandBuffer extendedHandle, SharpVk.PipelineStageFlags pipelineStage, SharpVk.Buffer destinationBuffer, DeviceSize destinationOffset, uint marker)
+        public static unsafe void WriteBufferMarker(this SharpVk.CommandBuffer extendedHandle, SharpVk.PipelineStageFlags pipelineStage, SharpVk.Buffer destinationBuffer, ulong destinationOffset, uint marker)
         {
             try
             {

@@ -63,7 +63,7 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
-        public DeviceSize Offset
+        public ulong Offset
         {
             get;
             set;

@@ -34,12 +34,12 @@ namespace SharpVk.Interop.Amd
     public unsafe partial struct PipelineRasterizationStateRasterizationOrder
     {
         /// <summary>
-        /// 
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         

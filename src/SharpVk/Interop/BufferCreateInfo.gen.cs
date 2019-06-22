@@ -51,7 +51,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// The size in bytes of the buffer to be created.
         /// </summary>
-        public DeviceSize Size; 
+        public ulong Size; 
         
         /// <summary>
         /// A bitmask describing the allowed usages of the buffer.

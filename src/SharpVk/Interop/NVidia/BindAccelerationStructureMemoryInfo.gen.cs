@@ -34,12 +34,12 @@ namespace SharpVk.Interop.NVidia
     public unsafe partial struct BindAccelerationStructureMemoryInfo
     {
         /// <summary>
-        /// 
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
@@ -56,7 +56,7 @@ namespace SharpVk.Interop.NVidia
         /// <summary>
         /// 
         /// </summary>
-        public DeviceSize MemoryOffset; 
+        public ulong MemoryOffset; 
         
         /// <summary>
         /// 

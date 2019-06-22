@@ -29,5 +29,5 @@ namespace SharpVk.Interop.NVidia
     /// <summary>
     /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferTraceRaysDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.Interop.Buffer raygenShaderBindingTableBuffer, DeviceSize raygenShaderBindingOffset, SharpVk.Interop.Buffer missShaderBindingTableBuffer, DeviceSize missShaderBindingOffset, DeviceSize missShaderBindingStride, SharpVk.Interop.Buffer hitShaderBindingTableBuffer, DeviceSize hitShaderBindingOffset, DeviceSize hitShaderBindingStride, SharpVk.Interop.Buffer callableShaderBindingTableBuffer, DeviceSize callableShaderBindingOffset, DeviceSize callableShaderBindingStride, uint width, uint height, uint depth);
+    public unsafe delegate void VkCommandBufferTraceRaysDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.Interop.Buffer raygenShaderBindingTableBuffer, ulong raygenShaderBindingOffset, SharpVk.Interop.Buffer missShaderBindingTableBuffer, ulong missShaderBindingOffset, ulong missShaderBindingStride, SharpVk.Interop.Buffer hitShaderBindingTableBuffer, ulong hitShaderBindingOffset, ulong hitShaderBindingStride, SharpVk.Interop.Buffer callableShaderBindingTableBuffer, ulong callableShaderBindingOffset, ulong callableShaderBindingStride, uint width, uint height, uint depth);
 }

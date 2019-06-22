@@ -8,7 +8,7 @@ namespace SharpVk
         /// <summary>
         /// Bind device memory to a Vulkan object.
         /// </summary>
-        void BindMemory(DeviceMemory memory, DeviceSize memoryOffset);
+        void BindMemory(DeviceMemory memory, ulong memoryOffset);
 
         /// <summary>
         /// Returns the memory requirements for specified Vulkan object.

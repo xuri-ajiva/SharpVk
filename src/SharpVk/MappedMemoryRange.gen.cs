@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// The zero-based byte offset from the beginning of the memory object.
         /// </summary>
-        public DeviceSize Offset
+        public ulong Offset
         {
             get;
             set;
@@ -56,7 +56,7 @@ namespace SharpVk
         /// the range from offset to the end of the current mapping of the
         /// allocation.
         /// </summary>
-        public DeviceSize Size
+        public ulong Size
         {
             get;
             set;

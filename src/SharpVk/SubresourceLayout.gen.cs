@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SubresourceLayout(DeviceSize offset, DeviceSize size, DeviceSize rowPitch, DeviceSize arrayPitch, DeviceSize depthPitch)
+        public SubresourceLayout(ulong offset, ulong size, ulong rowPitch, ulong arrayPitch, ulong depthPitch)
         {
             this.Offset = offset;
             this.Size = size;
@@ -49,30 +49,30 @@ namespace SharpVk
         /// The byte offset from the start of the image where the image
         /// subresource begins.
         /// </summary>
-        public DeviceSize Offset; 
+        public ulong Offset; 
         
         /// <summary>
         /// The size in bytes of the image subresource. size includes any extra
         /// memory that is required based on rowPitch.
         /// </summary>
-        public DeviceSize Size; 
+        public ulong Size; 
         
         /// <summary>
         /// rowPitch describes the number of bytes between each row of texels
         /// in an image.
         /// </summary>
-        public DeviceSize RowPitch; 
+        public ulong RowPitch; 
         
         /// <summary>
         /// arrayPitch describes the number of bytes between each array layer
         /// of an image.
         /// </summary>
-        public DeviceSize ArrayPitch; 
+        public ulong ArrayPitch; 
         
         /// <summary>
         /// depthPitch describes the number of bytes between each slice of 3D
         /// image.
         /// </summary>
-        public DeviceSize DepthPitch; 
+        public ulong DepthPitch; 
     }
 }

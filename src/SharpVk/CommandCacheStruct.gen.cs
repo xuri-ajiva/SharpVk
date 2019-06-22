@@ -1059,7 +1059,17 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        public readonly Interop.NVidia.Experimental.VkDeviceGetImageViewHandleDelegate vkGetImageViewHandleNVX; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public readonly Interop.Amd.VkPipelineGetShaderInfoDelegate vkGetShaderInfoAMD; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.Ggp.VkInstanceCreateStreamDescriptorSurfaceDelegate vkCreateStreamDescriptorSurfaceGGP; 
         
         /// <summary>
         /// 
@@ -1569,7 +1579,107 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        public readonly Interop.Intel.VkDeviceInitializePerformanceApiDelegate vkInitializePerformanceApiINTEL; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.Intel.VkDeviceUninitializePerformanceApiDelegate vkUninitializePerformanceApiINTEL; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.Intel.VkCommandBufferSetPerformanceMarkerDelegate vkCmdSetPerformanceMarkerINTEL; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.Intel.VkCommandBufferSetPerformanceStreamMarkerDelegate vkCmdSetPerformanceStreamMarkerINTEL; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.Intel.VkCommandBufferSetPerformanceOverrideDelegate vkCmdSetPerformanceOverrideINTEL; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.Intel.VkDeviceAcquirePerformanceConfigurationDelegate vkAcquirePerformanceConfigurationINTEL; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.Intel.VkPerformanceConfigurationINTELReleaseDelegate vkReleasePerformanceConfigurationINTEL; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.Intel.VkQueueSetPerformanceConfigurationDelegate vkQueueSetPerformanceConfigurationINTEL; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.Intel.VkDeviceGetPerformanceParameterDelegate vkGetPerformanceParameterINTEL; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.Amd.VkSwapchainKHRSetLocalDimmingDelegate vkSetLocalDimmingAMD; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public readonly Interop.Fuchsia.VkInstanceCreateImagePipeSurfaceDelegate vkCreateImagePipeSurfaceFUCHSIA; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.Multivendor.VkInstanceCreateMetalSurfaceDelegate vkCreateMetalSurfaceEXT; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.Multivendor.VkDeviceGetBufferDeviceAddressDelegate vkGetBufferDeviceAddressEXT; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.NVidia.VkPhysicalDeviceGetCooperativeMatrixPropertiesDelegate vkGetPhysicalDeviceCooperativeMatrixPropertiesNV; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.NVidia.VkPhysicalDeviceGetSupportedFramebufferMixedSamplesCombinationsDelegate vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.Multivendor.VkPhysicalDeviceGetSurfacePresentModes2Delegate vkGetPhysicalDeviceSurfacePresentModes2EXT; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.Multivendor.VkSwapchainKHRAcquireFullScreenExclusiveModeDelegate vkAcquireFullScreenExclusiveModeEXT; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.Multivendor.VkSwapchainKHRReleaseFullScreenExclusiveModeDelegate vkReleaseFullScreenExclusiveModeEXT; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.Multivendor.VkDeviceGetGroupSurfacePresentModes2Delegate vkGetDeviceGroupSurfacePresentModes2EXT; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.Multivendor.VkInstanceCreateHeadlessSurfaceDelegate vkCreateHeadlessSurfaceEXT; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.Multivendor.VkQueryPoolResetDelegate vkResetQueryPoolEXT; 
         
         /// <summary>
         /// 
@@ -1781,7 +1891,9 @@ namespace SharpVk
             this.vkCmdBeginQueryIndexedEXT = cache.GetCommandDelegate<Interop.Multivendor.VkCommandBufferBeginQueryIndexedDelegate>("vkCmdBeginQueryIndexedEXT", "device");
             this.vkCmdEndQueryIndexedEXT = cache.GetCommandDelegate<Interop.Multivendor.VkCommandBufferEndQueryIndexedDelegate>("vkCmdEndQueryIndexedEXT", "device");
             this.vkCmdDrawIndirectByteCountEXT = cache.GetCommandDelegate<Interop.Multivendor.VkCommandBufferDrawIndirectByteCountDelegate>("vkCmdDrawIndirectByteCountEXT", "device");
+            this.vkGetImageViewHandleNVX = cache.GetCommandDelegate<Interop.NVidia.Experimental.VkDeviceGetImageViewHandleDelegate>("vkGetImageViewHandleNVX", "device");
             this.vkGetShaderInfoAMD = cache.GetCommandDelegate<Interop.Amd.VkPipelineGetShaderInfoDelegate>("vkGetShaderInfoAMD", "device");
+            this.vkCreateStreamDescriptorSurfaceGGP = cache.GetCommandDelegate<Interop.Ggp.VkInstanceCreateStreamDescriptorSurfaceDelegate>("vkCreateStreamDescriptorSurfaceGGP", "instance");
             this.vkGetPhysicalDeviceExternalImageFormatPropertiesNV = cache.GetCommandDelegate<Interop.NVidia.VkPhysicalDeviceGetExternalImageFormatPropertiesDelegate>("vkGetPhysicalDeviceExternalImageFormatPropertiesNV", "instance");
             this.vkGetMemoryWin32HandleNV = cache.GetCommandDelegate<Interop.NVidia.VkDeviceMemoryGetWin32HandleDelegate>("vkGetMemoryWin32HandleNV", "device");
             this.vkCreateViSurfaceNN = cache.GetCommandDelegate<Interop.Nintendo.VkInstanceCreateViSurfaceDelegate>("vkCreateViSurfaceNN", "instance");
@@ -1883,7 +1995,27 @@ namespace SharpVk
             this.vkCmdSetExclusiveScissorNV = cache.GetCommandDelegate<Interop.NVidia.VkCommandBufferSetExclusiveScissorDelegate>("vkCmdSetExclusiveScissorNV", "device");
             this.vkCmdSetCheckpointNV = cache.GetCommandDelegate<Interop.NVidia.VkCommandBufferSetCheckpointDelegate>("vkCmdSetCheckpointNV", "device");
             this.vkGetQueueCheckpointDataNV = cache.GetCommandDelegate<Interop.NVidia.VkQueueGetCheckpointDataDelegate>("vkGetQueueCheckpointDataNV", "device");
+            this.vkInitializePerformanceApiINTEL = cache.GetCommandDelegate<Interop.Intel.VkDeviceInitializePerformanceApiDelegate>("vkInitializePerformanceApiINTEL", "device");
+            this.vkUninitializePerformanceApiINTEL = cache.GetCommandDelegate<Interop.Intel.VkDeviceUninitializePerformanceApiDelegate>("vkUninitializePerformanceApiINTEL", "device");
+            this.vkCmdSetPerformanceMarkerINTEL = cache.GetCommandDelegate<Interop.Intel.VkCommandBufferSetPerformanceMarkerDelegate>("vkCmdSetPerformanceMarkerINTEL", "device");
+            this.vkCmdSetPerformanceStreamMarkerINTEL = cache.GetCommandDelegate<Interop.Intel.VkCommandBufferSetPerformanceStreamMarkerDelegate>("vkCmdSetPerformanceStreamMarkerINTEL", "device");
+            this.vkCmdSetPerformanceOverrideINTEL = cache.GetCommandDelegate<Interop.Intel.VkCommandBufferSetPerformanceOverrideDelegate>("vkCmdSetPerformanceOverrideINTEL", "device");
+            this.vkAcquirePerformanceConfigurationINTEL = cache.GetCommandDelegate<Interop.Intel.VkDeviceAcquirePerformanceConfigurationDelegate>("vkAcquirePerformanceConfigurationINTEL", "device");
+            this.vkReleasePerformanceConfigurationINTEL = cache.GetCommandDelegate<Interop.Intel.VkPerformanceConfigurationINTELReleaseDelegate>("vkReleasePerformanceConfigurationINTEL", "device");
+            this.vkQueueSetPerformanceConfigurationINTEL = cache.GetCommandDelegate<Interop.Intel.VkQueueSetPerformanceConfigurationDelegate>("vkQueueSetPerformanceConfigurationINTEL", "device");
+            this.vkGetPerformanceParameterINTEL = cache.GetCommandDelegate<Interop.Intel.VkDeviceGetPerformanceParameterDelegate>("vkGetPerformanceParameterINTEL", "device");
+            this.vkSetLocalDimmingAMD = cache.GetCommandDelegate<Interop.Amd.VkSwapchainKHRSetLocalDimmingDelegate>("vkSetLocalDimmingAMD", "device");
             this.vkCreateImagePipeSurfaceFUCHSIA = cache.GetCommandDelegate<Interop.Fuchsia.VkInstanceCreateImagePipeSurfaceDelegate>("vkCreateImagePipeSurfaceFUCHSIA", "instance");
+            this.vkCreateMetalSurfaceEXT = cache.GetCommandDelegate<Interop.Multivendor.VkInstanceCreateMetalSurfaceDelegate>("vkCreateMetalSurfaceEXT", "instance");
+            this.vkGetBufferDeviceAddressEXT = cache.GetCommandDelegate<Interop.Multivendor.VkDeviceGetBufferDeviceAddressDelegate>("vkGetBufferDeviceAddressEXT", "device");
+            this.vkGetPhysicalDeviceCooperativeMatrixPropertiesNV = cache.GetCommandDelegate<Interop.NVidia.VkPhysicalDeviceGetCooperativeMatrixPropertiesDelegate>("vkGetPhysicalDeviceCooperativeMatrixPropertiesNV", "device");
+            this.vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV = cache.GetCommandDelegate<Interop.NVidia.VkPhysicalDeviceGetSupportedFramebufferMixedSamplesCombinationsDelegate>("vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV", "device");
+            this.vkGetPhysicalDeviceSurfacePresentModes2EXT = cache.GetCommandDelegate<Interop.Multivendor.VkPhysicalDeviceGetSurfacePresentModes2Delegate>("vkGetPhysicalDeviceSurfacePresentModes2EXT", "device");
+            this.vkAcquireFullScreenExclusiveModeEXT = cache.GetCommandDelegate<Interop.Multivendor.VkSwapchainKHRAcquireFullScreenExclusiveModeDelegate>("vkAcquireFullScreenExclusiveModeEXT", "device");
+            this.vkReleaseFullScreenExclusiveModeEXT = cache.GetCommandDelegate<Interop.Multivendor.VkSwapchainKHRReleaseFullScreenExclusiveModeDelegate>("vkReleaseFullScreenExclusiveModeEXT", "device");
+            this.vkGetDeviceGroupSurfacePresentModes2EXT = cache.GetCommandDelegate<Interop.Multivendor.VkDeviceGetGroupSurfacePresentModes2Delegate>("vkGetDeviceGroupSurfacePresentModes2EXT", "device");
+            this.vkCreateHeadlessSurfaceEXT = cache.GetCommandDelegate<Interop.Multivendor.VkInstanceCreateHeadlessSurfaceDelegate>("vkCreateHeadlessSurfaceEXT", "instance");
+            this.vkResetQueryPoolEXT = cache.GetCommandDelegate<Interop.Multivendor.VkQueryPoolResetDelegate>("vkResetQueryPoolEXT", "device");
         }
     }
 }

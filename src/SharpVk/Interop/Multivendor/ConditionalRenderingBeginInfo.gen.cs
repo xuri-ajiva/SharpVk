@@ -34,12 +34,12 @@ namespace SharpVk.Interop.Multivendor
     public unsafe partial struct ConditionalRenderingBeginInfo
     {
         /// <summary>
-        /// 
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
@@ -51,7 +51,7 @@ namespace SharpVk.Interop.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public DeviceSize Offset; 
+        public ulong Offset; 
         
         /// <summary>
         /// 

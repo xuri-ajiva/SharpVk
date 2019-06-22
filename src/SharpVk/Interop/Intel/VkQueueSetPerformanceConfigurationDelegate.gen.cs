@@ -23,42 +23,11 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
-using System.Runtime.InteropServices;
 
-namespace SharpVk
+namespace SharpVk.Interop.Intel
 {
     /// <summary>
     /// 
     /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceShaderDrawParameterFeatures
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        public bool ShaderDrawParameters
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceShaderDrawParameterFeatures* pointer)
-        {
-            pointer->Next = null;
-            pointer->ShaderDrawParameters = this.ShaderDrawParameters;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        internal static unsafe PhysicalDeviceShaderDrawParameterFeatures MarshalFrom(SharpVk.Interop.PhysicalDeviceShaderDrawParameterFeatures* pointer)
-        {
-            PhysicalDeviceShaderDrawParameterFeatures result = default(PhysicalDeviceShaderDrawParameterFeatures);
-            result.ShaderDrawParameters = pointer->ShaderDrawParameters;
-            return result;
-        }
-    }
+    public unsafe delegate SharpVk.Result VkQueueSetPerformanceConfigurationDelegate(SharpVk.Interop.Queue queue, SharpVk.Interop.Intel.PerformanceConfiguration configuration);
 }

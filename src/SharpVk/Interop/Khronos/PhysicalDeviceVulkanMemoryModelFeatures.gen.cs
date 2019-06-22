@@ -34,12 +34,12 @@ namespace SharpVk.Interop.Khronos
     public unsafe partial struct PhysicalDeviceVulkanMemoryModelFeatures
     {
         /// <summary>
-        /// 
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
@@ -52,5 +52,10 @@ namespace SharpVk.Interop.Khronos
         /// 
         /// </summary>
         public Bool32 VulkanMemoryModelDeviceScope; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public Bool32 VulkanMemoryModelAvailabilityVisibilityChains; 
     }
 }

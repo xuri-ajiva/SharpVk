@@ -54,12 +54,22 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
+        public bool VulkanMemoryModelAvailabilityVisibilityChains
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PhysicalDeviceVulkanMemoryModelFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceVulkanMemoryModelFeatures;
             pointer->Next = null;
             pointer->VulkanMemoryModel = this.VulkanMemoryModel;
             pointer->VulkanMemoryModelDeviceScope = this.VulkanMemoryModelDeviceScope;
+            pointer->VulkanMemoryModelAvailabilityVisibilityChains = this.VulkanMemoryModelAvailabilityVisibilityChains;
         }
         
         /// <summary>
@@ -70,6 +80,7 @@ namespace SharpVk.Khronos
             PhysicalDeviceVulkanMemoryModelFeatures result = default(PhysicalDeviceVulkanMemoryModelFeatures);
             result.VulkanMemoryModel = pointer->VulkanMemoryModel;
             result.VulkanMemoryModelDeviceScope = pointer->VulkanMemoryModelDeviceScope;
+            result.VulkanMemoryModelAvailabilityVisibilityChains = pointer->VulkanMemoryModelAvailabilityVisibilityChains;
             return result;
         }
     }

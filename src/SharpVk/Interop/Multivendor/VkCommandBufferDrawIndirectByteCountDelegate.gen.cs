@@ -29,5 +29,5 @@ namespace SharpVk.Interop.Multivendor
     /// <summary>
     /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferDrawIndirectByteCountDelegate(SharpVk.Interop.CommandBuffer commandBuffer, uint instanceCount, uint firstInstance, SharpVk.Interop.Buffer counterBuffer, DeviceSize counterBufferOffset, uint counterOffset, uint vertexStride);
+    public unsafe delegate void VkCommandBufferDrawIndirectByteCountDelegate(SharpVk.Interop.CommandBuffer commandBuffer, uint instanceCount, uint firstInstance, SharpVk.Interop.Buffer counterBuffer, ulong counterBufferOffset, uint counterOffset, uint vertexStride);
 }

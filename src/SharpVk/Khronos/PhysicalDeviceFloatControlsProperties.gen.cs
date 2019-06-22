@@ -243,32 +243,6 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PhysicalDeviceFloatControlsProperties* pointer)
-        {
-            pointer->SType = StructureType.PhysicalDeviceFloatControlsProperties;
-            pointer->Next = null;
-            pointer->SeparateDenormSettings = this.SeparateDenormSettings;
-            pointer->SeparateRoundingModeSettings = this.SeparateRoundingModeSettings;
-            pointer->ShaderSignedZeroInfNanPreserveFloat16 = this.ShaderSignedZeroInfNanPreserveFloat16;
-            pointer->ShaderSignedZeroInfNanPreserveFloat32 = this.ShaderSignedZeroInfNanPreserveFloat32;
-            pointer->ShaderSignedZeroInfNanPreserveFloat64 = this.ShaderSignedZeroInfNanPreserveFloat64;
-            pointer->ShaderDenormPreserveFloat16 = this.ShaderDenormPreserveFloat16;
-            pointer->ShaderDenormPreserveFloat32 = this.ShaderDenormPreserveFloat32;
-            pointer->ShaderDenormPreserveFloat64 = this.ShaderDenormPreserveFloat64;
-            pointer->ShaderDenormFlushToZeroFloat16 = this.ShaderDenormFlushToZeroFloat16;
-            pointer->ShaderDenormFlushToZeroFloat32 = this.ShaderDenormFlushToZeroFloat32;
-            pointer->ShaderDenormFlushToZeroFloat64 = this.ShaderDenormFlushToZeroFloat64;
-            pointer->ShaderRoundingModeRTEFloat16 = this.ShaderRoundingModeRTEFloat16;
-            pointer->ShaderRoundingModeRTEFloat32 = this.ShaderRoundingModeRTEFloat32;
-            pointer->ShaderRoundingModeRTEFloat64 = this.ShaderRoundingModeRTEFloat64;
-            pointer->ShaderRoundingModeRTZFloat16 = this.ShaderRoundingModeRTZFloat16;
-            pointer->ShaderRoundingModeRTZFloat32 = this.ShaderRoundingModeRTZFloat32;
-            pointer->ShaderRoundingModeRTZFloat64 = this.ShaderRoundingModeRTZFloat64;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         internal static unsafe PhysicalDeviceFloatControlsProperties MarshalFrom(SharpVk.Interop.Khronos.PhysicalDeviceFloatControlsProperties* pointer)
         {
             PhysicalDeviceFloatControlsProperties result = default(PhysicalDeviceFloatControlsProperties);

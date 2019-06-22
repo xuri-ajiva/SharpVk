@@ -23,34 +23,11 @@
 // This file was automatically generated and should not be edited directly.
 
 using System;
-using System.Runtime.InteropServices;
 
-namespace SharpVk.Interop
+namespace SharpVk.Interop.NVidia
 {
     /// <summary>
     /// 
     /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceVariablePointerFeatures
-    {
-        /// <summary>
-        /// 
-        /// </summary>
-        public SharpVk.StructureType SType; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public void* Next; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Bool32 VariablePointersStorageBuffer; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public Bool32 VariablePointers; 
-    }
+    public unsafe delegate SharpVk.Result VkPhysicalDeviceGetSupportedFramebufferMixedSamplesCombinationsDelegate(SharpVk.Interop.PhysicalDevice physicalDevice, uint* combinationCount, SharpVk.Interop.NVidia.FramebufferMixedSamplesCombination* combinations);
 }

@@ -34,12 +34,12 @@ namespace SharpVk.Interop.NVidia
     public unsafe partial struct GeometryAABB
     {
         /// <summary>
-        /// 
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
@@ -61,6 +61,6 @@ namespace SharpVk.Interop.NVidia
         /// <summary>
         /// 
         /// </summary>
-        public DeviceSize Offset; 
+        public ulong Offset; 
     }
 }

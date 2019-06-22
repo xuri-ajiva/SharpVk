@@ -34,19 +34,19 @@ namespace SharpVk.Interop.NVidia
     public unsafe partial struct AccelerationStructureCreateInfo
     {
         /// <summary>
-        /// 
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
         /// 
         /// </summary>
-        public DeviceSize CompactedSize; 
+        public ulong CompactedSize; 
         
         /// <summary>
         /// 

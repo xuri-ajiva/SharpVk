@@ -34,12 +34,12 @@ namespace SharpVk.Interop.Multivendor
     public unsafe partial struct PhysicalDeviceTransformFeedbackProperties
     {
         /// <summary>
-        /// 
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
@@ -56,7 +56,7 @@ namespace SharpVk.Interop.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public DeviceSize MaxTransformFeedbackBufferSize; 
+        public ulong MaxTransformFeedbackBufferSize; 
         
         /// <summary>
         /// 

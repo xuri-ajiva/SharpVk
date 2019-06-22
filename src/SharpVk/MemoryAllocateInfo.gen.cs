@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// The size of the allocation in bytes
         /// </summary>
-        public DeviceSize AllocationSize
+        public ulong AllocationSize
         {
             get;
             set;

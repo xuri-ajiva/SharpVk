@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public MemoryHeap(DeviceSize size, SharpVk.MemoryHeapFlags flags)
+        public MemoryHeap(ulong size, SharpVk.MemoryHeapFlags flags)
         {
             this.Size = size;
             this.Flags = flags;
@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// The total memory size in bytes in the heap.
         /// </summary>
-        public DeviceSize Size; 
+        public ulong Size; 
         
         /// <summary>
         /// A bitmask of attribute flags for the heap.

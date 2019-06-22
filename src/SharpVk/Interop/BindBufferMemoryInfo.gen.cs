@@ -34,12 +34,12 @@ namespace SharpVk.Interop
     public unsafe partial struct BindBufferMemoryInfo
     {
         /// <summary>
-        /// 
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
@@ -56,6 +56,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// 
         /// </summary>
-        public DeviceSize MemoryOffset; 
+        public ulong MemoryOffset; 
     }
 }

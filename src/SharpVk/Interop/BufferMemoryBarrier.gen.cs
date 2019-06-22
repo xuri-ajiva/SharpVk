@@ -74,13 +74,13 @@ namespace SharpVk.Interop
         /// relative to the base offset as bound to the buffer (see
         /// flink:vkBindBufferMemory).
         /// </summary>
-        public DeviceSize Offset; 
+        public ulong Offset; 
         
         /// <summary>
         /// A size in bytes of the affected area of backing memory for buffer,
         /// or Constants.WholeSize to use the range from offset to the end of
         /// the buffer.
         /// </summary>
-        public DeviceSize Size; 
+        public ulong Size; 
     }
 }

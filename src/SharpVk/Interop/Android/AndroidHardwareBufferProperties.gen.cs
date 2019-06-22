@@ -34,19 +34,19 @@ namespace SharpVk.Interop.Android
     public unsafe partial struct AndroidHardwareBufferProperties
     {
         /// <summary>
-        /// 
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
         /// <summary>
         /// 
         /// </summary>
-        public DeviceSize AllocationSize; 
+        public ulong AllocationSize; 
         
         /// <summary>
         /// 

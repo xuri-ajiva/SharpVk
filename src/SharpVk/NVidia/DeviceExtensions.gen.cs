@@ -37,7 +37,7 @@ namespace SharpVk.NVidia
         /// <param name="extendedHandle">
         /// The Device handle to extend.
         /// </param>
-        public static unsafe SharpVk.NVidia.AccelerationStructure CreateAccelerationStructure(this SharpVk.Device extendedHandle, DeviceSize compactedSize, SharpVk.NVidia.AccelerationStructureInfo info, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public static unsafe SharpVk.NVidia.AccelerationStructure CreateAccelerationStructure(this SharpVk.Device extendedHandle, ulong compactedSize, SharpVk.NVidia.AccelerationStructureInfo info, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
@@ -168,12 +168,12 @@ namespace SharpVk.NVidia
             {
                 SharpVk.Pipeline[] result = default(SharpVk.Pipeline[]);
                 CommandCache commandCache = default(CommandCache);
-                uint createInfoCount = default(uint);
+                uint marshalledCreateInfoCount = default(uint);
                 SharpVk.Interop.NVidia.RayTracingPipelineCreateInfo* marshalledCreateInfos = default(SharpVk.Interop.NVidia.RayTracingPipelineCreateInfo*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Pipeline* marshalledPipelines = default(SharpVk.Interop.Pipeline*);
                 commandCache = extendedHandle.commandCache;
-                createInfoCount = (uint)(Interop.HeapUtil.GetLength(createInfos));
+                marshalledCreateInfoCount = (uint)(Interop.HeapUtil.GetLength(createInfos));
                 if (createInfos.IsNull())
                 {
                     marshalledCreateInfos = null;
@@ -204,17 +204,17 @@ namespace SharpVk.NVidia
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                marshalledPipelines = (SharpVk.Interop.Pipeline*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Pipeline>(createInfoCount));
+                marshalledPipelines = (SharpVk.Interop.Pipeline*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Pipeline>(marshalledCreateInfoCount));
                 SharpVk.Interop.NVidia.VkDeviceCreateRayTracingPipelinesDelegate commandDelegate = commandCache.Cache.vkCreateRayTracingPipelinesNV;
-                Result methodResult = commandDelegate(extendedHandle.handle, pipelineCache?.handle ?? default(SharpVk.Interop.PipelineCache), createInfoCount, marshalledCreateInfos, marshalledAllocator, marshalledPipelines);
+                Result methodResult = commandDelegate(extendedHandle.handle, pipelineCache?.handle ?? default(SharpVk.Interop.PipelineCache), marshalledCreateInfoCount, marshalledCreateInfos, marshalledAllocator, marshalledPipelines);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
                 }
                 if (marshalledPipelines != null)
                 {
-                    var fieldPointer = new SharpVk.Pipeline[(uint)(createInfoCount)];
-                    for(int index = 0; index < (uint)(createInfoCount); index++)
+                    var fieldPointer = new SharpVk.Pipeline[(uint)(marshalledCreateInfoCount)];
+                    for(int index = 0; index < (uint)(marshalledCreateInfoCount); index++)
                     {
                         fieldPointer[index] = new SharpVk.Pipeline(extendedHandle, marshalledPipelines[index]);
                     }
@@ -242,19 +242,30 @@ namespace SharpVk.NVidia
         /// </param>
         /// <param name="groups">
         /// </param>
-        public static unsafe SharpVk.Pipeline CreateRayTracingPipeline(this SharpVk.Device extendedHandle, SharpVk.PipelineCache pipelineCache, ArrayProxy<SharpVk.PipelineShaderStageCreateInfo>? stages, ArrayProxy<SharpVk.NVidia.RayTracingShaderGroupCreateInfo>? groups, uint maxRecursionDepth, SharpVk.PipelineLayout layout, SharpVk.Pipeline basePipelineHandle, int basePipelineIndex, SharpVk.PipelineCreateFlags? flags = default(SharpVk.PipelineCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        /// <param name="pipelineCreationFeedbackCreateInfoExt">
+        /// Extension struct
+        /// </param>
+        public static unsafe SharpVk.Pipeline CreateRayTracingPipeline(this SharpVk.Device extendedHandle, SharpVk.PipelineCache pipelineCache, ArrayProxy<SharpVk.PipelineShaderStageCreateInfo>? stages, ArrayProxy<SharpVk.NVidia.RayTracingShaderGroupCreateInfo>? groups, uint maxRecursionDepth, SharpVk.PipelineLayout layout, SharpVk.Pipeline basePipelineHandle, int basePipelineIndex, SharpVk.PipelineCreateFlags? flags = default(SharpVk.PipelineCreateFlags?), SharpVk.Multivendor.PipelineCreationFeedbackCreateInfo? pipelineCreationFeedbackCreateInfoExt = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
                 SharpVk.Pipeline result = default(SharpVk.Pipeline);
                 CommandCache commandCache = default(CommandCache);
-                uint createInfoCount = default(uint);
+                uint marshalledCreateInfoCount = default(uint);
                 SharpVk.Interop.NVidia.RayTracingPipelineCreateInfo* marshalledCreateInfos = default(SharpVk.Interop.NVidia.RayTracingPipelineCreateInfo*);
                 void* nextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Pipeline* marshalledPipelines = default(SharpVk.Interop.Pipeline*);
+                if (pipelineCreationFeedbackCreateInfoExt != null)
+                {
+                    SharpVk.Interop.Multivendor.PipelineCreationFeedbackCreateInfo* extensionPointer = default(SharpVk.Interop.Multivendor.PipelineCreationFeedbackCreateInfo*);
+                    extensionPointer = (SharpVk.Interop.Multivendor.PipelineCreationFeedbackCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.PipelineCreationFeedbackCreateInfo>());
+                    pipelineCreationFeedbackCreateInfoExt.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = nextPointer;
+                    nextPointer = extensionPointer;
+                }
                 commandCache = extendedHandle.commandCache;
-                createInfoCount = 1;
+                marshalledCreateInfoCount = 1;
                 marshalledCreateInfos = (SharpVk.Interop.NVidia.RayTracingPipelineCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.RayTracingPipelineCreateInfo>());
                 marshalledCreateInfos->SType = StructureType.RayTracingPipelineCreateInfo;
                 marshalledCreateInfos->Next = nextPointer;
@@ -325,7 +336,7 @@ namespace SharpVk.NVidia
                 }
                 marshalledPipelines = (SharpVk.Interop.Pipeline*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Pipeline>(1));
                 SharpVk.Interop.NVidia.VkDeviceCreateRayTracingPipelinesDelegate commandDelegate = commandCache.Cache.vkCreateRayTracingPipelinesNV;
-                Result methodResult = commandDelegate(extendedHandle.handle, pipelineCache?.handle ?? default(SharpVk.Interop.PipelineCache), createInfoCount, marshalledCreateInfos, marshalledAllocator, marshalledPipelines);
+                Result methodResult = commandDelegate(extendedHandle.handle, pipelineCache?.handle ?? default(SharpVk.Interop.PipelineCache), marshalledCreateInfoCount, marshalledCreateInfos, marshalledAllocator, marshalledPipelines);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);

@@ -77,6 +77,11 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        GooglePastel = 10, 
+        GoogleSwiftshader = 10, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        GgpProprietary = 11, 
     }
 }

@@ -56,7 +56,7 @@ namespace SharpVk.NVidia.Experimental
         /// <summary>
         /// offset specified an offset into buffer where the arguments start.
         /// </summary>
-        public DeviceSize Offset
+        public ulong Offset
         {
             get;
             set;

@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SparseImageMemoryRequirements(SharpVk.SparseImageFormatProperties formatProperties, uint imageMipTailFirstLod, DeviceSize imageMipTailSize, DeviceSize imageMipTailOffset, DeviceSize imageMipTailStride)
+        public SparseImageMemoryRequirements(SharpVk.SparseImageFormatProperties formatProperties, uint imageMipTailFirstLod, ulong imageMipTailSize, ulong imageMipTailOffset, ulong imageMipTailStride)
         {
             this.FormatProperties = formatProperties;
             this.ImageMipTailFirstLod = imageMipTailFirstLod;
@@ -64,13 +64,13 @@ namespace SharpVk
         /// single array layer. This value is guaranteed to be a multiple of
         /// the sparse block size in bytes.
         /// </summary>
-        public DeviceSize ImageMipTailSize; 
+        public ulong ImageMipTailSize; 
         
         /// <summary>
         /// The opaque memory offset used with SparseImageOpaqueMemoryBindInfo
         /// to bind the mip tail region(s).
         /// </summary>
-        public DeviceSize ImageMipTailOffset; 
+        public ulong ImageMipTailOffset; 
         
         /// <summary>
         /// The offset stride between each array-layer's mip tail, if
@@ -78,6 +78,6 @@ namespace SharpVk
         /// VK_SPARSE_IMAGE_FORMAT_SINGLE_MIPTAIL_BIT (otherwise the value is
         /// undefined).
         /// </summary>
-        public DeviceSize ImageMipTailStride; 
+        public ulong ImageMipTailStride; 
     }
 }

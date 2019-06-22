@@ -45,24 +45,23 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.DrmFormatModifierPropertiesList* pointer)
+        internal static unsafe DrmFormatModifierPropertiesList MarshalFrom(SharpVk.Interop.Multivendor.DrmFormatModifierPropertiesList* pointer)
         {
-            pointer->SType = StructureType.DrmFormatModifierPropertiesList;
-            pointer->Next = null;
-            pointer->DrmFormatModifierCount = (uint)(Interop.HeapUtil.GetLength(this.DrmFormatModifierProperties));
-            if (this.DrmFormatModifierProperties != null)
+            DrmFormatModifierPropertiesList result = default(DrmFormatModifierPropertiesList);
+            if (pointer->DrmFormatModifierProperties != null)
             {
-                var fieldPointer = (SharpVk.Multivendor.DrmFormatModifierProperties*)(Interop.HeapUtil.AllocateAndClear<SharpVk.Multivendor.DrmFormatModifierProperties>(this.DrmFormatModifierProperties.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.DrmFormatModifierProperties.Length); index++)
+                var fieldPointer = new SharpVk.Multivendor.DrmFormatModifierProperties[(uint)(pointer->DrmFormatModifierCount)];
+                for(int index = 0; index < (uint)(pointer->DrmFormatModifierCount); index++)
                 {
-                    fieldPointer[index] = this.DrmFormatModifierProperties[index];
+                    fieldPointer[index] = pointer->DrmFormatModifierProperties[index];
                 }
-                pointer->DrmFormatModifierProperties = fieldPointer;
+                result.DrmFormatModifierProperties = fieldPointer;
             }
             else
             {
-                pointer->DrmFormatModifierProperties = null;
+                result.DrmFormatModifierProperties = null;
             }
+            return result;
         }
     }
 }

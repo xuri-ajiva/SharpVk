@@ -93,9 +93,12 @@ namespace SharpVk.Generator.Specification
             {
                 if (extension.Attribute("supported").Value == "vulkan" && extension.Attribute("promotedto") == null)
                 {
-                    foreach (var commandRequirement in extension.Elements("require").SelectMany(x => x.Elements("command")))
+                    foreach (string commandRequirement in extension.Elements("require")
+                                                                .SelectMany(x => x.Elements("command"))
+                                                                .Select(x => x.Attribute("name").Value)
+                                                                .Distinct())
                     {
-                        services.AddSingleton(newCommands[commandRequirement.Attribute("name").Value]);
+                        services.AddSingleton(newCommands[commandRequirement]);
                     }
                 }
             }

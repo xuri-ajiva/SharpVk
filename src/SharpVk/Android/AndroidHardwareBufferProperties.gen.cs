@@ -36,7 +36,7 @@ namespace SharpVk.Android
         /// <summary>
         /// 
         /// </summary>
-        public DeviceSize AllocationSize
+        public ulong AllocationSize
         {
             get;
             set;

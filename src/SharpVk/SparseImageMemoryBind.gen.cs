@@ -81,7 +81,7 @@ namespace SharpVk
         /// An offset into DeviceMemory object. If memory is null, this value
         /// is ignored.
         /// </summary>
-        public DeviceSize MemoryOffset
+        public ulong MemoryOffset
         {
             get;
             set;

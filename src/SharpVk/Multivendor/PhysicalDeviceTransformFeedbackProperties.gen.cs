@@ -54,7 +54,7 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public DeviceSize MaxTransformFeedbackBufferSize
+        public ulong MaxTransformFeedbackBufferSize
         {
             get;
             set;

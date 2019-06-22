@@ -30,18 +30,18 @@ namespace SharpVk
     public enum Filter
     {
         /// <summary>
-        /// 
+        /// Specifies nearest filtering.
         /// </summary>
         Nearest = 0, 
         
         /// <summary>
-        /// 
+        /// Specifies linear filtering.
         /// </summary>
         Linear = 1, 
         
         /// <summary>
-        /// 
+        /// Specifies cubic filtering.
         /// </summary>
-        Cubic = 1000015000, 
+        CubicImg = 1000015000, 
     }
 }

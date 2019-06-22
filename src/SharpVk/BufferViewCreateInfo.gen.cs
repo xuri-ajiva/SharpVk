@@ -65,7 +65,7 @@ namespace SharpVk
         /// the buffer view from shaders use addressing that is relative to
         /// this starting offset.
         /// </summary>
-        public DeviceSize Offset
+        public ulong Offset
         {
             get;
             set;
@@ -78,7 +78,7 @@ namespace SharpVk
         /// the buffer is not a multiple of the element size of format, then
         /// the nearest smaller multiple is used.
         /// </summary>
-        public DeviceSize Range
+        public ulong Range
         {
             get;
             set;

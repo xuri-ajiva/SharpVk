@@ -42,18 +42,18 @@ namespace SharpVk.NVidia
             try
             {
                 SharpVk.NVidia.CheckpointData[] result = default(SharpVk.NVidia.CheckpointData[]);
-                uint checkpointDataCount = default(uint);
+                uint marshalledCheckpointDataCount = default(uint);
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.NVidia.CheckpointData* marshalledCheckpointData = default(SharpVk.Interop.NVidia.CheckpointData*);
                 commandCache = extendedHandle.commandCache;
                 SharpVk.Interop.NVidia.VkQueueGetCheckpointDataDelegate commandDelegate = commandCache.Cache.vkGetQueueCheckpointDataNV;
-                commandDelegate(extendedHandle.handle, &checkpointDataCount, marshalledCheckpointData);
-                marshalledCheckpointData = (SharpVk.Interop.NVidia.CheckpointData*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.CheckpointData>((uint)(checkpointDataCount)));
-                commandDelegate(extendedHandle.handle, &checkpointDataCount, marshalledCheckpointData);
+                commandDelegate(extendedHandle.handle, &marshalledCheckpointDataCount, marshalledCheckpointData);
+                marshalledCheckpointData = (SharpVk.Interop.NVidia.CheckpointData*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.CheckpointData>((uint)(marshalledCheckpointDataCount)));
+                commandDelegate(extendedHandle.handle, &marshalledCheckpointDataCount, marshalledCheckpointData);
                 if (marshalledCheckpointData != null)
                 {
-                    var fieldPointer = new SharpVk.NVidia.CheckpointData[(uint)(checkpointDataCount)];
-                    for(int index = 0; index < (uint)(checkpointDataCount); index++)
+                    var fieldPointer = new SharpVk.NVidia.CheckpointData[(uint)(marshalledCheckpointDataCount)];
+                    for(int index = 0; index < (uint)(marshalledCheckpointDataCount); index++)
                     {
                         fieldPointer[index] = SharpVk.NVidia.CheckpointData.MarshalFrom(&marshalledCheckpointData[index]);
                     }

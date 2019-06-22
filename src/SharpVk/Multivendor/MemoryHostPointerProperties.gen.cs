@@ -45,16 +45,6 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.MemoryHostPointerProperties* pointer)
-        {
-            pointer->SType = StructureType.MemoryHostPointerProperties;
-            pointer->Next = null;
-            pointer->MemoryTypeBits = this.MemoryTypeBits;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         internal static unsafe MemoryHostPointerProperties MarshalFrom(SharpVk.Interop.Multivendor.MemoryHostPointerProperties* pointer)
         {
             MemoryHostPointerProperties result = default(MemoryHostPointerProperties);

@@ -57,7 +57,10 @@ namespace SharpVk.Khronos
         /// <param name="presentTimesInfoGoogle">
         /// Extension struct
         /// </param>
-        public static unsafe Result Present(this SharpVk.Queue extendedHandle, ArrayProxy<SharpVk.Semaphore>? waitSemaphores, ArrayProxy<SharpVk.Khronos.Swapchain>? swapchains, ArrayProxy<uint>? imageIndices, ArrayProxy<SharpVk.Result>? results = null, SharpVk.Khronos.DisplayPresentInfo? displayPresentInfoKhr = null, SharpVk.Khronos.PresentRegions? presentRegionsKhr = null, SharpVk.Khronos.DeviceGroupPresentInfo? deviceGroupPresentInfoKhr = null, SharpVk.Google.PresentTimesInfo? presentTimesInfoGoogle = null)
+        /// <param name="presentFrameTokenGgp">
+        /// Extension struct
+        /// </param>
+        public static unsafe Result Present(this SharpVk.Queue extendedHandle, ArrayProxy<SharpVk.Semaphore>? waitSemaphores, ArrayProxy<SharpVk.Khronos.Swapchain>? swapchains, ArrayProxy<uint>? imageIndices, ArrayProxy<SharpVk.Result>? results = null, SharpVk.Khronos.DisplayPresentInfo? displayPresentInfoKhr = null, SharpVk.Khronos.PresentRegions? presentRegionsKhr = null, SharpVk.Khronos.DeviceGroupPresentInfo? deviceGroupPresentInfoKhr = null, SharpVk.Google.PresentTimesInfo? presentTimesInfoGoogle = null, SharpVk.Ggp.PresentFrameToken? presentFrameTokenGgp = null)
         {
             try
             {
@@ -94,6 +97,14 @@ namespace SharpVk.Khronos
                     SharpVk.Interop.Google.PresentTimesInfo* extensionPointer = default(SharpVk.Interop.Google.PresentTimesInfo*);
                     extensionPointer = (SharpVk.Interop.Google.PresentTimesInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Google.PresentTimesInfo>());
                     presentTimesInfoGoogle.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = nextPointer;
+                    nextPointer = extensionPointer;
+                }
+                if (presentFrameTokenGgp != null)
+                {
+                    SharpVk.Interop.Ggp.PresentFrameToken* extensionPointer = default(SharpVk.Interop.Ggp.PresentFrameToken*);
+                    extensionPointer = (SharpVk.Interop.Ggp.PresentFrameToken*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Ggp.PresentFrameToken>());
+                    presentFrameTokenGgp.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = nextPointer;
                     nextPointer = extensionPointer;
                 }

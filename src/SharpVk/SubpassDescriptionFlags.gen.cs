@@ -44,5 +44,15 @@ namespace SharpVk
         /// 
         /// </summary>
         PerViewPositionXOnly = 1 << 1, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Reserved2 = 1 << 2, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Reserved3 = 1 << 3, 
     }
 }

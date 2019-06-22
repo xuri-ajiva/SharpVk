@@ -187,24 +187,76 @@ namespace SharpVk.Multivendor
             try
             {
                 SharpVk.Multivendor.TimeDomain[] result = default(SharpVk.Multivendor.TimeDomain[]);
-                uint timeDomainCount = default(uint);
+                uint marshalledTimeDomainCount = default(uint);
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Multivendor.TimeDomain* marshalledTimeDomains = default(SharpVk.Multivendor.TimeDomain*);
                 commandCache = extendedHandle.commandCache;
                 SharpVk.Interop.Multivendor.VkPhysicalDeviceGetCalibrateableTimeDomainsDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceCalibrateableTimeDomainsEXT;
-                Result methodResult = commandDelegate(extendedHandle.handle, &timeDomainCount, marshalledTimeDomains);
+                Result methodResult = commandDelegate(extendedHandle.handle, &marshalledTimeDomainCount, marshalledTimeDomains);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                marshalledTimeDomains = (SharpVk.Multivendor.TimeDomain*)(Interop.HeapUtil.Allocate<SharpVk.Multivendor.TimeDomain>((uint)(timeDomainCount)));
-                commandDelegate(extendedHandle.handle, &timeDomainCount, marshalledTimeDomains);
+                marshalledTimeDomains = (SharpVk.Multivendor.TimeDomain*)(Interop.HeapUtil.Allocate<SharpVk.Multivendor.TimeDomain>((uint)(marshalledTimeDomainCount)));
+                commandDelegate(extendedHandle.handle, &marshalledTimeDomainCount, marshalledTimeDomains);
                 if (marshalledTimeDomains != null)
                 {
-                    var fieldPointer = new SharpVk.Multivendor.TimeDomain[(uint)(timeDomainCount)];
-                    for(int index = 0; index < (uint)(timeDomainCount); index++)
+                    var fieldPointer = new SharpVk.Multivendor.TimeDomain[(uint)(marshalledTimeDomainCount)];
+                    for(int index = 0; index < (uint)(marshalledTimeDomainCount); index++)
                     {
                         fieldPointer[index] = marshalledTimeDomains[index];
+                    }
+                    result = fieldPointer;
+                }
+                else
+                {
+                    result = null;
+                }
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// Query supported presentation modes
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The PhysicalDevice handle to extend.
+        /// </param>
+        /// <param name="surfaceInfo">
+        /// An instance of the VkPhysicalDeviceSurfaceInfo2KHR structure,
+        /// describing the surface and other fixed parameters that would be
+        /// consumed by vkCreateSwapchainKHR.
+        /// </param>
+        public static unsafe SharpVk.Khronos.PresentMode[] GetSurfacePresentModes2(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.PhysicalDeviceSurfaceInfo2 surfaceInfo)
+        {
+            try
+            {
+                SharpVk.Khronos.PresentMode[] result = default(SharpVk.Khronos.PresentMode[]);
+                uint marshalledPresentModeCount = default(uint);
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Khronos.PhysicalDeviceSurfaceInfo2* marshalledSurfaceInfo = default(SharpVk.Interop.Khronos.PhysicalDeviceSurfaceInfo2*);
+                SharpVk.Khronos.PresentMode* marshalledPresentModes = default(SharpVk.Khronos.PresentMode*);
+                commandCache = extendedHandle.commandCache;
+                marshalledSurfaceInfo = (SharpVk.Interop.Khronos.PhysicalDeviceSurfaceInfo2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.PhysicalDeviceSurfaceInfo2>());
+                surfaceInfo.MarshalTo(marshalledSurfaceInfo);
+                SharpVk.Interop.Multivendor.VkPhysicalDeviceGetSurfacePresentModes2Delegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceSurfacePresentModes2EXT;
+                Result methodResult = commandDelegate(extendedHandle.handle, marshalledSurfaceInfo, &marshalledPresentModeCount, marshalledPresentModes);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                marshalledPresentModes = (SharpVk.Khronos.PresentMode*)(Interop.HeapUtil.Allocate<SharpVk.Khronos.PresentMode>((uint)(marshalledPresentModeCount)));
+                commandDelegate(extendedHandle.handle, marshalledSurfaceInfo, &marshalledPresentModeCount, marshalledPresentModes);
+                if (marshalledPresentModes != null)
+                {
+                    var fieldPointer = new SharpVk.Khronos.PresentMode[(uint)(marshalledPresentModeCount)];
+                    for(int index = 0; index < (uint)(marshalledPresentModeCount); index++)
+                    {
+                        fieldPointer[index] = marshalledPresentModes[index];
                     }
                     result = fieldPointer;
                 }

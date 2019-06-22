@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public DeviceSize MaxMemoryAllocationSize
+        public ulong MaxMemoryAllocationSize
         {
             get;
             set;

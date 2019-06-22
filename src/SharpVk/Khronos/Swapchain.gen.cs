@@ -88,20 +88,20 @@ namespace SharpVk.Khronos
             try
             {
                 SharpVk.Image[] result = default(SharpVk.Image[]);
-                uint swapchainImageCount = default(uint);
+                uint marshalledSwapchainImageCount = default(uint);
                 SharpVk.Interop.Image* marshalledSwapchainImages = default(SharpVk.Interop.Image*);
                 SharpVk.Interop.Khronos.VkSwapchainKHRGetImagesDelegate commandDelegate = commandCache.Cache.vkGetSwapchainImagesKHR;
-                Result methodResult = commandDelegate(this.parent.handle, this.handle, &swapchainImageCount, marshalledSwapchainImages);
+                Result methodResult = commandDelegate(this.parent.handle, this.handle, &marshalledSwapchainImageCount, marshalledSwapchainImages);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                marshalledSwapchainImages = (SharpVk.Interop.Image*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Image>((uint)(swapchainImageCount)));
-                commandDelegate(this.parent.handle, this.handle, &swapchainImageCount, marshalledSwapchainImages);
+                marshalledSwapchainImages = (SharpVk.Interop.Image*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Image>((uint)(marshalledSwapchainImageCount)));
+                commandDelegate(this.parent.handle, this.handle, &marshalledSwapchainImageCount, marshalledSwapchainImages);
                 if (marshalledSwapchainImages != null)
                 {
-                    var fieldPointer = new SharpVk.Image[(uint)(swapchainImageCount)];
-                    for(int index = 0; index < (uint)(swapchainImageCount); index++)
+                    var fieldPointer = new SharpVk.Image[(uint)(marshalledSwapchainImageCount)];
+                    for(int index = 0; index < (uint)(marshalledSwapchainImageCount); index++)
                     {
                         fieldPointer[index] = new SharpVk.Image(this.parent, marshalledSwapchainImages[index]);
                     }

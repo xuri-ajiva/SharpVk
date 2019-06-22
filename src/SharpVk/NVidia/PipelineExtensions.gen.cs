@@ -47,7 +47,7 @@ namespace SharpVk.NVidia
                 byte* marshalledData = default(byte*);
                 commandCache = extendedHandle.commandCache;
                 marshalledDataSize = dataSize;
-                marshalledData = (byte*)(Interop.HeapUtil.Allocate<byte>(dataSize));
+                marshalledData = (byte*)(Interop.HeapUtil.Allocate<byte>(marshalledDataSize));
                 SharpVk.Interop.NVidia.VkPipelineGetRayTracingShaderGroupHandlesDelegate commandDelegate = commandCache.Cache.vkGetRayTracingShaderGroupHandlesNV;
                 Result methodResult = commandDelegate(extendedHandle.parent.handle, extendedHandle.handle, firstGroup, groupCount, marshalledDataSize, marshalledData);
                 if (SharpVkException.IsError(methodResult))
@@ -56,8 +56,8 @@ namespace SharpVk.NVidia
                 }
                 if (marshalledData != null)
                 {
-                    var fieldPointer = new byte[(uint)(dataSize)];
-                    for(int index = 0; index < (uint)(dataSize); index++)
+                    var fieldPointer = new byte[(uint)(marshalledDataSize)];
+                    for(int index = 0; index < (uint)(marshalledDataSize); index++)
                     {
                         fieldPointer[index] = marshalledData[index];
                     }

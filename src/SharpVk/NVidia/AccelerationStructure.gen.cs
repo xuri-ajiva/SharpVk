@@ -87,7 +87,7 @@ namespace SharpVk.NVidia
                 HostSize marshalledDataSize = default(HostSize);
                 byte* marshalledData = default(byte*);
                 marshalledDataSize = dataSize;
-                marshalledData = (byte*)(Interop.HeapUtil.Allocate<byte>(dataSize));
+                marshalledData = (byte*)(Interop.HeapUtil.Allocate<byte>(marshalledDataSize));
                 SharpVk.Interop.NVidia.VkAccelerationStructureNVGetHandleDelegate commandDelegate = commandCache.Cache.vkGetAccelerationStructureHandleNV;
                 Result methodResult = commandDelegate(this.parent.handle, this.handle, marshalledDataSize, marshalledData);
                 if (SharpVkException.IsError(methodResult))
@@ -96,8 +96,8 @@ namespace SharpVk.NVidia
                 }
                 if (marshalledData != null)
                 {
-                    var fieldPointer = new byte[(uint)(dataSize)];
-                    for(int index = 0; index < (uint)(dataSize); index++)
+                    var fieldPointer = new byte[(uint)(marshalledDataSize)];
+                    for(int index = 0; index < (uint)(marshalledDataSize); index++)
                     {
                         fieldPointer[index] = marshalledData[index];
                     }

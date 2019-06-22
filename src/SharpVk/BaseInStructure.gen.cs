@@ -34,7 +34,7 @@ namespace SharpVk
     public partial struct BaseInStructure
     {
         /// <summary>
-        /// 
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType
         {

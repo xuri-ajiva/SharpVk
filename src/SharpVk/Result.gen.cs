@@ -168,5 +168,15 @@ namespace SharpVk
         /// 
         /// </summary>
         ErrorNotPermitted = -1000174001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ErrorInvalidDeviceAddress = -1000244000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ErrorFullScreenExclusiveModeLost = -1000255000, 
     }
 }

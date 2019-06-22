@@ -43,7 +43,7 @@ namespace SharpVk.Interop
         /// memory via this descriptor uses addressing that is relative to this
         /// starting offset.
         /// </summary>
-        public DeviceSize Offset; 
+        public ulong Offset; 
         
         /// <summary>
         /// The size in bytes that is used for this descriptor update, or
@@ -59,6 +59,6 @@ namespace SharpVk.Interop
         /// base offset from which the dynamic offset is applied and range is
         /// the static size used for all dynamic offsets.
         /// </summary>
-        public DeviceSize Range; 
+        public ulong Range; 
     }
 }

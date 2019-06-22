@@ -107,6 +107,10 @@ namespace SharpVk
                     return new FragmentationException();
                 case Result.ErrorNotPermitted:
                     return new NotPermittedException();
+                case Result.ErrorInvalidDeviceAddress:
+                    return new InvalidDeviceAddressException();
+                case Result.ErrorFullScreenExclusiveModeLost:
+                    return new FullScreenExclusiveModeLostException();
             }
             return new UnknownSharpVkException(resultCode);
         }
@@ -496,5 +500,39 @@ namespace SharpVk
         /// The Vulkan result code represented by this exception.
         /// </summary>
         public override Result ResultCode => Result.ErrorNotPermitted;
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    public class InvalidDeviceAddressException
+        : SharpVkException
+    {
+        internal InvalidDeviceAddressException()
+            : base("")
+        {
+        }
+        
+        /// <summary>
+        /// The Vulkan result code represented by this exception.
+        /// </summary>
+        public override Result ResultCode => Result.ErrorInvalidDeviceAddress;
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    public class FullScreenExclusiveModeLostException
+        : SharpVkException
+    {
+        internal FullScreenExclusiveModeLostException()
+            : base("")
+        {
+        }
+        
+        /// <summary>
+        /// The Vulkan result code represented by this exception.
+        /// </summary>
+        public override Result ResultCode => Result.ErrorFullScreenExclusiveModeLost;
     }
 }

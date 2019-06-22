@@ -34,12 +34,12 @@ namespace SharpVk.Interop.Multivendor
     public unsafe partial struct DescriptorSetVariableDescriptorCountLayoutSupport
     {
         /// <summary>
-        /// 
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         

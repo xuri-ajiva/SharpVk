@@ -117,24 +117,6 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceConservativeRasterizationProperties* pointer)
-        {
-            pointer->SType = StructureType.PhysicalDeviceConservativeRasterizationProperties;
-            pointer->Next = null;
-            pointer->PrimitiveOverestimationSize = this.PrimitiveOverestimationSize;
-            pointer->MaxExtraPrimitiveOverestimationSize = this.MaxExtraPrimitiveOverestimationSize;
-            pointer->ExtraPrimitiveOverestimationSizeGranularity = this.ExtraPrimitiveOverestimationSizeGranularity;
-            pointer->PrimitiveUnderestimation = this.PrimitiveUnderestimation;
-            pointer->ConservativePointAndLineRasterization = this.ConservativePointAndLineRasterization;
-            pointer->DegenerateTrianglesRasterized = this.DegenerateTrianglesRasterized;
-            pointer->DegenerateLinesRasterized = this.DegenerateLinesRasterized;
-            pointer->FullyCoveredFragmentShaderInputVariable = this.FullyCoveredFragmentShaderInputVariable;
-            pointer->ConservativeRasterizationPostDepthCoverage = this.ConservativeRasterizationPostDepthCoverage;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
         internal static unsafe PhysicalDeviceConservativeRasterizationProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceConservativeRasterizationProperties* pointer)
         {
             PhysicalDeviceConservativeRasterizationProperties result = default(PhysicalDeviceConservativeRasterizationProperties);

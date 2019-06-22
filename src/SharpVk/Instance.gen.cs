@@ -75,6 +75,9 @@ namespace SharpVk
         /// <param name="validationFlagsExt">
         /// Extension struct
         /// </param>
+        /// <param name="validationFeaturesExt">
+        /// Extension struct
+        /// </param>
         /// <param name="debugUtilsMessengerCreateInfoExt">
         /// Extension struct
         /// </param>
@@ -82,7 +85,7 @@ namespace SharpVk
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
         /// </param>
-        public static unsafe SharpVk.Instance Create(CommandCache commandCache, ArrayProxy<string>? enabledLayerNames, ArrayProxy<string>? enabledExtensionNames, SharpVk.InstanceCreateFlags? flags = default(SharpVk.InstanceCreateFlags?), SharpVk.ApplicationInfo? applicationInfo = default(SharpVk.ApplicationInfo?), SharpVk.Multivendor.DebugReportCallbackCreateInfo? debugReportCallbackCreateInfoExt = null, SharpVk.Multivendor.ValidationFlags? validationFlagsExt = null, SharpVk.Multivendor.DebugUtilsMessengerCreateInfo? debugUtilsMessengerCreateInfoExt = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public static unsafe SharpVk.Instance Create(CommandCache commandCache, ArrayProxy<string>? enabledLayerNames, ArrayProxy<string>? enabledExtensionNames, SharpVk.InstanceCreateFlags? flags = default(SharpVk.InstanceCreateFlags?), SharpVk.ApplicationInfo? applicationInfo = default(SharpVk.ApplicationInfo?), SharpVk.Multivendor.DebugReportCallbackCreateInfo? debugReportCallbackCreateInfoExt = null, SharpVk.Multivendor.ValidationFlags? validationFlagsExt = null, SharpVk.Multivendor.ValidationFeatures? validationFeaturesExt = null, SharpVk.Multivendor.DebugUtilsMessengerCreateInfo? debugUtilsMessengerCreateInfoExt = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
@@ -104,6 +107,14 @@ namespace SharpVk
                     SharpVk.Interop.Multivendor.ValidationFlags* extensionPointer = default(SharpVk.Interop.Multivendor.ValidationFlags*);
                     extensionPointer = (SharpVk.Interop.Multivendor.ValidationFlags*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.ValidationFlags>());
                     validationFlagsExt.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = nextPointer;
+                    nextPointer = extensionPointer;
+                }
+                if (validationFeaturesExt != null)
+                {
+                    SharpVk.Interop.Multivendor.ValidationFeatures* extensionPointer = default(SharpVk.Interop.Multivendor.ValidationFeatures*);
+                    extensionPointer = (SharpVk.Interop.Multivendor.ValidationFeatures*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.ValidationFeatures>());
+                    validationFeaturesExt.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = nextPointer;
                     nextPointer = extensionPointer;
                 }
@@ -201,20 +212,20 @@ namespace SharpVk
             try
             {
                 SharpVk.PhysicalDevice[] result = default(SharpVk.PhysicalDevice[]);
-                uint physicalDeviceCount = default(uint);
+                uint marshalledPhysicalDeviceCount = default(uint);
                 SharpVk.Interop.PhysicalDevice* marshalledPhysicalDevices = default(SharpVk.Interop.PhysicalDevice*);
                 SharpVk.Interop.VkInstanceEnumeratePhysicalDevicesDelegate commandDelegate = commandCache.Cache.vkEnumeratePhysicalDevices;
-                Result methodResult = commandDelegate(this.handle, &physicalDeviceCount, marshalledPhysicalDevices);
+                Result methodResult = commandDelegate(this.handle, &marshalledPhysicalDeviceCount, marshalledPhysicalDevices);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                marshalledPhysicalDevices = (SharpVk.Interop.PhysicalDevice*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDevice>((uint)(physicalDeviceCount)));
-                commandDelegate(this.handle, &physicalDeviceCount, marshalledPhysicalDevices);
+                marshalledPhysicalDevices = (SharpVk.Interop.PhysicalDevice*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDevice>((uint)(marshalledPhysicalDeviceCount)));
+                commandDelegate(this.handle, &marshalledPhysicalDeviceCount, marshalledPhysicalDevices);
                 if (marshalledPhysicalDevices != null)
                 {
-                    var fieldPointer = new SharpVk.PhysicalDevice[(uint)(physicalDeviceCount)];
-                    for(int index = 0; index < (uint)(physicalDeviceCount); index++)
+                    var fieldPointer = new SharpVk.PhysicalDevice[(uint)(marshalledPhysicalDeviceCount)];
+                    for(int index = 0; index < (uint)(marshalledPhysicalDeviceCount); index++)
                     {
                         fieldPointer[index] = new SharpVk.PhysicalDevice(this, marshalledPhysicalDevices[index]);
                     }
@@ -258,20 +269,20 @@ namespace SharpVk
             try
             {
                 SharpVk.ExtensionProperties[] result = default(SharpVk.ExtensionProperties[]);
-                uint propertyCount = default(uint);
+                uint marshalledPropertyCount = default(uint);
                 SharpVk.Interop.ExtensionProperties* marshalledProperties = default(SharpVk.Interop.ExtensionProperties*);
                 SharpVk.Interop.VkInstanceEnumerateExtensionPropertiesDelegate commandDelegate = commandCache.Cache.vkEnumerateInstanceExtensionProperties;
-                Result methodResult = commandDelegate(Interop.HeapUtil.MarshalTo(layerName), &propertyCount, marshalledProperties);
+                Result methodResult = commandDelegate(Interop.HeapUtil.MarshalTo(layerName), &marshalledPropertyCount, marshalledProperties);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                marshalledProperties = (SharpVk.Interop.ExtensionProperties*)(Interop.HeapUtil.Allocate<SharpVk.Interop.ExtensionProperties>((uint)(propertyCount)));
-                commandDelegate(Interop.HeapUtil.MarshalTo(layerName), &propertyCount, marshalledProperties);
+                marshalledProperties = (SharpVk.Interop.ExtensionProperties*)(Interop.HeapUtil.Allocate<SharpVk.Interop.ExtensionProperties>((uint)(marshalledPropertyCount)));
+                commandDelegate(Interop.HeapUtil.MarshalTo(layerName), &marshalledPropertyCount, marshalledProperties);
                 if (marshalledProperties != null)
                 {
-                    var fieldPointer = new SharpVk.ExtensionProperties[(uint)(propertyCount)];
-                    for(int index = 0; index < (uint)(propertyCount); index++)
+                    var fieldPointer = new SharpVk.ExtensionProperties[(uint)(marshalledPropertyCount)];
+                    for(int index = 0; index < (uint)(marshalledPropertyCount); index++)
                     {
                         fieldPointer[index] = SharpVk.ExtensionProperties.MarshalFrom(&marshalledProperties[index]);
                     }
@@ -297,20 +308,20 @@ namespace SharpVk
             try
             {
                 SharpVk.LayerProperties[] result = default(SharpVk.LayerProperties[]);
-                uint propertyCount = default(uint);
+                uint marshalledPropertyCount = default(uint);
                 SharpVk.Interop.LayerProperties* marshalledProperties = default(SharpVk.Interop.LayerProperties*);
                 SharpVk.Interop.VkInstanceEnumerateLayerPropertiesDelegate commandDelegate = commandCache.Cache.vkEnumerateInstanceLayerProperties;
-                Result methodResult = commandDelegate(&propertyCount, marshalledProperties);
+                Result methodResult = commandDelegate(&marshalledPropertyCount, marshalledProperties);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                marshalledProperties = (SharpVk.Interop.LayerProperties*)(Interop.HeapUtil.Allocate<SharpVk.Interop.LayerProperties>((uint)(propertyCount)));
-                commandDelegate(&propertyCount, marshalledProperties);
+                marshalledProperties = (SharpVk.Interop.LayerProperties*)(Interop.HeapUtil.Allocate<SharpVk.Interop.LayerProperties>((uint)(marshalledPropertyCount)));
+                commandDelegate(&marshalledPropertyCount, marshalledProperties);
                 if (marshalledProperties != null)
                 {
-                    var fieldPointer = new SharpVk.LayerProperties[(uint)(propertyCount)];
-                    for(int index = 0; index < (uint)(propertyCount); index++)
+                    var fieldPointer = new SharpVk.LayerProperties[(uint)(marshalledPropertyCount)];
+                    for(int index = 0; index < (uint)(marshalledPropertyCount); index++)
                     {
                         fieldPointer[index] = SharpVk.LayerProperties.MarshalFrom(&marshalledProperties[index]);
                     }
@@ -360,20 +371,20 @@ namespace SharpVk
             try
             {
                 SharpVk.PhysicalDeviceGroupProperties[] result = default(SharpVk.PhysicalDeviceGroupProperties[]);
-                uint physicalDeviceGroupCount = default(uint);
+                uint marshalledPhysicalDeviceGroupCount = default(uint);
                 SharpVk.Interop.PhysicalDeviceGroupProperties* marshalledPhysicalDeviceGroupProperties = default(SharpVk.Interop.PhysicalDeviceGroupProperties*);
                 SharpVk.Interop.VkInstanceEnumeratePhysicalDeviceGroupsDelegate commandDelegate = commandCache.Cache.vkEnumeratePhysicalDeviceGroups;
-                Result methodResult = commandDelegate(this.handle, &physicalDeviceGroupCount, marshalledPhysicalDeviceGroupProperties);
+                Result methodResult = commandDelegate(this.handle, &marshalledPhysicalDeviceGroupCount, marshalledPhysicalDeviceGroupProperties);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                marshalledPhysicalDeviceGroupProperties = (SharpVk.Interop.PhysicalDeviceGroupProperties*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceGroupProperties>((uint)(physicalDeviceGroupCount)));
-                commandDelegate(this.handle, &physicalDeviceGroupCount, marshalledPhysicalDeviceGroupProperties);
+                marshalledPhysicalDeviceGroupProperties = (SharpVk.Interop.PhysicalDeviceGroupProperties*)(Interop.HeapUtil.Allocate<SharpVk.Interop.PhysicalDeviceGroupProperties>((uint)(marshalledPhysicalDeviceGroupCount)));
+                commandDelegate(this.handle, &marshalledPhysicalDeviceGroupCount, marshalledPhysicalDeviceGroupProperties);
                 if (marshalledPhysicalDeviceGroupProperties != null)
                 {
-                    var fieldPointer = new SharpVk.PhysicalDeviceGroupProperties[(uint)(physicalDeviceGroupCount)];
-                    for(int index = 0; index < (uint)(physicalDeviceGroupCount); index++)
+                    var fieldPointer = new SharpVk.PhysicalDeviceGroupProperties[(uint)(marshalledPhysicalDeviceGroupCount)];
+                    for(int index = 0; index < (uint)(marshalledPhysicalDeviceGroupCount); index++)
                     {
                         fieldPointer[index] = SharpVk.PhysicalDeviceGroupProperties.MarshalFrom(&marshalledPhysicalDeviceGroupProperties[index]);
                     }

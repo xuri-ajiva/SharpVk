@@ -102,6 +102,11 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        public const string DepthClipEnable = "VK_EXT_depth_clip_enable"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public const string SwapchainColorspace = "VK_EXT_swapchain_colorspace"; 
         
         /// <summary>
@@ -177,6 +182,11 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        public const string FilterCubic = "VK_EXT_filter_cubic"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public const string GlobalPriority = "VK_EXT_global_priority"; 
         
         /// <summary>
@@ -197,7 +207,17 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        public const string PipelineCreationFeedback = "VK_EXT_pipeline_creation_feedback"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public const string PciBusInfo = "VK_EXT_pci_bus_info"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string MetalSurface = "VK_EXT_metal_surface"; 
         
         /// <summary>
         /// 
@@ -212,6 +232,51 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        public const string MemoryBudget = "VK_EXT_memory_budget"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string MemoryPriority = "VK_EXT_memory_priority"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string BufferDeviceAddress = "VK_EXT_buffer_device_address"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public const string SeparateStencilUsage = "VK_EXT_separate_stencil_usage"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string ValidationFeatures = "VK_EXT_validation_features"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string FragmentShaderInterlock = "VK_EXT_fragment_shader_interlock"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string YcbcrImageArrays = "VK_EXT_ycbcr_image_arrays"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string FullScreenExclusive = "VK_EXT_full_screen_exclusive"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string HeadlessSurface = "VK_EXT_headless_surface"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string HostQueryReset = "VK_EXT_host_query_reset"; 
     }
 }

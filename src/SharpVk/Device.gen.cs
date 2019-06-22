@@ -185,11 +185,14 @@ namespace SharpVk
         /// <param name="importAndroidHardwareBufferInfoAndroid">
         /// Extension struct
         /// </param>
+        /// <param name="memoryPriorityAllocateInfoExt">
+        /// Extension struct
+        /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
         /// </param>
-        public unsafe SharpVk.DeviceMemory AllocateMemory(DeviceSize allocationSize, uint memoryTypeIndex, SharpVk.NVidia.DedicatedAllocationMemoryAllocateInfo? dedicatedAllocationMemoryAllocateInfoNv = null, SharpVk.NVidia.ExportMemoryAllocateInfo? exportMemoryAllocateInfoNv = null, SharpVk.NVidia.ImportMemoryWin32HandleInfo? importMemoryWin32HandleInfoNv = null, SharpVk.NVidia.ExportMemoryWin32HandleInfo? exportMemoryWin32HandleInfoNv = null, SharpVk.ExportMemoryAllocateInfo? exportMemoryAllocateInfo = null, SharpVk.Khronos.ImportMemoryWin32HandleInfo? importMemoryWin32HandleInfoKhr = null, SharpVk.Khronos.ExportMemoryWin32HandleInfo? exportMemoryWin32HandleInfoKhr = null, SharpVk.Khronos.ImportMemoryFileDescriptorInfo? importMemoryFileDescriptorInfoKhr = null, SharpVk.MemoryAllocateFlagsInfo? memoryAllocateFlagsInfo = null, SharpVk.MemoryDedicatedAllocateInfo? memoryDedicatedAllocateInfo = null, SharpVk.Multivendor.ImportMemoryHostPointerInfo? importMemoryHostPointerInfoExt = null, SharpVk.Android.ImportAndroidHardwareBufferInfo? importAndroidHardwareBufferInfoAndroid = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public unsafe SharpVk.DeviceMemory AllocateMemory(ulong allocationSize, uint memoryTypeIndex, SharpVk.NVidia.DedicatedAllocationMemoryAllocateInfo? dedicatedAllocationMemoryAllocateInfoNv = null, SharpVk.NVidia.ExportMemoryAllocateInfo? exportMemoryAllocateInfoNv = null, SharpVk.NVidia.ImportMemoryWin32HandleInfo? importMemoryWin32HandleInfoNv = null, SharpVk.NVidia.ExportMemoryWin32HandleInfo? exportMemoryWin32HandleInfoNv = null, SharpVk.ExportMemoryAllocateInfo? exportMemoryAllocateInfo = null, SharpVk.Khronos.ImportMemoryWin32HandleInfo? importMemoryWin32HandleInfoKhr = null, SharpVk.Khronos.ExportMemoryWin32HandleInfo? exportMemoryWin32HandleInfoKhr = null, SharpVk.Khronos.ImportMemoryFileDescriptorInfo? importMemoryFileDescriptorInfoKhr = null, SharpVk.MemoryAllocateFlagsInfo? memoryAllocateFlagsInfo = null, SharpVk.MemoryDedicatedAllocateInfo? memoryDedicatedAllocateInfo = null, SharpVk.Multivendor.ImportMemoryHostPointerInfo? importMemoryHostPointerInfoExt = null, SharpVk.Android.ImportAndroidHardwareBufferInfo? importAndroidHardwareBufferInfoAndroid = null, SharpVk.Multivendor.MemoryPriorityAllocateInfo? memoryPriorityAllocateInfoExt = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
@@ -291,6 +294,14 @@ namespace SharpVk
                     SharpVk.Interop.Android.ImportAndroidHardwareBufferInfo* extensionPointer = default(SharpVk.Interop.Android.ImportAndroidHardwareBufferInfo*);
                     extensionPointer = (SharpVk.Interop.Android.ImportAndroidHardwareBufferInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Android.ImportAndroidHardwareBufferInfo>());
                     importAndroidHardwareBufferInfoAndroid.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = nextPointer;
+                    nextPointer = extensionPointer;
+                }
+                if (memoryPriorityAllocateInfoExt != null)
+                {
+                    SharpVk.Interop.Multivendor.MemoryPriorityAllocateInfo* extensionPointer = default(SharpVk.Interop.Multivendor.MemoryPriorityAllocateInfo*);
+                    extensionPointer = (SharpVk.Interop.Multivendor.MemoryPriorityAllocateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.MemoryPriorityAllocateInfo>());
+                    memoryPriorityAllocateInfoExt.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = nextPointer;
                     nextPointer = extensionPointer;
                 }
@@ -799,11 +810,14 @@ namespace SharpVk
         /// <param name="externalMemoryBufferCreateInfo">
         /// Extension struct
         /// </param>
+        /// <param name="bufferDeviceAddressCreateInfoExt">
+        /// Extension struct
+        /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
         /// </param>
-        public unsafe SharpVk.Buffer CreateBuffer(DeviceSize size, SharpVk.BufferUsageFlags usage, SharpVk.SharingMode sharingMode, ArrayProxy<uint>? queueFamilyIndices, SharpVk.BufferCreateFlags? flags = default(SharpVk.BufferCreateFlags?), SharpVk.NVidia.DedicatedAllocationBufferCreateInfo? dedicatedAllocationBufferCreateInfoNv = null, SharpVk.ExternalMemoryBufferCreateInfo? externalMemoryBufferCreateInfo = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public unsafe SharpVk.Buffer CreateBuffer(ulong size, SharpVk.BufferUsageFlags usage, SharpVk.SharingMode sharingMode, ArrayProxy<uint>? queueFamilyIndices, SharpVk.BufferCreateFlags? flags = default(SharpVk.BufferCreateFlags?), SharpVk.NVidia.DedicatedAllocationBufferCreateInfo? dedicatedAllocationBufferCreateInfoNv = null, SharpVk.ExternalMemoryBufferCreateInfo? externalMemoryBufferCreateInfo = null, SharpVk.Multivendor.BufferDeviceAddressCreateInfo? bufferDeviceAddressCreateInfoExt = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
@@ -825,6 +839,14 @@ namespace SharpVk
                     SharpVk.Interop.ExternalMemoryBufferCreateInfo* extensionPointer = default(SharpVk.Interop.ExternalMemoryBufferCreateInfo*);
                     extensionPointer = (SharpVk.Interop.ExternalMemoryBufferCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.ExternalMemoryBufferCreateInfo>());
                     externalMemoryBufferCreateInfo.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = nextPointer;
+                    nextPointer = extensionPointer;
+                }
+                if (bufferDeviceAddressCreateInfoExt != null)
+                {
+                    SharpVk.Interop.Multivendor.BufferDeviceAddressCreateInfo* extensionPointer = default(SharpVk.Interop.Multivendor.BufferDeviceAddressCreateInfo*);
+                    extensionPointer = (SharpVk.Interop.Multivendor.BufferDeviceAddressCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.BufferDeviceAddressCreateInfo>());
+                    bufferDeviceAddressCreateInfoExt.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = nextPointer;
                     nextPointer = extensionPointer;
                 }
@@ -916,7 +938,7 @@ namespace SharpVk
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
         /// </param>
-        public unsafe SharpVk.BufferView CreateBufferView(SharpVk.Buffer buffer, SharpVk.Format format, DeviceSize offset, DeviceSize range, SharpVk.BufferViewCreateFlags? flags = default(SharpVk.BufferViewCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public unsafe SharpVk.BufferView CreateBufferView(SharpVk.Buffer buffer, SharpVk.Format format, ulong offset, ulong range, SharpVk.BufferViewCreateFlags? flags = default(SharpVk.BufferViewCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
@@ -1488,11 +1510,11 @@ namespace SharpVk
             try
             {
                 SharpVk.Pipeline[] result = default(SharpVk.Pipeline[]);
-                uint createInfoCount = default(uint);
+                uint marshalledCreateInfoCount = default(uint);
                 SharpVk.Interop.GraphicsPipelineCreateInfo* marshalledCreateInfos = default(SharpVk.Interop.GraphicsPipelineCreateInfo*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Pipeline* marshalledPipelines = default(SharpVk.Interop.Pipeline*);
-                createInfoCount = (uint)(Interop.HeapUtil.GetLength(createInfos));
+                marshalledCreateInfoCount = (uint)(Interop.HeapUtil.GetLength(createInfos));
                 if (createInfos.IsNull())
                 {
                     marshalledCreateInfos = null;
@@ -1523,17 +1545,17 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                marshalledPipelines = (SharpVk.Interop.Pipeline*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Pipeline>(createInfoCount));
+                marshalledPipelines = (SharpVk.Interop.Pipeline*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Pipeline>(marshalledCreateInfoCount));
                 SharpVk.Interop.VkDeviceCreateGraphicsPipelinesDelegate commandDelegate = commandCache.Cache.vkCreateGraphicsPipelines;
-                Result methodResult = commandDelegate(this.handle, pipelineCache?.handle ?? default(SharpVk.Interop.PipelineCache), createInfoCount, marshalledCreateInfos, marshalledAllocator, marshalledPipelines);
+                Result methodResult = commandDelegate(this.handle, pipelineCache?.handle ?? default(SharpVk.Interop.PipelineCache), marshalledCreateInfoCount, marshalledCreateInfos, marshalledAllocator, marshalledPipelines);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
                 }
                 if (marshalledPipelines != null)
                 {
-                    var fieldPointer = new SharpVk.Pipeline[(uint)(createInfoCount)];
-                    for(int index = 0; index < (uint)(createInfoCount); index++)
+                    var fieldPointer = new SharpVk.Pipeline[(uint)(marshalledCreateInfoCount)];
+                    for(int index = 0; index < (uint)(marshalledCreateInfoCount); index++)
                     {
                         fieldPointer[index] = new SharpVk.Pipeline(this, marshalledPipelines[index]);
                     }
@@ -1628,16 +1650,19 @@ namespace SharpVk
         /// <param name="pipelineRepresentativeFragmentTestStateCreateInfoNv">
         /// Extension struct
         /// </param>
+        /// <param name="pipelineCreationFeedbackCreateInfoExt">
+        /// Extension struct
+        /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
         /// </param>
-        public unsafe SharpVk.Pipeline CreateGraphicsPipeline(SharpVk.PipelineCache pipelineCache, ArrayProxy<SharpVk.PipelineShaderStageCreateInfo>? stages, SharpVk.PipelineRasterizationStateCreateInfo rasterizationState, SharpVk.PipelineLayout layout, SharpVk.RenderPass renderPass, uint subpass, SharpVk.Pipeline basePipelineHandle, int basePipelineIndex, SharpVk.PipelineCreateFlags? flags = default(SharpVk.PipelineCreateFlags?), SharpVk.PipelineVertexInputStateCreateInfo? vertexInputState = default(SharpVk.PipelineVertexInputStateCreateInfo?), SharpVk.PipelineInputAssemblyStateCreateInfo? inputAssemblyState = default(SharpVk.PipelineInputAssemblyStateCreateInfo?), SharpVk.PipelineTessellationStateCreateInfo? tessellationState = default(SharpVk.PipelineTessellationStateCreateInfo?), SharpVk.PipelineViewportStateCreateInfo? viewportState = default(SharpVk.PipelineViewportStateCreateInfo?), SharpVk.PipelineMultisampleStateCreateInfo? multisampleState = default(SharpVk.PipelineMultisampleStateCreateInfo?), SharpVk.PipelineDepthStencilStateCreateInfo? depthStencilState = default(SharpVk.PipelineDepthStencilStateCreateInfo?), SharpVk.PipelineColorBlendStateCreateInfo? colorBlendState = default(SharpVk.PipelineColorBlendStateCreateInfo?), SharpVk.PipelineDynamicStateCreateInfo? dynamicState = default(SharpVk.PipelineDynamicStateCreateInfo?), SharpVk.Multivendor.PipelineDiscardRectangleStateCreateInfo? pipelineDiscardRectangleStateCreateInfoExt = null, SharpVk.NVidia.PipelineRepresentativeFragmentTestStateCreateInfo? pipelineRepresentativeFragmentTestStateCreateInfoNv = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public unsafe SharpVk.Pipeline CreateGraphicsPipeline(SharpVk.PipelineCache pipelineCache, ArrayProxy<SharpVk.PipelineShaderStageCreateInfo>? stages, SharpVk.PipelineRasterizationStateCreateInfo rasterizationState, SharpVk.PipelineLayout layout, SharpVk.RenderPass renderPass, uint subpass, SharpVk.Pipeline basePipelineHandle, int basePipelineIndex, SharpVk.PipelineCreateFlags? flags = default(SharpVk.PipelineCreateFlags?), SharpVk.PipelineVertexInputStateCreateInfo? vertexInputState = default(SharpVk.PipelineVertexInputStateCreateInfo?), SharpVk.PipelineInputAssemblyStateCreateInfo? inputAssemblyState = default(SharpVk.PipelineInputAssemblyStateCreateInfo?), SharpVk.PipelineTessellationStateCreateInfo? tessellationState = default(SharpVk.PipelineTessellationStateCreateInfo?), SharpVk.PipelineViewportStateCreateInfo? viewportState = default(SharpVk.PipelineViewportStateCreateInfo?), SharpVk.PipelineMultisampleStateCreateInfo? multisampleState = default(SharpVk.PipelineMultisampleStateCreateInfo?), SharpVk.PipelineDepthStencilStateCreateInfo? depthStencilState = default(SharpVk.PipelineDepthStencilStateCreateInfo?), SharpVk.PipelineColorBlendStateCreateInfo? colorBlendState = default(SharpVk.PipelineColorBlendStateCreateInfo?), SharpVk.PipelineDynamicStateCreateInfo? dynamicState = default(SharpVk.PipelineDynamicStateCreateInfo?), SharpVk.Multivendor.PipelineDiscardRectangleStateCreateInfo? pipelineDiscardRectangleStateCreateInfoExt = null, SharpVk.NVidia.PipelineRepresentativeFragmentTestStateCreateInfo? pipelineRepresentativeFragmentTestStateCreateInfoNv = null, SharpVk.Multivendor.PipelineCreationFeedbackCreateInfo? pipelineCreationFeedbackCreateInfoExt = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
                 SharpVk.Pipeline result = default(SharpVk.Pipeline);
-                uint createInfoCount = default(uint);
+                uint marshalledCreateInfoCount = default(uint);
                 SharpVk.Interop.GraphicsPipelineCreateInfo* marshalledCreateInfos = default(SharpVk.Interop.GraphicsPipelineCreateInfo*);
                 void* nextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
@@ -1658,7 +1683,15 @@ namespace SharpVk
                     extensionPointer->Next = nextPointer;
                     nextPointer = extensionPointer;
                 }
-                createInfoCount = 1;
+                if (pipelineCreationFeedbackCreateInfoExt != null)
+                {
+                    SharpVk.Interop.Multivendor.PipelineCreationFeedbackCreateInfo* extensionPointer = default(SharpVk.Interop.Multivendor.PipelineCreationFeedbackCreateInfo*);
+                    extensionPointer = (SharpVk.Interop.Multivendor.PipelineCreationFeedbackCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.PipelineCreationFeedbackCreateInfo>());
+                    pipelineCreationFeedbackCreateInfoExt.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = nextPointer;
+                    nextPointer = extensionPointer;
+                }
+                marshalledCreateInfoCount = 1;
                 marshalledCreateInfos = (SharpVk.Interop.GraphicsPipelineCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.GraphicsPipelineCreateInfo>());
                 marshalledCreateInfos->SType = StructureType.GraphicsPipelineCreateInfo;
                 marshalledCreateInfos->Next = nextPointer;
@@ -1782,7 +1815,7 @@ namespace SharpVk
                 }
                 marshalledPipelines = (SharpVk.Interop.Pipeline*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Pipeline>(1));
                 SharpVk.Interop.VkDeviceCreateGraphicsPipelinesDelegate commandDelegate = commandCache.Cache.vkCreateGraphicsPipelines;
-                Result methodResult = commandDelegate(this.handle, pipelineCache?.handle ?? default(SharpVk.Interop.PipelineCache), createInfoCount, marshalledCreateInfos, marshalledAllocator, marshalledPipelines);
+                Result methodResult = commandDelegate(this.handle, pipelineCache?.handle ?? default(SharpVk.Interop.PipelineCache), marshalledCreateInfoCount, marshalledCreateInfos, marshalledAllocator, marshalledPipelines);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -1810,11 +1843,11 @@ namespace SharpVk
             try
             {
                 SharpVk.Pipeline[] result = default(SharpVk.Pipeline[]);
-                uint createInfoCount = default(uint);
+                uint marshalledCreateInfoCount = default(uint);
                 SharpVk.Interop.ComputePipelineCreateInfo* marshalledCreateInfos = default(SharpVk.Interop.ComputePipelineCreateInfo*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Pipeline* marshalledPipelines = default(SharpVk.Interop.Pipeline*);
-                createInfoCount = (uint)(Interop.HeapUtil.GetLength(createInfos));
+                marshalledCreateInfoCount = (uint)(Interop.HeapUtil.GetLength(createInfos));
                 if (createInfos.IsNull())
                 {
                     marshalledCreateInfos = null;
@@ -1845,17 +1878,17 @@ namespace SharpVk
                 {
                     marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 }
-                marshalledPipelines = (SharpVk.Interop.Pipeline*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Pipeline>(createInfoCount));
+                marshalledPipelines = (SharpVk.Interop.Pipeline*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Pipeline>(marshalledCreateInfoCount));
                 SharpVk.Interop.VkDeviceCreateComputePipelinesDelegate commandDelegate = commandCache.Cache.vkCreateComputePipelines;
-                Result methodResult = commandDelegate(this.handle, pipelineCache?.handle ?? default(SharpVk.Interop.PipelineCache), createInfoCount, marshalledCreateInfos, marshalledAllocator, marshalledPipelines);
+                Result methodResult = commandDelegate(this.handle, pipelineCache?.handle ?? default(SharpVk.Interop.PipelineCache), marshalledCreateInfoCount, marshalledCreateInfos, marshalledAllocator, marshalledPipelines);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
                 }
                 if (marshalledPipelines != null)
                 {
-                    var fieldPointer = new SharpVk.Pipeline[(uint)(createInfoCount)];
-                    for(int index = 0; index < (uint)(createInfoCount); index++)
+                    var fieldPointer = new SharpVk.Pipeline[(uint)(marshalledCreateInfoCount)];
+                    for(int index = 0; index < (uint)(marshalledCreateInfoCount); index++)
                     {
                         fieldPointer[index] = new SharpVk.Pipeline(this, marshalledPipelines[index]);
                     }
@@ -1894,21 +1927,32 @@ namespace SharpVk
         /// An index into the pCreateInfos parameter to use as a pipeline to
         /// derive from
         /// </param>
+        /// <param name="pipelineCreationFeedbackCreateInfoExt">
+        /// Extension struct
+        /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
         /// </param>
-        public unsafe SharpVk.Pipeline CreateComputePipeline(SharpVk.PipelineCache pipelineCache, SharpVk.PipelineShaderStageCreateInfo stage, SharpVk.PipelineLayout layout, SharpVk.Pipeline basePipelineHandle, int basePipelineIndex, SharpVk.PipelineCreateFlags? flags = default(SharpVk.PipelineCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public unsafe SharpVk.Pipeline CreateComputePipeline(SharpVk.PipelineCache pipelineCache, SharpVk.PipelineShaderStageCreateInfo stage, SharpVk.PipelineLayout layout, SharpVk.Pipeline basePipelineHandle, int basePipelineIndex, SharpVk.PipelineCreateFlags? flags = default(SharpVk.PipelineCreateFlags?), SharpVk.Multivendor.PipelineCreationFeedbackCreateInfo? pipelineCreationFeedbackCreateInfoExt = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
                 SharpVk.Pipeline result = default(SharpVk.Pipeline);
-                uint createInfoCount = default(uint);
+                uint marshalledCreateInfoCount = default(uint);
                 SharpVk.Interop.ComputePipelineCreateInfo* marshalledCreateInfos = default(SharpVk.Interop.ComputePipelineCreateInfo*);
                 void* nextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Pipeline* marshalledPipelines = default(SharpVk.Interop.Pipeline*);
-                createInfoCount = 1;
+                if (pipelineCreationFeedbackCreateInfoExt != null)
+                {
+                    SharpVk.Interop.Multivendor.PipelineCreationFeedbackCreateInfo* extensionPointer = default(SharpVk.Interop.Multivendor.PipelineCreationFeedbackCreateInfo*);
+                    extensionPointer = (SharpVk.Interop.Multivendor.PipelineCreationFeedbackCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.PipelineCreationFeedbackCreateInfo>());
+                    pipelineCreationFeedbackCreateInfoExt.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = nextPointer;
+                    nextPointer = extensionPointer;
+                }
+                marshalledCreateInfoCount = 1;
                 marshalledCreateInfos = (SharpVk.Interop.ComputePipelineCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.ComputePipelineCreateInfo>());
                 marshalledCreateInfos->SType = StructureType.ComputePipelineCreateInfo;
                 marshalledCreateInfos->Next = nextPointer;
@@ -1935,7 +1979,7 @@ namespace SharpVk
                 }
                 marshalledPipelines = (SharpVk.Interop.Pipeline*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Pipeline>(1));
                 SharpVk.Interop.VkDeviceCreateComputePipelinesDelegate commandDelegate = commandCache.Cache.vkCreateComputePipelines;
-                Result methodResult = commandDelegate(this.handle, pipelineCache?.handle ?? default(SharpVk.Interop.PipelineCache), createInfoCount, marshalledCreateInfos, marshalledAllocator, marshalledPipelines);
+                Result methodResult = commandDelegate(this.handle, pipelineCache?.handle ?? default(SharpVk.Interop.PipelineCache), marshalledCreateInfoCount, marshalledCreateInfos, marshalledAllocator, marshalledPipelines);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
@@ -3086,19 +3130,19 @@ namespace SharpVk
             try
             {
                 SharpVk.SparseImageMemoryRequirements2[] result = default(SharpVk.SparseImageMemoryRequirements2[]);
-                uint sparseMemoryRequirementCount = default(uint);
+                uint marshalledSparseMemoryRequirementCount = default(uint);
                 SharpVk.Interop.ImageSparseMemoryRequirementsInfo2* marshalledInfo = default(SharpVk.Interop.ImageSparseMemoryRequirementsInfo2*);
                 SharpVk.Interop.SparseImageMemoryRequirements2* marshalledSparseMemoryRequirements = default(SharpVk.Interop.SparseImageMemoryRequirements2*);
                 marshalledInfo = (SharpVk.Interop.ImageSparseMemoryRequirementsInfo2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.ImageSparseMemoryRequirementsInfo2>());
                 info.MarshalTo(marshalledInfo);
                 SharpVk.Interop.VkDeviceGetImageSparseMemoryRequirements2Delegate commandDelegate = commandCache.Cache.vkGetImageSparseMemoryRequirements2;
-                commandDelegate(this.handle, marshalledInfo, &sparseMemoryRequirementCount, marshalledSparseMemoryRequirements);
-                marshalledSparseMemoryRequirements = (SharpVk.Interop.SparseImageMemoryRequirements2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.SparseImageMemoryRequirements2>((uint)(sparseMemoryRequirementCount)));
-                commandDelegate(this.handle, marshalledInfo, &sparseMemoryRequirementCount, marshalledSparseMemoryRequirements);
+                commandDelegate(this.handle, marshalledInfo, &marshalledSparseMemoryRequirementCount, marshalledSparseMemoryRequirements);
+                marshalledSparseMemoryRequirements = (SharpVk.Interop.SparseImageMemoryRequirements2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.SparseImageMemoryRequirements2>((uint)(marshalledSparseMemoryRequirementCount)));
+                commandDelegate(this.handle, marshalledInfo, &marshalledSparseMemoryRequirementCount, marshalledSparseMemoryRequirements);
                 if (marshalledSparseMemoryRequirements != null)
                 {
-                    var fieldPointer = new SharpVk.SparseImageMemoryRequirements2[(uint)(sparseMemoryRequirementCount)];
-                    for(int index = 0; index < (uint)(sparseMemoryRequirementCount); index++)
+                    var fieldPointer = new SharpVk.SparseImageMemoryRequirements2[(uint)(marshalledSparseMemoryRequirementCount)];
+                    for(int index = 0; index < (uint)(marshalledSparseMemoryRequirementCount); index++)
                     {
                         fieldPointer[index] = SharpVk.SparseImageMemoryRequirements2.MarshalFrom(&marshalledSparseMemoryRequirements[index]);
                     }

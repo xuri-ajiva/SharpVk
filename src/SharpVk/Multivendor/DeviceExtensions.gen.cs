@@ -457,5 +457,70 @@ namespace SharpVk.Multivendor
                 Interop.HeapUtil.FreeAll();
             }
         }
+        
+        /// <summary>
+        /// Query an address of a buffer
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The Device handle to extend.
+        /// </param>
+        /// <param name="info">
+        /// An instance of the VkBufferDeviceAddressInfoEXT structure
+        /// specifying the buffer to retrieve an address for.
+        /// </param>
+        public static unsafe void GetBufferDeviceAddress(this SharpVk.Device extendedHandle, SharpVk.Multivendor.BufferDeviceAddressInfo info)
+        {
+            try
+            {
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Multivendor.BufferDeviceAddressInfo* marshalledInfo = default(SharpVk.Interop.Multivendor.BufferDeviceAddressInfo*);
+                commandCache = extendedHandle.commandCache;
+                marshalledInfo = (SharpVk.Interop.Multivendor.BufferDeviceAddressInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.BufferDeviceAddressInfo>());
+                info.MarshalTo(marshalledInfo);
+                SharpVk.Interop.Multivendor.VkDeviceGetBufferDeviceAddressDelegate commandDelegate = commandCache.Cache.vkGetBufferDeviceAddressEXT;
+                commandDelegate(extendedHandle.handle, marshalledInfo);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// Query device group present capabilities for a surface
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The Device handle to extend.
+        /// </param>
+        /// <param name="surfaceInfo">
+        /// An instance of the VkPhysicalDeviceSurfaceInfo2KHR structure,
+        /// describing the surface and other fixed parameters that would be
+        /// consumed by vkCreateSwapchainKHR.
+        /// </param>
+        public static unsafe SharpVk.Khronos.DeviceGroupPresentModeFlags GetGroupSurfacePresentModes2(this SharpVk.Device extendedHandle, SharpVk.Khronos.PhysicalDeviceSurfaceInfo2 surfaceInfo)
+        {
+            try
+            {
+                SharpVk.Khronos.DeviceGroupPresentModeFlags result = default(SharpVk.Khronos.DeviceGroupPresentModeFlags);
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Khronos.PhysicalDeviceSurfaceInfo2* marshalledSurfaceInfo = default(SharpVk.Interop.Khronos.PhysicalDeviceSurfaceInfo2*);
+                SharpVk.Khronos.DeviceGroupPresentModeFlags marshalledModes = default(SharpVk.Khronos.DeviceGroupPresentModeFlags);
+                commandCache = extendedHandle.commandCache;
+                marshalledSurfaceInfo = (SharpVk.Interop.Khronos.PhysicalDeviceSurfaceInfo2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.PhysicalDeviceSurfaceInfo2>());
+                surfaceInfo.MarshalTo(marshalledSurfaceInfo);
+                SharpVk.Interop.Multivendor.VkDeviceGetGroupSurfacePresentModes2Delegate commandDelegate = commandCache.Cache.vkGetDeviceGroupSurfacePresentModes2EXT;
+                Result methodResult = commandDelegate(extendedHandle.handle, marshalledSurfaceInfo, &marshalledModes);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = marshalledModes;
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
     }
 }

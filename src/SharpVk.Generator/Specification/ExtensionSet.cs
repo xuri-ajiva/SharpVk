@@ -74,11 +74,14 @@ namespace SharpVk.Generator.Specification
                         Scope = scope
                     });
 
-                    foreach (var command in vkExtension.Elements("require").SelectMany(x => x.Elements("command")))
+                    foreach (var command in vkExtension.Elements("require")
+                                                        .SelectMany(x => x.Elements("command"))
+                                                        .Select(x => x.Attribute("name").Value)
+                                                        .Distinct())
                     {
                         services.AddSingleton(new CommandRequirement
                         {
-                            CommandName = command.Attribute("name").Value,
+                            CommandName = command,
                             ExtensionName = name
                         });
                     }

@@ -36,7 +36,7 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
-        public DeviceSize CompactedSize
+        public ulong CompactedSize
         {
             get;
             set;

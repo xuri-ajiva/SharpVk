@@ -241,15 +241,15 @@ namespace SharpVk.Generator.Generation.Marshalling
                                 }
                             }
 
-                            Action<ExpressionBuilder> lenValue = null;
+                            Func<Func<string, Action<ExpressionBuilder>>, Action<ExpressionBuilder>> lenValue = null;
 
                             if (source.Dimensions[0].Value is LenExpressionToken lenToken)
                             {
-                                lenValue = Variable(others.Single(x => x.VkName == lenToken.Value).Name);
+                                lenValue = getValue => getValue(others.Single(x => x.VkName == lenToken.Value).Name);
                             }
                             else
                             {
-                                lenValue = this.expressionBuilder.Build(source.Dimensions[0].Value, x => others.Single(y => y.VkName == x));
+                                lenValue = getValue => this.expressionBuilder.Build(source.Dimensions[0].Value, x => others.Single(y => y.VkName == x));
                             }
 
                             info.MarshalFrom.Add((getTarget, getValue) => new AssignAction
@@ -261,7 +261,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                                 IndexName = "index",
                                 Type = marshalling.MarshalFromActionType,
                                 NullCheckExpression = IsNotEqual(getValue(source.Name), Null),
-                                LengthExpression = lenValue,
+                                LengthExpression = lenValue(getValue),
                                 ValueExpression = marshalling.BuildMarshalFromValueExpression(Index(getValue(source.Name), Variable("index")), context.GetHandle)
                             });
 

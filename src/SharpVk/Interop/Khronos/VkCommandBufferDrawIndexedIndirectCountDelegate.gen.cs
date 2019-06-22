@@ -29,5 +29,5 @@ namespace SharpVk.Interop.Khronos
     /// <summary>
     /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferDrawIndexedIndirectCountDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.Interop.Buffer buffer, DeviceSize offset, SharpVk.Interop.Buffer countBuffer, DeviceSize countBufferOffset, uint maxDrawCount, uint stride);
+    public unsafe delegate void VkCommandBufferDrawIndexedIndirectCountDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.Interop.Buffer buffer, ulong offset, SharpVk.Interop.Buffer countBuffer, ulong countBufferOffset, uint maxDrawCount, uint stride);
 }

@@ -417,7 +417,17 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        ImageViewHandleInfo = 1000030000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         TextureLodGatherFormatProperties = 1000041000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        StreamDescriptorSurfaceCreateInfo = 1000049000, 
         
         /// <summary>
         /// 
@@ -663,6 +673,16 @@ namespace SharpVk
         /// 
         /// </summary>
         PipelineRasterizationConservativeStateCreateInfo = 1000101001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceDepthClipEnableFeatures = 1000102000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PipelineRasterizationDepthClipStateCreateInfo = 1000102001, 
         
         /// <summary>
         /// 
@@ -927,6 +947,16 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        PhysicalDeviceShaderSmBuiltinsFeatures = 1000154000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceShaderSmBuiltinsProperties = 1000154001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         DrmFormatModifierPropertiesList = 1000158000, 
         
         /// <summary>
@@ -1077,6 +1107,16 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        PhysicalDeviceImageViewImageFormatInfo = 1000170000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        FilterCubicImageViewImageFormatProperties = 1000170001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         DeviceQueueGlobalPriorityCreateInfo = 1000174000, 
         
         /// <summary>
@@ -1137,12 +1177,32 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        PresentFrameToken = 1000191000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PipelineCreationFeedbackCreateInfo = 1000192000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         PhysicalDeviceDriverProperties = 1000196000, 
         
         /// <summary>
         /// 
         /// </summary>
         PhysicalDeviceFloatControlsProperties = 1000197000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceDepthStencilResolveProperties = 1000199000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SubpassDescriptionDepthStencilResolve = 1000199001, 
         
         /// <summary>
         /// 
@@ -1192,6 +1252,41 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        PhysicalDeviceShaderIntegerFunctions2Features = 1000209000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        QueryPoolCreateInfoIntel = 1000210000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        InitializePerformanceApiInfo = 1000210001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PerformanceMarkerInfo = 1000210002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PerformanceStreamMarkerInfo = 1000210003, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PerformanceOverrideInfo = 1000210004, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PerformanceConfigurationAcquireInfo = 1000210005, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         PhysicalDeviceVulkanMemoryModelFeatures = 1000211000, 
         
         /// <summary>
@@ -1202,7 +1297,22 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        DisplayNativeHdrSurfaceCapabilities = 1000213000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SwapchainDisplayNativeHdrCreateInfo = 1000213001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         ImagepipeSurfaceCreateInfo = 1000214000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        MetalSurfaceCreateInfo = 1000217000, 
         
         /// <summary>
         /// 
@@ -1227,6 +1337,121 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        PhysicalDeviceMemoryBudgetProperties = 1000237000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceMemoryPriorityFeatures = 1000238000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        MemoryPriorityAllocateInfo = 1000238001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SurfaceProtectedCapabilities = 1000239000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceDedicatedAllocationImageAliasingFeatures = 1000240000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceBufferDeviceAddressFeatures = 1000244000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        BufferDeviceAddressInfo = 1000244001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        BufferDeviceAddressCreateInfo = 1000244002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         ImageStencilUsageCreateInfo = 1000246000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ValidationFeatures = 1000247000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceCooperativeMatrixFeatures = 1000249000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        CooperativeMatrixProperties = 1000249001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceCooperativeMatrixProperties = 1000249002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceCoverageReductionModeFeatures = 1000250000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PipelineCoverageReductionStateCreateInfo = 1000250001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        FramebufferMixedSamplesCombination = 1000250002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceFragmentShaderInterlockFeatures = 1000251000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceYcbcrImageArraysFeatures = 1000252000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceUniformBufferStandardLayoutFeatures = 1000253000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SurfaceFullScreenExclusiveInfo = 1000255000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SurfaceCapabilitiesFullScreenExclusive = 1000255002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SurfaceFullScreenExclusiveWin32Info = 1000255001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        HeadlessSurfaceCreateInfo = 1000256000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceHostQueryResetFeatures = 1000261000, 
     }
 }

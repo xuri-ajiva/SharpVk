@@ -59,5 +59,55 @@ namespace SharpVk.Multivendor
                 Interop.HeapUtil.FreeAll();
             }
         }
+        
+        /// <summary>
+        /// Acquire full-screen exclusive mode for a swapchain
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The Swapchain handle to extend.
+        /// </param>
+        public static unsafe void AcquireFullScreenExclusiveMode(this SharpVk.Khronos.Swapchain extendedHandle)
+        {
+            try
+            {
+                CommandCache commandCache = default(CommandCache);
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Multivendor.VkSwapchainKHRAcquireFullScreenExclusiveModeDelegate commandDelegate = commandCache.Cache.vkAcquireFullScreenExclusiveModeEXT;
+                Result methodResult = commandDelegate(extendedHandle.parent.handle, extendedHandle.handle);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The Swapchain handle to extend.
+        /// </param>
+        public static unsafe void ReleaseFullScreenExclusiveMode(this SharpVk.Khronos.Swapchain extendedHandle)
+        {
+            try
+            {
+                CommandCache commandCache = default(CommandCache);
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Multivendor.VkSwapchainKHRReleaseFullScreenExclusiveModeDelegate commandDelegate = commandCache.Cache.vkReleaseFullScreenExclusiveModeEXT;
+                Result methodResult = commandDelegate(extendedHandle.parent.handle, extendedHandle.handle);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
     }
 }

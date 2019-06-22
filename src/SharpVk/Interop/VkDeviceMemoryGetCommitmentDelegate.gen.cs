@@ -29,5 +29,5 @@ namespace SharpVk.Interop
     /// <summary>
     /// 
     /// </summary>
-    public unsafe delegate void VkDeviceMemoryGetCommitmentDelegate(SharpVk.Interop.Device device, SharpVk.Interop.DeviceMemory memory, DeviceSize* committedMemoryInBytes);
+    public unsafe delegate void VkDeviceMemoryGetCommitmentDelegate(SharpVk.Interop.Device device, SharpVk.Interop.DeviceMemory memory, ulong* committedMemoryInBytes);
 }

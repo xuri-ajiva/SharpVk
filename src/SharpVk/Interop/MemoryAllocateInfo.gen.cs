@@ -46,7 +46,7 @@ namespace SharpVk.Interop
         /// <summary>
         /// The size of the allocation in bytes
         /// </summary>
-        public DeviceSize AllocationSize; 
+        public ulong AllocationSize; 
         
         /// <summary>
         /// The memory type index, which selects the properties of the memory

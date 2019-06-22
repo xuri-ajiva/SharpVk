@@ -128,20 +128,20 @@ namespace SharpVk.Multivendor
             try
             {
                 byte[] result = default(byte[]);
-                HostSize dataSize = default(HostSize);
+                HostSize marshalledDataSize = default(HostSize);
                 byte* marshalledData = default(byte*);
                 SharpVk.Interop.Multivendor.VkValidationCacheEXTGetDataDelegate commandDelegate = commandCache.Cache.vkGetValidationCacheDataEXT;
-                Result methodResult = commandDelegate(this.parent.handle, this.handle, &dataSize, marshalledData);
+                Result methodResult = commandDelegate(this.parent.handle, this.handle, &marshalledDataSize, marshalledData);
                 if (SharpVkException.IsError(methodResult))
                 {
                     throw SharpVkException.Create(methodResult);
                 }
-                marshalledData = (byte*)(Interop.HeapUtil.Allocate<byte>((uint)(dataSize)));
-                commandDelegate(this.parent.handle, this.handle, &dataSize, marshalledData);
+                marshalledData = (byte*)(Interop.HeapUtil.Allocate<byte>((uint)(marshalledDataSize)));
+                commandDelegate(this.parent.handle, this.handle, &marshalledDataSize, marshalledData);
                 if (marshalledData != null)
                 {
-                    var fieldPointer = new byte[(uint)(dataSize)];
-                    for(int index = 0; index < (uint)(dataSize); index++)
+                    var fieldPointer = new byte[(uint)(marshalledDataSize)];
+                    for(int index = 0; index < (uint)(marshalledDataSize); index++)
                     {
                         fieldPointer[index] = marshalledData[index];
                     }

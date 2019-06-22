@@ -54,7 +54,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public DeviceSize MemoryOffset
+        public ulong MemoryOffset
         {
             get;
             set;

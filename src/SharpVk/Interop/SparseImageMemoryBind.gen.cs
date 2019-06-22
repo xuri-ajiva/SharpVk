@@ -65,7 +65,7 @@ namespace SharpVk.Interop
         /// An offset into DeviceMemory object. If memory is null, this value
         /// is ignored.
         /// </summary>
-        public DeviceSize MemoryOffset; 
+        public ulong MemoryOffset; 
         
         /// <summary>
         /// flags are sparse memory binding flags.

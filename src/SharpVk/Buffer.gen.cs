@@ -56,7 +56,7 @@ namespace SharpVk
         /// <summary>
         /// Bind device memory to a buffer object.
         /// </summary>
-        public unsafe void BindMemory(SharpVk.DeviceMemory memory, DeviceSize memoryOffset)
+        public unsafe void BindMemory(SharpVk.DeviceMemory memory, ulong memoryOffset)
         {
             try
             {

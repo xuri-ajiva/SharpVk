@@ -82,7 +82,7 @@ namespace SharpVk
         /// <summary>
         /// Map a memory object into application address space.
         /// </summary>
-        public unsafe IntPtr Map(DeviceSize offset, DeviceSize size, SharpVk.MemoryMapFlags? flags = default(SharpVk.MemoryMapFlags?))
+        public unsafe IntPtr Map(ulong offset, ulong size, SharpVk.MemoryMapFlags? flags = default(SharpVk.MemoryMapFlags?))
         {
             try
             {
@@ -131,12 +131,12 @@ namespace SharpVk
         /// <summary>
         /// Query the current commitment for a DeviceMemory.
         /// </summary>
-        public unsafe DeviceSize GetCommitment()
+        public unsafe ulong GetCommitment()
         {
             try
             {
-                DeviceSize result = default(DeviceSize);
-                DeviceSize marshalledCommittedMemoryInBytes = default(DeviceSize);
+                ulong result = default(ulong);
+                ulong marshalledCommittedMemoryInBytes = default(ulong);
                 SharpVk.Interop.VkDeviceMemoryGetCommitmentDelegate commandDelegate = commandCache.Cache.vkGetDeviceMemoryCommitment;
                 commandDelegate(this.parent.handle, this.handle, &marshalledCommittedMemoryInBytes);
                 result = marshalledCommittedMemoryInBytes;

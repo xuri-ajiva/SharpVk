@@ -29,5 +29,5 @@ namespace SharpVk.Interop.Amd
     /// <summary>
     /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferWriteBufferMarkerDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.PipelineStageFlags pipelineStage, SharpVk.Interop.Buffer destinationBuffer, DeviceSize destinationOffset, uint marker);
+    public unsafe delegate void VkCommandBufferWriteBufferMarkerDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.PipelineStageFlags pipelineStage, SharpVk.Interop.Buffer destinationBuffer, ulong destinationOffset, uint marker);
 }

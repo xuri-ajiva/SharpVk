@@ -84,7 +84,7 @@ namespace SharpVk
         /// relative to the base offset as bound to the buffer (see
         /// flink:vkBindBufferMemory).
         /// </summary>
-        public DeviceSize Offset
+        public ulong Offset
         {
             get;
             set;
@@ -95,7 +95,7 @@ namespace SharpVk
         /// or Constants.WholeSize to use the range from offset to the end of
         /// the buffer.
         /// </summary>
-        public DeviceSize Size
+        public ulong Size
         {
             get;
             set;

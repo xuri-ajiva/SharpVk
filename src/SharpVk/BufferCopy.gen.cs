@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public BufferCopy(DeviceSize sourceOffset, DeviceSize destinationOffset, DeviceSize size)
+        public BufferCopy(ulong sourceOffset, ulong destinationOffset, ulong size)
         {
             this.SourceOffset = sourceOffset;
             this.DestinationOffset = destinationOffset;
@@ -46,17 +46,17 @@ namespace SharpVk
         /// <summary>
         /// The starting offset in bytes from the start of source buffer.
         /// </summary>
-        public DeviceSize SourceOffset; 
+        public ulong SourceOffset; 
         
         /// <summary>
         /// The starting offset in bytes from the start of the destination
         /// buffer.
         /// </summary>
-        public DeviceSize DestinationOffset; 
+        public ulong DestinationOffset; 
         
         /// <summary>
         /// The number of bytes to copy.
         /// </summary>
-        public DeviceSize Size; 
+        public ulong Size; 
     }
 }

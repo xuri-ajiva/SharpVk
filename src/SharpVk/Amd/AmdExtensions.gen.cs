@@ -108,5 +108,10 @@ namespace SharpVk.Amd
         /// 
         /// </summary>
         public const string MemoryOverallocationBehavior = "VK_AMD_memory_overallocation_behavior"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string DisplayNativeHdr = "VK_AMD_display_native_hdr"; 
     }
 }

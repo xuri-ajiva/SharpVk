@@ -327,26 +327,28 @@ namespace SharpVk.Generator.Generation
             {
                 if (lastParamReturns && parameterIndex == command.Params.Count() - 2 && isEnumeratePattern)
                 {
+                    string marshalledName = GetMarshalledName(paramName);
+
                     newMethod.MemberActions.Add(new DeclarationAction
                     {
                         MemberType = paramType.Name,
-                        MemberName = paramName
+                        MemberName = marshalledName
                     });
 
-                    marshalledValues.Add(AddressOf(Variable(paramName)));
+                    marshalledValues.Add(AddressOf(Variable(marshalledName)));
 
                     var patternInfo = new MemberPatternInfo();
 
                     this.memberPatternRules.ApplyFirst(command.Params, command.Params.Last(), new MemberPatternContext(command.Verb, true, isBatchSingleMethod, lastParamReturns, command.ExtensionNamespace, getHandle, command.VkName), patternInfo);
 
-                    string marshalledName = GetMarshalledName(patternInfo.Interop.Name);
+                    string marshalledTargetName = GetMarshalledName(patternInfo.Interop.Name);
 
                     marshalMidActions.Add(new AssignAction
                     {
                         Type = AssignActionType.Alloc,
                         MemberType = patternInfo.InteropFullType.TrimEnd('*'),
-                        TargetExpression = Variable(marshalledName),
-                        LengthExpression = Cast("uint", Variable(paramName))
+                        TargetExpression = Variable(marshalledTargetName),
+                        LengthExpression = Cast("uint", Variable(marshalledName))
                     });
                 }
                 else if (lastParamReturns && parameterIndex == command.Params.Count() - 1)
@@ -443,13 +445,8 @@ namespace SharpVk.Generator.Generation
 
                     if (patternInfo.MarshalTo.Any())
                     {
-                        string marshalledName = patternInfo.Interop.Name;
-
-                        if (patternInfo.Public.Any())
-                        {
-                            marshalledName = GetMarshalledName(patternInfo.Interop.Name);
-                        }
-
+                        string marshalledName = GetMarshalledName(patternInfo.Interop.Name);
+                            
                         var newMarshalToActions = patternInfo.MarshalTo.Select(action => action(targetName => Variable(marshalledName), getValue));
 
                         var lastParam = command.Params.Last();

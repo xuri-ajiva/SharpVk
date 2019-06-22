@@ -102,6 +102,11 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        public const string ShaderSmBuiltins = "VK_NV_shader_sm_builtins"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public const string ShadingRateImage = "VK_NV_shading_rate_image"; 
         
         /// <summary>
@@ -148,5 +153,20 @@ namespace SharpVk.NVidia
         /// 
         /// </summary>
         public const string DeviceDiagnosticCheckpoints = "VK_NV_device_diagnostic_checkpoints"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string DedicatedAllocationImageAliasing = "VK_NV_dedicated_allocation_image_aliasing"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string CooperativeMatrix = "VK_NV_cooperative_matrix"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string CoverageReductionMode = "VK_NV_coverage_reduction_mode"; 
     }
 }

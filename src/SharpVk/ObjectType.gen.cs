@@ -208,5 +208,10 @@ namespace SharpVk
         /// 
         /// </summary>
         AccelerationStructure = 1000165000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PerformanceConfiguration = 1000210000, 
     }
 }

@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public ImageFormatProperties(SharpVk.Extent3D maxExtent, uint maxMipLevels, uint maxArrayLayers, SharpVk.SampleCountFlags sampleCounts, DeviceSize maxResourceSize)
+        public ImageFormatProperties(SharpVk.Extent3D maxExtent, uint maxMipLevels, uint maxArrayLayers, SharpVk.SampleCountFlags sampleCounts, ulong maxResourceSize)
         {
             this.MaxExtent = maxExtent;
             this.MaxMipLevels = maxMipLevels;
@@ -80,6 +80,6 @@ namespace SharpVk
         /// on total size of a resource, which is advertised by this property.
         /// maxResourceSize must be at least 2^31^.
         /// </summary>
-        public DeviceSize MaxResourceSize; 
+        public ulong MaxResourceSize; 
     }
 }

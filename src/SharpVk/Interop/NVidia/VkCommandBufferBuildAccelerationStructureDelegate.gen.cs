@@ -29,5 +29,5 @@ namespace SharpVk.Interop.NVidia
     /// <summary>
     /// 
     /// </summary>
-    public unsafe delegate void VkCommandBufferBuildAccelerationStructureDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.Interop.NVidia.AccelerationStructureInfo* info, SharpVk.Interop.Buffer instanceData, DeviceSize instanceOffset, Bool32 update, SharpVk.Interop.NVidia.AccelerationStructure destination, SharpVk.Interop.NVidia.AccelerationStructure source, SharpVk.Interop.Buffer scratch, DeviceSize scratchOffset);
+    public unsafe delegate void VkCommandBufferBuildAccelerationStructureDelegate(SharpVk.Interop.CommandBuffer commandBuffer, SharpVk.Interop.NVidia.AccelerationStructureInfo* info, SharpVk.Interop.Buffer instanceData, ulong instanceOffset, Bool32 update, SharpVk.Interop.NVidia.AccelerationStructure destination, SharpVk.Interop.NVidia.AccelerationStructure source, SharpVk.Interop.Buffer scratch, ulong scratchOffset);
 }

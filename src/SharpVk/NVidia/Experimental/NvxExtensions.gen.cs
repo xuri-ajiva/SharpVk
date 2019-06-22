@@ -32,6 +32,11 @@ namespace SharpVk.NVidia.Experimental
         /// <summary>
         /// 
         /// </summary>
+        public const string ImageViewHandle = "VK_NVX_image_view_handle"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public const string DeviceGeneratedCommands = "VK_NVX_device_generated_commands"; 
         
         /// <summary>

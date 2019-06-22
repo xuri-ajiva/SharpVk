@@ -34,12 +34,12 @@ namespace SharpVk.Interop.NVidia
     public unsafe partial struct GeometryTriangles
     {
         /// <summary>
-        /// 
+        /// The type of this structure.
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// Null or an extension-specific structure.
         /// </summary>
         public void* Next; 
         
@@ -51,7 +51,7 @@ namespace SharpVk.Interop.NVidia
         /// <summary>
         /// 
         /// </summary>
-        public DeviceSize VertexOffset; 
+        public ulong VertexOffset; 
         
         /// <summary>
         /// 
@@ -61,7 +61,7 @@ namespace SharpVk.Interop.NVidia
         /// <summary>
         /// 
         /// </summary>
-        public DeviceSize VertexStride; 
+        public ulong VertexStride; 
         
         /// <summary>
         /// 
@@ -76,7 +76,7 @@ namespace SharpVk.Interop.NVidia
         /// <summary>
         /// 
         /// </summary>
-        public DeviceSize IndexOffset; 
+        public ulong IndexOffset; 
         
         /// <summary>
         /// 
@@ -96,6 +96,6 @@ namespace SharpVk.Interop.NVidia
         /// <summary>
         /// 
         /// </summary>
-        public DeviceSize TransformOffset; 
+        public ulong TransformOffset; 
     }
 }

@@ -193,7 +193,7 @@ namespace SharpVk.NVidia
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
         /// </param>
-        public static unsafe void BuildAccelerationStructure(this SharpVk.CommandBuffer extendedHandle, SharpVk.NVidia.AccelerationStructureInfo info, SharpVk.Buffer instanceData, DeviceSize instanceOffset, bool update, SharpVk.NVidia.AccelerationStructure destination, SharpVk.NVidia.AccelerationStructure source, SharpVk.Buffer scratch, DeviceSize scratchOffset)
+        public static unsafe void BuildAccelerationStructure(this SharpVk.CommandBuffer extendedHandle, SharpVk.NVidia.AccelerationStructureInfo info, SharpVk.Buffer instanceData, ulong instanceOffset, bool update, SharpVk.NVidia.AccelerationStructure destination, SharpVk.NVidia.AccelerationStructure source, SharpVk.Buffer scratch, ulong scratchOffset)
         {
             try
             {
@@ -238,7 +238,7 @@ namespace SharpVk.NVidia
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
         /// </param>
-        public static unsafe void TraceRays(this SharpVk.CommandBuffer extendedHandle, SharpVk.Buffer raygenShaderBindingTableBuffer, DeviceSize raygenShaderBindingOffset, SharpVk.Buffer missShaderBindingTableBuffer, DeviceSize missShaderBindingOffset, DeviceSize missShaderBindingStride, SharpVk.Buffer hitShaderBindingTableBuffer, DeviceSize hitShaderBindingOffset, DeviceSize hitShaderBindingStride, SharpVk.Buffer callableShaderBindingTableBuffer, DeviceSize callableShaderBindingOffset, DeviceSize callableShaderBindingStride, uint width, uint height, uint depth)
+        public static unsafe void TraceRays(this SharpVk.CommandBuffer extendedHandle, SharpVk.Buffer raygenShaderBindingTableBuffer, ulong raygenShaderBindingOffset, SharpVk.Buffer missShaderBindingTableBuffer, ulong missShaderBindingOffset, ulong missShaderBindingStride, SharpVk.Buffer hitShaderBindingTableBuffer, ulong hitShaderBindingOffset, ulong hitShaderBindingStride, SharpVk.Buffer callableShaderBindingTableBuffer, ulong callableShaderBindingOffset, ulong callableShaderBindingStride, uint width, uint height, uint depth)
         {
             try
             {
@@ -325,7 +325,7 @@ namespace SharpVk.NVidia
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
         /// </param>
-        public static unsafe void DrawMeshTasksIndirect(this SharpVk.CommandBuffer extendedHandle, SharpVk.Buffer buffer, DeviceSize offset, uint drawCount, uint stride)
+        public static unsafe void DrawMeshTasksIndirect(this SharpVk.CommandBuffer extendedHandle, SharpVk.Buffer buffer, ulong offset, uint drawCount, uint stride)
         {
             try
             {
@@ -346,7 +346,7 @@ namespace SharpVk.NVidia
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
         /// </param>
-        public static unsafe void DrawMeshTasksIndirectCount(this SharpVk.CommandBuffer extendedHandle, SharpVk.Buffer buffer, DeviceSize offset, SharpVk.Buffer countBuffer, DeviceSize countBufferOffset, uint maxDrawCount, uint stride)
+        public static unsafe void DrawMeshTasksIndirectCount(this SharpVk.CommandBuffer extendedHandle, SharpVk.Buffer buffer, ulong offset, SharpVk.Buffer countBuffer, ulong countBufferOffset, uint maxDrawCount, uint stride)
         {
             try
             {

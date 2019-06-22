@@ -45,7 +45,7 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
-        public DeviceSize VertexOffset
+        public ulong VertexOffset
         {
             get;
             set;
@@ -63,7 +63,7 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
-        public DeviceSize VertexStride
+        public ulong VertexStride
         {
             get;
             set;
@@ -90,7 +90,7 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
-        public DeviceSize IndexOffset
+        public ulong IndexOffset
         {
             get;
             set;
@@ -126,7 +126,7 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
-        public DeviceSize TransformOffset
+        public ulong TransformOffset
         {
             get;
             set;

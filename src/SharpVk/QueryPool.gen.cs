@@ -85,7 +85,7 @@ namespace SharpVk
         /// </summary>
         /// <param name="data">
         /// </param>
-        public unsafe Result GetResults(uint firstQuery, uint queryCount, ArrayProxy<byte>? data, DeviceSize stride, SharpVk.QueryResultFlags? flags = default(SharpVk.QueryResultFlags?))
+        public unsafe Result GetResults(uint firstQuery, uint queryCount, ArrayProxy<byte>? data, ulong stride, SharpVk.QueryResultFlags? flags = default(SharpVk.QueryResultFlags?))
         {
             try
             {
