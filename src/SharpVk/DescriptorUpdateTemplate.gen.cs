@@ -45,7 +45,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// The raw handle for this instance.
         /// </summary>
         public SharpVk.Interop.DescriptorUpdateTemplate RawHandle => this.handle;
     }

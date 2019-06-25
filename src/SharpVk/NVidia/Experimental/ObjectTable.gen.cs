@@ -46,7 +46,7 @@ namespace SharpVk.NVidia.Experimental
         }
         
         /// <summary>
-        /// 
+        /// The raw handle for this instance.
         /// </summary>
         public SharpVk.Interop.NVidia.Experimental.ObjectTable RawHandle => this.handle;
         
@@ -224,7 +224,8 @@ namespace SharpVk.NVidia.Experimental
         }
         
         /// <summary>
-        /// 
+        /// Destroys the handles and releases any unmanaged resources
+        /// associated with it.
         /// </summary>
         public void Dispose()
         {

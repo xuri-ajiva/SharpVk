@@ -83,5 +83,10 @@ namespace SharpVk.Khronos
         /// 
         /// </summary>
         GgpProprietary = 11, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        BroadcomProprietary = 12, 
     }
 }

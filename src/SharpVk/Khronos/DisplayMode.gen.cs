@@ -45,7 +45,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// The raw handle for this instance.
         /// </summary>
         public SharpVk.Interop.Khronos.DisplayMode RawHandle => this.handle;
         

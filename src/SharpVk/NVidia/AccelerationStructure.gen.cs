@@ -46,7 +46,7 @@ namespace SharpVk.NVidia
         }
         
         /// <summary>
-        /// 
+        /// The raw handle for this instance.
         /// </summary>
         public SharpVk.Interop.NVidia.AccelerationStructure RawHandle => this.handle;
         
@@ -116,7 +116,8 @@ namespace SharpVk.NVidia
         }
         
         /// <summary>
-        /// 
+        /// Destroys the handles and releases any unmanaged resources
+        /// associated with it.
         /// </summary>
         public void Dispose()
         {

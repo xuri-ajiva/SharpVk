@@ -46,7 +46,7 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// The raw handle for this instance.
         /// </summary>
         public SharpVk.Interop.Khronos.Surface RawHandle => this.handle;
         
@@ -81,7 +81,8 @@ namespace SharpVk.Khronos
         }
         
         /// <summary>
-        /// 
+        /// Destroys the handles and releases any unmanaged resources
+        /// associated with it.
         /// </summary>
         public void Dispose()
         {

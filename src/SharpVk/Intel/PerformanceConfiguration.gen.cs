@@ -45,7 +45,7 @@ namespace SharpVk.Intel
         }
         
         /// <summary>
-        /// 
+        /// The raw handle for this instance.
         /// </summary>
         public SharpVk.Interop.Intel.PerformanceConfiguration RawHandle => this.handle;
         

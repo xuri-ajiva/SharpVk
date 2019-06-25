@@ -47,7 +47,7 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// The raw handle for this instance.
         /// </summary>
         public SharpVk.Interop.Device RawHandle => this.handle;
         
@@ -3355,7 +3355,8 @@ namespace SharpVk
         }
         
         /// <summary>
-        /// 
+        /// Destroys the handles and releases any unmanaged resources
+        /// associated with it.
         /// </summary>
         public void Dispose()
         {

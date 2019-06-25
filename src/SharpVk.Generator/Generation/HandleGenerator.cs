@@ -79,6 +79,7 @@ namespace SharpVk.Generator.Generation
                     {
                         IsPublic = true,
                         Name = "Dispose",
+                        Comment=new List<string> { "Destroys the handles and releases any unmanaged resources associated with it." },
                         ParamActions = new List<ParamActionDefinition>(),
                         MemberActions = new List<MethodAction>()
                         {

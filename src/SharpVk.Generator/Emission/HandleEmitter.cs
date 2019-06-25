@@ -147,7 +147,7 @@ namespace SharpVk.Generator.Emission
                                 parameters.EmitParam(interopTypeName, "handle");
                             }, Internal);
 
-                            typeBuilder.EmitProperty(interopTypeName, "RawHandle", Member(This, "handle"), Public);
+                            typeBuilder.EmitProperty(interopTypeName, "RawHandle", Member(This, "handle"), Public, summary: new[] { "The raw handle for this instance." });
 
                             foreach (var command in handle.Commands)
                             {
