@@ -25,27 +25,27 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace SharpVk.Interop.Intel
+namespace SharpVk.Interop.Khronos
 {
     /// <summary>
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceShaderIntegerFunctions2
+    public unsafe partial struct PhysicalDeviceImagelessFramebufferFeatures
     {
         /// <summary>
-        /// The type of this structure.
+        /// 
         /// </summary>
         public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// Null or an extension-specific structure.
+        /// 
         /// </summary>
         public void* Next; 
         
         /// <summary>
         /// 
         /// </summary>
-        public Bool32 ShaderIntegerFunctions2; 
+        public Bool32 ImagelessFramebuffer; 
     }
 }

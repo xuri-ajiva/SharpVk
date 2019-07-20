@@ -2587,11 +2587,14 @@ namespace SharpVk
         /// maximum bit index set in the view mask in the subpasses in which it
         /// is used.
         /// </param>
+        /// <param name="framebufferAttachmentsCreateInfoKhr">
+        /// Extension struct
+        /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
         /// </param>
-        public unsafe SharpVk.Framebuffer CreateFramebuffer(SharpVk.RenderPass renderPass, ArrayProxy<SharpVk.ImageView>? attachments, uint width, uint height, uint layers, SharpVk.FramebufferCreateFlags? flags = default(SharpVk.FramebufferCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public unsafe SharpVk.Framebuffer CreateFramebuffer(SharpVk.RenderPass renderPass, ArrayProxy<SharpVk.ImageView>? attachments, uint width, uint height, uint layers, SharpVk.FramebufferCreateFlags? flags = default(SharpVk.FramebufferCreateFlags?), SharpVk.Khronos.FramebufferAttachmentsCreateInfo? framebufferAttachmentsCreateInfoKhr = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
@@ -2600,6 +2603,14 @@ namespace SharpVk
                 void* nextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Framebuffer marshalledFramebuffer = default(SharpVk.Interop.Framebuffer);
+                if (framebufferAttachmentsCreateInfoKhr != null)
+                {
+                    SharpVk.Interop.Khronos.FramebufferAttachmentsCreateInfo* extensionPointer = default(SharpVk.Interop.Khronos.FramebufferAttachmentsCreateInfo*);
+                    extensionPointer = (SharpVk.Interop.Khronos.FramebufferAttachmentsCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.FramebufferAttachmentsCreateInfo>());
+                    framebufferAttachmentsCreateInfoKhr.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = nextPointer;
+                    nextPointer = extensionPointer;
+                }
                 marshalledCreateInfo = (SharpVk.Interop.FramebufferCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.FramebufferCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.FramebufferCreateInfo;
                 marshalledCreateInfo->Next = nextPointer;

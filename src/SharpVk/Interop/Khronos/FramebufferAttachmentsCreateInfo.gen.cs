@@ -25,56 +25,34 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace SharpVk.Khronos
+namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// Describes features supported by VK_KHR_shader_float16_int8
+    /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceFloat16Int8Features
+    public unsafe partial struct FramebufferAttachmentsCreateInfo
     {
         /// <summary>
-        /// Indicates whether 16-bit floats (halfs) are supported in shader
-        /// code. This also indicates whether shader modules can declare the
-        /// Float16 capability.
+        /// The type of this structure.
         /// </summary>
-        public bool ShaderFloat16
-        {
-            get;
-            set;
-        }
+        public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// Indicates whether 8-bit integers (signed and unsigned) are
-        /// supported in shader code. This also indicates whether shader
-        /// modules can declare the Int8 capability.
+        /// Null or an extension-specific structure.
         /// </summary>
-        public bool ShaderInt8
-        {
-            get;
-            set;
-        }
+        public void* Next; 
         
         /// <summary>
-        /// 
+        /// The number of attachments being described.
         /// </summary>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PhysicalDeviceFloat16Int8Features* pointer)
-        {
-            pointer->SType = StructureType.PhysicalDeviceFloat16Int8Features;
-            pointer->Next = null;
-            pointer->ShaderFloat16 = this.ShaderFloat16;
-            pointer->ShaderInt8 = this.ShaderInt8;
-        }
+        public uint AttachmentImageInfoCount; 
         
         /// <summary>
-        /// 
+        /// An array of FramebufferAttachmentImageInfo instances, each of which
+        /// describes a number of parameters of the corresponding attachment in
+        /// a render pass instance.
         /// </summary>
-        internal static unsafe PhysicalDeviceFloat16Int8Features MarshalFrom(SharpVk.Interop.Khronos.PhysicalDeviceFloat16Int8Features* pointer)
-        {
-            PhysicalDeviceFloat16Int8Features result = default(PhysicalDeviceFloat16Int8Features);
-            result.ShaderFloat16 = pointer->ShaderFloat16;
-            result.ShaderInt8 = pointer->ShaderInt8;
-            return result;
-        }
+        public SharpVk.Interop.Khronos.FramebufferAttachmentImageInfo* AttachmentImageInfos; 
     }
 }

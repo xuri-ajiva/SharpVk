@@ -25,41 +25,30 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace SharpVk.Intel
+namespace SharpVk.Interop.Multivendor
 {
     /// <summary>
     /// 
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceShaderIntegerFunctions2
+    public unsafe partial struct PhysicalDeviceTexelBufferAlignmentFeatures
     {
         /// <summary>
-        /// 
+        /// The type of this structure.
         /// </summary>
-        public bool ShaderIntegerFunctions2
-        {
-            get;
-            set;
-        }
+        public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// Null or an extension-specific structure.
         /// </summary>
-        internal unsafe void MarshalTo(SharpVk.Interop.Intel.PhysicalDeviceShaderIntegerFunctions2* pointer)
-        {
-            pointer->SType = StructureType.PhysicalDeviceShaderIntegerFunctions2Features;
-            pointer->Next = null;
-            pointer->ShaderIntegerFunctions2 = this.ShaderIntegerFunctions2;
-        }
+        public void* Next; 
         
         /// <summary>
-        /// 
+        /// Indicates whether the implementation uses more specific alignment
+        /// requirements advertised in
+        /// PhysicalDeviceTexelBufferAlignmentProperties rather than
+        /// PhysicalDeviceLimits.MinTexelBufferOffsetAlignment.
         /// </summary>
-        internal static unsafe PhysicalDeviceShaderIntegerFunctions2 MarshalFrom(SharpVk.Interop.Intel.PhysicalDeviceShaderIntegerFunctions2* pointer)
-        {
-            PhysicalDeviceShaderIntegerFunctions2 result = default(PhysicalDeviceShaderIntegerFunctions2);
-            result.ShaderIntegerFunctions2 = pointer->ShaderIntegerFunctions2;
-            return result;
-        }
+        public Bool32 TexelBufferAlignment; 
     }
 }

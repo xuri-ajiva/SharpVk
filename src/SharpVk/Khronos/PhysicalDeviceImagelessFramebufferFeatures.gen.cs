@@ -22,24 +22,44 @@
 
 // This file was automatically generated and should not be edited directly.
 
-namespace SharpVk
+using System;
+using System.Runtime.InteropServices;
+
+namespace SharpVk.Khronos
 {
     /// <summary>
-    /// Bitmask specifying framebuffer properties
+    /// 
     /// </summary>
-    [System.Flags]
-    public enum FramebufferCreateFlags
+    [StructLayout(LayoutKind.Sequential)]
+    public partial struct PhysicalDeviceImagelessFramebufferFeatures
     {
         /// <summary>
-        /// Specifies that image views are not specified, and only attachment
-        /// compatibility information will be provided via an instance of
-        /// FramebufferAttachmentImageInfo.
+        /// 
         /// </summary>
-        None = 0, 
+        public bool ImagelessFramebuffer
+        {
+            get;
+            set;
+        }
         
         /// <summary>
         /// 
         /// </summary>
-        Imageless = 1 << 0, 
+        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PhysicalDeviceImagelessFramebufferFeatures* pointer)
+        {
+            pointer->SType = StructureType.PhysicalDeviceImagelessFramebufferFeatures;
+            pointer->Next = null;
+            pointer->ImagelessFramebuffer = this.ImagelessFramebuffer;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        internal static unsafe PhysicalDeviceImagelessFramebufferFeatures MarshalFrom(SharpVk.Interop.Khronos.PhysicalDeviceImagelessFramebufferFeatures* pointer)
+        {
+            PhysicalDeviceImagelessFramebufferFeatures result = default(PhysicalDeviceImagelessFramebufferFeatures);
+            result.ImagelessFramebuffer = pointer->ImagelessFramebuffer;
+            return result;
+        }
     }
 }

@@ -122,6 +122,11 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
+        public const string ImagelessFramebuffer = "VK_KHR_imageless_framebuffer"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public const string CreateRenderpass2 = "VK_KHR_create_renderpass2"; 
         
         /// <summary>

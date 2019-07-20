@@ -22,24 +22,36 @@
 
 // This file was automatically generated and should not be edited directly.
 
-namespace SharpVk
+using System;
+using System.Runtime.InteropServices;
+
+namespace SharpVk.Interop.Khronos
 {
     /// <summary>
-    /// Bitmask specifying framebuffer properties
+    /// 
     /// </summary>
-    [System.Flags]
-    public enum FramebufferCreateFlags
+    [StructLayout(LayoutKind.Sequential)]
+    public unsafe partial struct RenderPassAttachmentBeginInfo
     {
         /// <summary>
-        /// Specifies that image views are not specified, and only attachment
-        /// compatibility information will be provided via an instance of
-        /// FramebufferAttachmentImageInfo.
+        /// The type of this structure.
         /// </summary>
-        None = 0, 
+        public SharpVk.StructureType SType; 
         
         /// <summary>
-        /// 
+        /// Null or an extension-specific structure.
         /// </summary>
-        Imageless = 1 << 0, 
+        public void* Next; 
+        
+        /// <summary>
+        /// The number of attachments.
+        /// </summary>
+        public uint AttachmentCount; 
+        
+        /// <summary>
+        /// An array of ImageView handles, each of which will be used as the
+        /// corresponding attachment in the render pass instance.
+        /// </summary>
+        public SharpVk.Interop.ImageView* Attachments; 
     }
 }

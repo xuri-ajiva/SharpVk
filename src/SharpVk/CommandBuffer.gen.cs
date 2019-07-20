@@ -1451,7 +1451,10 @@ namespace SharpVk
         /// <param name="renderPassSampleLocationsBeginInfoExt">
         /// Extension struct
         /// </param>
-        public unsafe void BeginRenderPass(SharpVk.RenderPass renderPass, SharpVk.Framebuffer framebuffer, SharpVk.Rect2D renderArea, ArrayProxy<SharpVk.ClearValue>? clearValues, SharpVk.SubpassContents contents, SharpVk.DeviceGroupRenderPassBeginInfo? deviceGroupRenderPassBeginInfo = null, SharpVk.Multivendor.RenderPassSampleLocationsBeginInfo? renderPassSampleLocationsBeginInfoExt = null)
+        /// <param name="renderPassAttachmentBeginInfoKhr">
+        /// Extension struct
+        /// </param>
+        public unsafe void BeginRenderPass(SharpVk.RenderPass renderPass, SharpVk.Framebuffer framebuffer, SharpVk.Rect2D renderArea, ArrayProxy<SharpVk.ClearValue>? clearValues, SharpVk.SubpassContents contents, SharpVk.DeviceGroupRenderPassBeginInfo? deviceGroupRenderPassBeginInfo = null, SharpVk.Multivendor.RenderPassSampleLocationsBeginInfo? renderPassSampleLocationsBeginInfoExt = null, SharpVk.Khronos.RenderPassAttachmentBeginInfo? renderPassAttachmentBeginInfoKhr = null)
         {
             try
             {
@@ -1470,6 +1473,14 @@ namespace SharpVk
                     SharpVk.Interop.Multivendor.RenderPassSampleLocationsBeginInfo* extensionPointer = default(SharpVk.Interop.Multivendor.RenderPassSampleLocationsBeginInfo*);
                     extensionPointer = (SharpVk.Interop.Multivendor.RenderPassSampleLocationsBeginInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.RenderPassSampleLocationsBeginInfo>());
                     renderPassSampleLocationsBeginInfoExt.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = nextPointer;
+                    nextPointer = extensionPointer;
+                }
+                if (renderPassAttachmentBeginInfoKhr != null)
+                {
+                    SharpVk.Interop.Khronos.RenderPassAttachmentBeginInfo* extensionPointer = default(SharpVk.Interop.Khronos.RenderPassAttachmentBeginInfo*);
+                    extensionPointer = (SharpVk.Interop.Khronos.RenderPassAttachmentBeginInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.RenderPassAttachmentBeginInfo>());
+                    renderPassAttachmentBeginInfoKhr.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = nextPointer;
                     nextPointer = extensionPointer;
                 }

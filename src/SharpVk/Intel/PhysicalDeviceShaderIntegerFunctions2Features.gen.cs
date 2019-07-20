@@ -22,24 +22,44 @@
 
 // This file was automatically generated and should not be edited directly.
 
-namespace SharpVk
+using System;
+using System.Runtime.InteropServices;
+
+namespace SharpVk.Intel
 {
     /// <summary>
-    /// Bitmask specifying framebuffer properties
+    /// 
     /// </summary>
-    [System.Flags]
-    public enum FramebufferCreateFlags
+    [StructLayout(LayoutKind.Sequential)]
+    public partial struct PhysicalDeviceShaderIntegerFunctions2Features
     {
         /// <summary>
-        /// Specifies that image views are not specified, and only attachment
-        /// compatibility information will be provided via an instance of
-        /// FramebufferAttachmentImageInfo.
+        /// 
         /// </summary>
-        None = 0, 
+        public bool ShaderIntegerFunctions2
+        {
+            get;
+            set;
+        }
         
         /// <summary>
         /// 
         /// </summary>
-        Imageless = 1 << 0, 
+        internal unsafe void MarshalTo(SharpVk.Interop.Intel.PhysicalDeviceShaderIntegerFunctions2Features* pointer)
+        {
+            pointer->SType = StructureType.PhysicalDeviceShaderIntegerFunctions2Features;
+            pointer->Next = null;
+            pointer->ShaderIntegerFunctions2 = this.ShaderIntegerFunctions2;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        internal static unsafe PhysicalDeviceShaderIntegerFunctions2Features MarshalFrom(SharpVk.Interop.Intel.PhysicalDeviceShaderIntegerFunctions2Features* pointer)
+        {
+            PhysicalDeviceShaderIntegerFunctions2Features result = default(PhysicalDeviceShaderIntegerFunctions2Features);
+            result.ShaderIntegerFunctions2 = pointer->ShaderIntegerFunctions2;
+            return result;
+        }
     }
 }

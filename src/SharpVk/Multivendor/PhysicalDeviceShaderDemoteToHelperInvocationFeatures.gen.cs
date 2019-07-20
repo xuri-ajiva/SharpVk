@@ -25,36 +25,43 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace SharpVk.Interop.Khronos
+namespace SharpVk.Multivendor
 {
     /// <summary>
-    /// 
+    /// Structure describing the shader demote to helper invocations features
+    /// that can be supported by an implementation.
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
-    public unsafe partial struct PhysicalDeviceFloat16Int8Features
+    public partial struct PhysicalDeviceShaderDemoteToHelperInvocationFeatures
     {
         /// <summary>
-        /// The type of this structure.
+        /// Sndicates whether the implementation supports the SPIR-V
+        /// DemoteToHelperInvocationEXT capability.
         /// </summary>
-        public SharpVk.StructureType SType; 
+        public bool ShaderDemoteToHelperInvocation
+        {
+            get;
+            set;
+        }
         
         /// <summary>
-        /// Null or a pointer to an extension-specific structure.
+        /// 
         /// </summary>
-        public void* Next; 
+        internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceShaderDemoteToHelperInvocationFeatures* pointer)
+        {
+            pointer->SType = StructureType.PhysicalDeviceShaderDemoteToHelperInvocationFeatures;
+            pointer->Next = null;
+            pointer->ShaderDemoteToHelperInvocation = this.ShaderDemoteToHelperInvocation;
+        }
         
         /// <summary>
-        /// Indicates whether 16-bit floats (halfs) are supported in shader
-        /// code. This also indicates whether shader modules can declare the
-        /// Float16 capability.
+        /// 
         /// </summary>
-        public Bool32 ShaderFloat16; 
-        
-        /// <summary>
-        /// Indicates whether 8-bit integers (signed and unsigned) are
-        /// supported in shader code. This also indicates whether shader
-        /// modules can declare the Int8 capability.
-        /// </summary>
-        public Bool32 ShaderInt8; 
+        internal static unsafe PhysicalDeviceShaderDemoteToHelperInvocationFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceShaderDemoteToHelperInvocationFeatures* pointer)
+        {
+            PhysicalDeviceShaderDemoteToHelperInvocationFeatures result = default(PhysicalDeviceShaderDemoteToHelperInvocationFeatures);
+            result.ShaderDemoteToHelperInvocation = pointer->ShaderDemoteToHelperInvocation;
+            return result;
+        }
     }
 }

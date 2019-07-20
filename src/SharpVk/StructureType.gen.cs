@@ -572,7 +572,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        PhysicalDeviceFloat16Int8Features = 1000082000, 
+        PhysicalDeviceShaderFloat16Int8Features = 1000082000, 
         
         /// <summary>
         /// 
@@ -688,6 +688,26 @@ namespace SharpVk
         /// 
         /// </summary>
         HdrMetadata = 1000105000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceImagelessFramebufferFeatures = 1000108000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        FramebufferAttachmentsCreateInfo = 1000108001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        FramebufferAttachmentImageInfo = 1000108002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        RenderPassAttachmentBeginInfo = 1000108003, 
         
         /// <summary>
         /// 
@@ -1453,5 +1473,20 @@ namespace SharpVk
         /// 
         /// </summary>
         PhysicalDeviceHostQueryResetFeatures = 1000261000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceShaderDemoteToHelperInvocationFeatures = 1000276000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceTexelBufferAlignmentFeatures = 1000281000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceTexelBufferAlignmentProperties = 1000281001, 
     }
 }

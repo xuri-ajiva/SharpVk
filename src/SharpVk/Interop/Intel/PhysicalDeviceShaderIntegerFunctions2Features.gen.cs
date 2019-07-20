@@ -22,24 +22,30 @@
 
 // This file was automatically generated and should not be edited directly.
 
-namespace SharpVk
+using System;
+using System.Runtime.InteropServices;
+
+namespace SharpVk.Interop.Intel
 {
     /// <summary>
-    /// Bitmask specifying framebuffer properties
+    /// 
     /// </summary>
-    [System.Flags]
-    public enum FramebufferCreateFlags
+    [StructLayout(LayoutKind.Sequential)]
+    public unsafe partial struct PhysicalDeviceShaderIntegerFunctions2Features
     {
         /// <summary>
-        /// Specifies that image views are not specified, and only attachment
-        /// compatibility information will be provided via an instance of
-        /// FramebufferAttachmentImageInfo.
+        /// The type of this structure.
         /// </summary>
-        None = 0, 
+        public SharpVk.StructureType SType; 
+        
+        /// <summary>
+        /// Null or an extension-specific structure.
+        /// </summary>
+        public void* Next; 
         
         /// <summary>
         /// 
         /// </summary>
-        Imageless = 1 << 0, 
+        public Bool32 ShaderIntegerFunctions2; 
     }
 }

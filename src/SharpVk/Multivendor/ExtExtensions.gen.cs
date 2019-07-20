@@ -278,5 +278,15 @@ namespace SharpVk.Multivendor
         /// 
         /// </summary>
         public const string HostQueryReset = "VK_EXT_host_query_reset"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string ShaderDemoteToHelperInvocation = "VK_EXT_shader_demote_to_helper_invocation"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string TexelBufferAlignment = "VK_EXT_texel_buffer_alignment"; 
     }
 }
