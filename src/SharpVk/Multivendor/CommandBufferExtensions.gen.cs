@@ -528,5 +528,26 @@ namespace SharpVk.Multivendor
                 Interop.HeapUtil.FreeAll();
             }
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The CommandBuffer handle to extend.
+        /// </param>
+        public static unsafe void SetLineStipple(this SharpVk.CommandBuffer extendedHandle, uint lineStippleFactor, ushort lineStipplePattern)
+        {
+            try
+            {
+                CommandCache commandCache = default(CommandCache);
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Multivendor.VkCommandBufferSetLineStippleDelegate commandDelegate = commandCache.Cache.vkCmdSetLineStippleEXT;
+                commandDelegate(extendedHandle.handle, lineStippleFactor, lineStipplePattern);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
     }
 }

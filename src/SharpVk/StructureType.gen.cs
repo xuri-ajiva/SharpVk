@@ -362,6 +362,16 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        SwapchainImageCreateInfo = 1000010001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDevicePresentationProperties = 1000010002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         DebugReportCallbackCreateInfo = 1000011000, 
         
         /// <summary>
@@ -468,6 +478,11 @@ namespace SharpVk
         /// 
         /// </summary>
         ViSurfaceCreateInfo = 1000062000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceTextureCompressionAstcHdrFeatures = 1000066000, 
         
         /// <summary>
         /// 
@@ -1142,6 +1157,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        PhysicalDeviceShaderSubgroupExtendedTypesFeatures = 1000175000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         PhysicalDevice8bitStorageFeatures = 1000177000, 
         
         /// <summary>
@@ -1163,6 +1183,11 @@ namespace SharpVk
         /// 
         /// </summary>
         PhysicalDeviceShaderAtomicInt64Features = 1000180000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PipelineCompilerControlCreateInfo = 1000183000, 
         
         /// <summary>
         /// 
@@ -1357,6 +1382,31 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        PhysicalDeviceSubgroupSizeControlProperties = 1000225000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PipelineShaderStageRequiredSubgroupSizeCreateInfo = 1000225001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceSubgroupSizeControlFeatures = 1000225002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceShaderCoreProperties2 = 1000227000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceCoherentMemoryFeatures = 1000229000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         PhysicalDeviceMemoryBudgetProperties = 1000237000, 
         
         /// <summary>
@@ -1472,7 +1522,57 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        PhysicalDeviceLineRasterizationFeatures = 1000259000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PipelineRasterizationLineStateCreateInfo = 1000259001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceLineRasterizationProperties = 1000259002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         PhysicalDeviceHostQueryResetFeatures = 1000261000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceIndexTypeUint8Features = 1000265000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDevicePipelineExecutablePropertiesFeatures = 1000269000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PipelineInfo = 1000269001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PipelineExecutableProperties = 1000269002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PipelineExecutableInfo = 1000269003, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PipelineExecutableStatistic = 1000269004, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PipelineExecutableInternalRepresentation = 1000269005, 
         
         /// <summary>
         /// 

@@ -52,6 +52,6 @@ namespace SharpVk.Interop
         /// <summary>
         /// pData contains the actual constant values to specialize with.
         /// </summary>
-        public void* Data; 
+        public byte* Data; 
     }
 }

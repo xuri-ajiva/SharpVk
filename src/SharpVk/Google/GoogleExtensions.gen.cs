@@ -43,5 +43,10 @@ namespace SharpVk.Google
         /// 
         /// </summary>
         public const string DecorateString = "VK_GOOGLE_decorate_string"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string UserType = "VK_GOOGLE_user_type"; 
     }
 }

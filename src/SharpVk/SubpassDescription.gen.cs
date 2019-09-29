@@ -176,5 +176,76 @@ namespace SharpVk
                 pointer->PreserveAttachments = null;
             }
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        internal static unsafe SubpassDescription MarshalFrom(SharpVk.Interop.SubpassDescription* pointer)
+        {
+            SubpassDescription result = default(SubpassDescription);
+            result.Flags = pointer->Flags;
+            result.PipelineBindPoint = pointer->PipelineBindPoint;
+            if (pointer->InputAttachments != null)
+            {
+                var fieldPointer = new SharpVk.AttachmentReference[(uint)(pointer->InputAttachmentCount)];
+                for(int index = 0; index < (uint)(pointer->InputAttachmentCount); index++)
+                {
+                    fieldPointer[index] = pointer->InputAttachments[index];
+                }
+                result.InputAttachments = fieldPointer;
+            }
+            else
+            {
+                result.InputAttachments = null;
+            }
+            if (pointer->ColorAttachments != null)
+            {
+                var fieldPointer = new SharpVk.AttachmentReference[(uint)(pointer->ColorAttachmentCount)];
+                for(int index = 0; index < (uint)(pointer->ColorAttachmentCount); index++)
+                {
+                    fieldPointer[index] = pointer->ColorAttachments[index];
+                }
+                result.ColorAttachments = fieldPointer;
+            }
+            else
+            {
+                result.ColorAttachments = null;
+            }
+            if (pointer->ResolveAttachments != null)
+            {
+                var fieldPointer = new SharpVk.AttachmentReference[(uint)(pointer->ColorAttachmentCount)];
+                for(int index = 0; index < (uint)(pointer->ColorAttachmentCount); index++)
+                {
+                    fieldPointer[index] = pointer->ResolveAttachments[index];
+                }
+                result.ResolveAttachments = fieldPointer;
+            }
+            else
+            {
+                result.ResolveAttachments = null;
+            }
+            if (pointer->DepthStencilAttachment != null)
+            {
+                result.DepthStencilAttachment = *pointer->DepthStencilAttachment;
+            }
+            else
+            {
+                result.DepthStencilAttachment = null;
+            }
+            if (pointer->PreserveAttachments != null)
+            {
+                var fieldPointer = new uint[(uint)(pointer->PreserveAttachmentCount)];
+                for(int index = 0; index < (uint)(pointer->PreserveAttachmentCount); index++)
+                {
+                    fieldPointer[index] = pointer->PreserveAttachments[index];
+                }
+                result.PreserveAttachments = fieldPointer;
+            }
+            else
+            {
+                result.PreserveAttachments = null;
+            }
+            return result;
+        }
     }
 }

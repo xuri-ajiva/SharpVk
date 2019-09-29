@@ -34,5 +34,10 @@ namespace SharpVk
         /// 
         /// </summary>
         None = 0, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Reserved0 = 1 << 0, 
     }
 }

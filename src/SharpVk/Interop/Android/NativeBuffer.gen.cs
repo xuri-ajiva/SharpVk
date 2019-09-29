@@ -62,5 +62,10 @@ namespace SharpVk.Interop.Android
         /// 
         /// </summary>
         public int Usage; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.Android.NativeBufferUsage2 Usage2; 
     }
 }

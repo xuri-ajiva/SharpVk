@@ -1679,7 +1679,27 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        public readonly Interop.Multivendor.VkCommandBufferSetLineStippleDelegate vkCmdSetLineStippleEXT; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public readonly Interop.Multivendor.VkQueryPoolResetDelegate vkResetQueryPoolEXT; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.Khronos.VkDeviceGetPipelineExecutablePropertiesDelegate vkGetPipelineExecutablePropertiesKHR; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.Khronos.VkDeviceGetPipelineExecutableStatisticsDelegate vkGetPipelineExecutableStatisticsKHR; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.Khronos.VkDeviceGetPipelineExecutableInternalRepresentationsDelegate vkGetPipelineExecutableInternalRepresentationsKHR; 
         
         /// <summary>
         /// 
@@ -2015,7 +2035,11 @@ namespace SharpVk
             this.vkReleaseFullScreenExclusiveModeEXT = cache.GetCommandDelegate<Interop.Multivendor.VkSwapchainKHRReleaseFullScreenExclusiveModeDelegate>("vkReleaseFullScreenExclusiveModeEXT", "device");
             this.vkGetDeviceGroupSurfacePresentModes2EXT = cache.GetCommandDelegate<Interop.Multivendor.VkDeviceGetGroupSurfacePresentModes2Delegate>("vkGetDeviceGroupSurfacePresentModes2EXT", "device");
             this.vkCreateHeadlessSurfaceEXT = cache.GetCommandDelegate<Interop.Multivendor.VkInstanceCreateHeadlessSurfaceDelegate>("vkCreateHeadlessSurfaceEXT", "instance");
+            this.vkCmdSetLineStippleEXT = cache.GetCommandDelegate<Interop.Multivendor.VkCommandBufferSetLineStippleDelegate>("vkCmdSetLineStippleEXT", "device");
             this.vkResetQueryPoolEXT = cache.GetCommandDelegate<Interop.Multivendor.VkQueryPoolResetDelegate>("vkResetQueryPoolEXT", "device");
+            this.vkGetPipelineExecutablePropertiesKHR = cache.GetCommandDelegate<Interop.Khronos.VkDeviceGetPipelineExecutablePropertiesDelegate>("vkGetPipelineExecutablePropertiesKHR", "device");
+            this.vkGetPipelineExecutableStatisticsKHR = cache.GetCommandDelegate<Interop.Khronos.VkDeviceGetPipelineExecutableStatisticsDelegate>("vkGetPipelineExecutableStatisticsKHR", "device");
+            this.vkGetPipelineExecutableInternalRepresentationsKHR = cache.GetCommandDelegate<Interop.Khronos.VkDeviceGetPipelineExecutableInternalRepresentationsDelegate>("vkGetPipelineExecutableInternalRepresentationsKHR", "device");
         }
     }
 }

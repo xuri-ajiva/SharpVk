@@ -935,5 +935,146 @@ namespace SharpVk.Khronos
                 Interop.HeapUtil.FreeAll();
             }
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The Device handle to extend.
+        /// </param>
+        public static unsafe SharpVk.Khronos.PipelineExecutableProperties[] GetPipelineExecutableProperties(this SharpVk.Device extendedHandle, SharpVk.Khronos.PipelineInfo pipelineInfo)
+        {
+            try
+            {
+                SharpVk.Khronos.PipelineExecutableProperties[] result = default(SharpVk.Khronos.PipelineExecutableProperties[]);
+                uint marshalledExecutableCount = default(uint);
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Khronos.PipelineInfo* marshalledPipelineInfo = default(SharpVk.Interop.Khronos.PipelineInfo*);
+                SharpVk.Interop.Khronos.PipelineExecutableProperties* marshalledProperties = default(SharpVk.Interop.Khronos.PipelineExecutableProperties*);
+                commandCache = extendedHandle.commandCache;
+                marshalledPipelineInfo = (SharpVk.Interop.Khronos.PipelineInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.PipelineInfo>());
+                pipelineInfo.MarshalTo(marshalledPipelineInfo);
+                SharpVk.Interop.Khronos.VkDeviceGetPipelineExecutablePropertiesDelegate commandDelegate = commandCache.Cache.vkGetPipelineExecutablePropertiesKHR;
+                Result methodResult = commandDelegate(extendedHandle.handle, marshalledPipelineInfo, &marshalledExecutableCount, marshalledProperties);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                marshalledProperties = (SharpVk.Interop.Khronos.PipelineExecutableProperties*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.PipelineExecutableProperties>((uint)(marshalledExecutableCount)));
+                commandDelegate(extendedHandle.handle, marshalledPipelineInfo, &marshalledExecutableCount, marshalledProperties);
+                if (marshalledProperties != null)
+                {
+                    var fieldPointer = new SharpVk.Khronos.PipelineExecutableProperties[(uint)(marshalledExecutableCount)];
+                    for(int index = 0; index < (uint)(marshalledExecutableCount); index++)
+                    {
+                        fieldPointer[index] = SharpVk.Khronos.PipelineExecutableProperties.MarshalFrom(&marshalledProperties[index]);
+                    }
+                    result = fieldPointer;
+                }
+                else
+                {
+                    result = null;
+                }
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The Device handle to extend.
+        /// </param>
+        public static unsafe SharpVk.Khronos.PipelineExecutableStatistic[] GetPipelineExecutableStatistics(this SharpVk.Device extendedHandle, SharpVk.Khronos.PipelineExecutableInfo executableInfo)
+        {
+            try
+            {
+                SharpVk.Khronos.PipelineExecutableStatistic[] result = default(SharpVk.Khronos.PipelineExecutableStatistic[]);
+                uint marshalledStatisticCount = default(uint);
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Khronos.PipelineExecutableInfo* marshalledExecutableInfo = default(SharpVk.Interop.Khronos.PipelineExecutableInfo*);
+                SharpVk.Interop.Khronos.PipelineExecutableStatistic* marshalledStatistics = default(SharpVk.Interop.Khronos.PipelineExecutableStatistic*);
+                commandCache = extendedHandle.commandCache;
+                marshalledExecutableInfo = (SharpVk.Interop.Khronos.PipelineExecutableInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.PipelineExecutableInfo>());
+                executableInfo.MarshalTo(marshalledExecutableInfo);
+                SharpVk.Interop.Khronos.VkDeviceGetPipelineExecutableStatisticsDelegate commandDelegate = commandCache.Cache.vkGetPipelineExecutableStatisticsKHR;
+                Result methodResult = commandDelegate(extendedHandle.handle, marshalledExecutableInfo, &marshalledStatisticCount, marshalledStatistics);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                marshalledStatistics = (SharpVk.Interop.Khronos.PipelineExecutableStatistic*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.PipelineExecutableStatistic>((uint)(marshalledStatisticCount)));
+                commandDelegate(extendedHandle.handle, marshalledExecutableInfo, &marshalledStatisticCount, marshalledStatistics);
+                if (marshalledStatistics != null)
+                {
+                    var fieldPointer = new SharpVk.Khronos.PipelineExecutableStatistic[(uint)(marshalledStatisticCount)];
+                    for(int index = 0; index < (uint)(marshalledStatisticCount); index++)
+                    {
+                        fieldPointer[index] = SharpVk.Khronos.PipelineExecutableStatistic.MarshalFrom(&marshalledStatistics[index]);
+                    }
+                    result = fieldPointer;
+                }
+                else
+                {
+                    result = null;
+                }
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The Device handle to extend.
+        /// </param>
+        public static unsafe SharpVk.Khronos.PipelineExecutableInternalRepresentation[] GetPipelineExecutableInternalRepresentations(this SharpVk.Device extendedHandle, SharpVk.Khronos.PipelineExecutableInfo executableInfo)
+        {
+            try
+            {
+                SharpVk.Khronos.PipelineExecutableInternalRepresentation[] result = default(SharpVk.Khronos.PipelineExecutableInternalRepresentation[]);
+                uint marshalledInternalRepresentationCount = default(uint);
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Khronos.PipelineExecutableInfo* marshalledExecutableInfo = default(SharpVk.Interop.Khronos.PipelineExecutableInfo*);
+                SharpVk.Interop.Khronos.PipelineExecutableInternalRepresentation* marshalledInternalRepresentations = default(SharpVk.Interop.Khronos.PipelineExecutableInternalRepresentation*);
+                commandCache = extendedHandle.commandCache;
+                marshalledExecutableInfo = (SharpVk.Interop.Khronos.PipelineExecutableInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.PipelineExecutableInfo>());
+                executableInfo.MarshalTo(marshalledExecutableInfo);
+                SharpVk.Interop.Khronos.VkDeviceGetPipelineExecutableInternalRepresentationsDelegate commandDelegate = commandCache.Cache.vkGetPipelineExecutableInternalRepresentationsKHR;
+                Result methodResult = commandDelegate(extendedHandle.handle, marshalledExecutableInfo, &marshalledInternalRepresentationCount, marshalledInternalRepresentations);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                marshalledInternalRepresentations = (SharpVk.Interop.Khronos.PipelineExecutableInternalRepresentation*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.PipelineExecutableInternalRepresentation>((uint)(marshalledInternalRepresentationCount)));
+                commandDelegate(extendedHandle.handle, marshalledExecutableInfo, &marshalledInternalRepresentationCount, marshalledInternalRepresentations);
+                if (marshalledInternalRepresentations != null)
+                {
+                    var fieldPointer = new SharpVk.Khronos.PipelineExecutableInternalRepresentation[(uint)(marshalledInternalRepresentationCount)];
+                    for(int index = 0; index < (uint)(marshalledInternalRepresentationCount); index++)
+                    {
+                        fieldPointer[index] = SharpVk.Khronos.PipelineExecutableInternalRepresentation.MarshalFrom(&marshalledInternalRepresentations[index]);
+                    }
+                    result = fieldPointer;
+                }
+                else
+                {
+                    result = null;
+                }
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
     }
 }

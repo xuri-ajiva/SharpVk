@@ -102,6 +102,11 @@ namespace SharpVk.Amd
         /// <summary>
         /// 
         /// </summary>
+        public const string PipelineCompilerControl = "VK_AMD_pipeline_compiler_control"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public const string ShaderCoreProperties = "VK_AMD_shader_core_properties"; 
         
         /// <summary>
@@ -113,5 +118,15 @@ namespace SharpVk.Amd
         /// 
         /// </summary>
         public const string DisplayNativeHdr = "VK_AMD_display_native_hdr"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string ShaderCoreProperties2 = "VK_AMD_shader_core_properties2"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string DeviceCoherentMemory = "VK_AMD_device_coherent_memory"; 
     }
 }

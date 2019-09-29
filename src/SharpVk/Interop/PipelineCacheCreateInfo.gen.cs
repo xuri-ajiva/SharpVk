@@ -60,6 +60,6 @@ namespace SharpVk.Interop
         /// device, the pipeline cache will be initially empty. If
         /// initialDataSize is zero, pInitialData is ignored.
         /// </summary>
-        public void* InitialData; 
+        public byte* InitialData; 
     }
 }

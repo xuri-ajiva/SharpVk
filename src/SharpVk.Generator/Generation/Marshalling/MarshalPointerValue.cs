@@ -22,7 +22,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                     InteropType = this.nameLookup.Lookup(type, true, false),
                     MarshalToActionType = AssignActionType.AllocAndAssign,
                     BuildMarshalToValueExpression = (value, getHandle) => value,
-                    BuildMarshalFromValueExpression = (value, getHandle) => value
+                    BuildMarshalFromValueExpression = (value, getHandle) => Deref(value)
                 };
 
                 return true;

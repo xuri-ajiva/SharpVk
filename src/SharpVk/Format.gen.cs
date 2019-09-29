@@ -1407,5 +1407,75 @@ namespace SharpVk
         /// 
         /// </summary>
         Pvrtc24bppSrgbBlock = 1000054007, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Astc4x4SFloatBlock = 1000066000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Astc5x4SFloatBlock = 1000066001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Astc5x5SFloatBlock = 1000066002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Astc6x5SFloatBlock = 1000066003, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Astc6x6SFloatBlock = 1000066004, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Astc8x5SFloatBlock = 1000066005, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Astc8x6SFloatBlock = 1000066006, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Astc8x8SFloatBlock = 1000066007, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Astc10x5SFloatBlock = 1000066008, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Astc10x6SFloatBlock = 1000066009, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Astc10x8SFloatBlock = 1000066010, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Astc10x10SFloatBlock = 1000066011, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Astc12x10SFloatBlock = 1000066012, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Astc12x12SFloatBlock = 1000066013, 
     }
 }

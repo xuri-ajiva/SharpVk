@@ -56,6 +56,6 @@ namespace SharpVk.Interop.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public void* InitialData; 
+        public byte* InitialData; 
     }
 }

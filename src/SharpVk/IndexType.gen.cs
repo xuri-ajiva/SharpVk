@@ -43,5 +43,10 @@ namespace SharpVk
         /// 
         /// </summary>
         None = 1000165000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Uint8 = 1000265000, 
     }
 }

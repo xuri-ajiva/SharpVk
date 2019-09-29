@@ -134,5 +134,30 @@ namespace SharpVk
                 pointer->ImmutableSamplers = null;
             }
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        internal static unsafe DescriptorSetLayoutBinding MarshalFrom(SharpVk.Interop.DescriptorSetLayoutBinding* pointer)
+        {
+            DescriptorSetLayoutBinding result = default(DescriptorSetLayoutBinding);
+            result.Binding = pointer->Binding;
+            result.DescriptorType = pointer->DescriptorType;
+            result.StageFlags = pointer->StageFlags;
+            if (pointer->ImmutableSamplers != null)
+            {
+                var fieldPointer = new SharpVk.Sampler[(uint)(pointer->DescriptorCount)];
+                for(int index = 0; index < (uint)(pointer->DescriptorCount); index++)
+                {
+                    fieldPointer[index] = new SharpVk.Sampler(default(SharpVk.Device), pointer->ImmutableSamplers[index]);
+                }
+                result.ImmutableSamplers = fieldPointer;
+            }
+            else
+            {
+                result.ImmutableSamplers = null;
+            }
+            return result;
+        }
     }
 }

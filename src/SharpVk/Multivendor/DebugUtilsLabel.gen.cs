@@ -64,5 +64,16 @@ namespace SharpVk.Multivendor
             pointer->Color[2] = this.Color.Item3;
             pointer->Color[3] = this.Color.Item4;
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        internal static unsafe DebugUtilsLabel MarshalFrom(SharpVk.Interop.Multivendor.DebugUtilsLabel* pointer)
+        {
+            DebugUtilsLabel result = default(DebugUtilsLabel);
+            result.LabelName = Interop.HeapUtil.MarshalStringFrom(pointer->LabelName);
+            result.Color = (pointer->Color[0], pointer->Color[1], pointer->Color[2], pointer->Color[3]);
+            return result;
+        }
     }
 }

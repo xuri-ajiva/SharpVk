@@ -34,5 +34,15 @@ namespace SharpVk
         /// 
         /// </summary>
         None = 0, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Reserved0 = 1 << 0, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ReservedBit1 = 1 << 1, 
     }
 }

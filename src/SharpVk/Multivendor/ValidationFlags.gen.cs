@@ -65,5 +65,27 @@ namespace SharpVk.Multivendor
                 pointer->DisabledValidationChecks = null;
             }
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        internal static unsafe ValidationFlags MarshalFrom(SharpVk.Interop.Multivendor.ValidationFlags* pointer)
+        {
+            ValidationFlags result = default(ValidationFlags);
+            if (pointer->DisabledValidationChecks != null)
+            {
+                var fieldPointer = new SharpVk.Multivendor.ValidationCheck[(uint)(pointer->DisabledValidationCheckCount)];
+                for(int index = 0; index < (uint)(pointer->DisabledValidationCheckCount); index++)
+                {
+                    fieldPointer[index] = pointer->DisabledValidationChecks[index];
+                }
+                result.DisabledValidationChecks = fieldPointer;
+            }
+            else
+            {
+                result.DisabledValidationChecks = null;
+            }
+            return result;
+        }
     }
 }

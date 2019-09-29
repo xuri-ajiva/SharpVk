@@ -145,5 +145,10 @@ namespace SharpVk
         /// 
         /// </summary>
         ExclusiveScissor = 1000205001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        LineStipple = 1000259000, 
     }
 }

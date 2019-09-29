@@ -66,6 +66,6 @@ namespace SharpVk.Interop.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public void* Tag; 
+        public byte* Tag; 
     }
 }

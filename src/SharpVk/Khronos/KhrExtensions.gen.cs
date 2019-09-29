@@ -167,6 +167,11 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
+        public const string ShaderSubgroupExtendedTypes = "VK_KHR_shader_subgroup_extended_types"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public const string Khr8bitStorage = "VK_KHR_8bit_storage"; 
         
         /// <summary>
@@ -208,5 +213,10 @@ namespace SharpVk.Khronos
         /// 
         /// </summary>
         public const string UniformBufferStandardLayout = "VK_KHR_uniform_buffer_standard_layout"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string PipelineExecutableProperties = "VK_KHR_pipeline_executable_properties"; 
     }
 }

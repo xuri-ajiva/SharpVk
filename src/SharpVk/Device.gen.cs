@@ -1653,11 +1653,14 @@ namespace SharpVk
         /// <param name="pipelineCreationFeedbackCreateInfoExt">
         /// Extension struct
         /// </param>
+        /// <param name="pipelineCompilerControlCreateInfoAmd">
+        /// Extension struct
+        /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
         /// </param>
-        public unsafe SharpVk.Pipeline CreateGraphicsPipeline(SharpVk.PipelineCache pipelineCache, ArrayProxy<SharpVk.PipelineShaderStageCreateInfo>? stages, SharpVk.PipelineRasterizationStateCreateInfo rasterizationState, SharpVk.PipelineLayout layout, SharpVk.RenderPass renderPass, uint subpass, SharpVk.Pipeline basePipelineHandle, int basePipelineIndex, SharpVk.PipelineCreateFlags? flags = default(SharpVk.PipelineCreateFlags?), SharpVk.PipelineVertexInputStateCreateInfo? vertexInputState = default(SharpVk.PipelineVertexInputStateCreateInfo?), SharpVk.PipelineInputAssemblyStateCreateInfo? inputAssemblyState = default(SharpVk.PipelineInputAssemblyStateCreateInfo?), SharpVk.PipelineTessellationStateCreateInfo? tessellationState = default(SharpVk.PipelineTessellationStateCreateInfo?), SharpVk.PipelineViewportStateCreateInfo? viewportState = default(SharpVk.PipelineViewportStateCreateInfo?), SharpVk.PipelineMultisampleStateCreateInfo? multisampleState = default(SharpVk.PipelineMultisampleStateCreateInfo?), SharpVk.PipelineDepthStencilStateCreateInfo? depthStencilState = default(SharpVk.PipelineDepthStencilStateCreateInfo?), SharpVk.PipelineColorBlendStateCreateInfo? colorBlendState = default(SharpVk.PipelineColorBlendStateCreateInfo?), SharpVk.PipelineDynamicStateCreateInfo? dynamicState = default(SharpVk.PipelineDynamicStateCreateInfo?), SharpVk.Multivendor.PipelineDiscardRectangleStateCreateInfo? pipelineDiscardRectangleStateCreateInfoExt = null, SharpVk.NVidia.PipelineRepresentativeFragmentTestStateCreateInfo? pipelineRepresentativeFragmentTestStateCreateInfoNv = null, SharpVk.Multivendor.PipelineCreationFeedbackCreateInfo? pipelineCreationFeedbackCreateInfoExt = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public unsafe SharpVk.Pipeline CreateGraphicsPipeline(SharpVk.PipelineCache pipelineCache, ArrayProxy<SharpVk.PipelineShaderStageCreateInfo>? stages, SharpVk.PipelineRasterizationStateCreateInfo rasterizationState, SharpVk.PipelineLayout layout, SharpVk.RenderPass renderPass, uint subpass, SharpVk.Pipeline basePipelineHandle, int basePipelineIndex, SharpVk.PipelineCreateFlags? flags = default(SharpVk.PipelineCreateFlags?), SharpVk.PipelineVertexInputStateCreateInfo? vertexInputState = default(SharpVk.PipelineVertexInputStateCreateInfo?), SharpVk.PipelineInputAssemblyStateCreateInfo? inputAssemblyState = default(SharpVk.PipelineInputAssemblyStateCreateInfo?), SharpVk.PipelineTessellationStateCreateInfo? tessellationState = default(SharpVk.PipelineTessellationStateCreateInfo?), SharpVk.PipelineViewportStateCreateInfo? viewportState = default(SharpVk.PipelineViewportStateCreateInfo?), SharpVk.PipelineMultisampleStateCreateInfo? multisampleState = default(SharpVk.PipelineMultisampleStateCreateInfo?), SharpVk.PipelineDepthStencilStateCreateInfo? depthStencilState = default(SharpVk.PipelineDepthStencilStateCreateInfo?), SharpVk.PipelineColorBlendStateCreateInfo? colorBlendState = default(SharpVk.PipelineColorBlendStateCreateInfo?), SharpVk.PipelineDynamicStateCreateInfo? dynamicState = default(SharpVk.PipelineDynamicStateCreateInfo?), SharpVk.Multivendor.PipelineDiscardRectangleStateCreateInfo? pipelineDiscardRectangleStateCreateInfoExt = null, SharpVk.NVidia.PipelineRepresentativeFragmentTestStateCreateInfo? pipelineRepresentativeFragmentTestStateCreateInfoNv = null, SharpVk.Multivendor.PipelineCreationFeedbackCreateInfo? pipelineCreationFeedbackCreateInfoExt = null, SharpVk.Amd.PipelineCompilerControlCreateInfo? pipelineCompilerControlCreateInfoAmd = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
@@ -1688,6 +1691,14 @@ namespace SharpVk
                     SharpVk.Interop.Multivendor.PipelineCreationFeedbackCreateInfo* extensionPointer = default(SharpVk.Interop.Multivendor.PipelineCreationFeedbackCreateInfo*);
                     extensionPointer = (SharpVk.Interop.Multivendor.PipelineCreationFeedbackCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.PipelineCreationFeedbackCreateInfo>());
                     pipelineCreationFeedbackCreateInfoExt.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = nextPointer;
+                    nextPointer = extensionPointer;
+                }
+                if (pipelineCompilerControlCreateInfoAmd != null)
+                {
+                    SharpVk.Interop.Amd.PipelineCompilerControlCreateInfo* extensionPointer = default(SharpVk.Interop.Amd.PipelineCompilerControlCreateInfo*);
+                    extensionPointer = (SharpVk.Interop.Amd.PipelineCompilerControlCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Amd.PipelineCompilerControlCreateInfo>());
+                    pipelineCompilerControlCreateInfoAmd.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = nextPointer;
                     nextPointer = extensionPointer;
                 }
@@ -1930,11 +1941,14 @@ namespace SharpVk
         /// <param name="pipelineCreationFeedbackCreateInfoExt">
         /// Extension struct
         /// </param>
+        /// <param name="pipelineCompilerControlCreateInfoAmd">
+        /// Extension struct
+        /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
         /// </param>
-        public unsafe SharpVk.Pipeline CreateComputePipeline(SharpVk.PipelineCache pipelineCache, SharpVk.PipelineShaderStageCreateInfo stage, SharpVk.PipelineLayout layout, SharpVk.Pipeline basePipelineHandle, int basePipelineIndex, SharpVk.PipelineCreateFlags? flags = default(SharpVk.PipelineCreateFlags?), SharpVk.Multivendor.PipelineCreationFeedbackCreateInfo? pipelineCreationFeedbackCreateInfoExt = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public unsafe SharpVk.Pipeline CreateComputePipeline(SharpVk.PipelineCache pipelineCache, SharpVk.PipelineShaderStageCreateInfo stage, SharpVk.PipelineLayout layout, SharpVk.Pipeline basePipelineHandle, int basePipelineIndex, SharpVk.PipelineCreateFlags? flags = default(SharpVk.PipelineCreateFlags?), SharpVk.Multivendor.PipelineCreationFeedbackCreateInfo? pipelineCreationFeedbackCreateInfoExt = null, SharpVk.Amd.PipelineCompilerControlCreateInfo? pipelineCompilerControlCreateInfoAmd = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
@@ -1949,6 +1963,14 @@ namespace SharpVk
                     SharpVk.Interop.Multivendor.PipelineCreationFeedbackCreateInfo* extensionPointer = default(SharpVk.Interop.Multivendor.PipelineCreationFeedbackCreateInfo*);
                     extensionPointer = (SharpVk.Interop.Multivendor.PipelineCreationFeedbackCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.PipelineCreationFeedbackCreateInfo>());
                     pipelineCreationFeedbackCreateInfoExt.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = nextPointer;
+                    nextPointer = extensionPointer;
+                }
+                if (pipelineCompilerControlCreateInfoAmd != null)
+                {
+                    SharpVk.Interop.Amd.PipelineCompilerControlCreateInfo* extensionPointer = default(SharpVk.Interop.Amd.PipelineCompilerControlCreateInfo*);
+                    extensionPointer = (SharpVk.Interop.Amd.PipelineCompilerControlCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Amd.PipelineCompilerControlCreateInfo>());
+                    pipelineCompilerControlCreateInfoAmd.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = nextPointer;
                     nextPointer = extensionPointer;
                 }

@@ -62,6 +62,11 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        public const string TextureCompressionAstcHdr = "VK_EXT_texture_compression_astc_hdr"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public const string AstcDecodeMode = "VK_EXT_astc_decode_mode"; 
         
         /// <summary>
@@ -232,6 +237,11 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        public const string SubgroupSizeControl = "VK_EXT_subgroup_size_control"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public const string MemoryBudget = "VK_EXT_memory_budget"; 
         
         /// <summary>
@@ -277,7 +287,17 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        public const string LineRasterization = "VK_EXT_line_rasterization"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public const string HostQueryReset = "VK_EXT_host_query_reset"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public const string IndexTypeUint8 = "VK_EXT_index_type_uint8"; 
         
         /// <summary>
         /// 

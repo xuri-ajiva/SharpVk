@@ -34,21 +34,18 @@ namespace SharpVk.Khronos
     public partial struct PhysicalDeviceFloatControlsProperties
     {
         /// <summary>
-        /// A boolean value indicating whether the implementation supports
-        /// separate settings for 16-bit and 64-bit denormals.
+        /// 
         /// </summary>
-        public bool SeparateDenormSettings
+        public SharpVk.Khronos.ShaderFloatControlsIndependence DenormBehaviorIndependence
         {
             get;
             set;
         }
         
         /// <summary>
-        /// A boolean value indicating whether the implementation supports
-        /// separate rounding modes for 16-bit and 64-bit floating point
-        /// instructions.
+        /// 
         /// </summary>
-        public bool SeparateRoundingModeSettings
+        public SharpVk.Khronos.ShaderFloatControlsIndependence RoundingModeIndependence
         {
             get;
             set;
@@ -246,8 +243,8 @@ namespace SharpVk.Khronos
         internal static unsafe PhysicalDeviceFloatControlsProperties MarshalFrom(SharpVk.Interop.Khronos.PhysicalDeviceFloatControlsProperties* pointer)
         {
             PhysicalDeviceFloatControlsProperties result = default(PhysicalDeviceFloatControlsProperties);
-            result.SeparateDenormSettings = pointer->SeparateDenormSettings;
-            result.SeparateRoundingModeSettings = pointer->SeparateRoundingModeSettings;
+            result.DenormBehaviorIndependence = pointer->DenormBehaviorIndependence;
+            result.RoundingModeIndependence = pointer->RoundingModeIndependence;
             result.ShaderSignedZeroInfNanPreserveFloat16 = pointer->ShaderSignedZeroInfNanPreserveFloat16;
             result.ShaderSignedZeroInfNanPreserveFloat32 = pointer->ShaderSignedZeroInfNanPreserveFloat32;
             result.ShaderSignedZeroInfNanPreserveFloat64 = pointer->ShaderSignedZeroInfNanPreserveFloat64;

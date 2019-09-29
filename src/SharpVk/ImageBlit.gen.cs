@@ -83,5 +83,18 @@ namespace SharpVk
             pointer->DestinationOffsets_0 = this.DestinationOffsets.Item1;
             pointer->DestinationOffsets_1 = this.DestinationOffsets.Item2;
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        internal static unsafe ImageBlit MarshalFrom(SharpVk.Interop.ImageBlit* pointer)
+        {
+            ImageBlit result = default(ImageBlit);
+            result.SourceSubresource = pointer->SourceSubresource;
+            result.SourceOffsets = (pointer->SourceOffsets_0, pointer->SourceOffsets_1);
+            result.DestinationSubresource = pointer->DestinationSubresource;
+            result.DestinationOffsets = (pointer->DestinationOffsets_0, pointer->DestinationOffsets_1);
+            return result;
+        }
     }
 }

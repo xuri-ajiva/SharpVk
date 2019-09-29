@@ -34,5 +34,20 @@ namespace SharpVk
         /// 
         /// </summary>
         None = 0, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Reserved2 = 1 << 2, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        AllowVaryingSubgroupSize = 1 << 0, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        RequireFullSubgroups = 1 << 1, 
     }
 }

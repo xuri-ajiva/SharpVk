@@ -72,6 +72,15 @@ namespace SharpVk.Android
         /// <summary>
         /// 
         /// </summary>
+        public SharpVk.Android.NativeBufferUsage2 Usage2
+        {
+            get;
+            set;
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
         internal unsafe void MarshalTo(SharpVk.Interop.Android.NativeBuffer* pointer)
         {
             pointer->SType = StructureType.NativeBuffer;
@@ -80,6 +89,7 @@ namespace SharpVk.Android
             pointer->Stride = this.Stride;
             pointer->Format = this.Format;
             pointer->Usage = this.Usage;
+            pointer->Usage2 = this.Usage2;
         }
         
         /// <summary>
@@ -92,6 +102,7 @@ namespace SharpVk.Android
             result.Stride = pointer->Stride;
             result.Format = pointer->Format;
             result.Usage = pointer->Usage;
+            result.Usage2 = pointer->Usage2;
             return result;
         }
     }

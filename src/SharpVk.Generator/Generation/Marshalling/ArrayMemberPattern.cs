@@ -115,6 +115,7 @@ namespace SharpVk.Generator.Generation.Marshalling
 
                             var marshalling = this.marshallingRules.ApplyFirst(elementType);
 
+                            info.Interop.Type = marshalling.InteropType + "*";
                             info.InteropFullType = marshalling.InteropType;
 
                             if (source.Type.PointerType.IsPointer())

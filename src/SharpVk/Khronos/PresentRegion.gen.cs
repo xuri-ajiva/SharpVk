@@ -62,5 +62,27 @@ namespace SharpVk.Khronos
                 pointer->Rectangles = null;
             }
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        internal static unsafe PresentRegion MarshalFrom(SharpVk.Interop.Khronos.PresentRegion* pointer)
+        {
+            PresentRegion result = default(PresentRegion);
+            if (pointer->Rectangles != null)
+            {
+                var fieldPointer = new SharpVk.Khronos.RectLayer[(uint)(pointer->RectangleCount)];
+                for(int index = 0; index < (uint)(pointer->RectangleCount); index++)
+                {
+                    fieldPointer[index] = pointer->Rectangles[index];
+                }
+                result.Rectangles = fieldPointer;
+            }
+            else
+            {
+                result.Rectangles = null;
+            }
+            return result;
+        }
     }
 }

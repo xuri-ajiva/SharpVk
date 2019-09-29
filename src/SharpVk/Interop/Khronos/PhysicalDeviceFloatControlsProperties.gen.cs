@@ -44,17 +44,14 @@ namespace SharpVk.Interop.Khronos
         public void* Next; 
         
         /// <summary>
-        /// A boolean value indicating whether the implementation supports
-        /// separate settings for 16-bit and 64-bit denormals.
+        /// 
         /// </summary>
-        public Bool32 SeparateDenormSettings; 
+        public SharpVk.Khronos.ShaderFloatControlsIndependence DenormBehaviorIndependence; 
         
         /// <summary>
-        /// A boolean value indicating whether the implementation supports
-        /// separate rounding modes for 16-bit and 64-bit floating point
-        /// instructions.
+        /// 
         /// </summary>
-        public Bool32 SeparateRoundingModeSettings; 
+        public SharpVk.Khronos.ShaderFloatControlsIndependence RoundingModeIndependence; 
         
         /// <summary>
         /// A boolean value indicating whether an implementation supports the

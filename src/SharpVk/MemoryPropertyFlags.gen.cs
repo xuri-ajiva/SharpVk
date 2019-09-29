@@ -59,5 +59,15 @@ namespace SharpVk
         /// 
         /// </summary>
         LazilyAllocated = 1 << 4, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DeviceCoherent = 1 << 6, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DeviceUncached = 1 << 7, 
     }
 }

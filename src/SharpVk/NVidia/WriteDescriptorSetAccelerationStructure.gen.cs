@@ -64,5 +64,27 @@ namespace SharpVk.NVidia
                 pointer->AccelerationStructures = null;
             }
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        internal static unsafe WriteDescriptorSetAccelerationStructure MarshalFrom(SharpVk.Interop.NVidia.WriteDescriptorSetAccelerationStructure* pointer)
+        {
+            WriteDescriptorSetAccelerationStructure result = default(WriteDescriptorSetAccelerationStructure);
+            if (pointer->AccelerationStructures != null)
+            {
+                var fieldPointer = new SharpVk.NVidia.AccelerationStructure[(uint)(pointer->AccelerationStructureCount)];
+                for(int index = 0; index < (uint)(pointer->AccelerationStructureCount); index++)
+                {
+                    fieldPointer[index] = new SharpVk.NVidia.AccelerationStructure(default(SharpVk.Device), pointer->AccelerationStructures[index]);
+                }
+                result.AccelerationStructures = fieldPointer;
+            }
+            else
+            {
+                result.AccelerationStructures = null;
+            }
+            return result;
+        }
     }
 }

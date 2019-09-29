@@ -64,5 +64,27 @@ namespace SharpVk.Multivendor
                 pointer->Data = null;
             }
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        internal static unsafe WriteDescriptorSetInlineUniformBlock MarshalFrom(SharpVk.Interop.Multivendor.WriteDescriptorSetInlineUniformBlock* pointer)
+        {
+            WriteDescriptorSetInlineUniformBlock result = default(WriteDescriptorSetInlineUniformBlock);
+            if (pointer->Data != null)
+            {
+                var fieldPointer = new byte[(uint)(pointer->DataSize)];
+                for(int index = 0; index < (uint)(pointer->DataSize); index++)
+                {
+                    fieldPointer[index] = pointer->Data[index];
+                }
+                result.Data = fieldPointer;
+            }
+            else
+            {
+                result.Data = null;
+            }
+            return result;
+        }
     }
 }

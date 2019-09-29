@@ -58,5 +58,15 @@ namespace SharpVk
         /// 
         /// </summary>
         DeferCompile = 1 << 5, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        CaptureStatistics = 1 << 6, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        CaptureInternalRepresentations = 1 << 7, 
     }
 }

@@ -68,6 +68,6 @@ namespace SharpVk.Interop.Multivendor
         /// An array of tagSize bytes containing the data to be associated with
         /// the object.
         /// </summary>
-        public void* Tag; 
+        public byte* Tag; 
     }
 }

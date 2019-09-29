@@ -64,5 +64,27 @@ namespace SharpVk.Khronos
                 pointer->Regions = null;
             }
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        internal static unsafe PresentRegions MarshalFrom(SharpVk.Interop.Khronos.PresentRegions* pointer)
+        {
+            PresentRegions result = default(PresentRegions);
+            if (pointer->Regions != null)
+            {
+                var fieldPointer = new SharpVk.Khronos.PresentRegion[(uint)(pointer->SwapchainCount)];
+                for(int index = 0; index < (uint)(pointer->SwapchainCount); index++)
+                {
+                    fieldPointer[index] = SharpVk.Khronos.PresentRegion.MarshalFrom(&pointer->Regions[index]);
+                }
+                result.Regions = fieldPointer;
+            }
+            else
+            {
+                result.Regions = null;
+            }
+            return result;
+        }
     }
 }

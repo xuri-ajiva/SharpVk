@@ -38,5 +38,10 @@ namespace SharpVk.Multivendor
         /// 
         /// </summary>
         GpuAssistedReserveBindingSlot = 1, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        BestPractices = 2, 
     }
 }

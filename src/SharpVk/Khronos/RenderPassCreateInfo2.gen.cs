@@ -150,5 +150,67 @@ namespace SharpVk.Khronos
                 pointer->CorrelatedViewMasks = null;
             }
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        internal static unsafe RenderPassCreateInfo2 MarshalFrom(SharpVk.Interop.Khronos.RenderPassCreateInfo2* pointer)
+        {
+            RenderPassCreateInfo2 result = default(RenderPassCreateInfo2);
+            result.Flags = pointer->Flags;
+            if (pointer->Attachments != null)
+            {
+                var fieldPointer = new SharpVk.Khronos.AttachmentDescription2[(uint)(pointer->AttachmentCount)];
+                for(int index = 0; index < (uint)(pointer->AttachmentCount); index++)
+                {
+                    fieldPointer[index] = SharpVk.Khronos.AttachmentDescription2.MarshalFrom(&pointer->Attachments[index]);
+                }
+                result.Attachments = fieldPointer;
+            }
+            else
+            {
+                result.Attachments = null;
+            }
+            if (pointer->Subpasses != null)
+            {
+                var fieldPointer = new SharpVk.Khronos.SubpassDescription2[(uint)(pointer->SubpassCount)];
+                for(int index = 0; index < (uint)(pointer->SubpassCount); index++)
+                {
+                    fieldPointer[index] = SharpVk.Khronos.SubpassDescription2.MarshalFrom(&pointer->Subpasses[index]);
+                }
+                result.Subpasses = fieldPointer;
+            }
+            else
+            {
+                result.Subpasses = null;
+            }
+            if (pointer->Dependencies != null)
+            {
+                var fieldPointer = new SharpVk.Khronos.SubpassDependency2[(uint)(pointer->DependencyCount)];
+                for(int index = 0; index < (uint)(pointer->DependencyCount); index++)
+                {
+                    fieldPointer[index] = SharpVk.Khronos.SubpassDependency2.MarshalFrom(&pointer->Dependencies[index]);
+                }
+                result.Dependencies = fieldPointer;
+            }
+            else
+            {
+                result.Dependencies = null;
+            }
+            if (pointer->CorrelatedViewMasks != null)
+            {
+                var fieldPointer = new uint[(uint)(pointer->CorrelatedViewMaskCount)];
+                for(int index = 0; index < (uint)(pointer->CorrelatedViewMaskCount); index++)
+                {
+                    fieldPointer[index] = pointer->CorrelatedViewMasks[index];
+                }
+                result.CorrelatedViewMasks = fieldPointer;
+            }
+            else
+            {
+                result.CorrelatedViewMasks = null;
+            }
+            return result;
+        }
     }
 }

@@ -1,7 +1,5 @@
-﻿using SharpVk.Emit;
-using SharpVk.Generator.Collation;
+﻿using SharpVk.Generator.Collation;
 using SharpVk.Generator.Rules;
-using System;
 using System.Collections.Generic;
 
 using static SharpVk.Emit.ExpressionBuilder;
@@ -97,12 +95,41 @@ namespace SharpVk.Generator.Generation.Marshalling
                 }
             });
 
-            info.MarshalFrom.Add((getTarget, getValue) => new AssignAction
+            bool optionalMarshalFrom = isOptional && source.Type.PointerType != PointerType.Value;
+
+            info.MarshalFrom.Add((getTarget, getValue) =>
             {
-                ValueExpression = marshalling.BuildMarshalFromValueExpression(getValue(source.Name), context.GetHandle),
-                TargetExpression = getTarget(source.Name),
-                MemberType = marshalling.MemberType,
-                Type = marshalling.MarshalFromActionType
+                var valueExpression = marshalling.BuildMarshalFromValueExpression(getValue(source.Name), context.GetHandle);
+
+                var assignment = new AssignAction
+                {
+                    ValueExpression = valueExpression,
+                    TargetExpression = getTarget(source.Name),
+                    MemberType = marshalling.MemberType,
+                    Type = marshalling.MarshalFromActionType
+                };
+
+                if (optionalMarshalFrom)
+                {
+                    var result = new OptionalAction
+                    {
+                        CheckExpression = IsNotEqual(getValue(source.Name), Null)
+                    };
+
+                    result.Actions.Add(assignment);
+                    result.ElseActions.Add(new AssignAction
+                    {
+                        Type = AssignActionType.Assign,
+                        TargetExpression = getTarget(source.Name),
+                        ValueExpression = Null
+                    });
+
+                    return result;
+                }
+                else
+                {
+                    return assignment;
+                }
             });
 
             return true;

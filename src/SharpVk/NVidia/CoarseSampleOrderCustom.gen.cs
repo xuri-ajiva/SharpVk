@@ -82,5 +82,29 @@ namespace SharpVk.NVidia
                 pointer->SampleLocations = null;
             }
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        internal static unsafe CoarseSampleOrderCustom MarshalFrom(SharpVk.Interop.NVidia.CoarseSampleOrderCustom* pointer)
+        {
+            CoarseSampleOrderCustom result = default(CoarseSampleOrderCustom);
+            result.ShadingRate = pointer->ShadingRate;
+            result.SampleCount = pointer->SampleCount;
+            if (pointer->SampleLocations != null)
+            {
+                var fieldPointer = new SharpVk.NVidia.CoarseSampleLocation[(uint)(pointer->SampleLocationCount)];
+                for(int index = 0; index < (uint)(pointer->SampleLocationCount); index++)
+                {
+                    fieldPointer[index] = pointer->SampleLocations[index];
+                }
+                result.SampleLocations = fieldPointer;
+            }
+            else
+            {
+                result.SampleLocations = null;
+            }
+            return result;
+        }
     }
 }

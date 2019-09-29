@@ -62,5 +62,27 @@ namespace SharpVk.NVidia
                 pointer->ShadingRatePaletteEntries = null;
             }
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        internal static unsafe ShadingRatePalette MarshalFrom(SharpVk.Interop.NVidia.ShadingRatePalette* pointer)
+        {
+            ShadingRatePalette result = default(ShadingRatePalette);
+            if (pointer->ShadingRatePaletteEntries != null)
+            {
+                var fieldPointer = new SharpVk.NVidia.ShadingRatePaletteEntry[(uint)(pointer->ShadingRatePaletteEntryCount)];
+                for(int index = 0; index < (uint)(pointer->ShadingRatePaletteEntryCount); index++)
+                {
+                    fieldPointer[index] = pointer->ShadingRatePaletteEntries[index];
+                }
+                result.ShadingRatePaletteEntries = fieldPointer;
+            }
+            else
+            {
+                result.ShadingRatePaletteEntries = null;
+            }
+            return result;
+        }
     }
 }

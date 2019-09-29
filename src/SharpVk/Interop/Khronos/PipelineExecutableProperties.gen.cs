@@ -22,16 +22,45 @@
 
 // This file was automatically generated and should not be edited directly.
 
-namespace SharpVk
+using System;
+using System.Runtime.InteropServices;
+
+namespace SharpVk.Interop.Khronos
 {
     /// <summary>
     /// 
     /// </summary>
-    public enum RenderPassCreateFlagBits
+    [StructLayout(LayoutKind.Sequential)]
+    public unsafe partial struct PipelineExecutableProperties
     {
         /// <summary>
         /// 
         /// </summary>
-        Reserved0 = 1 << 0, 
+        public SharpVk.StructureType SType; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public void* Next; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public SharpVk.ShaderStageFlags Stages; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public fixed byte Name[Constants.MaxDescriptionSize]; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public fixed byte Description[Constants.MaxDescriptionSize]; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public uint SubgroupSize; 
     }
 }

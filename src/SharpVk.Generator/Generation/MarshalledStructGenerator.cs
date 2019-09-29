@@ -170,43 +170,7 @@ namespace SharpVk.Generator.Generation
             var typeData = this.typeData[param.Type.VkName];
 
             return typeData.Pattern != TypePattern.Delegate
-                    && param.Dimensions?.FirstOrDefault()?.Type != LenType.Expression
-                    && param.Type.FixedLength.Type == FixedLengthType.None
                     && !typeData.Name.EndsWith("Info");
-        }
-
-        private MemberDefinition GetPublicMember(MemberDeclaration member)
-        {
-            return new MemberDefinition
-            {
-                Name = member.Name,
-                Type = this.nameLookup.Lookup(member.Type, false)
-            };
-        }
-
-        private MemberDefinition GetInteropMember(MemberDeclaration member)
-        {
-            string name = member.Name;
-            string type = this.nameLookup.Lookup(member.Type, true);
-
-            if (member.Type.FixedLength.Type != FixedLengthType.None && this.typeData[member.Type.VkName].Pattern == TypePattern.Primitive)
-            {
-                string length = "1";
-
-                if (member.Type.FixedLength.Type == FixedLengthType.IntegerLiteral)
-                {
-                    length = member.Type.FixedLength.Value;
-                }
-
-                name += $"[{length}]";
-                type = "fixed " + type;
-            }
-
-            return new MemberDefinition
-            {
-                Name = name,
-                Type = type
-            };
         }
     }
 }
