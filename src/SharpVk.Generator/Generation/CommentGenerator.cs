@@ -84,21 +84,12 @@ namespace SharpVk.Generator.Generation
         }
 
         public List<string> Lookup(string name)
-        {
-            var comment = this.commentInfo[name];
-
-            return string.IsNullOrEmpty(comment)
-                ? null
-                : Normalise(comment);
-        }
+            => this.commentInfo.TryGetValue(name, out var comment)
+                && !string.IsNullOrEmpty(comment)
+                    ? Normalise(comment)
+                        : null;
 
         public List<string> Lookup(string name, string childName)
-        {
-            var comment = this.commentInfo[$"{name}.{childName}"];
-
-            return string.IsNullOrEmpty(comment)
-                ? null
-                : Normalise(comment);
-        }
+            => this.Lookup($"{name}.{childName}");
     }
 }

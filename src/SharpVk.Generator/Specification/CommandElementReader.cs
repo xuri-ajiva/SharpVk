@@ -21,72 +21,78 @@ namespace SharpVk.Generator.Specification
         public void Execute(IServiceCollection services)
         {
             var newCommands = new Dictionary<string, CommandElement>();
+            var aliases = new Dictionary<string, string>();
 
             foreach (var vkCommand in this.xmlCache.GetVkXml().Element("registry").Element("commands").Elements("command"))
             {
                 if (vkCommand.Element("proto") == null)
                 {
-                    continue;
+                    aliases[vkCommand.Attribute("name").Value] = vkCommand.Attribute("alias").Value;
                 }
-                string name = vkCommand.Element("proto").Element("name").Value;
-                string type = vkCommand.Element("proto").Element("type").Value;
-
-                string[] nameParts = this.nameParser.GetNameParts(name, out string extension);
-
-                string[] verbExceptions = new[] { "cmd", "queue", "device" };
-
-                string verb = verbExceptions.Contains(nameParts[0]) ? nameParts[1] : nameParts[0];
-
-                string[] successCodes = vkCommand.Attribute("successcodes")?.Value?.Split(',');
-
-                var newCommand = new CommandElement
+                else
                 {
-                    VkName = name,
-                    Type = type,
-                    NameParts = nameParts,
-                    ExtensionNamespace = extension,
-                    Verb = verb,
-                    SuccessCodes = successCodes
-                };
+                    string name = vkCommand.Element("proto").Element("name").Value;
+                    string type = vkCommand.Element("proto").Element("type").Value;
 
-                newCommands.Add(name, newCommand);
+                    string[] nameParts = this.nameParser.GetNameParts(name, out string extension);
 
-                foreach (var vkParam in vkCommand.Elements("param"))
-                {
-                    var nameElement = vkParam.Element("name");
+                    string[] verbExceptions = new[] { "cmd", "queue", "device" };
 
-                    string paramName = nameElement.Value;
-                    string paramType = vkParam.Element("type").Value;
-                    bool.TryParse(vkParam.Attribute("optional")?.Value, out bool isOptional);
-                    bool.TryParse(vkParam.Attribute("noAutoValidity")?.Value, out bool noAutoValidity);
+                    string verb = verbExceptions.Contains(nameParts[0]) ? nameParts[1] : nameParts[0];
 
-                    var typeNodes = nameElement.NodesBeforeSelf();
-                    var pointerType = PointerTypeUtil.GetFrom(typeNodes);
+                    string[] successCodes = vkCommand.Attribute("successcodes")?.Value?.Split(',');
 
-                    var lenField = vkParam.Attribute("len");
-                    var dimensions = lenField != null
-                                        ? SimpleParser.ParsedLenField(lenField.Value)
-                                        : null;
-
-                    string[] paramNameParts = this.nameParser.ParseParamName(paramName, pointerType, out string paramExtension);
-
-                    newCommand.Params.Add(new ParamElement
+                    var newCommand = new CommandElement
                     {
-                        VkName = paramName,
-                        Type = paramType,
-                        PointerType = pointerType,
-                        NameParts = paramNameParts,
-                        ExtensionNamespace = paramExtension,
-                        IsOptional = isOptional,
-                        NoAutoValidity = noAutoValidity,
-                        Dimensions = dimensions
-                    });
+                        VkName = name,
+                        Type = type,
+                        NameParts = nameParts,
+                        ExtensionNamespace = extension,
+                        Verb = verb,
+                        SuccessCodes = successCodes
+                    };
+
+                    newCommands.Add(name, newCommand);
+
+                    foreach (var vkParam in vkCommand.Elements("param"))
+                    {
+                        var nameElement = vkParam.Element("name");
+
+                        string paramName = nameElement.Value;
+                        string paramType = vkParam.Element("type").Value;
+                        bool.TryParse(vkParam.Attribute("optional")?.Value, out bool isOptional);
+                        bool.TryParse(vkParam.Attribute("noAutoValidity")?.Value, out bool noAutoValidity);
+
+                        var typeNodes = nameElement.NodesBeforeSelf();
+                        var pointerType = PointerTypeUtil.GetFrom(typeNodes);
+
+                        var lenField = vkParam.Attribute("len");
+                        var dimensions = lenField != null
+                                            ? SimpleParser.ParsedLenField(lenField.Value)
+                                            : null;
+
+                        string[] paramNameParts = this.nameParser.ParseParamName(paramName, pointerType, out string paramExtension);
+
+                        newCommand.Params.Add(new ParamElement
+                        {
+                            VkName = paramName,
+                            Type = paramType,
+                            PointerType = pointerType,
+                            NameParts = paramNameParts,
+                            ExtensionNamespace = paramExtension,
+                            IsOptional = isOptional,
+                            NoAutoValidity = noAutoValidity,
+                            Dimensions = dimensions
+                        });
+                    }
                 }
             }
 
+            var requirements = new List<string>();
+
             foreach (var commandRequirement in this.xmlCache.GetVkXml().Element("registry").Elements("feature").SelectMany(feature => feature.Elements("require").SelectMany(x => x.Elements("command"))))
             {
-                services.AddSingleton(newCommands[commandRequirement.Attribute("name").Value]);
+                requirements.Add(commandRequirement.Attribute("name").Value);
             }
 
             foreach (var extension in this.xmlCache.GetVkXml().Element("registry").Element("extensions").Elements("extension"))
@@ -98,8 +104,16 @@ namespace SharpVk.Generator.Specification
                                                                 .Select(x => x.Attribute("name").Value)
                                                                 .Distinct())
                     {
-                        services.AddSingleton(newCommands[commandRequirement]);
+                        requirements.Add(commandRequirement);
                     }
+                }
+            }
+
+            foreach (var requirement in requirements.Distinct())
+            {
+                if (newCommands.TryGetValue(requirement, out var command))
+                {
+                    services.AddSingleton(command);
                 }
             }
         }
