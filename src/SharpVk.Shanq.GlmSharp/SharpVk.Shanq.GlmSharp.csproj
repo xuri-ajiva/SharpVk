@@ -33,8 +33,4 @@
     <ProjectReference Include="..\SharpVk.Shanq\SharpVk.Shanq.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Properties\" />
-  </ItemGroup>
-
 </Project>
