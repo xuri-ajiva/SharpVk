@@ -8,13 +8,13 @@ namespace SharpVk.Emit
     {
         private List<string> parameters = new List<string>();
 
-        public void EmitParam(string type, string name, Action<ExpressionBuilder> defaultValue = null)
+        public void EmitParam(string type, string name, bool isOut = false, Action<ExpressionBuilder> defaultValue = null)
         {
             var writer = new StringWriter();
             var defaultExpression = new ExpressionBuilder(new IndentedTextWriter(writer));
             defaultValue?.Invoke(defaultExpression);
-            
-            this.parameters.Add($"{type} {name}{(defaultValue != null ? " = " + writer.ToString() : "")}");
+
+            this.parameters.Add($"{(isOut ? "out " : "")}{type} {name}{(defaultValue != null ? " = " + writer.ToString() : "")}");
         }
 
         public override string ToString()

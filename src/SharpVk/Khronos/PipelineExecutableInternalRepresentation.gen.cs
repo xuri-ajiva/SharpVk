@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2019
+// Copyright (c) Andrew Armstrong/FacticiusVir 2020
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -67,30 +67,6 @@ namespace SharpVk.Khronos
         {
             get;
             set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PipelineExecutableInternalRepresentation* pointer)
-        {
-            pointer->SType = StructureType.PipelineExecutableInternalRepresentation;
-            pointer->Next = null;
-            pointer->IsText = this.IsText;
-            pointer->DataSize = (HostSize)(Interop.HeapUtil.GetLength(this.Data));
-            if (this.Data != null)
-            {
-                var fieldPointer = (byte*)(Interop.HeapUtil.AllocateAndClear<byte>(this.Data.Length).ToPointer());
-                for(int index = 0; index < (uint)(this.Data.Length); index++)
-                {
-                    fieldPointer[index] = this.Data[index];
-                }
-                pointer->Data = fieldPointer;
-            }
-            else
-            {
-                pointer->Data = null;
-            }
         }
         
         /// <summary>

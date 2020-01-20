@@ -1,6 +1,6 @@
-// The MIT License (MIT)
+﻿// The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2019
+// Copyright (c) Andrew Armstrong/FacticiusVir 2017
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -20,18 +20,38 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
 
-// This file was automatically generated and should not be edited directly.
-
-using System;
 using System.Runtime.InteropServices;
 
 namespace SharpVk.Khronos
 {
     /// <summary>
-    /// 
+    /// A union describing a pipeline executable statistic
     /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public partial struct PipelineExecutableStatisticValue
+    [StructLayout(LayoutKind.Explicit)]
+    public struct PipelineExecutableStatisticValue
     {
+        /// <summary>
+        /// The 32-bit boolean value if the PipelineExecutableStatisticFormat is Bool32.
+        /// </summary>
+        [FieldOffset(0)]
+        public Bool32 B32;
+
+        /// <summary>
+        /// The signed 64-bit integer value if the PipelineExecutableStatisticFormat is Int64.
+        /// </summary>
+        [FieldOffset(0)]
+        public long I64;
+
+        /// <summary>
+        /// The unsigned 64-bit integer value if the PipelineExecutableStatisticFormat is Uint64.
+        /// </summary>
+        [FieldOffset(0)]
+        public ulong U64;
+
+        /// <summary>
+        /// The 64-bit floating-point value if the PipelineExecutableStatisticFormat is Float64.
+        /// </summary>
+        [FieldOffset(0)]
+        public double F64;
     }
 }

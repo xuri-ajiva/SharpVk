@@ -44,13 +44,13 @@ namespace SharpVk.Fuchsia
                 SharpVk.Khronos.Surface result = default(SharpVk.Khronos.Surface);
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Fuchsia.ImagePipeSurfaceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Fuchsia.ImagePipeSurfaceCreateInfo*);
-                void* nextPointer = default(void*);
+                void* vkImagePipeSurfaceCreateInfoFUCHSIANextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Khronos.Surface marshalledSurface = default(SharpVk.Interop.Khronos.Surface);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.Fuchsia.ImagePipeSurfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Fuchsia.ImagePipeSurfaceCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.ImagepipeSurfaceCreateInfo;
-                marshalledCreateInfo->Next = nextPointer;
+                marshalledCreateInfo->Next = vkImagePipeSurfaceCreateInfoFUCHSIANextPointer;
                 if (flags != null)
                 {
                     marshalledCreateInfo->Flags = flags.Value;

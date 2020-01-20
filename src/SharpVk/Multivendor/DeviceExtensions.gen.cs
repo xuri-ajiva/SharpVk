@@ -291,13 +291,13 @@ namespace SharpVk.Multivendor
                 SharpVk.Multivendor.ValidationCache result = default(SharpVk.Multivendor.ValidationCache);
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Multivendor.ValidationCacheCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Multivendor.ValidationCacheCreateInfo*);
-                void* nextPointer = default(void*);
+                void* vkValidationCacheCreateInfoEXTNextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Multivendor.ValidationCache marshalledValidationCache = default(SharpVk.Interop.Multivendor.ValidationCache);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.Multivendor.ValidationCacheCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.ValidationCacheCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.ValidationCacheCreateInfo;
-                marshalledCreateInfo->Next = nextPointer;
+                marshalledCreateInfo->Next = vkValidationCacheCreateInfoEXTNextPointer;
                 if (flags != null)
                 {
                     marshalledCreateInfo->Flags = flags.Value;
@@ -451,34 +451,6 @@ namespace SharpVk.Multivendor
                 }
                 result = marshalledMaxDeviation;
                 return result;
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
-        /// Query an address of a buffer
-        /// </summary>
-        /// <param name="extendedHandle">
-        /// The Device handle to extend.
-        /// </param>
-        /// <param name="info">
-        /// An instance of the VkBufferDeviceAddressInfoEXT structure
-        /// specifying the buffer to retrieve an address for.
-        /// </param>
-        public static unsafe void GetBufferDeviceAddress(this SharpVk.Device extendedHandle, SharpVk.Multivendor.BufferDeviceAddressInfo info)
-        {
-            try
-            {
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Multivendor.BufferDeviceAddressInfo* marshalledInfo = default(SharpVk.Interop.Multivendor.BufferDeviceAddressInfo*);
-                commandCache = extendedHandle.commandCache;
-                marshalledInfo = (SharpVk.Interop.Multivendor.BufferDeviceAddressInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.BufferDeviceAddressInfo>());
-                info.MarshalTo(marshalledInfo);
-                SharpVk.Interop.Multivendor.VkDeviceGetBufferDeviceAddressDelegate commandDelegate = commandCache.Cache.vkGetBufferDeviceAddressEXT;
-                commandDelegate(extendedHandle.handle, marshalledInfo);
             }
             finally
             {

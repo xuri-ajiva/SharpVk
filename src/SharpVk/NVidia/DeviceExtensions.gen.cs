@@ -44,13 +44,13 @@ namespace SharpVk.NVidia
                 SharpVk.NVidia.AccelerationStructure result = default(SharpVk.NVidia.AccelerationStructure);
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.NVidia.AccelerationStructureCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.NVidia.AccelerationStructureCreateInfo*);
-                void* nextPointer = default(void*);
+                void* vkAccelerationStructureCreateInfoNVNextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.NVidia.AccelerationStructure marshalledAccelerationStructure = default(SharpVk.Interop.NVidia.AccelerationStructure);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.NVidia.AccelerationStructureCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.AccelerationStructureCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.AccelerationStructureCreateInfo;
-                marshalledCreateInfo->Next = nextPointer;
+                marshalledCreateInfo->Next = vkAccelerationStructureCreateInfoNVNextPointer;
                 marshalledCreateInfo->CompactedSize = compactedSize;
                 info.MarshalTo(&marshalledCreateInfo->Info);
                 if (allocator != null)
@@ -253,7 +253,7 @@ namespace SharpVk.NVidia
                 CommandCache commandCache = default(CommandCache);
                 uint marshalledCreateInfoCount = default(uint);
                 SharpVk.Interop.NVidia.RayTracingPipelineCreateInfo* marshalledCreateInfos = default(SharpVk.Interop.NVidia.RayTracingPipelineCreateInfo*);
-                void* nextPointer = default(void*);
+                void* vkRayTracingPipelineCreateInfoNVNextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Pipeline* marshalledPipelines = default(SharpVk.Interop.Pipeline*);
                 if (pipelineCreationFeedbackCreateInfoExt != null)
@@ -261,14 +261,14 @@ namespace SharpVk.NVidia
                     SharpVk.Interop.Multivendor.PipelineCreationFeedbackCreateInfo* extensionPointer = default(SharpVk.Interop.Multivendor.PipelineCreationFeedbackCreateInfo*);
                     extensionPointer = (SharpVk.Interop.Multivendor.PipelineCreationFeedbackCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.PipelineCreationFeedbackCreateInfo>());
                     pipelineCreationFeedbackCreateInfoExt.Value.MarshalTo(extensionPointer);
-                    extensionPointer->Next = nextPointer;
-                    nextPointer = extensionPointer;
+                    extensionPointer->Next = vkRayTracingPipelineCreateInfoNVNextPointer;
+                    vkRayTracingPipelineCreateInfoNVNextPointer = extensionPointer;
                 }
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfoCount = 1;
                 marshalledCreateInfos = (SharpVk.Interop.NVidia.RayTracingPipelineCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.RayTracingPipelineCreateInfo>());
                 marshalledCreateInfos->SType = StructureType.RayTracingPipelineCreateInfo;
-                marshalledCreateInfos->Next = nextPointer;
+                marshalledCreateInfos->Next = vkRayTracingPipelineCreateInfoNVNextPointer;
                 if (flags != null)
                 {
                     marshalledCreateInfos->Flags = flags.Value;

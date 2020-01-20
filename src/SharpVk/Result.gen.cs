@@ -122,6 +122,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        ErrorUnknown = -13, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         ErrorSurfaceLost = -1000000000, 
         
         /// <summary>
@@ -162,21 +167,16 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        ErrorFragmentation = -1000161000, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
         ErrorNotPermitted = -1000174001, 
         
         /// <summary>
         /// 
         /// </summary>
-        ErrorInvalidDeviceAddress = -1000244000, 
+        ErrorFullScreenExclusiveModeLost = -1000255000, 
         
         /// <summary>
         /// 
         /// </summary>
-        ErrorFullScreenExclusiveModeLost = -1000255000, 
+        Ext298ReservedValue0 = 1000297000, 
     }
 }

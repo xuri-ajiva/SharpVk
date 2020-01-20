@@ -39,10 +39,5 @@ namespace SharpVk
         /// 
         /// </summary>
         PushDescriptor = 1 << 0, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        UpdateAfterBindPool = 1 << 1, 
     }
 }

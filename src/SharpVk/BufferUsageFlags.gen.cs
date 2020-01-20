@@ -141,10 +141,8 @@ namespace SharpVk
         RayTracing = 1 << 10, 
         
         /// <summary>
-        /// Specifies that the buffer can be used to retrieve a buffer device
-        /// address via vkGetBufferDeviceAddressEXT and use that address to
-        /// access the buffer’s memory from a shader.
+        /// 
         /// </summary>
-        ShaderDeviceAddress = 1 << 17, 
+        Reserved18 = 1 << 18, 
     }
 }

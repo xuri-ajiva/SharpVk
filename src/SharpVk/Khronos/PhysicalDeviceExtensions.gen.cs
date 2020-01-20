@@ -423,13 +423,13 @@ namespace SharpVk.Khronos
                 SharpVk.Khronos.DisplayMode result = default(SharpVk.Khronos.DisplayMode);
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Khronos.DisplayModeCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Khronos.DisplayModeCreateInfo*);
-                void* nextPointer = default(void*);
+                void* vkDisplayModeCreateInfoKHRNextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Khronos.DisplayMode marshalledMode = default(SharpVk.Interop.Khronos.DisplayMode);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.Khronos.DisplayModeCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.DisplayModeCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.DisplayModeCreateInfo;
-                marshalledCreateInfo->Next = nextPointer;
+                marshalledCreateInfo->Next = vkDisplayModeCreateInfoKHRNextPointer;
                 if (flags != null)
                 {
                     marshalledCreateInfo->Flags = flags.Value;
@@ -549,6 +549,93 @@ namespace SharpVk.Khronos
                 commandCache = extendedHandle.commandCache;
                 SharpVk.Interop.Khronos.VkPhysicalDeviceGetWin32PresentationSupportDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceWin32PresentationSupportKHR;
                 commandDelegate(extendedHandle.handle, queueFamilyIndex);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The PhysicalDevice handle to extend.
+        /// </param>
+        public static unsafe Result EnumerateQueueFamilyPerformanceQueryCounters(this SharpVk.PhysicalDevice extendedHandle, uint queueFamilyIndex, out PerformanceCounter[] counters, out PerformanceCounterDescription[] counterDescriptions)
+        {
+            try
+            {
+                Result result = default(Result);
+                uint marshalledCounterCount = default(uint);
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Khronos.PerformanceCounter* marshalledCounters = default(SharpVk.Interop.Khronos.PerformanceCounter*);
+                SharpVk.Interop.Khronos.PerformanceCounterDescription* marshalledCounterDescriptions = default(SharpVk.Interop.Khronos.PerformanceCounterDescription*);
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Khronos.VkPhysicalDeviceEnumerateQueueFamilyPerformanceQueryCountersDelegate commandDelegate = commandCache.Cache.vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR;
+                result = commandDelegate(extendedHandle.handle, queueFamilyIndex, &marshalledCounterCount, marshalledCounters, marshalledCounterDescriptions);
+                if (SharpVkException.IsError(result))
+                {
+                    throw SharpVkException.Create(result);
+                }
+                marshalledCounterDescriptions = (SharpVk.Interop.Khronos.PerformanceCounterDescription*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.PerformanceCounterDescription>((uint)(marshalledCounterCount)));
+                marshalledCounters = (SharpVk.Interop.Khronos.PerformanceCounter*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.PerformanceCounter>((uint)(marshalledCounterCount)));
+                commandDelegate(extendedHandle.handle, queueFamilyIndex, &marshalledCounterCount, marshalledCounters, marshalledCounterDescriptions);
+                if (marshalledCounters != null)
+                {
+                    var fieldPointer = new SharpVk.Khronos.PerformanceCounter[(uint)(marshalledCounterCount)];
+                    for(int index = 0; index < (uint)(marshalledCounterCount); index++)
+                    {
+                        fieldPointer[index] = SharpVk.Khronos.PerformanceCounter.MarshalFrom(&marshalledCounters[index]);
+                    }
+                    counters = fieldPointer;
+                }
+                else
+                {
+                    counters = null;
+                }
+                if (marshalledCounterDescriptions != null)
+                {
+                    var fieldPointer = new SharpVk.Khronos.PerformanceCounterDescription[(uint)(marshalledCounterCount)];
+                    for(int index = 0; index < (uint)(marshalledCounterCount); index++)
+                    {
+                        fieldPointer[index] = SharpVk.Khronos.PerformanceCounterDescription.MarshalFrom(&marshalledCounterDescriptions[index]);
+                    }
+                    counterDescriptions = fieldPointer;
+                }
+                else
+                {
+                    counterDescriptions = null;
+                }
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The PhysicalDevice handle to extend.
+        /// </param>
+        public static unsafe uint GetQueueFamilyPerformanceQueryPasses(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.QueryPoolPerformanceCreateInfo performanceQueryCreateInfo)
+        {
+            try
+            {
+                uint result = default(uint);
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Khronos.QueryPoolPerformanceCreateInfo* marshalledPerformanceQueryCreateInfo = default(SharpVk.Interop.Khronos.QueryPoolPerformanceCreateInfo*);
+                uint marshalledNumPasses = default(uint);
+                commandCache = extendedHandle.commandCache;
+                marshalledPerformanceQueryCreateInfo = (SharpVk.Interop.Khronos.QueryPoolPerformanceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.QueryPoolPerformanceCreateInfo>());
+                performanceQueryCreateInfo.MarshalTo(marshalledPerformanceQueryCreateInfo);
+                SharpVk.Interop.Khronos.VkPhysicalDeviceGetQueueFamilyPerformanceQueryPassesDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR;
+                commandDelegate(extendedHandle.handle, marshalledPerformanceQueryCreateInfo, &marshalledNumPasses);
+                result = marshalledNumPasses;
+                return result;
             }
             finally
             {

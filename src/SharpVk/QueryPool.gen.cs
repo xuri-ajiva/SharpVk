@@ -136,6 +136,22 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// 
+        /// </summary>
+        public unsafe void Reset(uint firstQuery, uint queryCount)
+        {
+            try
+            {
+                SharpVk.Interop.VkQueryPoolResetDelegate commandDelegate = commandCache.Cache.vkResetQueryPool;
+                commandDelegate(this.parent.handle, this.handle, firstQuery, queryCount);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
         /// Destroys the handles and releases any unmanaged resources
         /// associated with it.
         /// </summary>

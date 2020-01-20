@@ -53,13 +53,13 @@ namespace SharpVk.Multivendor
                 SharpVk.Multivendor.DebugReportCallback result = default(SharpVk.Multivendor.DebugReportCallback);
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Multivendor.DebugReportCallbackCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Multivendor.DebugReportCallbackCreateInfo*);
-                void* nextPointer = default(void*);
+                void* vkDebugReportCallbackCreateInfoEXTNextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Multivendor.DebugReportCallback marshalledCallback = default(SharpVk.Interop.Multivendor.DebugReportCallback);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.Multivendor.DebugReportCallbackCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.DebugReportCallbackCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.DebugReportCallbackCreateInfo;
-                marshalledCreateInfo->Next = nextPointer;
+                marshalledCreateInfo->Next = vkDebugReportCallbackCreateInfoEXTNextPointer;
                 if (flags != null)
                 {
                     marshalledCreateInfo->Flags = flags.Value;
@@ -135,13 +135,13 @@ namespace SharpVk.Multivendor
                 SharpVk.Multivendor.DebugUtilsMessenger result = default(SharpVk.Multivendor.DebugUtilsMessenger);
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Multivendor.DebugUtilsMessengerCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Multivendor.DebugUtilsMessengerCreateInfo*);
-                void* nextPointer = default(void*);
+                void* vkDebugUtilsMessengerCreateInfoEXTNextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Multivendor.DebugUtilsMessenger marshalledMessenger = default(SharpVk.Interop.Multivendor.DebugUtilsMessenger);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.Multivendor.DebugUtilsMessengerCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.DebugUtilsMessengerCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.DebugUtilsMessengerCreateInfo;
-                marshalledCreateInfo->Next = nextPointer;
+                marshalledCreateInfo->Next = vkDebugUtilsMessengerCreateInfoEXTNextPointer;
                 if (flags != null)
                 {
                     marshalledCreateInfo->Flags = flags.Value;
@@ -232,13 +232,13 @@ namespace SharpVk.Multivendor
                 SharpVk.Khronos.Surface result = default(SharpVk.Khronos.Surface);
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Multivendor.MetalSurfaceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Multivendor.MetalSurfaceCreateInfo*);
-                void* nextPointer = default(void*);
+                void* vkMetalSurfaceCreateInfoEXTNextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Khronos.Surface marshalledSurface = default(SharpVk.Interop.Khronos.Surface);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.Multivendor.MetalSurfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.MetalSurfaceCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.MetalSurfaceCreateInfo;
-                marshalledCreateInfo->Next = nextPointer;
+                marshalledCreateInfo->Next = vkMetalSurfaceCreateInfoEXTNextPointer;
                 if (flags != null)
                 {
                     marshalledCreateInfo->Flags = flags.Value;
@@ -293,13 +293,13 @@ namespace SharpVk.Multivendor
                 SharpVk.Khronos.Surface result = default(SharpVk.Khronos.Surface);
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Multivendor.HeadlessSurfaceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Multivendor.HeadlessSurfaceCreateInfo*);
-                void* nextPointer = default(void*);
+                void* vkHeadlessSurfaceCreateInfoEXTNextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Khronos.Surface marshalledSurface = default(SharpVk.Interop.Khronos.Surface);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.Multivendor.HeadlessSurfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.HeadlessSurfaceCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.HeadlessSurfaceCreateInfo;
-                marshalledCreateInfo->Next = nextPointer;
+                marshalledCreateInfo->Next = vkHeadlessSurfaceCreateInfoEXTNextPointer;
                 if (flags != null)
                 {
                     marshalledCreateInfo->Flags = flags.Value;

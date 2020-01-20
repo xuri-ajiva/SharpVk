@@ -34,25 +34,5 @@ namespace SharpVk.Multivendor
         /// 
         /// </summary>
         None = 0, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        UpdateAfterBind = 1 << 0, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        UpdateUnusedWhilePending = 1 << 1, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        PartiallyBound = 1 << 2, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        VariableDescriptorCount = 1 << 3, 
     }
 }

@@ -299,22 +299,12 @@ namespace SharpVk.Interop
             return pointer;
         }
 
-        //internal static void* MarshalTo<T>(IEnumerable<T> value, int length)
-        //    where T : struct
-        //{
-        //    uint size = MemUtil.SizeOf<T>();
 
-        //    T[] valueArray = value.ToArray();
 
-        //    IntPtr pointer = Allocate<T>(valueArray.Length);
-
-        //    for (int index = 0; index < length; index++)
-        //    {
-        //        Marshal.StructureToPtr(valueArray[index], pointer + ((int)size * index), false);
-        //    }
-
-        //    return pointer.ToPointer();
-        //}
+        internal static void MarshalTo(Guid value, int length, byte* pointer)
+        {
+            value.TryWriteBytes(new Span<byte>(pointer, length));
+        }
 
         internal static void MarshalTo(byte[] value, int length, byte* pointer)
         {

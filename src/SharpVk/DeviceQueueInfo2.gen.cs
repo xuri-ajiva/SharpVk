@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public SharpVk.DeviceQueueCreateFlags Flags
+        public SharpVk.DeviceQueueCreateFlags? Flags
         {
             get;
             set;
@@ -66,7 +66,14 @@ namespace SharpVk
         internal unsafe void MarshalTo(SharpVk.Interop.DeviceQueueInfo2* pointer)
         {
             pointer->Next = null;
-            pointer->Flags = this.Flags;
+            if (this.Flags != null)
+            {
+                pointer->Flags = this.Flags.Value;
+            }
+            else
+            {
+                pointer->Flags = default(SharpVk.DeviceQueueCreateFlags);
+            }
             pointer->QueueFamilyIndex = this.QueueFamilyIndex;
             pointer->QueueIndex = this.QueueIndex;
         }

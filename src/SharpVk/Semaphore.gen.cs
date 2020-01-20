@@ -81,6 +81,30 @@ namespace SharpVk
         }
         
         /// <summary>
+        /// 
+        /// </summary>
+        public unsafe ulong GetCounterValue()
+        {
+            try
+            {
+                ulong result = default(ulong);
+                ulong marshalledValue = default(ulong);
+                SharpVk.Interop.VkSemaphoreGetCounterValueDelegate commandDelegate = commandCache.Cache.vkGetSemaphoreCounterValue;
+                Result methodResult = commandDelegate(this.parent.handle, this.handle, &marshalledValue);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                result = marshalledValue;
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
         /// Destroys the handles and releases any unmanaged resources
         /// associated with it.
         /// </summary>

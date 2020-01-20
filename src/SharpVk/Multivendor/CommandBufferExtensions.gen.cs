@@ -346,11 +346,11 @@ namespace SharpVk.Multivendor
             {
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Multivendor.ConditionalRenderingBeginInfo* marshalledConditionalRenderingBegin = default(SharpVk.Interop.Multivendor.ConditionalRenderingBeginInfo*);
-                void* nextPointer = default(void*);
+                void* vkConditionalRenderingBeginInfoEXTNextPointer = default(void*);
                 commandCache = extendedHandle.commandCache;
                 marshalledConditionalRenderingBegin = (SharpVk.Interop.Multivendor.ConditionalRenderingBeginInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.ConditionalRenderingBeginInfo>());
                 marshalledConditionalRenderingBegin->SType = StructureType.ConditionalRenderingBeginInfo;
-                marshalledConditionalRenderingBegin->Next = nextPointer;
+                marshalledConditionalRenderingBegin->Next = vkConditionalRenderingBeginInfoEXTNextPointer;
                 marshalledConditionalRenderingBegin->Buffer = buffer?.handle ?? default(SharpVk.Interop.Buffer);
                 marshalledConditionalRenderingBegin->Offset = offset;
                 if (flags != null)

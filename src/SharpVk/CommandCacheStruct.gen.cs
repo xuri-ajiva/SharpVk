@@ -859,6 +859,71 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        public readonly Interop.VkCommandBufferDrawIndirectCountDelegate vkCmdDrawIndirectCount; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.VkCommandBufferDrawIndexedIndirectCountDelegate vkCmdDrawIndexedIndirectCount; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.VkDeviceCreateRenderPass2Delegate vkCreateRenderPass2; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.VkCommandBufferBeginRenderPass2Delegate vkCmdBeginRenderPass2; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.VkCommandBufferNextSubpass2Delegate vkCmdNextSubpass2; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.VkCommandBufferEndRenderPass2Delegate vkCmdEndRenderPass2; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.VkQueryPoolResetDelegate vkResetQueryPool; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.VkSemaphoreGetCounterValueDelegate vkGetSemaphoreCounterValue; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.VkDeviceWaitSemaphoresDelegate vkWaitSemaphores; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.VkDeviceSignalSemaphoreDelegate vkSignalSemaphore; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.VkDeviceGetBufferDeviceAddressDelegate vkGetBufferDeviceAddress; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.VkDeviceGetBufferOpaqueCaptureAddressDelegate vkGetBufferOpaqueCaptureAddress; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.VkDeviceGetMemoryOpaqueCaptureAddressDelegate vkGetDeviceMemoryOpaqueCaptureAddress; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public readonly Interop.Khronos.VkSurfaceKHRDestroyDelegate vkDestroySurfaceKHR; 
         
         /// <summary>
@@ -1259,26 +1324,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public readonly Interop.Khronos.VkDeviceCreateRenderPass2Delegate vkCreateRenderPass2KHR; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public readonly Interop.Khronos.VkCommandBufferBeginRenderPass2Delegate vkCmdBeginRenderPass2KHR; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public readonly Interop.Khronos.VkCommandBufferNextSubpass2Delegate vkCmdNextSubpass2KHR; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public readonly Interop.Khronos.VkCommandBufferEndRenderPass2Delegate vkCmdEndRenderPass2KHR; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public readonly Interop.Khronos.VkSwapchainKHRGetStatusDelegate vkGetSwapchainStatusKHR; 
         
         /// <summary>
@@ -1300,6 +1345,26 @@ namespace SharpVk
         /// 
         /// </summary>
         public readonly Interop.Khronos.VkDeviceGetFenceFileDescriptorDelegate vkGetFenceFdKHR; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.Khronos.VkPhysicalDeviceEnumerateQueueFamilyPerformanceQueryCountersDelegate vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.Khronos.VkPhysicalDeviceGetQueueFamilyPerformanceQueryPassesDelegate vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.Khronos.VkDeviceAcquireProfilingLockDelegate vkAcquireProfilingLockKHR; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public readonly Interop.Khronos.VkDeviceReleaseProfilingLockDelegate vkReleaseProfilingLockKHR; 
         
         /// <summary>
         /// 
@@ -1519,16 +1584,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public readonly Interop.Khronos.VkCommandBufferDrawIndirectCountDelegate vkCmdDrawIndirectCountKHR; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public readonly Interop.Khronos.VkCommandBufferDrawIndexedIndirectCountDelegate vkCmdDrawIndexedIndirectCountKHR; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public readonly Interop.Multivendor.VkDeviceGetMemoryHostPointerPropertiesDelegate vkGetMemoryHostPointerPropertiesEXT; 
         
         /// <summary>
@@ -1639,7 +1694,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        public readonly Interop.Multivendor.VkDeviceGetBufferDeviceAddressDelegate vkGetBufferDeviceAddressEXT; 
+        public readonly Interop.Multivendor.VkPhysicalDeviceGetToolPropertiesDelegate vkGetPhysicalDeviceToolPropertiesEXT; 
         
         /// <summary>
         /// 
@@ -1680,11 +1735,6 @@ namespace SharpVk
         /// 
         /// </summary>
         public readonly Interop.Multivendor.VkCommandBufferSetLineStippleDelegate vkCmdSetLineStippleEXT; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public readonly Interop.Multivendor.VkQueryPoolResetDelegate vkResetQueryPoolEXT; 
         
         /// <summary>
         /// 
@@ -1871,6 +1921,19 @@ namespace SharpVk
             this.vkGetPhysicalDeviceExternalFenceProperties = cache.GetCommandDelegate<Interop.VkPhysicalDeviceGetExternalFencePropertiesDelegate>("vkGetPhysicalDeviceExternalFenceProperties", "");
             this.vkGetPhysicalDeviceExternalSemaphoreProperties = cache.GetCommandDelegate<Interop.VkPhysicalDeviceGetExternalSemaphorePropertiesDelegate>("vkGetPhysicalDeviceExternalSemaphoreProperties", "");
             this.vkGetDescriptorSetLayoutSupport = cache.GetCommandDelegate<Interop.VkDeviceGetDescriptorSetLayoutSupportDelegate>("vkGetDescriptorSetLayoutSupport", "");
+            this.vkCmdDrawIndirectCount = cache.GetCommandDelegate<Interop.VkCommandBufferDrawIndirectCountDelegate>("vkCmdDrawIndirectCount", "");
+            this.vkCmdDrawIndexedIndirectCount = cache.GetCommandDelegate<Interop.VkCommandBufferDrawIndexedIndirectCountDelegate>("vkCmdDrawIndexedIndirectCount", "");
+            this.vkCreateRenderPass2 = cache.GetCommandDelegate<Interop.VkDeviceCreateRenderPass2Delegate>("vkCreateRenderPass2", "");
+            this.vkCmdBeginRenderPass2 = cache.GetCommandDelegate<Interop.VkCommandBufferBeginRenderPass2Delegate>("vkCmdBeginRenderPass2", "");
+            this.vkCmdNextSubpass2 = cache.GetCommandDelegate<Interop.VkCommandBufferNextSubpass2Delegate>("vkCmdNextSubpass2", "");
+            this.vkCmdEndRenderPass2 = cache.GetCommandDelegate<Interop.VkCommandBufferEndRenderPass2Delegate>("vkCmdEndRenderPass2", "");
+            this.vkResetQueryPool = cache.GetCommandDelegate<Interop.VkQueryPoolResetDelegate>("vkResetQueryPool", "");
+            this.vkGetSemaphoreCounterValue = cache.GetCommandDelegate<Interop.VkSemaphoreGetCounterValueDelegate>("vkGetSemaphoreCounterValue", "");
+            this.vkWaitSemaphores = cache.GetCommandDelegate<Interop.VkDeviceWaitSemaphoresDelegate>("vkWaitSemaphores", "");
+            this.vkSignalSemaphore = cache.GetCommandDelegate<Interop.VkDeviceSignalSemaphoreDelegate>("vkSignalSemaphore", "");
+            this.vkGetBufferDeviceAddress = cache.GetCommandDelegate<Interop.VkDeviceGetBufferDeviceAddressDelegate>("vkGetBufferDeviceAddress", "");
+            this.vkGetBufferOpaqueCaptureAddress = cache.GetCommandDelegate<Interop.VkDeviceGetBufferOpaqueCaptureAddressDelegate>("vkGetBufferOpaqueCaptureAddress", "");
+            this.vkGetDeviceMemoryOpaqueCaptureAddress = cache.GetCommandDelegate<Interop.VkDeviceGetMemoryOpaqueCaptureAddressDelegate>("vkGetDeviceMemoryOpaqueCaptureAddress", "");
             this.vkDestroySurfaceKHR = cache.GetCommandDelegate<Interop.Khronos.VkSurfaceKHRDestroyDelegate>("vkDestroySurfaceKHR", "instance");
             this.vkGetPhysicalDeviceSurfaceSupportKHR = cache.GetCommandDelegate<Interop.Khronos.VkPhysicalDeviceGetSurfaceSupportDelegate>("vkGetPhysicalDeviceSurfaceSupportKHR", "instance");
             this.vkGetPhysicalDeviceSurfaceCapabilitiesKHR = cache.GetCommandDelegate<Interop.Khronos.VkPhysicalDeviceGetSurfaceCapabilitiesDelegate>("vkGetPhysicalDeviceSurfaceCapabilitiesKHR", "instance");
@@ -1951,15 +2014,15 @@ namespace SharpVk
             this.vkGetPastPresentationTimingGOOGLE = cache.GetCommandDelegate<Interop.Google.VkSwapchainKHRGetPastPresentationTimingDelegate>("vkGetPastPresentationTimingGOOGLE", "device");
             this.vkCmdSetDiscardRectangleEXT = cache.GetCommandDelegate<Interop.Multivendor.VkCommandBufferSetDiscardRectangleDelegate>("vkCmdSetDiscardRectangleEXT", "device");
             this.vkSetHdrMetadataEXT = cache.GetCommandDelegate<Interop.Multivendor.VkDeviceSetHdrMetadataDelegate>("vkSetHdrMetadataEXT", "device");
-            this.vkCreateRenderPass2KHR = cache.GetCommandDelegate<Interop.Khronos.VkDeviceCreateRenderPass2Delegate>("vkCreateRenderPass2KHR", "device");
-            this.vkCmdBeginRenderPass2KHR = cache.GetCommandDelegate<Interop.Khronos.VkCommandBufferBeginRenderPass2Delegate>("vkCmdBeginRenderPass2KHR", "device");
-            this.vkCmdNextSubpass2KHR = cache.GetCommandDelegate<Interop.Khronos.VkCommandBufferNextSubpass2Delegate>("vkCmdNextSubpass2KHR", "device");
-            this.vkCmdEndRenderPass2KHR = cache.GetCommandDelegate<Interop.Khronos.VkCommandBufferEndRenderPass2Delegate>("vkCmdEndRenderPass2KHR", "device");
             this.vkGetSwapchainStatusKHR = cache.GetCommandDelegate<Interop.Khronos.VkSwapchainKHRGetStatusDelegate>("vkGetSwapchainStatusKHR", "device");
             this.vkImportFenceWin32HandleKHR = cache.GetCommandDelegate<Interop.Khronos.VkDeviceImportFenceWin32HandleDelegate>("vkImportFenceWin32HandleKHR", "device");
             this.vkGetFenceWin32HandleKHR = cache.GetCommandDelegate<Interop.Khronos.VkDeviceGetFenceWin32HandleDelegate>("vkGetFenceWin32HandleKHR", "device");
             this.vkImportFenceFdKHR = cache.GetCommandDelegate<Interop.Khronos.VkDeviceImportFenceFileDescriptorDelegate>("vkImportFenceFdKHR", "device");
             this.vkGetFenceFdKHR = cache.GetCommandDelegate<Interop.Khronos.VkDeviceGetFenceFileDescriptorDelegate>("vkGetFenceFdKHR", "device");
+            this.vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR = cache.GetCommandDelegate<Interop.Khronos.VkPhysicalDeviceEnumerateQueueFamilyPerformanceQueryCountersDelegate>("vkEnumeratePhysicalDeviceQueueFamilyPerformanceQueryCountersKHR", "device");
+            this.vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR = cache.GetCommandDelegate<Interop.Khronos.VkPhysicalDeviceGetQueueFamilyPerformanceQueryPassesDelegate>("vkGetPhysicalDeviceQueueFamilyPerformanceQueryPassesKHR", "device");
+            this.vkAcquireProfilingLockKHR = cache.GetCommandDelegate<Interop.Khronos.VkDeviceAcquireProfilingLockDelegate>("vkAcquireProfilingLockKHR", "device");
+            this.vkReleaseProfilingLockKHR = cache.GetCommandDelegate<Interop.Khronos.VkDeviceReleaseProfilingLockDelegate>("vkReleaseProfilingLockKHR", "device");
             this.vkGetPhysicalDeviceSurfaceCapabilities2KHR = cache.GetCommandDelegate<Interop.Khronos.VkPhysicalDeviceGetSurfaceCapabilities2Delegate>("vkGetPhysicalDeviceSurfaceCapabilities2KHR", "instance");
             this.vkGetPhysicalDeviceSurfaceFormats2KHR = cache.GetCommandDelegate<Interop.Khronos.VkPhysicalDeviceGetSurfaceFormats2Delegate>("vkGetPhysicalDeviceSurfaceFormats2KHR", "instance");
             this.vkGetPhysicalDeviceDisplayProperties2KHR = cache.GetCommandDelegate<Interop.Khronos.VkPhysicalDeviceGetDisplayProperties2Delegate>("vkGetPhysicalDeviceDisplayProperties2KHR", "instance");
@@ -2003,8 +2066,6 @@ namespace SharpVk
             this.vkGetAccelerationStructureHandleNV = cache.GetCommandDelegate<Interop.NVidia.VkAccelerationStructureNVGetHandleDelegate>("vkGetAccelerationStructureHandleNV", "device");
             this.vkCmdWriteAccelerationStructuresPropertiesNV = cache.GetCommandDelegate<Interop.NVidia.VkCommandBufferWriteAccelerationStructuresPropertiesDelegate>("vkCmdWriteAccelerationStructuresPropertiesNV", "device");
             this.vkCompileDeferredNV = cache.GetCommandDelegate<Interop.NVidia.VkPipelineCompileDeferredDelegate>("vkCompileDeferredNV", "device");
-            this.vkCmdDrawIndirectCountKHR = cache.GetCommandDelegate<Interop.Khronos.VkCommandBufferDrawIndirectCountDelegate>("vkCmdDrawIndirectCountKHR", "device");
-            this.vkCmdDrawIndexedIndirectCountKHR = cache.GetCommandDelegate<Interop.Khronos.VkCommandBufferDrawIndexedIndirectCountDelegate>("vkCmdDrawIndexedIndirectCountKHR", "device");
             this.vkGetMemoryHostPointerPropertiesEXT = cache.GetCommandDelegate<Interop.Multivendor.VkDeviceGetMemoryHostPointerPropertiesDelegate>("vkGetMemoryHostPointerPropertiesEXT", "device");
             this.vkCmdWriteBufferMarkerAMD = cache.GetCommandDelegate<Interop.Amd.VkCommandBufferWriteBufferMarkerDelegate>("vkCmdWriteBufferMarkerAMD", "device");
             this.vkGetPhysicalDeviceCalibrateableTimeDomainsEXT = cache.GetCommandDelegate<Interop.Multivendor.VkPhysicalDeviceGetCalibrateableTimeDomainsDelegate>("vkGetPhysicalDeviceCalibrateableTimeDomainsEXT", "device");
@@ -2027,7 +2088,7 @@ namespace SharpVk
             this.vkSetLocalDimmingAMD = cache.GetCommandDelegate<Interop.Amd.VkSwapchainKHRSetLocalDimmingDelegate>("vkSetLocalDimmingAMD", "device");
             this.vkCreateImagePipeSurfaceFUCHSIA = cache.GetCommandDelegate<Interop.Fuchsia.VkInstanceCreateImagePipeSurfaceDelegate>("vkCreateImagePipeSurfaceFUCHSIA", "instance");
             this.vkCreateMetalSurfaceEXT = cache.GetCommandDelegate<Interop.Multivendor.VkInstanceCreateMetalSurfaceDelegate>("vkCreateMetalSurfaceEXT", "instance");
-            this.vkGetBufferDeviceAddressEXT = cache.GetCommandDelegate<Interop.Multivendor.VkDeviceGetBufferDeviceAddressDelegate>("vkGetBufferDeviceAddressEXT", "device");
+            this.vkGetPhysicalDeviceToolPropertiesEXT = cache.GetCommandDelegate<Interop.Multivendor.VkPhysicalDeviceGetToolPropertiesDelegate>("vkGetPhysicalDeviceToolPropertiesEXT", "device");
             this.vkGetPhysicalDeviceCooperativeMatrixPropertiesNV = cache.GetCommandDelegate<Interop.NVidia.VkPhysicalDeviceGetCooperativeMatrixPropertiesDelegate>("vkGetPhysicalDeviceCooperativeMatrixPropertiesNV", "device");
             this.vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV = cache.GetCommandDelegate<Interop.NVidia.VkPhysicalDeviceGetSupportedFramebufferMixedSamplesCombinationsDelegate>("vkGetPhysicalDeviceSupportedFramebufferMixedSamplesCombinationsNV", "device");
             this.vkGetPhysicalDeviceSurfacePresentModes2EXT = cache.GetCommandDelegate<Interop.Multivendor.VkPhysicalDeviceGetSurfacePresentModes2Delegate>("vkGetPhysicalDeviceSurfacePresentModes2EXT", "device");
@@ -2036,7 +2097,6 @@ namespace SharpVk
             this.vkGetDeviceGroupSurfacePresentModes2EXT = cache.GetCommandDelegate<Interop.Multivendor.VkDeviceGetGroupSurfacePresentModes2Delegate>("vkGetDeviceGroupSurfacePresentModes2EXT", "device");
             this.vkCreateHeadlessSurfaceEXT = cache.GetCommandDelegate<Interop.Multivendor.VkInstanceCreateHeadlessSurfaceDelegate>("vkCreateHeadlessSurfaceEXT", "instance");
             this.vkCmdSetLineStippleEXT = cache.GetCommandDelegate<Interop.Multivendor.VkCommandBufferSetLineStippleDelegate>("vkCmdSetLineStippleEXT", "device");
-            this.vkResetQueryPoolEXT = cache.GetCommandDelegate<Interop.Multivendor.VkQueryPoolResetDelegate>("vkResetQueryPoolEXT", "device");
             this.vkGetPipelineExecutablePropertiesKHR = cache.GetCommandDelegate<Interop.Khronos.VkDeviceGetPipelineExecutablePropertiesDelegate>("vkGetPipelineExecutablePropertiesKHR", "device");
             this.vkGetPipelineExecutableStatisticsKHR = cache.GetCommandDelegate<Interop.Khronos.VkDeviceGetPipelineExecutableStatisticsDelegate>("vkGetPipelineExecutableStatisticsKHR", "device");
             this.vkGetPipelineExecutableInternalRepresentationsKHR = cache.GetCommandDelegate<Interop.Khronos.VkDeviceGetPipelineExecutableInternalRepresentationsDelegate>("vkGetPipelineExecutableInternalRepresentationsKHR", "device");

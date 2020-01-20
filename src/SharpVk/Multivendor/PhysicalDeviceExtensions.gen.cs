@@ -221,6 +221,50 @@ namespace SharpVk.Multivendor
         }
         
         /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The PhysicalDevice handle to extend.
+        /// </param>
+        public static unsafe SharpVk.Multivendor.PhysicalDeviceToolProperties[] GetToolProperties(this SharpVk.PhysicalDevice extendedHandle)
+        {
+            try
+            {
+                SharpVk.Multivendor.PhysicalDeviceToolProperties[] result = default(SharpVk.Multivendor.PhysicalDeviceToolProperties[]);
+                uint marshalledToolCount = default(uint);
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Multivendor.PhysicalDeviceToolProperties* marshalledToolProperties = default(SharpVk.Interop.Multivendor.PhysicalDeviceToolProperties*);
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Multivendor.VkPhysicalDeviceGetToolPropertiesDelegate commandDelegate = commandCache.Cache.vkGetPhysicalDeviceToolPropertiesEXT;
+                Result methodResult = commandDelegate(extendedHandle.handle, &marshalledToolCount, marshalledToolProperties);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+                marshalledToolProperties = (SharpVk.Interop.Multivendor.PhysicalDeviceToolProperties*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.PhysicalDeviceToolProperties>((uint)(marshalledToolCount)));
+                commandDelegate(extendedHandle.handle, &marshalledToolCount, marshalledToolProperties);
+                if (marshalledToolProperties != null)
+                {
+                    var fieldPointer = new SharpVk.Multivendor.PhysicalDeviceToolProperties[(uint)(marshalledToolCount)];
+                    for(int index = 0; index < (uint)(marshalledToolCount); index++)
+                    {
+                        fieldPointer[index] = SharpVk.Multivendor.PhysicalDeviceToolProperties.MarshalFrom(&marshalledToolProperties[index]);
+                    }
+                    result = fieldPointer;
+                }
+                else
+                {
+                    result = null;
+                }
+                return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
         /// Query supported presentation modes
         /// </summary>
         /// <param name="extendedHandle">

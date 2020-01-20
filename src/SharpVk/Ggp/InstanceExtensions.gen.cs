@@ -48,13 +48,13 @@ namespace SharpVk.Ggp
                 SharpVk.Khronos.Surface result = default(SharpVk.Khronos.Surface);
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Ggp.StreamDescriptorSurfaceCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Ggp.StreamDescriptorSurfaceCreateInfo*);
-                void* nextPointer = default(void*);
+                void* vkStreamDescriptorSurfaceCreateInfoGGPNextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Khronos.Surface marshalledSurface = default(SharpVk.Interop.Khronos.Surface);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.Ggp.StreamDescriptorSurfaceCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Ggp.StreamDescriptorSurfaceCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.StreamDescriptorSurfaceCreateInfo;
-                marshalledCreateInfo->Next = nextPointer;
+                marshalledCreateInfo->Next = vkStreamDescriptorSurfaceCreateInfoGGPNextPointer;
                 if (flags != null)
                 {
                     marshalledCreateInfo->Flags = flags.Value;

@@ -22,15 +22,17 @@ namespace SharpVk.Generator.Generation.Marshalling
             {
                 if (context.IsMethod)
                 {
+                    var variableName = (context.VkName + "NextPointer").FirstToLower();
+
                     info.MarshalTo.Add((getTarget, getValue) => new DeclarationAction
                     {
                         MemberType = "void*",
-                        MemberName = "nextPointer"
+                        MemberName = variableName
                     });
 
                     info.MarshalTo.Add((getTarget, getValue) => new AssignAction
                     {
-                        ValueExpression = Variable("nextPointer"),
+                        ValueExpression = Variable(variableName),
                         TargetExpression = getTarget(source.Name)
                     });
                 }

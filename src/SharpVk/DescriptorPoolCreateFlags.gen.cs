@@ -39,10 +39,5 @@ namespace SharpVk
         /// 
         /// </summary>
         FreeDescriptorSet = 1 << 0, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        UpdateAfterBind = 1 << 1, 
     }
 }

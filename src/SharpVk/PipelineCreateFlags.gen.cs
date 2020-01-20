@@ -57,6 +57,31 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        Extension151Bit0 = 1 << 11, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Extension151Bit1 = 1 << 14, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Extension151Bit2 = 1 << 15, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Extension151Bit3 = 1 << 16, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Extension151Bit4 = 1 << 17, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         DeferCompile = 1 << 5, 
         
         /// <summary>
@@ -68,5 +93,30 @@ namespace SharpVk
         /// 
         /// </summary>
         CaptureInternalRepresentations = 1 << 7, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Extension291Bit0 = 1 << 12, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Extension291Bit1 = 1 << 13, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Reserved8 = 1 << 8, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Reserved9 = 1 << 9, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Reserved10 = 1 << 10, 
     }
 }

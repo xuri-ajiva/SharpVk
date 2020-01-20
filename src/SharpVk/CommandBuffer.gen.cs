@@ -64,18 +64,18 @@ namespace SharpVk
             try
             {
                 SharpVk.Interop.CommandBufferBeginInfo* marshalledBeginInfo = default(SharpVk.Interop.CommandBufferBeginInfo*);
-                void* nextPointer = default(void*);
+                void* vkCommandBufferBeginInfoNextPointer = default(void*);
                 if (deviceGroupCommandBufferBeginInfo != null)
                 {
                     SharpVk.Interop.DeviceGroupCommandBufferBeginInfo* extensionPointer = default(SharpVk.Interop.DeviceGroupCommandBufferBeginInfo*);
                     extensionPointer = (SharpVk.Interop.DeviceGroupCommandBufferBeginInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.DeviceGroupCommandBufferBeginInfo>());
                     deviceGroupCommandBufferBeginInfo.Value.MarshalTo(extensionPointer);
-                    extensionPointer->Next = nextPointer;
-                    nextPointer = extensionPointer;
+                    extensionPointer->Next = vkCommandBufferBeginInfoNextPointer;
+                    vkCommandBufferBeginInfoNextPointer = extensionPointer;
                 }
                 marshalledBeginInfo = (SharpVk.Interop.CommandBufferBeginInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.CommandBufferBeginInfo>());
                 marshalledBeginInfo->SType = StructureType.CommandBufferBeginInfo;
-                marshalledBeginInfo->Next = nextPointer;
+                marshalledBeginInfo->Next = vkCommandBufferBeginInfoNextPointer;
                 if (flags != null)
                 {
                     marshalledBeginInfo->Flags = flags.Value;
@@ -1451,42 +1451,42 @@ namespace SharpVk
         /// <param name="renderPassSampleLocationsBeginInfoExt">
         /// Extension struct
         /// </param>
-        /// <param name="renderPassAttachmentBeginInfoKhr">
+        /// <param name="renderPassAttachmentBeginInfo">
         /// Extension struct
         /// </param>
-        public unsafe void BeginRenderPass(SharpVk.RenderPass renderPass, SharpVk.Framebuffer framebuffer, SharpVk.Rect2D renderArea, ArrayProxy<SharpVk.ClearValue>? clearValues, SharpVk.SubpassContents contents, SharpVk.DeviceGroupRenderPassBeginInfo? deviceGroupRenderPassBeginInfo = null, SharpVk.Multivendor.RenderPassSampleLocationsBeginInfo? renderPassSampleLocationsBeginInfoExt = null, SharpVk.Khronos.RenderPassAttachmentBeginInfo? renderPassAttachmentBeginInfoKhr = null)
+        public unsafe void BeginRenderPass(SharpVk.RenderPass renderPass, SharpVk.Framebuffer framebuffer, SharpVk.Rect2D renderArea, ArrayProxy<SharpVk.ClearValue>? clearValues, SharpVk.SubpassContents contents, SharpVk.DeviceGroupRenderPassBeginInfo? deviceGroupRenderPassBeginInfo = null, SharpVk.Multivendor.RenderPassSampleLocationsBeginInfo? renderPassSampleLocationsBeginInfoExt = null, SharpVk.RenderPassAttachmentBeginInfo? renderPassAttachmentBeginInfo = null)
         {
             try
             {
                 SharpVk.Interop.RenderPassBeginInfo* marshalledRenderPassBegin = default(SharpVk.Interop.RenderPassBeginInfo*);
-                void* nextPointer = default(void*);
+                void* vkRenderPassBeginInfoNextPointer = default(void*);
                 if (deviceGroupRenderPassBeginInfo != null)
                 {
                     SharpVk.Interop.DeviceGroupRenderPassBeginInfo* extensionPointer = default(SharpVk.Interop.DeviceGroupRenderPassBeginInfo*);
                     extensionPointer = (SharpVk.Interop.DeviceGroupRenderPassBeginInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.DeviceGroupRenderPassBeginInfo>());
                     deviceGroupRenderPassBeginInfo.Value.MarshalTo(extensionPointer);
-                    extensionPointer->Next = nextPointer;
-                    nextPointer = extensionPointer;
+                    extensionPointer->Next = vkRenderPassBeginInfoNextPointer;
+                    vkRenderPassBeginInfoNextPointer = extensionPointer;
                 }
                 if (renderPassSampleLocationsBeginInfoExt != null)
                 {
                     SharpVk.Interop.Multivendor.RenderPassSampleLocationsBeginInfo* extensionPointer = default(SharpVk.Interop.Multivendor.RenderPassSampleLocationsBeginInfo*);
                     extensionPointer = (SharpVk.Interop.Multivendor.RenderPassSampleLocationsBeginInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.RenderPassSampleLocationsBeginInfo>());
                     renderPassSampleLocationsBeginInfoExt.Value.MarshalTo(extensionPointer);
-                    extensionPointer->Next = nextPointer;
-                    nextPointer = extensionPointer;
+                    extensionPointer->Next = vkRenderPassBeginInfoNextPointer;
+                    vkRenderPassBeginInfoNextPointer = extensionPointer;
                 }
-                if (renderPassAttachmentBeginInfoKhr != null)
+                if (renderPassAttachmentBeginInfo != null)
                 {
-                    SharpVk.Interop.Khronos.RenderPassAttachmentBeginInfo* extensionPointer = default(SharpVk.Interop.Khronos.RenderPassAttachmentBeginInfo*);
-                    extensionPointer = (SharpVk.Interop.Khronos.RenderPassAttachmentBeginInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.RenderPassAttachmentBeginInfo>());
-                    renderPassAttachmentBeginInfoKhr.Value.MarshalTo(extensionPointer);
-                    extensionPointer->Next = nextPointer;
-                    nextPointer = extensionPointer;
+                    SharpVk.Interop.RenderPassAttachmentBeginInfo* extensionPointer = default(SharpVk.Interop.RenderPassAttachmentBeginInfo*);
+                    extensionPointer = (SharpVk.Interop.RenderPassAttachmentBeginInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.RenderPassAttachmentBeginInfo>());
+                    renderPassAttachmentBeginInfo.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = vkRenderPassBeginInfoNextPointer;
+                    vkRenderPassBeginInfoNextPointer = extensionPointer;
                 }
                 marshalledRenderPassBegin = (SharpVk.Interop.RenderPassBeginInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.RenderPassBeginInfo>());
                 marshalledRenderPassBegin->SType = StructureType.RenderPassBeginInfo;
-                marshalledRenderPassBegin->Next = nextPointer;
+                marshalledRenderPassBegin->Next = vkRenderPassBeginInfoNextPointer;
                 marshalledRenderPassBegin->RenderPass = renderPass?.handle ?? default(SharpVk.Interop.RenderPass);
                 marshalledRenderPassBegin->Framebuffer = framebuffer?.handle ?? default(SharpVk.Interop.Framebuffer);
                 marshalledRenderPassBegin->RenderArea = renderArea;
@@ -1618,6 +1618,177 @@ namespace SharpVk
             {
                 SharpVk.Interop.VkCommandBufferDispatchBaseDelegate commandDelegate = commandCache.Cache.vkCmdDispatchBase;
                 commandDelegate(this.handle, baseGroupX, baseGroupY, baseGroupZ, groupCountX, groupCountY, groupCountZ);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe void DrawIndirectCount(SharpVk.Buffer buffer, ulong offset, SharpVk.Buffer countBuffer, ulong countBufferOffset, uint maxDrawCount, uint stride)
+        {
+            try
+            {
+                SharpVk.Interop.VkCommandBufferDrawIndirectCountDelegate commandDelegate = commandCache.Cache.vkCmdDrawIndirectCount;
+                commandDelegate(this.handle, buffer?.handle ?? default(SharpVk.Interop.Buffer), offset, countBuffer?.handle ?? default(SharpVk.Interop.Buffer), countBufferOffset, maxDrawCount, stride);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe void DrawIndexedIndirectCount(SharpVk.Buffer buffer, ulong offset, SharpVk.Buffer countBuffer, ulong countBufferOffset, uint maxDrawCount, uint stride)
+        {
+            try
+            {
+                SharpVk.Interop.VkCommandBufferDrawIndexedIndirectCountDelegate commandDelegate = commandCache.Cache.vkCmdDrawIndexedIndirectCount;
+                commandDelegate(this.handle, buffer?.handle ?? default(SharpVk.Interop.Buffer), offset, countBuffer?.handle ?? default(SharpVk.Interop.Buffer), countBufferOffset, maxDrawCount, stride);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="renderPass">
+        /// The render pass to begin an instance of.
+        /// </param>
+        /// <param name="framebuffer">
+        /// The framebuffer containing the attachments that are used with the
+        /// render pass.
+        /// </param>
+        /// <param name="renderArea">
+        /// The render area that is affected by the render pass instance, and
+        /// is described in more detail below.
+        /// </param>
+        /// <param name="clearValues">
+        /// </param>
+        /// <param name="deviceGroupRenderPassBeginInfo">
+        /// Extension struct
+        /// </param>
+        /// <param name="renderPassSampleLocationsBeginInfoExt">
+        /// Extension struct
+        /// </param>
+        /// <param name="renderPassAttachmentBeginInfo">
+        /// Extension struct
+        /// </param>
+        public unsafe void BeginRenderPass2(SharpVk.RenderPass renderPass, SharpVk.Framebuffer framebuffer, SharpVk.Rect2D renderArea, ArrayProxy<SharpVk.ClearValue>? clearValues, SharpVk.SubpassContents contents, SharpVk.DeviceGroupRenderPassBeginInfo? deviceGroupRenderPassBeginInfo = null, SharpVk.Multivendor.RenderPassSampleLocationsBeginInfo? renderPassSampleLocationsBeginInfoExt = null, SharpVk.RenderPassAttachmentBeginInfo? renderPassAttachmentBeginInfo = null)
+        {
+            try
+            {
+                SharpVk.Interop.RenderPassBeginInfo* marshalledRenderPassBegin = default(SharpVk.Interop.RenderPassBeginInfo*);
+                void* vkRenderPassBeginInfoNextPointer = default(void*);
+                SharpVk.Interop.SubpassBeginInfo* marshalledSubpassBeginInfo = default(SharpVk.Interop.SubpassBeginInfo*);
+                void* vkSubpassBeginInfoNextPointer = default(void*);
+                if (deviceGroupRenderPassBeginInfo != null)
+                {
+                    SharpVk.Interop.DeviceGroupRenderPassBeginInfo* extensionPointer = default(SharpVk.Interop.DeviceGroupRenderPassBeginInfo*);
+                    extensionPointer = (SharpVk.Interop.DeviceGroupRenderPassBeginInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.DeviceGroupRenderPassBeginInfo>());
+                    deviceGroupRenderPassBeginInfo.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = vkRenderPassBeginInfoNextPointer;
+                    vkRenderPassBeginInfoNextPointer = extensionPointer;
+                }
+                if (renderPassSampleLocationsBeginInfoExt != null)
+                {
+                    SharpVk.Interop.Multivendor.RenderPassSampleLocationsBeginInfo* extensionPointer = default(SharpVk.Interop.Multivendor.RenderPassSampleLocationsBeginInfo*);
+                    extensionPointer = (SharpVk.Interop.Multivendor.RenderPassSampleLocationsBeginInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.RenderPassSampleLocationsBeginInfo>());
+                    renderPassSampleLocationsBeginInfoExt.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = vkRenderPassBeginInfoNextPointer;
+                    vkRenderPassBeginInfoNextPointer = extensionPointer;
+                }
+                if (renderPassAttachmentBeginInfo != null)
+                {
+                    SharpVk.Interop.RenderPassAttachmentBeginInfo* extensionPointer = default(SharpVk.Interop.RenderPassAttachmentBeginInfo*);
+                    extensionPointer = (SharpVk.Interop.RenderPassAttachmentBeginInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.RenderPassAttachmentBeginInfo>());
+                    renderPassAttachmentBeginInfo.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = vkRenderPassBeginInfoNextPointer;
+                    vkRenderPassBeginInfoNextPointer = extensionPointer;
+                }
+                marshalledRenderPassBegin = (SharpVk.Interop.RenderPassBeginInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.RenderPassBeginInfo>());
+                marshalledRenderPassBegin->SType = StructureType.RenderPassBeginInfo;
+                marshalledRenderPassBegin->Next = vkRenderPassBeginInfoNextPointer;
+                marshalledRenderPassBegin->RenderPass = renderPass?.handle ?? default(SharpVk.Interop.RenderPass);
+                marshalledRenderPassBegin->Framebuffer = framebuffer?.handle ?? default(SharpVk.Interop.Framebuffer);
+                marshalledRenderPassBegin->RenderArea = renderArea;
+                marshalledRenderPassBegin->ClearValueCount = (uint)(Interop.HeapUtil.GetLength(clearValues));
+                if (clearValues.IsNull())
+                {
+                    marshalledRenderPassBegin->ClearValues = null;
+                }
+                else
+                {
+                    if (clearValues.Value.Contents == ProxyContents.Single)
+                    {
+                        marshalledRenderPassBegin->ClearValues = (SharpVk.ClearValue*)(Interop.HeapUtil.Allocate<SharpVk.ClearValue>());
+                        *(SharpVk.ClearValue*)(marshalledRenderPassBegin->ClearValues) = clearValues.Value.GetSingleValue();
+                    }
+                    else
+                    {
+                        var fieldPointer = (SharpVk.ClearValue*)(Interop.HeapUtil.AllocateAndClear<SharpVk.ClearValue>(Interop.HeapUtil.GetLength(clearValues.Value)).ToPointer());
+                        for(int index = 0; index < (uint)(Interop.HeapUtil.GetLength(clearValues.Value)); index++)
+                        {
+                            fieldPointer[index] = clearValues.Value[index];
+                        }
+                        marshalledRenderPassBegin->ClearValues = fieldPointer;
+                    }
+                }
+                marshalledSubpassBeginInfo = (SharpVk.Interop.SubpassBeginInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.SubpassBeginInfo>());
+                marshalledSubpassBeginInfo->Next = vkSubpassBeginInfoNextPointer;
+                marshalledSubpassBeginInfo->Contents = contents;
+                SharpVk.Interop.VkCommandBufferBeginRenderPass2Delegate commandDelegate = commandCache.Cache.vkCmdBeginRenderPass2;
+                commandDelegate(this.handle, marshalledRenderPassBegin, marshalledSubpassBeginInfo);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe void NextSubpass2(SharpVk.SubpassBeginInfo subpassBeginInfo, SharpVk.SubpassEndInfo subpassEndInfo)
+        {
+            try
+            {
+                SharpVk.Interop.SubpassBeginInfo* marshalledSubpassBeginInfo = default(SharpVk.Interop.SubpassBeginInfo*);
+                SharpVk.Interop.SubpassEndInfo* marshalledSubpassEndInfo = default(SharpVk.Interop.SubpassEndInfo*);
+                marshalledSubpassBeginInfo = (SharpVk.Interop.SubpassBeginInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.SubpassBeginInfo>());
+                subpassBeginInfo.MarshalTo(marshalledSubpassBeginInfo);
+                marshalledSubpassEndInfo = (SharpVk.Interop.SubpassEndInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.SubpassEndInfo>());
+                subpassEndInfo.MarshalTo(marshalledSubpassEndInfo);
+                SharpVk.Interop.VkCommandBufferNextSubpass2Delegate commandDelegate = commandCache.Cache.vkCmdNextSubpass2;
+                commandDelegate(this.handle, marshalledSubpassBeginInfo, marshalledSubpassEndInfo);
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public unsafe void EndRenderPass2()
+        {
+            try
+            {
+                SharpVk.Interop.SubpassEndInfo* marshalledSubpassEndInfo = default(SharpVk.Interop.SubpassEndInfo*);
+                void* vkSubpassEndInfoNextPointer = default(void*);
+                marshalledSubpassEndInfo = (SharpVk.Interop.SubpassEndInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.SubpassEndInfo>());
+                marshalledSubpassEndInfo->Next = vkSubpassEndInfoNextPointer;
+                SharpVk.Interop.VkCommandBufferEndRenderPass2Delegate commandDelegate = commandCache.Cache.vkCmdEndRenderPass2;
+                commandDelegate(this.handle, marshalledSubpassEndInfo);
             }
             finally
             {

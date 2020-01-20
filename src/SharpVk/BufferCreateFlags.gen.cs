@@ -56,11 +56,5 @@ namespace SharpVk
         /// CreateSparseBinding flag.
         /// </summary>
         SparseAliased = 1 << 2, 
-        
-        /// <summary>
-        /// Specifies that the buffer’s address can be saved and reused on a
-        /// subsequent run (e.g. for trace capture and replay).
-        /// </summary>
-        DeviceAddressCaptureReplay = 1 << 4, 
     }
 }

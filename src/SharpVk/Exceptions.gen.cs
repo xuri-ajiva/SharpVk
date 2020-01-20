@@ -89,6 +89,8 @@ namespace SharpVk
                     return new FormatNotSupportedException();
                 case Result.ErrorFragmentedPool:
                     return new FragmentedPoolException();
+                case Result.ErrorUnknown:
+                    return new UnknownException();
                 case Result.ErrorSurfaceLost:
                     return new SurfaceLostException();
                 case Result.ErrorNativeWindowInUse:
@@ -103,12 +105,8 @@ namespace SharpVk
                     return new InvalidShaderException();
                 case Result.ErrorInvalidDrmFormatModifierPlaneLayout:
                     return new InvalidDrmFormatModifierPlaneLayoutException();
-                case Result.ErrorFragmentation:
-                    return new FragmentationException();
                 case Result.ErrorNotPermitted:
                     return new NotPermittedException();
-                case Result.ErrorInvalidDeviceAddress:
-                    return new InvalidDeviceAddressException();
                 case Result.ErrorFullScreenExclusiveModeLost:
                     return new FullScreenExclusiveModeLostException();
             }
@@ -352,6 +350,23 @@ namespace SharpVk
     /// <summary>
     /// 
     /// </summary>
+    public class UnknownException
+        : SharpVkException
+    {
+        internal UnknownException()
+            : base("")
+        {
+        }
+        
+        /// <summary>
+        /// The Vulkan result code represented by this exception.
+        /// </summary>
+        public override Result ResultCode => Result.ErrorUnknown;
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
     public class SurfaceLostException
         : SharpVkException
     {
@@ -471,23 +486,6 @@ namespace SharpVk
     /// <summary>
     /// 
     /// </summary>
-    public class FragmentationException
-        : SharpVkException
-    {
-        internal FragmentationException()
-            : base("")
-        {
-        }
-        
-        /// <summary>
-        /// The Vulkan result code represented by this exception.
-        /// </summary>
-        public override Result ResultCode => Result.ErrorFragmentation;
-    }
-    
-    /// <summary>
-    /// 
-    /// </summary>
     public class NotPermittedException
         : SharpVkException
     {
@@ -500,23 +498,6 @@ namespace SharpVk
         /// The Vulkan result code represented by this exception.
         /// </summary>
         public override Result ResultCode => Result.ErrorNotPermitted;
-    }
-    
-    /// <summary>
-    /// 
-    /// </summary>
-    public class InvalidDeviceAddressException
-        : SharpVkException
-    {
-        internal InvalidDeviceAddressException()
-            : base("")
-        {
-        }
-        
-        /// <summary>
-        /// The Vulkan result code represented by this exception.
-        /// </summary>
-        public override Result ResultCode => Result.ErrorInvalidDeviceAddress;
     }
     
     /// <summary>

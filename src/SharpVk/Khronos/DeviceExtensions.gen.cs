@@ -52,7 +52,7 @@ namespace SharpVk.Khronos
         /// <param name="swapchainDisplayNativeHdrCreateInfoAmd">
         /// Extension struct
         /// </param>
-        /// <param name="imageFormatListCreateInfoKhr">
+        /// <param name="imageFormatListCreateInfo">
         /// Extension struct
         /// </param>
         /// <param name="surfaceFullScreenExclusiveInfoExt">
@@ -65,14 +65,14 @@ namespace SharpVk.Khronos
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
         /// </param>
-        public static unsafe SharpVk.Khronos.Swapchain CreateSwapchain(this SharpVk.Device extendedHandle, SharpVk.Khronos.Surface surface, uint minImageCount, SharpVk.Format imageFormat, SharpVk.Khronos.ColorSpace imageColorSpace, SharpVk.Extent2D imageExtent, uint imageArrayLayers, SharpVk.ImageUsageFlags imageUsage, SharpVk.SharingMode imageSharingMode, ArrayProxy<uint>? queueFamilyIndices, SharpVk.Khronos.SurfaceTransformFlags preTransform, SharpVk.Khronos.CompositeAlphaFlags compositeAlpha, SharpVk.Khronos.PresentMode presentMode, bool clipped, SharpVk.Khronos.Swapchain oldSwapchain, SharpVk.Khronos.SwapchainCreateFlags? flags = default(SharpVk.Khronos.SwapchainCreateFlags?), SharpVk.Multivendor.SwapchainCounterCreateInfo? swapchainCounterCreateInfoExt = null, SharpVk.Khronos.DeviceGroupSwapchainCreateInfo? deviceGroupSwapchainCreateInfoKhr = null, SharpVk.Amd.SwapchainDisplayNativeHdrCreateInfo? swapchainDisplayNativeHdrCreateInfoAmd = null, SharpVk.Khronos.ImageFormatListCreateInfo? imageFormatListCreateInfoKhr = null, SharpVk.Multivendor.SurfaceFullScreenExclusiveInfo? surfaceFullScreenExclusiveInfoExt = null, SharpVk.Multivendor.SurfaceFullScreenExclusiveWin32Info? surfaceFullScreenExclusiveWin32InfoExt = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public static unsafe SharpVk.Khronos.Swapchain CreateSwapchain(this SharpVk.Device extendedHandle, SharpVk.Khronos.Surface surface, uint minImageCount, SharpVk.Format imageFormat, SharpVk.Khronos.ColorSpace imageColorSpace, SharpVk.Extent2D imageExtent, uint imageArrayLayers, SharpVk.ImageUsageFlags imageUsage, SharpVk.SharingMode imageSharingMode, ArrayProxy<uint>? queueFamilyIndices, SharpVk.Khronos.SurfaceTransformFlags preTransform, SharpVk.Khronos.CompositeAlphaFlags compositeAlpha, SharpVk.Khronos.PresentMode presentMode, bool clipped, SharpVk.Khronos.Swapchain oldSwapchain, SharpVk.Khronos.SwapchainCreateFlags? flags = default(SharpVk.Khronos.SwapchainCreateFlags?), SharpVk.Multivendor.SwapchainCounterCreateInfo? swapchainCounterCreateInfoExt = null, SharpVk.Khronos.DeviceGroupSwapchainCreateInfo? deviceGroupSwapchainCreateInfoKhr = null, SharpVk.Amd.SwapchainDisplayNativeHdrCreateInfo? swapchainDisplayNativeHdrCreateInfoAmd = null, SharpVk.ImageFormatListCreateInfo? imageFormatListCreateInfo = null, SharpVk.Multivendor.SurfaceFullScreenExclusiveInfo? surfaceFullScreenExclusiveInfoExt = null, SharpVk.Multivendor.SurfaceFullScreenExclusiveWin32Info? surfaceFullScreenExclusiveWin32InfoExt = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
                 SharpVk.Khronos.Swapchain result = default(SharpVk.Khronos.Swapchain);
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Khronos.SwapchainCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.Khronos.SwapchainCreateInfo*);
-                void* nextPointer = default(void*);
+                void* vkSwapchainCreateInfoKHRNextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Khronos.Swapchain marshalledSwapchain = default(SharpVk.Interop.Khronos.Swapchain);
                 if (swapchainCounterCreateInfoExt != null)
@@ -80,53 +80,53 @@ namespace SharpVk.Khronos
                     SharpVk.Interop.Multivendor.SwapchainCounterCreateInfo* extensionPointer = default(SharpVk.Interop.Multivendor.SwapchainCounterCreateInfo*);
                     extensionPointer = (SharpVk.Interop.Multivendor.SwapchainCounterCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.SwapchainCounterCreateInfo>());
                     swapchainCounterCreateInfoExt.Value.MarshalTo(extensionPointer);
-                    extensionPointer->Next = nextPointer;
-                    nextPointer = extensionPointer;
+                    extensionPointer->Next = vkSwapchainCreateInfoKHRNextPointer;
+                    vkSwapchainCreateInfoKHRNextPointer = extensionPointer;
                 }
                 if (deviceGroupSwapchainCreateInfoKhr != null)
                 {
                     SharpVk.Interop.Khronos.DeviceGroupSwapchainCreateInfo* extensionPointer = default(SharpVk.Interop.Khronos.DeviceGroupSwapchainCreateInfo*);
                     extensionPointer = (SharpVk.Interop.Khronos.DeviceGroupSwapchainCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.DeviceGroupSwapchainCreateInfo>());
                     deviceGroupSwapchainCreateInfoKhr.Value.MarshalTo(extensionPointer);
-                    extensionPointer->Next = nextPointer;
-                    nextPointer = extensionPointer;
+                    extensionPointer->Next = vkSwapchainCreateInfoKHRNextPointer;
+                    vkSwapchainCreateInfoKHRNextPointer = extensionPointer;
                 }
                 if (swapchainDisplayNativeHdrCreateInfoAmd != null)
                 {
                     SharpVk.Interop.Amd.SwapchainDisplayNativeHdrCreateInfo* extensionPointer = default(SharpVk.Interop.Amd.SwapchainDisplayNativeHdrCreateInfo*);
                     extensionPointer = (SharpVk.Interop.Amd.SwapchainDisplayNativeHdrCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Amd.SwapchainDisplayNativeHdrCreateInfo>());
                     swapchainDisplayNativeHdrCreateInfoAmd.Value.MarshalTo(extensionPointer);
-                    extensionPointer->Next = nextPointer;
-                    nextPointer = extensionPointer;
+                    extensionPointer->Next = vkSwapchainCreateInfoKHRNextPointer;
+                    vkSwapchainCreateInfoKHRNextPointer = extensionPointer;
                 }
-                if (imageFormatListCreateInfoKhr != null)
+                if (imageFormatListCreateInfo != null)
                 {
-                    SharpVk.Interop.Khronos.ImageFormatListCreateInfo* extensionPointer = default(SharpVk.Interop.Khronos.ImageFormatListCreateInfo*);
-                    extensionPointer = (SharpVk.Interop.Khronos.ImageFormatListCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.ImageFormatListCreateInfo>());
-                    imageFormatListCreateInfoKhr.Value.MarshalTo(extensionPointer);
-                    extensionPointer->Next = nextPointer;
-                    nextPointer = extensionPointer;
+                    SharpVk.Interop.ImageFormatListCreateInfo* extensionPointer = default(SharpVk.Interop.ImageFormatListCreateInfo*);
+                    extensionPointer = (SharpVk.Interop.ImageFormatListCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.ImageFormatListCreateInfo>());
+                    imageFormatListCreateInfo.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = vkSwapchainCreateInfoKHRNextPointer;
+                    vkSwapchainCreateInfoKHRNextPointer = extensionPointer;
                 }
                 if (surfaceFullScreenExclusiveInfoExt != null)
                 {
                     SharpVk.Interop.Multivendor.SurfaceFullScreenExclusiveInfo* extensionPointer = default(SharpVk.Interop.Multivendor.SurfaceFullScreenExclusiveInfo*);
                     extensionPointer = (SharpVk.Interop.Multivendor.SurfaceFullScreenExclusiveInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.SurfaceFullScreenExclusiveInfo>());
                     surfaceFullScreenExclusiveInfoExt.Value.MarshalTo(extensionPointer);
-                    extensionPointer->Next = nextPointer;
-                    nextPointer = extensionPointer;
+                    extensionPointer->Next = vkSwapchainCreateInfoKHRNextPointer;
+                    vkSwapchainCreateInfoKHRNextPointer = extensionPointer;
                 }
                 if (surfaceFullScreenExclusiveWin32InfoExt != null)
                 {
                     SharpVk.Interop.Multivendor.SurfaceFullScreenExclusiveWin32Info* extensionPointer = default(SharpVk.Interop.Multivendor.SurfaceFullScreenExclusiveWin32Info*);
                     extensionPointer = (SharpVk.Interop.Multivendor.SurfaceFullScreenExclusiveWin32Info*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.SurfaceFullScreenExclusiveWin32Info>());
                     surfaceFullScreenExclusiveWin32InfoExt.Value.MarshalTo(extensionPointer);
-                    extensionPointer->Next = nextPointer;
-                    nextPointer = extensionPointer;
+                    extensionPointer->Next = vkSwapchainCreateInfoKHRNextPointer;
+                    vkSwapchainCreateInfoKHRNextPointer = extensionPointer;
                 }
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.Khronos.SwapchainCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.SwapchainCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.SwapchainCreateInfo;
-                marshalledCreateInfo->Next = nextPointer;
+                marshalledCreateInfo->Next = vkSwapchainCreateInfoKHRNextPointer;
                 if (flags != null)
                 {
                     marshalledCreateInfo->Flags = flags.Value;
@@ -387,7 +387,7 @@ namespace SharpVk.Khronos
         /// <param name="swapchainDisplayNativeHdrCreateInfoAmd">
         /// Extension struct
         /// </param>
-        /// <param name="imageFormatListCreateInfoKhr">
+        /// <param name="imageFormatListCreateInfo">
         /// Extension struct
         /// </param>
         /// <param name="surfaceFullScreenExclusiveInfoExt">
@@ -400,7 +400,7 @@ namespace SharpVk.Khronos
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
         /// </param>
-        public static unsafe SharpVk.Khronos.Swapchain CreateSharedSwapchain(this SharpVk.Device extendedHandle, SharpVk.Khronos.Surface surface, uint minImageCount, SharpVk.Format imageFormat, SharpVk.Khronos.ColorSpace imageColorSpace, SharpVk.Extent2D imageExtent, uint imageArrayLayers, SharpVk.ImageUsageFlags imageUsage, SharpVk.SharingMode imageSharingMode, ArrayProxy<uint>? queueFamilyIndices, SharpVk.Khronos.SurfaceTransformFlags preTransform, SharpVk.Khronos.CompositeAlphaFlags compositeAlpha, SharpVk.Khronos.PresentMode presentMode, bool clipped, SharpVk.Khronos.Swapchain oldSwapchain, SharpVk.Khronos.SwapchainCreateFlags? flags = default(SharpVk.Khronos.SwapchainCreateFlags?), SharpVk.Multivendor.SwapchainCounterCreateInfo? swapchainCounterCreateInfoExt = null, SharpVk.Khronos.DeviceGroupSwapchainCreateInfo? deviceGroupSwapchainCreateInfoKhr = null, SharpVk.Amd.SwapchainDisplayNativeHdrCreateInfo? swapchainDisplayNativeHdrCreateInfoAmd = null, SharpVk.Khronos.ImageFormatListCreateInfo? imageFormatListCreateInfoKhr = null, SharpVk.Multivendor.SurfaceFullScreenExclusiveInfo? surfaceFullScreenExclusiveInfoExt = null, SharpVk.Multivendor.SurfaceFullScreenExclusiveWin32Info? surfaceFullScreenExclusiveWin32InfoExt = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
+        public static unsafe SharpVk.Khronos.Swapchain CreateSharedSwapchain(this SharpVk.Device extendedHandle, SharpVk.Khronos.Surface surface, uint minImageCount, SharpVk.Format imageFormat, SharpVk.Khronos.ColorSpace imageColorSpace, SharpVk.Extent2D imageExtent, uint imageArrayLayers, SharpVk.ImageUsageFlags imageUsage, SharpVk.SharingMode imageSharingMode, ArrayProxy<uint>? queueFamilyIndices, SharpVk.Khronos.SurfaceTransformFlags preTransform, SharpVk.Khronos.CompositeAlphaFlags compositeAlpha, SharpVk.Khronos.PresentMode presentMode, bool clipped, SharpVk.Khronos.Swapchain oldSwapchain, SharpVk.Khronos.SwapchainCreateFlags? flags = default(SharpVk.Khronos.SwapchainCreateFlags?), SharpVk.Multivendor.SwapchainCounterCreateInfo? swapchainCounterCreateInfoExt = null, SharpVk.Khronos.DeviceGroupSwapchainCreateInfo? deviceGroupSwapchainCreateInfoKhr = null, SharpVk.Amd.SwapchainDisplayNativeHdrCreateInfo? swapchainDisplayNativeHdrCreateInfoAmd = null, SharpVk.ImageFormatListCreateInfo? imageFormatListCreateInfo = null, SharpVk.Multivendor.SurfaceFullScreenExclusiveInfo? surfaceFullScreenExclusiveInfoExt = null, SharpVk.Multivendor.SurfaceFullScreenExclusiveWin32Info? surfaceFullScreenExclusiveWin32InfoExt = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
             {
@@ -408,7 +408,7 @@ namespace SharpVk.Khronos
                 CommandCache commandCache = default(CommandCache);
                 uint marshalledSwapchainCount = default(uint);
                 SharpVk.Interop.Khronos.SwapchainCreateInfo* marshalledCreateInfos = default(SharpVk.Interop.Khronos.SwapchainCreateInfo*);
-                void* nextPointer = default(void*);
+                void* vkSwapchainCreateInfoKHRNextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.Khronos.Swapchain* marshalledSwapchains = default(SharpVk.Interop.Khronos.Swapchain*);
                 if (swapchainCounterCreateInfoExt != null)
@@ -416,54 +416,54 @@ namespace SharpVk.Khronos
                     SharpVk.Interop.Multivendor.SwapchainCounterCreateInfo* extensionPointer = default(SharpVk.Interop.Multivendor.SwapchainCounterCreateInfo*);
                     extensionPointer = (SharpVk.Interop.Multivendor.SwapchainCounterCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.SwapchainCounterCreateInfo>());
                     swapchainCounterCreateInfoExt.Value.MarshalTo(extensionPointer);
-                    extensionPointer->Next = nextPointer;
-                    nextPointer = extensionPointer;
+                    extensionPointer->Next = vkSwapchainCreateInfoKHRNextPointer;
+                    vkSwapchainCreateInfoKHRNextPointer = extensionPointer;
                 }
                 if (deviceGroupSwapchainCreateInfoKhr != null)
                 {
                     SharpVk.Interop.Khronos.DeviceGroupSwapchainCreateInfo* extensionPointer = default(SharpVk.Interop.Khronos.DeviceGroupSwapchainCreateInfo*);
                     extensionPointer = (SharpVk.Interop.Khronos.DeviceGroupSwapchainCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.DeviceGroupSwapchainCreateInfo>());
                     deviceGroupSwapchainCreateInfoKhr.Value.MarshalTo(extensionPointer);
-                    extensionPointer->Next = nextPointer;
-                    nextPointer = extensionPointer;
+                    extensionPointer->Next = vkSwapchainCreateInfoKHRNextPointer;
+                    vkSwapchainCreateInfoKHRNextPointer = extensionPointer;
                 }
                 if (swapchainDisplayNativeHdrCreateInfoAmd != null)
                 {
                     SharpVk.Interop.Amd.SwapchainDisplayNativeHdrCreateInfo* extensionPointer = default(SharpVk.Interop.Amd.SwapchainDisplayNativeHdrCreateInfo*);
                     extensionPointer = (SharpVk.Interop.Amd.SwapchainDisplayNativeHdrCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Amd.SwapchainDisplayNativeHdrCreateInfo>());
                     swapchainDisplayNativeHdrCreateInfoAmd.Value.MarshalTo(extensionPointer);
-                    extensionPointer->Next = nextPointer;
-                    nextPointer = extensionPointer;
+                    extensionPointer->Next = vkSwapchainCreateInfoKHRNextPointer;
+                    vkSwapchainCreateInfoKHRNextPointer = extensionPointer;
                 }
-                if (imageFormatListCreateInfoKhr != null)
+                if (imageFormatListCreateInfo != null)
                 {
-                    SharpVk.Interop.Khronos.ImageFormatListCreateInfo* extensionPointer = default(SharpVk.Interop.Khronos.ImageFormatListCreateInfo*);
-                    extensionPointer = (SharpVk.Interop.Khronos.ImageFormatListCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.ImageFormatListCreateInfo>());
-                    imageFormatListCreateInfoKhr.Value.MarshalTo(extensionPointer);
-                    extensionPointer->Next = nextPointer;
-                    nextPointer = extensionPointer;
+                    SharpVk.Interop.ImageFormatListCreateInfo* extensionPointer = default(SharpVk.Interop.ImageFormatListCreateInfo*);
+                    extensionPointer = (SharpVk.Interop.ImageFormatListCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.ImageFormatListCreateInfo>());
+                    imageFormatListCreateInfo.Value.MarshalTo(extensionPointer);
+                    extensionPointer->Next = vkSwapchainCreateInfoKHRNextPointer;
+                    vkSwapchainCreateInfoKHRNextPointer = extensionPointer;
                 }
                 if (surfaceFullScreenExclusiveInfoExt != null)
                 {
                     SharpVk.Interop.Multivendor.SurfaceFullScreenExclusiveInfo* extensionPointer = default(SharpVk.Interop.Multivendor.SurfaceFullScreenExclusiveInfo*);
                     extensionPointer = (SharpVk.Interop.Multivendor.SurfaceFullScreenExclusiveInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.SurfaceFullScreenExclusiveInfo>());
                     surfaceFullScreenExclusiveInfoExt.Value.MarshalTo(extensionPointer);
-                    extensionPointer->Next = nextPointer;
-                    nextPointer = extensionPointer;
+                    extensionPointer->Next = vkSwapchainCreateInfoKHRNextPointer;
+                    vkSwapchainCreateInfoKHRNextPointer = extensionPointer;
                 }
                 if (surfaceFullScreenExclusiveWin32InfoExt != null)
                 {
                     SharpVk.Interop.Multivendor.SurfaceFullScreenExclusiveWin32Info* extensionPointer = default(SharpVk.Interop.Multivendor.SurfaceFullScreenExclusiveWin32Info*);
                     extensionPointer = (SharpVk.Interop.Multivendor.SurfaceFullScreenExclusiveWin32Info*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Multivendor.SurfaceFullScreenExclusiveWin32Info>());
                     surfaceFullScreenExclusiveWin32InfoExt.Value.MarshalTo(extensionPointer);
-                    extensionPointer->Next = nextPointer;
-                    nextPointer = extensionPointer;
+                    extensionPointer->Next = vkSwapchainCreateInfoKHRNextPointer;
+                    vkSwapchainCreateInfoKHRNextPointer = extensionPointer;
                 }
                 commandCache = extendedHandle.commandCache;
                 marshalledSwapchainCount = 1;
                 marshalledCreateInfos = (SharpVk.Interop.Khronos.SwapchainCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.SwapchainCreateInfo>());
                 marshalledCreateInfos->SType = StructureType.SwapchainCreateInfo;
-                marshalledCreateInfos->Next = nextPointer;
+                marshalledCreateInfos->Next = vkSwapchainCreateInfoKHRNextPointer;
                 if (flags != null)
                 {
                     marshalledCreateInfos->Flags = flags.Value;
@@ -780,48 +780,6 @@ namespace SharpVk.Khronos
         /// <param name="extendedHandle">
         /// The Device handle to extend.
         /// </param>
-        public static unsafe SharpVk.RenderPass CreateRenderPass2(this SharpVk.Device extendedHandle, SharpVk.Khronos.RenderPassCreateInfo2 createInfo, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
-        {
-            try
-            {
-                SharpVk.RenderPass result = default(SharpVk.RenderPass);
-                CommandCache commandCache = default(CommandCache);
-                SharpVk.Interop.Khronos.RenderPassCreateInfo2* marshalledCreateInfo = default(SharpVk.Interop.Khronos.RenderPassCreateInfo2*);
-                SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
-                SharpVk.Interop.RenderPass marshalledRenderPass = default(SharpVk.Interop.RenderPass);
-                commandCache = extendedHandle.commandCache;
-                marshalledCreateInfo = (SharpVk.Interop.Khronos.RenderPassCreateInfo2*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.RenderPassCreateInfo2>());
-                createInfo.MarshalTo(marshalledCreateInfo);
-                if (allocator != null)
-                {
-                    marshalledAllocator = (SharpVk.Interop.AllocationCallbacks*)(Interop.HeapUtil.Allocate<SharpVk.Interop.AllocationCallbacks>());
-                    allocator.Value.MarshalTo(marshalledAllocator);
-                }
-                else
-                {
-                    marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
-                }
-                SharpVk.Interop.Khronos.VkDeviceCreateRenderPass2Delegate commandDelegate = commandCache.Cache.vkCreateRenderPass2KHR;
-                Result methodResult = commandDelegate(extendedHandle.handle, marshalledCreateInfo, marshalledAllocator, &marshalledRenderPass);
-                if (SharpVkException.IsError(methodResult))
-                {
-                    throw SharpVkException.Create(methodResult);
-                }
-                result = new SharpVk.RenderPass(extendedHandle, marshalledRenderPass);
-                return result;
-            }
-            finally
-            {
-                Interop.HeapUtil.FreeAll();
-            }
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="extendedHandle">
-        /// The Device handle to extend.
-        /// </param>
         public static unsafe void ImportFenceWin32Handle(this SharpVk.Device extendedHandle, SharpVk.Khronos.ImportFenceWin32HandleInfo importFenceWin32HandleInfo)
         {
             try
@@ -929,6 +887,55 @@ namespace SharpVk.Khronos
                 }
                 result = marshalledFileDescriptor;
                 return result;
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The Device handle to extend.
+        /// </param>
+        public static unsafe void AcquireProfilingLock(this SharpVk.Device extendedHandle, SharpVk.Khronos.AcquireProfilingLockInfo info)
+        {
+            try
+            {
+                CommandCache commandCache = default(CommandCache);
+                SharpVk.Interop.Khronos.AcquireProfilingLockInfo* marshalledInfo = default(SharpVk.Interop.Khronos.AcquireProfilingLockInfo*);
+                commandCache = extendedHandle.commandCache;
+                marshalledInfo = (SharpVk.Interop.Khronos.AcquireProfilingLockInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Khronos.AcquireProfilingLockInfo>());
+                info.MarshalTo(marshalledInfo);
+                SharpVk.Interop.Khronos.VkDeviceAcquireProfilingLockDelegate commandDelegate = commandCache.Cache.vkAcquireProfilingLockKHR;
+                Result methodResult = commandDelegate(extendedHandle.handle, marshalledInfo);
+                if (SharpVkException.IsError(methodResult))
+                {
+                    throw SharpVkException.Create(methodResult);
+                }
+            }
+            finally
+            {
+                Interop.HeapUtil.FreeAll();
+            }
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="extendedHandle">
+        /// The Device handle to extend.
+        /// </param>
+        public static unsafe void ReleaseProfilingLock(this SharpVk.Device extendedHandle)
+        {
+            try
+            {
+                CommandCache commandCache = default(CommandCache);
+                commandCache = extendedHandle.commandCache;
+                SharpVk.Interop.Khronos.VkDeviceReleaseProfilingLockDelegate commandDelegate = commandCache.Cache.vkReleaseProfilingLockKHR;
+                commandDelegate(extendedHandle.handle);
             }
             finally
             {

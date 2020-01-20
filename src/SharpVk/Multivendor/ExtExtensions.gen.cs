@@ -137,11 +137,6 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public const string SamplerFilterMinmax = "VK_EXT_sampler_filter_minmax"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public const string InlineUniformBlock = "VK_EXT_inline_uniform_block"; 
         
         /// <summary>
@@ -173,16 +168,6 @@ namespace SharpVk.Multivendor
         /// 
         /// </summary>
         public const string ValidationCache = "VK_EXT_validation_cache"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string DescriptorIndexing = "VK_EXT_descriptor_indexing"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string ShaderViewportIndexLayer = "VK_EXT_shader_viewport_index_layer"; 
         
         /// <summary>
         /// 
@@ -232,11 +217,6 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public const string ScalarBlockLayout = "VK_EXT_scalar_block_layout"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public const string SubgroupSizeControl = "VK_EXT_subgroup_size_control"; 
         
         /// <summary>
@@ -257,7 +237,7 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        public const string SeparateStencilUsage = "VK_EXT_separate_stencil_usage"; 
+        public const string ToolingInfo = "VK_EXT_tooling_info"; 
         
         /// <summary>
         /// 
@@ -288,11 +268,6 @@ namespace SharpVk.Multivendor
         /// 
         /// </summary>
         public const string LineRasterization = "VK_EXT_line_rasterization"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string HostQueryReset = "VK_EXT_host_query_reset"; 
         
         /// <summary>
         /// 

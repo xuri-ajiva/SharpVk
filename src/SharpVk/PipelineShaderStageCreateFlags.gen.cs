@@ -49,5 +49,10 @@ namespace SharpVk
         /// 
         /// </summary>
         RequireFullSubgroups = 1 << 1, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Reserved3 = 1 << 3, 
     }
 }

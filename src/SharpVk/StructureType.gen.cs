@@ -587,11 +587,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        PhysicalDeviceShaderFloat16Int8Features = 1000082000, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
         PresentRegions = 1000084000, 
         
         /// <summary>
@@ -707,61 +702,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        PhysicalDeviceImagelessFramebufferFeatures = 1000108000, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        FramebufferAttachmentsCreateInfo = 1000108001, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        FramebufferAttachmentImageInfo = 1000108002, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        RenderPassAttachmentBeginInfo = 1000108003, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        AttachmentDescription2 = 1000109000, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        AttachmentReference2 = 1000109001, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        SubpassDescription2 = 1000109002, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        SubpassDependency2 = 1000109003, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        RenderPassCreateInfo2 = 1000109004, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        SubpassBeginInfo = 1000109005, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        SubpassEndInfo = 1000109006, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
         SharedPresentSurfaceCapabilities = 1000111000, 
         
         /// <summary>
@@ -788,6 +728,41 @@ namespace SharpVk
         /// 
         /// </summary>
         FenceGetFileDescriptorInfo = 1000115001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDevicePerformanceQueryFeatures = 1000116000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDevicePerformanceQueryProperties = 1000116001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        QueryPoolPerformanceCreateInfo = 1000116002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PerformanceQuerySubmitInfo = 1000116003, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        AcquireProfilingLockInfo = 1000116004, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PerformanceCounter = 1000116005, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PerformanceCounterDescription = 1000116006, 
         
         /// <summary>
         /// 
@@ -897,16 +872,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        PhysicalDeviceSamplerFilterMinmaxProperties = 1000130000, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        SamplerReductionModeCreateInfo = 1000130001, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
         PhysicalDeviceInlineUniformBlockFeatures = 1000138000, 
         
         /// <summary>
@@ -948,11 +913,6 @@ namespace SharpVk
         /// 
         /// </summary>
         MultisampleProperties = 1000143004, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        ImageFormatListCreateInfo = 1000147000, 
         
         /// <summary>
         /// 
@@ -1028,31 +988,6 @@ namespace SharpVk
         /// 
         /// </summary>
         ShaderModuleValidationCacheCreateInfo = 1000160001, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        DescriptorSetLayoutBindingFlagsCreateInfo = 1000161000, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        PhysicalDeviceDescriptorIndexingFeatures = 1000161001, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        PhysicalDeviceDescriptorIndexingProperties = 1000161002, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        DescriptorSetVariableDescriptorCountAllocateInfo = 1000161003, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        DescriptorSetVariableDescriptorCountLayoutSupport = 1000161004, 
         
         /// <summary>
         /// 
@@ -1157,16 +1092,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        PhysicalDeviceShaderSubgroupExtendedTypesFeatures = 1000175000, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        PhysicalDevice8bitStorageFeatures = 1000177000, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
         ImportMemoryHostPointerInfo = 1000178000, 
         
         /// <summary>
@@ -1182,7 +1107,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        PhysicalDeviceShaderAtomicInt64Features = 1000180000, 
+        PhysicalDeviceShaderClockFeatures = 1000181000, 
         
         /// <summary>
         /// 
@@ -1228,26 +1153,6 @@ namespace SharpVk
         /// 
         /// </summary>
         PipelineCreationFeedbackCreateInfo = 1000192000, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        PhysicalDeviceDriverProperties = 1000196000, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        PhysicalDeviceFloatControlsProperties = 1000197000, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        PhysicalDeviceDepthStencilResolveProperties = 1000199000, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        SubpassDescriptionDepthStencilResolve = 1000199001, 
         
         /// <summary>
         /// 
@@ -1332,11 +1237,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        PhysicalDeviceVulkanMemoryModelFeatures = 1000211000, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
         PhysicalDevicePciBusInfoProperties = 1000212000, 
         
         /// <summary>
@@ -1373,11 +1273,6 @@ namespace SharpVk
         /// 
         /// </summary>
         RenderPassFragmentDensityMapCreateInfo = 1000218002, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        PhysicalDeviceScalarBlockLayoutFeatures = 1000221000, 
         
         /// <summary>
         /// 
@@ -1432,12 +1327,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        PhysicalDeviceBufferDeviceAddressFeatures = 1000244000, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        BufferDeviceAddressInfo = 1000244001, 
+        PhysicalDeviceBufferDeviceAddressFeaturesExt = 1000244000, 
         
         /// <summary>
         /// 
@@ -1447,7 +1337,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        ImageStencilUsageCreateInfo = 1000246000, 
+        PhysicalDeviceToolProperties = 1000245000, 
         
         /// <summary>
         /// 
@@ -1497,11 +1387,6 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        PhysicalDeviceUniformBufferStandardLayoutFeatures = 1000253000, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
         SurfaceFullScreenExclusiveInfo = 1000255000, 
         
         /// <summary>
@@ -1533,11 +1418,6 @@ namespace SharpVk
         /// 
         /// </summary>
         PhysicalDeviceLineRasterizationProperties = 1000259002, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        PhysicalDeviceHostQueryResetFeatures = 1000261000, 
         
         /// <summary>
         /// 

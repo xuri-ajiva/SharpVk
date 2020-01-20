@@ -121,7 +121,7 @@ namespace SharpVk.Generator.Generation
                     {
                     };
 
-                    this.patternRules.ApplyFirst(type.Members, member, new MemberPatternContext(null, false, false, false, type.Extension, x => Default(this.nameLookup.Lookup(new TypeReference { VkName = x }, false)), typeItem.Key), patternInfo);
+                    this.patternRules.ApplyFirst(type.Members, member, new MemberPatternContext(null, false, false, 0, type.Extension, x => Default(this.nameLookup.Lookup(new TypeReference { VkName = x }, false)), typeItem.Key), patternInfo);
 
                     marshalToMethod.MemberActions.AddRange(patternInfo.MarshalTo.Select(action => action(targetName => DerefMember(Variable("pointer"), targetName), valueName => Member(This, valueName))));
                     marshalFromMethod.MemberActions.AddRange(patternInfo.MarshalFrom.Select(action => action(targetName => Member(Variable("result"), targetName), valueName => DerefMember(Variable("pointer"), valueName))));

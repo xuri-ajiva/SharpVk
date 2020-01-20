@@ -79,7 +79,7 @@ namespace SharpVk.Generator.Generation
                     {
                         IsPublic = true,
                         Name = "Dispose",
-                        Comment=new List<string> { "Destroys the handles and releases any unmanaged resources associated with it." },
+                        Comment = new List<string> { "Destroys the handles and releases any unmanaged resources associated with it." },
                         ParamActions = new List<ParamActionDefinition>(),
                         MemberActions = new List<MethodAction>()
                         {
@@ -110,9 +110,14 @@ namespace SharpVk.Generator.Generation
         {
             var lastParam = command.Params.Last();
 
-            bool lastParamIsArray = lastParam.Type.PointerType == PointerType.Pointer
-                                        && lastParam.Dimensions != null
-                                        && lastParam.Dimensions.Any(x => x.Type != LenType.NullTerminated);
+            bool IsArray(ParamDeclaration param)
+            {
+                return param.Type.PointerType == PointerType.Pointer
+                                            && param.Dimensions != null
+                                            && param.Dimensions.Any(x => x.Type != LenType.NullTerminated);
+            }
+
+            bool lastParamIsArray = IsArray(lastParam);
 
             bool lastParamLenFieldByRef = lastParamIsArray
                                             && lastParam.Dimensions[0].Value is LenExpressionToken
@@ -126,18 +131,25 @@ namespace SharpVk.Generator.Generation
                                             || command.Verb == "get")
                                         && (command.ReturnType == "VkResult" || command.ReturnType == "void");
 
+            int returnParamsCount = 0;
+
+            if (lastParamReturns)
+            {
+                returnParamsCount = Math.Max(1, command.Params.AsEnumerable().Reverse().TakeWhile(IsArray).Count());
+            }
+
             bool enumeratePattern = (command.Verb == "enumerate" && lastParamIsArray) || (lastParamIsArray && lastParamLenFieldByRef);
             bool isBatchMethod = lastParamIsArray && !enumeratePattern && lastParam.Type.VkName != "void";
 
-            yield return this.GenerateCommandVariant(command, handleTypeName, handleType, isExtension, enumeratePattern, lastParamIsArray, lastParamReturns, false);
+            yield return this.GenerateCommandVariant(command, handleTypeName, handleType, isExtension, enumeratePattern, lastParamIsArray, returnParamsCount, false);
 
             if (isBatchMethod)
             {
-                yield return this.GenerateCommandVariant(command, handleTypeName, handleType, isExtension, enumeratePattern, lastParamIsArray, lastParamReturns, true);
+                yield return this.GenerateCommandVariant(command, handleTypeName, handleType, isExtension, enumeratePattern, lastParamIsArray, returnParamsCount, true);
             }
         }
 
-        private MethodDefinition GenerateCommandVariant(CommandDeclaration command, string handleTypeName, TypeDeclaration handleType, bool isExtension, bool enumeratePattern, bool lastParamIsArray, bool lastParamReturns, bool isBatchSingleMethod)
+        private MethodDefinition GenerateCommandVariant(CommandDeclaration command, string handleTypeName, TypeDeclaration handleType, bool isExtension, bool enumeratePattern, bool lastParamIsArray, int returnParamsCount, bool isBatchSingleMethod)
         {
             var handleExpression = isExtension ? Variable("extendedHandle") : This;
 
@@ -184,7 +196,7 @@ namespace SharpVk.Generator.Generation
 
             if (command.HandleParamsCount == 0)
             {
-                Debug.Assert(lastParamReturns);
+                Debug.Assert(returnParamsCount > 0);
 
                 newMethod.IsStatic = true;
                 newMethod.ParamActions.Add(new ParamActionDefinition
@@ -237,7 +249,7 @@ namespace SharpVk.Generator.Generation
 
             foreach (var parameter in command.Params)
             {
-                var newParams = this.GenerateParameter(command, newMethod, parameter, parameterIndex, enumeratePattern, lastParamIsArray, lastParamReturns, isBatchSingleMethod, marshalFromActions, marshalMidActions, marshalToActions, marshalledValues, GetHandle, handleLookup);
+                var newParams = this.GenerateParameter(command, newMethod, parameter, parameterIndex, enumeratePattern, lastParamIsArray, returnParamsCount, isBatchSingleMethod, marshalFromActions, marshalMidActions, marshalToActions, marshalledValues, GetHandle, handleLookup);
 
                 if (newParams != null)
                 {
@@ -312,7 +324,7 @@ namespace SharpVk.Generator.Generation
             return newMethod;
         }
 
-        private IEnumerable<ParamActionDefinition> GenerateParameter(CommandDeclaration command, MethodDefinition newMethod, ParamDeclaration parameter, int parameterIndex, bool isEnumeratePattern, bool isLastParamArray, bool lastParamReturns, bool isBatchSingleMethod, List<MethodAction> marshalFromActions, List<MethodAction> marshalMidActions, List<MethodAction> marshalToActions, List<Action<ExpressionBuilder>> marshalledValues, Func<string, Action<ExpressionBuilder>> getHandle, Dictionary<string, Action<ExpressionBuilder>> handleLookup)
+        private IEnumerable<ParamActionDefinition> GenerateParameter(CommandDeclaration command, MethodDefinition newMethod, ParamDeclaration parameter, int parameterIndex, bool isEnumeratePattern, bool isLastParamArray, int returnParamsCount, bool isBatchSingleMethod, List<MethodAction> marshalFromActions, List<MethodAction> marshalMidActions, List<MethodAction> marshalToActions, List<Action<ExpressionBuilder>> marshalledValues, Func<string, Action<ExpressionBuilder>> getHandle, Dictionary<string, Action<ExpressionBuilder>> handleLookup)
         {
             string paramName = parameter.Name;
             var paramType = typeData[parameter.Type.VkName];
@@ -322,11 +334,11 @@ namespace SharpVk.Generator.Generation
                 return "marshalled" + baseName.TrimStart('@').FirstToUpper();
             }
 
-            List<ParamActionDefinition> result = new List<ParamActionDefinition>();
+            var result = new List<ParamActionDefinition>();
 
             if (parameterIndex >= command.HandleParamsCount)
             {
-                if (lastParamReturns && parameterIndex == command.Params.Count() - 2 && isEnumeratePattern)
+                if (returnParamsCount > 0 && parameterIndex == command.Params.Count() - (returnParamsCount + 1) && isEnumeratePattern)
                 {
                     string marshalledName = GetMarshalledName(paramName);
 
@@ -338,27 +350,47 @@ namespace SharpVk.Generator.Generation
 
                     marshalledValues.Add(AddressOf(Variable(marshalledName)));
 
-                    var patternInfo = new MemberPatternInfo();
-
-                    this.memberPatternRules.ApplyFirst(command.Params, command.Params.Last(), new MemberPatternContext(command.Verb, true, isBatchSingleMethod, lastParamReturns, command.ExtensionNamespace, getHandle, command.VkName), patternInfo);
-
-                    string marshalledTargetName = GetMarshalledName(patternInfo.Interop.Name);
-
-                    marshalMidActions.Add(new AssignAction
+                    for (int returnParamIndex = 0; returnParamIndex < returnParamsCount; returnParamIndex++)
                     {
-                        Type = AssignActionType.Alloc,
-                        MemberType = patternInfo.InteropFullType.TrimEnd('*'),
-                        TargetExpression = Variable(marshalledTargetName),
-                        LengthExpression = Cast("uint", Variable(marshalledName))
-                    });
+                        var patternInfo = new MemberPatternInfo();
+
+                        this.memberPatternRules.ApplyFirst(command.Params, command.Params.AsEnumerable().Reverse().Skip(returnParamIndex).First(), new MemberPatternContext(command.Verb, true, isBatchSingleMethod, returnParamsCount, command.ExtensionNamespace, getHandle, command.VkName), patternInfo);
+
+                        string marshalledTargetName = GetMarshalledName(patternInfo.Interop.Name);
+
+                        marshalMidActions.Add(new AssignAction
+                        {
+                            Type = AssignActionType.Alloc,
+                            MemberType = patternInfo.InteropFullType.TrimEnd('*'),
+                            TargetExpression = Variable(marshalledTargetName),
+                            LengthExpression = Cast("uint", Variable(marshalledName))
+                        });
+                    }
                 }
-                else if (lastParamReturns && parameterIndex == command.Params.Count() - 1)
+                else if (parameterIndex >= command.Params.Count() - returnParamsCount)
                 {
                     if (isLastParamArray)
                     {
                         var patternInfo = new MemberPatternInfo();
 
-                        this.memberPatternRules.ApplyFirst(command.Params, parameter, new MemberPatternContext(command.Verb, true, isBatchSingleMethod, lastParamReturns, command.ExtensionNamespace, getHandle, command.VkName), patternInfo);
+                        this.memberPatternRules.ApplyFirst(command.Params, parameter, new MemberPatternContext(command.Verb, true, isBatchSingleMethod, returnParamsCount, command.ExtensionNamespace, getHandle, command.VkName), patternInfo);
+
+                        var outputVariable = "result";
+
+                        if (returnParamsCount > 1)
+                        {
+                            newMethod.ParamActions.Add(new ParamActionDefinition
+                            {
+                                Param = new ParamDefinition
+                                {
+                                    Name = paramName,
+                                    Type = paramType.Name + "[]",
+                                    IsOut = true
+                                }
+                            });
+
+                            outputVariable = paramName;
+                        }
 
                         string marshalledName = GetMarshalledName(patternInfo.Interop.Name);
 
@@ -368,7 +400,7 @@ namespace SharpVk.Generator.Generation
                             MemberName = marshalledName
                         });
 
-                        var newMarshalFrom = patternInfo.MarshalFrom.Select(action => action(targetName => Variable("result"), valueName => Variable(GetMarshalledName(valueName)))).ToArray();
+                        var newMarshalFrom = patternInfo.MarshalFrom.Select(action => action(targetName => Variable(outputVariable), valueName => Variable(GetMarshalledName(valueName)))).ToArray();
 
                         if (!isEnumeratePattern)
                         {
@@ -389,7 +421,14 @@ namespace SharpVk.Generator.Generation
 
                         marshalledValues.Add(Variable(marshalledName));
 
-                        newMethod.ReturnType = patternInfo.ReturnType ?? patternInfo.Public.Single().Type;
+                        if (returnParamsCount == 1)
+                        {
+                            newMethod.ReturnType = patternInfo.ReturnType ?? patternInfo.Public.Single().Type;
+                        }
+                        else
+                        {
+                            newMethod.ReturnType = "void";
+                        }
                     }
                     else
                     {
@@ -403,7 +442,7 @@ namespace SharpVk.Generator.Generation
                             VkName = parameter.VkName
                         };
 
-                        this.memberPatternRules.ApplyFirst(command.Params, effectiveParam, new MemberPatternContext(command.Verb, true, isBatchSingleMethod, lastParamReturns, command.ExtensionNamespace, getHandle, command.VkName), patternInfo);
+                        this.memberPatternRules.ApplyFirst(command.Params, effectiveParam, new MemberPatternContext(command.Verb, true, isBatchSingleMethod, returnParamsCount, command.ExtensionNamespace, getHandle, command.VkName), patternInfo);
 
                         string marshalledName = GetMarshalledName(patternInfo.Interop.Name);
 
@@ -424,7 +463,7 @@ namespace SharpVk.Generator.Generation
                 {
                     var patternInfo = new MemberPatternInfo();
 
-                    this.memberPatternRules.ApplyFirst(command.Params, parameter, new MemberPatternContext(command.Verb, true, isBatchSingleMethod, lastParamReturns, command.ExtensionNamespace, getHandle, command.VkName), patternInfo);
+                    this.memberPatternRules.ApplyFirst(command.Params, parameter, new MemberPatternContext(command.Verb, true, isBatchSingleMethod, returnParamsCount, command.ExtensionNamespace, getHandle, command.VkName), patternInfo);
 
                     var actionList = marshalToActions;
 
@@ -447,11 +486,11 @@ namespace SharpVk.Generator.Generation
                     if (patternInfo.MarshalTo.Any())
                     {
                         string marshalledName = GetMarshalledName(patternInfo.Interop.Name);
-                            
+
                         var newMarshalToActions = patternInfo.MarshalTo.Select(action => action(targetName => Variable(marshalledName), getValue));
 
                         var lastParam = command.Params.Last();
-                        bool isLenForLastParam = lastParamReturns && lastParam.Dimensions != null && lastParam.Dimensions.Any(dimension => dimension.Type == LenType.Expression && this.tokenCheck.Check(dimension.Value, parameter.VkName));
+                        bool isLenForLastParam = returnParamsCount > 0 && lastParam.Dimensions != null && lastParam.Dimensions.Any(dimension => dimension.Type == LenType.Expression && this.tokenCheck.Check(dimension.Value, parameter.VkName));
 
                         if (!isLenForLastParam
                                 && newMarshalToActions.Count() == 1

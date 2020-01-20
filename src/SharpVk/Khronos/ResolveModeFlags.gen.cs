@@ -34,25 +34,5 @@ namespace SharpVk.Khronos
         /// 
         /// </summary>
         None = 0, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        SampleZero = 1 << 0, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Average = 1 << 1, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Min = 1 << 2, 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        Max = 1 << 3, 
     }
 }

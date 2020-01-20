@@ -128,7 +128,7 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        SampledImageFilterMinmax = 1 << 16, 
+        Reserved29 = 1 << 29, 
         
         /// <summary>
         /// 

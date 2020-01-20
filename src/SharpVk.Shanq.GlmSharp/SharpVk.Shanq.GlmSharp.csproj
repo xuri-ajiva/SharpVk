@@ -1,69 +1,40 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{F1B3E324-8B08-478F-B31A-E8FE4B57965E}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SharpVk.Shanq.GlmSharp</RootNamespace>
-    <AssemblyName>SharpVk.Shanq.GlmSharp</AssemblyName>
-    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Version>0.0.0</Version>
+    <Authors>FacticiusVir</Authors>
+    <Company>FacticiusVir</Company>
+    <Description>GlmSharp type mappings for SharpVk Shanq</Description>
+    <PackageTags>Vulkan SPIR-V Spirv SharpVK Shanq 3D</PackageTags>
+    <Copyright>Copyright 2020 Andrew Armstrong/FacticiusVir</Copyright>
+    <PackageLicenseUrl>https://github.com/FacticiusVir/SharpVk/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/FacticiusVir/SharpVk</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/FacticiusVir/SharpVk/master/images/SharpVk.png</PackageIconUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\SharpVk.Shanq.GlmSharp.xml</DocumentationFile>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>bin\Debug\netstandard2.1\</OutputPath>
+    <DocumentationFile>bin\Debug\netstandard2.1\SharpVk.Shanq.GlmSharp.xml</DocumentationFile>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\SharpVk.Shanq.GlmSharp.xml</DocumentationFile>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath>bin\Release\netstandard2.1\</OutputPath>
+    <DocumentationFile>bin\Release\netstandard2.1\SharpVk.Shanq.GlmSharp.xml</DocumentationFile>
   </PropertyGroup>
+
   <ItemGroup>
-    <Reference Include="GlmSharp, Version=0.9.8.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\GlmSharp.0.9.8\lib\Net45\GlmSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
+    <PackageReference Include="GlmSharp" Version="0.9.8" />
   </ItemGroup>
+
   <ItemGroup>
-    <Compile Include="DeviceExtensions.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SamplerExtensions.cs" />
-    <Compile Include="VectorTypeLibrary.cs" />
+    <ProjectReference Include="..\SharpVk\SharpVk.csproj" />
+    <ProjectReference Include="..\SharpVk.Shanq\SharpVk.Shanq.csproj" />
   </ItemGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\SharpVk.Shanq\SharpVk.Shanq.csproj">
-      <Project>{16995309-d068-4678-9cf8-5313d1acf316}</Project>
-      <Name>SharpVk.Shanq</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SharpVk\SharpVk.csproj">
-      <Project>{54e4b446-fe05-42d1-aa1a-1b59dcf4e34f}</Project>
-      <Name>SharpVk</Name>
-    </ProjectReference>
+    <Folder Include="Properties\" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-    <None Include="SharpVk.Shanq.GlmSharp.nuspec" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+
 </Project>

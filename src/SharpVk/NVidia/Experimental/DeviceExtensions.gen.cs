@@ -85,13 +85,13 @@ namespace SharpVk.NVidia.Experimental
                 SharpVk.NVidia.Experimental.IndirectCommandsLayout result = default(SharpVk.NVidia.Experimental.IndirectCommandsLayout);
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayoutCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayoutCreateInfo*);
-                void* nextPointer = default(void*);
+                void* vkIndirectCommandsLayoutCreateInfoNVXNextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayout marshalledIndirectCommandsLayout = default(SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayout);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayoutCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.Experimental.IndirectCommandsLayoutCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.IndirectCommandsLayoutCreateInfo;
-                marshalledCreateInfo->Next = nextPointer;
+                marshalledCreateInfo->Next = vkIndirectCommandsLayoutCreateInfoNVXNextPointer;
                 marshalledCreateInfo->PipelineBindPoint = pipelineBindPoint;
                 marshalledCreateInfo->Flags = flags;
                 marshalledCreateInfo->TokenCount = (uint)(Interop.HeapUtil.GetLength(tokens));
@@ -188,13 +188,13 @@ namespace SharpVk.NVidia.Experimental
                 SharpVk.NVidia.Experimental.ObjectTable result = default(SharpVk.NVidia.Experimental.ObjectTable);
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.NVidia.Experimental.ObjectTableCreateInfo* marshalledCreateInfo = default(SharpVk.Interop.NVidia.Experimental.ObjectTableCreateInfo*);
-                void* nextPointer = default(void*);
+                void* vkObjectTableCreateInfoNVXNextPointer = default(void*);
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.NVidia.Experimental.ObjectTable marshalledObjectTable = default(SharpVk.Interop.NVidia.Experimental.ObjectTable);
                 commandCache = extendedHandle.commandCache;
                 marshalledCreateInfo = (SharpVk.Interop.NVidia.Experimental.ObjectTableCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.NVidia.Experimental.ObjectTableCreateInfo>());
                 marshalledCreateInfo->SType = StructureType.ObjectTableCreateInfo;
-                marshalledCreateInfo->Next = nextPointer;
+                marshalledCreateInfo->Next = vkObjectTableCreateInfoNVXNextPointer;
                 marshalledCreateInfo->ObjectCount = (uint)(Interop.HeapUtil.GetLength(objectEntryTypes));
                 if (objectEntryTypes.IsNull())
                 {

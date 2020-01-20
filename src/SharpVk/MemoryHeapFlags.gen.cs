@@ -39,5 +39,10 @@ namespace SharpVk
         /// 
         /// </summary>
         DeviceLocal = 1 << 0, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Reserved2 = 1 << 2, 
     }
 }

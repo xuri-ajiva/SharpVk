@@ -14,15 +14,13 @@ namespace SharpVk.Generator.Generation.Marshalling
         private readonly IEnumerable<IMarshalValueRule> marshallingRules;
         private readonly NameLookup nameLookup;
         private readonly ParsedExpressionBuilder expressionBuilder;
-        private readonly ParsedExpressionEqualityCheck expressionEqualityCheck;
         private readonly CommentGenerator commentGenerator;
 
-        public ArrayMemberPattern(IEnumerable<IMarshalValueRule> marshallingRules, NameLookup nameLookup, ParsedExpressionBuilder expressionBuilder, ParsedExpressionEqualityCheck expressionEqualityCheck, CommentGenerator commentGenerator)
+        public ArrayMemberPattern(IEnumerable<IMarshalValueRule> marshallingRules, NameLookup nameLookup, ParsedExpressionBuilder expressionBuilder, CommentGenerator commentGenerator)
         {
             this.marshallingRules = marshallingRules;
             this.nameLookup = nameLookup;
             this.expressionBuilder = expressionBuilder;
-            this.expressionEqualityCheck = expressionEqualityCheck;
             this.commentGenerator = commentGenerator;
         }
 
@@ -122,6 +120,12 @@ namespace SharpVk.Generator.Generation.Marshalling
                             {
                                 info.InteropFullType += new string('*', source.Type.PointerType.GetPointerCount());
                             }
+
+                            info.Interop = new TypedDefinition
+                            {
+                                Name = source.Name,
+                                Type = info.InteropFullType
+                            };
 
                             string arrayType = $"{marshalling.MemberType}[]";
 

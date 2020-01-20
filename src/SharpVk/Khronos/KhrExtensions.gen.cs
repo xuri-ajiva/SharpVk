@@ -77,11 +77,6 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public const string SamplerMirrorClampToEdge = "VK_KHR_sampler_mirror_clamp_to_edge"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public const string ExternalMemoryWin32 = "VK_KHR_external_memory_win32"; 
         
         /// <summary>
@@ -112,22 +107,7 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public const string ShaderFloat16Int8 = "VK_KHR_shader_float16_int8"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public const string IncrementalPresent = "VK_KHR_incremental_present"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string ImagelessFramebuffer = "VK_KHR_imageless_framebuffer"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string CreateRenderpass2 = "VK_KHR_create_renderpass2"; 
         
         /// <summary>
         /// 
@@ -147,6 +127,11 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
+        public const string PerformanceQuery = "VK_KHR_performance_query"; 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         public const string GetSurfaceCapabilities2 = "VK_KHR_get_surface_capabilities2"; 
         
         /// <summary>
@@ -157,42 +142,7 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public const string ImageFormatList = "VK_KHR_image_format_list"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string DrawIndirectCount = "VK_KHR_draw_indirect_count"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string ShaderSubgroupExtendedTypes = "VK_KHR_shader_subgroup_extended_types"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string Khr8bitStorage = "VK_KHR_8bit_storage"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string ShaderAtomicInt64 = "VK_KHR_shader_atomic_int64"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string DriverProperties = "VK_KHR_driver_properties"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string ShaderFloatControls = "VK_KHR_shader_float_controls"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string DepthStencilResolve = "VK_KHR_depth_stencil_resolve"; 
+        public const string ShaderClock = "VK_KHR_shader_clock"; 
         
         /// <summary>
         /// 
@@ -202,17 +152,7 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
-        public const string VulkanMemoryModel = "VK_KHR_vulkan_memory_model"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
         public const string SurfaceProtectedCapabilities = "VK_KHR_surface_protected_capabilities"; 
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        public const string UniformBufferStandardLayout = "VK_KHR_uniform_buffer_standard_layout"; 
         
         /// <summary>
         /// 

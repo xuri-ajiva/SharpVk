@@ -5,13 +5,13 @@ namespace SharpVk.Generator.Generation.Marshalling
 {
     public struct MemberPatternContext
     {
-        public MemberPatternContext(string methodVerb, bool isMethod, bool isBatchSingleMethod, bool hasReturnValue, string extension, Func<string, Action<ExpressionBuilder>> getHandle, string vkName)
+        public MemberPatternContext(string methodVerb, bool isMethod, bool isBatchSingleMethod, int returnParamsCount, string extension, Func<string, Action<ExpressionBuilder>> getHandle, string vkName)
             : this()
         {
             this.MethodVerb = methodVerb;
             this.IsMethod = isMethod;
             this.IsBatchSingleMethod = isBatchSingleMethod;
-            this.HasReturnValue = hasReturnValue;
+            this.ReturnParamsCount = returnParamsCount;
             this.Extension = extension;
             this.GetHandle = getHandle;
             this.VkName = vkName;
@@ -35,11 +35,13 @@ namespace SharpVk.Generator.Generation.Marshalling
             private set;
         }
 
-        public bool HasReturnValue
+        public int ReturnParamsCount
         {
             get;
             private set;
         }
+
+        public bool HasReturnValue => this.ReturnParamsCount > 0;
 
         public string Extension
         {

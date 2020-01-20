@@ -55,6 +55,10 @@ namespace SharpVk.Generator.Emission
                                                 {
                                                     docBuilder.EmitParam(action.Param.Name, string.Join(" ", action.Param.Comment));
                                                 }
+                                                //else
+                                                //{
+                                                //    docBuilder.EmitParam(action.Param.Name, "");
+                                                //}
                                             }
                                         });
         }
@@ -65,14 +69,14 @@ namespace SharpVk.Generator.Emission
             {
                 if (method.ParamActions != null)
                 {
-                    foreach (var action in method.ParamActions.Where(x => x.Param.DefaultValue == null))
+                    foreach (var action in method.ParamActions.Where(x => x.Param.DefaultValue == null).OrderBy(x => x.Param.IsOut))
                     {
-                        parameters.EmitParam(action.Param.Type, action.Param.Name, action.Param.DefaultValue);
+                        parameters.EmitParam(action.Param.Type, action.Param.Name, action.Param.IsOut, action.Param.DefaultValue);
                     }
 
                     foreach (var action in method.ParamActions.Where(x => x.Param.DefaultValue != null))
                     {
-                        parameters.EmitParam(action.Param.Type, action.Param.Name, action.Param.DefaultValue);
+                        parameters.EmitParam(action.Param.Type, action.Param.Name, action.Param.IsOut, action.Param.DefaultValue);
                     }
                 }
             };

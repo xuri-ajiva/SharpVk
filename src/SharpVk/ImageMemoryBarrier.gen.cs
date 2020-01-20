@@ -36,7 +36,7 @@ namespace SharpVk
         /// <summary>
         /// Defines a source access mask.
         /// </summary>
-        public SharpVk.AccessFlags? SourceAccessMask
+        public SharpVk.AccessFlags SourceAccessMask
         {
             get;
             set;
@@ -45,7 +45,7 @@ namespace SharpVk
         /// <summary>
         /// Defines a destination access mask.
         /// </summary>
-        public SharpVk.AccessFlags? DestinationAccessMask
+        public SharpVk.AccessFlags DestinationAccessMask
         {
             get;
             set;
@@ -113,22 +113,8 @@ namespace SharpVk
         {
             pointer->SType = StructureType.ImageMemoryBarrier;
             pointer->Next = null;
-            if (this.SourceAccessMask != null)
-            {
-                pointer->SourceAccessMask = this.SourceAccessMask.Value;
-            }
-            else
-            {
-                pointer->SourceAccessMask = default(SharpVk.AccessFlags);
-            }
-            if (this.DestinationAccessMask != null)
-            {
-                pointer->DestinationAccessMask = this.DestinationAccessMask.Value;
-            }
-            else
-            {
-                pointer->DestinationAccessMask = default(SharpVk.AccessFlags);
-            }
+            pointer->SourceAccessMask = this.SourceAccessMask;
+            pointer->DestinationAccessMask = this.DestinationAccessMask;
             pointer->OldLayout = this.OldLayout;
             pointer->NewLayout = this.NewLayout;
             pointer->SourceQueueFamilyIndex = this.SourceQueueFamilyIndex;

@@ -85,7 +85,7 @@ namespace SharpVk.Generator.Generation.Marshalling
                         return x;
                     });
 
-                    this.patternRules.ApplyFirst(infoTypeData.Members.Concat(relativeOthers), member, new MemberPatternContext(null, true, context.IsBatchSingleMethod, context.HasReturnValue, infoTypeData.Extension, context.GetHandle, source.Type.VkName), subPatternInfo);
+                    this.patternRules.ApplyFirst(infoTypeData.Members.Concat(relativeOthers), member, new MemberPatternContext(null, true, context.IsBatchSingleMethod, context.ReturnParamsCount, infoTypeData.Extension, context.GetHandle, source.Type.VkName), subPatternInfo);
 
                     foreach (var subAction in subPatternInfo.MarshalTo)
                     {
@@ -140,6 +140,8 @@ namespace SharpVk.Generator.Generation.Marshalling
                             Priority = -1
                         };
 
+                        var variableName = (source.Type.VkName + "NextPointer").FirstToLower();
+
                         extendMarshalAction.Actions.AddRange(new MethodAction[]
                         {
                             new DeclarationAction
@@ -157,12 +159,12 @@ namespace SharpVk.Generator.Generation.Marshalling
                             new AssignAction
                             {
                                 TargetExpression = DerefMember(Variable("extensionPointer"), "Next"),
-                                ValueExpression = Variable("nextPointer")
+                                ValueExpression = Variable(variableName)
                             },
                             new AssignAction
                             {
                                 ValueExpression = Variable("extensionPointer"),
-                                TargetExpression = Variable("nextPointer")
+                                TargetExpression = Variable(variableName)
                             }
                         });
 

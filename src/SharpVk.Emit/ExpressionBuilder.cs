@@ -103,6 +103,11 @@ namespace SharpVk.Emit
             this.writer.Write($"default({type})");
         }
 
+        public void EmitDefault()
+        {
+            this.writer.Write("default");
+        }
+
         public void EmitNull()
         {
             this.writer.Write("null");
@@ -423,6 +428,8 @@ namespace SharpVk.Emit
         {
             return builder => builder.EmitDefault(type);
         }
+
+        public static Action<ExpressionBuilder> Default() => builder => builder.EmitDefault();
 
         public static Action<ExpressionBuilder> Null
         {

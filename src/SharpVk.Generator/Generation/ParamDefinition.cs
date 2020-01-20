@@ -9,6 +9,7 @@ namespace SharpVk.Generator.Generation
         public string Name;
         public List<string> Comment;
         public string Type;
+        public bool IsOut;
         public Action<ExpressionBuilder> DefaultValue;
     }
 }

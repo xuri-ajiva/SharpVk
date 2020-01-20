@@ -100,12 +100,12 @@ namespace SharpVk.Intel
                 SharpVk.Intel.PerformanceConfiguration result = default(SharpVk.Intel.PerformanceConfiguration);
                 CommandCache commandCache = default(CommandCache);
                 SharpVk.Interop.Intel.PerformanceConfigurationAcquireInfo* marshalledAcquireInfo = default(SharpVk.Interop.Intel.PerformanceConfigurationAcquireInfo*);
-                void* nextPointer = default(void*);
+                void* vkPerformanceConfigurationAcquireInfoINTELNextPointer = default(void*);
                 SharpVk.Interop.Intel.PerformanceConfiguration marshalledConfiguration = default(SharpVk.Interop.Intel.PerformanceConfiguration);
                 commandCache = extendedHandle.commandCache;
                 marshalledAcquireInfo = (SharpVk.Interop.Intel.PerformanceConfigurationAcquireInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Intel.PerformanceConfigurationAcquireInfo>());
                 marshalledAcquireInfo->SType = StructureType.PerformanceConfigurationAcquireInfo;
-                marshalledAcquireInfo->Next = nextPointer;
+                marshalledAcquireInfo->Next = vkPerformanceConfigurationAcquireInfoINTELNextPointer;
                 marshalledAcquireInfo->Type = type;
                 SharpVk.Interop.Intel.VkDeviceAcquirePerformanceConfigurationDelegate commandDelegate = commandCache.Cache.vkAcquirePerformanceConfigurationINTEL;
                 Result methodResult = commandDelegate(extendedHandle.handle, marshalledAcquireInfo, &marshalledConfiguration);

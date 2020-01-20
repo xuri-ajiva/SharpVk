@@ -62,11 +62,16 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        PerformanceQueryKhr = 1000116000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         AccelerationStructureCompactedSize = 1000165000, 
         
         /// <summary>
         /// 
         /// </summary>
-        PerformanceQuery = 1000210000, 
+        PerformanceQueryIntel = 1000210000, 
     }
 }
