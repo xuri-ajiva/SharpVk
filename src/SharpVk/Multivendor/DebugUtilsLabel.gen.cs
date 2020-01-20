@@ -70,6 +70,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe DebugUtilsLabel MarshalFrom(SharpVk.Interop.Multivendor.DebugUtilsLabel* pointer)
         {
             DebugUtilsLabel result = default(DebugUtilsLabel);

@@ -70,6 +70,8 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PresentRegions MarshalFrom(SharpVk.Interop.Khronos.PresentRegions* pointer)
         {
             PresentRegions result = default(PresentRegions);

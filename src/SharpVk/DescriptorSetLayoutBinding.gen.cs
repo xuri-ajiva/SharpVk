@@ -140,6 +140,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe DescriptorSetLayoutBinding MarshalFrom(SharpVk.Interop.DescriptorSetLayoutBinding* pointer)
         {
             DescriptorSetLayoutBinding result = default(DescriptorSetLayoutBinding);

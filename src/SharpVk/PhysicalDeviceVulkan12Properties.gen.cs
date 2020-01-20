@@ -567,5 +567,68 @@ namespace SharpVk
                 pointer->FramebufferIntegerColorSampleCounts = default(SharpVk.SampleCountFlags);
             }
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pointer">
+        /// </param>
+        internal static unsafe PhysicalDeviceVulkan12Properties MarshalFrom(SharpVk.Interop.PhysicalDeviceVulkan12Properties* pointer)
+        {
+            PhysicalDeviceVulkan12Properties result = default(PhysicalDeviceVulkan12Properties);
+            result.DriverID = pointer->DriverID;
+            result.DriverName = Interop.HeapUtil.MarshalStringFrom(pointer->DriverName, Constants.MaxDriverNameSize, true);
+            result.DriverInfo = Interop.HeapUtil.MarshalStringFrom(pointer->DriverInfo, Constants.MaxDriverInfoSize, true);
+            result.ConformanceVersion = pointer->ConformanceVersion;
+            result.DenormBehaviorIndependence = pointer->DenormBehaviorIndependence;
+            result.RoundingModeIndependence = pointer->RoundingModeIndependence;
+            result.ShaderSignedZeroInfNanPreserveFloat16 = pointer->ShaderSignedZeroInfNanPreserveFloat16;
+            result.ShaderSignedZeroInfNanPreserveFloat32 = pointer->ShaderSignedZeroInfNanPreserveFloat32;
+            result.ShaderSignedZeroInfNanPreserveFloat64 = pointer->ShaderSignedZeroInfNanPreserveFloat64;
+            result.ShaderDenormPreserveFloat16 = pointer->ShaderDenormPreserveFloat16;
+            result.ShaderDenormPreserveFloat32 = pointer->ShaderDenormPreserveFloat32;
+            result.ShaderDenormPreserveFloat64 = pointer->ShaderDenormPreserveFloat64;
+            result.ShaderDenormFlushToZeroFloat16 = pointer->ShaderDenormFlushToZeroFloat16;
+            result.ShaderDenormFlushToZeroFloat32 = pointer->ShaderDenormFlushToZeroFloat32;
+            result.ShaderDenormFlushToZeroFloat64 = pointer->ShaderDenormFlushToZeroFloat64;
+            result.ShaderRoundingModeRTEFloat16 = pointer->ShaderRoundingModeRTEFloat16;
+            result.ShaderRoundingModeRTEFloat32 = pointer->ShaderRoundingModeRTEFloat32;
+            result.ShaderRoundingModeRTEFloat64 = pointer->ShaderRoundingModeRTEFloat64;
+            result.ShaderRoundingModeRTZFloat16 = pointer->ShaderRoundingModeRTZFloat16;
+            result.ShaderRoundingModeRTZFloat32 = pointer->ShaderRoundingModeRTZFloat32;
+            result.ShaderRoundingModeRTZFloat64 = pointer->ShaderRoundingModeRTZFloat64;
+            result.MaxUpdateAfterBindDescriptorsInAllPools = pointer->MaxUpdateAfterBindDescriptorsInAllPools;
+            result.ShaderUniformBufferArrayNonUniformIndexingNative = pointer->ShaderUniformBufferArrayNonUniformIndexingNative;
+            result.ShaderSampledImageArrayNonUniformIndexingNative = pointer->ShaderSampledImageArrayNonUniformIndexingNative;
+            result.ShaderStorageBufferArrayNonUniformIndexingNative = pointer->ShaderStorageBufferArrayNonUniformIndexingNative;
+            result.ShaderStorageImageArrayNonUniformIndexingNative = pointer->ShaderStorageImageArrayNonUniformIndexingNative;
+            result.ShaderInputAttachmentArrayNonUniformIndexingNative = pointer->ShaderInputAttachmentArrayNonUniformIndexingNative;
+            result.RobustBufferAccessUpdateAfterBind = pointer->RobustBufferAccessUpdateAfterBind;
+            result.QuadDivergentImplicitLod = pointer->QuadDivergentImplicitLod;
+            result.MaxPerStageDescriptorUpdateAfterBindSamplers = pointer->MaxPerStageDescriptorUpdateAfterBindSamplers;
+            result.MaxPerStageDescriptorUpdateAfterBindUniformBuffers = pointer->MaxPerStageDescriptorUpdateAfterBindUniformBuffers;
+            result.MaxPerStageDescriptorUpdateAfterBindStorageBuffers = pointer->MaxPerStageDescriptorUpdateAfterBindStorageBuffers;
+            result.MaxPerStageDescriptorUpdateAfterBindSampledImages = pointer->MaxPerStageDescriptorUpdateAfterBindSampledImages;
+            result.MaxPerStageDescriptorUpdateAfterBindStorageImages = pointer->MaxPerStageDescriptorUpdateAfterBindStorageImages;
+            result.MaxPerStageDescriptorUpdateAfterBindInputAttachments = pointer->MaxPerStageDescriptorUpdateAfterBindInputAttachments;
+            result.MaxPerStageUpdateAfterBindResources = pointer->MaxPerStageUpdateAfterBindResources;
+            result.MaxDescriptorSetUpdateAfterBindSamplers = pointer->MaxDescriptorSetUpdateAfterBindSamplers;
+            result.MaxDescriptorSetUpdateAfterBindUniformBuffers = pointer->MaxDescriptorSetUpdateAfterBindUniformBuffers;
+            result.MaxDescriptorSetUpdateAfterBindUniformBuffersDynamic = pointer->MaxDescriptorSetUpdateAfterBindUniformBuffersDynamic;
+            result.MaxDescriptorSetUpdateAfterBindStorageBuffers = pointer->MaxDescriptorSetUpdateAfterBindStorageBuffers;
+            result.MaxDescriptorSetUpdateAfterBindStorageBuffersDynamic = pointer->MaxDescriptorSetUpdateAfterBindStorageBuffersDynamic;
+            result.MaxDescriptorSetUpdateAfterBindSampledImages = pointer->MaxDescriptorSetUpdateAfterBindSampledImages;
+            result.MaxDescriptorSetUpdateAfterBindStorageImages = pointer->MaxDescriptorSetUpdateAfterBindStorageImages;
+            result.MaxDescriptorSetUpdateAfterBindInputAttachments = pointer->MaxDescriptorSetUpdateAfterBindInputAttachments;
+            result.SupportedDepthResolveModes = pointer->SupportedDepthResolveModes;
+            result.SupportedStencilResolveModes = pointer->SupportedStencilResolveModes;
+            result.IndependentResolveNone = pointer->IndependentResolveNone;
+            result.IndependentResolve = pointer->IndependentResolve;
+            result.FilterMinmaxSingleComponentFormats = pointer->FilterMinmaxSingleComponentFormats;
+            result.FilterMinmaxImageComponentMapping = pointer->FilterMinmaxImageComponentMapping;
+            result.MaxTimelineSemaphoreValueDifference = pointer->MaxTimelineSemaphoreValueDifference;
+            result.FramebufferIntegerColorSampleCounts = pointer->FramebufferIntegerColorSampleCounts;
+            return result;
+        }
     }
 }

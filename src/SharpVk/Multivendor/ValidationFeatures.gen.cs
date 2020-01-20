@@ -93,6 +93,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe ValidationFeatures MarshalFrom(SharpVk.Interop.Multivendor.ValidationFeatures* pointer)
         {
             ValidationFeatures result = default(ValidationFeatures);

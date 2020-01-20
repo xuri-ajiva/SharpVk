@@ -91,7 +91,14 @@ namespace SharpVk
             SubpassDescriptionDepthStencilResolve result = default(SubpassDescriptionDepthStencilResolve);
             result.DepthResolveMode = pointer->DepthResolveMode;
             result.StencilResolveMode = pointer->StencilResolveMode;
-            result.DepthStencilResolveAttachment = SharpVk.AttachmentReference2.MarshalFrom(pointer->DepthStencilResolveAttachment);
+            if (pointer->DepthStencilResolveAttachment != null)
+            {
+                result.DepthStencilResolveAttachment = SharpVk.AttachmentReference2.MarshalFrom(pointer->DepthStencilResolveAttachment);
+            }
+            else
+            {
+                result.DepthStencilResolveAttachment = null;
+            }
             return result;
         }
     }

@@ -1764,14 +1764,6 @@ namespace SharpVk
                     extensionPointer->Next = vkGraphicsPipelineCreateInfoNextPointer;
                     vkGraphicsPipelineCreateInfoNextPointer = extensionPointer;
                 }
-                if (pipelineCompilerControlCreateInfoAmd != null)
-                {
-                    SharpVk.Interop.Amd.PipelineCompilerControlCreateInfo* extensionPointer = default(SharpVk.Interop.Amd.PipelineCompilerControlCreateInfo*);
-                    extensionPointer = (SharpVk.Interop.Amd.PipelineCompilerControlCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Amd.PipelineCompilerControlCreateInfo>());
-                    pipelineCompilerControlCreateInfoAmd.Value.MarshalTo(extensionPointer);
-                    extensionPointer->Next = nextPointer;
-                    nextPointer = extensionPointer;
-                }
                 marshalledCreateInfoCount = 1;
                 marshalledCreateInfos = (SharpVk.Interop.GraphicsPipelineCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.GraphicsPipelineCreateInfo>());
                 marshalledCreateInfos->SType = StructureType.GraphicsPipelineCreateInfo;
@@ -2047,14 +2039,6 @@ namespace SharpVk
                     pipelineCompilerControlCreateInfoAmd.Value.MarshalTo(extensionPointer);
                     extensionPointer->Next = vkComputePipelineCreateInfoNextPointer;
                     vkComputePipelineCreateInfoNextPointer = extensionPointer;
-                }
-                if (pipelineCompilerControlCreateInfoAmd != null)
-                {
-                    SharpVk.Interop.Amd.PipelineCompilerControlCreateInfo* extensionPointer = default(SharpVk.Interop.Amd.PipelineCompilerControlCreateInfo*);
-                    extensionPointer = (SharpVk.Interop.Amd.PipelineCompilerControlCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.Amd.PipelineCompilerControlCreateInfo>());
-                    pipelineCompilerControlCreateInfoAmd.Value.MarshalTo(extensionPointer);
-                    extensionPointer->Next = nextPointer;
-                    nextPointer = extensionPointer;
                 }
                 marshalledCreateInfoCount = 1;
                 marshalledCreateInfos = (SharpVk.Interop.ComputePipelineCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.ComputePipelineCreateInfo>());

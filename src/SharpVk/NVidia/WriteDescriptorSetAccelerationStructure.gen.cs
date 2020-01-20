@@ -70,6 +70,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe WriteDescriptorSetAccelerationStructure MarshalFrom(SharpVk.Interop.NVidia.WriteDescriptorSetAccelerationStructure* pointer)
         {
             WriteDescriptorSetAccelerationStructure result = default(WriteDescriptorSetAccelerationStructure);

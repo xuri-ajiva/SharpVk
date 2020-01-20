@@ -71,6 +71,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe ValidationFlags MarshalFrom(SharpVk.Interop.Multivendor.ValidationFlags* pointer)
         {
             ValidationFlags result = default(ValidationFlags);

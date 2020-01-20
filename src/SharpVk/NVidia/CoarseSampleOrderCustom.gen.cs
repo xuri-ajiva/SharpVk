@@ -88,6 +88,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe CoarseSampleOrderCustom MarshalFrom(SharpVk.Interop.NVidia.CoarseSampleOrderCustom* pointer)
         {
             CoarseSampleOrderCustom result = default(CoarseSampleOrderCustom);

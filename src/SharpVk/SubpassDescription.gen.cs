@@ -182,6 +182,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe SubpassDescription MarshalFrom(SharpVk.Interop.SubpassDescription* pointer)
         {
             SubpassDescription result = default(SubpassDescription);

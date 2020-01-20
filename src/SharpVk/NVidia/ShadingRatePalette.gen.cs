@@ -68,6 +68,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe ShadingRatePalette MarshalFrom(SharpVk.Interop.NVidia.ShadingRatePalette* pointer)
         {
             ShadingRatePalette result = default(ShadingRatePalette);

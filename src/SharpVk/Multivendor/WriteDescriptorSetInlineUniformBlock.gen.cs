@@ -70,6 +70,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe WriteDescriptorSetInlineUniformBlock MarshalFrom(SharpVk.Interop.Multivendor.WriteDescriptorSetInlineUniformBlock* pointer)
         {
             WriteDescriptorSetInlineUniformBlock result = default(WriteDescriptorSetInlineUniformBlock);

@@ -155,16 +155,18 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        internal static unsafe RenderPassCreateInfo2 MarshalFrom(SharpVk.Interop.Khronos.RenderPassCreateInfo2* pointer)
+        /// <param name="pointer">
+        /// </param>
+        internal static unsafe RenderPassCreateInfo2 MarshalFrom(SharpVk.Interop.RenderPassCreateInfo2* pointer)
         {
             RenderPassCreateInfo2 result = default(RenderPassCreateInfo2);
             result.Flags = pointer->Flags;
             if (pointer->Attachments != null)
             {
-                var fieldPointer = new SharpVk.Khronos.AttachmentDescription2[(uint)(pointer->AttachmentCount)];
+                var fieldPointer = new SharpVk.AttachmentDescription2[(uint)(pointer->AttachmentCount)];
                 for(int index = 0; index < (uint)(pointer->AttachmentCount); index++)
                 {
-                    fieldPointer[index] = SharpVk.Khronos.AttachmentDescription2.MarshalFrom(&pointer->Attachments[index]);
+                    fieldPointer[index] = SharpVk.AttachmentDescription2.MarshalFrom(&pointer->Attachments[index]);
                 }
                 result.Attachments = fieldPointer;
             }
@@ -174,10 +176,10 @@ namespace SharpVk
             }
             if (pointer->Subpasses != null)
             {
-                var fieldPointer = new SharpVk.Khronos.SubpassDescription2[(uint)(pointer->SubpassCount)];
+                var fieldPointer = new SharpVk.SubpassDescription2[(uint)(pointer->SubpassCount)];
                 for(int index = 0; index < (uint)(pointer->SubpassCount); index++)
                 {
-                    fieldPointer[index] = SharpVk.Khronos.SubpassDescription2.MarshalFrom(&pointer->Subpasses[index]);
+                    fieldPointer[index] = SharpVk.SubpassDescription2.MarshalFrom(&pointer->Subpasses[index]);
                 }
                 result.Subpasses = fieldPointer;
             }
@@ -187,10 +189,10 @@ namespace SharpVk
             }
             if (pointer->Dependencies != null)
             {
-                var fieldPointer = new SharpVk.Khronos.SubpassDependency2[(uint)(pointer->DependencyCount)];
+                var fieldPointer = new SharpVk.SubpassDependency2[(uint)(pointer->DependencyCount)];
                 for(int index = 0; index < (uint)(pointer->DependencyCount); index++)
                 {
-                    fieldPointer[index] = SharpVk.Khronos.SubpassDependency2.MarshalFrom(&pointer->Dependencies[index]);
+                    fieldPointer[index] = SharpVk.SubpassDependency2.MarshalFrom(&pointer->Dependencies[index]);
                 }
                 result.Dependencies = fieldPointer;
             }

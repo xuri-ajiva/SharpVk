@@ -192,7 +192,9 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
-        internal static unsafe SubpassDescription2 MarshalFrom(SharpVk.Interop.Khronos.SubpassDescription2* pointer)
+        /// <param name="pointer">
+        /// </param>
+        internal static unsafe SubpassDescription2 MarshalFrom(SharpVk.Interop.SubpassDescription2* pointer)
         {
             SubpassDescription2 result = default(SubpassDescription2);
             result.Flags = pointer->Flags;
@@ -200,10 +202,10 @@ namespace SharpVk
             result.ViewMask = pointer->ViewMask;
             if (pointer->InputAttachments != null)
             {
-                var fieldPointer = new SharpVk.Khronos.AttachmentReference2[(uint)(pointer->InputAttachmentCount)];
+                var fieldPointer = new SharpVk.AttachmentReference2[(uint)(pointer->InputAttachmentCount)];
                 for(int index = 0; index < (uint)(pointer->InputAttachmentCount); index++)
                 {
-                    fieldPointer[index] = SharpVk.Khronos.AttachmentReference2.MarshalFrom(&pointer->InputAttachments[index]);
+                    fieldPointer[index] = SharpVk.AttachmentReference2.MarshalFrom(&pointer->InputAttachments[index]);
                 }
                 result.InputAttachments = fieldPointer;
             }
@@ -213,10 +215,10 @@ namespace SharpVk
             }
             if (pointer->ColorAttachments != null)
             {
-                var fieldPointer = new SharpVk.Khronos.AttachmentReference2[(uint)(pointer->ColorAttachmentCount)];
+                var fieldPointer = new SharpVk.AttachmentReference2[(uint)(pointer->ColorAttachmentCount)];
                 for(int index = 0; index < (uint)(pointer->ColorAttachmentCount); index++)
                 {
-                    fieldPointer[index] = SharpVk.Khronos.AttachmentReference2.MarshalFrom(&pointer->ColorAttachments[index]);
+                    fieldPointer[index] = SharpVk.AttachmentReference2.MarshalFrom(&pointer->ColorAttachments[index]);
                 }
                 result.ColorAttachments = fieldPointer;
             }
@@ -226,10 +228,10 @@ namespace SharpVk
             }
             if (pointer->ResolveAttachments != null)
             {
-                var fieldPointer = new SharpVk.Khronos.AttachmentReference2[(uint)(pointer->ColorAttachmentCount)];
+                var fieldPointer = new SharpVk.AttachmentReference2[(uint)(pointer->ColorAttachmentCount)];
                 for(int index = 0; index < (uint)(pointer->ColorAttachmentCount); index++)
                 {
-                    fieldPointer[index] = SharpVk.Khronos.AttachmentReference2.MarshalFrom(&pointer->ResolveAttachments[index]);
+                    fieldPointer[index] = SharpVk.AttachmentReference2.MarshalFrom(&pointer->ResolveAttachments[index]);
                 }
                 result.ResolveAttachments = fieldPointer;
             }
@@ -239,7 +241,7 @@ namespace SharpVk
             }
             if (pointer->DepthStencilAttachment != null)
             {
-                result.DepthStencilAttachment = SharpVk.Khronos.AttachmentReference2.MarshalFrom(pointer->DepthStencilAttachment);
+                result.DepthStencilAttachment = SharpVk.AttachmentReference2.MarshalFrom(pointer->DepthStencilAttachment);
             }
             else
             {

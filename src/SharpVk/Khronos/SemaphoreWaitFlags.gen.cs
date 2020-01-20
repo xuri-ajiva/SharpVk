@@ -1,6 +1,6 @@
 // The MIT License (MIT)
 // 
-// Copyright (c) Andrew Armstrong/FacticiusVir 2019
+// Copyright (c) Andrew Armstrong/FacticiusVir 2020
 // 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -22,44 +22,17 @@
 
 // This file was automatically generated and should not be edited directly.
 
-using System;
-using System.Runtime.InteropServices;
-
 namespace SharpVk.Khronos
 {
     /// <summary>
     /// 
     /// </summary>
-    [StructLayout(LayoutKind.Sequential)]
-    public partial struct PhysicalDeviceShaderSubgroupExtendedTypesFeatures
+    [System.Flags]
+    public enum SemaphoreWaitFlags
     {
         /// <summary>
         /// 
         /// </summary>
-        public bool ShaderSubgroupExtendedTypes
-        {
-            get;
-            set;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PhysicalDeviceShaderSubgroupExtendedTypesFeatures* pointer)
-        {
-            pointer->SType = StructureType.PhysicalDeviceShaderSubgroupExtendedTypesFeatures;
-            pointer->Next = null;
-            pointer->ShaderSubgroupExtendedTypes = this.ShaderSubgroupExtendedTypes;
-        }
-        
-        /// <summary>
-        /// 
-        /// </summary>
-        internal static unsafe PhysicalDeviceShaderSubgroupExtendedTypesFeatures MarshalFrom(SharpVk.Interop.Khronos.PhysicalDeviceShaderSubgroupExtendedTypesFeatures* pointer)
-        {
-            PhysicalDeviceShaderSubgroupExtendedTypesFeatures result = default(PhysicalDeviceShaderSubgroupExtendedTypesFeatures);
-            result.ShaderSubgroupExtendedTypes = pointer->ShaderSubgroupExtendedTypes;
-            return result;
-        }
+        None = 0, 
     }
 }

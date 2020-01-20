@@ -192,5 +192,31 @@ namespace SharpVk
             pointer->MaxPerSetDescriptors = this.MaxPerSetDescriptors;
             pointer->MaxMemoryAllocationSize = this.MaxMemoryAllocationSize;
         }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="pointer">
+        /// </param>
+        internal static unsafe PhysicalDeviceVulkan11Properties MarshalFrom(SharpVk.Interop.PhysicalDeviceVulkan11Properties* pointer)
+        {
+            PhysicalDeviceVulkan11Properties result = default(PhysicalDeviceVulkan11Properties);
+            result.DeviceUUID = new Guid(Interop.HeapUtil.MarshalFrom(pointer->DeviceUUID, Constants.UuidSize));
+            result.DriverUUID = new Guid(Interop.HeapUtil.MarshalFrom(pointer->DriverUUID, Constants.UuidSize));
+            result.DeviceLUID = new Guid(Interop.HeapUtil.MarshalFrom(pointer->DeviceLUID, Constants.LuidSize));
+            result.DeviceNodeMask = pointer->DeviceNodeMask;
+            result.DeviceLUIDValid = pointer->DeviceLUIDValid;
+            result.SubgroupSize = pointer->SubgroupSize;
+            result.SubgroupSupportedStages = pointer->SubgroupSupportedStages;
+            result.SubgroupSupportedOperations = pointer->SubgroupSupportedOperations;
+            result.SubgroupQuadOperationsInAllStages = pointer->SubgroupQuadOperationsInAllStages;
+            result.PointClippingBehavior = pointer->PointClippingBehavior;
+            result.MaxMultiviewViewCount = pointer->MaxMultiviewViewCount;
+            result.MaxMultiviewInstanceIndex = pointer->MaxMultiviewInstanceIndex;
+            result.ProtectedNoFault = pointer->ProtectedNoFault;
+            result.MaxPerSetDescriptors = pointer->MaxPerSetDescriptors;
+            result.MaxMemoryAllocationSize = pointer->MaxMemoryAllocationSize;
+            return result;
+        }
     }
 }
