@@ -38,6 +38,8 @@ namespace SharpVk.NVidia.Experimental
         /// <param name="extendedHandle">
         /// The PhysicalDevice handle to extend.
         /// </param>
+        /// <param name="features">
+        /// </param>
         public static unsafe SharpVk.NVidia.Experimental.DeviceGeneratedCommandsLimits GetGeneratedCommandsProperties(this SharpVk.PhysicalDevice extendedHandle, SharpVk.NVidia.Experimental.DeviceGeneratedCommandsFeatures features)
         {
             try

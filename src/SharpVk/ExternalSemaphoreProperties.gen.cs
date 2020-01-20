@@ -63,6 +63,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe ExternalSemaphoreProperties MarshalFrom(SharpVk.Interop.ExternalSemaphoreProperties* pointer)
         {
             ExternalSemaphoreProperties result = default(ExternalSemaphoreProperties);

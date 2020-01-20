@@ -54,6 +54,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe MemoryDedicatedRequirements MarshalFrom(SharpVk.Interop.MemoryDedicatedRequirements* pointer)
         {
             MemoryDedicatedRequirements result = default(MemoryDedicatedRequirements);

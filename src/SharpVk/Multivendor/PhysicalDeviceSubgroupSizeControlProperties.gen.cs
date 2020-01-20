@@ -72,6 +72,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceSubgroupSizeControlProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceSubgroupSizeControlProperties* pointer)
         {
             PhysicalDeviceSubgroupSizeControlProperties result = default(PhysicalDeviceSubgroupSizeControlProperties);

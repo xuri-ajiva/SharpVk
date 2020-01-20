@@ -72,6 +72,8 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PipelineExecutableStatistic MarshalFrom(SharpVk.Interop.Khronos.PipelineExecutableStatistic* pointer)
         {
             PipelineExecutableStatistic result = default(PipelineExecutableStatistic);

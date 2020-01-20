@@ -54,6 +54,8 @@ namespace SharpVk.Ggp
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Ggp.StreamDescriptorSurfaceCreateInfo* pointer)
         {
             pointer->SType = StructureType.StreamDescriptorSurfaceCreateInfo;

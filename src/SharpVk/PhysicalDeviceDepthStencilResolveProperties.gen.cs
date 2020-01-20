@@ -72,6 +72,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceDepthStencilResolveProperties MarshalFrom(SharpVk.Interop.PhysicalDeviceDepthStencilResolveProperties* pointer)
         {
             PhysicalDeviceDepthStencilResolveProperties result = default(PhysicalDeviceDepthStencilResolveProperties);

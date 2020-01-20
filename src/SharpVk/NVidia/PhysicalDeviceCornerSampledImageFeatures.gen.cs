@@ -45,6 +45,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PhysicalDeviceCornerSampledImageFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceCornerSampledImageFeatures;
@@ -55,6 +57,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceCornerSampledImageFeatures MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceCornerSampledImageFeatures* pointer)
         {
             PhysicalDeviceCornerSampledImageFeatures result = default(PhysicalDeviceCornerSampledImageFeatures);

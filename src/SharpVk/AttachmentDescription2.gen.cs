@@ -117,6 +117,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.AttachmentDescription2* pointer)
         {
             pointer->Next = null;
@@ -141,6 +143,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe AttachmentDescription2 MarshalFrom(SharpVk.Interop.AttachmentDescription2* pointer)
         {
             AttachmentDescription2 result = default(AttachmentDescription2);

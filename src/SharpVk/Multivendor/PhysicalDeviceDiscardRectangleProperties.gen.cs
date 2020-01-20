@@ -45,6 +45,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceDiscardRectangleProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceDiscardRectangleProperties* pointer)
         {
             PhysicalDeviceDiscardRectangleProperties result = default(PhysicalDeviceDiscardRectangleProperties);

@@ -72,6 +72,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.QueryPoolCreateInfo* pointer)
         {
             pointer->SType = StructureType.QueryPoolCreateInfo;

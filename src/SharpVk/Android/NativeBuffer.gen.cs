@@ -81,6 +81,8 @@ namespace SharpVk.Android
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Android.NativeBuffer* pointer)
         {
             pointer->SType = StructureType.NativeBuffer;
@@ -95,6 +97,8 @@ namespace SharpVk.Android
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe NativeBuffer MarshalFrom(SharpVk.Interop.Android.NativeBuffer* pointer)
         {
             NativeBuffer result = default(NativeBuffer);

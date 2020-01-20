@@ -78,6 +78,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe FramebufferMixedSamplesCombination MarshalFrom(SharpVk.Interop.NVidia.FramebufferMixedSamplesCombination* pointer)
         {
             FramebufferMixedSamplesCombination result = default(FramebufferMixedSamplesCombination);

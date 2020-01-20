@@ -81,6 +81,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceSampleLocationsProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceSampleLocationsProperties* pointer)
         {
             PhysicalDeviceSampleLocationsProperties result = default(PhysicalDeviceSampleLocationsProperties);

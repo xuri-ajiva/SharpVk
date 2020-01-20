@@ -37,6 +37,8 @@ namespace SharpVk.Amd
         /// <param name="extendedHandle">
         /// The Swapchain handle to extend.
         /// </param>
+        /// <param name="localDimmingEnable">
+        /// </param>
         public static unsafe void SetLocalDimming(this SharpVk.Khronos.Swapchain extendedHandle, bool localDimmingEnable)
         {
             try

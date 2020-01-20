@@ -45,6 +45,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PipelineTessellationDomainOriginStateCreateInfo* pointer)
         {
             pointer->Next = null;

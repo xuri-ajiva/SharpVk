@@ -47,6 +47,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceShaderDemoteToHelperInvocationFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceShaderDemoteToHelperInvocationFeatures;
@@ -57,6 +59,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceShaderDemoteToHelperInvocationFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceShaderDemoteToHelperInvocationFeatures* pointer)
         {
             PhysicalDeviceShaderDemoteToHelperInvocationFeatures result = default(PhysicalDeviceShaderDemoteToHelperInvocationFeatures);

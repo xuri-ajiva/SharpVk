@@ -54,6 +54,8 @@ namespace SharpVk
         /// <summary>
         /// Return a function pointer for a command.
         /// </summary>
+        /// <param name="name">
+        /// </param>
         public unsafe IntPtr GetProcedureAddress(string name)
         {
             try
@@ -102,6 +104,10 @@ namespace SharpVk
         /// <summary>
         /// Get a queue handle from a device.
         /// </summary>
+        /// <param name="queueFamilyIndex">
+        /// </param>
+        /// <param name="queueIndex">
+        /// </param>
         public unsafe SharpVk.Queue GetQueue(uint queueFamilyIndex, uint queueIndex)
         {
             try
@@ -559,6 +565,10 @@ namespace SharpVk
         /// </summary>
         /// <param name="fences">
         /// </param>
+        /// <param name="waitAll">
+        /// </param>
+        /// <param name="timeout">
+        /// </param>
         public unsafe Result WaitForFences(ArrayProxy<SharpVk.Fence>? fences, bool waitAll, ulong timeout)
         {
             try
@@ -749,6 +759,10 @@ namespace SharpVk
         /// </param>
         /// <param name="queryType">
         /// The type of queries managed by the pool.
+        /// </param>
+        /// <param name="queryCount">
+        /// </param>
+        /// <param name="pipelineStatistics">
         /// </param>
         /// <param name="queryPoolPerformanceCreateInfoKhr">
         /// Extension struct
@@ -1543,6 +1557,8 @@ namespace SharpVk
         /// <summary>
         /// Create graphics pipelines.
         /// </summary>
+        /// <param name="pipelineCache">
+        /// </param>
         /// <param name="createInfos">
         /// </param>
         /// <param name="allocator">
@@ -1620,6 +1636,8 @@ namespace SharpVk
         /// <summary>
         /// Create graphics pipelines.
         /// </summary>
+        /// <param name="pipelineCache">
+        /// </param>
         /// <param name="flags">
         /// A bitmask of PipelineCreateFlagBits controlling how the pipeline
         /// will be generated, as described below.
@@ -1895,6 +1913,8 @@ namespace SharpVk
         /// <summary>
         /// Creates a new compute pipeline object.
         /// </summary>
+        /// <param name="pipelineCache">
+        /// </param>
         /// <param name="createInfos">
         /// </param>
         /// <param name="allocator">
@@ -1972,6 +1992,8 @@ namespace SharpVk
         /// <summary>
         /// Creates a new compute pipeline object.
         /// </summary>
+        /// <param name="pipelineCache">
+        /// </param>
         /// <param name="flags">
         /// flags provides options for pipeline creation, and is of type
         /// PipelineCreateFlagBits.
@@ -2186,6 +2208,34 @@ namespace SharpVk
         /// <param name="magFilter">
         /// The magnification filter to apply to lookups.
         /// </param>
+        /// <param name="minFilter">
+        /// </param>
+        /// <param name="mipmapMode">
+        /// </param>
+        /// <param name="addressModeU">
+        /// </param>
+        /// <param name="addressModeV">
+        /// </param>
+        /// <param name="addressModeW">
+        /// </param>
+        /// <param name="mipLodBias">
+        /// </param>
+        /// <param name="anisotropyEnable">
+        /// </param>
+        /// <param name="maxAnisotropy">
+        /// </param>
+        /// <param name="compareEnable">
+        /// </param>
+        /// <param name="compareOp">
+        /// </param>
+        /// <param name="minLod">
+        /// </param>
+        /// <param name="maxLod">
+        /// </param>
+        /// <param name="borderColor">
+        /// </param>
+        /// <param name="unnormalizedCoordinates">
+        /// </param>
         /// <param name="samplerYcbcrConversionInfo">
         /// Extension struct
         /// </param>
@@ -2368,6 +2418,8 @@ namespace SharpVk
         /// <param name="flags">
         /// Specifies certain supported operations on the pool. Bits which can
         /// be set include: + --
+        /// </param>
+        /// <param name="maxSets">
         /// </param>
         /// <param name="poolSizes">
         /// </param>
@@ -2669,6 +2721,10 @@ namespace SharpVk
         /// maximum bit index set in the view mask in the subpasses in which it
         /// is used.
         /// </param>
+        /// <param name="height">
+        /// </param>
+        /// <param name="layers">
+        /// </param>
         /// <param name="framebufferAttachmentsCreateInfo">
         /// Extension struct
         /// </param>
@@ -2920,6 +2976,8 @@ namespace SharpVk
         /// A bitmask indicating usage behavior for the pool and command
         /// buffers allocated from it. Bits which can be set include: + --
         /// </param>
+        /// <param name="queueFamilyIndex">
+        /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
@@ -2978,6 +3036,8 @@ namespace SharpVk
         /// <param name="level">
         /// level determines whether the command buffers are primary or
         /// secondary command buffers. Possible values include: + --
+        /// </param>
+        /// <param name="commandBufferCount">
         /// </param>
         public unsafe SharpVk.CommandBuffer[] AllocateCommandBuffers(SharpVk.CommandPool commandPool, SharpVk.CommandBufferLevel level, uint commandBufferCount)
         {
@@ -3152,6 +3212,12 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="heapIndex">
+        /// </param>
+        /// <param name="localDeviceIndex">
+        /// </param>
+        /// <param name="remoteDeviceIndex">
+        /// </param>
         public unsafe SharpVk.PeerMemoryFeatureFlags GetGroupPeerMemoryFeatures(uint heapIndex, uint localDeviceIndex, uint remoteDeviceIndex)
         {
             try
@@ -3172,6 +3238,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="info">
+        /// </param>
         public unsafe SharpVk.MemoryRequirements2 GetImageMemoryRequirements2(SharpVk.ImageMemoryRequirementsInfo2 info)
         {
             try
@@ -3195,6 +3263,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="info">
+        /// </param>
         public unsafe SharpVk.MemoryRequirements2 GetBufferMemoryRequirements2(SharpVk.BufferMemoryRequirementsInfo2 info)
         {
             try
@@ -3218,6 +3288,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="info">
+        /// </param>
         public unsafe SharpVk.SparseImageMemoryRequirements2[] GetImageSparseMemoryRequirements2(SharpVk.ImageSparseMemoryRequirementsInfo2 info)
         {
             try
@@ -3256,6 +3328,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="queueInfo">
+        /// </param>
         public unsafe SharpVk.Queue GetQueue2(SharpVk.DeviceQueueInfo2 queueInfo)
         {
             try
@@ -3279,8 +3353,26 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="format">
+        /// </param>
+        /// <param name="ycbcrModel">
+        /// </param>
+        /// <param name="ycbcrRange">
+        /// </param>
+        /// <param name="components">
+        /// </param>
+        /// <param name="xChromaOffset">
+        /// </param>
+        /// <param name="yChromaOffset">
+        /// </param>
+        /// <param name="chromaFilter">
+        /// </param>
+        /// <param name="forceExplicitReconstruction">
+        /// </param>
         /// <param name="externalFormatAndroid">
         /// Extension struct
+        /// </param>
+        /// <param name="allocator">
         /// </param>
         public unsafe SharpVk.SamplerYcbcrConversion CreateSamplerYcbcrConversion(SharpVk.Format format, SharpVk.SamplerYcbcrModelConversion ycbcrModel, SharpVk.SamplerYcbcrRange ycbcrRange, SharpVk.ComponentMapping components, SharpVk.ChromaLocation xChromaOffset, SharpVk.ChromaLocation yChromaOffset, SharpVk.Filter chromaFilter, bool forceExplicitReconstruction, SharpVk.Android.ExternalFormat? externalFormatAndroid = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -3336,7 +3428,21 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="flags">
+        /// </param>
         /// <param name="descriptorUpdateEntries">
+        /// </param>
+        /// <param name="templateType">
+        /// </param>
+        /// <param name="descriptorSetLayout">
+        /// </param>
+        /// <param name="pipelineBindPoint">
+        /// </param>
+        /// <param name="pipelineLayout">
+        /// </param>
+        /// <param name="set">
+        /// </param>
+        /// <param name="allocator">
         /// </param>
         public unsafe SharpVk.DescriptorUpdateTemplate CreateDescriptorUpdateTemplate(ArrayProxy<SharpVk.DescriptorUpdateTemplateEntry>? descriptorUpdateEntries, SharpVk.DescriptorUpdateTemplateType templateType, SharpVk.DescriptorSetLayout descriptorSetLayout, SharpVk.PipelineBindPoint pipelineBindPoint, SharpVk.PipelineLayout pipelineLayout, uint set, SharpVk.DescriptorUpdateTemplateCreateFlags? flags = default(SharpVk.DescriptorUpdateTemplateCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -3411,6 +3517,12 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="descriptorSet">
+        /// </param>
+        /// <param name="descriptorUpdateTemplate">
+        /// </param>
+        /// <param name="data">
+        /// </param>
         public unsafe void UpdateDescriptorSetWithTemplate(SharpVk.DescriptorSet descriptorSet, SharpVk.DescriptorUpdateTemplate descriptorUpdateTemplate, IntPtr data)
         {
             try
@@ -3427,6 +3539,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="createInfo">
+        /// </param>
         public unsafe SharpVk.DescriptorSetLayoutSupport GetDescriptorSetLayoutSupport(SharpVk.DescriptorSetLayoutCreateInfo createInfo)
         {
             try
@@ -3450,6 +3564,10 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="createInfo">
+        /// </param>
+        /// <param name="allocator">
+        /// </param>
         public unsafe SharpVk.RenderPass CreateRenderPass2(SharpVk.RenderPassCreateInfo2 createInfo, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
@@ -3487,9 +3605,13 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="flags">
+        /// </param>
         /// <param name="semaphores">
         /// </param>
         /// <param name="values">
+        /// </param>
+        /// <param name="timeout">
         /// </param>
         public unsafe Result WaitSemaphores(ArrayProxy<SharpVk.Semaphore>? semaphores, ArrayProxy<ulong>? values, ulong timeout, SharpVk.SemaphoreWaitFlags? flags = default(SharpVk.SemaphoreWaitFlags?))
         {
@@ -3568,6 +3690,10 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="semaphore">
+        /// </param>
+        /// <param name="value">
+        /// </param>
         public unsafe void SignalSemaphore(SharpVk.Semaphore semaphore, ulong value)
         {
             try
@@ -3594,6 +3720,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="info">
+        /// </param>
         public unsafe void GetBufferDeviceAddress(SharpVk.BufferDeviceAddressInfo info)
         {
             try
@@ -3613,6 +3741,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="info">
+        /// </param>
         public unsafe void GetBufferOpaqueCaptureAddress(SharpVk.BufferDeviceAddressInfo info)
         {
             try
@@ -3632,6 +3762,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="info">
+        /// </param>
         public unsafe void GetMemoryOpaqueCaptureAddress(SharpVk.DeviceMemoryOpaqueCaptureAddressInfo info)
         {
             try

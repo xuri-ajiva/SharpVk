@@ -72,6 +72,8 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PerformanceCounter MarshalFrom(SharpVk.Interop.Khronos.PerformanceCounter* pointer)
         {
             PerformanceCounter result = default(PerformanceCounter);

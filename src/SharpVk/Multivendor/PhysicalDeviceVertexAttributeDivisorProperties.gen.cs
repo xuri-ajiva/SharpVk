@@ -45,6 +45,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceVertexAttributeDivisorProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceVertexAttributeDivisorProperties* pointer)
         {
             PhysicalDeviceVertexAttributeDivisorProperties result = default(PhysicalDeviceVertexAttributeDivisorProperties);

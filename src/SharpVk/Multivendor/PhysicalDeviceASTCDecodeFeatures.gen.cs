@@ -45,6 +45,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceASTCDecodeFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceAstcDecodeFeatures;
@@ -55,6 +57,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceASTCDecodeFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceASTCDecodeFeatures* pointer)
         {
             PhysicalDeviceASTCDecodeFeatures result = default(PhysicalDeviceASTCDecodeFeatures);

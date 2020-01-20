@@ -81,6 +81,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceInlineUniformBlockProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceInlineUniformBlockProperties* pointer)
         {
             PhysicalDeviceInlineUniformBlockProperties result = default(PhysicalDeviceInlineUniformBlockProperties);

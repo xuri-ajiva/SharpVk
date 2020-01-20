@@ -37,6 +37,12 @@ namespace SharpVk.NVidia
         /// <param name="extendedHandle">
         /// The Device handle to extend.
         /// </param>
+        /// <param name="compactedSize">
+        /// </param>
+        /// <param name="info">
+        /// </param>
+        /// <param name="allocator">
+        /// </param>
         public static unsafe SharpVk.NVidia.AccelerationStructure CreateAccelerationStructure(this SharpVk.Device extendedHandle, ulong compactedSize, SharpVk.NVidia.AccelerationStructureInfo info, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
@@ -82,6 +88,8 @@ namespace SharpVk.NVidia
         /// </summary>
         /// <param name="extendedHandle">
         /// The Device handle to extend.
+        /// </param>
+        /// <param name="info">
         /// </param>
         public static unsafe SharpVk.MemoryRequirements2 GetAccelerationStructureMemoryRequirements(this SharpVk.Device extendedHandle, SharpVk.NVidia.AccelerationStructureMemoryRequirementsInfo info)
         {
@@ -160,7 +168,11 @@ namespace SharpVk.NVidia
         /// <param name="extendedHandle">
         /// The Device handle to extend.
         /// </param>
+        /// <param name="pipelineCache">
+        /// </param>
         /// <param name="createInfos">
+        /// </param>
+        /// <param name="allocator">
         /// </param>
         public static unsafe SharpVk.Pipeline[] CreateRayTracingPipelines(this SharpVk.Device extendedHandle, SharpVk.PipelineCache pipelineCache, ArrayProxy<SharpVk.NVidia.RayTracingPipelineCreateInfo>? createInfos, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -238,12 +250,26 @@ namespace SharpVk.NVidia
         /// <param name="extendedHandle">
         /// The Device handle to extend.
         /// </param>
+        /// <param name="pipelineCache">
+        /// </param>
+        /// <param name="flags">
+        /// </param>
         /// <param name="stages">
         /// </param>
         /// <param name="groups">
         /// </param>
+        /// <param name="maxRecursionDepth">
+        /// </param>
+        /// <param name="layout">
+        /// </param>
+        /// <param name="basePipelineHandle">
+        /// </param>
+        /// <param name="basePipelineIndex">
+        /// </param>
         /// <param name="pipelineCreationFeedbackCreateInfoExt">
         /// Extension struct
+        /// </param>
+        /// <param name="allocator">
         /// </param>
         public static unsafe SharpVk.Pipeline CreateRayTracingPipeline(this SharpVk.Device extendedHandle, SharpVk.PipelineCache pipelineCache, ArrayProxy<SharpVk.PipelineShaderStageCreateInfo>? stages, ArrayProxy<SharpVk.NVidia.RayTracingShaderGroupCreateInfo>? groups, uint maxRecursionDepth, SharpVk.PipelineLayout layout, SharpVk.Pipeline basePipelineHandle, int basePipelineIndex, SharpVk.PipelineCreateFlags? flags = default(SharpVk.PipelineCreateFlags?), SharpVk.Multivendor.PipelineCreationFeedbackCreateInfo? pipelineCreationFeedbackCreateInfoExt = null, SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {

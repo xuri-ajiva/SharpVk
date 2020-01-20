@@ -63,6 +63,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.DeviceQueueInfo2* pointer)
         {
             pointer->Next = null;
@@ -81,6 +83,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe DeviceQueueInfo2 MarshalFrom(SharpVk.Interop.DeviceQueueInfo2* pointer)
         {
             DeviceQueueInfo2 result = default(DeviceQueueInfo2);

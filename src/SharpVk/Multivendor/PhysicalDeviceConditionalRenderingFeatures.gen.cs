@@ -54,6 +54,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceConditionalRenderingFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceConditionalRenderingFeatures;
@@ -65,6 +67,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceConditionalRenderingFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceConditionalRenderingFeatures* pointer)
         {
             PhysicalDeviceConditionalRenderingFeatures result = default(PhysicalDeviceConditionalRenderingFeatures);

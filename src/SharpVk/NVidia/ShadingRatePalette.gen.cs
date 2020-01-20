@@ -45,6 +45,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.ShadingRatePalette* pointer)
         {
             pointer->ShadingRatePaletteEntryCount = (uint)(Interop.HeapUtil.GetLength(this.ShadingRatePaletteEntries));

@@ -42,6 +42,10 @@ namespace SharpVk.Multivendor
         /// called. Flags are interpreted as bitmasks and multiple may be set.
         /// Bits which can be set include: + --
         /// </param>
+        /// <param name="callback">
+        /// </param>
+        /// <param name="userData">
+        /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
@@ -107,6 +111,20 @@ namespace SharpVk.Multivendor
         /// <param name="extendedHandle">
         /// The Instance handle to extend.
         /// </param>
+        /// <param name="flags">
+        /// </param>
+        /// <param name="objectType">
+        /// </param>
+        /// <param name="object">
+        /// </param>
+        /// <param name="location">
+        /// </param>
+        /// <param name="messageCode">
+        /// </param>
+        /// <param name="layerPrefix">
+        /// </param>
+        /// <param name="message">
+        /// </param>
         public static unsafe void DebugReportMessage(this SharpVk.Instance extendedHandle, SharpVk.Multivendor.DebugReportFlags flags, SharpVk.Multivendor.DebugReportObjectType objectType, ulong @object, HostSize location, int messageCode, string layerPrefix, string message)
         {
             try
@@ -127,6 +145,18 @@ namespace SharpVk.Multivendor
         /// </summary>
         /// <param name="extendedHandle">
         /// The Instance handle to extend.
+        /// </param>
+        /// <param name="flags">
+        /// </param>
+        /// <param name="messageSeverity">
+        /// </param>
+        /// <param name="messageType">
+        /// </param>
+        /// <param name="userCallback">
+        /// </param>
+        /// <param name="userData">
+        /// </param>
+        /// <param name="allocator">
         /// </param>
         public static unsafe SharpVk.Multivendor.DebugUtilsMessenger CreateDebugUtilsMessenger(this SharpVk.Instance extendedHandle, SharpVk.Multivendor.DebugUtilsMessageSeverityFlags messageSeverity, SharpVk.Multivendor.DebugUtilsMessageTypeFlags messageType, SharpVk.Multivendor.DebugUtilsMessengerCallbackDelegate userCallback, SharpVk.Multivendor.DebugUtilsMessengerCreateFlags? flags = default(SharpVk.Multivendor.DebugUtilsMessengerCreateFlags?), IntPtr? userData = default(IntPtr?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -190,6 +220,12 @@ namespace SharpVk.Multivendor
         /// </summary>
         /// <param name="extendedHandle">
         /// The Instance handle to extend.
+        /// </param>
+        /// <param name="messageSeverity">
+        /// </param>
+        /// <param name="messageTypes">
+        /// </param>
+        /// <param name="callbackData">
         /// </param>
         public static unsafe void SubmitDebugUtilsMessage(this SharpVk.Instance extendedHandle, SharpVk.Multivendor.DebugUtilsMessageSeverityFlags messageSeverity, SharpVk.Multivendor.DebugUtilsMessageTypeFlags messageTypes, SharpVk.Multivendor.DebugUtilsMessengerCallbackData callbackData)
         {

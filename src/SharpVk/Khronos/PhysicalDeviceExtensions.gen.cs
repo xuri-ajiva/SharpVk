@@ -37,6 +37,10 @@ namespace SharpVk.Khronos
         /// <param name="extendedHandle">
         /// The PhysicalDevice handle to extend.
         /// </param>
+        /// <param name="queueFamilyIndex">
+        /// </param>
+        /// <param name="surface">
+        /// </param>
         public static unsafe bool GetSurfaceSupport(this SharpVk.PhysicalDevice extendedHandle, uint queueFamilyIndex, SharpVk.Khronos.Surface surface)
         {
             try
@@ -66,6 +70,8 @@ namespace SharpVk.Khronos
         /// <param name="extendedHandle">
         /// The PhysicalDevice handle to extend.
         /// </param>
+        /// <param name="surface">
+        /// </param>
         public static unsafe SharpVk.Khronos.SurfaceCapabilities GetSurfaceCapabilities(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.Surface surface)
         {
             try
@@ -94,6 +100,8 @@ namespace SharpVk.Khronos
         /// </summary>
         /// <param name="extendedHandle">
         /// The PhysicalDevice handle to extend.
+        /// </param>
+        /// <param name="surface">
         /// </param>
         public static unsafe SharpVk.Khronos.SurfaceFormat[] GetSurfaceFormats(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.Surface surface)
         {
@@ -139,6 +147,8 @@ namespace SharpVk.Khronos
         /// <param name="extendedHandle">
         /// The PhysicalDevice handle to extend.
         /// </param>
+        /// <param name="surface">
+        /// </param>
         public static unsafe SharpVk.Khronos.PresentMode[] GetSurfacePresentModes(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.Surface surface)
         {
             try
@@ -182,6 +192,8 @@ namespace SharpVk.Khronos
         /// </summary>
         /// <param name="extendedHandle">
         /// The PhysicalDevice handle to extend.
+        /// </param>
+        /// <param name="surface">
         /// </param>
         public static unsafe SharpVk.Rect2D[] GetPresentRectangles(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.Surface surface)
         {
@@ -315,6 +327,8 @@ namespace SharpVk.Khronos
         /// <param name="extendedHandle">
         /// The PhysicalDevice handle to extend.
         /// </param>
+        /// <param name="planeIndex">
+        /// </param>
         public static unsafe SharpVk.Khronos.Display[] GetDisplayPlaneSupportedDisplays(this SharpVk.PhysicalDevice extendedHandle, uint planeIndex)
         {
             try
@@ -359,6 +373,8 @@ namespace SharpVk.Khronos
         /// <param name="extendedHandle">
         /// The PhysicalDevice handle to extend.
         /// </param>
+        /// <param name="display">
+        /// </param>
         public static unsafe SharpVk.Khronos.DisplayModeProperties[] GetDisplayModeProperties(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.Display display)
         {
             try
@@ -402,6 +418,8 @@ namespace SharpVk.Khronos
         /// </summary>
         /// <param name="extendedHandle">
         /// The PhysicalDevice handle to extend.
+        /// </param>
+        /// <param name="display">
         /// </param>
         /// <param name="flags">
         /// Reserved for future use, and must be zero.
@@ -469,6 +487,12 @@ namespace SharpVk.Khronos
         /// <param name="extendedHandle">
         /// The PhysicalDevice handle to extend.
         /// </param>
+        /// <param name="queueFamilyIndex">
+        /// </param>
+        /// <param name="dpy">
+        /// </param>
+        /// <param name="visualID">
+        /// </param>
         public static unsafe void GetXlibPresentationSupport(this SharpVk.PhysicalDevice extendedHandle, uint queueFamilyIndex, IntPtr dpy, IntPtr visualID)
         {
             try
@@ -492,6 +516,12 @@ namespace SharpVk.Khronos
         /// </summary>
         /// <param name="extendedHandle">
         /// The PhysicalDevice handle to extend.
+        /// </param>
+        /// <param name="queueFamilyIndex">
+        /// </param>
+        /// <param name="connection">
+        /// </param>
+        /// <param name="visualId">
         /// </param>
         public static unsafe void GetXcbPresentationSupport(this SharpVk.PhysicalDevice extendedHandle, uint queueFamilyIndex, IntPtr connection, IntPtr visualId)
         {
@@ -517,6 +547,10 @@ namespace SharpVk.Khronos
         /// <param name="extendedHandle">
         /// The PhysicalDevice handle to extend.
         /// </param>
+        /// <param name="queueFamilyIndex">
+        /// </param>
+        /// <param name="display">
+        /// </param>
         public static unsafe void GetWaylandPresentationSupport(this SharpVk.PhysicalDevice extendedHandle, uint queueFamilyIndex, IntPtr display)
         {
             try
@@ -541,6 +575,8 @@ namespace SharpVk.Khronos
         /// <param name="extendedHandle">
         /// The PhysicalDevice handle to extend.
         /// </param>
+        /// <param name="queueFamilyIndex">
+        /// </param>
         public static unsafe void GetWin32PresentationSupport(this SharpVk.PhysicalDevice extendedHandle, uint queueFamilyIndex)
         {
             try
@@ -561,6 +597,12 @@ namespace SharpVk.Khronos
         /// </summary>
         /// <param name="extendedHandle">
         /// The PhysicalDevice handle to extend.
+        /// </param>
+        /// <param name="queueFamilyIndex">
+        /// </param>
+        /// <param name="counters">
+        /// </param>
+        /// <param name="counterDescriptions">
         /// </param>
         public static unsafe Result EnumerateQueueFamilyPerformanceQueryCounters(this SharpVk.PhysicalDevice extendedHandle, uint queueFamilyIndex, out PerformanceCounter[] counters, out PerformanceCounterDescription[] counterDescriptions)
         {
@@ -621,6 +663,8 @@ namespace SharpVk.Khronos
         /// <param name="extendedHandle">
         /// The PhysicalDevice handle to extend.
         /// </param>
+        /// <param name="performanceQueryCreateInfo">
+        /// </param>
         public static unsafe uint GetQueueFamilyPerformanceQueryPasses(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.QueryPoolPerformanceCreateInfo performanceQueryCreateInfo)
         {
             try
@@ -648,6 +692,8 @@ namespace SharpVk.Khronos
         /// </summary>
         /// <param name="extendedHandle">
         /// The PhysicalDevice handle to extend.
+        /// </param>
+        /// <param name="surfaceInfo">
         /// </param>
         public static unsafe SharpVk.Khronos.SurfaceCapabilities2 GetSurfaceCapabilities2(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.PhysicalDeviceSurfaceInfo2 surfaceInfo)
         {
@@ -680,6 +726,8 @@ namespace SharpVk.Khronos
         /// </summary>
         /// <param name="extendedHandle">
         /// The PhysicalDevice handle to extend.
+        /// </param>
+        /// <param name="surfaceInfo">
         /// </param>
         public static unsafe SharpVk.Khronos.SurfaceFormat2[] GetSurfaceFormats2(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.PhysicalDeviceSurfaceInfo2 surfaceInfo)
         {
@@ -816,6 +864,8 @@ namespace SharpVk.Khronos
         /// <param name="extendedHandle">
         /// The PhysicalDevice handle to extend.
         /// </param>
+        /// <param name="display">
+        /// </param>
         public static unsafe SharpVk.Khronos.DisplayModeProperties2[] GetDisplayModeProperties2(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.Display display)
         {
             try
@@ -859,6 +909,8 @@ namespace SharpVk.Khronos
         /// </summary>
         /// <param name="extendedHandle">
         /// The PhysicalDevice handle to extend.
+        /// </param>
+        /// <param name="displayPlaneInfo">
         /// </param>
         public static unsafe SharpVk.Khronos.DisplayPlaneCapabilities2 GetDisplayPlaneCapabilities2(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.DisplayPlaneInfo2 displayPlaneInfo)
         {

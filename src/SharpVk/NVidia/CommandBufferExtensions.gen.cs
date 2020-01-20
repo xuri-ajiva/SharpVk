@@ -37,6 +37,8 @@ namespace SharpVk.NVidia
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
         /// </param>
+        /// <param name="firstViewport">
+        /// </param>
         /// <param name="viewportWScalings">
         /// </param>
         public static unsafe void SetViewportWScaling(this SharpVk.CommandBuffer extendedHandle, uint firstViewport, ArrayProxy<SharpVk.NVidia.ViewportWScaling>? viewportWScalings)
@@ -82,6 +84,10 @@ namespace SharpVk.NVidia
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
         /// </param>
+        /// <param name="imageView">
+        /// </param>
+        /// <param name="imageLayout">
+        /// </param>
         public static unsafe void BindShadingRateImage(this SharpVk.CommandBuffer extendedHandle, SharpVk.ImageView imageView, SharpVk.ImageLayout imageLayout)
         {
             try
@@ -102,6 +108,8 @@ namespace SharpVk.NVidia
         /// </summary>
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
+        /// </param>
+        /// <param name="firstViewport">
         /// </param>
         /// <param name="shadingRatePalettes">
         /// </param>
@@ -148,6 +156,8 @@ namespace SharpVk.NVidia
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
         /// </param>
+        /// <param name="sampleOrderType">
+        /// </param>
         /// <param name="customSampleOrders">
         /// </param>
         public static unsafe void SetCoarseSampleOrder(this SharpVk.CommandBuffer extendedHandle, SharpVk.NVidia.CoarseSampleOrderType sampleOrderType, ArrayProxy<SharpVk.NVidia.CoarseSampleOrderCustom>? customSampleOrders)
@@ -193,6 +203,22 @@ namespace SharpVk.NVidia
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
         /// </param>
+        /// <param name="info">
+        /// </param>
+        /// <param name="instanceData">
+        /// </param>
+        /// <param name="instanceOffset">
+        /// </param>
+        /// <param name="update">
+        /// </param>
+        /// <param name="destination">
+        /// </param>
+        /// <param name="source">
+        /// </param>
+        /// <param name="scratch">
+        /// </param>
+        /// <param name="scratchOffset">
+        /// </param>
         public static unsafe void BuildAccelerationStructure(this SharpVk.CommandBuffer extendedHandle, SharpVk.NVidia.AccelerationStructureInfo info, SharpVk.Buffer instanceData, ulong instanceOffset, bool update, SharpVk.NVidia.AccelerationStructure destination, SharpVk.NVidia.AccelerationStructure source, SharpVk.Buffer scratch, ulong scratchOffset)
         {
             try
@@ -217,6 +243,12 @@ namespace SharpVk.NVidia
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
         /// </param>
+        /// <param name="destination">
+        /// </param>
+        /// <param name="source">
+        /// </param>
+        /// <param name="mode">
+        /// </param>
         public static unsafe void CopyAccelerationStructure(this SharpVk.CommandBuffer extendedHandle, SharpVk.NVidia.AccelerationStructure destination, SharpVk.NVidia.AccelerationStructure source, SharpVk.NVidia.CopyAccelerationStructureMode mode)
         {
             try
@@ -237,6 +269,34 @@ namespace SharpVk.NVidia
         /// </summary>
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
+        /// </param>
+        /// <param name="raygenShaderBindingTableBuffer">
+        /// </param>
+        /// <param name="raygenShaderBindingOffset">
+        /// </param>
+        /// <param name="missShaderBindingTableBuffer">
+        /// </param>
+        /// <param name="missShaderBindingOffset">
+        /// </param>
+        /// <param name="missShaderBindingStride">
+        /// </param>
+        /// <param name="hitShaderBindingTableBuffer">
+        /// </param>
+        /// <param name="hitShaderBindingOffset">
+        /// </param>
+        /// <param name="hitShaderBindingStride">
+        /// </param>
+        /// <param name="callableShaderBindingTableBuffer">
+        /// </param>
+        /// <param name="callableShaderBindingOffset">
+        /// </param>
+        /// <param name="callableShaderBindingStride">
+        /// </param>
+        /// <param name="width">
+        /// </param>
+        /// <param name="height">
+        /// </param>
+        /// <param name="depth">
         /// </param>
         public static unsafe void TraceRays(this SharpVk.CommandBuffer extendedHandle, SharpVk.Buffer raygenShaderBindingTableBuffer, ulong raygenShaderBindingOffset, SharpVk.Buffer missShaderBindingTableBuffer, ulong missShaderBindingOffset, ulong missShaderBindingStride, SharpVk.Buffer hitShaderBindingTableBuffer, ulong hitShaderBindingOffset, ulong hitShaderBindingStride, SharpVk.Buffer callableShaderBindingTableBuffer, ulong callableShaderBindingOffset, ulong callableShaderBindingStride, uint width, uint height, uint depth)
         {
@@ -260,6 +320,12 @@ namespace SharpVk.NVidia
         /// The CommandBuffer handle to extend.
         /// </param>
         /// <param name="accelerationStructures">
+        /// </param>
+        /// <param name="queryType">
+        /// </param>
+        /// <param name="queryPool">
+        /// </param>
+        /// <param name="firstQuery">
         /// </param>
         public static unsafe void WriteAccelerationStructuresProperties(this SharpVk.CommandBuffer extendedHandle, ArrayProxy<SharpVk.NVidia.AccelerationStructure>? accelerationStructures, SharpVk.QueryType queryType, SharpVk.QueryPool queryPool, uint firstQuery)
         {
@@ -304,6 +370,10 @@ namespace SharpVk.NVidia
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
         /// </param>
+        /// <param name="taskCount">
+        /// </param>
+        /// <param name="firstTask">
+        /// </param>
         public static unsafe void DrawMeshTasks(this SharpVk.CommandBuffer extendedHandle, uint taskCount, uint firstTask)
         {
             try
@@ -324,6 +394,14 @@ namespace SharpVk.NVidia
         /// </summary>
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
+        /// </param>
+        /// <param name="buffer">
+        /// </param>
+        /// <param name="offset">
+        /// </param>
+        /// <param name="drawCount">
+        /// </param>
+        /// <param name="stride">
         /// </param>
         public static unsafe void DrawMeshTasksIndirect(this SharpVk.CommandBuffer extendedHandle, SharpVk.Buffer buffer, ulong offset, uint drawCount, uint stride)
         {
@@ -346,6 +424,18 @@ namespace SharpVk.NVidia
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
         /// </param>
+        /// <param name="buffer">
+        /// </param>
+        /// <param name="offset">
+        /// </param>
+        /// <param name="countBuffer">
+        /// </param>
+        /// <param name="countBufferOffset">
+        /// </param>
+        /// <param name="maxDrawCount">
+        /// </param>
+        /// <param name="stride">
+        /// </param>
         public static unsafe void DrawMeshTasksIndirectCount(this SharpVk.CommandBuffer extendedHandle, SharpVk.Buffer buffer, ulong offset, SharpVk.Buffer countBuffer, ulong countBufferOffset, uint maxDrawCount, uint stride)
         {
             try
@@ -366,6 +456,8 @@ namespace SharpVk.NVidia
         /// </summary>
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
+        /// </param>
+        /// <param name="firstExclusiveScissor">
         /// </param>
         /// <param name="exclusiveScissors">
         /// </param>
@@ -411,6 +503,8 @@ namespace SharpVk.NVidia
         /// </summary>
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
+        /// </param>
+        /// <param name="checkpointMarker">
         /// </param>
         public static unsafe void SetCheckpoint(this SharpVk.CommandBuffer extendedHandle, IntPtr checkpointMarker)
         {

@@ -37,6 +37,8 @@ namespace SharpVk.Multivendor
         /// <param name="extendedHandle">
         /// The Queue handle to extend.
         /// </param>
+        /// <param name="labelInfo">
+        /// </param>
         public static unsafe void BeginDebugUtilsLabel(this SharpVk.Queue extendedHandle, SharpVk.Multivendor.DebugUtilsLabel labelInfo)
         {
             try
@@ -81,6 +83,8 @@ namespace SharpVk.Multivendor
         /// </summary>
         /// <param name="extendedHandle">
         /// The Queue handle to extend.
+        /// </param>
+        /// <param name="labelInfo">
         /// </param>
         public static unsafe void InsertDebugUtilsLabel(this SharpVk.Queue extendedHandle, SharpVk.Multivendor.DebugUtilsLabel labelInfo)
         {

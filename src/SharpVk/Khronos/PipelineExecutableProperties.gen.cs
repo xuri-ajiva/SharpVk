@@ -72,6 +72,8 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PipelineExecutableProperties MarshalFrom(SharpVk.Interop.Khronos.PipelineExecutableProperties* pointer)
         {
             PipelineExecutableProperties result = default(PipelineExecutableProperties);

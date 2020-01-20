@@ -45,6 +45,8 @@ namespace SharpVk.Amd
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Amd.PhysicalDeviceCoherentMemoryFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceCoherentMemoryFeatures;
@@ -55,6 +57,8 @@ namespace SharpVk.Amd
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceCoherentMemoryFeatures MarshalFrom(SharpVk.Interop.Amd.PhysicalDeviceCoherentMemoryFeatures* pointer)
         {
             PhysicalDeviceCoherentMemoryFeatures result = default(PhysicalDeviceCoherentMemoryFeatures);

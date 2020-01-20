@@ -171,6 +171,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceVulkan11Properties* pointer)
         {
             pointer->Next = null;

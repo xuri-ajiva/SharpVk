@@ -84,6 +84,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.SparseMemoryBind* pointer)
         {
             pointer->ResourceOffset = this.ResourceOffset;
@@ -103,6 +105,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe SparseMemoryBind MarshalFrom(SharpVk.Interop.SparseMemoryBind* pointer)
         {
             SparseMemoryBind result = default(SparseMemoryBind);

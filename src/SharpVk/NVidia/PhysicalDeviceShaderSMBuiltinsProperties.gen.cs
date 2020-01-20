@@ -54,6 +54,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceShaderSMBuiltinsProperties MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceShaderSMBuiltinsProperties* pointer)
         {
             PhysicalDeviceShaderSMBuiltinsProperties result = default(PhysicalDeviceShaderSMBuiltinsProperties);

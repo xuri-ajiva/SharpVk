@@ -45,6 +45,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceTimelineSemaphoreFeatures* pointer)
         {
             pointer->Next = null;
@@ -54,6 +56,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceTimelineSemaphoreFeatures MarshalFrom(SharpVk.Interop.PhysicalDeviceTimelineSemaphoreFeatures* pointer)
         {
             PhysicalDeviceTimelineSemaphoreFeatures result = default(PhysicalDeviceTimelineSemaphoreFeatures);

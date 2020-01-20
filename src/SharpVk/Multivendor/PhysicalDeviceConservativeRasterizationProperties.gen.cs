@@ -117,6 +117,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceConservativeRasterizationProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceConservativeRasterizationProperties* pointer)
         {
             PhysicalDeviceConservativeRasterizationProperties result = default(PhysicalDeviceConservativeRasterizationProperties);

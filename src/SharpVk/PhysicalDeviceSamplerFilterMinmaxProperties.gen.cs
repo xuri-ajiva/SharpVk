@@ -54,6 +54,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceSamplerFilterMinmaxProperties MarshalFrom(SharpVk.Interop.PhysicalDeviceSamplerFilterMinmaxProperties* pointer)
         {
             PhysicalDeviceSamplerFilterMinmaxProperties result = default(PhysicalDeviceSamplerFilterMinmaxProperties);

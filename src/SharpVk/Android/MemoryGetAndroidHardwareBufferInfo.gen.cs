@@ -45,6 +45,8 @@ namespace SharpVk.Android
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Android.MemoryGetAndroidHardwareBufferInfo* pointer)
         {
             pointer->SType = StructureType.MemoryGetAndroidHardwareBufferInfo;

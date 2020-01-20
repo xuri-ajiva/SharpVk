@@ -45,6 +45,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe FormatProperties2 MarshalFrom(SharpVk.Interop.FormatProperties2* pointer)
         {
             FormatProperties2 result = default(FormatProperties2);

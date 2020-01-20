@@ -45,6 +45,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe MultisampleProperties MarshalFrom(SharpVk.Interop.Multivendor.MultisampleProperties* pointer)
         {
             MultisampleProperties result = default(MultisampleProperties);

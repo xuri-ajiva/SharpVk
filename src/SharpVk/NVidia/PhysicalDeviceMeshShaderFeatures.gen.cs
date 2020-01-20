@@ -54,6 +54,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PhysicalDeviceMeshShaderFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceMeshShaderFeatures;
@@ -65,6 +67,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceMeshShaderFeatures MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceMeshShaderFeatures* pointer)
         {
             PhysicalDeviceMeshShaderFeatures result = default(PhysicalDeviceMeshShaderFeatures);

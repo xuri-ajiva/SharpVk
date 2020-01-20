@@ -54,6 +54,8 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.DisplayPlaneInfo2* pointer)
         {
             pointer->SType = StructureType.DisplayPlaneInfo2;
@@ -65,6 +67,8 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe DisplayPlaneInfo2 MarshalFrom(SharpVk.Interop.Khronos.DisplayPlaneInfo2* pointer)
         {
             DisplayPlaneInfo2 result = default(DisplayPlaneInfo2);

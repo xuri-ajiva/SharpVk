@@ -45,6 +45,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.ImageViewASTCDecodeMode* pointer)
         {
             pointer->SType = StructureType.ImageViewAstcDecodeMode;
@@ -55,6 +57,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe ImageViewASTCDecodeMode MarshalFrom(SharpVk.Interop.Multivendor.ImageViewASTCDecodeMode* pointer)
         {
             ImageViewASTCDecodeMode result = default(ImageViewASTCDecodeMode);

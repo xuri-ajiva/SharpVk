@@ -54,6 +54,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.GeometryData* pointer)
         {
             this.Triangles.MarshalTo(&pointer->Triangles);
@@ -63,6 +65,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe GeometryData MarshalFrom(SharpVk.Interop.NVidia.GeometryData* pointer)
         {
             GeometryData result = default(GeometryData);

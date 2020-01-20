@@ -54,6 +54,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceMultiviewProperties MarshalFrom(SharpVk.Interop.PhysicalDeviceMultiviewProperties* pointer)
         {
             PhysicalDeviceMultiviewProperties result = default(PhysicalDeviceMultiviewProperties);

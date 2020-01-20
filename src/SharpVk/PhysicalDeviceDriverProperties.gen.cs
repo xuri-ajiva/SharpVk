@@ -72,6 +72,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceDriverProperties MarshalFrom(SharpVk.Interop.PhysicalDeviceDriverProperties* pointer)
         {
             PhysicalDeviceDriverProperties result = default(PhysicalDeviceDriverProperties);

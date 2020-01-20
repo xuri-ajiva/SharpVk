@@ -54,6 +54,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe CheckpointData MarshalFrom(SharpVk.Interop.NVidia.CheckpointData* pointer)
         {
             CheckpointData result = default(CheckpointData);

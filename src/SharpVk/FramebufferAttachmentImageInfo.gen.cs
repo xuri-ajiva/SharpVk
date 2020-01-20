@@ -98,6 +98,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.FramebufferAttachmentImageInfo* pointer)
         {
             pointer->Next = null;

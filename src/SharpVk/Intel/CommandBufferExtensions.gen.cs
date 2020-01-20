@@ -68,6 +68,8 @@ namespace SharpVk.Intel
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
         /// </param>
+        /// <param name="markerInfo">
+        /// </param>
         public static unsafe void SetPerformanceStreamMarker(this SharpVk.CommandBuffer extendedHandle, SharpVk.Intel.PerformanceStreamMarkerInfo markerInfo)
         {
             try
@@ -95,6 +97,8 @@ namespace SharpVk.Intel
         /// </summary>
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
+        /// </param>
+        /// <param name="overrideInfo">
         /// </param>
         public static unsafe void SetPerformanceOverride(this SharpVk.CommandBuffer extendedHandle, SharpVk.Intel.PerformanceOverrideInfo overrideInfo)
         {

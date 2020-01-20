@@ -45,6 +45,8 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PhysicalDevicePipelineExecutablePropertiesFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDevicePipelineExecutablePropertiesFeatures;
@@ -55,6 +57,8 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDevicePipelineExecutablePropertiesFeatures MarshalFrom(SharpVk.Interop.Khronos.PhysicalDevicePipelineExecutablePropertiesFeatures* pointer)
         {
             PhysicalDevicePipelineExecutablePropertiesFeatures result = default(PhysicalDevicePipelineExecutablePropertiesFeatures);

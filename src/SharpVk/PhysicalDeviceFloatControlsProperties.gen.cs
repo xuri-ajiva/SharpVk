@@ -240,6 +240,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceFloatControlsProperties MarshalFrom(SharpVk.Interop.PhysicalDeviceFloatControlsProperties* pointer)
         {
             PhysicalDeviceFloatControlsProperties result = default(PhysicalDeviceFloatControlsProperties);

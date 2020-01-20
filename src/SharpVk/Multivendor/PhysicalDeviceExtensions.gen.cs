@@ -37,6 +37,8 @@ namespace SharpVk.Multivendor
         /// <param name="extendedHandle">
         /// The PhysicalDevice handle to extend.
         /// </param>
+        /// <param name="display">
+        /// </param>
         public static unsafe void ReleaseDisplay(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.Display display)
         {
             try
@@ -96,6 +98,10 @@ namespace SharpVk.Multivendor
         /// <param name="extendedHandle">
         /// The PhysicalDevice handle to extend.
         /// </param>
+        /// <param name="dpy">
+        /// </param>
+        /// <param name="rrOutput">
+        /// </param>
         public static unsafe SharpVk.Khronos.Display GetRandROutputDisplay(this SharpVk.PhysicalDevice extendedHandle, IntPtr dpy, IntPtr rrOutput)
         {
             try
@@ -128,6 +134,8 @@ namespace SharpVk.Multivendor
         /// <param name="extendedHandle">
         /// The PhysicalDevice handle to extend.
         /// </param>
+        /// <param name="surface">
+        /// </param>
         public static unsafe SharpVk.Multivendor.SurfaceCapabilities2 GetSurfaceCapabilities2(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Khronos.Surface surface)
         {
             try
@@ -156,6 +164,8 @@ namespace SharpVk.Multivendor
         /// </summary>
         /// <param name="extendedHandle">
         /// The PhysicalDevice handle to extend.
+        /// </param>
+        /// <param name="samples">
         /// </param>
         public static unsafe SharpVk.Multivendor.MultisampleProperties GetMultisampleProperties(this SharpVk.PhysicalDevice extendedHandle, SharpVk.SampleCountFlags samples)
         {

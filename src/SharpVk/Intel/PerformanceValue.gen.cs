@@ -56,6 +56,8 @@ namespace SharpVk.Intel
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Intel.PerformanceValue* pointer)
         {
             pointer->Type = this.Type;
@@ -65,6 +67,8 @@ namespace SharpVk.Intel
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PerformanceValue MarshalFrom(SharpVk.Interop.Intel.PerformanceValue* pointer)
         {
             PerformanceValue result = default(PerformanceValue);

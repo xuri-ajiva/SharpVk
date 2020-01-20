@@ -78,6 +78,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.InstanceCreateInfo* pointer)
         {
             pointer->SType = StructureType.InstanceCreateInfo;

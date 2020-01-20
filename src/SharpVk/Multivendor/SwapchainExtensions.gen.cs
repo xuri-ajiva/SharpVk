@@ -37,6 +37,8 @@ namespace SharpVk.Multivendor
         /// <param name="extendedHandle">
         /// The Swapchain handle to extend.
         /// </param>
+        /// <param name="counter">
+        /// </param>
         public static unsafe ulong GetCounter(this SharpVk.Khronos.Swapchain extendedHandle, SharpVk.Multivendor.SurfaceCounterFlags counter)
         {
             try

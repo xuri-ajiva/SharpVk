@@ -45,6 +45,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDevicePointClippingProperties MarshalFrom(SharpVk.Interop.PhysicalDevicePointClippingProperties* pointer)
         {
             PhysicalDevicePointClippingProperties result = default(PhysicalDevicePointClippingProperties);

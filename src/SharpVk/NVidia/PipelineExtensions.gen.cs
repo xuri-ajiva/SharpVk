@@ -37,6 +37,12 @@ namespace SharpVk.NVidia
         /// <param name="extendedHandle">
         /// The Pipeline handle to extend.
         /// </param>
+        /// <param name="firstGroup">
+        /// </param>
+        /// <param name="groupCount">
+        /// </param>
+        /// <param name="dataSize">
+        /// </param>
         public static unsafe byte[] GetRayTracingShaderGroupHandles(this SharpVk.Pipeline extendedHandle, uint firstGroup, uint groupCount, HostSize dataSize)
         {
             try
@@ -80,6 +86,8 @@ namespace SharpVk.NVidia
         /// </summary>
         /// <param name="extendedHandle">
         /// The Pipeline handle to extend.
+        /// </param>
+        /// <param name="shader">
         /// </param>
         public static unsafe void CompileDeferred(this SharpVk.Pipeline extendedHandle, uint shader)
         {

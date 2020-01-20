@@ -55,6 +55,8 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.AndroidSurfaceCreateInfo* pointer)
         {
             pointer->SType = StructureType.AndroidSurfaceCreateInfo;

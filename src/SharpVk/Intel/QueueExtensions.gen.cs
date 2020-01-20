@@ -37,6 +37,8 @@ namespace SharpVk.Intel
         /// <param name="extendedHandle">
         /// The Queue handle to extend.
         /// </param>
+        /// <param name="configuration">
+        /// </param>
         public static unsafe void SetPerformanceConfiguration(this SharpVk.Queue extendedHandle, SharpVk.Intel.PerformanceConfiguration configuration)
         {
             try

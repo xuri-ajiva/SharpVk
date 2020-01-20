@@ -80,6 +80,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.RenderPassBeginInfo* pointer)
         {
             pointer->SType = StructureType.RenderPassBeginInfo;

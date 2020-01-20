@@ -45,6 +45,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceSamplerYcbcrConversionFeatures* pointer)
         {
             pointer->Next = null;
@@ -54,6 +56,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceSamplerYcbcrConversionFeatures MarshalFrom(SharpVk.Interop.PhysicalDeviceSamplerYcbcrConversionFeatures* pointer)
         {
             PhysicalDeviceSamplerYcbcrConversionFeatures result = default(PhysicalDeviceSamplerYcbcrConversionFeatures);

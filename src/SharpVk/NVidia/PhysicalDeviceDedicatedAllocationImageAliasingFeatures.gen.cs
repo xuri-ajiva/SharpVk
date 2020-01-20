@@ -47,6 +47,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PhysicalDeviceDedicatedAllocationImageAliasingFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceDedicatedAllocationImageAliasingFeatures;
@@ -57,6 +59,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceDedicatedAllocationImageAliasingFeatures MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceDedicatedAllocationImageAliasingFeatures* pointer)
         {
             PhysicalDeviceDedicatedAllocationImageAliasingFeatures result = default(PhysicalDeviceDedicatedAllocationImageAliasingFeatures);

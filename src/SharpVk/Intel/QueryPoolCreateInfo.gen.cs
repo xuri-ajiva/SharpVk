@@ -45,6 +45,8 @@ namespace SharpVk.Intel
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Intel.QueryPoolCreateInfo* pointer)
         {
             pointer->SType = StructureType.QueryPoolCreateInfoIntel;

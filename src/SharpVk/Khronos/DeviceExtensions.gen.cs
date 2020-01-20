@@ -41,7 +41,33 @@ namespace SharpVk.Khronos
         /// A bitmask indicating parameters of swapchain creation. Bits which
         /// can be set include: + --
         /// </param>
+        /// <param name="surface">
+        /// </param>
+        /// <param name="minImageCount">
+        /// </param>
+        /// <param name="imageFormat">
+        /// </param>
+        /// <param name="imageColorSpace">
+        /// </param>
+        /// <param name="imageExtent">
+        /// </param>
+        /// <param name="imageArrayLayers">
+        /// </param>
+        /// <param name="imageUsage">
+        /// </param>
+        /// <param name="imageSharingMode">
+        /// </param>
         /// <param name="queueFamilyIndices">
+        /// </param>
+        /// <param name="preTransform">
+        /// </param>
+        /// <param name="compositeAlpha">
+        /// </param>
+        /// <param name="presentMode">
+        /// </param>
+        /// <param name="clipped">
+        /// </param>
+        /// <param name="oldSwapchain">
         /// </param>
         /// <param name="swapchainCounterCreateInfoExt">
         /// Extension struct
@@ -229,6 +255,8 @@ namespace SharpVk.Khronos
         /// <param name="extendedHandle">
         /// The Device handle to extend.
         /// </param>
+        /// <param name="surface">
+        /// </param>
         public static unsafe SharpVk.Khronos.DeviceGroupPresentModeFlags GetGroupSurfacePresentModes(this SharpVk.Device extendedHandle, SharpVk.Khronos.Surface surface)
         {
             try
@@ -257,6 +285,8 @@ namespace SharpVk.Khronos
         /// </summary>
         /// <param name="extendedHandle">
         /// The Device handle to extend.
+        /// </param>
+        /// <param name="acquireInfo">
         /// </param>
         public static unsafe uint AcquireNextImage2(this SharpVk.Device extendedHandle, SharpVk.Khronos.AcquireNextImageInfo acquireInfo)
         {
@@ -376,7 +406,33 @@ namespace SharpVk.Khronos
         /// A bitmask indicating parameters of swapchain creation. Bits which
         /// can be set include: + --
         /// </param>
+        /// <param name="surface">
+        /// </param>
+        /// <param name="minImageCount">
+        /// </param>
+        /// <param name="imageFormat">
+        /// </param>
+        /// <param name="imageColorSpace">
+        /// </param>
+        /// <param name="imageExtent">
+        /// </param>
+        /// <param name="imageArrayLayers">
+        /// </param>
+        /// <param name="imageUsage">
+        /// </param>
+        /// <param name="imageSharingMode">
+        /// </param>
         /// <param name="queueFamilyIndices">
+        /// </param>
+        /// <param name="preTransform">
+        /// </param>
+        /// <param name="compositeAlpha">
+        /// </param>
+        /// <param name="presentMode">
+        /// </param>
+        /// <param name="clipped">
+        /// </param>
+        /// <param name="oldSwapchain">
         /// </param>
         /// <param name="swapchainCounterCreateInfoExt">
         /// Extension struct
@@ -538,6 +594,8 @@ namespace SharpVk.Khronos
         /// <param name="extendedHandle">
         /// The Device handle to extend.
         /// </param>
+        /// <param name="getWin32HandleInfo">
+        /// </param>
         public static unsafe IntPtr GetMemoryWin32Handle(this SharpVk.Device extendedHandle, SharpVk.Khronos.MemoryGetWin32HandleInfo getWin32HandleInfo)
         {
             try
@@ -570,6 +628,10 @@ namespace SharpVk.Khronos
         /// <param name="extendedHandle">
         /// The Device handle to extend.
         /// </param>
+        /// <param name="handleType">
+        /// </param>
+        /// <param name="handle">
+        /// </param>
         public static unsafe SharpVk.Khronos.MemoryWin32HandleProperties GetMemoryWin32HandleProperties(this SharpVk.Device extendedHandle, SharpVk.ExternalMemoryHandleTypeFlags handleType, IntPtr handle)
         {
             try
@@ -598,6 +660,8 @@ namespace SharpVk.Khronos
         /// </summary>
         /// <param name="extendedHandle">
         /// The Device handle to extend.
+        /// </param>
+        /// <param name="getFileDescriptorInfo">
         /// </param>
         public static unsafe int GetMemoryFileDescriptor(this SharpVk.Device extendedHandle, SharpVk.Khronos.MemoryGetFileDescriptorInfo getFileDescriptorInfo)
         {
@@ -631,6 +695,10 @@ namespace SharpVk.Khronos
         /// <param name="extendedHandle">
         /// The Device handle to extend.
         /// </param>
+        /// <param name="handleType">
+        /// </param>
+        /// <param name="fileDescriptor">
+        /// </param>
         public static unsafe SharpVk.Khronos.MemoryFileDescriptorProperties GetMemoryFileDescriptorProperties(this SharpVk.Device extendedHandle, SharpVk.ExternalMemoryHandleTypeFlags handleType, int fileDescriptor)
         {
             try
@@ -660,6 +728,8 @@ namespace SharpVk.Khronos
         /// <param name="extendedHandle">
         /// The Device handle to extend.
         /// </param>
+        /// <param name="importSemaphoreWin32HandleInfo">
+        /// </param>
         public static unsafe void ImportSemaphoreWin32Handle(this SharpVk.Device extendedHandle, SharpVk.Khronos.ImportSemaphoreWin32HandleInfo importSemaphoreWin32HandleInfo)
         {
             try
@@ -687,6 +757,8 @@ namespace SharpVk.Khronos
         /// </summary>
         /// <param name="extendedHandle">
         /// The Device handle to extend.
+        /// </param>
+        /// <param name="getWin32HandleInfo">
         /// </param>
         public static unsafe IntPtr GetSemaphoreWin32Handle(this SharpVk.Device extendedHandle, SharpVk.Khronos.SemaphoreGetWin32HandleInfo getWin32HandleInfo)
         {
@@ -720,6 +792,8 @@ namespace SharpVk.Khronos
         /// <param name="extendedHandle">
         /// The Device handle to extend.
         /// </param>
+        /// <param name="importSemaphoreFileDescriptorInfo">
+        /// </param>
         public static unsafe void ImportSemaphoreFileDescriptor(this SharpVk.Device extendedHandle, SharpVk.Khronos.ImportSemaphoreFileDescriptorInfo importSemaphoreFileDescriptorInfo)
         {
             try
@@ -747,6 +821,8 @@ namespace SharpVk.Khronos
         /// </summary>
         /// <param name="extendedHandle">
         /// The Device handle to extend.
+        /// </param>
+        /// <param name="getFileDescriptorInfo">
         /// </param>
         public static unsafe int GetSemaphoreFileDescriptor(this SharpVk.Device extendedHandle, SharpVk.Khronos.SemaphoreGetFileDescriptorInfo getFileDescriptorInfo)
         {
@@ -780,6 +856,8 @@ namespace SharpVk.Khronos
         /// <param name="extendedHandle">
         /// The Device handle to extend.
         /// </param>
+        /// <param name="importFenceWin32HandleInfo">
+        /// </param>
         public static unsafe void ImportFenceWin32Handle(this SharpVk.Device extendedHandle, SharpVk.Khronos.ImportFenceWin32HandleInfo importFenceWin32HandleInfo)
         {
             try
@@ -807,6 +885,8 @@ namespace SharpVk.Khronos
         /// </summary>
         /// <param name="extendedHandle">
         /// The Device handle to extend.
+        /// </param>
+        /// <param name="getWin32HandleInfo">
         /// </param>
         public static unsafe IntPtr GetFenceWin32Handle(this SharpVk.Device extendedHandle, SharpVk.Khronos.FenceGetWin32HandleInfo getWin32HandleInfo)
         {
@@ -840,6 +920,8 @@ namespace SharpVk.Khronos
         /// <param name="extendedHandle">
         /// The Device handle to extend.
         /// </param>
+        /// <param name="importFenceFileDescriptorInfo">
+        /// </param>
         public static unsafe void ImportFenceFileDescriptor(this SharpVk.Device extendedHandle, SharpVk.Khronos.ImportFenceFileDescriptorInfo importFenceFileDescriptorInfo)
         {
             try
@@ -867,6 +949,8 @@ namespace SharpVk.Khronos
         /// </summary>
         /// <param name="extendedHandle">
         /// The Device handle to extend.
+        /// </param>
+        /// <param name="getFileDescriptorInfo">
         /// </param>
         public static unsafe int GetFenceFileDescriptor(this SharpVk.Device extendedHandle, SharpVk.Khronos.FenceGetFileDescriptorInfo getFileDescriptorInfo)
         {
@@ -899,6 +983,8 @@ namespace SharpVk.Khronos
         /// </summary>
         /// <param name="extendedHandle">
         /// The Device handle to extend.
+        /// </param>
+        /// <param name="info">
         /// </param>
         public static unsafe void AcquireProfilingLock(this SharpVk.Device extendedHandle, SharpVk.Khronos.AcquireProfilingLockInfo info)
         {
@@ -949,6 +1035,8 @@ namespace SharpVk.Khronos
         /// <param name="extendedHandle">
         /// The Device handle to extend.
         /// </param>
+        /// <param name="pipelineInfo">
+        /// </param>
         public static unsafe SharpVk.Khronos.PipelineExecutableProperties[] GetPipelineExecutableProperties(this SharpVk.Device extendedHandle, SharpVk.Khronos.PipelineInfo pipelineInfo)
         {
             try
@@ -996,6 +1084,8 @@ namespace SharpVk.Khronos
         /// <param name="extendedHandle">
         /// The Device handle to extend.
         /// </param>
+        /// <param name="executableInfo">
+        /// </param>
         public static unsafe SharpVk.Khronos.PipelineExecutableStatistic[] GetPipelineExecutableStatistics(this SharpVk.Device extendedHandle, SharpVk.Khronos.PipelineExecutableInfo executableInfo)
         {
             try
@@ -1042,6 +1132,8 @@ namespace SharpVk.Khronos
         /// </summary>
         /// <param name="extendedHandle">
         /// The Device handle to extend.
+        /// </param>
+        /// <param name="executableInfo">
         /// </param>
         public static unsafe SharpVk.Khronos.PipelineExecutableInternalRepresentation[] GetPipelineExecutableInternalRepresentations(this SharpVk.Device extendedHandle, SharpVk.Khronos.PipelineExecutableInfo executableInfo)
         {

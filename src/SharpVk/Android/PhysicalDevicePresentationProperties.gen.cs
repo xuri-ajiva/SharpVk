@@ -45,6 +45,8 @@ namespace SharpVk.Android
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Android.PhysicalDevicePresentationProperties* pointer)
         {
             pointer->SType = StructureType.PhysicalDevicePresentationProperties;
@@ -55,6 +57,8 @@ namespace SharpVk.Android
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDevicePresentationProperties MarshalFrom(SharpVk.Interop.Android.PhysicalDevicePresentationProperties* pointer)
         {
             PhysicalDevicePresentationProperties result = default(PhysicalDevicePresentationProperties);

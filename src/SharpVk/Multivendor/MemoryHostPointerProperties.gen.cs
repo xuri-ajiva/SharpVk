@@ -45,6 +45,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe MemoryHostPointerProperties MarshalFrom(SharpVk.Interop.Multivendor.MemoryHostPointerProperties* pointer)
         {
             MemoryHostPointerProperties result = default(MemoryHostPointerProperties);

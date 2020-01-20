@@ -45,6 +45,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe QueueFamilyCheckpointProperties MarshalFrom(SharpVk.Interop.NVidia.QueueFamilyCheckpointProperties* pointer)
         {
             QueueFamilyCheckpointProperties result = default(QueueFamilyCheckpointProperties);

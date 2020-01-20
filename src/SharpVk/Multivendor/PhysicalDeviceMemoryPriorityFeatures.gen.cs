@@ -45,6 +45,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceMemoryPriorityFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceMemoryPriorityFeatures;
@@ -55,6 +57,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceMemoryPriorityFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceMemoryPriorityFeatures* pointer)
         {
             PhysicalDeviceMemoryPriorityFeatures result = default(PhysicalDeviceMemoryPriorityFeatures);

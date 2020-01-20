@@ -54,6 +54,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceMemoryBudgetProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceMemoryBudgetProperties* pointer)
         {
             PhysicalDeviceMemoryBudgetProperties result = default(PhysicalDeviceMemoryBudgetProperties);

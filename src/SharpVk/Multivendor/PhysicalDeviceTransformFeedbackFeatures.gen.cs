@@ -54,6 +54,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceTransformFeedbackFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceTransformFeedbackFeatures;
@@ -65,6 +67,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceTransformFeedbackFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceTransformFeedbackFeatures* pointer)
         {
             PhysicalDeviceTransformFeedbackFeatures result = default(PhysicalDeviceTransformFeedbackFeatures);

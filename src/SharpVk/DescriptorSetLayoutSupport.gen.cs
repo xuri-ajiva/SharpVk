@@ -45,6 +45,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe DescriptorSetLayoutSupport MarshalFrom(SharpVk.Interop.DescriptorSetLayoutSupport* pointer)
         {
             DescriptorSetLayoutSupport result = default(DescriptorSetLayoutSupport);

@@ -45,6 +45,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe ImageFormatProperties2 MarshalFrom(SharpVk.Interop.ImageFormatProperties2* pointer)
         {
             ImageFormatProperties2 result = default(ImageFormatProperties2);

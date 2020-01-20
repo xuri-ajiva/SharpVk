@@ -50,6 +50,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceCooperativeMatrixProperties MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceCooperativeMatrixProperties* pointer)
         {
             PhysicalDeviceCooperativeMatrixProperties result = default(PhysicalDeviceCooperativeMatrixProperties);

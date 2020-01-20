@@ -45,6 +45,12 @@ namespace SharpVk
         {
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="type"></param>
+        /// <returns></returns>
         public bool IsCommandAvailable(string name, string type)
         {
             if (type != this.type)

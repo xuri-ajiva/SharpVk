@@ -47,6 +47,8 @@ namespace SharpVk.NVidia.Experimental
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.Experimental.DeviceGeneratedCommandsFeatures* pointer)
         {
             pointer->SType = StructureType.DeviceGeneratedCommandsFeatures;
@@ -57,6 +59,8 @@ namespace SharpVk.NVidia.Experimental
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe DeviceGeneratedCommandsFeatures MarshalFrom(SharpVk.Interop.NVidia.Experimental.DeviceGeneratedCommandsFeatures* pointer)
         {
             DeviceGeneratedCommandsFeatures result = default(DeviceGeneratedCommandsFeatures);

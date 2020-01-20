@@ -45,6 +45,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceHostQueryResetFeatures* pointer)
         {
             pointer->Next = null;
@@ -54,6 +56,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceHostQueryResetFeatures MarshalFrom(SharpVk.Interop.PhysicalDeviceHostQueryResetFeatures* pointer)
         {
             PhysicalDeviceHostQueryResetFeatures result = default(PhysicalDeviceHostQueryResetFeatures);

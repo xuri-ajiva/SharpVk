@@ -45,6 +45,8 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe SharedPresentSurfaceCapabilities MarshalFrom(SharpVk.Interop.Khronos.SharedPresentSurfaceCapabilities* pointer)
         {
             SharedPresentSurfaceCapabilities result = default(SharedPresentSurfaceCapabilities);

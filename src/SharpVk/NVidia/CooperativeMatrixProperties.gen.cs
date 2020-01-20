@@ -108,6 +108,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.CooperativeMatrixProperties* pointer)
         {
             pointer->SType = StructureType.CooperativeMatrixProperties;
@@ -125,6 +127,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe CooperativeMatrixProperties MarshalFrom(SharpVk.Interop.NVidia.CooperativeMatrixProperties* pointer)
         {
             CooperativeMatrixProperties result = default(CooperativeMatrixProperties);

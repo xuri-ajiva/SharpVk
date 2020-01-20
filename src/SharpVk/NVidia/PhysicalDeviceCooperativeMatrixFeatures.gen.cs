@@ -58,6 +58,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PhysicalDeviceCooperativeMatrixFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceCooperativeMatrixFeatures;
@@ -69,6 +71,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceCooperativeMatrixFeatures MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceCooperativeMatrixFeatures* pointer)
         {
             PhysicalDeviceCooperativeMatrixFeatures result = default(PhysicalDeviceCooperativeMatrixFeatures);

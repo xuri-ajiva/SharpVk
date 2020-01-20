@@ -63,6 +63,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceFragmentDensityMapFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceFragmentDensityMapFeatures;
@@ -75,6 +77,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceFragmentDensityMapFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceFragmentDensityMapFeatures* pointer)
         {
             PhysicalDeviceFragmentDensityMapFeatures result = default(PhysicalDeviceFragmentDensityMapFeatures);

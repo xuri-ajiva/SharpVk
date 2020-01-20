@@ -72,6 +72,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceSubgroupProperties MarshalFrom(SharpVk.Interop.PhysicalDeviceSubgroupProperties* pointer)
         {
             PhysicalDeviceSubgroupProperties result = default(PhysicalDeviceSubgroupProperties);

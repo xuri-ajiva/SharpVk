@@ -37,6 +37,8 @@ namespace SharpVk.Multivendor
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
         /// </param>
+        /// <param name="firstBinding">
+        /// </param>
         /// <param name="buffers">
         /// </param>
         /// <param name="offsets">
@@ -130,6 +132,8 @@ namespace SharpVk.Multivendor
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
         /// </param>
+        /// <param name="firstCounterBuffer">
+        /// </param>
         /// <param name="counterBuffers">
         /// </param>
         /// <param name="counterBufferOffsets">
@@ -198,6 +202,8 @@ namespace SharpVk.Multivendor
         /// </summary>
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
+        /// </param>
+        /// <param name="firstCounterBuffer">
         /// </param>
         /// <param name="counterBuffers">
         /// </param>
@@ -268,6 +274,14 @@ namespace SharpVk.Multivendor
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
         /// </param>
+        /// <param name="queryPool">
+        /// </param>
+        /// <param name="query">
+        /// </param>
+        /// <param name="flags">
+        /// </param>
+        /// <param name="index">
+        /// </param>
         public static unsafe void BeginQueryIndexed(this SharpVk.CommandBuffer extendedHandle, SharpVk.QueryPool queryPool, uint query, uint index, SharpVk.QueryControlFlags? flags = default(SharpVk.QueryControlFlags?))
         {
             try
@@ -298,6 +312,12 @@ namespace SharpVk.Multivendor
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
         /// </param>
+        /// <param name="queryPool">
+        /// </param>
+        /// <param name="query">
+        /// </param>
+        /// <param name="index">
+        /// </param>
         public static unsafe void EndQueryIndexed(this SharpVk.CommandBuffer extendedHandle, SharpVk.QueryPool queryPool, uint query, uint index)
         {
             try
@@ -319,6 +339,18 @@ namespace SharpVk.Multivendor
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
         /// </param>
+        /// <param name="instanceCount">
+        /// </param>
+        /// <param name="firstInstance">
+        /// </param>
+        /// <param name="counterBuffer">
+        /// </param>
+        /// <param name="counterBufferOffset">
+        /// </param>
+        /// <param name="counterOffset">
+        /// </param>
+        /// <param name="vertexStride">
+        /// </param>
         public static unsafe void DrawIndirectByteCount(this SharpVk.CommandBuffer extendedHandle, uint instanceCount, uint firstInstance, SharpVk.Buffer counterBuffer, ulong counterBufferOffset, uint counterOffset, uint vertexStride)
         {
             try
@@ -339,6 +371,12 @@ namespace SharpVk.Multivendor
         /// </summary>
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
+        /// </param>
+        /// <param name="buffer">
+        /// </param>
+        /// <param name="offset">
+        /// </param>
+        /// <param name="flags">
         /// </param>
         public static unsafe void BeginConditionalRendering(this SharpVk.CommandBuffer extendedHandle, SharpVk.Buffer buffer, ulong offset, SharpVk.Multivendor.ConditionalRenderingFlags? flags = default(SharpVk.Multivendor.ConditionalRenderingFlags?))
         {
@@ -397,6 +435,8 @@ namespace SharpVk.Multivendor
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
         /// </param>
+        /// <param name="firstDiscardRectangle">
+        /// </param>
         /// <param name="discardRectangles">
         /// </param>
         public static unsafe void SetDiscardRectangle(this SharpVk.CommandBuffer extendedHandle, uint firstDiscardRectangle, ArrayProxy<SharpVk.Rect2D>? discardRectangles)
@@ -441,6 +481,8 @@ namespace SharpVk.Multivendor
         /// </summary>
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
+        /// </param>
+        /// <param name="labelInfo">
         /// </param>
         public static unsafe void BeginDebugUtilsLabel(this SharpVk.CommandBuffer extendedHandle, SharpVk.Multivendor.DebugUtilsLabel labelInfo)
         {
@@ -487,6 +529,8 @@ namespace SharpVk.Multivendor
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
         /// </param>
+        /// <param name="labelInfo">
+        /// </param>
         public static unsafe void InsertDebugUtilsLabel(this SharpVk.CommandBuffer extendedHandle, SharpVk.Multivendor.DebugUtilsLabel labelInfo)
         {
             try
@@ -511,6 +555,8 @@ namespace SharpVk.Multivendor
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
         /// </param>
+        /// <param name="sampleLocationsInfo">
+        /// </param>
         public static unsafe void SetSampleLocations(this SharpVk.CommandBuffer extendedHandle, SharpVk.Multivendor.SampleLocationsInfo sampleLocationsInfo)
         {
             try
@@ -534,6 +580,10 @@ namespace SharpVk.Multivendor
         /// </summary>
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
+        /// </param>
+        /// <param name="lineStippleFactor">
+        /// </param>
+        /// <param name="lineStipplePattern">
         /// </param>
         public static unsafe void SetLineStipple(this SharpVk.CommandBuffer extendedHandle, uint lineStippleFactor, ushort lineStipplePattern)
         {

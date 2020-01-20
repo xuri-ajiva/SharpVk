@@ -77,6 +77,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe LayerProperties MarshalFrom(SharpVk.Interop.LayerProperties* pointer)
         {
             LayerProperties result = default(LayerProperties);

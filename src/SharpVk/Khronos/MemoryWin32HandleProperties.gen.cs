@@ -45,6 +45,8 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe MemoryWin32HandleProperties MarshalFrom(SharpVk.Interop.Khronos.MemoryWin32HandleProperties* pointer)
         {
             MemoryWin32HandleProperties result = default(MemoryWin32HandleProperties);

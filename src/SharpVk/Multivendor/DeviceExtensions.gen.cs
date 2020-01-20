@@ -37,6 +37,10 @@ namespace SharpVk.Multivendor
         /// <param name="extendedHandle">
         /// The Device handle to extend.
         /// </param>
+        /// <param name="display">
+        /// </param>
+        /// <param name="displayPowerInfo">
+        /// </param>
         public static unsafe void DisplayPowerControl(this SharpVk.Device extendedHandle, SharpVk.Khronos.Display display, SharpVk.Multivendor.DisplayPowerInfo displayPowerInfo)
         {
             try
@@ -64,6 +68,8 @@ namespace SharpVk.Multivendor
         /// </summary>
         /// <param name="extendedHandle">
         /// The Device handle to extend.
+        /// </param>
+        /// <param name="deviceEventInfo">
         /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
@@ -110,6 +116,10 @@ namespace SharpVk.Multivendor
         /// </summary>
         /// <param name="extendedHandle">
         /// The Device handle to extend.
+        /// </param>
+        /// <param name="display">
+        /// </param>
+        /// <param name="displayEventInfo">
         /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
@@ -226,6 +236,8 @@ namespace SharpVk.Multivendor
         /// <param name="extendedHandle">
         /// The Device handle to extend.
         /// </param>
+        /// <param name="nameInfo">
+        /// </param>
         public static unsafe void SetDebugUtilsObjectName(this SharpVk.Device extendedHandle, SharpVk.Multivendor.DebugUtilsObjectNameInfo nameInfo)
         {
             try
@@ -253,6 +265,8 @@ namespace SharpVk.Multivendor
         /// </summary>
         /// <param name="extendedHandle">
         /// The Device handle to extend.
+        /// </param>
+        /// <param name="tagInfo">
         /// </param>
         public static unsafe void SetDebugUtilsObjectTag(this SharpVk.Device extendedHandle, SharpVk.Multivendor.DebugUtilsObjectTagInfo tagInfo)
         {
@@ -282,7 +296,11 @@ namespace SharpVk.Multivendor
         /// <param name="extendedHandle">
         /// The Device handle to extend.
         /// </param>
+        /// <param name="flags">
+        /// </param>
         /// <param name="initialData">
+        /// </param>
+        /// <param name="allocator">
         /// </param>
         public static unsafe SharpVk.Multivendor.ValidationCache CreateValidationCache(this SharpVk.Device extendedHandle, ArrayProxy<byte>? initialData, SharpVk.Multivendor.ValidationCacheCreateFlags? flags = default(SharpVk.Multivendor.ValidationCacheCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
@@ -357,6 +375,10 @@ namespace SharpVk.Multivendor
         /// </summary>
         /// <param name="extendedHandle">
         /// The Device handle to extend.
+        /// </param>
+        /// <param name="handleType">
+        /// </param>
+        /// <param name="hostPointer">
         /// </param>
         public static unsafe SharpVk.Multivendor.MemoryHostPointerProperties GetMemoryHostPointerProperties(this SharpVk.Device extendedHandle, SharpVk.ExternalMemoryHandleTypeFlags handleType, IntPtr hostPointer)
         {

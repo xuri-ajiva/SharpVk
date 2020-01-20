@@ -63,6 +63,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.Geometry* pointer)
         {
             pointer->SType = StructureType.Geometry;
@@ -82,6 +84,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe Geometry MarshalFrom(SharpVk.Interop.NVidia.Geometry* pointer)
         {
             Geometry result = default(Geometry);

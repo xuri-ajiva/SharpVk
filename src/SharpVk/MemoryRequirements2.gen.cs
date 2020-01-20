@@ -45,6 +45,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe MemoryRequirements2 MarshalFrom(SharpVk.Interop.MemoryRequirements2* pointer)
         {
             MemoryRequirements2 result = default(MemoryRequirements2);

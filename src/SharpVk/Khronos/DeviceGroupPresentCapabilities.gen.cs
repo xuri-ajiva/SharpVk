@@ -54,6 +54,8 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe DeviceGroupPresentCapabilities MarshalFrom(SharpVk.Interop.Khronos.DeviceGroupPresentCapabilities* pointer)
         {
             DeviceGroupPresentCapabilities result = default(DeviceGroupPresentCapabilities);

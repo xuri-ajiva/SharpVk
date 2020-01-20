@@ -63,6 +63,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceFragmentShaderInterlockFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceFragmentShaderInterlockFeatures;
@@ -75,6 +77,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceFragmentShaderInterlockFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceFragmentShaderInterlockFeatures* pointer)
         {
             PhysicalDeviceFragmentShaderInterlockFeatures result = default(PhysicalDeviceFragmentShaderInterlockFeatures);

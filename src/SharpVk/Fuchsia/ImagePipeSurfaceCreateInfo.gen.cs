@@ -54,6 +54,8 @@ namespace SharpVk.Fuchsia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Fuchsia.ImagePipeSurfaceCreateInfo* pointer)
         {
             pointer->SType = StructureType.ImagepipeSurfaceCreateInfo;

@@ -108,6 +108,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.SubpassDescription2* pointer)
         {
             pointer->Next = null;

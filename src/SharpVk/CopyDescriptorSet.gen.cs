@@ -105,6 +105,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.CopyDescriptorSet* pointer)
         {
             pointer->SType = StructureType.CopyDescriptorSet;
@@ -121,6 +123,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe CopyDescriptorSet MarshalFrom(SharpVk.Interop.CopyDescriptorSet* pointer)
         {
             CopyDescriptorSet result = default(CopyDescriptorSet);

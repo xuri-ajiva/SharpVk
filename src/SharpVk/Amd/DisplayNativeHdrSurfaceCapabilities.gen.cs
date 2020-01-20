@@ -50,6 +50,8 @@ namespace SharpVk.Amd
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe DisplayNativeHdrSurfaceCapabilities MarshalFrom(SharpVk.Interop.Amd.DisplayNativeHdrSurfaceCapabilities* pointer)
         {
             DisplayNativeHdrSurfaceCapabilities result = default(DisplayNativeHdrSurfaceCapabilities);

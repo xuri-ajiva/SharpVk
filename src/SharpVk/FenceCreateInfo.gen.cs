@@ -46,6 +46,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.FenceCreateInfo* pointer)
         {
             pointer->SType = StructureType.FenceCreateInfo;

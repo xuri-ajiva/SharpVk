@@ -37,6 +37,10 @@ namespace SharpVk.Amd
         /// <param name="extendedHandle">
         /// The Pipeline handle to extend.
         /// </param>
+        /// <param name="shaderStage">
+        /// </param>
+        /// <param name="infoType">
+        /// </param>
         public static unsafe byte[] GetShaderInfo(this SharpVk.Pipeline extendedHandle, SharpVk.ShaderStageFlags shaderStage, SharpVk.Amd.ShaderInfoType infoType)
         {
             try

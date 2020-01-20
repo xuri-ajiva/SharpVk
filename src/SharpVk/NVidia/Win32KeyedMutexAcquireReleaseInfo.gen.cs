@@ -81,6 +81,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.Win32KeyedMutexAcquireReleaseInfo* pointer)
         {
             pointer->SType = StructureType.Win32KeyedMutexAcquireReleaseInfoNv;

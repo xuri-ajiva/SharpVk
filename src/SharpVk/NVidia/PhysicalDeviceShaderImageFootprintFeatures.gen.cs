@@ -45,6 +45,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PhysicalDeviceShaderImageFootprintFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceShaderImageFootprintFeatures;
@@ -55,6 +57,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceShaderImageFootprintFeatures MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceShaderImageFootprintFeatures* pointer)
         {
             PhysicalDeviceShaderImageFootprintFeatures result = default(PhysicalDeviceShaderImageFootprintFeatures);

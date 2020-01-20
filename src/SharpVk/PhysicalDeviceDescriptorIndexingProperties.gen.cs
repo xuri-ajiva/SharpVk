@@ -243,6 +243,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceDescriptorIndexingProperties MarshalFrom(SharpVk.Interop.PhysicalDeviceDescriptorIndexingProperties* pointer)
         {
             PhysicalDeviceDescriptorIndexingProperties result = default(PhysicalDeviceDescriptorIndexingProperties);

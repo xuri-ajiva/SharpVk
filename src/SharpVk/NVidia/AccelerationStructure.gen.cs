@@ -53,6 +53,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="allocator">
+        /// </param>
         public unsafe void Destroy(SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try
@@ -79,6 +81,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="dataSize">
+        /// </param>
         public unsafe byte[] GetHandle(HostSize dataSize)
         {
             try

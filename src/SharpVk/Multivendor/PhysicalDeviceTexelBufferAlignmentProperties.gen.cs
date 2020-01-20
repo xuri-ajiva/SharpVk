@@ -77,6 +77,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceTexelBufferAlignmentProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceTexelBufferAlignmentProperties* pointer)
         {
             PhysicalDeviceTexelBufferAlignmentProperties result = default(PhysicalDeviceTexelBufferAlignmentProperties);

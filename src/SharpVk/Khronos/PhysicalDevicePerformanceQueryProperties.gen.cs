@@ -45,6 +45,8 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDevicePerformanceQueryProperties MarshalFrom(SharpVk.Interop.Khronos.PhysicalDevicePerformanceQueryProperties* pointer)
         {
             PhysicalDevicePerformanceQueryProperties result = default(PhysicalDevicePerformanceQueryProperties);

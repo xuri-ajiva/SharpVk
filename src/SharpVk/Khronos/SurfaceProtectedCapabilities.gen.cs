@@ -45,6 +45,8 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.SurfaceProtectedCapabilities* pointer)
         {
             pointer->SType = StructureType.SurfaceProtectedCapabilities;
@@ -55,6 +57,8 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe SurfaceProtectedCapabilities MarshalFrom(SharpVk.Interop.Khronos.SurfaceProtectedCapabilities* pointer)
         {
             SurfaceProtectedCapabilities result = default(SurfaceProtectedCapabilities);

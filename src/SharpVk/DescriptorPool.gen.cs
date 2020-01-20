@@ -83,6 +83,8 @@ namespace SharpVk
         /// <summary>
         /// Resets a descriptor pool object.
         /// </summary>
+        /// <param name="flags">
+        /// </param>
         public unsafe void Reset(SharpVk.DescriptorPoolResetFlags? flags = default(SharpVk.DescriptorPoolResetFlags?))
         {
             try

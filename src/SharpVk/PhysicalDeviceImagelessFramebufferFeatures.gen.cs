@@ -45,6 +45,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceImagelessFramebufferFeatures* pointer)
         {
             pointer->Next = null;
@@ -54,6 +56,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceImagelessFramebufferFeatures MarshalFrom(SharpVk.Interop.PhysicalDeviceImagelessFramebufferFeatures* pointer)
         {
             PhysicalDeviceImagelessFramebufferFeatures result = default(PhysicalDeviceImagelessFramebufferFeatures);

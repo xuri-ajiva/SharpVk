@@ -99,6 +99,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.SparseImageMemoryBind* pointer)
         {
             pointer->Subresource = this.Subresource;
@@ -119,6 +121,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe SparseImageMemoryBind MarshalFrom(SharpVk.Interop.SparseImageMemoryBind* pointer)
         {
             SparseImageMemoryBind result = default(SparseImageMemoryBind);

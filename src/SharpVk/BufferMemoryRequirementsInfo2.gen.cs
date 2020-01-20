@@ -45,6 +45,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.BufferMemoryRequirementsInfo2* pointer)
         {
             pointer->Next = null;
@@ -54,6 +56,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe BufferMemoryRequirementsInfo2 MarshalFrom(SharpVk.Interop.BufferMemoryRequirementsInfo2* pointer)
         {
             BufferMemoryRequirementsInfo2 result = default(BufferMemoryRequirementsInfo2);

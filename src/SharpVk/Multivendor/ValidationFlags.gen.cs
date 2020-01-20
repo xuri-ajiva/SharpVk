@@ -46,6 +46,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.ValidationFlags* pointer)
         {
             pointer->SType = StructureType.ValidationFlags;

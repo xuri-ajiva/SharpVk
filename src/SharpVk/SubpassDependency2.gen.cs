@@ -108,6 +108,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.SubpassDependency2* pointer)
         {
             pointer->Next = null;
@@ -152,6 +154,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe SubpassDependency2 MarshalFrom(SharpVk.Interop.SubpassDependency2* pointer)
         {
             SubpassDependency2 result = default(SubpassDependency2);

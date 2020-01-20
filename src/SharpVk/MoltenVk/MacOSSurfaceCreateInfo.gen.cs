@@ -57,6 +57,8 @@ namespace SharpVk.MoltenVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.MoltenVk.MacOSSurfaceCreateInfo* pointer)
         {
             pointer->SType = StructureType.MacosSurfaceCreateInfo;

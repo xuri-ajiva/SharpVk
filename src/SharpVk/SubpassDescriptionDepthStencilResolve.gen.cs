@@ -63,6 +63,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.SubpassDescriptionDepthStencilResolve* pointer)
         {
             pointer->Next = null;
@@ -82,6 +84,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe SubpassDescriptionDepthStencilResolve MarshalFrom(SharpVk.Interop.SubpassDescriptionDepthStencilResolve* pointer)
         {
             SubpassDescriptionDepthStencilResolve result = default(SubpassDescriptionDepthStencilResolve);

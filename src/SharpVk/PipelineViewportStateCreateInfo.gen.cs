@@ -67,6 +67,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PipelineViewportStateCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineViewportStateCreateInfo;

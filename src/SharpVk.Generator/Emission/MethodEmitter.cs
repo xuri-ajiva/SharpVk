@@ -53,12 +53,12 @@ namespace SharpVk.Generator.Emission
                                             {
                                                 if (action.Param.Comment != null && action.Param.Comment.Any())
                                                 {
-                                                    docBuilder.EmitParam(action.Param.Name, string.Join(" ", action.Param.Comment));
+                                                    docBuilder.EmitParam(action.Param.Name.TrimStart('@'), string.Join(" ", action.Param.Comment));
                                                 }
-                                                //else
-                                                //{
-                                                //    docBuilder.EmitParam(action.Param.Name, "");
-                                                //}
+                                                else
+                                                {
+                                                    docBuilder.EmitParam(action.Param.Name.TrimStart('@'), "");
+                                                }
                                             }
                                         });
         }

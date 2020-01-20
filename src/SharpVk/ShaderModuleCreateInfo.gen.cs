@@ -65,6 +65,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.ShaderModuleCreateInfo* pointer)
         {
             pointer->SType = StructureType.ShaderModuleCreateInfo;

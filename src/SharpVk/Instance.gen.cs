@@ -51,6 +51,8 @@ namespace SharpVk
         /// <summary>
         /// Create a new Vulkan instance.
         /// </summary>
+        /// <param name="commandCache">
+        /// </param>
         /// <param name="flags">
         /// Reserved for future use.
         /// </param>
@@ -246,6 +248,8 @@ namespace SharpVk
         /// <summary>
         /// Return a function pointer for a command.
         /// </summary>
+        /// <param name="name">
+        /// </param>
         public unsafe IntPtr GetProcedureAddress(string name)
         {
             try
@@ -264,6 +268,10 @@ namespace SharpVk
         /// <summary>
         /// Returns up to requested number of global extension properties.
         /// </summary>
+        /// <param name="commandCache">
+        /// </param>
+        /// <param name="layerName">
+        /// </param>
         public static unsafe SharpVk.ExtensionProperties[] EnumerateExtensionProperties(CommandCache commandCache, string layerName)
         {
             try
@@ -303,6 +311,8 @@ namespace SharpVk
         /// <summary>
         /// Returns up to requested number of global layer properties.
         /// </summary>
+        /// <param name="commandCache">
+        /// </param>
         public static unsafe SharpVk.LayerProperties[] EnumerateLayerProperties(CommandCache commandCache)
         {
             try
@@ -342,6 +352,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="commandCache">
+        /// </param>
         public static unsafe Version EnumerateVersion(CommandCache commandCache)
         {
             try

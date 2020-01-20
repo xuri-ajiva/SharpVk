@@ -45,6 +45,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe DrmFormatModifierPropertiesList MarshalFrom(SharpVk.Interop.Multivendor.DrmFormatModifierPropertiesList* pointer)
         {
             DrmFormatModifierPropertiesList result = default(DrmFormatModifierPropertiesList);

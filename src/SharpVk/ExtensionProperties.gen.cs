@@ -55,6 +55,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe ExtensionProperties MarshalFrom(SharpVk.Interop.ExtensionProperties* pointer)
         {
             ExtensionProperties result = default(ExtensionProperties);

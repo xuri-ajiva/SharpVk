@@ -45,6 +45,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.SurfaceCapabilitiesFullScreenExclusive* pointer)
         {
             pointer->SType = StructureType.SurfaceCapabilitiesFullScreenExclusive;
@@ -55,6 +57,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe SurfaceCapabilitiesFullScreenExclusive MarshalFrom(SharpVk.Interop.Multivendor.SurfaceCapabilitiesFullScreenExclusive* pointer)
         {
             SurfaceCapabilitiesFullScreenExclusive result = default(SurfaceCapabilitiesFullScreenExclusive);

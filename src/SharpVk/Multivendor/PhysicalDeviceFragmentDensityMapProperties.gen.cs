@@ -63,6 +63,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceFragmentDensityMapProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceFragmentDensityMapProperties* pointer)
         {
             PhysicalDeviceFragmentDensityMapProperties result = default(PhysicalDeviceFragmentDensityMapProperties);

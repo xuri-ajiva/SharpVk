@@ -37,6 +37,10 @@ namespace SharpVk.Ggp
         /// <param name="extendedHandle">
         /// The Instance handle to extend.
         /// </param>
+        /// <param name="flags">
+        /// </param>
+        /// <param name="streamDescriptor">
+        /// </param>
         /// <param name="allocator">
         /// The allocator used for host memory allocated for the surface object
         /// when there is no more specific allocator available.

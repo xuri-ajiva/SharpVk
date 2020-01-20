@@ -45,6 +45,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PipelineShaderStageRequiredSubgroupSizeCreateInfo* pointer)
         {
             pointer->SType = StructureType.PipelineShaderStageRequiredSubgroupSizeCreateInfo;
@@ -55,6 +57,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PipelineShaderStageRequiredSubgroupSizeCreateInfo MarshalFrom(SharpVk.Interop.Multivendor.PipelineShaderStageRequiredSubgroupSizeCreateInfo* pointer)
         {
             PipelineShaderStageRequiredSubgroupSizeCreateInfo result = default(PipelineShaderStageRequiredSubgroupSizeCreateInfo);

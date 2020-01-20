@@ -108,6 +108,8 @@ namespace SharpVk.Android
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe AndroidHardwareBufferFormatProperties MarshalFrom(SharpVk.Interop.Android.AndroidHardwareBufferFormatProperties* pointer)
         {
             AndroidHardwareBufferFormatProperties result = default(AndroidHardwareBufferFormatProperties);

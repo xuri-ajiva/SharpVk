@@ -54,6 +54,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.ImportMemoryHostPointerInfo* pointer)
         {
             pointer->SType = StructureType.ImportMemoryHostPointerInfo;

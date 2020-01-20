@@ -45,6 +45,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceUniformBufferStandardLayoutFeatures* pointer)
         {
             pointer->Next = null;
@@ -54,6 +56,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceUniformBufferStandardLayoutFeatures MarshalFrom(SharpVk.Interop.PhysicalDeviceUniformBufferStandardLayoutFeatures* pointer)
         {
             PhysicalDeviceUniformBufferStandardLayoutFeatures result = default(PhysicalDeviceUniformBufferStandardLayoutFeatures);

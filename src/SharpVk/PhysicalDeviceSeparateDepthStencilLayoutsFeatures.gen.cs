@@ -45,6 +45,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceSeparateDepthStencilLayoutsFeatures* pointer)
         {
             pointer->Next = null;
@@ -54,6 +56,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceSeparateDepthStencilLayoutsFeatures MarshalFrom(SharpVk.Interop.PhysicalDeviceSeparateDepthStencilLayoutsFeatures* pointer)
         {
             PhysicalDeviceSeparateDepthStencilLayoutsFeatures result = default(PhysicalDeviceSeparateDepthStencilLayoutsFeatures);

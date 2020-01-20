@@ -45,6 +45,8 @@ namespace SharpVk.Android
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe AndroidHardwareBufferUsage MarshalFrom(SharpVk.Interop.Android.AndroidHardwareBufferUsage* pointer)
         {
             AndroidHardwareBufferUsage result = default(AndroidHardwareBufferUsage);

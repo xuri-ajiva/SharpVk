@@ -45,6 +45,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PhysicalDeviceExclusiveScissorFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceExclusiveScissorFeatures;
@@ -55,6 +57,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceExclusiveScissorFeatures MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceExclusiveScissorFeatures* pointer)
         {
             PhysicalDeviceExclusiveScissorFeatures result = default(PhysicalDeviceExclusiveScissorFeatures);

@@ -72,6 +72,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDevicePCIBusInfoProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDevicePCIBusInfoProperties* pointer)
         {
             PhysicalDevicePCIBusInfoProperties result = default(PhysicalDevicePCIBusInfoProperties);

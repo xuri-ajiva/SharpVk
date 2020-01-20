@@ -45,6 +45,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.BaseOutStructure* pointer)
         {
             pointer->SType = this.SType;
@@ -54,6 +56,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe BaseOutStructure MarshalFrom(SharpVk.Interop.BaseOutStructure* pointer)
         {
             BaseOutStructure result = default(BaseOutStructure);

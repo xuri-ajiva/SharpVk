@@ -46,6 +46,8 @@ namespace SharpVk.NVidia.Experimental
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceMultiviewPerViewAttributesProperties MarshalFrom(SharpVk.Interop.NVidia.Experimental.PhysicalDeviceMultiviewPerViewAttributesProperties* pointer)
         {
             PhysicalDeviceMultiviewPerViewAttributesProperties result = default(PhysicalDeviceMultiviewPerViewAttributesProperties);

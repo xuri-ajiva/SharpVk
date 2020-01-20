@@ -45,6 +45,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PhysicalDeviceRepresentativeFragmentTestFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceRepresentativeFragmentTestFeatures;
@@ -55,6 +57,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceRepresentativeFragmentTestFeatures MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceRepresentativeFragmentTestFeatures* pointer)
         {
             PhysicalDeviceRepresentativeFragmentTestFeatures result = default(PhysicalDeviceRepresentativeFragmentTestFeatures);

@@ -45,6 +45,8 @@ namespace SharpVk.Amd
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Amd.SwapchainDisplayNativeHdrCreateInfo* pointer)
         {
             pointer->SType = StructureType.SwapchainDisplayNativeHdrCreateInfo;

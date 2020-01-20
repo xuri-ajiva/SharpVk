@@ -37,6 +37,8 @@ namespace SharpVk.NVidia.Experimental
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
         /// </param>
+        /// <param name="processCommandsInfo">
+        /// </param>
         public static unsafe void ProcessCommands(this SharpVk.CommandBuffer extendedHandle, SharpVk.NVidia.Experimental.CommandProcessCommandsInfo processCommandsInfo)
         {
             try
@@ -60,6 +62,8 @@ namespace SharpVk.NVidia.Experimental
         /// </summary>
         /// <param name="extendedHandle">
         /// The CommandBuffer handle to extend.
+        /// </param>
+        /// <param name="reserveSpaceInfo">
         /// </param>
         public static unsafe void ReserveSpaceForCommands(this SharpVk.CommandBuffer extendedHandle, SharpVk.NVidia.Experimental.CommandReserveSpaceForCommandsInfo reserveSpaceInfo)
         {

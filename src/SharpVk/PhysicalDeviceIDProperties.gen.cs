@@ -81,6 +81,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceIDProperties MarshalFrom(SharpVk.Interop.PhysicalDeviceIDProperties* pointer)
         {
             PhysicalDeviceIDProperties result = default(PhysicalDeviceIDProperties);

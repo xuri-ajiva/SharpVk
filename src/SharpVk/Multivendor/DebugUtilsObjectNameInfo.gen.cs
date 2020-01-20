@@ -63,6 +63,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.DebugUtilsObjectNameInfo* pointer)
         {
             pointer->SType = StructureType.DebugUtilsObjectNameInfo;

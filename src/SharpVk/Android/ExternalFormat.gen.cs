@@ -45,6 +45,8 @@ namespace SharpVk.Android
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Android.ExternalFormat* pointer)
         {
             pointer->SType = StructureType.ExternalFormat;
@@ -55,6 +57,8 @@ namespace SharpVk.Android
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe ExternalFormat MarshalFrom(SharpVk.Interop.Android.ExternalFormat* pointer)
         {
             ExternalFormat result = default(ExternalFormat);

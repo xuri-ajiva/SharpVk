@@ -118,6 +118,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PipelineColorBlendAttachmentState* pointer)
         {
             pointer->BlendEnable = this.BlendEnable;
@@ -140,6 +142,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PipelineColorBlendAttachmentState MarshalFrom(SharpVk.Interop.PipelineColorBlendAttachmentState* pointer)
         {
             PipelineColorBlendAttachmentState result = default(PipelineColorBlendAttachmentState);

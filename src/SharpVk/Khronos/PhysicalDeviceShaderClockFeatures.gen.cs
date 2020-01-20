@@ -54,6 +54,8 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.PhysicalDeviceShaderClockFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceShaderClockFeatures;
@@ -65,6 +67,8 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceShaderClockFeatures MarshalFrom(SharpVk.Interop.Khronos.PhysicalDeviceShaderClockFeatures* pointer)
         {
             PhysicalDeviceShaderClockFeatures result = default(PhysicalDeviceShaderClockFeatures);

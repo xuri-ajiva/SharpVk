@@ -47,6 +47,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.PhysicalDeviceCoverageReductionModeFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceCoverageReductionModeFeatures;
@@ -57,6 +59,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceCoverageReductionModeFeatures MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceCoverageReductionModeFeatures* pointer)
         {
             PhysicalDeviceCoverageReductionModeFeatures result = default(PhysicalDeviceCoverageReductionModeFeatures);

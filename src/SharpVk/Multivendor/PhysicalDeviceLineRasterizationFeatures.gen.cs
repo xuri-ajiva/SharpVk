@@ -90,6 +90,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceLineRasterizationFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceLineRasterizationFeatures;
@@ -105,6 +107,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceLineRasterizationFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceLineRasterizationFeatures* pointer)
         {
             PhysicalDeviceLineRasterizationFeatures result = default(PhysicalDeviceLineRasterizationFeatures);

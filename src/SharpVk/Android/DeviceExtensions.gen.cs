@@ -37,6 +37,8 @@ namespace SharpVk.Android
         /// <param name="extendedHandle">
         /// The Device handle to extend.
         /// </param>
+        /// <param name="buffer">
+        /// </param>
         public static unsafe SharpVk.Android.AndroidHardwareBufferProperties GetAndroidHardwareBufferProperties(this SharpVk.Device extendedHandle, IntPtr buffer)
         {
             try
@@ -68,6 +70,10 @@ namespace SharpVk.Android
         /// </summary>
         /// <param name="extendedHandle">
         /// The Device handle to extend.
+        /// </param>
+        /// <param name="info">
+        /// </param>
+        /// <param name="buffer">
         /// </param>
         public static unsafe void GetMemoryAndroidHardwareBuffer(this SharpVk.Device extendedHandle, SharpVk.Android.MemoryGetAndroidHardwareBufferInfo info, IntPtr buffer)
         {

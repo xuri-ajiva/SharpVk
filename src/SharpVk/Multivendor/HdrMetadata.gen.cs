@@ -108,6 +108,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.HdrMetadata* pointer)
         {
             pointer->SType = StructureType.HdrMetadata;
@@ -125,6 +127,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe HdrMetadata MarshalFrom(SharpVk.Interop.Multivendor.HdrMetadata* pointer)
         {
             HdrMetadata result = default(HdrMetadata);

@@ -37,6 +37,12 @@ namespace SharpVk.Fuchsia
         /// <param name="extendedHandle">
         /// The Instance handle to extend.
         /// </param>
+        /// <param name="flags">
+        /// </param>
+        /// <param name="imagePipeHandle">
+        /// </param>
+        /// <param name="allocator">
+        /// </param>
         public static unsafe SharpVk.Khronos.Surface CreateImagePipeSurface(this SharpVk.Instance extendedHandle, uint imagePipeHandle, SharpVk.Fuchsia.ImagePipeSurfaceCreateFlags? flags = default(SharpVk.Fuchsia.ImagePipeSurfaceCreateFlags?), SharpVk.AllocationCallbacks? allocator = default(SharpVk.AllocationCallbacks?))
         {
             try

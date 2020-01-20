@@ -63,6 +63,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceShadingRateImageProperties MarshalFrom(SharpVk.Interop.NVidia.PhysicalDeviceShadingRateImageProperties* pointer)
         {
             PhysicalDeviceShadingRateImageProperties result = default(PhysicalDeviceShadingRateImageProperties);

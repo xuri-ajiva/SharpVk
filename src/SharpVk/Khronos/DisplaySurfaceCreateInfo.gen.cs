@@ -111,6 +111,8 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Khronos.DisplaySurfaceCreateInfo* pointer)
         {
             pointer->SType = StructureType.DisplaySurfaceCreateInfo;

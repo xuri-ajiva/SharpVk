@@ -45,6 +45,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe SamplerYcbcrConversionImageFormatProperties MarshalFrom(SharpVk.Interop.SamplerYcbcrConversionImageFormatProperties* pointer)
         {
             SamplerYcbcrConversionImageFormatProperties result = default(SamplerYcbcrConversionImageFormatProperties);

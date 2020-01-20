@@ -81,6 +81,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceSparseImageFormatInfo2* pointer)
         {
             pointer->Next = null;
@@ -94,6 +96,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceSparseImageFormatInfo2 MarshalFrom(SharpVk.Interop.PhysicalDeviceSparseImageFormatInfo2* pointer)
         {
             PhysicalDeviceSparseImageFormatInfo2 result = default(PhysicalDeviceSparseImageFormatInfo2);

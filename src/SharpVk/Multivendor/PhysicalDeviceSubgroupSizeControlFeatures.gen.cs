@@ -54,6 +54,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceSubgroupSizeControlFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceSubgroupSizeControlFeatures;
@@ -65,6 +67,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceSubgroupSizeControlFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceSubgroupSizeControlFeatures* pointer)
         {
             PhysicalDeviceSubgroupSizeControlFeatures result = default(PhysicalDeviceSubgroupSizeControlFeatures);

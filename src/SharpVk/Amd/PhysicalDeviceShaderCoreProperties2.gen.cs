@@ -54,6 +54,8 @@ namespace SharpVk.Amd
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceShaderCoreProperties2 MarshalFrom(SharpVk.Interop.Amd.PhysicalDeviceShaderCoreProperties2* pointer)
         {
             PhysicalDeviceShaderCoreProperties2 result = default(PhysicalDeviceShaderCoreProperties2);

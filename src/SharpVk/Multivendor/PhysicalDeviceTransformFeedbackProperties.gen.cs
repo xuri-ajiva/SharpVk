@@ -126,6 +126,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceTransformFeedbackProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceTransformFeedbackProperties* pointer)
         {
             PhysicalDeviceTransformFeedbackProperties result = default(PhysicalDeviceTransformFeedbackProperties);

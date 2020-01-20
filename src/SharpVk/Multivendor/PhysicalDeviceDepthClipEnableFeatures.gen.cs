@@ -50,6 +50,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceDepthClipEnableFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceDepthClipEnableFeatures;
@@ -60,6 +62,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceDepthClipEnableFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceDepthClipEnableFeatures* pointer)
         {
             PhysicalDeviceDepthClipEnableFeatures result = default(PhysicalDeviceDepthClipEnableFeatures);

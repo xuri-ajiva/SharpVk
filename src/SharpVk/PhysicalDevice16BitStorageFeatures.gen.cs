@@ -72,6 +72,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDevice16BitStorageFeatures* pointer)
         {
             pointer->Next = null;
@@ -84,6 +86,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDevice16BitStorageFeatures MarshalFrom(SharpVk.Interop.PhysicalDevice16BitStorageFeatures* pointer)
         {
             PhysicalDevice16BitStorageFeatures result = default(PhysicalDevice16BitStorageFeatures);

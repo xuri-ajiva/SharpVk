@@ -82,6 +82,12 @@ namespace SharpVk
         /// <summary>
         /// Map a memory object into application address space.
         /// </summary>
+        /// <param name="offset">
+        /// </param>
+        /// <param name="size">
+        /// </param>
+        /// <param name="flags">
+        /// </param>
         public unsafe IntPtr Map(ulong offset, ulong size, SharpVk.MemoryMapFlags? flags = default(SharpVk.MemoryMapFlags?))
         {
             try

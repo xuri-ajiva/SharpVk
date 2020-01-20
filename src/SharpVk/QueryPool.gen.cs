@@ -83,7 +83,15 @@ namespace SharpVk
         /// <summary>
         /// Copy results of queries in a query pool to a host memory region.
         /// </summary>
+        /// <param name="firstQuery">
+        /// </param>
+        /// <param name="queryCount">
+        /// </param>
         /// <param name="data">
+        /// </param>
+        /// <param name="stride">
+        /// </param>
+        /// <param name="flags">
         /// </param>
         public unsafe Result GetResults(uint firstQuery, uint queryCount, ArrayProxy<byte>? data, ulong stride, SharpVk.QueryResultFlags? flags = default(SharpVk.QueryResultFlags?))
         {
@@ -138,6 +146,10 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="firstQuery">
+        /// </param>
+        /// <param name="queryCount">
+        /// </param>
         public unsafe void Reset(uint firstQuery, uint queryCount)
         {
             try

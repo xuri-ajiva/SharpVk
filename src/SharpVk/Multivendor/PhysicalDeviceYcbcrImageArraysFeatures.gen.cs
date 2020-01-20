@@ -45,6 +45,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceYcbcrImageArraysFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceYcbcrImageArraysFeatures;
@@ -55,6 +57,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceYcbcrImageArraysFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceYcbcrImageArraysFeatures* pointer)
         {
             PhysicalDeviceYcbcrImageArraysFeatures result = default(PhysicalDeviceYcbcrImageArraysFeatures);

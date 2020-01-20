@@ -2,6 +2,9 @@
 
 namespace SharpVk
 {
+    /// <summary>
+    /// Represents a Vulkan object that can be bound to device memory.
+    /// </summary>
     public interface IMemoryBinder
         : IDisposable
     {

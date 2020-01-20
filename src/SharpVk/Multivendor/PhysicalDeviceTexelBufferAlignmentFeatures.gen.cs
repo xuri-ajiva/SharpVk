@@ -49,6 +49,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceTexelBufferAlignmentFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceTexelBufferAlignmentFeatures;
@@ -59,6 +61,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceTexelBufferAlignmentFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceTexelBufferAlignmentFeatures* pointer)
         {
             PhysicalDeviceTexelBufferAlignmentFeatures result = default(PhysicalDeviceTexelBufferAlignmentFeatures);

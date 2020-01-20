@@ -46,6 +46,8 @@ namespace SharpVk.Khronos
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDevicePushDescriptorProperties MarshalFrom(SharpVk.Interop.Khronos.PhysicalDevicePushDescriptorProperties* pointer)
         {
             PhysicalDevicePushDescriptorProperties result = default(PhysicalDevicePushDescriptorProperties);

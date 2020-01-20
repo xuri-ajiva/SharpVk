@@ -45,6 +45,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe ExternalBufferProperties MarshalFrom(SharpVk.Interop.ExternalBufferProperties* pointer)
         {
             ExternalBufferProperties result = default(ExternalBufferProperties);

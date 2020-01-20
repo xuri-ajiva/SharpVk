@@ -55,6 +55,8 @@ namespace SharpVk.NVidia
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.ExportMemoryWin32HandleInfo* pointer)
         {
             pointer->SType = StructureType.ExportMemoryWin32HandleInfoNv;

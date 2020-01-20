@@ -45,6 +45,8 @@ namespace SharpVk.Ggp
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Ggp.PresentFrameToken* pointer)
         {
             pointer->SType = StructureType.PresentFrameToken;
@@ -55,6 +57,8 @@ namespace SharpVk.Ggp
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PresentFrameToken MarshalFrom(SharpVk.Interop.Ggp.PresentFrameToken* pointer)
         {
             PresentFrameToken result = default(PresentFrameToken);

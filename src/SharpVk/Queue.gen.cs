@@ -54,6 +54,8 @@ namespace SharpVk
         /// </summary>
         /// <param name="submits">
         /// </param>
+        /// <param name="fence">
+        /// </param>
         public unsafe void Submit(ArrayProxy<SharpVk.SubmitInfo>? submits, SharpVk.Fence fence)
         {
             try
@@ -117,6 +119,8 @@ namespace SharpVk
         /// Bind device memory to a sparse resource object.
         /// </summary>
         /// <param name="bindInfo">
+        /// </param>
+        /// <param name="fence">
         /// </param>
         public unsafe void BindSparse(ArrayProxy<SharpVk.BindSparseInfo>? bindInfo, SharpVk.Fence fence)
         {

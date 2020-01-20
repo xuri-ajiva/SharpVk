@@ -59,6 +59,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe FilterCubicImageViewImageFormatProperties MarshalFrom(SharpVk.Interop.Multivendor.FilterCubicImageViewImageFormatProperties* pointer)
         {
             FilterCubicImageViewImageFormatProperties result = default(FilterCubicImageViewImageFormatProperties);

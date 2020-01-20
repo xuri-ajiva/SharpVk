@@ -45,6 +45,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Multivendor.PhysicalDeviceTextureCompressionASTCHDRFeatures* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceTextureCompressionAstcHdrFeatures;
@@ -55,6 +57,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceTextureCompressionASTCHDRFeatures MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceTextureCompressionASTCHDRFeatures* pointer)
         {
             PhysicalDeviceTextureCompressionASTCHDRFeatures result = default(PhysicalDeviceTextureCompressionASTCHDRFeatures);

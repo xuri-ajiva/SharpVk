@@ -45,6 +45,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceShaderDrawParametersFeatures* pointer)
         {
             pointer->Next = null;
@@ -54,6 +56,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceShaderDrawParametersFeatures MarshalFrom(SharpVk.Interop.PhysicalDeviceShaderDrawParametersFeatures* pointer)
         {
             PhysicalDeviceShaderDrawParametersFeatures result = default(PhysicalDeviceShaderDrawParametersFeatures);

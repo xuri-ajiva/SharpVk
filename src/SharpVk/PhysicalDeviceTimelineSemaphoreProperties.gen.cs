@@ -45,6 +45,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceTimelineSemaphoreProperties MarshalFrom(SharpVk.Interop.PhysicalDeviceTimelineSemaphoreProperties* pointer)
         {
             PhysicalDeviceTimelineSemaphoreProperties result = default(PhysicalDeviceTimelineSemaphoreProperties);

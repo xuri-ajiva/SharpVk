@@ -61,6 +61,8 @@ namespace SharpVk.Khronos
         /// <param name="alphaMode">
         /// The type of alpha blending to use.
         /// </param>
+        /// <param name="imageExtent">
+        /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory
         /// allocation.
@@ -268,6 +270,8 @@ namespace SharpVk.Khronos
         /// <param name="display">
         /// display and surface are pointers to the Wayland wl_display and
         /// wl_surface to associate the surface with.
+        /// </param>
+        /// <param name="surface">
         /// </param>
         /// <param name="allocator">
         /// An optional AllocationCallbacks instance that controls host memory

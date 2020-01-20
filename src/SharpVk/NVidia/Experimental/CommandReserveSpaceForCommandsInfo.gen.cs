@@ -69,6 +69,8 @@ namespace SharpVk.NVidia.Experimental
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.NVidia.Experimental.CommandReserveSpaceForCommandsInfo* pointer)
         {
             pointer->SType = StructureType.CommandReserveSpaceForCommandsInfo;

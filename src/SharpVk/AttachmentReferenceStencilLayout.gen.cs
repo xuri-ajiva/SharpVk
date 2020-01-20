@@ -45,6 +45,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.AttachmentReferenceStencilLayout* pointer)
         {
             pointer->Next = null;
@@ -54,6 +56,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe AttachmentReferenceStencilLayout MarshalFrom(SharpVk.Interop.AttachmentReferenceStencilLayout* pointer)
         {
             AttachmentReferenceStencilLayout result = default(AttachmentReferenceStencilLayout);

@@ -38,6 +38,18 @@ namespace SharpVk.NVidia
         /// <param name="extendedHandle">
         /// The PhysicalDevice handle to extend.
         /// </param>
+        /// <param name="format">
+        /// </param>
+        /// <param name="type">
+        /// </param>
+        /// <param name="tiling">
+        /// </param>
+        /// <param name="usage">
+        /// </param>
+        /// <param name="flags">
+        /// </param>
+        /// <param name="externalHandleType">
+        /// </param>
         public static unsafe SharpVk.NVidia.ExternalImageFormatProperties GetExternalImageFormatProperties(this SharpVk.PhysicalDevice extendedHandle, SharpVk.Format format, SharpVk.ImageType type, SharpVk.ImageTiling tiling, SharpVk.ImageUsageFlags usage, SharpVk.ImageCreateFlags? flags = default(SharpVk.ImageCreateFlags?), SharpVk.NVidia.ExternalMemoryHandleTypeFlags? externalHandleType = default(SharpVk.NVidia.ExternalMemoryHandleTypeFlags?))
         {
             try

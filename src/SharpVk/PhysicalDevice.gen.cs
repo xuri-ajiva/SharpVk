@@ -72,6 +72,8 @@ namespace SharpVk
         /// <summary>
         /// Lists physical device's format capabilities.
         /// </summary>
+        /// <param name="format">
+        /// </param>
         public unsafe SharpVk.FormatProperties GetFormatProperties(SharpVk.Format format)
         {
             try
@@ -92,6 +94,16 @@ namespace SharpVk
         /// <summary>
         /// Lists physical device's image format capabilities.
         /// </summary>
+        /// <param name="format">
+        /// </param>
+        /// <param name="type">
+        /// </param>
+        /// <param name="tiling">
+        /// </param>
+        /// <param name="usage">
+        /// </param>
+        /// <param name="flags">
+        /// </param>
         public unsafe SharpVk.ImageFormatProperties GetImageFormatProperties(SharpVk.Format format, SharpVk.ImageType type, SharpVk.ImageTiling tiling, SharpVk.ImageUsageFlags usage, SharpVk.ImageCreateFlags? flags = default(SharpVk.ImageCreateFlags?))
         {
             try
@@ -951,6 +963,8 @@ namespace SharpVk
         /// <summary>
         /// Returns properties of available physical device extensions.
         /// </summary>
+        /// <param name="layerName">
+        /// </param>
         public unsafe SharpVk.ExtensionProperties[] EnumerateDeviceExtensionProperties(string layerName)
         {
             try
@@ -1029,6 +1043,16 @@ namespace SharpVk
         /// <summary>
         /// Retrieve properties of an image format applied to sparse images.
         /// </summary>
+        /// <param name="format">
+        /// </param>
+        /// <param name="type">
+        /// </param>
+        /// <param name="samples">
+        /// </param>
+        /// <param name="usage">
+        /// </param>
+        /// <param name="tiling">
+        /// </param>
         public unsafe SharpVk.SparseImageFormatProperties[] GetSparseImageFormatProperties(SharpVk.Format format, SharpVk.ImageType type, SharpVk.SampleCountFlags samples, SharpVk.ImageUsageFlags usage, SharpVk.ImageTiling tiling)
         {
             try
@@ -1104,6 +1128,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="format">
+        /// </param>
         public unsafe SharpVk.FormatProperties2 GetFormatProperties2(SharpVk.Format format)
         {
             try
@@ -1124,6 +1150,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="imageFormatInfo">
+        /// </param>
         public unsafe SharpVk.ImageFormatProperties2 GetImageFormatProperties2(SharpVk.PhysicalDeviceImageFormatInfo2 imageFormatInfo)
         {
             try
@@ -1206,6 +1234,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="formatInfo">
+        /// </param>
         public unsafe SharpVk.SparseImageFormatProperties2[] GetSparseImageFormatProperties2(SharpVk.PhysicalDeviceSparseImageFormatInfo2 formatInfo)
         {
             try
@@ -1244,6 +1274,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="externalBufferInfo">
+        /// </param>
         public unsafe SharpVk.ExternalBufferProperties GetExternalBufferProperties(SharpVk.PhysicalDeviceExternalBufferInfo externalBufferInfo)
         {
             try
@@ -1267,6 +1299,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="externalFenceInfo">
+        /// </param>
         public unsafe SharpVk.ExternalFenceProperties GetExternalFenceProperties(SharpVk.PhysicalDeviceExternalFenceInfo externalFenceInfo)
         {
             try
@@ -1290,6 +1324,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="externalSemaphoreInfo">
+        /// </param>
         public unsafe SharpVk.ExternalSemaphoreProperties GetExternalSemaphoreProperties(SharpVk.PhysicalDeviceExternalSemaphoreInfo externalSemaphoreInfo)
         {
             try

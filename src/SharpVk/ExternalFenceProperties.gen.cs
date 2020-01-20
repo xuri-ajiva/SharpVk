@@ -63,6 +63,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe ExternalFenceProperties MarshalFrom(SharpVk.Interop.ExternalFenceProperties* pointer)
         {
             ExternalFenceProperties result = default(ExternalFenceProperties);

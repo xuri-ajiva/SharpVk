@@ -65,6 +65,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.MappedMemoryRange* pointer)
         {
             pointer->SType = StructureType.MappedMemoryRange;
@@ -77,6 +79,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe MappedMemoryRange MarshalFrom(SharpVk.Interop.MappedMemoryRange* pointer)
         {
             MappedMemoryRange result = default(MappedMemoryRange);

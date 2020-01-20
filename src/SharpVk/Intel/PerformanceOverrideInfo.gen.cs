@@ -63,6 +63,8 @@ namespace SharpVk.Intel
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Intel.PerformanceOverrideInfo* pointer)
         {
             pointer->SType = StructureType.PerformanceOverrideInfo;

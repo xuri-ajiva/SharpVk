@@ -58,6 +58,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceShaderFloat16Int8Features* pointer)
         {
             pointer->Next = null;
@@ -68,6 +70,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceShaderFloat16Int8Features MarshalFrom(SharpVk.Interop.PhysicalDeviceShaderFloat16Int8Features* pointer)
         {
             PhysicalDeviceShaderFloat16Int8Features result = default(PhysicalDeviceShaderFloat16Int8Features);

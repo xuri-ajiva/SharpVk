@@ -37,6 +37,8 @@ namespace SharpVk.NVidia
         /// <param name="extendedHandle">
         /// The DeviceMemory handle to extend.
         /// </param>
+        /// <param name="handleType">
+        /// </param>
         public static unsafe IntPtr GetWin32Handle(this SharpVk.DeviceMemory extendedHandle, SharpVk.NVidia.ExternalMemoryHandleTypeFlags handleType)
         {
             try

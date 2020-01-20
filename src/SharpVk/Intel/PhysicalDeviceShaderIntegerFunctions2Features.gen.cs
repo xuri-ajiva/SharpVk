@@ -45,6 +45,8 @@ namespace SharpVk.Intel
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.Intel.PhysicalDeviceShaderIntegerFunctions2Features* pointer)
         {
             pointer->SType = StructureType.PhysicalDeviceShaderIntegerFunctions2Features;
@@ -55,6 +57,8 @@ namespace SharpVk.Intel
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceShaderIntegerFunctions2Features MarshalFrom(SharpVk.Interop.Intel.PhysicalDeviceShaderIntegerFunctions2Features* pointer)
         {
             PhysicalDeviceShaderIntegerFunctions2Features result = default(PhysicalDeviceShaderIntegerFunctions2Features);

@@ -107,6 +107,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.DescriptorSetLayoutBinding* pointer)
         {
             pointer->Binding = this.Binding;

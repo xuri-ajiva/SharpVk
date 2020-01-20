@@ -90,6 +90,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceBlendOperationAdvancedProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceBlendOperationAdvancedProperties* pointer)
         {
             PhysicalDeviceBlendOperationAdvancedProperties result = default(PhysicalDeviceBlendOperationAdvancedProperties);

@@ -45,6 +45,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe QueueFamilyProperties2 MarshalFrom(SharpVk.Interop.QueueFamilyProperties2* pointer)
         {
             QueueFamilyProperties2 result = default(QueueFamilyProperties2);

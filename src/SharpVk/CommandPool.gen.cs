@@ -83,6 +83,8 @@ namespace SharpVk
         /// <summary>
         /// Reset a command pool.
         /// </summary>
+        /// <param name="flags">
+        /// </param>
         public unsafe void Reset(SharpVk.CommandPoolResetFlags? flags = default(SharpVk.CommandPoolResetFlags?))
         {
             try
@@ -152,6 +154,8 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="flags">
+        /// </param>
         public unsafe void Trim(SharpVk.CommandPoolTrimFlags? flags = default(SharpVk.CommandPoolTrimFlags?))
         {
             try

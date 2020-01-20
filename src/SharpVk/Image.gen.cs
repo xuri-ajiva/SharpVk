@@ -53,6 +53,10 @@ namespace SharpVk
         /// <summary>
         /// Bind device memory to an image object.
         /// </summary>
+        /// <param name="memory">
+        /// </param>
+        /// <param name="memoryOffset">
+        /// </param>
         public unsafe void BindMemory(SharpVk.DeviceMemory memory, ulong memoryOffset)
         {
             try
@@ -158,6 +162,8 @@ namespace SharpVk
         /// <summary>
         /// Retrieve information about an image subresource.
         /// </summary>
+        /// <param name="subresource">
+        /// </param>
         public unsafe SharpVk.SubresourceLayout GetSubresourceLayout(SharpVk.ImageSubresource subresource)
         {
             try

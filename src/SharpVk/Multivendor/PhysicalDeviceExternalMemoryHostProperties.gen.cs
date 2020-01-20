@@ -45,6 +45,8 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe PhysicalDeviceExternalMemoryHostProperties MarshalFrom(SharpVk.Interop.Multivendor.PhysicalDeviceExternalMemoryHostProperties* pointer)
         {
             PhysicalDeviceExternalMemoryHostProperties result = default(PhysicalDeviceExternalMemoryHostProperties);

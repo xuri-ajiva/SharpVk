@@ -99,6 +99,8 @@ namespace SharpVk.Amd
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe ShaderStatisticsInfo MarshalFrom(SharpVk.Interop.Amd.ShaderStatisticsInfo* pointer)
         {
             ShaderStatisticsInfo result = default(ShaderStatisticsInfo);

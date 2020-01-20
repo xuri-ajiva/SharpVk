@@ -45,6 +45,8 @@ namespace SharpVk.Amd
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="pointer">
+        /// </param>
         internal static unsafe TextureLODGatherFormatProperties MarshalFrom(SharpVk.Interop.Amd.TextureLODGatherFormatProperties* pointer)
         {
             TextureLODGatherFormatProperties result = default(TextureLODGatherFormatProperties);
