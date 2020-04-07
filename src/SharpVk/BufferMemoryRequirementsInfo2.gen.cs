@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.BufferMemoryRequirementsInfo2* pointer)
         {
+            pointer->SType = StructureType.BufferMemoryRequirementsInfo2Version;
             pointer->Next = null;
             pointer->Buffer = this.Buffer?.handle ?? default(SharpVk.Interop.Buffer);
         }

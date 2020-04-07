@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.BindImagePlaneMemoryInfo* pointer)
         {
+            pointer->SType = StructureType.BindImagePlaneMemoryInfoVersion;
             pointer->Next = null;
             pointer->PlaneAspect = this.PlaneAspect;
         }

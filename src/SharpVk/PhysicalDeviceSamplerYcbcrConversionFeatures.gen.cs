@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceSamplerYcbcrConversionFeatures* pointer)
         {
+            pointer->SType = StructureType.PhysicalDeviceSamplerYcbcrConversionFeaturesVersion;
             pointer->Next = null;
             pointer->SamplerYcbcrConversion = this.SamplerYcbcrConversion;
         }

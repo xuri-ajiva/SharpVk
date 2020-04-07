@@ -3376,6 +3376,7 @@ namespace SharpVk
                     vkSamplerYcbcrConversionCreateInfoNextPointer = extensionPointer;
                 }
                 marshalledCreateInfo = (SharpVk.Interop.SamplerYcbcrConversionCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.SamplerYcbcrConversionCreateInfo>());
+                marshalledCreateInfo->SType = StructureType.SamplerYcbcrConversionCreateInfoVersion;
                 marshalledCreateInfo->Next = vkSamplerYcbcrConversionCreateInfoNextPointer;
                 marshalledCreateInfo->Format = format;
                 marshalledCreateInfo->YcbcrModel = ycbcrModel;
@@ -3438,6 +3439,7 @@ namespace SharpVk
                 SharpVk.Interop.AllocationCallbacks* marshalledAllocator = default(SharpVk.Interop.AllocationCallbacks*);
                 SharpVk.Interop.DescriptorUpdateTemplate marshalledDescriptorUpdateTemplate = default(SharpVk.Interop.DescriptorUpdateTemplate);
                 marshalledCreateInfo = (SharpVk.Interop.DescriptorUpdateTemplateCreateInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.DescriptorUpdateTemplateCreateInfo>());
+                marshalledCreateInfo->SType = StructureType.DescriptorUpdateTemplateCreateInfoVersion;
                 marshalledCreateInfo->Next = vkDescriptorUpdateTemplateCreateInfoNextPointer;
                 if (flags != null)
                 {
@@ -3605,6 +3607,7 @@ namespace SharpVk
                 SharpVk.Interop.SemaphoreWaitInfo* marshalledWaitInfo = default(SharpVk.Interop.SemaphoreWaitInfo*);
                 void* vkSemaphoreWaitInfoNextPointer = default(void*);
                 marshalledWaitInfo = (SharpVk.Interop.SemaphoreWaitInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.SemaphoreWaitInfo>());
+                marshalledWaitInfo->SType = StructureType.SemaphoreWaitInfoVersion;
                 marshalledWaitInfo->Next = vkSemaphoreWaitInfoNextPointer;
                 if (flags != null)
                 {
@@ -3685,6 +3688,7 @@ namespace SharpVk
                 SharpVk.Interop.SemaphoreSignalInfo* marshalledSignalInfo = default(SharpVk.Interop.SemaphoreSignalInfo*);
                 void* vkSemaphoreSignalInfoNextPointer = default(void*);
                 marshalledSignalInfo = (SharpVk.Interop.SemaphoreSignalInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.SemaphoreSignalInfo>());
+                marshalledSignalInfo->SType = StructureType.SemaphoreSignalInfoVersion;
                 marshalledSignalInfo->Next = vkSemaphoreSignalInfoNextPointer;
                 marshalledSignalInfo->Semaphore = semaphore?.handle ?? default(SharpVk.Interop.Semaphore);
                 marshalledSignalInfo->Value = value;

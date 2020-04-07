@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceExternalFenceInfo* pointer)
         {
+            pointer->SType = StructureType.PhysicalDeviceExternalFenceInfoVersion;
             pointer->Next = null;
             pointer->HandleType = this.HandleType;
         }

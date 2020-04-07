@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceSeparateDepthStencilLayoutsFeatures* pointer)
         {
+            pointer->SType = StructureType.PhysicalDeviceSeparateDepthStencilLayoutsFeaturesVersion;
             pointer->Next = null;
             pointer->SeparateDepthStencilLayouts = this.SeparateDepthStencilLayouts;
         }

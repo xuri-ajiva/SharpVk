@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.ImageMemoryRequirementsInfo2* pointer)
         {
+            pointer->SType = StructureType.ImageMemoryRequirementsInfo2Version;
             pointer->Next = null;
             pointer->Image = this.Image?.handle ?? default(SharpVk.Interop.Image);
         }

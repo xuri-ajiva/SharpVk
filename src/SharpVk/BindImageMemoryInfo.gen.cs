@@ -67,6 +67,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.BindImageMemoryInfo* pointer)
         {
+            pointer->SType = StructureType.BindImageMemoryInfoVersion;
             pointer->Next = null;
             pointer->Image = this.Image?.handle ?? default(SharpVk.Interop.Image);
             pointer->Memory = this.Memory?.handle ?? default(SharpVk.Interop.DeviceMemory);

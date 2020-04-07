@@ -162,6 +162,16 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        SamplerYcbcrConversionVersion = 1000156000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DescriptorUpdateTemplateVersion = 1000085000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         Surface = 1000000000, 
         
         /// <summary>

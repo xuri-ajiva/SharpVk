@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.DeviceGroupCommandBufferBeginInfo* pointer)
         {
+            pointer->SType = StructureType.DeviceGroupCommandBufferBeginInfoVersion;
             pointer->Next = null;
             pointer->DeviceMask = this.DeviceMask;
         }

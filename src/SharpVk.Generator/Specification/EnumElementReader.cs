@@ -77,18 +77,26 @@ namespace SharpVk.Generator.Specification
                 enums.Add(name, newEnum);
             }
 
+            var requireSets = this.xmlCache.GetVkXml()
+                                            .Element("registry")
+                                            .Elements("feature")
+                                            .Concat(this.xmlCache.GetVkXml()
+                                                                    .Element("registry")
+                                                                    .Element("extensions")
+                                                                    .Elements("extension"));
 
-            foreach (var vkExtension in this.xmlCache.GetVkXml()
-                                                        .Element("registry")
-                                                        .Element("extensions")
-                                                        .Elements("extension"))
+            foreach (var vkExtension in requireSets)
             {
-                int extensionNumber = int.Parse(vkExtension.Attribute("number").Value);
-                string extensionName = vkExtension.Attribute("name").Value;
+                string extensionSuffix = null;
 
-                var extensionNameParts = extensionName.Split('_');
+                if (vkExtension.Attribute("name") != null)
+                {
+                    string extensionName = vkExtension.Attribute("name").Value;
 
-                string extensionSuffix = extensionNameParts[1].ToLower().FirstToUpper();
+                    var extensionNameParts = extensionName.Split('_');
+
+                    extensionSuffix = extensionNameParts[1].ToLower().FirstToUpper();
+                }
 
                 foreach (var vkExtensionEnum in vkExtension.Elements("require")
                                                             .SelectMany(x => x.Elements("enum"))
@@ -103,6 +111,10 @@ namespace SharpVk.Generator.Specification
                     if (vkExtensionEnum.Attribute("offset") != null)
                     {
                         int offset = int.Parse(vkExtensionEnum.Attribute("offset").Value);
+
+                        int extensionNumber = vkExtensionEnum.Attribute("extnumber") != null
+                                                ? int.Parse(vkExtensionEnum.Attribute("extnumber").Value)
+                                                : int.Parse(vkExtension.Attribute("number").Value);
 
                         value = 1000000000 + 1000 * (extensionNumber - 1) + offset;
                     }
@@ -123,7 +135,7 @@ namespace SharpVk.Generator.Specification
 
                     var nameParts = this.nameParser.ParseEnumField(vkName, extendedEnum.NameParts);
 
-                    extendedEnum.Fields[vkName]= new EnumField
+                    extendedEnum.Fields[vkName] = new EnumField
                     {
                         VkName = vkName,
                         Value = value?.ToString(),

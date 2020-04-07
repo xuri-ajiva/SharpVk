@@ -67,6 +67,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceBufferDeviceAddressFeatures* pointer)
         {
+            pointer->SType = StructureType.PhysicalDeviceBufferDeviceAddressFeaturesVersion;
             pointer->Next = null;
             pointer->BufferDeviceAddress = this.BufferDeviceAddress;
             pointer->BufferDeviceAddressCaptureReplay = this.BufferDeviceAddressCaptureReplay;

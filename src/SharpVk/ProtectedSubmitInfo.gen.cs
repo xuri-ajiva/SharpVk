@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.ProtectedSubmitInfo* pointer)
         {
+            pointer->SType = StructureType.ProtectedSubmitInfo;
             pointer->Next = null;
             pointer->ProtectedSubmit = this.ProtectedSubmit;
         }

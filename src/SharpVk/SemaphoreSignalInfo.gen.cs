@@ -58,6 +58,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.SemaphoreSignalInfo* pointer)
         {
+            pointer->SType = StructureType.SemaphoreSignalInfoVersion;
             pointer->Next = null;
             pointer->Semaphore = this.Semaphore?.handle ?? default(SharpVk.Interop.Semaphore);
             pointer->Value = this.Value;

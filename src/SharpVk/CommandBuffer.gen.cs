@@ -2009,6 +2009,7 @@ namespace SharpVk
                     }
                 }
                 marshalledSubpassBeginInfo = (SharpVk.Interop.SubpassBeginInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.SubpassBeginInfo>());
+                marshalledSubpassBeginInfo->SType = StructureType.SubpassBeginInfoVersion;
                 marshalledSubpassBeginInfo->Next = vkSubpassBeginInfoNextPointer;
                 marshalledSubpassBeginInfo->Contents = contents;
                 SharpVk.Interop.VkCommandBufferBeginRenderPass2Delegate commandDelegate = commandCache.Cache.vkCmdBeginRenderPass2;
@@ -2056,6 +2057,7 @@ namespace SharpVk
                 SharpVk.Interop.SubpassEndInfo* marshalledSubpassEndInfo = default(SharpVk.Interop.SubpassEndInfo*);
                 void* vkSubpassEndInfoNextPointer = default(void*);
                 marshalledSubpassEndInfo = (SharpVk.Interop.SubpassEndInfo*)(Interop.HeapUtil.Allocate<SharpVk.Interop.SubpassEndInfo>());
+                marshalledSubpassEndInfo->SType = StructureType.SubpassEndInfoVersion;
                 marshalledSubpassEndInfo->Next = vkSubpassEndInfoNextPointer;
                 SharpVk.Interop.VkCommandBufferEndRenderPass2Delegate commandDelegate = commandCache.Cache.vkCmdEndRenderPass2;
                 commandDelegate(this.handle, marshalledSubpassEndInfo);

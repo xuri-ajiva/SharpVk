@@ -67,6 +67,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.SemaphoreWaitInfo* pointer)
         {
+            pointer->SType = StructureType.SemaphoreWaitInfoVersion;
             pointer->Next = null;
             if (this.Flags != null)
             {

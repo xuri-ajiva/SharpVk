@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceUniformBufferStandardLayoutFeatures* pointer)
         {
+            pointer->SType = StructureType.PhysicalDeviceUniformBufferStandardLayoutFeaturesVersion;
             pointer->Next = null;
             pointer->UniformBufferStandardLayout = this.UniformBufferStandardLayout;
         }

@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceExternalSemaphoreInfo* pointer)
         {
+            pointer->SType = StructureType.PhysicalDeviceExternalSemaphoreInfoVersion;
             pointer->Next = null;
             pointer->HandleType = this.HandleType;
         }

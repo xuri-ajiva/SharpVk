@@ -60,6 +60,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        Protected = 1 << 4, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         Reserved6 = 1 << 6, 
         
         /// <summary>

@@ -72,6 +72,41 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        Alias = 1 << 10, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SplitInstanceBindRegions = 1 << 6, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ImageCreate2dArrayCompatible = 1 << 5, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        BlockTexelViewCompatible = 1 << 7, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ExtendedUsage = 1 << 8, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Protected = 1 << 11, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Disjoint = 1 << 9, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         CornerSampled = 1 << 13, 
         
         /// <summary>

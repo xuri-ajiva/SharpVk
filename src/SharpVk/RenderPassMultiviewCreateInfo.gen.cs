@@ -67,6 +67,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.RenderPassMultiviewCreateInfo* pointer)
         {
+            pointer->SType = StructureType.RenderPassMultiviewCreateInfoVersion;
             pointer->Next = null;
             pointer->SubpassCount = (uint)(Interop.HeapUtil.GetLength(this.ViewMasks));
             if (this.ViewMasks != null)

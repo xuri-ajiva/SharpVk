@@ -91,6 +91,14 @@ namespace SharpVk
                     return new FragmentedPoolException();
                 case Result.ErrorUnknown:
                     return new UnknownException();
+                case Result.ErrorOutOfPoolMemoryVersion:
+                    return new OutOfPoolMemoryVersionException();
+                case Result.ErrorInvalidExternalHandleVersion:
+                    return new InvalidExternalHandleVersionException();
+                case Result.ErrorFragmentationVersion:
+                    return new FragmentationVersionException();
+                case Result.ErrorInvalidOpaqueCaptureAddressVersion:
+                    return new InvalidOpaqueCaptureAddressVersionException();
                 case Result.ErrorSurfaceLost:
                     return new SurfaceLostException();
                 case Result.ErrorNativeWindowInUse:
@@ -362,6 +370,74 @@ namespace SharpVk
         /// The Vulkan result code represented by this exception.
         /// </summary>
         public override Result ResultCode => Result.ErrorUnknown;
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    public class OutOfPoolMemoryVersionException
+        : SharpVkException
+    {
+        internal OutOfPoolMemoryVersionException()
+            : base("")
+        {
+        }
+        
+        /// <summary>
+        /// The Vulkan result code represented by this exception.
+        /// </summary>
+        public override Result ResultCode => Result.ErrorOutOfPoolMemoryVersion;
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    public class InvalidExternalHandleVersionException
+        : SharpVkException
+    {
+        internal InvalidExternalHandleVersionException()
+            : base("")
+        {
+        }
+        
+        /// <summary>
+        /// The Vulkan result code represented by this exception.
+        /// </summary>
+        public override Result ResultCode => Result.ErrorInvalidExternalHandleVersion;
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    public class FragmentationVersionException
+        : SharpVkException
+    {
+        internal FragmentationVersionException()
+            : base("")
+        {
+        }
+        
+        /// <summary>
+        /// The Vulkan result code represented by this exception.
+        /// </summary>
+        public override Result ResultCode => Result.ErrorFragmentationVersion;
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    public class InvalidOpaqueCaptureAddressVersionException
+        : SharpVkException
+    {
+        internal InvalidOpaqueCaptureAddressVersionException()
+            : base("")
+        {
+        }
+        
+        /// <summary>
+        /// The Vulkan result code represented by this exception.
+        /// </summary>
+        public override Result ResultCode => Result.ErrorInvalidOpaqueCaptureAddressVersion;
     }
     
     /// <summary>

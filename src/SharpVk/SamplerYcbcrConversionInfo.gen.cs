@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.SamplerYcbcrConversionInfo* pointer)
         {
+            pointer->SType = StructureType.SamplerYcbcrConversionInfoVersion;
             pointer->Next = null;
             pointer->Conversion = this.Conversion?.handle ?? default(SharpVk.Interop.SamplerYcbcrConversion);
         }

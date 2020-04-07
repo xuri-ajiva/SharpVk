@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.ImageFormatListCreateInfo* pointer)
         {
+            pointer->SType = StructureType.ImageFormatListCreateInfoVersion;
             pointer->Next = null;
             pointer->ViewFormatCount = (uint)(Interop.HeapUtil.GetLength(this.ViewFormats));
             if (this.ViewFormats != null)

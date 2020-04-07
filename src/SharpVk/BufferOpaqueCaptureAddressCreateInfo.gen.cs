@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.BufferOpaqueCaptureAddressCreateInfo* pointer)
         {
+            pointer->SType = StructureType.BufferOpaqueCaptureAddressCreateInfoVersion;
             pointer->Next = null;
             pointer->OpaqueCaptureAddress = this.OpaqueCaptureAddress;
         }

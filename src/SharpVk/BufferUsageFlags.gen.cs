@@ -102,6 +102,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        ShaderDeviceAddress = 1 << 17, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         Reserved15 = 1 << 15, 
         
         /// <summary>

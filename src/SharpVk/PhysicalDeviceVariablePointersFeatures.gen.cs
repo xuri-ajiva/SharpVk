@@ -58,6 +58,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceVariablePointersFeatures* pointer)
         {
+            pointer->SType = StructureType.PhysicalDeviceVariablePointersFeaturesVersion;
             pointer->Next = null;
             pointer->VariablePointersStorageBuffer = this.VariablePointersStorageBuffer;
             pointer->VariablePointers = this.VariablePointers;

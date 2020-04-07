@@ -44,5 +44,10 @@ namespace SharpVk
         /// 
         /// </summary>
         ResetCommandBuffer = 1 << 1, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Protected = 1 << 2, 
     }
 }

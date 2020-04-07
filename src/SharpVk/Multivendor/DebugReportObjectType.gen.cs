@@ -207,7 +207,7 @@ namespace SharpVk.Multivendor
         /// <summary>
         /// 
         /// </summary>
-        DescriptorUpdateTemplate = 1000011000, 
+        DescriptorUpdateTemplate = 1000085000, 
         
         /// <summary>
         /// 

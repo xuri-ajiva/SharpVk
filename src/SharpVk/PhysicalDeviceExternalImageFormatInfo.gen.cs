@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceExternalImageFormatInfo* pointer)
         {
+            pointer->SType = StructureType.PhysicalDeviceExternalImageFormatInfoVersion;
             pointer->Next = null;
             if (this.HandleType != null)
             {

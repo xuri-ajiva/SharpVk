@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.ImageStencilUsageCreateInfo* pointer)
         {
+            pointer->SType = StructureType.ImageStencilUsageCreateInfoVersion;
             pointer->Next = null;
             pointer->StencilUsage = this.StencilUsage;
         }

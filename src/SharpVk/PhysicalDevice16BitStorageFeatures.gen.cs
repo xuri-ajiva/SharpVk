@@ -76,6 +76,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDevice16BitStorageFeatures* pointer)
         {
+            pointer->SType = StructureType.PhysicalDevice16bitStorageFeaturesVersion;
             pointer->Next = null;
             pointer->StorageBuffer16BitAccess = this.StorageBuffer16BitAccess;
             pointer->UniformAndStorageBuffer16BitAccess = this.UniformAndStorageBuffer16BitAccess;

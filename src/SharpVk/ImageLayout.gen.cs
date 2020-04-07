@@ -112,6 +112,36 @@ namespace SharpVk
         Preinitialized = 8, 
         
         /// <summary>
+        /// 
+        /// </summary>
+        DepthReadOnlyStencilAttachmentOptimalVersion = 1000117000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DepthAttachmentStencilReadOnlyOptimalVersion = 1000117001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DepthAttachmentOptimalVersion = 1000241000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DepthReadOnlyOptimalVersion = 1000241001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        StencilAttachmentOptimalVersion = 1000241002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        StencilReadOnlyOptimalVersion = 1000241003, 
+        
+        /// <summary>
         /// Must only be used for presenting a presentable image for display. A
         /// swapchain's image must be transitioned to this layout before
         /// calling flink:vkQueuePresentKHR, and must be transitioned away from

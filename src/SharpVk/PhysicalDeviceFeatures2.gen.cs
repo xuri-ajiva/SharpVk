@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceFeatures2* pointer)
         {
+            pointer->SType = StructureType.PhysicalDeviceFeatures2Version;
             pointer->Next = null;
             this.Features.MarshalTo(&pointer->Features);
         }

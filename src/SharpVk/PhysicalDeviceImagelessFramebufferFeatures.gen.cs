@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceImagelessFramebufferFeatures* pointer)
         {
+            pointer->SType = StructureType.PhysicalDeviceImagelessFramebufferFeaturesVersion;
             pointer->Next = null;
             pointer->ImagelessFramebuffer = this.ImagelessFramebuffer;
         }

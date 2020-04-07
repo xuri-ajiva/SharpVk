@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceHostQueryResetFeatures* pointer)
         {
+            pointer->SType = StructureType.PhysicalDeviceHostQueryResetFeaturesVersion;
             pointer->Next = null;
             pointer->HostQueryReset = this.HostQueryReset;
         }

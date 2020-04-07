@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.RenderPassInputAttachmentAspectCreateInfo* pointer)
         {
+            pointer->SType = StructureType.RenderPassInputAttachmentAspectCreateInfoVersion;
             pointer->Next = null;
             pointer->AspectReferenceCount = (uint)(Interop.HeapUtil.GetLength(this.AspectReferences));
             if (this.AspectReferences != null)

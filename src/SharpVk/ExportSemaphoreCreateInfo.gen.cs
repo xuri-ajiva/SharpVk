@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.ExportSemaphoreCreateInfo* pointer)
         {
+            pointer->SType = StructureType.ExportSemaphoreCreateInfoVersion;
             pointer->Next = null;
             if (this.HandleTypes != null)
             {

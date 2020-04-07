@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.DeviceGroupDeviceCreateInfo* pointer)
         {
+            pointer->SType = StructureType.DeviceGroupDeviceCreateInfoVersion;
             pointer->Next = null;
             pointer->PhysicalDeviceCount = (uint)(Interop.HeapUtil.GetLength(this.PhysicalDevices));
             if (this.PhysicalDevices != null)

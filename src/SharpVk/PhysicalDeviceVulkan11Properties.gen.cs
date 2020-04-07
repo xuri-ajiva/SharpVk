@@ -175,6 +175,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceVulkan11Properties* pointer)
         {
+            pointer->SType = StructureType.PhysicalDeviceVulkan11Properties;
             pointer->Next = null;
             Interop.HeapUtil.MarshalTo(this.DeviceUUID, Constants.UuidSize, pointer->DeviceUUID);
             Interop.HeapUtil.MarshalTo(this.DriverUUID, Constants.UuidSize, pointer->DriverUUID);

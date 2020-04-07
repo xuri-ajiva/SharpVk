@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.BufferDeviceAddressInfo* pointer)
         {
+            pointer->SType = StructureType.BufferDeviceAddressInfoVersion;
             pointer->Next = null;
             pointer->Buffer = this.Buffer?.handle ?? default(SharpVk.Interop.Buffer);
         }

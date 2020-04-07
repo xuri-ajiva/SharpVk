@@ -112,6 +112,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.SubpassDependency2* pointer)
         {
+            pointer->SType = StructureType.SubpassDependency2Version;
             pointer->Next = null;
             pointer->SourceSubpass = this.SourceSubpass;
             pointer->DestinationSubpass = this.DestinationSubpass;

@@ -85,6 +85,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.RenderPassCreateInfo2* pointer)
         {
+            pointer->SType = StructureType.RenderPassCreateInfo2Version;
             pointer->Next = null;
             if (this.Flags != null)
             {

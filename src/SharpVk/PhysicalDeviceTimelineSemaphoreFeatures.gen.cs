@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceTimelineSemaphoreFeatures* pointer)
         {
+            pointer->SType = StructureType.PhysicalDeviceTimelineSemaphoreFeaturesVersion;
             pointer->Next = null;
             pointer->TimelineSemaphore = this.TimelineSemaphore;
         }

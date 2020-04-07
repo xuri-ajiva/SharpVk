@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.ExportFenceCreateInfo* pointer)
         {
+            pointer->SType = StructureType.ExportFenceCreateInfoVersion;
             pointer->Next = null;
             if (this.HandleTypes != null)
             {

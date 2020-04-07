@@ -43,6 +43,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        MultiInstance = 1 << 1, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         Reserved2 = 1 << 2, 
     }
 }

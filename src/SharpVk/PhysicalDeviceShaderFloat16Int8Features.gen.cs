@@ -62,6 +62,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceShaderFloat16Int8Features* pointer)
         {
+            pointer->SType = StructureType.PhysicalDeviceShaderFloat16Int8FeaturesVersion;
             pointer->Next = null;
             pointer->ShaderFloat16 = this.ShaderFloat16;
             pointer->ShaderInt8 = this.ShaderInt8;

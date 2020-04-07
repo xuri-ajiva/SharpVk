@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.ImageViewUsageCreateInfo* pointer)
         {
+            pointer->SType = StructureType.ImageViewUsageCreateInfoVersion;
             pointer->Next = null;
             pointer->Usage = this.Usage;
         }

@@ -1371,6 +1371,176 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        G8B8G8R8422UNormVersion = 1000156000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        B8G8R8G8422UNormVersion = 1000156001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        G8B8R83plane420UNormVersion = 1000156002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        G8B8R82plane420UNormVersion = 1000156003, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        G8B8R83plane422UNormVersion = 1000156004, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        G8B8R82plane422UNormVersion = 1000156005, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        G8B8R83plane444UNormVersion = 1000156006, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        R10X6UNormPack16Version = 1000156007, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        R10X6G10X6UNorm2Pack16Version = 1000156008, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        R10X6G10X6B10X6A10X6UNorm4Pack16Version = 1000156009, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        G10X6B10X6G10X6R10X6422UNorm4Pack16Version = 1000156010, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        B10X6G10X6R10X6G10X6422UNorm4Pack16Version = 1000156011, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        G10X6B10X6R10X63plane420UNorm3Pack16Version = 1000156012, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        G10X6B10X6R10X62plane420UNorm3Pack16Version = 1000156013, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        G10X6B10X6R10X63plane422UNorm3Pack16Version = 1000156014, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        G10X6B10X6R10X62plane422UNorm3Pack16Version = 1000156015, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        G10X6B10X6R10X63plane444UNorm3Pack16Version = 1000156016, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        R12X4UNormPack16Version = 1000156017, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        R12X4G12X4UNorm2Pack16Version = 1000156018, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        R12X4G12X4B12X4A12X4UNorm4Pack16Version = 1000156019, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        G12X4B12X4G12X4R12X4422UNorm4Pack16Version = 1000156020, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        B12X4G12X4R12X4G12X4422UNorm4Pack16Version = 1000156021, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        G12X4B12X4R12X43plane420UNorm3Pack16Version = 1000156022, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        G12X4B12X4R12X42plane420UNorm3Pack16Version = 1000156023, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        G12X4B12X4R12X43plane422UNorm3Pack16Version = 1000156024, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        G12X4B12X4R12X42plane422UNorm3Pack16Version = 1000156025, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        G12X4B12X4R12X43plane444UNorm3Pack16Version = 1000156026, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        G16B16G16R16422UNormVersion = 1000156027, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        B16G16R16G16422UNormVersion = 1000156028, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        G16B16R163plane420UNormVersion = 1000156029, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        G16B16R162plane420UNormVersion = 1000156030, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        G16B16R163plane422UNormVersion = 1000156031, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        G16B16R162plane422UNormVersion = 1000156032, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        G16B16R163plane444UNormVersion = 1000156033, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         Pvrtc12bppUNormBlock = 1000054000, 
         
         /// <summary>

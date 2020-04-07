@@ -58,6 +58,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.DeviceGroupBindSparseInfo* pointer)
         {
+            pointer->SType = StructureType.DeviceGroupBindSparseInfoVersion;
             pointer->Next = null;
             pointer->ResourceDeviceIndex = this.ResourceDeviceIndex;
             pointer->MemoryDeviceIndex = this.MemoryDeviceIndex;

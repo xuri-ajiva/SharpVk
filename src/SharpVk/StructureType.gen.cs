@@ -277,6 +277,581 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        PhysicalDeviceSubgroupProperties = 1000094000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        BindBufferMemoryInfoVersion = 1000157000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        BindImageMemoryInfoVersion = 1000157001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDevice16bitStorageFeaturesVersion = 1000083000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        MemoryDedicatedRequirementsVersion = 1000127000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        MemoryDedicatedAllocateInfoVersion = 1000127001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        MemoryAllocateFlagsInfoVersion = 1000060000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DeviceGroupRenderPassBeginInfoVersion = 1000060003, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DeviceGroupCommandBufferBeginInfoVersion = 1000060004, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DeviceGroupSubmitInfoVersion = 1000060005, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DeviceGroupBindSparseInfoVersion = 1000060006, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        BindBufferMemoryDeviceGroupInfoVersion = 1000060013, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        BindImageMemoryDeviceGroupInfoVersion = 1000060014, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceGroupPropertiesVersion = 1000070000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DeviceGroupDeviceCreateInfoVersion = 1000070001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        BufferMemoryRequirementsInfo2Version = 1000146000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ImageMemoryRequirementsInfo2Version = 1000146001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ImageSparseMemoryRequirementsInfo2Version = 1000146002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        MemoryRequirements2Version = 1000146003, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SparseImageMemoryRequirements2Version = 1000146004, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceFeatures2Version = 1000059000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceProperties2Version = 1000059001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        FormatProperties2Version = 1000059002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ImageFormatProperties2Version = 1000059003, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceImageFormatInfo2Version = 1000059004, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        QueueFamilyProperties2Version = 1000059005, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceMemoryProperties2Version = 1000059006, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SparseImageFormatProperties2Version = 1000059007, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceSparseImageFormatInfo2Version = 1000059008, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDevicePointClippingPropertiesVersion = 1000117000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        RenderPassInputAttachmentAspectCreateInfoVersion = 1000117001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ImageViewUsageCreateInfoVersion = 1000117002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PipelineTessellationDomainOriginStateCreateInfoVersion = 1000117003, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        RenderPassMultiviewCreateInfoVersion = 1000053000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceMultiviewFeaturesVersion = 1000053001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceMultiviewPropertiesVersion = 1000053002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceVariablePointersFeaturesVersion = 1000120000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ProtectedSubmitInfo = 1000145000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceProtectedMemoryFeatures = 1000145001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceProtectedMemoryProperties = 1000145002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DeviceQueueInfo2 = 1000145003, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SamplerYcbcrConversionCreateInfoVersion = 1000156000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SamplerYcbcrConversionInfoVersion = 1000156001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        BindImagePlaneMemoryInfoVersion = 1000156002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ImagePlaneMemoryRequirementsInfoVersion = 1000156003, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceSamplerYcbcrConversionFeaturesVersion = 1000156004, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SamplerYcbcrConversionImageFormatPropertiesVersion = 1000156005, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DescriptorUpdateTemplateCreateInfoVersion = 1000085000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceExternalImageFormatInfoVersion = 1000071000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ExternalImageFormatPropertiesVersion = 1000071001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceExternalBufferInfoVersion = 1000071002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ExternalBufferPropertiesVersion = 1000071003, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceIdPropertiesVersion = 1000071004, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ExternalMemoryBufferCreateInfoVersion = 1000072000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ExternalMemoryImageCreateInfoVersion = 1000072001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ExportMemoryAllocateInfoVersion = 1000072002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceExternalFenceInfoVersion = 1000112000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ExternalFencePropertiesVersion = 1000112001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ExportFenceCreateInfoVersion = 1000113000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ExportSemaphoreCreateInfoVersion = 1000077000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceExternalSemaphoreInfoVersion = 1000076000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ExternalSemaphorePropertiesVersion = 1000076001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceMaintenance3PropertiesVersion = 1000168000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DescriptorSetLayoutSupportVersion = 1000168001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceShaderDrawParametersFeatures = 1000063000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceVulkan11Features = 49, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceVulkan11Properties = 50, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceVulkan12Features = 51, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceVulkan12Properties = 52, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ImageFormatListCreateInfoVersion = 1000147000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        AttachmentDescription2Version = 1000109000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        AttachmentReference2Version = 1000109001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SubpassDescription2Version = 1000109002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SubpassDependency2Version = 1000109003, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        RenderPassCreateInfo2Version = 1000109004, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SubpassBeginInfoVersion = 1000109005, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SubpassEndInfoVersion = 1000109006, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDevice8bitStorageFeaturesVersion = 1000177000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceDriverPropertiesVersion = 1000196000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceShaderAtomicInt64FeaturesVersion = 1000180000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceShaderFloat16Int8FeaturesVersion = 1000082000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceFloatControlsPropertiesVersion = 1000197000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DescriptorSetLayoutBindingFlagsCreateInfoVersion = 1000161000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceDescriptorIndexingFeaturesVersion = 1000161001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceDescriptorIndexingPropertiesVersion = 1000161002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DescriptorSetVariableDescriptorCountAllocateInfoVersion = 1000161003, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DescriptorSetVariableDescriptorCountLayoutSupportVersion = 1000161004, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceDepthStencilResolvePropertiesVersion = 1000199000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SubpassDescriptionDepthStencilResolveVersion = 1000199001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceScalarBlockLayoutFeaturesVersion = 1000221000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ImageStencilUsageCreateInfoVersion = 1000246000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceSamplerFilterMinmaxPropertiesVersion = 1000130000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SamplerReductionModeCreateInfoVersion = 1000130001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceVulkanMemoryModelFeaturesVersion = 1000211000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceImagelessFramebufferFeaturesVersion = 1000108000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        FramebufferAttachmentsCreateInfoVersion = 1000108001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        FramebufferAttachmentImageInfoVersion = 1000108002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        RenderPassAttachmentBeginInfoVersion = 1000108003, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceUniformBufferStandardLayoutFeaturesVersion = 1000253000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceShaderSubgroupExtendedTypesFeaturesVersion = 1000175000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceSeparateDepthStencilLayoutsFeaturesVersion = 1000241000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        AttachmentReferenceStencilLayoutVersion = 1000241001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        AttachmentDescriptionStencilLayoutVersion = 1000241002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceHostQueryResetFeaturesVersion = 1000261000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceTimelineSemaphoreFeaturesVersion = 1000207000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceTimelineSemaphorePropertiesVersion = 1000207001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SemaphoreTypeCreateInfoVersion = 1000207002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        TimelineSemaphoreSubmitInfoVersion = 1000207003, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SemaphoreWaitInfoVersion = 1000207004, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        SemaphoreSignalInfoVersion = 1000207005, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        PhysicalDeviceBufferDeviceAddressFeaturesVersion = 1000257000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        BufferDeviceAddressInfoVersion = 1000244001, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        BufferOpaqueCaptureAddressCreateInfoVersion = 1000257002, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        MemoryOpaqueCaptureAddressAllocateInfoVersion = 1000257003, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DeviceMemoryOpaqueCaptureAddressInfoVersion = 1000257004, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         SwapchainCreateInfo = 1000001000, 
         
         /// <summary>

@@ -39,5 +39,15 @@ namespace SharpVk
         /// Dependency is per pixel region 
         /// </summary>
         ByRegion = 1 << 0, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DeviceGroup = 1 << 2, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ViewLocal = 1 << 1, 
     }
 }

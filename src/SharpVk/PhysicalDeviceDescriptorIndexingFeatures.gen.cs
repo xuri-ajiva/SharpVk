@@ -220,6 +220,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceDescriptorIndexingFeatures* pointer)
         {
+            pointer->SType = StructureType.PhysicalDeviceDescriptorIndexingFeaturesVersion;
             pointer->Next = null;
             pointer->ShaderInputAttachmentArrayDynamicIndexing = this.ShaderInputAttachmentArrayDynamicIndexing;
             pointer->ShaderUniformTexelBufferArrayDynamicIndexing = this.ShaderUniformTexelBufferArrayDynamicIndexing;

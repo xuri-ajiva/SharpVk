@@ -127,6 +127,26 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        ErrorOutOfPoolMemoryVersion = -1000069000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ErrorInvalidExternalHandleVersion = -1000072003, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ErrorFragmentationVersion = -1000161000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        ErrorInvalidOpaqueCaptureAddressVersion = -1000257000, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         ErrorSurfaceLost = -1000000000, 
         
         /// <summary>

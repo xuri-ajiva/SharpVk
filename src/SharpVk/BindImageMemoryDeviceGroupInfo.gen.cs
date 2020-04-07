@@ -58,6 +58,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.BindImageMemoryDeviceGroupInfo* pointer)
         {
+            pointer->SType = StructureType.BindImageMemoryDeviceGroupInfoVersion;
             pointer->Next = null;
             pointer->DeviceIndexCount = (uint)(Interop.HeapUtil.GetLength(this.DeviceIndices));
             if (this.DeviceIndices != null)

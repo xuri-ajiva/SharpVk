@@ -67,6 +67,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.DeviceQueueInfo2* pointer)
         {
+            pointer->SType = StructureType.DeviceQueueInfo2;
             pointer->Next = null;
             if (this.Flags != null)
             {

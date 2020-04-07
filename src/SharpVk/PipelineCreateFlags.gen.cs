@@ -57,6 +57,16 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        ViewIndexFromDeviceIndex = 1 << 3, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DispatchBaseVersion = 1 << 4, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         Extension151Bit0 = 1 << 11, 
         
         /// <summary>

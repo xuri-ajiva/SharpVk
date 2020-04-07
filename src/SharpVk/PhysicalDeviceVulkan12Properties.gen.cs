@@ -508,6 +508,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceVulkan12Properties* pointer)
         {
+            pointer->SType = StructureType.PhysicalDeviceVulkan12Properties;
             pointer->Next = null;
             pointer->DriverID = this.DriverID;
             pointer->ConformanceVersion = this.ConformanceVersion;

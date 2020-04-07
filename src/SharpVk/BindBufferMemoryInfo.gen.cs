@@ -67,6 +67,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.BindBufferMemoryInfo* pointer)
         {
+            pointer->SType = StructureType.BindBufferMemoryInfoVersion;
             pointer->Next = null;
             pointer->Buffer = this.Buffer?.handle ?? default(SharpVk.Interop.Buffer);
             pointer->Memory = this.Memory?.handle ?? default(SharpVk.Interop.DeviceMemory);

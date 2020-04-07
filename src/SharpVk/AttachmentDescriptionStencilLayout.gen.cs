@@ -58,6 +58,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.AttachmentDescriptionStencilLayout* pointer)
         {
+            pointer->SType = StructureType.AttachmentDescriptionStencilLayoutVersion;
             pointer->Next = null;
             pointer->StencilInitialLayout = this.StencilInitialLayout;
             pointer->StencilFinalLayout = this.StencilFinalLayout;

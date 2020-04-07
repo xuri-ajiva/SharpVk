@@ -102,6 +102,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.FramebufferAttachmentImageInfo* pointer)
         {
+            pointer->SType = StructureType.FramebufferAttachmentImageInfoVersion;
             pointer->Next = null;
             if (this.Flags != null)
             {

@@ -67,6 +67,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.AttachmentReference2* pointer)
         {
+            pointer->SType = StructureType.AttachmentReference2Version;
             pointer->Next = null;
             pointer->Attachment = this.Attachment;
             pointer->Layout = this.Layout;

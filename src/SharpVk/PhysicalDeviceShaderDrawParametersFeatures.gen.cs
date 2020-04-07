@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceShaderDrawParametersFeatures* pointer)
         {
+            pointer->SType = StructureType.PhysicalDeviceShaderDrawParametersFeatures;
             pointer->Next = null;
             pointer->ShaderDrawParameters = this.ShaderDrawParameters;
         }

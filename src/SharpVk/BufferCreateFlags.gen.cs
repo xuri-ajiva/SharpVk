@@ -56,5 +56,15 @@ namespace SharpVk
         /// CreateSparseBinding flag.
         /// </summary>
         SparseAliased = 1 << 2, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Protected = 1 << 3, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DeviceAddressCaptureReplay = 1 << 4, 
     }
 }

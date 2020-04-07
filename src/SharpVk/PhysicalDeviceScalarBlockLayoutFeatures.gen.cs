@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceScalarBlockLayoutFeatures* pointer)
         {
+            pointer->SType = StructureType.PhysicalDeviceScalarBlockLayoutFeaturesVersion;
             pointer->Next = null;
             pointer->ScalarBlockLayout = this.ScalarBlockLayout;
         }

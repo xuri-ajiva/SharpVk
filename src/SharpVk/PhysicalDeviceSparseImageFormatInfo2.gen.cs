@@ -85,6 +85,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceSparseImageFormatInfo2* pointer)
         {
+            pointer->SType = StructureType.PhysicalDeviceSparseImageFormatInfo2Version;
             pointer->Next = null;
             pointer->Format = this.Format;
             pointer->Type = this.Type;

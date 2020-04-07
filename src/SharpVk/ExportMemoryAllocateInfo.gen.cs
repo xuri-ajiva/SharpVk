@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.ExportMemoryAllocateInfo* pointer)
         {
+            pointer->SType = StructureType.ExportMemoryAllocateInfoVersion;
             pointer->Next = null;
             if (this.HandleTypes != null)
             {

@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceProtectedMemoryFeatures* pointer)
         {
+            pointer->SType = StructureType.PhysicalDeviceProtectedMemoryFeatures;
             pointer->Next = null;
             pointer->ProtectedMemory = this.ProtectedMemory;
         }

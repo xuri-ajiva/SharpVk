@@ -39,5 +39,15 @@ namespace SharpVk
         /// 
         /// </summary>
         DeviceMask = 1 << 0, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DeviceAddress = 1 << 1, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        DeviceAddressCaptureReplay = 1 << 2, 
     }
 }

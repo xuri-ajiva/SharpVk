@@ -36,5 +36,10 @@ namespace SharpVk
         /// FramebufferAttachmentImageInfo.
         /// </summary>
         None = 0, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Imageless = 1 << 0, 
     }
 }

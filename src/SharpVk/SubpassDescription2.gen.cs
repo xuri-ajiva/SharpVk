@@ -112,6 +112,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.SubpassDescription2* pointer)
         {
+            pointer->SType = StructureType.SubpassDescription2Version;
             pointer->Next = null;
             if (this.Flags != null)
             {

@@ -67,6 +67,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.DeviceGroupSubmitInfo* pointer)
         {
+            pointer->SType = StructureType.DeviceGroupSubmitInfoVersion;
             pointer->Next = null;
             pointer->WaitSemaphoreCount = (uint)(Interop.HeapUtil.GetLength(this.WaitSemaphoreDeviceIndices));
             if (this.WaitSemaphoreDeviceIndices != null)

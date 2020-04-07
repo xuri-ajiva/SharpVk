@@ -58,6 +58,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.MemoryDedicatedAllocateInfo* pointer)
         {
+            pointer->SType = StructureType.MemoryDedicatedAllocateInfoVersion;
             pointer->Next = null;
             pointer->Image = this.Image?.handle ?? default(SharpVk.Interop.Image);
             pointer->Buffer = this.Buffer?.handle ?? default(SharpVk.Interop.Buffer);

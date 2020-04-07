@@ -121,6 +121,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.AttachmentDescription2* pointer)
         {
+            pointer->SType = StructureType.AttachmentDescription2Version;
             pointer->Next = null;
             if (this.Flags != null)
             {

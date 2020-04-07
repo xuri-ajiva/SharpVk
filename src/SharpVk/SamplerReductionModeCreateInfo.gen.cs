@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.SamplerReductionModeCreateInfo* pointer)
         {
+            pointer->SType = StructureType.SamplerReductionModeCreateInfoVersion;
             pointer->Next = null;
             pointer->ReductionMode = this.ReductionMode;
         }

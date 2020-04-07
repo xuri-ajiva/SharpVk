@@ -58,6 +58,21 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        Plane0 = 1 << 4, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Plane1 = 1 << 5, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Plane2 = 1 << 6, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         MemoryPlane0 = 1 << 7, 
         
         /// <summary>

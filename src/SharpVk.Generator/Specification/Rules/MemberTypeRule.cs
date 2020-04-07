@@ -74,17 +74,6 @@ namespace SharpVk.Generator.Specification.Rules
 
                 string values = vkMember.Attribute("values")?.Value;
 
-                if (vkName == "sType" && values == null)
-                {
-                    if (vkMember.NextNode != null)
-                    {
-                        // Split on spaces and skip "Must" & "be"
-                        //values = ((XComment)vkMember.NextNode).Value.Trim().Split(' ')[2];
-
-                        System.Console.WriteLine(vkMember);
-                    }
-                }
-
                 var newMember = new MemberElement
                 {
                     VkName = vkName,

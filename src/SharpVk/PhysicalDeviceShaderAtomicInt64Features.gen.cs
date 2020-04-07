@@ -58,6 +58,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceShaderAtomicInt64Features* pointer)
         {
+            pointer->SType = StructureType.PhysicalDeviceShaderAtomicInt64FeaturesVersion;
             pointer->Next = null;
             pointer->ShaderBufferInt64Atomics = this.ShaderBufferInt64Atomics;
             pointer->ShaderSharedInt64Atomics = this.ShaderSharedInt64Atomics;

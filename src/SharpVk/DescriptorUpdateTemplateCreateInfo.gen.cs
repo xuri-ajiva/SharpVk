@@ -103,6 +103,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.DescriptorUpdateTemplateCreateInfo* pointer)
         {
+            pointer->SType = StructureType.DescriptorUpdateTemplateCreateInfoVersion;
             pointer->Next = null;
             if (this.Flags != null)
             {

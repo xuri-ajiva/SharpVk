@@ -58,6 +58,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.DeviceGroupRenderPassBeginInfo* pointer)
         {
+            pointer->SType = StructureType.DeviceGroupRenderPassBeginInfoVersion;
             pointer->Next = null;
             pointer->DeviceMask = this.DeviceMask;
             pointer->DeviceRenderAreaCount = (uint)(Interop.HeapUtil.GetLength(this.DeviceRenderAreas));

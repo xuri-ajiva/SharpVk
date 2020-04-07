@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.DescriptorSetLayoutBindingFlagsCreateInfo* pointer)
         {
+            pointer->SType = StructureType.DescriptorSetLayoutBindingFlagsCreateInfoVersion;
             pointer->Next = null;
             pointer->BindingCount = (uint)(Interop.HeapUtil.GetLength(this.BindingFlags));
             if (this.BindingFlags != null)

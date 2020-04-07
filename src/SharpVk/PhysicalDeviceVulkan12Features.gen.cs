@@ -463,6 +463,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceVulkan12Features* pointer)
         {
+            pointer->SType = StructureType.PhysicalDeviceVulkan12Features;
             pointer->Next = null;
             pointer->SamplerMirrorClampToEdge = this.SamplerMirrorClampToEdge;
             pointer->DrawIndirectCount = this.DrawIndirectCount;

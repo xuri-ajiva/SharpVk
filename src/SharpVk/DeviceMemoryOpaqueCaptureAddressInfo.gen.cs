@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.DeviceMemoryOpaqueCaptureAddressInfo* pointer)
         {
+            pointer->SType = StructureType.DeviceMemoryOpaqueCaptureAddressInfoVersion;
             pointer->Next = null;
             pointer->Memory = this.Memory?.handle ?? default(SharpVk.Interop.DeviceMemory);
         }

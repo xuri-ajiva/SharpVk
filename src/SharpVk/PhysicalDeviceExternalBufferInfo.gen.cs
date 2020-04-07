@@ -67,6 +67,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceExternalBufferInfo* pointer)
         {
+            pointer->SType = StructureType.PhysicalDeviceExternalBufferInfoVersion;
             pointer->Next = null;
             if (this.Flags != null)
             {

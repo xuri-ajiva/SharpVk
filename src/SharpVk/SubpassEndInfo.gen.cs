@@ -40,6 +40,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.SubpassEndInfo* pointer)
         {
+            pointer->SType = StructureType.SubpassEndInfoVersion;
             pointer->Next = null;
         }
     }

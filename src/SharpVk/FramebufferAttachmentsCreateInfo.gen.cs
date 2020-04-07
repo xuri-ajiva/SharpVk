@@ -52,6 +52,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.FramebufferAttachmentsCreateInfo* pointer)
         {
+            pointer->SType = StructureType.FramebufferAttachmentsCreateInfoVersion;
             pointer->Next = null;
             pointer->AttachmentImageInfoCount = (uint)(Interop.HeapUtil.GetLength(this.AttachmentImageInfos));
             if (this.AttachmentImageInfos != null)

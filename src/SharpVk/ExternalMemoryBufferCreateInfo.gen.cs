@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.ExternalMemoryBufferCreateInfo* pointer)
         {
+            pointer->SType = StructureType.ExternalMemoryBufferCreateInfoVersion;
             pointer->Next = null;
             if (this.HandleTypes != null)
             {

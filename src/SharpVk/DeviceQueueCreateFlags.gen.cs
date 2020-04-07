@@ -34,5 +34,10 @@ namespace SharpVk
         /// 
         /// </summary>
         None = 0, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        Protected = 1 << 0, 
     }
 }

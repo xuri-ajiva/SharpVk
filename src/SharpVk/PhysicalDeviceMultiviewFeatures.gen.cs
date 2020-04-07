@@ -67,6 +67,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceMultiviewFeatures* pointer)
         {
+            pointer->SType = StructureType.PhysicalDeviceMultiviewFeaturesVersion;
             pointer->Next = null;
             pointer->Multiview = this.Multiview;
             pointer->MultiviewGeometryShader = this.MultiviewGeometryShader;

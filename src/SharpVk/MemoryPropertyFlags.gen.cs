@@ -63,6 +63,11 @@ namespace SharpVk
         /// <summary>
         /// 
         /// </summary>
+        Protected = 1 << 5, 
+        
+        /// <summary>
+        /// 
+        /// </summary>
         DeviceCoherent = 1 << 6, 
         
         /// <summary>

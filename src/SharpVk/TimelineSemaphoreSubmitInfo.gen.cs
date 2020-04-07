@@ -58,6 +58,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.TimelineSemaphoreSubmitInfo* pointer)
         {
+            pointer->SType = StructureType.TimelineSemaphoreSubmitInfoVersion;
             pointer->Next = null;
             pointer->WaitSemaphoreValueCount = (uint)(Interop.HeapUtil.GetLength(this.WaitSemaphoreValues));
             if (this.WaitSemaphoreValues != null)

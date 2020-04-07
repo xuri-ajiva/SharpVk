@@ -67,6 +67,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.PhysicalDeviceVulkanMemoryModelFeatures* pointer)
         {
+            pointer->SType = StructureType.PhysicalDeviceVulkanMemoryModelFeaturesVersion;
             pointer->Next = null;
             pointer->VulkanMemoryModel = this.VulkanMemoryModel;
             pointer->VulkanMemoryModelDeviceScope = this.VulkanMemoryModelDeviceScope;

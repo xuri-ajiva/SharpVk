@@ -49,6 +49,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.DescriptorSetVariableDescriptorCountAllocateInfo* pointer)
         {
+            pointer->SType = StructureType.DescriptorSetVariableDescriptorCountAllocateInfoVersion;
             pointer->Next = null;
             pointer->DescriptorSetCount = (uint)(Interop.HeapUtil.GetLength(this.DescriptorCounts));
             if (this.DescriptorCounts != null)

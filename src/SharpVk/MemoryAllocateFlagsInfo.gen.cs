@@ -58,6 +58,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.MemoryAllocateFlagsInfo* pointer)
         {
+            pointer->SType = StructureType.MemoryAllocateFlagsInfoVersion;
             pointer->Next = null;
             if (this.Flags != null)
             {

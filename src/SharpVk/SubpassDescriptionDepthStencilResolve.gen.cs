@@ -67,6 +67,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.SubpassDescriptionDepthStencilResolve* pointer)
         {
+            pointer->SType = StructureType.SubpassDescriptionDepthStencilResolveVersion;
             pointer->Next = null;
             pointer->DepthResolveMode = this.DepthResolveMode;
             pointer->StencilResolveMode = this.StencilResolveMode;

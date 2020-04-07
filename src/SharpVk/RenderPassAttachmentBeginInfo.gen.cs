@@ -50,6 +50,7 @@ namespace SharpVk
         /// </param>
         internal unsafe void MarshalTo(SharpVk.Interop.RenderPassAttachmentBeginInfo* pointer)
         {
+            pointer->SType = StructureType.RenderPassAttachmentBeginInfoVersion;
             pointer->Next = null;
             pointer->AttachmentCount = (uint)(Interop.HeapUtil.GetLength(this.Attachments));
             if (this.Attachments != null)
