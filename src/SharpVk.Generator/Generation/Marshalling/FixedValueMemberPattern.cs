@@ -23,17 +23,14 @@ namespace SharpVk.Generator.Generation.Marshalling
         {
             if (source.FixedValue != null)
             {
-                if (this.enumLookup.ContainsKey(source.FixedValue))
-                {
-                    var enumInfo = this.enumLookup[source.FixedValue];
-                    var enumTypeName = this.nameLookup.Lookup(enumInfo.TypeVkName);
+                var enumInfo = this.enumLookup[source.FixedValue];
+                var enumTypeName = this.nameLookup.Lookup(enumInfo.TypeVkName);
 
-                    info.MarshalTo.Add((getTarget, getValue) => new AssignAction
-                    {
-                        ValueExpression = EnumField(enumTypeName, enumInfo.FieldName),
-                        TargetExpression = getTarget(source.Name)
-                    });
-                }
+                info.MarshalTo.Add((getTarget, getValue) => new AssignAction
+                {
+                    ValueExpression = EnumField(enumTypeName, enumInfo.FieldName),
+                    TargetExpression = getTarget(source.Name)
+                });
 
                 string typeName = this.nameLookup.Lookup(source.Type, true);
 
