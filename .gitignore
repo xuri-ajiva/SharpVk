@@ -240,3 +240,5 @@ _Pvt_Extensions
 
 #Ignore local testing code
 Test/
+
+.idea
